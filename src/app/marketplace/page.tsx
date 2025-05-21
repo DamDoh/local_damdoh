@@ -10,18 +10,24 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { MARKETPLACE_FILTER_OPTIONS } from "@/lib/constants";
-import { dummyMarketplaceItems } from "@/lib/dummy-data"; // Import dummy data
+import { dummyMarketplaceItems } from "@/lib/dummy-data"; 
+import { usePathname } from "next/navigation";
+import { useHomepagePreference } from "@/hooks/useHomepagePreference";
+import { useToast } from "@/hooks/use-toast";
 
 
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<MarketplaceCategory | 'All'>("All");
   const [locationFilter, setLocationFilter] = useState("");
+  
+  const pathname = usePathname();
+  const { setHomepagePreference, homepagePreference } = useHomepagePreference();
+  const { toast } = useToast();
 
-  // Use imported dummyMarketplaceItems
   const marketplaceItems = dummyMarketplaceItems;
 
   const filteredMarketplaceItems = useMemo(() => {
@@ -48,6 +54,16 @@ export default function MarketplacePage() {
     }
   }
 
+  const handleSetHomepage = () => {
+    setHomepagePreference(pathname);
+    toast({
+      title: "Homepage Set!",
+      description: "The Marketplace is now your default homepage.",
+    });
+  };
+
+  const isCurrentHomepage = homepagePreference === pathname;
+
 
   return (
     <div className="space-y-6">
@@ -64,8 +80,8 @@ export default function MarketplacePage() {
                   <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
                 </Link>
               </Button>
-              <Button variant="outline">
-                <Pin className="mr-2 h-4 w-4" /> Set as Homepage
+              <Button variant="outline" onClick={handleSetHomepage} disabled={isCurrentHomepage}>
+                <Pin className="mr-2 h-4 w-4" /> {isCurrentHomepage ? "Homepage Pinned" : "Set as Homepage"}
               </Button>
             </div>
           </div>

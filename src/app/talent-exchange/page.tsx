@@ -8,10 +8,13 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench, Pin } from "lucide-react"; 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { TALENT_FILTER_OPTIONS, TALENT_LISTING_TYPE_FILTER_OPTIONS, type TalentListingType } from "@/lib/constants";
-import { dummyTalentListings, dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
+import { dummyTalentListings, dummyUsersData } from "@/lib/dummy-data"; 
+import { usePathname } from "next/navigation";
+import { useHomepagePreference } from "@/hooks/useHomepagePreference";
+import { useToast } from "@/hooks/use-toast";
 
 
 export default function TalentExchangePage() {
@@ -19,8 +22,11 @@ export default function TalentExchangePage() {
   const [categoryFilter, setCategoryFilter] = useState<TalentCategory | 'All'>('All');
   const [typeFilter, setTypeFilter] = useState<TalentListingType | 'All'>("All"); 
 
-  // Use imported dummyTalentListings
   const talentListings = dummyTalentListings;
+
+  const pathname = usePathname();
+  const { setHomepagePreference, homepagePreference } = useHomepagePreference();
+  const { toast } = useToast();
 
   const filteredTalentListings = useMemo(() => {
     return talentListings.filter(listing => {
@@ -46,6 +52,15 @@ export default function TalentExchangePage() {
     }
   }
 
+  const handleSetHomepage = () => {
+    setHomepagePreference(pathname);
+    toast({
+      title: "Homepage Set!",
+      description: "Talent Exchange is now your default homepage.",
+    });
+  };
+
+  const isCurrentHomepage = homepagePreference === pathname;
 
   return (
     <div className="space-y-6">
@@ -62,8 +77,8 @@ export default function TalentExchangePage() {
                   <PlusCircle className="mr-2 h-4 w-4" /> Offer Job / List Service
                 </Link>
               </Button>
-              <Button variant="outline">
-                <Pin className="mr-2 h-4 w-4" /> Set as Homepage
+              <Button variant="outline" onClick={handleSetHomepage} disabled={isCurrentHomepage}>
+                <Pin className="mr-2 h-4 w-4" /> {isCurrentHomepage ? "Homepage Pinned" : "Set as Homepage"}
               </Button>
             </div>
           </div>

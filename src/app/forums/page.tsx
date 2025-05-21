@@ -8,8 +8,11 @@ import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
-import { dummyForumTopics } from "@/lib/dummy-data"; // Import dummy data
+import { useState, useEffect } from "react";
+import { dummyForumTopics } from "@/lib/dummy-data"; 
+import { usePathname } from "next/navigation";
+import { useHomepagePreference } from "@/hooks/useHomepagePreference";
+import { useToast } from "@/hooks/use-toast";
 
 const getIcon = (iconName?: string) => {
   const iconProps = { className: "h-8 w-8 text-primary" };
@@ -29,13 +32,26 @@ const getIcon = (iconName?: string) => {
 
 export default function ForumsPage() {
   const [searchTerm, setSearchTerm] = useState(""); 
-  // Use imported dummyForumTopics
   const forumTopics = dummyForumTopics;
+
+  const pathname = usePathname();
+  const { setHomepagePreference, homepagePreference } = useHomepagePreference();
+  const { toast } = useToast();
 
   const filteredForumTopics = forumTopics.filter(topic => 
     topic.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     topic.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleSetHomepage = () => {
+    setHomepagePreference(pathname);
+    toast({
+      title: "Homepage Set!",
+      description: "Forums are now your default homepage.",
+    });
+  };
+
+  const isCurrentHomepage = homepagePreference === pathname;
 
 
   return (
@@ -53,8 +69,8 @@ export default function ForumsPage() {
                   <PlusCircle className="mr-2 h-4 w-4" /> Start New Discussion
                 </Link>
               </Button>
-              <Button variant="outline">
-                <Pin className="mr-2 h-4 w-4" /> Set as Homepage
+              <Button variant="outline" onClick={handleSetHomepage} disabled={isCurrentHomepage}>
+                <Pin className="mr-2 h-4 w-4" /> {isCurrentHomepage ? "Homepage Pinned" : "Set as Homepage"}
               </Button>
             </div>
           </div>

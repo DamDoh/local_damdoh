@@ -1,5 +1,8 @@
 
+"use client";
 
+import { useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -10,8 +13,8 @@ import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSideba
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
 import Image from "next/image";
-import { dummyFeedItems } from "@/lib/dummy-data"; // Import dummy data
-
+import { dummyFeedItems } from "@/lib/dummy-data"; 
+import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 
 function FeedItemCard({ item }: { item: FeedItem }) {
   return (
@@ -67,7 +70,22 @@ function FeedItemCard({ item }: { item: FeedItem }) {
 
 
 export default function DashboardPage() {
-  const recentFeedItems = dummyFeedItems; // Use imported dummy data
+  const recentFeedItems = dummyFeedItems; 
+  const router = useRouter();
+  const pathname = usePathname();
+  const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
+
+  useEffect(() => {
+    if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
+      router.replace(homepagePreference);
+    }
+  }, [homepagePreference, isPreferenceLoading, pathname, router]);
+
+  // If still loading preference or already redirected, show minimal or no UI
+  if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
+    return <div className="flex justify-center items-center min-h-[calc(100vh-var(--header-height,80px))]"><p>Loading...</p></div>; // Or a proper spinner
+  }
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">

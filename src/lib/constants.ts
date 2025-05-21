@@ -54,3 +54,4 @@ export const TALENT_LISTING_TYPE_FILTER_OPTIONS: Array<{value: TalentListingType
 export const TALENT_LISTING_TYPE_FORM_OPTIONS: Array<{value: TalentListingType, label: string}> = 
     TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}));
 
+export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
