@@ -29,7 +29,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createAgriEventSchema, type CreateAgriEventValues } from "@/lib/form-schemas";
 import { AGRI_EVENT_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
