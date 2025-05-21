@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
-import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck } from "lucide-react"; // Added Package, Wheat, Truck
+import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin } from "lucide-react"; // Added Package, Wheat, Truck, Pin
 import { Badge } from "@/components/ui/badge";
 
 // Dummy data for forum topics - agriculture supply chain focus
@@ -44,11 +44,16 @@ export default function ForumsPage() {
               <CardTitle className="text-2xl">Agricultural Supply Chain Forums</CardTitle>
               <CardDescription>Discuss, share knowledge, and collaborate on all aspects of the agri-food system.</CardDescription>
             </div>
-            <Button asChild>
-              <Link href="/forums/create">
-                <PlusCircle className="mr-2 h-4 w-4" /> Start New Discussion
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Button asChild>
+                <Link href="/forums/create">
+                  <PlusCircle className="mr-2 h-4 w-4" /> Start New Discussion
+                </Link>
+              </Button>
+              <Button variant="outline">
+                <Pin className="mr-2 h-4 w-4" /> Set as Homepage
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent>

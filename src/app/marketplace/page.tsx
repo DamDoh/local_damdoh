@@ -8,7 +8,7 @@ import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types"; // Mark
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag } from "lucide-react";
+import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin } from "lucide-react"; // Added Pin
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
@@ -64,11 +64,16 @@ export default function MarketplacePage() {
               <CardTitle className="text-2xl">Agricultural Supply Chain Marketplace</CardTitle>
               <CardDescription>Source products, equipment, and services or list your offerings to the agri-food community.</CardDescription>
             </div>
-            <Button asChild>
-              <Link href="/marketplace/create">
-                <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Button asChild>
+                <Link href="/marketplace/create">
+                  <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
+                </Link>
+              </Button>
+              <Button variant="outline">
+                <Pin className="mr-2 h-4 w-4" /> Set as Homepage
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent>
