@@ -40,18 +40,18 @@ export function ThemeToggle() {
   };
 
   if (!mounted) {
-    // Render a placeholder or null on the server and during initial client render
-    // to avoid hydration mismatch due to localStorage/window.matchMedia access.
+    // Render a simplified placeholder to avoid hydration mismatch
+    // This ensures the server and initial client render are very basic.
     return (
-      <div key="placeholder" className="flex gap-1">
-        <Button variant="ghost" disabled className="h-9 opacity-50">
+      <div key="placeholder" className="flex gap-1" aria-hidden="true" style={{height: '36px'}}> {/* h-9 equivalent */}
+        <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 opacity-50">
           <Sun className="h-5 w-5" />
           <span>Light</span>
-        </Button>
-        <Button variant="ghost" disabled className="h-9 opacity-50">
+        </div>
+        <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 opacity-50">
           <Moon className="h-5 w-5" />
           <span>Dark</span>
-        </Button>
+        </div>
       </div>
     );
   }
