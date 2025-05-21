@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users, SearchCheck } from "lucide-react";
+import { User, Bell, Shield, Palette, Lock, Users, SearchCheck, Save } from "lucide-react"; // Added Save icon
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -44,10 +44,10 @@ export default function SettingsPage() {
                 </div>
               </div>
               <div className="space-y-1">
-                <Label htmlFor="bio">Bio</Label
-                ><Input id="bio" placeholder="Tell us about yourself" defaultValue="Passionate about agriculture and technology." />
+                <Label htmlFor="bio">Bio</Label>
+                <Input id="bio" placeholder="Tell us about yourself" defaultValue="Passionate about agriculture and technology." />
               </div>
-               <Button>Save Profile Changes</Button>
+               <Button><Save className="mr-2 h-4 w-4" />Save Profile Changes</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -71,7 +71,7 @@ export default function SettingsPage() {
                   <Label htmlFor="confirm-password">Confirm New Password</Label>
                   <Input id="confirm-password" type="password" />
                 </div>
-              <Button>Change Password</Button>
+              <Button><Save className="mr-2 h-4 w-4" />Change Password</Button>
               <Separator />
               <Button variant="destructive">Deactivate Account</Button>
             </CardContent>
@@ -106,7 +106,7 @@ export default function SettingsPage() {
                 </div>
                 <Switch id="forum-mentions-notifications" />
               </div>
-              <Button>Save Notification Settings</Button>
+              <Button><Save className="mr-2 h-4 w-4" />Save Notification Settings</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -183,7 +183,7 @@ export default function SettingsPage() {
                 </div>
                 <Switch id="search-engine-indexing" defaultChecked />
               </div>
-              <Button>Save Privacy Settings</Button>
+              <Button><Save className="mr-2 h-4 w-4" />Save Privacy Settings</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -210,5 +210,3 @@ export default function SettingsPage() {
     </div>
   );
 }
-
-    
