@@ -9,27 +9,20 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon } from "lucide-react"; // Changed icon
+import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
-
-// Dummy data for suggested connections - agricultural supply chain focus
-const suggestedConnections: UserProfile[] = [
-  { id: 'sc1', name: 'AgriLogistics Global', role: 'Trader', location: 'Rotterdam Port, Netherlands', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Connecting European buyers with global agricultural producers. Specializing in grains, oilseeds, and sustainable commodities.', email: 'contact@agrilogistics.global'},
-  { id: 'sc2', name: 'EcoFertilizers Ltd.', role: 'Input Supplier', location: 'Nairobi, Kenya', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provider of organic fertilizers and soil health solutions for smallholder farmers in East Africa. Seeking distribution partners.', email: 'sales@ecofertilizers.ke'},
-  { id: 'sc3', name: 'Maria Silva - Coffee Cooperative', role: 'Agricultural Cooperative', location: 'Minas Gerais, Brazil', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Manager of a cooperative of 200+ specialty coffee farmers. Focused on direct trade and quality improvement. Seeking buyers.', email: 'maria.silva@coffeecoop.br'},
-  { id: 'sc4', name: 'TechFarm Solutions', role: 'Development Personnel', location: 'Silicon Valley, CA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Develops and implements precision agriculture tools (drone imagery, IoT sensors) for optimizing farm inputs and yields.', email: 'info@techfarm.solutions'},
-  { id: 'sc5', name: 'Asia Food Processors Inc.', role: 'Processor', location: 'Bangkok, Thailand', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Large-scale processor of tropical fruits and vegetables for export and local markets. Interested in sourcing from new farm clusters.', email: 'sourcing@asiafoodpro.th'},
-  { id: 'sc6', name: 'FairHarvest Finance', role: 'Financial Institution', location: 'London, UK', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Impact investment fund providing trade finance and working capital for ethical agribusinesses in developing countries.', email: 'deals@fairharvest.finance'},
-];
-
-const interests = ['All', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
+import { dummySuggestedConnections, dummyNetworkInterests } from "@/lib/dummy-data"; // Import dummy data
 
 export default function NetworkPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [interestFilter, setInterestFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
+
+  // Use imported dummySuggestedConnections
+  const suggestedConnections = dummySuggestedConnections;
+  const interests = dummyNetworkInterests;
 
   const filteredConnections = useMemo(() => {
     return suggestedConnections.filter(profile => {
@@ -126,7 +119,7 @@ export default function NetworkPage() {
                   <p className="text-sm text-muted-foreground line-clamp-3">{profile.profileSummary}</p>
                 </CardContent>
                 <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
-                  <Button className="w-full sm:flex-1"><LinkIcon className="mr-2 h-4 w-4" /> Connect</Button> {/* Changed icon */}
+                  <Button className="w-full sm:flex-1"><LinkIcon className="mr-2 h-4 w-4" /> Connect</Button>
                   <Button variant="outline" className="w-full sm:flex-1"><MessageCircle className="mr-2 h-4 w-4" /> Message</Button>
                 </CardFooter>
               </Card>

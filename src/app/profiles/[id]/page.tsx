@@ -1,43 +1,19 @@
 
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { UserProfile } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, CalendarDays, Globe, MapPin, MessageCircle, Plus, UserPlus, Edit, TrendingUp, Leaf, Tractor, LinkIcon, ShoppingCart, FileText, Star } from "lucide-react"; // Added LinkIcon
+import { Briefcase, CalendarDays, Globe, MapPin, MessageCircle, Plus, UserPlus, Edit, TrendingUp, Leaf, Tractor, LinkIcon, ShoppingCart, FileText, Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-// Dummy data for a single profile - agriculture supply chain focus
-const profile: UserProfile = {
-  id: 'agriProcessorSarah', 
-  name: 'Sarah Chen - ValueChain Processors',
-  role: 'Processor',
-  location: 'Agri-Food Hub, Singapore',
-  avatarUrl: 'https://placehold.co/200x200.png',
-  profileSummary: 'CEO of ValueChain Processors, specializing in transforming raw agricultural produce (fruits, spices, grains) into high-quality, export-ready ingredients and packaged goods. Strong focus on food safety, traceability, and sustainable sourcing. Actively seeking new farm partnerships and innovative packaging solutions.',
-  bio: "With over 20 years in the food processing industry, I've led ValueChain Processors to become a key player in the APAC region. Our state-of-the-art facilities are GFSI certified, and we work closely with farmer cooperatives to ensure quality inputs. We are committed to reducing post-harvest losses and adding value for our partners. I'm passionate about leveraging technology to improve supply chain efficiency and transparency. Looking to connect with input suppliers (especially organic), logistics providers, and buyers in Europe and North America.",
-  yearsOfExperience: 20,
-  areasOfInterest: ['Food Processing Technology', 'Sustainable Sourcing', 'Export Market Development', 'Supply Chain Traceability', 'Food Safety Standards (GFSI, HACCP)', 'Innovative Packaging', 'Value-Added Agriculture'],
-  needs: ['Reliable Organic Raw Material Suppliers (e.g., ginger, turmeric, cashews)', 'Cold Chain Logistics Partners for Export', 'Distributors in EU/US Markets', 'Eco-friendly Packaging Innovations', 'Collaboration on Product Development'],
-  contactInfo: {
-    email: 'sarah.chen@valuechainprocessors.com',
-    phone: '+65-555-0202',
-    website: 'www.valuechainprocessors.com'
-  },
-  connections: ['farmerJoe', 'ecoHarvestRetail', 'globalCommoditiesTrader'] // Dummy IDs
-};
-
-// Dummy data for user's activity/posts - supply chain focus
-const userActivity = [
-    { id: 'post1', type: 'Forum Discussion Started', title: 'Seeking Best Practices for Cashew Nut Shell Liquid (CNSL) Extraction', date: '2024-05-15', link: '/forums/processing-tech/cnsl-extraction', icon: MessageCircle },
-    { id: 'item1', type: 'Marketplace Listing (Seeking)', title: 'RFP: Bulk Supply of Dried Mango Slices (Organic)', date: '2024-05-20', link: '/marketplace/rfp/dried-mango', icon: ShoppingCart },
-    { id: 'post2', type: 'Shared Article', title: 'Report: APAC Food Processing Market Growth Trends 2025', date: '2024-05-10', link: '#', icon: FileText },
-    { id: 'conn1', type: 'New Connection', title: 'Connected with GreenLeaf Organics Cooperative', date: '2024-05-22', link: '/profiles/greenleaf-organics', icon: LinkIcon },
-];
+import { dummyProfileDetailsPageData } from "@/lib/dummy-data"; // Import dummy data
 
 export default function ProfileDetailPage({ params }: { params: { id: string } }) {
   // In a real app, you would fetch profile data based on params.id
+  // For now, using the centralized dummy data. We'll assume params.id matches 'agriProcessorSarah' for demo.
+  const { profile, activity: userActivity } = dummyProfileDetailsPageData; 
   const isCurrentUser = params.id === "me" || params.id === profile.id; 
 
   if (!profile) { 

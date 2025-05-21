@@ -11,23 +11,16 @@ import { PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat,
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 import { TALENT_FILTER_OPTIONS, TALENT_LISTING_TYPE_FILTER_OPTIONS, type TalentListingType } from "@/lib/constants";
-
-
-// Dummy data for talent listings - agriculture supply chain focus
-const talentListings: TalentListing[] = [
-  { id: 'talent1', title: 'Supply Chain Manager (Perishables)', description: 'Seeking experienced Supply Chain Manager for our expanding fresh produce export business. Responsibilities include logistics, inventory, and supplier relations. Based in Nairobi.', type: 'Job', category: 'Jobs & Recruitment', listerId: 'kenyaFreshExports', location: 'Nairobi, Kenya', skillsRequired: ['Supply Chain Management', 'Cold Chain Logistics', 'Export Documentation', 'ERP Systems'], compensation: 'Competitive Salary + Benefits', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), dataAiHint: "office meeting" },
-  { id: 'talent2', title: 'Organic Farm Certification Consultant', description: 'Offering consultancy services for farms transitioning to organic or seeking certifications (e.g., USDA Organic, EU Organic). Includes audit preparation and documentation support.', type: 'Service', category: 'Equipment Rentals & Services', listerId: 'organicGrowthAdvisors', location: 'Remote / Global', skillsRequired: ['Organic Standards (USDA, EU, JAS)', 'Farm Auditing', 'Sustainable Agriculture', 'Documentation'], compensation: 'Project-based or Daily Rate', createdAt: new Date(Date.now() - 86400000 * 5).toISOString(), dataAiHint: "farm consultant" },
-  { id: 'talent3', title: 'Agricultural Loan Officer', description: 'Financial institution seeks an Agricultural Loan Officer to manage a portfolio of agribusiness clients. Experience in credit analysis for farming and processing required.', type: 'Job', category: 'Jobs & Recruitment', listerId: 'agriBankCorp', location: 'Midwest, USA', skillsRequired: ['Agricultural Finance', 'Credit Analysis', 'Client Relationship Management', 'Risk Assessment'], compensation: '$80k - $110k + Bonus', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(), dataAiHint: "finance agriculture" },
-  { id: 'talent4', title: 'Lease: 50 Hectares Prime Arable Land', description: '50 hectares of well-drained, fertile land available for long-term lease. Suitable for row crops or horticulture. Irrigation access available.', type: 'Service', category: 'Land & Tenancies', listerId: 'landHoldingsLLC', location: 'Central Valley, CA', skillsRequired: ['Sustainable Farming Practices'], compensation: 'Annual Lease per Hectare', createdAt: new Date(Date.now() - 86400000 * 3).toISOString(), dataAiHint: "farmland aerial" },
-  { id: 'talent5', title: 'Custom Drone-Based Crop Scouting Service', description: 'FAA-certified drone pilot offering NDVI analysis, pest detection, and plant health assessments for large-scale farms. Covering [State/Region].', type: 'Service', category: 'Equipment Rentals & Services', listerId: 'skyAgroScout', location: 'California, USA', skillsRequired: ['Drone Piloting (Fixed Wing & VTOL)', 'NDVI & Multispectral Analysis', 'GIS Mapping', 'Agronomy Basics'], compensation: 'Per Acre / Per Project', createdAt: new Date(Date.now() - 86400000 * 7).toISOString(), dataAiHint: "drone agriculture" },
-  { id: 'talent6', title: 'Combine Harvester for Rent (with Operator)', description: 'John Deere S780 combine harvester available for rent during harvest season. Experienced operator included. Ideal for wheat, corn, soybeans.', type: 'Service', category: 'Equipment Rentals & Services', listerId: 'midwestHarvestServices', location: 'Iowa, USA', skillsRequired: ['Combine Operation', 'Grain Harvesting'], compensation: 'Per Hour / Per Acre', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(), dataAiHint: "combine harvester" },
-];
+import { dummyTalentListings, dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
 
 
 export default function TalentExchangePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<TalentCategory | 'All'>('All');
   const [typeFilter, setTypeFilter] = useState<TalentListingType | 'All'>("All"); 
+
+  // Use imported dummyTalentListings
+  const talentListings = dummyTalentListings;
 
   const filteredTalentListings = useMemo(() => {
     return talentListings.filter(listing => {
@@ -41,7 +34,7 @@ export default function TalentExchangePage() {
       
       return (nameMatch || descriptionMatch || skillsMatch) && categoryPass && typePass;
     });
-  }, [searchTerm, categoryFilter, typeFilter]);
+  }, [searchTerm, categoryFilter, typeFilter, talentListings]);
 
   const getCategoryIcon = (category?: TalentCategory) => {
     const iconProps = {className: "h-3 w-3 mr-1"};
@@ -128,7 +121,7 @@ export default function TalentExchangePage() {
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground gap-1 pt-1">
                     <Users className="h-4 w-4" />
-                    <span>Listed by: <Link href={`/profiles/${listing.listerId}`} className="text-primary hover:underline">{listing.listerId}</Link></span>
+                    <span>Listed by: <Link href={`/profiles/${listing.listerId}`} className="text-primary hover:underline">{dummyUsersData[listing.listerId]?.name || listing.listerId}</Link></span>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-2">

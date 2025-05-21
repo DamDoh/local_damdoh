@@ -1,63 +1,16 @@
 
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send } from "lucide-react"; // Renamed MessageSquare to MessageIcon to avoid conflict
+import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send } from "lucide-react";
 import Link from "next/link";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import Image from "next/image"; // Added Image import
-
-// Dummy data for recent feed items - enhanced for agricultural supply chain focus
-const recentFeedItems: FeedItem[] = [
-  { 
-    id: 'feed1', 
-    type: 'forum_post', 
-    timestamp: new Date(Date.now() - 3600000).toISOString(), 
-    userId: 'userA', 
-    userName: 'Dr. Alima Bello', 
-    userAvatar: 'https://placehold.co/40x40.png', 
-    content: 'Shared insights from the West Africa Post-Harvest Losses Summit. Key strategies discussed for improving storage and transportation for grains. Full report linked in the "Sustainable Agriculture" forum. #PostHarvest #FoodSecurity #AgriLogistics ...more', 
-    link: '/forums/sustainable-farming/post123', // Assuming slug for forum topic
-    userHeadline: "Agricultural Economist & Supply Chain Specialist",
-    postImage: "https://placehold.co/600x350.png",
-    dataAiHint: "conference agriculture",
-    likesCount: 78,
-    commentsCount: 12,
-  },
-  { 
-    id: 'feed2', 
-    type: 'marketplace_listing', 
-    timestamp: new Date(Date.now() - 7200000).toISOString(), 
-    userId: 'userB', 
-    userName: 'GreenLeaf Organics Cooperative', 
-    userAvatar: 'https://placehold.co/40x40.png', 
-    content: "Fresh listing: 500kg of certified organic ginger, ready for export. Seeking partners in the European market. View specs and pricing on our Marketplace profile. #OrganicGinger #Export #DirectSourcing ...more", 
-    link: '/marketplace/item-organic-ginger', // Assuming slug for item
-    userHeadline: "Connecting Organic Farmers to Global Buyers",
-    postImage: "https://placehold.co/600x400.png",
-    dataAiHint: "ginger harvest",
-    likesCount: 135,
-    commentsCount: 22,
-  },
-   {
-    id: 'feed3',
-    type: 'success_story',
-    timestamp: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-    userId: 'userC',
-    userName: 'AgriTech Solutions Ltd.',
-    userAvatar: 'https://placehold.co/40x40.png',
-    content: "Proud to announce our new partnership with 'FarmFresh Logistics' to implement AI-powered route optimization for their fleet, reducing fuel consumption by 15% and ensuring faster delivery of perishable goods! #AgriTech #Sustainability #LogisticsInnovation ...more",
-    link: '/profiles/agritech-solutions', // Link to their profile or an article
-    userHeadline: "Pioneering Technology for Efficient Agriculture",
-    postImage: "https://placehold.co/600x350.png",
-    dataAiHint: "technology agriculture",
-    likesCount: 210,
-    commentsCount: 35,
-  }
-];
+import Image from "next/image";
+import { dummyFeedItems } from "@/lib/dummy-data"; // Import dummy data
 
 
 function FeedItemCard({ item }: { item: FeedItem }) {
@@ -114,6 +67,8 @@ function FeedItemCard({ item }: { item: FeedItem }) {
 
 
 export default function DashboardPage() {
+  const recentFeedItems = dummyFeedItems; // Use imported dummy data
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
       {/* Left Sidebar */}

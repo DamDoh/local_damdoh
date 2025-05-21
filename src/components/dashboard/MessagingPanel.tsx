@@ -10,22 +10,18 @@ import { Search, MoreHorizontal, Edit, ChevronDown, ChevronUp, Settings2 } from 
 import type { DirectMessage } from "@/lib/types";
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const dummyMessages: DirectMessage[] = [
-  { id: 'msg1', senderName: 'AgriLogistics Co-op', lastMessage: 'AgriLogistics Co-op: Your grain shipment is confirmed for Tuesday.', timestamp: '10:30 AM', senderAvatarUrl: 'https://placehold.co/40x40.png', unread: true, dataAiHint: "logistics company" },
-  { id: 'msg2', senderName: 'Dr. Chen (Soil Scientist)', lastMessage: 'Dr. Chen sent the soil analysis report for your West field.', timestamp: 'Yesterday', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "scientist profile" },
-  { id: 'msg3', senderName: 'Export Africa Group', lastMessage: 'Export Africa Group: New RFP for organic cashews posted.', timestamp: 'May 12', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "trade group" },
-  { id: 'msg4', senderName: 'Fertilizer Direct', lastMessage: 'Sponsored: Early bird discount on potassium sulfate this week!', timestamp: 'May 10', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "fertilizer product" },
-  { id: 'msg5', senderName: 'SunValley Tractors', lastMessage: 'SunValley Tractors: Your maintenance appointment for the harvester is due.', timestamp: 'May 8', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "tractor service" },
-  { id: 'msg6', senderName: 'Local Farmers Market Hub', lastMessage: 'Local Farmers Market Hub: Stall applications for next season are open.', timestamp: 'May 5', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "market group" },
-];
+import { dummyDirectMessages, dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
 
 
 export function MessagingPanel() {
   const [isOpen, setIsOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredMessages = dummyMessages.filter(msg => 
+  const messagesToDisplay = dummyDirectMessages; // Use imported data
+  const currentUserAvatar = dummyUsersData['currentUser']?.avatarUrl || "https://placehold.co/40x40.png";
+
+
+  const filteredMessages = messagesToDisplay.filter(msg => 
     msg.senderName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     msg.lastMessage.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -36,7 +32,7 @@ export function MessagingPanel() {
         <CardHeader className="p-3 flex flex-row items-center justify-between cursor-pointer border-b" onClick={() => setIsOpen(true)}>
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
-              <AvatarImage src="https://placehold.co/40x40.png" alt="Current User" data-ai-hint="profile farmer"/>
+              <AvatarImage src={currentUserAvatar} alt="Current User" data-ai-hint="profile farmer"/>
               <AvatarFallback>CU</AvatarFallback>
             </Avatar>
             <h3 className="font-semibold text-sm">Messaging</h3>
@@ -54,7 +50,7 @@ export function MessagingPanel() {
       <CardHeader className="p-3 flex flex-row items-center justify-between border-b">
         <div className="flex items-center gap-2">
            <Avatar className="h-8 w-8">
-            <AvatarImage src="https://placehold.co/40x40.png" alt="Current User" data-ai-hint="profile agricultural" />
+            <AvatarImage src={currentUserAvatar} alt="Current User" data-ai-hint="profile agricultural" />
             <AvatarFallback>CU</AvatarFallback>
           </Avatar>
           <h3 className="font-semibold text-sm">Messaging</h3>
@@ -114,7 +110,6 @@ export function MessagingPanel() {
           </TabsContent>
         </Tabs>
       </CardContent>
-      {/* Footer can be added if needed */}
     </Card>
   );
 }

@@ -12,22 +12,15 @@ import { STAKEHOLDER_ROLES } from "@/lib/constants";
 import { Filter, PlusCircle, Search, MapPin } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
-
-// Dummy data for profiles - agriculture supply chain focus
-const profiles: UserProfile[] = [
-  { id: 'farmerJoe', name: 'Joe\'s Family Farm', role: 'Farmer', location: 'Iowa, USA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Fifth-generation corn and soybean farmer. Implementing precision agriculture techniques. Seeking partners for sustainable inputs and direct buyers.', email: 'joe.farm@example.com' },
-  { id: 'agriLogisticsCo', name: 'AgriLogistics Co-op', role: 'Collection Agent', location: 'Rural Hub, Kenya', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Farmer cooperative providing aggregation, warehousing, and transport services for smallholders. Connecting members to larger markets.', email: 'info@agrilogcoop.ke' },
-  { id: 'freshFoodsProcessor', name: 'FreshFoods Processors Ltd.', role: 'Processor', location: 'Industrial Park, Vietnam', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Specializes in IQF fruits and vegetables for export. HACCP and GlobalG.A.P. certified. Seeking reliable farm suppliers.', email: 'sourcing@freshfoods.vn' },
-  { id: 'globalCommoditiesTrader', name: 'Global Commodities Trading', role: 'Trader', location: 'Geneva, Switzerland', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'International trader of coffee, cocoa, and sugar. Focus on sustainable and traceable supply chains. Offers market insights.', email: 'trade@globalcommodities.ch' },
-  { id: 'ecoHarvestRetail', name: 'EcoHarvest Grocers', role: 'Retailer', location: 'Urban Center, Canada', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Retail chain focused on organic and locally sourced produce. Building direct relationships with farmers and food artisans.', email: 'buyer@ecoharvest.ca' },
-  { id: 'agriTechInnovator', name: 'Dr. Lena Hanson', role: 'Development Personnel', location: 'Wageningen University, NL', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Researcher in agricultural robotics and AI for crop monitoring. Open to industry collaborations and field trials.', email: 'lena.hanson@wur.nl' },
-  { id: 'inputSolutionsInc', name: 'Input Solutions Inc.', role: 'Input Supplier', location: 'Midwest, USA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provider of certified seeds, organic fertilizers, and integrated pest management solutions. Technical support available.', email: 'sales@inputsolutions.ag' },
-];
+import { dummyProfiles } from "@/lib/dummy-data"; // Import dummy data
 
 export default function ProfilesPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
+
+  // Use imported dummyProfiles
+  const profiles = dummyProfiles;
 
   const filteredProfiles = useMemo(() => {
     return profiles.filter(profile => {
@@ -41,7 +34,7 @@ export default function ProfilesPage() {
       
       return (nameMatch || summaryMatch) && roleMatch && locationMatch;
     });
-  }, [searchTerm, roleFilter, locationFilter]);
+  }, [searchTerm, roleFilter, locationFilter, profiles]);
 
   return (
     <div className="space-y-6">

@@ -1,25 +1,15 @@
 
-"use client"; // Ensure this is a client component if it wasn't already for state/filters
+"use client"; 
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
-import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin } from "lucide-react"; // Added Package, Wheat, Truck, Pin
+import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react"; // Added for potential future client-side filtering
-
-// Dummy data for forum topics - agriculture supply chain focus
-const forumTopics: ForumTopic[] = [
-  { id: 'ft1', title: 'Sustainable Sourcing & Fair Trade Practices', description: 'Discuss ethical sourcing, certification, and building transparent supply chains for agricultural products.', postCount: 130, lastActivityAt: new Date(Date.now() - 2600000).toISOString(), creatorId: 'ethicaAgri', icon: 'Leaf', createdAt: new Date(Date.now() - 86400000 * 6).toISOString() },
-  { id: 'ft2', title: 'Post-Harvest Loss Reduction Strategies', description: 'Share innovations and best practices for minimizing spoilage and waste from farm to consumer.', postCount: 95, lastActivityAt: new Date(Date.now() - 6200000).toISOString(), creatorId: 'foodSaverPro', icon: 'ShieldAlert', createdAt: new Date(Date.now() - 86400000 * 4).toISOString() },
-  { id: 'ft3', title: 'Agri-Logistics & Cold Chain Management', description: 'Challenges and solutions in transporting perishable goods, warehouse management, and last-mile delivery.', postCount: 250, lastActivityAt: new Date(Date.now() - 900000).toISOString(), creatorId: 'logisticsGuru', icon: 'Truck', createdAt: new Date(Date.now() - 86400000 * 2).toISOString() },
-  { id: 'ft4', title: 'Global Commodity Market Trends & Price Volatility', description: 'Analysis of grain, coffee, cocoa, and other commodity markets. Hedging and risk management strategies.', postCount: 180, lastActivityAt: new Date(Date.now() - 76400000).toISOString(), creatorId: 'marketAnalystAgri', icon: 'TrendingUp', createdAt: new Date(Date.now() - 86400000 * 9).toISOString() },
-  { id: 'ft5', title: 'Innovations in Food Packaging & Preservation', description: 'Exploring sustainable packaging options, shelf-life extension technologies, and food safety.', postCount: 70, lastActivityAt: new Date(Date.now() - 162800000).toISOString(), creatorId: 'packagingInnovator', icon: 'Package', createdAt: new Date(Date.now() - 86400000 * 12).toISOString() },
-  { id: 'ft6', title: 'Access to Finance for Agribusinesses', description: 'Discussing funding sources, grant opportunities, and financial planning for agricultural SMEs and cooperatives.', postCount: 55, lastActivityAt: new Date(Date.now() - 249200000).toISOString(), creatorId: 'agriFinanceExpert', icon: 'Award', createdAt: new Date(Date.now() - 86400000 * 18).toISOString() },
-  { id: 'ft7', title: 'Digital Traceability in Supply Chains', description: 'Implementing blockchain and other technologies for tracking products from farm to fork.', postCount: 110, lastActivityAt: new Date(Date.now() - 3600000 * 5).toISOString(), creatorId: 'traceTechLead', icon: 'Brain', createdAt: new Date(Date.now() - 86400000 * 7).toISOString() },
-];
+import { useState } from "react";
+import { dummyForumTopics } from "@/lib/dummy-data"; // Import dummy data
 
 const getIcon = (iconName?: string) => {
   const iconProps = { className: "h-8 w-8 text-primary" };
@@ -38,10 +28,10 @@ const getIcon = (iconName?: string) => {
 };
 
 export default function ForumsPage() {
-  const [searchTerm, setSearchTerm] = useState(""); // Example: for client-side search
-  // You might add more state for filters if making this page more dynamic client-side
+  const [searchTerm, setSearchTerm] = useState(""); 
+  // Use imported dummyForumTopics
+  const forumTopics = dummyForumTopics;
 
-  // Example filtering logic (can be expanded)
   const filteredForumTopics = forumTopics.filter(topic => 
     topic.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     topic.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -121,14 +111,13 @@ export default function ForumsPage() {
               <p className="text-sm text-muted-foreground">Try a different search term or be the first to start a discussion!</p>
             </div>
           )}
-           {forumTopics.length === 0 && searchTerm === "" && ( // Only show if no topics at all and no search term
+           {forumTopics.length === 0 && searchTerm === "" && ( 
             <div className="text-center py-10">
               <p className="text-lg text-muted-foreground">No forums available yet.</p>
               <p className="text-sm text-muted-foreground">Be the first to start a discussion on an agricultural topic!</p>
             </div>
            )}
         </CardContent>
-        {/* Pagination could go here */}
       </Card>
     </div>
   );

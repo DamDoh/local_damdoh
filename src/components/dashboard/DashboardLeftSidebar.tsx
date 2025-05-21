@@ -3,17 +3,18 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout, Link2 } from "lucide-react"; // Changed DollarSign to Bookmark
+import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout, Link2 } from "lucide-react";
+import { dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
 
 // Dummy data for current user, focused on agriculture
 const currentUser = {
-  name: "Aisha Bello",
-  title: "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets.",
-  location: "Kano, Nigeria",
-  avatarUrl: "https://placehold.co/80x80.png",
+  name: dummyUsersData['aishaBello']?.name || "Aisha Bello",
+  title: dummyUsersData['aishaBello']?.headline || "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets.",
+  location: "Kano, Nigeria", // Assuming location is not in dummyUsersData for this specific user
+  avatarUrl: dummyUsersData['aishaBello']?.avatarUrl || "https://placehold.co/80x80.png",
   damDohLink: "My DamDoh Stakeholder Profile",
-  profileViewers: 48, // Updated
-  postImpressions: 230, // Updated
+  profileViewers: 48,
+  postImpressions: 230,
 };
 
 export function DashboardLeftSidebar() {

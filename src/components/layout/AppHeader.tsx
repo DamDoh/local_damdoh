@@ -2,8 +2,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList, Sprout, Pin } from "lucide-react"; // Added Sprout, Pin
+import { usePathname, useRouter } from "next/navigation"; // Added useRouter
+import { useState } from "react"; // Added useState
+import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList, Sprout, Pin } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { dummyUsersData } from "@/lib/dummy-data"; // For demo user
 
 interface NavLinkProps {
   href: string;
@@ -41,11 +43,21 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) 
 
 export function AppHeader() {
   const pathname = usePathname();
+  const router = useRouter(); // For navigation
+  const [searchQuery, setSearchQuery] = useState("");
 
+  // Using a specific demo user from dummyUsersData
   const demoUser = {
-    name: "Raj Patel",
-    email: "raj.patel@agrisupply.com",
-    imageUrl: "https://placehold.co/40x40.png",
+    name: dummyUsersData['rajPatel']?.name || "Raj Patel",
+    email: "raj.patel@agrisupply.com", // Assuming email is not in dummyUsersData directly for this structure
+    imageUrl: dummyUsersData['rajPatel']?.avatarUrl || "https://placehold.co/40x40.png",
+  };
+
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
   };
 
   return (
@@ -53,14 +65,16 @@ export function AppHeader() {
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
           <Logo iconSize={32} textSize="text-2xl" />
-          <div className="relative hidden sm:block">
+          <form onSubmit={handleSearchSubmit} className="relative hidden sm:block">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
               placeholder="Search stakeholders, products, forums..."
               className="h-9 w-full rounded-md bg-muted pl-10 md:w-[250px] lg:w-[300px]"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </div>
+          </form>
         </div>
 
         <nav className="flex items-center space-x-1 md:space-x-2">

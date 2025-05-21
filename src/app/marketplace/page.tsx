@@ -4,31 +4,25 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types"; // MarketplaceCategory type
+import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin } from "lucide-react"; // Added Pin
+import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
-import { MARKETPLACE_FILTER_OPTIONS } from "@/lib/constants"; // Import filter options
-
-// Dummy data for marketplace items - agriculture supply chain focus
-const marketplaceItems: MarketplaceItem[] = [
-  { id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)', description: 'High-altitude, Fair Trade certified organic quinoa from Peru. Ready for export. Seeking direct buyers or processors.', price: 3200, currency: 'USD', perUnit: '/ton', sellerId: 'quinoaCoopPeru', category: 'Agricultural Produce', location: 'Andes Region, Peru', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), contactInfo: 'Contact via DamDoh platform.', dataAiHint: "quinoa grains" },
-  { id: 'item2', name: 'Refrigerated Trucking Services (Cross-Border)', description: 'Reliable cold chain logistics for perishable goods. Servicing US-Canada-Mexico routes. GPS tracked, temp-controlled fleet.', price: 0.85, currency: 'USD', perUnit: '/mile (estimate)', sellerId: 'coolHaulLogistics', category: 'Machinery & Business Services', location: 'Servicing North America', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), contactInfo: 'Request quote via profile.', dataAiHint: "truck logistics" },
-  { id: 'item3', name: 'Certified Organic Fertilizer (NPK 5-3-2)', description: 'Bulk supply of OMRI listed organic fertilizer. Ideal for vegetable and fruit crops. Pelletized for easy application.', price: 650, currency: 'USD', perUnit: '/ton', sellerId: 'ecoGrowInputs', category: 'Inputs & Supplies', location: 'Global Shipping', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), contactInfo: 'inquiries@ecogrow.com', dataAiHint: "fertilizer bag" },
-  { id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit', description: 'High-capacity mobile seed cleaning and optical sorting machine for sale. Gently used, excellent condition. Improves seed quality and reduces waste.', price: 45000, currency: 'USD', perUnit: 'unit', sellerId: 'seedTechResale', category: 'Machinery & Business Services', location: 'Midwest, USA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), contactInfo: 'Book via platform.', dataAiHint: "seed cleaning machine" },
-  { id: 'item5', name: 'Fresh Harvested Tomatoes (500kg)', description: 'Vine-ripened Roma tomatoes, perfect for processing or fresh market. Sustainably grown. Available for immediate pickup.', price: 1.20, currency: 'USD', perUnit: '/kg', sellerId: 'sunnyAcresFarm', category: 'Agricultural Produce', location: 'Local Farm Region, CA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 1).toISOString(), contactInfo: 'Contact for viewing.', dataAiHint: "tomatoes harvest" },
-  { id: 'item6', name: 'Agricultural Business Plan Consulting', description: 'Expert consulting for developing bankable business plans, feasibility studies, and grant proposals for agribusinesses.', price: 150, currency: 'USD', perUnit: '/hour', sellerId: 'agriPlanExperts', category: 'Machinery & Business Services', location: 'Remote', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(), contactInfo: 'info@agriplan.com', dataAiHint: "business meeting" },
-];
+import { MARKETPLACE_FILTER_OPTIONS } from "@/lib/constants";
+import { dummyMarketplaceItems } from "@/lib/dummy-data"; // Import dummy data
 
 
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<MarketplaceCategory | 'All'>("All");
   const [locationFilter, setLocationFilter] = useState("");
+
+  // Use imported dummyMarketplaceItems
+  const marketplaceItems = dummyMarketplaceItems;
 
   const filteredMarketplaceItems = useMemo(() => {
     return marketplaceItems.filter(item => {
@@ -42,7 +36,7 @@ export default function MarketplacePage() {
       
       return (nameMatch || descriptionMatch) && categoryMatch && locationMatch;
     });
-  }, [searchTerm, categoryFilter, locationFilter]);
+  }, [searchTerm, categoryFilter, locationFilter, marketplaceItems]);
 
   const getCategoryIcon = (category: MarketplaceCategory) => {
     const iconProps = {className: "h-4 w-4 mr-1 inline-block"};

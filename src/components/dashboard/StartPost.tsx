@@ -3,16 +3,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Video, Image as ImageIcon, FileText, Mic, CalendarDays, BarChart3 } from "lucide-react"; // Added BarChart3
+import { Video, Image as ImageIcon, FileText, Mic, CalendarDays, BarChart3 } from "lucide-react";
+import { dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
 
 export function StartPost() {
+  const currentUserAvatar = dummyUsersData['currentDemoUser']?.avatarUrl || "https://placehold.co/40x40.png";
+  const currentUserFallback = dummyUsersData['currentDemoUser']?.name?.substring(0,2).toUpperCase() || "DU";
+
+
   return (
     <Card>
       <CardContent className="pt-6">
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatarImage src="https://placehold.co/40x40.png" alt="Demo User" data-ai-hint="profile person" />
-            <AvatarFallback>DU</AvatarFallback> 
+            <AvatarImage src={currentUserAvatar} alt="Demo User" data-ai-hint="profile person" />
+            <AvatarFallback>{currentUserFallback}</AvatarFallback> 
           </Avatar>
           <Input 
             placeholder="Share an agricultural update, market insight, or ask a question..." 

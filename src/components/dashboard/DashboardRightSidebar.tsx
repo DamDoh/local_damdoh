@@ -5,18 +5,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp } from "lucide-react";
 import Image from "next/image";
-import { MessagingPanel } from "./MessagingPanel"; // Import the new panel
+import { MessagingPanel } from "./MessagingPanel"; 
+import { dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
 
-// Dummy data for "Add to your feed" - agricultural focus
+
 const feedSuggestions = [
-  { id: 'sug1', name: 'Global Alliance for Food Security', role: 'Non-profit • Sustainable Agriculture', avatarUrl: 'https://placehold.co/50x50.png', dataAiHint: 'organization agriculture' },
-  { id: 'sug2', name: 'AgriLogistics Innovators', role: 'Company • Supply Chain Tech', avatarUrl: 'https://placehold.co/50x50.png', dataAiHint: 'company logistics' },
-  { id: 'sug3', name: 'DroughtResist Seeds Corp.', role: 'Company • Seed Technology', avatarUrl: 'https://placehold.co/50x50.png', dataAiHint: 'company seeds' },
+  { id: 'sug1', name: 'Global Alliance for Food Security', role: 'Non-profit • Sustainable Agriculture', avatarUrl: dummyUsersData['sug1']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'organization agriculture' },
+  { id: 'sug2', name: 'AgriLogistics Innovators', role: 'Company • Supply Chain Tech', avatarUrl: dummyUsersData['sug2']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'company logistics' },
+  { id: 'sug3', name: 'DroughtResist Seeds Corp.', role: 'Company • Seed Technology', avatarUrl: dummyUsersData['sug3']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'company seeds' },
 ];
 
 export function DashboardRightSidebar() {
   return (
-    <div className="space-y-4 sticky top-20"> {/* top-20 to offset header height */}
+    <div className="space-y-4 sticky top-20"> 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-md font-semibold">Grow Your Network</CardTitle>
@@ -70,7 +71,6 @@ export function DashboardRightSidebar() {
   );
 }
 
-// Minimal MoreHorizontal icon as inline SVG if not readily available or for simplicity
 const MoreHorizontal = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <circle cx="12" cy="12" r="1" />
