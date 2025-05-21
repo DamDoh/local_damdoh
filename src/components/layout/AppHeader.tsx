@@ -3,12 +3,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList } from "lucide-react"; // Added ClipboardList
+import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList, Sprout, Pin } from "lucide-react"; // Added Sprout, Pin
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { HeaderThemeToggle } from "@/components/HeaderThemeToggle"; // Changed import
+import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -42,7 +42,6 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) 
 export function AppHeader() {
   const pathname = usePathname();
 
-  // Dummy user data for UserAvatar - should come from auth context in a real app
   const demoUser = {
     name: "Raj Patel",
     email: "raj.patel@agrisupply.com",
@@ -67,9 +66,10 @@ export function AppHeader() {
         <nav className="flex items-center space-x-1 md:space-x-2">
           <NavLink href="/" icon={Home} label="Home" pathname={pathname} />
           <NavLink href="/network" icon={Users} label="Network" pathname={pathname} />
+          <NavLink href="/farm-management" icon={Sprout} label="Farm Mgmt" pathname={pathname} />
           <NavLink href="/talent-exchange" icon={ClipboardList} label="Services & Skills" pathname={pathname} />
           <NavLink href="/marketplace" icon={ShoppingCart} label="Market" pathname={pathname} />
-          <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} /> {/* Placeholder page */}
+          <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} />
 
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -78,21 +78,26 @@ export function AppHeader() {
                 <span>More</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56"> {/* Increased width */}
-              <DropdownMenuItem asChild><Link href="/notifications" className="flex items-center gap-2"><Bell className="h-4 w-4"/>Notifications</Link></DropdownMenuItem> {/* Placeholder page */}
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuItem asChild><Link href="/notifications" className="flex items-center gap-2"><Bell className="h-4 w-4"/>Notifications</Link></DropdownMenuItem>
               <DropdownMenuItem asChild><Link href="/forums" className="flex items-center gap-2"><Newspaper className="h-4 w-4"/>Forums</Link></DropdownMenuItem>
               <DropdownMenuItem asChild><Link href="/profiles" className="flex items-center gap-2"><Users className="h-4 w-4"/>Profiles</Link></DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem> {/* onClick should handle actual pinning logic in the future */}
+                <Pin className="mr-2 h-4 w-4" />
+                <span>Set Current as Homepage</span>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild><Link href="/settings" className="flex items-center gap-2"><Settings className="h-4 w-4"/>Settings</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <div className="hidden md:block">
+          
+          <div className="hidden md:block pl-2">
              <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
           </div>
 
           <div className="pl-2 border-l border-border hidden md:block">
-             <HeaderThemeToggle /> {/* Changed to HeaderThemeToggle */}
+             <HeaderThemeToggle />
           </div>
         </nav>
       </div>
