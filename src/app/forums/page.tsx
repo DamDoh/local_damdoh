@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
-import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin } from "lucide-react";
+import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
 import { dummyForumTopics } from "@/lib/dummy-data"; 
@@ -47,11 +47,15 @@ export default function ForumsPage() {
 
   const handleSetHomepage = () => {
     if (isCurrentHomepage) {
-      // This case should ideally be handled by disabling the button
+      clearHomepagePreference();
+      toast({
+        title: "Homepage Unpinned!",
+        description: "The Dashboard is now your default homepage.",
+      });
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: "Homepage Set!",
+        title: "Homepage Pinned!",
         description: "Forums are now your default homepage.",
       });
     }
@@ -73,8 +77,9 @@ export default function ForumsPage() {
                   <PlusCircle className="mr-2 h-4 w-4" /> Start New Discussion
                 </Link>
               </Button>
-              <Button variant="outline" onClick={handleSetHomepage} disabled={isCurrentHomepage}>
-                <Pin className="mr-2 h-4 w-4" /> {isCurrentHomepage ? "Homepage Pinned" : "Set as Homepage"}
+              <Button variant="outline" onClick={handleSetHomepage}>
+                {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
+                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
               </Button>
             </div>
           </div>

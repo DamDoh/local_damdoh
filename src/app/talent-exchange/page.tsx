@@ -7,7 +7,7 @@ import type { TalentListing, TalentCategory } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench, Pin } from "lucide-react"; 
+import { PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench, Pin, PinOff } from "lucide-react"; 
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { TALENT_FILTER_OPTIONS, TALENT_LISTING_TYPE_FILTER_OPTIONS, type TalentListingType } from "@/lib/constants";
@@ -56,11 +56,15 @@ export default function TalentExchangePage() {
 
   const handleSetHomepage = () => {
     if (isCurrentHomepage) {
-      // This case should ideally be handled by disabling the button
+      clearHomepagePreference();
+      toast({
+        title: "Homepage Unpinned!",
+        description: "The Dashboard is now your default homepage.",
+      });
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: "Homepage Set!",
+        title: "Homepage Pinned!",
         description: "Talent Exchange is now your default homepage.",
       });
     }
@@ -81,8 +85,9 @@ export default function TalentExchangePage() {
                   <PlusCircle className="mr-2 h-4 w-4" /> Offer Job / List Service
                 </Link>
               </Button>
-              <Button variant="outline" onClick={handleSetHomepage} disabled={isCurrentHomepage}>
-                <Pin className="mr-2 h-4 w-4" /> {isCurrentHomepage ? "Homepage Pinned" : "Set as Homepage"}
+              <Button variant="outline" onClick={handleSetHomepage}>
+                {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
+                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
               </Button>
             </div>
           </div>

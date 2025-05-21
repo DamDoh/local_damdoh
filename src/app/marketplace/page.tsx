@@ -8,7 +8,7 @@ import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin } from "lucide-react";
+import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin, PinOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
@@ -58,17 +58,15 @@ export default function MarketplacePage() {
 
   const handleSetHomepage = () => {
     if (isCurrentHomepage) {
-      // This case should ideally be handled by disabling the button,
-      // but if it were active, it would clear the preference.
-      // clearHomepagePreference();
-      // toast({
-      //   title: "Homepage Unpinned!",
-      //   description: "The Dashboard is now your default homepage.",
-      // });
+      clearHomepagePreference();
+      toast({
+        title: "Homepage Unpinned!",
+        description: "The Dashboard is now your default homepage.",
+      });
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: "Homepage Set!",
+        title: "Homepage Pinned!",
         description: "The Marketplace is now your default homepage.",
       });
     }
@@ -90,8 +88,9 @@ export default function MarketplacePage() {
                   <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
                 </Link>
               </Button>
-              <Button variant="outline" onClick={handleSetHomepage} disabled={isCurrentHomepage}>
-                <Pin className="mr-2 h-4 w-4" /> {isCurrentHomepage ? "Homepage Pinned" : "Set as Homepage"}
+              <Button variant="outline" onClick={handleSetHomepage}>
+                {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
+                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
               </Button>
             </div>
           </div>
