@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -29,12 +30,11 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 rounded-full p-1 hover:bg-accent/50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+        <button className="flex items-center rounded-full p-1 hover:bg-accent/50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
           <Avatar className="h-9 w-9">
-            {imageUrl && <AvatarImage src={imageUrl} alt={name ?? "User"} />}
+            {imageUrl && <AvatarImage src={imageUrl} alt={name ?? "User"} data-ai-hint="profile person" />}
             <AvatarFallback>{getInitials(name)}</AvatarFallback>
           </Avatar>
-          {name && <span className="hidden text-sm font-medium md:block">{name}</span>}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">

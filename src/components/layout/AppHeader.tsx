@@ -71,11 +71,6 @@ export function AppHeader() {
           <NavLink href="/marketplace" icon={ShoppingCart} label="Market" pathname={pathname} />
           <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} /> {/* Placeholder page */}
 
-
-          <div className="hidden md:block">
-             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
-          </div>
-
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary h-auto">
@@ -91,6 +86,10 @@ export function AppHeader() {
               <DropdownMenuItem asChild><Link href="/settings" className="flex items-center gap-2"><Settings className="h-4 w-4"/>Settings</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <div className="hidden md:block">
+             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
+          </div>
 
           <div className="pl-2 border-l border-border hidden md:block">
              <HeaderThemeToggle /> {/* Changed to HeaderThemeToggle */}
