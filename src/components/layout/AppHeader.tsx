@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { Home, Users, MessageSquare, Search, Settings, ShoppingCart, ClipboardList, Sprout, Wallet as WalletIcon } from "lucide-react";
+import { Home, Users, MessageSquare, Search, Settings, ShoppingCart, ClipboardList, Sprout, Wallet as WalletIcon, Bell } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -77,6 +77,7 @@ export function AppHeader() {
           <NavLink href="/marketplace" icon={ShoppingCart} label="Market" pathname={pathname} />
           <NavLink href="/wallet" icon={WalletIcon} label="Wallet" pathname={pathname} />
           <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} />
+          <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} />
           
           <div className="hidden md:block pl-2">
              <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
