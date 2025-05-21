@@ -12,7 +12,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const FarmingAssistantInputSchema = z.object({
+const FarmingAssistantInputSchema = z.object({
   query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, or app guidance.'),
 });
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
@@ -22,7 +22,7 @@ const DetailedPointSchema = z.object({
   content: z.string().describe('The detailed explanation, advice, or information for this point. Should be a paragraph or two.'),
 });
 
-export const FarmingAssistantOutputSchema = z.object({
+const FarmingAssistantOutputSchema = z.object({
   summary: z.string().describe("A concise overall answer or summary to the user's query. This should be a few sentences long and directly address the main question."),
   detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary or providing scannable key information. Only provide this if the query warrants a detailed breakdown."),
 });
