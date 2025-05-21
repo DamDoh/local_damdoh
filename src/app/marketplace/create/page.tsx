@@ -26,7 +26,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from "@/lib/form-schemas";
 import { MARKETPLACE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -41,24 +41,29 @@ export default function CreateMarketplaceListingPage() {
       price: 0,
       currency: "USD",
       perUnit: "",
-      category: undefined, // Or a default category from MARKETPLACE_FORM_OPTIONS[0].value
+      category: undefined, 
       location: "",
       imageUrl: "",
+      imageFile: undefined,
       contactInfo: "",
     },
   });
 
   function onSubmit(data: CreateMarketplaceItemValues) {
     console.log("Marketplace Listing Data:", data);
-    // Here you would typically send the data to your backend API
-    // For example: await fetch('/api/marketplace', { method: 'POST', body: JSON.stringify(data) });
+    if (data.imageFile) {
+      console.log("Uploaded file details:", {
+        name: data.imageFile.name,
+        size: data.imageFile.size,
+        type: data.imageFile.type,
+      });
+      // In a real app, you would upload data.imageFile to your backend/storage
+      // and get a URL back to store, potentially replacing or supplementing data.imageUrl.
+    }
     toast({
       title: "Listing Submitted (Simulated)",
-      description: "Your marketplace listing has been created (logged to console).",
+      description: "Your marketplace listing has been created (details logged to console).",
     });
-    // Optionally reset the form or redirect
-    // form.reset();
-    // router.push('/marketplace'); 
   }
 
   return (
@@ -115,7 +120,7 @@ export default function CreateMarketplaceListingPage() {
                     <FormItem>
                       <FormLabel>Price</FormLabel>
                       <FormControl>
-                        <Input type="number" step="0.01" placeholder="e.g., 25.50" {...field} />
+                        <Input type="number" step="0.01" placeholder="e.g., 25.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -198,15 +203,47 @@ export default function CreateMarketplaceListingPage() {
                   <FormItem>
                     <FormLabel>Image URL (Optional)</FormLabel>
                     <FormControl>
-                      <Input placeholder="https://placehold.co/300x200.png" {...field} />
+                      <Input placeholder="https://your-image-host.com/image.png" {...field} />
                     </FormControl>
                      <FormDescription>
-                      Link to an image of your item. Use a service like Placehold.co for placeholders.
+                      Link to an image of your item if it's already hosted online.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="imageFile"
+                render={({ field: { onChange, value, ...rest } }) => (
+                  <FormItem>
+                    <FormLabel>Or Upload Image (Optional)</FormLabel>
+                    <FormControl>
+                      <div className="flex items-center gap-2">
+                        <UploadCloud className="h-5 w-5 text-muted-foreground" />
+                        <Input 
+                          type="file" 
+                          accept="image/png, image/jpeg, image/webp"
+                          onChange={(e) => onChange(e.target.files?.[0])}
+                          className="block w-full text-sm text-slate-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-full file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-primary/10 file:text-primary
+                            hover:file:bg-primary/20"
+                          {...rest}
+                        />
+                      </div>
+                    </FormControl>
+                     <FormDescription>
+                      Upload an image from your device (max 5MB, JPG/PNG/WEBP). AI could help optimize it in the future!
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
 
               <FormField
                 control={form.control}

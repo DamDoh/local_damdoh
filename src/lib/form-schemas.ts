@@ -2,6 +2,10 @@
 import { z } from "zod";
 import { MARKETPLACE_CATEGORY_VALUES } from "@/lib/constants";
 
+const MAX_FILE_SIZE_MB = 5;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
 export const createMarketplaceItemSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters long.").max(100, "Name cannot exceed 100 characters."),
   description: z.string().min(10, "Description must be at least 10 characters long.").max(1000, "Description cannot exceed 1000 characters."),
@@ -13,6 +17,17 @@ export const createMarketplaceItemSchema = z.object({
   }),
   location: z.string().min(2, "Location must be at least 2 characters long.").max(100, "Location cannot exceed 100 characters."),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
+  imageFile: z
+    .instanceof(File, { message: "Please upload a file." })
+    .optional()
+    .refine(
+      (file) => !file || file.size <= MAX_FILE_SIZE_BYTES,
+      `Max image size is ${MAX_FILE_SIZE_MB}MB.`
+    )
+    .refine(
+      (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, .png and .webp formats are accepted."
+    ),
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters."),
 });
 
