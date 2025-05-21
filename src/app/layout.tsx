@@ -17,6 +17,7 @@ import { UserAvatar } from "@/components/UserAvatar";
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { ThemeToggle } from '@/components/ThemeToggle'; // Added import
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -68,6 +69,7 @@ export default function RootLayout({
                   <Input type="search" placeholder="Search..." className="w-full max-w-xs pl-10 h-9 bg-muted" />
                 </form>
               </div>
+              <ThemeToggle /> {/* Added ThemeToggle component */}
               {/* Placeholder for notifications, messages, etc. */}
               {/* <Button variant="ghost" size="icon"><Bell className="h-5 w-5" /></Button> */}
             </header>

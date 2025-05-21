@@ -1,0 +1,58 @@
+// src/components/ThemeToggle.tsx
+"use client";
+
+import { useState, useEffect } from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+export function ThemeToggle() {
+  const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (storedTheme) {
+      setCurrentTheme(storedTheme);
+    } else if (systemPrefersDark) {
+      setCurrentTheme('dark');
+    } else {
+      setCurrentTheme('light');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return; // Wait until mounted to avoid hydration issues with localStorage
+    if (currentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [currentTheme, mounted]);
+
+  const toggleTheme = () => {
+    setCurrentTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  if (!mounted) {
+    // Render a placeholder or null on the server and during initial client render
+    // to avoid hydration mismatch due to localStorage/window.matchMedia access.
+    return <Button variant="ghost" size="icon" disabled className="h-9 w-9 opacity-50"><Sun className="h-5 w-5" /></Button>;
+  }
+
+  return (
+    <Button 
+      variant="ghost" 
+      size="icon" 
+      onClick={toggleTheme} 
+      aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
+      className="h-9 w-9"
+    >
+      {currentTheme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+    </Button>
+  );
+}
