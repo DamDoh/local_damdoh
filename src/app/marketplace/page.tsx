@@ -4,23 +4,15 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { MarketplaceItem } from "@/lib/types";
+import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types"; // MarketplaceCategory type
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Tractor, Sprout, Package, Truck, Building, Leaf, ShoppingBag, Banknote, Cog } from "lucide-react";
+import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
-
-export type MarketplaceCategory = 'Agricultural Produce' | 'Inputs & Supplies' | 'Machinery & Business Services';
-
-const marketplaceCategories: Array<{ value: MarketplaceCategory | 'All', label: string }> = [
-  { value: 'All', label: 'All Categories' },
-  { value: 'Agricultural Produce', label: 'Agricultural Produce' },
-  { value: 'Inputs & Supplies', label: 'Inputs & Supplies' },
-  { value: 'Machinery & Business Services', label: 'Machinery & Business Services' },
-];
+import { MARKETPLACE_FILTER_OPTIONS } from "@/lib/constants"; // Import filter options
 
 // Dummy data for marketplace items - agriculture supply chain focus
 const marketplaceItems: MarketplaceItem[] = [
@@ -57,7 +49,7 @@ export default function MarketplacePage() {
     switch (category) {
       case 'Agricultural Produce': return <Leaf {...iconProps} />;
       case 'Inputs & Supplies': return <ShoppingBag {...iconProps} />;
-      case 'Machinery & Business Services': return <Cog {...iconProps} />; // Or Banknote, Tractor
+      case 'Machinery & Business Services': return <Cog {...iconProps} />;
       default: return <Tag {...iconProps} />;
     }
   }
@@ -108,7 +100,7 @@ export default function MarketplacePage() {
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
               <SelectContent>
-                {marketplaceCategories.map(cat => (
+                {MARKETPLACE_FILTER_OPTIONS.map(cat => (
                   <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
                 ))}
               </SelectContent>
