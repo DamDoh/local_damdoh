@@ -1,1 +1,6 @@
-// Flows will be imported for their side effects in this file.
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/forum-topic-suggestions.ts';
+import '@/ai/flows/suggested-connections.ts';
+import '@/ai/flows/profile-summary-generator.ts';
