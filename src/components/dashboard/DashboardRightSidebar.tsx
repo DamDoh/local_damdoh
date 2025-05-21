@@ -5,74 +5,173 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, ArrowRight, Info, TrendingUp } from "lucide-react";
+import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle } from "lucide-react";
 import Image from "next/image";
-import { MessagingPanel } from "./MessagingPanel"; 
-import { dummyUsersData } from "@/lib/dummy-data"; 
-import { useState } from "react";
+import { MessagingPanel } from "./MessagingPanel";
+import { dummyUsersData } from "@/lib/dummy-data";
+import { useState, useEffect, useCallback } from "react";
+import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const initialFeedSuggestions = [
-  { id: 'sug1', name: 'Global Alliance for Food Security', role: 'Non-profit • Sustainable Agriculture', avatarUrl: dummyUsersData['sug1']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'organization agriculture' },
-  { id: 'sug2', name: 'AgriLogistics Innovators', role: 'Company • Supply Chain Tech', avatarUrl: dummyUsersData['sug2']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'company logistics' },
-  { id: 'sug3', name: 'DroughtResist Seeds Corp.', role: 'Company • Seed Technology', avatarUrl: dummyUsersData['sug3']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'company seeds' },
-];
+interface AISuggestion {
+  id: string;
+  name: string;
+  role: string;
+  avatarUrl?: string;
+  reason?: string;
+  dataAiHint?: string;
+}
+
+// Mock current user profile for AI input
+const mockCurrentUserProfile: SuggestedConnectionsInput = {
+  profileSummary: "Owner of a mid-sized organic vegetable farm in Kenya, focusing on sustainable practices and looking to expand into local and regional export markets.",
+  stakeholderRole: "Farmer",
+  location: "Nakuru, Kenya",
+  preferences: "Organic farming, sustainable agriculture, fair trade, direct market access, soil health",
+  needs: "Reliable buyers for specialty vegetables (kale, spinach, bell peppers), access to affordable organic inputs, information on export certification for EAC market."
+};
+
 
 export function DashboardRightSidebar() {
   const [followedSuggestions, setFollowedSuggestions] = useState<Set<string>>(new Set());
+  const [aiSuggestions, setAiSuggestions] = useState<AISuggestion[]>([]);
+  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
+  const [suggestionError, setSuggestionError] = useState<string | null>(null);
+
+  const fetchSuggestions = useCallback(async () => {
+    setIsLoadingSuggestions(true);
+    setSuggestionError(null);
+    try {
+      const result: SuggestedConnectionsOutput = await suggestConnections(mockCurrentUserProfile);
+      if (result && result.suggestedConnections) {
+        setAiSuggestions(result.suggestedConnections.map(s => ({
+          ...s,
+          avatarUrl: s.avatarUrl || dummyUsersData[s.id]?.avatarUrl || 'https://placehold.co/50x50.png',
+          dataAiHint: `${s.role.toLowerCase().split(" ")[0]} profile`
+        })));
+      } else {
+        setAiSuggestions([]);
+        setSuggestionError("No suggestions received from AI.");
+      }
+    } catch (error) {
+      console.error("Error fetching AI suggestions:", error);
+      setSuggestionError("Failed to load suggestions. Please try again.");
+      setAiSuggestions([]); // Clear previous suggestions on error
+    } finally {
+      setIsLoadingSuggestions(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchSuggestions();
+  }, [fetchSuggestions]);
 
   const handleFollow = (suggestionId: string) => {
-    setFollowedSuggestions(prev => new Set(prev).add(suggestionId));
+    setFollowedSuggestions(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(suggestionId)) {
+        // newSet.delete(suggestionId); // To allow unfollow if needed
+      } else {
+        newSet.add(suggestionId);
+      }
+      return newSet;
+    });
     // In a real app, you'd also send this to a backend.
-    console.log(`Followed suggestion: ${suggestionId}`);
+    console.log(`${followedSuggestions.has(suggestionId) ? "Unfollowed" : "Followed"} suggestion: ${suggestionId}`);
   };
 
+  const renderSuggestions = () => {
+    if (isLoadingSuggestions) {
+      return Array.from({ length: 3 }).map((_, index) => (
+        <li key={`skeleton-${index}`} className="flex items-start gap-3">
+          <Skeleton className="h-12 w-12 rounded-md" />
+          <div className="flex-1 space-y-1">
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-3 w-1/2" />
+            <Skeleton className="h-7 w-20 mt-1" />
+          </div>
+        </li>
+      ));
+    }
+
+    if (suggestionError) {
+      return (
+        <div className="text-center text-red-600 py-4">
+          <AlertTriangle className="inline-block mr-2 h-5 w-5" />
+          {suggestionError}
+        </div>
+      );
+    }
+
+    if (aiSuggestions.length === 0) {
+      return <p className="text-sm text-muted-foreground text-center py-4">No new suggestions at the moment.</p>;
+    }
+
+    return aiSuggestions.map(sug => (
+      <li key={sug.id} className="flex items-start gap-3">
+        <Link href={`/profiles/${sug.id}`}>
+          <Avatar className="h-12 w-12 rounded-md cursor-pointer">
+            <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint || "profile agriculture"} />
+            <AvatarFallback>{sug.name.substring(0, 1)}</AvatarFallback>
+          </Avatar>
+        </Link>
+        <div className="flex-1">
+          <Link href={`/profiles/${sug.id}`} className="hover:underline">
+            <h4 className="text-sm font-semibold">{sug.name}</h4>
+          </Link>
+          <p className="text-xs text-muted-foreground line-clamp-1">{sug.role}</p>
+          {sug.reason && <p className="text-xs text-muted-foreground/80 mt-0.5 line-clamp-2 italic">"{sug.reason}"</p>}
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-1.5 h-7 px-2 text-xs"
+            onClick={() => handleFollow(sug.id)}
+            disabled={followedSuggestions.has(sug.id)}
+          >
+            {followedSuggestions.has(sug.id) ? (
+              "Following"
+            ) : (
+              <>
+                <Plus className="mr-1 h-3 w-3" /> Follow
+              </>
+            )}
+          </Button>
+        </div>
+      </li>
+    ));
+  };
+
+
   return (
-    <div className="space-y-4 sticky top-20"> 
+    <div className="space-y-4 sticky top-20">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-md font-semibold">Grow Your Network</CardTitle>
-          <Info className="h-4 w-4 text-muted-foreground cursor-pointer" />
+          <div className="flex items-center">
+            <Button variant="ghost" size="icon" onClick={fetchSuggestions} className="h-7 w-7" title="Refresh Suggestions" disabled={isLoadingSuggestions}>
+              <RefreshCw className={`h-4 w-4 ${isLoadingSuggestions ? 'animate-spin' : ''}`} />
+            </Button>
+            <Info className="h-4 w-4 text-muted-foreground cursor-pointer ml-1" />
+          </div>
         </CardHeader>
         <CardContent>
           <ul className="space-y-4">
-            {initialFeedSuggestions.map(sug => (
-              <li key={sug.id} className="flex items-start gap-3">
-                <Link href={`/profiles/${sug.id}`}>
-                  <Avatar className="h-12 w-12 rounded-md cursor-pointer">
-                    <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint}/>
-                    <AvatarFallback>{sug.name.substring(0,1)}</AvatarFallback>
-                  </Avatar>
-                </Link>
-                <div className="flex-1">
-                  <Link href={`/profiles/${sug.id}`} className="hover:underline">
-                    <h4 className="text-sm font-semibold">{sug.name}</h4>
-                  </Link>
-                  <p className="text-xs text-muted-foreground line-clamp-2">{sug.role}</p>
-                  {followedSuggestions.has(sug.id) ? (
-                    <Button variant="outline" size="sm" className="mt-1 h-7 px-2 text-xs" disabled>
-                      Following
-                    </Button>
-                  ) : (
-                    <Button variant="outline" size="sm" className="mt-1 h-7 px-2 text-xs" onClick={() => handleFollow(sug.id)}>
-                      <Plus className="mr-1 h-3 w-3" /> Follow
-                    </Button>
-                  )}
-                </div>
-              </li>
-            ))}
+            {renderSuggestions()}
           </ul>
-          <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2" asChild>
-            <Link href="/network">
-              View all suggestions <ArrowRight className="ml-1 h-3 w-3" />
-            </Link>
-          </Button>
+          {!isLoadingSuggestions && aiSuggestions.length > 0 && (
+             <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2" asChild>
+                <Link href="/network">
+                View all recommendations <ArrowRight className="ml-1 h-3 w-3" />
+                </Link>
+            </Button>
+          )}
         </CardContent>
       </Card>
 
       <Card className="overflow-hidden">
         <CardContent className="p-0">
           <div className="p-2 text-right">
-            <span className="text-xs text-muted-foreground">Ad <MoreHorizontal className="inline h-3 w-3" /></span>
+            <span className="text-xs text-muted-foreground">Ad <MoreHorizontalIcon className="inline h-3 w-3" /></span>
           </div>
           <p className="text-xs text-muted-foreground text-center px-4">Stay ahead with DamDoh Market Trends!</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
@@ -95,7 +194,7 @@ export function DashboardRightSidebar() {
   );
 }
 
-const MoreHorizontal = (props: React.SVGProps<SVGSVGElement>) => (
+const MoreHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <circle cx="12" cy="12" r="1" />
     <circle cx="19" cy="12" r="1" />
