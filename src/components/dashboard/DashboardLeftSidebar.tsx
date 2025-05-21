@@ -58,17 +58,20 @@ export function DashboardLeftSidebar() {
       </Card>
 
       <Card>
-        <CardContent className="pt-4 space-y-1 text-sm">
+        <CardHeader>
+          <CardTitle className="text-md font-semibold">Recent</CardTitle>
+        </CardHeader>
+        <CardContent className="pt-0 space-y-1 text-sm">
           <Link href="/pinboard" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <Bookmark className="h-4 w-4" /> My Pin Board
           </Link>
           <Link href="/forums" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <Users className="h-4 w-4" /> Agricultural Forums
           </Link>
-          <Link href="#" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
+          <Link href="/industry-news" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <Newspaper className="h-4 w-4" /> Industry News & Reports
           </Link>
-          <Link href="#" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
+          <Link href="/agri-events" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <CalendarDays className="h-4 w-4" /> Agri-Business Events
           </Link>
            <Link href="/network" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
