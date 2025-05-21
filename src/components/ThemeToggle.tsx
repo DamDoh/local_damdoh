@@ -44,11 +44,13 @@ export function ThemeToggle() {
     // to avoid hydration mismatch due to localStorage/window.matchMedia access.
     return (
       <div className="flex gap-1">
-        <Button variant="ghost" size="icon" disabled className="h-9 w-9 opacity-50">
+        <Button variant="ghost" disabled className="h-9 opacity-50">
           <Sun className="h-5 w-5" />
+          <span>Light</span>
         </Button>
-        <Button variant="ghost" size="icon" disabled className="h-9 w-9 opacity-50">
+        <Button variant="ghost" disabled className="h-9 opacity-50">
           <Moon className="h-5 w-5" />
+          <span>Dark</span>
         </Button>
       </div>
     );
@@ -58,22 +60,23 @@ export function ThemeToggle() {
     <div className="flex gap-1">
       <Button 
         variant={currentTheme === 'light' ? 'secondary' : 'ghost'} 
-        size="icon" 
         onClick={() => handleSetTheme('light')} 
-        aria-label="Switch to light mode"
-        className="h-9 w-9"
+        aria-label="Switch to light theme"
+        className="h-9"
       >
         <Sun className="h-5 w-5" />
+        <span>Light</span>
       </Button>
       <Button 
         variant={currentTheme === 'dark' ? 'secondary' : 'ghost'} 
-        size="icon" 
         onClick={() => handleSetTheme('dark')} 
-        aria-label="Switch to dark mode"
-        className="h-9 w-9"
+        aria-label="Switch to dark theme"
+        className="h-9"
       >
         <Moon className="h-5 w-5" />
+        <span>Dark</span>
       </Button>
     </div>
   );
 }
+
