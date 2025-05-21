@@ -1,3 +1,4 @@
+
 import type { StakeholderRole } from './constants';
 
 export interface UserProfile {
@@ -94,4 +95,13 @@ export interface FeedItem {
     name: string;
     avatarUrl?: string;
   }
+}
+
+export interface DirectMessage {
+  id: string;
+  senderName: string;
+  senderAvatarUrl?: string;
+  lastMessage: string;
+  timestamp: string; // ISO date string
+  unread?: boolean;
 }

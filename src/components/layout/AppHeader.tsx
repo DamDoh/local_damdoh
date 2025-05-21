@@ -1,0 +1,94 @@
+
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Home, Users, Briefcase, MessageSquare, Bell, Search, Grid2X2 } from "lucide-react";
+import { Logo } from "@/components/Logo";
+import { UserAvatar } from "@/components/UserAvatar";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+interface NavLinkProps {
+  href: string;
+  icon: React.ElementType;
+  label: string;
+  pathname: string;
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) => {
+  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+  return (
+    <Link href={href} className={cn(
+      "flex flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary",
+      isActive && "text-primary border-b-2 border-primary"
+    )}>
+      <Icon className="h-5 w-5 mb-0.5" />
+      <span>{label}</span>
+    </Link>
+  );
+};
+
+
+export function AppHeader() {
+  const pathname = usePathname();
+
+  return (
+    <header className="sticky top-0 z-30 w-full border-b bg-background/90 backdrop-blur-sm">
+      <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-4">
+          <Logo iconSize={32} textSize="text-2xl" />
+          <div className="relative hidden sm:block">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search DamDoh..."
+              className="h-9 w-full rounded-md bg-muted pl-10 md:w-[250px] lg:w-[300px]"
+            />
+          </div>
+        </div>
+
+        <nav className="flex items-center space-x-1 md:space-x-2">
+          <NavLink href="/" icon={Home} label="Home" pathname={pathname} />
+          <NavLink href="/network" icon={Users} label="Network" pathname={pathname} />
+          {/* Placeholder for Jobs - maps to Talent Exchange for now */}
+          <NavLink href="/talent-exchange" icon={Briefcase} label="Talent" pathname={pathname} /> 
+          <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} /> {/* Placeholder page */}
+          <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} /> {/* Placeholder page */}
+          
+          <div className="hidden md:block">
+             <UserAvatar name="Demo User" email="user@damdoh.com" imageUrl="https://placehold.co/100x100.png" />
+          </div>
+
+          {/* "For Business" style dropdown - simplified */}
+           <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary h-auto">
+                <Grid2X2 className="h-5 w-5 mb-0.5" />
+                <span>More</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem asChild><Link href="/forums">Forums</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/marketplace">Marketplace</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/profiles">Profiles</Link></DropdownMenuItem>
+              {/* Add other links like "Find Leads Free" or "Post a Job" here if needed */}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
+          <div className="pl-2 border-l border-border hidden md:block">
+             <ThemeToggle />
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}

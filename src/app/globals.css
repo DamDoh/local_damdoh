@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,25 +9,37 @@ body {
 
 @layer base {
   :root {
-    --background: 60 56% 91%; /* Light Beige #F5F5DC */
+    --background: 60 56% 91%; /* Light Beige #F5F5DC - Main page background could be this or a lighter variant for LinkedIn feel */
     --foreground: 40 10% 25%; /* Darker Brown/Gray for text */
-    --card: 60 50% 94%; 
+    
+    /* Card, Popover, Primary, Secondary etc. are for DamDoh's original theme. */
+    /* For a LinkedIn feel, many elements would be white or very light gray. */
+    /* Consider making --card more neutral if aiming for LinkedIn style, e.g., white or off-white */
+    --card: 0 0% 100%; /* Changed to white for LinkedIn card style */
     --card-foreground: 40 10% 25%;
-    --popover: 60 50% 94%;
+
+    --popover: 0 0% 100%; /* Changed to white */
     --popover-foreground: 40 10% 25%;
-    --primary: 120 27% 45%; /* Earthy Green #6A976A */
-    --primary-foreground: 120 25% 95%; /* Light green/white for text on primary */
-    --secondary: 120 20% 80%; /* Lighter Earthy Green */
-    --secondary-foreground: 120 27% 35%; /* Darker green for text on light green */
-    --muted: 60 30% 85%; /* Muted beige */
-    --muted-foreground: 60 10% 45%; /* Darker muted text */
-    --accent: 30 47% 66%; /* Warm Gold #D4A27A */
-    --accent-foreground: 30 20% 20%; /* Dark brown for text on gold */
+    
+    --primary: 120 27% 45%; /* Earthy Green #6A976A - DamDoh's brand color */
+    --primary-foreground: 120 25% 95%; 
+    
+    --secondary: 120 20% 80%; 
+    --secondary-foreground: 120 27% 35%; 
+    
+    --muted: 60 30% 85%; /* Muted beige for some backgrounds like input fields */
+    --muted-foreground: 60 10% 45%; 
+    
+    --accent: 30 47% 66%; /* Warm Gold #D4A27A - DamDoh's accent */
+    --accent-foreground: 30 20% 20%; 
+    
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 98%;
-    --border: 120 15% 80%; /* Muted green border */
-    --input: 60 40% 93%; /* Very light green/beige for input background */
-    --ring: 120 27% 55%; /* Earthy Green for focus rings */
+    
+    --border: 60 20% 85%; /* Lighter border, closer to LinkedIn's subtle borders */
+    --input: 60 40% 93%; 
+    --ring: 120 27% 55%; 
+    
     --chart-1: 120 27% 55%;
     --chart-2: 30 47% 70%;
     --chart-3: 120 20% 60%;
@@ -34,24 +47,32 @@ body {
     --chart-5: 60 40% 70%;
     --radius: 0.5rem;
 
-    /* Sidebar specific theme */
-    --sidebar-background: 60 40% 88%; /* Slightly darker beige than main bg */
-    --sidebar-foreground: 40 10% 25%; /* Dark text */
-    --sidebar-primary: 120 27% 45%; /* Earthy Green for active items */
-    --sidebar-primary-foreground: 120 25% 95%; /* Light text on green */
-    --sidebar-accent: 60 30% 82%; /* Hover state - lighter beige */
-    --sidebar-accent-foreground: 40 10% 20%; /* Dark text on hover */
-    --sidebar-border: 60 20% 78%; /* Border for sidebar elements */
-    --sidebar-ring: 120 27% 55%; /* Earthy Green for focus rings in sidebar */
+    /* Sidebar specific theme - LESS RELEVANT NOW with new layout */
+    /* These might be repurposed for the new dashboard side panels if needed */
+    --sidebar-background: 60 40% 88%; 
+    --sidebar-foreground: 40 10% 25%; 
+    --sidebar-primary: 120 27% 45%; 
+    --sidebar-primary-foreground: 120 25% 95%; 
+    --sidebar-accent: 60 30% 82%; 
+    --sidebar-accent-foreground: 40 10% 20%; 
+    --sidebar-border: 60 20% 78%; 
+    --sidebar-ring: 120 27% 55%;
+
+    /* Specific to LinkedIn style body background if needed */
+    /* --page-background: 220 20% 96%; /* Very light gray like LinkedIn */
   }
 
   .dark {
     --background: 220 20% 7%;
     --foreground: 220 10% 90%;
-    --card: 220 20% 10%;
+
+    /* For LinkedIn dark mode, cards might be a dark gray */
+    --card: 220 20% 12%; /* Darker card for dark mode */
     --card-foreground: 220 10% 90%;
+
     --popover: 220 20% 9%;
     --popover-foreground: 220 10% 90%;
+
     --primary: 120 40% 60%;
     --primary-foreground: 220 20% 10%;
     --secondary: 220 15% 20%;
@@ -62,8 +83,8 @@ body {
     --accent-foreground: 220 20% 7%;
     --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 25%;
-    --input: 220 15% 12%;
+    --border: 220 15% 30%; /* Slightly lighter border for dark mode */
+    --input: 220 15% 18%; /* Darker input */
     --ring: 120 40% 55%;
     
     --chart-1: 120 40% 60%;
@@ -72,7 +93,6 @@ body {
     --chart-4: 0 60% 65%;
     --chart-5: 280 50% 70%;
 
-    /* Sidebar specific theme for dark mode */
     --sidebar-background: 220 20% 9%;
     --sidebar-foreground: 220 10% 85%;
     --sidebar-primary: 120 40% 60%; 
@@ -81,6 +101,8 @@ body {
     --sidebar-accent-foreground: 220 10% 90%;
     --sidebar-border: 220 15% 20%;
     --sidebar-ring: 120 40% 55%;
+
+    /* --page-background: 220 20% 10%; */
   }
 }
 
@@ -89,6 +111,16 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    /* For LinkedIn style, you might want a specific page background */
+    /* @apply bg-[hsl(var(--page-background))] text-foreground; */
+    @apply bg-background text-foreground; /* Using existing background for now, can be overridden by page-specific classes */
   }
+}
+
+/* Add a class for the main page background if different from body's default */
+.page-background-linkedin {
+  @apply bg-muted/40; /* Example: light gray like LinkedIn's feed area */
+}
+.dark .page-background-linkedin {
+   @apply bg-gray-900; /* Example dark mode for LinkedIn page background */
 }

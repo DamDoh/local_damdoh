@@ -1,5 +1,11 @@
+
+// This file is no longer used for the main app navigation.
+// The main navigation has been moved to AppHeader.tsx and specific dashboard sidebars.
+// This file can be deleted or repurposed if a different type of sidebar is needed elsewhere.
+
 "use client";
 
+// Keeping the imports in case this structure is reused, but it's not actively used.
 import type { NavItem } from "@/lib/types";
 import {
   SidebarMenu,
@@ -16,8 +22,6 @@ import {
   ShoppingCart,
   Briefcase,
   Settings as SettingsIcon,
-  Network as NetworkIcon,
-  PlusCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,7 +29,7 @@ import { cn } from "@/lib/utils";
 
 const mainNavItems: NavItem[] = [
   { title: "Dashboard", href: "/", icon: LayoutDashboard },
-  { title: "Network", href: "/network", icon: NetworkIcon, description: "Discover connections" },
+  { title: "Network", href: "/network", icon: Users, description: "Discover connections" },
   { title: "Profiles", href: "/profiles", icon: Contact, description: "Browse stakeholders" },
   { title: "Forums", href: "/forums", icon: MessagesSquare, description: "Join discussions" },
   { title: "Marketplace", href: "/marketplace", icon: ShoppingCart, description: "Buy & sell goods" },
@@ -64,13 +68,16 @@ export function AppSidebar() {
   return (
     <>
       <SidebarGroup>
-        <SidebarGroupLabel>Menu</SidebarGroupLabel>
-        <SidebarMenu>{renderNavItems(mainNavItems)}</SidebarMenu>
+        <SidebarGroupLabel>Menu (Old - Deprecated)</SidebarGroupLabel>
+        {/* <SidebarMenu>{renderNavItems(mainNavItems)}</SidebarMenu> */}
       </SidebarGroup>
       
-      <SidebarGroup className="mt-auto"> {/* Pushes settings to bottom */}
-        <SidebarMenu>{renderNavItems(secondaryNavItems)}</SidebarMenu>
+      <SidebarGroup className="mt-auto"> 
+        {/* <SidebarMenu>{renderNavItems(secondaryNavItems)}</SidebarMenu> */}
       </SidebarGroup>
+      <div className="p-4 text-center text-xs text-muted-foreground">
+        This sidebar is no longer in active use for main navigation.
+      </div>
     </>
   );
 }
