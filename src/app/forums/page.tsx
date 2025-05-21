@@ -35,7 +35,7 @@ export default function ForumsPage() {
   const forumTopics = dummyForumTopics;
 
   const pathname = usePathname();
-  const { setHomepagePreference, homepagePreference } = useHomepagePreference();
+  const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
 
   const filteredForumTopics = forumTopics.filter(topic => 
@@ -43,15 +43,19 @@ export default function ForumsPage() {
     topic.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleSetHomepage = () => {
-    setHomepagePreference(pathname);
-    toast({
-      title: "Homepage Set!",
-      description: "Forums are now your default homepage.",
-    });
-  };
-
   const isCurrentHomepage = homepagePreference === pathname;
+
+  const handleSetHomepage = () => {
+    if (isCurrentHomepage) {
+      // This case should ideally be handled by disabling the button
+    } else {
+      setHomepagePreference(pathname);
+      toast({
+        title: "Homepage Set!",
+        description: "Forums are now your default homepage.",
+      });
+    }
+  };
 
 
   return (

@@ -25,7 +25,7 @@ export default function TalentExchangePage() {
   const talentListings = dummyTalentListings;
 
   const pathname = usePathname();
-  const { setHomepagePreference, homepagePreference } = useHomepagePreference();
+  const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
 
   const filteredTalentListings = useMemo(() => {
@@ -52,15 +52,19 @@ export default function TalentExchangePage() {
     }
   }
 
-  const handleSetHomepage = () => {
-    setHomepagePreference(pathname);
-    toast({
-      title: "Homepage Set!",
-      description: "Talent Exchange is now your default homepage.",
-    });
-  };
-
   const isCurrentHomepage = homepagePreference === pathname;
+
+  const handleSetHomepage = () => {
+    if (isCurrentHomepage) {
+      // This case should ideally be handled by disabling the button
+    } else {
+      setHomepagePreference(pathname);
+      toast({
+        title: "Homepage Set!",
+        description: "Talent Exchange is now your default homepage.",
+      });
+    }
+  };
 
   return (
     <div className="space-y-6">

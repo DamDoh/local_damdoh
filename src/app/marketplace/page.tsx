@@ -25,7 +25,7 @@ export default function MarketplacePage() {
   const [locationFilter, setLocationFilter] = useState("");
   
   const pathname = usePathname();
-  const { setHomepagePreference, homepagePreference } = useHomepagePreference();
+  const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
 
   const marketplaceItems = dummyMarketplaceItems;
@@ -54,15 +54,25 @@ export default function MarketplacePage() {
     }
   }
 
-  const handleSetHomepage = () => {
-    setHomepagePreference(pathname);
-    toast({
-      title: "Homepage Set!",
-      description: "The Marketplace is now your default homepage.",
-    });
-  };
-
   const isCurrentHomepage = homepagePreference === pathname;
+
+  const handleSetHomepage = () => {
+    if (isCurrentHomepage) {
+      // This case should ideally be handled by disabling the button,
+      // but if it were active, it would clear the preference.
+      // clearHomepagePreference();
+      // toast({
+      //   title: "Homepage Unpinned!",
+      //   description: "The Dashboard is now your default homepage.",
+      // });
+    } else {
+      setHomepagePreference(pathname);
+      toast({
+        title: "Homepage Set!",
+        description: "The Marketplace is now your default homepage.",
+      });
+    }
+  };
 
 
   return (
