@@ -62,3 +62,12 @@ export const createTalentListingSchema = z.object({
 });
 
 export type CreateTalentListingValues = z.infer<typeof createTalentListingSchema>;
+
+export const createForumTopicSchema = z.object({
+  title: z.string().min(10, "Title must be at least 10 characters long.").max(150, "Title cannot exceed 150 characters."),
+  description: z.string().min(20, "Description must be at least 20 characters long.").max(2000, "Description cannot exceed 2000 characters."),
+  // Add category later if needed, e.g.,
+  // category: z.string().optional(), // Or an enum if categories are predefined
+});
+
+export type CreateForumTopicValues = z.infer<typeof createForumTopicSchema>;

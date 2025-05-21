@@ -1,4 +1,6 @@
 
+"use client"; // Ensure this is a client component if it wasn't already for state/filters
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -6,6 +8,7 @@ import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin } from "lucide-react"; // Added Package, Wheat, Truck, Pin
 import { Badge } from "@/components/ui/badge";
+import { useState } from "react"; // Added for potential future client-side filtering
 
 // Dummy data for forum topics - agriculture supply chain focus
 const forumTopics: ForumTopic[] = [
@@ -35,6 +38,16 @@ const getIcon = (iconName?: string) => {
 };
 
 export default function ForumsPage() {
+  const [searchTerm, setSearchTerm] = useState(""); // Example: for client-side search
+  // You might add more state for filters if making this page more dynamic client-side
+
+  // Example filtering logic (can be expanded)
+  const filteredForumTopics = forumTopics.filter(topic => 
+    topic.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    topic.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
   return (
     <div className="space-y-6">
       <Card>
@@ -60,13 +73,18 @@ export default function ForumsPage() {
           <div className="mb-6 flex flex-col sm:flex-row gap-4">
             <div className="relative flex-grow">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search forums by topic (e.g., 'cold chain', 'export markets')..." className="pl-10" />
+              <Input 
+                placeholder="Search forums by topic (e.g., 'cold chain', 'export markets')..." 
+                className="pl-10" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
             <Button variant="outline"><Filter className="mr-2 h-4 w-4" /> Filter by Category</Button>
           </div>
 
           <div className="space-y-4">
-            {forumTopics.map(topic => (
+            {filteredForumTopics.map(topic => (
               <Card key={topic.id} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-4 md:p-6">
                   <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -97,12 +115,18 @@ export default function ForumsPage() {
               </Card>
             ))}
           </div>
-          {forumTopics.length === 0 && (
+          {filteredForumTopics.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-lg text-muted-foreground">No forums found.</p>
-              <p className="text-sm text-muted-foreground">Be the first to start a discussion on an agricultural topic!</p>
+              <p className="text-lg text-muted-foreground">No forums found matching your search.</p>
+              <p className="text-sm text-muted-foreground">Try a different search term or be the first to start a discussion!</p>
             </div>
           )}
+           {forumTopics.length === 0 && searchTerm === "" && ( // Only show if no topics at all and no search term
+            <div className="text-center py-10">
+              <p className="text-lg text-muted-foreground">No forums available yet.</p>
+              <p className="text-sm text-muted-foreground">Be the first to start a discussion on an agricultural topic!</p>
+            </div>
+           )}
         </CardContent>
         {/* Pagination could go here */}
       </Card>
