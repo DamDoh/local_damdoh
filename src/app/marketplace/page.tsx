@@ -8,25 +8,34 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Tractor, Sprout, Package, Truck, Building } from "lucide-react"; // Added Package, Truck, Building
+import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Tractor, Sprout, Package, Truck, Building, Leaf, ShoppingBag, Banknote, Cog } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 
-// Dummy data for marketplace items - agriculture supply chain focus
-const marketplaceItems: MarketplaceItem[] = [
-  { id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)', description: 'High-altitude, Fair Trade certified organic quinoa from Peru. Ready for export. Seeking direct buyers or processors.', price: 3200, currency: 'USD', perUnit: '/ton', sellerId: 'quinoaCoopPeru', category: 'Grains & Pulses', location: 'Andes Region, Peru', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), contactInfo: 'Contact via DamDoh platform.' },
-  { id: 'item2', name: 'Refrigerated Trucking Services (Cross-Border)', description: 'Reliable cold chain logistics for perishable goods. Servicing US-Canada-Mexico routes. GPS tracked, temp-controlled fleet.', price: 0.85, currency: 'USD', perUnit: '/mile (estimate)', sellerId: 'coolHaulLogistics', category: 'Logistics Services', location: 'Servicing North America', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), contactInfo: 'Request quote via profile.' },
-  { id: 'item3', name: 'Eco-Friendly Jute Bags for Agri-Produce (50kg capacity)', description: 'Biodegradable jute bags, ideal for packaging grains, coffee, cocoa. Custom printing available for bulk orders.', price: 1.50, currency: 'USD', perUnit: '/bag (for 1000+)', sellerId: 'ecoPackGlobal', category: 'Packaging Solutions', location: 'Global Shipping', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), contactInfo: 'inquiries@ecopack.com' },
-  { id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit for Hire', description: 'On-farm seed cleaning and optical sorting services. Improve seed quality and reduce waste. Available in [Region/State].', price: 500, currency: 'USD', perUnit: '/day (plus travel)', sellerId: 'seedTechMobile', category: 'Farm Services', location: 'Midwest, USA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), contactInfo: 'Book via platform.' },
-  { id: 'item5', name: 'Warehouse Space with Cold Storage (2000 sq ft)', description: 'Secure, HACCP-compliant warehouse space available near major port. Includes cold storage units. Flexible lease terms.', price: 1200, currency: 'USD', perUnit: '/month', sellerId: 'portSideStorage', category: 'Storage & Warehousing', location: 'Port City, CA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 3).toISOString(), contactInfo: 'Contact for viewing.' },
+export type MarketplaceCategory = 'Agricultural Produce' | 'Inputs & Supplies' | 'Machinery & Business Services';
+
+const marketplaceCategories: Array<{ value: MarketplaceCategory | 'All', label: string }> = [
+  { value: 'All', label: 'All Categories' },
+  { value: 'Agricultural Produce', label: 'Agricultural Produce' },
+  { value: 'Inputs & Supplies', label: 'Inputs & Supplies' },
+  { value: 'Machinery & Business Services', label: 'Machinery & Business Services' },
 ];
 
-const categories = ['All', 'Grains & Pulses', 'Fresh Produce', 'Processed Agri-Products', 'Farm Machinery', 'Agri-Inputs', 'Logistics Services', 'Packaging Solutions', 'Farm Services', 'Storage & Warehousing'];
+// Dummy data for marketplace items - agriculture supply chain focus
+const marketplaceItems: MarketplaceItem[] = [
+  { id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)', description: 'High-altitude, Fair Trade certified organic quinoa from Peru. Ready for export. Seeking direct buyers or processors.', price: 3200, currency: 'USD', perUnit: '/ton', sellerId: 'quinoaCoopPeru', category: 'Agricultural Produce', location: 'Andes Region, Peru', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), contactInfo: 'Contact via DamDoh platform.', dataAiHint: "quinoa grains" },
+  { id: 'item2', name: 'Refrigerated Trucking Services (Cross-Border)', description: 'Reliable cold chain logistics for perishable goods. Servicing US-Canada-Mexico routes. GPS tracked, temp-controlled fleet.', price: 0.85, currency: 'USD', perUnit: '/mile (estimate)', sellerId: 'coolHaulLogistics', category: 'Machinery & Business Services', location: 'Servicing North America', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), contactInfo: 'Request quote via profile.', dataAiHint: "truck logistics" },
+  { id: 'item3', name: 'Certified Organic Fertilizer (NPK 5-3-2)', description: 'Bulk supply of OMRI listed organic fertilizer. Ideal for vegetable and fruit crops. Pelletized for easy application.', price: 650, currency: 'USD', perUnit: '/ton', sellerId: 'ecoGrowInputs', category: 'Inputs & Supplies', location: 'Global Shipping', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), contactInfo: 'inquiries@ecogrow.com', dataAiHint: "fertilizer bag" },
+  { id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit', description: 'High-capacity mobile seed cleaning and optical sorting machine for sale. Gently used, excellent condition. Improves seed quality and reduces waste.', price: 45000, currency: 'USD', perUnit: 'unit', sellerId: 'seedTechResale', category: 'Machinery & Business Services', location: 'Midwest, USA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), contactInfo: 'Book via platform.', dataAiHint: "seed cleaning machine" },
+  { id: 'item5', name: 'Fresh Harvested Tomatoes (500kg)', description: 'Vine-ripened Roma tomatoes, perfect for processing or fresh market. Sustainably grown. Available for immediate pickup.', price: 1.20, currency: 'USD', perUnit: '/kg', sellerId: 'sunnyAcresFarm', category: 'Agricultural Produce', location: 'Local Farm Region, CA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 1).toISOString(), contactInfo: 'Contact for viewing.', dataAiHint: "tomatoes harvest" },
+  { id: 'item6', name: 'Agricultural Business Plan Consulting', description: 'Expert consulting for developing bankable business plans, feasibility studies, and grant proposals for agribusinesses.', price: 150, currency: 'USD', perUnit: '/hour', sellerId: 'agriPlanExperts', category: 'Machinery & Business Services', location: 'Remote', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(), contactInfo: 'info@agriplan.com', dataAiHint: "business meeting" },
+];
+
 
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [categoryFilter, setCategoryFilter] = useState<MarketplaceCategory | 'All'>("All");
   const [locationFilter, setLocationFilter] = useState("");
 
   const filteredMarketplaceItems = useMemo(() => {
@@ -36,21 +45,21 @@ export default function MarketplacePage() {
 
       const nameMatch = item.name.toLowerCase().includes(searchLower);
       const descriptionMatch = item.description.toLowerCase().includes(searchLower);
-      const categoryMatch = categoryFilter === 'all' || item.category.toLowerCase() === categoryFilter.toLowerCase();
+      const categoryMatch = categoryFilter === 'All' || item.category === categoryFilter;
       const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
       
       return (nameMatch || descriptionMatch) && categoryMatch && locationMatch;
     });
   }, [searchTerm, categoryFilter, locationFilter]);
 
-  const getCategoryIcon = (category: string) => {
-    if (category.includes('Produce')) return <Sprout className="h-4 w-4 mr-1 inline-block text-green-600" />;
-    if (category.includes('Machinery')) return <Tractor className="h-4 w-4 mr-1 inline-block text-red-600" />;
-    if (category.includes('Logistics')) return <Truck className="h-4 w-4 mr-1 inline-block text-blue-600" />;
-    if (category.includes('Packaging')) return <Package className="h-4 w-4 mr-1 inline-block text-orange-600" />;
-    if (category.includes('Storage')) return <Building className="h-4 w-4 mr-1 inline-block text-purple-600" />;
-    if (category.includes('Grains')) return <Tag className="h-4 w-4 mr-1 inline-block text-yellow-600" />; // Placeholder, better icon needed
-    return <Tag className="h-4 w-4 mr-1 inline-block text-gray-500" />;
+  const getCategoryIcon = (category: MarketplaceCategory) => {
+    const iconProps = {className: "h-4 w-4 mr-1 inline-block"};
+    switch (category) {
+      case 'Agricultural Produce': return <Leaf {...iconProps} />;
+      case 'Inputs & Supplies': return <ShoppingBag {...iconProps} />;
+      case 'Machinery & Business Services': return <Cog {...iconProps} />; // Or Banknote, Tractor
+      default: return <Tag {...iconProps} />;
+    }
   }
 
 
@@ -71,13 +80,13 @@ export default function MarketplacePage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-            <div className="relative lg:col-span-2">
+          <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+            <div className="relative lg:col-span-1">
               <Label htmlFor="search-marketplace" className="sr-only">Search Marketplace</Label>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-marketplace"
-                placeholder="Search for products, equipment, services (e.g., 'coffee beans', 'cold storage')" 
+                placeholder="Search (e.g., 'coffee beans', 'cold storage')" 
                 className="pl-10" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -94,13 +103,13 @@ export default function MarketplacePage() {
                 onChange={(e) => setLocationFilter(e.target.value)}
               />
             </div>
-            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+            <Select value={categoryFilter} onValueChange={(value) => setCategoryFilter(value as MarketplaceCategory | 'All')}>
               <SelectTrigger id="category-filter-marketplace">
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
               <SelectContent>
-                {categories.map(cat => (
-                  <SelectItem key={cat} value={cat.toLowerCase()}>{cat}</SelectItem>
+                {marketplaceCategories.map(cat => (
+                  <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -113,9 +122,10 @@ export default function MarketplacePage() {
                   <Image 
                     src={item.imageUrl || "https://placehold.co/300x200.png"} 
                     alt={item.name} 
-                    layout="fill" 
-                    objectFit="cover" 
-                    data-ai-hint={`${item.category.split(' ')[0].toLowerCase()} agricultural`}
+                    fill={true}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{objectFit:"cover"}}
+                    data-ai-hint={item.dataAiHint || `${item.category.split(' ')[0].toLowerCase()} agricultural`}
                   />
                   <Badge variant="secondary" className="absolute top-2 right-2 flex items-center">
                     {getCategoryIcon(item.category)}
@@ -153,7 +163,6 @@ export default function MarketplacePage() {
             </div>
           )}
         </CardContent>
-        {/* Pagination could go here */}
       </Card>
     </div>
   );

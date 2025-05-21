@@ -48,19 +48,24 @@ export interface MarketplaceItem {
   description: string;
   price: number;
   currency: string;
+  perUnit?: string; // e.g. "/ton", "/kg", "/bag"
   sellerId: string; // Could be a farmer, cooperative, equipment dealer, service provider
-  category: string; // e.g., 'Fresh Produce', 'Grains & Pulses', 'Farm Machinery', 'Logistics Services', 'Agri-Inputs'
+  category: 'Agricultural Produce' | 'Inputs & Supplies' | 'Machinery & Business Services';
   location: string;
   imageUrl?: string;
   createdAt: string; // ISO date string
   contactInfo?: string;
+  dataAiHint?: string;
 }
+
+export type TalentCategory = 'Jobs & Recruitment' | 'Land & Tenancies' | 'Equipment Rentals & Services';
 
 export interface TalentListing {
   id: string;
   title: string; // e.g., 'Experienced Agronomist for Tropical Fruits', 'Logistics Manager (Perishables)', 'Custom Drone Spraying Service'
   description: string;
-  type: 'Job' | 'Service'; // Job opening or service offered
+  type: 'Job' | 'Service'; // Distinguishes if it's an employment offer or a service being offered
+  category: TalentCategory;
   listerId: string; // Farm, Agribusiness, Cooperative, Individual
   location: string; // Can be specific or 'Remote' or 'Servicing X Region'
   skillsRequired?: string[]; // e.g., 'HACCP Certification', 'Supply Chain Optimization', 'Precision Agriculture'
@@ -68,6 +73,7 @@ export interface TalentListing {
   compensation?: string; // Salary, project fee, per-acre rate
   createdAt: string; // ISO date string
   contactInfo?: string;
+  dataAiHint?: string;
 }
 
 export interface NavItem {
@@ -91,6 +97,7 @@ export interface FeedItem {
   userHeadline?: string; // e.g., "Founder, AgriConnect Logistics", "Organic Vegetable Farmer & Educator"
   content?: string; // e.g., "Just listed: 10 tons of organic quinoa. Seeking buyers.", "Great discussion on water conservation in the forums!"
   postImage?: string;
+  dataAiHint?: string;
   likesCount?: number;
   commentsCount?: number;
   link?: string; // Link to the full item
@@ -108,4 +115,5 @@ export interface DirectMessage {
   lastMessage: string; // e.g., "Regarding your soybean order...", "Can you share insights on coffee bean grading?"
   timestamp: string; // ISO date string
   unread?: boolean;
+  dataAiHint?: string;
 }
