@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout, DollarSign, Link2 } from "lucide-react";
+import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout, Link2 } from "lucide-react"; // Changed DollarSign to Bookmark
 
 // Dummy data for current user, focused on agriculture
 const currentUser = {
@@ -58,8 +58,8 @@ export function DashboardLeftSidebar() {
 
       <Card>
         <CardContent className="pt-4 space-y-1 text-sm">
-          <Link href="/marketplace" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <DollarSign className="h-4 w-4" /> Saved Marketplace Searches
+          <Link href="/pinboard" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
+            <Bookmark className="h-4 w-4" /> My Pin Board
           </Link>
           <Link href="/forums" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <Users className="h-4 w-4" /> Agricultural Forums
