@@ -53,7 +53,7 @@ const SuggestedConnectionSchema = z.object({
     id: z.string().describe("A unique placeholder identifier for the suggested profile (e.g., 'kenyaNutExporter', 'agriLogisticsEA')."),
     name: z.string().describe("The name of the suggested individual or organization."),
     role: z.string().describe("The stakeholder role of the suggested connection (e.g., 'Exporter', 'Logistics Provider', 'Farmer Cooperative')."),
-    avatarUrl: z.string().url().optional().describe("An optional placeholder image URL for the avatar (e.g., 'https://placehold.co/50x50.png')."),
+    avatarUrl: z.string().optional().describe("An optional placeholder image URL for the avatar (e.g., 'https://placehold.co/50x50.png')."),
     reason: z.string().describe("A brief (1-2 sentence) explanation of why this connection is relevant to the user based on their profile, preferences, and needs.")
 });
 
@@ -119,3 +119,4 @@ const suggestConnectionsFlow = ai.defineFlow(
     return output!;
   }
 );
+
