@@ -26,7 +26,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createTalentListingSchema, type CreateTalentListingValues } from "@/lib/form-schemas";
 import { TALENT_FORM_OPTIONS, TALENT_LISTING_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, Type, FileText, ListChecks, Tag, MapPin, Wrench, DollarSign, Contact, Link as LinkIcon, ImageUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function CreateTalentListingPage() {
@@ -42,13 +42,21 @@ export default function CreateTalentListingPage() {
       location: "",
       skillsRequired: "",
       compensation: "",
+      imageUrl: "",
+      imageFile: undefined,
       contactInfo: "",
     },
   });
 
   function onSubmit(data: CreateTalentListingValues) {
     console.log("Talent Listing Data:", data);
-    // Here you would typically send the data to your backend
+    if (data.imageFile) {
+      console.log("Uploaded file details:", {
+        name: data.imageFile.name,
+        size: data.imageFile.size,
+        type: data.imageFile.type,
+      });
+    }
     toast({
       title: "Listing Submitted (Simulated)",
       description: "Your talent/service listing has been created (details logged to console).",
@@ -74,7 +82,10 @@ export default function CreateTalentListingPage() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Listing Title</FormLabel>
+                    <FormLabel className="flex items-center gap-2">
+                      <Type className="h-4 w-4 text-muted-foreground" />
+                      <span>Listing Title</span>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Experienced Agronomist, Tractor Repair Service" {...field} />
                     </FormControl>
@@ -88,7 +99,10 @@ export default function CreateTalentListingPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Detailed Description</FormLabel>
+                    <FormLabel className="flex items-center gap-2">
+                      <FileText className="h-4 w-4 text-muted-foreground" />
+                      <span>Detailed Description</span>
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Provide details about the job responsibilities, service offered, land features, equipment specifics, etc."
@@ -107,7 +121,10 @@ export default function CreateTalentListingPage() {
                   name="type"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Listing Type</FormLabel>
+                      <FormLabel className="flex items-center gap-2">
+                        <ListChecks className="h-4 w-4 text-muted-foreground" />
+                        <span>Listing Type</span>
+                      </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -131,7 +148,10 @@ export default function CreateTalentListingPage() {
                   name="category"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Category</FormLabel>
+                      <FormLabel className="flex items-center gap-2">
+                        <Tag className="h-4 w-4 text-muted-foreground" />
+                        <span>Category</span>
+                      </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -157,7 +177,10 @@ export default function CreateTalentListingPage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Location</FormLabel>
+                    <FormLabel className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <span>Location</span>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Nakuru, Kenya or Remote" {...field} />
                     </FormControl>
@@ -174,7 +197,10 @@ export default function CreateTalentListingPage() {
                 name="skillsRequired"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Skills Required / Keywords (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2">
+                       <Wrench className="h-4 w-4 text-muted-foreground" />
+                      <span>Skills Required / Keywords (Optional)</span>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Organic farming, Tractor operation, Irrigation" {...field} />
                     </FormControl>
@@ -191,7 +217,10 @@ export default function CreateTalentListingPage() {
                 name="compensation"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Compensation / Terms (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2">
+                      <DollarSign className="h-4 w-4 text-muted-foreground" />
+                      <span>Compensation / Terms (Optional)</span>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., $50,000/year, Project-based, Negotiable" {...field} />
                     </FormControl>
@@ -205,10 +234,67 @@ export default function CreateTalentListingPage() {
 
               <FormField
                 control={form.control}
+                name="imageUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                        <LinkIcon className="h-4 w-4 text-muted-foreground" />
+                        <span>Image URL (Optional)</span>
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="https://your-image-host.com/image.png" {...field} />
+                    </FormControl>
+                     <FormDescription>
+                      Link to an image for your listing if it's already hosted online.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="imageFile"
+                render={({ field: { onChange, value, ...rest } }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                        <ImageUp className="h-4 w-4 text-muted-foreground" />
+                        <span>Or Upload Image (Optional)</span>
+                    </FormLabel>
+                    <FormControl>
+                      <div className="flex items-center gap-2">
+                        <UploadCloud className="h-5 w-5 text-muted-foreground" />
+                        <Input 
+                          type="file" 
+                          accept="image/png, image/jpeg, image/webp"
+                          onChange={(e) => onChange(e.target.files?.[0])}
+                          className="block w-full text-sm text-slate-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-full file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-primary/10 file:text-primary
+                            hover:file:bg-primary/20"
+                          {...rest}
+                        />
+                      </div>
+                    </FormControl>
+                     <FormDescription>
+                      Upload an image from your device (max 5MB, JPG/PNG/WEBP). AI could help optimize it in the future!
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
                 name="contactInfo"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Contact Information / Application Instructions</FormLabel>
+                     <FormLabel className="flex items-center gap-2">
+                        <Contact className="h-4 w-4 text-muted-foreground" />
+                        <span>Contact Information / Application Instructions</span>
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="e.g., Apply via DamDoh platform, email resume to jobs@example.com, or call +123456789 for inquiries"

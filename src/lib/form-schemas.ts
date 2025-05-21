@@ -46,6 +46,18 @@ export const createTalentListingSchema = z.object({
   location: z.string().min(2, "Location must be at least 2 characters long.").max(100, "Location cannot exceed 100 characters."),
   skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("Enter skills, comma-separated"),
   compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional(),
+  imageUrl: z.string().url({ message: "Please enter a valid URL for the image." }).optional().or(z.literal('')),
+  imageFile: z
+    .instanceof(File, { message: "Please upload a file." })
+    .optional()
+    .refine(
+      (file) => !file || file.size <= MAX_FILE_SIZE_BYTES,
+      `Max image size is ${MAX_FILE_SIZE_MB}MB.`
+    )
+    .refine(
+      (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, .png and .webp formats are accepted."
+    ),
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters."),
 });
 
