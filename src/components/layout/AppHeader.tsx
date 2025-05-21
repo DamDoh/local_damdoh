@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, Briefcase, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper } from "lucide-react"; // Added ShoppingCart, Newspaper
+import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList } from "lucide-react"; // Added ClipboardList
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -67,7 +67,7 @@ export function AppHeader() {
         <nav className="flex items-center space-x-1 md:space-x-2">
           <NavLink href="/" icon={Home} label="Home" pathname={pathname} />
           <NavLink href="/network" icon={Users} label="Network" pathname={pathname} />
-          <NavLink href="/talent-exchange" icon={Briefcase} label="Talent" pathname={pathname} />
+          <NavLink href="/talent-exchange" icon={ClipboardList} label="Services & Skills" pathname={pathname} />
           <NavLink href="/marketplace" icon={ShoppingCart} label="Market" pathname={pathname} />
           <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} /> {/* Placeholder page */}
 
