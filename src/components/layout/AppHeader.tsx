@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Added useRouter
 import { useState } from "react"; // Added useState
-import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList, Sprout, Pin } from "lucide-react";
+import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList, Sprout, Pin, Wallet as WalletIcon } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -83,6 +83,7 @@ export function AppHeader() {
           <NavLink href="/farm-management" icon={Sprout} label="Farm Mgmt" pathname={pathname} />
           <NavLink href="/talent-exchange" icon={ClipboardList} label="Services & Skills" pathname={pathname} />
           <NavLink href="/marketplace" icon={ShoppingCart} label="Market" pathname={pathname} />
+          <NavLink href="/wallet" icon={WalletIcon} label="Wallet" pathname={pathname} />
           <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} />
 
            <DropdownMenu>
