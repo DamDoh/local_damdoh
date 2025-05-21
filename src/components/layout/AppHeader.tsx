@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { Home, Users, MessageSquare, Search, Settings, ShoppingCart, ClipboardList, Sprout, Wallet as WalletIcon, Bell, Menu, X, Grid2X2 } from "lucide-react";
+import { Home, Users, MessageSquare, Search, Settings, ShoppingCart, ClipboardList, Sprout, Wallet as WalletIcon, Bell, Menu, X, Brain } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -17,8 +17,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
-  // SheetClose, // No longer needed here as SheetContent has its own
+  SheetTrigger, // Added missing import
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 
@@ -96,6 +95,7 @@ export function AppHeader() {
     { href: "/wallet", icon: WalletIcon, label: "Wallet" },
     { href: "/messaging", icon: MessageSquare, label: "Messaging" },
     { href: "/notifications", icon: Bell, label: "Notifications" },
+    { href: "/ai-assistant", icon: Brain, label: "AI Assistant"},
   ];
 
   return (
@@ -129,7 +129,9 @@ export function AppHeader() {
         </nav>
 
         {/* Mobile Navigation Trigger */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          {/* <HeaderThemeToggle /> Show theme toggle directly on mobile header */}
+          {/* <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} /> Show avatar on mobile header */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
@@ -141,12 +143,21 @@ export function AppHeader() {
               <SheetHeader className="p-4 border-b">
                 <SheetTitle className="flex items-center justify-between">
                   <Logo iconSize={28} textSize="text-xl" />
-                  {/* The SheetContent component itself provides a close button.
-                      No need for an additional <SheetClose> here. */}
+                  {/* SheetContent provides its own close button. No need for an additional one here. */}
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col justify-between h-[calc(100%-4.5rem)]"> {/* Adjust height if SheetTitle changes */}
                 <nav className="flex-grow p-4 space-y-1 overflow-y-auto">
+                   <form onSubmit={handleSearchSubmit} className="relative mb-4">
+                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                      type="search"
+                      placeholder="Search DamDoh..."
+                      className="h-9 w-full rounded-md bg-muted pl-10"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </form>
                   {navItems.map((item) => (
                     <MobileNavLink 
                       key={item.href} 
@@ -158,13 +169,17 @@ export function AppHeader() {
                   ))}
                 </nav>
                 <Separator />
-                <div className="p-4 space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Theme</span>
-                    <HeaderThemeToggle /> 
-                  </div>
-                   <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
-                </div>
+                <div className="p-4 space-y-4 border-t">
+                    <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium text-foreground">Theme</span>
+                        <HeaderThemeToggle /> 
+                    </div>
+                    <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
+                    <Link href="/settings" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 rounded-md text-sm font-medium hover:bg-accent text-foreground">
+                        <Settings className="h-5 w-5 text-muted-foreground" />
+                        <span>Settings</span>
+                    </Link>
+                 </div>
               </div>
             </SheetContent>
           </Sheet>
