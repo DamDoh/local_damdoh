@@ -1,6 +1,6 @@
 
 import { z } from "zod";
-import { MARKETPLACE_CATEGORY_VALUES } from "@/lib/constants";
+import { MARKETPLACE_CATEGORY_VALUES, TALENT_CATEGORY_VALUES, TALENT_LISTING_TYPE_VALUES } from "@/lib/constants";
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -32,3 +32,21 @@ export const createMarketplaceItemSchema = z.object({
 });
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
+
+
+export const createTalentListingSchema = z.object({
+  title: z.string().min(5, "Title must be at least 5 characters long.").max(100, "Title cannot exceed 100 characters."),
+  description: z.string().min(10, "Description must be at least 10 characters long.").max(1000, "Description cannot exceed 1000 characters."),
+  type: z.enum(TALENT_LISTING_TYPE_VALUES, {
+    errorMap: () => ({ message: "Please select a valid listing type (Job or Service)." }),
+  }),
+  category: z.enum(TALENT_CATEGORY_VALUES, {
+    errorMap: () => ({ message: "Please select a valid category." }),
+  }),
+  location: z.string().min(2, "Location must be at least 2 characters long.").max(100, "Location cannot exceed 100 characters."),
+  skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("Enter skills, comma-separated"),
+  compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional(),
+  contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters."),
+});
+
+export type CreateTalentListingValues = z.infer<typeof createTalentListingSchema>;

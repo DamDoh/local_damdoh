@@ -50,3 +50,7 @@ export const TALENT_LISTING_TYPE_FILTER_OPTIONS: Array<{value: TalentListingType
     {value: 'All', label: 'All Listing Types'},
     ...TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}))
 ];
+
+export const TALENT_LISTING_TYPE_FORM_OPTIONS: Array<{value: TalentListingType, label: string}> = 
+    TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}));
+

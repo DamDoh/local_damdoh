@@ -7,19 +7,11 @@ import type { TalentListing, TalentCategory } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench, Pin } from "lucide-react"; // Added Pin
+import { PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench, Pin } from "lucide-react"; 
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
+import { TALENT_FILTER_OPTIONS, TALENT_LISTING_TYPE_FILTER_OPTIONS, type TalentListingType } from "@/lib/constants";
 
-
-const talentCategories: Array<{ value: TalentCategory | 'All', label: string }> = [
-  { value: 'All', label: 'All Categories' },
-  { value: 'Jobs & Recruitment', label: 'Jobs & Recruitment' },
-  { value: 'Land & Tenancies', label: 'Land & Tenancies' },
-  { value: 'Equipment Rentals & Services', label: 'Equipment Rentals & Services' },
-];
-
-const listingTypes = ['All', 'Job', 'Service']; // This can remain if useful for further filtering
 
 // Dummy data for talent listings - agriculture supply chain focus
 const talentListings: TalentListing[] = [
@@ -35,7 +27,7 @@ const talentListings: TalentListing[] = [
 export default function TalentExchangePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<TalentCategory | 'All'>('All');
-  const [typeFilter, setTypeFilter] = useState("All"); // 'Job' or 'Service'
+  const [typeFilter, setTypeFilter] = useState<TalentListingType | 'All'>("All"); 
 
   const filteredTalentListings = useMemo(() => {
     return talentListings.filter(listing => {
@@ -56,7 +48,7 @@ export default function TalentExchangePage() {
     switch (category) {
       case 'Jobs & Recruitment': return <Briefcase {...iconProps} />;
       case 'Land & Tenancies': return <LandPlot {...iconProps} />;
-      case 'Equipment Rentals & Services': return <Wrench {...iconProps} />; // Or Tractor
+      case 'Equipment Rentals & Services': return <Wrench {...iconProps} />; 
       default: return <Sparkles {...iconProps} />;
     }
   }
@@ -101,18 +93,18 @@ export default function TalentExchangePage() {
                 <SelectValue placeholder="Filter by Category" />
               </SelectTrigger>
               <SelectContent>
-                {talentCategories.map(cat => (
+                {TALENT_FILTER_OPTIONS.map(cat => (
                   <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            <Select value={typeFilter} onValueChange={setTypeFilter}>
+            <Select value={typeFilter} onValueChange={(value) => setTypeFilter(value as TalentListingType | 'All')}>
               <SelectTrigger id="type-filter-talent">
                 <SelectValue placeholder="Filter by Listing Type (Job/Service)" />
               </SelectTrigger>
               <SelectContent>
-                {listingTypes.map(type => (
-                  <SelectItem key={type} value={type}>{type}</SelectItem>
+                {TALENT_LISTING_TYPE_FILTER_OPTIONS.map(typeOpt => (
+                  <SelectItem key={typeOpt.value} value={typeOpt.value}>{typeOpt.label}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -178,4 +170,3 @@ export default function TalentExchangePage() {
     </div>
   );
 }
-
