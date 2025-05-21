@@ -37,12 +37,16 @@ export function DashboardRightSidebar() {
           <ul className="space-y-4">
             {initialFeedSuggestions.map(sug => (
               <li key={sug.id} className="flex items-start gap-3">
-                <Avatar className="h-12 w-12 rounded-md">
-                  <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint}/>
-                  <AvatarFallback>{sug.name.substring(0,1)}</AvatarFallback>
-                </Avatar>
+                <Link href={`/profiles/${sug.id}`}>
+                  <Avatar className="h-12 w-12 rounded-md cursor-pointer">
+                    <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint}/>
+                    <AvatarFallback>{sug.name.substring(0,1)}</AvatarFallback>
+                  </Avatar>
+                </Link>
                 <div className="flex-1">
-                  <h4 className="text-sm font-semibold">{sug.name}</h4>
+                  <Link href={`/profiles/${sug.id}`} className="hover:underline">
+                    <h4 className="text-sm font-semibold">{sug.name}</h4>
+                  </Link>
                   <p className="text-xs text-muted-foreground line-clamp-2">{sug.role}</p>
                   {followedSuggestions.has(sug.id) ? (
                     <Button variant="outline" size="sm" className="mt-1 h-7 px-2 text-xs" disabled>
