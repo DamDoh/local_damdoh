@@ -1,5 +1,5 @@
 
-import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, TalentListing, FeedItem, DirectMessage } from './types';
+import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, TalentListing, FeedItem, DirectMessage, AgriEvent, AgriEventType } from './types';
 import { STAKEHOLDER_ROLES } from './constants';
 
 // --- User Data for Avatars/Names (used in multiple places) ---
@@ -53,6 +53,10 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'packagingInnovator': { name: 'Packaging Innovator Hub', avatarUrl: 'https://placehold.co/40x40.png'},
   'agriFinanceExpert': { name: 'Agri Finance Expert', avatarUrl: 'https://placehold.co/40x40.png'},
   'traceTechLead': { name: 'TraceTech Lead', avatarUrl: 'https://placehold.co/40x40.png'},
+  // Event Listers
+  'agriEventsGlobal': {name: 'AgriEvents Global', avatarUrl: 'https://placehold.co/40x40.png'},
+  'virtualFarmingSummit': {name: 'Virtual Farming Summit Org.', avatarUrl: 'https://placehold.co/40x40.png'},
+  'harvestTechExpo': {name: 'HarvestTech Expo', avatarUrl: 'https://placehold.co/40x40.png'},
 };
 
 // --- Dashboard Feed Items ---
@@ -231,4 +235,68 @@ export const dummyDirectMessages: DirectMessage[] = [
   { id: 'msg1', senderName: 'AgriLogistics Co-op', lastMessage: 'AgriLogistics Co-op: Your grain shipment is confirmed for Tuesday.', timestamp: '10:30 AM', senderAvatarUrl: 'https://placehold.co/40x40.png', unread: true, dataAiHint: "logistics company" },
   { id: 'msg2', senderName: 'Dr. Chen (Soil Scientist)', lastMessage: 'Dr. Chen sent the soil analysis report for your West field.', timestamp: 'Yesterday', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "scientist profile" },
   { id: 'msg3', senderName: 'Export Africa Group', lastMessage: 'Export Africa Group: New RFP for organic cashews posted.', timestamp: 'May 12', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "trade group" },
+];
+
+// --- Agri-Events Page Data ---
+export const dummyAgriEvents: AgriEvent[] = [
+  {
+    id: 'event1',
+    title: 'Global Agri-Tech Summit 2024',
+    description: 'Join industry leaders, innovators, and policymakers to discuss the future of agricultural technology and sustainable farming practices. Keynotes on AI in agriculture, precision farming, and supply chain optimization.',
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString(), // Approx. 1 month from now
+    eventTime: '09:00',
+    location: 'Online & San Francisco, CA',
+    eventType: 'Conference',
+    organizer: 'AgriEvents Global',
+    websiteLink: 'https://example.com/agritech-summit',
+    imageUrl: 'https://placehold.co/600x400.png',
+    listerId: 'agriEventsGlobal',
+    createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
+    dataAiHint: "conference tech agriculture",
+  },
+  {
+    id: 'event2',
+    title: 'Webinar: Mastering Organic Certification',
+    description: 'A step-by-step guide for farmers and processors looking to obtain or maintain organic certification. Covers standards, documentation, and audit preparation.',
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 14)).toISOString(), // Approx. 2 weeks from now
+    eventTime: '14:00',
+    location: 'Online',
+    eventType: 'Webinar',
+    organizer: 'Organic Growth Advisors',
+    websiteLink: 'https://example.com/organic-webinar',
+    imageUrl: 'https://placehold.co/600x400.png',
+    listerId: 'organicGrowthAdvisors',
+    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
+    dataAiHint: "webinar agriculture",
+  },
+  {
+    id: 'event3',
+    title: 'Sustainable Farming Field Day',
+    description: 'Visit a model farm implementing innovative sustainable practices, including cover cropping, no-till farming, and integrated pest management. Networking opportunities available.',
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 45)).toISOString(), // Approx. 1.5 months from now
+    eventTime: '10:00',
+    location: 'Green Valley Farms, Ruralville',
+    eventType: 'Field Day',
+    organizer: 'Sunny Acres Farm',
+    websiteLink: 'https://example.com/field-day',
+    imageUrl: 'https://placehold.co/600x400.png',
+    listerId: 'sunnyAcresFarm',
+    createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+    dataAiHint: "farm field day",
+  },
+   {
+    id: 'event4',
+    title: 'Agri-Food Supply Chain Expo East Africa',
+    description: 'The premier trade show for agricultural inputs, machinery, logistics, and processing solutions in East Africa. Connect with suppliers and buyers.',
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 60)).toISOString(), // Approx. 2 months
+    eventTime: '09:00',
+    location: 'KICC, Nairobi, Kenya',
+    eventType: 'Trade Show',
+    organizer: 'HarvestTech Expo',
+    websiteLink: 'https://example.com/agriexpo-ea',
+    imageUrl: 'https://placehold.co/600x400.png',
+    listerId: 'harvestTechExpo',
+    createdAt: new Date(Date.now() - 86400000 * 15).toISOString(),
+    dataAiHint: "expo agriculture",
+  },
 ];

@@ -55,3 +55,14 @@ export const TALENT_LISTING_TYPE_FORM_OPTIONS: Array<{value: TalentListingType, 
     TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}));
 
 export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
+
+export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event'] as const;
+export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
+
+export const AGRI_EVENT_TYPE_FORM_OPTIONS: Array<{value: AgriEventTypeConstant, label: string}> =
+    AGRI_EVENT_TYPES.map(type => ({value: type, label: type}));
+
+export const AGRI_EVENT_FILTER_OPTIONS: Array<{value: AgriEventTypeConstant | 'All', label: string}> = [
+    {value: 'All', label: 'All Event Types'},
+    ...AGRI_EVENT_TYPES.map(type => ({value: type, label: type}))
+];

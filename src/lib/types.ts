@@ -76,6 +76,25 @@ export interface TalentListing {
   dataAiHint?: string;
 }
 
+export type AgriEventType = 'Conference' | 'Webinar' | 'Workshop' | 'Trade Show' | 'Field Day' | 'Networking Event';
+
+export interface AgriEvent {
+  id: string;
+  title: string;
+  description: string;
+  eventDate: string; // ISO date string (for date part)
+  eventTime?: string; // e.g., "14:00" (24-hour format for time part)
+  location: string; // Could be a physical address or "Online"
+  eventType: AgriEventType;
+  organizer?: string;
+  websiteLink?: string;
+  imageUrl?: string;
+  listerId: string; // User ID of the person/org listing the event
+  createdAt: string; // ISO date string
+  dataAiHint?: string;
+}
+
+
 export interface NavItem {
   title: string;
   href: string;
