@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo } from "react";
+import { Label } from "@/components/ui/label"; // Added import
 
 // Dummy data for marketplace items - replace with actual data fetching
 const marketplaceItems: MarketplaceItem[] = [
