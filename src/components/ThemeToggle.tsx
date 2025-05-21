@@ -22,10 +22,10 @@ export function ThemeToggle() {
     } else {
       setCurrentTheme('light');
     }
-  }, []);
+  }, []); 
 
   useEffect(() => {
-    if (!mounted) return; // Wait until mounted to avoid hydration issues with localStorage
+    if (!mounted) return; 
     if (currentTheme === 'dark') {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -33,7 +33,7 @@ export function ThemeToggle() {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
-  }, [currentTheme, mounted]);
+  }, [currentTheme, mounted]); 
 
   const handleSetTheme = (theme: 'light' | 'dark') => {
     setCurrentTheme(theme);
@@ -43,7 +43,7 @@ export function ThemeToggle() {
     // Render a placeholder or null on the server and during initial client render
     // to avoid hydration mismatch due to localStorage/window.matchMedia access.
     return (
-      <div className="flex gap-1">
+      <div key="placeholder" className="flex gap-1">
         <Button variant="ghost" disabled className="h-9 opacity-50">
           <Sun className="h-5 w-5" />
           <span>Light</span>
@@ -57,7 +57,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <div className="flex gap-1">
+    <div key="actual" className="flex gap-1">
       <Button 
         variant={currentTheme === 'light' ? 'secondary' : 'ghost'} 
         onClick={() => handleSetTheme('light')} 
@@ -79,4 +79,3 @@ export function ThemeToggle() {
     </div>
   );
 }
-
