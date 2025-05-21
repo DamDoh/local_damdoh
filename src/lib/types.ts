@@ -83,12 +83,16 @@ export interface NavItem {
 
 export interface FeedItem {
   id: string;
-  type: 'new_user' | 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection';
+  type: 'new_user' | 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection' | 'shared_article';
   timestamp: string; // ISO date string
   userId?: string; // User associated with the item
   userName?: string;
   userAvatar?: string;
+  userHeadline?: string; // Added for LinkedIn style feed
   content?: string; // e.g., post snippet, item name
+  postImage?: string; // Added for LinkedIn style feed
+  likesCount?: number; // Added for LinkedIn style feed
+  commentsCount?: number; // Added for LinkedIn style feed
   link?: string; // Link to the full item
   relatedUser?: { // For connection type
     id: string;

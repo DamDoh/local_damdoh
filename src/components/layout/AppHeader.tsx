@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, Briefcase, MessageSquare, Bell, Search, Grid2X2 } from "lucide-react";
+import { Home, Users, Briefcase, MessageSquare, Bell, Search, Grid2X2, Settings } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -25,7 +26,7 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) => {
-  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href) && href.length > 1);
   return (
     <Link href={href} className={cn(
       "flex flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary",
@@ -41,6 +42,13 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) 
 export function AppHeader() {
   const pathname = usePathname();
 
+  // Dummy user data for UserAvatar - should come from auth context in a real app
+  const demoUser = {
+    name: "Demo Farmer",
+    email: "farmer@damdoh.com",
+    imageUrl: "https://placehold.co/40x40.png", // Add data-ai-hint in UserAvatar if needed
+  };
+
   return (
     <header className="sticky top-0 z-30 w-full border-b bg-background/90 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -50,7 +58,7 @@ export function AppHeader() {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search DamDoh..."
+              placeholder="Search DamDoh (e.g., 'organic fertilizer')..."
               className="h-9 w-full rounded-md bg-muted pl-10 md:w-[250px] lg:w-[300px]"
             />
           </div>
@@ -59,16 +67,14 @@ export function AppHeader() {
         <nav className="flex items-center space-x-1 md:space-x-2">
           <NavLink href="/" icon={Home} label="Home" pathname={pathname} />
           <NavLink href="/network" icon={Users} label="Network" pathname={pathname} />
-          {/* Placeholder for Jobs - maps to Talent Exchange for now */}
           <NavLink href="/talent-exchange" icon={Briefcase} label="Talent" pathname={pathname} /> 
           <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} /> {/* Placeholder page */}
           <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} /> {/* Placeholder page */}
           
           <div className="hidden md:block">
-             <UserAvatar name="Demo User" email="user@damdoh.com" imageUrl="https://placehold.co/100x100.png" />
+             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
           </div>
-
-          {/* "For Business" style dropdown - simplified */}
+          
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary h-auto">
@@ -80,7 +86,8 @@ export function AppHeader() {
               <DropdownMenuItem asChild><Link href="/forums">Forums</Link></DropdownMenuItem>
               <DropdownMenuItem asChild><Link href="/marketplace">Marketplace</Link></DropdownMenuItem>
               <DropdownMenuItem asChild><Link href="/profiles">Profiles</Link></DropdownMenuItem>
-              {/* Add other links like "Find Leads Free" or "Post a Job" here if needed */}
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild><Link href="/settings"><Settings className="mr-2 h-4 w-4"/>Settings</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           

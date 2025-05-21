@@ -9,9 +9,9 @@ import { MessagingPanel } from "./MessagingPanel"; // Import the new panel
 
 // Dummy data for "Add to your feed"
 const feedSuggestions = [
-  { id: 'sug1', name: 'Australia Awards Cambodia', role: 'Company • Education Administration Programs', avatarUrl: 'https://placehold.co/50x50.png' },
-  { id: 'sug2', name: 'Alex Hormozi', role: 'Day Job: I invest and scale companies at Acquistion.com | Co-Owner, Skool.co...', avatarUrl: 'https://placehold.co/50x50.png' },
-  { id: 'sug3', name: 'UNDP Cambodia', role: 'Company • Non-profit Organizations', avatarUrl: 'https://placehold.co/50x50.png' },
+  { id: 'sug1', name: 'Future Farmers Foundation', role: 'Non-profit • Agricultural Education', avatarUrl: 'https://placehold.co/50x50.png' },
+  { id: 'sug2', name: 'AgriInnovate Hub', role: 'Company • Agri-Tech Development', avatarUrl: 'https://placehold.co/50x50.png' },
+  { id: 'sug3', name: 'Sustainable Soils Initiative', role: 'Organization • Environmental Conservation', avatarUrl: 'https://placehold.co/50x50.png' },
 ];
 
 export function DashboardRightSidebar() {
@@ -27,7 +27,7 @@ export function DashboardRightSidebar() {
             {feedSuggestions.map(sug => (
               <li key={sug.id} className="flex items-start gap-3">
                 <Avatar className="h-12 w-12 rounded-md">
-                  <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint="company logo person"/>
+                  <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint="organization agriculture"/>
                   <AvatarFallback>{sug.name.substring(0,1)}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -51,21 +51,21 @@ export function DashboardRightSidebar() {
           <div className="p-2 text-right">
             <span className="text-xs text-muted-foreground">Ad <MoreHorizontal className="inline h-3 w-3" /></span>
           </div>
-          <p className="text-xs text-muted-foreground text-center px-4">The 2025 Workplace Learning Report is here!</p>
+          <p className="text-xs text-muted-foreground text-center px-4">The 2025 Global Harvest & Yield Report is here!</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
             <Avatar className="h-12 w-12">
-                <AvatarImage src="https://placehold.co/50x50.png" alt="User Ad" data-ai-hint="profile person"/>
-                <AvatarFallback>AD</AvatarFallback>
+                <AvatarImage src="https://placehold.co/50x50.png" alt="Agri Insights Pro Ad" data-ai-hint="report agriculture"/>
+                <AvatarFallback>AI</AvatarFallback>
             </Avatar>
-             <svg viewBox="0 0 48 48" className="h-10 w-10 text-[#0A66C2]" fill="currentColor" >
+             <svg viewBox="0 0 48 48" className="h-10 w-10 text-primary" fill="currentColor" >
                 <g>
                     <path d="M41,4H7A3,3,0,0,0,4,7V41a3,3,0,0,0,3,3H41a3,3,0,0,0,3-3V7A3,3,0,0,0,41,4ZM17.1,36.9H11.8V19.7h5.3Zm-2.6-19A3.1,3.1,0,1,1,17.6,15,3.1,3.1,0,0,1,14.5,17.9ZM37,36.9H31.7V27.5c0-2.2-.8-3.8-2.8-3.8s-3.1,1.8-3.1,3.8V36.9H20.6V19.7h5.1V22a5.4,5.4,0,0,1,4.8-2.7c3.5,0,6.1,2.3,6.1,7.2Z"></path>
                 </g>
             </svg>
           </div>
-          <p className="text-sm font-semibold text-center px-4 my-1">Great companies are built on great careers</p>
+          <p className="text-sm font-semibold text-center px-4 my-1">Maximize your farm's potential with data-driven insights.</p>
           <div className="px-4 py-3">
-            <Button variant="outline" className="w-full">Explore Report Now</Button>
+            <Button variant="outline" className="w-full">Explore Agri Insights Pro</Button>
           </div>
         </CardContent>
       </Card>

@@ -15,11 +15,12 @@ import { Label } from "@/components/ui/label";
 
 // Dummy data for profiles - replace with actual data fetching
 const profiles: UserProfile[] = [
-  { id: '1', name: 'Alice Farmer', role: 'Farmer', location: 'Green Valley, CA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Experienced organic farmer specializing in tomatoes and cucumbers. Looking for direct buyers.', email: 'alice@example.com' },
-  { id: '2', name: 'Bob Supplier', role: 'Input Supplier', location: 'Central City, TX', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provides high-quality, non-GMO seeds and organic fertilizers. Open to partnerships.', email: 'bob@example.com' },
-  { id: '3', name: 'Carol Processor', role: 'Processor', location: 'Industrial Park, FL', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Transforms raw produce into value-added packaged goods. Seeking reliable farm suppliers.', email: 'carol@example.com' },
-  { id: '4', name: 'David Trader', role: 'Trader', location: 'Port City, NY', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Connects local farmers with international markets for various grains and pulses.', email: 'david@example.com' },
-  { id: '5', name: 'Eve Retailer', role: 'Retailer', location: 'Suburbia, WA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Local grocery store owner committed to sourcing fresh, local produce.', email: 'eve@example.com' },
+  { id: 'farmerAlice', name: 'Alice Greenfarm', role: 'Farmer', location: 'Greenwood Valley, AgroState', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Experienced organic vegetable farmer specializing in heirloom tomatoes and leafy greens. Seeking direct market connections.', email: 'alice.greenfarm@example.com' },
+  { id: 'seedSupplierBob', name: 'Bob SeedCo', role: 'Input Supplier', location: 'Central Plains, AgState', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provides high-quality, non-GMO seeds and organic fertilizers. Focus on drought-resistant varieties.', email: 'bob@seedco.ag' },
+  { id: 'processorCarol', name: 'Carol AgriFoods', role: 'Processor', location: 'Industrial Food Park, FL', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Transforms raw agricultural produce into value-added packaged goods. HACCP certified facility.', email: 'carol@agrifoodsinc.com' },
+  { id: 'traderDavid', name: 'David GlobalGrains', role: 'Trader', location: 'Port City, NY', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Connects local grain farmers with international markets. Specializes in specialty grains and pulses.', email: 'david.g@globalgrains.com' },
+  { id: 'retailerEve', name: 'Eve LocalHarvest Market', role: 'Retailer', location: 'Suburbia, WA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Local grocery store owner committed to sourcing fresh, local, and seasonal produce direct from farms.', email: 'eve@localharvestmarket.com' },
+  { id: 'agronomistSam', name: 'Dr. Samuel Cole', role: 'Development Personnel', location: 'State Agricultural University', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Agronomist with expertise in soil health and integrated pest management. Offers workshops and consultations.', email: 'sam.cole@agriuni.edu' },
 ];
 
 export default function ProfilesPage() {
@@ -33,10 +34,11 @@ export default function ProfilesPage() {
       const locationLower = locationFilter.toLowerCase();
 
       const nameMatch = profile.name.toLowerCase().includes(searchLower);
+      const summaryMatch = profile.profileSummary?.toLowerCase().includes(searchLower) || false;
       const roleMatch = roleFilter === 'all' || profile.role === roleFilter;
       const locationMatch = locationFilter === "" || profile.location.toLowerCase().includes(locationLower);
       
-      return nameMatch && roleMatch && locationMatch;
+      return (nameMatch || summaryMatch) && roleMatch && locationMatch;
     });
   }, [searchTerm, roleFilter, locationFilter]);
 
@@ -50,8 +52,8 @@ export default function ProfilesPage() {
               <CardDescription>Discover and connect with individuals and organizations in the agricultural supply chain.</CardDescription>
             </div>
             <Button asChild>
-              <Link href="/profiles/create"> {/* Assuming a create profile page */}
-                <PlusCircle className="mr-2 h-4 w-4" /> Create Profile
+              <Link href="/profiles/create"> 
+                <PlusCircle className="mr-2 h-4 w-4" /> Create Your Profile
               </Link>
             </Button>
           </div>
@@ -63,7 +65,7 @@ export default function ProfilesPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-profiles"
-                placeholder="Search profiles by name, role, location..." 
+                placeholder="Search by name, keyword, or specialty..." 
                 className="pl-10" 
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
@@ -74,7 +76,7 @@ export default function ProfilesPage() {
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="location-filter-profiles"
-                placeholder="Filter by location..." 
+                placeholder="Filter by location (e.g., state)" 
                 className="pl-10"
                 value={locationFilter}
                 onChange={e => setLocationFilter(e.target.value)}
@@ -91,7 +93,6 @@ export default function ProfilesPage() {
                 ))}
               </SelectContent>
             </Select>
-            {/* <Button variant="outline" className="w-full lg:w-auto"><Filter className="mr-2 h-4 w-4" /> Apply Filters</Button> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

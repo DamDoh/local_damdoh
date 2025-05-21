@@ -8,20 +8,21 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin } from "lucide-react";
+import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Tractor, Sprout } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo } from "react";
-import { Label } from "@/components/ui/label"; // Added import
+import { Label } from "@/components/ui/label";
 
 // Dummy data for marketplace items - replace with actual data fetching
 const marketplaceItems: MarketplaceItem[] = [
-  { id: 'item1', name: 'Organic Tomatoes (Bulk)', description: 'Freshly harvested, vine-ripened organic tomatoes. Perfect for sauces or direct sale. Min order 50kg.', price: 2.50, currency: 'USD', sellerId: 'user1', category: 'Produce', location: 'Green Valley, CA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000).toISOString(), contactInfo: 'Contact seller via platform.' },
-  { id: 'item2', name: 'Used Tractor - John Deere 5075E', description: 'Well-maintained John Deere 5075E tractor. 1200 hours. All services up to date. Great for small to medium farms.', price: 25000, currency: 'USD', sellerId: 'user2', category: 'Equipment', location: 'Central City, TX', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), contactInfo: 'Call 555-1234' },
-  { id: 'item3', name: 'Non-GMO Corn Seeds (10kg bags)', description: 'High-yield, drought-resistant non-GMO corn seeds. Suitable for various climates.', price: 75, currency: 'USD', sellerId: 'user3', category: 'Seeds', location: 'Plainsville, NE', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), contactInfo: 'Email seeds@example.com' },
-  { id: 'item4', name: 'Artisanal Honey (Raw & Unfiltered)', description: '100% pure, raw, and unfiltered honey from local wildflowers. Available in 1kg jars.', price: 15, currency: 'USD', sellerId: 'user4', category: 'Artisanal Products', location: 'Mountain View, CO', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), contactInfo: 'DM for orders' },
+  { id: 'item1', name: 'Organic Roma Tomatoes (50kg Crate)', description: 'Freshly harvested, vine-ripened organic Roma tomatoes. Perfect for sauces or direct sale. Grown sustainably.', price: 2.50, currency: 'USD', sellerId: 'farmerAlice', category: 'Fresh Produce', location: 'Green Valley, CA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000).toISOString(), contactInfo: 'Contact seller via platform.' },
+  { id: 'item2', name: 'Used Tractor - Massey Ferguson 4707', description: 'Well-maintained Massey Ferguson 4707 tractor. 1500 hours. Ideal for small to medium farms, includes loader.', price: 28000, currency: 'USD', sellerId: 'farmEquipDealer', category: 'Farm Equipment', location: 'Central Plains, TX', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), contactInfo: 'Call 555-AGRO-EQUIP' },
+  { id: 'item3', name: 'Non-GMO Hybrid Corn Seed (20kg bags)', description: 'High-yield, drought-resistant non-GMO hybrid corn seeds. Proven performance in various climates.', price: 85, currency: 'USD', sellerId: 'seedSupplierBob', category: 'Seeds & Seedlings', location: 'Plainsville, NE', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), contactInfo: 'Email seeds@harvestco.com' },
+  { id: 'item4', name: 'Artisanal Raw Honey (Wildflower)', description: '100% pure, raw, and unfiltered honey from local wildflowers. Available in 1kg jars. Supports local pollinators.', price: 15, currency: 'USD', sellerId: 'beekeeperBen', category: 'Artisanal Farm Products', location: 'Mountain View Apiaries, CO', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), contactInfo: 'DM for local pickup/shipping' },
+  { id: 'item5', name: 'Organic Chicken Feed (Soy-Free)', description: 'Premium soy-free organic chicken feed. Milled locally. 25kg bags. Promotes healthy egg production.', price: 30, currency: 'USD', sellerId: 'feedMillFrank', category: 'Livestock Supplies', location: 'Rural Route, GA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(), contactInfo: 'Order online at franksfeed.com' },
 ];
 
-const categories = ['All', 'Produce', 'Equipment', 'Seeds', 'Livestock', 'Services', 'Artisanal Products'];
+const categories = ['All', 'Fresh Produce', 'Farm Equipment', 'Seeds & Seedlings', 'Livestock Supplies', 'Artisanal Farm Products', 'Farm Services'];
 
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,6 +42,14 @@ export default function MarketplacePage() {
       return (nameMatch || descriptionMatch) && categoryMatch && locationMatch;
     });
   }, [searchTerm, categoryFilter, locationFilter]);
+
+  const getCategoryIcon = (category: string) => {
+    if (category.includes('Produce')) return <Sprout className="h-4 w-4 mr-1 inline-block text-green-600" />;
+    if (category.includes('Equipment')) return <Tractor className="h-4 w-4 mr-1 inline-block text-red-600" />;
+    if (category.includes('Seed')) return <Tag className="h-4 w-4 mr-1 inline-block text-yellow-600" />; // Placeholder, better icon needed
+    return <Tag className="h-4 w-4 mr-1 inline-block text-gray-500" />;
+  }
+
 
   return (
     <div className="space-y-6">
@@ -65,7 +74,7 @@ export default function MarketplacePage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-marketplace"
-                placeholder="Search marketplace..." 
+                placeholder="Search for produce, equipment, seeds..." 
                 className="pl-10" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -76,7 +85,7 @@ export default function MarketplacePage() {
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="location-filter-marketplace"
-                placeholder="Filter by location..." 
+                placeholder="Filter by location (e.g., state, city)" 
                 className="pl-10"
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
@@ -92,15 +101,23 @@ export default function MarketplacePage() {
                 ))}
               </SelectContent>
             </Select>
-            {/* <Button variant="outline" className="w-full lg:w-auto"><Filter className="mr-2 h-4 w-4" /> More Filters</Button> */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredMarketplaceItems.map(item => (
               <Card key={item.id} className="flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 rounded-lg">
                 <div className="relative h-48 w-full">
-                  <Image src={item.imageUrl || "https://placehold.co/300x200.png"} alt={item.name} layout="fill" objectFit="cover" data-ai-hint="market product agriculture" />
-                  <Badge variant="secondary" className="absolute top-2 right-2">{item.category}</Badge>
+                  <Image 
+                    src={item.imageUrl || "https://placehold.co/300x200.png"} 
+                    alt={item.name} 
+                    layout="fill" 
+                    objectFit="cover" 
+                    data-ai-hint={`${item.category.split(' ')[0].toLowerCase()} agriculture`}
+                  />
+                  <Badge variant="secondary" className="absolute top-2 right-2 flex items-center">
+                    {getCategoryIcon(item.category)}
+                    {item.category}
+                  </Badge>
                 </div>
                 <CardHeader className="pb-2">
                   <Link href={`/marketplace/${item.id}`}>

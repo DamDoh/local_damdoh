@@ -1,56 +1,57 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { UserProfile } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, CalendarDays, Globe, MapPin, MessageCircle, Plus, UserPlus, Edit } from "lucide-react";
+import { Briefcase, CalendarDays, Globe, MapPin, MessageCircle, Plus, UserPlus, Edit, TrendingUp, Leaf, Tractor } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 // Dummy data for a single profile - replace with actual data fetching
 const profile: UserProfile = {
-  id: '1',
-  name: 'Alice Farmer',
+  id: 'farmerAlice', // Consistent ID with other dummy data
+  name: 'Alice Greenfarm',
   role: 'Farmer',
-  location: 'Green Valley, CA',
+  location: 'Greenwood Valley, AgroState',
   avatarUrl: 'https://placehold.co/200x200.png',
-  profileSummary: 'Dedicated organic farmer with over 15 years of experience in cultivating high-quality tomatoes, cucumbers, and leafy greens. Passionate about sustainable agriculture and building direct relationships with consumers and local businesses. Actively seeking new market opportunities and collaborations with like-minded individuals in the supply chain.',
-  bio: "I started my farming journey with a small plot of land and a dream to provide healthy, locally-grown food to my community. Over the years, I've expanded my operations and adopted innovative organic farming techniques. I believe in transparency and traceability in the food system. My farm, 'Green Pastures Organics', is certified organic and focuses on biodiversity and soil health. I'm always eager to learn and share knowledge with fellow agricultural professionals.",
+  profileSummary: 'Dedicated organic farmer with over 15 years of experience in cultivating high-quality vegetables and herbs. Passionate about sustainable agriculture, soil health, and building direct-to-consumer relationships. Actively seeking new market opportunities and collaborations with eco-conscious partners.',
+  bio: "My journey into farming began with a desire to grow nutritious food for my community while respecting the land. At 'Greenwood Organics', we practice regenerative agriculture, focusing on biodiversity, cover cropping, and minimal tillage. We're certified organic and committed to transparent food systems. I'm always eager to learn new techniques and share experiences with fellow farmers and agricultural professionals.",
   yearsOfExperience: 15,
-  areasOfInterest: ['Organic Farming', 'Sustainable Agriculture', 'Direct-to-Consumer Sales', 'Crop Rotation', 'Soil Health'],
-  needs: ['Direct Buyers', 'Logistics Partners for Local Delivery', 'Collaboration on Value-Added Products'],
+  areasOfInterest: ['Organic Farming', 'Sustainable Agriculture', 'Direct-to-Consumer Sales', 'Soil Health Management', 'Cover Cropping', 'Agri-Tourism'],
+  needs: ['Local Restaurant Partnerships', 'Logistics for Farmers Market Delivery', 'Collaboration on Value-Added Products (e.g., jams, pickles)'],
   contactInfo: {
-    email: 'alice.farmer@example.com',
+    email: 'alice.greenfarm@example.com',
     phone: '+1-555-0101',
-    website: 'www.greenpasturesorganics.com'
+    website: 'www.greenwoodorganics.farm'
   },
-  connections: ['2', '3'] // Dummy IDs
+  connections: ['seedSupplierBob', 'processorCarol'] // Dummy IDs
 };
 
 // Dummy data for user's activity/posts
 const userActivity = [
-    { id: 'post1', type: 'Forum Post', title: 'My new composting technique', date: '2024-05-15', link: '/forums/topic/1/post/1' },
-    { id: 'item1', type: 'Marketplace Listing', title: 'Fresh Organic Tomatoes - Bulk Order', date: '2024-05-20', link: '/marketplace/item/1' },
+    { id: 'post1', type: 'Forum Post', title: 'My experience with no-till soybean farming', date: '2024-05-15', link: '/forums/sustainable-farming/post/no-till-experience' },
+    { id: 'item1', type: 'Marketplace Listing', title: 'Fresh Organic Kale - Bulk Order Available', date: '2024-05-20', link: '/marketplace/item/organic-kale' },
+    { id: 'post2', type: 'Shared Article', title: 'Innovations in Drip Irrigation for Small Farms', date: '2024-05-10', link: '/articles/drip-irrigation-innovations'},
 ];
 
 export default function ProfileDetailPage({ params }: { params: { id: string } }) {
   // In a real app, you would fetch profile data based on params.id
-  // For now, we use the dummy 'profile' data.
-  // You might also want to check if params.id matches the current user's ID to show an "Edit Profile" button.
-  const isCurrentUser = params.id === "me" || params.id === profile.id; // Simplified check
+  // For now, we use the dummy 'profile' data if params.id matches 'farmerAlice' or "me" (for demo purposes).
+  const isCurrentUser = params.id === "me" || params.id === profile.id; 
 
-  if (!profile) {
+  if (!profile) { // Or if fetched profile is null
     return <p>Profile not found.</p>;
   }
 
   return (
     <div className="space-y-6">
       <Card className="overflow-hidden">
-        <div className="h-40 bg-gradient-to-r from-primary/30 to-accent/30 relative">
-          <Image src="https://placehold.co/1200x300.png" alt="Profile banner" layout="fill" objectFit="cover" data-ai-hint="farm landscape" />
+        <div className="h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
+          <Image src="https://placehold.co/1200x300.png" alt="Lush green farm landscape" layout="fill" objectFit="cover" data-ai-hint="farm landscape" />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-              <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture person" />
+              <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile farmer" />
               <AvatarFallback className="text-4xl">{profile.name.substring(0,1)}</AvatarFallback>
             </Avatar>
           </div>
@@ -79,14 +80,14 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
         <CardContent className="px-6 space-y-6">
           {profile.profileSummary && (
             <div>
-              <h3 className="text-lg font-semibold mb-2">Summary</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><Leaf className="h-5 w-5 mr-2 text-primary" /> Summary</h3>
               <p className="text-muted-foreground">{profile.profileSummary}</p>
             </div>
           )}
           
           {profile.bio && (
             <div>
-              <h3 className="text-lg font-semibold mb-2">About</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><CalendarDays className="h-5 w-5 mr-2 text-primary" />About</h3>
               <p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p>
             </div>
           )}
@@ -97,7 +98,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                 <Briefcase className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">Experience</h4>
-                  <p className="text-muted-foreground">{profile.yearsOfExperience} years</p>
+                  <p className="text-muted-foreground">{profile.yearsOfExperience} years in organic farming</p>
                 </div>
               </div>
             )}
@@ -114,8 +115,8 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
               <div className="flex items-start gap-3">
                 <Globe className="h-5 w-5 mt-1 text-primary" />
                 <div>
-                  <h4 className="font-semibold">Website</h4>
-                  <a href={profile.contactInfo.website} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:underline">{profile.contactInfo.website}</a>
+                  <h4 className="font-semibold">Farm Website</h4>
+                  <a href={`https://${profile.contactInfo.website}`} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:underline">{profile.contactInfo.website}</a>
                 </div>
               </div>
             )}
@@ -123,7 +124,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
 
           {profile.areasOfInterest && profile.areasOfInterest.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold mb-2">Areas of Interest</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />Areas of Interest</h3>
               <div className="flex flex-wrap gap-2">
                 {profile.areasOfInterest.map(interest => <Badge key={interest} variant="secondary">{interest}</Badge>)}
               </div>
@@ -132,7 +133,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
 
           {profile.needs && profile.needs.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold mb-2">Looking For</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />Currently Seeking</h3>
               <div className="flex flex-wrap gap-2">
                 {profile.needs.map(need => <Badge key={need}>{need}</Badge>)}
               </div>
@@ -141,19 +142,18 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
         </CardContent>
       </Card>
 
-      {/* Placeholder for activity, connections, etc. */}
       <Card>
         <CardHeader>
-          <CardTitle>Activity</CardTitle>
+          <CardTitle>Recent Activity</CardTitle>
         </CardHeader>
         <CardContent>
             {userActivity.length > 0 ? (
                 <ul className="space-y-4">
                     {userActivity.map(activity => (
-                        <li key={activity.id} className="p-4 border rounded-lg shadow-sm">
+                        <li key={activity.id} className="p-4 border rounded-lg shadow-sm hover:bg-accent/30 transition-colors">
                             <div className="flex justify-between items-center">
                                 <span className="text-sm font-medium text-primary">{activity.type}</span>
-                                <span className="text-xs text-muted-foreground">{activity.date}</span>
+                                <span className="text-xs text-muted-foreground">{new Date(activity.date).toLocaleDateString()}</span>
                             </div>
                             <Link href={activity.link} className="text-md font-semibold hover:underline mt-1 block">
                                 {activity.title}
@@ -162,7 +162,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                     ))}
                 </ul>
             ) : (
-                 <p className="text-muted-foreground">No recent activity.</p>
+                 <p className="text-muted-foreground">No recent activity to display.</p>
             )}
         </CardContent>
       </Card>

@@ -17,12 +17,11 @@ const recentFeedItems: FeedItem[] = [
     type: 'forum_post', 
     timestamp: new Date(Date.now() - 3600000).toISOString(), 
     userId: 'userA', 
-    userName: 'Samuel Chen', 
+    userName: 'Dr. Evelyn Reed', 
     userAvatar: 'https://placehold.co/40x40.png', 
-    content: 'Thrilled and honored to be accepted into the Stanford GSB Executive Education. SEP brings together global leaders to challenge conventional thinking, expand leadership capacity, and drive ...more', 
-    link: '/forums/stanford-gsb/post123',
-    // additional fields for linkedin style
-    userHeadline: "Building with Purpose and Impact",
+    content: 'Just returned from the National Soil Health Conference. Incredible insights on carbon sequestration and regenerative practices. Highly recommend the session on mycorrhizal fungi! #SoilHealth #RegenerativeAg ...more', 
+    link: '/forums/soil-health/post123',
+    userHeadline: "Soil Scientist & Regenerative Ag Advocate",
     postImage: "https://placehold.co/600x350.png",
     likesCount: 41,
     commentsCount: 6,
@@ -32,12 +31,12 @@ const recentFeedItems: FeedItem[] = [
     type: 'marketplace_listing', 
     timestamp: new Date(Date.now() - 7200000).toISOString(), 
     userId: 'userB', 
-    userName: 'Miles Loo, Jr.', 
+    userName: 'Global AgriLogistics Inc.', 
     userAvatar: 'https://placehold.co/40x40.png', 
-    content: "Excited to be speaking at #DatacloudGlobalCongress as we celebrate 20 years of shaping digital infrastructure! Register here: https://lnkd.in/eT_t7s7R — more\n\nI'M SPEAKING AT\nCelebrating 20 years of transforming global digital infrastructure", 
+    content: "Exciting news! We've opened new refrigerated shipping routes for fresh produce from South America to Europe. Ensuring your harvest arrives fresh. Learn more: https://lnkd.in/agri-logistics #AgriLogistics #FreshProduce #SupplyChain ...more", 
     link: '/marketplace/item456',
-    userHeadline: "Vice Chairman | Global V&A Lead - Data Centers & Life Science ...",
-    postImage: "https://placehold.co/600x400.png", // Placeholder for the event image
+    userHeadline: "Connecting Farms to Global Markets",
+    postImage: "https://placehold.co/600x400.png", 
     likesCount: 120,
     commentsCount: 15,
   },
@@ -50,7 +49,7 @@ function FeedItemCard({ item }: { item: FeedItem }) {
       <CardHeader className="p-4">
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10">
-            <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile person" />
+            <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile person agriculture" />
             <AvatarFallback>{item.userName?.substring(0, 1) ?? 'U'}</AvatarFallback>
           </Avatar>
           <div className="flex-1">
@@ -69,7 +68,7 @@ function FeedItemCard({ item }: { item: FeedItem }) {
         <p className="text-sm whitespace-pre-line mb-2">{item.content}</p>
         {item.postImage && (
           <div className="my-2 rounded-md overflow-hidden border">
-            <Image src={item.postImage} alt="Post image" width={600} height={350} className="w-full object-cover" data-ai-hint="article event" />
+            <Image src={item.postImage} alt="Post image" width={600} height={350} className="w-full object-cover" data-ai-hint="agriculture event" />
           </div>
         )}
          <div className="flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">

@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -5,18 +6,19 @@ import type { TalentListing } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles } from "lucide-react";
+import { Filter, PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor } from "lucide-react";
 
 // Dummy data for talent listings - replace with actual data fetching
 const talentListings: TalentListing[] = [
-  { id: 'talent1', title: 'Experienced Tractor Operator Needed', description: 'Seeking a skilled tractor operator for seasonal work (May-September). Must have 5+ years experience with various implements.', type: 'Job', listerId: 'user1', location: 'Green Valley, CA', skillsRequired: ['Tractor Operation', 'GPS Guidance', 'Field Preparation'], compensation: '$20-25/hour', createdAt: new Date(Date.now() - 86400000 * 2).toISOString() },
-  { id: 'talent2', title: 'Drone Surveying Services for Farms', description: 'Offering professional drone surveying services including crop health analysis, field mapping, and elevation modeling. FAA certified.', type: 'Service', listerId: 'user2', location: 'Remote / Central City, TX', skillsRequired: ['Drone Piloting', 'Photogrammetry', 'GIS Analysis'], compensation: 'Project-based', createdAt: new Date(Date.now() - 86400000 * 5).toISOString() },
-  { id: 'talent3', title: 'Agricultural Consultant (Organic Transition)', description: 'Expert advice and support for farms looking to transition to certified organic practices. Customized plans available.', type: 'Service', listerId: 'user3', location: 'Servicing Midwest Region', skillsRequired: ['Organic Certification', 'Soil Science', 'Pest Management'], compensation: 'Consultation fee', createdAt: new Date(Date.now() - 86400000 * 10).toISOString() },
-  { id: 'talent4', title: 'Farm Manager Position', description: 'Full-time farm manager needed for a 500-acre mixed crop and livestock operation. Competitive salary and benefits.', type: 'Job', listerId: 'user4', location: 'Willow Creek, MT', skillsRequired: ['Farm Management', 'Livestock Handling', 'Crop Planning', 'Budgeting'], compensation: '$70,000 - $85,000/year', createdAt: new Date(Date.now() - 86400000 * 1).toISOString() },
+  { id: 'talent1', title: 'Experienced Tractor Operator for Harvest Season', description: 'Seeking a skilled tractor operator for seasonal work (July-October). Must have 5+ years experience with combine harvesters and GPS guidance systems.', type: 'Job', listerId: 'largeScaleFarmInc', location: 'Green Valley, CA', skillsRequired: ['Tractor Operation', 'Combine Harvesting', 'GPS Guidance', 'Field Preparation'], compensation: '$22-28/hour, DOE', createdAt: new Date(Date.now() - 86400000 * 2).toISOString() },
+  { id: 'talent2', title: 'Precision Ag Drone Surveying Services', description: 'Offering professional drone surveying for farms: crop health NDVI analysis, field mapping, and elevation modeling. FAA Part 107 certified pilot.', type: 'Service', listerId: 'agriDroneSolutions', location: 'Remote / Servicing Central TX', skillsRequired: ['Drone Piloting (UAV)', 'Photogrammetry', 'GIS Analysis', 'Crop Scouting'], compensation: 'Project-based (e.g., $X/acre)', createdAt: new Date(Date.now() - 86400000 * 5).toISOString() },
+  { id: 'talent3', title: 'Agricultural Consultant (Organic Transition & Certification)', description: 'Expert advice and hands-on support for farms looking to transition to certified organic practices. Customized transition plans available.', type: 'Service', listerId: 'organicPathConsulting', location: 'Servicing Midwest Region', skillsRequired: ['Organic Certification Standards', 'Soil Science', 'Sustainable Pest Management', 'Crop Rotation Planning'], compensation: 'Consultation fee + project milestones', createdAt: new Date(Date.now() - 86400000 * 10).toISOString() },
+  { id: 'talent4', title: 'Dairy Farm Manager Position Available', description: 'Full-time farm manager needed for a 200-cow dairy operation. Responsibilities include herd health, milking operations, and staff supervision. Competitive salary and housing potentially available.', type: 'Job', listerId: 'willowCreekDairy', location: 'Willow Creek, MT', skillsRequired: ['Dairy Farm Management', 'Livestock Handling', 'Milking Systems', 'Feed Management', 'Budgeting'], compensation: '$75,000 - $90,000/year + benefits', createdAt: new Date(Date.now() - 86400000 * 1).toISOString() },
+  { id: 'talent5', title: 'Custom Harvesting Services (Small Grains)', description: 'Offering custom harvesting for wheat, barley, and oats. Modern equipment, experienced operator. Serving [Region/State].', type: 'Service', listerId: 'harvestersUnited', location: 'Mobile (Covering KS, NE, CO)', skillsRequired: ['Combine Operation', 'Grain Handling', 'Logistics'], compensation: 'Per acre / Per bushel rates', createdAt: new Date(Date.now() - 86400000 * 7).toISOString() },
 ];
 
 const listingTypes = ['All', 'Job', 'Service'];
-const experienceLevels = ['All', 'Entry Level', 'Mid Level', 'Senior Level'];
+const agriculturalSectors = ['All', 'Crop Production', 'Livestock Management', 'Aquaculture', 'Agri-Tech', 'Consulting', 'Farm Labor', 'Processing'];
 
 export default function TalentExchangePage() {
   return (
@@ -26,7 +28,7 @@ export default function TalentExchangePage() {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <CardTitle className="text-2xl">Talent Exchange</CardTitle>
-              <CardDescription>Find agricultural jobs, offer your expertise, and discover skilled professionals.</CardDescription>
+              <CardDescription>Find agricultural jobs, offer your farming expertise, and discover skilled professionals in the agri-food sector.</CardDescription>
             </div>
             <Button asChild>
               <Link href="/talent-exchange/create">
@@ -39,11 +41,11 @@ export default function TalentExchangePage() {
           <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="relative sm:col-span-2 lg:col-span-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search jobs or services..." className="pl-10" />
+              <Input placeholder="Search jobs, services, or skills (e.g., 'irrigation', 'farm manager')" className="pl-10" />
             </div>
             <Select>
               <SelectTrigger>
-                <SelectValue placeholder="Listing Type" />
+                <SelectValue placeholder="Listing Type (Job/Service)" />
               </SelectTrigger>
               <SelectContent>
                 {listingTypes.map(type => (
@@ -53,15 +55,14 @@ export default function TalentExchangePage() {
             </Select>
             <Select>
               <SelectTrigger>
-                <SelectValue placeholder="Experience Level" />
+                <SelectValue placeholder="Agricultural Sector" />
               </SelectTrigger>
               <SelectContent>
-                {experienceLevels.map(level => (
+                {agriculturalSectors.map(level => (
                   <SelectItem key={level} value={level.toLowerCase().replace(' ', '-')}>{level}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            {/* <Button variant="outline" className="sm:col-start-2 lg:col-start-auto"><Filter className="mr-2 h-4 w-4" /> Apply Filters</Button> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -72,10 +73,13 @@ export default function TalentExchangePage() {
                     <Link href={`/talent-exchange/${listing.id}`}>
                       <CardTitle className="text-lg hover:text-primary transition-colors">{listing.title}</CardTitle>
                     </Link>
-                    <Badge variant={listing.type === 'Job' ? 'default' : 'secondary'}>{listing.type}</Badge>
+                    <Badge variant={listing.type === 'Job' ? 'default' : 'secondary'} className="flex items-center gap-1">
+                      {listing.type === 'Job' ? <Briefcase className="h-3 w-3" /> : <Sparkles className="h-3 w-3" />}
+                      {listing.type}
+                    </Badge>
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground gap-1 pt-1">
-                    {listing.type === 'Job' ? <Briefcase className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}
+                     <Tractor className="h-4 w-4" />
                     <span>{listing.type === 'Job' ? 'Job Opportunity' : 'Service Offered'}</span>
                   </div>
                 </CardHeader>
@@ -89,7 +93,7 @@ export default function TalentExchangePage() {
                   )}
                   {listing.skillsRequired && listing.skillsRequired.length > 0 && (
                     <div className="pt-2">
-                      <h4 className="text-xs font-semibold mb-1">Skills:</h4>
+                      <h4 className="text-xs font-semibold mb-1">Skills Required:</h4>
                       <div className="flex flex-wrap gap-1">
                         {listing.skillsRequired.map(skill => <Badge key={skill} variant="outline" className="text-xs">{skill}</Badge>)}
                       </div>

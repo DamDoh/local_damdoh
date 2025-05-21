@@ -1,28 +1,32 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
-import { Filter, MessageSquare, PlusCircle, Search, Users, Clock } from "lucide-react";
+import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 // Dummy data for forum topics - replace with actual data fetching
 const forumTopics: ForumTopic[] = [
-  { id: 'ft1', title: 'Sustainable Farming Practices', description: 'Discuss eco-friendly farming methods, soil health, and water conservation techniques.', postCount: 125, lastActivityAt: new Date(Date.now() - 3600000).toISOString(), creatorId: 'user1', icon: 'Leaf' },
-  { id: 'ft2', title: 'Crop Disease Management Q&A', description: 'Share tips on preventing and managing common crop diseases. Ask experts for advice.', postCount: 88, lastActivityAt: new Date(Date.now() - 7200000).toISOString(), creatorId: 'user2', icon: 'ShieldAlert' },
-  { id: 'ft3', title: 'Agri-Tech Innovations Showcase', description: 'Explore new technologies in agriculture, including drones, precision farming, and IoT devices.', postCount: 210, lastActivityAt: new Date(Date.now() - 1000000).toISOString(), creatorId: 'user3', icon: 'Cpu' },
-  { id: 'ft4', title: 'Market Trends & Pricing Analysis', description: 'Discuss current market trends, commodity prices, and strategies for maximizing profits.', postCount: 150, lastActivityAt: new Date(Date.now() - 86400000).toISOString(), creatorId: 'user4', icon: 'TrendingUp' },
-  { id: 'ft5', title: 'Organic Certification Challenges', description: 'Share experiences and advice on navigating the organic certification process.', postCount: 60, lastActivityAt: new Date(Date.now() - 172800000).toISOString(), creatorId: 'user5', icon: 'Award' },
+  { id: 'ft1', title: 'Sustainable Farming Practices', description: 'Discuss eco-friendly farming methods, soil health, and water conservation techniques.', postCount: 125, lastActivityAt: new Date(Date.now() - 3600000).toISOString(), creatorId: 'agrimod', icon: 'Leaf', createdAt: new Date(Date.now() - 86400000 * 7).toISOString() },
+  { id: 'ft2', title: 'Crop Disease Management Q&A', description: 'Share tips on preventing and managing common crop diseases. Ask experts for advice.', postCount: 88, lastActivityAt: new Date(Date.now() - 7200000).toISOString(), creatorId: 'farmerAlice', icon: 'ShieldAlert', createdAt: new Date(Date.now() - 86400000 * 5).toISOString() },
+  { id: 'ft3', title: 'Agri-Tech Innovations Showcase', description: 'Explore new technologies in agriculture, including drones, precision farming, and IoT devices.', postCount: 210, lastActivityAt: new Date(Date.now() - 1000000).toISOString(), creatorId: 'agriTechGuru', icon: 'Brain', createdAt: new Date(Date.now() - 86400000 * 3).toISOString() },
+  { id: 'ft4', title: 'Market Trends & Pricing Analysis', description: 'Discuss current market trends, commodity prices, and strategies for maximizing profits.', postCount: 150, lastActivityAt: new Date(Date.now() - 86400000).toISOString(), creatorId: 'marketAnalyst1', icon: 'TrendingUp', createdAt: new Date(Date.now() - 86400000 * 10).toISOString() },
+  { id: 'ft5', title: 'Organic Certification Challenges', description: 'Share experiences and advice on navigating the organic certification process.', postCount: 60, lastActivityAt: new Date(Date.now() - 172800000).toISOString(), creatorId: 'organicCertExpert', icon: 'Award', createdAt: new Date(Date.now() - 86400000 * 15).toISOString() },
+  { id: 'ft6', title: 'Farm Equipment Maintenance Tips', description: 'Share advice and ask questions about maintaining and repairing farm machinery.', postCount: 45, lastActivityAt: new Date(Date.now() - 259200000).toISOString(), creatorId: 'mechanicMike', icon: 'Tractor', createdAt: new Date(Date.now() - 86400000 * 20).toISOString() },
 ];
 
 const getIcon = (iconName?: string) => {
+  const iconProps = { className: "h-8 w-8 text-primary" };
   switch (iconName) {
-    case 'Leaf': return <MessageSquare className="h-8 w-8 text-primary" />; // Default to MessageSquare if specific icons not available
-    case 'ShieldAlert': return <MessageSquare className="h-8 w-8 text-primary" />;
-    case 'Cpu': return <MessageSquare className="h-8 w-8 text-primary" />;
-    case 'TrendingUp': return <MessageSquare className="h-8 w-8 text-primary" />;
-    case 'Award': return <MessageSquare className="h-8 w-8 text-primary" />;
-    default: return <MessageSquare className="h-8 w-8 text-primary" />;
+    case 'Leaf': return <Leaf {...iconProps} />;
+    case 'ShieldAlert': return <ShieldAlert {...iconProps} />;
+    case 'Brain': return <Brain {...iconProps} />;
+    case 'TrendingUp': return <TrendingUp {...iconProps} />;
+    case 'Award': return <Award {...iconProps} />;
+    case 'Tractor': return <Tractor {...iconProps} />;
+    default: return <MessageSquare {...iconProps} />;
   }
 };
 

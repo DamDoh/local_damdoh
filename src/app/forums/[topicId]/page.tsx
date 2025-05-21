@@ -1,10 +1,11 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { ForumTopic, ForumPost as ForumPostType } from "@/lib/types";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
-import { ArrowLeft, Clock, MessageSquare, ThumbsUp, Send, UserCircle } from "lucide-react";
+import { ArrowLeft, Clock, MessageSquare, ThumbsUp, Send, UserCircle, Leaf } from "lucide-react";
 
 // Dummy data for a single forum topic and its posts - replace with actual data fetching
 const forumTopic: ForumTopic = {
@@ -13,27 +14,28 @@ const forumTopic: ForumTopic = {
   description: 'A dedicated space to discuss, share, and learn about eco-friendly farming methods, soil health improvement, water conservation techniques, and biodiversity in agriculture. All members are encouraged to contribute their experiences, ask questions, and collaborate on sustainable solutions.',
   postCount: 125,
   lastActivityAt: new Date(Date.now() - 3600000).toISOString(),
-  creatorId: 'user1',
+  creatorId: 'agrimod',
   icon: 'Leaf',
+  createdAt: new Date(Date.now() - 86400000 * 7).toISOString(), // 7 days ago
 };
 
 const forumPosts: ForumPostType[] = [
   {
     id: 'post1',
     topicId: 'ft1',
-    authorId: 'user2',
+    authorId: 'farmerAlice',
     content: "Has anyone tried using cover crops for nitrogen fixation? I'm looking for recommendations for a clay-heavy soil type. Any insights on specific species or planting times would be greatly appreciated!",
     createdAt: new Date(Date.now() - 10800000).toISOString(), // 3 hours ago
     likes: 15,
     replies: [
-      { id: 'reply1', topicId: 'ft1', authorId: 'user3', content: "Yes, I've had great success with crimson clover on similar soil. Planted it in early fall.", createdAt: new Date(Date.now() - 7200000).toISOString(), likes: 5 },
-      { id: 'reply2', topicId: 'ft1', authorId: 'user4', content: "Hairy vetch is another good option. It's quite resilient.", createdAt: new Date(Date.now() - 3600000).toISOString(), likes: 3 },
+      { id: 'reply1', topicId: 'ft1', authorId: 'fertilizerBob', content: "Yes, I've had great success with crimson clover on similar soil. Planted it in early fall. We also supply high-quality crimson clover seeds.", createdAt: new Date(Date.now() - 7200000).toISOString(), likes: 5 },
+      { id: 'reply2', topicId: 'ft1', authorId: 'processorCarol', content: "Hairy vetch is another good option. It's quite resilient and improves soil structure too.", createdAt: new Date(Date.now() - 3600000).toISOString(), likes: 3 },
     ]
   },
   {
     id: 'post2',
     topicId: 'ft1',
-    authorId: 'user5',
+    authorId: 'traderDavid',
     content: "I'm interested in learning more about no-till farming. What are the main benefits and challenges I should be aware of before transitioning? Are there any specific equipment recommendations for small-scale farms?",
     createdAt: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
     likes: 22,
@@ -42,11 +44,12 @@ const forumPosts: ForumPostType[] = [
 
 // Dummy user data for author lookup
 const users: { [key: string]: { name: string, avatarUrl?: string } } = {
-  'user1': { name: 'Admin User', avatarUrl: 'https://placehold.co/40x40.png' },
-  'user2': { name: 'Alice Farmer', avatarUrl: 'https://placehold.co/40x40.png' },
-  'user3': { name: 'Bob Supplier', avatarUrl: 'https://placehold.co/40x40.png' },
-  'user4': { name: 'Carol Processor', avatarUrl: 'https://placehold.co/40x40.png' },
-  'user5': { name: 'David Trader', avatarUrl: 'https://placehold.co/40x40.png' },
+  'agrimod': { name: 'AgriMod', avatarUrl: 'https://placehold.co/40x40.png' },
+  'farmerAlice': { name: 'Alice Farmer', avatarUrl: 'https://placehold.co/40x40.png' },
+  'fertilizerBob': { name: 'Bob FertilizerCo', avatarUrl: 'https://placehold.co/40x40.png' },
+  'processorCarol': { name: 'Carol FoodProcessors', avatarUrl: 'https://placehold.co/40x40.png' },
+  'traderDavid': { name: 'David GrainTrade', avatarUrl: 'https://placehold.co/40x40.png' },
+  'currentUser': { name: 'Demo Farmer', avatarUrl: 'https://placehold.co/40x40.png'}, // For the new post section
 };
 
 function ForumPost({ post }: { post: ForumPostType }) {
@@ -92,6 +95,7 @@ export default function ForumTopicPage({ params }: { params: { topicId: string }
   if (!forumTopic) {
     return <p>Forum topic not found.</p>;
   }
+  const creator = users[forumTopic.creatorId] || { name: 'Unknown Creator' };
 
   return (
     <div className="space-y-6">
@@ -101,11 +105,14 @@ export default function ForumTopicPage({ params }: { params: { topicId: string }
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-3xl">{forumTopic.title}</CardTitle>
+          <div className="flex items-center gap-2 mb-2">
+            {forumTopic.icon === 'Leaf' && <Leaf className="h-7 w-7 text-primary" />}
+            <CardTitle className="text-3xl">{forumTopic.title}</CardTitle>
+          </div>
           <CardDescription className="text-md mt-1">{forumTopic.description}</CardDescription>
           <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
             <span>{forumTopic.postCount} posts</span>
-            <span>Created by: <Link href={`/profiles/${forumTopic.creatorId}`} className="text-primary hover:underline">{users[forumTopic.creatorId]?.name || 'Unknown'}</Link></span>
+            <span>Created by: <Link href={`/profiles/${forumTopic.creatorId}`} className="text-primary hover:underline">{creator.name}</Link></span>
           </div>
         </CardHeader>
       </Card>
@@ -117,7 +124,7 @@ export default function ForumTopicPage({ params }: { params: { topicId: string }
         <CardContent>
           <div className="flex gap-3 items-start">
              <Avatar className="h-10 w-10 border mt-1">
-                <AvatarImage src={users['user1']?.avatarUrl} alt={users['user1']?.name} data-ai-hint="profile person" />
+                <AvatarImage src={users['currentUser']?.avatarUrl} alt={users['currentUser']?.name} data-ai-hint="profile farmer" />
                 <AvatarFallback><UserCircle /></AvatarFallback>
             </Avatar>
             <Textarea placeholder="Write your post here..." className="min-h-[100px] flex-grow" />
