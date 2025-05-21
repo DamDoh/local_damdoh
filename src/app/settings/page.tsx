@@ -1,10 +1,11 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock } from "lucide-react";
+import { User, Bell, Shield, Palette, Lock, Users, SearchCheck } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -109,6 +110,7 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
         </TabsContent>
+
          <TabsContent value="privacy">
           <Card>
             <CardHeader>
@@ -118,31 +120,74 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <p className="font-medium">Profile Visibility</p>
-                  <p className="text-sm text-muted-foreground">Who can see your full profile.</p>
+                  <p className="font-medium flex items-center"><User className="mr-2 h-4 w-4 text-primary" />Profile Visibility</p>
+                  <p className="text-sm text-muted-foreground ml-6">Who can see your full profile.</p>
                 </div>
                 <Select defaultValue="everyone">
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[200px]">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="everyone">Everyone</SelectItem>
                         <SelectItem value="connections">Connections Only</SelectItem>
-                        <SelectItem value="private">Private</SelectItem>
+                        <SelectItem value="private">Only Me</SelectItem>
                     </SelectContent>
                 </Select>
               </div>
+
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div>
+                  <p className="font-medium flex items-center"><Users className="mr-2 h-4 w-4 text-primary" />Connection Requests</p>
+                  <p className="text-sm text-muted-foreground ml-6">Who can send you connection requests.</p>
+                </div>
+                <Select defaultValue="everyone">
+                    <SelectTrigger className="w-[200px]">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="everyone">Everyone</SelectItem>
+                        <SelectItem value="connections-of-connections">Connections of Connections</SelectItem>
+                    </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div>
+                  <p className="font-medium flex items-center"><Users className="mr-2 h-4 w-4 text-primary" />Connections List Visibility</p>
+                  <p className="text-sm text-muted-foreground ml-6">Who can see your list of connections.</p>
+                </div>
+                <Select defaultValue="connections">
+                    <SelectTrigger className="w-[200px]">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="everyone">Everyone</SelectItem>
+                        <SelectItem value="connections">Connections Only</SelectItem>
+                        <SelectItem value="me">Only Me</SelectItem>
+                    </SelectContent>
+                </Select>
+              </div>
+
                <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <p className="font-medium">Show Activity Status</p>
-                  <p className="text-sm text-muted-foreground">Let others see when you are online.</p>
+                  <p className="font-medium flex items-center"><Bell className="mr-2 h-4 w-4 text-primary" />Activity Status</p>
+                  <p className="text-sm text-muted-foreground ml-6">Let others see when you are online.</p>
                 </div>
                 <Switch id="activity-status" defaultChecked />
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div>
+                  <p className="font-medium flex items-center"><SearchCheck className="mr-2 h-4 w-4 text-primary" />Search Engine Indexing</p>
+                  <p className="text-sm text-muted-foreground ml-6">Allow search engines (e.g., Google) to link to your profile.</p>
+                </div>
+                <Switch id="search-engine-indexing" defaultChecked />
               </div>
               <Button>Save Privacy Settings</Button>
             </CardContent>
           </Card>
         </TabsContent>
+
          <TabsContent value="appearance">
           <Card>
             <CardHeader>
@@ -155,8 +200,8 @@ export default function SettingsPage() {
                         <p className="font-medium">Theme</p>
                         <p className="text-sm text-muted-foreground">Select your preferred theme.</p>
                     </div>
-                    {/* This would require theme switching logic, which is complex for now. */}
-                    <Button variant="outline" disabled>Toggle Dark Mode (Coming Soon)</Button>
+                    {/* This is handled by ThemeToggle in the main layout */}
+                    <p className="text-sm text-muted-foreground">Theme can be changed using the toggle in the header.</p>
                 </div>
             </CardContent>
           </Card>
@@ -165,3 +210,5 @@ export default function SettingsPage() {
     </div>
   );
 }
+
+    
