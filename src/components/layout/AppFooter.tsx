@@ -14,7 +14,7 @@ export function AppFooter() {
           <div className="space-y-2 md:col-span-1">
             <Logo iconSize={28} textSize="text-xl" />
             <p className="text-xs text-muted-foreground">
-              Connecting the agricultural supply chain for a sustainable future.
+              Bridging the agricultural supply chain for a thriving people, profit, and planet.
             </p>
           </div>
           
