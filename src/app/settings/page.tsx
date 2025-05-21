@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users, SearchCheck, Save } from "lucide-react"; // Added Save icon
+import { User, Bell, Shield, Palette, Lock, Users, SearchCheck, Save, ShieldOff } from "lucide-react"; // Added ShieldOff icon
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -73,7 +73,7 @@ export default function SettingsPage() {
                 </div>
               <Button><Save className="mr-2 h-4 w-4" />Change Password</Button>
               <Separator />
-              <Button variant="destructive">Deactivate Account</Button>
+              <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />Deactivate Account</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -210,3 +210,4 @@ export default function SettingsPage() {
     </div>
   );
 }
+
