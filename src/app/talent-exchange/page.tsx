@@ -7,7 +7,7 @@ import type { TalentListing, TalentCategory } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench } from "lucide-react";
+import { Filter, PlusCircle, Search, Briefcase, MapPin, CalendarDays, Sparkles, HardHat, Tractor, Users, Leaf, LandPlot, Wrench, Pin } from "lucide-react"; // Added Pin
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 
@@ -71,11 +71,16 @@ export default function TalentExchangePage() {
               <CardTitle className="text-2xl">Agri-Talent & Services Exchange</CardTitle>
               <CardDescription>Discover jobs, land, equipment rentals, and specialized services across the agricultural supply chain.</CardDescription>
             </div>
-            <Button asChild>
-              <Link href="/talent-exchange/create">
-                <PlusCircle className="mr-2 h-4 w-4" /> Offer Job / List Service
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Button asChild>
+                <Link href="/talent-exchange/create">
+                  <PlusCircle className="mr-2 h-4 w-4" /> Offer Job / List Service
+                </Link>
+              </Button>
+              <Button variant="outline">
+                <Pin className="mr-2 h-4 w-4" /> Set as Homepage
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent>
@@ -173,3 +178,4 @@ export default function TalentExchangePage() {
     </div>
   );
 }
+
