@@ -46,7 +46,7 @@ export function AppHeader() {
   const demoUser = {
     name: "Raj Patel",
     email: "raj.patel@agrisupply.com",
-    imageUrl: "https://placehold.co/40x40.png", 
+    imageUrl: "https://placehold.co/40x40.png",
   };
 
   return (
@@ -67,14 +67,15 @@ export function AppHeader() {
         <nav className="flex items-center space-x-1 md:space-x-2">
           <NavLink href="/" icon={Home} label="Home" pathname={pathname} />
           <NavLink href="/network" icon={Users} label="Network" pathname={pathname} />
-          <NavLink href="/talent-exchange" icon={Briefcase} label="Talent" pathname={pathname} /> 
+          <NavLink href="/talent-exchange" icon={Briefcase} label="Talent" pathname={pathname} />
+          <NavLink href="/marketplace" icon={ShoppingCart} label="Market" pathname={pathname} />
           <NavLink href="/messaging" icon={MessageSquare} label="Messaging" pathname={pathname} /> {/* Placeholder page */}
-          <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} /> {/* Placeholder page */}
-          
+
+
           <div className="hidden md:block">
              <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
           </div>
-          
+
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary h-auto">
@@ -83,14 +84,14 @@ export function AppHeader() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56"> {/* Increased width */}
-              <DropdownMenuItem asChild><Link href="/forums" className="flex items-center gap-2"><Newspaper className="h-4 w-4"/>Forums & Discussions</Link></DropdownMenuItem>
-              <DropdownMenuItem asChild><Link href="/marketplace" className="flex items-center gap-2"><ShoppingCart className="h-4 w-4"/>Marketplace</Link></DropdownMenuItem>
-              <DropdownMenuItem asChild><Link href="/profiles" className="flex items-center gap-2"><Users className="h-4 w-4"/>Stakeholder Profiles</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/notifications" className="flex items-center gap-2"><Bell className="h-4 w-4"/>Notifications</Link></DropdownMenuItem> {/* Placeholder page */}
+              <DropdownMenuItem asChild><Link href="/forums" className="flex items-center gap-2"><Newspaper className="h-4 w-4"/>Forums</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/profiles" className="flex items-center gap-2"><Users className="h-4 w-4"/>Profiles</Link></DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild><Link href="/settings" className="flex items-center gap-2"><Settings className="h-4 w-4"/>Settings</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          
+
           <div className="pl-2 border-l border-border hidden md:block">
              <ThemeToggle />
           </div>
