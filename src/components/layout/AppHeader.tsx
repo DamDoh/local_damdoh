@@ -8,7 +8,7 @@ import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { HeaderThemeToggle } from "@/components/HeaderThemeToggle"; // Changed import
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -93,7 +93,7 @@ export function AppHeader() {
           </DropdownMenu>
 
           <div className="pl-2 border-l border-border hidden md:block">
-             <ThemeToggle />
+             <HeaderThemeToggle /> {/* Changed to HeaderThemeToggle */}
           </div>
         </nav>
       </div>
