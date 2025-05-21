@@ -52,7 +52,7 @@ export function AppFooter() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="text-center sm:text-left">
               <p className="text-xs text-muted-foreground">&copy; {currentYear} {APP_NAME}. All rights reserved.</p>
-              <p className="text-xs text-muted-foreground mt-1">Empowering the agricultural value chain, from farm to fork.</p>
+              <p className="text-xs text-muted-foreground mt-1">Bridging the agricultural supply chain for a thriving people, profit, and planet.</p>
             </div>
             <div className="flex flex-col items-center sm:items-end gap-2">
               <p className="text-sm font-medium text-muted-foreground">Get Our Mobile App</p>
