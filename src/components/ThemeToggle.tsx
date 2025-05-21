@@ -1,3 +1,4 @@
+
 // src/components/ThemeToggle.tsx
 "use client";
 
@@ -34,25 +35,45 @@ export function ThemeToggle() {
     }
   }, [currentTheme, mounted]);
 
-  const toggleTheme = () => {
-    setCurrentTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  const handleSetTheme = (theme: 'light' | 'dark') => {
+    setCurrentTheme(theme);
   };
 
   if (!mounted) {
     // Render a placeholder or null on the server and during initial client render
     // to avoid hydration mismatch due to localStorage/window.matchMedia access.
-    return <Button variant="ghost" size="icon" disabled className="h-9 w-9 opacity-50"><Sun className="h-5 w-5" /></Button>;
+    return (
+      <div className="flex gap-1">
+        <Button variant="ghost" size="icon" disabled className="h-9 w-9 opacity-50">
+          <Sun className="h-5 w-5" />
+        </Button>
+        <Button variant="ghost" size="icon" disabled className="h-9 w-9 opacity-50">
+          <Moon className="h-5 w-5" />
+        </Button>
+      </div>
+    );
   }
 
   return (
-    <Button 
-      variant="ghost" 
-      size="icon" 
-      onClick={toggleTheme} 
-      aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
-      className="h-9 w-9"
-    >
-      {currentTheme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-    </Button>
+    <div className="flex gap-1">
+      <Button 
+        variant={currentTheme === 'light' ? 'secondary' : 'ghost'} 
+        size="icon" 
+        onClick={() => handleSetTheme('light')} 
+        aria-label="Switch to light mode"
+        className="h-9 w-9"
+      >
+        <Sun className="h-5 w-5" />
+      </Button>
+      <Button 
+        variant={currentTheme === 'dark' ? 'secondary' : 'ghost'} 
+        size="icon" 
+        onClick={() => handleSetTheme('dark')} 
+        aria-label="Switch to dark mode"
+        className="h-9 w-9"
+      >
+        <Moon className="h-5 w-5" />
+      </Button>
+    </div>
   );
 }
