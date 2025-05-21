@@ -112,11 +112,8 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
               <p className="text-xs font-normal text-muted-foreground">Share an update</p>
             </div>
           </DialogTitle>
-           <DialogClose asChild>
-            <Button variant="ghost" size="icon" className="absolute right-4 top-4 h-7 w-7">
-              <X className="h-4 w-4" />
-            </Button>
-          </DialogClose>
+           {/* The DialogContent component itself provides a close button.
+               No need for an additional <DialogClose> here if it's redundant. */}
         </DialogHeader>
 
         <ScrollArea className="max-h-[60vh]">

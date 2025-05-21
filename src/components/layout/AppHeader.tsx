@@ -18,7 +18,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
+  // SheetClose, // No longer needed here as SheetContent has its own
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 
@@ -141,14 +141,11 @@ export function AppHeader() {
               <SheetHeader className="p-4 border-b">
                 <SheetTitle className="flex items-center justify-between">
                   <Logo iconSize={28} textSize="text-xl" />
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon">
-                      <X className="h-5 w-5" />
-                    </Button>
-                  </SheetClose>
+                  {/* The SheetContent component itself provides a close button.
+                      No need for an additional <SheetClose> here. */}
                 </SheetTitle>
               </SheetHeader>
-              <div className="flex flex-col justify-between h-[calc(100%-4.5rem)]">
+              <div className="flex flex-col justify-between h-[calc(100%-4.5rem)]"> {/* Adjust height if SheetTitle changes */}
                 <nav className="flex-grow p-4 space-y-1 overflow-y-auto">
                   {navItems.map((item) => (
                     <MobileNavLink 
