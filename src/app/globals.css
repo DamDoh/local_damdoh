@@ -57,49 +57,50 @@ body {
   }
 
   .dark {
-    /* DamDoh.org Inspired Dark Theme */
-    --background: 70 40% 8%; /* Dark Green-Black #1E2601 or similar */
-    --foreground: 70 25% 90%; /* Light Gray/Off-white text */
+    /* LinkedIn Dark Theme Inspired (Previous) */
+    --background: 224 71.4% 4.1%; /* Dark Blue */
+    --foreground: 210 20% 98%; /* Almost White Text */
 
-    --card: 70 30% 12%; /* Slightly lighter dark shade for cards */
-    --card-foreground: 70 25% 90%;
+    --card: 224 71.4% 4.1%; /* Same as background for seamless look */
+    --card-foreground: 210 20% 98%;
 
-    --popover: 70 25% 10%;
-    --popover-foreground: 70 25% 90%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 80 57% 51%; /* Vibrant Green #92C83E - keep it bright */
-    --primary-foreground: 80 25% 10%; /* Dark text on primary green for contrast */
+    --primary: 210 40% 98%; /* White */
+    --primary-foreground: 220.9 39.3% 11%; /* Dark Blue Text on White Primary */
     
-    --secondary: 70 20% 25%; /* Dark Gray */
-    --secondary-foreground: 70 15% 80%; /* Light Gray text on secondary */
+    --secondary: 215 27.9% 16.9%; /* Slightly Lighter Dark Blue */
+    --secondary-foreground: 210 20% 98%;
     
-    --muted: 70 20% 18%; /* Darker muted color */
-    --muted-foreground: 70 15% 65%; /* Medium-Light Gray */
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 215 20.7% 65.1%; /* Lighter Gray Muted Text */
     
-    --accent: 80 57% 40%; /* A noticeable, but not overly bright, green for dark mode accents */
-    --accent-foreground: 80 25% 90%; /* Light text for accent background */
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
     
-    --destructive: 0 60% 50%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%; /* Darker Red */
+    --destructive-foreground: 210 20% 98%;
     
-    --border: 70 15% 25%; /* Darker Green-Gray border */
-    --input: 70 25% 15%; /* Dark input background */
-    --ring: 80 57% 55%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 210 40% 98%; /* White for focus rings */
     
-    --chart-1: 80 57% 55%;
-    --chart-2: 80 57% 45%;
-    --chart-3: 70 40% 50%;
-    --chart-4: 70 40% 60%;
-    --chart-5: 48 40% 70%;
+    --chart-1: 210 40% 98%;
+    --chart-2: 140 50% 60%;
+    --chart-3: 30 80% 60%;
+    --chart-4: 280 70% 70%;
+    --chart-5: 50 70% 60%;
 
-    --sidebar-background: 70 35% 10%;
-    --sidebar-foreground: 70 25% 88%;
-    --sidebar-primary: 80 57% 51%; 
-    --sidebar-primary-foreground: 80 25% 10%; 
-    --sidebar-accent: 70 20% 20%;
-    --sidebar-accent-foreground: 70 25% 90%;
-    --sidebar-border: 70 15% 25%;
-    --sidebar-ring: 80 57% 55%;
+    /* Sidebar specific dark theme - may need adjustments */
+    --sidebar-background: 224 71.4% 5.5%; /* Slightly lighter than main dark bg */
+    --sidebar-foreground: 210 20% 95%; 
+    --sidebar-primary: 210 40% 98%; 
+    --sidebar-primary-foreground: 220.9 39.3% 11%; 
+    --sidebar-accent: 215 27.9% 20%; 
+    --sidebar-accent-foreground: 210 20% 98%; 
+    --sidebar-border: 215 27.9% 16.9%; 
+    --sidebar-ring: 210 40% 98%;
   }
 }
 
