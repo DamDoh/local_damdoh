@@ -106,9 +106,13 @@ export interface NavItem {
   active?: boolean;
 }
 
+export interface PollOption {
+  text: string;
+  votes: number; // Placeholder for actual vote count
+}
 export interface FeedItem {
   id: string;
-  type: 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story';
+  type: 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
   timestamp: string; // ISO date string
   userId?: string; // User associated with the item
   userName?: string;
@@ -124,7 +128,8 @@ export interface FeedItem {
     id: string;
     name: string;
     avatarUrl?: string;
-  }
+  };
+  pollOptions?: PollOption[];
 }
 
 export interface DirectMessage {
