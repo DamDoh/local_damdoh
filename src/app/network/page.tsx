@@ -1,3 +1,6 @@
+
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -6,21 +9,27 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageCircle, Shuffle } from "lucide-react";
-// import { suggestConnections, type SuggestedConnectionsInput } from "@/ai/flows/suggested-connections"; // This would be a server action call
+import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Label } from "@/components/ui/label";
 
 // Dummy data for suggested connections - replace with actual AI flow calls
 const suggestedConnections: UserProfile[] = [
-  { id: 'sc1', name: 'Eleanor Agronomist', role: 'Development Personnel', location: 'Field Research Station', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Expert in soil health and crop rotation. Offers consultation services to improve farm yields sustainably.' },
-  { id: 'sc2', name: 'Frank Financier', role: 'Financial Institution', location: 'Metro Business District', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provides agricultural loans and financial planning for agribusinesses. Specialized in small farm funding.' },
-  { id: 'sc3', name: 'Grace Exporter', role: 'Exporter', location: 'International Port', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Facilitates export of specialty crops to European and Asian markets. Looking for reliable suppliers.' },
-  { id: 'sc4', name: 'Henry Contractor', role: 'Pre-Harvest Contractor', location: 'Rural Services Hub', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Offers land preparation, planting, and pest control services with modern equipment.' },
-  { id: 'sc5', name: 'Isabelle Input', role: 'Input Supplier', location: 'Agri Supply Co.', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Distributor of organic pesticides and advanced irrigation systems.' },
+  { id: 'sc1', name: 'Eleanor Agronomist', role: 'Development Personnel', location: 'Field Research Station, CA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Expert in soil health and crop rotation. Offers consultation services to improve farm yields sustainably.' , email: 'eleanor@example.com'},
+  { id: 'sc2', name: 'Frank Financier', role: 'Financial Institution', location: 'Metro Business District, TX', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provides agricultural loans and financial planning for agribusinesses. Specialized in small farm funding.' , email: 'frank@example.com'},
+  { id: 'sc3', name: 'Grace Exporter', role: 'Exporter', location: 'International Port, FL', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Facilitates export of specialty crops to European and Asian markets. Looking for reliable suppliers.' , email: 'grace@example.com'},
+  { id: 'sc4', name: 'Henry Contractor', role: 'Pre-Harvest Contractor', location: 'Rural Services Hub, GA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Offers land preparation, planting, and pest control services with modern equipment.' , email: 'henry@example.com'},
+  { id: 'sc5', name: 'Isabelle Input', role: 'Input Supplier', location: 'Agri Supply Co., IA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Distributor of organic pesticides and advanced irrigation systems.' , email: 'isabelle@example.com'},
 ];
 
-const interests = ['All', 'Crop Farming', 'Livestock', 'Aquaculture', 'Agri-Tech', 'Organic', 'Export', 'Local Markets'];
+const interests = ['All', 'Crop Farming', 'Livestock', 'Aquaculture', 'Agri-Tech', 'Organic', 'Export', 'Local Markets', 'Soil Health', 'Pest Control', 'Irrigation'];
 
-export default async function NetworkPage() {
+export default function NetworkPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
+  const [interestFilter, setInterestFilter] = useState("all");
+  const [locationFilter, setLocationFilter] = useState("");
+
   // Example of how you might call the AI flow in a real app (server component or server action)
   // const currentUserProfile: SuggestedConnectionsInput = {
   //   profileSummary: "A farmer in Green Valley focused on organic tomatoes, looking for local buyers and sustainable practice advice.",
@@ -34,7 +43,19 @@ export default async function NetworkPage() {
   //   id: `ai-${index}`, name, role: 'Unknown', location: 'Unknown', profileSummary: aiSuggestions.reasoning 
   // }));
 
-  const connectionsToShow = suggestedConnections; // Using dummy data for now
+  const filteredConnections = useMemo(() => {
+    return suggestedConnections.filter(profile => {
+      const searchLower = searchTerm.toLowerCase();
+      const locationLower = locationFilter.toLowerCase();
+
+      const nameMatch = profile.name.toLowerCase().includes(searchLower);
+      const roleMatch = roleFilter === 'all' || profile.role === roleFilter;
+      const interestMatch = interestFilter === 'all' || (profile.profileSummary && profile.profileSummary.toLowerCase().includes(interestFilter.toLowerCase().replace('-', ' ')));
+      const locationMatch = locationFilter === "" || profile.location.toLowerCase().includes(locationLower);
+
+      return nameMatch && roleMatch && interestMatch && locationMatch;
+    });
+  }, [searchTerm, roleFilter, interestFilter, locationFilter]);
 
   return (
     <div className="space-y-6">
@@ -49,37 +70,56 @@ export default async function NetworkPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="mb-6 flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-grow">
+          <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div className="relative lg:col-span-2">
+              <Label htmlFor="search-network" className="sr-only">Search Network</Label>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search by name, role, or interest..." className="pl-10" />
+              <Input 
+                id="search-network"
+                placeholder="Search by name, role, or interest..." 
+                className="pl-10" 
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+              />
             </div>
-            <Select>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by role" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Roles</SelectItem>
-                {STAKEHOLDER_ROLES.map(role => (
-                  <SelectItem key={role} value={role}>{role}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-             <Select>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by interest" />
-              </SelectTrigger>
-              <SelectContent>
-                {interests.map(interest => (
-                  <SelectItem key={interest} value={interest.toLowerCase().replace(' ', '-')}>{interest}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {/* <Button variant="outline"><Filter className="mr-2 h-4 w-4" /> Apply Filters</Button> */}
+             <div className="relative">
+               <Label htmlFor="location-filter-network" className="sr-only">Filter by location</Label>
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input 
+                id="location-filter-network"
+                placeholder="Filter by location..." 
+                className="pl-10"
+                value={locationFilter}
+                onChange={e => setLocationFilter(e.target.value)}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-2 lg:col-span-1">
+              <Select value={roleFilter} onValueChange={setRoleFilter}>
+                <SelectTrigger id="role-filter-network">
+                  <SelectValue placeholder="Filter by role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Roles</SelectItem>
+                  {STAKEHOLDER_ROLES.map(role => (
+                    <SelectItem key={role} value={role}>{role}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={interestFilter} onValueChange={setInterestFilter}>
+                <SelectTrigger id="interest-filter-network">
+                  <SelectValue placeholder="Filter by interest" />
+                </SelectTrigger>
+                <SelectContent>
+                  {interests.map(interest => (
+                    <SelectItem key={interest} value={interest.toLowerCase().replace(' ', '-')}>{interest}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {connectionsToShow.map(profile => (
+            {filteredConnections.map(profile => (
               <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                 <CardHeader className="items-center text-center">
                   <Avatar className="h-24 w-24 border-2 border-primary mb-2">
@@ -101,10 +141,10 @@ export default async function NetworkPage() {
               </Card>
             ))}
           </div>
-          {connectionsToShow.length === 0 && (
+          {filteredConnections.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-lg text-muted-foreground">No connection suggestions at this time.</p>
-              <p className="text-sm text-muted-foreground">Complete your profile to get better recommendations.</p>
+              <p className="text-lg text-muted-foreground">No connection suggestions matching your criteria.</p>
+              <p className="text-sm text-muted-foreground">Try adjusting your filters or complete your profile for better recommendations.</p>
             </div>
           )}
         </CardContent>

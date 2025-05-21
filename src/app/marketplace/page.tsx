@@ -1,3 +1,6 @@
+
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -5,8 +8,9 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign } from "lucide-react";
+import { Filter, PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useState, useMemo } from "react";
 
 // Dummy data for marketplace items - replace with actual data fetching
 const marketplaceItems: MarketplaceItem[] = [
@@ -19,6 +23,24 @@ const marketplaceItems: MarketplaceItem[] = [
 const categories = ['All', 'Produce', 'Equipment', 'Seeds', 'Livestock', 'Services', 'Artisanal Products'];
 
 export default function MarketplacePage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [locationFilter, setLocationFilter] = useState("");
+
+  const filteredMarketplaceItems = useMemo(() => {
+    return marketplaceItems.filter(item => {
+      const searchLower = searchTerm.toLowerCase();
+      const locationLower = locationFilter.toLowerCase();
+
+      const nameMatch = item.name.toLowerCase().includes(searchLower);
+      const descriptionMatch = item.description.toLowerCase().includes(searchLower);
+      const categoryMatch = categoryFilter === 'all' || item.category.toLowerCase() === categoryFilter.toLowerCase();
+      const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
+      
+      return (nameMatch || descriptionMatch) && categoryMatch && locationMatch;
+    });
+  }, [searchTerm, categoryFilter, locationFilter]);
+
   return (
     <div className="space-y-6">
       <Card>
@@ -36,13 +58,31 @@ export default function MarketplacePage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="mb-6 flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-grow">
+          <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div className="relative lg:col-span-2">
+              <Label htmlFor="search-marketplace" className="sr-only">Search Marketplace</Label>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search marketplace..." className="pl-10" />
+              <Input 
+                id="search-marketplace"
+                placeholder="Search marketplace..." 
+                className="pl-10" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <Select>
-              <SelectTrigger className="w-full sm:w-[200px]">
+            <div className="relative">
+              <Label htmlFor="location-filter-marketplace" className="sr-only">Filter by location</Label>
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input 
+                id="location-filter-marketplace"
+                placeholder="Filter by location..." 
+                className="pl-10"
+                value={locationFilter}
+                onChange={(e) => setLocationFilter(e.target.value)}
+              />
+            </div>
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger id="category-filter-marketplace">
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
               <SelectContent>
@@ -51,11 +91,11 @@ export default function MarketplacePage() {
                 ))}
               </SelectContent>
             </Select>
-            <Button variant="outline"><Filter className="mr-2 h-4 w-4" /> More Filters</Button>
+            {/* <Button variant="outline" className="w-full lg:w-auto"><Filter className="mr-2 h-4 w-4" /> More Filters</Button> */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {marketplaceItems.map(item => (
+            {filteredMarketplaceItems.map(item => (
               <Card key={item.id} className="flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 rounded-lg">
                 <div className="relative h-48 w-full">
                   <Image src={item.imageUrl || "https://placehold.co/300x200.png"} alt={item.name} layout="fill" objectFit="cover" data-ai-hint="market product agriculture" />
@@ -85,9 +125,9 @@ export default function MarketplacePage() {
               </Card>
             ))}
           </div>
-          {marketplaceItems.length === 0 && (
+          {filteredMarketplaceItems.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-lg text-muted-foreground">No items found in the marketplace.</p>
+              <p className="text-lg text-muted-foreground">No items found matching your criteria.</p>
               <p className="text-sm text-muted-foreground">Try adjusting your filters or check back later.</p>
             </div>
           )}
