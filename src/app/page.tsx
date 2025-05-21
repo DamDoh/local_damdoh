@@ -10,36 +10,53 @@ import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSide
 import { StartPost } from "@/components/dashboard/StartPost";
 import Image from "next/image"; // Added Image import
 
-// Dummy data for recent feed items - enhanced for LinkedIn style
+// Dummy data for recent feed items - enhanced for agricultural supply chain focus
 const recentFeedItems: FeedItem[] = [
   { 
     id: 'feed1', 
     type: 'forum_post', 
     timestamp: new Date(Date.now() - 3600000).toISOString(), 
     userId: 'userA', 
-    userName: 'Dr. Evelyn Reed', 
+    userName: 'Dr. Alima Bello', 
     userAvatar: 'https://placehold.co/40x40.png', 
-    content: 'Just returned from the National Soil Health Conference. Incredible insights on carbon sequestration and regenerative practices. Highly recommend the session on mycorrhizal fungi! #SoilHealth #RegenerativeAg ...more', 
-    link: '/forums/soil-health/post123',
-    userHeadline: "Soil Scientist & Regenerative Ag Advocate",
+    content: 'Shared insights from the West Africa Post-Harvest Losses Summit. Key strategies discussed for improving storage and transportation for grains. Full report linked in the "Sustainable Agriculture" forum. #PostHarvest #FoodSecurity #AgriLogistics ...more', 
+    link: '/forums/sustainable-farming/post123', // Assuming slug for forum topic
+    userHeadline: "Agricultural Economist & Supply Chain Specialist",
     postImage: "https://placehold.co/600x350.png",
-    likesCount: 41,
-    commentsCount: 6,
+    dataAiHint: "conference agriculture",
+    likesCount: 78,
+    commentsCount: 12,
   },
   { 
     id: 'feed2', 
     type: 'marketplace_listing', 
     timestamp: new Date(Date.now() - 7200000).toISOString(), 
     userId: 'userB', 
-    userName: 'Global AgriLogistics Inc.', 
+    userName: 'GreenLeaf Organics Cooperative', 
     userAvatar: 'https://placehold.co/40x40.png', 
-    content: "Exciting news! We've opened new refrigerated shipping routes for fresh produce from South America to Europe. Ensuring your harvest arrives fresh. Learn more: https://lnkd.in/agri-logistics #AgriLogistics #FreshProduce #SupplyChain ...more", 
-    link: '/marketplace/item456',
-    userHeadline: "Connecting Farms to Global Markets",
-    postImage: "https://placehold.co/600x400.png", 
-    likesCount: 120,
-    commentsCount: 15,
+    content: "Fresh listing: 500kg of certified organic ginger, ready for export. Seeking partners in the European market. View specs and pricing on our Marketplace profile. #OrganicGinger #Export #DirectSourcing ...more", 
+    link: '/marketplace/item-organic-ginger', // Assuming slug for item
+    userHeadline: "Connecting Organic Farmers to Global Buyers",
+    postImage: "https://placehold.co/600x400.png",
+    dataAiHint: "ginger harvest",
+    likesCount: 135,
+    commentsCount: 22,
   },
+   {
+    id: 'feed3',
+    type: 'success_story',
+    timestamp: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+    userId: 'userC',
+    userName: 'AgriTech Solutions Ltd.',
+    userAvatar: 'https://placehold.co/40x40.png',
+    content: "Proud to announce our new partnership with 'FarmFresh Logistics' to implement AI-powered route optimization for their fleet, reducing fuel consumption by 15% and ensuring faster delivery of perishable goods! #AgriTech #Sustainability #LogisticsInnovation ...more",
+    link: '/profiles/agritech-solutions', // Link to their profile or an article
+    userHeadline: "Pioneering Technology for Efficient Agriculture",
+    postImage: "https://placehold.co/600x350.png",
+    dataAiHint: "technology agriculture",
+    likesCount: 210,
+    commentsCount: 35,
+  }
 ];
 
 
@@ -49,7 +66,7 @@ function FeedItemCard({ item }: { item: FeedItem }) {
       <CardHeader className="p-4">
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10">
-            <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile person agriculture" />
+            <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile agriculture person" />
             <AvatarFallback>{item.userName?.substring(0, 1) ?? 'U'}</AvatarFallback>
           </Avatar>
           <div className="flex-1">
@@ -68,7 +85,7 @@ function FeedItemCard({ item }: { item: FeedItem }) {
         <p className="text-sm whitespace-pre-line mb-2">{item.content}</p>
         {item.postImage && (
           <div className="my-2 rounded-md overflow-hidden border">
-            <Image src={item.postImage} alt="Post image" width={600} height={350} className="w-full object-cover" data-ai-hint="agriculture event" />
+            <Image src={item.postImage} alt="Post image" width={600} height={350} className="w-full object-cover" data-ai-hint={item.dataAiHint || "agriculture content"} />
           </div>
         )}
          <div className="flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
@@ -117,7 +134,7 @@ export default function DashboardPage() {
         {recentFeedItems.length === 0 && (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground text-center py-10">No activity yet. Start connecting or post something!</p>
+              <p className="text-sm text-muted-foreground text-center py-10">No activity yet. Share your agricultural insights or explore the network!</p>
             </CardContent>
           </Card>
         )}

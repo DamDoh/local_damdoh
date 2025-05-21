@@ -9,20 +9,21 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin } from "lucide-react";
+import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon } from "lucide-react"; // Changed icon
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 
-// Dummy data for suggested connections - replace with actual AI flow calls
+// Dummy data for suggested connections - agricultural supply chain focus
 const suggestedConnections: UserProfile[] = [
-  { id: 'sc1', name: 'Dr. Eleanor Vance', role: 'Development Personnel', location: 'Field Research Station, IA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Agronomist specializing in sustainable soil management and cover cropping. Offers consultancy for yield improvement.', email: 'eleanor.vance@agriresearch.org'},
-  { id: 'sc2', name: 'Frank AgriCapital', role: 'Financial Institution', location: 'Metro Business District, NY', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provides agricultural loans and financial planning for agribusinesses. Specialized in small farm funding & expansion projects.', email: 'frank@agricapital.com'},
-  { id: 'sc3', name: 'Grace GlobalHarvest', role: 'Exporter', location: 'International Port, CA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Facilitates export of specialty organic crops to Asian and European markets. Seeking reliable, quality-focused farm partners.', email: 'grace.h@globalharvest.com'},
-  { id: 'sc4', name: 'Henry FarmServices', role: 'Pre-Harvest Contractor', location: 'Rural Services Hub, GA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Offers precision planting, drone-based pest scouting, and custom harvesting services with modern equipment.', email: 'henry@farmservices.pro'},
-  { id: 'sc5', name: 'Isabelle SeedSupply Co.', role: 'Input Supplier', location: 'Agri Supply Hub, Midwest', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Distributor of certified organic seeds, bio-fertilizers, and advanced irrigation systems for sustainable farming.', email: 'isabelle@seedsupplyco.com'},
+  { id: 'sc1', name: 'AgriLogistics Global', role: 'Trader', location: 'Rotterdam Port, Netherlands', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Connecting European buyers with global agricultural producers. Specializing in grains, oilseeds, and sustainable commodities.', email: 'contact@agrilogistics.global'},
+  { id: 'sc2', name: 'EcoFertilizers Ltd.', role: 'Input Supplier', location: 'Nairobi, Kenya', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provider of organic fertilizers and soil health solutions for smallholder farmers in East Africa. Seeking distribution partners.', email: 'sales@ecofertilizers.ke'},
+  { id: 'sc3', name: 'Maria Silva - Coffee Cooperative', role: 'Agricultural Cooperative', location: 'Minas Gerais, Brazil', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Manager of a cooperative of 200+ specialty coffee farmers. Focused on direct trade and quality improvement. Seeking buyers.', email: 'maria.silva@coffeecoop.br'},
+  { id: 'sc4', name: 'TechFarm Solutions', role: 'Development Personnel', location: 'Silicon Valley, CA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Develops and implements precision agriculture tools (drone imagery, IoT sensors) for optimizing farm inputs and yields.', email: 'info@techfarm.solutions'},
+  { id: 'sc5', name: 'Asia Food Processors Inc.', role: 'Processor', location: 'Bangkok, Thailand', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Large-scale processor of tropical fruits and vegetables for export and local markets. Interested in sourcing from new farm clusters.', email: 'sourcing@asiafoodpro.th'},
+  { id: 'sc6', name: 'FairHarvest Finance', role: 'Financial Institution', location: 'London, UK', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Impact investment fund providing trade finance and working capital for ethical agribusinesses in developing countries.', email: 'deals@fairharvest.finance'},
 ];
 
-const interests = ['All', 'Crop Farming', 'Livestock Management', 'Aquaculture', 'Agri-Tech', 'Organic Farming', 'Export Markets', 'Local Food Systems', 'Soil Health', 'Pest Control Innovation', 'Water Conservation', 'Sustainable Agriculture'];
+const interests = ['All', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
 
 export default function NetworkPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,9 +38,7 @@ export default function NetworkPage() {
 
       const nameMatch = profile.name.toLowerCase().includes(searchLower);
       const roleMatch = roleFilter === 'all' || profile.role === roleFilter;
-      // Enhanced interest matching: check if any part of the summary includes the interest keyword.
-      // Replaces '-' with space for multi-word interests from the filter.
-      const interestKeywords = interestFilter.toLowerCase().replace('-', ' ').split(' ');
+      const interestKeywords = interestFilter.toLowerCase().replace(/-/g, ' ').split(' ');
       const summaryLower = profile.profileSummary?.toLowerCase() || "";
       const interestMatch = interestFilter === 'all' || interestKeywords.every(keyword => summaryLower.includes(keyword));
       
@@ -55,8 +54,8 @@ export default function NetworkPage() {
         <CardHeader>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <CardTitle className="text-2xl">Expand Your Network</CardTitle>
-              <CardDescription>Discover AI-powered connection suggestions tailored to your profile and agricultural interests.</CardDescription>
+              <CardTitle className="text-2xl">Connect Across the Agri-Supply Chain</CardTitle>
+              <CardDescription>Discover farmers, suppliers, processors, buyers, and other key stakeholders to strengthen your network.</CardDescription>
             </div>
              <Button variant="outline"><Shuffle className="mr-2 h-4 w-4" /> Refresh Suggestions</Button>
           </div>
@@ -79,7 +78,7 @@ export default function NetworkPage() {
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="location-filter-network"
-                placeholder="Filter by location (e.g., region, state)" 
+                placeholder="Filter by country, region, or port" 
                 className="pl-10"
                 value={locationFilter}
                 onChange={e => setLocationFilter(e.target.value)}
@@ -88,7 +87,7 @@ export default function NetworkPage() {
             <div className="grid grid-cols-2 gap-2 lg:col-span-1">
               <Select value={roleFilter} onValueChange={setRoleFilter}>
                 <SelectTrigger id="role-filter-network">
-                  <SelectValue placeholder="Filter by role" />
+                  <SelectValue placeholder="Filter by stakeholder role" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Roles</SelectItem>
@@ -99,7 +98,7 @@ export default function NetworkPage() {
               </Select>
               <Select value={interestFilter} onValueChange={setInterestFilter}>
                 <SelectTrigger id="interest-filter-network">
-                  <SelectValue placeholder="Filter by interest" />
+                  <SelectValue placeholder="Filter by area of interest" />
                 </SelectTrigger>
                 <SelectContent>
                   {interests.map(interest => (
@@ -115,7 +114,7 @@ export default function NetworkPage() {
               <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                 <CardHeader className="items-center text-center">
                   <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                    <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile person agriculture" />
+                    <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture business" />
                     <AvatarFallback className="text-3xl">{profile.name.substring(0,1)}</AvatarFallback>
                   </Avatar>
                   <Link href={`/profiles/${profile.id}`}>
@@ -127,7 +126,7 @@ export default function NetworkPage() {
                   <p className="text-sm text-muted-foreground line-clamp-3">{profile.profileSummary}</p>
                 </CardContent>
                 <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
-                  <Button className="w-full sm:flex-1"><UserPlus className="mr-2 h-4 w-4" /> Connect</Button>
+                  <Button className="w-full sm:flex-1"><LinkIcon className="mr-2 h-4 w-4" /> Connect</Button> {/* Changed icon */}
                   <Button variant="outline" className="w-full sm:flex-1"><MessageCircle className="mr-2 h-4 w-4" /> Message</Button>
                 </CardFooter>
               </Card>
@@ -135,8 +134,8 @@ export default function NetworkPage() {
           </div>
           {filteredConnections.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-lg text-muted-foreground">No connection suggestions matching your criteria.</p>
-              <p className="text-sm text-muted-foreground">Try adjusting your filters or complete your profile for better recommendations.</p>
+              <p className="text-lg text-muted-foreground">No stakeholders found matching your criteria.</p>
+              <p className="text-sm text-muted-foreground">Try adjusting your filters or expand your search for better supply chain connections.</p>
             </div>
           )}
         </CardContent>

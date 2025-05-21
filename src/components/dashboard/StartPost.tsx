@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Video, Image as ImageIcon, FileText, Mic } from "lucide-react";
+import { Video, Image as ImageIcon, FileText, Mic, CalendarDays, BarChart3 } from "lucide-react"; // Added BarChart3
 
 export function StartPost() {
   return (
@@ -11,29 +11,29 @@ export function StartPost() {
       <CardContent className="pt-6">
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatarImage src="https://placehold.co/40x40.png" alt="Demo Farmer" data-ai-hint="profile farmer" />
-            <AvatarFallback>DF</AvatarFallback> 
+            <AvatarImage src="https://placehold.co/40x40.png" alt="Demo User" data-ai-hint="profile person" />
+            <AvatarFallback>DU</AvatarFallback> 
           </Avatar>
           <Input 
-            placeholder="Share an update, ask about farming, or try writing with AI..." 
+            placeholder="Share an agricultural update, market insight, or ask a question..." 
             className="flex-grow rounded-full hover:bg-muted/80 focus:bg-muted/90 transition-colors" 
           />
         </div>
-        <div className="mt-4 flex justify-around">
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary">
+        <div className="mt-4 flex flex-wrap justify-around gap-2 sm:gap-0">
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
             <ImageIcon className="mr-2 h-5 w-5 text-green-500" /> Photo / Video
           </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary">
-            <CalendarDays className="mr-2 h-5 w-5 text-red-500" /> Farm Event {/* Changed from Video */}
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
+            <CalendarDays className="mr-2 h-5 w-5 text-red-500" /> Agri Event
           </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary">
-            <FileText className="mr-2 h-5 w-5 text-orange-500" /> Write article
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
+            <FileText className="mr-2 h-5 w-5 text-orange-500" /> Share Document
+          </Button>
+           <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
+            <BarChart3 className="mr-2 h-5 w-5 text-blue-500" /> Create Poll
           </Button>
         </div>
       </CardContent>
     </Card>
   );
 }
-
-// Added CalendarDays, assuming it might be needed elsewhere or for future use
-import { CalendarDays } from "lucide-react";

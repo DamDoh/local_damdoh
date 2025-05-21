@@ -13,14 +13,15 @@ import { Filter, PlusCircle, Search, MapPin } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 
-// Dummy data for profiles - replace with actual data fetching
+// Dummy data for profiles - agriculture supply chain focus
 const profiles: UserProfile[] = [
-  { id: 'farmerAlice', name: 'Alice Greenfarm', role: 'Farmer', location: 'Greenwood Valley, AgroState', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Experienced organic vegetable farmer specializing in heirloom tomatoes and leafy greens. Seeking direct market connections.', email: 'alice.greenfarm@example.com' },
-  { id: 'seedSupplierBob', name: 'Bob SeedCo', role: 'Input Supplier', location: 'Central Plains, AgState', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provides high-quality, non-GMO seeds and organic fertilizers. Focus on drought-resistant varieties.', email: 'bob@seedco.ag' },
-  { id: 'processorCarol', name: 'Carol AgriFoods', role: 'Processor', location: 'Industrial Food Park, FL', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Transforms raw agricultural produce into value-added packaged goods. HACCP certified facility.', email: 'carol@agrifoodsinc.com' },
-  { id: 'traderDavid', name: 'David GlobalGrains', role: 'Trader', location: 'Port City, NY', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Connects local grain farmers with international markets. Specializes in specialty grains and pulses.', email: 'david.g@globalgrains.com' },
-  { id: 'retailerEve', name: 'Eve LocalHarvest Market', role: 'Retailer', location: 'Suburbia, WA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Local grocery store owner committed to sourcing fresh, local, and seasonal produce direct from farms.', email: 'eve@localharvestmarket.com' },
-  { id: 'agronomistSam', name: 'Dr. Samuel Cole', role: 'Development Personnel', location: 'State Agricultural University', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Agronomist with expertise in soil health and integrated pest management. Offers workshops and consultations.', email: 'sam.cole@agriuni.edu' },
+  { id: 'farmerJoe', name: 'Joe\'s Family Farm', role: 'Farmer', location: 'Iowa, USA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Fifth-generation corn and soybean farmer. Implementing precision agriculture techniques. Seeking partners for sustainable inputs and direct buyers.', email: 'joe.farm@example.com' },
+  { id: 'agriLogisticsCo', name: 'AgriLogistics Co-op', role: 'Collection Agent', location: 'Rural Hub, Kenya', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Farmer cooperative providing aggregation, warehousing, and transport services for smallholders. Connecting members to larger markets.', email: 'info@agrilogcoop.ke' },
+  { id: 'freshFoodsProcessor', name: 'FreshFoods Processors Ltd.', role: 'Processor', location: 'Industrial Park, Vietnam', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Specializes in IQF fruits and vegetables for export. HACCP and GlobalG.A.P. certified. Seeking reliable farm suppliers.', email: 'sourcing@freshfoods.vn' },
+  { id: 'globalCommoditiesTrader', name: 'Global Commodities Trading', role: 'Trader', location: 'Geneva, Switzerland', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'International trader of coffee, cocoa, and sugar. Focus on sustainable and traceable supply chains. Offers market insights.', email: 'trade@globalcommodities.ch' },
+  { id: 'ecoHarvestRetail', name: 'EcoHarvest Grocers', role: 'Retailer', location: 'Urban Center, Canada', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Retail chain focused on organic and locally sourced produce. Building direct relationships with farmers and food artisans.', email: 'buyer@ecoharvest.ca' },
+  { id: 'agriTechInnovator', name: 'Dr. Lena Hanson', role: 'Development Personnel', location: 'Wageningen University, NL', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Researcher in agricultural robotics and AI for crop monitoring. Open to industry collaborations and field trials.', email: 'lena.hanson@wur.nl' },
+  { id: 'inputSolutionsInc', name: 'Input Solutions Inc.', role: 'Input Supplier', location: 'Midwest, USA', avatarUrl: 'https://placehold.co/150x150.png', profileSummary: 'Provider of certified seeds, organic fertilizers, and integrated pest management solutions. Technical support available.', email: 'sales@inputsolutions.ag' },
 ];
 
 export default function ProfilesPage() {
@@ -48,12 +49,12 @@ export default function ProfilesPage() {
         <CardHeader>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <CardTitle className="text-2xl">Stakeholder Profiles</CardTitle>
-              <CardDescription>Discover and connect with individuals and organizations in the agricultural supply chain.</CardDescription>
+              <CardTitle className="text-2xl">Agricultural Stakeholder Directory</CardTitle>
+              <CardDescription>Find and connect with participants across the entire agricultural value chain.</CardDescription>
             </div>
             <Button asChild>
               <Link href="/profiles/create"> 
-                <PlusCircle className="mr-2 h-4 w-4" /> Create Your Profile
+                <PlusCircle className="mr-2 h-4 w-4" /> Create Your Stakeholder Profile
               </Link>
             </Button>
           </div>
@@ -65,7 +66,7 @@ export default function ProfilesPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-profiles"
-                placeholder="Search by name, keyword, or specialty..." 
+                placeholder="Search by name, specialty, or supply chain role..." 
                 className="pl-10" 
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
@@ -76,7 +77,7 @@ export default function ProfilesPage() {
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="location-filter-profiles"
-                placeholder="Filter by location (e.g., state)" 
+                placeholder="Filter by country, region, or city" 
                 className="pl-10"
                 value={locationFilter}
                 onChange={e => setLocationFilter(e.target.value)}
@@ -84,7 +85,7 @@ export default function ProfilesPage() {
             </div>
             <Select value={roleFilter} onValueChange={setRoleFilter}>
               <SelectTrigger id="role-filter-profiles">
-                <SelectValue placeholder="Filter by role" />
+                <SelectValue placeholder="Filter by stakeholder role" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Roles</SelectItem>
@@ -100,7 +101,7 @@ export default function ProfilesPage() {
               <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                 <CardHeader className="flex flex-row items-center gap-4">
                   <Avatar className="h-16 w-16 border">
-                    <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture" />
+                    <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture person" />
                     <AvatarFallback>{profile.name.substring(0,1)}</AvatarFallback>
                   </Avatar>
                   <div>
@@ -113,7 +114,7 @@ export default function ProfilesPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full">
-                    <Link href={`/profiles/${profile.id}`}>View Profile</Link>
+                    <Link href={`/profiles/${profile.id}`}>View Profile & Connect</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -121,8 +122,8 @@ export default function ProfilesPage() {
           </div>
           {filteredProfiles.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-lg text-muted-foreground">No profiles found matching your criteria.</p>
-              <p className="text-sm text-muted-foreground">Try adjusting your filters or search terms.</p>
+              <p className="text-lg text-muted-foreground">No stakeholder profiles found.</p>
+              <p className="text-sm text-muted-foreground">Adjust your filters or broaden your search.</p>
             </div>
           )}
         </CardContent>

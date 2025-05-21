@@ -3,15 +3,15 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, ArrowRight, Info } from "lucide-react";
+import { Plus, ArrowRight, Info, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import { MessagingPanel } from "./MessagingPanel"; // Import the new panel
 
-// Dummy data for "Add to your feed"
+// Dummy data for "Add to your feed" - agricultural focus
 const feedSuggestions = [
-  { id: 'sug1', name: 'Future Farmers Foundation', role: 'Non-profit • Agricultural Education', avatarUrl: 'https://placehold.co/50x50.png' },
-  { id: 'sug2', name: 'AgriInnovate Hub', role: 'Company • Agri-Tech Development', avatarUrl: 'https://placehold.co/50x50.png' },
-  { id: 'sug3', name: 'Sustainable Soils Initiative', role: 'Organization • Environmental Conservation', avatarUrl: 'https://placehold.co/50x50.png' },
+  { id: 'sug1', name: 'Global Alliance for Food Security', role: 'Non-profit • Sustainable Agriculture', avatarUrl: 'https://placehold.co/50x50.png', dataAiHint: 'organization agriculture' },
+  { id: 'sug2', name: 'AgriLogistics Innovators', role: 'Company • Supply Chain Tech', avatarUrl: 'https://placehold.co/50x50.png', dataAiHint: 'company logistics' },
+  { id: 'sug3', name: 'DroughtResist Seeds Corp.', role: 'Company • Seed Technology', avatarUrl: 'https://placehold.co/50x50.png', dataAiHint: 'company seeds' },
 ];
 
 export function DashboardRightSidebar() {
@@ -19,7 +19,7 @@ export function DashboardRightSidebar() {
     <div className="space-y-4 sticky top-20"> {/* top-20 to offset header height */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <CardTitle className="text-md font-semibold">Add to your feed</CardTitle>
+          <CardTitle className="text-md font-semibold">Grow Your Network</CardTitle>
           <Info className="h-4 w-4 text-muted-foreground cursor-pointer" />
         </CardHeader>
         <CardContent>
@@ -27,7 +27,7 @@ export function DashboardRightSidebar() {
             {feedSuggestions.map(sug => (
               <li key={sug.id} className="flex items-start gap-3">
                 <Avatar className="h-12 w-12 rounded-md">
-                  <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint="organization agriculture"/>
+                  <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint}/>
                   <AvatarFallback>{sug.name.substring(0,1)}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -41,7 +41,7 @@ export function DashboardRightSidebar() {
             ))}
           </ul>
           <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2">
-            View all recommendations <ArrowRight className="ml-1 h-3 w-3" />
+            View all suggestions <ArrowRight className="ml-1 h-3 w-3" />
           </Button>
         </CardContent>
       </Card>
@@ -51,21 +51,17 @@ export function DashboardRightSidebar() {
           <div className="p-2 text-right">
             <span className="text-xs text-muted-foreground">Ad <MoreHorizontal className="inline h-3 w-3" /></span>
           </div>
-          <p className="text-xs text-muted-foreground text-center px-4">The 2025 Global Harvest & Yield Report is here!</p>
+          <p className="text-xs text-muted-foreground text-center px-4">Stay ahead with DamDoh Market Trends!</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
             <Avatar className="h-12 w-12">
-                <AvatarImage src="https://placehold.co/50x50.png" alt="Agri Insights Pro Ad" data-ai-hint="report agriculture"/>
-                <AvatarFallback>AI</AvatarFallback>
+                <AvatarImage src="https://placehold.co/50x50.png" alt="DamDoh Market Trends Ad" data-ai-hint="market chart agriculture"/>
+                <AvatarFallback>DT</AvatarFallback>
             </Avatar>
-             <svg viewBox="0 0 48 48" className="h-10 w-10 text-primary" fill="currentColor" >
-                <g>
-                    <path d="M41,4H7A3,3,0,0,0,4,7V41a3,3,0,0,0,3,3H41a3,3,0,0,0,3-3V7A3,3,0,0,0,41,4ZM17.1,36.9H11.8V19.7h5.3Zm-2.6-19A3.1,3.1,0,1,1,17.6,15,3.1,3.1,0,0,1,14.5,17.9ZM37,36.9H31.7V27.5c0-2.2-.8-3.8-2.8-3.8s-3.1,1.8-3.1,3.8V36.9H20.6V19.7h5.1V22a5.4,5.4,0,0,1,4.8-2.7c3.5,0,6.1,2.3,6.1,7.2Z"></path>
-                </g>
-            </svg>
+             <TrendingUp className="h-10 w-10 text-primary" />
           </div>
-          <p className="text-sm font-semibold text-center px-4 my-1">Maximize your farm's potential with data-driven insights.</p>
+          <p className="text-sm font-semibold text-center px-4 my-1">Get exclusive insights on commodity prices and supply chain dynamics.</p>
           <div className="px-4 py-3">
-            <Button variant="outline" className="w-full">Explore Agri Insights Pro</Button>
+            <Button variant="outline" className="w-full">Explore DamDoh Pro Trends</Button>
           </div>
         </CardContent>
       </Card>

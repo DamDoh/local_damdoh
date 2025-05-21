@@ -12,12 +12,12 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const dummyMessages: DirectMessage[] = [
-  { id: 'msg1', senderName: 'Market Updates Bot', lastMessage: 'Market Updates Bot: Corn prices up 2% this morning.', timestamp: 'May 14', senderAvatarUrl: 'https://placehold.co/40x40.png', unread: true },
-  { id: 'msg2', senderName: 'Maria Rodriguez (Co-op)', lastMessage: 'Maria Rodriguez sent the latest soil analysis report.', timestamp: 'May 11', senderAvatarUrl: 'https://placehold.co/40x40.png' },
-  { id: 'msg3', senderName: 'AgriJobs Board', lastMessage: 'AgriJobs Board: New Farm Manager position posted in your region.', timestamp: 'May 9', senderAvatarUrl: 'https://placehold.co/40x40.png' },
-  { id: 'msg4', senderName: 'WeatherAlerts', lastMessage: 'Sponsored: Severe frost warning for your area tonight. Protect your crops!', timestamp: 'May 5', senderAvatarUrl: 'https://placehold.co/40x40.png' },
-  { id: 'msg5', senderName: 'John Deere Parts', lastMessage: 'John Deere Parts: Your tractor filter (Part #XYZ) is now in stock for pickup.', timestamp: 'Feb 15', senderAvatarUrl: 'https://placehold.co/40x40.png' },
-  { id: 'msg6', senderName: 'Local Buyers Group', lastMessage: 'Local Buyers Group: We have increased demand for organic kale this week.', timestamp: 'Nov 11, 2024', senderAvatarUrl: 'https://placehold.co/40x40.png' },
+  { id: 'msg1', senderName: 'AgriLogistics Co-op', lastMessage: 'AgriLogistics Co-op: Your grain shipment is confirmed for Tuesday.', timestamp: '10:30 AM', senderAvatarUrl: 'https://placehold.co/40x40.png', unread: true, dataAiHint: "logistics company" },
+  { id: 'msg2', senderName: 'Dr. Chen (Soil Scientist)', lastMessage: 'Dr. Chen sent the soil analysis report for your West field.', timestamp: 'Yesterday', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "scientist profile" },
+  { id: 'msg3', senderName: 'Export Africa Group', lastMessage: 'Export Africa Group: New RFP for organic cashews posted.', timestamp: 'May 12', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "trade group" },
+  { id: 'msg4', senderName: 'Fertilizer Direct', lastMessage: 'Sponsored: Early bird discount on potassium sulfate this week!', timestamp: 'May 10', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "fertilizer product" },
+  { id: 'msg5', senderName: 'SunValley Tractors', lastMessage: 'SunValley Tractors: Your maintenance appointment for the harvester is due.', timestamp: 'May 8', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "tractor service" },
+  { id: 'msg6', senderName: 'Local Farmers Market Hub', lastMessage: 'Local Farmers Market Hub: Stall applications for next season are open.', timestamp: 'May 5', senderAvatarUrl: 'https://placehold.co/40x40.png', dataAiHint: "market group" },
 ];
 
 
@@ -36,8 +36,8 @@ export function MessagingPanel() {
         <CardHeader className="p-3 flex flex-row items-center justify-between cursor-pointer border-b" onClick={() => setIsOpen(true)}>
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
-              <AvatarImage src="https://placehold.co/40x40.png" alt="Demo Farmer" data-ai-hint="profile farmer"/>
-              <AvatarFallback>DF</AvatarFallback>
+              <AvatarImage src="https://placehold.co/40x40.png" alt="Current User" data-ai-hint="profile farmer"/>
+              <AvatarFallback>CU</AvatarFallback>
             </Avatar>
             <h3 className="font-semibold text-sm">Messaging</h3>
           </div>
@@ -54,8 +54,8 @@ export function MessagingPanel() {
       <CardHeader className="p-3 flex flex-row items-center justify-between border-b">
         <div className="flex items-center gap-2">
            <Avatar className="h-8 w-8">
-            <AvatarImage src="https://placehold.co/40x40.png" alt="Demo Farmer" data-ai-hint="profile farmer" />
-            <AvatarFallback>DF</AvatarFallback>
+            <AvatarImage src="https://placehold.co/40x40.png" alt="Current User" data-ai-hint="profile agricultural" />
+            <AvatarFallback>CU</AvatarFallback>
           </Avatar>
           <h3 className="font-semibold text-sm">Messaging</h3>
         </div>
@@ -70,7 +70,7 @@ export function MessagingPanel() {
           <div className="relative">
             <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
             <Input 
-              placeholder="Search messages (e.g., 'tractor parts')" 
+              placeholder="Search messages (e.g., 'soybean prices')" 
               className="pl-8 h-8 text-xs rounded-sm" 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -91,7 +91,7 @@ export function MessagingPanel() {
                 {filteredMessages.map(msg => (
                   <div key={msg.id} className="flex items-start gap-3 px-3 py-2.5 hover:bg-accent/50 cursor-pointer">
                     <Avatar className="h-10 w-10">
-                      <AvatarImage src={msg.senderAvatarUrl} alt={msg.senderName} data-ai-hint="profile person message" />
+                      <AvatarImage src={msg.senderAvatarUrl} alt={msg.senderName} data-ai-hint={msg.dataAiHint || "profile person"} />
                       <AvatarFallback>{msg.senderName.substring(0,1)}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 overflow-hidden">
@@ -109,7 +109,7 @@ export function MessagingPanel() {
           </TabsContent>
           <TabsContent value="other" className="flex-grow overflow-hidden m-0">
              <ScrollArea className="h-full">
-                <p className="p-4 text-center text-sm text-muted-foreground">Other messages (e.g., automated notifications) will appear here.</p>
+                <p className="p-4 text-center text-sm text-muted-foreground">Automated notifications and less critical messages will appear here.</p>
              </ScrollArea>
           </TabsContent>
         </Tabs>

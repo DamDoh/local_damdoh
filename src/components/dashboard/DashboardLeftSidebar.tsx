@@ -3,17 +3,17 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout } from "lucide-react";
+import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout, DollarSign, Link2 } from "lucide-react";
 
-// Dummy data for current user
+// Dummy data for current user, focused on agriculture
 const currentUser = {
-  name: "Demo Farmer",
-  title: "Passionate organic farmer specializing in diverse vegetable crops & soil health.",
-  location: "Greenwood Valley, AgroState",
+  name: "Aisha Bello",
+  title: "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets.",
+  location: "Kano, Nigeria",
   avatarUrl: "https://placehold.co/80x80.png",
-  damDohLink: "My DamDoh Farm Profile", // Example link text
-  profileViewers: 23,
-  postImpressions: 157,
+  damDohLink: "My DamDoh Stakeholder Profile",
+  profileViewers: 48, // Updated
+  postImpressions: 230, // Updated
 };
 
 export function DashboardLeftSidebar() {
@@ -22,7 +22,7 @@ export function DashboardLeftSidebar() {
       <Card>
         <CardContent className="pt-6 text-center">
           <Avatar className="h-20 w-20 mx-auto mb-2 border-2 border-primary">
-            <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} data-ai-hint="profile farmer" />
+            <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} data-ai-hint="profile farmer woman" />
             <AvatarFallback>{currentUser.name.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <Link href="/profiles/me">
@@ -49,26 +49,29 @@ export function DashboardLeftSidebar() {
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs">
-          <p className="text-muted-foreground">Access exclusive farming tools & insights</p>
+          <p className="text-muted-foreground">Unlock premium supply chain analytics & tools</p>
           <Button variant="link" className="p-0 h-auto text-xs font-semibold">
-            <Sprout className="h-3 w-3 mr-1 text-green-600" /> Try AgriPro Tools Free
+            <BarChart2 className="h-3 w-3 mr-1 text-accent" /> Try DamDoh Pro
           </Button>
         </CardContent>
       </Card>
 
       <Card>
         <CardContent className="pt-4 space-y-1 text-sm">
-          <Link href="#" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Bookmark className="h-4 w-4" /> Saved Market Items
+          <Link href="/marketplace" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
+            <DollarSign className="h-4 w-4" /> Saved Marketplace Searches
           </Link>
           <Link href="/forums" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Users className="h-4 w-4" /> Farming Groups (Forums)
+            <Users className="h-4 w-4" /> Agricultural Forums
           </Link>
           <Link href="#" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Newspaper className="h-4 w-4" /> Agricultural News
+            <Newspaper className="h-4 w-4" /> Industry News & Reports
           </Link>
           <Link href="#" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <CalendarDays className="h-4 w-4" /> Local Farm Events
+            <CalendarDays className="h-4 w-4" /> Agri-Business Events
+          </Link>
+           <Link href="/network" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
+            <Link2 className="h-4 w-4" /> My Supply Chain Network
           </Link>
         </CardContent>
       </Card>

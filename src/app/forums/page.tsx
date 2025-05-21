@@ -4,17 +4,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
-import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor } from "lucide-react";
+import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck } from "lucide-react"; // Added Package, Wheat, Truck
 import { Badge } from "@/components/ui/badge";
 
-// Dummy data for forum topics - replace with actual data fetching
+// Dummy data for forum topics - agriculture supply chain focus
 const forumTopics: ForumTopic[] = [
-  { id: 'ft1', title: 'Sustainable Farming Practices', description: 'Discuss eco-friendly farming methods, soil health, and water conservation techniques.', postCount: 125, lastActivityAt: new Date(Date.now() - 3600000).toISOString(), creatorId: 'agrimod', icon: 'Leaf', createdAt: new Date(Date.now() - 86400000 * 7).toISOString() },
-  { id: 'ft2', title: 'Crop Disease Management Q&A', description: 'Share tips on preventing and managing common crop diseases. Ask experts for advice.', postCount: 88, lastActivityAt: new Date(Date.now() - 7200000).toISOString(), creatorId: 'farmerAlice', icon: 'ShieldAlert', createdAt: new Date(Date.now() - 86400000 * 5).toISOString() },
-  { id: 'ft3', title: 'Agri-Tech Innovations Showcase', description: 'Explore new technologies in agriculture, including drones, precision farming, and IoT devices.', postCount: 210, lastActivityAt: new Date(Date.now() - 1000000).toISOString(), creatorId: 'agriTechGuru', icon: 'Brain', createdAt: new Date(Date.now() - 86400000 * 3).toISOString() },
-  { id: 'ft4', title: 'Market Trends & Pricing Analysis', description: 'Discuss current market trends, commodity prices, and strategies for maximizing profits.', postCount: 150, lastActivityAt: new Date(Date.now() - 86400000).toISOString(), creatorId: 'marketAnalyst1', icon: 'TrendingUp', createdAt: new Date(Date.now() - 86400000 * 10).toISOString() },
-  { id: 'ft5', title: 'Organic Certification Challenges', description: 'Share experiences and advice on navigating the organic certification process.', postCount: 60, lastActivityAt: new Date(Date.now() - 172800000).toISOString(), creatorId: 'organicCertExpert', icon: 'Award', createdAt: new Date(Date.now() - 86400000 * 15).toISOString() },
-  { id: 'ft6', title: 'Farm Equipment Maintenance Tips', description: 'Share advice and ask questions about maintaining and repairing farm machinery.', postCount: 45, lastActivityAt: new Date(Date.now() - 259200000).toISOString(), creatorId: 'mechanicMike', icon: 'Tractor', createdAt: new Date(Date.now() - 86400000 * 20).toISOString() },
+  { id: 'ft1', title: 'Sustainable Sourcing & Fair Trade Practices', description: 'Discuss ethical sourcing, certification, and building transparent supply chains for agricultural products.', postCount: 130, lastActivityAt: new Date(Date.now() - 2600000).toISOString(), creatorId: 'ethicaAgri', icon: 'Leaf', createdAt: new Date(Date.now() - 86400000 * 6).toISOString() },
+  { id: 'ft2', title: 'Post-Harvest Loss Reduction Strategies', description: 'Share innovations and best practices for minimizing spoilage and waste from farm to consumer.', postCount: 95, lastActivityAt: new Date(Date.now() - 6200000).toISOString(), creatorId: 'foodSaverPro', icon: 'ShieldAlert', createdAt: new Date(Date.now() - 86400000 * 4).toISOString() },
+  { id: 'ft3', title: 'Agri-Logistics & Cold Chain Management', description: 'Challenges and solutions in transporting perishable goods, warehouse management, and last-mile delivery.', postCount: 250, lastActivityAt: new Date(Date.now() - 900000).toISOString(), creatorId: 'logisticsGuru', icon: 'Truck', createdAt: new Date(Date.now() - 86400000 * 2).toISOString() },
+  { id: 'ft4', title: 'Global Commodity Market Trends & Price Volatility', description: 'Analysis of grain, coffee, cocoa, and other commodity markets. Hedging and risk management strategies.', postCount: 180, lastActivityAt: new Date(Date.now() - 76400000).toISOString(), creatorId: 'marketAnalystAgri', icon: 'TrendingUp', createdAt: new Date(Date.now() - 86400000 * 9).toISOString() },
+  { id: 'ft5', title: 'Innovations in Food Packaging & Preservation', description: 'Exploring sustainable packaging options, shelf-life extension technologies, and food safety.', postCount: 70, lastActivityAt: new Date(Date.now() - 162800000).toISOString(), creatorId: 'packagingInnovator', icon: 'Package', createdAt: new Date(Date.now() - 86400000 * 12).toISOString() },
+  { id: 'ft6', title: 'Access to Finance for Agribusinesses', description: 'Discussing funding sources, grant opportunities, and financial planning for agricultural SMEs and cooperatives.', postCount: 55, lastActivityAt: new Date(Date.now() - 249200000).toISOString(), creatorId: 'agriFinanceExpert', icon: 'Award', createdAt: new Date(Date.now() - 86400000 * 18).toISOString() },
+  { id: 'ft7', title: 'Digital Traceability in Supply Chains', description: 'Implementing blockchain and other technologies for tracking products from farm to fork.', postCount: 110, lastActivityAt: new Date(Date.now() - 3600000 * 5).toISOString(), creatorId: 'traceTechLead', icon: 'Brain', createdAt: new Date(Date.now() - 86400000 * 7).toISOString() },
 ];
 
 const getIcon = (iconName?: string) => {
@@ -26,6 +27,9 @@ const getIcon = (iconName?: string) => {
     case 'TrendingUp': return <TrendingUp {...iconProps} />;
     case 'Award': return <Award {...iconProps} />;
     case 'Tractor': return <Tractor {...iconProps} />;
+    case 'Package': return <Package {...iconProps} />;
+    case 'Wheat': return <Wheat {...iconProps} />;
+    case 'Truck': return <Truck {...iconProps} />;
     default: return <MessageSquare {...iconProps} />;
   }
 };
@@ -37,12 +41,12 @@ export default function ForumsPage() {
         <CardHeader>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <CardTitle className="text-2xl">Community Forums</CardTitle>
-              <CardDescription>Engage in discussions, share knowledge, and connect with peers on various agricultural topics.</CardDescription>
+              <CardTitle className="text-2xl">Agricultural Supply Chain Forums</CardTitle>
+              <CardDescription>Discuss, share knowledge, and collaborate on all aspects of the agri-food system.</CardDescription>
             </div>
             <Button asChild>
               <Link href="/forums/create">
-                <PlusCircle className="mr-2 h-4 w-4" /> Create New Forum/Topic
+                <PlusCircle className="mr-2 h-4 w-4" /> Start New Discussion
               </Link>
             </Button>
           </div>
@@ -51,7 +55,7 @@ export default function ForumsPage() {
           <div className="mb-6 flex flex-col sm:flex-row gap-4">
             <div className="relative flex-grow">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search forums by title or keyword..." className="pl-10" />
+              <Input placeholder="Search forums by topic (e.g., 'cold chain', 'export markets')..." className="pl-10" />
             </div>
             <Button variant="outline"><Filter className="mr-2 h-4 w-4" /> Filter by Category</Button>
           </div>
@@ -72,7 +76,7 @@ export default function ForumsPage() {
                       <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Users className="h-3 w-3" />
-                          <span>{topic.postCount} posts</span>
+                          <span>{topic.postCount} contributions</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
@@ -81,7 +85,7 @@ export default function ForumsPage() {
                       </div>
                     </div>
                     <Button asChild variant="outline" size="sm" className="mt-2 sm:mt-0 sm:ml-auto shrink-0">
-                      <Link href={`/forums/${topic.id}`}>View Forum</Link>
+                      <Link href={`/forums/${topic.id}`}>Join Discussion</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -91,7 +95,7 @@ export default function ForumsPage() {
           {forumTopics.length === 0 && (
             <div className="text-center py-10">
               <p className="text-lg text-muted-foreground">No forums found.</p>
-              <p className="text-sm text-muted-foreground">Try adjusting your filters or search terms.</p>
+              <p className="text-sm text-muted-foreground">Be the first to start a discussion on an agricultural topic!</p>
             </div>
           )}
         </CardContent>

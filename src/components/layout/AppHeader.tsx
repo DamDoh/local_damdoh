@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, Briefcase, MessageSquare, Bell, Search, Grid2X2, Settings } from "lucide-react";
+import { Home, Users, Briefcase, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper } from "lucide-react"; // Added ShoppingCart, Newspaper
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -44,9 +44,9 @@ export function AppHeader() {
 
   // Dummy user data for UserAvatar - should come from auth context in a real app
   const demoUser = {
-    name: "Demo Farmer",
-    email: "farmer@damdoh.com",
-    imageUrl: "https://placehold.co/40x40.png", // Add data-ai-hint in UserAvatar if needed
+    name: "Raj Patel",
+    email: "raj.patel@agrisupply.com",
+    imageUrl: "https://placehold.co/40x40.png", 
   };
 
   return (
@@ -58,7 +58,7 @@ export function AppHeader() {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search DamDoh (e.g., 'organic fertilizer')..."
+              placeholder="Search stakeholders, products, forums..."
               className="h-9 w-full rounded-md bg-muted pl-10 md:w-[250px] lg:w-[300px]"
             />
           </div>
@@ -82,12 +82,12 @@ export function AppHeader() {
                 <span>More</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem asChild><Link href="/forums">Forums</Link></DropdownMenuItem>
-              <DropdownMenuItem asChild><Link href="/marketplace">Marketplace</Link></DropdownMenuItem>
-              <DropdownMenuItem asChild><Link href="/profiles">Profiles</Link></DropdownMenuItem>
+            <DropdownMenuContent align="end" className="w-56"> {/* Increased width */}
+              <DropdownMenuItem asChild><Link href="/forums" className="flex items-center gap-2"><Newspaper className="h-4 w-4"/>Forums & Discussions</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/marketplace" className="flex items-center gap-2"><ShoppingCart className="h-4 w-4"/>Marketplace</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/profiles" className="flex items-center gap-2"><Users className="h-4 w-4"/>Stakeholder Profiles</Link></DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild><Link href="/settings"><Settings className="mr-2 h-4 w-4"/>Settings</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/settings" className="flex items-center gap-2"><Settings className="h-4 w-4"/>Settings</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           
