@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <SidebarProvider defaultOpen={true}>
           <Sidebar collapsible="icon" variant="sidebar" className="border-r">
             <SidebarHeader className="p-4 flex flex-col gap-4 items-start">
