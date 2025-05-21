@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users, SearchCheck, Save, ShieldOff } from "lucide-react"; // Added ShieldOff icon
+import { User, Bell, Shield, Palette, Lock, Users, SearchCheck, Save, ShieldOff } from "lucide-react"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ThemeToggle } from "@/components/ThemeToggle"; // Added import
 
 export default function SettingsPage() {
   return (
@@ -200,8 +201,7 @@ export default function SettingsPage() {
                         <p className="font-medium">Theme</p>
                         <p className="text-sm text-muted-foreground">Select your preferred theme.</p>
                     </div>
-                    {/* This is handled by ThemeToggle in the main layout */}
-                    <p className="text-sm text-muted-foreground">Theme can be changed using the toggle in the header.</p>
+                    <ThemeToggle />
                 </div>
             </CardContent>
           </Card>
