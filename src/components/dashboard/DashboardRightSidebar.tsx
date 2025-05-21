@@ -1,4 +1,6 @@
 
+"use client";
+
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,16 +8,24 @@ import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import { MessagingPanel } from "./MessagingPanel"; 
-import { dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
+import { dummyUsersData } from "@/lib/dummy-data"; 
+import { useState } from "react";
 
-
-const feedSuggestions = [
+const initialFeedSuggestions = [
   { id: 'sug1', name: 'Global Alliance for Food Security', role: 'Non-profit • Sustainable Agriculture', avatarUrl: dummyUsersData['sug1']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'organization agriculture' },
   { id: 'sug2', name: 'AgriLogistics Innovators', role: 'Company • Supply Chain Tech', avatarUrl: dummyUsersData['sug2']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'company logistics' },
   { id: 'sug3', name: 'DroughtResist Seeds Corp.', role: 'Company • Seed Technology', avatarUrl: dummyUsersData['sug3']?.avatarUrl || 'https://placehold.co/50x50.png', dataAiHint: 'company seeds' },
 ];
 
 export function DashboardRightSidebar() {
+  const [followedSuggestions, setFollowedSuggestions] = useState<Set<string>>(new Set());
+
+  const handleFollow = (suggestionId: string) => {
+    setFollowedSuggestions(prev => new Set(prev).add(suggestionId));
+    // In a real app, you'd also send this to a backend.
+    console.log(`Followed suggestion: ${suggestionId}`);
+  };
+
   return (
     <div className="space-y-4 sticky top-20"> 
       <Card>
@@ -25,7 +35,7 @@ export function DashboardRightSidebar() {
         </CardHeader>
         <CardContent>
           <ul className="space-y-4">
-            {feedSuggestions.map(sug => (
+            {initialFeedSuggestions.map(sug => (
               <li key={sug.id} className="flex items-start gap-3">
                 <Avatar className="h-12 w-12 rounded-md">
                   <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint}/>
@@ -34,15 +44,23 @@ export function DashboardRightSidebar() {
                 <div className="flex-1">
                   <h4 className="text-sm font-semibold">{sug.name}</h4>
                   <p className="text-xs text-muted-foreground line-clamp-2">{sug.role}</p>
-                  <Button variant="outline" size="sm" className="mt-1 h-7 px-2 text-xs">
-                    <Plus className="mr-1 h-3 w-3" /> Follow
-                  </Button>
+                  {followedSuggestions.has(sug.id) ? (
+                    <Button variant="outline" size="sm" className="mt-1 h-7 px-2 text-xs" disabled>
+                      Following
+                    </Button>
+                  ) : (
+                    <Button variant="outline" size="sm" className="mt-1 h-7 px-2 text-xs" onClick={() => handleFollow(sug.id)}>
+                      <Plus className="mr-1 h-3 w-3" /> Follow
+                    </Button>
+                  )}
                 </div>
               </li>
             ))}
           </ul>
-          <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2">
-            View all suggestions <ArrowRight className="ml-1 h-3 w-3" />
+          <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2" asChild>
+            <Link href="/network">
+              View all suggestions <ArrowRight className="ml-1 h-3 w-3" />
+            </Link>
           </Button>
         </CardContent>
       </Card>
@@ -62,7 +80,9 @@ export function DashboardRightSidebar() {
           </div>
           <p className="text-sm font-semibold text-center px-4 my-1">Get exclusive insights on commodity prices and supply chain dynamics.</p>
           <div className="px-4 py-3">
-            <Button variant="outline" className="w-full">Explore DamDoh Pro Trends</Button>
+            <Button variant="outline" className="w-full" asChild>
+              <Link href="/industry-news">Explore DamDoh Pro Trends</Link>
+            </Button>
           </div>
         </CardContent>
       </Card>
