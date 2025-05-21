@@ -2,8 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation"; // Added useRouter
-import { useState } from "react"; // Added useState
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { Home, Users, MessageSquare, Bell, Search, Grid2X2, Settings, ShoppingCart, Newspaper, ClipboardList, Sprout, Pin, Wallet as WalletIcon } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { dummyUsersData } from "@/lib/dummy-data"; // For demo user
+import { dummyUsersData } from "@/lib/dummy-data";
 
 interface NavLinkProps {
   href: string;
@@ -31,8 +31,8 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) 
   const isActive = pathname === href || (href !== "/" && pathname.startsWith(href) && href.length > 1);
   return (
     <Link href={href} className={cn(
-      "flex flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary",
-      isActive && "text-primary border-b-2 border-primary"
+      "flex flex-col items-center px-2 py-1 text-xs text-white/80 hover:text-white", // Updated colors
+      isActive && "text-white border-b-2 border-white" // Updated active colors
     )}>
       <Icon className="h-5 w-5 mb-0.5" />
       <span>{label}</span>
@@ -43,13 +43,12 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname }) 
 
 export function AppHeader() {
   const pathname = usePathname();
-  const router = useRouter(); // For navigation
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Using a specific demo user from dummyUsersData
   const demoUser = {
     name: dummyUsersData['rajPatel']?.name || "Raj Patel",
-    email: "raj.patel@agrisupply.com", // Assuming email is not in dummyUsersData directly for this structure
+    email: "raj.patel@agrisupply.com",
     imageUrl: dummyUsersData['rajPatel']?.avatarUrl || "https://placehold.co/40x40.png",
   };
 
@@ -61,16 +60,16 @@ export function AppHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b bg-background/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm"> {/* Updated background and border */}
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
-          <Logo iconSize={32} textSize="text-2xl" />
+          <Logo iconSize={32} textSize="text-2xl" className="text-white" /> {/* Set Logo text to white */}
           <form onSubmit={handleSearchSubmit} className="relative hidden sm:block">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80" /> {/* Updated icon color */}
             <Input
               type="search"
               placeholder="Search stakeholders, products, forums..."
-              className="h-9 w-full rounded-md bg-muted pl-10 md:w-[250px] lg:w-[300px]"
+              className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10 md:w-[250px] lg:w-[300px]" // Adjusted input style for contrast
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -88,7 +87,7 @@ export function AppHeader() {
 
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex-col items-center px-2 py-1 text-xs text-muted-foreground hover:text-primary h-auto">
+              <Button variant="ghost" className="flex-col items-center px-2 py-1 text-xs text-white/80 hover:text-white h-auto"> {/* Updated colors */}
                 <Grid2X2 className="h-5 w-5 mb-0.5" />
                 <span>More</span>
               </Button>
@@ -98,7 +97,7 @@ export function AppHeader() {
               <DropdownMenuItem asChild><Link href="/forums" className="flex items-center gap-2"><Newspaper className="h-4 w-4"/>Forums</Link></DropdownMenuItem>
               <DropdownMenuItem asChild><Link href="/profiles" className="flex items-center gap-2"><Users className="h-4 w-4"/>Profiles</Link></DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem> {/* onClick should handle actual pinning logic in the future */}
+              <DropdownMenuItem> 
                 <Pin className="mr-2 h-4 w-4" />
                 <span>Set Current as Homepage</span>
               </DropdownMenuItem>
@@ -111,7 +110,7 @@ export function AppHeader() {
              <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
           </div>
 
-          <div className="pl-2 border-l border-border hidden md:block">
+          <div className="pl-2 border-l border-white/20 hidden md:block"> {/* Adjusted border color */}
              <HeaderThemeToggle />
           </div>
         </nav>

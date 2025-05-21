@@ -10,8 +10,8 @@ interface LogoProps {
 export function Logo({ className, iconSize = 24, textSize = "text-2xl" }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`}>
-      <Leaf className="text-primary" size={iconSize} />
-      <span className={`font-bold text-primary ${textSize}`}>DamDoh</span>
+      <Leaf size={iconSize} /> {/* text-primary removed for color inheritance */}
+      <span className={`font-bold ${textSize}`}>DamDoh</span> {/* text-primary removed for color inheritance */}
     </Link>
   );
 }
