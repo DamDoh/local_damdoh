@@ -61,7 +61,7 @@ export default function AiAssistantPage() {
 Wondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.
 
 🌱 **Got a crop concern?**
-Use the paperclip icon 📎 to upload a photo, or tap the camera icon 📸 to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.
+Tap the image upload icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-image-up inline-block relative -top-px"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16"></path><path d="m14 19.5 3-3 3 3"></path><path d="M17 22v-5.5"></path><circle cx="9" cy="9" r="2"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-camera inline-block relative -top-px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.
 
 Ready to explore? How can I assist you today?`,
           detailedPoints: [],
@@ -251,7 +251,7 @@ Ready to explore? How can I assist you today?`,
                       </div>
                     </CardHeader>
                     <CardContent className="px-4 pb-4">
-                      <p className="text-sm mb-3 whitespace-pre-line">{msg.content.summary}</p>
+                      <p className="text-sm mb-3 whitespace-pre-line" dangerouslySetInnerHTML={{ __html: msg.content.summary.replace(/<svg.*?<\/svg>/g, (match) => match) }}></p>
                       {msg.content.detailedPoints && msg.content.detailedPoints.length > 0 && (
                         <Accordion type="single" collapsible className="w-full">
                           {msg.content.detailedPoints.map((point, index) => (
@@ -364,4 +364,3 @@ Ready to explore? How can I assist you today?`,
   );
 }
 
-    
