@@ -53,7 +53,12 @@ export default function AiAssistantPage() {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content: {
-          summary: `Welcome to ${APP_NAME} AI Knowledge! I can help with sustainable farming, supply chains, business, app guidance, and even diagnose crop issues if you upload a photo. How can I assist you today?`,
+          summary: `Welcome to ${APP_NAME} AI Knowledge! I'm here to assist you with your agricultural journey.
+You can:
+1. Ask me anything about sustainable farming, agricultural supply chains, farming business, or how to use the DamDoh app.
+2. Upload a photo of a crop issue (using the paperclip icon) or use your phone's camera (camera icon) to capture an image of an affected plant, and I'll help analyze and diagnose the problem.
+
+How can I assist you today?`,
           detailedPoints: [],
         },
         timestamp: new Date(),
