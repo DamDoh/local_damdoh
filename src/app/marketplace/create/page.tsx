@@ -33,8 +33,7 @@ import { useState } from "react";
 
 export default function CreateMarketplaceListingPage() {
   const { toast } = useToast();
-  const [currentListingType, setCurrentListingType] = useState<"Product" | "Service" | undefined>(undefined);
-
+  
   const form = useForm<CreateMarketplaceItemValues>({
     resolver: zodResolver(createMarketplaceItemSchema),
     defaultValues: {
@@ -55,6 +54,9 @@ export default function CreateMarketplaceListingPage() {
     },
   });
 
+  // Watch the listingType field to conditionally render other fields
+  const watchedListingType = form.watch("listingType");
+
   function onSubmit(data: CreateMarketplaceItemValues) {
     console.log("Marketplace Listing Data:", data);
     if (data.imageFile) {
@@ -68,10 +70,8 @@ export default function CreateMarketplaceListingPage() {
       title: "Listing Submitted (Simulated)",
       description: "Your marketplace listing has been created (details logged to console).",
     });
-    // form.reset(); 
+    // form.reset(); // Optionally reset form after submission
   }
-
-  const watchedListingType = form.watch("listingType");
 
   return (
     <div className="space-y-6">
@@ -81,7 +81,7 @@ export default function CreateMarketplaceListingPage() {
 
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl">Create New Listing</CardTitle>
+          <CardTitle className="text-2xl">Create New Marketplace Listing</CardTitle>
           <CardDescription>List your agricultural product, equipment, land, or professional service.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -108,10 +108,7 @@ export default function CreateMarketplaceListingPage() {
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><ListChecks className="h-4 w-4 text-muted-foreground" />Listing Type</FormLabel>
                     <Select 
-                      onValueChange={(value) => {
-                        field.onChange(value);
-                        setCurrentListingType(value as "Product" | "Service");
-                      }} 
+                      onValueChange={field.onChange} 
                       defaultValue={field.value}
                     >
                       <FormControl>
@@ -150,68 +147,111 @@ export default function CreateMarketplaceListingPage() {
                 )}
               />
 
+              {/* Product Specific Fields */}
               {watchedListingType === "Product" && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="price"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />Price</FormLabel>
+                          <FormControl>
+                            <Input type="number" step="0.01" placeholder="e.g., 25.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="currency"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Currency</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., USD" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="perUnit"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Per Unit</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., /kg, /ton, /item" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                   <FormField
                     control={form.control}
-                    name="price"
+                    name="isSustainable"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />Price</FormLabel>
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
                         <FormControl>
-                          <Input type="number" step="0.01" placeholder="e.g., 25.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <div className="space-y-1 leading-none">
+                          <FormLabel className="flex items-center">
+                            <Leaf className="mr-2 h-4 w-4 text-green-600" />
+                            Sustainable Product
+                          </FormLabel>
+                          <FormDescription>
+                            Check this if your product promotes sustainable or regenerative agriculture.
+                          </FormDescription>
+                        </div>
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="currency"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Currency</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., USD" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="perUnit"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Per Unit</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., /kg, /ton, /item" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                </>
               )}
               
+              {/* Service Specific Fields */}
               {watchedListingType === "Service" && (
-                 <FormField
-                    control={form.control}
-                    name="compensation"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />Compensation / Rate</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., $75/hour, Project-based, Negotiable" {...field} />
-                        </FormControl>
-                         <FormDescription>Describe payment terms for the service.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                 <>
+                  <FormField
+                      control={form.control}
+                      name="compensation"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />Compensation / Rate</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., $75/hour, Project-based, Negotiable" {...field} />
+                          </FormControl>
+                          <FormDescription>Describe payment terms for the service.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="skillsRequired"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />Skills / Keywords (for services)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., Organic farming, Tractor operation, Irrigation" {...field} />
+                          </FormControl>
+                          <FormDescription>Comma-separated list of key skills, qualifications, or relevant keywords for the service.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                 </>
               )}
 
-
+              {/* Common Fields */}
               <FormField
                 control={form.control}
                 name="category"
@@ -237,50 +277,6 @@ export default function CreateMarketplaceListingPage() {
                 )}
               />
               
-              {watchedListingType === "Product" && (
-                <FormField
-                  control={form.control}
-                  name="isSustainable"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="flex items-center">
-                          <Leaf className="mr-2 h-4 w-4 text-green-600" />
-                          Sustainable Product
-                        </FormLabel>
-                        <FormDescription>
-                          Check this if your product promotes sustainable or regenerative agriculture.
-                        </FormDescription>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-              )}
-              
-              {watchedListingType === "Service" && (
-                <FormField
-                  control={form.control}
-                  name="skillsRequired"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />Skills / Keywords (for services)</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., Organic farming, Tractor operation, Irrigation" {...field} />
-                      </FormControl>
-                      <FormDescription>Comma-separated list of key skills, qualifications, or relevant keywords for the service.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
-
-
               <FormField
                 control={form.control}
                 name="location"
@@ -323,7 +319,6 @@ export default function CreateMarketplaceListingPage() {
                     <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Or Upload Image (Optional)</FormLabel>
                     <FormControl>
                       <div className="flex items-center gap-2">
-                        {/* <UploadCloud className="h-5 w-5 text-muted-foreground" /> Input component already has icon styling if needed */}
                         <Input 
                           type="file" 
                           accept="image/png, image/jpeg, image/webp"
@@ -345,7 +340,6 @@ export default function CreateMarketplaceListingPage() {
                   </FormItem>
                 )}
               />
-
 
               <FormField
                 control={form.control}
@@ -377,4 +371,3 @@ export default function CreateMarketplaceListingPage() {
     </div>
   );
 }
-
