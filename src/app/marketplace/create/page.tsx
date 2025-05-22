@@ -27,7 +27,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from "@/lib/form-schemas";
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, LISTING_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, Leaf, ShoppingBag, Briefcase, LandPlot, Tractor, DollarSign, Settings2, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, Leaf, ShoppingBag, Briefcase, LandPlot, Tractor, DollarSign, Settings2, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench, LocateFixed } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -54,7 +54,6 @@ export default function CreateMarketplaceListingPage() {
     },
   });
 
-  // Watch the listingType field to conditionally render other fields
   const watchedListingType = form.watch("listingType");
 
   function onSubmit(data: CreateMarketplaceItemValues) {
@@ -72,6 +71,41 @@ export default function CreateMarketplaceListingPage() {
     });
     // form.reset(); // Optionally reset form after submission
   }
+
+  const handleFetchLocation = () => {
+    if (!navigator.geolocation) {
+      toast({
+        variant: "destructive",
+        title: "Geolocation Not Supported",
+        description: "Your browser does not support geolocation.",
+      });
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const formattedLocation = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
+        form.setValue("location", formattedLocation, { shouldValidate: true });
+        toast({
+          title: "Location Fetched",
+          description: `Location set to: ${formattedLocation}`,
+        });
+      },
+      (error) => {
+        let message = "Could not get your location.";
+        if (error.code === error.PERMISSION_DENIED) {
+          message = "Location access denied. Please enable permissions.";
+        }
+        toast({
+          variant: "destructive",
+          title: "Location Error",
+          description: message,
+        });
+      }
+    );
+  };
 
   return (
     <div className="space-y-6">
@@ -147,7 +181,6 @@ export default function CreateMarketplaceListingPage() {
                 )}
               />
 
-              {/* Product Specific Fields */}
               {watchedListingType === "Product" && (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -217,7 +250,6 @@ export default function CreateMarketplaceListingPage() {
                 </>
               )}
               
-              {/* Service Specific Fields */}
               {watchedListingType === "Service" && (
                  <>
                   <FormField
@@ -251,7 +283,6 @@ export default function CreateMarketplaceListingPage() {
                  </>
               )}
 
-              {/* Common Fields */}
               <FormField
                 control={form.control}
                 name="category"
@@ -283,11 +314,16 @@ export default function CreateMarketplaceListingPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />Location</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Nairobi, Kenya or Central Valley, CA, or 'Remote'" {...field} />
-                    </FormControl>
+                    <div className="flex items-center gap-2">
+                      <FormControl>
+                        <Input placeholder="e.g., Nairobi, Kenya or Central Valley, CA, or 'Remote'" {...field} />
+                      </FormControl>
+                      <Button type="button" variant="outline" size="icon" onClick={handleFetchLocation} aria-label="Use current location">
+                        <LocateFixed className="h-4 w-4" />
+                      </Button>
+                    </div>
                     <FormDescription>
-                      Specify the city, region, port, or if it's a global/remote service.
+                      Specify the city, region, port, or if it's a global/remote service. Or use the button to fetch current location.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
