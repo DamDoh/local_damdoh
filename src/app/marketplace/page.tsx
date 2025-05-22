@@ -192,12 +192,22 @@ function MarketplaceContent() {
 
   const featuredItems = useMemo(() => {
     if (!isMounted) return [];
-     // For demo, take first 6 items or items matching 'fresh-produce-fruits'
-    let items = filteredMarketplaceItems.filter(item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables').slice(0, 6);
-    if (items.length < 6) {
-        items = [...items, ...filteredMarketplaceItems.filter(item => item.listingType === 'Product').slice(0, 6 - items.length)];
+
+    const freshProduceItems = filteredMarketplaceItems.filter(
+      item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
+    ).slice(0, 6);
+
+    let combinedFeaturedItems = [...freshProduceItems];
+
+    if (freshProduceItems.length < 6) {
+      const freshProduceIds = new Set(freshProduceItems.map(item => item.id));
+      const additionalProducts = filteredMarketplaceItems
+        .filter(item => item.listingType === 'Product' && !freshProduceIds.has(item.id))
+        .slice(0, 6 - freshProduceItems.length);
+      combinedFeaturedItems = [...combinedFeaturedItems, ...additionalProducts];
     }
-    return items.slice(0,6);
+    
+    return combinedFeaturedItems.slice(0, 6);
   }, [filteredMarketplaceItems, isMounted]);
 
 
