@@ -206,7 +206,7 @@ function MarketplaceContent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {filteredMarketplaceItems.map(item => (
               <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
                 <div className="relative w-full aspect-[4/3]">
@@ -214,7 +214,7 @@ function MarketplaceContent() {
                     src={item.imageUrl || "https://placehold.co/400x300.png"} 
                     alt={item.name} 
                     fill={true}
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.6vw"
                     style={{objectFit:"cover"}}
                     data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
                   />
