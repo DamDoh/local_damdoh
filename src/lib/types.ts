@@ -144,3 +144,21 @@ export interface DirectMessage {
   unread?: boolean;
   dataAiHint?: string;
 }
+
+// New types for Mobile Homepage
+export interface MobileHomeCategory {
+  id: string;
+  name: string;
+  icon: React.ElementType; // Lucide icon
+  href: string;
+  dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service'; // To know where to link
+  link: string;
+  dataAiHint?: string;
+}
