@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, DollarSign, Package as PackageIcon, Tractor } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, DollarSign, Package as PackageIcon, Tractor, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2 } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -17,12 +17,22 @@ import { dummyMarketplaceItems } from "@/lib/dummy-data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
-// import { CategoryNavigation } from "@/components/marketplace/CategoryNavigation"; // Removed
-import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; // Added
+import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
 
+
+const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
+  'fresh-produce-fruits', 
+  'grains-cereals',
+  'seeds-seedlings',
+  'farm-labor-staffing',
+  'equipment-rental-operation',
+  'logistics-transport',
+  'consultancy-advisory',
+  'technical-services',
+];
 
 function MarketplaceContent() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -48,6 +58,12 @@ function MarketplaceContent() {
     }
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
+
+  const quickAccessCategories = useMemo(() => {
+    return QUICK_ACCESS_CATEGORIES_IDS.map(id => 
+      AGRICULTURAL_CATEGORIES.find(cat => cat.id === id)
+    ).filter(Boolean) as CategoryNode[];
+  }, []);
 
 
   useEffect(() => {
@@ -123,7 +139,35 @@ function MarketplaceContent() {
           </div>
         </CardHeader>
         <CardContent>
-          {/* New Filter Bar */}
+          {/* Horizontal Quick Access Category Scroller */}
+          <div className="mb-4">
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-3 pb-2">
+                {quickAccessCategories.map((cat) => {
+                  const Icon = cat.icon || Sparkles;
+                  const isActive = currentCategory === cat.id;
+                  return (
+                    <Button
+                      key={cat.id}
+                      variant={isActive ? "default" : "outline"}
+                      size="sm"
+                      className={cn(
+                        "h-9 text-xs",
+                        isActive ? "border-primary ring-2 ring-primary" : ""
+                      )}
+                      onClick={() => handleCategorySelect(cat.id)}
+                    >
+                      <Icon className="mr-1.5 h-4 w-4" />
+                      {cat.name}
+                    </Button>
+                  );
+                })}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
+
+          {/* Main Filter Bar */}
           <div className="mb-6 flex flex-col md:flex-row gap-4 items-center md:items-end">
             <AllCategoriesDropdown />
             <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
@@ -265,3 +309,5 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
+
+    
