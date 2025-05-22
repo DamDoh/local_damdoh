@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Home, Users, ShoppingCart, Brain, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout } from "lucide-react"; // Added ClipboardList, WalletIcon, Sprout
+import { Home, Users, ShoppingCart, Brain, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout } from "lucide-react"; 
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { cn } from "@/lib/utils";
 import { dummyUsersData } from "@/lib/dummy-data";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
 
@@ -77,25 +77,25 @@ export function AppHeader() {
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery(""); 
-      if (isMobileSheetOpen) setIsMobileSheetOpen(false); // Close sheet on mobile search
+      if (isMobileSheetOpen) setIsMobileSheetOpen(false); 
     }
   };
 
   const navItems = [
-    { href: "/", icon: Home, label: "Dashboard" },
+    { href: "/", icon: Home, label: "Home" }, // Changed "Dashboard" to "Home"
     { href: "/network", icon: Users, label: "Network" },
     { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
-    { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" }, // Unified Marketplace
+    { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
     { href: "/wallet", icon: WalletIcon, label: "Wallet" },
     { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
 
   const getSectionTitle = () => {
-    if (pathname === "/") return "Dashboard";
+    if (pathname === "/") return "Home"; // Changed "Dashboard" to "Home"
     if (pathname.startsWith("/network")) return "Network";
     if (pathname.startsWith("/farm-management")) return "Farm Management";
-    if (pathname.startsWith("/marketplace")) return "Marketplace"; // Unified Marketplace
+    if (pathname.startsWith("/marketplace")) return "Marketplace";
     if (pathname.startsWith("/wallet")) return "Wallet";
     if (pathname.startsWith("/ai-assistant")) return "AI Assistant";
     if (pathname.startsWith("/notifications")) return "Notifications";
@@ -122,7 +122,7 @@ export function AppHeader() {
               </SheetTrigger>
               <SheetContent side="left" className="w-72 p-0 flex flex-col">
                 <SheetHeader className="p-4 border-b">
-                  <SheetTitle className="flex items-center gap-2">
+                   <SheetTitle className="flex items-center gap-2">
                      <Logo iconSize={28} textSize="text-xl" className="text-primary" />
                   </SheetTitle>
                 </SheetHeader>
@@ -162,7 +162,7 @@ export function AppHeader() {
                 <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
                 <Input
                 type="search"
-                placeholder="Search products & services..." // Updated placeholder
+                placeholder="Search products & services..." 
                 className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
