@@ -223,14 +223,14 @@ function MarketplaceContent() {
           </div>
           <ScrollArea className="w-full whitespace-nowrap px-2">
             <div className="flex space-x-3 pb-1">
-              {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`qs-${i}`} className="h-8 w-24 rounded-md" />)}
+              {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`qs-${i}`} className="h-9 w-24 rounded-md" />)}
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
-          <div className="grid grid-cols-5 gap-1 px-2 text-center">
+          <div className="grid grid-cols-5 gap-2 px-2 text-center">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={`igs-${i}`} className="flex flex-col items-center p-1.5 rounded-md">
-                <Skeleton className="h-10 w-10 mb-1" />
+              <div key={`igs-${i}`} className="flex flex-col items-center p-2 rounded-lg">
+                <Skeleton className="h-10 w-10 mb-1.5" />
                 <Skeleton className="h-3 w-12" />
               </div>
             ))}
@@ -300,7 +300,7 @@ function MarketplaceContent() {
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-4 pb-2">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Card key={`fskel-prod-${i}`} className="w-48 shrink-0">
+                      <Card key={`fskel-prod-${i}`} className="w-52 shrink-0">
                         <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
                         <CardContent className="p-3 space-y-1.5">
                           <Skeleton className="h-4 w-3/4" />
@@ -323,7 +323,7 @@ function MarketplaceContent() {
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-4 pb-2">
                     {Array.from({ length: 5 }).map((_, i) => (
-                       <Card key={`fskel-serv-${i}`} className="w-48 shrink-0">
+                       <Card key={`fskel-serv-${i}`} className="w-52 shrink-0">
                         <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
                         <CardContent className="p-3 space-y-1.5">
                           <Skeleton className="h-4 w-3/4" />
@@ -388,11 +388,11 @@ function MarketplaceContent() {
               <Button
                 key={link.name}
                 variant="ghost"
-                size="sm"
+                size="sm" 
                 className={cn(
-                  "h-8 text-xs px-3 flex items-center gap-1.5 text-muted-foreground hover:text-primary",
-                  (currentCategory && link.href.includes(`category=${currentCategory}`)) && "text-primary font-semibold",
-                  (listingTypeFilter !== "All" && link.href.includes(`listingType=${listingTypeFilter}`)) && "text-primary font-semibold"
+                  "flex items-center gap-1.5 text-muted-foreground hover:text-primary font-normal text-xs", 
+                  ((currentCategory && link.href.includes(`category=${currentCategory}`)) || (listingTypeFilter !== "All" && link.href.includes(`listingType=${listingTypeFilter}`)))
+                  && "bg-primary/10 text-primary font-semibold"
                 )}
                 onClick={() => {
                     if (link.href.includes("listingType")) {
@@ -414,91 +414,96 @@ function MarketplaceContent() {
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
 
-        <div className="grid grid-cols-5 gap-1 px-2 text-center">
+        <div className="grid grid-cols-5 gap-2 px-2 text-center">
           {mobileIconGridItems.map((item) => (
-            <Link key={item.name} href={item.href} className="flex flex-col items-center p-1.5 rounded-md hover:bg-accent"
+            <Link 
+              key={item.name} 
+              href={item.href} 
+              className="flex flex-col items-center p-2 rounded-lg hover:bg-accent/50 text-center"
               onClick={(e) => { e.preventDefault(); handleCategorySelect(item.href.split("=")[1]); }}
             >
-              <item.icon className="h-6 w-6 text-primary mb-1" />
-              <span className="text-xs text-muted-foreground leading-tight">{item.name}</span>
+              <item.icon className="h-6 w-6 text-primary mb-1.5" />
+              <span className="text-[11px] text-foreground font-medium leading-snug line-clamp-2 h-[28px]">{item.name}</span>
             </Link>
           ))}
         </div>
         
         {/* Featured Products Section */}
-        <section className="px-2 space-y-2">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Featured Products</h2>
-            <Link href="/marketplace?listingType=Product" className="text-xs text-primary hover:underline flex items-center">
-                See All <ChevronRight className="h-3 w-3 ml-0.5" />
-            </Link>
-          </div>
-          <ScrollArea className="w-full whitespace-nowrap">
-            <div className="flex space-x-3 pb-2">
-              {featuredProducts.map(item => (
-                <Card key={`feat-prod-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
-                   <Link href={`/marketplace/${item.id}`} className="block">
-                    <div className="relative w-full aspect-square">
-                      <Image 
-                        src={item.imageUrl || "https://placehold.co/150x150.png"} 
-                        alt={item.name} 
-                        fill={true}
-                        sizes="33vw"
-                        style={{objectFit:"cover"}}
-                        data-ai-hint={item.dataAiHint || "product agriculture"}
-                      />
-                    </div>
-                    <div className="p-1.5">
-                      <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
-                      <p className="text-xs font-bold text-primary mt-0.5">
-                        ${item.price.toFixed(2)}
-                        {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
-                      </p>
-                    </div>
-                  </Link>
-                </Card>
-              ))}
-               {featuredProducts.length === 0 && <p className="text-xs text-muted-foreground py-4">No featured products currently.</p>}
+        {featuredProducts.length > 0 && (
+          <section className="px-2 space-y-2">
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-semibold">Featured Products</h2>
+              <Link href="/marketplace?listingType=Product" className="text-xs text-primary hover:underline flex items-center">
+                  See All <ChevronRight className="h-3 w-3 ml-0.5" />
+              </Link>
             </div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
-        </section>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-3 pb-2">
+                {featuredProducts.map(item => (
+                  <Card key={`feat-prod-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
+                    <Link href={`/marketplace/${item.id}`} className="block">
+                      <div className="relative w-full aspect-square">
+                        <Image 
+                          src={item.imageUrl || "https://placehold.co/150x150.png"} 
+                          alt={item.name} 
+                          fill={true}
+                          sizes="33vw"
+                          style={{objectFit:"cover"}}
+                          data-ai-hint={item.dataAiHint || "product agriculture"}
+                        />
+                      </div>
+                      <div className="p-1.5">
+                        <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
+                        <p className="text-xs font-bold text-primary mt-0.5">
+                          ${item.price.toFixed(2)}
+                          {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
+                        </p>
+                      </div>
+                    </Link>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </section>
+        )}
 
         {/* Recommended Services Section */}
-        <section className="px-2 space-y-2 mt-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Recommended Services</h2>
-             <Link href="/marketplace?listingType=Service" className="text-xs text-primary hover:underline flex items-center">
-                See All <ChevronRight className="h-3 w-3 ml-0.5" />
-            </Link>
-          </div>
-          <ScrollArea className="w-full whitespace-nowrap">
-            <div className="flex space-x-3 pb-2">
-              {featuredServices.map(item => (
-                <Card key={`feat-serv-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
-                   <Link href={`/marketplace/${item.id}`} className="block">
-                    <div className="relative w-full aspect-square">
-                      <Image 
-                        src={item.imageUrl || "https://placehold.co/150x150.png"} 
-                        alt={item.name} 
-                        fill={true}
-                        sizes="33vw"
-                        style={{objectFit:"cover"}}
-                        data-ai-hint={item.dataAiHint || "service agriculture"}
-                      />
-                    </div>
-                    <div className="p-1.5">
-                      <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
-                      {item.compensation && <p className="text-xs font-bold text-primary mt-0.5 line-clamp-1">{item.compensation}</p>}
-                    </div>
-                  </Link>
-                </Card>
-              ))}
-               {featuredServices.length === 0 && <p className="text-xs text-muted-foreground py-4">No recommended services currently.</p>}
+        {featuredServices.length > 0 && (
+          <section className="px-2 space-y-2 mt-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-semibold">Recommended Services</h2>
+              <Link href="/marketplace?listingType=Service" className="text-xs text-primary hover:underline flex items-center">
+                  See All <ChevronRight className="h-3 w-3 ml-0.5" />
+              </Link>
             </div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
-        </section>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-3 pb-2">
+                {featuredServices.map(item => (
+                  <Card key={`feat-serv-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
+                    <Link href={`/marketplace/${item.id}`} className="block">
+                      <div className="relative w-full aspect-square">
+                        <Image 
+                          src={item.imageUrl || "https://placehold.co/150x150.png"} 
+                          alt={item.name} 
+                          fill={true}
+                          sizes="33vw"
+                          style={{objectFit:"cover"}}
+                          data-ai-hint={item.dataAiHint || "service agriculture"}
+                        />
+                      </div>
+                      <div className="p-1.5">
+                        <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
+                        {item.compensation && <p className="text-xs font-bold text-primary mt-0.5 line-clamp-1">{item.compensation}</p>}
+                      </div>
+                    </Link>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </section>
+        )}
 
         {/* Main Grid for Mobile */}
         <div className="px-2 pt-4">
