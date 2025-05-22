@@ -198,8 +198,9 @@ function MarketplaceContent() {
         const freshProduce = products.filter(
             item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
         );
+        const otherProductIds = new Set(freshProduce.map(fp => fp.id));
         const otherProducts = products.filter(
-            item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables')
+            item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables') && !otherProductIds.has(item.id)
         );
         products = [...freshProduce, ...otherProducts];
     }
@@ -292,6 +293,54 @@ function MarketplaceContent() {
                 </div>
               </div>
               <Skeleton className="h-4 w-1/3 mb-4" /> 
+
+              {/* Skeletons for Featured Products Scroller - Desktop */}
+              <section className="mb-6">
+                <Skeleton className="h-6 w-1/4 mb-3" />
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-4 pb-2">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Card key={`fskel-prod-${i}`} className="w-48 shrink-0">
+                        <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
+                        <CardContent className="p-3 space-y-1.5">
+                          <Skeleton className="h-4 w-3/4" />
+                          <Skeleton className="h-3 w-1/2" />
+                          <Skeleton className="h-5 w-1/3" />
+                        </CardContent>
+                        <CardFooter className="p-3 border-t">
+                          <Skeleton className="h-8 w-full" />
+                        </CardFooter>
+                      </Card>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </section>
+
+              {/* Skeletons for Recommended Services Scroller - Desktop */}
+              <section className="mb-6">
+                <Skeleton className="h-6 w-1/4 mb-3" />
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-4 pb-2">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                       <Card key={`fskel-serv-${i}`} className="w-48 shrink-0">
+                        <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
+                        <CardContent className="p-3 space-y-1.5">
+                          <Skeleton className="h-4 w-3/4" />
+                          <Skeleton className="h-3 w-1/2" />
+                          <Skeleton className="h-5 w-1/3" />
+                        </CardContent>
+                        <CardFooter className="p-3 border-t">
+                          <Skeleton className="h-8 w-full" />
+                        </CardFooter>
+                      </Card>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </section>
+              
+              <Skeleton className="h-6 w-1/4 mb-3" /> {/* Title for main grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 {Array.from({ length: 18 }).map((_, index) => (
                   <Card key={`itemskel-initial-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
@@ -594,7 +643,77 @@ function MarketplaceContent() {
             </div>
             {locationStatus && <p className="text-sm text-muted-foreground mb-4 text-center md:text-left">{locationStatus}</p>}
 
+            {/* Featured Products Section - Desktop */}
+            {featuredProducts.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-xl font-semibold mb-3">Featured Products</h2>
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-4 pb-2">
+                    {featuredProducts.map(item => (
+                      <Card key={`desktop-feat-prod-${item.id}`} className="w-52 shrink-0 overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                        <Link href={`/marketplace/${item.id}`} className="block">
+                          <div className="relative w-full aspect-[4/3]">
+                            <Image 
+                              src={item.imageUrl || "https://placehold.co/200x150.png"} 
+                              alt={item.name} 
+                              fill={true}
+                              sizes="25vw"
+                              style={{objectFit:"cover"}}
+                              data-ai-hint={item.dataAiHint || "product agriculture"}
+                            />
+                          </div>
+                          <div className="p-2.5">
+                            <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
+                            <p className="text-sm font-bold text-primary mt-1">
+                              ${item.price.toFixed(2)}
+                              {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
+                            </p>
+                             <p className="text-[10px] text-muted-foreground truncate mt-0.5">{item.location}</p>
+                          </div>
+                        </Link>
+                      </Card>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </section>
+            )}
 
+            {/* Recommended Services Section - Desktop */}
+            {featuredServices.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-xl font-semibold mb-3">Recommended Services</h2>
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-4 pb-2">
+                    {featuredServices.map(item => (
+                      <Card key={`desktop-feat-serv-${item.id}`} className="w-52 shrink-0 overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                         <Link href={`/marketplace/${item.id}`} className="block">
+                          <div className="relative w-full aspect-[4/3]">
+                            <Image 
+                              src={item.imageUrl || "https://placehold.co/200x150.png"} 
+                              alt={item.name} 
+                              fill={true}
+                              sizes="25vw"
+                              style={{objectFit:"cover"}}
+                              data-ai-hint={item.dataAiHint || "service agriculture"}
+                            />
+                          </div>
+                          <div className="p-2.5">
+                            <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
+                            {item.compensation && <p className="text-sm font-medium text-primary mt-1 line-clamp-1">{item.compensation}</p>}
+                            <p className="text-[10px] text-muted-foreground truncate mt-0.5">{item.location}</p>
+                          </div>
+                        </Link>
+                      </Card>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </section>
+            )}
+
+            {/* Main Grid Title - Desktop */}
+            <h2 className="text-xl font-semibold mb-4 mt-6">Discover More</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
               {filteredMarketplaceItems.map(item => (
                 <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
@@ -708,7 +827,7 @@ export default function MarketplacePage() {
             <Skeleton className="h-4 w-1/2" />
           </CardHeader>
            <CardContent>
-             <Skeleton className="h-64 w-full" />
+             <Skeleton className="h-64 w-full" /> {/* Simplified fallback */}
           </CardContent>
         </Card>
       </div>
