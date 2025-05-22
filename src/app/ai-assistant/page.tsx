@@ -13,6 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 import { APP_NAME } from '@/lib/constants';
+import { dummyUsersData } from "@/lib/dummy-data"; // Import dummyUsersData
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 
@@ -48,12 +49,15 @@ export default function AiAssistantPage() {
   }, [chatHistory]);
   
   useEffect(() => {
+    // For personalization, get a user name. In a real app, this would come from auth.
+    const currentUserName = dummyUsersData['currentDemoUser']?.name || "there"; // Fallback to "there"
+
     setChatHistory([
       {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content: {
-          summary: `Hello there! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture! 🧑‍🌾
+          summary: `Hello ${currentUserName}! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture! 🧑‍🌾
 Wondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.
 
 🌱 **Got a crop concern?**
@@ -360,4 +364,4 @@ Ready to explore? How can I assist you today?`,
   );
 }
 
-      
+    
