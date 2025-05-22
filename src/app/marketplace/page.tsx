@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, ShoppingBag, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, Filter, Package as PackageIcon, Users as UsersIcon } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, ShoppingCart, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, Filter, Package as PackageIcon, Users as UsersIcon, DollarSign } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -254,3 +254,4 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
+
