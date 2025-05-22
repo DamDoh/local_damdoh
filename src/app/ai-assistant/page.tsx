@@ -1,22 +1,26 @@
 
 "use client";
 
-import { useState, useRef, useEffect, FormEvent } from 'react';
-import { Leaf, Info, Send, Volume2, Bot, User } from 'lucide-react';
+import { useState, useRef, useEffect, FormEvent, ChangeEvent } from 'react';
+import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 import { APP_NAME } from '@/lib/constants';
+import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
   content: string | FarmingAssistantOutput;
+  imagePreview?: string; // For displaying image sent by user
   timestamp: Date;
 }
 
@@ -24,10 +28,17 @@ export default function AiAssistantPage() {
   const [inputQuery, setInputQuery] = useState('');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [previewDataUri, setPreviewDataUri] = useState<string | null>(null);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
+  
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
-    // Auto-scroll to bottom
     if (scrollAreaRef.current) {
       const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
       if (viewport) {
@@ -37,13 +48,12 @@ export default function AiAssistantPage() {
   }, [chatHistory]);
   
   useEffect(() => {
-    // Initial welcome message
     setChatHistory([
       {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content: {
-          summary: `Welcome to ${APP_NAME} AI Knowledge! How can I help you today with sustainable farming, agricultural supply chains, farming business, or navigating the ${APP_NAME} app?`,
+          summary: `Welcome to ${APP_NAME} AI Knowledge! I can help with sustainable farming, supply chains, business, app guidance, and even diagnose crop issues if you upload a photo. How can I assist you today?`,
           detailedPoints: [],
         },
         timestamp: new Date(),
@@ -51,24 +61,122 @@ export default function AiAssistantPage() {
     ]);
   }, []);
 
+  useEffect(() => {
+    // Cleanup camera stream when component unmounts or camera is closed
+    return () => {
+      if (videoRef.current?.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (isCameraOpen) {
+        stopCamera();
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewDataUri(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const startCamera = async () => {
+    if (previewDataUri) setPreviewDataUri(null); // Clear any uploaded image
+    
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        setHasCameraPermission(true);
+        setIsCameraOpen(true);
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (error) {
+        console.error('Error accessing camera:', error);
+        setHasCameraPermission(false);
+        setIsCameraOpen(false);
+        toast({
+          variant: 'destructive',
+          title: 'Camera Access Denied',
+          description: 'Please enable camera permissions in your browser settings.',
+        });
+      }
+    } else {
+      toast({ variant: 'destructive', title: 'Camera Not Supported', description: 'Your browser does not support camera access.' });
+    }
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current?.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach(track => track.stop());
+      videoRef.current.srcObject = null;
+    }
+    setIsCameraOpen(false);
+  };
+
+  const handleCaptureImage = () => {
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUri = canvas.toDataURL('image/jpeg');
+        setPreviewDataUri(dataUri);
+        stopCamera(); 
+      }
+    }
+  };
+  
+  const clearPreview = () => {
+    setPreviewDataUri(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // Reset file input
+    }
+    if (isCameraOpen) {
+      stopCamera();
+    }
+  };
 
   const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const query = inputQuery.trim();
-    if (!query) return;
+    if (!query && !previewDataUri) return;
 
     const newUserMessage: ChatMessage = {
       id: `user-${Date.now()}`,
       role: 'user',
-      content: query,
+      content: query || (previewDataUri ? "Please analyze this image." : "Empty query"),
+      imagePreview: previewDataUri || undefined,
       timestamp: new Date(),
     };
     setChatHistory(prev => [...prev, newUserMessage]);
+    
     setInputQuery('');
     setIsLoading(true);
+    const currentImageToSend = previewDataUri; // Capture current preview to send
+    setPreviewDataUri(null); // Clear preview immediately after capturing for send
+     if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    if (isCameraOpen) {
+        stopCamera();
+    }
+
 
     try {
-      const aiResponse = await askFarmingAssistant({ query });
+      const aiResponse = await askFarmingAssistant({ 
+        query: query || (currentImageToSend ? "Please analyze this image." : "Empty query"), 
+        photoDataUri: currentImageToSend || undefined 
+      });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-${Date.now() + 1}`,
         role: 'assistant',
@@ -102,18 +210,23 @@ export default function AiAssistantPage() {
             <span>{APP_NAME} AI Farming Assistant</span>
           </CardTitle>
         </CardHeader>
-        <ScrollArea className="flex-grow p-4 space-y-6" ref={scrollAreaRef}>
+        <ScrollArea className="flex-grow p-4 space-y-6 bg-muted/30" ref={scrollAreaRef}>
           {chatHistory.map((msg) => (
             <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {msg.role === 'assistant' && (
                 <Avatar className="h-8 w-8 self-start border">
-                  <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh" />
+                  <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh"/>
                   <AvatarFallback><Bot size={18}/></AvatarFallback>
                 </Avatar>
               )}
               <div className={`max-w-[80%] ${msg.role === 'user' ? 'bg-primary text-primary-foreground rounded-lg rounded-br-none p-3 shadow' : ''}`}>
                 {msg.role === 'user' && typeof msg.content === 'string' && (
-                  <p className="text-sm">{msg.content}</p>
+                  <>
+                    {msg.imagePreview && (
+                      <Image src={msg.imagePreview} alt="User upload preview" width={200} height={150} className="rounded-md mb-2 object-contain max-h-[200px]" data-ai-hint="plant diagnosis image"/>
+                    )}
+                    <p className="text-sm whitespace-pre-line">{msg.content}</p>
+                  </>
                 )}
                 {msg.role === 'assistant' && typeof msg.content === 'object' && (
                   <Card className="bg-card/80 shadow-md">
@@ -134,8 +247,8 @@ export default function AiAssistantPage() {
                           {msg.content.detailedPoints.map((point, index) => (
                             <AccordionItem value={`item-${index}`} key={index} className="border-muted-foreground/20">
                               <AccordionTrigger className="text-sm hover:no-underline py-2.5">
-                                <div className="flex items-center gap-2">
-                                  <Info className="h-4 w-4 text-primary/80" />
+                                <div className="flex items-center gap-2 text-left">
+                                  <Info className="h-4 w-4 text-primary/80 shrink-0" />
                                   <span>{point.title}</span>
                                 </div>
                               </AccordionTrigger>
@@ -152,7 +265,7 @@ export default function AiAssistantPage() {
               </div>
                {msg.role === 'user' && (
                 <Avatar className="h-8 w-8 self-start border">
-                   <AvatarImage src="https://placehold.co/40x40.png" alt="User Avatar" data-ai-hint="profile person" />
+                   <AvatarImage src="https://placehold.co/40x40.png" alt="User Avatar" data-ai-hint="profile person"/>
                   <AvatarFallback><User size={18}/></AvatarFallback>
                 </Avatar>
               )}
@@ -161,7 +274,7 @@ export default function AiAssistantPage() {
           {isLoading && (
              <div className="flex gap-3 justify-start">
                 <Avatar className="h-8 w-8 self-start border">
-                  <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh" />
+                  <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh"/>
                   <AvatarFallback><Bot size={18}/></AvatarFallback>
                 </Avatar>
                 <div className="max-w-[80%]">
@@ -176,22 +289,66 @@ export default function AiAssistantPage() {
             </div>
           )}
         </ScrollArea>
-        <div className="p-4 border-t">
-          <form onSubmit={handleSendMessage} className="flex items-center gap-2">
+        
+        {(previewDataUri || isCameraOpen) && (
+          <div className="p-2 border-t bg-muted/50">
+            {previewDataUri && !isCameraOpen && (
+              <div className="relative group w-fit mx-auto">
+                <Image src={previewDataUri} alt="Preview" width={120} height={90} className="rounded-md object-contain max-h-[90px] border" data-ai-hint="plant preview"/>
+                <Button variant="destructive" size="icon" className="absolute -top-2 -right-2 h-6 w-6 rounded-full opacity-80 group-hover:opacity-100" onClick={clearPreview}>
+                  <XCircle className="h-4 w-4" />
+                </Button>
+              </div>
+            )}
+            {isCameraOpen && (
+              <div className="flex flex-col items-center gap-2">
+                <video ref={videoRef} className="w-full max-w-[300px] aspect-video rounded-md bg-black" autoPlay playsInline muted />
+                <div className="flex gap-2">
+                    <Button onClick={handleCaptureImage} size="sm"><Camera className="mr-2 h-4 w-4" />Capture</Button>
+                    <Button variant="outline" size="sm" onClick={stopCamera}><RefreshCcw className="mr-2 h-4 w-4" />Close Camera</Button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        
+        { hasCameraPermission === false && !isCameraOpen && (
+           <Alert variant="destructive" className="m-4">
+              <Camera className="h-4 w-4" />
+              <AlertTitle>Camera Access Denied</AlertTitle>
+              <AlertDescription>
+                To use the camera for diagnosis, please enable camera permissions in your browser settings and refresh.
+              </AlertDescription>
+            </Alert>
+        )}
+
+        <canvas ref={canvasRef} style={{ display: 'none' }} />
+
+        <CardFooter className="p-2 border-t">
+          <form onSubmit={handleSendMessage} className="flex items-center gap-2 w-full">
+            <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()} title="Upload Image" disabled={isLoading || isCameraOpen}>
+                <ImageUp className="h-5 w-5" />
+            </Button>
+            <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} style={{ display: 'none' }}/>
+            
+            <Button variant="ghost" size="icon" type="button" onClick={startCamera} title="Use Camera" disabled={isLoading || isCameraOpen}>
+                <Camera className="h-5 w-5" />
+            </Button>
+
             <Input
               type="text"
-              placeholder="Ask about farming, the supply chain, or DamDoh features..."
+              placeholder="Ask about farming, describe your image, or use the camera..."
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
-              className="flex-grow text-sm"
+              className="flex-grow text-sm h-10"
               disabled={isLoading}
               autoFocus
             />
-            <Button type="submit" disabled={isLoading || !inputQuery.trim()}>
+            <Button type="submit" disabled={isLoading || (!inputQuery.trim() && !previewDataUri)}>
               <Send className="mr-2 h-4 w-4" /> Send
             </Button>
           </form>
-        </div>
+        </CardFooter>
       </Card>
     </div>
   );
