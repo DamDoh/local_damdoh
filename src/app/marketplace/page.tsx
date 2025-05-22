@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, DollarSign, Package as PackageIcon, Tractor, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2 } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -21,6 +21,7 @@ import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDro
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
@@ -32,9 +33,14 @@ const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'logistics-transport',
   'consultancy-advisory',
   'technical-services',
+  'storage-warehousing',
+  'processing-value-addition',
+  'financial-insurance',
+  'training-education',
 ];
 
 function MarketplaceContent() {
+  const [isMounted, setIsMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>("All");
   const [locationFilter, setLocationFilter] = useState("");
@@ -48,6 +54,10 @@ function MarketplaceContent() {
   const { toast } = useToast();
 
   const marketplaceItems = dummyMarketplaceItems;
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleCategorySelect = (categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -65,12 +75,8 @@ function MarketplaceContent() {
     ).filter(Boolean) as CategoryNode[];
   }, []);
 
-
-  useEffect(() => {
-    // Optional: Sync categoryQuery from URL to a local state if needed
-  }, [currentCategory]);
-
   const filteredMarketplaceItems = useMemo(() => {
+    if (!isMounted) return []; // Return empty array if not mounted to avoid using searchParams prematurely
     return marketplaceItems.filter(item => {
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
@@ -85,7 +91,7 @@ function MarketplaceContent() {
       
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
     });
-  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems]);
+  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted]);
 
   const getCategoryIcon = (category: CategoryNode['id']) => {
     const catNode = AGRICULTURAL_CATEGORIES.find(c => c.id === category);
@@ -96,7 +102,6 @@ function MarketplaceContent() {
   const getCategoryName = (categoryId: CategoryNode['id']) => {
     return AGRICULTURAL_CATEGORIES.find(c => c.id === categoryId)?.name || categoryId;
   }
-
 
   const isCurrentHomepage = homepagePreference === pathname;
 
@@ -115,6 +120,57 @@ function MarketplaceContent() {
       });
     }
   };
+
+  if (!isMounted) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-8 w-3/4 mb-2" />
+            <Skeleton className="h-4 w-1/2" />
+            <div className="flex items-center gap-2 mt-4">
+              <Skeleton className="h-10 w-32" />
+              <Skeleton className="h-10 w-24" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-4">
+              <div className="flex space-x-3 pb-2">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <Skeleton key={`qaskel-${index}`} className="h-9 w-28 rounded-md" />
+                ))}
+              </div>
+            </div>
+            <div className="mb-6 flex flex-col md:flex-row gap-4 items-center md:items-end">
+              <Skeleton className="h-10 w-48" />
+              <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
+                <Skeleton className="h-10 w-full sm:col-span-2 md:col-span-1" />
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              {Array.from({ length: 18 }).map((_, index) => (
+                <Card key={`itemskel-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
+                  <Skeleton className="w-full aspect-[4/3]" />
+                  <div className="p-3 flex flex-col flex-grow">
+                    <Skeleton className="h-5 w-3/4 mb-1" />
+                    <Skeleton className="h-3 w-1/2 my-1" />
+                    <Skeleton className="h-6 w-1/3 my-1.5" />
+                    <Skeleton className="h-8 w-full mb-2" />
+                    <Skeleton className="h-4 w-full mt-auto pt-1" />
+                  </div>
+                  <div className="p-3 border-t mt-auto">
+                    <Skeleton className="h-9 w-full" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -139,7 +195,6 @@ function MarketplaceContent() {
           </div>
         </CardHeader>
         <CardContent>
-          {/* Horizontal Quick Access Category Scroller */}
           <div className="mb-4">
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex space-x-3 pb-2">
@@ -167,7 +222,6 @@ function MarketplaceContent() {
             </ScrollArea>
           </div>
 
-          {/* Main Filter Bar */}
           <div className="mb-6 flex flex-col md:flex-row gap-4 items-center md:items-end">
             <AllCategoriesDropdown />
             <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
@@ -214,7 +268,7 @@ function MarketplaceContent() {
                     src={item.imageUrl || "https://placehold.co/400x300.png"} 
                     alt={item.name} 
                     fill={true}
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.6vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, (max-width: 1536px) 16.6vw, 16.6vw"
                     style={{objectFit:"cover"}}
                     data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
                   />
@@ -304,10 +358,42 @@ function MarketplaceContent() {
 
 export default function MarketplacePage() {
   return (
-    <Suspense fallback={<div>Loading marketplace...</div>}>
+    <Suspense fallback={
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-8 w-3/4 mb-2" />
+            <Skeleton className="h-4 w-1/2" />
+          </CardHeader>
+          <CardContent>
+            <div className="mb-4">
+               <Skeleton className="h-10 w-full" />
+            </div>
+             <div className="mb-6">
+              <Skeleton className="h-10 w-full" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              {Array.from({ length: 18 }).map((_, index) => (
+                <Card key={`loadskel-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
+                  <Skeleton className="w-full aspect-[4/3]" />
+                  <div className="p-3 flex flex-col flex-grow">
+                    <Skeleton className="h-5 w-3/4 mb-1" />
+                    <Skeleton className="h-3 w-1/2 my-1" />
+                    <Skeleton className="h-6 w-1/3 my-1.5" />
+                    <Skeleton className="h-8 w-full mb-2" />
+                    <Skeleton className="h-4 w-full mt-auto pt-1" />
+                  </div>
+                  <div className="p-3 border-t mt-auto">
+                    <Skeleton className="h-9 w-full" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    }>
       <MarketplaceContent />
     </Suspense>
   )
 }
-
-    
