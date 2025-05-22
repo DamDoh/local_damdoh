@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
 
-const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
+const ALL_QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'fresh-produce-fruits', 
   'grains-cereals',
   'seeds-seedlings',
@@ -39,7 +39,16 @@ const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'training-education',
 ];
 
-const mobileQuickLinks = [
+const CONSUMER_PRODUCE_CATEGORY_IDS: CategoryNode['id'][] = [
+  'fresh-produce-fruits',
+  'fresh-produce-vegetables',
+  'grains-cereals',
+  'livestock-poultry',
+  'dairy-alternatives',
+  'processed-packaged',
+];
+
+const mobileQuickLinksBase = [
   { name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
   { name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
   { name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
@@ -70,6 +79,7 @@ function MarketplaceContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get('category');
+  const userType = searchParams.get('userType'); // Read userType param
 
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
@@ -95,10 +105,27 @@ function MarketplaceContent() {
   }, [currentCategory, pathname, router, searchParams]);
   
   const quickAccessCategories = useMemo(() => {
-    return QUICK_ACCESS_CATEGORIES_IDS.map(id => 
+    let relevantCategoryIds = ALL_QUICK_ACCESS_CATEGORIES_IDS;
+    if (userType === 'consumer') {
+      relevantCategoryIds = CONSUMER_PRODUCE_CATEGORY_IDS.filter(id => 
+        ALL_QUICK_ACCESS_CATEGORIES_IDS.includes(id) // Ensure they are valid quick access items
+      );
+    }
+    return relevantCategoryIds.map(id => 
       AGRICULTURAL_CATEGORIES.find(cat => cat.id === id)
     ).filter(Boolean) as CategoryNode[];
-  }, []);
+  }, [userType]);
+
+  const mobileQuickLinks = useMemo(() => {
+    if (userType === 'consumer') {
+      return mobileQuickLinksBase.filter(link => 
+        CONSUMER_PRODUCE_CATEGORY_IDS.some(consumerCatId => link.href.includes(consumerCatId)) ||
+        link.href.includes('listingType=Product') // Keep a general product link if applicable
+      );
+    }
+    return mobileQuickLinksBase;
+  }, [userType]);
+
 
   const handleFetchLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -150,7 +177,13 @@ function MarketplaceContent() {
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
     });
 
-    if (userCoordinates) {
+    // If consumer and no specific category selected, filter for produce categories
+    if (userType === 'consumer' && !currentCategory) {
+      items = items.filter(item => CONSUMER_PRODUCE_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+    }
+
+
+    if (userCoordinates) { // Prioritize fresh produce if location is available
       const freshProduceItems = items.filter(
         item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
       );
@@ -161,7 +194,7 @@ function MarketplaceContent() {
     }
 
     return items;
-  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted, userCoordinates]);
+  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted, userCoordinates, userType]);
 
   const getCategoryIcon = (category: CategoryNode['id']) => {
     const catNode = AGRICULTURAL_CATEGORIES.find(c => c.id === category);
@@ -194,7 +227,7 @@ function MarketplaceContent() {
   const featuredProducts = useMemo(() => {
     if (!isMounted) return [];
     let products = filteredMarketplaceItems.filter(item => item.listingType === 'Product');
-    if (userCoordinates) {
+    if (userCoordinates) { // Prioritize fresh produce if location is available
         const freshProduce = products.filter(
             item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
         );
@@ -208,12 +241,13 @@ function MarketplaceContent() {
   }, [filteredMarketplaceItems, isMounted, userCoordinates]);
 
   const featuredServices = useMemo(() => {
-    if (!isMounted) return [];
+    if (!isMounted || userType === 'consumer') return []; // Hide for consumers
     return filteredMarketplaceItems.filter(item => item.listingType === 'Service').slice(0, 6);
-  }, [filteredMarketplaceItems, isMounted]);
+  }, [filteredMarketplaceItems, isMounted, userType]);
 
 
   if (!isMounted) {
+    const showServicesSkeleton = userType !== 'consumer';
     return (
       <>
         {/* Mobile Skeleton */}
@@ -223,7 +257,7 @@ function MarketplaceContent() {
           </div>
           <ScrollArea className="w-full whitespace-nowrap px-2">
             <div className="flex space-x-3 pb-1">
-              {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`qs-${i}`} className="h-9 w-24 rounded-md" />)}
+              {Array.from({ length: userType === 'consumer' ? 3 : 5 }).map((_, i) => <Skeleton key={`qs-${i}`} className="h-9 w-24 rounded-md" />)}
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
@@ -244,15 +278,17 @@ function MarketplaceContent() {
               <ScrollBar orientation="horizontal" />
             </ScrollArea>
           </section>
-           <section className="px-2 space-y-2 mt-6">
-            <Skeleton className="h-6 w-1/3 mb-2" />
-            <ScrollArea className="w-full whitespace-nowrap">
-              <div className="flex space-x-3 pb-2">
-                {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fss-${i}`} className="w-36 h-48 rounded-md" />)}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </section>
+           {showServicesSkeleton && (
+             <section className="px-2 space-y-2 mt-6">
+              <Skeleton className="h-6 w-1/3 mb-2" />
+              <ScrollArea className="w-full whitespace-nowrap">
+                <div className="flex space-x-3 pb-2">
+                  {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fss-${i}`} className="w-36 h-48 rounded-md" />)}
+                </div>
+                <ScrollBar orientation="horizontal" />
+              </ScrollArea>
+            </section>
+           )}
           <div className="px-2 pt-2">
             <Skeleton className="h-6 w-1/2 mb-2" />
             <div className="grid grid-cols-2 gap-2">
@@ -276,7 +312,7 @@ function MarketplaceContent() {
               <div className="mb-4"> 
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-3 pb-2">
-                    {Array.from({ length: 8 }).map((_, index) => (
+                    {Array.from({ length: userType === 'consumer' ? 4 : 8 }).map((_, index) => (
                       <Skeleton key={`qaskel-${index}`} className="h-9 w-28 rounded-md" />
                     ))}
                   </div>
@@ -318,27 +354,29 @@ function MarketplaceContent() {
               </section>
 
               {/* Skeletons for Recommended Services Scroller - Desktop */}
-              <section className="mb-6">
-                <Skeleton className="h-6 w-1/4 mb-3" />
-                <ScrollArea className="w-full whitespace-nowrap">
-                  <div className="flex space-x-4 pb-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                       <Card key={`fskel-serv-${i}`} className="w-52 shrink-0">
-                        <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
-                        <CardContent className="p-3 space-y-1.5">
-                          <Skeleton className="h-4 w-3/4" />
-                          <Skeleton className="h-3 w-1/2" />
-                          <Skeleton className="h-5 w-1/3" />
-                        </CardContent>
-                        <CardFooter className="p-3 border-t">
-                          <Skeleton className="h-8 w-full" />
-                        </CardFooter>
-                      </Card>
-                    ))}
-                  </div>
-                  <ScrollBar orientation="horizontal" />
-                </ScrollArea>
-              </section>
+              {showServicesSkeleton && (
+                <section className="mb-6">
+                  <Skeleton className="h-6 w-1/4 mb-3" />
+                  <ScrollArea className="w-full whitespace-nowrap">
+                    <div className="flex space-x-4 pb-2">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                         <Card key={`fskel-serv-${i}`} className="w-52 shrink-0">
+                          <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
+                          <CardContent className="p-3 space-y-1.5">
+                            <Skeleton className="h-4 w-3/4" />
+                            <Skeleton className="h-3 w-1/2" />
+                            <Skeleton className="h-5 w-1/3" />
+                          </CardContent>
+                          <CardFooter className="p-3 border-t">
+                            <Skeleton className="h-8 w-full" />
+                          </CardFooter>
+                        </Card>
+                      ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" />
+                  </ScrollArea>
+                </section>
+              )}
               
               <Skeleton className="h-6 w-1/4 mb-3" /> {/* Title for main grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
@@ -374,7 +412,7 @@ function MarketplaceContent() {
           <div className="relative">
             <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
-              placeholder="Search products, services..." 
+              placeholder="Search products & services..." 
               className="pl-10 h-10 rounded-full" 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -390,20 +428,24 @@ function MarketplaceContent() {
                 variant="ghost"
                 size="sm" 
                 className={cn(
-                  "flex items-center gap-1.5 text-muted-foreground hover:text-primary font-normal text-xs", 
+                  "flex items-center gap-1.5 text-muted-foreground hover:text-primary font-normal text-xs h-9", 
                   ((currentCategory && link.href.includes(`category=${currentCategory}`)) || (listingTypeFilter !== "All" && link.href.includes(`listingType=${listingTypeFilter}`)))
                   && "bg-primary/10 text-primary font-semibold"
                 )}
                 onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
                     if (link.href.includes("listingType")) {
                         const typeParam = link.href.split("listingType=")[1];
+                        params.set('listingType', typeParam);
+                        params.delete('category'); 
                         setListingTypeFilter(typeParam as ListingType | 'All');
-                        handleCategorySelect(null); 
                     } else if (link.href.includes("category")) {
                         const categoryParam = link.href.split("category=")[1];
-                        handleCategorySelect(categoryParam);
+                        params.set('category', categoryParam);
+                        params.delete('listingType');
                         setListingTypeFilter("All"); 
                     }
+                    router.push(`${pathname}?${params.toString()}`, { scroll: false });
                 }}
               >
                 <link.icon className="h-4 w-4" />
@@ -468,8 +510,8 @@ function MarketplaceContent() {
           </section>
         )}
 
-        {/* Recommended Services Section */}
-        {featuredServices.length > 0 && (
+        {/* Recommended Services Section - Conditionally Rendered */}
+        {featuredServices.length > 0 && userType !== 'consumer' && (
           <section className="px-2 space-y-2 mt-6">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">Recommended Services</h2>
@@ -522,6 +564,12 @@ function MarketplaceContent() {
                         style={{objectFit:"cover"}}
                         data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
                       />
+                      {userCoordinates && (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables') && (
+                         <Badge variant="secondary" className="absolute top-1 left-1 bg-green-100 text-green-700 border-green-300 text-[9px] py-0.5 px-1">
+                          <Sprout className="h-2.5 w-2.5 mr-0.5" />
+                          Fresh & Nearby
+                        </Badge>
+                      )}
                     </div>
                     <div className="p-2">
                       <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight mb-0.5">
@@ -684,8 +732,8 @@ function MarketplaceContent() {
               </section>
             )}
 
-            {/* Recommended Services Section - Desktop */}
-            {featuredServices.length > 0 && (
+            {/* Recommended Services Section - Desktop (Conditionally Rendered) */}
+            {featuredServices.length > 0 && userType !== 'consumer' && (
               <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-3">Recommended Services</h2>
                 <ScrollArea className="w-full whitespace-nowrap">
