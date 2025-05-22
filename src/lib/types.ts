@@ -1,5 +1,7 @@
 
 import type { StakeholderRole, UnifiedMarketplaceCategoryType, ListingType } from './constants';
+import type { LucideIcon } from 'lucide-react';
+
 
 export interface UserProfile {
   id: string;
@@ -47,11 +49,11 @@ export interface MarketplaceItem {
   name: string; 
   listingType: ListingType; // 'Product' or 'Service'
   description: string;
-  price: number; // Can be 0 or a placeholder for services if using 'compensation' field
+  price: number; 
   currency: string;
-  perUnit?: string; // e.g. "/ton", "/kg", "/hour", "/project"
+  perUnit?: string; 
   sellerId: string; 
-  category: UnifiedMarketplaceCategoryType; // Uses new unified categories
+  category: UnifiedMarketplaceCategoryType; // Now refers to specific subcategory IDs
   location: string;
   imageUrl?: string;
   createdAt: string; 
@@ -60,18 +62,11 @@ export interface MarketplaceItem {
   isSustainable?: boolean;
   sellerVerification?: 'Verified' | 'Pending' | 'Unverified';
   aiPriceSuggestion?: {min: number, max: number, confidence: string};
-  // Fields primarily for 'Service' type listings (previously from TalentListing)
+  // Fields for 'Service' type listings
   skillsRequired?: string[]; 
   experienceLevel?: string; 
-  compensation?: string; // More descriptive for services, e.g., "Negotiable", "$50/hr", "Project-based"
+  compensation?: string; 
 }
-
-// TalentCategory is deprecated, use UnifiedMarketplaceCategoryType with listingType='Service'
-// export type TalentCategory = 'Jobs & Recruitment' | 'Land & Tenancies' | 'Equipment Rentals & Services';
-
-// TalentListing is deprecated, its fields are merged into MarketplaceItem
-// export interface TalentListing { ... }
-
 
 export type AgriEventType = 'Conference' | 'Webinar' | 'Workshop' | 'Trade Show' | 'Field Day' | 'Networking Event';
 
@@ -154,4 +149,18 @@ export interface MobileDiscoverItem {
   type: 'Marketplace' | 'Forum' | 'Profile' | 'Service'; 
   link: string;
   dataAiHint?: string;
+}
+
+// For new category navigation
+export interface SubCategory {
+  id: string;
+  name: string;
+  href: string;
+  icon?: LucideIcon;
+}
+export interface MainCategory {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  subCategories: SubCategory[];
 }

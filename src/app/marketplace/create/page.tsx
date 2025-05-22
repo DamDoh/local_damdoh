@@ -41,7 +41,7 @@ export default function CreateMarketplaceListingPage() {
       name: "",
       listingType: undefined,
       description: "",
-      price: undefined, // Changed to undefined as it's optional
+      price: undefined, 
       currency: "USD",
       perUnit: "",
       category: undefined, 
@@ -68,7 +68,7 @@ export default function CreateMarketplaceListingPage() {
       title: "Listing Submitted (Simulated)",
       description: "Your marketplace listing has been created (details logged to console).",
     });
-    // form.reset(); // Optionally reset form
+    // form.reset(); 
   }
 
   const watchedListingType = form.watch("listingType");
@@ -323,7 +323,7 @@ export default function CreateMarketplaceListingPage() {
                     <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Or Upload Image (Optional)</FormLabel>
                     <FormControl>
                       <div className="flex items-center gap-2">
-                        <UploadCloud className="h-5 w-5 text-muted-foreground" />
+                        {/* <UploadCloud className="h-5 w-5 text-muted-foreground" /> Input component already has icon styling if needed */}
                         <Input 
                           type="file" 
                           accept="image/png, image/jpeg, image/webp"
@@ -377,3 +377,4 @@ export default function CreateMarketplaceListingPage() {
     </div>
   );
 }
+

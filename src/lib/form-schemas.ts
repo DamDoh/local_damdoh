@@ -1,6 +1,6 @@
 
 import { z } from "zod";
-import { UNIFIED_MARKETPLACE_CATEGORIES, LISTING_TYPES, AGRI_EVENT_TYPES } from "@/lib/constants";
+import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES } from "@/lib/constants";
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -24,10 +24,10 @@ export const createMarketplaceItemSchema = z.object({
     errorMap: () => ({ message: "Please select a listing type (Product or Service)." }),
   }),
   description: z.string().min(10, "Description must be at least 10 characters long.").max(1000, "Description cannot exceed 1000 characters."),
-  price: z.coerce.number({ invalid_type_error: "Price must be a number." }).min(0, "Price cannot be negative.").optional(), // Optional for services
+  price: z.coerce.number({ invalid_type_error: "Price must be a number." }).min(0, "Price cannot be negative.").optional(),
   currency: z.string().length(3, "Currency code must be 3 characters (e.g., USD).").default("USD").transform(value => value.toUpperCase()),
   perUnit: z.string().max(30, "Unit description (e.g., /kg, /ton, /hour) is too long.").optional(),
-  category: z.enum(UNIFIED_MARKETPLACE_CATEGORIES, {
+  category: z.enum(UNIFIED_MARKETPLACE_CATEGORY_IDS, { // Uses the new flat list of subcategory IDs
     errorMap: () => ({ message: "Please select a valid category." }),
   }),
   isSustainable: z.boolean().default(false).optional(),
@@ -35,17 +35,11 @@ export const createMarketplaceItemSchema = z.object({
   imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters."),
-  // Service-specific fields (optional)
   skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("For services: Enter skills, comma-separated"),
   compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional().describe("For services: e.g., $50/hr, Project-based"),
 });
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
-
-
-// createTalentListingSchema is now deprecated, use createMarketplaceItemSchema with listingType='Service'
-// export const createTalentListingSchema = z.object({ ... });
-// export type CreateTalentListingValues = z.infer<typeof createTalentListingSchema>;
 
 
 export const createForumTopicSchema = z.object({

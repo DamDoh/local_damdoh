@@ -1,4 +1,6 @@
 
+import { AGRICULTURAL_CATEGORIES } from './category-data';
+
 export const APP_NAME = "DamDoh";
 
 export const STAKEHOLDER_ROLES = [
@@ -20,23 +22,18 @@ export const STAKEHOLDER_ROLES = [
 
 export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
 
-// Unified Marketplace Categories
-export const UNIFIED_MARKETPLACE_CATEGORIES = [
-  'Agricultural Produce',
-  'Inputs & Supplies',
-  'Machinery & Equipment',
-  'Professional Services & Labor',
-  'Land & Tenancies',
-] as const;
-export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORIES[number];
+// Unified Marketplace Categories - Now refers to the leaf nodes (subcategories)
+export const UNIFIED_MARKETPLACE_CATEGORY_IDS = AGRICULTURAL_CATEGORIES.map(cat => cat.id) as [string, ...string[]]; // Ensure it's not an empty array for Zod enum
+export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORY_IDS[number];
+
 
 export const LISTING_TYPES = ['Product', 'Service'] as const;
 export type ListingType = typeof LISTING_TYPES[number];
 
-// Filter options for Unified Marketplace page
+// Filter options for Marketplace page (using the new subcategories)
 export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketplaceCategoryType | 'All', label: string }> = [
   { value: 'All', label: 'All Categories' },
-  ...UNIFIED_MARKETPLACE_CATEGORIES.map(cat => ({ value: cat, label: cat })),
+  ...AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name })),
 ];
 
 export const LISTING_TYPE_FILTER_OPTIONS: Array<{ value: ListingType | 'All', label: string }> = [
@@ -44,36 +41,12 @@ export const LISTING_TYPE_FILTER_OPTIONS: Array<{ value: ListingType | 'All', la
   ...LISTING_TYPES.map(type => ({ value: type, label: `${type}s` })),
 ];
 
-// Form options for Marketplace creation (doesn't include "All")
+// Form options for Marketplace creation (using the new subcategories)
 export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
-  UNIFIED_MARKETPLACE_CATEGORIES.map(cat => ({ value: cat, label: cat }));
+  AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name }));
 
 export const LISTING_TYPE_FORM_OPTIONS: Array<{ value: ListingType, label: string }> =
   LISTING_TYPES.map(type => ({ value: type, label: type }));
-
-
-// Old Talent Exchange constants - will be removed or deprecated by new unified system
-// export const TALENT_CATEGORY_VALUES = ['Jobs & Recruitment', 'Land & Tenancies', 'Equipment Rentals & Services'] as const;
-// export type TalentCategoryType = typeof TALENT_CATEGORY_VALUES[number];
-
-// export const TALENT_FILTER_OPTIONS: Array<{ value: TalentCategoryType | 'All', label: string }> = [
-//     { value: 'All', label: 'All Categories' },
-//     ...TALENT_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }))
-// ];
-
-// export const TALENT_FORM_OPTIONS: Array<{ value: TalentCategoryType, label: string }> =
-//     TALENT_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }));
-
-// export const TALENT_LISTING_TYPE_VALUES = ['Job', 'Service'] as const;
-// export type TalentListingTypeOld = typeof TALENT_LISTING_TYPE_VALUES[number];
-
-// export const TALENT_LISTING_TYPE_FILTER_OPTIONS: Array<{value: TalentListingTypeOld | 'All', label: string}> = [
-//     {value: 'All', label: 'All Listing Types'},
-//     ...TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}))
-// ];
-
-// export const TALENT_LISTING_TYPE_FORM_OPTIONS: Array<{value: TalentListingTypeOld, label: string}> = 
-//     TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}));
 
 
 export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
@@ -88,3 +61,4 @@ export const AGRI_EVENT_FILTER_OPTIONS: Array<{value: AgriEventTypeConstant | 'A
     {value: 'All', label: 'All Event Types'},
     ...AGRI_EVENT_TYPES.map(type => ({value: type, label: type}))
 ];
+
