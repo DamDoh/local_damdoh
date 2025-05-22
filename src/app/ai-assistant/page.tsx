@@ -53,12 +53,13 @@ export default function AiAssistantPage() {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content: {
-          summary: `Welcome to ${APP_NAME} AI Knowledge! I'm here to assist you with your agricultural journey.
-You can:
-1. Ask me anything about sustainable farming, agricultural supply chains, farming business, or how to use the DamDoh app.
-2. Upload a photo of a crop issue (using the paperclip icon) or use your phone's camera (camera icon) to capture an image of an affected plant, and I'll help analyze and diagnose the problem.
+          summary: `Hello there! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture! 🧑‍🌾
+Wondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.
 
-How can I assist you today?`,
+🌱 **Got a crop concern?**
+Use the paperclip icon 📎 to upload a photo, or tap the camera icon 📸 to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.
+
+Ready to explore? How can I assist you today?`,
           detailedPoints: [],
         },
         timestamp: new Date(),
@@ -358,3 +359,5 @@ How can I assist you today?`,
     </div>
   );
 }
+
+      
