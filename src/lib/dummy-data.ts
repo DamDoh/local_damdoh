@@ -1,6 +1,6 @@
 
-import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, TalentListing, FeedItem, DirectMessage, AgriEvent, AgriEventType, MobileHomeCategory, MobileDiscoverItem } from './types';
-import { STAKEHOLDER_ROLES, MARKETPLACE_CATEGORY_VALUES, TALENT_CATEGORY_VALUES } from './constants';
+import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, FeedItem, DirectMessage, AgriEvent, MobileHomeCategory, MobileDiscoverItem } from './types';
+import { STAKEHOLDER_ROLES, UNIFIED_MARKETPLACE_CATEGORIES, LISTING_TYPES } from './constants';
 import { Sprout, Tractor, ShoppingBag, Cog, Users, BookOpen, Bot, TrendingUp, Briefcase, Package, Wheat, Truck, Leaf, ShieldAlert, Brain, Award, LandPlot, Wrench, Sparkles, CalendarDays, Search, User, MessageSquare, ShoppingCart as MarketIcon, Home } from "lucide-react";
 
 
@@ -72,7 +72,7 @@ export const dummyFeedItems: FeedItem[] = [
     userAvatar: dummyUsersData['userA'].avatarUrl,
     userHeadline: dummyUsersData['userA'].headline,
     content: 'Shared insights from the West Africa Post-Harvest Losses Summit. Key strategies discussed for improving storage and transportation for grains. Full report linked in the "Sustainable Agriculture" forum. #PostHarvest #FoodSecurity #AgriLogistics ...more',
-    link: '/forums/sustainable-farming/post123',
+    link: '/forums/ft2', // Updated link
     postImage: "https://placehold.co/600x350.png",
     dataAiHint: "conference agriculture",
     likesCount: 78,
@@ -87,7 +87,7 @@ export const dummyFeedItems: FeedItem[] = [
     userAvatar: dummyUsersData['userB'].avatarUrl,
     userHeadline: dummyUsersData['userB'].headline,
     content: "Fresh listing: 500kg of certified organic ginger, ready for export. Seeking partners in the European market. View specs and pricing on our Marketplace profile. #OrganicGinger #Export #DirectSourcing ...more",
-    link: '/marketplace/item-organic-ginger',
+    link: '/marketplace/item3', // Assuming item3 might be ginger
     postImage: "https://placehold.co/600x400.png",
     dataAiHint: "ginger harvest",
     likesCount: 135,
@@ -102,7 +102,7 @@ export const dummyFeedItems: FeedItem[] = [
     userAvatar: dummyUsersData['userC'].avatarUrl,
     userHeadline: dummyUsersData['userC'].headline,
     content: "Proud to announce our new partnership with 'FarmFresh Logistics' to implement AI-powered route optimization for their fleet, reducing fuel consumption by 15% and ensuring faster delivery of perishable goods! #AgriTech #Sustainability #LogisticsInnovation ...more",
-    link: '/profiles/agritech-solutions',
+    link: '/profiles/agriTechSolutions', // Placeholder if this profile doesn't exist
     postImage: "https://placehold.co/600x350.png",
     dataAiHint: "technology agriculture",
     likesCount: 210,
@@ -122,7 +122,7 @@ export const dummyProfiles: UserProfile[] = [
 ];
 
 // --- Network Page Data ---
-export const dummySuggestedConnections: UserProfile[] = [
+export const dummySuggestedConnections: UserProfile[] = [ // These will be overridden by AI now
   { id: 'sc1', name: dummyUsersData['sc1'].name, role: 'Trader', location: 'Rotterdam Port, Netherlands', avatarUrl: dummyUsersData['sc1'].avatarUrl, profileSummary: dummyUsersData['sc1'].headline, email: 'contact@agrilogistics.global'},
   { id: 'sc2', name: dummyUsersData['sc2'].name, role: 'Input Supplier', location: 'Nairobi, Kenya', avatarUrl: dummyUsersData['sc2'].avatarUrl, profileSummary: dummyUsersData['sc2'].headline, email: 'sales@ecofertilizers.ke'},
   { id: 'sc3', name: dummyUsersData['sc3'].name, role: 'Agricultural Cooperative', location: 'Minas Gerais, Brazil', avatarUrl: dummyUsersData['sc3'].avatarUrl, profileSummary: dummyUsersData['sc3'].headline, email: 'maria.silva@coffeecoop.br'},
@@ -133,10 +133,11 @@ export const dummySuggestedConnections: UserProfile[] = [
 export const dummyNetworkInterests = ['All', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
 
 
-// --- Marketplace Page Data ---
+// --- Marketplace Page Data (Unified) ---
 export const dummyMarketplaceItems: MarketplaceItem[] = [
+  // Existing Product Listings (adapted)
   {
-    id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)',
+    id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)', listingType: 'Product',
     description: 'High-altitude, Fair Trade certified organic quinoa from Peru. Ready for export. Seeking direct buyers or processors.',
     price: 3200, currency: 'USD', perUnit: '/ton', sellerId: 'quinoaCoopPeru',
     category: 'Agricultural Produce', location: 'Andes Region, Peru',
@@ -146,16 +147,7 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
     aiPriceSuggestion: {min: 3100, max: 3350, confidence: 'Medium'}
   },
   {
-    id: 'item2', name: 'Refrigerated Trucking Services (Cross-Border)',
-    description: 'Reliable cold chain logistics for perishable goods. Servicing US-Canada-Mexico routes. GPS tracked, temp-controlled fleet.',
-    price: 0.85, currency: 'USD', perUnit: '/mile (estimate)', sellerId: 'coolHaulLogistics',
-    category: 'Machinery & Business Services', location: 'Servicing North America',
-    imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 172800000).toISOString(),
-    contactInfo: 'Request quote via profile.', dataAiHint: "truck logistics",
-    sellerVerification: 'Verified'
-  },
-  {
-    id: 'item3', name: 'Certified Organic Fertilizer (NPK 5-3-2)',
+    id: 'item3', name: 'Certified Organic Fertilizer (NPK 5-3-2)', listingType: 'Product',
     description: 'Bulk supply of OMRI listed organic fertilizer. Ideal for vegetable and fruit crops. Pelletized for easy application.',
     price: 650, currency: 'USD', perUnit: '/ton', sellerId: 'ecoGrowInputs',
     category: 'Inputs & Supplies', location: 'Global Shipping',
@@ -165,16 +157,16 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
     aiPriceSuggestion: {min: 600, max: 700, confidence: 'High'}
   },
   {
-    id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit',
+    id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit', listingType: 'Product',
     description: 'High-capacity mobile seed cleaning and optical sorting machine for sale. Gently used, excellent condition. Improves seed quality and reduces waste.',
     price: 45000, currency: 'USD', perUnit: 'unit', sellerId: 'seedTechResale',
-    category: 'Machinery & Business Services', location: 'Midwest, USA',
+    category: 'Machinery & Equipment', location: 'Midwest, USA',
     imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 604800000).toISOString(),
     contactInfo: 'Book via platform.', dataAiHint: "seed cleaning machine",
     sellerVerification: 'Pending'
   },
   {
-    id: 'item5', name: 'Fresh Harvested Tomatoes (500kg)',
+    id: 'item5', name: 'Fresh Harvested Tomatoes (500kg)', listingType: 'Product',
     description: 'Vine-ripened Roma tomatoes, perfect for processing or fresh market. Sustainably grown. Available for immediate pickup.',
     price: 1.20, currency: 'USD', perUnit: '/kg', sellerId: 'sunnyAcresFarm',
     category: 'Agricultural Produce', location: 'Local Farm Region, CA',
@@ -184,16 +176,7 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
     aiPriceSuggestion: {min: 1.10, max: 1.30, confidence: 'High'}
   },
   {
-    id: 'item6', name: 'Agricultural Business Plan Consulting',
-    description: 'Expert consulting for developing bankable business plans, feasibility studies, and grant proposals for agribusinesses.',
-    price: 150, currency: 'USD', perUnit: '/hour', sellerId: 'agriPlanExperts',
-    category: 'Machinery & Business Services', location: 'Remote',
-    imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
-    contactInfo: 'info@agriplan.com', dataAiHint: "business meeting",
-    sellerVerification: 'Verified'
-  },
-  {
-    id: 'item7', name: 'Drip Irrigation Kits (1 Acre Coverage)',
+    id: 'item7', name: 'Drip Irrigation Kits (1 Acre Coverage)', listingType: 'Product',
     description: 'Complete drip irrigation kits for small to medium scale farms. Includes mainlines, laterals, emitters, and filter. Water efficient.',
     price: 300, currency: 'USD', perUnit: '/kit', sellerId: 'inputSolutionsInc',
     category: 'Inputs & Supplies', location: 'Ships Worldwide',
@@ -201,13 +184,61 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
     contactInfo: 'sales@inputsolutions.ag', dataAiHint: "irrigation system",
     isSustainable: true, sellerVerification: 'Verified'
   },
+  // Converted Talent Listings to MarketplaceItem with listingType: 'Service'
   {
-    id: 'item8', name: 'Soil Testing & Analysis Service',
+    id: 'service1', name: 'Supply Chain Manager (Perishables)', listingType: 'Service',
+    description: 'Seeking experienced Supply Chain Manager for our expanding fresh produce export business. Responsibilities include logistics, inventory, and supplier relations. Based in Nairobi.',
+    price: 0, currency: 'KES', // Price might not be directly applicable for jobs, or use placeholder
+    sellerId: 'kenyaFreshExports', category: 'Professional Services & Labor', location: 'Nairobi, Kenya',
+    skillsRequired: ['Supply Chain Management', 'Cold Chain Logistics', 'Export Documentation', 'ERP Systems'],
+    compensation: 'Competitive Salary + Benefits', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+    dataAiHint: "office meeting", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'Apply via DamDoh profile.',
+    sellerVerification: 'Verified'
+  },
+  {
+    id: 'service2', name: 'Organic Farm Certification Consultant', listingType: 'Service',
+    description: 'Offering consultancy services for farms transitioning to organic or seeking certifications (e.g., USDA Organic, EU Organic). Includes audit preparation and documentation support.',
+    price: 0, currency: 'USD',
+    sellerId: 'organicGrowthAdvisors', category: 'Professional Services & Labor', location: 'Remote / Global',
+    skillsRequired: ['Organic Standards (USDA, EU, JAS)', 'Farm Auditing', 'Sustainable Agriculture', 'Documentation'],
+    compensation: 'Project-based or Daily Rate', createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
+    dataAiHint: "farm consultant", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'info@organicgrowth.com',
+    isSustainable: true
+  },
+  {
+    id: 'service3', name: 'Lease: 50 Hectares Prime Arable Land', listingType: 'Service',
+    description: '50 hectares of well-drained, fertile land available for long-term lease. Suitable for row crops or horticulture. Irrigation access available.',
+    price: 0, currency: 'USD', perUnit: '/year/hectare (example)',
+    sellerId: 'landHoldingsLLC', category: 'Land & Tenancies', location: 'Central Valley, CA',
+    compensation: 'Negotiable Annual Lease', createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+    dataAiHint: "farmland aerial", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'Contact owner for terms.'
+  },
+  {
+    id: 'service4', name: 'Custom Drone-Based Crop Scouting', listingType: 'Service',
+    description: 'FAA-certified drone pilot offering NDVI analysis, pest detection, and plant health assessments for large-scale farms. Covering [State/Region].',
+    price: 0, currency: 'USD',
+    sellerId: 'skyAgroScout', category: 'Professional Services & Labor', location: 'California, USA',
+    skillsRequired: ['Drone Piloting (Fixed Wing & VTOL)', 'NDVI & Multispectral Analysis', 'GIS Mapping', 'Agronomy Basics'],
+    compensation: 'Per Acre / Per Project', createdAt: new Date(Date.now() - 86400000 * 7).toISOString(),
+    dataAiHint: "drone agriculture", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'DroneScout@example.com'
+  },
+  {
+    id: 'service5', name: 'Combine Harvester for Rent (with Operator)', listingType: 'Service',
+    description: 'John Deere S780 combine harvester available for rent during harvest season. Experienced operator included. Ideal for wheat, corn, soybeans.',
+    price: 0, currency: 'USD',
+    sellerId: 'midwestHarvestServices', category: 'Machinery & Equipment', location: 'Iowa, USA', // Also a type of equipment rental
+    skillsRequired: ['Combine Operation', 'Grain Harvesting'],
+    compensation: 'Per Hour / Per Acre', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(),
+    dataAiHint: "combine harvester", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'Call to book.'
+  },
+  {
+    id: 'item8', name: 'Soil Testing & Analysis Service', listingType: 'Service',
     description: 'Comprehensive soil testing service including nutrient analysis, pH levels, and organic matter content. Includes recommendations.',
     price: 75, currency: 'USD', perUnit: '/sample', sellerId: 'agriTechInnovator',
-    category: 'Machinery & Business Services', location: 'Lab in Wageningen, Mail-in samples accepted',
+    category: 'Professional Services & Labor', location: 'Lab in Wageningen, Mail-in samples accepted',
     imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 6).toISOString(),
-    contactInfo: 'lena.hanson@wur.nl', dataAiHint: "soil lab test"
+    contactInfo: 'lena.hanson@wur.nl', dataAiHint: "soil lab test",
+    isSustainable: true,
   }
 ];
 
@@ -227,7 +258,7 @@ export const dummyForumTopicDetail: ForumTopic = {
   id: 'agri-logistics', // Matches ft3 for linking
   title: 'Agri-Logistics & Cold Chain Management',
   description: 'A forum for discussing challenges and solutions in transporting perishable goods, warehouse optimization, last-mile delivery strategies, and cold chain technologies to reduce post-harvest losses and ensure quality.',
-  postCount: 250, // Should ideally match the list view
+  postCount: 250, 
   lastActivityAt: new Date(Date.now() - 900000).toISOString(),
   creatorId: 'logisticsGuru',
   icon: 'Truck',
@@ -261,16 +292,6 @@ export const dummyForumPosts: ForumPost[] = [
 ];
 
 
-// --- Talent Exchange Page Data ---
-export const dummyTalentListings: TalentListing[] = [
-  { id: 'talent1', title: 'Supply Chain Manager (Perishables)', description: 'Seeking experienced Supply Chain Manager for our expanding fresh produce export business. Responsibilities include logistics, inventory, and supplier relations. Based in Nairobi.', type: 'Job', category: 'Jobs & Recruitment', listerId: 'kenyaFreshExports', location: 'Nairobi, Kenya', skillsRequired: ['Supply Chain Management', 'Cold Chain Logistics', 'Export Documentation', 'ERP Systems'], compensation: 'Competitive Salary + Benefits', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), dataAiHint: "office meeting" },
-  { id: 'talent2', title: 'Organic Farm Certification Consultant', description: 'Offering consultancy services for farms transitioning to organic or seeking certifications (e.g., USDA Organic, EU Organic). Includes audit preparation and documentation support.', type: 'Service', category: 'Equipment Rentals & Services', listerId: 'organicGrowthAdvisors', location: 'Remote / Global', skillsRequired: ['Organic Standards (USDA, EU, JAS)', 'Farm Auditing', 'Sustainable Agriculture', 'Documentation'], compensation: 'Project-based or Daily Rate', createdAt: new Date(Date.now() - 86400000 * 5).toISOString(), dataAiHint: "farm consultant" },
-  { id: 'talent3', title: 'Agricultural Loan Officer', description: 'Financial institution seeks an Agricultural Loan Officer to manage a portfolio of agribusiness clients. Experience in credit analysis for farming and processing required.', type: 'Job', category: 'Jobs & Recruitment', listerId: 'agriBankCorp', location: 'Midwest, USA', skillsRequired: ['Agricultural Finance', 'Credit Analysis', 'Client Relationship Management', 'Risk Assessment'], compensation: '$80k - $110k + Bonus', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(), dataAiHint: "finance agriculture" },
-  { id: 'talent4', title: 'Lease: 50 Hectares Prime Arable Land', description: '50 hectares of well-drained, fertile land available for long-term lease. Suitable for row crops or horticulture. Irrigation access available.', type: 'Service', category: 'Land & Tenancies', listerId: 'landHoldingsLLC', location: 'Central Valley, CA', skillsRequired: ['Sustainable Farming Practices'], compensation: 'Annual Lease per Hectare', createdAt: new Date(Date.now() - 86400000 * 3).toISOString(), dataAiHint: "farmland aerial" },
-  { id: 'talent5', title: 'Custom Drone-Based Crop Scouting Service', description: 'FAA-certified drone pilot offering NDVI analysis, pest detection, and plant health assessments for large-scale farms. Covering [State/Region].', type: 'Service', category: 'Equipment Rentals & Services', listerId: 'skyAgroScout', location: 'California, USA', skillsRequired: ['Drone Piloting (Fixed Wing & VTOL)', 'NDVI & Multispectral Analysis', 'GIS Mapping', 'Agronomy Basics'], compensation: 'Per Acre / Per Project', createdAt: new Date(Date.now() - 86400000 * 7).toISOString(), dataAiHint: "drone agriculture" },
-  { id: 'talent6', title: 'Combine Harvester for Rent (with Operator)', description: 'John Deere S780 combine harvester available for rent during harvest season. Experienced operator included. Ideal for wheat, corn, soybeans.', type: 'Service', category: 'Equipment Rentals & Services', listerId: 'midwestHarvestServices', location: 'Iowa, USA', skillsRequired: ['Combine Operation', 'Grain Harvesting'], compensation: 'Per Hour / Per Acre', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(), dataAiHint: "combine harvester" },
-];
-
 // --- Profile Detail Page Data ---
 export const dummyProfileDetailsPageData: { profile: UserProfile, activity: any[] } = {
   profile: {
@@ -293,10 +314,10 @@ export const dummyProfileDetailsPageData: { profile: UserProfile, activity: any[
     connections: ['farmerJoe', 'ecoHarvestRetail', 'globalCommoditiesTrader']
   },
   activity: [
-    { id: 'post1', type: 'Forum Discussion Started', title: 'Seeking Best Practices for Cashew Nut Shell Liquid (CNSL) Extraction', date: '2024-05-15', link: '/forums/processing-tech/cnsl-extraction' },
-    { id: 'item1', type: 'Marketplace Listing (Seeking)', title: 'RFP: Bulk Supply of Dried Mango Slices (Organic)', date: '2024-05-20', link: '/marketplace/rfp/dried-mango' },
+    { id: 'post1', type: 'Forum Discussion Started', title: 'Seeking Best Practices for Cashew Nut Shell Liquid (CNSL) Extraction', date: '2024-05-15', link: '/forums/ft5' }, // Example link
+    { id: 'item1', type: 'Marketplace Listing (Seeking)', title: 'RFP: Bulk Supply of Dried Mango Slices (Organic)', date: '2024-05-20', link: '/marketplace/rfp-mango' }, // Example link
     { id: 'post2', type: 'Shared Article', title: 'Report: APAC Food Processing Market Growth Trends 2025', date: '2024-05-10', link: '#' },
-    { id: 'conn1', type: 'New Connection', title: 'Connected with GreenLeaf Organics Cooperative', date: '2024-05-22', link: '/profiles/greenleaf-organics' },
+    { id: 'conn1', type: 'New Connection', title: 'Connected with GreenLeaf Organics Cooperative', date: '2024-05-22', link: '/profiles/userB' },
   ]
 };
 
@@ -376,19 +397,19 @@ export const dummyAgriEvents: AgriEvent[] = [
 export const mobileHomeCategories: MobileHomeCategory[] = [
   { id: 'cat1', name: 'Produce Market', icon: Sprout, href: '/marketplace?category=Agricultural+Produce', dataAiHint: "fresh vegetables" },
   { id: 'cat2', name: 'Farm Inputs', icon: ShoppingBag, href: '/marketplace?category=Inputs+%26+Supplies', dataAiHint: "seeds fertilizer" },
-  { id: 'cat3', name: 'Agri-Services', icon: Briefcase, href: '/talent-exchange', dataAiHint: "farm service" },
-  { id: 'cat4', name: 'Machinery', icon: Tractor, href: '/marketplace?category=Machinery+%26+Business+Services', dataAiHint: "farm tractor" },
-  { id: 'cat5', name: 'Logistics', icon: Truck, href: '/forums/ft3', dataAiHint: "supply chain" }, // Link to a relevant forum for now
+  { id: 'cat3', name: 'Agri-Services', icon: Briefcase, href: '/marketplace?listingType=Service', dataAiHint: "farm service" }, // Updated link
+  { id: 'cat4', name: 'Machinery', icon: Tractor, href: '/marketplace?category=Machinery+%26+Equipment', dataAiHint: "farm tractor" },
+  { id: 'cat5', name: 'Logistics', icon: Truck, href: '/forums/ft3', dataAiHint: "supply chain" }, 
   { id: 'cat6', name: 'Knowledge Hub', icon: BookOpen, href: '/forums', dataAiHint: "learning resources" },
-  { id: 'cat7', name: 'Agri-Tech', icon: Bot, href: '/ai-assistant', dataAiHint: "ai agriculture" },
+  { id: 'cat7', name: 'AI Assistant', icon: Bot, href: '/ai-assistant', dataAiHint: "ai agriculture" },
   { id: 'cat8', name: 'Events', icon: CalendarDays, href: '/agri-events', dataAiHint: "farm event" },
 ];
 
 export const mobileDiscoverItems: MobileDiscoverItem[] = [
-  { id: 'disc1', title: 'Fair Trade Coffee Beans', imageUrl: 'https://placehold.co/200x250.png', type: 'Marketplace', link: '/marketplace/item1', dataAiHint: "coffee beans" }, // Assuming item1 is coffee-like
+  { id: 'disc1', title: 'Fair Trade Coffee Beans', imageUrl: 'https://placehold.co/200x250.png', type: 'Marketplace', link: '/marketplace/item1', dataAiHint: "coffee beans" }, 
   { id: 'disc2', title: 'Join: Cold Chain Logistics Discussion', imageUrl: 'https://placehold.co/200x250.png', type: 'Forum', link: '/forums/ft3', dataAiHint: "logistics discussion" },
   { id: 'disc3', title: 'Sarah Chen: Processing Expert', imageUrl: dummyUsersData['agriProcessorSarah'].avatarUrl || 'https://placehold.co/200x250.png', type: 'Profile', link: '/profiles/agriProcessorSarah', dataAiHint: "business woman" },
-  { id: 'disc4', title: 'Organic Certification Consulting', imageUrl: 'https://placehold.co/200x250.png', type: 'Service', link: '/talent-exchange/talent2', dataAiHint: "organic farm" }, // Assuming talent2 is a service
-  { id: 'disc5', title: 'New Tractors Available', imageUrl: 'https://placehold.co/200x250.png', type: 'Marketplace', link: '/marketplace/item4', dataAiHint: "new tractor" }, // Assuming item4 is machinery
+  { id: 'disc4', title: 'Organic Certification Consulting', imageUrl: 'https://placehold.co/200x250.png', type: 'Service', link: '/marketplace/service2', dataAiHint: "organic farm" }, 
+  { id: 'disc5', title: 'New Tractors Available', imageUrl: 'https://placehold.co/200x250.png', type: 'Marketplace', link: '/marketplace/item4', dataAiHint: "new tractor" }, 
   { id: 'disc6', title: 'Sustainable Farming Practices Forum', imageUrl: 'https://placehold.co/200x250.png', type: 'Forum', link: '/forums/ft1', dataAiHint: "sustainable farming" },
 ];

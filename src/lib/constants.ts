@@ -20,41 +20,61 @@ export const STAKEHOLDER_ROLES = [
 
 export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
 
-export const MARKETPLACE_CATEGORY_VALUES = ['Agricultural Produce', 'Inputs & Supplies', 'Machinery & Business Services'] as const;
-export type MarketplaceCategoryType = typeof MARKETPLACE_CATEGORY_VALUES[number];
+// Unified Marketplace Categories
+export const UNIFIED_MARKETPLACE_CATEGORIES = [
+  'Agricultural Produce',
+  'Inputs & Supplies',
+  'Machinery & Equipment',
+  'Professional Services & Labor',
+  'Land & Tenancies',
+] as const;
+export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORIES[number];
 
-// Updated filter options for Marketplace page
-export const MARKETPLACE_FILTER_OPTIONS: Array<{ value: MarketplaceCategoryType | 'All' | 'Sustainable Solutions', label: string }> = [
+export const LISTING_TYPES = ['Product', 'Service'] as const;
+export type ListingType = typeof LISTING_TYPES[number];
+
+// Filter options for Unified Marketplace page
+export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketplaceCategoryType | 'All', label: string }> = [
   { value: 'All', label: 'All Categories' },
-  ...MARKETPLACE_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat })),
-  { value: 'Sustainable Solutions', label: 'Sustainable Solutions' } 
+  ...UNIFIED_MARKETPLACE_CATEGORIES.map(cat => ({ value: cat, label: cat })),
 ];
 
-// Form options for Marketplace creation (doesn't include "All" or "Sustainable")
-export const MARKETPLACE_FORM_OPTIONS: Array<{ value: MarketplaceCategoryType, label: string }> =
-  MARKETPLACE_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }));
-
-export const TALENT_CATEGORY_VALUES = ['Jobs & Recruitment', 'Land & Tenancies', 'Equipment Rentals & Services'] as const;
-export type TalentCategoryType = typeof TALENT_CATEGORY_VALUES[number];
-
-export const TALENT_FILTER_OPTIONS: Array<{ value: TalentCategoryType | 'All', label: string }> = [
-    { value: 'All', label: 'All Categories' },
-    ...TALENT_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }))
+export const LISTING_TYPE_FILTER_OPTIONS: Array<{ value: ListingType | 'All', label: string }> = [
+  { value: 'All', label: 'All Types (Products & Services)' },
+  ...LISTING_TYPES.map(type => ({ value: type, label: `${type}s` })),
 ];
 
-export const TALENT_FORM_OPTIONS: Array<{ value: TalentCategoryType, label: string }> =
-    TALENT_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }));
+// Form options for Marketplace creation (doesn't include "All")
+export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
+  UNIFIED_MARKETPLACE_CATEGORIES.map(cat => ({ value: cat, label: cat }));
 
-export const TALENT_LISTING_TYPE_VALUES = ['Job', 'Service'] as const;
-export type TalentListingType = typeof TALENT_LISTING_TYPE_VALUES[number];
+export const LISTING_TYPE_FORM_OPTIONS: Array<{ value: ListingType, label: string }> =
+  LISTING_TYPES.map(type => ({ value: type, label: type }));
 
-export const TALENT_LISTING_TYPE_FILTER_OPTIONS: Array<{value: TalentListingType | 'All', label: string}> = [
-    {value: 'All', label: 'All Listing Types'},
-    ...TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}))
-];
 
-export const TALENT_LISTING_TYPE_FORM_OPTIONS: Array<{value: TalentListingType, label: string}> = 
-    TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}));
+// Old Talent Exchange constants - will be removed or deprecated by new unified system
+// export const TALENT_CATEGORY_VALUES = ['Jobs & Recruitment', 'Land & Tenancies', 'Equipment Rentals & Services'] as const;
+// export type TalentCategoryType = typeof TALENT_CATEGORY_VALUES[number];
+
+// export const TALENT_FILTER_OPTIONS: Array<{ value: TalentCategoryType | 'All', label: string }> = [
+//     { value: 'All', label: 'All Categories' },
+//     ...TALENT_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }))
+// ];
+
+// export const TALENT_FORM_OPTIONS: Array<{ value: TalentCategoryType, label: string }> =
+//     TALENT_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }));
+
+// export const TALENT_LISTING_TYPE_VALUES = ['Job', 'Service'] as const;
+// export type TalentListingTypeOld = typeof TALENT_LISTING_TYPE_VALUES[number];
+
+// export const TALENT_LISTING_TYPE_FILTER_OPTIONS: Array<{value: TalentListingTypeOld | 'All', label: string}> = [
+//     {value: 'All', label: 'All Listing Types'},
+//     ...TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}))
+// ];
+
+// export const TALENT_LISTING_TYPE_FORM_OPTIONS: Array<{value: TalentListingTypeOld, label: string}> = 
+//     TALENT_LISTING_TYPE_VALUES.map(type => ({value: type, label: type}));
+
 
 export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
 

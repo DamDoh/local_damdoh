@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, ShoppingCart, MessageSquare, User, Briefcase } from "lucide-react"; // Added Briefcase for Talent/Services
+import { Home, Search, ShoppingCart, MessageSquare, User } from "lucide-react"; 
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -14,8 +14,8 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: "/", label: "Explore", icon: Home },
-  { href: "/marketplace", label: "Market", icon: ShoppingCart },
-  { href: "/talent-exchange", label: "Services", icon: Briefcase },
+  { href: "/marketplace", label: "Marketplace", icon: ShoppingCart }, // Unified Marketplace
+  { href: "/search", label: "Search", icon: Search }, // Added Search
   { href: "/forums", label: "Forums", icon: MessageSquare },
   { href: "/profiles/me", label: "Profile", icon: User },
 ];
@@ -32,7 +32,7 @@ export function MobileBottomNavigation() {
             key={item.label}
             href={item.href}
             className={cn(
-              "flex flex-col items-center justify-center text-[11px] h-full w-1/5 pt-1 pb-0.5", // Adjusted padding and text size
+              "flex flex-col items-center justify-center text-[11px] h-full w-1/5 pt-1 pb-0.5", 
               isActive ? "text-primary" : "text-muted-foreground"
             )}
           >
@@ -44,5 +44,3 @@ export function MobileBottomNavigation() {
     </nav>
   );
 }
-
-    

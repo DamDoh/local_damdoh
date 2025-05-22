@@ -1,5 +1,5 @@
 
-import type { StakeholderRole } from './constants';
+import type { StakeholderRole, UnifiedMarketplaceCategoryType, ListingType } from './constants';
 
 export interface UserProfile {
   id: string;
@@ -9,75 +9,69 @@ export interface UserProfile {
   role: StakeholderRole;
   location: string;
   bio?: string;
-  profileSummary?: string; // AI Generated, focusing on agricultural expertise and supply chain role
+  profileSummary?: string; 
   yearsOfExperience?: number;
-  areasOfInterest?: string[]; // e.g., 'Sustainable Sourcing', 'Cold Chain Logistics', 'Organic Certification'
-  needs?: string[]; // e.g., 'Reliable Transporters', 'Bulk Buyers for Grains', 'Eco-friendly Packaging Suppliers'
+  areasOfInterest?: string[]; 
+  needs?: string[]; 
   contactInfo?: {
     phone?: string;
-    website?: string; // e.g., farm website, company portal
+    website?: string; 
   };
-  connections?: string[]; // Array of user IDs, representing supply chain partners
+  connections?: string[]; 
 }
 
 export interface ForumTopic {
   id: string;
-  title: string; // e.g., 'Innovations in Post-Harvest Technology', 'Navigating Export Regulations for Coffee'
+  title: string; 
   description: string;
   creatorId: string;
-  createdAt: string; // ISO date string
+  createdAt: string; 
   postCount: number;
-  lastActivityAt: string; // ISO date string
-  icon?: string; // Lucide icon name, related to agriculture/business
+  lastActivityAt: string; 
+  icon?: string; 
 }
 
 export interface ForumPost {
   id: string;
   topicId: string;
-  authorId: string; // Could be a farmer, supplier, researcher, etc.
-  content: string; // Discussions on best practices, market queries, collaboration requests
-  createdAt: string; // ISO date string
-  updatedAt?: string; // ISO date string
+  authorId: string; 
+  content: string; 
+  createdAt: string; 
+  updatedAt?: string; 
   likes: number;
-  replies?: ForumPost[]; // For threaded discussions
+  replies?: ForumPost[]; 
 }
 
 export interface MarketplaceItem {
   id:string;
-  name: string; // e.g., 'Organic Hass Avocados (Bulk)', 'Used Combine Harvester John Deere S780', 'Cold Storage Space for Rent'
+  name: string; 
+  listingType: ListingType; // 'Product' or 'Service'
   description: string;
-  price: number;
+  price: number; // Can be 0 or a placeholder for services if using 'compensation' field
   currency: string;
-  perUnit?: string; // e.g. "/ton", "/kg", "/bag"
-  sellerId: string; // Could be a farmer, cooperative, equipment dealer, service provider
-  category: 'Agricultural Produce' | 'Inputs & Supplies' | 'Machinery & Business Services';
+  perUnit?: string; // e.g. "/ton", "/kg", "/hour", "/project"
+  sellerId: string; 
+  category: UnifiedMarketplaceCategoryType; // Uses new unified categories
   location: string;
   imageUrl?: string;
-  createdAt: string; // ISO date string
+  createdAt: string; 
   contactInfo?: string;
   dataAiHint?: string;
   isSustainable?: boolean;
   sellerVerification?: 'Verified' | 'Pending' | 'Unverified';
-  aiPriceSuggestion?: {min: number, max: number, confidence: 'High' | 'Medium' | 'Low'};
+  aiPriceSuggestion?: {min: number, max: number, confidence: string};
+  // Fields primarily for 'Service' type listings (previously from TalentListing)
+  skillsRequired?: string[]; 
+  experienceLevel?: string; 
+  compensation?: string; // More descriptive for services, e.g., "Negotiable", "$50/hr", "Project-based"
 }
 
-export type TalentCategory = 'Jobs & Recruitment' | 'Land & Tenancies' | 'Equipment Rentals & Services';
+// TalentCategory is deprecated, use UnifiedMarketplaceCategoryType with listingType='Service'
+// export type TalentCategory = 'Jobs & Recruitment' | 'Land & Tenancies' | 'Equipment Rentals & Services';
 
-export interface TalentListing {
-  id: string;
-  title: string; // e.g., 'Experienced Agronomist for Tropical Fruits', 'Logistics Manager (Perishables)', 'Custom Drone Spraying Service'
-  description: string;
-  type: 'Job' | 'Service'; // Distinguishes if it's an employment offer or a service being offered
-  category: TalentCategory;
-  listerId: string; // Farm, Agribusiness, Cooperative, Individual
-  location: string; // Can be specific or 'Remote' or 'Servicing X Region'
-  skillsRequired?: string[]; // e.g., 'HACCP Certification', 'Supply Chain Optimization', 'Precision Agriculture'
-  experienceLevel?: string; // e.g., 'Lead Agronomist', 'Junior Supply Chain Analyst'
-  compensation?: string; // Salary, project fee, per-acre rate
-  createdAt: string; // ISO date string
-  contactInfo?: string;
-  dataAiHint?: string;
-}
+// TalentListing is deprecated, its fields are merged into MarketplaceItem
+// export interface TalentListing { ... }
+
 
 export type AgriEventType = 'Conference' | 'Webinar' | 'Workshop' | 'Trade Show' | 'Field Day' | 'Networking Event';
 
@@ -85,15 +79,15 @@ export interface AgriEvent {
   id: string;
   title: string;
   description: string;
-  eventDate: string; // ISO date string (for date part)
-  eventTime?: string; // e.g., "14:00" (24-hour format for time part)
-  location: string; // Could be a physical address or "Online"
+  eventDate: string; 
+  eventTime?: string; 
+  location: string; 
   eventType: AgriEventType;
   organizer?: string;
   websiteLink?: string;
   imageUrl?: string;
-  listerId: string; // User ID of the person/org listing the event
-  createdAt: string; // ISO date string
+  listerId: string; 
+  createdAt: string; 
   dataAiHint?: string;
 }
 
@@ -111,23 +105,23 @@ export interface NavItem {
 
 export interface PollOption {
   text: string;
-  votes: number; // Placeholder for actual vote count
+  votes: number; 
 }
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
-  timestamp: string; // ISO date string
-  userId?: string; // User associated with the item
+  timestamp: string; 
+  userId?: string; 
   userName?: string;
   userAvatar?: string;
-  userHeadline?: string; // e.g., "Founder, AgriConnect Logistics", "Organic Vegetable Farmer & Educator"
-  content?: string; // e.g., "Just listed: 10 tons of organic quinoa. Seeking buyers.", "Great discussion on water conservation in the forums!"
+  userHeadline?: string; 
+  content?: string; 
   postImage?: string;
   dataAiHint?: string;
   likesCount?: number;
   commentsCount?: number;
-  link?: string; // Link to the full item
-  relatedUser?: { // For connection type
+  link?: string; 
+  relatedUser?: { 
     id: string;
     name: string;
     avatarUrl?: string;
@@ -137,19 +131,18 @@ export interface FeedItem {
 
 export interface DirectMessage {
   id: string;
-  senderName: string; // e.g., "AgriLogistics Co-op", "Maria - Farmer's Union"
+  senderName: string; 
   senderAvatarUrl?: string;
-  lastMessage: string; // e.g., "Regarding your soybean order...", "Can you share insights on coffee bean grading?"
-  timestamp: string; // ISO date string
+  lastMessage: string; 
+  timestamp: string; 
   unread?: boolean;
   dataAiHint?: string;
 }
 
-// New types for Mobile Homepage
 export interface MobileHomeCategory {
   id: string;
   name: string;
-  icon: React.ElementType; // Lucide icon
+  icon: React.ElementType; 
   href: string;
   dataAiHint?: string;
 }
@@ -158,7 +151,7 @@ export interface MobileDiscoverItem {
   id: string;
   title: string;
   imageUrl: string;
-  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service'; // To know where to link
+  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service'; 
   link: string;
   dataAiHint?: string;
 }

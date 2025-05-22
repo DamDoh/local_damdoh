@@ -1,5 +1,5 @@
 
-"use client"; // Top-level component needs to be client for Suspense if children use hooks like useSearchParams
+"use client"; 
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -9,16 +9,17 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, ShoppingCart, MessageSquare, ClipboardList, Briefcase, MapPin, DollarSign, Leaf, Package, Truck, ShieldAlert, Brain, TrendingUp, Award, Tractor, LandPlot, Wrench, Sparkles } from 'lucide-react';
+import { Users, ShoppingCart, MessageSquare, Briefcase, LandPlot, Wrench, MapPin, DollarSign, Leaf, Package, Truck, ShieldAlert, Brain, TrendingUp, Award, Tractor, Sparkles } from 'lucide-react';
 
 import { 
   dummyProfiles, 
   dummyMarketplaceItems, 
-  dummyForumTopics, 
-  dummyTalentListings,
+  dummyForumTopics,
+  // dummyTalentListings, // Deprecated: Talent listings are now part of dummyMarketplaceItems
   dummyUsersData 
 } from '@/lib/dummy-data';
-import type { UserProfile, MarketplaceItem, ForumTopic, TalentListing, TalentCategory } from '@/lib/types';
+import type { UserProfile, MarketplaceItem, ForumTopic, UnifiedMarketplaceCategoryType } from '@/lib/types';
+import type { ListingType } from '@/lib/constants';
 
 function SearchResultsComponent() {
   const searchParams = useSearchParams();
@@ -27,7 +28,7 @@ function SearchResultsComponent() {
   if (!query) {
     return (
       <div className="text-center py-10">
-        <p className="text-lg text-muted-foreground">Please enter a search term to find stakeholders, products, discussions, and services.</p>
+        <p className="text-lg text-muted-foreground">Please enter a search term to find stakeholders, products, services, and discussions.</p>
       </div>
     );
   }
@@ -45,7 +46,8 @@ function SearchResultsComponent() {
     item.name.toLowerCase().includes(lowerCaseQuery) ||
     item.description.toLowerCase().includes(lowerCaseQuery) ||
     item.category.toLowerCase().includes(lowerCaseQuery) ||
-    item.location.toLowerCase().includes(lowerCaseQuery)
+    item.location.toLowerCase().includes(lowerCaseQuery) ||
+    (item.listingType === 'Service' && item.skillsRequired?.some(skill => skill.toLowerCase().includes(lowerCaseQuery)))
   );
 
   const filteredForumTopics = dummyForumTopics.filter(topic =>
@@ -53,13 +55,8 @@ function SearchResultsComponent() {
     topic.description.toLowerCase().includes(lowerCaseQuery)
   );
 
-  const filteredTalentListings = dummyTalentListings.filter(listing =>
-    listing.title.toLowerCase().includes(lowerCaseQuery) ||
-    listing.description.toLowerCase().includes(lowerCaseQuery) ||
-    (listing.skillsRequired && listing.skillsRequired.some(skill => skill.toLowerCase().includes(lowerCaseQuery))) ||
-    listing.category.toLowerCase().includes(lowerCaseQuery) ||
-    listing.location.toLowerCase().includes(lowerCaseQuery)
-  );
+  // Talent listings are now part of filteredMarketplaceItems with listingType: 'Service'
+  // const filteredTalentListings = dummyTalentListings.filter(...);
 
   const getForumIcon = (iconName?: string) => {
     const iconProps = { className: "h-5 w-5 text-primary" };
@@ -76,17 +73,19 @@ function SearchResultsComponent() {
     }
   };
 
-  const getTalentCategoryIcon = (category?: TalentCategory) => {
-    const iconProps = {className: "h-4 w-4 mr-1"};
+  const getMarketplaceCategoryIcon = (category: UnifiedMarketplaceCategoryType) => {
+    const iconProps = {className: "h-3 w-3 mr-1"};
     switch (category) {
-      case 'Jobs & Recruitment': return <Briefcase {...iconProps} />;
+      case 'Agricultural Produce': return <Leaf {...iconProps} />;
+      case 'Inputs & Supplies': return <ShoppingBag {...iconProps} />;
+      case 'Machinery & Equipment': return <Tractor {...iconProps} />;
+      case 'Professional Services & Labor': return <Briefcase {...iconProps} />;
       case 'Land & Tenancies': return <LandPlot {...iconProps} />;
-      case 'Equipment Rentals & Services': return <Wrench {...iconProps} />; 
       default: return <Sparkles {...iconProps} />;
     }
   }
 
-  const totalResults = filteredProfiles.length + filteredMarketplaceItems.length + filteredForumTopics.length + filteredTalentListings.length;
+  const totalResults = filteredProfiles.length + filteredMarketplaceItems.length + filteredForumTopics.length;
 
   return (
     <div className="space-y-8">
@@ -133,7 +132,7 @@ function SearchResultsComponent() {
 
       {filteredMarketplaceItems.length > 0 && (
         <section>
-          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2"><ShoppingCart className="text-primary"/> Marketplace Items ({filteredMarketplaceItems.length})</h2>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2"><ShoppingCart className="text-primary"/> Marketplace & Services ({filteredMarketplaceItems.length})</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredMarketplaceItems.map((item: MarketplaceItem) => (
               <Card key={item.id} className="flex flex-col">
@@ -150,14 +149,26 @@ function SearchResultsComponent() {
                 </div>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-md line-clamp-1">{item.name}</CardTitle>
-                  <Badge variant="secondary" className="text-xs w-fit mt-1">{item.category}</Badge>
+                   <div className="flex items-center gap-2 pt-1">
+                    <Badge variant={item.listingType === 'Product' ? 'default' : 'secondary'} className="text-xs capitalize">
+                        {item.listingType === 'Product' ? <ShoppingBag className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
+                        {item.listingType}
+                    </Badge>
+                    <Badge variant="outline" className="text-xs flex items-center">
+                      {getMarketplaceCategoryIcon(item.category)} {item.category}
+                    </Badge>
+                  </div>
                 </CardHeader>
                 <CardContent className="flex-grow text-xs space-y-1">
                   <p className="text-muted-foreground line-clamp-2 h-8">{item.description}</p>
-                  <div className="flex items-center text-primary font-semibold">
-                    <DollarSign className="h-3 w-3 mr-1" />
-                    {item.price.toFixed(2)} {item.currency} {item.perUnit && <span className="text-xs text-muted-foreground ml-1">{item.perUnit}</span>}
-                  </div>
+                  {item.listingType === 'Product' ? (
+                    <div className="flex items-center text-primary font-semibold">
+                      <DollarSign className="h-3 w-3 mr-1" />
+                      {item.price.toFixed(2)} {item.currency} {item.perUnit && <span className="text-xs text-muted-foreground ml-1">{item.perUnit}</span>}
+                    </div>
+                  ) : (
+                    item.compensation && <p className="font-medium text-primary">{item.compensation}</p>
+                  )}
                   <div className="flex items-center text-muted-foreground text-xs">
                     <MapPin className="h-3 w-3 mr-1" />
                     {item.location}
@@ -165,7 +176,7 @@ function SearchResultsComponent() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="outline" size="sm" className="w-full">
-                    <Link href={`/marketplace/${item.id}`}>View Item</Link>
+                    <Link href={`/marketplace/${item.id}`}>View Listing</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -202,44 +213,6 @@ function SearchResultsComponent() {
           </div>
         </section>
       )}
-
-      {filteredTalentListings.length > 0 && (
-        <section>
-          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2"><ClipboardList className="text-primary"/> Services & Skills ({filteredTalentListings.length})</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredTalentListings.map((listing: TalentListing) => (
-              <Card key={listing.id} className="flex flex-col">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-md line-clamp-1">{listing.title}</CardTitle>
-                    <Badge variant={listing.type === 'Job' ? 'default' : 'secondary'} className="text-xs flex items-center gap-1 shrink-0">
-                      {listing.type === 'Job' ? <Briefcase className="h-3 w-3" /> : <Sparkles className="h-3 w-3" />}
-                      {listing.type}
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-xs flex items-center gap-1 pt-1">
-                     {getTalentCategoryIcon(listing.category)} {listing.category}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow text-xs space-y-1">
-                  <p className="text-muted-foreground line-clamp-2 h-8">{listing.description}</p>
-                  <div className="flex items-center text-muted-foreground">
-                    <MapPin className="h-3 w-3 mr-1" /> {listing.location}
-                  </div>
-                  {listing.compensation && (
-                    <p className="font-medium text-primary">{listing.compensation}</p>
-                  )}
-                </CardContent>
-                <CardFooter>
-                  <Button asChild variant="outline" size="sm" className="w-full">
-                    <Link href={`/talent-exchange/${listing.id}`}>View Listing</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
@@ -247,8 +220,6 @@ function SearchResultsComponent() {
 
 export default function SearchPage() {
   return (
-    // Suspense is required by Next.js here because SearchResultsComponent uses useSearchParams
-    // For more info: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
     <Suspense fallback={<div className="text-center py-10">Loading search results...</div>}>
       <SearchResultsComponent />
     </Suspense>
