@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -45,6 +45,10 @@ function MarketplaceContent() {
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>("All");
   const [locationFilter, setLocationFilter] = useState("");
   
+  const [userCoordinates, setUserCoordinates] = useState<{ lat: number; lon: number } | null>(null);
+  const [locationStatus, setLocationStatus] = useState<string>('');
+  const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
+
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -75,9 +79,42 @@ function MarketplaceContent() {
     ).filter(Boolean) as CategoryNode[];
   }, []);
 
+  const handleFetchLocation = () => {
+    if (!navigator.geolocation) {
+      setLocationStatus("Geolocation is not supported by your browser.");
+      toast({ variant: "destructive", title: "Geolocation Not Supported", description: "Your browser does not support geolocation." });
+      return;
+    }
+
+    setIsFetchingLocation(true);
+    setLocationStatus("Fetching your location...");
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserCoordinates({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        });
+        setLocationStatus("Showing items near you. Fresh produce prioritized.");
+        toast({ title: "Location Found!", description: "Displaying nearby listings." });
+        setIsFetchingLocation(false);
+      },
+      (error) => {
+        let message = "Could not get location. Showing general listings.";
+        if (error.code === error.PERMISSION_DENIED) {
+          message = "Location access denied. Please enable permissions. Showing general listings.";
+        }
+        setLocationStatus(message);
+        toast({ variant: "destructive", title: "Location Error", description: message });
+        setUserCoordinates(null); // Clear coordinates on error
+        setIsFetchingLocation(false);
+      }
+    );
+  };
+
   const filteredMarketplaceItems = useMemo(() => {
-    if (!isMounted) return []; // Return empty array if not mounted to avoid using searchParams prematurely
-    return marketplaceItems.filter(item => {
+    if (!isMounted) return [];
+
+    let items = marketplaceItems.filter(item => {
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
 
@@ -91,15 +128,29 @@ function MarketplaceContent() {
       
       const isSustainablePass = listingTypeFilter === "Sustainable Solutions" ? item.isSustainable : true;
 
-
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch && isSustainablePass;
     });
-  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted]);
+
+    if (userCoordinates) {
+      // Prioritize fresh produce if location is known
+      const freshProduceItems = items.filter(
+        item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
+      );
+      const otherItems = items.filter(
+        item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables')
+      );
+      // In a real app, both freshProduceItems and otherItems would be sorted by distance to userCoordinates.
+      // For this demo, we just put all fresh produce first.
+      items = [...freshProduceItems, ...otherItems];
+    }
+
+    return items;
+  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted, userCoordinates]);
 
   const getCategoryIcon = (category: CategoryNode['id']) => {
     const catNode = AGRICULTURAL_CATEGORIES.find(c => c.id === category);
-    const Icon = catNode?.icon || Sparkles;
-    return <Icon className="h-3 w-3 mr-1 inline-block" />;
+    const IconComponent = catNode?.icon || Sparkles; // Ensure Icon is a component
+    return <IconComponent className="h-3 w-3 mr-1 inline-block" />;
   }
   
   const getCategoryName = (categoryId: CategoryNode['id']) => {
@@ -225,8 +276,17 @@ function MarketplaceContent() {
             </ScrollArea>
           </div>
 
-          <div className="mb-6 flex flex-col md:flex-row gap-4 items-center md:items-end">
+          <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end">
             <AllCategoriesDropdown />
+            <Button 
+                variant="outline" 
+                onClick={handleFetchLocation} 
+                disabled={isFetchingLocation}
+                className="h-10"
+              >
+                <LocateFixed className={cn("mr-2 h-4 w-4", isFetchingLocation && "animate-pulse")} />
+                {isFetchingLocation ? "Fetching Location..." : "Use Current Location"}
+            </Button>
             <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
               <div className="relative sm:col-span-2 md:col-span-1">
                 <Label htmlFor="search-marketplace" className="sr-only">Search Marketplace</Label>
@@ -244,7 +304,7 @@ function MarketplaceContent() {
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input 
                   id="location-filter-marketplace"
-                  placeholder="Filter by location" 
+                  placeholder="Filter by location string" 
                   className="pl-10 h-10"
                   value={locationFilter}
                   onChange={(e) => setLocationFilter(e.target.value)}
@@ -262,6 +322,8 @@ function MarketplaceContent() {
               </Select>
             </div>
           </div>
+          {locationStatus && <p className="text-sm text-muted-foreground mb-4 text-center md:text-left">{locationStatus}</p>}
+
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {filteredMarketplaceItems.map(item => (
@@ -275,6 +337,12 @@ function MarketplaceContent() {
                     style={{objectFit:"cover"}}
                     data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
                   />
+                   {userCoordinates && (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables') && (
+                      <Badge variant="secondary" className="absolute top-2 left-2 bg-green-100 text-green-700 border-green-300 text-xs py-1 px-1.5">
+                        <Sprout className="h-3 w-3 mr-1" />
+                        Fresh & Nearby
+                      </Badge>
+                    )}
                   <div className="absolute top-2 right-2 flex flex-col gap-1.5 items-end">
                     <Badge variant="secondary" className="py-1 px-2 text-xs flex items-center capitalize">
                       {item.listingType === 'Product' ? <PackageIcon className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
@@ -310,7 +378,7 @@ function MarketplaceContent() {
 
                   {item.aiPriceSuggestion && item.listingType === 'Product' && (
                     <div className="text-xs text-blue-600 flex items-center mb-1.5">
-                      <Sparkles className="h-3 w-3 mr-1" /> {/* Changed from TrendingUp to Sparkles for AI related things */}
+                      <Sparkles className="h-3 w-3 mr-1" />
                       AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
                     </div>
                   )}
@@ -400,4 +468,3 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
-
