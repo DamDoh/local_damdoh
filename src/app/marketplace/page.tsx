@@ -28,6 +28,9 @@ const ALL_QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'fresh-produce-fruits', 
   'grains-cereals',
   'seeds-seedlings',
+  'fertilizers-soil',
+  'farm-tools-small-equip',
+  'heavy-machinery-sale',
   'farm-labor-staffing',
   'equipment-rental-operation',
   'logistics-transport',
@@ -36,7 +39,7 @@ const ALL_QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'storage-warehousing',
   'processing-value-addition',
   'financial-insurance',
-  'training-education',
+  'land-services',
 ];
 
 const CONSUMER_PRODUCE_CATEGORY_IDS: CategoryNode['id'][] = [
@@ -48,12 +51,23 @@ const CONSUMER_PRODUCE_CATEGORY_IDS: CategoryNode['id'][] = [
   'processed-packaged',
 ];
 
+const FARMER_INTEREST_CATEGORY_IDS: CategoryNode['id'][] = [
+  'seeds-seedlings', 'fertilizers-soil', 'pest-control-products', 'farm-tools-small-equip', 'heavy-machinery-sale', // Products
+  'farm-labor-staffing', 'equipment-rental-operation', 'land-services', 'technical-services', 'consultancy-advisory' // Services
+];
+
+const TRADER_INTEREST_CATEGORY_IDS: CategoryNode['id'][] = [
+  'fresh-produce-fruits', 'fresh-produce-vegetables', 'grains-cereals', 'livestock-poultry', // Products
+  'logistics-transport', 'storage-warehousing', 'processing-value-addition', 'financial-insurance' // Services
+];
+
+
 const mobileQuickLinksBase = [
-  { name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
-  { name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
-  { name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
-  { name: "Services", href: "/marketplace?listingType=Service", icon: Briefcase },
-  { name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
+  { id: 'mq_fresh', name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
+  { id: 'mq_inputs', name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
+  { id: 'mq_machinery', name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
+  { id: 'mq_services', name: "Services", href: "/marketplace?listingType=Service", icon: Briefcase },
+  { id: 'mq_land', name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
 ];
 
 const mobileIconGridItems = [
@@ -79,7 +93,7 @@ function MarketplaceContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get('category');
-  const userType = searchParams.get('userType'); // Read userType param
+  const userType = searchParams.get('userType') as 'consumer' | 'farmer' | 'trader' | null;
 
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
@@ -104,24 +118,40 @@ function MarketplaceContent() {
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   }, [currentCategory, pathname, router, searchParams]);
   
-  const quickAccessCategories = useMemo(() => {
-    let relevantCategoryIds = ALL_QUICK_ACCESS_CATEGORIES_IDS;
+  const quickAccessCategories: CategoryNode[] = useMemo(() => {
+    let relevantCategoryIds: CategoryNode['id'][] = ALL_QUICK_ACCESS_CATEGORIES_IDS;
     if (userType === 'consumer') {
-      relevantCategoryIds = CONSUMER_PRODUCE_CATEGORY_IDS.filter(id => 
-        ALL_QUICK_ACCESS_CATEGORIES_IDS.includes(id) // Ensure they are valid quick access items
-      );
+      relevantCategoryIds = CONSUMER_PRODUCE_CATEGORY_IDS;
+    } else if (userType === 'farmer') {
+      relevantCategoryIds = FARMER_INTEREST_CATEGORY_IDS;
+    } else if (userType === 'trader') {
+      relevantCategoryIds = TRADER_INTEREST_CATEGORY_IDS;
     }
-    return relevantCategoryIds.map(id => 
-      AGRICULTURAL_CATEGORIES.find(cat => cat.id === id)
-    ).filter(Boolean) as CategoryNode[];
+    return AGRICULTURAL_CATEGORIES.filter(cat => relevantCategoryIds.includes(cat.id));
   }, [userType]);
-
+  
   const mobileQuickLinks = useMemo(() => {
     if (userType === 'consumer') {
       return mobileQuickLinksBase.filter(link => 
-        CONSUMER_PRODUCE_CATEGORY_IDS.some(consumerCatId => link.href.includes(consumerCatId)) ||
-        link.href.includes('listingType=Product') // Keep a general product link if applicable
-      );
+         CONSUMER_PRODUCE_CATEGORY_IDS.some(consumerCatId => link.href.includes(consumerCatId)) ||
+         link.href.includes('listingType=Product') 
+      ).slice(0,5); // Limit for display
+    } else if (userType === 'farmer') {
+      return [
+        { id: 'mq_inputs_f', name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
+        { id: 'mq_machinery_f', name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
+        { id: 'mq_land_f', name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
+        { id: 'mq_labor_f', name: "Labor", href: "/marketplace?category=farm-labor-staffing", icon: Users },
+        { id: 'mq_tech_f', name: "Tech Services", href: "/marketplace?category=technical-services", icon: Wrench },
+      ];
+    } else if (userType === 'trader') {
+       return [
+        { id: 'mq_produce_t', name: "Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
+        { id: 'mq_grains_t', name: "Grains", href: "/marketplace?category=grains-cereals", icon: Wheat },
+        { id: 'mq_logistics_t', name: "Logistics", href: "/marketplace?category=logistics-transport", icon: Truck },
+        { id: 'mq_storage_t', name: "Storage", href: "/marketplace?category=storage-warehousing", icon: Warehouse },
+        { id: 'mq_finance_t', name: "Finance", href: "/marketplace?category=financial-insurance", icon: CircleDollarSign },
+      ];
     }
     return mobileQuickLinksBase;
   }, [userType]);
@@ -177,13 +207,19 @@ function MarketplaceContent() {
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
     });
 
-    // If consumer and no specific category selected, filter for produce categories
-    if (userType === 'consumer' && !currentCategory) {
-      items = items.filter(item => CONSUMER_PRODUCE_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+    // UserType specific default filtering if no category is selected
+    if (!currentCategory) {
+      if (userType === 'consumer') {
+        items = items.filter(item => CONSUMER_PRODUCE_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+      } else if (userType === 'farmer') {
+        items = items.filter(item => FARMER_INTEREST_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+      } else if (userType === 'trader') {
+        items = items.filter(item => TRADER_INTEREST_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+      }
     }
 
 
-    if (userCoordinates) { // Prioritize fresh produce if location is available
+    if (userCoordinates) { 
       const freshProduceItems = items.filter(
         item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
       );
@@ -224,25 +260,60 @@ function MarketplaceContent() {
     }
   }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
 
-  const featuredProducts = useMemo(() => {
-    if (!isMounted) return [];
-    let products = filteredMarketplaceItems.filter(item => item.listingType === 'Product');
-    if (userCoordinates) { // Prioritize fresh produce if location is available
-        const freshProduce = products.filter(
-            item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
-        );
-        const otherProductIds = new Set(freshProduce.map(fp => fp.id));
-        const otherProducts = products.filter(
-            item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables') && !otherProductIds.has(item.id)
-        );
-        products = [...freshProduce, ...otherProducts];
-    }
-    return products.slice(0, 6);
-  }, [filteredMarketplaceItems, isMounted, userCoordinates]);
+  const { featuredProductsTitle, featuredProductsItems } = useMemo(() => {
+    if (!isMounted) return { featuredProductsTitle: "Featured Products", featuredProductsItems: [] };
+    
+    let title = "Featured Products";
+    let products = [];
 
-  const featuredServices = useMemo(() => {
-    if (!isMounted || userType === 'consumer') return []; // Hide for consumers
-    return filteredMarketplaceItems.filter(item => item.listingType === 'Service').slice(0, 6);
+    if (userType === 'farmer') {
+      title = "Featured Inputs & Equipment";
+      products = filteredMarketplaceItems.filter(item => 
+        item.listingType === 'Product' && 
+        (item.category === 'seeds-seedlings' || item.category === 'fertilizers-soil' || item.category === 'farm-tools-small-equip' || item.category === 'heavy-machinery-sale')
+      );
+    } else if (userType === 'trader') {
+      title = "Tradable Commodities";
+       products = filteredMarketplaceItems.filter(item => 
+        item.listingType === 'Product' && 
+        (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables' || item.category === 'grains-cereals')
+      );
+    } else { // Consumer or default
+       products = filteredMarketplaceItems.filter(item => item.listingType === 'Product');
+       if (userCoordinates) {
+          const freshProduce = products.filter(
+              item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
+          );
+          const otherProductIds = new Set(freshProduce.map(fp => fp.id));
+          const otherProducts = products.filter(item => !otherProductIds.has(item.id));
+          products = [...freshProduce, ...otherProducts];
+      }
+    }
+    return { featuredProductsTitle: title, featuredProductsItems: products.slice(0, 6) };
+  }, [filteredMarketplaceItems, isMounted, userCoordinates, userType]);
+
+  const { featuredServicesTitle, featuredServicesItems } = useMemo(() => {
+    if (!isMounted || userType === 'consumer') return { featuredServicesTitle: "Recommended Services", featuredServicesItems: [] };
+    
+    let title = "Recommended Services";
+    let services = [];
+
+    if (userType === 'farmer') {
+      title = "Key Farmer Services";
+      services = filteredMarketplaceItems.filter(item => 
+        item.listingType === 'Service' && 
+        (item.category === 'farm-labor-staffing' || item.category === 'equipment-rental-operation' || item.category === 'technical-services' || item.category === 'land-services')
+      );
+    } else if (userType === 'trader') {
+      title = "Logistics & Trade Services";
+      services = filteredMarketplaceItems.filter(item => 
+        item.listingType === 'Service' && 
+        (item.category === 'logistics-transport' || item.category === 'storage-warehousing' || item.category === 'financial-insurance')
+      );
+    } else {
+       services = filteredMarketplaceItems.filter(item => item.listingType === 'Service');
+    }
+    return { featuredServicesTitle: title, featuredServicesItems: services.slice(0, 6) };
   }, [filteredMarketplaceItems, isMounted, userType]);
 
 
@@ -257,7 +328,7 @@ function MarketplaceContent() {
           </div>
           <ScrollArea className="w-full whitespace-nowrap px-2">
             <div className="flex space-x-3 pb-1">
-              {Array.from({ length: userType === 'consumer' ? 3 : 5 }).map((_, i) => <Skeleton key={`qs-${i}`} className="h-9 w-24 rounded-md" />)}
+              {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`mqs-${i}`} className="h-9 w-24 rounded-md" />)}
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
@@ -312,7 +383,7 @@ function MarketplaceContent() {
               <div className="mb-4"> 
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-3 pb-2">
-                    {Array.from({ length: userType === 'consumer' ? 4 : 8 }).map((_, index) => (
+                    {Array.from({ length: 8 }).map((_, index) => (
                       <Skeleton key={`qaskel-${index}`} className="h-9 w-28 rounded-md" />
                     ))}
                   </div>
@@ -330,7 +401,6 @@ function MarketplaceContent() {
               </div>
               <Skeleton className="h-4 w-1/3 mb-4" /> 
 
-              {/* Skeletons for Featured Products Scroller - Desktop */}
               <section className="mb-6">
                 <Skeleton className="h-6 w-1/4 mb-3" />
                 <ScrollArea className="w-full whitespace-nowrap">
@@ -353,7 +423,6 @@ function MarketplaceContent() {
                 </ScrollArea>
               </section>
 
-              {/* Skeletons for Recommended Services Scroller - Desktop */}
               {showServicesSkeleton && (
                 <section className="mb-6">
                   <Skeleton className="h-6 w-1/4 mb-3" />
@@ -378,7 +447,7 @@ function MarketplaceContent() {
                 </section>
               )}
               
-              <Skeleton className="h-6 w-1/4 mb-3" /> {/* Title for main grid */}
+              <Skeleton className="h-6 w-1/4 mb-3" /> 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 {Array.from({ length: 18 }).map((_, index) => (
                   <Card key={`itemskel-initial-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
@@ -424,7 +493,7 @@ function MarketplaceContent() {
           <div className="flex space-x-3 pb-1">
             {mobileQuickLinks.map((link) => (
               <Button
-                key={link.name}
+                key={link.id}
                 variant="ghost"
                 size="sm" 
                 className={cn(
@@ -441,7 +510,11 @@ function MarketplaceContent() {
                         setListingTypeFilter(typeParam as ListingType | 'All');
                     } else if (link.href.includes("category")) {
                         const categoryParam = link.href.split("category=")[1];
-                        params.set('category', categoryParam);
+                         if (categoryParam === currentCategory) { // Toggle off if already selected
+                            params.delete('category');
+                        } else {
+                            params.set('category', categoryParam);
+                        }
                         params.delete('listingType');
                         setListingTypeFilter("All"); 
                     }
@@ -470,18 +543,17 @@ function MarketplaceContent() {
           ))}
         </div>
         
-        {/* Featured Products Section */}
-        {featuredProducts.length > 0 && (
+        {featuredProductsItems.length > 0 && (
           <section className="px-2 space-y-2">
             <div className="flex justify-between items-center">
-              <h2 className="text-lg font-semibold">Featured Products</h2>
-              <Link href="/marketplace?listingType=Product" className="text-xs text-primary hover:underline flex items-center">
+              <h2 className="text-lg font-semibold">{featuredProductsTitle}</h2>
+              <Link href={`/marketplace?listingType=Product${userType ? `&userType=${userType}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
                   See All <ChevronRight className="h-3 w-3 ml-0.5" />
               </Link>
             </div>
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex space-x-3 pb-2">
-                {featuredProducts.map(item => (
+                {featuredProductsItems.map(item => (
                   <Card key={`feat-prod-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
                     <Link href={`/marketplace/${item.id}`} className="block">
                       <div className="relative w-full aspect-square">
@@ -510,18 +582,17 @@ function MarketplaceContent() {
           </section>
         )}
 
-        {/* Recommended Services Section - Conditionally Rendered */}
-        {featuredServices.length > 0 && userType !== 'consumer' && (
+        {featuredServicesItems.length > 0 && (
           <section className="px-2 space-y-2 mt-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-lg font-semibold">Recommended Services</h2>
-              <Link href="/marketplace?listingType=Service" className="text-xs text-primary hover:underline flex items-center">
+              <h2 className="text-lg font-semibold">{featuredServicesTitle}</h2>
+              <Link href={`/marketplace?listingType=Service${userType ? `&userType=${userType}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
                   See All <ChevronRight className="h-3 w-3 ml-0.5" />
               </Link>
             </div>
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex space-x-3 pb-2">
-                {featuredServices.map(item => (
+                {featuredServicesItems.map(item => (
                   <Card key={`feat-serv-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
                     <Link href={`/marketplace/${item.id}`} className="block">
                       <div className="relative w-full aspect-square">
@@ -643,6 +714,15 @@ function MarketplaceContent() {
                       </Button>
                     );
                   })}
+                   <Button
+                        key="clear-quick-cat"
+                        variant={"outline"}
+                        size="sm"
+                        className={cn("h-9 text-xs", !currentCategory && quickAccessCategories.length > 0 && "bg-accent")}
+                        onClick={() => handleCategorySelect(null)}
+                      >
+                        View All
+                      </Button>
                 </div>
                 <ScrollBar orientation="horizontal" />
               </ScrollArea>
@@ -696,13 +776,12 @@ function MarketplaceContent() {
             </div>
             {locationStatus && <p className="text-sm text-muted-foreground mb-4 text-center md:text-left">{locationStatus}</p>}
 
-            {/* Featured Products Section - Desktop */}
-            {featuredProducts.length > 0 && (
+            {featuredProductsItems.length > 0 && (
               <section className="mb-8">
-                <h2 className="text-xl font-semibold mb-3">Featured Products</h2>
+                <h2 className="text-xl font-semibold mb-3">{featuredProductsTitle}</h2>
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-4 pb-2">
-                    {featuredProducts.map(item => (
+                    {featuredProductsItems.map(item => (
                       <Card key={`desktop-feat-prod-${item.id}`} className="w-52 shrink-0 overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow">
                         <Link href={`/marketplace/${item.id}`} className="block">
                           <div className="relative w-full aspect-[4/3]">
@@ -732,13 +811,12 @@ function MarketplaceContent() {
               </section>
             )}
 
-            {/* Recommended Services Section - Desktop (Conditionally Rendered) */}
-            {featuredServices.length > 0 && userType !== 'consumer' && (
+            {featuredServicesItems.length > 0 && (
               <section className="mb-8">
-                <h2 className="text-xl font-semibold mb-3">Recommended Services</h2>
+                <h2 className="text-xl font-semibold mb-3">{featuredServicesTitle}</h2>
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-4 pb-2">
-                    {featuredServices.map(item => (
+                    {featuredServicesItems.map(item => (
                       <Card key={`desktop-feat-serv-${item.id}`} className="w-52 shrink-0 overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow">
                          <Link href={`/marketplace/${item.id}`} className="block">
                           <div className="relative w-full aspect-[4/3]">
@@ -765,7 +843,6 @@ function MarketplaceContent() {
               </section>
             )}
 
-            {/* Main Grid Title - Desktop */}
             <h2 className="text-xl font-semibold mb-4 mt-6">Discover More</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
               {filteredMarketplaceItems.map(item => (
@@ -889,5 +966,3 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
-
-    
