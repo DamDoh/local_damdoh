@@ -1,7 +1,7 @@
 
 "use client"; 
 
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,21 +9,44 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, ShoppingCart, MessageSquare, Briefcase, LandPlot, Wrench, MapPin, DollarSign, Leaf, Package, Truck, ShieldAlert, Brain, TrendingUp, Award, Tractor, Sparkles } from 'lucide-react';
+import { Users, ShoppingCart, MessageSquare, Briefcase, LandPlot, Wrench, MapPin, DollarSign, Leaf, Package, Truck, ShieldAlert, Brain, TrendingUp, Award, Tractor, Sparkles, Info } from 'lucide-react';
+import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow'; // New AI flow import
+import { Skeleton } from '@/components/ui/skeleton';
 
 import { 
   dummyProfiles, 
   dummyMarketplaceItems, 
   dummyForumTopics,
-  // dummyTalentListings, // Deprecated: Talent listings are now part of dummyMarketplaceItems
   dummyUsersData 
 } from '@/lib/dummy-data';
 import type { UserProfile, MarketplaceItem, ForumTopic, UnifiedMarketplaceCategoryType } from '@/lib/types';
-import type { ListingType } from '@/lib/constants';
+import { AGRICULTURAL_CATEGORIES } from '@/lib/category-data';
+
 
 function SearchResultsComponent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q');
+  const [aiInterpretation, setAiInterpretation] = useState<SmartSearchInterpretation | null>(null);
+  const [isLoadingInterpretation, setIsLoadingInterpretation] = useState(false);
+
+  useEffect(() => {
+    if (query) {
+      const fetchInterpretation = async () => {
+        setIsLoadingInterpretation(true);
+        try {
+          const interpretation = await interpretSearchQuery({ rawQuery: query });
+          setAiInterpretation(interpretation);
+        } catch (error) {
+          console.error("Error fetching search interpretation:", error);
+          setAiInterpretation(null); // Or handle error display
+        }
+        setIsLoadingInterpretation(false);
+      };
+      fetchInterpretation();
+    } else {
+      setAiInterpretation(null);
+    }
+  }, [query]);
 
   if (!query) {
     return (
@@ -55,9 +78,6 @@ function SearchResultsComponent() {
     topic.description.toLowerCase().includes(lowerCaseQuery)
   );
 
-  // Talent listings are now part of filteredMarketplaceItems with listingType: 'Service'
-  // const filteredTalentListings = dummyTalentListings.filter(...);
-
   const getForumIcon = (iconName?: string) => {
     const iconProps = { className: "h-5 w-5 text-primary" };
     switch (iconName) {
@@ -72,17 +92,15 @@ function SearchResultsComponent() {
       default: return <MessageSquare {...iconProps} />;
     }
   };
+  
+  const getCategoryName = (categoryId: string) => {
+    return AGRICULTURAL_CATEGORIES.find(c => c.id === categoryId)?.name || categoryId;
+  }
 
-  const getMarketplaceCategoryIcon = (category: UnifiedMarketplaceCategoryType) => {
-    const iconProps = {className: "h-3 w-3 mr-1"};
-    switch (category) {
-      case 'Agricultural Produce': return <Leaf {...iconProps} />;
-      case 'Inputs & Supplies': return <ShoppingBag {...iconProps} />;
-      case 'Machinery & Equipment': return <Tractor {...iconProps} />;
-      case 'Professional Services & Labor': return <Briefcase {...iconProps} />;
-      case 'Land & Tenancies': return <LandPlot {...iconProps} />;
-      default: return <Sparkles {...iconProps} />;
-    }
+  const getMarketplaceCategoryIcon = (category: string) => {
+    const catNode = AGRICULTURAL_CATEGORIES.find(c => c.id === category);
+    const IconComponent = catNode?.icon || Sparkles;
+    return <IconComponent className="h-3 w-3 mr-1 inline-block" />;
   }
 
   const totalResults = filteredProfiles.length + filteredMarketplaceItems.length + filteredForumTopics.length;
@@ -95,9 +113,44 @@ function SearchResultsComponent() {
           {totalResults > 0 ? (
              <CardDescription>{totalResults} result(s) found.</CardDescription>
           ) : (
-             <CardDescription>No results found. Try a different search term.</CardDescription>
+             <CardDescription>No results found for your query. Try a different search term or broaden your search.</CardDescription>
           )}
         </CardHeader>
+        {query && (
+          <CardContent>
+            {isLoadingInterpretation && (
+              <div className="p-4 border rounded-md bg-muted/50">
+                <Skeleton className="h-5 w-1/3 mb-2" />
+                <Skeleton className="h-4 w-full mb-1" />
+                <Skeleton className="h-4 w-3/4" />
+              </div>
+            )}
+            {aiInterpretation && !isLoadingInterpretation && (
+              <Card className="bg-accent/30 border-primary/30 shadow-sm">
+                <CardHeader className="pb-3 pt-4">
+                  <CardTitle className="text-md flex items-center gap-2"><Brain className="h-5 w-5 text-primary" /> AI Search Interpretation</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm space-y-1.5">
+                  <p><strong className="font-medium">Keywords:</strong> {aiInterpretation.mainKeywords.join(', ') || 'N/A'}</p>
+                  {aiInterpretation.identifiedLocation && <p><strong className="font-medium">Location:</strong> {aiInterpretation.identifiedLocation}</p>}
+                  {aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
+                    <div>
+                      <strong className="font-medium">Suggested Filters:</strong>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {aiInterpretation.suggestedFilters.map((filter, idx) => (
+                          <Badge key={idx} variant="secondary" className="text-xs">
+                            {filter.type}: {filter.value}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {aiInterpretation.interpretationNotes && <p className="text-muted-foreground italic mt-1.5 text-xs flex items-start gap-1.5"><Info size={14} className="mt-0.5 shrink-0"/> {aiInterpretation.interpretationNotes}</p>}
+                </CardContent>
+              </Card>
+            )}
+          </CardContent>
+        )}
       </Card>
 
       {filteredProfiles.length > 0 && (
@@ -147,19 +200,19 @@ function SearchResultsComponent() {
                     data-ai-hint={item.dataAiHint || "marketplace item agriculture"}
                   />
                 </div>
-                <CardHeader className="pb-2">
+                <CardHeader className="pb-2 pt-3">
                   <CardTitle className="text-md line-clamp-1">{item.name}</CardTitle>
-                   <div className="flex items-center gap-2 pt-1">
+                   <div className="flex flex-wrap items-center gap-1 pt-1">
                     <Badge variant={item.listingType === 'Product' ? 'default' : 'secondary'} className="text-xs capitalize">
-                        {item.listingType === 'Product' ? <ShoppingBag className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
+                        {item.listingType === 'Product' ? <Package className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
                         {item.listingType}
                     </Badge>
-                    <Badge variant="outline" className="text-xs flex items-center">
-                      {getMarketplaceCategoryIcon(item.category)} {item.category}
+                    <Badge variant="outline" className="text-xs flex items-center capitalize">
+                      {getMarketplaceCategoryIcon(item.category)} {getCategoryName(item.category)}
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="flex-grow text-xs space-y-1">
+                <CardContent className="flex-grow text-xs space-y-1 pt-1">
                   <p className="text-muted-foreground line-clamp-2 h-8">{item.description}</p>
                   {item.listingType === 'Product' ? (
                     <div className="flex items-center text-primary font-semibold">
@@ -220,7 +273,35 @@ function SearchResultsComponent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<div className="text-center py-10">Loading search results...</div>}>
+    <Suspense fallback={
+      <div className="space-y-8">
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-8 w-3/4 mb-2" />
+            <Skeleton className="h-4 w-1/2" />
+          </CardHeader>
+           <CardContent>
+            <div className="p-4 border rounded-md bg-muted/50">
+              <Skeleton className="h-5 w-1/3 mb-2" />
+              <Skeleton className="h-4 w-full mb-1" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+          </CardContent>
+        </Card>
+        <section>
+          <Skeleton className="h-6 w-1/4 mb-4" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({length:3}).map((_,i) => <Skeleton key={`sk-prof-${i}`} className="h-36"/>)}
+          </div>
+        </section>
+         <section>
+          <Skeleton className="h-6 w-1/3 mb-4" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({length:3}).map((_,i) => <Skeleton key={`sk-item-${i}`} className="h-60"/>)}
+          </div>
+        </section>
+      </div>
+    }>
       <SearchResultsComponent />
     </Suspense>
   );

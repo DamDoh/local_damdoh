@@ -6,4 +6,5 @@ import '@/ai/flows/forum-topic-suggestions.ts';
 import '@/ai/flows/suggested-connections.ts';
 import '@/ai/flows/profile-summary-generator.ts';
 import '@/ai/flows/farming-assistant-flow.ts';
-import '@/ai/flows/market-insights-flow.ts'; // Added new market insights flow
+import '@/ai/flows/market-insights-flow.ts';
+import '@/ai/flows/query-interpreter-flow.ts'; // Added new query interpreter flow
