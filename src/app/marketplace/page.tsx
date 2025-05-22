@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -89,7 +89,10 @@ function MarketplaceContent() {
       
       const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
       
-      return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
+      const isSustainablePass = listingTypeFilter === "Sustainable Solutions" ? item.isSustainable : true;
+
+
+      return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch && isSustainablePass;
     });
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted]);
 
@@ -268,7 +271,7 @@ function MarketplaceContent() {
                     src={item.imageUrl || "https://placehold.co/400x300.png"} 
                     alt={item.name} 
                     fill={true}
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, (max-width: 1536px) 16.6vw, 16.6vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.6vw"
                     style={{objectFit:"cover"}}
                     data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
                   />
@@ -307,7 +310,7 @@ function MarketplaceContent() {
 
                   {item.aiPriceSuggestion && item.listingType === 'Product' && (
                     <div className="text-xs text-blue-600 flex items-center mb-1.5">
-                      <TrendingUp className="h-3 w-3 mr-1" />
+                      <Sparkles className="h-3 w-3 mr-1" /> {/* Changed from TrendingUp to Sparkles for AI related things */}
                       AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
                     </div>
                   )}
@@ -397,3 +400,4 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
+
