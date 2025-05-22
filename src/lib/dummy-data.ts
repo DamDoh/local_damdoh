@@ -64,6 +64,9 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'precisionAgNigeria': {name: 'Precision Ag Nigeria', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Tech solutions for modern farming.'},
   'valueChainExperts': {name: 'Value Chain Experts', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Consulting for agricultural value chains.'},
   'landLeaseAfrica': {name: 'LandLease Africa', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Connecting farmers with available land.'},
+  'vetServicesKenya': { name: 'Kenya Veterinary Services', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Mobile veterinary care for livestock.'},
+  'exportDocsPro': { name: 'Export Docs Pro', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Assistance with agricultural export documentation.'},
+  'honeyHarvestCo': { name: 'Honey Harvest Co-op', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Ethically sourced organic honey producers.'},
 };
 
 // --- Dashboard Feed Items ---
@@ -243,7 +246,6 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
     contactInfo: 'lena.hanson@wur.nl', dataAiHint: "soil lab test",
     isSustainable: true,
   },
-  // Added Items
   {
     id: 'item9', name: 'Fresh Organic Mangoes (Kent)', listingType: 'Product',
     description: 'Box of 10kg export-quality Kent mangoes. Sweet and fiberless. GlobalG.A.P certified.',
@@ -357,7 +359,61 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
     imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 25).toISOString(),
     contactInfo: 'courses@organicgrowth.com', dataAiHint: "online course agriculture",
     isSustainable: true,
-  }
+  },
+  {
+    id: 'item17', name: 'Fresh Hass Avocados (Export Grade)', listingType: 'Product',
+    description: '500 boxes of Grade A Hass avocados, ready for export. Min. order 50 boxes. Grown in fertile Kenyan highlands.',
+    price: 30, currency: 'USD', perUnit: '/box (4kg)', sellerId: 'kenyaFreshExports',
+    category: 'fresh-produce-fruits', location: 'Nairobi, Kenya',
+    imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+    contactInfo: 'Contact for export terms', dataAiHint: "avocado fruit box",
+    isSustainable: true, sellerVerification: 'Verified'
+  },
+  {
+    id: 'item18', name: 'Bulk Milling Wheat (Grade 1)', listingType: 'Product',
+    description: '1000 metric tons of high-quality Grade 1 milling wheat. Protein content: 12.5%. Available for immediate shipment from US port.',
+    price: 280, currency: 'USD', perUnit: '/ton', sellerId: 'globalCommoditiesTrader',
+    category: 'grains-cereals', location: 'USA (Export Port)',
+    imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
+    contactInfo: 'wheatdesk@globalcommodities.ch', dataAiHint: "wheat grain pile",
+    sellerVerification: 'Verified'
+  },
+  {
+    id: 'service11', name: 'Veterinary Services for Livestock', listingType: 'Service',
+    description: 'Mobile veterinary services for cattle, sheep, and goats. Vaccinations, health checks, and emergency care. Serving Rift Valley region.',
+    price: 0, currency: 'KES',
+    sellerId: 'vetServicesKenya', category: 'technical-services', location: 'Rift Valley, Kenya',
+    skillsRequired: ['Large Animal Medicine', 'Vaccination Programs', 'Herd Health Management'],
+    compensation: 'Call-out fee + service charges', createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+    dataAiHint: "veterinarian livestock", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'vet@kenyavets.co.ke',
+  },
+  {
+    id: 'item19', name: 'Solar Powered Irrigation Pump', listingType: 'Product',
+    description: 'Efficient solar-powered water pump suitable for small to medium-scale irrigation. Includes solar panel and controller. Eco-friendly.',
+    price: 450, currency: 'USD', perUnit: '/set', sellerId: 'agriTechSolutionsLtd',
+    category: 'farm-tools-small-equip', location: 'Ships Worldwide',
+    imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 14).toISOString(),
+    contactInfo: 'sales@agritech.com', dataAiHint: "solar water pump",
+    isSustainable: true, sellerVerification: 'Verified'
+  },
+  {
+    id: 'service12', name: 'Export Documentation Assistance', listingType: 'Service',
+    description: 'Expert assistance with all agricultural export documentation requirements for EU, USA, and Asian markets. Phytosanitary certificates, COO, etc.',
+    price: 0, currency: 'USD',
+    sellerId: 'exportDocsPro', category: 'consultancy-advisory', location: 'Remote',
+    skillsRequired: ['Export Documentation', 'International Trade Compliance', 'Logistics Coordination'],
+    compensation: 'Per consignment or hourly rate', createdAt: new Date(Date.now() - 86400000 * 7).toISOString(),
+    dataAiHint: "documents shipping export", imageUrl: 'https://placehold.co/400x300.png', contactInfo: 'info@exportdocspro.com',
+  },
+  {
+    id: 'item20', name: 'Organic Packaged Honey (500g Jars)', listingType: 'Product',
+    description: 'Pure, raw, organic multifloral honey. Packaged in 500g glass jars. From sustainably managed apiaries.',
+    price: 12, currency: 'USD', perUnit: '/jar', sellerId: 'honeyHarvestCo',
+    category: 'processed-packaged', location: 'Local Cooperative, Ethiopia',
+    imageUrl: 'https://placehold.co/400x300.png', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(),
+    contactInfo: 'sales@honeyharvest.et', dataAiHint: "honey jar organic",
+    isSustainable: true, sellerVerification: 'Verified'
+  },
 ];
 
 // --- Forum Topics Page Data ---
@@ -536,5 +592,3 @@ export const mobileDiscoverItems: MobileDiscoverItem[] = [
 // src/app/talent-exchange/page.tsx
 // src/app/talent-exchange/create/page.tsx
 // These files will be blanked out by the agent.
-
-    
