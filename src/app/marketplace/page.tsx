@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, ShoppingCart, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, Filter, Package as PackageIcon, Users as UsersIcon, DollarSign, Tractor, Truck, TestTube2 } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, ShoppingCart, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, Filter, Package as PackageIcon, Users as UsersIcon, DollarSign, Tractor, Truck, TestTube2, Warehouse, CircleDollarSign, GraduationCap } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -30,6 +30,10 @@ const quickAccessServiceCategories: Array<{ id: string; name: string; icon: Reac
   { id: 'logistics-transport', name: 'Logistics', icon: Truck },
   { id: 'land-services', name: 'Land Services', icon: LandPlot },
   { id: 'technical-services', name: 'Technical Help', icon: TestTube2 },
+  { id: 'storage-warehousing', name: 'Storage', icon: Warehouse },
+  { id: 'processing-value-addition', name: 'Processing', icon: Cog },
+  { id: 'financial-insurance', name: 'Finance/Insurance', icon: CircleDollarSign },
+  { id: 'training-education', name: 'Training', icon: GraduationCap },
 ];
 
 
@@ -153,7 +157,7 @@ function MarketplaceContent() {
                       <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
                     </Link>
                   </Button>
-                  <Button variant="outline" onClick={handleSetHomepage}>
+                   <Button variant="outline" onClick={handleSetHomepage}>
                     {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
                     {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
                   </Button>
