@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge"; // Added import
 import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import type { FeedItem, PollOption, MobileHomeCategory, MobileDiscoverItem } from "@/lib/types";
