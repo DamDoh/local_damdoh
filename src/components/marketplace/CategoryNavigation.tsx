@@ -8,7 +8,11 @@ import type { CategoryNode, RootCategoryId } from "@/lib/category-data";
 import { ROOT_CATEGORIES, AGRICULTURAL_CATEGORIES } from "@/lib/category-data";
 import { cn } from "@/lib/utils";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
+
+// This component is being replaced by AllCategoriesDropdown.tsx for the main marketplace view.
+// It can be kept for potential future use in other contexts or deleted if no longer needed.
 export function CategoryNavigation() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -18,14 +22,13 @@ export function CategoryNavigation() {
   const handleCategorySelect = (categoryId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     if (categoryId === currentCategory) {
-      params.delete('category'); // Toggle: if same category clicked, remove filter
+      params.delete('category'); 
     } else {
       params.set('category', categoryId);
     }
     router.push(`${pathname}?${params.toString()}`);
   };
   
-  // Determine open accordions based on currentCategory
   const openAccordionItems: string[] = [];
   if (currentCategory) {
     const selectedCat = AGRICULTURAL_CATEGORIES.find(cat => cat.id === currentCategory);
@@ -38,7 +41,7 @@ export function CategoryNavigation() {
   return (
     <Card className="sticky top-20 shadow-md h-[calc(100vh-6rem)] flex flex-col">
       <CardHeader className="border-b p-4">
-        <CardTitle className="text-lg">All Categories</CardTitle>
+        <CardTitle className="text-lg">Browse Categories</CardTitle>
       </CardHeader>
       <ScrollArea className="flex-grow">
         <CardContent className="p-0">
@@ -83,5 +86,3 @@ export function CategoryNavigation() {
   );
 }
 
-// Need to import Card, CardHeader, CardTitle, CardContent
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";

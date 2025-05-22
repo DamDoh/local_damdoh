@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, MapPin, Leaf, ShoppingCart, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, Filter, Package as PackageIcon, Users as UsersIcon, DollarSign, Tractor, Truck, TestTube2, Warehouse, CircleDollarSign, GraduationCap } from "lucide-react"; 
+import { PlusCircle, Search, MapPin, Leaf, Briefcase, LandPlot, Cog, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp, DollarSign, Package as PackageIcon, Tractor } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { Label } from "@/components/ui/label";
@@ -17,24 +17,11 @@ import { dummyMarketplaceItems } from "@/lib/dummy-data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
-import { CategoryNavigation } from "@/components/marketplace/CategoryNavigation";
-import { AGRICULTURAL_CATEGORIES, ROOT_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { ScrollArea } from "@/components/ui/scroll-area"; // Added ScrollArea
+// import { CategoryNavigation } from "@/components/marketplace/CategoryNavigation"; // Removed
+import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; // Added
+import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
-
-
-const quickAccessServiceCategories: Array<{ id: string; name: string; icon: React.ElementType }> = [
-  { id: 'farm-labor-staffing', name: 'Farm Labor', icon: UsersIcon },
-  { id: 'consultancy-advisory', name: 'Consultancy', icon: Briefcase },
-  { id: 'equipment-rental-operation', name: 'Equipment Rental', icon: Tractor },
-  { id: 'logistics-transport', name: 'Logistics', icon: Truck },
-  { id: 'land-services', name: 'Land Services', icon: LandPlot },
-  { id: 'technical-services', name: 'Technical Help', icon: TestTube2 },
-  { id: 'storage-warehousing', name: 'Storage', icon: Warehouse },
-  { id: 'processing-value-addition', name: 'Processing', icon: Cog },
-  { id: 'financial-insurance', name: 'Finance/Insurance', icon: CircleDollarSign },
-  { id: 'training-education', name: 'Training', icon: GraduationCap },
-];
 
 
 function MarketplaceContent() {
@@ -54,7 +41,7 @@ function MarketplaceContent() {
 
   const handleCategorySelect = (categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (categoryId === null || categoryId === currentCategory) { // If null or same category clicked, remove filter
+    if (categoryId === null || categoryId === currentCategory) { 
       params.delete('category');
     } else {
       params.set('category', categoryId);
@@ -64,8 +51,7 @@ function MarketplaceContent() {
 
 
   useEffect(() => {
-    // Optional: if you want to sync categoryQuery from URL to a local state, though not strictly necessary
-    // if filtering directly based on categoryQuery.
+    // Optional: Sync categoryQuery from URL to a local state if needed
   }, [currentCategory]);
 
   const filteredMarketplaceItems = useMemo(() => {
@@ -116,184 +102,158 @@ function MarketplaceContent() {
 
   return (
     <div className="space-y-6">
-      {/* Horizontal Quick Access Categories */}
-      <div className="mb-4 md:mb-6">
-        <h2 className="text-lg font-semibold mb-2 px-1">Quick Access Services</h2>
-        <ScrollArea className="w-full whitespace-nowrap rounded-md pb-2">
-          <div className="flex w-max space-x-3 p-1">
-            {quickAccessServiceCategories.map(cat => (
-              <Button
-                key={cat.id}
-                variant={currentCategory === cat.id ? "default" : "outline"}
-                size="sm"
-                className="flex flex-col h-20 w-24 items-center justify-center p-2 space-y-1 text-center shadow-sm hover:shadow-md"
-                onClick={() => handleCategorySelect(cat.id)}
-              >
-                <cat.icon className="h-6 w-6 mb-0.5 text-primary/90 group-hover:text-primary" />
-                <span className="text-xs font-medium whitespace-normal leading-tight line-clamp-2">{cat.name}</span>
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <CardTitle className="text-2xl">Agricultural Marketplace & Services Hub</CardTitle>
+              <CardDescription>Discover products, equipment, land, and professional services to support your agricultural needs.</CardDescription>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button asChild>
+                <Link href="/marketplace/create">
+                  <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
+                </Link>
               </Button>
+               <Button variant="outline" onClick={handleSetHomepage}>
+                {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
+                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {/* New Filter Bar */}
+          <div className="mb-6 flex flex-col md:flex-row gap-4 items-center md:items-end">
+            <AllCategoriesDropdown />
+            <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
+              <div className="relative sm:col-span-2 md:col-span-1">
+                <Label htmlFor="search-marketplace" className="sr-only">Search Marketplace</Label>
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input 
+                  id="search-marketplace"
+                  placeholder="Search products & services..." 
+                  className="pl-10 h-10" 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+              <div className="relative">
+                <Label htmlFor="location-filter-marketplace" className="sr-only">Filter by location</Label>
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input 
+                  id="location-filter-marketplace"
+                  placeholder="Filter by location" 
+                  className="pl-10 h-10"
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                />
+              </div>
+              <Select value={listingTypeFilter} onValueChange={(value) => setListingTypeFilter(value as ListingType | 'All')}>
+                <SelectTrigger id="listing-type-filter-marketplace" className="h-10">
+                  <SelectValue placeholder="Filter by Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {LISTING_TYPE_FILTER_OPTIONS.map(typeOpt => (
+                    <SelectItem key={typeOpt.value} value={typeOpt.value}>{typeOpt.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredMarketplaceItems.map(item => (
+              <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
+                <div className="relative w-full aspect-[4/3]">
+                  <Image 
+                    src={item.imageUrl || "https://placehold.co/400x300.png"} 
+                    alt={item.name} 
+                    fill={true}
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    style={{objectFit:"cover"}}
+                    data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
+                  />
+                  <div className="absolute top-2 right-2 flex flex-col gap-1.5 items-end">
+                    <Badge variant="secondary" className="py-1 px-2 text-xs flex items-center capitalize">
+                      {item.listingType === 'Product' ? <PackageIcon className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
+                      {item.listingType}
+                    </Badge>
+                    {item.isSustainable && (
+                      <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white py-1 px-2 text-xs">
+                        <CheckCircle className="h-3 w-3 mr-1" />Sustainable
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+                <div className="p-3 flex flex-col flex-grow">
+                  <Link href={`/marketplace/${item.id}`} className="block mb-1">
+                    <h3 className="text-sm font-medium text-foreground hover:text-primary transition-colors line-clamp-2 h-10">
+                      {item.name}
+                    </h3>
+                  </Link>
+                  
+                  <Badge variant="outline" className="text-xs w-fit my-1 py-0.5 px-1.5 flex items-center capitalize">
+                     {getCategoryIcon(item.category)} {getCategoryName(item.category)}
+                  </Badge>
+
+                  {item.listingType === 'Product' ? (
+                    <div className="flex items-center text-lg font-semibold text-primary my-1.5">
+                      <DollarSign className="h-4 w-4 mr-1" />
+                      {item.price.toFixed(2)} {item.currency}
+                      {item.perUnit && <span className="text-xs text-muted-foreground ml-1.5">{item.perUnit}</span>}
+                    </div>
+                  ) : (
+                    item.compensation && <p className="text-sm font-medium text-primary my-1.5">{item.compensation}</p>
+                  )}
+
+                  {item.aiPriceSuggestion && item.listingType === 'Product' && (
+                    <div className="text-xs text-blue-600 flex items-center mb-1.5">
+                      <TrendingUp className="h-3 w-3 mr-1" />
+                      AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
+                    </div>
+                  )}
+                  
+                  {item.sellerVerification === 'Verified' && (
+                     <Badge variant="outline" className="text-xs w-fit border-green-500 text-green-600 py-0.5 px-1.5 mb-1.5">
+                        <ShieldCheck className="h-3 w-3 mr-1" /> Verified Seller
+                    </Badge>
+                  )}
+
+                  <p className="text-xs text-muted-foreground line-clamp-2 mb-2 h-8">
+                    {item.description}
+                  </p>
+                  
+                  {item.listingType === 'Service' && item.skillsRequired && item.skillsRequired.length > 0 && (
+                     <div className="mb-2">
+                        <h4 className="text-xs font-semibold mb-0.5">Skills:</h4>
+                        <div className="flex flex-wrap gap-1">
+                           {item.skillsRequired.slice(0,3).map(skill => <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>)}
+                        </div>
+                     </div>
+                  )}
+
+                  <div className="flex items-center text-muted-foreground text-xs mt-auto pt-1">
+                    <MapPin className="h-3 w-3 mr-1 shrink-0" />
+                    <span className="truncate">{item.location}</span>
+                  </div>
+                </div>
+                <div className="p-3 border-t mt-auto">
+                  <Button asChild className="w-full h-9 text-xs" variant="outline">
+                    <Link href={`/marketplace/${item.id}`}>View Details</Link>
+                  </Button>
+                </div>
+              </Card>
             ))}
           </div>
-          <div className="h-px bg-border w-full mt-1"></div>
-        </ScrollArea>
-      </div>
-
-      <div className="flex flex-col md:flex-row gap-6">
-        <aside className="w-full md:w-64 lg:w-72 flex-shrink-0">
-          <CategoryNavigation />
-        </aside>
-
-        <main className="flex-grow space-y-6">
-          <Card>
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div>
-                  <CardTitle className="text-2xl">Agricultural Marketplace & Services Hub</CardTitle>
-                  <CardDescription>Discover products, equipment, land, and professional services to support your agricultural needs.</CardDescription>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button asChild>
-                    <Link href="/marketplace/create">
-                      <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
-                    </Link>
-                  </Button>
-                   <Button variant="outline" onClick={handleSetHomepage}>
-                    {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
-                    {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
-                  </Button>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-                <div className="relative sm:col-span-2 lg:col-span-1">
-                  <Label htmlFor="search-marketplace" className="sr-only">Search Marketplace</Label>
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input 
-                    id="search-marketplace"
-                    placeholder="Search products & services..." 
-                    className="pl-10" 
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
-                <div className="relative">
-                  <Label htmlFor="location-filter-marketplace" className="sr-only">Filter by location</Label>
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input 
-                    id="location-filter-marketplace"
-                    placeholder="Filter by location" 
-                    className="pl-10"
-                    value={locationFilter}
-                    onChange={(e) => setLocationFilter(e.target.value)}
-                  />
-                </div>
-                <Select value={listingTypeFilter} onValueChange={(value) => setListingTypeFilter(value as ListingType | 'All')}>
-                  <SelectTrigger id="listing-type-filter-marketplace">
-                    <SelectValue placeholder="Filter by Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {LISTING_TYPE_FILTER_OPTIONS.map(typeOpt => (
-                      <SelectItem key={typeOpt.value} value={typeOpt.value}>{typeOpt.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredMarketplaceItems.map(item => (
-                  <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
-                    <div className="relative w-full aspect-[4/3]">
-                      <Image 
-                        src={item.imageUrl || "https://placehold.co/400x300.png"} 
-                        alt={item.name} 
-                        fill={true}
-                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        style={{objectFit:"cover"}}
-                        data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
-                      />
-                      <div className="absolute top-2 right-2 flex flex-col gap-1.5 items-end">
-                        <Badge variant="secondary" className="py-1 px-2 text-xs flex items-center capitalize">
-                          {item.listingType === 'Product' ? <PackageIcon className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
-                          {item.listingType}
-                        </Badge>
-                        {item.isSustainable && (
-                          <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white py-1 px-2 text-xs">
-                            <CheckCircle className="h-3 w-3 mr-1" />Sustainable
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                    <div className="p-3 flex flex-col flex-grow">
-                      <Link href={`/marketplace/${item.id}`} className="block mb-1">
-                        <h3 className="text-sm font-medium text-foreground hover:text-primary transition-colors line-clamp-2 h-10">
-                          {item.name}
-                        </h3>
-                      </Link>
-                      
-                      <Badge variant="outline" className="text-xs w-fit my-1 py-0.5 px-1.5 flex items-center">
-                         {getCategoryIcon(item.category)} {getCategoryName(item.category)}
-                      </Badge>
-
-                      {item.listingType === 'Product' ? (
-                        <div className="flex items-center text-lg font-semibold text-primary my-1.5">
-                          <DollarSign className="h-4 w-4 mr-1" />
-                          {item.price.toFixed(2)} {item.currency}
-                          {item.perUnit && <span className="text-xs text-muted-foreground ml-1.5">{item.perUnit}</span>}
-                        </div>
-                      ) : (
-                        item.compensation && <p className="text-sm font-medium text-primary my-1.5">{item.compensation}</p>
-                      )}
-
-                      {item.aiPriceSuggestion && item.listingType === 'Product' && (
-                        <div className="text-xs text-blue-600 flex items-center mb-1.5">
-                          <TrendingUp className="h-3 w-3 mr-1" />
-                          AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
-                        </div>
-                      )}
-                      
-                      {item.sellerVerification === 'Verified' && (
-                         <Badge variant="outline" className="text-xs w-fit border-green-500 text-green-600 py-0.5 px-1.5 mb-1.5">
-                            <ShieldCheck className="h-3 w-3 mr-1" /> Verified Seller
-                        </Badge>
-                      )}
-
-                      <p className="text-xs text-muted-foreground line-clamp-2 mb-2 h-8">
-                        {item.description}
-                      </p>
-                      
-                      {item.listingType === 'Service' && item.skillsRequired && item.skillsRequired.length > 0 && (
-                         <div className="mb-2">
-                            <h4 className="text-xs font-semibold mb-0.5">Skills:</h4>
-                            <div className="flex flex-wrap gap-1">
-                               {item.skillsRequired.slice(0,3).map(skill => <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>)}
-                            </div>
-                         </div>
-                      )}
-
-                      <div className="flex items-center text-muted-foreground text-xs mt-auto pt-1">
-                        <MapPin className="h-3 w-3 mr-1 shrink-0" />
-                        <span className="truncate">{item.location}</span>
-                      </div>
-                    </div>
-                    <div className="p-3 border-t mt-auto">
-                      <Button asChild className="w-full h-9 text-xs" variant="outline">
-                        <Link href={`/marketplace/${item.id}`}>View Details</Link>
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-              {filteredMarketplaceItems.length === 0 && (
-                <div className="text-center py-10 col-span-full">
-                  <p className="text-lg text-muted-foreground">No items found matching your criteria.</p>
-                  <p className="text-sm text-muted-foreground">Broaden your search or check back for new listings.</p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </main>
-      </div>
+          {filteredMarketplaceItems.length === 0 && (
+            <div className="text-center py-10 col-span-full">
+              <p className="text-lg text-muted-foreground">No items found matching your criteria.</p>
+              <p className="text-sm text-muted-foreground">Broaden your search or check back for new listings.</p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
@@ -305,4 +265,3 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
-
