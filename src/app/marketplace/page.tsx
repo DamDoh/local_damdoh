@@ -41,11 +41,11 @@ const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
 
 // Placeholder data for mobile quick links and icon grid
 const mobileQuickLinks = [
-  { name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits" },
-  { name: "Inputs", href: "/marketplace?category=seeds-seedlings" },
-  { name: "Machinery", href: "/marketplace?category=heavy-machinery-sale" },
-  { name: "Services", href: "/marketplace?listingType=Service" },
-  { name: "Land", href: "/marketplace?category=land-services" },
+  { name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
+  { name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
+  { name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
+  { name: "Services", href: "/marketplace?listingType=Service", icon: Briefcase },
+  { name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
 ];
 
 const mobileIconGridItems = [
@@ -198,16 +198,16 @@ function MarketplaceContent() {
     ).slice(0, 6);
 
     let combinedFeaturedItems = [...freshProduceItems];
+    const freshProduceIds = new Set(freshProduceItems.map(item => item.id)); // Get IDs of already selected fresh produce
 
-    if (freshProduceItems.length < 6) {
-      const freshProduceIds = new Set(freshProduceItems.map(item => item.id));
+    if (combinedFeaturedItems.length < 6) {
       const additionalProducts = filteredMarketplaceItems
-        .filter(item => item.listingType === 'Product' && !freshProduceIds.has(item.id))
-        .slice(0, 6 - freshProduceItems.length);
+        .filter(item => item.listingType === 'Product' && !freshProduceIds.has(item.id)) // Ensure not already in freshProduceItems
+        .slice(0, 6 - combinedFeaturedItems.length);
       combinedFeaturedItems = [...combinedFeaturedItems, ...additionalProducts];
     }
     
-    return combinedFeaturedItems.slice(0, 6);
+    return combinedFeaturedItems.slice(0, 6); // Ensure we don't exceed 6
   }, [filteredMarketplaceItems, isMounted]);
 
 
@@ -332,20 +332,23 @@ function MarketplaceContent() {
                 variant="ghost"
                 size="sm"
                 className={cn(
-                  "h-8 text-xs px-3 text-muted-foreground hover:text-primary",
-                  (currentCategory === link.href.split("=")[1] || (link.href.includes("listingType") && listingTypeFilter === link.href.split("=")[1])) && "text-primary font-semibold"
+                  "h-8 text-xs px-3 flex items-center gap-1.5 text-muted-foreground hover:text-primary",
+                  (currentCategory && link.href.includes(`category=${currentCategory}`)) && "text-primary font-semibold",
+                  (listingTypeFilter !== "All" && link.href.includes(`listingType=${listingTypeFilter}`)) && "text-primary font-semibold"
                 )}
                 onClick={() => {
-                    const [key, value] = link.href.split("=")[1].split("?");
                     if (link.href.includes("listingType")) {
-                        setListingTypeFilter(link.href.split("=")[1] as ListingType | "All");
-                        handleCategorySelect(null);
-                    } else {
-                        handleCategorySelect(link.href.split("=")[1]);
-                        setListingTypeFilter("All");
+                        const typeParam = link.href.split("listingType=")[1];
+                        setListingTypeFilter(typeParam as ListingType | 'All');
+                        handleCategorySelect(null); // Clear category filter
+                    } else if (link.href.includes("category")) {
+                        const categoryParam = link.href.split("category=")[1];
+                        handleCategorySelect(categoryParam);
+                        setListingTypeFilter("All"); // Clear listing type filter
                     }
                 }}
               >
+                <link.icon className="h-4 w-4" />
                 {link.name}
               </Button>
             ))}
@@ -659,7 +662,7 @@ export default function MarketplacePage() {
             <Skeleton className="h-8 w-3/4 mb-2" />
             <Skeleton className="h-4 w-1/2" />
           </CardHeader>
-          <CardContent>
+           <CardContent>
              <Skeleton className="h-64 w-full" />
           </CardContent>
         </Card>
