@@ -8,9 +8,9 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2 } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
-import { useState, useMemo, useEffect, Suspense } from "react";
+import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { LISTING_TYPE_FILTER_OPTIONS, type ListingType } from "@/lib/constants";
 import { dummyMarketplaceItems } from "@/lib/dummy-data"; 
@@ -81,7 +81,7 @@ function MarketplaceContent() {
     setIsMounted(true);
   }, []);
 
-  const handleCategorySelect = (categoryId: string | null) => {
+  const handleCategorySelect = useCallback((categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
     if (categoryId === null || categoryId === currentCategory) { 
       params.delete('category');
@@ -89,7 +89,7 @@ function MarketplaceContent() {
       params.set('category', categoryId);
     }
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
-  };
+  }, [currentCategory, pathname, router, searchParams]);
   
   const quickAccessCategories = useMemo(() => {
     return QUICK_ACCESS_CATEGORIES_IDS.map(id => 
@@ -97,7 +97,7 @@ function MarketplaceContent() {
     ).filter(Boolean) as CategoryNode[];
   }, []);
 
-  const handleFetchLocation = () => {
+  const handleFetchLocation = useCallback(() => {
     if (!navigator.geolocation) {
       setLocationStatus("Geolocation is not supported by your browser.");
       toast({ variant: "destructive", title: "Geolocation Not Supported", description: "Your browser does not support geolocation." });
@@ -127,7 +127,7 @@ function MarketplaceContent() {
         setIsFetchingLocation(false);
       }
     );
-  };
+  }, [toast]);
 
   const filteredMarketplaceItems = useMemo(() => {
     if (!isMounted) return [];
@@ -144,7 +144,7 @@ function MarketplaceContent() {
       
       const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
       
-      const isSustainablePass = listingTypeFilter === "Sustainable Solutions" ? item.isSustainable : true;
+      const isSustainablePass = listingTypeFilter === "Sustainable Solutions" ? item.isSustainable : true; // This filter value needs to be in LISTING_TYPE_FILTER_OPTIONS
 
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch && isSustainablePass;
     });
@@ -174,7 +174,7 @@ function MarketplaceContent() {
 
   const isCurrentHomepage = homepagePreference === pathname;
 
-  const handleSetHomepage = () => {
+  const handleSetHomepage = useCallback(() => {
     if (isCurrentHomepage) {
       clearHomepagePreference();
       toast({
@@ -188,81 +188,121 @@ function MarketplaceContent() {
         description: "The Marketplace is now your default homepage.",
       });
     }
-  };
-
-  if (!isMounted) {
-    // Skeleton for desktop view
-    return (
-      <div className="space-y-6 hidden md:block">
-        <Card>
-          <CardHeader>
-            <Skeleton className="h-8 w-3/4 mb-2" />
-            <Skeleton className="h-4 w-1/2" />
-            <div className="flex items-center gap-2 mt-4">
-              <Skeleton className="h-10 w-32" />
-              <Skeleton className="h-10 w-24" />
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="mb-4">
-              <div className="flex space-x-3 pb-2">
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <Skeleton key={`qaskel-${index}`} className="h-9 w-28 rounded-md" />
-                ))}
-              </div>
-            </div>
-            <div className="mb-6 flex flex-col md:flex-row gap-4 items-center md:items-end">
-              <Skeleton className="h-10 w-48" />
-              <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
-                <Skeleton className="h-10 w-full sm:col-span-2 md:col-span-1" />
-                <Skeleton className="h-10 w-full" />
-                <Skeleton className="h-10 w-full" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-              {Array.from({ length: 18 }).map((_, index) => (
-                <Card key={`itemskel-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
-                  <Skeleton className="w-full aspect-[4/3]" />
-                  <div className="p-3 flex flex-col flex-grow">
-                    <Skeleton className="h-5 w-3/4 mb-1" />
-                    <Skeleton className="h-3 w-1/2 my-1" />
-                    <Skeleton className="h-6 w-1/3 my-1.5" />
-                    <Skeleton className="h-8 w-full mb-2" />
-                    <Skeleton className="h-4 w-full mt-auto pt-1" />
-                  </div>
-                  <div className="p-3 border-t mt-auto">
-                    <Skeleton className="h-9 w-full" />
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  const handleMobileSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Search term is already updated by onChange, filtering happens in useMemo
-    console.log("Mobile search submitted with term:", searchTerm);
-  };
+  }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
 
   const featuredItems = useMemo(() => {
+    if (!isMounted) return [];
      // For demo, take first 6 items or items matching 'fresh-produce-fruits'
     let items = filteredMarketplaceItems.filter(item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables').slice(0, 6);
     if (items.length < 6) {
         items = [...items, ...filteredMarketplaceItems.filter(item => item.listingType === 'Product').slice(0, 6 - items.length)];
     }
     return items.slice(0,6);
-  }, [filteredMarketplaceItems]);
+  }, [filteredMarketplaceItems, isMounted]);
+
+
+  if (!isMounted) {
+    // Comprehensive skeleton for initial render (server and client)
+    return (
+      <>
+        {/* Mobile Skeleton */}
+        <div className="md:hidden space-y-4 pb-16">
+          <div className="sticky top-0 z-20 bg-background p-2 shadow-sm">
+            <Skeleton className="h-10 w-full rounded-full" />
+          </div>
+          <ScrollArea className="w-full whitespace-nowrap px-2">
+            <div className="flex space-x-3 pb-1">
+              {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`qs-${i}`} className="h-8 w-24 rounded-md" />)}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+          <div className="grid grid-cols-5 gap-1 px-2 text-center">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={`igs-${i}`} className="flex flex-col items-center p-1.5 rounded-md">
+                <Skeleton className="h-10 w-10 rounded-full mb-1" />
+                <Skeleton className="h-3 w-12" />
+              </div>
+            ))}
+          </div>
+          <section className="px-2 space-y-2">
+            <Skeleton className="h-6 w-1/3 mb-2" />
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-3 pb-2">
+                {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fs-${i}`} className="w-36 h-48 rounded-md" />)}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </section>
+          <div className="px-2 pt-2">
+            <Skeleton className="h-6 w-1/2 mb-2" />
+            <div className="grid grid-cols-2 gap-2">
+              {Array.from({ length: 6 }).map((_, i) => <Skeleton key={`mgs-${i}`} className="h-56 rounded-lg" />)}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Skeleton */}
+        <div className="hidden md:block space-y-6">
+          <Card>
+            <CardHeader>
+              <Skeleton className="h-8 w-3/4 mb-2" />
+              <Skeleton className="h-4 w-1/2" />
+              <div className="flex items-center gap-2 mt-4">
+                <Skeleton className="h-10 w-32" />
+                <Skeleton className="h-10 w-24" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="mb-4"> {/* Placeholder for quick access horizontal scroller */}
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-3 pb-2">
+                    {Array.from({ length: 8 }).map((_, index) => (
+                      <Skeleton key={`qaskel-${index}`} className="h-9 w-28 rounded-md" />
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </div>
+              <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end"> {/* Placeholder for filter bar */}
+                <Skeleton className="h-10 w-48" /> {/* AllCategoriesDropdown */}
+                <Skeleton className="h-10 w-36" /> {/* Location Button */}
+                <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
+                  <Skeleton className="h-10 w-full sm:col-span-2 md:col-span-1" /> {/* Search Input */}
+                  <Skeleton className="h-10 w-full" /> {/* Location Input */}
+                  <Skeleton className="h-10 w-full" /> {/* Type Select */}
+                </div>
+              </div>
+              <Skeleton className="h-4 w-1/3 mb-4" /> {/* Location status */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                {Array.from({ length: 18 }).map((_, index) => (
+                  <Card key={`itemskel-initial-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
+                    <Skeleton className="w-full aspect-[4/3]" />
+                    <div className="p-3 flex flex-col flex-grow">
+                      <Skeleton className="h-5 w-3/4 mb-1" />
+                      <Skeleton className="h-3 w-1/2 my-1" />
+                      <Skeleton className="h-6 w-1/3 my-1.5" />
+                      <Skeleton className="h-8 w-full mb-2" />
+                      <Skeleton className="h-4 w-full mt-auto pt-1" />
+                    </div>
+                    <div className="p-3 border-t mt-auto">
+                      <Skeleton className="h-9 w-full" />
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </>
+    );
+  }
 
 
   return (
     <>
       {/* Mobile View - AliExpress Inspired */}
       <div className="md:hidden space-y-4 pb-16"> {/* pb-16 for bottom nav space */}
-        <form onSubmit={handleMobileSearch} className="sticky top-0 z-20 bg-background p-2 shadow-sm">
+        <form onSubmit={(e) => e.preventDefault()} className="sticky top-0 z-20 bg-background p-2 shadow-sm">
           <div className="relative">
             <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
@@ -283,9 +323,18 @@ function MarketplaceContent() {
                 size="sm"
                 className={cn(
                   "h-8 text-xs px-3 text-muted-foreground hover:text-primary",
-                  currentCategory === link.href.split("=")[1] && "text-primary font-semibold"
+                  (currentCategory === link.href.split("=")[1] || (link.href.includes("listingType") && listingTypeFilter === link.href.split("=")[1])) && "text-primary font-semibold"
                 )}
-                onClick={() => handleCategorySelect(link.href.split("=")[1] || null)}
+                onClick={() => {
+                    const [key, value] = link.href.split("=")[1].split("?");
+                    if (link.href.includes("listingType")) {
+                        setListingTypeFilter(link.href.split("=")[1] as ListingType | "All");
+                        handleCategorySelect(null);
+                    } else {
+                        handleCategorySelect(link.href.split("=")[1]);
+                        setListingTypeFilter("All");
+                    }
+                }}
               >
                 {link.name}
               </Button>
@@ -296,7 +345,9 @@ function MarketplaceContent() {
 
         <div className="grid grid-cols-5 gap-1 px-2 text-center">
           {mobileIconGridItems.map((item) => (
-            <Link key={item.name} href={item.href} className="flex flex-col items-center p-1.5 rounded-md hover:bg-accent">
+            <Link key={item.name} href={item.href} className="flex flex-col items-center p-1.5 rounded-md hover:bg-accent"
+              onClick={(e) => { e.preventDefault(); handleCategorySelect(item.href.split("=")[1]); }}
+            >
               <div className="p-2 bg-primary/10 rounded-full mb-1">
                  <item.icon className="h-6 w-6 text-primary" />
               </div>
@@ -336,6 +387,7 @@ function MarketplaceContent() {
                   </Link>
                 </Card>
               ))}
+               {featuredItems.length === 0 && <p className="text-xs text-muted-foreground">No featured items currently.</p>}
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
@@ -379,7 +431,7 @@ function MarketplaceContent() {
             </div>
             ) : (
             <div className="text-center py-10 col-span-full">
-                <p className="text-md text-muted-foreground">No items found.</p>
+                <p className="text-md text-muted-foreground">No items found matching your criteria.</p>
             </div>
             )}
         </div>
@@ -412,6 +464,7 @@ function MarketplaceContent() {
               <ScrollArea className="w-full whitespace-nowrap">
                 <div className="flex space-x-3 pb-2">
                   {quickAccessCategories.map((cat) => {
+                    if (!cat) return null; // Add null check for safety
                     const Icon = cat.icon || Sparkles;
                     const isActive = currentCategory === cat.id;
                     return (
@@ -597,29 +650,7 @@ export default function MarketplacePage() {
             <Skeleton className="h-4 w-1/2" />
           </CardHeader>
           <CardContent>
-            <div className="mb-4">
-              <Skeleton className="h-10 w-full" />
-            </div>
-            <div className="mb-6">
-              <Skeleton className="h-10 w-full" />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-              {Array.from({ length: 18 }).map((_, index) => (
-                <Card key={`loadskel-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
-                  <Skeleton className="w-full aspect-[4/3]" />
-                  <div className="p-3 flex flex-col flex-grow">
-                    <Skeleton className="h-5 w-3/4 mb-1" />
-                    <Skeleton className="h-3 w-1/2 my-1" />
-                    <Skeleton className="h-6 w-1/3 my-1.5" />
-                    <Skeleton className="h-8 w-full mb-2" />
-                    <Skeleton className="h-4 w-full mt-auto pt-1" />
-                  </div>
-                  <div className="p-3 border-t mt-auto">
-                    <Skeleton className="h-9 w-full" />
-                  </div>
-                </Card>
-              ))}
-            </div>
+             <Skeleton className="h-64 w-full" />
           </CardContent>
         </Card>
       </div>
@@ -628,3 +659,5 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
+
+    
