@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
@@ -39,7 +39,6 @@ const QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'training-education',
 ];
 
-// Placeholder data for mobile quick links and icon grid
 const mobileQuickLinks = [
   { name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
   { name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
@@ -75,11 +74,15 @@ function MarketplaceContent() {
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
 
-  const marketplaceItems = dummyMarketplaceItems; // Full list for filtering
+  const marketplaceItems = dummyMarketplaceItems; 
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    const typeParam = searchParams.get('listingType');
+    if (typeParam && (typeParam === 'Product' || typeParam === 'Service')) {
+        setListingTypeFilter(typeParam as ListingType);
+    }
+  }, [searchParams]);
 
   const handleCategorySelect = useCallback((categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -144,9 +147,7 @@ function MarketplaceContent() {
       
       const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
       
-      const isSustainablePass = listingTypeFilter === "Sustainable Solutions" ? item.isSustainable : true; // This filter value needs to be in LISTING_TYPE_FILTER_OPTIONS
-
-      return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch && isSustainablePass;
+      return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
     });
 
     if (userCoordinates) {
@@ -190,29 +191,28 @@ function MarketplaceContent() {
     }
   }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
 
-  const featuredItems = useMemo(() => {
+  const featuredProducts = useMemo(() => {
     if (!isMounted) return [];
-
-    const freshProduceItems = filteredMarketplaceItems.filter(
-      item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
-    ).slice(0, 6);
-
-    let combinedFeaturedItems = [...freshProduceItems];
-    const freshProduceIds = new Set(freshProduceItems.map(item => item.id)); // Get IDs of already selected fresh produce
-
-    if (combinedFeaturedItems.length < 6) {
-      const additionalProducts = filteredMarketplaceItems
-        .filter(item => item.listingType === 'Product' && !freshProduceIds.has(item.id)) // Ensure not already in freshProduceItems
-        .slice(0, 6 - combinedFeaturedItems.length);
-      combinedFeaturedItems = [...combinedFeaturedItems, ...additionalProducts];
+    let products = filteredMarketplaceItems.filter(item => item.listingType === 'Product');
+    if (userCoordinates) {
+        const freshProduce = products.filter(
+            item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
+        );
+        const otherProducts = products.filter(
+            item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables')
+        );
+        products = [...freshProduce, ...otherProducts];
     }
-    
-    return combinedFeaturedItems.slice(0, 6); // Ensure we don't exceed 6
+    return products.slice(0, 6);
+  }, [filteredMarketplaceItems, isMounted, userCoordinates]);
+
+  const featuredServices = useMemo(() => {
+    if (!isMounted) return [];
+    return filteredMarketplaceItems.filter(item => item.listingType === 'Service').slice(0, 6);
   }, [filteredMarketplaceItems, isMounted]);
 
 
   if (!isMounted) {
-    // Comprehensive skeleton for initial render (server and client)
     return (
       <>
         {/* Mobile Skeleton */}
@@ -229,7 +229,7 @@ function MarketplaceContent() {
           <div className="grid grid-cols-5 gap-1 px-2 text-center">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={`igs-${i}`} className="flex flex-col items-center p-1.5 rounded-md">
-                <Skeleton className="h-10 w-10 rounded-full mb-1" />
+                <Skeleton className="h-10 w-10 mb-1" />
                 <Skeleton className="h-3 w-12" />
               </div>
             ))}
@@ -239,6 +239,15 @@ function MarketplaceContent() {
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex space-x-3 pb-2">
                 {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fs-${i}`} className="w-36 h-48 rounded-md" />)}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </section>
+           <section className="px-2 space-y-2 mt-6">
+            <Skeleton className="h-6 w-1/3 mb-2" />
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-3 pb-2">
+                {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fss-${i}`} className="w-36 h-48 rounded-md" />)}
               </div>
               <ScrollBar orientation="horizontal" />
             </ScrollArea>
@@ -263,7 +272,7 @@ function MarketplaceContent() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="mb-4"> {/* Placeholder for quick access horizontal scroller */}
+              <div className="mb-4"> 
                 <ScrollArea className="w-full whitespace-nowrap">
                   <div className="flex space-x-3 pb-2">
                     {Array.from({ length: 8 }).map((_, index) => (
@@ -273,16 +282,16 @@ function MarketplaceContent() {
                   <ScrollBar orientation="horizontal" />
                 </ScrollArea>
               </div>
-              <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end"> {/* Placeholder for filter bar */}
-                <Skeleton className="h-10 w-48" /> {/* AllCategoriesDropdown */}
-                <Skeleton className="h-10 w-36" /> {/* Location Button */}
+              <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end"> 
+                <Skeleton className="h-10 w-48" /> 
+                <Skeleton className="h-10 w-36" /> 
                 <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end w-full md:w-auto">
-                  <Skeleton className="h-10 w-full sm:col-span-2 md:col-span-1" /> {/* Search Input */}
-                  <Skeleton className="h-10 w-full" /> {/* Location Input */}
-                  <Skeleton className="h-10 w-full" /> {/* Type Select */}
+                  <Skeleton className="h-10 w-full sm:col-span-2 md:col-span-1" /> 
+                  <Skeleton className="h-10 w-full" /> 
+                  <Skeleton className="h-10 w-full" /> 
                 </div>
               </div>
-              <Skeleton className="h-4 w-1/3 mb-4" /> {/* Location status */}
+              <Skeleton className="h-4 w-1/3 mb-4" /> 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 {Array.from({ length: 18 }).map((_, index) => (
                   <Card key={`itemskel-initial-${index}`} className="rounded-lg overflow-hidden shadow-sm flex flex-col">
@@ -340,11 +349,11 @@ function MarketplaceContent() {
                     if (link.href.includes("listingType")) {
                         const typeParam = link.href.split("listingType=")[1];
                         setListingTypeFilter(typeParam as ListingType | 'All');
-                        handleCategorySelect(null); // Clear category filter
+                        handleCategorySelect(null); 
                     } else if (link.href.includes("category")) {
                         const categoryParam = link.href.split("category=")[1];
                         handleCategorySelect(categoryParam);
-                        setListingTypeFilter("All"); // Clear listing type filter
+                        setListingTypeFilter("All"); 
                     }
                 }}
               >
@@ -361,24 +370,24 @@ function MarketplaceContent() {
             <Link key={item.name} href={item.href} className="flex flex-col items-center p-1.5 rounded-md hover:bg-accent"
               onClick={(e) => { e.preventDefault(); handleCategorySelect(item.href.split("=")[1]); }}
             >
-              <div className="p-2 bg-primary/10 rounded-full mb-1">
-                 <item.icon className="h-6 w-6 text-primary" />
-              </div>
-              <span className="text-[11px] text-muted-foreground leading-tight">{item.name}</span>
+              <item.icon className="h-6 w-6 text-primary mb-1" />
+              <span className="text-xs text-muted-foreground leading-tight">{item.name}</span>
             </Link>
           ))}
         </div>
         
-        {/* Promotional Section Example */}
+        {/* Featured Products Section */}
         <section className="px-2 space-y-2">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Top Deals</h2>
-            <Link href="/marketplace?filter=deals" className="text-xs text-primary hover:underline">See All</Link>
+            <h2 className="text-lg font-semibold">Featured Products</h2>
+            <Link href="/marketplace?listingType=Product" className="text-xs text-primary hover:underline flex items-center">
+                See All <ChevronRight className="h-3 w-3 ml-0.5" />
+            </Link>
           </div>
           <ScrollArea className="w-full whitespace-nowrap">
             <div className="flex space-x-3 pb-2">
-              {featuredItems.map(item => (
-                <Card key={`feat-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
+              {featuredProducts.map(item => (
+                <Card key={`feat-prod-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
                    <Link href={`/marketplace/${item.id}`} className="block">
                     <div className="relative w-full aspect-square">
                       <Image 
@@ -400,14 +409,50 @@ function MarketplaceContent() {
                   </Link>
                 </Card>
               ))}
-               {featuredItems.length === 0 && <p className="text-xs text-muted-foreground">No featured items currently.</p>}
+               {featuredProducts.length === 0 && <p className="text-xs text-muted-foreground py-4">No featured products currently.</p>}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </section>
+
+        {/* Recommended Services Section */}
+        <section className="px-2 space-y-2 mt-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-lg font-semibold">Recommended Services</h2>
+             <Link href="/marketplace?listingType=Service" className="text-xs text-primary hover:underline flex items-center">
+                See All <ChevronRight className="h-3 w-3 ml-0.5" />
+            </Link>
+          </div>
+          <ScrollArea className="w-full whitespace-nowrap">
+            <div className="flex space-x-3 pb-2">
+              {featuredServices.map(item => (
+                <Card key={`feat-serv-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
+                   <Link href={`/marketplace/${item.id}`} className="block">
+                    <div className="relative w-full aspect-square">
+                      <Image 
+                        src={item.imageUrl || "https://placehold.co/150x150.png"} 
+                        alt={item.name} 
+                        fill={true}
+                        sizes="33vw"
+                        style={{objectFit:"cover"}}
+                        data-ai-hint={item.dataAiHint || "service agriculture"}
+                      />
+                    </div>
+                    <div className="p-1.5">
+                      <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
+                      {item.compensation && <p className="text-xs font-bold text-primary mt-0.5 line-clamp-1">{item.compensation}</p>}
+                    </div>
+                  </Link>
+                </Card>
+              ))}
+               {featuredServices.length === 0 && <p className="text-xs text-muted-foreground py-4">No recommended services currently.</p>}
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </section>
 
         {/* Main Grid for Mobile */}
-        <div className="px-2 pt-2">
+        <div className="px-2 pt-4">
           <h2 className="text-lg font-semibold mb-2">Discover More</h2>
            {filteredMarketplaceItems.length > 0 ? (
             <div className="grid grid-cols-2 gap-2">
@@ -477,7 +522,7 @@ function MarketplaceContent() {
               <ScrollArea className="w-full whitespace-nowrap">
                 <div className="flex space-x-3 pb-2">
                   {quickAccessCategories.map((cat) => {
-                    if (!cat) return null; // Add null check for safety
+                    if (!cat) return null; 
                     const Icon = cat.icon || Sparkles;
                     const isActive = currentCategory === cat.id;
                     return (
