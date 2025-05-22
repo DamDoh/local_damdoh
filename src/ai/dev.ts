@@ -7,4 +7,5 @@ import '@/ai/flows/suggested-connections.ts';
 import '@/ai/flows/profile-summary-generator.ts';
 import '@/ai/flows/farming-assistant-flow.ts';
 import '@/ai/flows/market-insights-flow.ts';
-import '@/ai/flows/query-interpreter-flow.ts'; // Added new query interpreter flow
+import '@/ai/flows/query-interpreter-flow.ts';
+import '@/ai/flows/marketplace-recommendations.ts'; // Added new recommendations flow

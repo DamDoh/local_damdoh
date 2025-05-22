@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Cog, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight, Brain } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
@@ -22,6 +22,7 @@ import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data"
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getMarketplaceRecommendations, type MarketplaceRecommendationInput, type MarketplaceRecommendationOutput } from "@/ai/flows/marketplace-recommendations";
 
 
 const ALL_QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
@@ -52,23 +53,15 @@ const CONSUMER_PRODUCE_CATEGORY_IDS: CategoryNode['id'][] = [
 ];
 
 const FARMER_INTEREST_CATEGORY_IDS: CategoryNode['id'][] = [
-  'seeds-seedlings', 'fertilizers-soil', 'pest-control-products', 'farm-tools-small-equip', 'heavy-machinery-sale', // Products
-  'farm-labor-staffing', 'equipment-rental-operation', 'land-services', 'technical-services', 'consultancy-advisory' // Services
+  'seeds-seedlings', 'fertilizers-soil', 'pest-control-products', 'farm-tools-small-equip', 'heavy-machinery-sale', 
+  'farm-labor-staffing', 'equipment-rental-operation', 'land-services', 'technical-services', 'consultancy-advisory' 
 ];
 
 const TRADER_INTEREST_CATEGORY_IDS: CategoryNode['id'][] = [
-  'fresh-produce-fruits', 'fresh-produce-vegetables', 'grains-cereals', 'livestock-poultry', // Products
-  'logistics-transport', 'storage-warehousing', 'processing-value-addition', 'financial-insurance' // Services
+  'fresh-produce-fruits', 'fresh-produce-vegetables', 'grains-cereals', 'livestock-poultry', 
+  'logistics-transport', 'storage-warehousing', 'processing-value-addition', 'financial-insurance' 
 ];
 
-
-const mobileQuickLinksBase = [
-  { id: 'mq_fresh', name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
-  { id: 'mq_inputs', name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
-  { id: 'mq_machinery', name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
-  { id: 'mq_services', name: "Services", href: "/marketplace?listingType=Service", icon: Briefcase },
-  { id: 'mq_land', name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
-];
 
 const mobileIconGridItems = [
   { name: "Fruits", icon: Apple, href: "/marketplace?category=fresh-produce-fruits", dataAiHint: "apple fruit" },
@@ -89,6 +82,11 @@ function MarketplaceContent() {
   const [locationStatus, setLocationStatus] = useState<string>('');
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
 
+  const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
+  const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(false);
+  const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
+
+
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -106,7 +104,47 @@ function MarketplaceContent() {
     if (typeParam && (typeParam === 'Product' || typeParam === 'Service')) {
         setListingTypeFilter(typeParam as ListingType);
     }
-  }, [searchParams]);
+
+    // Fetch AI Recommendations
+    const fetchAiRecommendations = async () => {
+      setIsLoadingAiRecommendations(true);
+      try {
+        // Simulate user context for now
+        const mockUserContextForAISuggestions: MarketplaceRecommendationInput = {
+          stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
+          recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
+          viewedCategories: userType === 'farmer' ? ["fertilizers-soil"] : userType === 'trader' ? ["grains-cereals"] : ["fresh-produce-vegetables"],
+          currentLocation: "Kenya" 
+        };
+        const recommendationsOutput = await getMarketplaceRecommendations(mockUserContextForAISuggestions);
+        
+        const recommendedFullItems: MarketplaceItem[] = [];
+        const reasons: Record<string, string> = {};
+
+        recommendationsOutput.suggestedItems.forEach(suggested => {
+          const foundItem = dummyMarketplaceItems.find(item => item.id === suggested.itemId);
+          if (foundItem) {
+            recommendedFullItems.push(foundItem);
+            reasons[foundItem.id] = suggested.reason;
+          } else {
+            // If AI suggests an ID not in dummy data, we could conceptually create a placeholder
+            // or log this. For now, we'll just skip if not found in dummy data.
+            console.warn(`AI suggested item ID "${suggested.itemId}" not found in dummyMarketplaceItems.`);
+          }
+        });
+        setAiRecommendedItems(recommendedFullItems.slice(0, 5)); // Take top 5 or so
+        setAiRecommendationReasons(reasons);
+
+      } catch (error) {
+        console.error("Error fetching AI marketplace recommendations:", error);
+        toast({ variant: "destructive", title: "Could not fetch AI recommendations" });
+      }
+      setIsLoadingAiRecommendations(false);
+    };
+
+    fetchAiRecommendations();
+
+  }, [searchParams, userType, toast]);
 
   const handleCategorySelect = useCallback((categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -127,15 +165,23 @@ function MarketplaceContent() {
     } else if (userType === 'trader') {
       relevantCategoryIds = TRADER_INTEREST_CATEGORY_IDS;
     }
-    return AGRICULTURAL_CATEGORIES.filter(cat => relevantCategoryIds.includes(cat.id));
+    return AGRICULTURAL_CATEGORIES.filter(cat => relevantCategoryIds.includes(cat.id)).slice(0, 8); // Show up to 8 relevant quick links
   }, [userType]);
   
   const mobileQuickLinks = useMemo(() => {
+    let baseLinks: { id: string; name: string; href: string; icon: React.ElementType }[] = [
+      { id: 'mq_fresh', name: "Fresh Produce", href: "/marketplace?category=fresh-produce-fruits", icon: Apple },
+      { id: 'mq_inputs', name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
+      { id: 'mq_machinery', name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
+      { id: 'mq_services', name: "Services", href: "/marketplace?listingType=Service", icon: Briefcase },
+      { id: 'mq_land', name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
+    ];
+
     if (userType === 'consumer') {
-      return mobileQuickLinksBase.filter(link => 
+      return baseLinks.filter(link => 
          CONSUMER_PRODUCE_CATEGORY_IDS.some(consumerCatId => link.href.includes(consumerCatId)) ||
          link.href.includes('listingType=Product') 
-      ).slice(0,5); // Limit for display
+      ).slice(0,5); 
     } else if (userType === 'farmer') {
       return [
         { id: 'mq_inputs_f', name: "Inputs", href: "/marketplace?category=seeds-seedlings", icon: ShoppingBag },
@@ -153,7 +199,7 @@ function MarketplaceContent() {
         { id: 'mq_finance_t', name: "Finance", href: "/marketplace?category=financial-insurance", icon: CircleDollarSign },
       ];
     }
-    return mobileQuickLinksBase;
+    return baseLinks;
   }, [userType]);
 
 
@@ -207,7 +253,6 @@ function MarketplaceContent() {
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
     });
 
-    // UserType specific default filtering if no category is selected
     if (!currentCategory) {
       if (userType === 'consumer') {
         items = items.filter(item => CONSUMER_PRODUCE_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
@@ -218,7 +263,6 @@ function MarketplaceContent() {
       }
     }
 
-
     if (userCoordinates) { 
       const freshProduceItems = items.filter(
         item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
@@ -226,9 +270,9 @@ function MarketplaceContent() {
       const otherItems = items.filter(
         item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables')
       );
-      items = [...freshProduceItems, ...otherItems];
+      const freshProduceIds = new Set(freshProduceItems.map(fp => fp.id));
+      return [...freshProduceItems, ...otherItems.filter(item => !freshProduceIds.has(item.id))];
     }
-
     return items;
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted, userCoordinates, userType]);
 
@@ -264,30 +308,31 @@ function MarketplaceContent() {
     if (!isMounted) return { featuredProductsTitle: "Featured Products", featuredProductsItems: [] };
     
     let title = "Featured Products";
+    let productsSource = filteredMarketplaceItems;
+
+    if (userCoordinates) { // If location is on, featured should also prioritize local fresh produce
+        const fresh = productsSource.filter(item => item.listingType === 'Product' && (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'));
+        const others = productsSource.filter(item => item.listingType === 'Product' && !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'));
+        const freshIds = new Set(fresh.map(f => f.id));
+        productsSource = [...fresh, ...others.filter(o => !freshIds.has(o.id))];
+    }
+
     let products = [];
 
     if (userType === 'farmer') {
       title = "Featured Inputs & Equipment";
-      products = filteredMarketplaceItems.filter(item => 
+      products = productsSource.filter(item => 
         item.listingType === 'Product' && 
         (item.category === 'seeds-seedlings' || item.category === 'fertilizers-soil' || item.category === 'farm-tools-small-equip' || item.category === 'heavy-machinery-sale')
       );
     } else if (userType === 'trader') {
       title = "Tradable Commodities";
-       products = filteredMarketplaceItems.filter(item => 
+       products = productsSource.filter(item => 
         item.listingType === 'Product' && 
         (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables' || item.category === 'grains-cereals')
       );
-    } else { // Consumer or default
-       products = filteredMarketplaceItems.filter(item => item.listingType === 'Product');
-       if (userCoordinates) {
-          const freshProduce = products.filter(
-              item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
-          );
-          const otherProductIds = new Set(freshProduce.map(fp => fp.id));
-          const otherProducts = products.filter(item => !otherProductIds.has(item.id));
-          products = [...freshProduce, ...otherProducts];
-      }
+    } else { 
+       products = productsSource.filter(item => item.listingType === 'Product');
     }
     return { featuredProductsTitle: title, featuredProductsItems: products.slice(0, 6) };
   }, [filteredMarketplaceItems, isMounted, userCoordinates, userType]);
@@ -334,14 +379,14 @@ function MarketplaceContent() {
           </ScrollArea>
           <div className="grid grid-cols-5 gap-2 px-2 text-center">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={`igs-${i}`} className="flex flex-col items-center p-2 rounded-lg">
+              <Link key={`igs-${i}`} href="#" className="flex flex-col items-center p-2 rounded-lg">
                 <Skeleton className="h-10 w-10 mb-1.5" />
                 <Skeleton className="h-3 w-12" />
-              </div>
+              </Link>
             ))}
           </div>
-          <section className="px-2 space-y-2">
-            <Skeleton className="h-6 w-1/3 mb-2" />
+           <section className="px-2 space-y-2">
+            <Skeleton className="h-6 w-1/2 mb-2" />
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex space-x-3 pb-2">
                 {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fs-${i}`} className="w-36 h-48 rounded-md" />)}
@@ -351,7 +396,7 @@ function MarketplaceContent() {
           </section>
            {showServicesSkeleton && (
              <section className="px-2 space-y-2 mt-6">
-              <Skeleton className="h-6 w-1/3 mb-2" />
+              <Skeleton className="h-6 w-1/2 mb-2" />
               <ScrollArea className="w-full whitespace-nowrap">
                 <div className="flex space-x-3 pb-2">
                   {Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fss-${i}`} className="w-36 h-48 rounded-md" />)}
@@ -475,8 +520,8 @@ function MarketplaceContent() {
 
   return (
     <>
-      {/* Mobile View - AliExpress Inspired */}
-      <div className="md:hidden space-y-4 pb-16"> {/* pb-16 for bottom nav space */}
+      {/* Mobile View */}
+      <div className="md:hidden space-y-4 pb-16"> 
         <form onSubmit={(e) => e.preventDefault()} className="sticky top-0 z-20 bg-background p-2 shadow-sm">
           <div className="relative">
             <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -497,7 +542,7 @@ function MarketplaceContent() {
                 variant="ghost"
                 size="sm" 
                 className={cn(
-                  "flex items-center gap-1.5 text-muted-foreground hover:text-primary font-normal text-xs h-9", 
+                  "flex items-center gap-1.5 text-muted-foreground hover:text-primary font-normal text-xs h-9 px-3", 
                   ((currentCategory && link.href.includes(`category=${currentCategory}`)) || (listingTypeFilter !== "All" && link.href.includes(`listingType=${listingTypeFilter}`)))
                   && "bg-primary/10 text-primary font-semibold"
                 )}
@@ -510,7 +555,7 @@ function MarketplaceContent() {
                         setListingTypeFilter(typeParam as ListingType | 'All');
                     } else if (link.href.includes("category")) {
                         const categoryParam = link.href.split("category=")[1];
-                         if (categoryParam === currentCategory) { // Toggle off if already selected
+                         if (categoryParam === currentCategory) { 
                             params.delete('category');
                         } else {
                             params.set('category', categoryParam);
@@ -543,8 +588,52 @@ function MarketplaceContent() {
           ))}
         </div>
         
+        {/* AI Recommendations for Mobile */}
+        {aiRecommendedItems.length > 0 && (
+          <section className="px-2 space-y-2 mt-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-semibold flex items-center gap-1.5"><Brain className="h-5 w-5 text-primary"/>Recommended For You</h2>
+            </div>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-3 pb-2">
+                {isLoadingAiRecommendations ? 
+                  Array.from({ length: 3 }).map((_, i) => <Skeleton key={`aiskel-mob-${i}`} className="w-36 h-48 rounded-md" />) :
+                  aiRecommendedItems.map(item => (
+                  <Card key={`ai-rec-mob-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
+                    <Link href={`/marketplace/${item.id}`} className="block">
+                      <div className="relative w-full aspect-square">
+                        <Image 
+                          src={item.imageUrl || "https://placehold.co/150x150.png"} 
+                          alt={item.name} 
+                          fill={true}
+                          sizes="33vw"
+                          style={{objectFit:"cover"}}
+                          data-ai-hint={item.dataAiHint || "product agriculture"}
+                        />
+                      </div>
+                      <div className="p-1.5">
+                        <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
+                        {item.listingType === 'Product' ? (
+                            <p className="text-xs font-bold text-primary mt-0.5">
+                            ${item.price.toFixed(2)}
+                            {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
+                            </p>
+                        ) : (
+                            item.compensation && <p className="text-xs font-medium text-primary mt-0.5 line-clamp-1">{item.compensation}</p>
+                        )}
+                         {aiRecommendationReasons[item.id] && <p className="text-[9px] text-muted-foreground italic line-clamp-1 mt-0.5" title={aiRecommendationReasons[item.id]}>✨ {aiRecommendationReasons[item.id]}</p>}
+                      </div>
+                    </Link>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </section>
+        )}
+
         {featuredProductsItems.length > 0 && (
-          <section className="px-2 space-y-2">
+          <section className="px-2 space-y-2 mt-4">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">{featuredProductsTitle}</h2>
               <Link href={`/marketplace?listingType=Product${userType ? `&userType=${userType}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
@@ -594,7 +683,7 @@ function MarketplaceContent() {
               <div className="flex space-x-3 pb-2">
                 {featuredServicesItems.map(item => (
                   <Card key={`feat-serv-${item.id}`} className="w-36 shrink-0 overflow-hidden rounded-md shadow-sm">
-                    <Link href={`/marketplace/${item.id}`} className="block">
+                     <Link href={`/marketplace/${item.id}`} className="block">
                       <div className="relative w-full aspect-square">
                         <Image 
                           src={item.imageUrl || "https://placehold.co/150x150.png"} 
@@ -607,7 +696,7 @@ function MarketplaceContent() {
                       </div>
                       <div className="p-1.5">
                         <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
-                        {item.compensation && <p className="text-xs font-bold text-primary mt-0.5 line-clamp-1">{item.compensation}</p>}
+                        {item.compensation && <p className="text-xs font-medium text-primary mt-0.5 line-clamp-1">{item.compensation}</p>}
                       </div>
                     </Link>
                   </Card>
@@ -618,7 +707,6 @@ function MarketplaceContent() {
           </section>
         )}
 
-        {/* Main Grid for Mobile */}
         <div className="px-2 pt-4">
           <h2 className="text-lg font-semibold mb-2">Discover More</h2>
            {filteredMarketplaceItems.length > 0 ? (
@@ -775,6 +863,54 @@ function MarketplaceContent() {
               </div>
             </div>
             {locationStatus && <p className="text-sm text-muted-foreground mb-4 text-center md:text-left">{locationStatus}</p>}
+            
+            {/* AI Recommendations for Desktop */}
+            {aiRecommendedItems.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-xl font-semibold mb-3 flex items-center gap-1.5"><Brain className="h-5 w-5 text-primary"/>Recommended For You</h2>
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-4 pb-2">
+                  {isLoadingAiRecommendations ? 
+                    Array.from({ length: 4 }).map((_, i) => (
+                        <Card key={`aiskel-desk-${i}`} className="w-52 shrink-0">
+                          <Skeleton className="w-full aspect-[4/3] rounded-t-lg" />
+                          <CardContent className="p-3 space-y-1.5"> <Skeleton className="h-4 w-3/4" /> <Skeleton className="h-3 w-1/2" /> <Skeleton className="h-5 w-1/3" /> </CardContent>
+                          <CardFooter className="p-3 border-t"> <Skeleton className="h-8 w-full" /> </CardFooter>
+                        </Card>
+                    )) :
+                    aiRecommendedItems.map(item => (
+                      <Card key={`ai-rec-desk-${item.id}`} className="w-52 shrink-0 overflow-hidden rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                        <Link href={`/marketplace/${item.id}`} className="block">
+                          <div className="relative w-full aspect-[4/3]">
+                            <Image 
+                              src={item.imageUrl || "https://placehold.co/200x150.png"} 
+                              alt={item.name} 
+                              fill={true} sizes="25vw" style={{objectFit:"cover"}}
+                              data-ai-hint={item.dataAiHint || "product agriculture"}
+                            />
+                          </div>
+                          <div className="p-2.5">
+                            <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
+                            {item.listingType === 'Product' ? (
+                                <p className="text-sm font-bold text-primary mt-1">
+                                ${item.price.toFixed(2)}
+                                {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
+                                </p>
+                            ) : (
+                                item.compensation && <p className="text-sm font-medium text-primary mt-1 line-clamp-1">{item.compensation}</p>
+                            )}
+                            {aiRecommendationReasons[item.id] && <p className="text-[10px] text-muted-foreground/80 italic line-clamp-2 mt-0.5 h-7" title={aiRecommendationReasons[item.id]}>✨ {aiRecommendationReasons[item.id]}</p>}
+                            <p className="text-[10px] text-muted-foreground truncate mt-0.5">{item.location}</p>
+                          </div>
+                        </Link>
+                      </Card>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </section>
+            )}
+
 
             {featuredProductsItems.length > 0 && (
               <section className="mb-8">
@@ -896,7 +1032,7 @@ function MarketplaceContent() {
                     )}
 
                     {item.aiPriceSuggestion && item.listingType === 'Product' && (
-                      <div className="text-xs text-blue-600 flex items-center mb-1.5">
+                      <div className="text-xs text-blue-600 flex items-center mt-0.5 mb-1.5"> {/* Adjusted margin */}
                         <Sparkles className="h-3 w-3 mr-1" />
                         AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
                       </div>
@@ -957,7 +1093,23 @@ export default function MarketplacePage() {
             <Skeleton className="h-4 w-1/2" />
           </CardHeader>
            <CardContent>
-             <Skeleton className="h-64 w-full" /> {/* Simplified fallback */}
+              {/* Skeleton for Mobile */}
+              <div className="md:hidden space-y-4 pb-16">
+                <Skeleton className="h-10 w-full rounded-full" />
+                <div className="flex space-x-3 px-2 pb-1"><Skeleton className="h-9 w-24 rounded-md" /><Skeleton className="h-9 w-24 rounded-md" /><Skeleton className="h-9 w-24 rounded-md" /></div>
+                <div className="grid grid-cols-5 gap-2 px-2 text-center">{Array.from({ length: 5 }).map((_, i) => (<div key={`igs-sk-${i}`} className="flex flex-col items-center p-2"><Skeleton className="h-10 w-10 mb-1.5" /><Skeleton className="h-3 w-12" /></div>))}</div>
+                <div className="px-2 space-y-2"><Skeleton className="h-6 w-1/3 mb-2" /><div className="flex space-x-3 pb-2">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={`fs-sk-${i}`} className="w-36 h-48 rounded-md" />)}</div></div>
+                <div className="px-2 pt-2"><Skeleton className="h-6 w-1/2 mb-2" /><div className="grid grid-cols-2 gap-2">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={`mgs-sk-${i}`} className="h-56 rounded-lg" />)}</div></div>
+              </div>
+              {/* Skeleton for Desktop */}
+              <div className="hidden md:block">
+                <div className="mb-4"><div className="flex space-x-3 pb-2">{Array.from({ length: 6 }).map((_, i) => <Skeleton key={`qaskel-dk-${i}`} className="h-9 w-28 rounded-md" />)}</div></div>
+                <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end"><Skeleton className="h-10 w-48" /><Skeleton className="h-10 w-36" /><div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4"><Skeleton className="h-10" /><Skeleton className="h-10" /><Skeleton className="h-10" /></div></div>
+                <Skeleton className="h-4 w-1/3 mb-4" />
+                <div className="mb-6"><Skeleton className="h-6 w-1/4 mb-3" /><div className="flex space-x-4 pb-2">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={`fskel-dk-prod-${i}`} className="w-52 h-64 rounded-md" />)}</div></div>
+                <Skeleton className="h-6 w-1/4 mb-3" /> 
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">{Array.from({ length: 12 }).map((_, i) => <Skeleton key={`itemskel-dk-${i}`} className="h-72 rounded-lg" />)}</div>
+              </div>
           </CardContent>
         </Card>
       </div>

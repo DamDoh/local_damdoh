@@ -9,17 +9,16 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, ShoppingCart, MessageSquare, Briefcase, LandPlot, Wrench, MapPin, DollarSign, Leaf, Package, Truck, ShieldAlert, Brain, TrendingUp, Award, Tractor, Sparkles, Info } from 'lucide-react';
-import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow'; // New AI flow import
+import { Users, ShoppingCart, MessageSquare, Briefcase, Package, Truck, ShieldAlert, Brain, TrendingUp, Award, Tractor, Sparkles, Info, MapPin, DollarSign, Leaf, Eye, Filter } from 'lucide-react';
+import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 import { Skeleton } from '@/components/ui/skeleton';
 
 import { 
   dummyProfiles, 
   dummyMarketplaceItems, 
   dummyForumTopics,
-  dummyUsersData 
 } from '@/lib/dummy-data';
-import type { UserProfile, MarketplaceItem, ForumTopic, UnifiedMarketplaceCategoryType } from '@/lib/types';
+import type { UserProfile, MarketplaceItem, ForumTopic } from '@/lib/types';
 import { AGRICULTURAL_CATEGORIES } from '@/lib/category-data';
 
 
@@ -38,7 +37,7 @@ function SearchResultsComponent() {
           setAiInterpretation(interpretation);
         } catch (error) {
           console.error("Error fetching search interpretation:", error);
-          setAiInterpretation(null); // Or handle error display
+          setAiInterpretation(null); 
         }
         setIsLoadingInterpretation(false);
       };
@@ -119,33 +118,39 @@ function SearchResultsComponent() {
         {query && (
           <CardContent>
             {isLoadingInterpretation && (
-              <div className="p-4 border rounded-md bg-muted/50">
-                <Skeleton className="h-5 w-1/3 mb-2" />
-                <Skeleton className="h-4 w-full mb-1" />
-                <Skeleton className="h-4 w-3/4" />
-              </div>
+              <Card className="bg-muted/30 border-primary/20 shadow-sm p-4">
+                 <div className="flex items-center gap-2 mb-3">
+                    <Brain className="h-5 w-5 text-primary animate-pulse" />
+                    <Skeleton className="h-5 w-40" />
+                  </div>
+                <Skeleton className="h-4 w-3/4 mb-1.5" />
+                <Skeleton className="h-4 w-1/2 mb-1.5" />
+                <Skeleton className="h-4 w-2/3" />
+              </Card>
             )}
             {aiInterpretation && !isLoadingInterpretation && (
               <Card className="bg-accent/30 border-primary/30 shadow-sm">
                 <CardHeader className="pb-3 pt-4">
                   <CardTitle className="text-md flex items-center gap-2"><Brain className="h-5 w-5 text-primary" /> AI Search Interpretation</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm space-y-1.5">
+                <CardContent className="text-sm space-y-2">
                   <p><strong className="font-medium">Keywords:</strong> {aiInterpretation.mainKeywords.join(', ') || 'N/A'}</p>
                   {aiInterpretation.identifiedLocation && <p><strong className="font-medium">Location:</strong> {aiInterpretation.identifiedLocation}</p>}
+                  {aiInterpretation.identifiedIntent && <p><strong className="font-medium">Possible Intent:</strong> <Badge variant="secondary" className="capitalize">{aiInterpretation.identifiedIntent}</Badge></p>}
+                  
                   {aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
                     <div>
-                      <strong className="font-medium">Suggested Filters:</strong>
-                      <div className="flex flex-wrap gap-1 mt-1">
+                      <strong className="font-medium flex items-center gap-1.5"><Filter size={16}/>Suggested Filters:</strong>
+                      <div className="flex flex-wrap gap-1.5 mt-1">
                         {aiInterpretation.suggestedFilters.map((filter, idx) => (
-                          <Badge key={idx} variant="secondary" className="text-xs">
+                          <Badge key={idx} variant="outline" className="text-xs py-0.5 px-1.5 cursor-pointer hover:bg-primary/10" onClick={() => alert(`Filter by ${filter.type}: ${filter.value} (not implemented yet)`)}>
                             {filter.type}: {filter.value}
                           </Badge>
                         ))}
                       </div>
                     </div>
                   )}
-                  {aiInterpretation.interpretationNotes && <p className="text-muted-foreground italic mt-1.5 text-xs flex items-start gap-1.5"><Info size={14} className="mt-0.5 shrink-0"/> {aiInterpretation.interpretationNotes}</p>}
+                  {aiInterpretation.interpretationNotes && <p className="text-muted-foreground italic mt-2 text-xs flex items-start gap-1.5"><Info size={14} className="mt-0.5 shrink-0"/> {aiInterpretation.interpretationNotes}</p>}
                 </CardContent>
               </Card>
             )}
@@ -222,7 +227,13 @@ function SearchResultsComponent() {
                   ) : (
                     item.compensation && <p className="font-medium text-primary">{item.compensation}</p>
                   )}
-                  <div className="flex items-center text-muted-foreground text-xs">
+                   {item.aiPriceSuggestion && item.listingType === 'Product' && (
+                      <div className="text-xs text-blue-600 flex items-center mt-1">
+                        <Sparkles className="h-3 w-3 mr-1" />
+                        AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
+                      </div>
+                    )}
+                  <div className="flex items-center text-muted-foreground text-xs mt-1">
                     <MapPin className="h-3 w-3 mr-1" />
                     {item.location}
                   </div>
