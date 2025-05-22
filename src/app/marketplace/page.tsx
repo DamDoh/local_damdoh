@@ -8,7 +8,7 @@ import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Pin, PinOff, CheckCircle, Sparkles, DollarSign, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight, Brain } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Pin, PinOff, CheckCircle, Sparkles, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight, Brain } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
@@ -893,7 +893,7 @@ function MarketplaceContent() {
                             <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
                             {item.listingType === 'Product' ? (
                                 <p className="text-sm font-bold text-primary mt-1">
-                                ${item.price.toFixed(2)}
+                                ${item.price.toFixed(2)} {item.currency}
                                 {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                                 </p>
                             ) : (
@@ -933,7 +933,7 @@ function MarketplaceContent() {
                           <div className="p-2.5">
                             <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
                             <p className="text-sm font-bold text-primary mt-1">
-                              ${item.price.toFixed(2)}
+                              ${item.price.toFixed(2)} {item.currency}
                               {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                             </p>
                              <p className="text-[10px] text-muted-foreground truncate mt-0.5">{item.location}</p>
@@ -1023,7 +1023,7 @@ function MarketplaceContent() {
 
                     {item.listingType === 'Product' ? (
                       <div className="flex items-center text-lg font-semibold text-primary my-1.5">
-                        <DollarSign className="h-4 w-4 mr-1" />
+                        
                         {item.price.toFixed(2)} {item.currency}
                         {item.perUnit && <span className="text-xs text-muted-foreground ml-1.5">{item.perUnit}</span>}
                       </div>
@@ -1118,3 +1118,4 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
+
