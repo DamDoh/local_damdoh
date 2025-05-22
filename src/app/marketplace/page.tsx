@@ -8,7 +8,7 @@ import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp } from "lucide-react"; 
+import { PlusCircle, Search, Tag, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
@@ -91,7 +91,7 @@ export default function MarketplacePage() {
               <CardTitle className="text-2xl">AI-Powered Agricultural Trade Hub</CardTitle>
               <CardDescription>Source products, inputs, machinery, and services. Connect with farmers, traders, and suppliers globally for smart, sustainable trade.</CardDescription>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex items-center gap-2">
               <Button asChild>
                 <Link href="/marketplace/create">
                   <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing
@@ -149,65 +149,73 @@ export default function MarketplacePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredMarketplaceItems.map(item => (
-              <Card key={item.id} className="flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 rounded-lg">
-                <div className="relative h-48 w-full">
+              <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
+                <div className="relative w-full aspect-[4/3]">
                   <Image 
-                    src={item.imageUrl || "https://placehold.co/300x200.png"} 
+                    src={item.imageUrl || "https://placehold.co/400x300.png"} 
                     alt={item.name} 
                     fill={true}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     style={{objectFit:"cover"}}
                     data-ai-hint={item.dataAiHint || `${item.category.split(' ')[0].toLowerCase()} agricultural`}
                   />
-                  <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
-                    <Badge variant="secondary" className="flex items-center">
+                  <div className="absolute top-2 right-2 flex flex-col gap-1.5 items-end">
+                    <Badge variant="secondary" className="py-1 px-2 text-xs flex items-center">
                       {getCategoryIcon(item.category)}
                       {item.category}
                     </Badge>
                     {item.isSustainable && (
-                      <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white">
+                      <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white py-1 px-2 text-xs">
                         <CheckCircle className="h-3 w-3 mr-1" />Sustainable
                       </Badge>
                     )}
                   </div>
                 </div>
-                <CardHeader className="pb-2">
-                  <Link href={`/marketplace/${item.id}`}>
-                    <CardTitle className="text-lg hover:text-primary transition-colors line-clamp-1">{item.name}</CardTitle>
+                <div className="p-3 flex flex-col flex-grow">
+                  <Link href={`/marketplace/${item.id}`} className="block mb-1">
+                    <h3 className="text-sm font-medium text-foreground hover:text-primary transition-colors line-clamp-2 h-10">
+                      {item.name}
+                    </h3>
                   </Link>
-                  {item.sellerVerification === 'Verified' && (
-                     <Badge variant="outline" className="text-xs w-fit border-green-500 text-green-600">
-                        <ShieldCheck className="h-3 w-3 mr-1" /> Verified Seller
-                    </Badge>
-                  )}
-                </CardHeader>
-                <CardContent className="flex-grow space-y-2 text-sm">
-                  <p className="text-muted-foreground line-clamp-2 h-10">{item.description}</p>
-                  <div className="flex items-center text-primary font-semibold">
+                  
+                  <div className="flex items-center text-lg font-semibold text-primary my-1.5">
                     <DollarSign className="h-4 w-4 mr-1" />
-                    {item.price.toFixed(2)} {item.currency} {item.perUnit && <span className="text-xs text-muted-foreground ml-1">{item.perUnit}</span>}
+                    {item.price.toFixed(2)} {item.currency}
+                    {item.perUnit && <span className="text-xs text-muted-foreground ml-1.5">{item.perUnit}</span>}
                   </div>
+
                   {item.aiPriceSuggestion && (
-                    <div className="text-xs text-blue-600 flex items-center">
+                    <div className="text-xs text-blue-600 flex items-center mb-1.5">
                       <TrendingUp className="h-3 w-3 mr-1" />
                       AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
                     </div>
                   )}
-                  <div className="flex items-center text-muted-foreground text-xs">
-                    <LocateFixed className="h-3 w-3 mr-1" />
-                    {item.location}
+                  
+                  {item.sellerVerification === 'Verified' && (
+                     <Badge variant="outline" className="text-xs w-fit border-green-500 text-green-600 py-0.5 px-1.5 mb-1.5">
+                        <ShieldCheck className="h-3 w-3 mr-1" /> Verified Seller
+                    </Badge>
+                  )}
+
+                  <p className="text-xs text-muted-foreground line-clamp-2 mb-2 h-8">
+                    {item.description}
+                  </p>
+
+                  <div className="flex items-center text-muted-foreground text-xs mt-auto pt-1">
+                    <MapPin className="h-3 w-3 mr-1 shrink-0" />
+                    <span className="truncate">{item.location}</span>
                   </div>
-                </CardContent>
-                <CardFooter className="p-4">
-                  <Button asChild className="w-full">
-                    <Link href={`/marketplace/${item.id}`}>View Details & Contact</Link>
+                </div>
+                <div className="p-3 border-t mt-auto">
+                  <Button asChild className="w-full h-9 text-xs" variant="outline">
+                    <Link href={`/marketplace/${item.id}`}>View Details</Link>
                   </Button>
-                </CardFooter>
+                </div>
               </Card>
             ))}
           </div>
           {filteredMarketplaceItems.length === 0 && (
-            <div className="text-center py-10">
+            <div className="text-center py-10 col-span-full"> {/* Ensure this spans full width if grid is empty */}
               <p className="text-lg text-muted-foreground">No items found matching your criteria.</p>
               <p className="text-sm text-muted-foreground">Broaden your search or check back for new listings.</p>
             </div>
@@ -217,3 +225,4 @@ export default function MarketplacePage() {
     </div>
   );
 }
+
