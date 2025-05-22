@@ -21,14 +21,16 @@ export const STAKEHOLDER_ROLES = [
 export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
 
 export const MARKETPLACE_CATEGORY_VALUES = ['Agricultural Produce', 'Inputs & Supplies', 'Machinery & Business Services'] as const;
-
 export type MarketplaceCategoryType = typeof MARKETPLACE_CATEGORY_VALUES[number];
 
-export const MARKETPLACE_FILTER_OPTIONS: Array<{ value: MarketplaceCategoryType | 'All', label: string }> = [
+// Updated filter options for Marketplace page
+export const MARKETPLACE_FILTER_OPTIONS: Array<{ value: MarketplaceCategoryType | 'All' | 'Sustainable Solutions', label: string }> = [
   { value: 'All', label: 'All Categories' },
-  ...MARKETPLACE_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }))
+  ...MARKETPLACE_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat })),
+  { value: 'Sustainable Solutions', label: 'Sustainable Solutions' } 
 ];
 
+// Form options for Marketplace creation (doesn't include "All" or "Sustainable")
 export const MARKETPLACE_FORM_OPTIONS: Array<{ value: MarketplaceCategoryType, label: string }> =
   MARKETPLACE_CATEGORY_VALUES.map(cat => ({ value: cat, label: cat }));
 

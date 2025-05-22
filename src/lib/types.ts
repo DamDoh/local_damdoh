@@ -56,6 +56,9 @@ export interface MarketplaceItem {
   createdAt: string; // ISO date string
   contactInfo?: string;
   dataAiHint?: string;
+  isSustainable?: boolean;
+  sellerVerification?: 'Verified' | 'Pending' | 'Unverified';
+  aiPriceSuggestion?: {min: number, max: number, confidence: 'High' | 'Medium' | 'Low'};
 }
 
 export type TalentCategory = 'Jobs & Recruitment' | 'Land & Tenancies' | 'Equipment Rentals & Services';

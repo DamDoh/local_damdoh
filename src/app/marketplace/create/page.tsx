@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -26,7 +27,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from "@/lib/form-schemas";
 import { MARKETPLACE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, Leaf } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -46,6 +47,7 @@ export default function CreateMarketplaceListingPage() {
       imageUrl: "",
       imageFile: undefined,
       contactInfo: "",
+      isSustainable: false,
     },
   });
 
@@ -57,8 +59,6 @@ export default function CreateMarketplaceListingPage() {
         size: data.imageFile.size,
         type: data.imageFile.type,
       });
-      // In a real app, you would upload data.imageFile to your backend/storage
-      // and get a URL back to store, potentially replacing or supplementing data.imageUrl.
     }
     toast({
       title: "Listing Submitted (Simulated)",
@@ -75,7 +75,7 @@ export default function CreateMarketplaceListingPage() {
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="text-2xl">Create New Marketplace Listing</CardTitle>
-          <CardDescription>Fill in the details below to list your product, equipment, or service.</CardDescription>
+          <CardDescription>Fill in the details below to list your agricultural product, input, machinery, or service.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -87,7 +87,7 @@ export default function CreateMarketplaceListingPage() {
                   <FormItem>
                     <FormLabel>Listing Name / Title</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Organic Hass Avocados (Bulk)" {...field} />
+                      <Input placeholder="e.g., Organic Hass Avocados (Bulk), Tractor Model XYZ" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,7 +102,7 @@ export default function CreateMarketplaceListingPage() {
                     <FormLabel>Detailed Description</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Provide details about the item, quality, quantity, terms, etc."
+                        placeholder="Provide details about the item, quality, quantity, terms, specifications, etc."
                         className="min-h-[100px]"
                         {...field}
                       />
@@ -146,7 +146,7 @@ export default function CreateMarketplaceListingPage() {
                     <FormItem>
                       <FormLabel>Per Unit (Optional)</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g., /kg, /ton, /item" {...field} />
+                        <Input placeholder="e.g., /kg, /ton, /item, /hectare" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -178,6 +178,31 @@ export default function CreateMarketplaceListingPage() {
                   </FormItem>
                 )}
               />
+              
+              <FormField
+                control={form.control}
+                name="isSustainable"
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="flex items-center">
+                         <Leaf className="mr-2 h-4 w-4 text-green-600" />
+                        Sustainable Product / Solution
+                      </FormLabel>
+                      <FormDescription>
+                        Check this if your product or service promotes sustainable or regenerative agriculture.
+                      </FormDescription>
+                    </div>
+                  </FormItem>
+                )}
+              />
+
 
               <FormField
                 control={form.control}
@@ -186,10 +211,10 @@ export default function CreateMarketplaceListingPage() {
                   <FormItem>
                     <FormLabel>Location</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Nairobi, Kenya or Central Valley, CA" {...field} />
+                      <Input placeholder="e.g., Nairobi, Kenya or Central Valley, CA, or 'Global Shipping'" {...field} />
                     </FormControl>
                     <FormDescription>
-                      Specify the city, region, or port where the item/service is located.
+                      Specify the city, region, port, or if it's a global/remote service.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

@@ -1,6 +1,6 @@
 
 import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, TalentListing, FeedItem, DirectMessage, AgriEvent, AgriEventType } from './types';
-import { STAKEHOLDER_ROLES } from './constants';
+import { STAKEHOLDER_ROLES, MARKETPLACE_CATEGORY_VALUES, TALENT_CATEGORY_VALUES } from './constants';
 
 // --- User Data for Avatars/Names (used in multiple places) ---
 export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string, role?: string, headline?: string } } = {
@@ -25,39 +25,33 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'rajPatel': { name: "Raj Patel", avatarUrl: "https://placehold.co/40x40.png", headline: "Agri-Supply Chain Analyst"},
   'aishaBello': { name: "Aisha Bello", avatarUrl: "https://placehold.co/80x80.png", headline: "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets." },
   'currentDemoUser': { name: "Demo User", avatarUrl: "https://placehold.co/40x40.png", headline: "Agri-Enthusiast | DamDoh Platform"},
-  // For Network Page
   'sc1': { name: 'AgriLogistics Global', role: 'Trader', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Connecting European buyers with global agricultural producers. Specializing in grains, oilseeds, and sustainable commodities.'},
   'sc2': { name: 'EcoFertilizers Ltd.', role: 'Input Supplier', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Provider of organic fertilizers and soil health solutions for smallholder farmers in East Africa. Seeking distribution partners.'},
   'sc3': { name: 'Maria Silva - Coffee Cooperative', role: 'Agricultural Cooperative', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Manager of a cooperative of 200+ specialty coffee farmers. Focused on direct trade and quality improvement. Seeking buyers.'},
   'sc4': { name: 'TechFarm Solutions', role: 'Development Personnel', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Develops and implements precision agriculture tools (drone imagery, IoT sensors) for optimizing farm inputs and yields.'},
   'sc5': { name: 'Asia Food Processors Inc.', role: 'Processor', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Large-scale processor of tropical fruits and vegetables for export and local markets. Interested in sourcing from new farm clusters.'},
   'sc6': { name: 'FairHarvest Finance', role: 'Financial Institution', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Impact investment fund providing trade finance and working capital for ethical agribusinesses in developing countries.'},
-  // For Talent Exchange Page
   'kenyaFreshExports': { name: 'Kenya Fresh Exports', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Exporters of premium Kenyan fresh produce.' },
   'organicGrowthAdvisors': { name: 'Organic Growth Advisors', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Consultancy for organic certification.' },
   'agriBankCorp': { name: 'AgriBank Corp', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Financial services for the agricultural sector.' },
   'landHoldingsLLC': { name: 'Land Holdings LLC', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Connecting landowners with farmers.' },
   'skyAgroScout': { name: 'SkyAgro Scout', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Drone-based crop scouting services.' },
   'midwestHarvestServices': { name: 'Midwest Harvest Services', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Custom harvesting solutions.' },
-  // For Marketplace Page
-   'quinoaCoopPeru': { name: 'Quinoa Coop Peru', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Fair Trade certified organic quinoa producers.' },
+  'quinoaCoopPeru': { name: 'Quinoa Coop Peru', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Fair Trade certified organic quinoa producers.' },
   'coolHaulLogistics': { name: 'CoolHaul Logistics', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Refrigerated trucking services.' },
   'ecoGrowInputs': { name: 'EcoGrow Inputs', avatarUrl: 'https://placehold.co/40x40.png', headline: 'OMRI listed organic fertilizers.' },
   'seedTechResale': { name: 'SeedTech Resale', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Resale of quality seed cleaning units.' },
   'sunnyAcresFarm': { name: 'Sunny Acres Farm', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Sustainably grown fresh produce.' },
   'agriPlanExperts': { name: 'AgriPlan Experts', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Consulting for agribusiness plans.' },
-  // Forum topic creators
   'ethicaAgri': { name: 'Ethica Agri Group', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Promoting ethical sourcing in agriculture.'},
   'foodSaverPro': { name: 'FoodSaver Professionals', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Experts in post-harvest loss reduction.'},
   'marketAnalystAgri': { name: 'Agri Market Analyst', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Analyzing global commodity market trends.'},
   'packagingInnovator': { name: 'Packaging Innovator Hub', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Exploring sustainable food packaging.'},
   'agriFinanceExpert': { name: 'Agri Finance Expert', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Advising on agribusiness funding.'},
   'traceTechLead': { name: 'TraceTech Lead', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Implementing digital traceability solutions.'},
-  // Event Listers
   'agriEventsGlobal': {name: 'AgriEvents Global', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Organizers of international agricultural events.'},
   'virtualFarmingSummit': {name: 'Virtual Farming Summit Org.', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Host of online farming summits.'},
   'harvestTechExpo': {name: 'HarvestTech Expo', avatarUrl: 'https://placehold.co/40x40.png', headline: 'Connecting technology with agriculture.'},
-  // Sidebar Suggestions - Enriched
   'sug1': { name: 'Global Alliance for Food Security', role: 'Non-profit Organization', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Advocating for sustainable agriculture and food security worldwide. Connect to learn about policy initiatives.' },
   'sug2': { name: 'AgriLogistics Innovators Forum', role: 'Community Group', avatarUrl: 'https://placehold.co/50x50.png', headline: 'A forum for discussing cutting-edge supply chain technologies and logistics optimization in agriculture.' },
   'sug3': { name: 'DroughtResist Seeds Corp.', role: 'Input Supplier', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Developing and supplying climate-resilient seed varieties for arid and semi-arid regions.' },
@@ -139,12 +133,80 @@ export const dummyNetworkInterests = ['All', 'Grain Trading', 'Organic Inputs', 
 
 // --- Marketplace Page Data ---
 export const dummyMarketplaceItems: MarketplaceItem[] = [
-  { id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)', description: 'High-altitude, Fair Trade certified organic quinoa from Peru. Ready for export. Seeking direct buyers or processors.', price: 3200, currency: 'USD', perUnit: '/ton', sellerId: 'quinoaCoopPeru', category: 'Agricultural Produce', location: 'Andes Region, Peru', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), contactInfo: 'Contact via DamDoh platform.', dataAiHint: "quinoa grains" },
-  { id: 'item2', name: 'Refrigerated Trucking Services (Cross-Border)', description: 'Reliable cold chain logistics for perishable goods. Servicing US-Canada-Mexico routes. GPS tracked, temp-controlled fleet.', price: 0.85, currency: 'USD', perUnit: '/mile (estimate)', sellerId: 'coolHaulLogistics', category: 'Machinery & Business Services', location: 'Servicing North America', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), contactInfo: 'Request quote via profile.', dataAiHint: "truck logistics" },
-  { id: 'item3', name: 'Certified Organic Fertilizer (NPK 5-3-2)', description: 'Bulk supply of OMRI listed organic fertilizer. Ideal for vegetable and fruit crops. Pelletized for easy application.', price: 650, currency: 'USD', perUnit: '/ton', sellerId: 'ecoGrowInputs', category: 'Inputs & Supplies', location: 'Global Shipping', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), contactInfo: 'inquiries@ecogrow.com', dataAiHint: "fertilizer bag" },
-  { id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit', description: 'High-capacity mobile seed cleaning and optical sorting machine for sale. Gently used, excellent condition. Improves seed quality and reduces waste.', price: 45000, currency: 'USD', perUnit: 'unit', sellerId: 'seedTechResale', category: 'Machinery & Business Services', location: 'Midwest, USA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), contactInfo: 'Book via platform.', dataAiHint: "seed cleaning machine" },
-  { id: 'item5', name: 'Fresh Harvested Tomatoes (500kg)', description: 'Vine-ripened Roma tomatoes, perfect for processing or fresh market. Sustainably grown. Available for immediate pickup.', price: 1.20, currency: 'USD', perUnit: '/kg', sellerId: 'sunnyAcresFarm', category: 'Agricultural Produce', location: 'Local Farm Region, CA', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 1).toISOString(), contactInfo: 'Contact for viewing.', dataAiHint: "tomatoes harvest" },
-  { id: 'item6', name: 'Agricultural Business Plan Consulting', description: 'Expert consulting for developing bankable business plans, feasibility studies, and grant proposals for agribusinesses.', price: 150, currency: 'USD', perUnit: '/hour', sellerId: 'agriPlanExperts', category: 'Machinery & Business Services', location: 'Remote', imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(), contactInfo: 'info@agriplan.com', dataAiHint: "business meeting" },
+  { 
+    id: 'item1', name: 'Bulk Organic Quinoa (10 Tons)', 
+    description: 'High-altitude, Fair Trade certified organic quinoa from Peru. Ready for export. Seeking direct buyers or processors.', 
+    price: 3200, currency: 'USD', perUnit: '/ton', sellerId: 'quinoaCoopPeru', 
+    category: 'Agricultural Produce', location: 'Andes Region, Peru', 
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), 
+    contactInfo: 'Contact via DamDoh platform.', dataAiHint: "quinoa grains",
+    isSustainable: true, sellerVerification: 'Verified', 
+    aiPriceSuggestion: {min: 3100, max: 3350, confidence: 'Medium'}
+  },
+  { 
+    id: 'item2', name: 'Refrigerated Trucking Services (Cross-Border)', 
+    description: 'Reliable cold chain logistics for perishable goods. Servicing US-Canada-Mexico routes. GPS tracked, temp-controlled fleet.', 
+    price: 0.85, currency: 'USD', perUnit: '/mile (estimate)', sellerId: 'coolHaulLogistics', 
+    category: 'Machinery & Business Services', location: 'Servicing North America', 
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 172800000).toISOString(), 
+    contactInfo: 'Request quote via profile.', dataAiHint: "truck logistics",
+    sellerVerification: 'Verified'
+  },
+  { 
+    id: 'item3', name: 'Certified Organic Fertilizer (NPK 5-3-2)', 
+    description: 'Bulk supply of OMRI listed organic fertilizer. Ideal for vegetable and fruit crops. Pelletized for easy application.', 
+    price: 650, currency: 'USD', perUnit: '/ton', sellerId: 'ecoGrowInputs', 
+    category: 'Inputs & Supplies', location: 'Global Shipping', 
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 259200000).toISOString(), 
+    contactInfo: 'inquiries@ecogrow.com', dataAiHint: "fertilizer bag",
+    isSustainable: true, sellerVerification: 'Verified',
+    aiPriceSuggestion: {min: 600, max: 700, confidence: 'High'}
+  },
+  { 
+    id: 'item4', name: 'Mobile Seed Cleaning & Sorting Unit', 
+    description: 'High-capacity mobile seed cleaning and optical sorting machine for sale. Gently used, excellent condition. Improves seed quality and reduces waste.', 
+    price: 45000, currency: 'USD', perUnit: 'unit', sellerId: 'seedTechResale', 
+    category: 'Machinery & Business Services', location: 'Midwest, USA', 
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 604800000).toISOString(), 
+    contactInfo: 'Book via platform.', dataAiHint: "seed cleaning machine",
+    sellerVerification: 'Pending'
+  },
+  { 
+    id: 'item5', name: 'Fresh Harvested Tomatoes (500kg)', 
+    description: 'Vine-ripened Roma tomatoes, perfect for processing or fresh market. Sustainably grown. Available for immediate pickup.', 
+    price: 1.20, currency: 'USD', perUnit: '/kg', sellerId: 'sunnyAcresFarm', 
+    category: 'Agricultural Produce', location: 'Local Farm Region, CA', 
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 1).toISOString(), 
+    contactInfo: 'Contact for viewing.', dataAiHint: "tomatoes harvest",
+    isSustainable: true, sellerVerification: 'Verified',
+    aiPriceSuggestion: {min: 1.10, max: 1.30, confidence: 'High'}
+  },
+  { 
+    id: 'item6', name: 'Agricultural Business Plan Consulting', 
+    description: 'Expert consulting for developing bankable business plans, feasibility studies, and grant proposals for agribusinesses.', 
+    price: 150, currency: 'USD', perUnit: '/hour', sellerId: 'agriPlanExperts', 
+    category: 'Machinery & Business Services', location: 'Remote', 
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 10).toISOString(), 
+    contactInfo: 'info@agriplan.com', dataAiHint: "business meeting",
+    sellerVerification: 'Verified'
+  },
+  {
+    id: 'item7', name: 'Drip Irrigation Kits (1 Acre Coverage)',
+    description: 'Complete drip irrigation kits for small to medium scale farms. Includes mainlines, laterals, emitters, and filter. Water efficient.',
+    price: 300, currency: 'USD', perUnit: '/kit', sellerId: 'inputSolutionsInc',
+    category: 'Inputs & Supplies', location: 'Ships Worldwide',
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(),
+    contactInfo: 'sales@inputsolutions.ag', dataAiHint: "irrigation system",
+    isSustainable: true, sellerVerification: 'Verified'
+  },
+  {
+    id: 'item8', name: 'Soil Testing & Analysis Service',
+    description: 'Comprehensive soil testing service including nutrient analysis, pH levels, and organic matter content. Includes recommendations.',
+    price: 75, currency: 'USD', perUnit: '/sample', sellerId: 'agriTechInnovator',
+    category: 'Machinery & Business Services', location: 'Lab in Wageningen, Mail-in samples accepted',
+    imageUrl: 'https://placehold.co/300x200.png', createdAt: new Date(Date.now() - 86400000 * 6).toISOString(),
+    contactInfo: 'lena.hanson@wur.nl', dataAiHint: "soil lab test"
+  }
 ];
 
 // --- Forum Topics Page Data ---
@@ -215,7 +277,7 @@ export const dummyProfileDetailsPageData: { profile: UserProfile, activity: any[
     role: 'Processor',
     location: 'Agri-Food Hub, Singapore',
     avatarUrl: 'https://placehold.co/200x200.png',
-    email: 'sarah.chen@valuechainprocessors.com', // Added email for UserProfile type
+    email: 'sarah.chen@valuechainprocessors.com', 
     profileSummary: 'CEO of ValueChain Processors, specializing in transforming raw agricultural produce (fruits, spices, grains) into high-quality, export-ready ingredients and packaged goods. Strong focus on food safety, traceability, and sustainable sourcing. Actively seeking new farm partnerships and innovative packaging solutions.',
     bio: "With over 20 years in the food processing industry, I've led ValueChain Processors to become a key player in the APAC region. Our state-of-the-art facilities are GFSI certified, and we work closely with farmer cooperatives to ensure quality inputs. We are committed to reducing post-harvest losses and adding value for our partners. I'm passionate about leveraging technology to improve supply chain efficiency and transparency. Looking to connect with input suppliers (especially organic), logistics providers, and buyers in Europe and North America.",
     yearsOfExperience: 20,
@@ -249,7 +311,7 @@ export const dummyAgriEvents: AgriEvent[] = [
     id: 'event1',
     title: 'Global Agri-Tech Summit 2024',
     description: 'Join industry leaders, innovators, and policymakers to discuss the future of agricultural technology and sustainable farming practices. Keynotes on AI in agriculture, precision farming, and supply chain optimization.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString(), // Approx. 1 month from now
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString(), 
     eventTime: '09:00',
     location: 'Online & San Francisco, CA',
     eventType: 'Conference',
@@ -264,7 +326,7 @@ export const dummyAgriEvents: AgriEvent[] = [
     id: 'event2',
     title: 'Webinar: Mastering Organic Certification',
     description: 'A step-by-step guide for farmers and processors looking to obtain or maintain organic certification. Covers standards, documentation, and audit preparation.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 14)).toISOString(), // Approx. 2 weeks from now
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 14)).toISOString(), 
     eventTime: '14:00',
     location: 'Online',
     eventType: 'Webinar',
@@ -279,7 +341,7 @@ export const dummyAgriEvents: AgriEvent[] = [
     id: 'event3',
     title: 'Sustainable Farming Field Day',
     description: 'Visit a model farm implementing innovative sustainable practices, including cover cropping, no-till farming, and integrated pest management. Networking opportunities available.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 45)).toISOString(), // Approx. 1.5 months from now
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 45)).toISOString(), 
     eventTime: '10:00',
     location: 'Green Valley Farms, Ruralville',
     eventType: 'Field Day',
@@ -294,7 +356,7 @@ export const dummyAgriEvents: AgriEvent[] = [
     id: 'event4',
     title: 'Agri-Food Supply Chain Expo East Africa',
     description: 'The premier trade show for agricultural inputs, machinery, logistics, and processing solutions in East Africa. Connect with suppliers and buyers.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 60)).toISOString(), // Approx. 2 months
+    eventDate: new Date(new Date().setDate(new Date().getDate() + 60)).toISOString(), 
     eventTime: '09:00',
     location: 'KICC, Nairobi, Kenya',
     eventType: 'Trade Show',

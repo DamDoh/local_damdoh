@@ -8,11 +8,11 @@ import type { MarketplaceItem, MarketplaceCategory } from "@/lib/types";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin, PinOff } from "lucide-react";
+import { PlusCircle, Search, Tag, LocateFixed, DollarSign, MapPin, Cog, Leaf, ShoppingBag, Pin, PinOff, CheckCircle, Sparkles, ShieldCheck, TrendingUp } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
-import { MARKETPLACE_FILTER_OPTIONS } from "@/lib/constants";
+import { MARKETPLACE_FILTER_OPTIONS, type MarketplaceCategoryType } from "@/lib/constants";
 import { dummyMarketplaceItems } from "@/lib/dummy-data"; 
 import { usePathname } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
@@ -21,7 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState<MarketplaceCategory | 'All'>("All");
+  const [categoryFilter, setCategoryFilter] = useState<MarketplaceCategoryType | 'All' | 'Sustainable Solutions'>("All");
   const [locationFilter, setLocationFilter] = useState("");
   
   const pathname = usePathname();
@@ -37,10 +37,19 @@ export default function MarketplacePage() {
 
       const nameMatch = item.name.toLowerCase().includes(searchLower);
       const descriptionMatch = item.description.toLowerCase().includes(searchLower);
-      const categoryMatch = categoryFilter === 'All' || item.category === categoryFilter;
+      
+      let categoryPass = false;
+      if (categoryFilter === 'All') {
+        categoryPass = true;
+      } else if (categoryFilter === 'Sustainable Solutions') {
+        categoryPass = item.isSustainable === true;
+      } else {
+        categoryPass = item.category === categoryFilter;
+      }
+      
       const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
       
-      return (nameMatch || descriptionMatch) && categoryMatch && locationMatch;
+      return (nameMatch || descriptionMatch) && categoryPass && locationMatch;
     });
   }, [searchTerm, categoryFilter, locationFilter, marketplaceItems]);
 
@@ -66,7 +75,7 @@ export default function MarketplacePage() {
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: "Homepage Pinned!",
+        title: "Marketplace Pinned!",
         description: "The Marketplace is now your default homepage.",
       });
     }
@@ -79,8 +88,8 @@ export default function MarketplacePage() {
         <CardHeader>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <CardTitle className="text-2xl">Agricultural Supply Chain Marketplace</CardTitle>
-              <CardDescription>Source products, equipment, and services or list your offerings to the agri-food community.</CardDescription>
+              <CardTitle className="text-2xl">AI-Powered Agricultural Trade Hub</CardTitle>
+              <CardDescription>Source products, inputs, machinery, and services. Connect with farmers, traders, and suppliers globally for smart, sustainable trade.</CardDescription>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <Button asChild>
@@ -102,7 +111,7 @@ export default function MarketplacePage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-marketplace"
-                placeholder="Search (e.g., 'coffee beans', 'cold storage')" 
+                placeholder="Search (e.g., 'organic coffee', 'cold storage', 'tractors')" 
                 className="pl-10" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -113,13 +122,13 @@ export default function MarketplacePage() {
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="location-filter-marketplace"
-                placeholder="Filter by location (e.g., port city, region)" 
+                placeholder="Filter by location (e.g., port city, region, 'global')" 
                 className="pl-10"
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
               />
             </div>
-            <Select value={categoryFilter} onValueChange={(value) => setCategoryFilter(value as MarketplaceCategory | 'All')}>
+            <Select value={categoryFilter} onValueChange={(value) => setCategoryFilter(value as MarketplaceCategoryType | 'All' | 'Sustainable Solutions')}>
               <SelectTrigger id="category-filter-marketplace">
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
@@ -130,6 +139,13 @@ export default function MarketplacePage() {
               </SelectContent>
             </Select>
           </div>
+
+          {/* Placeholder for AI Product Recommendations - to be built out later */}
+          {/* <div className="mb-8 p-4 border-2 border-dashed border-primary/30 rounded-lg bg-primary/5">
+            <h3 className="text-lg font-semibold text-primary mb-2 flex items-center"><Sparkles className="mr-2 h-5 w-5" /> AI Recommended For You</h3>
+            <p className="text-sm text-muted-foreground">Based on your activity and preferences, you might be interested in...</p>
+             (Future: Map through AI recommended products here) 
+          </div> */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredMarketplaceItems.map(item => (
@@ -143,15 +159,27 @@ export default function MarketplacePage() {
                     style={{objectFit:"cover"}}
                     data-ai-hint={item.dataAiHint || `${item.category.split(' ')[0].toLowerCase()} agricultural`}
                   />
-                  <Badge variant="secondary" className="absolute top-2 right-2 flex items-center">
-                    {getCategoryIcon(item.category)}
-                    {item.category}
-                  </Badge>
+                  <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                    <Badge variant="secondary" className="flex items-center">
+                      {getCategoryIcon(item.category)}
+                      {item.category}
+                    </Badge>
+                    {item.isSustainable && (
+                      <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white">
+                        <CheckCircle className="h-3 w-3 mr-1" />Sustainable
+                      </Badge>
+                    )}
+                  </div>
                 </div>
                 <CardHeader className="pb-2">
                   <Link href={`/marketplace/${item.id}`}>
                     <CardTitle className="text-lg hover:text-primary transition-colors line-clamp-1">{item.name}</CardTitle>
                   </Link>
+                  {item.sellerVerification === 'Verified' && (
+                     <Badge variant="outline" className="text-xs w-fit border-green-500 text-green-600">
+                        <ShieldCheck className="h-3 w-3 mr-1" /> Verified Seller
+                    </Badge>
+                  )}
                 </CardHeader>
                 <CardContent className="flex-grow space-y-2 text-sm">
                   <p className="text-muted-foreground line-clamp-2 h-10">{item.description}</p>
@@ -159,6 +187,12 @@ export default function MarketplacePage() {
                     <DollarSign className="h-4 w-4 mr-1" />
                     {item.price.toFixed(2)} {item.currency} {item.perUnit && <span className="text-xs text-muted-foreground ml-1">{item.perUnit}</span>}
                   </div>
+                  {item.aiPriceSuggestion && (
+                    <div className="text-xs text-blue-600 flex items-center">
+                      <TrendingUp className="h-3 w-3 mr-1" />
+                      AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
+                    </div>
+                  )}
                   <div className="flex items-center text-muted-foreground text-xs">
                     <LocateFixed className="h-3 w-3 mr-1" />
                     {item.location}
