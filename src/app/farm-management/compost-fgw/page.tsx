@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Recycle, ArrowLeft, Leaf, Droplets, Sprout, CheckCircle, Thermometer, Layers, Info, AlertTriangle, ThumbsUp, BookOpen } from "lucide-react";
+import { Recycle, ArrowLeft, Leaf, Droplets, Sprout, CheckCircle, Thermometer, Layers, Info, BookOpen } from "lucide-react";
 
 export default function CompostFGWPage() {
   const compostSections = [
@@ -176,7 +176,7 @@ export default function CompostFGWPage() {
             <p className="text-sm text-muted-foreground mb-4">
                 Farming God's Way emphasizes stewarding the land well. Creating good compost is a key part of this, using natural materials to enrich the soil God has provided.
             </p>
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible className="w-full" defaultValue="why-compost">
               {compostSections.map((section) => (
                 <AccordionItem value={section.id} key={section.id}>
                   <AccordionTrigger className="text-lg hover:no-underline">
@@ -196,5 +196,4 @@ export default function CompostFGWPage() {
     </div>
   );
 }
-
     

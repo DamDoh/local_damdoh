@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Home, ArrowLeft, LayoutGrid, Sprout, Droplets, Recycle, Fish, Bug, Sun, Users, ShoppingBasket, Edit2, BarChart2, Bird, Info } from "lucide-react";
+import { Home, ArrowLeft, LayoutGrid, Sprout, ShoppingBasket, Recycle, Fish, Bug, Sun, Users, Edit2, BarChart2, Bird, Info, Droplets } from "lucide-react";
 
 interface FarmZone {
   id: string;
@@ -61,7 +61,7 @@ const farmZones: FarmZone[] = [
   {
     id: "fruit-tree-borders",
     title: "Fruit Tree Corridors (Perimeter Planting)",
-    icon: <ShoppingBasket className="h-5 w-5 text-orange-500" />, // Changed icon
+    icon: <ShoppingBasket className="h-5 w-5 text-orange-500" />, 
     imageSrc: "https://placehold.co/600x400.png",
     imageAlt: "Fruit Trees along the border",
     dataAiHint: "fruit trees farm",
@@ -218,7 +218,7 @@ export default function FamilyFarmPage() {
           
           <div className="my-6">
             <Image 
-                src="https://firebasestorage.googleapis.com/v0/b/damdoh-923bf.appspot.com/o/images%2F200sqm-farm-model-diagram.png?alt=media&token=65b4f9a4-d53b-49e3-8d74-3566d5f231a7" // Using the image directly
+                src="https://firebasestorage.googleapis.com/v0/b/damdoh-923bf.appspot.com/o/images%2F200sqm-farm-model-diagram.png?alt=media&token=65b4f9a4-d53b-49e3-8d74-3566d5f231a7" 
                 alt="200sqm Integrated Family Farm Model Diagram"
                 width={800}
                 height={500}
@@ -228,7 +228,7 @@ export default function FamilyFarmPage() {
             <p className="text-center text-xs text-muted-foreground mt-2">Detailed layout of the 200sqm integrated family farm.</p>
           </div>
 
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full" defaultValue="overall-layout">
             {farmZones.map((zone) => (
               <AccordionItem value={zone.id} key={zone.id}>
                 <AccordionTrigger className="text-lg hover:no-underline py-3">
@@ -294,3 +294,4 @@ export default function FamilyFarmPage() {
     </div>
   );
 }
+
