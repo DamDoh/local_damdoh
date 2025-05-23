@@ -178,7 +178,7 @@ export default function KNFInputsPage() {
     {
       id: "brv",
       title: "Brown Rice Vinegar (BRV)",
-      icon: <Zap className="h-6 w-6 text-amber-600" />, // Using Zap as a placeholder, could be a wheat/rice icon if available
+      icon: <Zap className="h-6 w-6 text-amber-600" />, 
       purpose: "BRV is used in KNF for several purposes: as a sterilizing agent, to help make nutrients more available to plants, and to regulate plant metabolism. It can also enhance the effectiveness of other inputs.",
       sections: [
         {
