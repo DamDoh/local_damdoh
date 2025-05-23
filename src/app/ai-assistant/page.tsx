@@ -13,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 import { APP_NAME } from '@/lib/constants';
-import { dummyUsersData } from "@/lib/dummy-data"; // Import dummyUsersData
+import { dummyUsersData } from "@/lib/dummy-data";
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 
@@ -21,7 +21,7 @@ interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
   content: string | FarmingAssistantOutput;
-  imagePreview?: string; // For displaying image sent by user
+  imagePreview?: string;
   timestamp: Date;
 }
 
@@ -49,21 +49,14 @@ export default function AiAssistantPage() {
   }, [chatHistory]);
   
   useEffect(() => {
-    // For personalization, get a user name. In a real app, this would come from auth.
-    const currentUserName = dummyUsersData['currentDemoUser']?.name || "there"; // Fallback to "there"
+    const currentUserName = dummyUsersData['currentDemoUser']?.name || "there";
 
     setChatHistory([
       {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content: {
-          summary: `Hello ${currentUserName}! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture!
-Wondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.
-
-**Got a crop concern?**
-Tap the image upload icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-image-up inline-block relative -top-px"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16"></path><path d="m14 19.5 3-3 3 3"></path><path d="M17 22v-5.5"></path><circle cx="9" cy="9" r="2"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-camera inline-block relative -top-px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.
-
-Ready to explore? How can I assist you today?`,
+          summary: `Hello ${currentUserName}! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture!\nWondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.\n\n**Got a crop concern?**\nTap the image upload icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-image-up inline-block relative -top-px"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16"></path><path d="m14 19.5 3-3 3 3"></path><path d="M17 22v-5.5"></path><circle cx="9" cy="9" r="2"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-camera inline-block relative -top-px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.\n\nReady to explore? How can I assist you today?`,
           detailedPoints: [],
         },
         timestamp: new Date(),
@@ -72,7 +65,6 @@ Ready to explore? How can I assist you today?`,
   }, []);
 
   useEffect(() => {
-    // Cleanup camera stream when component unmounts or camera is closed
     return () => {
       if (videoRef.current?.srcObject) {
         const stream = videoRef.current.srcObject as MediaStream;
@@ -96,7 +88,7 @@ Ready to explore? How can I assist you today?`,
   };
 
   const startCamera = async () => {
-    if (previewDataUri) setPreviewDataUri(null); // Clear any uploaded image
+    if (previewDataUri) setPreviewDataUri(null);
     
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
@@ -149,7 +141,7 @@ Ready to explore? How can I assist you today?`,
   const clearPreview = () => {
     setPreviewDataUri(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Reset file input
+      fileInputRef.current.value = "";
     }
     if (isCameraOpen) {
       stopCamera();
@@ -172,15 +164,14 @@ Ready to explore? How can I assist you today?`,
     
     setInputQuery('');
     setIsLoading(true);
-    const currentImageToSend = previewDataUri; // Capture current preview to send
-    setPreviewDataUri(null); // Clear preview immediately after capturing for send
+    const currentImageToSend = previewDataUri;
+    setPreviewDataUri(null);
      if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
     if (isCameraOpen) {
         stopCamera();
     }
-
 
     try {
       const aiResponse = await askFarmingAssistant({ 
@@ -212,8 +203,8 @@ Ready to explore? How can I assist you today?`,
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-3xl mx-auto">
-      <Card className="flex-grow flex flex-col overflow-hidden shadow-xl">
+    <div className="flex flex-col flex-1 h-full max-w-3xl mx-auto w-full"> {/* Adjusted height, added w-full */}
+      <Card className="flex-1 flex flex-col overflow-hidden shadow-xl"> {/* Use flex-1 for Card */}
         <CardHeader className="border-b">
           <CardTitle className="flex items-center gap-2 text-xl">
             <Bot className="h-6 w-6 text-primary" />
@@ -224,7 +215,7 @@ Ready to explore? How can I assist you today?`,
           {chatHistory.map((msg) => (
             <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {msg.role === 'assistant' && (
-                <Avatar className="h-8 w-8 self-start border">
+                <Avatar className="h-8 w-8 self-start border shrink-0">
                   <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh"/>
                   <AvatarFallback><Bot size={18}/></AvatarFallback>
                 </Avatar>
@@ -233,9 +224,11 @@ Ready to explore? How can I assist you today?`,
                 {msg.role === 'user' && typeof msg.content === 'string' && (
                   <>
                     {msg.imagePreview && (
-                      <Image src={msg.imagePreview} alt="User upload preview" width={200} height={150} className="rounded-md mb-2 object-contain max-h-[200px]" data-ai-hint="plant diagnosis image"/>
+                      <div className="mb-2 max-w-full w-auto">
+                        <Image src={msg.imagePreview} alt="User upload preview" width={200} height={150} className="rounded-md object-contain max-h-[200px] max-w-full" data-ai-hint="plant diagnosis image"/>
+                      </div>
                     )}
-                    <p className="text-sm whitespace-pre-line">{msg.content}</p>
+                    <p className="text-sm whitespace-pre-line break-words">{msg.content}</p>
                   </>
                 )}
                 {msg.role === 'assistant' && typeof msg.content === 'object' && (
@@ -251,7 +244,7 @@ Ready to explore? How can I assist you today?`,
                       </div>
                     </CardHeader>
                     <CardContent className="px-4 pb-4">
-                      <p className="text-sm mb-3 whitespace-pre-line" dangerouslySetInnerHTML={{ __html: msg.content.summary.replace(/<svg.*?<\/svg>/g, (match) => match) }}></p>
+                      <p className="text-sm mb-3 whitespace-pre-line break-words" dangerouslySetInnerHTML={{ __html: msg.content.summary.replace(/<svg.*?<\/svg>/g, (match) => match) }}></p>
                       {msg.content.detailedPoints && msg.content.detailedPoints.length > 0 && (
                         <Accordion type="single" collapsible className="w-full">
                           {msg.content.detailedPoints.map((point, index) => (
@@ -262,7 +255,7 @@ Ready to explore? How can I assist you today?`,
                                   <span>{point.title}</span>
                                 </div>
                               </AccordionTrigger>
-                              <AccordionContent className="text-sm text-muted-foreground pt-1 pb-3 whitespace-pre-line">
+                              <AccordionContent className="text-sm text-muted-foreground pt-1 pb-3 whitespace-pre-line break-words">
                                 {point.content}
                               </AccordionContent>
                             </AccordionItem>
@@ -274,7 +267,7 @@ Ready to explore? How can I assist you today?`,
                 )}
               </div>
                {msg.role === 'user' && (
-                <Avatar className="h-8 w-8 self-start border">
+                <Avatar className="h-8 w-8 self-start border shrink-0">
                    <AvatarImage src="https://placehold.co/40x40.png" alt="User Avatar" data-ai-hint="profile person"/>
                   <AvatarFallback><User size={18}/></AvatarFallback>
                 </Avatar>
@@ -283,7 +276,7 @@ Ready to explore? How can I assist you today?`,
           ))}
           {isLoading && (
              <div className="flex gap-3 justify-start">
-                <Avatar className="h-8 w-8 self-start border">
+                <Avatar className="h-8 w-8 self-start border shrink-0">
                   <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh"/>
                   <AvatarFallback><Bot size={18}/></AvatarFallback>
                 </Avatar>
@@ -303,8 +296,15 @@ Ready to explore? How can I assist you today?`,
         {(previewDataUri || isCameraOpen) && (
           <div className="p-2 border-t bg-muted/50">
             {previewDataUri && !isCameraOpen && (
-              <div className="relative group w-fit mx-auto">
-                <Image src={previewDataUri} alt="Preview" width={120} height={90} className="rounded-md object-contain max-h-[90px] border" data-ai-hint="plant preview"/>
+              <div className="relative group max-w-[150px] sm:max-w-[200px] mx-auto">
+                <Image
+                  src={previewDataUri}
+                  alt="Preview"
+                  width={200} 
+                  height={150} 
+                  className="rounded-md object-contain max-h-[120px] w-full h-auto border"
+                  data-ai-hint="plant preview"
+                />
                 <Button variant="destructive" size="icon" className="absolute -top-2 -right-2 h-6 w-6 rounded-full opacity-80 group-hover:opacity-100" onClick={clearPreview}>
                   <XCircle className="h-4 w-4" />
                 </Button>
@@ -347,7 +347,7 @@ Ready to explore? How can I assist you today?`,
 
             <Input
               type="text"
-              placeholder="Ask about farming, describe your image, or use the camera..."
+              placeholder="Ask about farming, describe your image..."
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               className="flex-grow text-sm h-10"
