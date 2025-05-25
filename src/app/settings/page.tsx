@@ -5,19 +5,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users, SearchCheck, Save, ShieldOff, Briefcase } from "lucide-react"; 
+import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide } from "lucide-react"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Textarea } from "@/components/ui/textarea";
-import { STAKEHOLDER_ROLES } from "@/lib/constants"; // Import stakeholder roles
+import { STAKEHOLDER_ROLES } from "@/lib/constants"; 
 
 
 export default function SettingsPage() {
   return (
     <div className="space-y-6">
-      <CardHeader className="p-0">
-        <CardTitle className="text-3xl">Settings</CardTitle>
+      <CardHeader className="p-0 mb-2"> {/* Reduced bottom margin */}
+        <div className="flex items-center gap-2">
+            <SettingsIconLucide className="h-8 w-8 text-primary" />
+            <CardTitle className="text-3xl">Settings</CardTitle>
+        </div>
         <CardDescription>Manage your account, agricultural profile, and platform preferences.</CardDescription>
       </CardHeader>
       
@@ -36,19 +39,19 @@ export default function SettingsPage() {
               <CardTitle>Stakeholder Profile Settings</CardTitle>
               <CardDescription>Update your public information for the agricultural supply chain network.</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6"> {/* Increased spacing */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> {/* Increased gap */}
-                <div className="space-y-1.5"> {/* Consistent spacing */}
-                  <Label htmlFor="name">Full Name / Organization Name</Label>
+            <CardContent className="space-y-6"> 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> 
+                <div className="space-y-1.5"> 
+                  <Label htmlFor="name" className="flex items-center gap-1.5"><User className="h-4 w-4 text-muted-foreground" />Full Name / Organization Name</Label>
                   <Input id="name" defaultValue="Aisha Bello / Sahel Organics" />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="email">Contact Email</Label>
+                  <Label htmlFor="email" className="flex items-center gap-1.5"><Mail className="h-4 w-4 text-muted-foreground" />Contact Email</Label>
                   <Input id="email" type="email" defaultValue="contact@sahelorganics.com" />
                 </div>
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="role">Primary Role in Supply Chain</Label>
+                <Label htmlFor="role" className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-muted-foreground" />Primary Role in Supply Chain</Label>
                 <Select defaultValue="Farmer">
                     <SelectTrigger id="role">
                         <SelectValue placeholder="Select your primary role" />
@@ -61,19 +64,19 @@ export default function SettingsPage() {
                 </Select>
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="profile-summary">Profile Summary / Headline</Label>
+                <Label htmlFor="profile-summary" className="flex items-center gap-1.5"><FileText className="h-4 w-4 text-muted-foreground" />Profile Summary / Headline</Label>
                 <Textarea id="profile-summary" placeholder="e.g., Exporter of fair-trade coffee, specializing in East African beans..." defaultValue="Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets for premium hibiscus and sesame." className="min-h-[80px]" />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="bio">Detailed Bio / About Your Organization</Label>
+                <Label htmlFor="bio" className="flex items-center gap-1.5"><FileText className="h-4 w-4 text-muted-foreground" />Detailed Bio / About Your Organization</Label>
                 <Textarea id="bio" placeholder="Share more about your operations, mission, products, services, or what you're seeking in the supply chain..." defaultValue="Sahel Organics is a social enterprise empowering women farmer cooperatives in Northern Nigeria. We focus on organic certification, quality improvement, and direct market access for hibiscus, sesame, and moringa. Seeking partnerships with international buyers and impact investors." className="min-h-[120px]" />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="areas-of-interest">Areas of Interest / Specialties (comma-separated)</Label>
+                <Label htmlFor="areas-of-interest" className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-muted-foreground" />Areas of Interest / Specialties (comma-separated)</Label>
                 <Input id="areas-of-interest" placeholder="e.g., Organic farming, Supply chain logistics, Export, Cashew processing" defaultValue="Organic certification, Fair trade, Hibiscus, Sesame, Women empowerment, Export to EU" />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="needs">Currently Seeking / Offering (comma-separated)</Label>
+                <Label htmlFor="needs" className="flex items-center gap-1.5"><TrendingUp className="h-4 w-4 text-muted-foreground" />Currently Seeking / Offering (comma-separated)</Label>
                 <Input id="needs" placeholder="e.g., Buyers for cocoa beans, Warehousing space, Agronomy consulting" defaultValue="Bulk buyers for dried hibiscus, Logistics partners for shipping, Impact investment" />
               </div>
                <Button><Save className="mr-2 h-4 w-4" />Save Profile Changes</Button>
@@ -89,15 +92,15 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1">
-                  <Label htmlFor="current-password">Current Password</Label>
+                  <Label htmlFor="current-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />Current Password</Label>
                   <Input id="current-password" type="password" />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="new-password">New Password</Label>
+                  <Label htmlFor="new-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />New Password</Label>
                   <Input id="new-password" type="password" />
                 </div>
                  <div className="space-y-1">
-                  <Label htmlFor="confirm-password">Confirm New Password</Label>
+                  <Label htmlFor="confirm-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />Confirm New Password</Label>
                   <Input id="confirm-password" type="password" />
                 </div>
               <Button><Save className="mr-2 h-4 w-4" />Change Password</Button>
@@ -144,8 +147,8 @@ export default function SettingsPage() {
               </div>
                 <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <p className="font-medium">Talent Exchange Updates</p>
-                  <p className="text-sm text-muted-foreground">Notify me about applications to my job listings or new relevant service offerings.</p>
+                  <p className="font-medium">Merged Marketplace Updates (Jobs, Services, etc.)</p>
+                  <p className="text-sm text-muted-foreground">Notify me about applications to my job/service listings or new relevant offerings.</p>
                 </div>
                 <Switch id="talent-exchange-notifications" defaultChecked/>
               </div>
@@ -167,7 +170,7 @@ export default function SettingsPage() {
                   <p className="text-sm text-muted-foreground ml-6">Control who can view your full stakeholder profile details.</p>
                 </div>
                 <Select defaultValue="everyone">
-                    <SelectTrigger className="w-[220px]"> {/* Increased width */}
+                    <SelectTrigger className="w-[220px]"> 
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -180,7 +183,7 @@ export default function SettingsPage() {
 
               <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <p className="font-medium flex items-center"><Users className="mr-2 h-4 w-4 text-primary" />Connection Requests</p>
+                  <p className="font-medium flex items-center"><ConnectionsIcon className="mr-2 h-4 w-4 text-primary" />Connection Requests</p>
                   <p className="text-sm text-muted-foreground ml-6">Control who can send you connection requests.</p>
                 </div>
                 <Select defaultValue="everyone">

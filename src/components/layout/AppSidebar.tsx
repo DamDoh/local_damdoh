@@ -22,6 +22,7 @@ import {
   ShoppingCart,
   Briefcase,
   Settings as SettingsIcon,
+  AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -33,7 +34,8 @@ const mainNavItems: NavItem[] = [
   { title: "Profiles", href: "/profiles", icon: Contact, description: "Browse stakeholders" },
   { title: "Forums", href: "/forums", icon: MessagesSquare, description: "Join discussions" },
   { title: "Marketplace", href: "/marketplace", icon: ShoppingCart, description: "Buy & sell goods" },
-  { title: "Talent Exchange", href: "/talent-exchange", icon: Briefcase, description: "Find jobs & services" },
+  // Talent Exchange merged into Marketplace
+  // { title: "Talent Exchange", href: "/talent-exchange", icon: Briefcase, description: "Find jobs & services" },
 ];
 
 const secondaryNavItems: NavItem[] = [
@@ -66,18 +68,25 @@ export function AppSidebar() {
   };
 
   return (
-    <>
-      <SidebarGroup>
-        <SidebarGroupLabel>Menu (Old - Deprecated)</SidebarGroupLabel>
-        {/* <SidebarMenu>{renderNavItems(mainNavItems)}</SidebarMenu> */}
-      </SidebarGroup>
-      
-      <SidebarGroup className="mt-auto"> 
-        {/* <SidebarMenu>{renderNavItems(secondaryNavItems)}</SidebarMenu> */}
-      </SidebarGroup>
-      <div className="p-4 text-center text-xs text-muted-foreground">
-        This sidebar is no longer in active use for main navigation.
+    <div className="p-4 text-sm text-muted-foreground flex flex-col h-full">
+      <div className="flex items-center gap-2 p-2 border border-destructive/50 bg-destructive/10 rounded-md">
+        <AlertTriangle className="h-8 w-8 text-destructive" />
+        <div>
+            <p className="font-semibold text-destructive">Sidebar Deprecated</p>
+            <p className="text-xs">This sidebar component is no longer in active use for main navigation. Navigation has moved to the top header and mobile bottom bar.</p>
+        </div>
       </div>
-    </>
+      
+      <div className="mt-4 opacity-50 pointer-events-none"> {/* Visually mute and disable interaction */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Old Menu (Inactive)</SidebarGroupLabel>
+          {/* <SidebarMenu>{renderNavItems(mainNavItems)}</SidebarMenu> */}
+        </SidebarGroup>
+        
+        <SidebarGroup className="mt-auto"> 
+          {/* <SidebarMenu>{renderNavItems(secondaryNavItems)}</SidebarMenu> */}
+        </SidebarGroup>
+      </div>
+    </div>
   );
 }
