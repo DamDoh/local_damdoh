@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Recycle, ArrowLeft, Leaf, Droplets, Sprout, CheckCircle, Thermometer, Layers, Info, BookOpen } from "lucide-react";
+import { Recycle, ArrowLeft, Leaf, Droplets, Sprout, CheckCircle, Thermometer, Layers, Info, BookOpen, AlertTriangle, PackageIcon, PawPrint } from "lucide-react";
 
 export default function CompostFGWPage() {
   const compostSections = [
@@ -32,33 +32,43 @@ export default function CompostFGWPage() {
     {
       id: "materials",
       title: "What You Need (Materials for Good Compost)",
-      icon: <Leaf className="h-5 w-5 text-green-600" />,
+      icon: <PackageIcon className="h-5 w-5 text-primary" />,
       content: (
         <>
-          <p className="text-muted-foreground mb-2">To make good compost, you need a mix of "Green" materials (which are moist and provide nitrogen) and "Brown" materials (which are dry and provide carbon). Aim for roughly 2-3 parts Brown to 1 part Green by volume if possible, but don't worry too much about exact ratios to start – a good mix is key.</p>
+          <p className="text-muted-foreground mb-2">To make good compost, you need a mix of "Green" materials (which are moist and provide nitrogen), "Brown" materials (which are dry and provide carbon), and ideally, some good "Animal Manure". Aim for roughly 2-3 parts Brown to 1 part Green by volume if possible, but don't worry too much about exact ratios to start – a good mix is key, and manure will supercharge it.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h3 className="font-medium text-md mb-1 text-green-700">Greens (Nitrogen-Rich, Wet & Fresh):</h3>
+              <h3 className="font-medium text-md mb-1 text-green-700 flex items-center gap-1.5"><Leaf className="h-4 w-4"/>Greens (Nitrogen-Rich, Wet & Fresh):</h3>
               <ul className="list-disc list-inside text-muted-foreground pl-5 space-y-1 text-sm">
                 <li>Fresh grass clippings and young weeds (best before they produce seeds)</li>
-                <li>Kitchen scraps: fruit and vegetable peelings, coffee grounds, tea bags (NO meat, bones, oily foods, dairy products, or diseased plants)</li>
+                <li>Kitchen scraps: fruit and vegetable peelings, coffee grounds, tea bags (NO meat, bones, oily foods, dairy products, or diseased plants - <AlertTriangle className="inline h-4 w-4 text-amber-500" /> these can attract pests or cause problems)</li>
                 <li>Fresh leaves from non-oily plants and trees</li>
-                <li>Animal manure (from herbivores like cows, goats, sheep, chickens, rabbits – this is excellent!). Avoid dog or cat manure.</li>
                 <li>Plant cuttings from pruning</li>
+                <li>Seaweed (if available, rinse off salt)</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-medium text-md mb-1 text-amber-700">Browns (Carbon-Rich, Dry & Woody):</h3>
+              <h3 className="font-medium text-md mb-1 text-amber-700 flex items-center gap-1.5"><Droplets className="h-4 w-4"/>Browns (Carbon-Rich, Dry & Woody):</h3>
               <ul className="list-disc list-inside text-muted-foreground pl-5 space-y-1 text-sm">
                 <li>Dry leaves, dried grass, and straw</li>
                 <li>Small twigs and shredded branches (chop them small)</li>
                 <li>Maize (corn) stalks, cobs (chopped or broken into small pieces)</li>
                 <li>Torn-up newspaper (black and white print only, no glossy magazines), shredded cardboard (plain, no waxy coatings)</li>
                 <li>Sawdust (use sparingly and mix well, preferably from untreated wood)</li>
+                <li>Pine needles (use sparingly as they are acidic)</li>
               </ul>
             </div>
           </div>
-          <p className="text-muted-foreground mt-3"><strong className="font-medium">Also Very Important:</strong></p>
+          <div className="mt-4">
+            <h3 className="font-medium text-md mb-1 text-orange-600 flex items-center gap-1.5"><PawPrint className="h-4 w-4"/>Animal Manure (Excellent Activator):</h3>
+            <ul className="list-disc list-inside text-muted-foreground pl-5 space-y-1 text-sm">
+              <li>Manure from herbivores like cows, goats, sheep, chickens, rabbits, horses is excellent. It adds rich nutrients and helps the pile heat up.</li>
+              <li>Fresh manure is best mixed with "Brown" materials. Aged manure can be added more freely.</li>
+              <li><AlertTriangle className="inline h-4 w-4 text-amber-500" /> Avoid dog, cat, or pig manure as they can contain harmful pathogens.</li>
+              <li>If using chicken manure, use it sparingly as it's very rich in nitrogen and can make the pile too hot or smell of ammonia if overused.</li>
+            </ul>
+          </div>
+          <p className="text-muted-foreground mt-4"><strong className="font-medium">Also Very Important:</strong></p>
           <ul className="list-disc list-inside text-muted-foreground pl-5 mt-1 space-y-1 text-sm">
               <li><strong className="font-medium">Water:</strong> Essential to keep the pile moist like a well-squeezed sponge.</li>
               <li><strong className="font-medium">A Good Location:</strong> A flat, well-drained spot. Some shade can help prevent the pile from drying out too quickly, especially in hot climates. Ensure it's not too close to water sources to avoid contamination.</li>
@@ -83,13 +93,14 @@ export default function CompostFGWPage() {
             <strong className="font-medium">Start Layering:</strong>
             <ul className="list-disc list-inside pl-6 mt-1 space-y-1 text-sm">
               <li><strong className="font-medium">Brown Layer:</strong> Add a layer of "Brown" materials (e.g., dry leaves, straw) about 6-8 inches (15-20cm) thick.</li>
-              <li><strong className="font-medium">Green Layer:</strong> Add a thinner layer of "Green" materials (e.g., kitchen scraps, fresh grass) about 3-4 inches (7-10cm) thick. If using manure, spread it as part of this green layer.</li>
-              <li><strong className="font-medium">(Optional) Soil/Compost Sprinkle:</strong> Lightly sprinkle a thin layer of garden soil or finished compost over the green layer.</li>
+              <li><strong className="font-medium">Green Layer:</strong> Add a thinner layer of "Green" materials (e.g., kitchen scraps, fresh grass) about 3-4 inches (7-10cm) thick.</li>
+              <li><strong className="font-medium">Manure Layer (If Using):</strong> If you have manure, add a layer of it (1-2 inches or 2-5cm, or mix it with the green layer).</li>
+              <li><strong className="font-medium">(Optional) Soil/Compost Sprinkle:</strong> Lightly sprinkle a thin layer of garden soil or finished compost over the green/manure layer.</li>
               <li><strong className="font-medium">Water Gently:</strong> Sprinkle water over the layers so they are damp, but not soaking wet. It should feel like a wrung-out sponge.</li>
             </ul>
           </li>
           <li>
-            <strong className="font-medium">Repeat Layers:</strong> Continue alternating these layers (Brown, Green, optional Soil/Compost, Water) until your pile reaches the desired height (about 1 meter or 3-4 feet). Try to make the pile wider at the base and slightly tapered towards the top, like a loaf of bread or a small mound.
+            <strong className="font-medium">Repeat Layers:</strong> Continue alternating these layers (Brown, Green, optional Manure, optional Soil/Compost, Water) until your pile reaches the desired height (about 1 meter or 3-4 feet). Try to make the pile wider at the base and slightly tapered towards the top, like a loaf of bread or a small mound.
           </li>
           <li>
             <strong className="font-medium">Shape the Top:</strong> It's good to make a slight dip or depression in the center of the top of the pile to help catch rainwater.
@@ -117,7 +128,7 @@ export default function CompostFGWPage() {
             <strong className="font-medium">Maintain Moisture:</strong> Your compost pile needs to be consistently moist, like a squeezed sponge. Check it every few days, especially in dry weather. If you dig into the center and it feels dry, add water. If it's too wet (smells bad or is slimy), you might need to add more dry "Brown" materials and turn it.
           </li>
           <li>
-            <strong className="font-medium">Monitor Temperature:</strong> A well-working compost pile will heat up in the center (it can get quite hot, 55-65°C or 130-150°F). This heat is good as it kills weed seeds and harmful germs. You can feel the heat by pushing a stick or metal rod into the center for a few minutes, then pulling it out. If it's not heating up, it might be too dry, too wet, or need more "Green" materials.
+            <strong className="font-medium">Monitor Temperature:</strong> A well-working compost pile will heat up in the center (it can get quite hot, 55-65°C or 130-150°F). This heat is good as it kills weed seeds and harmful germs. You can feel the heat by pushing a stick or metal rod into the center for a few minutes, then pulling it out. If it's not heating up, it might be too dry, too wet, or need more "Green" materials (or manure).
           </li>
           <li>
             <strong className="font-medium">Turn the Pile (Mixing for Aeration):</strong> Turning the pile is important to provide air (oxygen) to the microorganisms doing the work and to ensure all materials decompose evenly.
@@ -128,8 +139,8 @@ export default function CompostFGWPage() {
           </li>
           <li><strong className="font-medium">Troubleshooting:</strong>
             <ul className="list-disc list-inside pl-6 mt-1 space-y-1 text-sm">
-                <li><strong className="font-medium">Bad Smell (like ammonia or rotten eggs):</strong> Pile is likely too wet or has too much "Green" material. Add more "Browns" and turn it.</li>
-                <li><strong className="font-medium">Pile is Not Heating Up:</strong> Could be too dry (add water), too small, not enough "Greens" (add more and mix), or too cold (try to make it bigger or insulate it).</li>
+                <li><strong className="font-medium">Bad Smell (like ammonia or rotten eggs):</strong> Pile is likely too wet or has too much "Green" material/fresh manure. Add more "Browns" and turn it.</li>
+                <li><strong className="font-medium">Pile is Not Heating Up:</strong> Could be too dry (add water), too small, not enough "Greens"/manure (add more and mix), or too cold (try to make it bigger or insulate it).</li>
                 <li><strong className="font-medium">Pests (like rats):</strong> Avoid adding meat, dairy, or oily foods. Ensure kitchen scraps are buried in the center of the pile. A well-managed hot pile usually deters pests.
                 </li>
             </ul>
@@ -172,6 +183,7 @@ export default function CompostFGWPage() {
             <li><strong className="font-medium">Top Dressing / Mulching ("God's Blanket"):</strong> Spread a layer of compost around your growing plants (vegetables, fruit trees). This acts as a mulch to keep the soil moist, suppress weeds, and slowly feed the plants. Keep it a few inches away from the plant stems.</li>
             <li><strong className="font-medium">Making Potting Mix:</strong> Mix compost with soil and other ingredients (like sand or perlite, if needed) to create a rich potting mix for starting seeds or growing plants in containers.</li>
             <li><strong className="font-medium">Revitalizing Old Soil:</strong> Compost can bring life back to tired, depleted soils.</li>
+            <li><strong className="font-medium">Compost Tea:</strong> You can also make compost tea by steeping some finished compost in water, then using the liquid to water your plants for a nutrient boost.</li>
           </ul>
           <p className="text-muted-foreground mt-2">
             You can screen your compost through a wire mesh to get a finer material for specific uses like seed starting, but unscreened compost is fine for general garden use.
@@ -189,6 +201,7 @@ export default function CompostFGWPage() {
             <li><strong className="font-medium">Use What God Provides:</strong> Focus on using materials readily available on your farm or locally. This is good stewardship and reduces costs. Avoid waste by recycling organic matter.</li>
             <li><strong className="font-medium">Be Faithful and Patient:</strong> Good compost takes time. Trust the natural process God designed. Consistent care will yield good results.</li>
             <li><strong className="font-medium">Observe and Learn:</strong> Pay attention to your compost pile. You'll learn what works best in your specific conditions.</li>
+            <li><strong className="font-medium">Safety First:</strong> When handling manure or turning compost, wear gloves and wash your hands thoroughly afterwards.</li>
         </ul>
       )
     }
@@ -235,6 +248,3 @@ export default function CompostFGWPage() {
     </div>
   );
 }
-    
-
-    
