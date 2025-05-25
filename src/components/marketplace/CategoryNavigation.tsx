@@ -9,6 +9,7 @@ import { ROOT_CATEGORIES, AGRICULTURAL_CATEGORIES } from "@/lib/category-data";
 import { cn } from "@/lib/utils";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { AlertTriangle } from "lucide-react";
 
 
 // This component is being replaced by AllCategoriesDropdown.tsx for the main marketplace view.
@@ -43,7 +44,13 @@ export function CategoryNavigation() {
       <CardHeader className="border-b p-4">
         <CardTitle className="text-lg">Browse Categories</CardTitle>
       </CardHeader>
-      <ScrollArea className="flex-grow">
+      <CardContent className="p-4 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2 p-3 border border-destructive/50 bg-destructive/10 rounded-md">
+            <AlertTriangle className="h-5 w-5 text-destructive" />
+            <p>This sidebar category navigation is currently not used in the main Marketplace. Category selection is handled by the dropdown menu above the listings.</p>
+        </div>
+      </CardContent>
+      <ScrollArea className="flex-grow opacity-50 pointer-events-none"> {/* Visually muted and disabled */}
         <CardContent className="p-0">
           <Accordion type="multiple" defaultValue={openAccordionItems} className="w-full">
             {ROOT_CATEGORIES.map((rootCat) => {

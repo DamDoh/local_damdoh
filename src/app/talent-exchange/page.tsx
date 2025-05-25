@@ -1,11 +1,32 @@
 // This page is deprecated and its functionality has been merged into /marketplace.
-// This file can be deleted.
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Briefcase, ArrowLeft } from "lucide-react";
+
 export default function TalentExchangePage_DEPRECATED() {
   return (
-    <div className="p-4 text-center text-muted-foreground">
-      <h1 className="text-2xl font-semibold mb-4">Talent Exchange - Deprecated</h1>
-      <p>The Talent Exchange functionality has been merged into the main Marketplace.</p>
-      <p>You can find and list services, jobs, and land opportunities there.</p>
+    <div className="space-y-6">
+      <Card>
+        <CardHeader className="text-center">
+          <Briefcase className="mx-auto h-12 w-12 text-primary mb-4" />
+          <CardTitle className="text-2xl">Talent Exchange - Merged with Marketplace</CardTitle>
+          <CardDescription className="text-lg text-muted-foreground">
+            The features for listing jobs, services, land, and equipment rentals have been integrated into our unified Marketplace.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="text-center">
+          <p className="mb-6">
+            You can now find and offer these opportunities by selecting the "Service" or appropriate product category in the Marketplace.
+          </p>
+          <Button asChild>
+            <Link href="/marketplace">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Go to Marketplace
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createForumTopicSchema, type CreateForumTopicValues } from "@/lib/form-schemas";
-import { ArrowLeft, Send, MessageSquare } from "lucide-react";
+import { ArrowLeft, Send, MessageSquare, CaseUpper, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function CreateForumTopicPage() {
@@ -67,7 +67,7 @@ export default function CreateForumTopicPage() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Discussion Title</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><CaseUpper className="h-4 w-4 text-muted-foreground" />Discussion Title</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Best practices for reducing post-harvest losses in maize" {...field} />
                     </FormControl>
@@ -84,7 +84,7 @@ export default function CreateForumTopicPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Opening Post / Description</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Opening Post / Description</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Elaborate on your discussion topic. Provide context, specific questions, or points you'd like to cover..."
