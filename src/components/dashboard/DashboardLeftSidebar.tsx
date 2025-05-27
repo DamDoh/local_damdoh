@@ -1,4 +1,6 @@
 
+"use client"; // Added to allow onClick handler
+
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -18,6 +20,11 @@ const currentUser = {
 };
 
 export function DashboardLeftSidebar() {
+  const handleTryProClick = () => {
+    console.log("Try DamDoh Pro button clicked - placeholder action.");
+    alert("DamDoh Pro features coming soon!");
+  };
+
   return (
     <div className="space-y-4 sticky top-20"> {/* top-20 to offset header height */}
       <Card>
@@ -39,19 +46,19 @@ export function DashboardLeftSidebar() {
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs space-y-1">
-          <Link href="#" className="flex justify-between items-center hover:bg-accent/50 p-1 rounded-sm">
+          <div className="flex justify-between items-center p-1 rounded-sm">
             <span>Profile viewers</span>
             <span className="text-primary font-semibold">{currentUser.profileViewers}</span>
-          </Link>
-          <Link href="#" className="flex justify-between items-center hover:bg-accent/50 p-1 rounded-sm">
+          </div>
+          <div className="flex justify-between items-center p-1 rounded-sm">
             <span>Post impressions</span>
             <span className="text-primary font-semibold">{currentUser.postImpressions}</span>
-          </Link>
+          </div>
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs">
           <p className="text-muted-foreground">Unlock premium supply chain analytics & tools</p>
-          <Button variant="link" className="p-0 h-auto text-xs font-semibold">
+          <Button variant="link" className="p-0 h-auto text-xs font-semibold" onClick={handleTryProClick}>
             <BarChart2 className="h-3 w-3 mr-1 text-accent" /> Try DamDoh Pro
           </Button>
         </CardContent>
