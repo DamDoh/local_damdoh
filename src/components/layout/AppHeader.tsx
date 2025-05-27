@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Home, Users, ShoppingCart, Brain, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User, Settings as SettingsIcon } from "lucide-react"; // Added User and SettingsIcon
+import { Home, Users, ShoppingCart, Brain, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User, Settings as SettingsIcon, MessageSquare } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -92,8 +92,8 @@ export function AppHeader() {
   ];
 
   const mobileSheetNavItems = [
-    { href: "/profiles/me", icon: User, label: "My Profile", isSheetLink: true }, // User icon
-    { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true }, // SettingsIcon
+    { href: "/profiles/me", icon: User, label: "My Profile", isSheetLink: true },
+    { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
     { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
   ];
 
@@ -123,11 +123,7 @@ export function AppHeader() {
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-           {sectionTitle && sectionTitle !== APP_NAME && sectionTitle !== "Home" && (
-            <span className="text-white/90 text-lg font-medium border-l border-white/30 pl-3 ml-1">
-              {sectionTitle}
-            </span>
-          )}
+          {/* Section title removed from here for desktop view */}
         </div>
 
         <div className="flex-1 flex justify-center px-12 lg:px-16">
@@ -169,12 +165,12 @@ export function AppHeader() {
               <SheetTitle className="flex items-center gap-2">
                 <Logo iconSize={28} textSize="text-xl" className="text-primary" />
               </SheetTitle>
-              {/* Removed explicit SheetClose from here as DialogContent provides one */}
             </SheetHeader>
             <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
-              {desktopNavItems.map((item) => ( // Use desktopNavItems for consistency in the sheet
+              {/* Mobile Sheet Links: Main navigation items first */}
+              {desktopNavItems.map((item) => (
                 <MobileSheetNavLink
-                  key={`sheet-${item.href}`}
+                  key={`sheet-main-${item.href}`}
                   {...item}
                   pathname={pathname}
                   onClick={() => setIsMobileSheetOpen(false)}
@@ -182,6 +178,7 @@ export function AppHeader() {
                 />
               ))}
               <Separator />
+              {/* Additional links specific to user/help */}
               {mobileSheetNavItems.map((item) => (
                 <MobileSheetNavLink
                   key={`sheet-extra-${item.href}`}
@@ -195,6 +192,8 @@ export function AppHeader() {
             <Separator />
              <div className="p-4 space-y-3 border-t">
                <div className="pb-2">
+                 {/* UserAvatar is already part of mobileSheetNavItems so no need to repeat if it's just for navigation */}
+                 {/* If it's meant to show current user info, it can stay */}
                   <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
               </div>
               <HeaderThemeToggle />
