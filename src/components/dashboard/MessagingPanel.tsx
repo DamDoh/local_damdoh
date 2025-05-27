@@ -29,15 +29,18 @@ export function MessagingPanel() {
   if (!isOpen) {
     return (
       <Card className="fixed bottom-0 right-4 w-72 shadow-xl rounded-t-lg z-40">
-        <CardHeader className="p-3 flex flex-row items-center justify-between cursor-pointer border-b" onClick={() => setIsOpen(true)}>
+        <CardHeader 
+          className="p-3 flex flex-row items-center justify-between cursor-pointer border-b bg-[#6ec33f] text-primary-foreground rounded-t-lg" 
+          onClick={() => setIsOpen(true)}
+        >
           <div className="flex items-center gap-2">
-            <Avatar className="h-8 w-8">
+            <Avatar className="h-8 w-8 border border-white/50">
               <AvatarImage src={currentUserAvatar} alt="Current User" data-ai-hint="profile farmer"/>
               <AvatarFallback>CU</AvatarFallback>
             </Avatar>
             <h3 className="font-semibold text-sm">Messaging</h3>
           </div>
-          <Button variant="ghost" size="icon" className="h-7 w-7">
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/20">
             <ChevronUp className="h-4 w-4" />
           </Button>
         </CardHeader>
@@ -47,18 +50,18 @@ export function MessagingPanel() {
 
   return (
     <Card className="fixed bottom-0 right-4 w-80 h-[60vh] max-h-[700px] shadow-xl rounded-t-lg flex flex-col z-40">
-      <CardHeader className="p-3 flex flex-row items-center justify-between border-b">
+      <CardHeader className="p-3 flex flex-row items-center justify-between border-b bg-[#6ec33f] text-primary-foreground rounded-t-lg">
         <div className="flex items-center gap-2">
-           <Avatar className="h-8 w-8">
+           <Avatar className="h-8 w-8 border border-white/50">
             <AvatarImage src={currentUserAvatar} alt="Current User" data-ai-hint="profile agricultural" />
             <AvatarFallback>CU</AvatarFallback>
           </Avatar>
           <h3 className="font-semibold text-sm">Messaging</h3>
         </div>
         <div className="flex items-center">
-          <Button variant="ghost" size="icon" className="h-7 w-7"><MoreHorizontal className="h-4 w-4" /></Button>
-          <Button variant="ghost" size="icon" className="h-7 w-7"><Edit className="h-4 w-4" /></Button>
-          <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setIsOpen(false)}><ChevronDown className="h-4 w-4" /></Button>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/20"><MoreHorizontal className="h-4 w-4" /></Button>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/20"><Edit className="h-4 w-4" /></Button>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-primary-foreground hover:bg-white/20" onClick={() => setIsOpen(false)}><ChevronDown className="h-4 w-4" /></Button>
         </div>
       </CardHeader>
       <CardContent className="p-0 flex-grow flex flex-col overflow-hidden">
@@ -113,3 +116,4 @@ export function MessagingPanel() {
     </Card>
   );
 }
+
