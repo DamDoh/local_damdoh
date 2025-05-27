@@ -1,4 +1,6 @@
 
+"use client"; // Add this line
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Label } from "@/components/ui/label";
