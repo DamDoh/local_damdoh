@@ -4,12 +4,11 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Home, Users, ShoppingCart, Brain, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User, Settings as SettingsIcon, MessageSquare } from "lucide-react";
+import { Home, Users, ShoppingCart, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User as UserIcon, Settings as SettingsIcon, MessageSquare, Package, Tractor, Brain } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { cn } from "@/lib/utils";
 import { dummyUsersData } from "@/lib/dummy-data";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
@@ -92,7 +91,7 @@ export function AppHeader() {
   ];
 
   const mobileSheetNavItems = [
-    { href: "/profiles/me", icon: User, label: "My Profile", isSheetLink: true },
+    { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
     { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
     { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
   ];
@@ -123,7 +122,7 @@ export function AppHeader() {
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-          {/* Section title removed from here for desktop view */}
+          {/* Desktop section title removed for cleaner look */}
         </div>
 
         <div className="flex-1 flex justify-center px-12 lg:px-16">
@@ -131,7 +130,7 @@ export function AppHeader() {
             <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
             <Input
               type="search"
-              placeholder="Search products & services..."
+              placeholder="Search products, services, stakeholders..."
               className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -145,9 +144,6 @@ export function AppHeader() {
           ))}
           <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
-          </div>
-          <div className="pl-1 flex items-center h-full">
-            <HeaderThemeToggle />
           </div>
         </nav>
       </div>
@@ -167,7 +163,6 @@ export function AppHeader() {
               </SheetTitle>
             </SheetHeader>
             <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
-              {/* Mobile Sheet Links: Main navigation items first */}
               {desktopNavItems.map((item) => (
                 <MobileSheetNavLink
                   key={`sheet-main-${item.href}`}
@@ -178,7 +173,6 @@ export function AppHeader() {
                 />
               ))}
               <Separator />
-              {/* Additional links specific to user/help */}
               {mobileSheetNavItems.map((item) => (
                 <MobileSheetNavLink
                   key={`sheet-extra-${item.href}`}
@@ -192,11 +186,8 @@ export function AppHeader() {
             <Separator />
              <div className="p-4 space-y-3 border-t">
                <div className="pb-2">
-                 {/* UserAvatar is already part of mobileSheetNavItems so no need to repeat if it's just for navigation */}
-                 {/* If it's meant to show current user info, it can stay */}
                   <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
               </div>
-              <HeaderThemeToggle />
               <Button variant="outline" className="w-full" onClick={() => { alert('Logout action placeholder'); setIsMobileSheetOpen(false); }}>
                 <LogOut className="mr-2 h-4 w-4" /> Log Out
               </Button>
