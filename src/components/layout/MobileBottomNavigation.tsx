@@ -14,7 +14,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: "/", label: "Explore", icon: Home },
-  { href: "/marketplace", label: "Market", icon: ShoppingCart },
+  // { href: "/marketplace", label: "Market", icon: ShoppingCart },
   { href: "/search", label: "Search", icon: Search },
   { href: "/forums", label: "Forums", icon: MessageSquare },
   { href: "/profiles/me", label: "Profile", icon: User },
@@ -26,14 +26,13 @@ export function MobileBottomNavigation() {
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background border-t border-border shadow-top-md z-40 flex justify-around items-center print:hidden">
       {navItems.map((item) => {
-        // More specific active check: exact match for "/", startsWith for others.
         const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
         return (
           <Link
             key={item.label}
             href={item.href}
             className={cn(
-              "flex flex-col items-center justify-center text-[10px] h-full w-1/5 pt-1.5 pb-1",
+              "flex flex-col items-center justify-center text-[10px] h-full w-1/5 pt-1.5 pb-1", // Adjusted padding slightly
               isActive ? "text-primary" : "text-muted-foreground hover:text-foreground/80"
             )}
           >
