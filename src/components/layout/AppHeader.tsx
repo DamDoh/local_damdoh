@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Home, Users, ShoppingCart, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User as UserIcon, Settings as SettingsIcon, MessageSquare, Brain } from "lucide-react";
+import { Home, Users, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User as UserIcon, Settings as SettingsIcon, MessageSquare, Brain } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,6 @@ import { dummyUsersData } from "@/lib/dummy-data";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
-// import { HeaderThemeToggle } from "@/components/HeaderThemeToggle"; // Theme toggle removed based on previous request
 
 interface NavLinkProps {
   href: string;
@@ -22,7 +21,7 @@ interface NavLinkProps {
   label: string;
   pathname: string;
   className?: string;
-  onClick?: () => void; 
+  onClick?: () => void;
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className }) => {
@@ -86,8 +85,8 @@ export function AppHeader() {
     { href: "/network", icon: Users, label: "Network" },
     // { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
     // { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
-    { href: "/forums", icon: MessageSquare, label: "Forums"}, // Added Forums here as it's social
-    { href: "/wallet", icon: WalletIcon, label: "Wallet" },
+    { href: "/forums", icon: MessageSquare, label: "Forums"},
+    // { href: "/wallet", icon: WalletIcon, label: "Wallet" },
     // { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
@@ -97,14 +96,14 @@ export function AppHeader() {
     { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
     { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
   ];
-  
-  const mainMobileNavItems = [ // For the sheet, mirroring desktop but including Forums
+
+  const mainMobileNavItems = [
     { href: "/", icon: Home, label: "Home" },
     { href: "/network", icon: Users, label: "Network" },
     // { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
     // { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
     { href: "/forums", icon: MessageSquare, label: "Forums"},
-    { href: "/wallet", icon: WalletIcon, label: "Wallet" },
+    // { href: "/wallet", icon: WalletIcon, label: "Wallet" },
     // { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
@@ -115,7 +114,7 @@ export function AppHeader() {
     if (pathname.startsWith("/network")) return "Network";
     // if (pathname.startsWith("/farm-management")) return "Farm Management";
     // if (pathname.startsWith("/marketplace")) return "Marketplace";
-    if (pathname.startsWith("/wallet")) return "Wallet";
+    // if (pathname.startsWith("/wallet")) return "Wallet";
     // if (pathname.startsWith("/ai-assistant")) return "AI Assistant";
     if (pathname.startsWith("/notifications")) return "Notifications";
     if (pathname.startsWith("/forums")) return "Forums";
@@ -136,7 +135,7 @@ export function AppHeader() {
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-          {/* Desktop section title removed for cleaner look */}
+          {/* Desktop section title removed based on user feedback for cleaner look */}
         </div>
 
         <div className="flex-1 flex justify-center px-12 lg:px-16">
@@ -158,7 +157,6 @@ export function AppHeader() {
           ))}
           <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
-            {/* Theme toggle removed from here */}
           </div>
         </nav>
       </div>
@@ -173,9 +171,7 @@ export function AppHeader() {
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
             <SheetHeader className="p-4 border-b bg-muted/30">
-              <SheetTitle className="flex items-center gap-2">
                 <Logo iconSize={28} textSize="text-xl" className="text-primary" />
-              </SheetTitle>
             </SheetHeader>
             <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
               {mainMobileNavItems.map((item) => (
@@ -200,8 +196,6 @@ export function AppHeader() {
             </nav>
             <Separator />
              <div className="p-4 space-y-3 border-t">
-               {/* UserAvatar removed from here, as it's often part of the trigger or sheet header if needed */}
-               {/* ThemeToggle component also removed from here as per previous request */}
               <Button variant="outline" className="w-full" onClick={() => { alert('Logout action placeholder'); setIsMobileSheetOpen(false); }}>
                 <LogOut className="mr-2 h-4 w-4" /> Log Out
               </Button>
@@ -212,7 +206,7 @@ export function AppHeader() {
         <div className="text-lg font-semibold text-white truncate">
           {sectionTitle}
         </div>
-        
+
         <Button variant="ghost" size="icon" className="text-white hover:bg-white/20" onClick={() => { setIsMobileSheetOpen(false); router.push('/search'); }}>
             <SearchIconLucide className="h-5 w-5" />
         </Button>
