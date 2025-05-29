@@ -1,5 +1,4 @@
 
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -8,45 +7,51 @@ import { Badge } from "@/components/ui/badge";
 import { Briefcase, CalendarDays, Globe, MapPin, MessageCircle, Plus, UserPlus, Edit, TrendingUp, Leaf, Tractor, Link as LinkIcon, ShoppingCart, FileText, Star, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { dummyProfileDetailsPageData, dummyProfiles, dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
+import { dummyProfileDetailsPageData, dummyProfiles, dummyUsersData } from "@/lib/dummy-data"; 
 import type { StakeholderRole } from "@/lib/constants";
-import { STAKEHOLDER_ROLES } from "@/lib/constants";
+import { STAKEHOLDER_ROLES, APP_NAME } from "@/lib/constants";
 
 export default function ProfileDetailPage({ params }: { params: { id: string } }) {
   const { profile: detailedAgriProcessorProfile, activity: userActivity } = dummyProfileDetailsPageData; 
   
   let profile: UserProfile | undefined = undefined;
+  const isViewingMe = params.id === "me";
+  const effectiveId = isViewingMe ? 'aishaBello' : params.id; // Use 'aishaBello' as "me"
 
-  if (params.id === detailedAgriProcessorProfile.id) {
+  // Try to find a highly detailed profile first (e.g., the agriProcessorSarah example)
+  if (effectiveId === detailedAgriProcessorProfile.id) {
     profile = detailedAgriProcessorProfile;
   } else {
-    profile = dummyProfiles.find(p => p.id === params.id);
+    // Then try the main list of dummy profiles
+    profile = dummyProfiles.find(p => p.id === effectiveId);
   }
 
   // If not found in detailed or dummyProfiles, try to construct from dummyUsersData
-  if (!profile && dummyUsersData[params.id]) {
-    const userData = dummyUsersData[params.id];
+  if (!profile && dummyUsersData[effectiveId]) {
+    const userData = dummyUsersData[effectiveId];
     profile = {
-      id: params.id,
+      id: effectiveId,
       name: userData.name,
-      email: `${params.id.toLowerCase().replace(/\s/g, '.')}@damdoh.example.com`, // Placeholder email
-      role: userData.role as StakeholderRole || STAKEHOLDER_ROLES[0], // Use existing role or first as default
-      location: 'Location not specified', // Placeholder
+      email: `${effectiveId.toLowerCase().replace(/\s/g, '.')}@damdoh.example.com`, 
+      role: userData.role as StakeholderRole || STAKEHOLDER_ROLES[0], 
+      location: userData.location || 'Location not specified', 
       avatarUrl: userData.avatarUrl,
-      profileSummary: userData.headline || `This is the profile for ${userData.name}. More details coming soon.`,
-      // Fill other optional UserProfile fields with defaults or leave undefined
+      profileSummary: userData.headline || `A valued member of the ${APP_NAME} agricultural community.`,
+      bio: userData.headline ? `More information about ${userData.name}, including their role as ${userData.role || 'a valued stakeholder'}. (${userData.headline})` : `More information about ${userData.name}. They are a ${userData.role || 'valued stakeholder'} in the agricultural supply chain. Details coming soon.`,
+      yearsOfExperience: Math.floor(Math.random() * 20) + 1, 
       areasOfInterest: [],
       needs: [],
       connections: [],
-      bio: userData.headline ? `More information about ${userData.name}, including their role as ${userData.role || 'a valued stakeholder'}. (${userData.headline})` : `More information about ${userData.name}. They are a ${userData.role || 'valued stakeholder'} in the agricultural supply chain.`,
-      yearsOfExperience: Math.floor(Math.random() * 20) + 1, // Random experience for demo
       contactInfo: {
-        website: `${params.id.toLowerCase().replace(/\s/g, '')}.damdoh.example.com`
+        website: `${effectiveId.toLowerCase().replace(/\s/g, '')}.damdoh.example.com`
       }
     };
   }
   
-  const isCurrentUser = params.id === "me" || (profile && params.id === profile.id); 
+  // The 'isCurrentUser' check should be based on whether the *resolved* profile's ID
+  // matches a known "current user" ID, or if params.id was "me".
+  // For this prototype, 'aishaBello' is our stand-in for the current user.
+  const isCurrentUserProfile = effectiveId === 'aishaBello'; 
 
   if (!profile) { 
     return (
@@ -76,16 +81,19 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
     return <Star className="h-5 w-5 text-primary" />;
   };
 
+  // Determine which activity list to use
+  const displayActivity = effectiveId === detailedAgriProcessorProfile.id ? userActivity : [];
+
 
   return (
     <div className="space-y-6">
       <Card className="overflow-hidden">
         <div className="h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
           <Image 
-            src={profile.id === detailedAgriProcessorProfile.id ? "https://placehold.co/1200x300.png" : `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
+            src={profile.id === detailedAgriProcessorProfile.id ? "https://placehold.co/1200x300.png" : profile.avatarUrl ? profile.avatarUrl.replace('150x150', '1200x300').replace('80x80', '1200x300').replace('40x40', '1200x300') : `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
             alt={profile.name} 
-            layout="fill" 
-            objectFit="cover" 
+            fill={true}
+            style={{objectFit:"cover"}}
             data-ai-hint={profile.role ? `${profile.role.toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
@@ -104,7 +112,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
               </div>
             </div>
             <div className="flex gap-2 mt-4 sm:mt-0">
-              {isCurrentUser ? (
+              {isCurrentUserProfile ? (
                 <Button asChild><Link href={`/profiles/${params.id}/edit`}><Edit className="mr-2 h-4 w-4" /> Edit Profile</Link></Button>
               ) : (
                 <>
@@ -185,10 +193,9 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
           <CardTitle>Recent Supply Chain Activity</CardTitle>
         </CardHeader>
         <CardContent>
-            {/* Use userActivity only if it's the agriProcessorSarah profile, otherwise show placeholder */}
-            {(params.id === detailedAgriProcessorProfile.id && userActivity.length > 0) ? (
+            {(displayActivity.length > 0) ? (
                 <ul className="space-y-4">
-                    {userActivity.map(activity => (
+                    {displayActivity.map(activity => (
                         <li key={activity.id} className="p-4 border rounded-lg shadow-sm hover:bg-accent/30 transition-colors">
                            <div className="flex items-start gap-3">
                                 <ActivityIcon type={activity.type} />
@@ -206,7 +213,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                     ))}
                 </ul>
             ) : (
-                 <p className="text-muted-foreground">No recent specific activity to display for this stakeholder. They are active in the DamDoh network!</p>
+                 <p className="text-muted-foreground">No recent specific activity to display for this stakeholder. They are active in the {APP_NAME} network!</p>
             )}
         </CardContent>
       </Card>
