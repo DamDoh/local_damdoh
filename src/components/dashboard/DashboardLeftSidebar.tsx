@@ -1,58 +1,65 @@
 
-"use client"; // Added to allow onClick handler
+"use client"; 
 
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Landmark, Sprout, Link2 } from "lucide-react";
-import { dummyUsersData } from "@/lib/dummy-data"; // Import dummy data
-
-// Dummy data for current user, focused on agriculture
-const currentUser = {
-  name: dummyUsersData['aishaBello']?.name || "Aisha Bello",
-  title: dummyUsersData['aishaBello']?.headline || "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets.",
-  location: "Kano, Nigeria", // Assuming location is not in dummyUsersData for this specific user
-  avatarUrl: dummyUsersData['aishaBello']?.avatarUrl || "https://placehold.co/80x80.png",
-  damDohLink: "My DamDoh Stakeholder Profile",
-  profileViewers: 48,
-  postImpressions: 230,
-};
+import { dummyUsersData } from "@/lib/dummy-data"; 
+import { useToast } from "@/hooks/use-toast"; // Import useToast
 
 export function DashboardLeftSidebar() {
+  const { toast } = useToast(); // Initialize toast
+
+  // Using 'aishaBello' as the consistent current user for this demo card
+  const currentUserDetails = dummyUsersData['aishaBello'] || {
+    name: "Current User",
+    headline: "DamDoh Stakeholder",
+    avatarUrl: "https://placehold.co/80x80.png",
+  };
+  
+  // Dummy stats, as these would typically come from a backend
+  const profileViewers = 48;
+  const postImpressions = 230;
+  const userLocation = "Kano, Nigeria"; // Example location if not in dummyUsersData
+
   const handleTryProClick = () => {
     console.log("Try DamDoh Pro button clicked - placeholder action.");
-    alert("DamDoh Pro features coming soon!");
+    toast({
+      title: "DamDoh Pro",
+      description: "Premium features and analytics are coming soon!",
+    });
   };
 
   return (
     <div className="space-y-4 sticky top-20"> {/* top-20 to offset header height */}
       <Card>
         <CardContent className="pt-6 text-center">
-          <Avatar className="h-20 w-20 mx-auto mb-2 border-2 border-primary">
-            <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} data-ai-hint="profile farmer woman" />
-            <AvatarFallback>{currentUser.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-          </Avatar>
           <Link href="/profiles/me">
-            <h3 className="text-lg font-semibold hover:underline">{currentUser.name}</h3>
+            <Avatar className="h-20 w-20 mx-auto mb-2 border-2 border-primary cursor-pointer">
+              <AvatarImage src={currentUserDetails.avatarUrl} alt={currentUserDetails.name} data-ai-hint="profile farmer woman" />
+              <AvatarFallback>{currentUserDetails.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+            </Avatar>
           </Link>
-          <p className="text-xs text-muted-foreground px-2">{currentUser.title}</p>
-          <p className="text-xs text-muted-foreground mt-1">{currentUser.location}</p>
-          {currentUser.damDohLink && (
-            <Link href="/profiles/me" className="text-xs text-primary hover:underline block mt-1">
-              {currentUser.damDohLink}
-            </Link>
-          )}
+          <Link href="/profiles/me">
+            <h3 className="text-lg font-semibold hover:underline">{currentUserDetails.name}</h3>
+          </Link>
+          <p className="text-xs text-muted-foreground px-2">{currentUserDetails.headline}</p>
+          <p className="text-xs text-muted-foreground mt-1">{userLocation}</p>
+          <Link href="/profiles/me" className="text-xs text-primary hover:underline block mt-1">
+            My DamDoh Stakeholder Profile
+          </Link>
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs space-y-1">
           <div className="flex justify-between items-center p-1 rounded-sm">
             <span>Profile viewers</span>
-            <span className="text-primary font-semibold">{currentUser.profileViewers}</span>
+            <span className="text-primary font-semibold">{profileViewers}</span>
           </div>
           <div className="flex justify-between items-center p-1 rounded-sm">
             <span>Post impressions</span>
-            <span className="text-primary font-semibold">{currentUser.postImpressions}</span>
+            <span className="text-primary font-semibold">{postImpressions}</span>
           </div>
         </CardContent>
         <hr className="my-2"/>
@@ -65,7 +72,7 @@ export function DashboardLeftSidebar() {
       </Card>
 
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-2 pt-4"> {/* Adjusted padding */}
           <CardTitle className="text-md font-semibold">Recent</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 space-y-1 text-sm">
