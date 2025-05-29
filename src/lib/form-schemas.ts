@@ -1,6 +1,6 @@
 
 import { z } from "zod";
-import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES } from "@/lib/constants";
+import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -27,7 +27,7 @@ export const createMarketplaceItemSchema = z.object({
   price: z.coerce.number({ invalid_type_error: "Price must be a number." }).min(0, "Price cannot be negative.").optional(),
   currency: z.string().length(3, "Currency code must be 3 characters (e.g., USD).").default("USD").transform(value => value.toUpperCase()),
   perUnit: z.string().max(30, "Unit description (e.g., /kg, /ton, /hour) is too long.").optional(),
-  category: z.enum(UNIFIED_MARKETPLACE_CATEGORY_IDS, { // Uses the new flat list of subcategory IDs
+  category: z.enum(UNIFIED_MARKETPLACE_CATEGORY_IDS, {
     errorMap: () => ({ message: "Please select a valid category." }),
   }),
   isSustainable: z.boolean().default(false).optional(),
@@ -68,3 +68,23 @@ export const createAgriEventSchema = z.object({
 });
 
 export type CreateAgriEventValues = z.infer<typeof createAgriEventSchema>;
+
+export const editProfileSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
+  email: z.string().email("Please enter a valid email address."),
+  role: z.enum(STAKEHOLDER_ROLES, {
+    errorMap: () => ({ message: "Please select a valid stakeholder role."}),
+  }),
+  profileSummary: z.string().max(250, "Profile summary cannot exceed 250 characters.").optional(),
+  bio: z.string().max(2000, "Bio cannot exceed 2000 characters.").optional(),
+  location: z.string().min(2, "Location must be at least 2 characters.").max(100, "Location cannot exceed 100 characters."),
+  areasOfInterest: z.string().max(500, "Areas of interest cannot exceed 500 characters (use comma-separated values).").optional(),
+  needs: z.string().max(500, "Needs/offerings cannot exceed 500 characters (use comma-separated values).").optional(),
+  contactInfoPhone: z.string().max(30, "Phone number is too long.").optional(),
+  contactInfoWebsite: z.string().url({ message: "Please enter a valid website URL."}).optional().or(z.literal('')),
+  // Add avatarUrl and imageFile for profile picture changes if needed later
+  // avatarUrl: z.string().url().optional(),
+  // imageFile: imageFileSchema.optional(),
+});
+
+export type EditProfileValues = z.infer<typeof editProfileSchema>;
