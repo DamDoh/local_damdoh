@@ -4,16 +4,40 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Home, Users, Bell, Menu, Search as SearchIconLucide, ClipboardList, Wallet as WalletIcon, Sprout, HelpCircle, LogOut, User as UserIcon, Settings as SettingsIcon, MessageSquare, Brain } from "lucide-react";
+import {
+  Home,
+  Users,
+  Bell,
+  Menu,
+  Search as SearchIconLucide,
+  Wallet as WalletIcon,
+  Sprout,
+  HelpCircle,
+  LogOut,
+  User as UserIcon,
+  Settings as SettingsIcon,
+  MessageSquare,
+  Brain,
+  ShoppingCart, // Added ShoppingCart
+  ClipboardList,
+} from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { dummyUsersData } from "@/lib/dummy-data";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
+// import { HeaderThemeToggle } from "@/components/HeaderThemeToggle"; // Keep commented out
 
 interface NavLinkProps {
   href: string;
@@ -91,12 +115,14 @@ export function AppHeader() {
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
 
-  const mobileSheetNavItems = [
+  const mobileSheetNavItems = [ // For items specific to the sheet menu like Settings, Help
     { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
     { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
     { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
+    // Add other sheet-specific items here if needed
   ];
-
+  
+  // mainMobileNavItems are the primary navigation items also shown on desktop, adapted for mobile sheet
   const mainMobileNavItems = [
     { href: "/", icon: Home, label: "Home" },
     { href: "/network", icon: Users, label: "Network" },
@@ -108,23 +134,34 @@ export function AppHeader() {
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
 
-
   const getSectionTitle = () => {
     if (pathname === "/") return "Home";
-    if (pathname.startsWith("/network")) return "Network";
-    if (pathname.startsWith("/farm-management")) return "Farm Management";
-    if (pathname.startsWith("/marketplace")) return "Marketplace";
-    if (pathname.startsWith("/wallet")) return "Wallet";
-    if (pathname.startsWith("/ai-assistant")) return "AI Assistant";
-    if (pathname.startsWith("/notifications")) return "Notifications";
-    if (pathname.startsWith("/forums")) return "Forums";
-    if (pathname.startsWith("/agri-events")) return "Agri-Events";
+    const activeDesktopItem = desktopNavItems.find(item => pathname.startsWith(item.href) && item.href !== "/");
+    if (activeDesktopItem) return activeDesktopItem.label;
+    
+    // Fallback for other pages not in main nav, or more specific titles
+    if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
     if (pathname.startsWith("/profiles/me")) return "My Profile";
-    if (pathname.startsWith("/profiles")) return "Profiles";
-    if (pathname.startsWith("/settings")) return "Settings";
+    if (pathname.startsWith("/profiles/")) return "Profile Details";
+    if (pathname.startsWith("/agri-events/create")) return "Create Event";
+    if (pathname.startsWith("/agri-events")) return "Agri-Events";
+    if (pathname.startsWith("/marketplace/create")) return "Create Listing";
+    if (pathname.startsWith("/forums/create")) return "New Discussion";
+    if (pathname.startsWith("/forums/")) return "Forum Topic";
     if (pathname.startsWith("/search")) return "Search Results";
+    if (pathname.startsWith("/settings")) return "Settings";
     if (pathname.startsWith("/help-center")) return "Help Center";
-    return APP_NAME;
+    if (pathname.startsWith("/about")) return "About Us";
+    if (pathname.startsWith("/contact")) return "Contact";
+    if (pathname.startsWith("/careers")) return "Careers";
+    if (pathname.startsWith("/blog")) return "Agri-Insights Blog";
+    if (pathname.startsWith("/community-guidelines")) return "Community Guidelines";
+    if (pathname.startsWith("/cookie-policy")) return "Cookie Policy";
+    if (pathname.startsWith("/privacy")) return "Privacy Policy";
+    if (pathname.startsWith("/terms")) return "Terms of Service";
+    if (pathname.startsWith("/pinboard")) return "My Pinboard";
+
+    return APP_NAME; // Default
   };
 
   const sectionTitle = getSectionTitle();
@@ -135,6 +172,7 @@ export function AppHeader() {
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
+          {/* Section title for desktop removed as per previous request */}
         </div>
 
         <div className="flex-1 flex justify-center px-12 lg:px-16">
@@ -156,6 +194,7 @@ export function AppHeader() {
           ))}
           <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
+            {/* HeaderThemeToggle removed as per previous request */}
           </div>
         </nav>
       </div>
@@ -169,7 +208,7 @@ export function AppHeader() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
-            <SheetHeader className="p-4 border-b bg-muted/30">
+            <SheetHeader className="p-4 border-b">
                 <Logo iconSize={28} textSize="text-xl" className="text-primary" />
             </SheetHeader>
             <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
@@ -195,6 +234,7 @@ export function AppHeader() {
             </nav>
             <Separator />
              <div className="p-4 space-y-3 border-t">
+              {/* <HeaderThemeToggle /> Keep commented out */}
               <Button variant="outline" className="w-full" onClick={() => { alert('Logout action placeholder'); setIsMobileSheetOpen(false); }}>
                 <LogOut className="mr-2 h-4 w-4" /> Log Out
               </Button>
