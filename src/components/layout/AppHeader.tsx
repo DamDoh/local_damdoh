@@ -18,7 +18,7 @@ import {
   Settings as SettingsIcon,
   MessageSquare,
   Brain,
-  ShoppingCart, // Ensured ShoppingCart is imported
+  ShoppingCart,
   ClipboardList,
   Package,
   Briefcase,
@@ -90,12 +90,24 @@ const desktopNavItems = [
   { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
   { href: "/forums", icon: MessageSquare, label: "Forums"},
-  { href: "/wallet", icon: WalletIcon, label: "Wallet" },
+  // { href: "/wallet", icon: WalletIcon, label: "Wallet" },
   { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
   { href: "/notifications", icon: Bell, label: "Notifications"},
+  // { href: "/messaging", icon: MessageSquare, label: "Messaging" }, // Example if it was a top-level item
 ];
 
-const mainMobileNavItems = desktopNavItems.map(item => ({...item, isSheetLink: true }));
+const mainMobileNavItems = [
+  { href: "/", icon: Home, label: "Home", isSheetLink: true },
+  { href: "/network", icon: Users, label: "Network", isSheetLink: true },
+  { href: "/farm-management", icon: Sprout, label: "Farm Management", isSheetLink: true },
+  { href: "/marketplace", icon: ShoppingCart, label: "Marketplace", isSheetLink: true },
+  { href: "/forums", icon: MessageSquare, label: "Forums", isSheetLink: true },
+  // { href: "/wallet", icon: WalletIcon, label: "Wallet", isSheetLink: true },
+  { href: "/ai-assistant", icon: Brain, label: "AI Assistant", isSheetLink: true },
+  { href: "/notifications", icon: Bell, label: "Notifications", isSheetLink: true },
+  // { href: "/messaging", icon: MessageSquare, label: "Messaging", isSheetLink: true },
+];
+
 
 const mobileSheetSecondaryNavItems = [
   { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
@@ -152,6 +164,9 @@ export function AppHeader() {
     if (pathname.startsWith("/privacy")) return "Privacy Policy";
     if (pathname.startsWith("/terms")) return "Terms of Service";
     if (pathname.startsWith("/pinboard")) return "My Pinboard";
+    if (pathname.startsWith("/wallet")) return "Digital Wallet";
+    if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
+
 
     return APP_NAME; // Default title
   };

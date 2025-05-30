@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle } from "lucide-react";
 import Image from "next/image";
-import { MessagingPanel } from "./MessagingPanel"; 
+// import { MessagingPanel } from "./MessagingPanel"; 
 import { dummyUsersData } from "@/lib/dummy-data";
 import { useState, useEffect, useCallback } from "react";
 import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
@@ -189,7 +189,7 @@ export function DashboardRightSidebar() {
           </div>
         </CardContent>
       </Card>
-      <MessagingPanel />
+      {/* <MessagingPanel /> */}
     </div>
   );
 }
