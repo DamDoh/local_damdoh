@@ -14,11 +14,11 @@ import {
   Sprout,
   HelpCircle,
   LogOut,
-  User as UserIcon, // Alias for User icon from lucide
-  Settings as SettingsIcon, // Alias for Settings icon from lucide
+  User as UserIcon,
+  Settings as SettingsIcon,
   MessageSquare,
   Brain,
-  ShoppingCart, // Explicitly ensure ShoppingCart is imported
+  ShoppingCart, // Ensured ShoppingCart is imported
   ClipboardList,
   Package,
   Briefcase,
@@ -34,10 +34,12 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  // SheetClose, // Removed to prevent double X
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
+import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
+
 
 interface NavLinkProps {
   href: string;
@@ -81,6 +83,25 @@ const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ 
     </Link>
   );
 };
+
+const desktopNavItems = [
+  { href: "/", icon: Home, label: "Home" },
+  { href: "/network", icon: Users, label: "Network" },
+  { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
+  { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
+  { href: "/forums", icon: MessageSquare, label: "Forums"},
+  { href: "/wallet", icon: WalletIcon, label: "Wallet" },
+  { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
+  { href: "/notifications", icon: Bell, label: "Notifications"},
+];
+
+const mainMobileNavItems = desktopNavItems.map(item => ({...item, isSheetLink: true }));
+
+const mobileSheetSecondaryNavItems = [
+  { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
+  { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
+  { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
+];
 
 
 export function AppHeader() {
@@ -137,33 +158,12 @@ export function AppHeader() {
 
   const sectionTitle = getSectionTitle();
 
-  const desktopNavItems = [
-    { href: "/", icon: Home, label: "Home" },
-    { href: "/network", icon: Users, label: "Network" },
-    { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
-    { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
-    { href: "/forums", icon: MessageSquare, label: "Forums"},
-    { href: "/wallet", icon: WalletIcon, label: "Wallet" },
-    { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
-    { href: "/notifications", icon: Bell, label: "Notifications"},
-  ];
-
-  // For mobile sheet: include main items + profile specific items
-  const mainMobileNavItems = desktopNavItems.map(item => ({...item, isSheetLink: true }));
-  
-  const mobileSheetSecondaryNavItems = [
-    { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
-    { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
-    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
-  ];
-
   return (
     <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm print:hidden">
       {/* Desktop Header */}
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-          {/* Desktop section title removed as per previous request */}
         </div>
 
         <div className="flex-1 flex justify-center px-12 lg:px-16">
@@ -171,7 +171,7 @@ export function AppHeader() {
             <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
             <Input
               type="search"
-              placeholder="Search products, services, stakeholders..."
+              placeholder="Search products & services..."
               className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -184,12 +184,9 @@ export function AppHeader() {
             <NavLink key={item.href} {...item} pathname={pathname} />
           ))}
           <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
-             {/* UserAvatar is now only in the mobile sheet */}
+             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
           </div>
         </nav>
-         <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
-             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
-        </div>
       </div>
 
       {/* Mobile Header */}
@@ -203,7 +200,6 @@ export function AppHeader() {
           <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
             <SheetHeader className="p-4 border-b flex flex-row justify-between items-center">
                 <Logo iconSize={28} textSize="text-xl" className="text-primary" />
-                {/* SheetClose is handled by the X icon in SheetContent by default */}
             </SheetHeader>
             <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
               {mainMobileNavItems.map((item) => (
@@ -226,7 +222,7 @@ export function AppHeader() {
             </nav>
             <Separator />
              <div className="p-4 space-y-3 border-t">
-              {/* HeaderThemeToggle component is not used here currently */}
+              <HeaderThemeToggle />
               <Button variant="outline" className="w-full" onClick={() => { alert('Logout action placeholder'); setIsMobileSheetOpen(false); }}>
                 <LogOut className="mr-2 h-4 w-4" /> Log Out
               </Button>
