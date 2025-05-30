@@ -34,9 +34,14 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
     setIsLiked(false);
     setVotedOptionIndex(null);
-    setShowCommentInput(false); // Ensure comment input is hidden on item change
-    setCommentText(""); // Clear comment text on item change
+    setShowCommentInput(false);
+    setCommentText("");
   }, [item]);
+
+  // Debug log for showCommentInput state
+  useEffect(() => {
+    console.log(`FeedItem [${item.id}]: showCommentInput state changed to: ${showCommentInput}`);
+  }, [showCommentInput, item.id]);
 
   const handleLike = () => {
     if (isLiked) {
@@ -49,11 +54,10 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
   };
 
   const handleCommentButtonClick = () => {
-    setShowCommentInput(prev => !prev);
-    if (showCommentInput) { // If we are closing it, clear text
-        setCommentText("");
+    setShowCommentInput(prev => !prev); // Toggle the state
+    if (showCommentInput) { // If we are closing it by clicking again
+        setCommentText(""); // Clear text when hiding
     }
-    // console.log(`Comment button clicked for post: ${item.id}. Show input: ${!showCommentInput}`);
   };
   
   const handlePostComment = () => {
@@ -62,6 +66,11 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
     console.log(`Posted comment on post ${item.id}: "${commentText}"`);
     setCommentText(""); 
     setShowCommentInput(false); 
+  };
+
+  const handleCancelComment = () => {
+    setCommentText("");
+    setShowCommentInput(false);
   };
 
   const handleRepost = () => {
@@ -82,7 +91,7 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
       });
       setCurrentPollOptions(newPollOptions);
       setVotedOptionIndex(optionIndex);
-      console.log(`Voted for option: "${currentPollOptions[optionIndex]?.text}" on post: "${item.content}"`);
+      console.log(`Voted for option: "${currentPollOptions[optionIndex]?.text}" on post: "${item.id}"`);
     } else {
       console.log(`Already voted or poll not available for post: "${item.id}"`);
     }
@@ -154,9 +163,9 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
             <span>{currentComments} Comment{currentComments === 1 ? '' : 's'}</span>
         </div>
       </CardContent>
-      <hr />
-      <CardFooter className="p-2 flex flex-col items-stretch">
-        <div className="flex justify-around">
+      
+      <CardFooter className="p-2 flex flex-col items-stretch"> {/* Footer is now flex-col */}
+        <div className="flex justify-around border-t pt-1"> {/* Action buttons in their own row */}
           <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
             <ThumbsUp className="mr-2 h-5 w-5" /> Like
           </Button>
@@ -172,7 +181,7 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
         </div>
         
         {showCommentInput && (
-          <div className="mt-3 px-2 space-y-2">
+          <div className="mt-3 px-2 space-y-2 border-t pt-3"> {/* Comment input section as a new block */}
             <Textarea
               placeholder="Write your comment..."
               value={commentText}
@@ -181,7 +190,7 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
               autoFocus
             />
             <div className="flex justify-end gap-2">
-              <Button variant="ghost" size="sm" onClick={() => { setShowCommentInput(false); setCommentText("");}}>Cancel</Button>
+              <Button variant="ghost" size="sm" onClick={handleCancelComment}>Cancel</Button>
               <Button size="sm" onClick={handlePostComment} disabled={!commentText.trim()}>
                 Post Comment
               </Button>
