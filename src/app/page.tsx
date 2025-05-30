@@ -6,8 +6,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge"; // Added import
-import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import type { FeedItem, PollOption, MobileHomeCategory, MobileDiscoverItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
@@ -16,15 +16,63 @@ import { StartPost } from "@/components/dashboard/StartPost";
 import Image from "next/image";
 import { dummyFeedItems as initialFeedItems, mobileHomeCategories, mobileDiscoverItems } from "@/lib/dummy-data";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
-import { ScrollArea } from '@/components/ui/scroll-area'; // For horizontal scroll
-
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (postId: string) => void }) {
+  const [isLiked, setIsLiked] = useState(false);
+  const [currentLikes, setCurrentLikes] = useState(item.likesCount || 0);
+  const [currentComments, setCurrentComments] = useState(item.commentsCount || 0);
+  const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
+  const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
 
-  const handlePollVote = (item: FeedItem, optionIndex: number) => {
-    console.log(`Voted for option: "${item.pollOptions?.[optionIndex]?.text}" on post: "${item.content}"`);
-    // In a real app, you'd send this vote to the backend and update the UI.
-    // For this demo, we're just logging.
+  useEffect(() => {
+    setCurrentLikes(item.likesCount || 0);
+    setCurrentComments(item.commentsCount || 0);
+    // Deep copy poll options to allow local modifications without affecting parent state
+    setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
+    setIsLiked(false); // Reset like status if item changes
+    setVotedOptionIndex(null); // Reset poll vote status if item changes
+  }, [item]);
+
+  const handleLike = () => {
+    if (isLiked) {
+      setCurrentLikes(prev => prev - 1);
+    } else {
+      setCurrentLikes(prev => prev + 1);
+    }
+    setIsLiked(prev => !prev);
+    console.log(`Like toggled for post: ${item.id}. New like status: ${!isLiked}`);
+  };
+
+  const handleComment = () => {
+    setCurrentComments(prev => prev + 1);
+    console.log(`Comment button clicked for post: ${item.id}. (Action: Open comment modal/section)`);
+  };
+
+  const handleRepost = () => {
+    console.log(`Repost button clicked for post: ${item.id}.`);
+    // In a real app, this might call something like:
+    // onCreatePost(`Reposted: ${item.content}`, undefined, undefined, item.id);
+  };
+
+  const handleSend = () => {
+    console.log(`Send button clicked for post: ${item.id}. (Action: Open share/send modal)`);
+  };
+
+  const handlePollVote = (optionIndex: number) => {
+    if (votedOptionIndex === null && currentPollOptions.length > 0) {
+      const newPollOptions = currentPollOptions.map((opt, idx) => {
+        if (idx === optionIndex) {
+          return { ...opt, votes: (opt.votes || 0) + 1 };
+        }
+        return opt;
+      });
+      setCurrentPollOptions(newPollOptions);
+      setVotedOptionIndex(optionIndex);
+      console.log(`Voted for option: "${currentPollOptions[optionIndex]?.text}" on post: "${item.content}"`);
+    } else {
+      console.log(`Already voted or poll not available for post: "${item.id}"`);
+    }
   };
 
   return (
@@ -42,8 +90,7 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
                 {item.userHeadline && <p className="text-xs text-muted-foreground">{item.userHeadline}</p>}
                 <p className="text-xs text-muted-foreground">{new Date(item.timestamp).toLocaleDateString()} • Edited</p>
               </div>
-              {/* Basic Delete Button - only for client-side demo */}
-              {item.userId === 'currentDemoUser' && ( // Assuming 'currentDemoUser' is the ID for posts made by the current user
+              {item.userId === 'currentDemoUser' && (
                 <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => onDeletePost(item.id)}>
                   <Trash2 className="h-4 w-4 text-destructive" />
                 </Button>
@@ -61,42 +108,51 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
           </div>
         )}
 
-        {item.pollOptions && item.pollOptions.length > 0 && (
+        {currentPollOptions && currentPollOptions.length > 0 && (
           <div className="my-3 p-3 border rounded-md bg-muted/30">
             {item.type === 'poll' && !item.content && <p className="text-sm font-medium mb-2">Poll:</p>}
             <div className="space-y-2">
-              {item.pollOptions.map((option, index) => (
+              {currentPollOptions.map((option, index) => (
                 <Button
                   key={index}
-                  variant="outline"
-                  className="w-full justify-start text-left h-auto py-2"
-                  onClick={() => handlePollVote(item, index)}
+                  variant={votedOptionIndex === index ? "default" : "outline"}
+                  className="w-full justify-between text-left h-auto py-2"
+                  onClick={() => handlePollVote(index)}
+                  disabled={votedOptionIndex !== null && votedOptionIndex !== index}
                 >
-                  {option.text}
-                  {/* Placeholder for votes: ({option.votes} votes) */}
+                  <span className="flex-1">{option.text}</span>
+                  {votedOptionIndex !== null && (
+                    <span className="text-xs ml-2">{option.votes} vote{option.votes === 1 ? '' : 's'}</span>
+                  )}
+                  {votedOptionIndex === index && <CheckCircle className="ml-2 h-4 w-4 text-primary-foreground" />}
                 </Button>
               ))}
             </div>
+            {votedOptionIndex !== null && (
+              <p className="text-xs text-muted-foreground mt-2 text-center">
+                Total votes might be shown here in a real app.
+              </p>
+            )}
           </div>
         )}
 
          <div className="flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
-            {item.likesCount !== undefined && <span>{item.likesCount} Likes</span>}
-            {item.commentsCount !== undefined && <span>{item.commentsCount} Comments</span>}
+            <span>{currentLikes} Like{currentLikes === 1 ? '' : 's'}</span>
+            <span>{currentComments} Comment{currentComments === 1 ? '' : 's'}</span>
         </div>
       </CardContent>
       <hr />
       <CardFooter className="p-2 flex justify-around">
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full">
+        <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
           <ThumbsUp className="mr-2 h-5 w-5" /> Like
         </Button>
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full">
+        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleComment}>
           <MessageIcon className="mr-2 h-5 w-5" /> Comment
         </Button>
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full">
+        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleRepost}>
           <Share2 className="mr-2 h-5 w-5" /> Repost
         </Button>
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full">
+        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleSend}>
           <Send className="mr-2 h-5 w-5" /> Send
         </Button>
       </CardFooter>
@@ -120,11 +176,11 @@ export default function DashboardPage() {
   const handleCreatePost = (content: string, media?: File, pollData?: { text: string }[]) => {
     const newPost: FeedItem = {
       id: `post-${Date.now()}`,
-      type: pollData && pollData.length > 0 ? 'poll' : 'shared_article', // Or determine type based on media
+      type: pollData && pollData.length > 0 ? 'poll' : 'shared_article', 
       timestamp: new Date().toISOString(),
-      userId: 'currentDemoUser', // Replace with actual current user ID
-      userName: 'Demo User', // Replace with actual current user name
-      userAvatar: 'https://placehold.co/40x40.png', // Replace with actual current user avatar
+      userId: 'currentDemoUser', 
+      userName: 'Demo User', 
+      userAvatar: 'https://placehold.co/40x40.png', 
       userHeadline: 'Agri-Enthusiast | DamDoh Platform',
       content: content,
       postImage: media && media.type.startsWith("image/") ? URL.createObjectURL(media) : undefined,
@@ -141,7 +197,6 @@ export default function DashboardPage() {
   };
 
 
-  // If still loading preference or already redirected, show minimal or no UI
   if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-var(--header-height,80px)-var(--bottom-nav-height,64px))]"><p>Loading...</p></div>;
   }
@@ -150,7 +205,7 @@ export default function DashboardPage() {
     <>
       {/* Mobile View */}
       <div className="md:hidden space-y-6">
-        <div className="px-0 pt-2"> {/* No horizontal padding for sections to allow full-width scroll */}
+        <div className="px-0 pt-2"> 
           <h1 className="text-2xl font-bold mb-4 px-4">Explore DamDoh</h1>
 
           <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-lg overflow-hidden mb-6">
@@ -208,16 +263,13 @@ export default function DashboardPage() {
             </ScrollArea>
           </section>
 
-          {/* Optional: Simplified "Start Post" for mobile explore page */}
           <div className="px-4">
              <StartPost onCreatePost={handleCreatePost} />
           </div>
 
-
-          {/* Mobile Feed (optional, can be a separate "Feed" tab in bottom nav) */}
           <section className="mt-6 px-4 space-y-4">
             <h2 className="text-xl font-semibold">Recent Activity</h2>
-            {feedItems.slice(0, 3).map(item => ( // Show a few feed items
+            {feedItems.slice(0, 3).map(item => ( 
               <FeedItemCard key={item.id} item={item} onDeletePost={handleDeletePost} />
             ))}
              {feedItems.length === 0 && (
