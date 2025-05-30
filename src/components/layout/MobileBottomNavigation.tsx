@@ -14,7 +14,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: "/", label: "Explore", icon: Home },
-  // { href: "/marketplace", label: "Market", icon: ShoppingCart },
+  { href: "/marketplace", label: "Market", icon: ShoppingCart },
   { href: "/search", label: "Search", icon: Search },
   { href: "/forums", label: "Forums", icon: MessageSquare },
   { href: "/profiles/me", label: "Profile", icon: User },
@@ -32,7 +32,7 @@ export function MobileBottomNavigation() {
             key={item.label}
             href={item.href}
             className={cn(
-              "flex flex-col items-center justify-center text-[10px] h-full w-1/5 pt-1.5 pb-1", // Adjusted padding slightly
+              "flex flex-col items-center justify-center text-[10px] h-full w-1/5 pt-1.5 pb-1", 
               isActive ? "text-primary" : "text-muted-foreground hover:text-foreground/80"
             )}
           >

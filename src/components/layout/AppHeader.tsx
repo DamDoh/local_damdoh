@@ -83,11 +83,11 @@ export function AppHeader() {
   const desktopNavItems = [
     { href: "/", icon: Home, label: "Home" },
     { href: "/network", icon: Users, label: "Network" },
-    // { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
-    // { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
+    { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
+    { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
     { href: "/forums", icon: MessageSquare, label: "Forums"},
-    // { href: "/wallet", icon: WalletIcon, label: "Wallet" },
-    // { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
+    { href: "/wallet", icon: WalletIcon, label: "Wallet" },
+    { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
 
@@ -100,11 +100,11 @@ export function AppHeader() {
   const mainMobileNavItems = [
     { href: "/", icon: Home, label: "Home" },
     { href: "/network", icon: Users, label: "Network" },
-    // { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
-    // { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
+    { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
+    { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
     { href: "/forums", icon: MessageSquare, label: "Forums"},
-    // { href: "/wallet", icon: WalletIcon, label: "Wallet" },
-    // { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
+    { href: "/wallet", icon: WalletIcon, label: "Wallet" },
+    { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
     { href: "/notifications", icon: Bell, label: "Notifications"},
   ];
 
@@ -112,10 +112,10 @@ export function AppHeader() {
   const getSectionTitle = () => {
     if (pathname === "/") return "Home";
     if (pathname.startsWith("/network")) return "Network";
-    // if (pathname.startsWith("/farm-management")) return "Farm Management";
-    // if (pathname.startsWith("/marketplace")) return "Marketplace";
-    // if (pathname.startsWith("/wallet")) return "Wallet";
-    // if (pathname.startsWith("/ai-assistant")) return "AI Assistant";
+    if (pathname.startsWith("/farm-management")) return "Farm Management";
+    if (pathname.startsWith("/marketplace")) return "Marketplace";
+    if (pathname.startsWith("/wallet")) return "Wallet";
+    if (pathname.startsWith("/ai-assistant")) return "AI Assistant";
     if (pathname.startsWith("/notifications")) return "Notifications";
     if (pathname.startsWith("/forums")) return "Forums";
     if (pathname.startsWith("/agri-events")) return "Agri-Events";
@@ -135,7 +135,6 @@ export function AppHeader() {
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-          {/* Desktop section title removed based on user feedback for cleaner look */}
         </div>
 
         <div className="flex-1 flex justify-center px-12 lg:px-16">
