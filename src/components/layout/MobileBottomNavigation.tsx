@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, ShoppingCart, MessageSquare, User, Sprout } from "lucide-react";
+import { Home, Search, ShoppingCart, MessageSquare, User, Sprout } from "lucide-react"; // Ensure ShoppingCart is imported directly
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -14,7 +14,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: "/", label: "Explore", icon: Home },
-  { href: "/marketplace", label: "Market", icon: ShoppingCart },
+  { href: "/marketplace", label: "Market", icon: ShoppingCart }, // Use ShoppingCart directly
   { href: "/search", label: "Search", icon: Search },
   { href: "/forums", label: "Forums", icon: MessageSquare },
   { href: "/profiles/me", label: "Profile", icon: User },
