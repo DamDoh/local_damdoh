@@ -7,7 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight, CheckCircle } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight, CheckCircle, Edit } from "lucide-react";
 import Link from "next/link";
 import type { FeedItem, PollOption, MobileHomeCategory, MobileDiscoverItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
@@ -24,14 +25,17 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
   const [currentComments, setCurrentComments] = useState(item.commentsCount || 0);
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
+  const [showCommentInput, setShowCommentInput] = useState(false);
+  const [commentText, setCommentText] = useState("");
 
   useEffect(() => {
     setCurrentLikes(item.likesCount || 0);
     setCurrentComments(item.commentsCount || 0);
-    // Deep copy poll options to allow local modifications without affecting parent state
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
-    setIsLiked(false); // Reset like status if item changes
-    setVotedOptionIndex(null); // Reset poll vote status if item changes
+    setIsLiked(false);
+    setVotedOptionIndex(null);
+    setShowCommentInput(false); // Ensure comment input is hidden on item change
+    setCommentText(""); // Clear comment text on item change
   }, [item]);
 
   const handleLike = () => {
@@ -44,19 +48,28 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
     console.log(`Like toggled for post: ${item.id}. New like status: ${!isLiked}`);
   };
 
-  const handleComment = () => {
+  const handleCommentButtonClick = () => {
+    setShowCommentInput(prev => !prev);
+    if (showCommentInput) { // If we are closing it, clear text
+        setCommentText("");
+    }
+    // console.log(`Comment button clicked for post: ${item.id}. Show input: ${!showCommentInput}`);
+  };
+  
+  const handlePostComment = () => {
+    if (!commentText.trim()) return;
     setCurrentComments(prev => prev + 1);
-    console.log(`Comment button clicked for post: ${item.id}. (Action: Open comment modal/section)`);
+    console.log(`Posted comment on post ${item.id}: "${commentText}"`);
+    setCommentText(""); 
+    setShowCommentInput(false); 
   };
 
   const handleRepost = () => {
     console.log(`Repost button clicked for post: ${item.id}.`);
-    // In a real app, this might call something like:
-    // onCreatePost(`Reposted: ${item.content}`, undefined, undefined, item.id);
   };
 
   const handleSend = () => {
-    console.log(`Send button clicked for post: ${item.id}. (Action: Open share/send modal)`);
+    console.log(`Send button clicked for post: ${item.id}.`);
   };
 
   const handlePollVote = (optionIndex: number) => {
@@ -120,7 +133,7 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
                   onClick={() => handlePollVote(index)}
                   disabled={votedOptionIndex !== null && votedOptionIndex !== index}
                 >
-                  <span className="flex-1">{option.text}</span>
+                  <span className="flex-1 whitespace-normal break-words">{option.text}</span>
                   {votedOptionIndex !== null && (
                     <span className="text-xs ml-2">{option.votes} vote{option.votes === 1 ? '' : 's'}</span>
                   )}
@@ -142,19 +155,39 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
         </div>
       </CardContent>
       <hr />
-      <CardFooter className="p-2 flex justify-around">
-        <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
-          <ThumbsUp className="mr-2 h-5 w-5" /> Like
-        </Button>
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleComment}>
-          <MessageIcon className="mr-2 h-5 w-5" /> Comment
-        </Button>
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleRepost}>
-          <Share2 className="mr-2 h-5 w-5" /> Repost
-        </Button>
-        <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleSend}>
-          <Send className="mr-2 h-5 w-5" /> Send
-        </Button>
+      <CardFooter className="p-2 flex flex-col items-stretch">
+        <div className="flex justify-around">
+          <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
+            <ThumbsUp className="mr-2 h-5 w-5" /> Like
+          </Button>
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleCommentButtonClick}>
+            <MessageIcon className="mr-2 h-5 w-5" /> Comment
+          </Button>
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleRepost}>
+            <Share2 className="mr-2 h-5 w-5" /> Repost
+          </Button>
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleSend}>
+            <Send className="mr-2 h-5 w-5" /> Send
+          </Button>
+        </div>
+        
+        {showCommentInput && (
+          <div className="mt-3 px-2 space-y-2">
+            <Textarea
+              placeholder="Write your comment..."
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              className="min-h-[60px] text-sm"
+              autoFocus
+            />
+            <div className="flex justify-end gap-2">
+              <Button variant="ghost" size="sm" onClick={() => { setShowCommentInput(false); setCommentText("");}}>Cancel</Button>
+              <Button size="sm" onClick={handlePostComment} disabled={!commentText.trim()}>
+                Post Comment
+              </Button>
+            </div>
+          </div>
+        )}
       </CardFooter>
     </Card>
   );
@@ -312,3 +345,5 @@ export default function DashboardPage() {
     </>
   );
 }
+
+    
