@@ -20,7 +20,7 @@ import { dummyMarketplaceItems, dummyForumTopics, dummyForumPosts, dummyAgriEven
 console.warn(
   "db-utils.ts is being updated to use Firestore. " +
   "Ensure your Firebase project is set up and 'src/lib/firebase.ts' has correct credentials. " +
-  "Not all functions are converted yet."
+  "All primary read/write functions are now converted."
 );
 
 // --- Profile DB Operations ---
@@ -150,6 +150,7 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
       return {
         id: docSnap.id,
         ...data,
+        // Ensure Timestamps are converted to ISO strings if they exist
         createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
       } as MarketplaceItem;
@@ -251,20 +252,79 @@ export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> 
   }
 }
 
-// --- Forum Topic DB Operations (Placeholders - TO BE UPDATED FOR FIRESTORE) ---
+// --- Forum Topic DB Operations ---
 export async function getAllForumTopicsFromDB(): Promise<ForumTopic[]> {
-  console.warn("getAllForumTopicsFromDB is using placeholder logic. Update for Firestore.");
-  return Promise.resolve(dummyForumTopics);
+  try {
+    const topicsCol = collection(db, 'forumTopics');
+    const topicSnapshot = await getDocs(topicsCol);
+    const topicList = topicSnapshot.docs.map(docSnap => {
+      const data = docSnap.data();
+      return {
+        id: docSnap.id,
+        ...data,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
+        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
+        lastActivityAt: (data.lastActivityAt as Timestamp)?.toDate ? (data.lastActivityAt as Timestamp).toDate().toISOString() : data.lastActivityAt,
+      } as ForumTopic;
+    });
+    return topicList;
+  } catch (error) {
+    console.error("Error fetching all forum topics from Firestore: ", error);
+    throw error;
+  }
 }
 
-// --- Forum Post DB Operations (Placeholders - TO BE UPDATED FOR FIRESTORE) ---
+// --- Forum Post DB Operations ---
 export async function getForumPostsByTopicIdFromDB(topicId: string): Promise<ForumPost[]> {
-  console.warn("getForumPostsByTopicIdFromDB is using placeholder logic. Update for Firestore.");
-  return Promise.resolve(dummyForumPosts.filter(post => post.topicId === topicId));
+ try {
+    const postsCol = collection(db, 'forumPosts');
+    const q = query(postsCol, where("topicId", "==", topicId)); // Query for posts matching the topicId
+    const postSnapshot = await getDocs(q);
+    const postList = postSnapshot.docs.map(docSnap => {
+      const data = docSnap.data();
+      // Handle replies: Firestore doesn't directly support nested arrays of complex objects in queries easily.
+      // For a production app, replies might be a subcollection or fetched separately.
+      // Here, we assume 'replies' if stored directly, would also need timestamp conversion.
+      const replies = (data.replies || []).map((reply: any) => ({
+        ...reply,
+        createdAt: (reply.createdAt as Timestamp)?.toDate ? (reply.createdAt as Timestamp).toDate().toISOString() : reply.createdAt,
+        updatedAt: (reply.updatedAt as Timestamp)?.toDate ? (reply.updatedAt as Timestamp).toDate().toISOString() : reply.updatedAt,
+      }));
+
+      return {
+        id: docSnap.id,
+        ...data,
+        replies,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
+        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
+      } as ForumPost;
+    });
+    // Optionally sort posts by createdAt if needed
+    return postList.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+  } catch (error) {
+    console.error(`Error fetching forum posts for topic ID ${topicId} from Firestore: `, error);
+    throw error;
+  }
 }
 
-// --- AgriEvent DB Operations (Placeholders - TO BE UPDATED FOR FIRESTORE) ---
+// --- AgriEvent DB Operations ---
 export async function getAllAgriEventsFromDB(): Promise<AgriEvent[]> {
-  console.warn("getAllAgriEventsFromDB is using placeholder logic. Update for Firestore.");
-  return Promise.resolve(dummyAgriEvents);
+  try {
+    const eventsCol = collection(db, 'agriEvents');
+    const eventSnapshot = await getDocs(eventsCol);
+    const eventList = eventSnapshot.docs.map(docSnap => {
+      const data = docSnap.data();
+      return {
+        id: docSnap.id,
+        ...data,
+        // Assuming eventDate is stored as a Timestamp and needs conversion like createdAt/updatedAt
+        eventDate: (data.eventDate as Timestamp)?.toDate ? (data.eventDate as Timestamp).toDate().toISOString() : data.eventDate,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
+      } as AgriEvent;
+    });
+    return eventList;
+  } catch (error) {
+    console.error("Error fetching all agri events from Firestore: ", error);
+    throw error;
+  }
 }
