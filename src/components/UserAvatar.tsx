@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
+import { logOut } from "@/lib/auth-utils"; // Import the logOut function
+import { useToast } from "@/hooks/use-toast"; // For user feedback
 
 interface UserAvatarProps {
   name?: string | null;
@@ -20,11 +22,31 @@ interface UserAvatarProps {
 }
 
 export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
+  const { toast } = useToast();
+
   const getInitials = (name?: string | null) => {
     if (!name) return "??";
     const names = name.split(" ");
     if (names.length === 1) return names[0].substring(0, 2).toUpperCase();
     return (names[0][0] + names[names.length - 1][0]).toUpperCase();
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      toast({
+        title: "Logged Out",
+        description: "You have been successfully logged out. Please refresh or navigate to see changes.",
+      });
+      // Add redirection or global state update here if needed
+      // For example: window.location.href = '/login';
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Logout Failed",
+        description: "Could not log you out. Please try again.",
+      });
+    }
   };
 
   return (
@@ -65,8 +87,8 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem > {/* onClick should handle sign out */}
-          <LogOut className="h-4 w-4 mr-2" /> {/* Added mr-2 for consistency */}
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer"> 
+          <LogOut className="h-4 w-4 mr-2" />
           <span>Log out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
