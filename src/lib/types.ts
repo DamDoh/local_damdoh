@@ -1,91 +1,24 @@
 
-import type { StakeholderRole, UnifiedMarketplaceCategoryType, ListingType } from './constants';
+import type { StakeholderRole, UnifiedMarketplaceCategoryType, ListingType, AgriEventTypeConstant } from './constants';
 import type { LucideIcon } from 'lucide-react';
+import type { z } from 'zod';
+import type { 
+  StakeholderProfileSchema, 
+  MarketplaceItemSchema, 
+  ForumTopicSchema, 
+  ForumPostSchema,
+  AgriEventSchema
+} from './schemas'; // Import Zod schemas
 
+// Infer types from Zod schemas
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+export type ForumTopic = z.infer<typeof ForumTopicSchema>;
+export type ForumPost = z.infer<typeof ForumPostSchema>;
+export type AgriEvent = z.infer<typeof AgriEventSchema>;
 
-export interface UserProfile {
-  id: string;
-  name: string;
-  email: string;
-  avatarUrl?: string;
-  role: StakeholderRole;
-  location: string;
-  bio?: string;
-  profileSummary?: string; 
-  yearsOfExperience?: number;
-  areasOfInterest?: string[]; 
-  needs?: string[]; 
-  contactInfo?: {
-    phone?: string;
-    website?: string; 
-  };
-  connections?: string[]; 
-}
-
-export interface ForumTopic {
-  id: string;
-  title: string; 
-  description: string;
-  creatorId: string;
-  createdAt: string; 
-  postCount: number;
-  lastActivityAt: string; 
-  icon?: string; 
-}
-
-export interface ForumPost {
-  id: string;
-  topicId: string;
-  authorId: string; 
-  content: string; 
-  createdAt: string; 
-  updatedAt?: string; 
-  likes: number;
-  replies?: ForumPost[]; 
-}
-
-export interface MarketplaceItem {
-  id:string;
-  name: string; 
-  listingType: ListingType; // 'Product' or 'Service'
-  description: string;
-  price: number; 
-  currency: string;
-  perUnit?: string; 
-  sellerId: string; 
-  category: UnifiedMarketplaceCategoryType; // Now refers to specific subcategory IDs
-  location: string;
-  imageUrl?: string;
-  createdAt: string; 
-  contactInfo?: string;
-  dataAiHint?: string;
-  isSustainable?: boolean;
-  sellerVerification?: 'Verified' | 'Pending' | 'Unverified';
-  aiPriceSuggestion?: {min: number, max: number, confidence: string};
-  // Fields for 'Service' type listings
-  skillsRequired?: string[]; 
-  experienceLevel?: string; 
-  compensation?: string; 
-}
-
-export type AgriEventType = 'Conference' | 'Webinar' | 'Workshop' | 'Trade Show' | 'Field Day' | 'Networking Event';
-
-export interface AgriEvent {
-  id: string;
-  title: string;
-  description: string;
-  eventDate: string; 
-  eventTime?: string; 
-  location: string; 
-  eventType: AgriEventType;
-  organizer?: string;
-  websiteLink?: string;
-  imageUrl?: string;
-  listerId: string; 
-  createdAt: string; 
-  dataAiHint?: string;
-}
-
+// Keep existing types that are not yet covered by Zod schemas or are UI specific
+export type AgriEventType = AgriEventTypeConstant; // This was already based on constants
 
 export interface NavItem {
   title: string;
@@ -151,7 +84,7 @@ export interface MobileDiscoverItem {
   dataAiHint?: string;
 }
 
-// For new category navigation
+// For new category navigation (already in category-data.ts, kept for reference if used elsewhere)
 export interface SubCategory {
   id: string;
   name: string;
@@ -164,3 +97,8 @@ export interface MainCategory {
   icon: LucideIcon;
   subCategories: SubCategory[];
 }
+
+// Recursive ForumPost type for replies (if needed, Zod lazy handles this better)
+// export interface ForumPostWithReplies extends ForumPost {
+//   replies?: ForumPostWithReplies[];
+// }
