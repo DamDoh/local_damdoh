@@ -15,7 +15,7 @@ import {
 import { db } from './firebase'; // Import the initialized Firestore instance
 import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, AgriEvent } from '@/lib/types';
 // dummyProfiles is no longer needed for profile functions, but other dummy data is still used
-import { /* dummyProfiles, */ dummyMarketplaceItems, dummyForumTopics, dummyForumPosts, dummyAgriEvents } from '@/lib/dummy-data';
+import { dummyMarketplaceItems, dummyForumTopics, dummyForumPosts, dummyAgriEvents } from '@/lib/dummy-data';
 
 console.warn(
   "db-utils.ts is being updated to use Firestore. " +
@@ -28,12 +28,11 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
   try {
     const profilesCol = collection(db, 'profiles');
     const profileSnapshot = await getDocs(profilesCol);
-    const profileList = profileSnapshot.docs.map(docSnap => { // Renamed doc to docSnap for clarity
+    const profileList = profileSnapshot.docs.map(docSnap => {
       const data = docSnap.data();
       return { 
         id: docSnap.id, 
         ...data,
-        // Ensure createdAt and updatedAt are properly handled if they are Firestore Timestamps
         createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
       } as UserProfile;
@@ -141,47 +140,115 @@ export async function deleteProfileFromDB(id: string): Promise<boolean> {
 }
 
 
-// --- Marketplace DB Operations (Placeholders - TO BE UPDATED FOR FIRESTORE) ---
+// --- Marketplace DB Operations ---
 export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
-  console.warn("getAllMarketplaceItemsFromDB is using placeholder logic. Update for Firestore.");
-  return Promise.resolve(dummyMarketplaceItems);
+  try {
+    const itemsCol = collection(db, 'marketplaceItems');
+    const itemSnapshot = await getDocs(itemsCol);
+    const itemList = itemSnapshot.docs.map(docSnap => {
+      const data = docSnap.data();
+      return {
+        id: docSnap.id,
+        ...data,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
+        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
+      } as MarketplaceItem;
+    });
+    return itemList;
+  } catch (error) {
+    console.error("Error fetching all marketplace items from Firestore: ", error);
+    throw error;
+  }
 }
 
 export async function getMarketplaceItemByIdFromDB(id: string): Promise<MarketplaceItem | null> {
-  console.warn("getMarketplaceItemByIdFromDB is using placeholder logic. Update for Firestore.");
-  const item = dummyMarketplaceItems.find(i => i.id === id) || null;
-  return Promise.resolve(item);
+  try {
+    const itemDocRef = doc(db, 'marketplaceItems', id);
+    const itemSnap = await getDoc(itemDocRef);
+    if (itemSnap.exists()) {
+      const data = itemSnap.data();
+      return {
+        id: itemSnap.id,
+        ...data,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
+        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
+      } as MarketplaceItem;
+    } else {
+      console.log(`No marketplace item found with ID: ${id}`);
+      return null;
+    }
+  } catch (error) {
+    console.error(`Error fetching marketplace item with ID ${id} from Firestore: `, error);
+    throw error;
+  }
 }
 
 export async function createMarketplaceItemInDB(itemData: Omit<MarketplaceItem, 'id' | 'createdAt' | 'updatedAt'>): Promise<MarketplaceItem> {
-  console.warn("createMarketplaceItemInDB is using placeholder logic. Update for Firestore.");
-  const newItem: MarketplaceItem = {
-    id: `item_${Date.now()}`,
-    ...itemData,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  };
-  dummyMarketplaceItems.push(newItem);
-  return Promise.resolve(newItem);
+  try {
+    const itemsCol = collection(db, 'marketplaceItems');
+    const docData = {
+      ...itemData,
+      createdAt: Timestamp.now(),
+      updatedAt: Timestamp.now(),
+    };
+    const docRef = await addDoc(itemsCol, docData);
+    const newDocSnap = await getDoc(docRef);
+    if (newDocSnap.exists()) {
+      const data = newDocSnap.data();
+      return {
+        id: newDocSnap.id,
+        ...data,
+        createdAt: (data.createdAt as Timestamp).toDate().toISOString(),
+        updatedAt: (data.updatedAt as Timestamp).toDate().toISOString(),
+      } as MarketplaceItem;
+    } else {
+      throw new Error("Failed to retrieve newly created marketplace item after adding to Firestore.");
+    }
+  } catch (error) {
+    console.error("Error creating marketplace item in Firestore: ", error);
+    throw error;
+  }
 }
 
-export async function updateMarketplaceItemInDB(id: string, updates: Partial<MarketplaceItem>): Promise<MarketplaceItem | null> {
-  console.warn("updateMarketplaceItemInDB is using placeholder logic. Update for Firestore.");
-  const itemIndex = dummyMarketplaceItems.findIndex(i => i.id === id);
-  if (itemIndex === -1) return null;
-  dummyMarketplaceItems[itemIndex] = { ...dummyMarketplaceItems[itemIndex], ...updates, updatedAt: new Date().toISOString() };
-  return Promise.resolve(dummyMarketplaceItems[itemIndex]);
+export async function updateMarketplaceItemInDB(id: string, updates: Partial<Omit<MarketplaceItem, 'id' | 'createdAt'>>): Promise<MarketplaceItem | null> {
+  try {
+    const itemDocRef = doc(db, 'marketplaceItems', id);
+    const docSnap = await getDoc(itemDocRef);
+    if (!docSnap.exists()) {
+      console.log(`No marketplace item found with ID: ${id} to update.`);
+      return null;
+    }
+    const updateData = {
+      ...updates,
+      updatedAt: Timestamp.now(),
+    };
+    await updateDoc(itemDocRef, updateData);
+    const updatedItemSnap = await getDoc(itemDocRef);
+    if (updatedItemSnap.exists()) {
+      const data = updatedItemSnap.data();
+      return {
+        id: updatedItemSnap.id,
+        ...data,
+        createdAt: (data.createdAt as Timestamp).toDate().toISOString(),
+        updatedAt: (data.updatedAt as Timestamp).toDate().toISOString(),
+      } as MarketplaceItem;
+    }
+    return null;
+  } catch (error) {
+    console.error(`Error updating marketplace item with ID ${id} in Firestore: `, error);
+    throw error;
+  }
 }
 
 export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> {
-  console.warn("deleteMarketplaceItemFromDB is using placeholder logic. Update for Firestore.");
-  const initialLength = dummyMarketplaceItems.length;
-  const indexToRemove = dummyMarketplaceItems.findIndex(p => p.id === id);
-   if (indexToRemove > -1) {
-    dummyMarketplaceItems.splice(indexToRemove, 1);
-    return Promise.resolve(dummyMarketplaceItems.length < initialLength);
+  try {
+    const itemDocRef = doc(db, 'marketplaceItems', id);
+    await deleteDoc(itemDocRef);
+    return true;
+  } catch (error) {
+    console.error(`Error deleting marketplace item with ID ${id} from Firestore: `, error);
+    throw error;
   }
-  return Promise.resolve(false);
 }
 
 // --- Forum Topic DB Operations (Placeholders - TO BE UPDATED FOR FIRESTORE) ---
