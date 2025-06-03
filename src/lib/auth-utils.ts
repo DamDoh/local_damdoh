@@ -4,6 +4,7 @@ import {
   getAuth, 
   onAuthStateChanged, 
   signOut as firebaseSignOut, 
+  signInWithEmailAndPassword, // Added for login
   type User as FirebaseUser
 } from "firebase/auth";
 import { auth } from './firebase'; // Assuming auth is exported from firebase.ts
@@ -11,11 +12,14 @@ import { auth } from './firebase'; // Assuming auth is exported from firebase.ts
 // Placeholder for a more robust solution, like a React context for auth state
 let currentFirebaseUser: FirebaseUser | null = null;
 
+// This listener will update currentFirebaseUser whenever auth state changes
 onAuthStateChanged(auth, (user) => {
   if (user) {
     currentFirebaseUser = user;
+    console.log("Auth state changed: User is signed in.", user.uid);
   } else {
     currentFirebaseUser = null;
+    console.log("Auth state changed: User is signed out.");
   }
 });
 
@@ -31,57 +35,45 @@ export async function isAuthenticated(request?: Request): Promise<boolean> {
   // This function signature with Request might be for future server-side use.
   if (request) {
     console.warn("auth-utils: isAuthenticated() with request param is a placeholder for server-side auth.");
-    // Placeholder: Extract token from request and verify it
-    return false; // Assume not authenticated for server-side placeholder
+    return false; 
   }
+  // Check if auth.currentUser is available and not null
   return !!auth.currentUser;
 }
 
 export function isAdmin(userId: string | null): boolean {
   // Placeholder for admin check
-  // In a real app, this might involve checking custom claims or a database role.
   console.warn("auth-utils: isAdmin() is a placeholder.");
-  return userId === "adminUser"; // Example admin UID
+  return userId === "adminUser"; 
 }
 
 export async function logOut(): Promise<void> {
   try {
     await firebaseSignOut(auth);
-    currentFirebaseUser = null; // Update local cache
-    console.log("User logged out successfully.");
-    // In a real app, you'd likely redirect the user or update global auth state here.
-    // e.g., router.push('/login');
+    // currentFirebaseUser will be set to null by the onAuthStateChanged listener
+    console.log("User logged out successfully via auth-utils.");
   } catch (error) {
-    console.error("Error logging out: ", error);
-    // Handle logout errors (e.g., show a notification to the user)
+    console.error("Error logging out from auth-utils: ", error);
+    throw error; // Re-throw to be handled by caller
   }
 }
 
-// Placeholder for login function - to be implemented
-export async function logIn(email: string, password: string): Promise<FirebaseUser | null> {
-  console.warn("auth-utils: logIn() is a placeholder and not implemented.");
-  // Example:
-  // try {
-  //   const userCredential = await signInWithEmailAndPassword(auth, email, password);
-  //   return userCredential.user;
-  // } catch (error) {
-  //   console.error("Error logging in:", error);
-  //   return null;
-  // }
-  return null;
+export async function logIn(email: string, password: string): Promise<FirebaseUser> {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    // currentFirebaseUser will be updated by the onAuthStateChanged listener
+    console.log("User logged in successfully via auth-utils:", userCredential.user.uid);
+    return userCredential.user;
+  } catch (error) {
+    console.error("Error logging in via auth-utils:", error);
+    // Re-throw the error so the UI layer can inspect it for specific error codes
+    // (e.g., auth/user-not-found, auth/wrong-password)
+    throw error;
+  }
 }
 
 // Placeholder for registration function - to be implemented
 export async function registerUser(email: string, password: string): Promise<FirebaseUser | null> {
   console.warn("auth-utils: registerUser() is a placeholder and not implemented.");
-  // Example:
-  // try {
-  //   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  //   // Optionally, create a profile document in Firestore here
-  //   return userCredential.user;
-  // } catch (error) {
-  //   console.error("Error registering user:", error);
-  //   return null;
-  // }
   return null;
 }

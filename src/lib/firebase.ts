@@ -20,12 +20,12 @@ import { getAuth } from "firebase/auth"; // If you need Firebase Auth
 // };
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_PLACEHOLDER",
-  authDomain: "YOUR_PROJECT_ID_PLACEHOLDER.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID_PLACEHOLDER",
-  storageBucket: "YOUR_PROJECT_ID_PLACEHOLDER.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID_PLACEHOLDER",
-  appId: "YOUR_APP_ID_PLACEHOLDER",
+  apiKey: "AIzaSyDYrR4zOIgOynruKybSkc6Ys4vgYc9gPLM",
+  authDomain: "damdoh.firebaseapp.com",
+  projectId: "damdoh",
+  storageBucket: "damdoh.firebasestorage.app",
+  messagingSenderId: "1015729590190",
+  appId: "1:1015729590190:web:e144ce027045694b56023f"
   // measurementId: "YOUR_MEASUREMENT_ID_PLACEHOLDER" // Optional
 };
 
