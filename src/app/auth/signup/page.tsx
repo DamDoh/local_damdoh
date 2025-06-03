@@ -17,61 +17,64 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { signInSchema, type SignInValues } from "@/lib/form-schemas";
-import { logIn } from "@/lib/auth-utils";
+import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
+import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, Lock } from "lucide-react";
+import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, UserPlus } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
 
-  const form = useForm<SignInValues>({
-    resolver: zodResolver(signInSchema),
+  const form = useForm<SignUpValues>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
-  async function onSubmit(data: SignInValues) {
+  async function onSubmit(data: SignUpValues) {
     setIsLoading(true);
     setAuthError(null);
     try {
-      await logIn(data.email, data.password);
+      await registerUser(data.email, data.password);
+      // TODO: After successful registration, we should also create a basic profile document in Firestore for this user.
+      // This would typically involve another function call, e.g.,
+      // await createInitialUserProfile(firebaseUser.uid, data.email, data.name);
+      // For now, we just show a success toast.
       toast({
-        title: "Signed In Successfully!",
-        description: `Welcome back to ${APP_NAME}.`,
+        title: "Account Created Successfully!",
+        description: "You can now sign in with your new credentials.",
         variant: "default", 
       });
-      router.push("/"); 
+      router.push("/auth/signin"); 
     } catch (error: any) {
       let errorMessage = "An unexpected error occurred. Please try again.";
       if (error.code) {
         switch (error.code) {
-          case "auth/user-not-found":
-          case "auth/wrong-password":
-          case "auth/invalid-credential":
-            errorMessage = "Invalid email or password. Please try again.";
+          case "auth/email-already-in-use":
+            errorMessage = "This email address is already registered. Try signing in.";
             break;
           case "auth/invalid-email":
             errorMessage = "The email address is not valid.";
             break;
-          case "auth/user-disabled":
-            errorMessage = "This user account has been disabled.";
+          case "auth/weak-password":
+            errorMessage = "The password is too weak. Please choose a stronger password.";
             break;
           default:
-            errorMessage = `Login failed: ${error.message}`;
+            errorMessage = `Registration failed: ${error.message}`;
         }
       }
       setAuthError(errorMessage);
       toast({
-        title: "Sign In Failed",
+        title: "Sign Up Failed",
         description: errorMessage,
         variant: "destructive",
       });
@@ -84,18 +87,18 @@ export default function SignInPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
         <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">Welcome back to {APP_NAME}!</p>
+        <p className="text-muted-foreground mt-2">Join the {APP_NAME} Agricultural Network!</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Sign In</CardTitle>
-          <CardDescription>Enter your credentials to access your account.</CardDescription>
+          <CardTitle className="text-2xl">Create Your Account</CardTitle>
+          <CardDescription>Join our community of agricultural stakeholders.</CardDescription>
         </CardHeader>
         <CardContent>
           {authError && (
             <Alert variant="destructive" className="mb-4">
               <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Authentication Error</AlertTitle>
+              <AlertTitle>Registration Error</AlertTitle>
               <AlertDescription>{authError}</AlertDescription>
             </Alert>
           )}
@@ -119,13 +122,20 @@ export default function SignInPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center">
-                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Password</FormLabel>
-                      <Link href="/auth/forgot-password"
-                            className="text-xs text-primary hover:underline">
-                        Forgot password?
-                      </Link>
-                    </div>
+                    <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="•••••••• (min. 6 characters)" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Confirm Password</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
@@ -136,10 +146,12 @@ export default function SignInPage() {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Signing In...
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Creating Account...
                   </>
                 ) : (
-                  "Sign In"
+                  <>
+                    <UserPlus className="mr-2 h-4 w-4" /> Sign Up
+                  </>
                 )}
               </Button>
             </form>
@@ -147,9 +159,9 @@ export default function SignInPage() {
         </CardContent>
         <CardFooter className="flex flex-col items-center text-sm">
           <p className="text-muted-foreground">
-            Don't have an account?{" "}
-            <Link href="/auth/signup" className="font-medium text-primary hover:underline">
-              Sign Up
+            Already have an account?{" "}
+            <Link href="/auth/signin" className="font-medium text-primary hover:underline">
+              Sign In
             </Link>
           </p>
         </CardFooter>

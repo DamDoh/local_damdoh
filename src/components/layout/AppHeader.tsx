@@ -22,24 +22,28 @@ import {
   ClipboardList,
   Package,
   Briefcase,
+  LogIn, 
+  UserPlus,
+  X // Added X icon import
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { dummyUsersData } from "@/lib/dummy-data";
+import { useAuth, logOut } from "@/lib/auth-utils";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
-
+import { useToast } from "@/hooks/use-toast";
 
 interface NavLinkProps {
   href: string;
@@ -50,11 +54,12 @@ interface NavLinkProps {
   onClick?: () => void;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className }) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
   const isActive = pathname === href || (href !== "/" && pathname.startsWith(href) && href.length > 1);
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={cn(
         "flex flex-col items-center px-2 py-1 text-xs text-white/80 hover:text-white h-full justify-center",
         isActive && "text-white border-b-2 border-white",
@@ -90,10 +95,7 @@ const desktopNavItems = [
   { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
   { href: "/forums", icon: MessageSquare, label: "Forums"},
-  // { href: "/wallet", icon: WalletIcon, label: "Wallet" },
   { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
-  { href: "/notifications", icon: Bell, label: "Notifications"},
-  // { href: "/messaging", icon: MessageSquare, label: "Messaging" }, // Example if it was a top-level item
 ];
 
 const mainMobileNavItems = [
@@ -102,12 +104,9 @@ const mainMobileNavItems = [
   { href: "/farm-management", icon: Sprout, label: "Farm Management", isSheetLink: true },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace", isSheetLink: true },
   { href: "/forums", icon: MessageSquare, label: "Forums", isSheetLink: true },
-  // { href: "/wallet", icon: WalletIcon, label: "Wallet", isSheetLink: true },
   { href: "/ai-assistant", icon: Brain, label: "AI Assistant", isSheetLink: true },
   { href: "/notifications", icon: Bell, label: "Notifications", isSheetLink: true },
-  // { href: "/messaging", icon: MessageSquare, label: "Messaging", isSheetLink: true },
 ];
-
 
 const mobileSheetSecondaryNavItems = [
   { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
@@ -119,14 +118,11 @@ const mobileSheetSecondaryNavItems = [
 export function AppHeader() {
   const pathname = usePathname();
   const router = useRouter();
+  const { toast } = useToast();
+  const { user, loading: authLoading } = useAuth(); 
+
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
-
-  const demoUser = {
-    name: dummyUsersData['rajPatel']?.name || "Raj Patel",
-    email: "raj.patel@agrisupply.com",
-    imageUrl: dummyUsersData['rajPatel']?.avatarUrl || "https://placehold.co/40x40.png",
-  };
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -137,13 +133,29 @@ export function AppHeader() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      toast({
+        title: "Logged Out",
+        description: "You have been successfully logged out.",
+      });
+      setIsMobileSheetOpen(false); 
+      router.push('/auth/signin'); 
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Logout Failed",
+        description: "Could not log you out. Please try again.",
+      });
+    }
+  };
+
   const getSectionTitle = () => {
     if (pathname === "/") return "Home";
-    // Attempt to find a match in desktopNavItems first
     const activeDesktopItem = desktopNavItems.find(item => pathname.startsWith(item.href) && item.href !== "/");
     if (activeDesktopItem) return activeDesktopItem.label;
     
-    // Fallbacks for other pages not directly in main nav or requiring more specific titles
     if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
     if (pathname.startsWith("/profiles/me")) return "My Profile";
     if (pathname.startsWith("/profiles/")) return "Profile Details";
@@ -166,9 +178,12 @@ export function AppHeader() {
     if (pathname.startsWith("/pinboard")) return "My Pinboard";
     if (pathname.startsWith("/wallet")) return "Digital Wallet";
     if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
+    if (pathname.startsWith("/auth/signin")) return "Sign In";
+    if (pathname.startsWith("/auth/signup")) return "Sign Up";
+    if (pathname.startsWith("/auth/forgot-password")) return "Reset Password";
 
 
-    return APP_NAME; // Default title
+    return APP_NAME; 
   };
 
   const sectionTitle = getSectionTitle();
@@ -198,8 +213,24 @@ export function AppHeader() {
           {desktopNavItems.map((item) => (
             <NavLink key={item.href} {...item} pathname={pathname} />
           ))}
+           {user && (
+            <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} />
+          )}
           <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
-             <UserAvatar name={demoUser.name} email={demoUser.email} imageUrl={demoUser.imageUrl} />
+            {authLoading ? (
+              <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
+            ) : user ? (
+              <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
+            ) : (
+              <div className="flex items-center gap-1">
+                <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
+                  <Link href="/auth/signin">Sign In</Link>
+                </Button>
+                <Button variant="outline" asChild className="text-primary bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
+                   <Link href="/auth/signup">Sign Up</Link>
+                </Button>
+              </div>
+            )}
           </div>
         </nav>
       </div>
@@ -215,6 +246,9 @@ export function AppHeader() {
           <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
             <SheetHeader className="p-4 border-b flex flex-row justify-between items-center">
                 <Logo iconSize={28} textSize="text-xl" className="text-primary" />
+                <SheetClose asChild>
+                   <Button variant="ghost" size="icon" className="h-7 w-7"><X className="h-4 w-4"/></Button>
+                </SheetClose>
             </SheetHeader>
             <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
               {mainMobileNavItems.map((item) => (
@@ -226,21 +260,44 @@ export function AppHeader() {
                 />
               ))}
               <Separator />
-              {mobileSheetSecondaryNavItems.map((item) => (
-                <MobileSheetNavLink
-                  key={`sheet-extra-${item.href}`}
-                  {...item}
-                  pathname={pathname}
-                  onClick={() => setIsMobileSheetOpen(false)}
-                />
-              ))}
+              {user ? (
+                <>
+                  {mobileSheetSecondaryNavItems.map((item) => (
+                    <MobileSheetNavLink
+                      key={`sheet-extra-${item.href}`}
+                      {...item}
+                      pathname={pathname}
+                      onClick={() => setIsMobileSheetOpen(false)}
+                    />
+                  ))}
+                </>
+              ) : (
+                <>
+                  <MobileSheetNavLink
+                    href="/auth/signin"
+                    icon={LogIn}
+                    label="Sign In"
+                    pathname={pathname}
+                    onClick={() => setIsMobileSheetOpen(false)}
+                  />
+                  <MobileSheetNavLink
+                    href="/auth/signup"
+                    icon={UserPlus}
+                    label="Sign Up"
+                    pathname={pathname}
+                    onClick={() => setIsMobileSheetOpen(false)}
+                  />
+                </>
+              )}
             </nav>
             <Separator />
              <div className="p-4 space-y-3 border-t">
               <HeaderThemeToggle />
-              <Button variant="outline" className="w-full" onClick={() => { alert('Logout action placeholder'); setIsMobileSheetOpen(false); }}>
-                <LogOut className="mr-2 h-4 w-4" /> Log Out
-              </Button>
+              {user && (
+                <Button variant="outline" className="w-full" onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" /> Log Out
+                </Button>
+              )}
             </div>
           </SheetContent>
         </Sheet>
