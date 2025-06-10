@@ -21,26 +21,30 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { dummyUsersData, dummyProfileDetailsPageData, dummyProfiles } from "@/lib/dummy-data";
+import { getProfileByIdFromDB, updateProfileInDB } from "@/lib/db-utils";
 import type { UserProfile } from "@/lib/types";
-import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe } from "lucide-react";
+import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useAuth } from "@/lib/auth-utils";
 
 export default function EditProfilePage() {
   const router = useRouter();
   const params = useParams();
   const { toast } = useToast();
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { user: authUser, loading: authLoading } = useAuth();
 
-  const profileId = params.id === "me" ? "aishaBello" : params.id as string;
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const profileIdParam = params.id as string;
 
   const form = useForm<EditProfileValues>({
     resolver: zodResolver(editProfileSchema),
     defaultValues: {
       name: "",
-      email: "",
+      email: "", // Email might not be editable or fetched from authUser
       role: undefined,
       profileSummary: "",
       bio: "",
@@ -51,78 +55,131 @@ export default function EditProfilePage() {
       contactInfoWebsite: "",
     },
   });
-  
+
+  const fetchProfileData = useCallback(async (idToFetch: string) => {
+    setIsLoadingData(true);
+    try {
+      const userProfile = await getProfileByIdFromDB(idToFetch);
+      if (userProfile) {
+        setProfile(userProfile);
+        form.reset({
+          name: userProfile.name,
+          email: userProfile.email, // Consider if email should be editable
+          role: userProfile.role,
+          profileSummary: userProfile.profileSummary || "",
+          bio: userProfile.bio || "",
+          location: userProfile.location,
+          areasOfInterest: Array.isArray(userProfile.areasOfInterest) ? userProfile.areasOfInterest.join(", ") : "",
+          needs: Array.isArray(userProfile.needs) ? userProfile.needs.join(", ") : "",
+          contactInfoPhone: userProfile.contactInfo?.phone || "",
+          contactInfoWebsite: userProfile.contactInfo?.website || "",
+        });
+      } else {
+        toast({ variant: "destructive", title: "Profile Not Found", description: "Could not load profile data to edit." });
+        router.push("/profiles"); // Or to a 404 page
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+      toast({ variant: "destructive", title: "Error Loading Profile", description: "There was a problem fetching the profile data." });
+    } finally {
+      setIsLoadingData(false);
+    }
+  }, [form, router, toast]);
+
   useEffect(() => {
-    let userProfile: UserProfile | undefined = undefined;
-    if (profileId === dummyProfileDetailsPageData.profile.id) {
-      userProfile = dummyProfileDetailsPageData.profile;
+    if (authLoading) return; // Wait for auth state to resolve
+
+    let idToFetch: string | null = null;
+    if (profileIdParam === "me") {
+      if (authUser) {
+        idToFetch = authUser.uid;
+      } else {
+        // Not authenticated, redirect to login or show error
+        toast({ variant: "destructive", title: "Not Authenticated", description: "Please sign in to edit your profile." });
+        router.push("/auth/signin");
+        return;
+      }
     } else {
-      userProfile = dummyProfiles.find(p => p.id === profileId);
+      // For now, only allow editing 'me' or if you implement admin logic
+      if (!authUser || authUser.uid !== profileIdParam) {
+        toast({ variant: "destructive", title: "Unauthorized", description: "You can only edit your own profile."});
+        router.push(`/profiles/${profileIdParam}`); // Redirect to view page
+        return;
+      }
+      idToFetch = profileIdParam;
     }
 
-    if (!userProfile && dummyUsersData[profileId]) {
-      const userData = dummyUsersData[profileId];
-      userProfile = {
-        id: profileId,
-        name: userData.name,
-        email: `${profileId.toLowerCase().replace(/\s/g, '.')}@damdoh.example.com`,
-        role: userData.role as EditProfileValues['role'] || STAKEHOLDER_ROLES[0],
-        location: userData.location || 'Location not specified',
-        avatarUrl: userData.avatarUrl,
-        profileSummary: userData.headline || '',
-        bio: '',
-        areasOfInterest: [],
-        needs: [],
+    if (idToFetch) {
+      fetchProfileData(idToFetch);
+    } else if (!authLoading && profileIdParam === "me" && !authUser) {
+        // This case should be handled above, but as a fallback
+        setIsLoadingData(false); // Stop loading if auth is done and no user for 'me'
+    }
+
+  }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
+
+
+  async function onSubmit(data: EditProfileValues) {
+    if (!profile || !profile.id) {
+      toast({ variant: "destructive", title: "Error", description: "Profile ID is missing. Cannot save changes." });
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const profileUpdates: Partial<UserProfile> = {
+        name: data.name,
+        // email: data.email, // Be cautious about allowing email edits if it's tied to auth
+        role: data.role,
+        profileSummary: data.profileSummary,
+        bio: data.bio,
+        location: data.location,
+        areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(s => s) || [],
+        needs: data.needs?.split(",").map(s => s.trim()).filter(s => s) || [],
+        contactInfo: {
+          phone: data.contactInfoPhone,
+          website: data.contactInfoWebsite,
+          // Retain existing email in contactInfo if not directly editable here
+          email: profile.contactInfo?.email || data.email 
+        },
       };
-    }
 
-    if (userProfile) {
-      setProfile(userProfile);
-      form.reset({
-        name: userProfile.name,
-        email: userProfile.email,
-        role: userProfile.role,
-        profileSummary: userProfile.profileSummary || "",
-        bio: userProfile.bio || "",
-        location: userProfile.location,
-        areasOfInterest: userProfile.areasOfInterest?.join(", ") || "",
-        needs: userProfile.needs?.join(", ") || "",
-        contactInfoPhone: userProfile.contactInfo?.phone || "",
-        contactInfoWebsite: userProfile.contactInfo?.website || "",
+      await updateProfileInDB(profile.id, profileUpdates);
+      toast({
+        title: "Profile Updated Successfully!",
+        description: "Your changes have been saved.",
       });
+      router.push(`/profiles/${profileIdParam}`);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      toast({
+        variant: "destructive",
+        title: "Update Failed",
+        description: "Could not save your profile changes. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsLoading(false);
-  }, [profileId, form]);
-
-
-  function onSubmit(data: EditProfileValues) {
-    console.log("Updated Profile Data:", data);
-    // In a real app, you would send this to your backend to update the user's profile.
-    toast({
-      title: "Profile Updated (Simulated)",
-      description: "Your profile changes have been saved (details logged to console).",
-    });
-    router.push(`/profiles/${params.id}`); // Redirect back to profile view
   }
 
-  if (isLoading) {
+  if (isLoadingData || authLoading) {
     return (
       <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-        <p>Loading profile data...</p>
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="ml-2">Loading profile data...</p>
       </div>
     );
   }
 
-  if (!profile) {
+  if (!profile && !isLoadingData && !authLoading) { // Ensure loading is complete before showing not found
     return (
       <Card>
         <CardHeader>
           <CardTitle>Profile Not Found</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>Sorry, we couldn't find the profile data to edit for ID: "{profileId}".</p>
+          <p>Sorry, we couldn't find the profile data for ID: "{profileIdParam}".</p>
            <Button asChild variant="outline" className="mt-4">
-            <Link href={`/profiles/${params.id || 'me'}`}>
+            <Link href={`/profiles/${profileIdParam === "me" ? (authUser?.uid || '') : profileIdParam}`}>
               <ArrowLeft className="h-4 w-4 mr-2" /> Back to Profile
             </Link>
           </Button>
@@ -130,7 +187,6 @@ export default function EditProfilePage() {
       </Card>
     );
   }
-
 
   return (
     <div className="space-y-6">
@@ -163,8 +219,9 @@ export default function EditProfilePage() {
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><Mail className="h-4 w-4 text-muted-foreground" />Contact Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} />
+                      <Input type="email" placeholder="your.email@example.com" {...field} disabled />
                     </FormControl>
+                    <FormDescription>Email cannot be changed here as it's tied to your login.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -176,7 +233,7 @@ export default function EditProfilePage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />Primary Role</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select your primary role in the supply chain" />
@@ -301,20 +358,19 @@ export default function EditProfilePage() {
                 )}
               />
               
-              {/* Placeholder for Avatar/Image Upload - could be a future enhancement */}
-              {/* 
-              <FormItem>
-                <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Profile Picture</FormLabel>
-                <Input type="file" />
-                <FormDescription>Upload a new profile picture.</FormDescription>
-              </FormItem>
-              */}
-
               <div className="flex flex-col sm:flex-row gap-2 pt-4">
-                <Button type="submit" className="w-full sm:w-auto">
-                  <Save className="mr-2 h-4 w-4" /> Save Changes
+                <Button type="submit" className="w-full sm:w-auto" disabled={isSubmitting || isLoadingData}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                    </>
+                  ) : (
+                    <>
+                      <Save className="mr-2 h-4 w-4" /> Save Changes
+                    </>
+                  )}
                 </Button>
-                <Button type="button" variant="outline" className="w-full sm:w-auto" onClick={() => router.back()}>
+                <Button type="button" variant="outline" className="w-full sm:w-auto" onClick={() => router.back()} disabled={isSubmitting}>
                   <ArrowLeft className="mr-2 h-4 w-4" /> Cancel
                 </Button>
               </div>
