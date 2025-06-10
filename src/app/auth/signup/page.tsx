@@ -21,7 +21,7 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, UserPlus } from "lucide-react";
+import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, User, UserPlus } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 
@@ -34,6 +34,7 @@ export default function SignUpPage() {
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -44,11 +45,7 @@ export default function SignUpPage() {
     setIsLoading(true);
     setAuthError(null);
     try {
-      await registerUser(data.email, data.password);
-      // TODO: After successful registration, we should also create a basic profile document in Firestore for this user.
-      // This would typically involve another function call, e.g.,
-      // await createInitialUserProfile(firebaseUser.uid, data.email, data.name);
-      // For now, we just show a success toast.
+      await registerUser(data.name, data.email, data.password);
       toast({
         title: "Account Created Successfully!",
         description: "You can now sign in with your new credentials.",
@@ -87,7 +84,7 @@ export default function SignUpPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
         <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">Join the {APP_NAME} Agricultural Network!</p>
+        <p className="text-muted-foreground mt-2">Join the ${APP_NAME} Agricultural Network!</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
@@ -104,6 +101,19 @@ export default function SignUpPage() {
           )}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center"><User className="mr-2 h-4 w-4 text-muted-foreground" />Full Name / Organization Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your Name or Company Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="email"

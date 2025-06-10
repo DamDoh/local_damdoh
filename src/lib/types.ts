@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import type { z } from 'zod';
 import type { 
   StakeholderProfileSchema, 
-  MarketplaceItemSchema, 
+ MarketplaceItemSchema, 
   ForumTopicSchema, 
   ForumPostSchema,
   AgriEventSchema
@@ -13,7 +13,6 @@ import type {
 // Infer types from Zod schemas
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
-export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 
@@ -83,6 +82,57 @@ export interface MobileDiscoverItem {
   link: string;
   dataAiHint?: string;
 }
+
+interface BaseProduct {
+  id: string;
+  shopId: string; // Reference to the shop
+  name: string;
+  description: string;
+  price: number;
+  unit: string; // e.g., 'kg', ' क्विंटल', 'piece'
+  images?: string[]; // URLs of product images
+  location?: { // Optional, for geo-location of the product
+    latitude: number;
+    longitude: number;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+  // Add other common fields here
+}
+
+interface FreshProduceProduct extends BaseProduct {
+  category: 'Fresh Produce';
+  harvestDate?: Date;
+  isOrganic?: boolean;
+  certifications?: string[];
+  minimumOrderQuantity?: string;
+}
+
+interface AgroInputsEquipmentProduct extends BaseProduct {
+  category: 'Agro-Inputs & Equipment';
+  condition: 'new' | 'used';
+  brand?: string;
+  model?: string;
+  year?: number; // for equipment
+}
+
+interface AgriculturalServicesProduct extends BaseProduct {
+  category: 'Agricultural Services';
+  serviceType: string; // e.g., 'harvesting', 'consulting', 'plowing'
+  availability?: string; // e.g., 'seasonal', 'year-round'
+  serviceArea?: string; // e.g., 'within 50km', 'state-wide'
+}
+
+interface ProcessedDriedFoodsProduct extends BaseProduct {
+  category: 'Processed/Dried Foods';
+  ingredients?: string[];
+  allergens?: string[];
+  packagingType?: string;
+  expiryDate?: Date;
+  certifications?: string[]; // e.g., 'FSSAI', 'Organic'
+}
+
+export type Product = FreshProduceProduct | AgroInputsEquipmentProduct | AgriculturalServicesProduct | ProcessedDriedFoodsProduct;
 
 // For new category navigation (already in category-data.ts, kept for reference if used elsewhere)
 export interface SubCategory {

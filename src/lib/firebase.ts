@@ -1,7 +1,7 @@
 
 // src/lib/firebase.ts
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth"; // If you need Firebase Auth
 // import { getStorage } from "firebase/storage"; // If you need Firebase Storage
 
@@ -42,3 +42,49 @@ const auth = getAuth(app); // Initialize and export auth
 // const storage = getStorage(app); // If using Firebase Storage
 
 export { app, db, auth /*, storage */ };
+
+export async function getShopById(shopId: string) {
+  try {
+    const shopDocRef = doc(db, 'shops', shopId);
+    const shopDocSnap = await getDoc(shopDocRef);
+
+    if (shopDocSnap.exists()) {
+      return { id: shopDocSnap.id, ...shopDocSnap.data() };
+    } else {
+      console.log('No such shop document!');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching shop by ID:', error);
+    throw error; // Re-throw the error for handling in the component
+  }
+}
+
+export async function getProductsByShopId(shopId: string) {
+  try {
+    const productsCollectionRef = collection(db, 'products');
+    const q = query(productsCollectionRef, where('shopId', '==', shopId));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  } catch (error) {
+    console.error('Error fetching products by shop ID:', error);
+    throw error;
+  }
+}
+
+export async function getProductsByCategory(category?: string) {
+  try {
+    const productsCollectionRef = collection(db, 'products');
+    let q;
+    if (category) {
+      q = query(productsCollectionRef, where('category', '==', category));
+    } else {
+      q = query(productsCollectionRef);
+    }
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  } catch (error) {
+    console.error('Error fetching products by category:', error);
+    throw error;
+  }
+}

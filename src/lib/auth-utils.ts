@@ -5,12 +5,14 @@ import {
   onAuthStateChanged, 
   signOut as firebaseSignOut, 
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword, // New
-  sendPasswordResetEmail,      // New
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,      
   type User as FirebaseUser
 } from "firebase/auth";
 import { auth } from './firebase'; 
 import { useEffect, useState } from 'react';
+import { createProfileInDB } from './db-utils'; // Import createProfileInDB
+import type { UserProfile } from './types'; // Import UserProfile type
 
 // This listener will update currentFirebaseUser whenever auth state changes
 // It's good for internal module state but components should prefer useAuth hook
@@ -82,15 +84,33 @@ export async function logIn(email: string, password: string): Promise<FirebaseUs
   }
 }
 
-export async function registerUser(email: string, password: string): Promise<FirebaseUser> {
+export async function registerUser(name: string, email: string, password: string): Promise<FirebaseUser> {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    // TODO: Create a corresponding user profile document in Firestore here.
-    // For example: await createProfileInDB({ userId: userCredential.user.uid, email: userCredential.user.email, name: 'New User', ... });
-    console.log("User registered successfully:", userCredential.user.uid);
+    console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
+
+    // Create a basic profile document in Firestore
+    const newProfileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'> = {
+      name: name,
+      email: email,
+      role: 'Farmer', // Default role
+      location: 'Not specified', // Default location
+      avatarUrl: `https://placehold.co/150x150.png?text=${name.substring(0,1)}`, // Placeholder avatar
+      profileSummary: 'Newly registered member of the DamDoh community.',
+      // Initialize other fields as needed or leave them for the user to fill later
+      bio: '',
+      areasOfInterest: [],
+      needs: [],
+      connections: [],
+      contactInfo: {},
+    };
+
+    await createProfileInDB(newProfileData);
+    console.log("Basic Firestore profile created for user:", userCredential.user.uid);
+    
     return userCredential.user;
   } catch (error) {
-    console.error("Error registering user:", error);
+    console.error("Error registering user in auth-utils:", error);
     throw error;
   }
 }

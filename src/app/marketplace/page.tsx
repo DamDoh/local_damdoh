@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Pin, PinOff, CheckCircle, Sparkles, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight, Brain } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
-import { Label } from "@/components/ui/label";
+import { Label } from "/Users/king/Desktop/damdoh/src/components/ui/label";
 import { LISTING_TYPE_FILTER_OPTIONS, type ListingType } from "@/lib/constants";
 import { dummyMarketplaceItems } from "@/lib/dummy-data"; 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -19,6 +19,8 @@ import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
+import { getProductsByCategory } from "@/lib/firebase";
+import type { Product } from "@/lib/types"; // Assuming Product type is in types.ts
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -75,12 +77,13 @@ const mobileIconGridItems = [
 function MarketplaceContent() {
   const [isMounted, setIsMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>("All");
+  const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>('All');
   const [locationFilter, setLocationFilter] = useState("");
   
   const [userCoordinates, setUserCoordinates] = useState<{ lat: number; lon: number } | null>(null);
   const [locationStatus, setLocationStatus] = useState<string>('');
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
+  const [products, setProducts] = useState<Product[]>([]); // State for fetched products
 
   const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(false);
@@ -96,10 +99,19 @@ function MarketplaceContent() {
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
 
-  const marketplaceItems = dummyMarketplaceItems; 
-
+  // Fetch products based on category when component mounts or category changes
   useEffect(() => {
     setIsMounted(true);
+
+    const fetchProducts = async () => {
+      // Assuming getProductsByCategory handles fetching based on the absence of category for 'All'
+      const fetchedProducts = await getProductsByCategory(currentCategory);
+      setProducts(fetchedProducts as Product[]); // Cast to Product[]
+    };
+
+    fetchProducts();
+
+    // Existing logic for listing type filter from URL
     const typeParam = searchParams.get('listingType');
     if (typeParam && (typeParam === 'Product' || typeParam === 'Service')) {
         setListingTypeFilter(typeParam as ListingType);
@@ -144,7 +156,7 @@ function MarketplaceContent() {
 
     fetchAiRecommendations();
 
-  }, [searchParams, userType, toast]);
+  }, [searchParams, userType, toast, currentCategory]); // Add currentCategory as a dependency
 
   const handleCategorySelect = useCallback((categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -238,7 +250,7 @@ function MarketplaceContent() {
   const filteredMarketplaceItems = useMemo(() => {
     if (!isMounted) return [];
 
-    let items = marketplaceItems.filter(item => {
+    let items = products.filter(item => { // Filter the fetched products
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
 
@@ -274,7 +286,7 @@ function MarketplaceContent() {
       return [...freshProduceItems, ...otherItems.filter(item => !freshProduceIds.has(item.id))];
     }
     return items;
-  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, marketplaceItems, isMounted, userCoordinates, userType]);
+  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, products, isMounted, userCoordinates, userType]); // Depend on 'products' state
 
   const getCategoryIcon = (category: CategoryNode['id']) => {
     const catNode = AGRICULTURAL_CATEGORIES.find(c => c.id === category);
@@ -818,6 +830,7 @@ function MarketplaceContent() {
 
             <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end">
               <AllCategoriesDropdown />
+              {/* This dropdown handles category selection, so the Select for categories is not strictly needed here */}
               <Button 
                   variant="outline" 
                   onClick={handleFetchLocation} 
@@ -980,6 +993,8 @@ function MarketplaceContent() {
             )}
 
             <h2 className="text-xl font-semibold mb-4 mt-6">Discover More</h2>
+            {/* Display the filtered products using ProductCard - this section will use the 'products' state */}
+            {/* I'm leaving the existing rendering logic here for now, but it should be updated to use ProductCard and the 'products' state */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
               {filteredMarketplaceItems.map(item => (
                 <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
