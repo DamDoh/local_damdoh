@@ -4,20 +4,25 @@ import type { LucideIcon } from 'lucide-react';
 import type { z } from 'zod';
 import type { 
   StakeholderProfileSchema, 
- MarketplaceItemSchema, 
+  MarketplaceItemSchema, 
   ForumTopicSchema, 
   ForumPostSchema,
   AgriEventSchema
-} from './schemas'; // Import Zod schemas
+} from './schemas';
+import type { CategoryNode as CatNodeType } from './category-data'; // Import CategoryNode for use here
 
 // Infer types from Zod schemas
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
+export type ForumTopic = z.infer<typeof ForumTopicSchema>; // Added ForumTopic type inference
 
-// Keep existing types that are not yet covered by Zod schemas or are UI specific
-export type AgriEventType = AgriEventTypeConstant; // This was already based on constants
+
+// Re-export CategoryNode type from category-data.ts for easier access if needed elsewhere
+export type CategoryNode = CatNodeType;
+
+export type AgriEventType = AgriEventTypeConstant;
 
 export interface NavItem {
   title: string;
@@ -83,25 +88,27 @@ export interface MobileDiscoverItem {
   dataAiHint?: string;
 }
 
+// This Product type might be from an older structure or for a specific 'shops' module.
+// The primary marketplace items are now defined by MarketplaceItem.
+// We can keep this for now if it's used by src/app/shops/[shopId]/page.tsx
 interface BaseProduct {
   id: string;
-  shopId: string; // Reference to the shop
+  shopId: string; 
   name: string;
   description: string;
   price: number;
-  unit: string; // e.g., 'kg', ' क्विंटल', 'piece'
-  images?: string[]; // URLs of product images
-  location?: { // Optional, for geo-location of the product
+  unit: string; 
+  images?: string[]; 
+  location?: { 
     latitude: number;
     longitude: number;
   };
   createdAt: Date;
   updatedAt: Date;
-  // Add other common fields here
 }
 
 interface FreshProduceProduct extends BaseProduct {
-  category: 'Fresh Produce';
+  category: 'Fresh Produce'; // This should align with UnifiedMarketplaceCategoryType if possible
   harvestDate?: Date;
   isOrganic?: boolean;
   certifications?: string[];
@@ -109,46 +116,27 @@ interface FreshProduceProduct extends BaseProduct {
 }
 
 interface AgroInputsEquipmentProduct extends BaseProduct {
-  category: 'Agro-Inputs & Equipment';
+  category: 'Agro-Inputs & Equipment'; // Align with UnifiedMarketplaceCategoryType
   condition: 'new' | 'used';
   brand?: string;
   model?: string;
-  year?: number; // for equipment
+  year?: number;
 }
 
 interface AgriculturalServicesProduct extends BaseProduct {
-  category: 'Agricultural Services';
-  serviceType: string; // e.g., 'harvesting', 'consulting', 'plowing'
-  availability?: string; // e.g., 'seasonal', 'year-round'
-  serviceArea?: string; // e.g., 'within 50km', 'state-wide'
+  category: 'Agricultural Services'; // Align with UnifiedMarketplaceCategoryType
+  serviceType: string; 
+  availability?: string; 
+  serviceArea?: string; 
 }
 
 interface ProcessedDriedFoodsProduct extends BaseProduct {
-  category: 'Processed/Dried Foods';
+  category: 'Processed/Dried Foods'; // Align with UnifiedMarketplaceCategoryType
   ingredients?: string[];
   allergens?: string[];
   packagingType?: string;
   expiryDate?: Date;
-  certifications?: string[]; // e.g., 'FSSAI', 'Organic'
+  certifications?: string[]; 
 }
 
 export type Product = FreshProduceProduct | AgroInputsEquipmentProduct | AgriculturalServicesProduct | ProcessedDriedFoodsProduct;
-
-// For new category navigation (already in category-data.ts, kept for reference if used elsewhere)
-export interface SubCategory {
-  id: string;
-  name: string;
-  href: string;
-  icon?: LucideIcon;
-}
-export interface MainCategory {
-  id: string;
-  name: string;
-  icon: LucideIcon;
-  subCategories: SubCategory[];
-}
-
-// Recursive ForumPost type for replies (if needed, Zod lazy handles this better)
-// export interface ForumPostWithReplies extends ForumPost {
-//   replies?: ForumPostWithReplies[];
-// }
