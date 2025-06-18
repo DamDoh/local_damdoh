@@ -20,16 +20,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
-  SelectItem,
+  SelectItem as SelectRadixItem, // Rename to avoid conflict with HTML select
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from "@/lib/form-schemas";
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, LISTING_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, Leaf, ShoppingBag, Briefcase, LandPlot, Tractor, DollarSign, Settings2, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench, LocateFixed } from "lucide-react";
+import { ArrowLeft, Save, Leaf, ShoppingBag, DollarSign, Settings2, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench, LocateFixed, Building, Scale, Tag, ShieldCheck, Warehouse, CalendarDays } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+
 
 export default function CreateMarketplaceListingPage() {
   const { toast } = useToast();
@@ -51,12 +51,20 @@ export default function CreateMarketplaceListingPage() {
       contactInfo: "",
       skillsRequired: "",
       compensation: "",
+      brand: "", // Added from schema overhaul
+      condition: undefined, // Added from schema overhaul
+      availabilityStatus: undefined, // Added from schema overhaul
+      certifications: "", // Added from schema overhaul
     },
   });
 
   const watchedListingType = form.watch("listingType");
 
   function onSubmit(data: CreateMarketplaceItemValues) {
+    // Conceptual: This function would handle saving the listing data to your backend (e.g., Firestore).
+    // Firebase Security Rules would be crucial here to ensure only the authenticated user can create
+    // listings with their sellerId and that required fields based on listingType are present and valid.
+    // AI Help: Referencing the need for "Firestore security rules for conditional fields based on document data."
     console.log("Marketplace Listing Data:", data);
     if (data.imageFile) {
       console.log("Uploaded file details:", {
@@ -70,6 +78,24 @@ export default function CreateMarketplaceListingPage() {
       description: "Your marketplace listing has been created (details logged to console).",
     });
     // form.reset(); // Optionally reset form after submission
+
+    // --- Super App Synergy Concepts (Conceptual Placeholders) ---
+
+    // 1. Link to Traceability (for Product listings)
+    // If the listing type is 'Product' and the user has associated Traceability IDs (e.g., for a specific harvest),
+    // the system could prompt the user to link this listing to one or more existing Traceability IDs.
+    // Alternatively, for a new product listing, the system could suggest creating a new Traceability ID.
+    if (data.listingType === 'Product') {
+      console.log("Conceptual: This product listing could be linked to a Traceability ID.");
+      // Future implementation would involve:
+      // - Checking if user has pending harvest/batch Traceability IDs.
+      // - Offering a UI to select/link Traceability IDs.
+      // - If no relevant IDs exist, suggesting creation of a new ID for this batch/product.
+    }
+
+    // 2. Inform AI for Recommendations/Financial Offers
+    // Data from this listing (category, type, price, location, sustainability) can feed into the AI model.
+    console.log("Conceptual: Listing data informs AI for future recommendations or relevant financial offers.");
   }
 
   const handleFetchLocation = () => {
@@ -151,17 +177,33 @@ export default function CreateMarketplaceListingPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {LISTING_TYPE_FORM_OPTIONS.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
+                        {LISTING_TYPE_FORM_OPTIONS.map((option) => {
+                           let icon = null;
+                           if (option.value === 'Product') {
+                             icon = <PackageIcon className="mr-2 h-4 w-4" />;
+                           } else if (option.value === 'Service') {
+                             icon = <Wrench className="mr-2 h-4 w-4" />;
+                           } else if (option.value === 'Land') {
+                             icon = <MapPin className="mr-2 h-4 w-4" />;
+                           } else if (option.value === 'Equipment') {
+                              icon = <Settings2 className="mr-2 h-4 w-4" />;
+                           }
+
+                          return (
+                            <SelectRadixItem key={option.value} value={option.value} className="flex items-center">
+                              {icon}
+                              {option.label}
+                            </SelectRadixItem>
+                          );
+                        })}
+
                       </SelectContent>
                     </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
 
               <FormField
                 control={form.control}
@@ -194,6 +236,7 @@ export default function CreateMarketplaceListingPage() {
                             <Input type="number" step="0.01" placeholder="e.g., 25.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
                           </FormControl>
                           <FormMessage />
+
                         </FormItem>
                       )}
                     />
@@ -205,6 +248,7 @@ export default function CreateMarketplaceListingPage() {
                           <FormLabel>Currency</FormLabel>
                           <FormControl>
                             <Input placeholder="e.g., USD" {...field} />
+
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -218,6 +262,7 @@ export default function CreateMarketplaceListingPage() {
                           <FormLabel>Per Unit</FormLabel>
                           <FormControl>
                             <Input placeholder="e.g., /kg, /ton, /item" {...field} />
+
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -249,6 +294,35 @@ export default function CreateMarketplaceListingPage() {
                   />
                 </>
               )}
+
+               {(watchedListingType === "Product" || watchedListingType === "Equipment") && (
+                <>
+                   <FormField
+                      control={form.control}
+                      name="brand"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2"><Tag className="h-4 w-4 text-muted-foreground" />Brand (Optional)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., John Deere, Pioneer" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="condition"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-muted-foreground" />Condition (Optional)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., New, Used, Refurbished, Excellent" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+              )}
               
               {watchedListingType === "Service" && (
                  <>
@@ -260,6 +334,7 @@ export default function CreateMarketplaceListingPage() {
                           <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />Compensation / Rate</FormLabel>
                           <FormControl>
                             <Input placeholder="e.g., $75/hour, Project-based, Negotiable" {...field} />
+
                           </FormControl>
                           <FormDescription>Describe payment terms for the service.</FormDescription>
                           <FormMessage />
@@ -274,11 +349,37 @@ export default function CreateMarketplaceListingPage() {
                           <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />Skills / Keywords (for services)</FormLabel>
                           <FormControl>
                             <Input placeholder="e.g., Organic farming, Tractor operation, Irrigation" {...field} />
+
                           </FormControl>
                           <FormDescription>Comma-separated list of key skills, qualifications, or relevant keywords for the service.</FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="availabilityStatus"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-muted-foreground" />Availability Status</FormLabel>
+                            <Select 
+                              onValueChange={field.onChange} 
+                              defaultValue={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select availability status" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectRadixItem value="Available">Available</SelectRadixItem>
+                                <SelectRadixItem value="Booking Required">Booking Required</SelectRadixItem>
+                                <SelectRadixItem value="Limited Availability">Limited Availability</SelectRadixItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                     />
                  </>
               )}
@@ -295,18 +396,35 @@ export default function CreateMarketplaceListingPage() {
                           <SelectValue placeholder="Select a category for your listing" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                       <SelectContent>
                         {UNIFIED_MARKETPLACE_FORM_CATEGORIES.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
+                          <SelectRadixItem key={option.value} value={option.value}>
                             {option.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
+                    {/* Conceptual: This Select field controls the dynamic rendering of subsequent form fields. */}
+                    {/* AI Help: Referencing the need for "Dynamic form generation based on selected type in React/Vue." */}
+                    {/* The form logic below (watchedListingType === "Product" / "Service") implements this concept. */}
                   </FormItem>
                 )}
               />
+
+              {watchedListingType === "Product" && (
+                 <FormField
+                  control={form.control}
+                  name="relatedTraceabilityId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><Warehouse className="h-4 w-4 text-muted-foreground" />Related Traceability ID (Optional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., batch-abc-123. Link to a specific harvest/batch." {...field} />
+                      </FormControl>
+                      <FormDescription>Link this product listing to a specific batch or harvest record for traceability.</FormDescription>
+                      <FormMessage />
+                    </FormItem>)} />)}
               
               <FormField
                 control={form.control}
@@ -329,6 +447,20 @@ export default function CreateMarketplaceListingPage() {
                   </FormItem>
                 )}
               />
+
+              {(watchedListingType === "Product" || watchedListingType === "Equipment") && (
+                <FormField
+                  control={form.control}
+                  name="certifications"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><ListChecks className="h-4 w-4 text-muted-foreground" />Certifications (Optional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Organic, Fair Trade, ISO 9001" {...field} />
+                      </FormControl>
+                      <FormDescription>Comma-separated list of relevant certifications.</FormDescription>
+                      <FormMessage />
+                    </FormItem>)} />)}
               
               <FormField
                 control={form.control}

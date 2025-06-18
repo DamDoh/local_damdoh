@@ -2,28 +2,27 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import type { MarketplaceItem } from "@/lib/types";
+import type { MarketplaceItem } from "@/lib/types"; // Changed from Product to MarketplaceItem
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Pin, PinOff, CheckCircle, Sparkles, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight, Brain } from "lucide-react"; 
 import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
-import { Label } from "/Users/king/Desktop/damdoh/src/components/ui/label";
+import { Label } from "@/components/ui/label"; // Corrected import path
 import { LISTING_TYPE_FILTER_OPTIONS, type ListingType } from "@/lib/constants";
 import { dummyMarketplaceItems } from "@/lib/dummy-data"; 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
-import { useToast } from "@/hooks/use-toast";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { getProductsByCategory } from "@/lib/firebase";
-import type { Product } from "@/lib/types"; // Assuming Product type is in types.ts
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput, type MarketplaceRecommendationOutput } from "@/ai/flows/marketplace-recommendations";
 
 
@@ -38,10 +37,10 @@ const ALL_QUICK_ACCESS_CATEGORIES_IDS: CategoryNode['id'][] = [
   'equipment-rental-operation',
   'logistics-transport',
   'consultancy-advisory',
-  'technical-services',
+  'technical-repair-services', // Corrected category ID from technical-services
   'storage-warehousing',
-  'processing-value-addition',
-  'financial-insurance',
+  'processing-value-addition-services', // Corrected category ID from processing-value-addition
+  'financial-services', // Corrected category ID from financial-insurance
   'land-services',
 ];
 
@@ -56,12 +55,14 @@ const CONSUMER_PRODUCE_CATEGORY_IDS: CategoryNode['id'][] = [
 
 const FARMER_INTEREST_CATEGORY_IDS: CategoryNode['id'][] = [
   'seeds-seedlings', 'fertilizers-soil', 'pest-control-products', 'farm-tools-small-equip', 'heavy-machinery-sale', 
-  'farm-labor-staffing', 'equipment-rental-operation', 'land-services', 'technical-services', 'consultancy-advisory' 
-];
+  'farm-labor-staffing', 'equipment-rental-operation', 'land-services', 'technical-repair-services', // Corrected
+  'agronomy-consultancy' // Corrected
+]; 
 
 const TRADER_INTEREST_CATEGORY_IDS: CategoryNode['id'][] = [
   'fresh-produce-fruits', 'fresh-produce-vegetables', 'grains-cereals', 'livestock-poultry', 
-  'logistics-transport', 'storage-warehousing', 'processing-value-addition', 'financial-insurance' 
+  'logistics-transport', 'storage-warehousing', 'processing-value-addition-services', // Corrected
+  'financial-services' // Corrected
 ];
 
 
@@ -83,7 +84,7 @@ function MarketplaceContent() {
   const [userCoordinates, setUserCoordinates] = useState<{ lat: number; lon: number } | null>(null);
   const [locationStatus, setLocationStatus] = useState<string>('');
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
-  const [products, setProducts] = useState<Product[]>([]); // State for fetched products
+  const [items, setItems] = useState<MarketplaceItem[]>([]); // State for fetched items, typed as MarketplaceItem
 
   const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(false);
@@ -97,31 +98,27 @@ function MarketplaceContent() {
   const userType = searchParams.get('userType') as 'consumer' | 'farmer' | 'trader' | null;
 
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
-  const { toast } = useToast();
+  const { toast } = useToast(); 
 
-  // Fetch products based on category when component mounts or category changes
   useEffect(() => {
     setIsMounted(true);
 
-    const fetchProducts = async () => {
-      // Assuming getProductsByCategory handles fetching based on the absence of category for 'All'
-      const fetchedProducts = await getProductsByCategory(currentCategory);
-      setProducts(fetchedProducts as Product[]); // Cast to Product[]
+    const fetchItems = async () => {
+      // Pass currentCategory (which can be string | null) correctly
+      const fetchedItems = await getProductsByCategory(currentCategory || undefined);
+      setItems(fetchedItems as MarketplaceItem[]); 
     };
 
-    fetchProducts();
+    fetchItems();
 
-    // Existing logic for listing type filter from URL
     const typeParam = searchParams.get('listingType');
     if (typeParam && (typeParam === 'Product' || typeParam === 'Service')) {
         setListingTypeFilter(typeParam as ListingType);
     }
 
-    // Fetch AI Recommendations
     const fetchAiRecommendations = async () => {
       setIsLoadingAiRecommendations(true);
       try {
-        // Simulate user context for now
         const mockUserContextForAISuggestions: MarketplaceRecommendationInput = {
           stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
           recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
@@ -139,12 +136,10 @@ function MarketplaceContent() {
             recommendedFullItems.push(foundItem);
             reasons[foundItem.id] = suggested.reason;
           } else {
-            // If AI suggests an ID not in dummy data, we could conceptually create a placeholder
-            // or log this. For now, we'll just skip if not found in dummy data.
             console.warn(`AI suggested item ID "${suggested.itemId}" not found in dummyMarketplaceItems.`);
           }
         });
-        setAiRecommendedItems(recommendedFullItems.slice(0, 5)); // Take top 5 or so
+        setAiRecommendedItems(recommendedFullItems.slice(0, 5)); 
         setAiRecommendationReasons(reasons);
 
       } catch (error) {
@@ -156,7 +151,7 @@ function MarketplaceContent() {
 
     fetchAiRecommendations();
 
-  }, [searchParams, userType, toast, currentCategory]); // Add currentCategory as a dependency
+  }, [searchParams, userType, toast, currentCategory]);
 
   const handleCategorySelect = useCallback((categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -177,7 +172,7 @@ function MarketplaceContent() {
     } else if (userType === 'trader') {
       relevantCategoryIds = TRADER_INTEREST_CATEGORY_IDS;
     }
-    return AGRICULTURAL_CATEGORIES.filter(cat => relevantCategoryIds.includes(cat.id)).slice(0, 8); // Show up to 8 relevant quick links
+    return AGRICULTURAL_CATEGORIES.filter(cat => relevantCategoryIds.includes(cat.id)).slice(0, 8); 
   }, [userType]);
   
   const mobileQuickLinks = useMemo(() => {
@@ -200,7 +195,7 @@ function MarketplaceContent() {
         { id: 'mq_machinery_f', name: "Machinery", href: "/marketplace?category=heavy-machinery-sale", icon: Tractor },
         { id: 'mq_land_f', name: "Land", href: "/marketplace?category=land-services", icon: LandPlot },
         { id: 'mq_labor_f', name: "Labor", href: "/marketplace?category=farm-labor-staffing", icon: Users },
-        { id: 'mq_tech_f', name: "Tech Services", href: "/marketplace?category=technical-services", icon: Wrench },
+        { id: 'mq_tech_f', name: "Tech Services", href: "/marketplace?category=technical-repair-services", icon: Wrench },
       ];
     } else if (userType === 'trader') {
        return [
@@ -208,7 +203,7 @@ function MarketplaceContent() {
         { id: 'mq_grains_t', name: "Grains", href: "/marketplace?category=grains-cereals", icon: Wheat },
         { id: 'mq_logistics_t', name: "Logistics", href: "/marketplace?category=logistics-transport", icon: Truck },
         { id: 'mq_storage_t', name: "Storage", href: "/marketplace?category=storage-warehousing", icon: Warehouse },
-        { id: 'mq_finance_t', name: "Finance", href: "/marketplace?category=financial-insurance", icon: CircleDollarSign },
+        { id: 'mq_finance_t', name: "Finance", href: "/marketplace?category=financial-services", icon: CircleDollarSign },
       ];
     }
     return baseLinks;
@@ -250,7 +245,7 @@ function MarketplaceContent() {
   const filteredMarketplaceItems = useMemo(() => {
     if (!isMounted) return [];
 
-    let items = products.filter(item => { // Filter the fetched products
+    let filtered = items.filter(item => { 
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
 
@@ -267,31 +262,31 @@ function MarketplaceContent() {
 
     if (!currentCategory) {
       if (userType === 'consumer') {
-        items = items.filter(item => CONSUMER_PRODUCE_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+        filtered = filtered.filter(item => CONSUMER_PRODUCE_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
       } else if (userType === 'farmer') {
-        items = items.filter(item => FARMER_INTEREST_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+        filtered = filtered.filter(item => FARMER_INTEREST_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
       } else if (userType === 'trader') {
-        items = items.filter(item => TRADER_INTEREST_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
+        filtered = filtered.filter(item => TRADER_INTEREST_CATEGORY_IDS.includes(item.category as CategoryNode['id']));
       }
     }
 
     if (userCoordinates) { 
-      const freshProduceItems = items.filter(
+      const freshProduceItems = filtered.filter(
         item => item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'
       );
-      const otherItems = items.filter(
+      const otherItems = filtered.filter(
         item => !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables')
       );
       const freshProduceIds = new Set(freshProduceItems.map(fp => fp.id));
       return [...freshProduceItems, ...otherItems.filter(item => !freshProduceIds.has(item.id))];
     }
-    return items;
-  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, products, isMounted, userCoordinates, userType]); // Depend on 'products' state
+    return filtered;
+  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, items, isMounted, userCoordinates, userType]); 
 
   const getCategoryIcon = (category: CategoryNode['id']) => {
     const catNode = AGRICULTURAL_CATEGORIES.find(c => c.id === category);
     const IconComponent = catNode?.icon || Sparkles; 
-    return <IconComponent className="h-3 w-3 mr-1 inline-block" />;
+ return <IconComponent className="h-3 w-3 mr-1.5 inline-block shrink-0" />;
   }
   
   const getCategoryName = (categoryId: CategoryNode['id']) => {
@@ -322,55 +317,55 @@ function MarketplaceContent() {
     let title = "Featured Products";
     let productsSource = filteredMarketplaceItems;
 
-    if (userCoordinates) { // If location is on, featured should also prioritize local fresh produce
+    if (userCoordinates) { 
         const fresh = productsSource.filter(item => item.listingType === 'Product' && (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'));
         const others = productsSource.filter(item => item.listingType === 'Product' && !(item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables'));
         const freshIds = new Set(fresh.map(f => f.id));
         productsSource = [...fresh, ...others.filter(o => !freshIds.has(o.id))];
     }
 
-    let products = [];
+    let filteredFeaturedProducts = [];
 
     if (userType === 'farmer') {
       title = "Featured Inputs & Equipment";
-      products = productsSource.filter(item => 
+      filteredFeaturedProducts = productsSource.filter(item => 
         item.listingType === 'Product' && 
         (item.category === 'seeds-seedlings' || item.category === 'fertilizers-soil' || item.category === 'farm-tools-small-equip' || item.category === 'heavy-machinery-sale')
       );
     } else if (userType === 'trader') {
       title = "Tradable Commodities";
-       products = productsSource.filter(item => 
+      filteredFeaturedProducts = productsSource.filter(item => 
         item.listingType === 'Product' && 
         (item.category === 'fresh-produce-fruits' || item.category === 'fresh-produce-vegetables' || item.category === 'grains-cereals')
       );
     } else { 
-       products = productsSource.filter(item => item.listingType === 'Product');
+      filteredFeaturedProducts = productsSource.filter(item => item.listingType === 'Product');
     }
-    return { featuredProductsTitle: title, featuredProductsItems: products.slice(0, 6) };
+    return { featuredProductsTitle: title, featuredProductsItems: filteredFeaturedProducts.slice(0, 6) };
   }, [filteredMarketplaceItems, isMounted, userCoordinates, userType]);
 
   const { featuredServicesTitle, featuredServicesItems } = useMemo(() => {
     if (!isMounted || userType === 'consumer') return { featuredServicesTitle: "Recommended Services", featuredServicesItems: [] };
     
     let title = "Recommended Services";
-    let services = [];
+    let filteredFeaturedServices = [];
 
     if (userType === 'farmer') {
       title = "Key Farmer Services";
-      services = filteredMarketplaceItems.filter(item => 
+      filteredFeaturedServices = filteredMarketplaceItems.filter(item => 
         item.listingType === 'Service' && 
-        (item.category === 'farm-labor-staffing' || item.category === 'equipment-rental-operation' || item.category === 'technical-services' || item.category === 'land-services')
+        (item.category === 'farm-labor-staffing' || item.category === 'equipment-rental-operation' || item.category === 'technical-repair-services' || item.category === 'land-services')
       );
     } else if (userType === 'trader') {
       title = "Logistics & Trade Services";
-      services = filteredMarketplaceItems.filter(item => 
+      filteredFeaturedServices = filteredMarketplaceItems.filter(item => 
         item.listingType === 'Service' && 
-        (item.category === 'logistics-transport' || item.category === 'storage-warehousing' || item.category === 'financial-insurance')
+        (item.category === 'logistics-transport' || item.category === 'storage-warehousing' || item.category === 'financial-services')
       );
     } else {
-       services = filteredMarketplaceItems.filter(item => item.listingType === 'Service');
+       filteredFeaturedServices = filteredMarketplaceItems.filter(item => item.listingType === 'Service');
     }
-    return { featuredServicesTitle: title, featuredServicesItems: services.slice(0, 6) };
+    return { featuredServicesTitle: title, featuredServicesItems: filteredFeaturedServices.slice(0, 6) };
   }, [filteredMarketplaceItems, isMounted, userType]);
 
 
@@ -551,7 +546,7 @@ function MarketplaceContent() {
             {mobileQuickLinks.map((link) => (
               <Button
                 key={link.id}
-                variant="ghost"
+                variant={((currentCategory && link.href.includes(`category=${currentCategory}`)) || (listingTypeFilter !== "All" && link.href.includes(`listingType=${listingTypeFilter}`))) ? "default" : "outline"}
                 size="sm" 
                 className={cn(
                   "flex items-center gap-1.5 text-muted-foreground hover:text-primary font-normal text-xs h-9 px-3", 
@@ -600,7 +595,6 @@ function MarketplaceContent() {
           ))}
         </div>
         
-        {/* AI Recommendations for Mobile */}
         {aiRecommendedItems.length > 0 && (
           <section className="px-2 space-y-2 mt-6">
             <div className="flex justify-between items-center">
@@ -627,7 +621,7 @@ function MarketplaceContent() {
                         <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
                         {item.listingType === 'Product' ? (
                             <p className="text-xs font-bold text-primary mt-0.5">
-                            ${item.price.toFixed(2)}
+                            ${item.price?.toFixed(2) ?? 'N/A'}
                             {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                             </p>
                         ) : (
@@ -648,7 +642,7 @@ function MarketplaceContent() {
           <section className="px-2 space-y-2 mt-4">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">{featuredProductsTitle}</h2>
-              <Link href={`/marketplace?listingType=Product${userType ? `&userType=${userType}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
+                <Link href={`/marketplace?listingType=Product${userType ? `&userType=${userType}` : ''}${currentCategory ? `&category=${currentCategory}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
                   See All <ChevronRight className="h-3 w-3 ml-0.5" />
               </Link>
             </div>
@@ -670,7 +664,7 @@ function MarketplaceContent() {
                       <div className="p-1.5">
                         <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
                         <p className="text-xs font-bold text-primary mt-0.5">
-                          ${item.price.toFixed(2)}
+                          ${item.price?.toFixed(2) ?? 'N/A'}
                           {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                         </p>
                       </div>
@@ -687,7 +681,7 @@ function MarketplaceContent() {
           <section className="px-2 space-y-2 mt-6">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">{featuredServicesTitle}</h2>
-              <Link href={`/marketplace?listingType=Service${userType ? `&userType=${userType}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
+                <Link href={`/marketplace?listingType=Service${userType ? `&userType=${userType}` : ''}${currentCategory ? `&category=${currentCategory}` : ''}`} className="text-xs text-primary hover:underline flex items-center">
                   See All <ChevronRight className="h-3 w-3 ml-0.5" />
               </Link>
             </div>
@@ -748,7 +742,7 @@ function MarketplaceContent() {
                       </h3>
                       {item.listingType === 'Product' ? (
                         <div className="text-sm font-bold text-primary">
-                          ${item.price.toFixed(2)}
+                          ${item.price?.toFixed(2) ?? 'N/A'}
                           {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                         </div>
                       ) : (
@@ -830,7 +824,6 @@ function MarketplaceContent() {
 
             <div className="mb-2 flex flex-col md:flex-row gap-4 items-center md:items-end">
               <AllCategoriesDropdown />
-              {/* This dropdown handles category selection, so the Select for categories is not strictly needed here */}
               <Button 
                   variant="outline" 
                   onClick={handleFetchLocation} 
@@ -877,7 +870,6 @@ function MarketplaceContent() {
             </div>
             {locationStatus && <p className="text-sm text-muted-foreground mb-4 text-center md:text-left">{locationStatus}</p>}
             
-            {/* AI Recommendations for Desktop */}
             {aiRecommendedItems.length > 0 && (
               <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-3 flex items-center gap-1.5"><Brain className="h-5 w-5 text-primary"/>Recommended For You</h2>
@@ -906,7 +898,7 @@ function MarketplaceContent() {
                             <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
                             {item.listingType === 'Product' ? (
                                 <p className="text-sm font-bold text-primary mt-1">
-                                ${item.price.toFixed(2)} {item.currency}
+                                ${item.price?.toFixed(2) ?? 'N/A'} {item.currency}
                                 {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                                 </p>
                             ) : (
@@ -946,7 +938,7 @@ function MarketplaceContent() {
                           <div className="p-2.5">
                             <h3 className="text-xs font-medium text-foreground line-clamp-2 h-8 leading-tight">{item.name}</h3>
                             <p className="text-sm font-bold text-primary mt-1">
-                              ${item.price.toFixed(2)} {item.currency}
+                              ${item.price?.toFixed(2) ?? 'N/A'} {item.currency}
                               {item.perUnit && <span className="text-[10px] text-muted-foreground font-normal ml-0.5">{item.perUnit}</span>}
                             </p>
                              <p className="text-[10px] text-muted-foreground truncate mt-0.5">{item.location}</p>
@@ -993,8 +985,6 @@ function MarketplaceContent() {
             )}
 
             <h2 className="text-xl font-semibold mb-4 mt-6">Discover More</h2>
-            {/* Display the filtered products using ProductCard - this section will use the 'products' state */}
-            {/* I'm leaving the existing rendering logic here for now, but it should be updated to use ProductCard and the 'products' state */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
               {filteredMarketplaceItems.map(item => (
                 <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
@@ -1031,15 +1021,13 @@ function MarketplaceContent() {
                         {item.name}
                       </h3>
                     </Link>
-                    
                     <Badge variant="outline" className="text-xs w-fit my-1 py-0.5 px-1.5 flex items-center capitalize">
-                      {getCategoryIcon(item.category)} {getCategoryName(item.category)}
+                        <span className="flex items-center">{getCategoryIcon(item.category as CategoryNode['id'])} {getCategoryName(item.category as CategoryNode['id'])}</span>
                     </Badge>
 
                     {item.listingType === 'Product' ? (
                       <div className="flex items-center text-lg font-semibold text-primary my-1.5">
-                        
-                        {item.price.toFixed(2)} {item.currency}
+                        ${item.price?.toFixed(2) ?? 'N/A'} {item.currency}
                         {item.perUnit && <span className="text-xs text-muted-foreground ml-1.5">{item.perUnit}</span>}
                       </div>
                     ) : (
@@ -1047,7 +1035,7 @@ function MarketplaceContent() {
                     )}
 
                     {item.aiPriceSuggestion && item.listingType === 'Product' && (
-                      <div className="text-xs text-blue-600 flex items-center mt-0.5 mb-1.5"> {/* Adjusted margin */}
+                      <div className="text-xs text-blue-600 flex items-center mt-0.5 mb-1.5"> 
                         <Sparkles className="h-3 w-3 mr-1" />
                         AI Price Est: ${item.aiPriceSuggestion.min} - ${item.aiPriceSuggestion.max} ({item.aiPriceSuggestion.confidence})
                       </div>
@@ -1067,7 +1055,7 @@ function MarketplaceContent() {
                       <div className="mb-2">
                           <h4 className="text-xs font-semibold mb-0.5">Skills:</h4>
                           <div className="flex flex-wrap gap-1">
-                            {item.skillsRequired.slice(0,3).map(skill => <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>)}
+                            {item.skillsRequired.slice(0,3).map((skill: string) => <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>)}
                           </div>
                       </div>
                     )}
@@ -1079,7 +1067,9 @@ function MarketplaceContent() {
                   </div>
                   <div className="p-3 border-t mt-auto">
                     <Button asChild className="w-full h-9 text-xs" variant="outline">
-                      <Link href={`/marketplace/${item.id}`}>View Details</Link>
+                      <Link href={`/marketplace/${item.id}`}>
+                        View Details
+                      </Link>
                     </Button>
                   </div>
                 </Card>
@@ -1134,3 +1124,5 @@ export default function MarketplacePage() {
   )
 }
 
+
+    

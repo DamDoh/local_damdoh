@@ -15,7 +15,6 @@ import {
   HelpCircle,
   LogOut,
   User as UserIcon,
-  Settings as SettingsIcon,
   MessageSquare,
   Brain,
   ShoppingCart,
@@ -109,8 +108,7 @@ const mainMobileNavItems = [
 ];
 
 const mobileSheetSecondaryNavItems = [
-  { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true },
-  { href: "/settings", icon: SettingsIcon, label: "Settings", isSheetLink: true },
+  { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true }, // Link to the user's profile page
   { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
 ];
 
@@ -165,7 +163,6 @@ export function AppHeader() {
     if (pathname.startsWith("/forums/create")) return "New Discussion";
     if (pathname.startsWith("/forums/")) return "Forum Topic";
     if (pathname.startsWith("/search")) return "Search Results";
-    if (pathname.startsWith("/settings")) return "Settings";
     if (pathname.startsWith("/help-center")) return "Help Center";
     if (pathname.startsWith("/about")) return "About Us";
     if (pathname.startsWith("/contact")) return "Contact";
@@ -196,16 +193,22 @@ export function AppHeader() {
           <Logo iconSize={32} textSize="text-2xl" className="text-white" />
         </div>
 
+        {/* 
+          // Conceptual Placeholder for Universal Search Bar
+          // This search bar in the header should eventually search across:
+          // - Marketplace listings (products, services, talent, finance)
+          // - User Profiles (people and organizations)
+          // - Forum discussions and posts
+          // - Agri-events
+          // - Potentially other future modules like knowledge base articles, regulatory updates etc.
+          // The current implementation is a basic Marketplace search.
+          // The future implementation would likely involve a more complex search modal or page.
+        */}
         <div className="flex-1 flex justify-center px-12 lg:px-16">
           <form onSubmit={handleSearchSubmit} className="relative w-full max-w-md">
             <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
-            <Input
-              type="search"
-              placeholder="Search products & services..."
-              className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            {/* Input field for the universal search. Placeholder text should reflect broader search scope */}
+            <Input type="search" placeholder="Search everything on DamDoh..." className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </form>
         </div>
 
@@ -216,7 +219,15 @@ export function AppHeader() {
            {user && (
             <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} />
           )}
-          <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
+          {/* Conceptual Placeholder for Quick Action Icons (e.g., Messages, Wallet) */}
+          {/* These icons provide quick access to key features */}
+           {user && (
+             <>
+                <NavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} /> {/* Link to the Messaging module */}
+                <NavLink href="/wallet" icon={WalletIcon} label="Wallet" pathname={pathname} /> {/* Link to the Digital Wallet */}
+             </>
+           )}
+          <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full"> {/* Separator before User/Auth */}
             {authLoading ? (
               <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
             ) : user ? (
@@ -270,6 +281,18 @@ export function AppHeader() {
                       onClick={() => setIsMobileSheetOpen(false)}
                     />
                   ))}
+                   {/* Quick access icons for Mobile Sheet */}
+                   <MobileSheetNavLink
+                    href="/notifications"
+                    icon={Bell}
+                    label="Notifications"
+                    pathname={pathname}
+                    onClick={() => setIsMobileSheetOpen(false)}
+                  />
+                   <MobileSheetNavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} /> {/* Link to Messaging */}
+                   <MobileSheetNavLink href="/wallet" icon={WalletIcon} label="Digital Wallet" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} /> {/* Link to Digital Wallet */}
+
+                  <Separator /> {/* Separator before settings/help */}
                 </>
               ) : (
                 <>

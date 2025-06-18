@@ -235,6 +235,10 @@ export default function AiAssistantPage() {
                   <Card className="bg-card/80 shadow-md">
                     <CardHeader className="pb-3 pt-4 px-4">
                       <div className="flex justify-between items-center">
+                        {/* 
+                          Conceptual Placeholder: Advanced AI insights (e.g., detailed market forecasts, in-depth risk analysis) 
+                          could be offered as premium features here, potentially with a lock icon or a "Upgrade to Premium" button.
+                        */}
                         <CardTitle className="flex items-center text-md gap-1.5 text-primary">
                           <Leaf className="h-5 w-5" /> DamDoh AI's Knowledge
                         </CardTitle>

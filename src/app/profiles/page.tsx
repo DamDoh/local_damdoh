@@ -98,8 +98,14 @@ export default function ProfilesPage() {
                     <AvatarFallback>{profile.name.substring(0,1)}</AvatarFallback>
                   </Avatar>
                   <div>
+                    {/* Conceptual: Display user's name with a visual indicator for verified credentials */}
                     <CardTitle className="text-lg">{profile.name}</CardTitle>
+                    {/* Conceptual: Display user's role and location */}
                     <CardDescription>{profile.role} - {profile.location}</CardDescription>
+                    {/* Conceptual: Display a summary of the user's reputation (e.g., average rating, score) */}
+                    {/* <div className="text-sm text-yellow-500">
+                      Rating: {profile.reputationScore}/5 ({profile.totalReviews} reviews) - Conceptual
+                    </div> */}
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
