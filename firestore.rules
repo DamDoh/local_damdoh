@@ -81,5 +81,20 @@ service cloud.firestore {
        allow read: if request.auth != null 
                        && request.auth.uid == resource.data.owner_id; // Allow read if the authenticated user is the owner
     }
+
+    // Orders collection rules
+    match /orders/{orderId} {
+      // Orders are created by the backend, so no client-side create is allowed
+      allow create: if false; 
+
+      // Authenticated users can read an order if they are the buyer or the seller
+      allow read: if request.auth != null && (request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId);
+      
+      // Allow updates only if authenticated and based on status and roles (simplified for now)
+      // More complex role-based status transitions should be handled in backend functions
+      allow update: if request.auth != null && (request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId);
+
+      allow delete: if false; // Prevent deletion of orders via rules for now
+    }
   }
 }

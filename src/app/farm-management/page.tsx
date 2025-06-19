@@ -30,7 +30,7 @@ export default function FarmManagementPage() {
     {
       title: "Seed Starting & Seedling Care",
       description: "A guide to starting seeds indoors and caring for seedlings before transplanting.",
-      link: "/farm-management/seed-starting",
+      link: "/farm-management/seed-starting", // Corrected link placeholder
       icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
       dataAiHint: "seed starting guide",
     },
@@ -50,7 +50,6 @@ export default function FarmManagementPage() {
         </CardHeader>
       </Card>
 
-      {/* This grid now correctly displays the farm function cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {farmFunctions.map((func) => (
           <Card key={func.title} className="flex flex-col hover:shadow-lg transition-shadow">
