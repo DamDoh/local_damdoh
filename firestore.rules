@@ -96,5 +96,16 @@ service cloud.firestore {
 
       allow delete: if false; // Prevent deletion of orders via rules for now
     }
+
+    // Transactions collection rules
+    // Transactions are created/updated by backend functions
+    match /transactions/{transactionId} {
+      // No client-side create, update, or delete allowed
+      allow create, update, delete: if false;
+
+      // Authenticated users can read a transaction if they are the buyer or the seller
+      allow read: if request.auth != null && (request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId);
+    }
+
   }
 }

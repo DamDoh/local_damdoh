@@ -211,6 +211,20 @@ Here are the proposed initial data schemas for the core Firestore collections:
 - `created_at`: timestamp
 - `updated_at`: timestamp
 
+**`transactions` Collection:**
+- This collection stores records of financial transactions initiated within the platform, primarily linked to marketplace orders.
+- `orderId`: string (reference to the `orders` collection)
+- `buyerId`: string (reference to the `users` collection)
+- `sellerId`: string (reference to the `users` collection)
+- `amount`: number (transaction amount)
+- `currency`: string (currency code, e.g., 'USD', 'KES')
+- `paymentMethod`: string (e.g., 'mobile_money', 'bank_transfer', 'card')
+- `gatewayTransactionId`: string (ID provided by the external payment gateway)
+- `status`: string (e.g., 'initiated', 'pending', 'succeeded', 'failed', 'refunded')
+- `createdAt`: timestamp (time of transaction initiation)
+- `updatedAt`: timestamp (time of last status update)
+- `gatewayResponseData`: map (optional, stores raw response data from the payment gateway for debugging/auditing)
+
 **`likes` Collection:**
 - `id`: string (auto-generated Firestore ID)
 - `post_id`: string (reference to `posts` collection)

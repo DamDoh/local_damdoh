@@ -17,7 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LayoutGrid, LucideIcon } from "lucide-react";
-import { ROOT_CATEGORIES, AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
+import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -30,13 +30,18 @@ export function AllCategoriesDropdown() {
 
   const handleCategorySelect = (categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (categoryId === null || categoryId === currentCategory) {
+    if (categoryId === null || categoryId === currentCategoryId) {
       params.delete("category");
     } else {
       params.set("category", categoryId);
     }
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
     setIsOpen(false); // Close dropdown after selection
+  };
+
+  // Helper function to find children of a category
+  const getChildrenOf = (parentId: string): CategoryNode[] => {
+    return AGRICULTURAL_CATEGORIES.filter(cat => cat.parent === parentId);
   };
 
   return (
@@ -59,10 +64,11 @@ export function AllCategoriesDropdown() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         {AGRICULTURAL_CATEGORIES
-          .filter(cat => !cat.parent) // Only show top-level categories
+          .filter(cat => cat.parent === 'products' || cat.parent === 'services') // Filter for top-level categories under 'products' or 'services'
           .map((topLevelCat) => {
-            if (topLevelCat.children && topLevelCat.children.length > 0) {
-              // Handle categories with children as submenus
+            const children = getChildrenOf(topLevelCat.id); // Check if this category itself has children
+            if (children.length > 0) {
+              // This topLevelCat is a parent itself, render as SubMenu
               return (
                 <DropdownMenuSub key={topLevelCat.id}>
                   <DropdownMenuSubTrigger className="flex items-center gap-2">
@@ -70,17 +76,61 @@ export function AllCategoriesDropdown() {
                     <span>{topLevelCat.name}</span>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
-                    <DropdownMenuSubContent className="w-48">
-                      {topLevelCat.children.map((subCatId) => {
-                        const subCat = AGRICULTURAL_CATEGATEGORIES.find(cat => cat.id === subCatId);
-                        if (!subCat) return null;
+                    <DropdownMenuSubContent className="w-56"> {/* Increased width for sub-sub-menu */}
+                      {/* Option to select the parent category itself */}
+                       <DropdownMenuItem
+                        key={`${topLevelCat.id}-parent`}
+                        onSelect={() => handleCategorySelect(topLevelCat.id)}
+                        className={cn(currentCategoryId === topLevelCat.id && "bg-accent", "flex items-center gap-2")}
+                      >
+                        {topLevelCat.icon && <topLevelCat.icon className="h-4 w-4 text-muted-foreground" />}
+                        View All {topLevelCat.name}
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator/>
+                      {children.map((subCat) => {
+                        // Check if this subCat also has children (for 3rd level)
+                        const grandChildren = getChildrenOf(subCat.id);
+                        if (grandChildren.length > 0) {
+                          return (
+                            <DropdownMenuSub key={subCat.id}>
+                               <DropdownMenuSubTrigger className="flex items-center gap-2">
+                                {subCat.icon && <subCat.icon className="h-4 w-4 text-muted-foreground" />}
+                                <span>{subCat.name}</span>
+                              </DropdownMenuSubTrigger>
+                              <DropdownMenuPortal>
+                                <DropdownMenuSubContent className="w-56">
+                                   <DropdownMenuItem
+                                    key={`${subCat.id}-parent`}
+                                    onSelect={() => handleCategorySelect(subCat.id)}
+                                    className={cn(currentCategoryId === subCat.id && "bg-accent", "flex items-center gap-2")}
+                                  >
+                                    {subCat.icon && <subCat.icon className="h-4 w-4 text-muted-foreground" />}
+                                    View All {subCat.name}
+                                  </DropdownMenuItem>
+                                  <DropdownMenuSeparator/>
+                                  {grandChildren.map(grandChild => (
+                                     <DropdownMenuItem
+                                      key={grandChild.id}
+                                      onSelect={() => handleCategorySelect(grandChild.id)}
+                                      className={cn(currentCategoryId === grandChild.id && "bg-accent", "flex items-center gap-2")}
+                                    >
+                                      {grandChild.icon && <grandChild.icon className="h-4 w-4 text-muted-foreground" />}
+                                      <span>{grandChild.name}</span>
+                                    </DropdownMenuItem>
+                                  ))}
+                                </DropdownMenuSubContent>
+                              </DropdownMenuPortal>
+                            </DropdownMenuSub>
+                          );
+                        }
+                        // Render as simple item if no grandchildren
                         return (
                           <DropdownMenuItem
                             key={subCat.id}
                             onSelect={() => handleCategorySelect(subCat.id)}
-                            className={cn(currentCategoryId === subCat.id && "bg-accent")}
+                            className={cn(currentCategoryId === subCat.id && "bg-accent", "flex items-center gap-2")}
                           >
-                            {subCat.icon && <subCat.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
+                            {subCat.icon && <subCat.icon className="h-4 w-4 text-muted-foreground" />}
                             <span>{subCat.name}</span>
                           </DropdownMenuItem>
                         );
@@ -90,14 +140,14 @@ export function AllCategoriesDropdown() {
                 </DropdownMenuSub>
               );
             } else {
-              // Handle top-level categories without children as simple menu items
+              // This topLevelCat has no children, render as a simple menu item
               return (
                 <DropdownMenuItem
                   key={topLevelCat.id}
                   onSelect={() => handleCategorySelect(topLevelCat.id)}
-                  className={cn(currentCategoryId === topLevelCat.id && "bg-accent")}
+                  className={cn(currentCategoryId === topLevelCat.id && "bg-accent", "flex items-center gap-2")}
                 >
-                  {topLevelCat.icon && <topLevelCat.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
+                  {topLevelCat.icon && <topLevelCat.icon className="h-4 w-4 text-muted-foreground" />}
                   <span>{topLevelCat.name}</span>
                 </DropdownMenuItem>
               );
@@ -108,45 +158,3 @@ export function AllCategoriesDropdown() {
   );
 }
 
-
-            <DropdownMenuSub key={rootCat.id}>
-              <DropdownMenuSubTrigger className="flex items-center gap-2">
- {rootCat.icon && <rootCat.icon className="h-4 w-4 text-muted-foreground" />}
-                <span>{rootCat.name}</span>
-              </DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent className="w-48">
-                  {AGRICULTURAL_CATEGORIES
-                    .filter((subCat) => subCat.parent === rootCat.id)
- .map((subCat) => (
-                      <DropdownMenuItem
-                        key={subCat.id}
-                        onSelect={() => handleCategorySelect(subCat.id)}
-                        className={cn(currentCategory === subCat.id && "bg-accent")}
-                      >
- {subCat.icon && <subCat.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
-                        <span>{subCat.name}</span>
-                      </DropdownMenuItem>
- ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
-          );
- })}
- {AGRICULTURAL_CATEGORIES
- .filter((cat) => !cat.parent)
- .map((topLevelCat) => (
-                <DropdownMenuItem
- key={topLevelCat.id}
- onSelect={() => handleCategorySelect(topLevelCat.id)}
- className={cn(currentCategory === topLevelCat.id && "bg-accent")}
- >
- {topLevelCat.icon && <topLevelCat.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
-                  <span>{topLevelCat.name}</span>
-                </DropdownMenuItem>
-          );
-        })}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
