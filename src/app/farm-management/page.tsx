@@ -30,7 +30,7 @@ export default function FarmManagementPage() {
     {
       title: "Seed Starting & Seedling Care",
       description: "A guide to starting seeds indoors and caring for seedlings before transplanting.",
-      link: "/farm-management/seed-starting", // Corrected link placeholder
+      link: "/farm-management/seed-starting", 
       icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
       dataAiHint: "seed starting guide",
     },
@@ -78,37 +78,10 @@ export default function FarmManagementPage() {
           <CardDescription>Track your harvested product batches and their associated events.</CardDescription>
         </CardHeader>
         <CardContent>
-          {/* Conceptual Data Flow & State Management Comments for Batches */}
-          {/* Conceptual Data Fetching for Batches */}
-          {/*
-            // Conceptual Data Flow for Batches:
-            // - Batch data (`batches: Batch[]`) would be fetched from a backend source (e.g., Firestore collection 'batches').
-            // - This data would be filtered to only include batches linked to the current user's `farmerId`.
-            // - A state variable (`batches`) would hold the array of batch objects to display.
-            // - State variables for loading (`isLoadingBatches`) and potential errors (`batchesError`) would be needed.
-            // Example conceptual function call: `fetchFarmerBatches(farmerId)`. This function would perform the Firestore query.
-          */}
-          {/* Conceptual UI based on Batches Data */}
-          {/* This section would iterate over the `batches` state to display individual batch items. */}
-          {/* {batches.map(batch => (
-            <div key={batch.batchId} className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-              <h4 className="font-semibold">{batch.productName}</h4>
-              <p className="text-sm text-muted-foreground">Batch ID: {batch.batchId}</p>
-              <p className="text-sm text-muted-foreground">Quantity: {batch.quantity} {batch.unit}</p>
-              <p className="text-sm text-muted-foreground">Harvest Date: {batch.harvestDate}</p>
-               Conceptual Link/Button to Batch Detail Page 
-              <Link href={`/traceability/batches/${batch.batchId}`} className="text-blue-600 hover:underline mt-2 inline-block">
-                View Details <ArrowRight className="ml-1 inline h-4 w-4" />
-              </Link>
-            </div>
-          ))} */}
-          {/* Placeholder Batch Item Example */}
           <div className="p-4 border rounded shadow-sm bg-gray-50">
             <p className="text-sm text-muted-foreground italic">Your product batch information will appear here. (Feature coming soon)</p>
           </div>
         </CardContent>
-        {/* Conceptual Button to Add New Batch */}
-        {/* <Button onClick={() => {/* conceptual add batch action */}} className="mt-4">Add New Batch</Button> */}
       </Card>
 
       <Card className="mt-8 bg-accent/30 border-primary/30">
@@ -132,7 +105,6 @@ export default function FarmManagementPage() {
         </CardContent>
       </Card>
 
-      {/* Conceptual Section for Supply Chain Optimization Tools */}
       <Card className="mt-8 bg-green-100/30 border-green-500/30">
         <CardHeader>
           <CardTitle className="text-xl">Supply Chain & Logistics Tools (Coming Soon)</CardTitle>
