@@ -39,6 +39,10 @@ const getCategoryName = (categoryId: CategoryNode['id']) => {
 export default function MarketplaceItemDetailPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const [item, setItem] = useState<MarketplaceItem | null>(null);
+  
+  // Conceptual: State to hold the fetched MarketplaceItem data
+  // const [item, setItem] = useState<MarketplaceItem | null>(null);
+  // State for loading and error handling
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,6 +51,11 @@ export default function MarketplaceItemDetailPage({ params }: { params: { id: st
 
   useEffect(() => {
     const fetchItem = async () => {
+      // Conceptual: Initiate data fetching for a single MarketplaceItem based on the `id` from the route parameters.
+      // This would involve calling a function like `fetchMarketplaceItem(id)` from your data fetching layer (e.g., src/lib/firebase.ts or a Cloud Function API).
+      // The fetched data would then be stored in the `item` state variable.
+      // Error handling and loading state management are crucial during this asynchronous operation.
+      console.log(`Conceptual: Fetching marketplace item with ID: ${id}`);
       setIsLoading(true);
       setError(null);
       try {

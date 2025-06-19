@@ -27,6 +27,13 @@ export default function FarmManagementPage() {
       icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
       dataAiHint: "natural farming inputs",
     },
+    {
+      title: "Seed Starting & Seedling Care",
+      description: "A guide to starting seeds indoors and caring for seedlings before transplanting.",
+      link: "/farm-management/seed-starting",
+      icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
+      dataAiHint: "seed starting guide",
+    },
   ];
 
   return (
@@ -43,6 +50,14 @@ export default function FarmManagementPage() {
         </CardHeader>
       </Card>
 
+      {/* Conceptual Section for Traceability (Product Batches) */}
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle className="text-xl">Your Product Batches (Traceability)</CardTitle>
+          <CardDescription>Track your harvested product batches and their associated events.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {/* Conceptual Data Flow & State Management Comments for Batches */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {farmFunctions.map((func) => (
           <Card key={func.title} className="flex flex-col hover:shadow-lg transition-shadow">
@@ -63,6 +78,31 @@ export default function FarmManagementPage() {
           </Card>
         ))}
       </div>
+          {/* Conceptual Data Fetching for Batches */}
+          {/*
+            // Conceptual Data Flow for Batches:
+            // - Batch data (`batches: Batch[]`) would be fetched from a backend source (e.g., Firestore collection 'batches').
+            // - This data would be filtered to only include batches linked to the current user's `farmerId`.
+            // - A state variable (`batches`) would hold the array of batch objects to display.
+            // - State variables for loading (`isLoadingBatches`) and potential errors (`batchesError`) would be needed.
+            // Example conceptual function call: `fetchFarmerBatches(farmerId)`. This function would perform the Firestore query.
+          */}
+          {/* Conceptual UI based on Batches Data */}
+          {/* This section would iterate over the `batches` state to display individual batch items. */}
+          {/* {batches.map(batch => (
+            <div key={batch.batchId} className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+              <h4 className="font-semibold">{batch.productName}</h4>
+              <p className="text-sm text-muted-foreground">Batch ID: {batch.batchId}</p>
+              <p className="text-sm text-muted-foreground">Quantity: {batch.quantity} {batch.unit}</p>
+              <p className="text-sm text-muted-foreground">Harvest Date: {batch.harvestDate}</p>
+               Conceptual Link/Button to Batch Detail Page 
+              <Link href={`/traceability/batches/${batch.batchId}`} className="text-blue-600 hover:underline mt-2 inline-block">
+                View Details <ArrowRight className="ml-1 inline h-4 w-4" />
+              </Link>
+            </div>
+          ))} */}
+          {/* Placeholder Batch Item Example */}
+          <div className="p-4 border rounded shadow-sm bg-gray-50">
        <Card className="mt-8 bg-accent/30 border-primary/30">
           <CardHeader>
             <CardTitle className="text-xl">More Farm Tools Coming Soon!</CardTitle>
@@ -135,6 +175,13 @@ export default function FarmManagementPage() {
  <p className="text-lg font-bold text-orange-700">10 Bags</p>
  <p className="text-xs text-muted-foreground">Status: In Stock | Low Alert (AI Suggestion)</p>
  </div>
+          </div>
+        </CardContent>
+        {/* Conceptual Button to Add New Batch */}
+        {/* <Button onClick={() => {/* conceptual add batch action */}} className="mt-4">Add New Batch</Button> */}
+      </Card>
+
+
                 </div>
               </li>
               <li>Tools for managing delivery schedules and pickup points.</li>

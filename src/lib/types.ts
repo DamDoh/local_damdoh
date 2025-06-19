@@ -31,6 +31,43 @@ export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumTopicSchema>; // Added ForumTopic type inference
 
 // Extended types for Super App functionality
+
+/**
+ * Represents a social feed post.
+ */
+export interface Post {
+ id: string;
+ authorId: string; // User ID of the author
+ content: string; // Text content of the post
+ timestamp: string; // Creation timestamp
+ likesCount: number;
+ commentsCount: number;
+ imageUrl?: string; // Optional image URL
+ relatedListingId?: string; // Link to a Marketplace item
+ relatedForumTopicId?: string; // Link to a Forum topic
+}
+
+/**
+ * Represents a comment on a social feed post.
+ */
+export interface Comment {
+ id: string;
+ postId: string; // Link to the parent post
+ authorId: string; // User ID of the author
+ content: string; // Text content of the comment
+ timestamp: string; // Creation timestamp
+}
+
+/**
+ * Represents a like on a social feed post or comment.
+ */
+export interface Like {
+ id: string;
+ postId?: string; // Link to the liked post (if applicable)
+ commentId?: string; // Link to the liked comment (if applicable)
+ userId: string; // User ID of the user who liked
+}
+
 export type ExtendedUserProfile = UserProfile & {
   // Financial Data & Permissions
   financialConsent?: { [institutionId: string]: boolean }; // User consent for FIs

@@ -1,0 +1,11 @@
+graphql
+type Post {
+  id: ID!
+  author_id: String!
+  content: String!
+  image_url: String
+  created_at: Timestamp!
+  updated_at: Timestamp!
+}
+
+scalar Timestamp

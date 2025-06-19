@@ -23,6 +23,9 @@ export default function MessagesPage() {
   // const [isLoadingConversations, setIsLoadingConversations] = React.useState(true); // Track loading state for conversations
   // const [isLoadingMessages, setIsLoadingMessages] = React.useState(false); // Track loading state for messages in the selected conversation
 
+  // Real-time Data Synchronization:
+  // Leveraging Firebase Firestore or Realtime Database for real-time updates to conversation lists and messages within selected conversations.
+
   // This page would represent the main messaging hub for a user.
   // It needs to handle conversations with different types of stakeholders
   // (farmers, buyers, service providers, etc.) seamlessly.
@@ -55,6 +58,7 @@ export default function MessagesPage() {
   // const [isLoadingMessages, setIsLoadingMessages] = React.useState(false); // Track loading state for messages in the selected conversation
 
   // AI Integration Concepts for Message View and Input:
+  // (Building upon real-time data updates)
   // - AI-powered quick replies: Suggest relevant short responses based on the content of the last message received.
   // - AI key information extraction: As the user types or receives messages, AI could identify and potentially highlight key information (e.g., "The price is $X per KG", "Delivery on Y date", "Looking for product Z").
   // - AI linking to other modules: If a message mentions a product by name, AI could potentially provide a quick link to search for that product in the Marketplace. If a message discusses a specific date, AI could offer to add it to a calendar/task list.

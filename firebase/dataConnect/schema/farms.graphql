@@ -1,0 +1,15 @@
+graphql
+type Farm {
+  id: ID!
+  owner_id: String!
+  name: String!
+  location: GeoPoint # Assuming a GeoPoint scalar or type is defined
+  size: Float!
+  soil_type: String
+  created_at: Timestamp # Assuming a Timestamp scalar or type is defined
+  updated_at: Timestamp
+}
+
+# Example of how GeoPoint and Timestamp might be defined if not built-in
+# scalar GeoPoint
+# scalar Timestamp

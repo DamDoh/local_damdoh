@@ -1,6 +1,22 @@
 
 import { z } from "zod";
 import { STAKEHOLDER_ROLES, LISTING_TYPES, UNIFIED_MARKETPLACE_CATEGORY_IDS, AGRI_EVENT_TYPES } from "@/lib/constants";
+// Conceptual Data Model Strategy for Scalability:
+// - Firebase Firestore: Primarily for real-time, document-based data with flexible schemas.
+//   Ideal for: User Profiles, Social Feed Posts/Comments (with denormalization),
+//   Chat Messages (subcollections), Marketplace Listings (for quick reads),
+//   Small-scale Transaction Records (orders, applications), Traceability Events.
+//   Considerations:
+//   - Collections like 'marketplace_orders', 'applications', 'traceability_events',
+//     'messages', and social 'posts'/'comments' will likely grow very large.
+//   - Implement data partitioning (e.g., by year/month for events/orders, or by chat ID for messages).
+//   - Consider sharding strategies if individual documents become too large or complex (less common in Firestore).
+// - Google Cloud Storage: For storing large, unstructured binary data.
+//   Ideal for: User Avatars, Marketplace Listing Images, Traceability Event Photos,
+//   Farm Photos, Application Documents.
+// - Google BigQuery: For large-scale data warehousing and analytical processing.
+//   Ideal for: Aggregating historical marketplace transactions, analyzing traceability data patterns,
+//   training AI models on large datasets, generating aggregate reports for stakeholders/governments.
 import type { GeoPoint } from 'firebase/firestore'; // Using a conceptual type here
 export const ContactInfoSchema = z.object({
   phone: z.string().optional(),
@@ -230,6 +246,41 @@ export const MessageSchema = z.object({
   // Add fields for attachments, read status, etc. as needed
 });
 
+// Conceptual Schemas for core social feed elements
+// Note: In a real application, these would be formal Firestore schema definitions.
+// Leveraging Firebase Firestore's real-time capabilities for syncing posts, comments, and likes.
+// Using Firebase Cloud Messaging for push notifications related to social activity (likes, comments, new posts from followed users).
+
+export const PostSchema = z.object({
+  postId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the post
+  authorId: z.string().cuid2({ message: "Invalid author ID" }), // Links to the UserProfile of the post creator
+  content: z.string().min(1, "Post content cannot be empty.").max(10000), // The main text content of the post
+  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the post was created
+  likesCount: z.number().int().min(0).default(0), // Denormalized count of likes for quick display
+  commentsCount: z.number().int().min(0).default(0), // Denormalized count of comments for quick display
+  mediaUrl: z.string().url({ message: "Invalid media URL." }).optional().or(z.literal('')), // URL to attached image or video in Google Cloud Storage
+  // Add fields for location tagging, hashtags, mentions, etc. as needed
+});
+
+export const CommentSchema = z.object({
+  commentId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the comment
+  postId: z.string().cuid2({ message: "Invalid post ID" }), // Links to the Post this comment belongs to
+  authorId: z.string().cuid2({ message: "Invalid author ID" }), // Links to the UserProfile of the comment author
+  content: z.string().min(1, "Comment content cannot be empty.").max(2000), // The text content of the comment
+  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the comment was created
+  // Add fields for replies (parentCommentId), likes on comments, etc. as needed
+});
+
+// A separate collection for likes allows querying and ensures atomic updates on the post/comment like count
+export const LikeSchema = z.object({
+  likeId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the like
+  // Use a union or separate fields depending on whether a like applies to a post or a comment
+  postId: z.string().cuid2({ message: "Invalid post ID" }).optional(), // Links to the Post being liked
+  commentId: z.string().cuid2({ message: "Invalid comment ID" }).optional(), // Links to the Comment being liked
+  userId: z.string().cuid2({ message: "Invalid user ID" }), // Links to the UserProfile of the user who liked
+  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the like occurred
+});
+
 // Conceptual Schema for 'financial_products' collection
 // This holds detailed information about financial products offered by FIs.
 export const FinancialProductSchema = z.object({
@@ -273,7 +324,13 @@ export const ApplicationSchema = z.object({
   status: z.enum(['pending_review', 'approved', 'rejected', 'more_info_needed', 'under_processing']), // Current status of the application
   requestedAmount: z.number().min(0).optional(), // The amount of loan/credit requested (optional for some product types)
   // Placeholder for data sharing consent - will be fully implemented later
-  consentGivenForDataSharing: z.boolean(), 
+  consentGivenForDataSharing: z.object({ // Detailed consent object
+    farmData: z.boolean(), // Consent to share Farm Profile and related data
+    marketplaceSalesHistory: z.boolean(), // Consent to share Marketplace order history as a buyer/seller
+    traceabilityReports: z.boolean(), // Consent to share relevant Batch and Traceability Event data
+    carbonFootprintData: z.boolean(), // Consent to share any calculated carbon footprint data (if implemented)
+    consentedAt: z.string().datetime({ message: "Invalid ISO datetime string" }).optional(), // Timestamp when consent was given
+  }).optional(), // Consent object is optional initially, required upon application submission
   // Add fields for additional application data, documents, notes, etc. as needed
 });
 

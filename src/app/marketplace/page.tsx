@@ -86,6 +86,8 @@ function MarketplaceContent() {
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const [items, setItems] = useState<MarketplaceItem[]>([]); // State for fetched items, typed as MarketplaceItem
 
+  // Conceptual: State to hold the list of MarketplaceItem objects fetched from the backend.
+  // const [marketplaceItems, setMarketplaceItems] = useState<MarketplaceItem[]>([]);
   const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(false);
   const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
@@ -103,6 +105,8 @@ function MarketplaceContent() {
   useEffect(() => {
     setIsMounted(true);
 
+    // Conceptual: Initiate data fetching for marketplace items here.
+    // Call a function like `fetchMarketplaceItems()` to get the list from Firebase/Backend.
     const fetchItems = async () => {
       // Pass currentCategory (which can be string | null) correctly
       const fetchedItems = await getProductsByCategory(currentCategory || undefined);
@@ -986,6 +990,9 @@ function MarketplaceContent() {
 
             <h2 className="text-xl font-semibold mb-4 mt-6">Discover More</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              {/* Conceptual: Iterate over a list of MarketplaceItem objects here */}
+              {/* Replace with actual iteration over the fetched `marketplaceItems` state */}
+              {/* {marketplaceItems.map(item => ( */}
               {filteredMarketplaceItems.map(item => (
                 <Card key={item.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col">
                   <div className="relative w-full aspect-[4/3]">
@@ -1016,9 +1023,11 @@ function MarketplaceContent() {
                     </div>
                   </div>
                   <div className="p-3 flex flex-col flex-grow">
+                    {/* Conceptual: Clicking this Link navigates to the detail page */}
                     <Link href={`/marketplace/${item.id}`} className="block mb-1">
                       <h3 className="text-sm font-medium text-foreground hover:text-primary transition-colors line-clamp-2 h-10">
                         {item.name}
+                         {/* Conceptual: Display AI generated quick reply for farmers - e.g. "Good price" */}
                       </h3>
                     </Link>
                     <Badge variant="outline" className="text-xs w-fit my-1 py-0.5 px-1.5 flex items-center capitalize">
@@ -1067,6 +1076,7 @@ function MarketplaceContent() {
                   </div>
                   <div className="p-3 border-t mt-auto">
                     <Button asChild className="w-full h-9 text-xs" variant="outline">
+                       {/* Conceptual: Button to navigate to the item detail page */}
                       <Link href={`/marketplace/${item.id}`}>
                         View Details
                       </Link>
