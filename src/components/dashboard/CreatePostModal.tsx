@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useRef, ChangeEvent } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,6 +15,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { dummyUsersData } from "@/lib/dummy-data";
 import type { PollOption } from "@/lib/types";
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+
 
 interface CreatePostModalProps {
   isOpen: boolean;
@@ -102,18 +104,20 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
     <Dialog open={isOpen} onOpenChange={(open) => !open && resetModal()}>
       <DialogContent className="sm:max-w-[600px] p-0">
         <DialogHeader className="p-4 border-b">
-          <DialogTitle className="flex items-center gap-2">
+          <VisuallyHidden>
+            <DialogTitle>Create a new post</DialogTitle>
+            <DialogDescription>Compose and share an update with the community. You can add text, media, or create a poll.</DialogDescription>
+          </VisuallyHidden>
+          <div className="flex items-center gap-2">
             <Avatar className="h-9 w-9">
               <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} data-ai-hint="profile person agriculture" />
               <AvatarFallback>{currentUser.name?.substring(0, 1) ?? 'U'}</AvatarFallback>
             </Avatar>
             <div>
-              {currentUser.name}
+              <p className="font-medium">{currentUser.name}</p>
               <p className="text-xs font-normal text-muted-foreground">Share an update</p>
             </div>
-          </DialogTitle>
-           {/* The DialogContent component itself provides a close button.
-               No need for an additional <DialogClose> here if it's redundant. */}
+          </div>
         </DialogHeader>
 
         <ScrollArea className="max-h-[60vh]">

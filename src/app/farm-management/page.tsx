@@ -21,8 +21,8 @@ export default function FarmManagementPage() {
       dataAiHint: "compost heap",
     },
     {
-      title: "KNF Agriculture Input Formulas",
-      description: "Explore Korean Natural Farming (KNF) recipes and formulas for creating indigenous microorganism (IMO) inputs.",
+      title: "KNF Input Assistant",
+      description: "An interactive guide to creating Korean Natural Farming inputs like IMO, FPJ, and FAA with step-by-step tracking.",
       link: "/farm-management/knf-inputs",
       icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
       dataAiHint: "natural farming inputs",
@@ -113,7 +113,7 @@ export default function FarmManagementPage() {
                 <CardFooter>
                 <Button asChild className="w-full">
                     <Link href={func.link}>
-                    Read Guide <ArrowRight className="ml-2 h-4 w-4" />
+                    View Guide <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                 </Button>
                 </CardFooter>
