@@ -1,3 +1,4 @@
+
 // src/lib/auth-utils.ts
 import { 
   getAuth, 
@@ -103,6 +104,7 @@ export async function registerUser(name: string, email: string, password: string
       contactInfo: { email }, // Pre-populate contact email
     };
 
+    // The document ID in 'profiles' collection will be the Firebase Auth UID
     await createProfileInDB(userCredential.user.uid, newProfileData);
     console.log("Basic Firestore profile created for user:", userCredential.user.uid);
     
