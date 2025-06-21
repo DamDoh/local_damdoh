@@ -10,13 +10,13 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { MarketplaceItem, UserProfile } from "@/lib/types";
+import type { MarketplaceItem } from "@/lib/types";
 import Image from "next/image";
 import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
-import { notFound } from "next/navigation";
-import { getMarketplaceItemByIdFromDB, getProfileByIdFromDB } from "@/lib/db-utils"; 
+import { notFound, useParams } from "next/navigation";
+import { getMarketplaceItemByIdFromDB } from "@/lib/db-utils"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
@@ -35,84 +35,77 @@ const getCategoryName = (categoryId: CategoryNode['id']) => {
   return AGRICULTURAL_CATEGORIES.find(c => c.id === categoryId)?.name || categoryId;
 }
 
+function ItemDetailSkeleton() {
+  return (
+    <div className="space-y-6">
+       <Skeleton className="h-8 w-48" />
+       <Card className="max-w-4xl mx-auto">
+        <Skeleton className="w-full aspect-video rounded-t-lg" />
+         <CardHeader>
+            <Skeleton className="h-6 w-3/4 mb-2" />
+            <Skeleton className="h-4 w-1/2" />
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <Skeleton className="h-4 w-1/4" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+            <Skeleton className="h-6 w-1/3" />
+            <Skeleton className="h-4 w-1/4" />
+            <Skeleton className="h-4 w-1/2" />
+            <Skeleton className="h-4 w-1/3" />
+         </CardContent>
+         <CardFooter>
+            <Skeleton className="h-10 w-full" />
+         </CardFooter>
+       </Card>
+    </div>
+  );
+}
 
-export default function MarketplaceItemDetailPage({ params }: { params: { id: string } }) {
-  const { id } = params;
-  const [item, setItem] = useState<MarketplaceItem | null>(null);
-  const [seller, setSeller] = useState<UserProfile | null>(null);
+
+export default function MarketplaceItemDetailPage() {
+  const params = useParams();
+  const id = params.id as string;
   
+  const [item, setItem] = useState<MarketplaceItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchItemAndSeller = async () => {
-      if (!id) {
-        setError("Invalid listing ID.");
-        setIsLoading(false);
-        return;
-      }
-
-      console.log(`Fetching marketplace item with ID: ${id}`);
+    if (!id) {
+      setError("Invalid listing ID.");
+      setIsLoading(false);
+      return;
+    }
+  
+    const fetchItemData = async () => {
       setIsLoading(true);
       setError(null);
       try {
         const fetchedItem = await getMarketplaceItemByIdFromDB(id);
-        if (fetchedItem) {
-          setItem(fetchedItem);
-          // After fetching the item, fetch the seller's profile
-          if(fetchedItem.sellerId) {
-            const fetchedSeller = await getProfileByIdFromDB(fetchedItem.sellerId);
-            setSeller(fetchedSeller);
-          } else {
-            console.warn("Item has no seller ID.");
-          }
-        } else {
-          setItem(null); // Triggers notFound() later
-        }
+        setItem(fetchedItem);
       } catch (err) {
-        console.error("Error fetching marketplace item or seller:", err);
+        console.error(`Error fetching marketplace item with ID ${id}:`, err);
         setError("Failed to load listing.");
+        setItem(null);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchItemAndSeller();
-
+    fetchItemData();
   }, [id]);
 
   if (isLoading) {
-    return (
-      <div className="space-y-6">
-         <Skeleton className="h-8 w-48" />
-         <Card className="max-w-4xl mx-auto">
-          <Skeleton className="w-full aspect-video rounded-t-lg" />
-           <CardHeader>
-              <Skeleton className="h-6 w-3/4 mb-2" />
-              <Skeleton className="h-4 w-1/2" />
-           </CardHeader>
-           <CardContent className="space-y-4">
-              <Skeleton className="h-4 w-1/4" />
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-2/3" />
-              <Skeleton className="h-6 w-1/3" />
-              <Skeleton className="h-4 w-1/4" />
-              <Skeleton className="h-4 w-1/2" />
-              <Skeleton className="h-4 w-1/3" />
-           </CardContent>
-           <CardFooter>
-              <Skeleton className="h-10 w-full" />
-           </CardFooter>
-         </Card>
-      </div>
-    );
+    return <ItemDetailSkeleton />;
   }
 
   if (error) {
     return <div className="text-center text-destructive">{error}</div>;
   }
 
+  // Use notFound() hook from Next.js if the item is not found after loading
   if (!item) {
     notFound();
   }
@@ -278,13 +271,10 @@ export default function MarketplaceItemDetailPage({ params }: { params: { id: st
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-            {seller ? (
-                <Link href={`/profiles/${seller.id}`} className="text-sm text-muted-foreground hover:underline">View Seller: {seller.name}</Link>
-            ) : (
-                <span className="text-sm text-muted-foreground">Seller information unavailable</span>
-            )}
+            <span className="text-sm text-muted-foreground italic">Seller information loading...</span>
         </CardFooter>
       </Card>
     </div>
   );
 }
+
