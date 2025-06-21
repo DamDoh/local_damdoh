@@ -1,104 +1,141 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+
+import type { UserProfile } from "@/lib/types";
+import { useAuth } from "@/lib/auth-utils";
+import { getProfileByIdFromDB } from "@/lib/db-utils";
+import { APP_NAME } from "@/lib/constants";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import type { UserProfile } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, CalendarDays, Globe, MapPin, MessageCircle, Plus, UserPlus, Edit, TrendingUp, Leaf, Tractor, Link as LinkIcon, ShoppingCart, FileText, Star, ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import { dummyProfileDetailsPageData, dummyProfiles, dummyUsersData } from "@/lib/dummy-data"; 
-import type { StakeholderRole } from "@/lib/constants";
-import { STAKEHOLDER_ROLES, APP_NAME } from "@/lib/constants";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, Star, FileText } from "lucide-react";
 
-export default function ProfileDetailPage({ params }: { params: { id: string } }) {
-  const { profile: detailedAgriProcessorProfile, activity: userActivity } = dummyProfileDetailsPageData; 
+function ProfileSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Card className="overflow-hidden">
+        <Skeleton className="h-48 w-full" />
+        <CardHeader className="pt-[60px] px-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start">
+            <div>
+              <Skeleton className="h-8 w-48 mb-2" />
+              <Skeleton className="h-6 w-32 mb-2" />
+              <Skeleton className="h-4 w-24" />
+            </div>
+            <div className="flex gap-2 mt-4 sm:mt-0">
+              <Skeleton className="h-10 w-24" />
+              <Skeleton className="h-10 w-28" />
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="px-6 space-y-6">
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-32 mb-2" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-32 mb-2" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export default function ProfileDetailPage() {
+  const params = useParams();
+  const router = useRouter();
+  const { user: authUser, loading: authLoading } = useAuth();
   
-  let profile: UserProfile | undefined = undefined;
-  const isViewingMe = params.id === "me";
-  const effectiveId = isViewingMe ? 'aishaBello' : params.id; // Use 'aishaBello' as "me"
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    const profileIdParam = params.id as string;
+    let idToFetch: string | null = null;
 
-  // Try to find a highly detailed profile first (e.g., the agriProcessorSarah example)
-  if (effectiveId === detailedAgriProcessorProfile.id) {
-    profile = detailedAgriProcessorProfile;
-  } else {
-    // Then try the main list of dummy profiles
-    profile = dummyProfiles.find(p => p.id === effectiveId);
-  }
+    if (authLoading) {
+      return; 
+    }
 
-  // If not found in detailed or dummyProfiles, try to construct from dummyUsersData
-  if (!profile && dummyUsersData[effectiveId]) {
-    const userData = dummyUsersData[effectiveId];
-    profile = {
-      id: effectiveId,
-      name: userData.name,
-      email: `${effectiveId.toLowerCase().replace(/\s/g, '.')}@damdoh.example.com`, 
-      role: userData.role as StakeholderRole || STAKEHOLDER_ROLES[0], 
-      location: userData.location || 'Location not specified', 
-      avatarUrl: userData.avatarUrl,
-      profileSummary: userData.headline || `A valued member of the ${APP_NAME} agricultural community.`,
-      bio: userData.headline ? `More information about ${userData.name}, including their role as ${userData.role || 'a valued stakeholder'}. (${userData.headline})` : `More information about ${userData.name}. They are a ${userData.role || 'valued stakeholder'} in the agricultural supply chain. Details coming soon.`,
-      yearsOfExperience: Math.floor(Math.random() * 20) + 1, 
-      areasOfInterest: [],
-      needs: [],
-      connections: [],
-      contactInfo: {
-        website: `${effectiveId.toLowerCase().replace(/\s/g, '')}.damdoh.example.com`
+    if (profileIdParam === 'me') {
+      if (authUser) {
+        idToFetch = authUser.uid;
+      } else {
+        router.push('/auth/signin');
+        return;
       }
-    };
+    } else {
+      idToFetch = profileIdParam;
+    }
+
+    if (idToFetch) {
+      setIsLoading(true);
+      getProfileByIdFromDB(idToFetch)
+        .then(fetchedProfile => {
+          setProfile(fetchedProfile);
+        })
+        .catch(error => {
+          console.error("Error fetching profile:", error);
+          setProfile(null);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else if (!authLoading) {
+      setIsLoading(false);
+    }
+  }, [params.id, authUser, authLoading, router]);
+
+  if (isLoading || authLoading) {
+    return <ProfileSkeleton />;
   }
   
-  // The 'isCurrentUser' check should be based on whether the *resolved* profile's ID
-  // matches a known "current user" ID, or if params.id was "me".
-  // For this prototype, 'aishaBello' is our stand-in for the current user.
-  const isCurrentUserProfile = effectiveId === 'aishaBello'; 
-
-  if (!profile) { 
+  if (!profile) {
     return (
       <Card>
         <CardHeader>
           <CardTitle>Profile Not Found</CardTitle>
+          <CardDescription>Sorry, we couldn't find a profile for the requested user.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Sorry, we couldn't find a profile for the ID: "{params.id}".</p>
-          <p className="text-sm text-muted-foreground mt-2">
-            This stakeholder may not have a detailed profile created yet, or the ID might be incorrect.
-          </p>
-          <Button asChild variant="outline" className="mt-4">
-            <Link href="/profiles">
-              <ArrowLeft className="h-4 w-4 mr-2" /> Back to Profiles Directory
-            </Link>
+          <Button asChild variant="outline">
+            <Link href="/network"><ArrowLeft className="h-4 w-4 mr-2" />Back to Network</Link>
           </Button>
         </CardContent>
       </Card>
     );
   }
-  
-  const ActivityIcon = ({ type }: { type: string }) => {
-    if (type.includes('Forum') || type.includes('Article')) return <MessageCircle className="h-5 w-5 text-primary" />;
-    if (type.includes('Marketplace')) return <ShoppingCart className="h-5 w-5 text-primary" />;
-    if (type.includes('Connection')) return <LinkIcon className="h-5 w-5 text-primary" />;
-    return <Star className="h-5 w-5 text-primary" />;
-  };
 
-  // Determine which activity list to use
-  const displayActivity = effectiveId === detailedAgriProcessorProfile.id ? userActivity : [];
-
+  const isCurrentUserProfile = authUser?.uid === profile.id;
 
   return (
     <div className="space-y-6">
       <Card className="overflow-hidden">
         <div className="h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
-          <Image 
-            src={profile.id === detailedAgriProcessorProfile.id ? "https://placehold.co/1200x300.png" : profile.avatarUrl ? profile.avatarUrl.replace('150x150', '1200x300').replace('80x80', '1200x300').replace('40x40', '1200x300') : `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
-            alt={profile.name} 
+           <Image 
+            src={profile.avatarUrl?.replace(/150x150|80x80|40x40/, '1200x300') || `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
+            alt={`${profile.name} banner`} 
             fill={true}
             style={{objectFit:"cover"}}
+            priority
             data-ai-hint={profile.role ? `${profile.role.toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
               <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile business food" />
-              <AvatarFallback className="text-4xl">{profile.name.substring(0,1)}</AvatarFallback>
+              <AvatarFallback className="text-4xl">{profile.name.substring(0,1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
         </div>
@@ -113,7 +150,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex gap-2 mt-4 sm:mt-0">
               {isCurrentUserProfile ? (
-                <Button asChild><Link href={`/profiles/${params.id}/edit`}><Edit className="mr-2 h-4 w-4" /> Edit Profile</Link></Button>
+                <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> Edit Profile</Link></Button>
               ) : (
                 <>
                   <Button><LinkIcon className="mr-2 h-4 w-4" /> Connect</Button>
@@ -123,13 +160,6 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </div>
           </div>
         </CardHeader>
-        {/*
-          Conceptual Area for Premium Features/Indicators:
-          Depending on the stakeholder's role and subscription level,
-          premium features or indicators could be displayed here.
-          Examples: "Premium Member" badge, "Enhanced Visibility" indicator,
-          or access to additional analytics (if user is viewing their own profile).
-        */}
         <CardContent className="px-6 space-y-6">
           {profile.profileSummary && (
             <div>
@@ -140,7 +170,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
           
           {profile.bio && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />About {profile.name.split(' ')[0]}</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />About</h3>
               <p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p>
             </div>
           )}
@@ -151,7 +181,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                 <Briefcase className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">Industry Experience</h4>
-                  <p className="text-muted-foreground">{profile.yearsOfExperience} years in agri-food sector</p>
+                  <p className="text-muted-foreground">{profile.yearsOfExperience} years</p>
                 </div>
               </div>
             )}
@@ -168,7 +198,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
               <div className="flex items-start gap-3">
                 <Globe className="h-5 w-5 mt-1 text-primary" />
                 <div>
-                  <h4 className="font-semibold">Company Website</h4>
+                  <h4 className="font-semibold">Website</h4>
                   <a href={profile.contactInfo.website.startsWith('http') ? profile.contactInfo.website : `https://${profile.contactInfo.website}`} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:underline">{profile.contactInfo.website}</a>
                 </div>
               </div>
@@ -197,31 +227,11 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Supply Chain Activity</CardTitle>
+          <CardTitle>Recent Activity</CardTitle>
+          <CardDescription>This user's recent contributions to the {APP_NAME} network.</CardDescription>
         </CardHeader>
         <CardContent>
-            {(displayActivity.length > 0) ? (
-                <ul className="space-y-4">
-                    {displayActivity.map(activity => (
-                        <li key={activity.id} className="p-4 border rounded-lg shadow-sm hover:bg-accent/30 transition-colors">
-                           <div className="flex items-start gap-3">
-                                <ActivityIcon type={activity.type} />
-                                <div className="flex-1">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm font-medium text-muted-foreground">{activity.type}</span>
-                                        <span className="text-xs text-muted-foreground">{new Date(activity.date).toLocaleDateString()}</span>
-                                    </div>
-                                    <Link href={activity.link} className="text-md font-semibold hover:underline mt-1 block">
-                                        {activity.title}
-                                    </Link>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                 <p className="text-muted-foreground">No recent specific activity to display for this stakeholder. They are active in the {APP_NAME} network!</p>
-            )}
+             <p className="text-muted-foreground italic text-sm">Recent activity feed for this user will be displayed here. (Feature coming soon)</p>
         </CardContent>
       </Card>
     </div>
