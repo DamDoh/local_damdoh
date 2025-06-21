@@ -380,6 +380,3 @@ export default function KNFInputsPage() {
     </div>
   );
 }
-
-
-    
