@@ -1,27 +1,16 @@
 
 import { z } from "zod";
 import { STAKEHOLDER_ROLES, LISTING_TYPES, UNIFIED_MARKETPLACE_CATEGORY_IDS, AGRI_EVENT_TYPES } from "@/lib/constants";
-// Conceptual Data Model Strategy for Scalability:
-// - Firebase Firestore: Primarily for real-time, document-based data with flexible schemas.
-//   Ideal for: User Profiles, Social Feed Posts/Comments (with denormalization),
-//   Chat Messages (subcollections), Marketplace Listings (for quick reads),
-//   Small-scale Transaction Records (orders, applications), Traceability Events.
-//   Considerations:
-//   - Collections like 'marketplace_orders', 'applications', 'traceability_events',
-//     'messages', and social 'posts'/'comments' will likely grow very large.
-//   - Implement data partitioning (e.g., by year/month for events/orders, or by chat ID for messages).
-//   - Consider sharding strategies if individual documents become too large or complex (less common in Firestore).
-// - Google Cloud Storage: For storing large, unstructured binary data.
-//   Ideal for: User Avatars, Marketplace Listing Images, Traceability Event Photos,
-//   Farm Photos, Application Documents.
-// - Google BigQuery: For large-scale data warehousing and analytical processing.
-//   Ideal for: Aggregating historical marketplace transactions, analyzing traceability data patterns,
-//   training AI models on large datasets, generating aggregate reports for stakeholders/governments.
-import type { GeoPoint } from 'firebase/firestore'; // Using a conceptual type here
+
 export const ContactInfoSchema = z.object({
   phone: z.string().optional(),
   website: z.string().url({ message: "Invalid website URL" }).optional().or(z.literal('')),
   email: z.string().email({ message: "Invalid email address" }).optional(),
+});
+
+export const GeoPointSchema = z.object({
+  lat: z.number().min(-90).max(90),
+  lon: z.number().min(-180).max(180),
 });
 
 export const StakeholderProfileSchema = z.object({
@@ -29,12 +18,8 @@ export const StakeholderProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100),
   email: z.string().email(),
   avatarUrl: z.string().url().optional(),
-  role: z.enum([...STAKEHOLDER_ROLES, 'financial_institution', 'insurance_provider']), // Expanded roles for FI/IPs
-  // Modified location to reflect GeoPoint structure for better spatial data handling
-  location: z.object({
-    lat: z.number(),
-    lon: z.number(),
-  }),
+  role: z.enum(STAKEHOLDER_ROLES),
+  location: z.string().min(2).max(150),
   bio: z.string().max(2000).optional(),
   profileSummary: z.string().max(250).optional(),
   yearsOfExperience: z.number().int().min(0).optional(),
@@ -44,6 +29,22 @@ export const StakeholderProfileSchema = z.object({
   connections: z.array(z.string().cuid2()).optional(), 
   createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
   updatedAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
+  // New fields for organizations
+  organizationId: z.string().cuid2().optional(),
+  isOrgAdmin: z.boolean().default(false).optional(),
+});
+
+export const OrganizationSchema = z.object({
+  id: z.string().cuid2(),
+  name: z.string().min(2).max(150),
+  type: z.string().max(100), // E.g., 'Cooperative', 'Logistics Company', 'NGO'
+  location: z.string().max(150),
+  geoPoint: GeoPointSchema.optional(),
+  contactPersonId: z.string().cuid2(),
+  kycStatus: z.enum(['pending', 'verified', 'rejected']).default('pending'),
+  businessRegistrationDocUrl: z.string().url().optional(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
 export const AiPriceSuggestionSchema = z.object({
@@ -52,101 +53,93 @@ export const AiPriceSuggestionSchema = z.object({
   confidence: z.enum(['Low', 'Medium', 'High']), 
 });
 
-// Enhanced Schema for a 'farms' collection
 export const FarmSchema = z.object({
-  farmId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the farm
-  farmerId: z.string().cuid2({ message: "Invalid farmer ID" }), // Links to the owning farmer's UserProfile
-  name: z.string().min(2, "Farm name must be at least 2 characters.").max(100), // Name of the farm
-  // Using a structure that maps to Firestore GeoPoint
-  location: z.object({
-    lat: z.number(),
-    lon: z.number(),
-  }),
-  size: z.string().max(50).optional(), // Size of the farm (e.g., "50 Hectares", "5 Rai")
-  mainCrops: z.array(z.string().max(50)).optional(), // Array of main crops grown
-  description: z.string().max(500).optional(), // Optional description of the farm
-  createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp of creation
-  // Add fields for certifications, photos, etc. as needed later
+  id: z.string().cuid2(), 
+  ownerId: z.string().cuid2(),
+  name: z.string().min(2).max(100),
+  location: GeoPointSchema,
+  size: z.string().max(50).optional(),
+  mainCrops: z.array(z.string().max(50)).optional(),
+  description: z.string().max(500).optional(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
-// Enhanced Schema for a 'batches' collection - Origin of Vibrant Traceability ID
 export const BatchSchema = z.object({
-  batchId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the batch - This IS the Vibrant Traceability ID
-  farmId: z.string().cuid2({ message: "Invalid farm ID" }), // Links to the farm where the batch originated
-  productName: z.string().min(2).max(100), // The specific product in this batch (e.g., "Jasmine Rice", "Mango")
-  quantity: z.number().min(0), // Quantity in the batch
-  unit: z.string().max(20), // Unit of quantity (e.g., "kg", "tonnes", "pieces")
-  harvestDate: z.string().datetime({ message: "Invalid ISO datetime string" }), // Date of harvest or production
-  status: z.string().max(50), // Current status (e.g., "Harvested", "In Storage", "Processing", "Sold")
-  createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp of batch creation record
-  // Add fields for initial quality notes, photos of harvest, etc.
+  id: z.string().cuid2(), // This IS the Vibrant Traceability ID (VTI)
+  farmId: z.string().cuid2(),
+  productName: z.string().min(2).max(100),
+  quantity: z.number().min(0),
+  unit: z.string().max(20),
+  harvestDate: z.string().datetime(),
+  status: z.string().max(50),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+});
+
+export const TraceabilityEventSchema = z.object({
+  id: z.string().cuid2(),
+  batchId: z.string().cuid2(),
+  eventType: z.string().max(50),
+  timestamp: z.string().datetime(),
+  location: GeoPointSchema.optional(),
+  details: z.string().max(1000).optional(),
+  photoUrl: z.string().url().optional().or(z.literal('')),
+  verifierId: z.string().cuid2().optional(),
 });
 
 export const MarketplaceItemSchema = z.object({
-  id: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the marketplace listing
-  name: z.string().min(3, "Name must be at least 3 characters.").max(100, "Name cannot exceed 100 characters."), // Name of the product or service
-  listingType: z.enum(LISTING_TYPES), // Critical: Differentiates between 'Product' and 'Service'
-  description: z.string().min(10, "Description must be at least 10 characters long.").max(2000, "Description cannot exceed 2000 characters."), // Increased max length
-  price: z.number().min(0).optional(), // Price is optional, esp. for services with 'Contact for Quote'
+  id: z.string().cuid2({ message: "Invalid CUID" }),
+  name: z.string().min(3, "Name must be at least 3 characters.").max(100, "Name cannot exceed 100 characters."),
+  listingType: z.enum(LISTING_TYPES),
+  description: z.string().min(10, "Description must be at least 10 characters long.").max(2000, "Description cannot exceed 2000 characters."),
+  price: z.number().min(0).optional(),
   currency: z.string().length(3, "Currency code must be 3 characters.").toUpperCase().default("USD"),
-  perUnit: z.string().max(30, "Unit description is too long.").optional().describe("For products: e.g., 'kg', 'bushel', 'piece'"),
-  sellerId: z.string().cuid2({ message: "Invalid seller ID" }), // Links to the creator/seller of the listing
+  perUnit: z.string().max(30, "Unit description is too long.").optional(),
+  sellerId: z.string().cuid2({ message: "Invalid seller ID" }),
   category: z.enum(UNIFIED_MARKETPLACE_CATEGORY_IDS, { errorMap: () => ({ message: "Please select a valid category."}) }),
-  // Changed location to use the GeoPoint structure for consistency and spatial queries
-  // A string location can still be stored/displayed, but the GeoPoint is for backend spatial logic
-  location: z.string().min(2, "Location is too short.").max(150, "Location is too long."), // Increased max length
+  location: z.string().min(2, "Location is too short.").max(150, "Location is too long."),
   imageUrl: z.string().url({ message: "Invalid image URL."}).optional().or(z.literal('')),
   createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
   updatedAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
-  contactInfo: z.string().min(5, "Contact info is too short.").max(300, "Contact info is too long.").optional().describe("Increased max length for diverse contact methods"), // Increased max length for diverse contact methods
+  contactInfo: z.string().min(5, "Contact info is too short.").max(300, "Contact info is too long.").optional(),
   dataAiHint: z.string().max(50, "AI hint is too long.").optional(),
   isSustainable: z.boolean().optional().default(false),
   sellerVerification: z.enum(['Verified', 'Pending', 'Unverified']).optional().default('Pending'),
   aiPriceSuggestion: AiPriceSuggestionSchema.optional(),
-
-  // --- Product-specific fields ---
-  stockQuantity: z.number().int().min(0).optional().describe("For products: current stock level"),
-  relatedTraceabilityId: z.string().cuid2({ message: "Invalid traceability ID" }).optional().describe("For products: Links this listing to a Batch ID or a specific point in the traceability chain"), // Renamed from batchId for broader applicability
-
-  // Service-specific fields
-  serviceType: z.string().max(50).optional().describe("For services: e.g., 'financial_service', 'insurance_service', 'logistics', 'agronomy_consulting'"), // New: Type of service
-  priceDisplay: z.string().max(100).optional().describe("For services: How price is displayed (e.g., 'Negotiable', 'Rate varies', 'Starting at X')"), // New: Flexible price display
-  availabilityStatus: z.string().max(50).optional().describe("For services: e.g., 'Available', 'Booking Required', 'Currently Unavailable'"), // New: Availability status for services
-  serviceArea: z.string().max(150).optional().describe("For services: Geographic area where the service is offered"),
-  relatedFinancialProductId: z.string().cuid2({ message: "Invalid financial product ID" }).optional().describe("For financial services: Links to a detailed financial product configuration"), // New: Link to detailed financial product (from Phase 4)
-  relatedInsuranceProductId: z.string().cuid2({ message: "Invalid insurance product ID" }).optional().describe("For insurance services: Links to a detailed insurance product configuration"), // New: Link to detailed insurance product (from Phase 4)
-  // Add other service-specific links as needed (e.g., relatedLogisticsRouteId)
-
-  // --- Common additional fields (can apply to either type) ---
-  skillsRequired: z.array(z.string().max(50, "Skill entry is too long.")).optional().describe("For services: List key skills offered or required."),
-  experienceLevel: z.string().max(100, "Experience level description is too long.").optional().describe("For services: e.g., Beginner, Intermediate, Expert, 5+ years"),
-  compensation: z.string().max(150, "Compensation details are too long.").optional().describe("For services: e.g., $50/hr, Project-based, Negotiable, Specific loan terms"),
-  // Additional fields for various listing types
-  serviceAvailability: z.string().max(100, "Service availability is too long.").optional().describe("For services: e.g., Mon-Fri 9am-5pm, By Appointment"),
-  brand: z.string().max(50, "Brand name is too long.").optional().describe("For products/equipment: Brand of the item"),
-  condition: z.enum(['New', 'Used', 'Refurbished']).optional().describe("For products/equipment: Condition of the item"),
-  certifications: z.array(z.string().max(100, "Certification name is too long.")).optional().describe("List of relevant certifications (e.g., Organic, Fair Trade, ISO)"),
-  traceabilityLink: z.string().url({ message: "Invalid traceability link URL." }).optional().or(z.literal('')).describe("Direct link to an external traceability system if applicable"),
+  stockQuantity: z.number().int().min(0).optional(),
+  relatedTraceabilityId: z.string().cuid2({ message: "Invalid traceability ID" }).optional(),
+  serviceType: z.string().max(50).optional(),
+  priceDisplay: z.string().max(100).optional(),
+  availabilityStatus: z.string().max(50).optional(),
+  serviceArea: z.string().max(150).optional(),
+  relatedFinancialProductId: z.string().cuid2({ message: "Invalid financial product ID" }).optional(),
+  relatedInsuranceProductId: z.string().cuid2({ message: "Invalid insurance product ID" }).optional(),
+  skillsRequired: z.array(z.string().max(50, "Skill entry is too long.")).optional(),
+  experienceLevel: z.string().max(100, "Experience level description is too long.").optional(),
+  compensation: z.string().max(150, "Compensation details are too long.").optional(),
+  serviceAvailability: z.string().max(100, "Service availability is too long.").optional(),
+  brand: z.string().max(50, "Brand name is too long.").optional(),
+  condition: z.enum(['New', 'Used', 'Refurbished']).optional(),
+  certifications: z.array(z.string().max(100, "Certification name is too long.")).optional(),
+  traceabilityLink: z.string().url({ message: "Invalid traceability link URL." }).optional().or(z.literal('')),
 });
 
-// Conceptual Schema for 'marketplace_orders'
-// Note: In a real application, this would be a formal Firestore schema definition.
 export const MarketplaceOrderSchema = z.object({
-  orderId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the order/transaction
-  listingId: z.string().cuid2({ message: "Invalid listing ID" }), // Links to the specific MarketplaceItem that was ordered
-  buyerId: z.string().cuid2({ message: "Invalid buyer ID" }), // Links to the buyer's UserProfile
-  sellerId: z.string().cuid2({ message: "Invalid seller ID" }), // Links to the seller's UserProfile (redundant but useful)
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the order/application was initiated
-  status: z.string().max(50), // Current status (e.g., 'pending', 'completed', 'cancelled', 'application_submitted', 'approved', 'rejected')
-  // Crucial: Mirroring the listingType from the MarketplaceItem
+  id: z.string().cuid2(),
+  listingId: z.string().cuid2(),
+  buyerId: z.string().cuid2(),
+  sellerId: z.string().cuid2(),
+  timestamp: z.string().datetime(),
+  status: z.string().max(50),
   listingType: z.enum(LISTING_TYPES),
-  // Specifies the type of item ordered, especially relevant for services
-  itemType: z.string().max(50).describe("e.g., 'physical_product', 'financial_service_application', 'consultation_booking'"),
-  quantity: z.number().min(0).optional().describe("Quantity for products"), // Quantity, primarily for products
-  totalPrice: z.number().min(0).optional().describe("Total price for products, or estimated cost for services"), // Total price, mainly for products
-  relatedTraceabilityId: z.string().cuid2({ message: "Invalid traceability ID" }).optional().describe("For product orders: Link back to the Batch ID"), // Link back to traceability for products
-  relatedApplicationId: z.string().cuid2({ message: "Invalid application ID" }).optional().describe("For service orders (applications): Link to the detailed application record (from Phase 4)"), // New: Link to the application record for service orders
+  itemType: z.string().max(50),
+  quantity: z.number().min(0).optional(),
+  totalPrice: z.number().min(0).optional(),
+  relatedTraceabilityId: z.string().cuid2().optional(),
+  relatedApplicationId: z.string().cuid2().optional(),
 });
+
 export const ForumTopicSchema = z.object({
   id: z.string().cuid2({ message: "Invalid CUID" }),
   title: z.string().min(10).max(150),
@@ -166,35 +159,10 @@ export const ForumPostSchema = z.object({
   content: z.string().min(1, "Post content cannot be empty.").max(5000),
   createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
   updatedAt: z.string().datetime({ message: "Invalid ISO datetime string" }).optional(),
-  likes: z.number().int().min(0),
-  parentId: z.string().cuid2().optional(), 
+  likes: z.number().int().min(0).optional().default(0), // Made optional for creation
+  parentId: z.string().cuid2().optional(),
+  replies: z.array(z.lazy(() => ForumPostSchema)).optional(), // Self-referencing for nested replies
 });
-
-// Enhanced Schema for a 'traceability_events' collection
-export const TraceabilityEventSchema = z.object({
-  eventId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the event
-  batchId: z.string().cuid2({ message: "Invalid batch ID" }), // Links to the specific batch this event belongs to
-  // Type of event (e.g., "Fertilization", "Pest Control", "Harvest", "Washing", "Packaging", "Shipping", "Quality Check")
-  eventType: z.string().max(50), // Type of event (e.g., "Fertilization", "Pest Control", "Harvest", "Washing", "Packaging", "Shipping", "Quality Check")
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the event occurred
-  // Location where the event occurred (can differ from farm location)
-  location: z.object({ // Location where the event occurred (can differ from farm location)
-    lat: z.number(),
-    lon: z.number(),
-  }).optional(),
-  details: z.string().max(1000).optional(), // Detailed description of the event
-  photoUrl: z.string().url({ message: "Invalid photo URL." }).optional().or(z.literal('')), // Optional photo documentation
-  verifierId: z.string().cuid2({ message: "Invalid verifier ID" }).optional(), // Optional link to a user who verified this event (e.g., QA officer, inspector)
-});
-// --- Firebase Schema Definitions and Cloud Functions ---
-// For a robust traceability system, define these schemas formally in Firestore.
-// Implement Cloud Functions:
-// - To validate the sequence of events for a batch (e.g., Harvest must come before Packaging).
-// - To ensure data integrity and prevent tampering.
-
-// Comments about considering optional fields for external verification:
-// - photoUrl: (string) Optional field to link to a photo documenting the event.
-// - verificationLink: (string) Optional field to link to external documentation or a verification record.
 
 export const AgriEventSchema = z.object({
   id: z.string().cuid2({ message: "Invalid CUID" }),
@@ -212,128 +180,47 @@ export const AgriEventSchema = z.object({
   dataAiHint: z.string().optional(),
 });
 
-// Conceptual Schema for 'reviews'
-// Note: In a real application, this would be a formal Firestore schema definition.
-export const ReviewSchema = z.object({
-  reviewId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the review
-  listingId: z.string().cuid2({ message: "Invalid listing ID" }), // Links to the MarketplaceItem being reviewed
-  reviewerId: z.string().cuid2({ message: "Invalid reviewer ID" }), // Links to the user who wrote the review
-  rating: z.number().int().min(1).max(5), // Rating from 1 to 5
-  comment: z.string().max(1000).optional(), // Optional text comment
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the review was submitted
-  // Ensure listingId can link to *any* marketplace listing, regardless of listingType (Product or Service)
-});
-
-// Conceptual Schema for 'chats' collection for in-app messaging
-// Note: In a real application, this would be a formal Firestore schema definition.
-export const ChatSchema = z.object({
-  chatId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the chat conversation
-  participants: z.array(z.string().cuid2()), // Array of UserProfile IDs participating in the chat (usually 2 for direct messages)
-  createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp of chat creation
-  updatedAt: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp of the last message/activity
-  lastMessage: z.string().max(500).optional(), // Preview of the last message
-  // Add fields for chat name (for groups), chat type (direct, group), etc. as needed
-});
-
-// Conceptual Schema for 'messages' collection within a chat
-// Note: In a real application, this would be a formal Firestore schema definition.
-export const MessageSchema = z.object({
-  messageId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the message
-  chatId: z.string().cuid2({ message: "Invalid chat ID" }), // Links to the chat conversation this message belongs to
-  senderId: z.string().cuid2({ message: "Invalid sender ID" }), // Links to the UserProfile ID of the sender
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the message was sent
-  content: z.string().min(1, "Message cannot be empty.").max(5000), // The message content
-  // Add fields for attachments, read status, etc. as needed
-});
-
-// Conceptual Schemas for core social feed elements
-// Note: In a real application, these would be formal Firestore schema definitions.
-// Leveraging Firebase Firestore's real-time capabilities for syncing posts, comments, and likes.
-// Using Firebase Cloud Messaging for push notifications related to social activity (likes, comments, new posts from followed users).
-
-export const PostSchema = z.object({
-  postId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the post
-  authorId: z.string().cuid2({ message: "Invalid author ID" }), // Links to the UserProfile of the post creator
-  content: z.string().min(1, "Post content cannot be empty.").max(10000), // The main text content of the post
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the post was created
-  likesCount: z.number().int().min(0).default(0), // Denormalized count of likes for quick display
-  commentsCount: z.number().int().min(0).default(0), // Denormalized count of comments for quick display
-  mediaUrl: z.string().url({ message: "Invalid media URL." }).optional().or(z.literal('')), // URL to attached image or video in Google Cloud Storage
-  // Add fields for location tagging, hashtags, mentions, etc. as needed
-});
-
-export const CommentSchema = z.object({
-  commentId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the comment
-  postId: z.string().cuid2({ message: "Invalid post ID" }), // Links to the Post this comment belongs to
-  authorId: z.string().cuid2({ message: "Invalid author ID" }), // Links to the UserProfile of the comment author
-  content: z.string().min(1, "Comment content cannot be empty.").max(2000), // The text content of the comment
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the comment was created
-  // Add fields for replies (parentCommentId), likes on comments, etc. as needed
-});
-
-// A separate collection for likes allows querying and ensures atomic updates on the post/comment like count
-export const LikeSchema = z.object({
-  likeId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the like
-  // Use a union or separate fields depending on whether a like applies to a post or a comment
-  postId: z.string().cuid2({ message: "Invalid post ID" }).optional(), // Links to the Post being liked
-  commentId: z.string().cuid2({ message: "Invalid comment ID" }).optional(), // Links to the Comment being liked
-  userId: z.string().cuid2({ message: "Invalid user ID" }), // Links to the UserProfile of the user who liked
-  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }), // When the like occurred
-});
-
-// Conceptual Schema for 'financial_products' collection
-// This holds detailed information about financial products offered by FIs.
 export const FinancialProductSchema = z.object({
-  productId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the financial product
-  providerId: z.string().cuid2({ message: "Invalid provider ID" }), // Links to the Financial Institution's UserProfile
-  productName: z.string().min(5).max(150), // Name of the financial product (e.g., "Seasonal Input Loan")
-  type: z.string().max(50), // Type of product (e.g., 'loan', 'credit', 'grant', 'savings')
-  description: z.string().min(20).max(2000), // Detailed description of the product
-  terms: z.string().max(2000), // Key terms and conditions
-  eligibilityCriteria: z.string().max(1000), // Who is eligible for this product
-  interestRate: z.string().max(50).optional(), // Interest rate or equivalent terms
-  loanTenor: z.string().max(50).optional(), // Repayment period for loans
-  createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp of creation
-  // Add fields for required documentation, application process link, etc.
+  id: z.string().cuid2(),
+  providerId: z.string().cuid2(),
+  productName: z.string().min(5).max(150),
+  type: z.string().max(50),
+  description: z.string().min(20).max(2000),
+  terms: z.string().max(2000),
+  eligibilityCriteria: z.string().max(1000),
+  interestRate: z.string().max(50).optional(),
+  loanTenor: z.string().max(50).optional(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
-// Conceptual Schema for 'insurance_products' collection
-// This holds detailed information about insurance products offered by IPs.
 export const InsuranceProductSchema = z.object({
-  productId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the insurance product
-  providerId: z.string().cuid2({ message: "Invalid provider ID" }), // Links to the Insurance Provider's UserProfile
-  productName: z.string().min(5).max(150), // Name of the insurance product (e.g., "Drought Resistant Crop Insurance")
-  type: z.string().max(50), // Type of insurance (e.g., 'crop_insurance', 'livestock_insurance', 'property_insurance')
-  description: z.string().min(20).max(2000), // Detailed description of the product
-  coverageDetails: z.string().max(2000), // What is covered by the insurance
-  eligibilityCriteria: z.string().max(1000), // Who is eligible for this product
-  premiumCalculation: z.string().max(100).optional(), // How premiums are calculated or displayed
-  createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp of creation
-  // Add fields for claim process, required documentation, etc.
+  id: z.string().cuid2(),
+  providerId: z.string().cuid2(),
+  productName: z.string().min(5).max(150),
+  type: z.string().max(50),
+  description: z.string().min(20).max(2000),
+  coverageDetails: z.string().max(2000),
+  eligibilityCriteria: z.string().max(1000),
+  premiumCalculation: z.string().max(100).optional(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
-// Conceptual Schema for 'applications' collection for tracking financial/insurance applications
-// Note: In a real application, this would be a formal Firestore schema definition.
 export const ApplicationSchema = z.object({
-  applicationId: z.string().cuid2({ message: "Invalid CUID" }), // Unique ID for the application
-  applicantId: z.string().cuid2({ message: "Invalid applicant ID" }), // Links to the UserProfile of the farmer/user applying
-  productId: z.string().cuid2({ message: "Invalid product ID" }), // References the specific financial_product or insurance_product applied for
-  productType: z.enum(['financial', 'insurance']), // Type of product applied for
-  providerId: z.string().cuid2({ message: "Invalid provider ID" }), // Links to the FI/IP UserProfile offering the product
-  applicationDate: z.string().datetime({ message: "Invalid ISO datetime string" }), // Timestamp when the application was submitted
-  status: z.enum(['pending_review', 'approved', 'rejected', 'more_info_needed', 'under_processing']), // Current status of the application
-  requestedAmount: z.number().min(0).optional(), // The amount of loan/credit requested (optional for some product types)
-  // Placeholder for data sharing consent - will be fully implemented later
-  consentGivenForDataSharing: z.object({ // Detailed consent object
-    farmData: z.boolean(), // Consent to share Farm Profile and related data
-    marketplaceSalesHistory: z.boolean(), // Consent to share Marketplace order history as a buyer/seller
-    traceabilityReports: z.boolean(), // Consent to share relevant Batch and Traceability Event data
-    carbonFootprintData: z.boolean(), // Consent to share any calculated carbon footprint data (if implemented)
-    consentedAt: z.string().datetime({ message: "Invalid ISO datetime string" }).optional(), // Timestamp when consent was given
-  }).optional(), // Consent object is optional initially, required upon application submission
-  // Add fields for additional application data, documents, notes, etc. as needed
+  id: z.string().cuid2(),
+  applicantId: z.string().cuid2(),
+  productId: z.string().cuid2(),
+  productType: z.enum(['financial', 'insurance']),
+  providerId: z.string().cuid2(),
+  applicationDate: z.string().datetime(),
+  status: z.enum(['pending_review', 'approved', 'rejected', 'more_info_needed', 'under_processing']),
+  requestedAmount: z.number().min(0).optional(),
+  consentGivenForDataSharing: z.object({
+    farmData: z.boolean(),
+    marketplaceSalesHistory: z.boolean(),
+    traceabilityReports: z.boolean(),
+    carbonFootprintData: z.boolean(),
+    consentedAt: z.string().datetime().optional(),
+  }).optional(),
 });
-
-
-
-

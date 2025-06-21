@@ -4,28 +4,29 @@ import { AGRICULTURAL_CATEGORIES } from './category-data';
 export const APP_NAME = "DamDoh";
 
 export const STAKEHOLDER_ROLES = [
-  'Farmer', // Producer of raw agricultural products
-  'Field Agent/Agronomist (DamDoh Internal)', // DamDoh staff providing field support
-  'Operations/Logistics Team (DamDoh Internal)', // DamDoh staff managing supply chain ops
-  'Quality Assurance Team (DamDoh Internal)', // DamDoh staff ensuring quality
-  'Packaging & Dried Food Processing Unit', // Transforms raw produce
-  'Buyer (Restaurant, Supermarket, Exporter)', // Purchases produce/processed goods
-  'Input Supplier (Seed, Fertilizer, Pesticide)', // Sells agricultural inputs
-  'Equipment Supplier (Sales of Machinery/IoT)', // Sells farm machinery and technology
-  'Financial Institution (Micro-finance/Loans)', // Provides financial services
-  'Government Regulator/Auditor', // Oversees compliance and policy
-  'Certification Body (Organic, Fair Trade etc.)', // Provides certifications
-  'Consumer', // End-user of agricultural products
-  'Researcher/Academic', // Conducts agricultural research
-  'Logistics Partner (Third-Party Transporter)', // Provides transportation services
-  'Storage/Warehouse Facility', // Offers storage solutions
-  'Agronomy Expert/Consultant (External)', // Offers specialized paid advisory
-  'Agro-Tourism Operator', // Offers farm-based tourism experiences
-  'Energy Solutions Provider (Solar, Biogas)', // Supplies sustainable energy solutions
-  'Agro-Export Facilitator/Customs Broker', // Assists with international trade
-  'Agri-Tech Innovator/Developer', // Develops new agricultural technologies
-  'Retailer/City Market Seller', // Sells produce in local/urban markets
-  'Waste Management & Compost Facility' // Processes agricultural waste
+  'Farmer',
+  'Field Agent/Agronomist (DamDoh Internal)',
+  'Operations/Logistics Team (DamDoh Internal)',
+  'Quality Assurance Team (DamDoh Internal)',
+  'Processing & Packaging Unit',
+  'Buyer (Restaurant, Supermarket, Exporter)',
+  'Input Supplier (Seed, Fertilizer, Pesticide)',
+  'Equipment Supplier (Sales of Machinery/IoT)',
+  'Financial Institution (Micro-finance/Loans)',
+  'Government Regulator/Auditor',
+  'Certification Body (Organic, Fair Trade etc.)',
+  'Consumer',
+  'Researcher/Academic',
+  'Logistics Partner (Third-Party Transporter)',
+  'Storage/Warehouse Facility',
+  'Agronomy Expert/Consultant (External)',
+  'Agro-Tourism Operator',
+  'Energy Solutions Provider (Solar, Biogas)',
+  'Agro-Export Facilitator/Customs Broker',
+  'Agri-Tech Innovator/Developer',
+  'Retailer/City Market Seller',
+  'Waste Management & Compost Facility',
+  'Crowdfunder (Impact Investor, Individual)' // Added from stakeholder doc
 ] as const;
 
 export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
@@ -69,3 +70,15 @@ export const AGRI_EVENT_FILTER_OPTIONS: Array<{value: AgriEventTypeConstant | 'A
     {value: 'All', label: 'All Event Types'},
     ...AGRI_EVENT_TYPES.map(type => ({value: type, label: type}))
 ];
+
+// Added for financial services module
+export const FINANCIAL_SERVICE_TYPES = [
+  'loan', 'credit', 'grant', 'savings'
+] as const;
+export type FinancialServiceType = typeof FINANCIAL_SERVICE_TYPES[number];
+
+// Added for insurance module
+export const INSURANCE_SERVICE_TYPES = [
+  'crop_insurance', 'livestock_insurance', 'property_insurance'
+] as const;
+export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
