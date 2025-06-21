@@ -1,4 +1,3 @@
-
 // src/lib/firebase.ts
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
@@ -60,31 +59,51 @@ export async function getShopById(shopId: string) {
   }
 }
 
-export async function getProductsByShopId(shopId: string) {
+// Replaces the old getProductsByShopId to query the unified marketplaceItems collection
+export async function getMarketplaceItemsByShopId(shopId: string) {
   try {
-    const productsCollectionRef = collection(db, 'products');
-    const q = query(productsCollectionRef, where('shopId', '==', shopId));
+    const itemsCollectionRef = collection(db, 'marketplaceItems');
+    const q = query(itemsCollectionRef, where('sellerId', '==', shopId));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
-    console.error('Error fetching products by shop ID:', error);
+    console.error('Error fetching marketplace items by shop ID:', error);
     throw error;
   }
 }
 
-export async function getProductsByCategory(category?: string) {
+// Replaces the old getProductsByCategory to query the unified marketplaceItems collection
+export async function getMarketplaceItemsByCategory(category?: string) {
   try {
-    const productsCollectionRef = collection(db, 'products');
+    const itemsCollectionRef = collection(db, 'marketplaceItems');
     let q;
     if (category) {
-      q = query(productsCollectionRef, where('category', '==', category));
+      q = query(itemsCollectionRef, where('category', '==', category));
     } else {
-      q = query(productsCollectionRef);
+      q = query(itemsCollectionRef);
     }
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
-    console.error('Error fetching products by category:', error);
+    console.error('Error fetching marketplace items by category:', error);
     throw error;
+  }
+}
+
+// New function to get a single marketplace item by its ID
+export async function getMarketplaceItemById(itemId: string) {
+   try {
+    const itemDocRef = doc(db, 'marketplaceItems', itemId);
+    const itemDocSnap = await getDoc(itemDocRef);
+
+    if (itemDocSnap.exists()) {
+      return { id: itemDocSnap.id, ...itemDocSnap.data() };
+    } else {
+      console.log(`No such marketplace item document with ID: ${itemId}`);
+      return null;
+    }
+  } catch (error) {
+    console.error(`Error fetching marketplace item by ID: ${itemId}`, error);
+    throw error; 
   }
 }
