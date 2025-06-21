@@ -2,10 +2,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sprout, Home, Recycle, FlaskConical, ArrowRight } from "lucide-react";
+import { Sprout, Home, Recycle, FlaskConical, ArrowRight, Tractor, DollarSign, Bell, PlusCircle } from "lucide-react";
 
 export default function FarmManagementPage() {
-  const farmFunctions = [
+  const resourceGuides = [
     {
       title: "200sqm Family Farm Model",
       description: "Learn about intensive, bio-diverse farming on a 200 square meter plot for family sustenance and surplus.",
@@ -40,102 +40,88 @@ export default function FarmManagementPage() {
     <div className="space-y-8">
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Sprout className="h-7 w-7 text-primary" />
-            <CardTitle className="text-3xl">Sustainable Farm Management Hub</CardTitle>
+          <div className="flex items-center gap-3">
+            <Tractor className="h-8 w-8 text-primary" />
+            <div>
+                <CardTitle className="text-3xl">The Farmer's Hub</CardTitle>
+                <CardDescription className="text-lg">
+                    Your digital toolkit for managing your entire farming business—from planning and finance to operations and sales.
+                </CardDescription>
+            </div>
           </div>
-          <CardDescription className="text-lg">
-            Access resources and guides on regenerative farming techniques to improve soil health, biodiversity, and food security.
-          </CardDescription>
         </CardHeader>
       </Card>
+      
+      {/* My Farms Section */}
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            <CardTitle className="text-xl">My Farms</CardTitle>
+            <CardDescription>Manage your agricultural assets and track their performance.</CardDescription>
+          </div>
+           <Button><PlusCircle className="mr-2 h-4 w-4" /> Add New Farm</Button>
+        </CardHeader>
+        <CardContent>
+          <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
+            <p className="text-sm text-muted-foreground">Your registered farms will be listed here.</p>
+            <p className="text-xs text-muted-foreground mt-1">(Farm management features coming soon)</p>
+          </div>
+        </CardContent>
+      </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {farmFunctions.map((func) => (
-          <Card key={func.title} className="flex flex-col hover:shadow-lg transition-shadow">
-            <CardHeader className="items-center text-center">
-              {func.icon}
-              <CardTitle className="text-xl">{func.title}</CardTitle>
+      {/* Financials & Alerts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card>
+            <CardHeader>
+                <CardTitle className="text-xl flex items-center gap-2"><DollarSign className="h-5 w-5"/>Financial Overview</CardTitle>
+                <CardDescription>Track expenses and revenue to understand your farm's profitability.</CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow text-center">
-              <p className="text-sm text-muted-foreground">{func.description}</p>
+            <CardContent>
+                 <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
+                    <p className="text-sm text-muted-foreground">A summary of your farm transactions will appear here.</p>
+                    <p className="text-xs text-muted-foreground mt-1">(Financial tracking tools are under development)</p>
+                </div>
             </CardContent>
-            <CardFooter>
-              <Button asChild className="w-full">
-                <Link href={func.link}>
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle className="text-xl flex items-center gap-2"><Bell className="h-5 w-5"/>Alerts & Insights</CardTitle>
+                <CardDescription>Get personalized alerts and data-driven recommendations.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
+                    <p className="text-sm text-muted-foreground">Pest alerts, weather warnings, and AI-powered insights will be shown here.</p>
+                     <p className="text-xs text-muted-foreground mt-1">(AI integrations are coming soon)</p>
+                </div>
+            </CardContent>
+        </Card>
       </div>
 
-      {/* Conceptual Section for Traceability (Product Batches) */}
-      <Card className="mt-8">
-        <CardHeader>
-          <CardTitle className="text-xl">Your Product Batches (Traceability)</CardTitle>
-          <CardDescription>Track your harvested product batches and their associated events.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="p-4 border rounded shadow-sm bg-gray-50">
-            <p className="text-sm text-muted-foreground italic">Your product batch information will appear here. (Feature coming soon)</p>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Resource Library Section */}
+       <div className="space-y-4 pt-4">
+        <h2 className="text-2xl font-semibold">Resource Library</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {resourceGuides.map((func) => (
+            <Card key={func.title} className="flex flex-col hover:shadow-lg transition-shadow">
+                <CardHeader className="items-center text-center">
+                {func.icon}
+                <CardTitle className="text-lg">{func.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow text-center">
+                <p className="text-sm text-muted-foreground">{func.description}</p>
+                </CardContent>
+                <CardFooter>
+                <Button asChild className="w-full">
+                    <Link href={func.link}>
+                    Read Guide <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                </Button>
+                </CardFooter>
+            </Card>
+            ))}
+        </div>
+      </div>
 
-      <Card className="mt-8 bg-accent/30 border-primary/30">
-        <CardHeader>
-          <CardTitle className="text-xl">More Farm Tools Coming Soon!</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">
-            We are continuously expanding our Farm Management Hub. Future features will include:
-          </p>
-          <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-1 text-sm">
-            <li>Crop Planning & Rotation Schedules</li>
-            <li>Livestock Management Records</li>
-            <li>Financial Tracking & Budgeting Tools</li>
-            <li>Resource Allocation Planners (Water, Feed)</li>
-            <li>Integration with Market Data & Supply Chain Partners</li>
-          </ul>
-          <p className="text-muted-foreground mt-3">
-            Stay tuned for updates as we build out this powerful part of DamDoh to support your farming success.
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card className="mt-8 bg-green-100/30 border-green-500/30">
-        <CardHeader>
-          <CardTitle className="text-xl">Supply Chain & Logistics Tools (Coming Soon)</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">
-            As part of DamDoh's evolution into a super app, we will integrate tools to help manage your farm's inputs and outputs within the broader supply chain. This section is a placeholder for features like:
-          </p>
-          <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-1 text-sm">
-            <li>Basic Inventory Management for harvested produce and stored inputs.</li>
-            <li><Link href="/logistics" className="text-primary hover:underline">Direct links to Logistics Service providers</Link> to arrange transport for your goods.</li>
-            <li>Integration with Marketplace listings to track stock levels.</li>
-            <li className="mt-4 text-md text-foreground">
-              <h4 className="font-semibold mb-2">Conceptual Inventory Summary:</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-3 border rounded bg-white shadow">
-                  <p className="text-sm font-medium text-muted-foreground">Harvested Corn (Batch #ABC123)</p>
-                  <p className="text-lg font-bold text-green-700">500 KG</p>
-                  <p className="text-xs text-muted-foreground">Status: In Storage | Ready for Listing</p>
-                </div>
-                <div className="p-3 border rounded bg-white shadow">
-                  <p className="text-sm font-medium text-muted-foreground">Fertilizer (Type XYZ)</p>
-                  <p className="text-lg font-bold text-orange-700">10 Bags</p>
-                  <p className="text-xs text-muted-foreground">Status: In Stock | Low Alert (AI Suggestion)</p>
-                </div>
-              </div>
-            </li>
-            <li>Tools for managing delivery schedules and pickup points.</li>
-          </ul>
-        </CardContent>
-      </Card>
     </div>
   );
 }
