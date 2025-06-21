@@ -1,26 +1,21 @@
-// Add comments within the Marketplace item detail page component (`src/app/marketplace/[id]/page.tsx`)
-// to describe how the call-to-action button or flow would change based on the `listingType`.
-// Comment on how a 'Buy Now' or 'Add to Cart' button for products would transform
-// into an 'Initiate Application', 'Request Quote', or 'Book Consultation' button/flow for services.
-// Also, comment on how the order/application confirmation or summary screen would
-// display information relevant to the `itemType`.
 
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { MarketplaceItem } from "@/lib/types";
+import type { MarketplaceItem, UserProfile } from "@/lib/types";
 import Image from "next/image";
 import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { notFound, useParams } from "next/navigation";
-import { getMarketplaceItemByIdFromDB } from "@/lib/db-utils"; 
+import { getMarketplaceItemByIdFromDB, getProfileByIdFromDB } from "@/lib/db-utils"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from "@/lib/constants";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
 // Function to get the category icon (can be reused from marketplace page)
@@ -69,6 +64,7 @@ export default function MarketplaceItemDetailPage() {
   const id = params.id as string;
   
   const [item, setItem] = useState<MarketplaceItem | null>(null);
+  const [seller, setSeller] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -84,7 +80,16 @@ export default function MarketplaceItemDetailPage() {
       setError(null);
       try {
         const fetchedItem = await getMarketplaceItemByIdFromDB(id);
-        setItem(fetchedItem);
+        if (fetchedItem) {
+          setItem(fetchedItem);
+          // After fetching the item, fetch the seller's profile
+          if (fetchedItem.sellerId) {
+            const fetchedSeller = await getProfileByIdFromDB(fetchedItem.sellerId);
+            setSeller(fetchedSeller);
+          }
+        } else {
+            setItem(null);
+        }
       } catch (err) {
         console.error(`Error fetching marketplace item with ID ${id}:`, err);
         setError("Failed to load listing.");
@@ -270,11 +275,36 @@ export default function MarketplaceItemDetailPage() {
               )}
           </div>
         </CardContent>
-        <CardFooter className="flex justify-end">
-            <span className="text-sm text-muted-foreground italic">Seller information loading...</span>
+        <CardFooter className="flex justify-between items-center bg-muted/50 p-4">
+            <div className="flex items-center gap-3">
+                {seller ? (
+                  <>
+                    <Avatar>
+                      <AvatarImage src={seller.avatarUrl} alt={seller.name} data-ai-hint="profile agriculture person" />
+                      <AvatarFallback>{seller.name.substring(0,1)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                        <p className="text-sm text-muted-foreground">Seller</p>
+                        <Link href={`/profiles/${seller.id}`} className="font-semibold text-foreground hover:underline">{seller.name}</Link>
+                    </div>
+                  </>
+                ) : (
+                    <>
+                     <Skeleton className="h-10 w-10 rounded-full" />
+                     <div className="space-y-2">
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-4 w-32" />
+                     </div>
+                    </>
+                )}
+            </div>
+            {seller && (
+                <Button variant="secondary" size="sm" asChild>
+                    <Link href={`/profiles/${seller.id}`}>View Profile</Link>
+                </Button>
+            )}
         </CardFooter>
       </Card>
     </div>
   );
 }
-
