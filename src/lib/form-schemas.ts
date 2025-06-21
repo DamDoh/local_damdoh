@@ -23,7 +23,7 @@ export const createMarketplaceItemSchema = z.object({
   listingType: z.enum(LISTING_TYPES, {
     errorMap: () => ({ message: "Please select a listing type (Product or Service)." }),
   }),
-  description: z.string().min(10, "Description must be at least 10 characters long.").max(1000, "Description cannot exceed 1000 characters."),
+  description: z.string().min(10, "Description must be at least 10 characters long.").max(2000, "Description cannot exceed 2000 characters."),
   price: z.coerce.number({ invalid_type_error: "Price must be a number." }).min(0, "Price cannot be negative.").optional(),
   currency: z.string().length(3, "Currency code must be 3 characters (e.g., USD).").default("USD").transform(value => value.toUpperCase()),
   perUnit: z.string().max(30, "Unit description (e.g., /kg, /ton, /hour) is too long.").optional(),
