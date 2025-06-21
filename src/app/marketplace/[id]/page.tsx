@@ -10,17 +10,16 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { MarketplaceItem } from "@/lib/types";
+import type { MarketplaceItem, UserProfile } from "@/lib/types";
 import Image from "next/image";
-import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft } from "lucide-react";
+import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
-import { getMarketplaceItemById } from "@/lib/firebase"; 
+import { getMarketplaceItemByIdFromDB, getProfileByIdFromDB } from "@/lib/db-utils"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { dummyUsersData } from "@/lib/dummy-data";
 import { FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from "@/lib/constants";
 
 
@@ -40,33 +39,45 @@ const getCategoryName = (categoryId: CategoryNode['id']) => {
 export default function MarketplaceItemDetailPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const [item, setItem] = useState<MarketplaceItem | null>(null);
+  const [seller, setSeller] = useState<UserProfile | null>(null);
   
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchItem = async () => {
+    const fetchItemAndSeller = async () => {
+      if (!id) {
+        setError("Invalid listing ID.");
+        setIsLoading(false);
+        return;
+      }
+
       console.log(`Fetching marketplace item with ID: ${id}`);
       setIsLoading(true);
       setError(null);
       try {
-        const fetchedItem = await getMarketplaceItemById(id);
+        const fetchedItem = await getMarketplaceItemByIdFromDB(id);
         if (fetchedItem) {
-          setItem(fetchedItem as MarketplaceItem);
+          setItem(fetchedItem);
+          // After fetching the item, fetch the seller's profile
+          if(fetchedItem.sellerId) {
+            const fetchedSeller = await getProfileByIdFromDB(fetchedItem.sellerId);
+            setSeller(fetchedSeller);
+          } else {
+            console.warn("Item has no seller ID.");
+          }
         } else {
-          setItem(null);
+          setItem(null); // Triggers notFound() later
         }
       } catch (err) {
-        console.error("Error fetching marketplace item:", err);
+        console.error("Error fetching marketplace item or seller:", err);
         setError("Failed to load listing.");
       } finally {
         setIsLoading(false);
       }
     };
 
-    if (id) {
-      fetchItem();
-    }
+    fetchItemAndSeller();
 
   }, [id]);
 
@@ -105,8 +116,6 @@ export default function MarketplaceItemDetailPage({ params }: { params: { id: st
   if (!item) {
     notFound();
   }
-
-  const seller = dummyUsersData[item.sellerId] || { name: "Unknown Seller", avatarUrl: "https://placehold.co/40x40.png" };
 
   let callToActionText = "View Details";
   let callToActionVariant: "default" | "outline" | "destructive" = "default";
@@ -269,7 +278,11 @@ export default function MarketplaceItemDetailPage({ params }: { params: { id: st
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-           <Link href={`/profiles/${item.sellerId}`} className="text-sm text-muted-foreground hover:underline">View Seller Profile</Link>
+            {seller ? (
+                <Link href={`/profiles/${seller.id}`} className="text-sm text-muted-foreground hover:underline">View Seller: {seller.name}</Link>
+            ) : (
+                <span className="text-sm text-muted-foreground">Seller information unavailable</span>
+            )}
         </CardFooter>
       </Card>
     </div>
