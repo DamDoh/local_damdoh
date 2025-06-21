@@ -101,6 +101,9 @@ export type SignInValues = z.infer<typeof signInSchema>;
 export const signUpSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters long." }).max(100, { message: "Name cannot exceed 100 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
+  role: z.enum(STAKEHOLDER_ROLES, {
+    errorMap: () => ({ message: "Please select your primary role." }),
+  }),
   password: z.string().min(6, { message: "Password must be at least 6 characters long." }),
   confirmPassword: z.string().min(6, { message: "Please confirm your password." })
 }).refine(data => data.password === data.confirmPassword, {

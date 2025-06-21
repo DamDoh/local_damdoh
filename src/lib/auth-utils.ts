@@ -13,6 +13,7 @@ import { auth } from './firebase';
 import { useEffect, useState } from 'react';
 import { createProfileInDB } from './db-utils'; // Import createProfileInDB
 import type { UserProfile } from './types'; // Import UserProfile type
+import type { StakeholderRole } from './constants'; // Import StakeholderRole
 
 // This listener will update currentFirebaseUser whenever auth state changes
 // It's good for internal module state but components should prefer useAuth hook
@@ -84,7 +85,7 @@ export async function logIn(email: string, password: string): Promise<FirebaseUs
   }
 }
 
-export async function registerUser(name: string, email: string, password: string): Promise<FirebaseUser> {
+export async function registerUser(name: string, email: string, password: string, role: StakeholderRole): Promise<FirebaseUser> {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
@@ -93,10 +94,10 @@ export async function registerUser(name: string, email: string, password: string
     const newProfileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'> = {
       name: name,
       email: email,
-      role: 'Farmer', // Default role
+      role: role,
       location: 'Not specified', // Default location
       avatarUrl: `https://placehold.co/150x150.png?text=${name.substring(0,1)}`, // Placeholder avatar
-      profileSummary: 'Newly registered member of the DamDoh community.',
+      profileSummary: `A new ${role} in the DamDoh community.`,
       // Initialize other fields as needed or leave them for the user to fill later
       bio: '',
       areasOfInterest: [],
@@ -105,6 +106,8 @@ export async function registerUser(name: string, email: string, password: string
       contactInfo: {},
     };
 
+    // The createProfileInDB function now expects the second argument to be Omit<UserProfile, 'id'>, 
+    // which our newProfileData matches. The user's UID is used as the document ID inside createProfileInDB.
     await createProfileInDB(newProfileData);
     console.log("Basic Firestore profile created for user:", userCredential.user.uid);
     

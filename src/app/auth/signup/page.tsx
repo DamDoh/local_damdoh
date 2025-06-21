@@ -16,14 +16,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, User, UserPlus } from "lucide-react";
+import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, User, UserPlus, Briefcase } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { APP_NAME } from "@/lib/constants";
+import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
+import type { StakeholderRole } from "@/lib/constants";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -36,6 +44,7 @@ export default function SignUpPage() {
     defaultValues: {
       name: "",
       email: "",
+      role: undefined,
       password: "",
       confirmPassword: "",
     },
@@ -45,7 +54,7 @@ export default function SignUpPage() {
     setIsLoading(true);
     setAuthError(null);
     try {
-      await registerUser(data.name, data.email, data.password);
+      await registerUser(data.name, data.email, data.password, data.role as StakeholderRole);
       toast({
         title: "Account Created Successfully!",
         description: "You can now sign in with your new credentials.",
@@ -110,6 +119,30 @@ export default function SignUpPage() {
                     <FormControl>
                       <Input placeholder="Your Name or Company Name" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+               <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center"><Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />Your Primary Role</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select your role in the supply chain" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {STAKEHOLDER_ROLES.map((role) => (
+                          <SelectItem key={role} value={role}>
+                            {role}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
