@@ -18,7 +18,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { getProductsByCategory } from "@/lib/firebase";
+import { getMarketplaceItemsByCategory } from "@/lib/firebase";
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -109,7 +109,7 @@ function MarketplaceContent() {
     // Call a function like `fetchMarketplaceItems()` to get the list from Firebase/Backend.
     const fetchItems = async () => {
       // Pass currentCategory (which can be string | null) correctly
-      const fetchedItems = await getProductsByCategory(currentCategory || undefined);
+      const fetchedItems = await getMarketplaceItemsByCategory(currentCategory || undefined);
       setItems(fetchedItems as MarketplaceItem[]); 
     };
 
@@ -966,7 +966,7 @@ function MarketplaceContent() {
                          <Link href={`/marketplace/${item.id}`} className="block">
                           <div className="relative w-full aspect-[4/3]">
                             <Image 
-                              src={item.imageUrl || "https://placehold.co/200x150.png"} 
+                              src={item.imageUrl || "https://placehold.co/150x150.png"} 
                               alt={item.name} 
                               fill={true}
                               sizes="25vw"
@@ -1133,6 +1133,4 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
-
-
     
