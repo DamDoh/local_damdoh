@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,7 +14,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useAuth } from '@/lib/auth-utils';
 import { collection, query, orderBy, limit, onSnapshot, getFirestore, doc, getDoc } from 'firebase/firestore';
 
-// Helper function to fetch user profiles, with caching to prevent re-fetching
+// Helper function to fetch user profiles, with caching
 const userProfileCache: Record<string, UserProfile> = {};
 const fetchUserProfiles = async (userIds: string[]) => {
     const db = getFirestore(firebaseApp);
@@ -25,114 +25,110 @@ const fetchUserProfiles = async (userIds: string[]) => {
         for (const userId of usersToFetch) {
             const userDocRef = doc(db, 'users', userId);
             const userDoc = await userDocRef.get();
-            if (userDoc.exists()) {
-                userProfileCache[userId] = userDoc.data() as UserProfile;
-            } else {
-                userProfileCache[userId] = { id: userId, name: "Unknown User", headline: "DamDoh Member", avatarUrl: "" };
-            }
+            userProfileCache[userId] = userDoc.exists() 
+                ? (userDoc.data() as UserProfile)
+                : { id: userId, name: "Unknown User", headline: "DamDoh Member", avatarUrl: "" };
         }
     }
-
     userIds.forEach(id => {
         userProfiles[id] = userProfileCache[id];
     });
-
     return userProfiles;
 };
-
 
 export default function DashboardPage() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const { user } = useAuth();
+  const functions = getFunctions(firebaseApp);
 
-  // ==============================================================
-  // REAL-TIME DATA FETCHING FOR THE FEED
-  // ==============================================================
+  // Memoize the callable functions
+  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), [functions]);
+  const createPostCallable = useMemo(() => httpsCallable(functions, 'createPost'), [functions]);
+  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
+  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
+
+
   useEffect(() => {
-    const db = getFirestore(firebaseApp);
-    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(50));
+    const fetchPersonalizedFeed = async () => {
+        setIsLoadingFeed(true);
+        try {
+            // In a real app, user interests would be fetched from their profile
+            const userContext = { interests: ['maize', 'fertilizer', 'weather'] };
+            const result = await getFeed(userContext);
+            const posts = (result.data as any).posts as any[];
 
-    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-      const posts: Post[] = [];
-      querySnapshot.forEach((doc) => {
-        // Basic filtering for moderation
-        const data = doc.data();
-        if (data.moderation?.status !== 'rejected') {
-            posts.push({ id: doc.id, ...data } as Post);
+            if (posts.length > 0) {
+                const userIds = [...new Set(posts.map(post => post.userId))];
+                const profiles = await fetchUserProfiles(userIds);
+                
+                const enrichedFeed: FeedItem[] = posts.map(post => ({
+                    id: post.id,
+                    content: post.content,
+                    timestamp: post.createdAt.toDate().toISOString(),
+                    user: {
+                        id: post.userId,
+                        name: profiles[post.userId]?.name || "Unknown User",
+                        headline: profiles[post.userId]?.headline || "DamDoh Member",
+                        avatarUrl: profiles[post.userId]?.avatarUrl || ""
+                    },
+                    likes: post.likeCount,
+                    comments: post.commentCount,
+                    media: post.mediaUrl ? { url: post.mediaUrl, type: post.mediaType } : undefined,
+                    pollOptions: post.pollOptions,
+                }));
+                setFeedItems(enrichedFeed);
+            } else {
+                setFeedItems([]);
+            }
+        } catch (error) {
+            console.error("Error fetching personalized feed:", error);
+        } finally {
+            setIsLoadingFeed(false);
         }
-      });
-      
-      if (posts.length > 0) {
-        const userIds = [...new Set(posts.map(post => post.userId))];
-        const profiles = await fetchUserProfiles(userIds);
+    };
+    
+    // Instead of a realtime listener, we now fetch a personalized feed.
+    // A more advanced implementation might combine personalization with a realtime subscription.
+    fetchPersonalizedFeed();
 
-        const enrichedFeed: FeedItem[] = posts.map(post => ({
-          id: post.id,
-          content: post.content,
-          timestamp: post.createdAt?.toDate().toISOString() || new Date().toISOString(),
-          user: {
-            id: post.userId,
-            name: profiles[post.userId]?.name || "Unknown User",
-            headline: profiles[post.userId]?.headline || "DamDoh Member",
-            avatarUrl: profiles[post.userId]?.avatarUrl || ""
-          },
-          likes: post.likeCount,
-          comments: post.commentCount,
-          media: post.mediaUrl ? { url: post.mediaUrl, type: post.mediaType } : undefined,
-          pollOptions: post.pollOptions,
-          moderation: post.moderation
-        }));
-        setFeedItems(enrichedFeed);
-      } else {
-        setFeedItems([]);
-      }
-      setIsLoadingFeed(false);
-    }, (error) => {
-      console.error("Error listening to feed:", error);
-      setIsLoadingFeed(false);
-    });
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
+  }, [user, getFeed]);
 
   const handleCreatePost = async (content: string, media?: File, pollOptions?: { text: string }[]) => {
     if (!user) return;
-      
-    const functions = getFunctions(firebaseApp);
-    const createPost = httpsCallable(functions, 'createPost');
-
+    
     let mediaUrl: string | undefined = undefined;
     if (media) {
-      mediaUrl = "https://placehold.co/800x450.png"; // Placeholder for upload
+      mediaUrl = "https://placehold.co/800x450.png";
     }
     
     try {
-      await createPost({ content, mediaUrl, pollOptions });
-      // UI will update automatically via the onSnapshot listener
+      await createPostCallable({ content, mediaUrl, pollOptions });
+      // Here, you might trigger a re-fetch of the personalized feed
+      // Or optimistically add the post to the top of the feed.
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
   
   const handleLikePost = async (postId: string) => {
-    const functions = getFunctions(firebaseApp);
-    const likePostCallable = httpsCallable(functions, 'likePost');
     try {
       await likePostCallable({ postId });
-      // UI will update automatically via the onSnapshot listener's likeCount update
+      // Optimistic update for immediate feedback
+      setFeedItems(prevItems => prevItems.map(item => 
+        item.id === postId ? { ...item, likes: item.likes + 1 } : item
+      ));
     } catch(error) {
       console.error("Error liking post:", error);
     }
   };
   
   const handleCommentOnPost = async (postId: string, comment: string) => {
-    const functions = getFunctions(firebaseApp);
-    const addCommentCallable = httpsCallable(functions, 'addComment');
      try {
         await addCommentCallable({ postId, content: comment });
-        // UI will update automatically via the onSnapshot listener's commentCount update
+        setFeedItems(prevItems => prevItems.map(item => 
+            item.id === postId ? { ...item, comments: item.comments + 1 } : item
+        ));
      } catch(error) {
          console.error("Error adding comment:", error);
      }
@@ -155,20 +151,18 @@ export default function DashboardPage() {
           </div>
         ) : feedItems.length > 0 ? (
           feedItems.map((item) => (
-            item.moderation?.status !== 'pending_review' && (
-                <FeedItemCard 
-                  key={item.id} 
-                  item={item} 
-                  onLike={handleLikePost}
-                  onComment={handleCommentOnPost}
-                />
-            )
+            <FeedItemCard 
+              key={item.id} 
+              item={item} 
+              onLike={handleLikePost}
+              onComment={handleCommentOnPost}
+            />
           ))
         ) : (
           <Card>
             <CardContent className="pt-6 text-center text-muted-foreground">
-              <p>The feed is empty.</p>
-              <p className="text-sm">Be the first to share something with the community!</p>
+              <p>No posts in your feed right now.</p>
+              <p className="text-sm">Check back later or create a post to get the conversation started!</p>
             </CardContent>
           </Card>
         )}

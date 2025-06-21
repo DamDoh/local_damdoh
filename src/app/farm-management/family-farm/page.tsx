@@ -153,7 +153,7 @@ const farmZones: FarmZone[] = [
     subSections: [
       {
         title: "Feed the Soil, Not Just the Plants:",
-        content: ["Focus on building healthy, living soil through regular compost application and mulching. Healthy soil grows healthy, nutrient-dense plants that are more resistant to pests and diseases."]
+        content: ["Focus on building healthy, living soil through regular compost application and mulching. Healthy soil grows healthy, nutrient-dense plants that are more resistant to pests and diseases, and provide more nutritious food."]
       },
       {
         title: "Nutrient Cycling (Closing Loops):",

@@ -9,6 +9,8 @@ if (admin.apps.length === 0) {
 
 const db = admin.firestore();
 
+// ... (createPost, moderatePost functions remain the same)
+
 /**
  * Creates a new post in the 'posts' collection.
  */
@@ -75,19 +77,60 @@ export const moderatePost = functions.firestore
         });
     });
 
+
 /**
- * Fetches a list of posts for the main feed.
+ * Fetches and personalizes a list of posts for the main feed.
  */
 export const getFeed = functions.https.onCall(async (data, context) => {
+  // In a real scenario, we'd get user-specific context.
+  // const userInterests = data.interests || []; // e.g., ['maize', 'fertilizer']
+  
   try {
-    const postsSnapshot = await db.collection("posts").orderBy("createdAt", "desc").limit(20).get();
-    const posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return { posts };
+    const postsSnapshot = await db.collection("posts")
+                                  .where('moderation.status', '==', 'approved')
+                                  .orderBy("createdAt", "desc")
+                                  .limit(50) // Fetch a larger pool of recent posts
+                                  .get();
+    
+    let posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    // =================================================================
+    // CONCEPTUAL AI Personalization & Ranking
+    // This is a simplified example. A real AI model would be more complex.
+    // =================================================================
+    const personalizedPosts = posts.map(post => {
+      let score = 0;
+      // Example: Boost posts with more engagement
+      score += (post.likeCount || 0) * 0.5;
+      score += (post.commentCount || 0) * 1.0;
+
+      // Example: Boost posts based on content matching user interests
+      // if (userInterests.some(interest => post.content.toLowerCase().includes(interest))) {
+      //   score += 5;
+      // }
+      
+      // Decay score based on age (newer posts are more relevant)
+      const hoursOld = (Date.now() - post.createdAt.toDate().getTime()) / (1000 * 60 * 60);
+      score -= hoursOld * 0.2;
+
+      return { ...post, score };
+    });
+
+    // Sort posts by the calculated score in descending order
+    personalizedPosts.sort((a, b) => b.score - a.score);
+
+    return { posts: personalizedPosts.slice(0, 20) }; // Return the top 20 personalized posts
+
   } catch (error) {
-    console.error("Error fetching feed:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching the feed.");
+    console.error("Error fetching and personalizing feed:", error);
+    throw new functions.https.HttpsError(
+      "internal",
+      "An error occurred while fetching the feed."
+    );
   }
 });
+
+// ... (likePost, addComment, notifyOnLike, notifyOnComment functions remain the same)
 
 /**
  * Likes or unlikes a post.
