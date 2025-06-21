@@ -544,5 +544,3 @@ export const deleteCrop = functions.https.onCall(async (data: { cropId: string }
     throw new functions.https.HttpsError('internal', 'Could not delete crop.', error.message);
   }
 });
-
-    
