@@ -20,9 +20,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { createForumTopicSchema, type CreateForumTopicValues } from "@/lib/form-schemas";
 import { ArrowLeft, Send, MessageSquare, CaseUpper, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function CreateForumTopicPage() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<CreateForumTopicValues>({
     resolver: zodResolver(createForumTopicSchema),
@@ -35,14 +37,15 @@ export default function CreateForumTopicPage() {
   function onSubmit(data: CreateForumTopicValues) {
     console.log("New Forum Topic Data:", data);
     // In a real app, you would submit this data to your backend
-    // and then likely redirect the user to the new topic or the forums list.
+    // e.g., await createForumTopicInDB(data);
     toast({
       title: "Topic Submitted (Simulated)",
-      description: "Your new forum topic has been created (details logged to console).",
+      description: "Your new forum topic has been created and you will be redirected.",
     });
-    // Optionally, redirect or clear form:
-    // form.reset(); 
-    // router.push('/forums');
+    // Redirect to the forums list after a short delay
+    setTimeout(() => {
+        router.push('/forums');
+    }, 1500);
   }
 
   return (
@@ -99,9 +102,12 @@ export default function CreateForumTopicPage() {
                   </FormItem>
                 )}
               />
-              {/* Optionally, add category selection here if implemented */}
-              <Button type="submit" className="w-full md:w-auto">
-                <Send className="mr-2 h-4 w-4" /> Post New Discussion
+              <Button type="submit" className="w-full md:w-auto" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? (
+                    "Submitting..."
+                ) : (
+                    <><Send className="mr-2 h-4 w-4" /> Post New Discussion</>
+                )}
               </Button>
             </form>
           </Form>
