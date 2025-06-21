@@ -27,6 +27,7 @@ import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, Tre
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth-utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -44,7 +45,7 @@ export default function EditProfilePage() {
     resolver: zodResolver(editProfileSchema),
     defaultValues: {
       name: "",
-      email: "", // Email might not be editable or fetched from authUser
+      email: "",
       role: undefined,
       profileSummary: "",
       bio: "",
@@ -64,7 +65,7 @@ export default function EditProfilePage() {
         setProfile(userProfile);
         form.reset({
           name: userProfile.name,
-          email: userProfile.email, // Consider if email should be editable
+          email: userProfile.email,
           role: userProfile.role,
           profileSummary: userProfile.profileSummary || "",
           bio: userProfile.bio || "",
@@ -76,7 +77,7 @@ export default function EditProfilePage() {
         });
       } else {
         toast({ variant: "destructive", title: "Profile Not Found", description: "Could not load profile data to edit." });
-        router.push("/profiles"); // Or to a 404 page
+        router.push("/profiles");
       }
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -87,23 +88,21 @@ export default function EditProfilePage() {
   }, [form, router, toast]);
 
   useEffect(() => {
-    if (authLoading) return; // Wait for auth state to resolve
+    if (authLoading) return;
 
     let idToFetch: string | null = null;
     if (profileIdParam === "me") {
       if (authUser) {
         idToFetch = authUser.uid;
       } else {
-        // Not authenticated, redirect to login or show error
         toast({ variant: "destructive", title: "Not Authenticated", description: "Please sign in to edit your profile." });
         router.push("/auth/signin");
         return;
       }
     } else {
-      // For now, only allow editing 'me' or if you implement admin logic
       if (!authUser || authUser.uid !== profileIdParam) {
         toast({ variant: "destructive", title: "Unauthorized", description: "You can only edit your own profile."});
-        router.push(`/profiles/${profileIdParam}`); // Redirect to view page
+        router.push(`/profiles/${profileIdParam}`);
         return;
       }
       idToFetch = profileIdParam;
@@ -111,16 +110,15 @@ export default function EditProfilePage() {
 
     if (idToFetch) {
       fetchProfileData(idToFetch);
-    } else if (!authLoading && profileIdParam === "me" && !authUser) {
-        // This case should be handled above, but as a fallback
-        setIsLoadingData(false); // Stop loading if auth is done and no user for 'me'
+    } else if (!authLoading) {
+        setIsLoadingData(false);
     }
 
   }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
 
 
   async function onSubmit(data: EditProfileValues) {
-    if (!profile || !profile.id) {
+    if (!profile?.id) {
       toast({ variant: "destructive", title: "Error", description: "Profile ID is missing. Cannot save changes." });
       return;
     }
@@ -128,7 +126,6 @@ export default function EditProfilePage() {
     try {
       const profileUpdates: Partial<UserProfile> = {
         name: data.name,
-        // email: data.email, // Be cautious about allowing email edits if it's tied to auth
         role: data.role,
         profileSummary: data.profileSummary,
         bio: data.bio,
@@ -138,8 +135,7 @@ export default function EditProfilePage() {
         contactInfo: {
           phone: data.contactInfoPhone,
           website: data.contactInfoWebsite,
-          // Retain existing email in contactInfo if not directly editable here
-          email: profile.contactInfo?.email || data.email 
+          email: profile.email // Keep existing email from profile
         },
       };
 
@@ -149,6 +145,7 @@ export default function EditProfilePage() {
         description: "Your changes have been saved.",
       });
       router.push(`/profiles/${profileIdParam}`);
+      router.refresh(); // Force a refresh to show updated data on profile page
     } catch (error) {
       console.error("Error updating profile:", error);
       toast({
@@ -163,28 +160,35 @@ export default function EditProfilePage() {
 
   if (isLoadingData || authLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <p className="ml-2">Loading profile data...</p>
-      </div>
-    );
-  }
-
-  if (!profile && !isLoadingData && !authLoading) { // Ensure loading is complete before showing not found
-    return (
-      <Card>
+      <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle>Profile Not Found</CardTitle>
+          <Skeleton className="h-8 w-2/3" />
+          <Skeleton className="h-4 w-1/2" />
         </CardHeader>
-        <CardContent>
-          <p>Sorry, we couldn't find the profile data for ID: "{profileIdParam}".</p>
-           <Button asChild variant="outline" className="mt-4">
-            <Link href={`/profiles/${profileIdParam === "me" ? (authUser?.uid || '') : profileIdParam}`}>
-              <ArrowLeft className="h-4 w-4 mr-2" /> Back to Profile
-            </Link>
-          </Button>
+        <CardContent className="space-y-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="space-y-2">
+              <Skeleton className="h-4 w-1/4" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+          ))}
+          <Skeleton className="h-10 w-32" />
         </CardContent>
       </Card>
+    );
+  }
+  
+  if (!profile) {
+    return (
+        <Card className="max-w-3xl mx-auto">
+            <CardHeader>
+            <CardTitle>Profile Not Found</CardTitle>
+            <CardDescription>The requested profile could not be loaded.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Button variant="outline" asChild><Link href="/"><ArrowLeft className="h-4 w-4 mr-2" />Back to Home</Link></Button>
+            </CardContent>
+        </Card>
     );
   }
 
@@ -192,7 +196,7 @@ export default function EditProfilePage() {
     <div className="space-y-6">
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl">Edit Profile: {profile?.name}</CardTitle>
+          <CardTitle className="text-2xl">Edit Profile: {profile.name}</CardTitle>
           <CardDescription>Update your public information for the DamDoh network.</CardDescription>
         </CardHeader>
         <CardContent>

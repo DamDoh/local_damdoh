@@ -5,6 +5,7 @@ import {
   getDocs, 
   doc, 
   getDoc,
+  setDoc,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -46,6 +47,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
+    if (!id) return null;
     const profileDocRef = doc(db, 'profiles', id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
@@ -66,17 +68,17 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
   }
 }
 
-export async function createProfileInDB(profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
+export async function createProfileInDB(userId: string, profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
   try {
-    const profilesCol = collection(db, 'profiles');
+    const profileDocRef = doc(db, 'profiles', userId);
     const docData = {
       ...profileData,
       createdAt: Timestamp.now(),
       updatedAt: Timestamp.now(),
     };
-    const docRef = await addDoc(profilesCol, docData);
+    await setDoc(profileDocRef, docData); // Use setDoc with specific user ID
     
-    const newDocSnap = await getDoc(docRef);
+    const newDocSnap = await getDoc(profileDocRef);
     if (newDocSnap.exists()) {
         const data = newDocSnap.data();
         return {
@@ -263,7 +265,6 @@ export async function getAllForumTopicsFromDB(): Promise<ForumTopic[]> {
         id: docSnap.id,
         ...data,
         createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
-        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
         lastActivityAt: (data.lastActivityAt as Timestamp)?.toDate ? (data.lastActivityAt as Timestamp).toDate().toISOString() : data.lastActivityAt,
       } as ForumTopic;
     });
@@ -288,7 +289,6 @@ export async function getForumPostsByTopicIdFromDB(topicId: string): Promise<For
       const replies = (data.replies || []).map((reply: any) => ({
         ...reply,
         createdAt: (reply.createdAt as Timestamp)?.toDate ? (reply.createdAt as Timestamp).toDate().toISOString() : reply.createdAt,
-        updatedAt: (reply.updatedAt as Timestamp)?.toDate ? (reply.updatedAt as Timestamp).toDate().toISOString() : reply.updatedAt,
       }));
 
       return {
@@ -296,7 +296,6 @@ export async function getForumPostsByTopicIdFromDB(topicId: string): Promise<For
         ...data,
         replies,
         createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
-        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : data.updatedAt,
       } as ForumPost;
     });
     // Optionally sort posts by createdAt if needed
