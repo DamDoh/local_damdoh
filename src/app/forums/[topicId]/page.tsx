@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -8,9 +9,11 @@ import type { ForumTopic, ForumPost as ForumPostType } from "@/lib/types";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { ArrowLeft, Clock, MessageSquare, ThumbsUp, Send, UserCircle, Truck, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat } from "lucide-react";
-import { dummyForumTopicDetail, dummyForumPosts, dummyUsersData } from "@/lib/dummy-data";
-import { useParams } from "next/navigation";
+import { dummyUsersData } from "@/lib/dummy-data";
+import { useParams, notFound } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { getForumTopicByIdFromDB, getForumPostsByTopicIdFromDB } from "@/lib/db-utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Helper to get the correct icon for a topic
 const getIcon = (iconName?: string) => {
@@ -30,6 +33,7 @@ const getIcon = (iconName?: string) => {
 };
 
 function ForumPost({ post }: { post: ForumPostType }) {
+  // Use dummy data as a fallback for author details
   const author = dummyUsersData[post.authorId] || { name: 'Unknown User', role: 'Stakeholder', avatarUrl: '' };
   return (
     <Card className="shadow-sm bg-card">
@@ -68,33 +72,92 @@ function ForumPost({ post }: { post: ForumPostType }) {
   );
 }
 
+function TopicPageSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Skeleton className="h-6 w-48" />
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-3 mb-2">
+            <Skeleton className="h-8 w-8 rounded-md" />
+            <Skeleton className="h-8 w-3/4" />
+          </div>
+          <Skeleton className="h-5 w-1/2" />
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <Skeleton className="h-6 w-1/3" />
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-3 items-start">
+            <Skeleton className="h-10 w-10 rounded-full" />
+            <Skeleton className="h-24 w-full" />
+          </div>
+        </CardContent>
+        <CardFooter className="justify-end">
+          <Skeleton className="h-10 w-32" />
+        </CardFooter>
+      </Card>
+      <div className="space-y-4">
+        <Skeleton className="h-6 w-1/4" />
+        <Card><CardContent className="p-4"><Skeleton className="h-20 w-full" /></CardContent></Card>
+        <Card><CardContent className="p-4"><Skeleton className="h-20 w-full" /></CardContent></Card>
+      </div>
+    </div>
+  );
+}
+
 export default function ForumTopicPage() {
   const params = useParams();
   const { toast } = useToast();
-  
-  // In a real app, you would fetch topic and posts data based on params.topicId
-  // This simulates fetching data for a specific topic. We'll use the first topic from dummy data.
-  const forumTopic = dummyForumTopics.find(t => t.id === params.topicId);
-  const forumPosts = dummyForumPosts.filter(post => post.topicId === params.topicId);
-  const users = dummyUsersData; 
+  const topicId = params.topicId as string;
 
-  if (!forumTopic) {
-    return (
-      <Card>
-          <CardHeader>
-              <CardTitle>Topic Not Found</CardTitle>
-              <CardDescription>Sorry, the forum topic you are looking for does not exist.</CardDescription>
-          </CardHeader>
-          <CardContent>
-              <Button asChild variant="outline">
-                  <Link href="/forums"><ArrowLeft className="mr-2 h-4 w-4"/>Back to Forums</Link>
-              </Button>
-          </CardContent>
-      </Card>
-    );
+  const [forumTopic, setForumTopic] = useState<ForumTopic | null>(null);
+  const [forumPosts, setForumPosts] = useState<ForumPostType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!topicId) {
+        setIsLoading(false);
+        return;
+    }
+
+    async function fetchData() {
+        setIsLoading(true);
+        try {
+            const [topicData, postsData] = await Promise.all([
+                getForumTopicByIdFromDB(topicId),
+                getForumPostsByTopicIdFromDB(topicId),
+            ]);
+
+            if (topicData) {
+                setForumTopic(topicData);
+                setForumPosts(postsData);
+            } else {
+                setForumTopic(null); // Explicitly set to null if not found
+            }
+        } catch (error) {
+            console.error("Error fetching forum data:", error);
+            toast({ variant: "destructive", title: "Failed to load topic", description: "Could not fetch the discussion details. Please try again." });
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    fetchData();
+  }, [topicId, toast]);
+
+  if (isLoading) {
+    return <TopicPageSkeleton />;
   }
 
-  const creator = users[forumTopic.creatorId] || { name: 'Unknown Creator' };
+  if (!forumTopic) {
+    // This will be triggered if getForumTopicByIdFromDB returns null
+    return notFound();
+  }
+  
+  const creator = dummyUsersData[forumTopic.creatorId] || { name: 'Unknown Creator' };
   
   const handleContribute = () => {
       toast({
@@ -131,7 +194,7 @@ export default function ForumTopicPage() {
         <CardContent>
           <div className="flex gap-3 items-start">
              <Avatar className="h-10 w-10 border mt-1">
-                <AvatarImage src={users['currentDemoUser']?.avatarUrl} alt={users['currentDemoUser']?.name} data-ai-hint="profile supply chain" />
+                <AvatarImage src={dummyUsersData['currentDemoUser']?.avatarUrl} alt={dummyUsersData['currentDemoUser']?.name} data-ai-hint="profile supply chain" />
                 <AvatarFallback><UserCircle /></AvatarFallback>
             </Avatar>
             <Textarea placeholder="Share your experience, ask a question, or offer a solution..." className="min-h-[100px] flex-grow" />

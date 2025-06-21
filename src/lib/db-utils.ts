@@ -278,6 +278,28 @@ export async function getAllForumTopicsFromDB(): Promise<ForumTopic[]> {
   }
 }
 
+export async function getForumTopicByIdFromDB(id: string): Promise<ForumTopic | null> {
+  try {
+    const topicDocRef = doc(db, 'forumTopics', id);
+    const topicSnap = await getDoc(topicDocRef);
+    if (topicSnap.exists()) {
+      const data = topicSnap.data();
+      return {
+        id: topicSnap.id,
+        ...data,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : data.createdAt,
+        lastActivityAt: (data.lastActivityAt as Timestamp)?.toDate ? (data.lastActivityAt as Timestamp).toDate().toISOString() : data.lastActivityAt,
+      } as ForumTopic;
+    } else {
+      console.log(`No forum topic found with ID: ${id}`);
+      return null;
+    }
+  } catch (error) {
+    console.error(`Error fetching forum topic with ID ${id} from Firestore: `, error);
+    throw error;
+  }
+}
+
 // --- Forum Post DB Operations ---
 export async function getForumPostsByTopicIdFromDB(topicId: string): Promise<ForumPost[]> {
  try {
