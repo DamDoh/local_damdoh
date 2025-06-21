@@ -1,9 +1,11 @@
+
 // This file contains the Genkit flow for suggesting connections to users.
 
 'use server';
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { STAKEHOLDER_ROLES } from '@/lib/constants';
 
 /**
  * @fileOverview This file defines the suggested connections AI agent.
@@ -13,22 +15,7 @@ import {z} from 'genkit';
  * - SuggestedConnectionsOutput - The return type for the suggestConnections function.
  */
 
-const StakeholderRoleSchema = z.enum([
-  'Farmer',
-  'Input Supplier',
-  'Pre-Harvest Contractor',
-  'Collection Agent',
-  'Processor',
-  'Trader',
-  'Retailer',
-  'Exporter',
-  'Consumer',
-  'Government Agency',
-  'Agricultural Cooperative',
-  'Financial Institution',
-  'Trade Association',
-  'Development Personnel',
-]);
+const StakeholderRoleSchema = z.enum(STAKEHOLDER_ROLES);
 
 const SuggestedConnectionsInputSchema = z.object({
   profileSummary: z
@@ -119,4 +106,3 @@ const suggestConnectionsFlow = ai.defineFlow(
     return output!;
   }
 );
-

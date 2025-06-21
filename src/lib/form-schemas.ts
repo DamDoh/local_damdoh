@@ -37,6 +37,12 @@ export const createMarketplaceItemSchema = z.object({
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters."),
   skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("For services: Enter skills, comma-separated"),
   compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional().describe("For services: e.g., $50/hr, Project-based"),
+   // Fields from extended schema, made optional for the form
+  brand: z.string().max(50, "Brand name is too long.").optional(),
+  condition: z.enum(['New', 'Used', 'Refurbished']).optional(),
+  availabilityStatus: z.enum(['Available', 'Booking Required', 'Limited Availability']).optional(),
+  certifications: z.string().max(500, "Certifications list is too long.").optional(),
+  relatedTraceabilityId: z.string().cuid2({ message: "Invalid traceability ID format." }).optional(),
 });
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
