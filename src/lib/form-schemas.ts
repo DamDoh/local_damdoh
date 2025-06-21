@@ -42,7 +42,7 @@ export const createMarketplaceItemSchema = z.object({
   condition: z.enum(['New', 'Used', 'Refurbished']).optional(),
   availabilityStatus: z.enum(['Available', 'Booking Required', 'Limited Availability']).optional(),
   certifications: z.string().max(500, "Certifications list is too long.").optional(),
-  relatedTraceabilityId: z.string().cuid2({ message: "Invalid traceability ID format." }).optional(),
+  relatedTraceabilityId: z.string().max(100, "Traceability ID is too long.").optional(),
 });
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
