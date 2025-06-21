@@ -1,3 +1,4 @@
+
 // This page is deprecated and its functionality has been merged into /marketplace/create.
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

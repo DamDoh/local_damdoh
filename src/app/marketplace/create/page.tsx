@@ -491,7 +491,7 @@ export default function CreateMarketplaceListingPage() {
                     <FormLabel className="flex items-center gap-2"><Settings2 className="h-4 w-4 text-muted-foreground" />Contact Information / Instructions</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="e.g., Contact via DamDoh platform, or email@example.com, or call +123456789"
+                        placeholder="e.g., Contact via DamDoh platform, or email@example.com, or call +1234567890"
                         className="min-h-[80px]"
                         {...field}
                       />
