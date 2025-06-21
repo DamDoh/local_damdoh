@@ -172,7 +172,7 @@ export default function MarketplaceItemDetailPage() {
           <CardTitle className="text-3xl font-bold">{item.name}</CardTitle>
           <CardDescription className="text-lg text-primary flex items-center">
              <Badge variant="outline" className="text-sm w-fit py-1 px-2 flex items-center capitalize mr-2">
-              {getCategoryIcon(item.category as any)} {getCategoryName(item.category)}
+              {getCategoryIcon(item.category as any)} {getCategoryName(item.category as CategoryNode['id'])}
             </Badge>
             {item.listingType === 'Product' ? (
                <>
