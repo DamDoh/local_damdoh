@@ -1,92 +1,136 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bell, AlertTriangle } from "lucide-react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useAuth } from "@/lib/auth-utils";
+import { firebaseApp } from "@/lib/firebase";
+import { collection, query, where, orderBy, onSnapshot, getFirestore } from "firebase/firestore";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import { ThumbsUp, MessageSquare } from "lucide-react";
+import type { Notification, UserProfile } from "@/lib/types";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// Dummy data for notifications
-const dummyNotifications = [
-  {
-    id: "notif1",
-    type: "policy_update",
-    title: "Privacy Policy Updated",
-    message: "Our Privacy Policy has been updated. Please review the changes.",
-    date: "2023-10-27",
-    link: "/privacy",
-    read: false,
-  },
-  {
-    id: "notif2",
-    type: "system",
-    title: "New Feature: AI Assistant",
-    message: "Explore our new AI Assistant for farming insights and crop diagnosis!",
-    date: "2023-10-26",
-    link: "/ai-assistant",
-    read: true,
-  },
-  {
-    id: "notif3",
-    type: "connection_request",
-    title: "New Connection Request",
-    message: "AgriLogistics Co-op wants to connect with you.",
-    date: "2023-10-25",
-    link: "/network",
-    read: false,
-  },
-];
+// This is a simplified version of the fetchUserProfiles from the dashboard
+// In a real app, this would be a shared, robust utility
+const userProfileCache: Record<string, UserProfile> = {};
+const fetchNotificationUserProfiles = async (userIds: string[]) => {
+    const db = getFirestore(firebaseApp);
+    const profiles: Record<string, UserProfile> = {};
+    const usersToFetch = [...new Set(userIds)].filter(id => !userProfileCache[id]);
 
+    for (const userId of usersToFetch) {
+        const userDoc = await getFirestore(firebaseApp).collection('users').doc(userId).get();
+        if (userDoc.exists()) {
+            userProfileCache[userId] = userDoc.data() as UserProfile;
+        } else {
+            userProfileCache[userId] = { id: userId, name: "Someone", avatarUrl: "", headline: "" };
+        }
+    }
+    
+    userIds.forEach(id => {
+        profiles[id] = userProfileCache[id];
+    });
+
+    return profiles;
+};
+
+const NotificationIcon = ({ type }: { type: 'like' | 'comment' }) => {
+    switch (type) {
+        case 'like':
+            return <ThumbsUp className="h-5 w-5 text-blue-500" />;
+        case 'comment':
+            return <MessageSquare className="h-5 w-5 text-green-500" />;
+        default:
+            return null;
+    }
+};
 
 export default function NotificationsPage() {
-  const notifications = dummyNotifications; // Using dummy data
+    const { user } = useAuth();
+    const [notifications, setNotifications] = useState<Notification[]>([]);
+    const [actorProfiles, setActorProfiles] = useState<Record<string, UserProfile>>({});
+    const [isLoading, setIsLoading] = useState(true);
 
-  return (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Bell className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Notifications</CardTitle>
-          </div>
-          <CardDescription>Stay updated with alerts from your network, marketplace, and platform updates.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          {notifications.length > 0 ? (
-            <ul className="space-y-4">
-              {notifications.map((notification) => (
-                <li
-                  key={notification.id}
-                  className={`p-4 border rounded-lg shadow-sm transition-colors ${
-                    !notification.read ? "bg-primary/5 border-primary/20" : "bg-card hover:bg-accent/30"
-                  }`}
-                >
-                  <Link href={notification.link || "#"} className="block group">
-                    <div className="flex items-start gap-3">
-                      {notification.type === "policy_update" && <AlertTriangle className="h-5 w-5 text-orange-500 mt-0.5" />}
-                      {notification.type !== "policy_update" && <Bell className="h-5 w-5 text-primary mt-0.5" />}
-                      <div className="flex-1">
-                        <div className="flex justify-between items-center">
-                          <h3 className={`text-md font-semibold group-hover:underline ${!notification.read ? 'text-primary' : ''}`}>
-                            {notification.title}
-                          </h3>
-                          <span className="text-xs text-muted-foreground">{notification.date}</span>
+    useEffect(() => {
+        if (!user) {
+            setIsLoading(false);
+            return;
+        }
+
+        const db = getFirestore(firebaseApp);
+        const q = query(
+            collection(db, "notifications"),
+            where("userId", "==", user.uid),
+            orderBy("createdAt", "desc")
+        );
+
+        const unsubscribe = onSnapshot(q, async (snapshot) => {
+            const newNotifications: Notification[] = [];
+            snapshot.forEach((doc) => {
+                newNotifications.push({ id: doc.id, ...doc.data() } as Notification);
+            });
+            
+            if(newNotifications.length > 0) {
+                const actorIds = newNotifications.map(n => n.actorId);
+                const profiles = await fetchNotificationUserProfiles(actorIds);
+                setActorProfiles(profiles);
+            }
+
+            setNotifications(newNotifications);
+            setIsLoading(false);
+        }, (error) => {
+            console.error("Error fetching notifications:", error);
+            setIsLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, [user]);
+
+    return (
+        <div className="container mx-auto max-w-2xl py-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Notifications</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {isLoading ? (
+                        <div className="space-y-4">
+                           <Skeleton className="h-16 w-full" />
+                           <Skeleton className="h-16 w-full" />
+                           <Skeleton className="h-16 w-full" />
                         </div>
-                        <p className="text-sm text-muted-foreground mt-1">{notification.message}</p>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="min-h-[300px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
-              <Bell className="h-16 w-16 text-muted-foreground/50 mb-4" />
-              <h3 className="text-xl font-semibold text-muted-foreground mb-2">No New Notifications</h3>
-              <p className="text-muted-foreground max-w-md">
-                When there's activity relevant to you—like new messages, connection requests, or important updates—you'll see it here.
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
-  );
+                    ) : notifications.length > 0 ? (
+                        <div className="space-y-2">
+                            {notifications.map((notification) => {
+                                const actor = actorProfiles[notification.actorId];
+                                return (
+                                <Link href={`/posts/${notification.postId}`} key={notification.id}>
+                                    <div className={`flex items-center gap-4 p-3 rounded-lg hover:bg-accent ${!notification.read ? 'bg-accent/50' : ''}`}>
+                                        <Avatar>
+                                            <AvatarImage src={actor?.avatarUrl}/>
+                                            <AvatarFallback>{actor?.name?.substring(0,1) ?? 'A'}</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex-1">
+                                            <p className="text-sm">
+                                                <span className="font-semibold">{actor?.name ?? "Someone"}</span>
+                                                {notification.type === 'like' ? ' liked your post.' : ' commented on your post.'}
+                                            </p>
+                                            <p className="text-xs text-muted-foreground">
+                                                {new Date(notification.createdAt.toDate()).toLocaleString()}
+                                            </p>
+                                        </div>
+                                        <NotificationIcon type={notification.type as 'like' | 'comment'} />
+                                    </div>
+                                </Link>
+                            )})}
+                        </div>
+                    ) : (
+                        <p className="text-center text-muted-foreground py-10">You have no new notifications.</p>
+                    )}
+                </CardContent>
+            </Card>
+        </div>
+    );
 }
