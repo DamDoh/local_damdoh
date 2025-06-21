@@ -53,49 +53,6 @@ export default function RootLayout({
         {/* This layout provides a persistent sidebar for navigation on larger screens */}
         <div className="flex flex-1 overflow-hidden">
           {/*
- Conceptual Persistent Sidebar:
- This sidebar would contain:
- - Main module navigation (Marketplace, Traceability, Financial Hub, etc.)
- - Quick links or frequently used actions
- - Potentially user-role specific menus
- This needs a dedicated component (e.g., <AppSidebar />)
- */
- }
- {/* <AppSidebar /> */} {/* Placeholder for the conceptual sidebar component */}
- {/*
-            This sidebar could contain:
-            - Main module navigation (Marketplace, Traceability, Financial Hub, etc.)
-            - Quick links or frequently used actions
-            - Potentially user-role specific menus
-            This needs a dedicated component (e.g., <AppSidebar />)
-          */}
-          {/* <AppSidebar /> */} {/* Placeholder for the conceptual sidebar component */}
- <aside className="w-64 border-r bg-background hidden md:flex flex-col p-4">
- {/* Placeholder for conceptual sidebar content - main nav links, quick access etc. */}
-            <div className="font-bold mb-4">Main Navigation</div>
-            <nav className="space-y-2">
- {/*
- A customizable "Dashboard" view as the default landing page for a Super App, showing consolidated info.
- Sidebars for navigation within a module or for quick access widgets across modules.
-          The `main` container here holds the primary content (`children`).
-          Consider how a dashboard/quick links could wrap or sit alongside `children`
-          especially on wider screens.
-            */}
-              <a href="#" className="block py-1 px-2 hover:bg-muted rounded">Dashboard</a>
-              <a href="/marketplace" className="block py-1 px-2 hover:bg-muted rounded">Marketplace</a>
-              <a href="/traceability" className="block py-1 px-2 hover:bg-muted rounded">Traceability</a>
-              <a href="#" className="block py-1 px-2 hover:bg-muted rounded">Financial Hub</a>
-              <a href="#" className="block py-1 px-2 hover:bg-muted rounded">AI Assistant</a>
-              <a href="#" className="block py-1 px-2 hover:bg-muted rounded">Sustainability</a>
-              {/* Add more conceptual links */}
- </nav>
- {/* Conceptual Quick Access / Widgets area */}
- <div className="mt-auto pt-4 border-t">
- {/* <QuickAccessWidgets /> */} {/* Placeholder */}
-              <div className="text-sm text-muted-foreground">Quick Access Widgets Placeholder</div>
-            </div>
-          </aside>
-          {/*
             Main Content Area Integration:
             This is where the content of the specific page/module (like Messaging, Marketplace, etc.)
             will be rendered based on the current route.
