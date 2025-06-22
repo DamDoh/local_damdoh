@@ -75,6 +75,19 @@ export const createAgriEventSchema = z.object({
 
 export type CreateAgriEventValues = z.infer<typeof createAgriEventSchema>;
 
+export const createFarmSchema = z.object({
+  name: z.string().min(3, "Farm name must be at least 3 characters.").max(100),
+  description: z.string().max(500, "Description is too long.").optional(),
+  location: z.string().min(3, "Please provide a location.").max(200),
+  size: z.string().min(1, "Please provide the farm size.").max(50),
+  farmType: z.enum(['crop', 'livestock', 'mixed', 'aquaculture', 'other'], {
+    errorMap: () => ({ message: "Please select a farm type." }),
+  }),
+  irrigationMethods: z.string().max(200, "Irrigation methods description is too long.").optional(),
+});
+export type CreateFarmValues = z.infer<typeof createFarmSchema>;
+
+
 export const editProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
   email: z.string().email("Please enter a valid email address."),

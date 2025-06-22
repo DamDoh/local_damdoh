@@ -136,18 +136,18 @@ export const getLogisticsDashboardData = functions.https.onCall(async (data, con
     }
 
     const mockLogisticsData = {
-        optimizedRoutes: [
-            { id: "route1", from: "Farm A", to: "Warehouse B", savings: "15% fuel", eta: "4 hours", actionLink: "/routes/plan/route1" },
+        activeShipments: [
+            { id: "shipment123", to: "City Market", status: "In Transit", eta: "2 hours", vtiLink: "/traceability/shipment123" },
+            { id: "shipment456", to: "Export Port", status: "Delayed", eta: "6 hours", vtiLink: "/traceability/shipment456" }
         ],
-        shipmentStatus: {
-            total: 150,
-            inTransit: 120,
-            delayed: 5,
-            actionLink: "/shipments/overview"
-        },
-        demandHotspots: [
-            { id: "hotspot1", location: "City Market", product: "Fresh Vegetables", demand: "High", actionLink: "/logistics/demand-map" },
-        ]
+        incomingJobs: [
+            { id: "job1", from: "Green Valley Farms", to: "City Market", product: "Tomatoes", requirements: "Refrigerated", actionLink: "/jobs/details/job1" },
+        ],
+        performanceMetrics: {
+            onTimePercentage: 98,
+            fuelEfficiency: "15 mpg",
+            actionLink: "/logistics/performance"
+        }
     };
     
     return mockLogisticsData;
@@ -165,16 +165,18 @@ export const getFiDashboardData = functions.https.onCall(async (data, context) =
     }
 
     const mockFiData = {
-        creditRiskAssessments: [
-            { id: "farmerX", name: "J. Doe", score: 720, recommendation: "Approve", actionLink: "/profiles/farmerX/assessment" },
+        pendingApplications: [
+            { id: "app1", applicantName: "J. Doe", type: "Crop Loan", amount: 5000, riskScore: 720, actionLink: "/finance/applications/app1" },
+            { id: "app2", applicantName: "Sunrise Acres", type: "Equipment Loan", amount: 25000, riskScore: 810, actionLink: "/finance/applications/app2" }
         ],
-        portfolioPerformance: {
-            totalValue: 1250000,
-            nonPerforming: 0.05,
-            actionLink: "/finance/portfolio/overview"
+        portfolioAtRisk: {
+            count: 3,
+            value: 45000,
+            highestRisk: { name: "Risky Farm Co.", reason: "Drought conditions" },
+            actionLink: "/finance/portfolio/risk"
         },
-        emergingOpportunities: [
-            { id: "opp1", sector: "Aquaculture", region: "Region C", potential: "High Growth", actionLink: "/markets/opportunities/aquaculture" },
+        marketUpdates: [
+            { id: "update1", content: "Government announces new green energy subsidies for farms.", actionLink: "/news/article1" }
         ]
     };
 

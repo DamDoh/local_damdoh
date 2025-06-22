@@ -59,7 +59,11 @@ export default function FarmManagementPage() {
             <CardTitle className="text-xl">My Farms</CardTitle>
             <CardDescription>Manage your agricultural assets and track their performance.</CardDescription>
           </div>
-           <Button><PlusCircle className="mr-2 h-4 w-4" /> Add New Farm</Button>
+           <Button asChild>
+            <Link href="/farm-management/create-farm">
+                <PlusCircle className="mr-2 h-4 w-4" /> Add New Farm
+            </Link>
+           </Button>
         </CardHeader>
         <CardContent>
           <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">

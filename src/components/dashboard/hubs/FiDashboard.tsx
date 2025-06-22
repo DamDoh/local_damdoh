@@ -6,28 +6,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
-import { UserCheck, PieChart, TrendingUp, Landmark } from 'lucide-react';
+import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 interface FiDashboardData {
-    creditRiskAssessments: {
+    pendingApplications: {
         id: string;
-        name: string;
-        score: number;
-        recommendation: string;
+        applicantName: string;
+        type: string;
+        amount: number;
+        riskScore: number;
         actionLink: string;
     }[];
-    portfolioPerformance: {
-        totalValue: number;
-        nonPerforming: number;
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
         actionLink: string;
     };
-    emergingOpportunities: {
+    marketUpdates: {
         id: string;
-        sector: string;
-        region: string;
-        potential: string;
+        content: string;
         actionLink: string;
     }[];
 }
@@ -66,7 +70,7 @@ export const FiDashboard = () => {
         );
     }
 
-    const { portfolioPerformance, emergingOpportunities, creditRiskAssessments } = dashboardData;
+    const { pendingApplications, portfolioAtRisk, marketUpdates } = dashboardData;
 
     return (
         <div>
@@ -75,56 +79,56 @@ export const FiDashboard = () => {
                 
                 <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Portfolio Performance</CardTitle>
-                        <Landmark className="h-4 w-4 text-muted-foreground" />
+                        <CardTitle className="text-sm font-medium">Portfolio At Risk</CardTitle>
+                        <AlertTriangle className="h-4 w-4 text-destructive" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">${portfolioPerformance.totalValue.toLocaleString()}</div>
-                        <p className="text-xs text-muted-foreground">{portfolioPerformance.nonPerforming * 100}% non-performing</p>
+                        <div className="text-2xl font-bold">{portfolioAtRisk.count} Accounts</div>
+                        <p className="text-xs text-muted-foreground">${portfolioAtRisk.value.toLocaleString()} value</p>
                     </CardContent>
                     <CardFooter>
-                        <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href={portfolioPerformance.actionLink}>View Detailed Report</Link>
+                        <Button asChild variant="destructive" size="sm" className="w-full">
+                            <Link href={portfolioAtRisk.actionLink}>Review Risk</Link>
                         </Button>
                     </CardFooter>
                 </Card>
 
-                <Card className="flex flex-col">
+                <Card className="col-span-1 md:col-span-2 flex flex-col">
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <UserCheck className="h-4 w-4" />
-                           Credit Risk Assessments
+                           Pending Applications
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {creditRiskAssessments.map(assessment => (
-                           <div key={assessment.id} className="flex justify-between items-center text-sm">
+                       {pendingApplications.map(app => (
+                           <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                <div>
-                                   <p className="font-medium">{assessment.name}</p>
-                                   <p className="text-xs text-muted-foreground">Score: {assessment.score}</p>
+                                   <p className="font-medium">{app.applicantName} - ${app.amount.toLocaleString()}</p>
+                                   <p className="text-xs text-muted-foreground">{app.type}</p>
                                </div>
-                               <Button asChild variant="secondary" size="sm">
-                                   <Link href={assessment.actionLink}>{assessment.recommendation}</Link>
+                               <Button asChild size="sm">
+                                   <Link href={app.actionLink}>Review</Link>
                                </Button>
                            </div>
                        ))}
                     </CardContent>
                 </Card>
                 
-                <Card className="flex flex-col">
-                     <CardHeader className="pb-2">
+                <Card className="col-span-1 md:col-span-3">
+                     <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
-                           <TrendingUp className="h-4 w-4" />
-                           Emerging Opportunities
+                           <Landmark className="h-4 w-4" />
+                           Market & Policy Updates
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex-grow space-y-2">
-                       {emergingOpportunities.map(opp => (
-                           <div key={opp.id} className="text-sm">
-                               <Link href={opp.actionLink} className="font-medium hover:underline">{opp.sector}</Link>
-                               <p className="text-xs text-muted-foreground">{opp.region} ({opp.potential})</p>
-                           </div>
-                       ))}
+                    <CardContent className="space-y-2">
+                        {marketUpdates.map(update => (
+                            <div key={update.id} className="text-sm p-3 border rounded-lg">
+                                <p>{update.content}</p>
+                                <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">Read More</Link>
+                            </div>
+                        ))}
                     </CardContent>
                 </Card>
             </div>
@@ -137,8 +141,8 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Skeleton className="h-40 rounded-lg" />
-            <Skeleton className="h-40 rounded-lg" />
-            <Skeleton className="h-40 rounded-lg" />
+            <Skeleton className="h-40 rounded-lg md:col-span-2" />
+            <Skeleton className="h-48 rounded-lg md:col-span-3" />
         </div>
     </div>
 );
