@@ -82,7 +82,7 @@ export default function CareersPage() {
               </div>
             ) : (
               <div className="min-h-[200px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
-                <Briefcase className="h-12 w-12 text-muted-foreground/50 mb-4" />
+                <Briefcase className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
                 <h3 className="text-xl font-semibold text-muted-foreground mb-2">No Current Openings (Or Section Coming Soon)</h3>
                 <p className="text-muted-foreground max-w-md">
                   We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">careers@damdoh.org</a>.
