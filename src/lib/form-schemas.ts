@@ -87,6 +87,19 @@ export const createFarmSchema = z.object({
 });
 export type CreateFarmValues = z.infer<typeof createFarmSchema>;
 
+export const createCropSchema = z.object({
+  cropType: z.string().min(2, "Crop type must be at least 2 characters.").max(100),
+  plantingDate: z.date({
+    required_error: "A planting date is required.",
+    invalid_type_error: "That's not a valid date!",
+  }),
+  harvestDate: z.date().optional(),
+  expectedYield: z.string().max(50, "Expected yield description is too long.").optional(),
+  currentStage: z.enum(['Planting', 'Vegetative', 'Flowering', 'Fruiting', 'Harvesting', 'Post-Harvest']).optional(),
+  notes: z.string().max(1000, "Notes are too long.").optional(),
+});
+export type CreateCropValues = z.infer<typeof createCropSchema>;
+
 
 export const editProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),

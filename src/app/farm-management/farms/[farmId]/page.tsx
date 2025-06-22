@@ -220,7 +220,11 @@ export default function FarmDetailPage() {
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-4">
                         <CardTitle className="text-lg flex items-center gap-2"><Sprout className="h-5 w-5"/> Crops / Livestock</CardTitle>
-                        <Button variant="outline" size="sm"><PlusCircle className="mr-2 h-4 w-4"/>Add New Crop</Button>
+                        <Button asChild variant="outline" size="sm">
+                           <Link href={`/farm-management/farms/${farmId}/create-crop`}>
+                             <PlusCircle className="mr-2 h-4 w-4"/>Add New Crop
+                           </Link>
+                        </Button>
                     </CardHeader>
                     <CardContent>
                          <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
