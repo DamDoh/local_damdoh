@@ -113,6 +113,7 @@ export default function FarmDetailPage() {
                     if (farmData && farmData.name) { 
                         setFarm(farmData);
                         // After fetching farm, fetch its crops
+                        setIsLoadingCrops(true);
                         getFarmCropsCallable({ farmId })
                             .then((cropsResult) => {
                                 setCrops(cropsResult.data as Crop[]);
