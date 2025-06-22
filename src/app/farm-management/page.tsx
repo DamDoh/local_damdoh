@@ -1,10 +1,61 @@
 
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sprout, Home, Recycle, FlaskConical, ArrowRight, Tractor, DollarSign, Bell, PlusCircle } from "lucide-react";
+import { Sprout, Home, Recycle, FlaskConical, ArrowRight, Tractor, DollarSign, Bell, PlusCircle, Drumstick, Fish } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { useAuth } from "@/lib/auth-utils";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { firebaseApp } from '@/lib/firebase';
+import { Skeleton } from "@/components/ui/skeleton";
+
+interface Farm {
+  id: string;
+  name: string;
+  location: string;
+  farmType: string;
+}
+
+const getFarmIcon = (farmType: string) => {
+  const iconProps = { className: "h-6 w-6 text-muted-foreground" };
+  switch (farmType?.toLowerCase()) {
+    case 'crop': return <Sprout {...iconProps} />;
+    case 'livestock': return <Drumstick {...iconProps} />;
+    case 'mixed': return <Tractor {...iconProps} />;
+    case 'aquaculture': return <Fish {...iconProps} />;
+    default: return <Home {...iconProps} />;
+  }
+};
 
 export default function FarmManagementPage() {
+  const { user } = useAuth();
+  const [farms, setFarms] = useState<Farm[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const functions = getFunctions(firebaseApp);
+  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), [functions]);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoading(true);
+      getUserFarmsCallable()
+        .then((result) => {
+          setFarms(result.data as Farm[]);
+        })
+        .catch((error) => {
+          console.error("Error fetching user farms:", error);
+          // Optionally, show a toast message to the user
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
+      setFarms([]);
+    }
+  }, [user, getUserFarmsCallable]);
+
   const resourceGuides = [
     {
       title: "200sqm Family Farm Model",
@@ -66,10 +117,34 @@ export default function FarmManagementPage() {
            </Button>
         </CardHeader>
         <CardContent>
-          <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
-            <p className="text-sm text-muted-foreground">Your registered farms will be listed here.</p>
-            <p className="text-xs text-muted-foreground mt-1">(Farm management features coming soon)</p>
-          </div>
+          {isLoading ? (
+            <div className="space-y-4">
+              <Skeleton className="h-20 w-full" />
+              <Skeleton className="h-20 w-full" />
+            </div>
+          ) : farms.length > 0 ? (
+            <div className="space-y-4">
+              {farms.map((farm) => (
+                <Card key={farm.id} className="flex items-center justify-between p-4 hover:bg-accent/50 transition-colors">
+                  <div className="flex items-center gap-4">
+                    {getFarmIcon(farm.farmType)}
+                    <div>
+                      <h4 className="font-semibold">{farm.name}</h4>
+                      <p className="text-sm text-muted-foreground">{farm.location}</p>
+                    </div>
+                  </div>
+                  <Button asChild variant="outline">
+                    <Link href={`/farm-management/farms/${farm.id}`}>Manage Farm</Link>
+                  </Button>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
+              <p className="text-sm text-muted-foreground">You haven't added any farms yet.</p>
+              <p className="text-xs text-muted-foreground mt-1">Click "Add New Farm" to get started.</p>
+            </div>
+          )}
         </CardContent>
       </Card>
 
