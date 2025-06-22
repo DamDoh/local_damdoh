@@ -10,34 +10,38 @@ if (admin.apps.length === 0) {
 
 /**
  * =================================================================
- * AGRO-EXPORT FACILITATOR HUB
+ * FIELD AGENT / AGRONOMIST HUB
  * =================================================================
  */
-export const getAgroExportDashboardData = functions.https.onCall(async (data, context) => {
+export const getFieldAgentDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
 
-    const mockAgroExportData = {
-        pendingCustomsDocs: [
-            { id: "shipment123", vtiLink: "/traceability/vti-123", destination: "Rotterdam, NL", status: "Awaiting Phytosanitary Certificate" },
-            { id: "shipment789", vtiLink: "/traceability/vti-789", destination: "Singapore", status: "Ready for Declaration" }
+    const mockFieldAgentData = {
+        assignedFarmers: [
+            { id: "farmerA", name: "Green Valley Farms", lastVisit: "2024-05-20", issues: 1, actionLink: "/profiles/farmerA" },
+            { id: "farmerB", name: "Sunrise Acres", lastVisit: "2024-05-22", issues: 0, actionLink: "/profiles/farmerB" },
+            { id: "farmerC", name: "Hillside Plots", lastVisit: "2024-05-19", issues: 3, actionLink: "/profiles/farmerC" },
         ],
-        trackedShipments: [
-            { id: "shipmentABC", status: "Customs Clearance", location: "Port of Mombasa", carrier: "Maersk" },
-            { id: "shipmentDEF", status: "In Transit", location: "Indian Ocean", carrier: "CMA CGM" }
-        ],
-        complianceAlerts: [
-            { id: "alertEU1", content: "New EU regulation on cocoa bean imports effective next month.", actionLink: "/regulations/eu/cocoa-2024" }
-        ]
+        portfolioHealth: {
+            overallScore: 88,
+            alerts: ["Pest risk detected at Green Valley Farms"],
+            actionLink: "/portfolio/health-overview"
+        },
+        pendingReports: 3,
+        dataVerificationTasks: {
+            count: 5,
+            description: "New harvest data from Sunrise Acres requires verification.",
+            actionLink: "/tasks/verification"
+        }
     };
     
-    return mockAgroExportData;
+    return mockFieldAgentData;
 });
 
 
 // The rest of the hub functions follow...
-// ... (getFarmerDashboardData, getBuyerDashboardData, etc.)
 export const getFarmerDashboardData = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -184,4 +188,49 @@ export const getFiDashboardData = functions.https.onCall(async (data, context) =
     };
 
     return mockFiData;
+});
+
+export const getAgroExportDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockAgroExportData = {
+        pendingCustomsDocs: [
+            { id: "shipment123", vtiLink: "/traceability/vti-123", destination: "Rotterdam, NL", status: "Awaiting Phytosanitary Certificate" },
+            { id: "shipment789", vtiLink: "/traceability/vti-789", destination: "Singapore", status: "Ready for Declaration" }
+        ],
+        trackedShipments: [
+            { id: "shipmentABC", status: "Customs Clearance", location: "Port of Mombasa", carrier: "Maersk" },
+            { id: "shipmentDEF", status: "In Transit", location: "Indian Ocean", carrier: "CMA CGM" }
+        ],
+        complianceAlerts: [
+            { id: "alertEU1", content: "New EU regulation on cocoa bean imports effective next month.", actionLink: "/regulations/eu/cocoa-2024" }
+        ]
+    };
+    
+    return mockAgroExportData;
+});
+
+export const getInputSupplierDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockInputSupplierData = {
+        demandForecast: [
+            { id: "forecast1", region: "Rift Valley, Kenya", product: "DAP Fertilizer", trend: "+15%", reason: "Early planting season detected via satellite imagery." },
+            { id: "forecast2", region: "Punjab, India", product: "Pest-Resistant Wheat Seeds", trend: "+10%", reason: "Increased pest activity reported in region." }
+        ],
+        productPerformance: [
+            { id: "perf1", productName: "SuperGrow Seed Variant X", rating: 4.8, feedback: "High germination rate reported by farmers.", link: "/products/perf1/reviews" }
+        ],
+        activeOrders: {
+            count: 124,
+            value: 85000,
+            link: "/orders/active"
+        }
+    };
+    
+    return mockInputSupplierData;
 });

@@ -6,22 +6,31 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
-import { TrendingUp, Star, Package } from 'lucide-react';
+import { Lightbulb, TrendingUp, PackageCheck, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 interface InputSupplierDashboardData {
     demandForecast: {
+        id: string;
         region: string;
         product: string;
         trend: string;
+        reason: string;
     }[];
-    activeOrders: number;
-    productFeedback: {
+    productPerformance: {
+        id: string;
         productName: string;
         rating: number;
-        totalReviews: number;
+        feedback: string;
+        link: string;
     }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
 }
 
 export const InputSupplierDashboard = () => {
@@ -45,7 +54,7 @@ export const InputSupplierDashboard = () => {
         };
         fetchData();
     }, [getInputSupplierData]);
-
+    
     if (isLoading) {
         return <DashboardSkeleton />;
     }
@@ -58,57 +67,65 @@ export const InputSupplierDashboard = () => {
         );
     }
 
-    const { demandForecast, activeOrders, productFeedback } = dashboardData;
+    const { demandForecast, productPerformance, activeOrders } = dashboardData;
 
     return (
         <div>
             <h1 className="text-3xl font-bold mb-6">Input Supplier Hub</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <Card>
+                
+                <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Active Orders</CardTitle>
-                        <Package className="h-4 w-4 text-muted-foreground" />
+                        <ShoppingCart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{activeOrders}</div>
-                        <p className="text-xs text-muted-foreground">awaiting fulfillment</p>
+                    <CardContent className="flex-grow">
+                        <div className="text-2xl font-bold">{activeOrders.count}</div>
+                        <p className="text-xs text-muted-foreground">${activeOrders.value.toLocaleString()} in total value</p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button asChild variant="outline" size="sm" className="w-full">
+                            <Link href={activeOrders.link}>Manage Orders</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                <Card className="col-span-1 md:col-span-2 flex flex-col">
+                     <CardHeader className="pb-2">
+                        <CardTitle className="text-base flex items-center gap-2">
+                           <TrendingUp className="h-4 w-4" />
+                           AI-Powered Demand Forecast
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow space-y-2">
+                       {demandForecast.map(forecast => (
+                           <div key={forecast.id} className="text-sm p-2 bg-background rounded-md border">
+                               <p className="font-medium">{forecast.product} in <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
+                               <p className="text-xs text-muted-foreground">{forecast.reason}</p>
+                           </div>
+                       ))}
                     </CardContent>
                 </Card>
                 
-                <Card className="md:col-span-2">
-                    <CardHeader className="pb-2">
+                <Card className="col-span-1 md:col-span-3">
+                     <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
-                            <TrendingUp />
-                            AI-Driven Demand Forecast
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        {demandForecast.map((forecast, index) => (
-                            <div key={index} className="text-sm">
-                                <span className="font-semibold">{forecast.region}:</span> {forecast.product} ({forecast.trend})
-                            </div>
-                        ))}
-                    </CardContent>
-                </Card>
-
-                <Card className="md:col-span-3">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-base flex items-center gap-2">
-                            <Star />
-                            Product Performance Feedback
+                           <PackageCheck className="h-4 w-4" />
+                           Product Performance Feedback
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {productFeedback.map((feedback, index) => (
-                             <div key={index} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                       {productPerformance.map(perf => (
+                            <div key={perf.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                 <div>
-                                    <p className="font-medium">{feedback.productName}</p>
-                                    <p className="text-xs text-muted-foreground">{feedback.totalReviews} reviews</p>
+                                    <p className="font-medium">{perf.productName} <Badge variant="secondary">Rating: {perf.rating}/5</Badge></p>
+                                    <p className="text-xs text-muted-foreground italic">"{perf.feedback}"</p>
                                 </div>
-                                <div className="font-bold">{feedback.rating.toFixed(1)} ★</div>
+                                <Button asChild variant="secondary" size="sm">
+                                    <Link href={perf.link}>View All Reviews</Link>
+                                </Button>
                             </div>
-                        ))}
+                       ))}
                     </CardContent>
                 </Card>
             </div>
@@ -120,9 +137,9 @@ const DashboardSkeleton = () => (
     <div>
         <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-32" />
-            <Skeleton className="h-32 md:col-span-2" />
-            <Skeleton className="h-48 md:col-span-3" />
+            <Skeleton className="h-40 rounded-lg" />
+            <Skeleton className="h-40 rounded-lg md:col-span-2" />
+            <Skeleton className="h-48 rounded-lg md:col-span-3" />
         </div>
     </div>
 );
