@@ -58,7 +58,7 @@ export default function AboutPage() {
                     className="rounded-full mx-auto mb-3 border-2 border-primary"
                     data-ai-hint="team member portrait"
                   />
-                  <h3 className="font-semibold text-foreground">Team Member {index + 1}</h3>
+                  <h3 className="font-semibold text-foreground">Team Member ${index + 1}</h3>
                   <p className="text-sm text-primary">Role/Specialty</p>
                   <p className="text-xs mt-1">Brief bio about expertise and passion for agriculture coming soon.</p>
                 </Card>
