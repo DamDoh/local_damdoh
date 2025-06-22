@@ -28,11 +28,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createCropSchema, type CreateCropValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, Sprout, CalendarIcon, Text, BarChart, HardHat, FileText } from "lucide-react";
+import { ArrowLeft, Save, Sprout, CalendarIcon, Text, BarChart, HardHat, FileText, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth-utils";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { firebaseApp } from "@/lib/firebase";
 
 export default function CreateCropPage() {
   const router = useRouter();
@@ -40,6 +43,9 @@ export default function CreateCropPage() {
   const farmId = params.farmId as string;
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useAuth();
+  const functions = getFunctions(firebaseApp);
+  const createCropCallable = httpsCallable(functions, 'createCrop');
 
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),
@@ -54,20 +60,48 @@ export default function CreateCropPage() {
   });
 
   async function onSubmit(data: CreateCropValues) {
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Not Authenticated",
+        description: "You must be logged in to add a crop.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    // In a real app, this would call a backend function
-    console.log("New Crop Data for Farm ID:", farmId, data);
-    
-    // Simulate backend submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    toast({
-      title: "Crop Added Successfully (Simulated)",
-      description: `Your crop "${data.cropType}" has been registered for this farm.`,
-    });
+    try {
+      const payload = {
+        farm_id: farmId,
+        owner_id: user.uid, // The backend will verify this against the auth context
+        crop_type: data.cropType,
+        planting_date: data.plantingDate, // Date objects are handled by the callable function
+        harvest_date: data.harvestDate,
+        expected_yield: data.expectedYield,
+        current_stage: data.currentStage,
+        notes: data.notes,
+      };
 
-    router.push(`/farm-management/farms/${farmId}`);
-    setIsSubmitting(false);
+      await createCropCallable(payload);
+
+      toast({
+        title: "Crop Added Successfully!",
+        description: `Your crop "${data.cropType}" has been registered for this farm.`,
+      });
+
+      router.push(`/farm-management/farms/${farmId}`);
+
+    } catch (error: any) {
+      console.error("Error creating crop:", error);
+      toast({
+        variant: "destructive",
+        title: "Failed to Add Crop",
+        description: error.message || "An error occurred. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -235,7 +269,13 @@ export default function CreateCropPage() {
               />
 
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                <Save className="mr-2 h-4 w-4" /> {isSubmitting ? "Saving..." : "Save Crop"}
+                {isSubmitting ? (
+                    <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                    </>
+                ) : (
+                    <><Save className="mr-2 h-4 w-4" /> Save Crop</>
+                )}
               </Button>
             </form>
           </Form>
