@@ -1,15 +1,18 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import * as Vision from "@google-cloud/vision";
 
-// Ensure Firebase Admin is initialized
+// Initialize Firebase and Vision API clients
 if (admin.apps.length === 0) {
   admin.initializeApp();
 }
-
+const visionClient = new Vision.ImageAnnotatorClient();
 const db = admin.firestore();
 
-// ... (createPost, moderatePost functions remain the same)
+// ... (createPost, moderatePost, getFeed, likePost, addComment, notifyOnLike, notifyOnComment functions are here)
+// NOTE: For brevity, I am omitting the existing functions, but they should remain in the file.
+
 
 /**
  * Creates a new post in the 'posts' collection.
@@ -35,7 +38,7 @@ export const createPost = functions.https.onCall(async (data, context) => {
     commentCount: 0,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     moderation: {
-        status: 'pending_review', // Default status
+        status: 'pending_review', // Default status for all posts
         reviewedAt: null,
     }
   };
@@ -50,87 +53,110 @@ export const createPost = functions.https.onCall(async (data, context) => {
 });
 
 /**
- * A Firestore trigger that runs when a new post is created.
- * It performs a basic content moderation check.
+ * A Firestore trigger that runs when a new post is created for text moderation.
  */
-export const moderatePost = functions.firestore
+export const moderateText = functions.firestore
     .document('posts/{postId}')
     .onCreate(async (snap, context) => {
         const post = snap.data();
-        const content = post.content;
+        // Only moderate text if there's no image to moderate, or do it in parallel
+        if (post.mediaUrl) {
+            console.log(`Post ${context.params.postId} has an image, deferring moderation decision to image moderator.`);
+            return null;
+        }
 
-        // Simple profanity filter (replace with a more robust library in production)
+        const content = post.content;
         const blocklist = ["badword1", "badword2", "inappropriate"];
         const isExplicit = blocklist.some(word => content.toLowerCase().includes(word));
 
-        let moderationStatus = 'approved';
-        if (isExplicit) {
-            moderationStatus = 'rejected';
-            console.log(`Post ${context.params.postId} rejected for containing inappropriate content.`);
-        } else {
-            console.log(`Post ${context.params.postId} approved.`);
-        }
-
         return snap.ref.update({
-            'moderation.status': moderationStatus,
-            'moderation.reviewedAt': admin.firestore.FieldValue.serverTimestamp()
+            'moderation.status': isExplicit ? 'rejected' : 'approved',
+            'moderation.reviewedAt': admin.firestore.FieldValue.serverTimestamp(),
+            'moderation.moderator': 'text-moderator-v1'
         });
     });
+
+
+/**
+ * A Storage trigger that runs when a new image is uploaded for a post.
+ * It uses the Cloud Vision API to detect inappropriate content.
+ */
+export const moderateImage = functions.storage.object().onFinalize(async (object) => {
+    // We expect a file path like 'posts/{postId}/{fileName}'
+    const filePath = object.name;
+    if (!filePath || !filePath.startsWith('posts/')) {
+        return console.log('This is not a post image.');
+    }
+
+    const bucketName = object.bucket;
+    const gcsUri = `gs://${bucketName}/${filePath}`;
+
+    // Extract postId from file path.
+    const parts = filePath.split('/');
+    const postId = parts[1];
+
+    try {
+        const [result] = await visionClient.safeSearchDetection(gcsUri);
+        const safeSearch = result.safeSearchAnnotation;
+
+        // Check if the image is likely to be inappropriate
+        const isAdult = safeSearch?.adult === 'LIKELY' || safeSearch?.adult === 'VERY_LIKELY';
+        const isViolent = safeSearch?.violence === 'LIKELY' || safeSearch?.violence === 'VERY_LIKELY';
+
+        if (isAdult || isViolent) {
+            console.log(`Image for post ${postId} flagged as inappropriate.`);
+            await db.collection('posts').doc(postId).update({
+                'moderation.status': 'rejected',
+                'moderation.reason': 'inappropriate_image_content',
+                'moderation.reviewedAt': admin.firestore.FieldValue.serverTimestamp(),
+                'moderation.moderator': 'vision-api'
+            });
+        } else {
+            console.log(`Image for post ${postId} seems clean.`);
+             await db.collection('posts').doc(postId).update({
+                'moderation.status': 'approved',
+                'moderation.reviewedAt': admin.firestore.FieldValue.serverTimestamp(),
+                'moderation.moderator': 'vision-api'
+            });
+        }
+    } catch (error) {
+        console.error(`Failed to moderate image for post ${postId}.`, error);
+    }
+     return null;
+});
+
 
 
 /**
  * Fetches and personalizes a list of posts for the main feed.
  */
 export const getFeed = functions.https.onCall(async (data, context) => {
-  // In a real scenario, we'd get user-specific context.
-  // const userInterests = data.interests || []; // e.g., ['maize', 'fertilizer']
-  
   try {
     const postsSnapshot = await db.collection("posts")
                                   .where('moderation.status', '==', 'approved')
                                   .orderBy("createdAt", "desc")
-                                  .limit(50) // Fetch a larger pool of recent posts
+                                  .limit(50) 
                                   .get();
     
     let posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-    // =================================================================
-    // CONCEPTUAL AI Personalization & Ranking
-    // This is a simplified example. A real AI model would be more complex.
-    // =================================================================
     const personalizedPosts = posts.map(post => {
       let score = 0;
-      // Example: Boost posts with more engagement
       score += (post.likeCount || 0) * 0.5;
       score += (post.commentCount || 0) * 1.0;
-
-      // Example: Boost posts based on content matching user interests
-      // if (userInterests.some(interest => post.content.toLowerCase().includes(interest))) {
-      //   score += 5;
-      // }
-      
-      // Decay score based on age (newer posts are more relevant)
       const hoursOld = (Date.now() - post.createdAt.toDate().getTime()) / (1000 * 60 * 60);
       score -= hoursOld * 0.2;
-
       return { ...post, score };
     });
 
-    // Sort posts by the calculated score in descending order
     personalizedPosts.sort((a, b) => b.score - a.score);
-
-    return { posts: personalizedPosts.slice(0, 20) }; // Return the top 20 personalized posts
-
+    return { posts: personalizedPosts.slice(0, 20) };
   } catch (error) {
     console.error("Error fetching and personalizing feed:", error);
-    throw new functions.https.HttpsError(
-      "internal",
-      "An error occurred while fetching the feed."
-    );
+    throw new functions.https.HttpsError( "internal", "An error occurred while fetching the feed.");
   }
 });
 
-// ... (likePost, addComment, notifyOnLike, notifyOnComment functions remain the same)
 
 /**
  * Likes or unlikes a post.
@@ -154,12 +180,10 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const likeDoc = await likeRef.get();
 
     if (likeDoc.exists) {
-      // User has already liked the post, so unlike it
       await likeRef.delete();
       await postRef.update({ likeCount: admin.firestore.FieldValue.increment(-1) });
       return { status: "unliked" };
     } else {
-      // User has not liked the post, so like it
       await likeRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
       await postRef.update({ likeCount: admin.firestore.FieldValue.increment(1) });
       return { status: "liked" };
@@ -214,31 +238,21 @@ export const notifyOnLike = functions.firestore
     .document('posts/{postId}/likes/{userId}')
     .onCreate(async (snap, context) => {
         const { postId, userId } = context.params;
-
-        // Get the post to find out who the author is
         const postDoc = await db.collection('posts').doc(postId).get();
-        if (!postDoc.exists) {
-            return console.log(`Post ${postId} not found.`);
-        }
+        if (!postDoc.exists) return;
 
         const post = postDoc.data()!;
         const postAuthorId = post.userId;
+        if (postAuthorId === userId) return;
 
-        // Don't create a notification if users like their own post
-        if (postAuthorId === userId) {
-            return console.log("User liked their own post. No notification created.");
-        }
-
-        // Create the notification
         const notification = {
-            userId: postAuthorId, // The user to notify
-            actorId: userId,      // The user who performed the action
+            userId: postAuthorId,
+            actorId: userId,
             type: 'like',
             postId: postId,
             read: false,
             createdAt: admin.firestore.FieldValue.serverTimestamp()
         };
-
         return db.collection('notifications').add(notification);
     });
 
@@ -253,16 +267,11 @@ export const notifyOnComment = functions.firestore
         const commenterId = comment.userId;
 
         const postDoc = await db.collection('posts').doc(postId).get();
-        if (!postDoc.exists) {
-            return console.log(`Post ${postId} not found.`);
-        }
+        if (!postDoc.exists) return;
         
         const post = postDoc.data()!;
         const postAuthorId = post.userId;
-
-        if (postAuthorId === commenterId) {
-            return console.log("User commented on their own post. No notification created.");
-        }
+        if (postAuthorId === commenterId) return;
 
         const notification = {
             userId: postAuthorId,
@@ -272,6 +281,5 @@ export const notifyOnComment = functions.firestore
             read: false,
             createdAt: admin.firestore.FieldValue.serverTimestamp()
         };
-
         return db.collection('notifications').add(notification);
     });
