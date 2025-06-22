@@ -6,6 +6,8 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
+// ... (Existing functions for Farmer, Buyer, Regulator, Logistics, FI)
+
 /**
  * =================================================================
  * FARMER MISSION CONTROL HUB
@@ -181,4 +183,99 @@ export const getFiDashboardData = functions.https.onCall(async (data, context) =
     };
 
     return mockFiData;
+});
+
+
+/**
+ * =================================================================
+ * FIELD AGENT OPERATIONS CENTER
+ * =================================================================
+ */
+export const getFieldAgentDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    return {
+        farmerPortfolio: [
+            { id: "farmerA", name: "Green Valley Farms", lastVisit: "2024-07-28", issues: 1, actionLink: "/profiles/farmerA" },
+            { id: "farmerB", name: "Sunrise Acres", lastVisit: "2024-07-25", issues: 0, actionLink: "/profiles/farmerB" }
+        ],
+        diagnosticRequests: [
+            { id: "diag1", farmerName: "Green Valley Farms", issue: "Suspected leaf blight", imageUrl: "https://placehold.co/100x100.png", actionLink: "/diagnostics/diag1" }
+        ],
+        scheduledVisits: [
+            { id: "visit1", farmerName: "New Harvest Co.", date: "2024-08-05", purpose: "Soil testing" }
+        ]
+    };
+});
+
+/**
+ * =================================================================
+ * INPUT SUPPLIER HUB
+ * =================================================================
+ */
+export const getInputSupplierDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    return {
+        demandForecast: [
+            { region: "Rift Valley", product: "DAP Fertilizer", trend: "+15%" },
+            { region: "Coastal Area", product: "Drought-Resistant Seeds", trend: "+25%" }
+        ],
+        activeOrders: 5,
+        productFeedback: [
+            { productName: "SuperGrow Fertilizer", rating: 4.8, totalReviews: 150 }
+        ]
+    };
+});
+
+/**
+ * =================================================================
+ * ENERGY SOLUTIONS PORTAL
+ * =================================================================
+ */
+export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    return {
+        highPotentialLeads: [
+            { id: "proc1", name: "Sunshine Processing", energySpend: 12000, potentialSaving: "25%", actionLink: "/profiles/proc1" }
+        ],
+        carbonImpact: {
+            savedThisYear: 500, // in tons of CO2
+            totalProjects: 15
+        },
+        pendingProposals: 3
+    };
+});
+
+/**
+ * =================================================================
+ * PACKAGING SOLUTIONS CENTER
+ * =================================================================
+ */
+export const getPackagingSupplierDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    return {
+        demandForecast: {
+            productType: "Biodegradable Pouches",
+            unitsNeeded: 500000,
+            for: "Processed Mangoes"
+        },
+        integrationRequests: [
+            { from: "Sunshine Processing", request: "Smart labeling for VTI", actionLink: "/integrations/sunshine" }
+        ],
+        sustainableShowcase: {
+            views: 2500,
+            leads: 50
+        }
+    };
 });

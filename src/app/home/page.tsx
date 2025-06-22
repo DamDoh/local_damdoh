@@ -10,6 +10,10 @@ import { BuyerDashboard } from "@/components/dashboard/hubs/BuyerDashboard";
 import { RegulatorDashboard } from "@/components/dashboard/hubs/RegulatorDashboard";
 import { LogisticsDashboard } from "@/components/dashboard/hubs/LogisticsDashboard";
 import { FiDashboard } from "@/components/dashboard/hubs/FiDashboard";
+import { FieldAgentDashboard } from "@/components/dashboard/hubs/FieldAgentDashboard";
+import { InputSupplierDashboard } from "@/components/dashboard/hubs/InputSupplierDashboard";
+import { EnergyProviderDashboard } from "@/components/dashboard/hubs/EnergyProviderDashboard";
+import { PackagingSupplierDashboard } from "@/components/dashboard/hubs/PackagingSupplierDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function HomePage() {
@@ -24,10 +28,9 @@ export default function HomePage() {
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await userDocRef.get();
         if (userDoc.exists()) {
-          // Assuming the user's primary role is stored in a 'primaryRole' field
-          setUserRole(userDoc.data()?.primaryRole || "farmer"); // Default to farmer for demo
+          setUserRole(userDoc.data()?.primaryRole || "farmer"); 
         } else {
-          setUserRole("farmer"); // Default for users not in the DB
+          setUserRole("farmer"); 
         }
         setIsLoadingRole(false);
       };
@@ -53,8 +56,15 @@ export default function HomePage() {
         return <LogisticsDashboard />;
       case "fi":
         return <FiDashboard />;
+      case "field_agent":
+        return <FieldAgentDashboard />;
+      case "input_supplier":
+        return <InputSupplierDashboard />;
+      case "energy_provider":
+        return <EnergyProviderDashboard />;
+      case "packaging_supplier":
+        return <PackagingSupplierDashboard />;
       default:
-        // A default or guest dashboard
         return <FarmerDashboard />;
     }
   };

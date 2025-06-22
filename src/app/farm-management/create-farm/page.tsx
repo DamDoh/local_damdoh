@@ -26,14 +26,22 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createFarmSchema, type CreateFarmValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, Home, Tractor, MapPin, Text, Droplets, Leaf } from "lucide-react";
+import { ArrowLeft, Save, Home, Tractor, MapPin, Text, Droplets, Leaf, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { useAuth } from "@/lib/auth-utils";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { firebaseApp } from "@/lib/firebase";
+import { LandPlot } from "lucide-react";
+
 
 export default function CreateFarmPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useAuth();
+  const functions = getFunctions(firebaseApp);
+  const createFarmCallable = httpsCallable(functions, 'createFarm');
 
   const form = useForm<CreateFarmValues>({
     resolver: zodResolver(createFarmSchema),
@@ -47,19 +55,44 @@ export default function CreateFarmPage() {
     },
   });
 
-  function onSubmit(data: CreateFarmValues) {
-    setIsSubmitting(true);
-    console.log("New Farm Data:", data);
-    
-    // Simulate backend submission
-    setTimeout(() => {
+  async function onSubmit(data: CreateFarmValues) {
+    if (!user) {
       toast({
-        title: "Farm Created (Simulated)",
-        description: `Your farm "${data.name}" has been successfully registered.`,
+        variant: "destructive",
+        title: "Not Authenticated",
+        description: "You must be logged in to create a farm.",
       });
-      setIsSubmitting(false);
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const payload = {
+        ...data,
+        owner_id: user.uid,
+      };
+      
+      const result = await createFarmCallable(payload);
+
+      console.log("Farm created successfully:", result.data);
+      
+      toast({
+        title: "Farm Created Successfully!",
+        description: `Your farm "${data.name}" has been registered.`,
+      });
+
       router.push("/farm-management");
-    }, 1000);
+    } catch (error: any) {
+      console.error("Error creating farm:", error);
+      toast({
+        variant: "destructive",
+        title: "Failed to Create Farm",
+        description: error.message || "An error occurred while saving the farm. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -188,7 +221,13 @@ export default function CreateFarmPage() {
               />
 
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                {isSubmitting ? "Saving..." : <><Save className="mr-2 h-4 w-4" /> Save Farm</>}
+                {isSubmitting ? (
+                    <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                    </>
+                ) : (
+                    <><Save className="mr-2 h-4 w-4" /> Save Farm</>
+                )}
               </Button>
             </form>
           </Form>
