@@ -14,6 +14,9 @@ import { FieldAgentDashboard } from "@/components/dashboard/hubs/FieldAgentDashb
 import { InputSupplierDashboard } from "@/components/dashboard/hubs/InputSupplierDashboard";
 import { EnergyProviderDashboard } from "@/components/dashboard/hubs/EnergyProviderDashboard";
 import { PackagingSupplierDashboard } from "@/components/dashboard/hubs/PackagingSupplierDashboard";
+import { ProcessingUnitDashboard } from "@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard";
+import { WarehouseDashboard } from "@/components/dashboard/hubs/processing-logistics/WarehouseDashboard";
+import { AgroExportDashboard } from "@/components/dashboard/hubs/processing-logistics/AgroExportDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function HomePage() {
@@ -52,8 +55,8 @@ export default function HomePage() {
         return <BuyerDashboard />;
       case "regulator":
         return <RegulatorDashboard />;
-      case "logistics":
-        return <LogisticsDashboard />;
+      case "logistics_partner":
+        return <LogisticsDashboard />; // Note: Role name updated for clarity
       case "fi":
         return <FiDashboard />;
       case "field_agent":
@@ -64,6 +67,12 @@ export default function HomePage() {
         return <EnergyProviderDashboard />;
       case "packaging_supplier":
         return <PackagingSupplierDashboard />;
+      case "processing_unit":
+        return <ProcessingUnitDashboard />;
+      case "warehouse":
+        return <WarehouseDashboard />;
+      case "agro_export":
+        return <AgroExportDashboard />;
       default:
         return <FarmerDashboard />;
     }

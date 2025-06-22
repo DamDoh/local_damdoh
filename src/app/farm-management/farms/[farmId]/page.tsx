@@ -18,7 +18,7 @@ interface FarmDetails {
   id: string;
   name: string;
   location: string;
-  farmType: string;
+  farm_type: string;
   size?: string;
   description?: string;
   irrigationMethods?: string;
@@ -52,7 +52,7 @@ function FarmDetailSkeleton() {
                         <Skeleton className="h-10 w-24" />
                     </div>
                 </CardHeader>
-                <CardContent className="grid md:grid-cols-2 gap-6">
+                <CardContent className="grid md:grid-cols-2 gap-6 pt-4 border-t">
                     <Skeleton className="h-24" />
                     <Skeleton className="h-24" />
                 </CardContent>
@@ -100,7 +100,12 @@ export default function FarmDetailPage() {
             
             getFarmCallable({ farmId })
                 .then((result) => {
-                    setFarm(result.data as FarmDetails);
+                    const farmData = result.data as FarmDetails;
+                    if (farmData) {
+                        setFarm(farmData);
+                    } else {
+                        setError("Farm not found.");
+                    }
                 })
                 .catch((err) => {
                     console.error("Error fetching farm details:", err);
@@ -178,10 +183,10 @@ export default function FarmDetailPage() {
                 </CardHeader>
                 <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-4 pt-4 border-t">
                      <div className="flex items-center gap-2">
-                        <div className="p-2 bg-muted rounded-md">{getFarmTypeIcon(farm.farmType)}</div>
+                        <div className="p-2 bg-muted rounded-md">{getFarmTypeIcon(farm.farm_type)}</div>
                         <div>
                             <p className="text-sm text-muted-foreground">Farm Type</p>
-                            <p className="font-medium capitalize">{farm.farmType}</p>
+                            <p className="font-medium capitalize">{farm.farm_type}</p>
                         </div>
                     </div>
                      {farm.size && (

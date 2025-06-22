@@ -6,13 +6,38 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
-// ... (Existing functions for Farmer, Buyer, Regulator, Logistics, FI)
+// ... (Existing functions for Farmer, Buyer, Regulator, etc. remain here for brevity)
 
 /**
  * =================================================================
- * FARMER MISSION CONTROL HUB
+ * AGRO-EXPORT FACILITATOR HUB
  * =================================================================
  */
+export const getAgroExportDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockAgroExportData = {
+        pendingCustomsDocs: [
+            { id: "shipment123", vtiLink: "/traceability/vti-123", destination: "Rotterdam, NL", status: "Awaiting Phytosanitary Certificate" },
+            { id: "shipment789", vtiLink: "/traceability/vti-789", destination: "Singapore", status: "Ready for Declaration" }
+        ],
+        trackedShipments: [
+            { id: "shipmentABC", status: "Customs Clearance", location: "Port of Mombasa", carrier: "Maersk" },
+            { id: "shipmentDEF", status: "In Transit", location: "Indian Ocean", carrier: "CMA CGM" }
+        ],
+        complianceAlerts: [
+            { id: "alertEU1", content: "New EU regulation on cocoa bean imports effective next month.", actionLink: "/regulations/eu/cocoa-2024" }
+        ]
+    };
+    
+    return mockAgroExportData;
+});
+
+
+// The rest of the hub functions follow...
+// ... (getFarmerDashboardData, getBuyerDashboardData, etc.)
 export const getFarmerDashboardData = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -57,12 +82,6 @@ export const getFarmerDashboardData = functions.https.onCall(async (data, contex
   return mockDashboardData;
 });
 
-
-/**
- * =================================================================
- * BUYER COMMAND CENTER
- * =================================================================
- */
 export const getBuyerDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -97,12 +116,6 @@ export const getBuyerDashboardData = functions.https.onCall(async (data, context
     return mockBuyerData;
 });
 
-
-/**
- * =================================================================
- * REGULATORY OVERSIGHT PANEL
- * =================================================================
- */
 export const getRegulatorDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -126,12 +139,6 @@ export const getRegulatorDashboardData = functions.https.onCall(async (data, con
     return mockRegulatorData;
 });
 
-
-/**
- * =================================================================
- * LOGISTICS COORDINATION HUB
- * =================================================================
- */
 export const getLogisticsDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -155,12 +162,6 @@ export const getLogisticsDashboardData = functions.https.onCall(async (data, con
     return mockLogisticsData;
 });
 
-
-/**
- * =================================================================
- * FINANCIAL INSTITUTION PORTAL
- * =================================================================
- */
 export const getFiDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -183,99 +184,4 @@ export const getFiDashboardData = functions.https.onCall(async (data, context) =
     };
 
     return mockFiData;
-});
-
-
-/**
- * =================================================================
- * FIELD AGENT OPERATIONS CENTER
- * =================================================================
- */
-export const getFieldAgentDashboardData = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-
-    return {
-        farmerPortfolio: [
-            { id: "farmerA", name: "Green Valley Farms", lastVisit: "2024-07-28", issues: 1, actionLink: "/profiles/farmerA" },
-            { id: "farmerB", name: "Sunrise Acres", lastVisit: "2024-07-25", issues: 0, actionLink: "/profiles/farmerB" }
-        ],
-        diagnosticRequests: [
-            { id: "diag1", farmerName: "Green Valley Farms", issue: "Suspected leaf blight", imageUrl: "https://placehold.co/100x100.png", actionLink: "/diagnostics/diag1" }
-        ],
-        scheduledVisits: [
-            { id: "visit1", farmerName: "New Harvest Co.", date: "2024-08-05", purpose: "Soil testing" }
-        ]
-    };
-});
-
-/**
- * =================================================================
- * INPUT SUPPLIER HUB
- * =================================================================
- */
-export const getInputSupplierDashboardData = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-
-    return {
-        demandForecast: [
-            { region: "Rift Valley", product: "DAP Fertilizer", trend: "+15%" },
-            { region: "Coastal Area", product: "Drought-Resistant Seeds", trend: "+25%" }
-        ],
-        activeOrders: 5,
-        productFeedback: [
-            { productName: "SuperGrow Fertilizer", rating: 4.8, totalReviews: 150 }
-        ]
-    };
-});
-
-/**
- * =================================================================
- * ENERGY SOLUTIONS PORTAL
- * =================================================================
- */
-export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-    
-    return {
-        highPotentialLeads: [
-            { id: "proc1", name: "Sunshine Processing", energySpend: 12000, potentialSaving: "25%", actionLink: "/profiles/proc1" }
-        ],
-        carbonImpact: {
-            savedThisYear: 500, // in tons of CO2
-            totalProjects: 15
-        },
-        pendingProposals: 3
-    };
-});
-
-/**
- * =================================================================
- * PACKAGING SOLUTIONS CENTER
- * =================================================================
- */
-export const getPackagingSupplierDashboardData = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-    
-    return {
-        demandForecast: {
-            productType: "Biodegradable Pouches",
-            unitsNeeded: 500000,
-            for: "Processed Mangoes"
-        },
-        integrationRequests: [
-            { from: "Sunshine Processing", request: "Smart labeling for VTI", actionLink: "/integrations/sunshine" }
-        ],
-        sustainableShowcase: {
-            views: 2500,
-            leads: 50
-        }
-    };
 });
