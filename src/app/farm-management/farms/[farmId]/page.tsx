@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, BarChart, HardHat } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -22,10 +22,16 @@ interface FarmDetails {
   size?: string;
   description?: string;
   irrigationMethods?: string;
-  // future fields
-  // crops?: Crop[];
-  // activityLog?: Activity[];
 }
+
+// Type for individual crop data
+interface Crop {
+    id: string;
+    crop_type: string;
+    current_stage?: string;
+    planting_date?: { _seconds: number; _nanoseconds: number; }; // Firestore Timestamp structure
+}
+
 
 const getFarmTypeIcon = (farmType: string) => {
     const iconProps = { className: "h-5 w-5 text-muted-foreground" };
@@ -87,11 +93,14 @@ export default function FarmDetailPage() {
     const farmId = params.farmId as string;
     
     const [farm, setFarm] = useState<FarmDetails | null>(null);
+    const [crops, setCrops] = useState<Crop[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingCrops, setIsLoadingCrops] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
+    const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'getFarmCrops'), [functions]);
 
     useEffect(() => {
         if (user && farmId) {
@@ -101,8 +110,20 @@ export default function FarmDetailPage() {
             getFarmCallable({ farmId })
                 .then((result) => {
                     const farmData = result.data as FarmDetails;
-                    if (farmData && farmData.name) { // Check if farmData is valid
+                    if (farmData && farmData.name) { 
                         setFarm(farmData);
+                        // After fetching farm, fetch its crops
+                        getFarmCropsCallable({ farmId })
+                            .then((cropsResult) => {
+                                setCrops(cropsResult.data as Crop[]);
+                            })
+                            .catch((cropsError) => {
+                                console.error("Error fetching farm crops:", cropsError);
+                                // Don't block the page for crop errors, just show empty
+                            })
+                            .finally(() => {
+                                setIsLoadingCrops(false);
+                            });
                     } else {
                         setError("Farm not found or you do not have permission to view it.");
                     }
@@ -116,7 +137,7 @@ export default function FarmDetailPage() {
                     setIsLoading(false);
                 });
         }
-    }, [user, farmId, getFarmCallable]);
+    }, [user, farmId, getFarmCallable, getFarmCropsCallable]);
 
     if (isLoading) {
         return <FarmDetailSkeleton />;
@@ -227,10 +248,34 @@ export default function FarmDetailPage() {
                         </Button>
                     </CardHeader>
                     <CardContent>
-                         <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
-                            <p>No crops or livestock added yet.</p>
-                            <p className="text-xs">Use the button above to add your first entry.</p>
-                        </div>
+                        {isLoadingCrops ? (
+                            <div className="space-y-2">
+                                <Skeleton className="h-10 w-full" />
+                                <Skeleton className="h-10 w-full" />
+                            </div>
+                        ) : crops.length > 0 ? (
+                            <div className="space-y-3">
+                                {crops.map(crop => (
+                                    <div key={crop.id} className="p-3 border rounded-md text-sm">
+                                        <div className="flex justify-between items-start">
+                                            <p className="font-semibold">{crop.crop_type}</p>
+                                            {crop.current_stage && <Badge variant="secondary">{crop.current_stage}</Badge>}
+                                        </div>
+                                        {crop.planting_date && (
+                                            <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
+                                                <CalendarDays className="h-3 w-3" />
+                                                Planted: {new Date(crop.planting_date._seconds * 1000).toLocaleDateString()}
+                                            </p>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
+                                <p>No crops or livestock added yet.</p>
+                                <p className="text-xs">Use the button above to add your first entry.</p>
+                            </div>
+                        )}
                     </CardContent>
                 </Card>
                  <Card>
