@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -31,10 +31,10 @@ const getFarmTypeIcon = (farmType: string) => {
     const iconProps = { className: "h-5 w-5 text-muted-foreground" };
     switch (farmType?.toLowerCase()) {
         case 'crop': return <Sprout {...iconProps} />;
-        case 'livestock': return <Home {...iconProps} />; // Replace with a better icon if available
+        case 'livestock': return <Drumstick {...iconProps} />;
         case 'mixed': return <Tractor {...iconProps} />;
-        case 'aquaculture': return <Droplets {...iconProps} />; // Placeholder
-        default: return <Leaf {...iconProps} />;
+        case 'aquaculture': return <Fish {...iconProps} />;
+        default: return <Home {...iconProps} />;
     }
 };
 
@@ -101,15 +101,15 @@ export default function FarmDetailPage() {
             getFarmCallable({ farmId })
                 .then((result) => {
                     const farmData = result.data as FarmDetails;
-                    if (farmData) {
+                    if (farmData && farmData.name) { // Check if farmData is valid
                         setFarm(farmData);
                     } else {
-                        setError("Farm not found.");
+                        setError("Farm not found or you do not have permission to view it.");
                     }
                 })
                 .catch((err) => {
                     console.error("Error fetching farm details:", err);
-                    setError(err.message || "Failed to load farm details. You may not have permission to view this farm.");
+                    setError(err.message || "Failed to load farm details.");
                     setFarm(null);
                 })
                 .finally(() => {
