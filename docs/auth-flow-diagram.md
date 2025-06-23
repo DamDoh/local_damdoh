@@ -1,6 +1,6 @@
 # DamDoh Authentication Data Flow
 
-This document visually explains the data flow for the user Sign-Up and Sign-In processes, showing how the client-side application interacts with Firebase backend services.
+This document visually explains the data flow for the user Sign-Up and Sign-In processes using sequence diagrams. The diagrams are written in Mermaid syntax, a standard for creating diagrams from text. Many markdown viewers can render this syntax into a visual chart.
 
 ## Sign-Up Flow
 
@@ -8,15 +8,15 @@ This process involves creating a user in **Firebase Authentication** for login c
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant SignUpPage as Client-Side UI
-    participant AuthUtils as auth-utils.ts (Client)
-    participant FirebaseAuth as Firebase Authentication
-    participant FirestoreDB as Firestore Database
+    participant User as "End User"
+    participant SignUpPage as "Client: Sign-Up UI"
+    participant AuthUtils as "Client: auth-utils.ts"
+    participant FirebaseAuth as "Backend: Firebase Auth"
+    participant FirestoreDB as "Backend: Firestore DB"
 
     User->>SignUpPage: Enters Name, Role, Email, Password
-    SignUpPage->>AuthUtils: Calls registerUser(name, role, email, password)
-    AuthUtils->>FirebaseAuth: Calls createUserWithEmailAndPassword(email, password)
+    SignUpPage->>AuthUtils: Calls `registerUser(...)`
+    AuthUtils->>FirebaseAuth: Calls `createUserWithEmailAndPassword(email, password)`
     FirebaseAuth-->>AuthUtils: Returns success with User UID
     AuthUtils->>FirestoreDB: Creates user document in 'users' collection with UID as ID <br/>(includes name, role, email)
     FirestoreDB-->>AuthUtils: Confirms document creation
@@ -40,16 +40,16 @@ This process verifies a user's credentials against **Firebase Authentication** a
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant SignInPage as Client-Side UI
-    participant AuthUtils as auth-utils.ts (Client)
-    participant FirebaseAuth as Firebase Authentication
-    participant App as Application (e.g., Dashboard)
-    participant FirestoreDB as Firestore Database
+    participant User as "End User"
+    participant SignInPage as "Client: Sign-In UI"
+    participant AuthUtils as "Client: auth-utils.ts"
+    participant FirebaseAuth as "Backend: Firebase Auth"
+    participant App as "Client: Application Page (e.g., Dashboard)"
+    participant FirestoreDB as "Backend: Firestore DB"
 
     User->>SignInPage: Enters Email and Password
-    SignInPage->>AuthUtils: Calls logIn(email, password)
-    AuthUtils->>FirebaseAuth: Calls signInWithEmailAndPassword(email, password)
+    SignInPage->>AuthUtils: Calls `logIn(email, password)`
+    AuthUtils->>FirebaseAuth: Calls `signInWithEmailAndPassword(email, password)`
     FirebaseAuth-->>AuthUtils: Verifies credentials and returns success
     AuthUtils-->>SignInPage: Returns success
     SignInPage->>User: Redirects to a protected page (e.g., Dashboard)
