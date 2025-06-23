@@ -1,10 +1,9 @@
 
-import type { StakeholderRole, ListingType, AgriEventTypeConstant } from './constants';
 import type { z } from 'zod';
-import type { 
-  StakeholderProfileSchema, 
-  MarketplaceItemSchema, 
-  ForumTopicSchema, 
+import type {
+  StakeholderProfileSchema,
+  MarketplaceItemSchema,
+  ForumTopicSchema,
   ForumPostSchema,
   AgriEventSchema
 } from './schemas';
@@ -45,7 +44,7 @@ export interface PollOption {
 
 export interface FeedItem {
   id: string;
-  type: 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
+  type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
   timestamp: string;
   userId: string;
   userName: string;
@@ -68,10 +67,10 @@ export interface FeedItem {
 
 export interface DirectMessage {
   id: string;
-  senderName: string; 
+  senderName: string;
   senderAvatarUrl?: string;
-  lastMessage: string; 
-  timestamp: string; 
+  lastMessage: string;
+  timestamp: string;
   unread?: boolean;
   dataAiHint?: string;
   relatedListingId?: string;
@@ -80,7 +79,7 @@ export interface DirectMessage {
 export interface MobileHomeCategory {
   id: string;
   name: string;
-  icon: React.ElementType; 
+  icon: React.ElementType;
   href: string;
   dataAiHint?: string;
 }
@@ -89,7 +88,7 @@ export interface MobileDiscoverItem {
   id: string;
   title: string;
   imageUrl: string;
-  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service'; 
+  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
   link: string;
   dataAiHint?: string;
 }
