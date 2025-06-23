@@ -28,7 +28,7 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare, Tractor } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
@@ -63,7 +63,6 @@ export default function SignUpPage() {
     'Government Regulator/Auditor': Scale,
     'Field Agent/Agronomist (DamDoh Internal)': Compass,
     'Operations/Logistics Team (DamDoh Internal)': Truck,
-    'Quality Assurance Team (DamDoh Internal)': Clipboard,
     'Technology/Data Team (DamDoh Internal)': Bolt,
     'Community Manager (DamDoh Internal)': Users,
     'Agro-Tourism Operator': Globe,
@@ -72,7 +71,7 @@ export default function SignUpPage() {
     'NGO/Development Partner': Network,
     'Environmental Specialist': Recycle,
     'Crowdfunder (Impact Investor, Individual)': Banknote,
-    'Other': Users,
+    'Quality Assurance Team (DamDoh Internal)': Clipboard, // Moved to match order
     'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
     'Certification Body (Organic, Fair Trade etc.)': Scale,
     'Consumer': User,
