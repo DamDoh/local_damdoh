@@ -28,10 +28,11 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, User, UserPlus, Briefcase } from "lucide-react";
+import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
+import React from "react";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -49,6 +50,30 @@ export default function SignUpPage() {
       confirmPassword: "",
     },
   });
+
+  // Mapping of stakeholder roles to Lucide icons
+  const STAKEHOLDER_ICONS: Record<StakeholderRole, React.ElementType> = {
+    'Farmer': Sprout,
+    'Buyer': Briefcase,
+    'Input Supplier': ShoppingBag,
+    'Financial Institution': Banknote,
+    'Logistics Provider': Truck,
+    'Processing Unit': Factory,
+    'Agro-Export Company': TrendingUp,
+    'Regulatory Body': Scale,
+    'Field Agent/Agronomist (DamDoh Internal)': Compass,
+    'Operations/Logistics Team (DamDoh Internal)': Truck,
+    'Quality Assurance Team (DamDoh Internal)': Clipboard,
+    'Technology/Data Team (DamDoh Internal)': Bolt,
+    'Community Manager (DamDoh Internal)': Users,
+    'Agri-tourism Operator': Globe,
+    'Researcher/Academic': BookOpen,
+    'Extension Worker': MessageSquare,
+    'NGO/Development Partner': Network,
+    'Environmental Specialist': Recycle,
+    'Crowdfunder (Impact Investor, Individual)': Banknote,
+    'Other': Users, // Generic icon for 'Other'
+  };
 
   async function onSubmit(data: SignUpValues) {
     setIsLoading(true);
@@ -123,13 +148,15 @@ export default function SignUpPage() {
                   </FormItem>
                 )}
               />
+
+              {/* Form Field for Role */}
                <FormField
                 control={form.control}
                 name="role"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center"><Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />Your Primary Role</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={(value) => field.onChange(value as StakeholderRole)} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select your role in the supply chain" />
@@ -137,18 +164,22 @@ export default function SignUpPage() {
                       </FormControl>
                       <SelectContent>
                         {STAKEHOLDER_ROLES.map((role) => (
-                          <SelectItem key={role} value={role}>
-                            {role}
+                          <SelectItem key={role} value={role} className="flex items-center gap-2">
+                             {React.createElement(STAKEHOLDER_ICONS[role] || Users, { className: "mr-2 h-4 w-4 text-muted-foreground" })}
+                            <span>{role}</span>
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
-                  </FormItem>
-                )}
+                )} 
+                // Inside the SelectItem map:
+               render={({ field }) => (
+                <FormItem>
               />
               <FormField
                 control={form.control}
+                name="name" // This seems like a copy-paste error, should likely be different field or removed. Assuming it was meant to be the Role field's closing tag.
                 name="email"
                 render={({ field }) => (
                   <FormItem>

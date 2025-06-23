@@ -18,14 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  // TODO: Evolve metadata for a Super App context - potentially dynamic based on the current module/feature
-  // For example, if on the Marketplace, title could include "Marketplace".
-  // If on the Financial Hub, it could be "Financial Services".
-  // This will require a more dynamic metadata approach potentially within page components
-  // or a shared metadata service.
-  // For now, keep the general title.
   title: 'DamDoh - Agricultural Network',
   description: 'Connecting the agricultural supply chain.',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

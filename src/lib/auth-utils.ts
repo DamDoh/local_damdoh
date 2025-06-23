@@ -118,10 +118,21 @@ export async function registerUser(name: string, email: string, password: string
 
 export async function sendPasswordReset(email: string): Promise<void> {
   try {
+    console.log(`Attempting to send password reset email to: ${email}`);
     await sendPasswordResetEmail(auth, email);
     console.log("Password reset email sent to:", email);
   } catch (error) {
     console.error("Error sending password reset email:", error);
+    console.error(`Failed to send password reset email for: ${email}. Error:`, error);
+ throw error;
+  }
+}
+
+export async function resetPassword(oobCode: string, newPassword: string): Promise<void> {
+  try {
+    console.log("Attempting to reset password with oobCode:", oobCode);
+    await confirmPasswordReset(auth, oobCode, newPassword);
+    console.log("Password reset successful for oobCode:", oobCode);
     throw error;
   }
 }

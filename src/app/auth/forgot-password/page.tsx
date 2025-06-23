@@ -68,6 +68,8 @@ export default function ForgotPasswordPage() {
           case "auth/invalid-email":
             errorMessage = "The email address is not valid.";
             break;
+ case "auth/too-many-requests":
+ errorMessage = "Too many requests. Please try again later.";
           default:
             errorMessage = `Failed to send reset email: ${error.message}`;
         }
@@ -104,7 +106,10 @@ export default function ForgotPasswordPage() {
               <AlertDescription>{authError}</AlertDescription>
             </Alert>
           )}
+
           {emailSent && (
+ <>
+ {/* Success Alert */}
             <Alert variant="default" className="mb-4 border-green-500 bg-green-50 text-green-700 dark:border-green-600 dark:bg-green-900/30 dark:text-green-300">
               <CheckCircle className="h-4 w-4 !text-green-500 dark:!text-green-400" />
               <AlertTitle>Email Sent</AlertTitle>
@@ -112,6 +117,14 @@ export default function ForgotPasswordPage() {
                 If an account exists for the email you entered, a password reset link has been sent. Please check your inbox and spam folder.
               </AlertDescription>
             </Alert>
+
+ {/* Go to Sign In Button */}
+ <div className="text-center mt-6">
+ <Button asChild>
+ <Link href="/auth/signin">Go to Sign In</Link>
+ </Button>
+ </div>
+ </>
           )}
           {!emailSent && (
             <Form {...form}>
