@@ -1,6 +1,5 @@
 
-import type { StakeholderRole, UnifiedMarketplaceCategoryType, ListingType, AgriEventTypeConstant } from './constants';
-import type { LucideIcon } from 'lucide-react';
+import type { StakeholderRole, ListingType, AgriEventTypeConstant } from './constants';
 import type { z } from 'zod';
 import type { 
   StakeholderProfileSchema, 
@@ -11,121 +10,21 @@ import type {
 } from './schemas';
 import type { CategoryNode as CatNodeType } from './category-data';
 
-// Infer types from Zod schemas
-export type UserProfile = Omit<z.infer<typeof StakeholderProfileSchema>, 'role'> & {
-  roles: StakeholderRole[];
-};
+// =================================================================
+// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
+// These are the primary data structures used across the application.
+// =================================================================
 
-export interface MarketplaceItem extends z.infer<typeof MarketplaceItemSchema> {
-  vtiId?: string; // Link to the Vibrant Traceability ID
-}
-
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 
-/**
- * Represents a social feed post.
- */
-export interface Post {
-  id: string;
-  authorId: string;
-  content: string;
-  timestamp: string;
-  likesCount: number;
-  commentsCount: number;
-  imageUrl?: string;
-  relatedListingId?: string;
-  relatedForumTopicId?: string;
-}
-
-/**
- * Represents a comment on a social feed post.
- */
-export interface Comment {
-  id: string;
-  postId: string;
-  authorId: string;
-  content: string;
-  timestamp: string;
-}
-
-/**
- * Represents a like on a social feed post or comment.
- */
-export interface Like {
-  id: string;
-  postId?: string;
-  commentId?: string;
-  userId: string;
-}
-
-/**
- * Represents a conversation thread in the messaging module.
- */
-export interface Conversation {
-  id: string;
-  participants: Pick<UserProfile, 'id' | 'name' | 'avatarUrl'>[];
-  lastMessage: Pick<Message, 'senderId' | 'content' | 'timestamp'>;
-  unreadCount: number;
-  updatedAt: string;
-}
-
-/**
- * Represents an individual message within a conversation.
- */
-export interface Message {
-  id: string;
-  conversationId: string;
-  senderId: string;
-  content: string;
-  timestamp: string;
-  isRead: boolean;
-}
-
-/**
- * Represents a sustainability or quality certification.
- */
-export interface Certification {
-  id: string;
-  name: string;
-  issuingBody: string;
-  validUntil: string;
-  verificationLink?: string;
-  relatedFarmId?: string;
-  relatedProductId?: string;
-}
-
-/**
- * Represents a conceptual Financial Service or product available through the Financial Hub.
- */
-export interface FinancialProduct {
-  id: string;
-  name: string;
-  provider: Pick<UserProfile, 'id' | 'name'>;
-  description: string;
-  link: string;
-  targetAudience?: StakeholderRole[];
-  requirements?: string[];
-}
-
-/**
- * Represents a single event in a product's journey, linked by a VTI.
- */
-export interface TraceabilityEvent {
-  vtiId: string;
-  timestamp: string;
-  eventType: string;
-  actorRef: string;
-  geoLocation: {
-    lat: number;
-    lng: number;
-  };
-  payload: { [key: string]: any };
-}
-
-// Re-export CategoryNode type from category-data.ts for easier access if needed elsewhere
-export type CategoryNode = CatNodeType;
+// =================================================================
+// 2. UI & COMPONENT-SPECIFIC TYPES
+// Types used for navigation, UI components, and specific page features.
+// =================================================================
 
 export interface NavItem {
  title: string;
@@ -139,31 +38,32 @@ export interface NavItem {
 }
 
 export interface PollOption {
- text: string;
- votes: number;
+  id?: string;
+  text: string;
+  votes: number;
 }
+
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'talent_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
   timestamp: string;
-  userId?: string;
-  userName?: string;
+  userId: string;
+  userName: string;
   userAvatar?: string;
   userHeadline?: string;
   content?: string;
   postImage?: string;
   dataAiHint?: string;
-  likesCount?: number;
-  commentsCount?: number;
+  likesCount: number;
+  commentsCount: number;
   link?: string;
   agriEvent?: AgriEvent;
-  originTraceabilityId?: string;
+  pollOptions?: PollOption[];
   relatedUser?: {
     id: string;
     name: string;
     avatarUrl?: string;
   };
-  pollOptions?: PollOption[];
 }
 
 export interface DirectMessage {
@@ -194,54 +94,279 @@ export interface MobileDiscoverItem {
   dataAiHint?: string;
 }
 
-// This Product type might be from an older structure or for a specific 'shops' module.
-// The primary marketplace items are now defined by MarketplaceItem.
-interface BaseProduct {
-  id: string;
-  shopId: string; 
-  name: string;
-  description: string;
-  price: number;
-  unit: string; 
-  images?: string[]; 
-  location?: { 
-    latitude: number;
-    longitude: number;
+// =================================================================
+// 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
+// These types serve as a blueprint for the data required for the
+// various stakeholder-specific dashboards and future features.
+// =================================================================
+
+export interface FarmerDashboardData {
+  predictedYield: {
+    crop: string;
+    variance: string;
+    confidence: string;
   };
-  createdAt: Date;
-  updatedAt: Date;
+  irrigationSchedule: {
+    next_run: string;
+    duration_minutes: number;
+    recommendation: string;
+  };
+  matchedBuyers: {
+    id: string;
+    name: string;
+    matchScore: number;
+    request: string;
+    contactId: string;
+  }[];
+  trustScore: {
+      reputation: number;
+      certifications: {
+          id: string;
+          name: string;
+          issuingBody: string;
+      }[];
+  }
 }
 
-interface FreshProduceProduct extends BaseProduct {
-  category: 'Fresh Produce';
-  harvestDate?: Date;
-  isOrganic?: boolean;
-  certifications?: string[];
-  minimumOrderQuantity?: string;
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
 }
 
-interface AgroInputsEquipmentProduct extends BaseProduct {
-  category: 'Agro-Inputs & Equipment';
-  condition: 'new' | 'used';
-  brand?: string;
-  model?: string;
-  year?: number;
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    region: string;
+    issue: string;
+    severity: string;
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: string;
+    vtiLink: string;
+  }[];
 }
 
-interface AgriculturalServicesProduct extends BaseProduct {
-  category: 'Agricultural Services';
-  serviceType: string; 
-  availability?: string; 
-  serviceArea?: string; 
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+        actionLink: string;
+    }[];
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
+        actionLink: string;
+    };
 }
 
-interface ProcessedDriedFoodsProduct extends BaseProduct {
-  category: 'Processed/Dried Foods';
-  ingredients?: string[];
-  allergens?: string[];
-  packagingType?: string;
-  expiryDate?: Date;
-  certifications?: string[]; 
+export interface FiDashboardData {
+    pendingApplications: {
+        id: string;
+        applicantName: string;
+        type: string;
+        amount: number;
+        riskScore: number;
+        actionLink: string;
+    }[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
 }
 
-export type Product = FreshProduceProduct | AgroInputsEquipmentProduct | AgriculturalServicesProduct | ProcessedDriedFoodsProduct;
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string;
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
+}
+
+export interface InputSupplierDashboardData {
+    demandForecast: {
+        id: string;
+        region: string;
+        product: string;
+        trend: string;
+        reason: string;
+    }[];
+    productPerformance: {
+        id: string;
+        productName: string;
+        rating: number;
+        feedback: string;
+        link: string;
+    }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
+}
+
+export interface EnergyProviderDashboardData {
+    highPotentialLeads: {
+        id: string;
+        name: string;
+        energySpend: number;
+        potentialSaving: string;
+        actionLink: string;
+    }[];
+    carbonImpact: {
+        savedThisYear: number;
+        totalProjects: number;
+    };
+    pendingProposals: number;
+}
+
+export interface PackagingSupplierDashboardData {
+    demandForecast: {
+        productType: string;
+        unitsNeeded: number;
+        for: string;
+    };
+    integrationRequests: {
+        from: string;
+        request: string;
+        actionLink: string;
+    }[];
+    sustainableShowcase: {
+        views: number;
+        leads: number;
+    };
+}
+
+export interface AgroExportDashboardData {
+    automatedDocs: {
+        docId: string;
+        type: string;
+        status: string;
+    }[];
+    vtiShipments: {
+        vti: string;
+        status: string;
+        location: string;
+    }[];
+    customsAlerts: {
+        alert: string;
+        actionLink: string;
+    }[];
+}
+
+export interface ProcessingUnitDashboardData {
+    yieldOptimization: {
+        currentYield: number;
+        potentialYield: number;
+        suggestion: string;
+    };
+    inventory: {
+        product: string;
+        tons: number;
+        quality: string;
+    }[];
+    wasteReduction: {
+        currentRate: number;
+        potentialRate: number;
+        insight: string;
+    };
+}
+
+export interface WarehouseDashboardData {
+    storageOptimization: {
+        utilization: number;
+        suggestion: string;
+    };
+    inventoryLevels: {
+        totalItems: number;
+        itemsNeedingAttention: number;
+    };
+    predictiveAlerts: {
+        alert: string;
+        actionLink: string;
+    }[];
+}
+
+// =================================================================
+// 4. SHARED & MISCELLANEOUS TYPES
+// =================================================================
+
+// Re-export CategoryNode type from category-data.ts for easier access
+export type CategoryNode = CatNodeType;
+
+/**
+ * Represents a single event in a product's journey, linked by a VTI.
+ */
+export interface TraceabilityEvent {
+  vtiId: string;
+  timestamp: string;
+  eventType: string;
+  actorRef: string;
+  geoLocation: {
+    lat: number;
+    lng: number;
+  };
+  payload: { [key: string]: any };
+}
