@@ -123,3 +123,19 @@ export const signInSchema = z.object({
   password: z.string().min(6, { message: "Password must be at least 6 characters long." }),
 });
 export type SignInValues = z.infer<typeof signInSchema>;
+
+
+export const signUpSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }).max(100, { message: "Name cannot be longer than 100 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  role: z.enum(STAKEHOLDER_ROLES, {
+    errorMap: () => ({ message: "Please select a stakeholder role." }),
+  }),
+  password: z.string().min(6, { message: "Password must be at least 6 characters long." }),
+  confirmPassword: z.string().min(6, { message: "Password must be at least 6 characters long." }),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords do not match.",
+  path: ["confirmPassword"], // path of error
+});
+
+export type SignUpValues = z.infer<typeof signUpSchema>;
