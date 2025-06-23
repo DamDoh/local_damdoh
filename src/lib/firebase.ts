@@ -42,35 +42,6 @@ const auth = getAuth(app); // Initialize and export auth
 
 export { app, db, auth /*, storage */ };
 
-export async function getShopById(shopId: string) {
-  try {
-    const shopDocRef = doc(db, 'shops', shopId);
-    const shopDocSnap = await getDoc(shopDocRef);
-
-    if (shopDocSnap.exists()) {
-      return { id: shopDocSnap.id, ...shopDocSnap.data() };
-    } else {
-      console.log('No such shop document!');
-      return null;
-    }
-  } catch (error) {
-    console.error('Error fetching shop by ID:', error);
-    throw error; // Re-throw the error for handling in the component
-  }
-}
-
-// Replaces the old getProductsByShopId to query the unified marketplaceItems collection
-export async function getMarketplaceItemsByShopId(shopId: string) {
-  try {
-    const itemsCollectionRef = collection(db, 'marketplaceItems');
-    const q = query(itemsCollectionRef, where('sellerId', '==', shopId));
-    const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  } catch (error) {
-    console.error('Error fetching marketplace items by shop ID:', error);
-    throw error;
-  }
-}
 
 // Replaces the old getProductsByCategory to query the unified marketplaceItems collection
 export async function getMarketplaceItemsByCategory(category?: string) {
