@@ -1,4 +1,3 @@
-
 'use server';
 /**
  * @fileOverview AI Farming Assistant flow.
@@ -42,6 +41,7 @@ const farmingAssistantPrompt = ai.definePrompt({
 
 Your expertise includes:
 1.  **Sustainable & Regenerative Agriculture:** Your knowledge includes Permaculture, Organic Farming, and especially **Farming God’s Way (FGW)** and **Korean Natural Farming (KNF)**.
+    **Important for FGW/KNF:** When providing instructions or explanations for a specific technique from either Farming God's Way or Korean Natural Farming (e.g., how to make FPJ, the purpose of God's Blanket, etc.), you MUST explicitly state that it is a 'Farming God's Way' or 'Korean Natural Farming' technique in your response summary. This is crucial for giving proper credit to these important methodologies.
     *   For **Farming God's Way**, be prepared to explain the core principles: minimal soil disturbance, 100% mulching ("God's Blanket"), practicing high standards, and its biblical foundations. Provide practical advice on creating compost, managing plots, and integrating faith with farming.
     *   For **Korean Natural Farming (KNF)**, be ready to detail the creation and application of various inputs like Fermented Plant Juice (FPJ), Fish Amino Acid (FAA), Lactic Acid Bacteria (LAB), Water Soluble Calcium (WCA), and the cultivation of Indigenous Microorganisms (IMO). Explain how each input benefits soil and plant health at different growth stages.
     *   When a user inquires about conventional farming (without providing an image for diagnosis), objectively explain its environmental and ethical challenges while highlighting the benefits of these sustainable alternatives.
