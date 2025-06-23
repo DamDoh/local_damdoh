@@ -13,7 +13,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 import { APP_NAME } from '@/lib/constants';
-import { dummyUsersData } from "@/lib/dummy-data";
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 
@@ -25,9 +24,20 @@ interface ChatMessage {
   timestamp: Date;
 }
 
+const initialWelcomeMessage: ChatMessage = {
+  id: `assistant-initial-${Date.now()}`,
+  role: 'assistant',
+  content: {
+    summary: `Hello! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture!\nWondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.\n\n**Got a crop concern?**\nTap the image upload icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-image-up inline-block relative -top-px"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16"></path><path d="m14 19.5 3-3 3 3"></path><path d="M17 22v-5.5"></path><circle cx="9" cy="9" r="2"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-camera inline-block relative -top-px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.\n\nReady to explore? How can I assist you today?`,
+    detailedPoints: [],
+  },
+  timestamp: new Date(),
+};
+
+
 export default function AiAssistantPage() {
   const [inputQuery, setInputQuery] = useState('');
-  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([initialWelcomeMessage]);
   const [isLoading, setIsLoading] = useState(false);
   const [previewDataUri, setPreviewDataUri] = useState<string | null>(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -39,6 +49,7 @@ export default function AiAssistantPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
+  // Scroll to bottom of chat
   useEffect(() => {
     if (scrollAreaRef.current) {
       const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
@@ -48,22 +59,7 @@ export default function AiAssistantPage() {
     }
   }, [chatHistory]);
 
-  useEffect(() => {
-    const currentUserName = dummyUsersData['currentDemoUser']?.name || "there";
-
-    setChatHistory([
-      {
-        id: `assistant-${Date.now()}`,
-        role: 'assistant',
-        content: {
-          summary: `Hello ${currentUserName}! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture!\nWondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.\n\n**Got a crop concern?**\nTap the image upload icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-image-up inline-block relative -top-px"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16"></path><path d="m14 19.5 3-3 3 3"></path><path d="M17 22v-5.5"></path><circle cx="9" cy="9" r="2"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-camera inline-block relative -top-px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.\n\nReady to explore? How can I assist you today?`,
-          detailedPoints: [],
-        },
-        timestamp: new Date(),
-      },
-    ]);
-  }, []);
-
+  // Cleanup camera stream on unmount
   useEffect(() => {
     return () => {
       if (videoRef.current?.srcObject) {
@@ -147,6 +143,17 @@ export default function AiAssistantPage() {
       stopCamera();
     }
   };
+  
+  const resetChat = () => {
+    setChatHistory([initialWelcomeMessage]);
+    setInputQuery("");
+    setIsLoading(false);
+    clearPreview();
+    toast({
+        title: "Chat Reset",
+        description: "The conversation has been cleared.",
+    });
+  }
 
   const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -165,13 +172,7 @@ export default function AiAssistantPage() {
     setInputQuery('');
     setIsLoading(true);
     const currentImageToSend = previewDataUri;
-    setPreviewDataUri(null);
-     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-    if (isCameraOpen) {
-        stopCamera();
-    }
+    clearPreview();
 
     try {
       const aiResponse = await askFarmingAssistant({
@@ -205,11 +206,14 @@ export default function AiAssistantPage() {
   return (
     <div className="flex flex-col flex-1 h-full max-w-3xl mx-auto w-full">
       <Card className="flex-1 flex flex-col overflow-hidden shadow-xl">
-        <CardHeader className="border-b">
+        <CardHeader className="border-b flex-row justify-between items-center">
           <CardTitle className="flex items-center gap-2 text-xl">
             <Bot className="h-6 w-6 text-primary" />
-            <span>{APP_NAME} AI Farming Assistant</span>
+            <span>AI Farming Assistant</span>
           </CardTitle>
+          <Button variant="outline" size="sm" onClick={resetChat} title="Reset Conversation">
+            <RefreshCcw className="h-4 w-4"/>
+          </Button>
         </CardHeader>
         <ScrollArea className="flex-grow p-4 space-y-6 bg-muted/30" ref={scrollAreaRef}>
           {chatHistory.map((msg) => (
@@ -236,7 +240,7 @@ export default function AiAssistantPage() {
                     <CardHeader className="pb-3 pt-4 px-4">
                       <div className="flex justify-between items-center">
                         <CardTitle className="flex items-center text-md gap-1.5 text-primary">
-                          <Leaf className="h-5 w-5" /> DamDoh AI's Knowledge
+                          <Leaf className="h-5 w-5" /> {APP_NAME} AI's Knowledge
                         </CardTitle>
                         <Button variant="outline" size="sm" className="h-7 text-xs" onClick={() => alert("Audio playback feature coming soon!")}>
                           <Volume2 className="mr-1.5 h-3.5 w-3.5" /> Play Audio
@@ -268,7 +272,7 @@ export default function AiAssistantPage() {
               </div>
                {msg.role === 'user' && (
                 <Avatar className="h-8 w-8 self-start border shrink-0">
-                   <AvatarImage src="https://placehold.co/40x40.png" alt="User Avatar" data-ai-hint="profile person"/>
+                  <AvatarImage src="https://placehold.co/40x40.png" alt="User Avatar" data-ai-hint="profile person"/>
                   <AvatarFallback><User size={18}/></AvatarFallback>
                 </Avatar>
               )}
