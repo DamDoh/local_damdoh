@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview AI Farming Assistant flow.
@@ -26,6 +27,7 @@ const DetailedPointSchema = z.object({
 const FarmingAssistantOutputSchema = z.object({
   summary: z.string().describe("A concise overall answer, summary, primary diagnosis, or explanation to the user's query. This should be a few sentences long and directly address the main question or image content."),
   detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary/diagnosis/explanation or providing scannable key information. Only provide this if the query/image warrants a detailed breakdown."),
+  suggestedQueries: z.array(z.string()).optional().describe("A list of 2-3 short, relevant follow-up questions or related topics the user might be interested in based on their initial query. For example, if they ask about one KNF input, suggest another."),
 });
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
 
@@ -82,6 +84,9 @@ Your expertise includes:
 When responding to any query or diagnosis:
 1.  Provide a concise 'summary' that directly answers the user's main question or provides the primary diagnosis/explanation.
 2.  If the topic is complex or has multiple facets that would benefit from a structured breakdown (common for diagnoses, stakeholder explanations, or trade insights), provide 3-5 'detailedPoints'. Each point should have a short, clear 'title' and more detailed 'content'. This helps users quickly scan and digest information. If the query is simple (e.g., a greeting) or doesn't need a breakdown, you can omit 'detailedPoints' or return an empty array for it.
+
+**Suggested Queries:**
+After providing your main answer, generate 2-3 concise and relevant 'suggestedQueries'. These should be short questions or topics that anticipate the user's next step. For example, if they ask about making Fish Amino Acid (FAA), suggest "How is Fermented Plant Juice (FPJ) different?" or "What are the principles of Farming God's Way?". If the query is simple, you can omit this.
 `,
 });
 
@@ -93,10 +98,11 @@ const farmingAssistantFlow = ai.defineFlow(
   },
   async (input) => {
     const {output} = await farmingAssistantPrompt(input);
-    // Ensure detailedPoints is an empty array if undefined, to match frontend expectations
+    // Ensure optional arrays are empty if undefined, to match frontend expectations
     return {
         summary: output!.summary,
-        detailedPoints: output!.detailedPoints || []
+        detailedPoints: output!.detailedPoints || [],
+        suggestedQueries: output!.suggestedQueries || [],
     };
   }
 );

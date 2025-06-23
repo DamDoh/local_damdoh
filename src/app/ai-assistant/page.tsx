@@ -30,6 +30,11 @@ const initialWelcomeMessage: ChatMessage = {
   content: {
     summary: `Hello! I'm ${APP_NAME}'s AI Knowledge assistant, your dedicated partner for all things agriculture!\nWondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.\n\n**Got a crop concern?**\nTap the image upload icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-image-up inline-block relative -top-px"><path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16"></path><path d="m14 19.5 3-3 3 3"></path><path d="M17 22v-5.5"></path><circle cx="9" cy="9" r="2"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-camera inline-block relative -top-px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.\n\nReady to explore? How can I assist you today?`,
     detailedPoints: [],
+    suggestedQueries: [
+      "How do I make Fish Amino Acid?",
+      "What is 'God's Blanket' in Farming God's Way?",
+      "How can I improve my soil health?",
+    ]
   },
   timestamp: new Date(),
 };
@@ -194,6 +199,45 @@ export default function AiAssistantPage() {
         content: {
           summary: "Sorry, I encountered an error trying to process your request. Please try again.",
           detailedPoints: [],
+          suggestedQueries: [],
+        },
+        timestamp: new Date(),
+      };
+      setChatHistory(prev => [...prev, errorAssistantMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSuggestionClick = async (query: string) => {
+    const newUserMessage: ChatMessage = {
+      id: `user-suggestion-${Date.now()}`,
+      role: 'user',
+      content: query,
+      timestamp: new Date(),
+    };
+    setChatHistory(prev => [...prev, newUserMessage]);
+    
+    setIsLoading(true);
+
+    try {
+      const aiResponse = await askFarmingAssistant({ query });
+      const newAssistantMessage: ChatMessage = {
+        id: `assistant-suggestion-response-${Date.now()}`,
+        role: 'assistant',
+        content: aiResponse,
+        timestamp: new Date(),
+      };
+      setChatHistory(prev => [...prev, newAssistantMessage]);
+    } catch (error) {
+       console.error("Error fetching AI response from suggestion:", error);
+      const errorAssistantMessage: ChatMessage = {
+        id: `assistant-error-${Date.now() + 1}`,
+        role: 'assistant',
+        content: {
+          summary: "Sorry, I encountered an error trying to process your request. Please try again.",
+          detailedPoints: [],
+          suggestedQueries: [],
         },
         timestamp: new Date(),
       };
@@ -267,6 +311,22 @@ export default function AiAssistantPage() {
                         </Accordion>
                       )}
                     </CardContent>
+                    {msg.content.suggestedQueries && msg.content.suggestedQueries.length > 0 && (
+                      <CardFooter className="flex flex-wrap gap-2 pt-3 pb-3 px-4 border-t bg-muted/40">
+                        {msg.content.suggestedQueries.map((suggestion, index) => (
+                          <Button 
+                            key={index}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs h-auto py-1 px-2.5 bg-background"
+                            onClick={() => handleSuggestionClick(suggestion)}
+                            disabled={isLoading}
+                          >
+                            {suggestion}
+                          </Button>
+                        ))}
+                      </CardFooter>
+                    )}
                   </Card>
                 )}
               </div>
