@@ -94,7 +94,7 @@ export async function registerUser(name: string, email: string, password: string
     const newProfileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'> = {
       name: name,
       email: email,
-      role: role,
+      roles: [role], // Save the single selected role into the new roles array
       location: 'Not specified', // Default location
       avatarUrl: `https://placehold.co/150x150.png?text=${name.substring(0,1)}`, // Placeholder avatar
       profileSummary: `A new ${role} in the DamDoh community.`,

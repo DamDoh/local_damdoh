@@ -8,6 +8,20 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
+// Define the allowed seller roles
+const ALLOWED_SELLER_ROLES = [
+  'Farmer',
+  'Input Supplier',
+  'Processing Unit',
+  'Packaging Supplier',
+  'Warehouse/Storage Provider',
+  'Retailer',
+  'Agronomist',
+  'Consultant',
+  'Aggregator',
+  'Crowdfunder (Impact Investor, Individual)' // Although crowdfunders might not "sell" physical goods, they might list investment opportunities, which could fall under a "listing" type in the marketplace. Adjust as needed based on your specific listing categories.
+];
+
 /**
  * Cloud Function to create a new marketplace listing.
  * Ensures the user is authenticated and has the 'seller' role (or equivalent).
@@ -25,27 +39,18 @@ export const createListing = functions.https.onCall(async (data, context) => {
 
   const userId = context.auth.uid;
 
-  // Optional: Check for a custom claim or a field in the user document for role
-  // For demonstration, let's assume a custom claim 'role' exists and must be 'seller'
-  // In a real application, you might check a field in the user's Firestore document
-  // const claims = context.auth.token;
-  // if (!claims.role || claims.role !== 'seller') {
-  //   throw new functions.https.HttpsError(
-  //     'permission-denied',
-  //     'You do not have permission to create a listing.'
-  //   );
-  // }
-
-  // For simplicity in this example, we'll proceed assuming authentication is enough
-  // or role check is handled elsewhere/less strictly initially.
-  // A more robust check would involve fetching the user document and checking their 'stakeholder_type' or 'roles' field.
+  // Fetch the user document to check their roles
   const userDoc = await admin.firestore().collection('users').doc(userId).get();
   const userData = userDoc.data();
 
-  if (!userData || !userData.roles || (!userData.roles.includes('seller') && userData.stakeholder_type !== 'farmer')) {
+  // Check if the user data exists and if their 'roles' array contains at least one allowed seller role
+  const hasAllowedRole = userData?.roles?.some((role: string) => ALLOWED_SELLER_ROLES.includes(role)) ?? false;
+
+  if (!userData || !hasAllowedRole) {
+    // If the user document doesn't exist or they don't have an allowed seller role
      throw new functions.https.HttpsError(
        'permission-denied',
-       'You must have a seller or farmer role to create a listing.'
+       'You do not have the required role to create a marketplace listing. Please ensure your profile specifies an allowed seller role.'
      );
   }
 

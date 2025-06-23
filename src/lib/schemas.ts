@@ -18,7 +18,7 @@ export const StakeholderProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100),
   email: z.string().email(),
   avatarUrl: z.string().url().optional(),
-  role: z.enum(STAKEHOLDER_ROLES),
+  roles: z.array(z.enum(STAKEHOLDER_ROLES)).min(1, "At least one role is required."),
   location: z.string().min(2).max(150),
   bio: z.string().max(2000).optional(),
   profileSummary: z.string().max(250).optional(),
@@ -223,4 +223,44 @@ export const ApplicationSchema = z.object({
     carbonFootprintData: z.boolean(),
     consentedAt: z.string().datetime().optional(),
   }).optional(),
+});
+
+export const MasterDataProductSchema = z.object({
+  productId: z.string(),
+  name_en: z.string(),
+  name_local: z.string(),
+  category: z.string(),
+  unit: z.string(),
+  certifications: z.array(z.string()),
+});
+
+export const MasterDataInputSchema = z.object({
+  inputId: z.string(),
+  name_en: z.string(),
+  name_local: z.string(),
+  type: z.string(),
+  composition: z.string(),
+  certifications: z.array(z.string()),
+});
+
+export const VtiEntrySchema = z.object({
+ vtiId: z.string(),
+ type: z.string(),
+  creationTime: z.string(), // Assuming ISO datetime string
+  currentLocation: z.string(),
+  status: z.string(),
+  linked_vtis: z.array(z.string()),
+  metadata: z.object({ carbon_footprint_kgCO2e: z.number().optional() }).optional(), // Optional metadata object with optional carbon footprint
+});
+
+export const TraceabilityEventSchema = z.object({
+ vtiId: z.string(),
+  timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }),
+  eventType: z.string(),
+  actorRef: z.string(), // Assuming this links to a user/organization ID
+  geoLocation: z.object({
+    lat: z.number().min(-90).max(90),
+    lng: z.number().min(-180).max(180),
+  }),
+  payload: z.record(z.any()).optional(), // Allowing any key-value pairs
 });

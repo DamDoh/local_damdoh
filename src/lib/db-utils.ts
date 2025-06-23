@@ -25,12 +25,12 @@ console.warn(
 );
 
 // Define a consistent collection name for profiles
-const PROFILES_COLLECTION = 'profiles';
+const USERS_COLLECTION = 'users';
 
 // --- Profile DB Operations ---
 export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
   try {
-    const profilesCol = collection(db, PROFILES_COLLECTION);
+    const profilesCol = collection(db, USERS_COLLECTION);
     const profileSnapshot = await getDocs(profilesCol);
     const profileList = profileSnapshot.docs.map(docSnap => {
       const data = docSnap.data();
@@ -51,7 +51,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
     if (!id) return null;
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, USERS_COLLECTION, id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
       const data = profileSnap.data();
@@ -74,7 +74,7 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 export async function createProfileInDB(userId: string, profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
   try {
     const profileDocRef = doc(db, PROFILES_COLLECTION, userId);
-    const docData = {
+    const docData: Omit<UserProfile, 'id'> = { // Explicitly type docData
       ...profileData,
       createdAt: Timestamp.now(),
       updatedAt: Timestamp.now(),
@@ -101,7 +101,7 @@ export async function createProfileInDB(userId: string, profileData: Omit<UserPr
 
 export async function updateProfileInDB(id: string, updates: Partial<Omit<UserProfile, 'id' | 'createdAt'>>): Promise<UserProfile | null> {
   try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, USERS_COLLECTION, id);
     
     const docSnap = await getDoc(profileDocRef);
     if (!docSnap.exists()) {
@@ -135,7 +135,7 @@ export async function updateProfileInDB(id: string, updates: Partial<Omit<UserPr
 
 export async function deleteProfileFromDB(id: string): Promise<boolean> {
   try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, USERS_COLLECTION, id);
     await deleteDoc(profileDocRef);
     return true;
   } catch (error) {

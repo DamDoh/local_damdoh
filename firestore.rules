@@ -3,10 +3,66 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow read/write access to all documents for any authenticated user.
-    // This is for development purposes only and should be secured before production.
-    match /{document=**} {
-      allow read, write: if request.auth != null;
+
+    // Helper function to get user roles (using the roles array from Module 2)
+    function getUserRoles(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data.roles;
+    }
+
+    // Helper function to check if user has a specific role
+    function hasRole(uid, role) {
+        let roles = getUserRoles(uid);
+        return roles != null && roles is list && roles.hasAny([role]); // Added check for roles being a list
+    }
+
+    // Helper function to check if user has any of the specified roles
+    function hasAnyRole(uid, rolesList) {
+        let userRoles = getUserRoles(uid);
+        return userRoles != null && userRoles is list && userRoles.hasAny(rolesList);
+    }
+
+
+    // Rules for master_data_products
+    match /master_data_products/{productId} {
+      allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+      // Allowing admin and system to write for data management and automated processes
+      allow write: if hasAnyRole(request.auth.uid, ['admin', 'system']);
+    }
+
+    // Rules for master_data_inputs
+    match /master_data_inputs/{inputId} {
+       // Allowing all authenticated users to read input data, plus authorized roles
+       allow read: if request.auth != null || hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+      // Allowing admin and system to write
+      allow write: if hasAnyRole(request.auth.uid, ['admin', 'system']);
+    }
+
+    // Rules for vti_registry
+    match /vti_registry/{vtiId} {
+      // Read for authorized roles and public traceable VTIs
+      allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']) || (resource.data.isPublicTraceable == true && request.auth != null);
+      // Write access primarily for the system and authorized processes
+      allow write: if hasAnyRole(request.auth.uid, ['system', 'admin']); // Assuming admin can also create/manage VTIs if needed
+    }
+
+    // Rules for traceability_events
+    match /traceability_events/{eventId} {
+       // Read for authorized roles and events linked to public traceable VTIs
+       allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']) || (get(/databases/$(database)/documents/vti_registry/$(resource.data.vtiId)).data.isPublicTraceable == true && request.auth != null);
+      // Write access primarily for the system and authorized processes
+      allow write: if hasAnyRole(request.auth.uid, ['system', 'admin']);
+    }
+
+    // Rules for geospatial_assets
+    match /geospatial_assets/{assetId} {
+       // Owner can read/write their own assets
+       allow read, write: if resource.data.ownerRef == request.auth.uid;
+
+       // Authorized roles can read all assets
+       allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+
+       // System can write (e.g., adding satellite data links) or admin
+       allow write: if hasAnyRole(request.auth.uid, ['system', 'admin']);
     }
   }
 }
