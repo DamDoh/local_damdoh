@@ -1,13 +1,15 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 admin.initializeApp();
 
 export const signUpAndCreateProfile = functions.https.onRequest(async (req, res) => {
-  const { email, password, stakeholderType, profileData } = req.body;
+  // Correctly expect 'role' and 'name' from the request body to align with main app logic
+  const { email, password, name, role, profileData } = req.body;
 
-  if (!email || !password || !stakeholderType) {
-    return res.status(400).send('Missing email, password, or stakeholderType.');
+  if (!email || !password || !name || !role) {
+    return res.status(400).send('Missing email, password, name, or role.');
   }
 
   try {
@@ -15,31 +17,31 @@ export const signUpAndCreateProfile = functions.https.onRequest(async (req, res)
     const userRecord = await admin.auth().createUser({
       email: email,
       password: password,
+      displayName: name, // Set displayName in Auth
     });
 
     const uid = userRecord.uid;
 
-    // Basic validation for profileData structure based on stakeholderType
-    // More detailed validation based on the specific schema for each stakeholderType
-    // should be implemented here or in a separate validation service.
-    const initialProfileData = profileData || {}; // Use provided profileData or an empty object
+    const initialProfileData = profileData || {};
 
-    // Example basic validation: check if profileData is an object
-    if (typeof initialProfileData !== 'object' || initialProfileData === null) {
-        return res.status(400).send('Invalid profileData format.');
-    }
-
-    // TODO: Implement more robust validation based on stakeholderType schema from architecture doc
-    // For example: if stakeholderType is 'farmer', check for presence and type of 'farm_name', 'location', etc.
-
-    // 2. Create user profile in Firestore
+    // 2. Create user profile in Firestore using the correct 'roles' array schema
     await admin.firestore().collection('users').doc(uid).set({
       uid: uid,
       email: email,
-      stakeholder_type: stakeholderType,
+      name: name,
+      roles: [role], // Use the 'roles' array as per the app's schema
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      // Include profileData provided in the request body
-      profile_data: initialProfileData
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      profile_data: initialProfileData, // For any extra data
+      // Add other default fields from your main user schema for consistency
+      location: 'Not specified',
+      avatarUrl: `https://placehold.co/150x150.png?text=${name.substring(0,1)}`,
+      profileSummary: `A new ${role} in the DamDoh community.`,
+      bio: '',
+      areasOfInterest: [],
+      needs: [],
+      connections: [],
+      contactInfo: { email },
     });
 
     // 3. Return success response
