@@ -139,3 +139,10 @@ export const signUpSchema = z.object({
 });
 
 export type SignUpValues = z.infer<typeof signUpSchema>;
+
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address." }),
+});
+
+export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;

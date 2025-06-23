@@ -89,7 +89,7 @@ export default function ForgotPasswordPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
          <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">Reset your {APP_NAME} password</p>
+        <p className="text-muted-foreground mt-2">Reset your ${APP_NAME} password</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
