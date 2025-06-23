@@ -40,7 +40,7 @@ const db = getFirestore(app);
 const auth = getAuth(app); // Initialize and export auth
 // const storage = getStorage(app); // If using Firebase Storage
 
-export { app, db, auth /*, storage */ };
+export { app as firebaseApp, db, auth /*, storage */ };
 
 
 // Replaces the old getProductsByCategory to query the unified marketplaceItems collection
