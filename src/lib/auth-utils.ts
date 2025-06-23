@@ -123,8 +123,7 @@ export async function sendPasswordReset(email: string): Promise<void> {
     console.log("Password reset email sent to:", email);
   } catch (error) {
     console.error("Error sending password reset email:", error);
-    console.error(`Failed to send password reset email for: ${email}. Error:`, error);
- throw error;
+    throw error;
   }
 }
 
@@ -133,6 +132,8 @@ export async function resetPassword(oobCode: string, newPassword: string): Promi
     console.log("Attempting to reset password with oobCode:", oobCode);
     await confirmPasswordReset(auth, oobCode, newPassword);
     console.log("Password reset successful for oobCode:", oobCode);
+  } catch (error) {
+    console.error("Error resetting password:", error);
     throw error;
   }
 }

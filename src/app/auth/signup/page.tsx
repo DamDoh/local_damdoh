@@ -28,7 +28,7 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
@@ -52,27 +52,35 @@ export default function SignUpPage() {
   });
 
   // Mapping of stakeholder roles to Lucide icons
-  const STAKEHOLDER_ICONS: Record<StakeholderRole, React.ElementType> = {
+  const STAKEHOLDER_ICONS: Record<string, React.ElementType> = {
     'Farmer': Sprout,
-    'Buyer': Briefcase,
-    'Input Supplier': ShoppingBag,
-    'Financial Institution': Banknote,
-    'Logistics Provider': Truck,
-    'Processing Unit': Factory,
-    'Agro-Export Company': TrendingUp,
-    'Regulatory Body': Scale,
+    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
+    'Financial Institution (Micro-finance/Loans)': Banknote,
+    'Logistics Partner (Third-Party Transporter)': Truck,
+    'Processing & Packaging Unit': Factory,
+    'Agro-Export Facilitator/Customs Broker': TrendingUp,
+    'Government Regulator/Auditor': Scale,
     'Field Agent/Agronomist (DamDoh Internal)': Compass,
     'Operations/Logistics Team (DamDoh Internal)': Truck,
     'Quality Assurance Team (DamDoh Internal)': Clipboard,
     'Technology/Data Team (DamDoh Internal)': Bolt,
     'Community Manager (DamDoh Internal)': Users,
-    'Agri-tourism Operator': Globe,
+    'Agro-Tourism Operator': Globe,
     'Researcher/Academic': BookOpen,
     'Extension Worker': MessageSquare,
     'NGO/Development Partner': Network,
     'Environmental Specialist': Recycle,
     'Crowdfunder (Impact Investor, Individual)': Banknote,
-    'Other': Users, // Generic icon for 'Other'
+    'Other': Users,
+    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
+    'Certification Body (Organic, Fair Trade etc.)': Scale,
+    'Consumer': User,
+    'Storage/Warehouse Facility': Warehouse,
+    'Agronomy Expert/Consultant (External)': BookOpen,
+    'Retailer/City Market Seller': ShoppingBag,
+    'Waste Management & Compost Facility': Recycle,
+    'Agri-Tech Innovator/Developer': Lightbulb,
   };
 
   async function onSubmit(data: SignUpValues) {
@@ -118,7 +126,7 @@ export default function SignUpPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
         <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">Join the ${APP_NAME} Agricultural Network!</p>
+        <p className="text-muted-foreground mt-2">Join the {APP_NAME} Agricultural Network!</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
@@ -149,8 +157,7 @@ export default function SignUpPage() {
                 )}
               />
 
-              {/* Form Field for Role */}
-               <FormField
+              <FormField
                 control={form.control}
                 name="role"
                 render={({ field }) => (
@@ -172,14 +179,12 @@ export default function SignUpPage() {
                       </SelectContent>
                     </Select>
                     <FormMessage />
-                )} 
-                // Inside the SelectItem map:
-               render={({ field }) => (
-                <FormItem>
+                  </FormItem>
+                )}
               />
+              
               <FormField
                 control={form.control}
-                name="name" // This seems like a copy-paste error, should likely be different field or removed. Assuming it was meant to be the Role field's closing tag.
                 name="email"
                 render={({ field }) => (
                   <FormItem>
