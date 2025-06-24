@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -31,6 +32,7 @@ import { WarehouseDashboard } from "@/components/dashboard/hubs/processing-logis
 import { AgroExportDashboard } from "@/components/dashboard/hubs/processing-logistics/AgroExportDashboard";
 import { QaDashboard } from "@/components/dashboard/hubs/QaDashboard";
 import { CertificationBodyDashboard } from "@/components/dashboard/hubs/CertificationBodyDashboard";
+import { ResearcherDashboard } from "@/components/dashboard/hubs/ResearcherDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
@@ -278,6 +280,8 @@ export default function HomePage() {
         return <QaDashboard />;
       case "certification_body":
         return <CertificationBodyDashboard />;
+      case "researcher":
+        return <ResearcherDashboard />;
       default:
         return <FarmerDashboard />;
     }

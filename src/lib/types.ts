@@ -1,3 +1,4 @@
+
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -391,6 +392,31 @@ export interface CertificationBodyDashboardData {
         standard: string;
         adherenceRate: number;
         alerts: number;
+        actionLink: string;
+    }[];
+}
+
+export interface ResearcherDashboardData {
+    availableDatasets: {
+        id: string;
+        name: string;
+        description: string;
+        dataType: string;
+        accessLevel: 'Public' | 'Anonymized' | 'Consented';
+        actionLink: string;
+    }[];
+    ongoingProjects: {
+        id: string;
+        title: string;
+        progress: number;
+        collaborators: string[];
+        actionLink: string;
+    }[];
+    knowledgeHubContributions: {
+        id: string;
+        title: string;
+        type: 'Article' | 'Methodology' | 'Tool';
+        status: 'Draft' | 'Pending Review' | 'Published';
         actionLink: string;
     }[];
 }

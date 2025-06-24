@@ -1,3 +1,4 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -298,4 +299,31 @@ export const getCertificationBodyDashboardData = functions.https.onCall(async (d
     };
     
     return mockCertBodyData;
+});
+
+/**
+ * =================================================================
+ * RESEARCHER / ACADEMIC HUB
+ * =================================================================
+ */
+export const getResearcherDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockResearcherData = {
+        availableDatasets: [
+            { id: "data1", name: "Anonymized VTI Data - Q1 2024", description: "Traceability events for maize supply chains in East Africa.", dataType: "VTI Events", accessLevel: "Anonymized", actionLink: "/data/vti-q1-2024" },
+            { id: "data2", name: "Satellite Imagery - Rift Valley", description: "High-resolution satellite imagery for crop health monitoring.", dataType: "Satellite Imagery", accessLevel: "Consented", actionLink: "/data/satellite-rift-valley" }
+        ],
+        ongoingProjects: [
+            { id: "proj1", title: "Impact of Climate Change on Coffee Yields", progress: 65, collaborators: ["University of Nairobi", "DamDoh Data Team"], actionLink: "/projects/coffee-yields" }
+        ],
+        knowledgeHubContributions: [
+            { id: "contrib1", title: "Paper: Soil Carbon Sequestration", type: "Article", status: "Published", actionLink: "/kb/soil-carbon" },
+            { id: "contrib2", title: "Tool: Simple Crop Water Requirement Calculator", type: "Tool", status: "Pending Review", actionLink: "/kb/water-calculator" }
+        ]
+    };
+
+    return mockResearcherData;
 });
