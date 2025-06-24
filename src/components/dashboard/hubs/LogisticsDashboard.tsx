@@ -10,29 +10,7 @@ import { Truck, Clock, AlertTriangle, ExternalLink, Briefcase, BarChart } from '
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface LogisticsDashboardData {
-    activeShipments: {
-        id: string;
-        to: string;
-        status: string;
-        eta: string;
-        vtiLink: string;
-    }[];
-    incomingJobs: {
-        id: string;
-        from: string;
-        to: string;
-        product: string;
-        requirements: string;
-        actionLink: string;
-    }[];
-    performanceMetrics: {
-        onTimePercentage: number;
-        fuelEfficiency: string;
-        actionLink: string;
-    };
-}
+import type { LogisticsDashboardData } from '@/lib/types'; // Import the type
 
 export const LogisticsDashboard = () => {
     const [dashboardData, setDashboardData] = useState<LogisticsDashboardData | null>(null);

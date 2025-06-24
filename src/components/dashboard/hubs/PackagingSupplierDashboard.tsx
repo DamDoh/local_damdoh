@@ -9,23 +9,7 @@ import { firebaseApp } from '@/lib/firebase';
 import { Box, Package, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-
-interface PackagingSupplierDashboardData {
-    demandForecast: {
-        productType: string;
-        unitsNeeded: number;
-        for: string;
-    };
-    integrationRequests: {
-        from: string;
-        request: string;
-        actionLink: string;
-    }[];
-    sustainableShowcase: {
-        views: number;
-        leads: number;
-    };
-}
+import { PackagingSupplierDashboardData } from '@/lib/types';
 
 export const PackagingSupplierDashboard = () => {
     const [dashboardData, setDashboardData] = useState<PackagingSupplierDashboardData | null>(null);

@@ -10,26 +10,7 @@ import { FileText, Ship, Globe, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface AgroExportDashboardData {
-    pendingCustomsDocs: {
-        id: string;
-        vtiLink: string;
-        destination: string;
-        status: string;
-    }[];
-    trackedShipments: {
-        id: string;
-        status: string;
-        location: string;
-        carrier: string;
-    }[];
-    complianceAlerts: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-}
+import type { AgroExportDashboardData } from '@/lib/types';
 
 export const AgroExportDashboard = () => {
     const [dashboardData, setDashboardData] = useState<AgroExportDashboardData | null>(null);

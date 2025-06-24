@@ -10,34 +10,7 @@ import { TrendingUp, Droplets, Users, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { TrustScoreWidget } from './TrustScoreWidget';
-
-interface FarmerDashboardData {
-    predictedYield: {
-        crop: string;
-        variance: string;
-        confidence: string;
-    };
-    irrigationSchedule: {
-        next_run: string;
-        duration_minutes: number;
-        recommendation: string;
-    };
-    matchedBuyers: {
-        id: string;
-        name: string;
-        matchScore: number;
-        request: string;
-        contactId: string;
-    }[];
-    trustScore: {
-        reputation: number;
-        certifications: {
-            id: string;
-            name: string;
-            issuingBody: string;
-        }[];
-    }
-}
+import type { FarmerDashboardData } from '@/lib/types'; // Import the FarmerDashboardData type
 
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);

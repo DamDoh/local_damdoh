@@ -10,28 +10,7 @@ import { Lightbulb, TrendingUp, PackageCheck, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface InputSupplierDashboardData {
-    demandForecast: {
-        id: string;
-        region: string;
-        product: string;
-        trend: string;
-        reason: string;
-    }[];
-    productPerformance: {
-        id: string;
-        productName: string;
-        rating: number;
-        feedback: string;
-        link: string;
-    }[];
-    activeOrders: {
-        count: number;
-        value: number;
-        link: string;
-    };
-}
+import type { InputSupplierDashboardData } from '@/lib/types'; // Import the InputSupplierDashboardData type
 
 export const InputSupplierDashboard = () => {
     const [dashboardData, setDashboardData] = useState<InputSupplierDashboardData | null>(null);

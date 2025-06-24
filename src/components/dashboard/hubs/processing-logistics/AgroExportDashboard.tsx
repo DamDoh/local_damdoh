@@ -10,23 +10,7 @@ import { Globe, FileText, CheckCircle, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface AgroExportDashboardData {
-    automatedDocs: {
-        docId: string;
-        type: string;
-        status: string;
-    }[];
-    vtiShipments: {
-        vti: string;
-        status: string;
-        location: string;
-    }[];
-    customsAlerts: {
-        alert: string;
-        actionLink: string;
-    }[];
-}
+import type { AgroExportDashboardData } from '@/lib/types';
 
 export const AgroExportDashboard = () => {
     const [dashboardData, setDashboardData] = useState<AgroExportDashboardData | null>(null);

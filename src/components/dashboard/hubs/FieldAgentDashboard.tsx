@@ -10,27 +10,7 @@ import { Users, Leaf, ClipboardList, CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface FieldAgentDashboardData {
-    assignedFarmers: {
-        id: string;
-        name: string;
-        lastVisit: string;
-        issues: number;
-        actionLink: string;
-    }[];
-    portfolioHealth: {
-        overallScore: number;
-        alerts: string[];
-        actionLink: string;
-    };
-    pendingReports: number;
-    dataVerificationTasks: {
-        count: number;
-        description: string;
-        actionLink: string;
-    };
-}
+import type { FieldAgentDashboardData } from '@/lib/types'; // Import the type
 
 export const FieldAgentDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FieldAgentDashboardData | null>(null);

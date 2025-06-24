@@ -9,21 +9,7 @@ import { firebaseApp } from '@/lib/firebase';
 import { Zap, Target, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-
-interface EnergyProviderDashboardData {
-    highPotentialLeads: {
-        id: string;
-        name: string;
-        energySpend: number;
-        potentialSaving: string;
-        actionLink: string;
-    }[];
-    carbonImpact: {
-        savedThisYear: number;
-        totalProjects: number;
-    };
-    pendingProposals: number;
-}
+import type { EnergyProviderDashboardData } from '@/lib/types';
 
 export const EnergyProviderDashboard = () => {
     const [dashboardData, setDashboardData] = useState<EnergyProviderDashboardData | null>(null);

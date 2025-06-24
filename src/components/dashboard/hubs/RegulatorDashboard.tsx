@@ -10,26 +10,7 @@ import { AlertTriangle, BadgeCheck, Zap, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface RegulatorDashboardData {
-    complianceRiskAlerts: {
-        id: string;
-        region: string;
-        issue: string;
-        severity: string;
-        actionLink: string;
-    }[];
-    pendingCertifications: {
-        count: number;
-        actionLink: string;
-    };
-    supplyChainAnomalies: {
-        id: string;
-        description: string;
-        level: string;
-        vtiLink: string;
-    }[];
-}
+import { RegulatorDashboardData } from "@/lib/types";
 
 export const RegulatorDashboard = () => {
     const [dashboardData, setDashboardData] = useState<RegulatorDashboardData | null>(null);

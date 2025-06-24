@@ -11,30 +11,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 
-interface FiDashboardData {
-    pendingApplications: {
-        id: string;
-        applicantName: string;
-        type: string;
-        amount: number;
-        riskScore: number;
-        actionLink: string;
-    }[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
-    };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-}
+import type { FiDashboardData } from '@/lib/types'; // Import the FiDashboardData type
 
 export const FiDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
