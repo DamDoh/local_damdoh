@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -10,34 +9,7 @@ import { ShieldAlert, TrendingUp, Search, CheckCircle, XCircle } from 'lucide-re
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface BuyerDashboardData {
-    supplyChainRisk: {
-        region: string;
-        level: string;
-        factor: string;
-        action: {
-            label: string;
-            link: string;
-        };
-    };
-    sourcingRecommendations: {
-        id: string;
-        name: string;
-        product: string;
-        reliability: number;
-        vtiVerified: boolean;
-    }[];
-    marketPriceIntelligence: {
-        product: string;
-        trend: 'up' | 'down';
-        forecast: string;
-        action: {
-            label: string;
-            link: string;
-        };
-    };
-}
+import type { BuyerDashboardData } from '@/lib/types';
 
 export const BuyerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<BuyerDashboardData | null>(null);
