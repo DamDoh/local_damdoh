@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,6 +13,13 @@ import { DashboardRightSidebar } from '@/components/dashboard/DashboardRightSide
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuth } from '@/lib/auth-utils';
 import { collection, query, orderBy, limit, onSnapshot, getFirestore, doc, getDoc } from 'firebase/firestore';
+
+// Placeholder imports for role-based hubs
+// These components will be implemented in the next steps
+import FarmerHub from '@/components/dashboard/hubs/FarmerHub';
+import BuyerHub from '@/components/dashboard/hubs/BuyerHub';
+import LogisticsHub from '@/components/dashboard/hubs/LogisticsHub';
+// Add imports for other roles as needed
 
 // Helper function to fetch user profiles, with caching
 const userProfileCache: Record<string, UserProfile> = {};
@@ -39,8 +46,11 @@ const fetchUserProfiles = async (userIds: string[]) => {
 export default function DashboardPage() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [isLoadingRole, setIsLoadingRole] = useState(true);
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
+  const db = getFirestore(firebaseApp);
 
   // Memoize the callable functions
   const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), [functions]);
@@ -48,6 +58,22 @@ export default function DashboardPage() {
   const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
 
+  // Effect to fetch user role
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (!user) {
+        setUserRole(null);
+        setIsLoadingRole(false);
+        return;
+      }
+      setIsLoadingRole(true);
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+      setUserRole(userDoc.data()?.role || 'general'); // Assume 'general' if role is not set
+      setIsLoadingRole(false);
+    };
+    fetchUserRole();
+  }, [user, db]);
 
   useEffect(() => {
     const fetchPersonalizedFeed = async () => {
@@ -134,7 +160,6 @@ export default function DashboardPage() {
      }
   };
 
-
   return (
     <div className="grid md:grid-cols-[260px_1fr] lg:grid-cols-[260px_1fr_300px] xl:grid-cols-[280px_1fr_320px] items-start gap-6 p-4 md:p-6 max-w-screen-2xl mx-auto w-full">
       
@@ -142,29 +167,44 @@ export default function DashboardPage() {
 
       <div className="grid gap-6">
         <StartPost onCreatePost={handleCreatePost} />
-
-        {isLoadingFeed ? (
-          <div className="space-y-6">
-            <Skeleton className="h-48 w-full rounded-lg" />
-            <Skeleton className="h-64 w-full rounded-lg" />
-            <Skeleton className="h-56 w-full rounded-lg" />
-          </div>
-        ) : feedItems.length > 0 ? (
-          feedItems.map((item) => (
-            <FeedItemCard 
-              key={item.id} 
-              item={item} 
-              onLike={handleLikePost}
-              onComment={handleCommentOnPost}
-            />
-          ))
+        
+        {/* Conditional rendering based on user role */}
+        {isLoadingRole ? (
+           <div className="space-y-6">
+             <Skeleton className="h-48 w-full rounded-lg" />
+             <Skeleton className="h-64 w-full rounded-lg" />
+             <Skeleton className="h-56 w-full rounded-lg" />
+           </div>
         ) : (
-          <Card>
-            <CardContent className="pt-6 text-center text-muted-foreground">
-              <p>No posts in your feed right now.</p>
-              <p className="text-sm">Check back later or create a post to get the conversation started!</p>
-            </CardContent>
-          </Card>
+          <Suspense fallback={<div className="space-y-6"><Skeleton className="h-48 w-full rounded-lg" /><Skeleton className="h-64 w-full rounded-lg" /></div>}>
+             {userRole === 'farmer' ? (
+               <FarmerHub />
+             ) : userRole === 'buyer' ? (
+               <BuyerHub />
+             ) : userRole === 'logistics' ? (
+               <LogisticsHub />
+             ) : (
+              // Default Feed for 'general' role or if role is not recognized
+              isLoadingFeed ? (
+                <div className="space-y-6">
+                  <Skeleton className="h-48 w-full rounded-lg" />
+                  <Skeleton className="h-64 w-full rounded-lg" />
+                  <Skeleton className="h-56 w-full rounded-lg" />
+                </div>
+              ) : feedItems.length > 0 ? (
+                feedItems.map((item) => (
+                  <FeedItemCard
+                    key={item.id}
+                    item={item}
+                    onLike={handleLikePost}
+                    onComment={handleCommentOnPost}
+                  />
+                ))
+              ) : (
+                <Card><CardContent className="pt-6 text-center text-muted-foreground"><p>No posts in your feed right now.</p><p className="text-sm">Check back later or create a post to get the conversation started!</p></CardContent></Card>
+              )
+             )}
+          </Suspense>
         )}
       </div>
 

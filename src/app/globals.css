@@ -10,35 +10,35 @@ body {
 @layer base {
   :root {
     /* DamDoh.org Inspired Light Theme */
-    --background: 48 57% 96%; /* Light Beige #F9F7F1 */
-    --foreground: 70 60% 12%; /* Dark Green-Black #1E2601 for text */
-    
+    --background: 48 57% 96%; /* #F9F7F1 */
+    --foreground: 70 60% 12%; /* #1E2601 */
+
     --card: 0 0% 100%; /* White cards for contrast */
     --card-foreground: 70 60% 12%;
 
-    --popover: 0 0% 100%; 
+    --popover: 0 0% 100%;
     --popover-foreground: 70 60% 12%;
-    
-    --primary: 80 57% 51%; /* Vibrant Green #92C83E */
-    --primary-foreground: 80 60% 97%; /* Almost white text on primary green */
-    
-    --secondary: 70 15% 90%; /* Light Gray for secondary elements */
-    --secondary-foreground: 70 20% 30%; /* Darker Gray text on secondary */
-    
-    --muted: 48 40% 93%; /* Slightly darker beige than main background */
-    --muted-foreground: 70 15% 45%; /* Medium Green-Gray for muted text */
-    
-    --accent: 80 57% 65%; /* A lighter shade of the primary green for accents */
-    --accent-foreground: 70 60% 12%; /* Dark text for accent background */
-    
+
+    --primary: 80 57% 51%; /* #6ec33f - Using HSL approximation */
+    --primary-foreground: 0 0% 100%; /* #ffffff */
+
+    --secondary: 39 77% 39%; /* #b8860b - DarkGoldenrod HSL approximation */
+    --secondary-foreground: 0 0% 100%; /* #ffffff */
+
+    --muted: 48 24% 82%; /* #e0d8c4 - HSL approximation */
+    --muted-foreground: 70 10% 34%; /* #5a624a - HSL approximation */
+
+    --accent: 40 100% 49%; /* #DAA520 - Warm Gold HSL approximation */
+    --accent-foreground: 70 60% 12%; /* #1E2601 */
+
     --destructive: 0 70% 55%; /* Standard Red */
     --destructive-foreground: 0 0% 98%; /* White text on destructive */
-    
-    --border: 70 20% 85%; /* Light Green-Gray border */
-    --input: 0 0% 100%; /* White input background */
-    --ring: 80 57% 55%; /* Primary green for focus rings */
-    
-    --chart-1: 80 57% 55%;
+
+    --border: 48 16% 85%; /* #d3cbbd - HSL approximation */
+    --input: 0 0% 100%; /* #ffffff */
+    --ring: 80 57% 51%; /* #6ec33f */
+
+    --chart-1: 80 57% 51%;
     --chart-2: 80 57% 65%;
     --chart-3: 70 40% 50%;
     --chart-4: 70 40% 60%;

@@ -14,7 +14,7 @@ import type { FeedItem, PollOption, MobileHomeCategory, MobileDiscoverItem } fro
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import Image from "next/image";
+import Image from 'next/image';
 import { dummyFeedItems as initialFeedItems, mobileHomeCategories, mobileDiscoverItems } from "@/lib/dummy-data";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -280,14 +280,14 @@ export default function DashboardPage() {
           </section>
 
           <section className="mb-6">
-            <div className="flex justify-between items-center mb-2 px-4">
+            <div className="flex justify-between items-center mb-3 px-4">
                 <h2 className="text-xl font-semibold">Discover Opportunities</h2>
                 <Link href="/discover" className="text-sm text-primary hover:underline flex items-center">
                     View More <ChevronRight className="h-4 w-4 ml-1" />
                 </Link>
             </div>
             <ScrollArea className="w-full whitespace-nowrap">
-              <div className="flex gap-4 px-4 pb-2">
+              <div className="flex gap-3 px-4 pb-2">
                 {mobileDiscoverItems.map((item) => (
                   <Link key={item.id} href={item.link} className="inline-block">
                     <Card className="w-40 overflow-hidden hover:shadow-md transition-shadow">
@@ -295,7 +295,7 @@ export default function DashboardPage() {
                         <Image src={item.imageUrl} alt={item.title} fill style={{objectFit:"cover"}} data-ai-hint={item.dataAiHint || "discover item"}/>
                       </div>
                       <CardContent className="p-2">
-                        <p className="text-xs font-medium text-foreground line-clamp-2 h-8">{item.title}</p>
+                        <p className="text-sm font-medium text-foreground line-clamp-2 h-10 leading-tight">{item.title}</p>
                         <Badge variant="outline" className="mt-1 text-xs">{item.type}</Badge>
                       </CardContent>
                     </Card>
@@ -310,8 +310,8 @@ export default function DashboardPage() {
           </div>
 
           <section className="mt-6 px-4 space-y-4">
-            <h2 className="text-xl font-semibold">Recent Activity</h2>
-            {feedItems.slice(0, 3).map(item => ( 
+            <h2 className="text-xl font-semibold">Feed</h2> {/* Changed to Feed for clarity */}
+            {feedItems.map(item => ( 
               <FeedItemCard key={item.id} item={item} onDeletePost={handleDeletePost} />
             ))}
              {feedItems.length === 0 && (
