@@ -17,6 +17,7 @@ import { PackagingSupplierDashboard } from "@/components/dashboard/hubs/Packagin
 import { ProcessingUnitDashboard } from "@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard";
 import { WarehouseDashboard } from "@/components/dashboard/hubs/processing-logistics/WarehouseDashboard";
 import { AgroExportDashboard } from "@/components/dashboard/hubs/processing-logistics/AgroExportDashboard";
+import { QaDashboard } from "@/components/dashboard/hubs/QaDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function HomePage() {
@@ -56,7 +57,7 @@ export default function HomePage() {
       case "regulator":
         return <RegulatorDashboard />;
       case "logistics_partner":
-        return <LogisticsDashboard />; // Note: Role name updated for clarity
+        return <LogisticsDashboard />;
       case "fi":
         return <FiDashboard />;
       case "field_agent":
@@ -73,6 +74,8 @@ export default function HomePage() {
         return <WarehouseDashboard />;
       case "agro_export":
         return <AgroExportDashboard />;
+      case "qa":
+        return <QaDashboard />;
       default:
         return <FarmerDashboard />;
     }

@@ -10,24 +10,7 @@ import { Sliders, Package, Trash2, TrendingUp, AlertTriangle } from 'lucide-reac
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-interface ProcessingUnitDashboardData {
-    yieldOptimization: {
-        currentYield: number;
-        potentialYield: number;
-        suggestion: string;
-    };
-    inventory: {
-        product: string;
-        tons: number;
-        quality: string;
-    }[];
-    wasteReduction: {
-        currentRate: number;
-        potentialRate: number;
-        insight: string;
-    };
-}
+import type { ProcessingUnitDashboardData } from '@/lib/types';
 
 export const ProcessingUnitDashboard = () => {
     const [dashboardData, setDashboardData] = useState<ProcessingUnitDashboardData | null>(null);

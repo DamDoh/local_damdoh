@@ -9,21 +9,7 @@ import { firebaseApp } from '@/lib/firebase';
 import { Warehouse, Layers, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-
-interface WarehouseDashboardData {
-    storageOptimization: {
-        utilization: number;
-        suggestion: string;
-    };
-    inventoryLevels: {
-        totalItems: number;
-        itemsNeedingAttention: number;
-    };
-    predictiveAlerts: {
-        alert: string;
-        actionLink: string;
-    }[];
-}
+import type { WarehouseDashboardData } from '@/lib/types';
 
 export const WarehouseDashboard = () => {
     const [dashboardData, setDashboardData] = useState<WarehouseDashboardData | null>(null);

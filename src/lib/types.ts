@@ -299,18 +299,21 @@ export interface PackagingSupplierDashboardData {
 }
 
 export interface AgroExportDashboardData {
-    automatedDocs: {
-        docId: string;
-        type: string;
+    pendingCustomsDocs: {
+        id: string;
+        vtiLink: string;
+        destination: string;
         status: string;
     }[];
-    vtiShipments: {
-        vti: string;
+    trackedShipments: {
+        id: string;
         status: string;
         location: string;
+        carrier: string;
     }[];
-    customsAlerts: {
-        alert: string;
+    complianceAlerts: {
+        id: string;
+        content: string;
         actionLink: string;
     }[];
 }
@@ -346,6 +349,27 @@ export interface WarehouseDashboardData {
         alert: string;
         actionLink: string;
     }[];
+}
+
+export interface QaDashboardData {
+  pendingInspections: {
+    id: string;
+    productName: string;
+    sellerName: string;
+    batchId: string;
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string;
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
 }
 
 // =================================================================
