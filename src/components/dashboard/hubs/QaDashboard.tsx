@@ -1,126 +1,192 @@
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
-import { CheckCircle, XCircle, BarChart, Microscope } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { firebaseApp } from '@/lib/firebase'; // Assuming firebaseApp is exported from here
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import type { QaDashboardData } from '@/lib/types';
+import { CheckCircle, AlertTriangle, FileText } from 'lucide-react';
+import type { QaDashboardData } from '@/lib/types'; // Import the type
+
+// Assume mock getQaDashboardData is available via firebase functions
+const functions = getFunctions(firebaseApp);
+const getQaDashboardDataCallable = httpsCallable<void, QaDashboardData>(functions, 'getQaDashboardData');
+
 
 export const QaDashboard = () => {
-    const [dashboardData, setDashboardData] = useState<QaDashboardData | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+  const [dashboardData, setDashboardData] = useState<QaDashboardData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getQaData = useMemo(() => httpsCallable(functions, 'getQaDashboardData'), [functions]);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        // Call the mock Firebase function
+        const result = await getQaDashboardDataCallable();
+        setDashboardData(result.data);
+      } catch (err) {
+        console.error("Error fetching QA dashboard data:", err);
+        setError("Failed to load QA dashboard data.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const result = await getQaData();
-                setDashboardData(result.data as QaDashboardData);
-            } catch (error) {
-                console.error("Error fetching QA dashboard data:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchData();
-    }, [getQaData]);
+    fetchData();
+  }, [getQaDashboardDataCallable]);
 
-    if (isLoading) {
-        return <DashboardSkeleton />;
-    }
-
-    if (!dashboardData) {
-        return (
-            <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
-            </div>
-        );
-    }
-
-    const { pendingInspections, recentResults, qualityMetrics } = dashboardData;
-
+  if (isLoading) {
     return (
-        <div>
-            <h1 className="text-3xl font-bold mb-6">Quality Assurance Dashboard</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <Card>
-                    <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Pending Inspections</CardTitle>
-                        <Microscope className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{pendingInspections.length}</div>
-                        <p className="text-xs text-muted-foreground">items awaiting quality check</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Overall Pass Rate</CardTitle>
-                        <BarChart className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{qualityMetrics.passRate}%</div>
-                        <p className="text-xs text-muted-foreground">based on recent inspections</p>
-                    </CardContent>
-                </Card>
-                
-                <Card className="col-span-1 md:col-span-2 lg:col-span-1">
-                    <CardHeader>
-                        <CardTitle className="text-base">Recent Results</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        {recentResults.map(res => (
-                            <div key={res.id} className="flex items-center justify-between text-sm">
-                                <span>{res.productName}</span>
-                                {res.result === 'Pass' ? 
-                                    <CheckCircle className="h-4 w-4 text-green-500" /> : 
-                                    <XCircle className="h-4 w-4 text-red-500" />}
-                            </div>
-                        ))}
-                    </CardContent>
-                </Card>
-                
-                <Card className="md:col-span-3">
-                    <CardHeader>
-                        <CardTitle className="text-base">Inspection Queue</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        {pendingInspections.map(item => (
-                            <div key={item.id} className="flex justify-between items-center p-2 border rounded-lg">
-                                <div>
-                                    <p className="font-medium">{item.productName}</p>
-                                    <p className="text-xs text-muted-foreground">Seller: {item.sellerName} | Batch: {item.batchId}</p>
-                                </div>
-                                <Button asChild size="sm">
-                                    <Link href={item.actionLink}>Start Inspection</Link>
-                                </Button>
-                            </div>
-                        ))}
-                    </CardContent>
-                </Card>
-            </div>
-        </div>
+      <div className="space-y-6">
+        <Skeleton className="h-48 w-full rounded-lg" />
+        <Skeleton className="h-32 w-full rounded-lg" />
+        <Skeleton className="h-64 w-full rounded-lg" />
+      </div>
     );
-};
+  }
 
-const DashboardSkeleton = () => (
-    <div>
-        <Skeleton className="h-9 w-64 mb-6" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-32" />
-            <Skeleton className="h-32" />
-            <Skeleton className="h-32" />
-            <Skeleton className="h-48 md:col-span-3" />
-        </div>
+  if (error) {
+    return (
+      <Card>
+        <CardContent className="pt-6 text-center text-destructive">
+          <p>{error}</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (!dashboardData) {
+      return (
+           <Card>
+                <CardContent className="pt-6 text-center text-muted-foreground">
+                    <p>No dashboard data available.</p>
+                </CardContent>
+           </Card>
+      );
+  }
+
+  const getSeverityBadgeVariant = (severity: string) => {
+      switch (severity.toLowerCase()) {
+          case 'high': return 'destructive';
+          case 'medium': return 'secondary';
+          default: return 'outline';
+      }
+  };
+
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold mb-6">Quality Assurance Hub</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+         {/* Pending Inspections */}
+         <Card className="md:col-span-2">
+           <CardHeader>
+             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/> Pending Inspections</CardTitle>
+             <CardDescription>Inspections requiring your attention.</CardDescription>
+           </CardHeader>
+           <CardContent>
+             {dashboardData.pendingInspections.length > 0 ? (
+               <Table>
+                 <TableHeader>
+                   <TableRow>
+                     <TableHead>Batch ID</TableHead>
+                     <TableHead>Product</TableHead>
+                     <TableHead>Location</TableHead>
+                     <TableHead>Due Date</TableHead>
+                     <TableHead>Action</TableHead>
+                   </TableRow>
+                 </TableHeader>
+                 <TableBody>
+                   {dashboardData.pendingInspections.map((inspection) => (
+                     <TableRow key={inspection.id}>
+                       <TableCell className="font-mono text-xs">{inspection.batchId}</TableCell>
+                       <TableCell>{inspection.productName}</TableCell>
+                       <TableCell>{inspection.sellerName}</TableCell>
+                       <TableCell>{new Date(inspection.dueDate).toLocaleDateString()}</TableCell>
+                       <TableCell>
+                         <Button asChild variant="outline" size="sm">
+                           <Link href={inspection.actionLink}>Perform Inspection</Link>
+                         </Button>
+                       </TableCell>
+                     </TableRow>
+                   ))}
+                 </TableBody>
+               </Table>
+             ) : (
+               <p className="text-sm text-muted-foreground">No pending inspections.</p>
+             )}
+           </CardContent>
+         </Card>
+
+         {/* Recent Issues */}
+         <Card className="md:col-span-2">
+           <CardHeader>
+             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/> Recent Quality Issues</CardTitle>
+             <CardDescription>Recently reported quality and compliance issues.</CardDescription>
+           </CardHeader>
+           <CardContent>
+             {dashboardData.recentResults.length > 0 ? (
+               <Table>
+                 <TableHeader>
+                   <TableRow>
+                     <TableHead>Product</TableHead>
+                     <TableHead>Result</TableHead>
+                     <TableHead>Reason</TableHead>
+                     <TableHead>Inspected At</TableHead>
+                   </TableRow>
+                 </TableHeader>
+                 <TableBody>
+                   {dashboardData.recentResults.map((issue) => (
+                     <TableRow key={issue.id}>
+                       <TableCell>{issue.productName}</TableCell>
+                       <TableCell><Badge variant={issue.result === 'Pass' ? 'default' : 'destructive'}>{issue.result}</Badge></TableCell>
+                       <TableCell>{issue.reason || 'N/A'}</TableCell>
+                       <TableCell>{new Date(issue.inspectedAt).toLocaleDateString()}</TableCell>
+                     </TableRow>
+                   ))}
+                 </TableBody>
+               </Table>
+             ) : (
+               <p className="text-sm text-muted-foreground">No recent quality issues reported.</p>
+             )}
+           </CardContent>
+         </Card>
+
+          {/* Compliance Checklist Progress */}
+         <Card>
+            <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Compliance Progress</CardTitle>
+                <CardDescription>Track adherence to various quality standards.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {dashboardData.qualityMetrics ? (
+                    <div className="space-y-3">
+                        <div className="text-sm">
+                            <div className="flex justify-between items-center">
+                                <p className="font-medium">Overall Pass Rate</p>
+                                <Badge variant="secondary">{dashboardData.qualityMetrics.passRate}%</Badge>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700 mt-1">
+                                <div className="bg-green-600 h-2 rounded-full" style={{ width: `${dashboardData.qualityMetrics.passRate}%` }}></div>
+                            </div>
+                        </div>
+                        <div className="text-sm">
+                           <p>Average Score: {dashboardData.qualityMetrics.averageScore}</p>
+                        </div>
+                    </div>
+                ) : (
+                   <p className="text-sm text-muted-foreground">No compliance checklists tracked yet.</p>
+                )}
+            </CardContent>
+         </Card>
+
+      </div>
     </div>
-);
+  );
+};

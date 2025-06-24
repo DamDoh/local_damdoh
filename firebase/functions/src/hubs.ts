@@ -1,4 +1,3 @@
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -255,8 +254,8 @@ export const getQaDashboardData = functions.https.onCall(async (data, context) =
 
     const mockQaData = {
         pendingInspections: [
-            { id: "insp1", productName: "Organic Hass Avocados", sellerName: "Green Valley Farms", batchId: "batch-avo-001", actionLink: "/inspections/insp1" },
-            { id: "insp2", productName: "Grade A Maize", sellerName: "Sunrise Acres", batchId: "batch-maize-088", actionLink: "/inspections/insp2" }
+            { id: "insp1", productName: "Organic Hass Avocados", sellerName: "Green Valley Farms", batchId: "batch-avo-001", actionLink: "/inspections/insp1", dueDate: "2024-06-10" },
+            { id: "insp2", productName: "Grade A Maize", sellerName: "Sunrise Acres", batchId: "batch-maize-088", actionLink: "/inspections/insp2", dueDate: "2024-06-12" }
         ],
         recentResults: [
             { id: "res1", productName: "Coffee Beans", result: "Pass", inspectedAt: "2024-05-28" },
@@ -267,7 +266,7 @@ export const getQaDashboardData = functions.https.onCall(async (data, context) =
             averageScore: 95
         }
     };
-
+    
     return mockQaData;
 });
 

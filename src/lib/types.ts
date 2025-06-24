@@ -1,4 +1,3 @@
-
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -358,6 +357,7 @@ export interface QaDashboardData {
     sellerName: string;
     batchId: string;
     actionLink: string;
+    dueDate: string;
   }[];
   recentResults: {
     id: string;
