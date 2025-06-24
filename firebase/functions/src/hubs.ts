@@ -270,3 +270,33 @@ export const getQaDashboardData = functions.https.onCall(async (data, context) =
 
     return mockQaData;
 });
+
+
+/**
+ * =================================================================
+ * CERTIFICATION BODY HUB
+ * =================================================================
+ */
+export const getCertificationBodyDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockCertBodyData = {
+        pendingAudits: [
+            { id: "audit1", farmName: "Green Valley Farms", standard: "USDA Organic", dueDate: "2024-06-15", actionLink: "/audits/audit1" },
+            { id: "audit2", farmName: "Sunrise Acres", standard: "Fair Trade", dueDate: "2024-06-20", actionLink: "/audits/audit2" },
+        ],
+        certifiedEntities: [
+            { id: "entity1", name: "Green Valley Farms", type: "Farmer", certificationStatus: "Active", actionLink: "/entities/entity1" },
+            { id: "entity2", name: "FreshFoods Processors", type: "Processor", certificationStatus: "Pending", actionLink: "/entities/entity2" },
+            { id: "entity3", name: "Old Mill Co.", type: "Processor", certificationStatus: "Expired", actionLink: "/entities/entity3" },
+        ],
+        standardsMonitoring: [
+            { standard: "USDA Organic", adherenceRate: 98, alerts: 2, actionLink: "/monitoring/usda-organic" },
+            { standard: "Fair Trade", adherenceRate: 95, alerts: 5, actionLink: "/monitoring/fair-trade" },
+        ]
+    };
+    
+    return mockCertBodyData;
+});

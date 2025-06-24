@@ -18,6 +18,7 @@ import { ProcessingUnitDashboard } from "@/components/dashboard/hubs/processing-
 import { WarehouseDashboard } from "@/components/dashboard/hubs/processing-logistics/WarehouseDashboard";
 import { AgroExportDashboard } from "@/components/dashboard/hubs/processing-logistics/AgroExportDashboard";
 import { QaDashboard } from "@/components/dashboard/hubs/QaDashboard";
+import { CertificationBodyDashboard } from "@/components/dashboard/hubs/CertificationBodyDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function HomePage() {
@@ -76,6 +77,8 @@ export default function HomePage() {
         return <AgroExportDashboard />;
       case "qa":
         return <QaDashboard />;
+      case "certification_body":
+        return <CertificationBodyDashboard />;
       default:
         return <FarmerDashboard />;
     }

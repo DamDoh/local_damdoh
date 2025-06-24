@@ -372,6 +372,30 @@ export interface QaDashboardData {
   };
 }
 
+export interface CertificationBodyDashboardData {
+    pendingAudits: {
+        id: string;
+        farmName: string;
+        standard: string;
+        dueDate: string;
+        actionLink: string;
+    }[];
+    certifiedEntities: {
+        id: string;
+        name: string;
+        type: 'Farmer' | 'Processor';
+        certificationStatus: string;
+        actionLink: string;
+    }[];
+    standardsMonitoring: {
+        standard: string;
+        adherenceRate: number;
+        alerts: number;
+        actionLink: string;
+    }[];
+}
+
+
 // =================================================================
 // 4. SHARED & MISCELLANEOUS TYPES
 // =================================================================
