@@ -1,6 +1,3 @@
-
-rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -21,20 +18,19 @@ service cloud.firestore {
         return userRoles != null && userRoles is list && userRoles.hasAny(rolesList);
     }
 
-
     // Rules for master_data_products
     match /master_data_products/{productId} {
       allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
       // Allowing admin and system to write for data management and automated processes
-      allow write: if hasAnyRole(request.auth.uid, ['admin', 'system']);
+      allow write: if hasAnyRole(request.auth.uid, ['admin', 'system', 'content_creator']); // Added 'content_creator' role for data management
     }
 
     // Rules for master_data_inputs
     match /master_data_inputs/{inputId} {
        // Allowing all authenticated users to read input data, plus authorized roles
-       allow read: if request.auth != null || hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+       allow read: if request.auth.uid != null || hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
       // Allowing admin and system to write
-      allow write: if hasAnyRole(request.auth.uid, ['admin', 'system']);
+      allow write: if hasAnyRole(request.auth.uid, ['admin', 'system', 'content_creator', 'input_supplier']); // Added 'content_creator' and 'input_supplier'
     }
 
     // Rules for vti_registry
@@ -42,7 +38,7 @@ service cloud.firestore {
       // Read for authorized roles and public traceable VTIs
       allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']) || (resource.data.isPublicTraceable == true && request.auth != null);
       // Write access primarily for the system and authorized processes
-      allow write: if hasAnyRole(request.auth.uid, ['system', 'admin']); // Assuming admin can also create/manage VTIs if needed
+      allow write: if hasAnyRole(request.auth.uid, ['system', 'admin', 'processor', 'logistics_partner']); // Added processor and logistics_partner for managing VTIs at their stage
     }
 
     // Rules for traceability_events
@@ -50,13 +46,13 @@ service cloud.firestore {
        // Read for authorized roles and events linked to public traceable VTIs
        allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']) || (get(/databases/$(database)/documents/vti_registry/$(resource.data.vtiId)).data.isPublicTraceable == true && request.auth != null);
       // Write access primarily for the system and authorized processes
-      allow write: if hasAnyRole(request.auth.uid, ['system', 'admin']);
+      allow write: if hasAnyRole(request.auth.uid, ['system', 'admin', 'farmer', 'processor', 'logistics_partner', 'qa_expert']); // Added specific roles who create events
     }
 
     // Rules for geospatial_assets
     match /geospatial_assets/{assetId} {
        // Owner can read/write their own assets
-       allow read, write: if resource.data.ownerRef == request.auth.uid;
+       allow read, write: if resource.data.ownerRef == request.auth.uid || hasAnyRole(request.auth.uid, ['system']); // System can also modify linked data
 
        // Authorized roles can read all assets
        allow read: if hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
@@ -64,5 +60,403 @@ service cloud.firestore {
        // System can write (e.g., adding satellite data links) or admin
        allow write: if hasAnyRole(request.auth.uid, ['system', 'admin']);
     }
+
+    // Rules for environmental_data (Conceptual)
+    match /environmental_data/{dataId} {
+        // Allow read if authenticated and owner of linked asset OR linked to user's owned VTI or public VTI
+        allow read: if request.auth != null && (
+            (resource.data.assetRef != null && get(/databases/$(database)/documents/geospatial_assets/$(resource.data.assetRef.id)).data.ownerRef.id == request.auth.uid) ||
+            (resource.data.vtiId != null && (get(/databases/$(database)/documents/vti_registry/$(resource.data.vtiId)).data.ownerRef.id == request.auth.uid || get(/databases/$(database)/documents/vti_registry/$(resource.data.vtiId)).data.isPublicTraceable == true))
+            // TODO: Add check if the user is linked to the data through a shared report or other mechanism
+        );
+
+        // Allow read for authorized roles
+        allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+
+        // Allow write only if the user is the system
+        allow write: if request.auth != null && hasRole(request.auth.uid, 'system');
+    }
+
+
+
+    // Rules for users (Module 2)
+    match /users/{userId} {
+        // Allow read and update if the authenticated user is the owner of the profile
+        allow read, update: if request.auth != null && request.auth.uid == userId;
+        // Allow admin to read any user profile
+        allow read: if request.auth != null && hasRole(request.auth.uid, 'admin');
+
+        // Allow read/update for the 'preferences' field only for the user and system
+        allow read, update: if request.auth != null && request.auth.uid == userId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['preferences']);
+        allow write: if request.auth != null && hasRole(request.auth.uid, 'system'); // System can write to preferences for bulk updates/migrations
+
+        // Strict rule for updating the kycStatus field - only allowed by 'system'
+ allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['kycStatus']) && hasRole(request.auth.uid, 'system');
+
+        // Allow read of userVtiId if the user owns it or if the VTI is public or if user is authorized role
+        allow read: if request.auth != null && (request.auth.uid == userId || hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']) || (resource.data.userVtiId != null && get(/databases/$(database)/documents/vti_registry/$(resource.data.userVtiId)).data.isPublicTraceable == true && request.auth != null));
+    }
+
+
+
+    // Rules for organizations (Module 2)
+    match /organizations/{orgId} {
+        // Allow create if the user is authenticated
+        allow create: if request.auth != null;
+ // Allow read and update if the authenticated user is the contact person OR has the 'admin' role
+        allow read, update: if request.auth != null && (resource.data.contactPersonRef.id == request.auth.uid || hasRole(request.auth.uid, 'admin'));
+        // Allow update if the authenticated user is the owner OR the contact person OR an admin
+        allow update: if request.auth != null && (resource.data.contactPersonRef.id == request.auth.uid || (resource.data.ownerRef != null && resource.data.ownerRef.id == request.auth.uid) || hasRole(request.auth.uid, 'admin'));
+        // Strict rule for updating the kycStatus field - only allowed by 'system'
+ allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['kycStatus']) && hasRole(request.auth.uid, 'system');
+        // Allow read of organizationVtiId if the user is the contact person, owner, or authorized role, or if the VTI is public
+ allow read: if request.auth != null && (resource.data.contactPersonRef.id == request.auth.uid || (resource.data.ownerRef != null && resource.data.ownerRef.id == request.auth.uid) || hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']) || (resource.data.organizationVtiId != null && get(/databases/$(database)/documents/vti_registry/$(resource.data.organizationVtiId)).data.isPublicTraceable == true && request.auth != null));
+    }
+
+    // Rules for field_insights (Module 3)
+    match /field_insights/{insightId} {
+      // Allow read and create if the user is the owner of the insight (linked by farmerRef)
+      allow read, create: if request.auth != null && resource.data.farmerRef.id == request.auth.uid;
+      // Allow admins and system to read all field insights
+      allow read: if hasRole(request.auth.uid, 'admin');
+    }
+
+    // Rules for farm_activity_logs (Module 3)
+    match /farm_activity_logs/{activityId} {
+      // Allow read, create, update if the user is the owner of the activity log (linked by farmerRef)
+      allow read, create, update: if request.auth != null && resource.data.farmerRef.id == request.auth.uid; // Removed redundant read permission below
+      // TODO: During implementation, consider more granular update rules to ensure data integrity for certain fields (e.g., timestamp, activityType).
+      // Allow admins to read all farm activity logs
+      allow read: if hasRole(request.auth.uid, 'admin');
+    }
+
+    // Rules for farmer_alerts (Module 3)
+    match /farmer_alerts/{alertId} {
+      // Allow read if the user is the recipient of the alert (linked by farmerRef) or admin
+      allow read: if request.auth != null && resource.data.farmerRef.id == request.auth.uid || hasRole(request.auth.uid, 'admin');
+      // Allow update only for the 'isRead' field if the user is the recipient
+      allow update: if request.auth != null && resource.data.farmerRef.id == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead']);
+    }
+
+    // Rules for Module 4 collections
+    match /listings/{listingId} {
+        // Allow creation only for users with seller-related roles
+        allow create: if request.auth != null && hasAnyRole(request.auth.uid, ['farmer', 'processor', 'cooperative']);
+        // Allow read if the listing is active (authenticated or not)
+        allow read: if resource.data.status == 'active';
+        // Allow seller to update specific fields (price, description, photos, geo location)
+        allow update: if request.auth != null && resource.data.sellerRef.id == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['price', 'description_en', 'description_local', 'photos', 'geoLocation']);
+        // Allow system to write (including status and quantity updates)
+        allow write: if hasRole(request.auth.uid, 'system');
+    }
+
+    match /orders/{orderId} {
+        // Allow create for any authenticated user (buyer). Security is handled by callable function logic.
+        allow create: if request.auth != null;
+        // Allow read if the user is the buyer or the seller, or an admin
+        allow read: if request.auth != null && ((resource.data.buyerRef != null && resource.data.buyerRef.id == request.auth.uid) || (resource.data.sellerRef != null && resource.data.sellerRef.id == request.auth.uid) || hasRole(request.auth.uid, 'admin'));
+        // Allow buyer to cancel a pending order, seller to mark confirmed order as shipped
+        allow update: if request.auth != null && (
+            (resource.data.buyerRef != null && resource.data.buyerRef.id == request.auth.uid && resource.data.orderStatus == 'pending' && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['orderStatus']) && request.resource.data.orderStatus == 'cancelled') ||
+            (resource.data.sellerRef != null && resource.data.sellerRef.id == request.auth.uid && resource.data.orderStatus == 'confirmed' && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['orderStatus']) && request.resource.data.orderStatus == 'shipped')
+        );
+        // Allow system to write (including full updates for status, payment, etc.)
+        allow write: if hasRole(request.auth.uid, 'system');
+    }
+    match /reviews/{reviewId} {
+        // Allow create if the user is the buyer of the corresponding order
+        allow create: if request.auth != null && get(/databases/$(database)/documents/orders/$(request.resource.data.orderRef.id)).data.buyerRef.id == request.auth.uid;
+        // Allow read for any authenticated user (to view reviews)
+        allow read: true; // Allow read for everyone to view reviews on product pages etc.
+        // Allow admin and system to write (for moderation)
+        allow write: if hasAnyRole(request.auth.uid, ['admin', 'system']);
+    }
+
+    // Rules for Module 7 collections (Financial Inclusion)
+
+    // credit_scores, loan_applications, grant_applications, financial_transactions
+    match /{collection=credit_scores|loan_applications|grant_applications|financial_transactions}/{docId} {
+        // Allow read and create if the user is the owner of the financial record
+        allow read, create: if request.auth != null && resource.data.userRef.id == request.auth.uid;
+        // Allow read for authorized roles (admin, regulator, auditor) - with caveats for data privacy laws
+        allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']); // Implement further logic based on consent/purpose if needed
+        // Allow write only if the user is the system
+        allow write: if hasRole(request.auth.uid, 'system');
+    }
+
+    // crowdfunding_projects
+    match /crowdfunding_projects/{projectId} {
+        // Allow create for users with relevant roles or system
+        allow create: if request.auth != null && hasAnyRole(request.auth.uid, ['farmer', 'cooperative', 'system']);
+        // Allow read if the project is open, or user is the owner, or user is admin/regulator
+        allow read: if resource.data.status == 'open' || (request.auth != null && resource.data.ownerRef.id == request.auth.uid) || (request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'regulator']));
+        // Allow update if the user is the owner or system
+        allow update: if request.auth != null && (resource.data.ownerRef.id == request.auth.uid || hasRole(request.auth.uid, 'system'));
+    }
+
+    // investments (subcollection under crowdfunding_projects)
+    match /crowdfunding_projects/{projectId}/investments/{investmentId} {
+         // Allow create if the user is authenticated
+         allow create: if request.auth != null;
+         // Allow read if the user is the investor, the project owner, or an admin/regulator
+         allow read: if request.auth != null && (
+             resource.data.investorRef.id == request.auth.uid || // Investor can read their own investment
+             get(/databases/$(database)/documents/crowdfunding_projects/$(projectId)).data.ownerRef.id == request.auth.uid || // Project owner can read investments in their project
+             hasAnyRole(request.auth.uid, ['admin', 'regulator']) // Admins/regulators can read all investments
+         );
+    }
+
+    // Rules for Module 12 collections (Sustainability & Environmental Impact)
+
+    // sustainability_reports
+    match /sustainability_reports/{reportId} { // Added rule
+        // Allow read if the user is the owner of the report (user or org owner)
+        allow read: if request.auth != null && (
+            (resource.data.userRef != null && resource.data.userRef.id == request.auth.uid) ||
+            (resource.data.orgRef != null && get(/databases/$(database)/documents/organizations/$(resource.data.orgRef.id)).data.ownerRef.id == request.auth.uid) ||
+            hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor'])
+        );
+        // Allow write only if the user is the system
+        allow write: if hasRole(request.auth.uid, 'system');
+    }
+
+    // carbon_footprint_data
+    match /carbon_footprint_data/{carbonFootprintId} {
+        // Allow read if the associated VTI is public or owned by the user, or user is authorized role
+        allow read: if request.auth != null && (
+            (resource.data.vtiId != null && (get(/databases/$(database)/documents/vti_registry/$(resource.data.vtiId)).data.ownerRef.id == request.auth.uid || get(/databases/$(database)/documents/vti_registry/$(resource.data.vtiId)).data.isPublicTraceable == true)) ||
+            hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor'])
+        );
+        // Allow write only if the user is the system (as calculations are automated)
+        allow write: if hasRole(request.auth.uid, 'system');
+    }
+    // practice_verification_logs
+    match /practice_verification_logs/{logId} {
+        // Allow read if the user is the farmer related to the log
+        allow read: if request.auth != null && resource.data.userRef.id == request.auth.uid;
+        // Allow read for authorized roles (admin, regulator, auditor)
+        allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+        // Allow write only if the user is the system (as verification is automated or by auditors)
+        // Allow write if the user is the system OR the verifier linked to the log
+        allow write: if hasRole(request.auth.uid, 'system') || (request.auth != null && resource.data.verifiedByRef != null && resource.data.verifiedByRef.id == request.auth.uid);
+    }
+
+
+    // Rules for Module 11 collections (Insurance & Risk Management)
+
+    // insurance_policies
+    match /insurance_policies/{policyId} {
+        // Allow read if the user is the policyholder or linked to the insurer
+        allow read: if request.auth != null && resource.data.policyholderRef.id == request.auth.uid;
+        // Allow read if the user is the linked insurer (assuming insurerRef is a user/org ID)
+        allow read: if request.auth != null && resource.data.insurerRef.id == request.auth.uid;
+        // Allow read for authorized roles (admin, regulator, auditor)
+        allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+        // Allow write only if the user is the system (policies managed by insurers/system)
+        allow create, write: if request.auth != null && hasRole(request.auth.uid, 'system'); // Create and update by system
+    }
+
+    // claims
+    match /claims/{claimId} {
+        // Allow create if the user is the policyholder
+        allow create: if request.auth != null && request.resource.data.policyRef != null && get(/databases/$(database)/documents/insurance_policies/$(request.resource.data.policyRef.id)).data.policyholderRef.id == request.auth.uid;
+        // Allow read if the user is the policyholder, the linked insurer from the policy, or has authorized roles
+        allow read: if request.auth != null && (resource.data.policyholderRef != null && resource.data.policyholderRef.id == request.auth.uid) || (resource.data.policyRef != null && get(/databases/$(database)/documents/insurance_policies/$(resource.data.policyRef.id)).data.insurerRef.id == request.auth.uid) || hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor']);
+        // Allow write only if the user is the system or the associated insurer
+        allow update: if request.auth != null && hasRole(request.auth.uid, 'system'); // Update by system (as claim processing is automated)
+    }
+
+    // risk_assessments
+    match /risk_assessments/{assessmentId} {
+        // Allow read if the user is the subject of the assessment (user/org owner) or has authorized roles
+        // Allow read if the user is the subject of the assessment (user/org owner), or has authorized roles
+        allow read: if request.auth != null && (
+            (resource.data.userRef != null && resource.data.userRef.id == request.auth.uid) ||
+            (resource.data.linkedPolicyRef != null && get(/databases/$(database)/documents/insurance_policies/$(resource.data.linkedPolicyRef.id)).data.policyholderRef.id == request.auth.uid) || // User holds a policy linked to this assessment
+            (resource.data.linkedPolicyRef != null && get(/databases/$(database)/documents/insurance_policies/$(resource.data.linkedPolicyRef.id)).data.insurerRef.id == request.auth.uid) || // User is the insurer of a linked policy
+            hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor'])
+        );
+        // Allow write only if the user is the system (assessments are automated)
+        allow create, update: if request.auth != null && hasRole(request.auth.uid, 'system');
+    }
+
+    // Rules for Module 5 collections (Knowledge & Skill Development)
+    // Conceptual data model for `courses`:
+    // courseId (string)
+    // title_en, title_local ({ [key: string]: string })
+    // description_en, description_local ({ [key: string]: string })
+    // prerequisites (string[]) // References to other courseIds or skillIds
+    // targetAudience (string[]) // e.g., ['farmer', 'processor']
+    // topics (string[]) // e.g., ['sustainable_farming', 'soil_health']
+    // authorRef (DocumentReference to users or organizations | null)
+    // status ('draft' | 'published' | 'archived')
+    // createdAt, updatedAt (timestamps)
+    match /courses/{courseId} {
+      // Allow read for any authenticated user
+      allow read: if request.auth != null;
+      // Allow create if the user has a content creator/admin role or 'system'
+      allow create: if request.auth != null && hasAnyRole(request.auth.uid, ['content_creator', 'admin', 'system']);
+      // Allow update if the user is the author, has a content creator/admin role, or 'system'
+      allow update: if request.auth != null && ( (resource.data.authorRef != null && resource.data.authorRef.id == request.auth.uid) || hasAnyRole(request.auth.uid, ['content_creator', 'admin', 'system']) );
+      // Allow delete if admin/system or author and draft
+      allow delete: if hasAnyRole(request.auth.uid, ['admin', 'system']) || (request.auth != null && resource.data.authorRef != null && resource.data.authorRef.id == request.auth.uid && resource.data.status == 'draft');
+    }
+    // Conceptual data model for `modules` (subcollection under courses):
+    // moduleId (string) // Unique within the course
+    // title_en, title_local ({ [key: string]: string })
+    // description_en, description_local ({ [key: string]: string })
+    // contentItems (Array<{ itemRef: DocumentReference }>) // References to content_items or other modules?
+    // order (number) // Order within the course
+    // duration (number) // Estimated duration in minutes
+    // prerequisites (string[]) // References to other moduleId within the same course or contentItemIds?
+    // status ('draft' | 'published' | 'archived')
+    // createdAt, updatedAt (timestamps)
+    match /courses/{courseId}/modules/{moduleId} {
+      // Allow read for any authenticated user
+      allow read: if request.auth != null;
+      // Allow create if the user has a content creator/admin role or 'system'
+      allow create: if request.auth != null && hasAnyRole(request.auth.uid, ['content_creator', 'admin', 'system']);
+      // Allow update if the user is the author of the parent course, has a content creator/admin role, or 'system'
+      allow update: if request.auth != null && ( (get(/databases/$(database)/documents/courses/$(courseId)).data.authorRef != null && get(/databases/$(database)/documents/courses/$(courseId)).data.authorRef.id == request.auth.uid) || hasAnyRole(request.auth.uid, ['content_creator', 'admin', 'system']) );
+      // Allow delete if admin/system or author and parent course is draft
+      allow delete: if hasAnyRole(request.auth.uid, ['admin', 'system']) || (request.auth != null && get(/databases/$(database)/documents/courses/$(courseId)).data.authorRef != null && get(/databases/$(database)/documents/courses/$(courseId)).data.authorRef.id == request.auth.uid && get(/databases/$(database)/documents/courses/$(courseId)).data.status == 'draft');
+    }
+
+    // Conceptual data model for `user_course_progress`:
+    // progressId (string)
+    // userRef (DocumentReference to users)
+    // courseRef (DocumentReference to courses)
+    // completedModules (Array<DocumentReference to modules>)
+    // completionPercentage (number) // 0-100
+    // status ('in_progress' | 'completed' | 'abandoned')
+    // lastAccessedAt (timestamp)
+    // completedAt (timestamp | null)
+    // certificateGenerated (boolean)
+    // title_en, title_local ({ [key: string]: string })
+    // description_en, description_local ({ [key: string]: string })
+    // items (Array<{ itemRef: DocumentReference, order: number, type: 'content' | 'assessment' }>)
+    // targetAudience (string[])
+    // isPublic (boolean)
+    // authorRef (DocumentReference to users or organizations | null) // Added
+    // createdAt, updatedAt (timestamps)
+    match /learning_paths/{pathId} {
+      // Allow read for any authenticated user
+      allow read: if request.auth != null;
+      // Allow create and update if the user has a content creator/admin role or 'system'
+      allow create: if request.auth != null && hasAnyRole(request.auth.uid, ['content_creator', 'admin', 'system']);
+      // Allow update if the user is the author, has a content creator/admin role, or 'system'
+      allow update: if request.auth != null && ( (resource.data.authorRef != null && resource.data.authorRef.id == request.auth.uid) || hasAnyRole(request.auth.uid, ['content_creator', 'admin', 'system']) );
+      // Allow delete if admin/system or author and not public
+      allow delete: if hasAnyRole(request.auth.uid, ['admin', 'system']) || (request.auth != null && resource.data.authorRef != null && resource.data.authorRef.id == request.auth.uid && resource.data.isPublic == false);
+    } // Note: Renamed from learning_paths to user_course_progress based on common convention for user-specific data
+    // skill_assessments
+    match /skill_assessments/{assessmentId} {
+      // Allow read and create if the request.auth.uid matches the userRef.id in the document data
+      allow read, create: if request.auth != null && resource.data.userRef.id == request.auth.uid; // Reverted to previous rules
+      // Allow read if the user has an 'admin' or 'expert' role
+      allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'expert']);
+      // Allow write only if the user has the 'system' role (e.g., automated scoring or expert review finalization)
+      allow write: if request.auth != null && hasRole(request.auth.uid, 'system');
+      // Allow delete if admin/system or user and not passed
+      allow delete: if hasAnyRole(request.auth.uid, ['admin', 'system']) || (request.auth != null && resource.data.userRef != null && resource.data.userRef.id == request.auth.uid && resource.data.passed == false);
+    }
+
+    // expert_profiles
+    match /expert_profiles/{expertId} {
+      // Allow public read access to expert profiles
+      allow read: true;
+      // Allow create if the user has an 'expert' role or 'system'
+      allow create: if request.auth != null && hasAnyRole(request.auth.uid, ['expert', 'admin', 'system']);
+      // Allow update if the user is the expert, has an 'admin' role, or 'system'
+      allow update: if request.auth != null && ( (resource.data.userRef != null && resource.data.userRef.id == request.auth.uid) || hasAnyRole(request.auth.uid, ['admin', 'system']) );
+      // Allow delete if admin/system
+      allow delete: if hasAnyRole(request.auth.uid, ['admin', 'system']);
+    }
+
+    // Conceptual data model for `knowledge_articles`:
+    // articleId (string)
+    // title_en, title_local ({ [key: string]: string })
+    // content_en, content_local ({ [key: string]: string })
+    // tags (string[])
+    // categories (string[])
+    // authorRef (DocumentReference to users or organizations | null)
+    // status ('draft' | 'published' | 'archived')
+    // createdAt, updatedAt (timestamps)
+    // user_progress
+    match /user_progress/{progressId} {
+      // Allow read and write if the authenticated user is the owner of the progress record
+      allow read, write: if request.auth != null && resource.data.userRef.id == request.auth.uid;
+      // Allow read for admin
+      allow read: if request.auth != null && hasRole(request.auth.uid, 'admin');
+      // Allow write for system (e.g., bulk updates, data migration)
+      allow write: if request.auth != null && hasRole(request.auth.uid, 'system');
+      // Allow delete if admin/system or user and not completed
+      allow delete: if hasAnyRole(request.auth.uid, ['admin', 'system']) || (request.auth != null && resource.data.userRef != null && resource.data.userRef.id == request.auth.uid);
+    } // Note: Renamed from user_progress to user_course_progress based on common convention for user-specific data and the module focus on courses.
+
+
+    }
+
   }
+
+    // Rules for Module 10 collections (Regulatory Compliance & Reporting)
+    // Conceptual data model for `compliance_deviations`:
+    // deviationId (string)
+    // ruleRef (DocumentReference to compliance_rules)
+    // deviatedEntityRef (DocumentReference to user, organization, vti, event, etc.) // What the deviation is related to
+    // timestamp (timestamp) // When the deviation was detected/occurred
+    // details ({ [key: string]: any }) // Details of the deviation and context
+    // severity ('warning' | 'non_compliance' | 'critical_violation') // Copied from rule
+    // status ('open' | 'under_investigation' | 'resolved' | 'mitigated') // Status of the deviation handling
+    // linkedDataRefs (DocumentReference[]) // Links to data that triggered the deviation
+    // linkedAuditRef (DocumentReference to audits | null) // Link to an audit if initiated
+    // createdAt, updatedAt (timestamps)
+
+    // compliance_rules
+    match /compliance_rules/{ruleId} {
+      // Allow write only if the user has the 'admin' or 'system' role
+      allow write: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'system']);
+    }
+
+    // generated_reports
+    match /generated_reports/{reportId} {
+      // Allow read if the user has 'admin', 'regulator', 'auditor' roles, or if the report is explicitly shared with the user
+      // Allow read if the user is the owner of the report, explicitly shared with, or has authorized roles
+      allow read: if request.auth != null && (
+          (resource.data.generatedForRef != null && resource.data.generatedForRef.id == request.auth.uid) || // User generated report
+          (resource.data.sharedWithUsers != null && request.auth.uid in resource.data.sharedWithUsers) || // Explicitly shared with user
+          hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor'])); // Authorized roles
+      // Allow write only if the user has the 'system' role
+      allow write: if request.auth != null && hasRole(request.auth.uid, 'system');
+    }
+
+    // submission_logs
+    match /submission_logs/{logId} {
+      // Allow read if the user has 'admin', 'regulator', 'auditor', or 'system' roles
+      allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor', 'system']);
+      // Allow write only if the user has the 'system' role
+      allow write: if request.auth != null && hasRole(request.auth.uid, 'system');
+    }
+
+    // audits
+    match /audits/{auditId} {
+      // Allow read if the user has 'admin', 'auditor', or 'system' roles
+      allow read: if request.auth != null && hasAnyRole(request.auth.uid, ['admin', 'auditor', 'system']);
+      // Allow create and write if the user has 'auditor' or 'system' roles
+      allow create, write: if request.auth != null && hasAnyRole(request.auth.uid, ['auditor', 'system']);
+    }
+
+    // compliance_deviations (Conceptual Collection)
+    match /compliance_deviations/{deviationId} {
+        // Allow read if the user is the deviated entity (user/org owner), or has authorized roles
+        allow read: if request.auth != null && (
+             (resource.data.deviatedEntityRef != null && (
+                 resource.data.deviatedEntityRef.id == request.auth.uid || // User is the deviated entity
+                 (get(/databases/$(database)/documents/organizations/$(resource.data.deviatedEntityRef.id)).exists && get(/databases/$(database)/documents/organizations/$(resource.data.deviatedEntityRef.id)).data.ownerRef.id == request.auth.uid) // User is owner of deviated organization
+             )) ||
+             hasAnyRole(request.auth.uid, ['admin', 'regulator', 'auditor', 'system'])
+         );
+        // Allow write only if the user has the 'system' role
+        allow write: if request.auth != null && hasRole(request.auth.uid, 'system');
+    }
 }

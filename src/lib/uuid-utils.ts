@@ -1,0 +1,14 @@
+// src/lib/uuid-utils.ts
+
+/**
+ * Generates a universally unique identifier (UUID) string.
+ * This is a basic implementation and may not be cryptographically secure
+ * for all use cases. For production, consider using a dedicated library.
+ */
+export function generateUuid(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}

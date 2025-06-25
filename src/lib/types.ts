@@ -334,20 +334,67 @@ export interface ProcessingUnitDashboardData {
         potentialRate: number;
         insight: string;
     };
+    // Added fields for Packaging Supplier integration
+    packagingOrders: {
+        id: string;
+        supplierName: string;
+        orderDate: string;
+        deliveryDate: string;
+        status: 'Pending' | 'Shipped' | 'Delivered' | 'Canceled';
+        actionLink: string;
+    }[];
+    packagingInventory: {
+        packagingType: string;
+        unitsInStock: number;
+        reorderLevel: number;
+    }[];
+    packagingImpactMetrics: {
+        metric: string; // e.g., 'Recycled Content Used', 'Biodegradable Packaging Rate'
+        value: string;
+        actionLink: string;
+    }[];
 }
 
 export interface WarehouseDashboardData {
-    storageOptimization: {
-        utilization: number;
-        suggestion: string;
-    };
-    inventoryLevels: {
-        totalItems: number;
-        itemsNeedingAttention: number;
-    };
-    predictiveAlerts: {
-        alert: string;
-        actionLink: string;
+  storageOptimization: {
+      utilization: number;
+      suggestion: string;
+  };
+  // Expanded inventory tracking
+  inventoryBatches: {
+      vtiId: string;
+      product: string;
+      quantity: number; // e.g., in tons, crates, etc.
+      location: string; // e.g., "Section A, Rack 3"
+      storageConditions: { // Real-time or last reported conditions
+          temperature: string;
+          humidity: string;
+      };
+      inboundDate: string;
+      actionLink: string; // Link to batch details/history
+  }[];
+  inventorySummary: { // High-level summary
+      totalBatches: number;
+      totalQuantity: string; // e.g., "1500 tons"
+      itemsNeedingAttention: number; // Batches with alerts, low stock, etc.
+  };
+  environmentalConditions: { // Overview of facility conditions
+      averageTemperature: string;
+      averageHumidity: string;
+      alerts: {
+          id: string;
+          condition: string; // e.g., "High Temperature Alert"
+          location: string; // e.g., "Cold Storage Unit 2"
+          timestamp: string;
+          actionLink: string;
+      }[];
+  };
+  shipmentManagement: {
+      inboundShipments: {
+          id: string;
+          origin: string;
+          estimatedArrival: string;
+          status: 'Scheduled' | 'In Transit
     }[];
 }
 
@@ -420,6 +467,77 @@ export interface ResearcherDashboardData {
         actionLink: string;
     }[];
 }
+
+export interface AgroTourismDashboardData {
+    listedExperiences: {
+        id: string;
+        title: string;
+        location: string;
+ status: 'Active' | 'Draft' | 'Paused';
+        bookingsCount: number;
+        actionLink: string;
+    }[];
+    upcomingBookings: {
+        id: string;
+        experienceTitle: string;
+        guestName: string;
+        date: string;
+        actionLink: string;
+    }[];
+ guestReviews: {
+        id: string;
+        guestName: string;
+        experienceTitle: string;
+        rating: number; // e.g., 1-5
+        comment: string;
+        actionLink: string;
+    }[];
+}
+
+interface CrowdfunderDashboardData {
+ featuredProjects: {
+ id: string;
+ title: string;
+ farmerName: string;
+ amountSought: number;
+ amountRaised: number;
+ progress: number; // Percentage raised
+ actionLink: string;
+ }[];
+ myInvestments: {
+ id: string;
+ projectTitle: string;
+ amountInvested: number;
+ expectedReturn: string; // e.g., '10% ROI', 'Profit Share'
+ status: 'Active' | 'Completed' | 'In Progress';
+ actionLink: string;
+ }[];
+ impactReport: {
+    totalInvested: number;
+ totalImpactMetrics: { metric: string; // e.g., 'CO2 Reduced', 'Farmers Supported' value: string; }[]; actionLink: string; }; }
+
+interface GovernmentRegulatorDashboardData {
+    complianceAlerts: {
+        id: string;
+ alertType: string; // e.g., 'Food Safety', 'Environmental', 'Trade Compliance'
+ entityName: string; // Farm, Processor, etc.
+        summary: string;
+ timestamp: string;
+ severity: 'High' | 'Medium' | 'Low';
+        actionLink: string;
+ }[];
+ auditRequests: {
+        id: string;
+ requestingBody: string;
+ entityName: string;
+ scope: string; // e.g., 'Organic Certification Audit', 'Export Compliance Check'
+ dueDate: string;
+ status: 'Pending' | 'In Progress' | 'Completed';
+        actionLink: string;
+ }[];
+    policyUpdates: {
+ totalInvested: number;
+ totalImpactMetrics: { metric: string; // e.g., 'CO2 Reduced', 'Farmers Supported' value: string; }[]; actionLink: string; }; }
 
 
 // =================================================================
