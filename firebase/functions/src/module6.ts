@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import { dummyFeedItems, dummyUsersData } from './dummy-data'; // Import dummy data
 
 if (admin.apps.length === 0) {
   admin.initializeApp();
@@ -423,53 +424,10 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
 
 // Fetches the main social feed posts
 export const getFeed = functions.https.onCall(async (data, context) => {
-    // Optional: Add personalization logic based on data.interests
-    const FEED_LIMIT = 20;
-    try {
-        const postsSnapshot = await db.collection("posts").orderBy("createdAt", "desc").limit(FEED_LIMIT).get();
-        if (postsSnapshot.empty) {
-            return { posts: [] };
-        }
-
-        const posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        // Fetch author profiles for all posts in a single batch
-        const authorIds = [...new Set(posts.map(post => post.userId))].filter(id => id);
-        if (authorIds.length === 0) {
-            return { posts: [] };
-        }
-        
-        const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", authorIds).get();
-        const profiles: Record<string, any> = {};
-        userDocs.forEach(doc => {
-            profiles[doc.id] = doc.data();
-        });
-
-        // Combine post data with author data to create the feed items
-        const feedItems = posts.map(post => {
-            const author = profiles[post.userId] || { displayName: "Unknown User", profileSummary: "DamDoh Member", avatarUrl: "" };
-            return {
-                id: post.id,
-                content: post.content,
-                timestamp: post.createdAt.toDate().toISOString(),
-                user: {
-                    id: post.userId,
-                    name: author.displayName,
-                    headline: author.profileSummary || "DamDoh Member",
-                    avatarUrl: author.avatarUrl || ""
-                },
-                likes: post.likeCount || 0,
-                comments: post.commentCount || 0,
-                media: post.mediaUrl ? { url: post.mediaUrl, type: post.mediaType || 'image' } : undefined,
-                pollOptions: post.pollOptions || null,
-            };
-        });
-
-        return { posts: feedItems };
-    } catch (error) {
-        console.error("Error fetching feed:", error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching the feed.");
-    }
+    // For now, this returns dummy data. In a real app, you would fetch from Firestore.
+    // const feedSnapshot = await db.collection("posts").orderBy("createdAt", "desc").limit(20).get();
+    // const posts = feedSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return { posts: dummyFeedItems };
 });
 
 /**
@@ -497,8 +455,10 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
     };
 
     try {
-        const docRef = await db.collection("posts").add(newPost);
-        return { postId: docRef.id, message: "Post created successfully" };
+        // In a real app, you would add the post to Firestore
+        // const docRef = await db.collection("posts").add(newPost);
+        console.log("Simulating post creation:", newPost);
+        return { postId: `simulated-${Date.now()}`, message: "Post created successfully (simulated)" };
     } catch (error) {
         console.error("Error creating post:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
@@ -515,19 +475,10 @@ export const likePost = functions.https.onCall(async (data, context) => {
     if (!postId) {
         throw new functions.https.HttpsError("invalid-argument", "postId is required.");
     }
-    const postRef = db.collection("posts").doc(postId);
-
     // In a real app, you would add logic to prevent multiple likes from the same user
-    // e.g., by checking a subcollection of likes. For now, we just increment.
-    try {
-        await postRef.update({
-            likeCount: FieldValue.increment(1)
-        });
-        return { success: true };
-    } catch (error) {
-        console.error(`Error liking post ${postId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while liking the post.");
-    }
+    // e.g., by checking a subcollection of likes. And incrementing the count.
+    console.log(`Simulating liking post ${postId} by user ${context.auth.uid}`);
+    return { success: true };
 });
 
 
@@ -541,24 +492,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "postId and content are required.");
     }
 
-    const postRef = db.collection("posts").doc(postId);
-    const commentRef = postRef.collection("comments").doc();
-
-    const newComment = {
-        authorRef: context.auth.uid,
-        content: content,
-        timestamp: FieldValue.serverTimestamp(),
-    };
-
-    const batch = db.batch();
-    batch.set(commentRef, newComment);
-    batch.update(postRef, { commentCount: FieldValue.increment(1) });
-
-    try {
-        await batch.commit();
-        return { success: true, commentId: commentRef.id };
-    } catch (error) {
-        console.error(`Error adding comment to post ${postId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while adding the comment.");
-    }
+    // In a real app, you would add the comment to a subcollection and increment the post's comment count.
+    console.log(`Simulating adding comment to post ${postId} by user ${context.auth.uid}: "${content}"`);
+    return { success: true, commentId: `sim-comment-${Date.now()}` };
 });
