@@ -278,15 +278,15 @@ export default function FarmDetailPage() {
                                                 </Link>
                                             </Button>
                                              <Button asChild variant="default" size="sm" className="flex-1 min-w-[140px]">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest`}>
+                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.crop_type)}`}>
                                                     <PackageSearch className="mr-2 h-4 w-4"/>
                                                     Log Harvest
                                                 </Link>
                                             </Button>
                                             <Button asChild variant="outline" size="sm" className="flex-1 min-w-[140px]">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
-                                                    <ListChecks className="mr-2 h-4 w-4"/>
-                                                    Full Log
+                                                <Link href={`/marketplace/create?cropId=${crop.id}&cropName=${encodeURIComponent(crop.crop_type)}`}>
+                                                    <DollarSign className="mr-2 h-4 w-4" />
+                                                    Create Listing
                                                 </Link>
                                             </Button>
                                         </div>

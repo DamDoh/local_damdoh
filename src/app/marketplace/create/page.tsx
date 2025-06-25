@@ -2,6 +2,8 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -33,6 +35,7 @@ import { useToast } from "@/hooks/use-toast";
 
 export default function CreateMarketplaceListingPage() {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
   
   const form = useForm<CreateMarketplaceItemValues>({
     resolver: zodResolver(createMarketplaceItemSchema),
@@ -55,8 +58,24 @@ export default function CreateMarketplaceListingPage() {
       condition: undefined,
       availabilityStatus: undefined,
       certifications: "",
+      relatedTraceabilityId: "",
     },
   });
+
+  useEffect(() => {
+    const cropId = searchParams.get('cropId');
+    const cropName = searchParams.get('cropName');
+    if (cropId && cropName) {
+      form.setValue('relatedTraceabilityId', cropId);
+      form.setValue('name', `Freshly Harvested ${cropName}`);
+      form.setValue('listingType', 'Product');
+      form.setValue('category', 'fresh-produce-vegetables');
+      toast({
+        title: "Listing Pre-filled",
+        description: `Creating a traceable listing for ${cropName}.`,
+      });
+    }
+  }, [searchParams, form, toast]);
 
   const watchedListingType = form.watch("listingType");
 
@@ -148,6 +167,7 @@ export default function CreateMarketplaceListingPage() {
                     <Select 
                       onValueChange={field.onChange} 
                       defaultValue={field.value}
+                      value={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -200,7 +220,7 @@ export default function CreateMarketplaceListingPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><Tag className="h-4 w-4 text-muted-foreground" />Category</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a category for your listing" />
@@ -214,6 +234,21 @@ export default function CreateMarketplaceListingPage() {
                         ))}
                       </SelectContent>
                     </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="relatedTraceabilityId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2"><Warehouse className="h-4 w-4 text-muted-foreground" />Related Traceability ID (VTI)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., batch-abc-123" {...field} readOnly={!!searchParams.get('cropId')} className={!!searchParams.get('cropId') ? "bg-muted/50" : ""} />
+                    </FormControl>
+                    <FormDescription>This listing is linked to a traceable batch from your farm.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -285,20 +320,6 @@ export default function CreateMarketplaceListingPage() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                      control={form.control}
-                      name="relatedTraceabilityId"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2"><Warehouse className="h-4 w-4 text-muted-foreground" />Related Traceability ID (Optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="e.g., batch-abc-123. Link to a specific harvest/batch." {...field} />
-                          </FormControl>
-                          <FormDescription>Link this product listing to a specific batch or harvest record for traceability.</FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
                 </>
               )}
 
