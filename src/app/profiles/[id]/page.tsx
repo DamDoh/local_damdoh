@@ -131,7 +131,7 @@ export default function ProfileDetailPage() {
             fill={true}
             style={{objectFit:"cover"}}
             priority
-            data-ai-hint={profile.role ? `${profile.role.toLowerCase()} agriculture background` : "agriculture background"} />
+            data-ai-hint={profile.roles?.[0] ? `${profile.roles[0].toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
               <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile business food" />
@@ -143,7 +143,7 @@ export default function ProfileDetailPage() {
           <div className="flex flex-col sm:flex-row justify-between items-start">
             <div>
               <CardTitle className="text-3xl">{profile.name}</CardTitle>
-              <CardDescription className="text-lg">{profile.role}</CardDescription>
+              <CardDescription className="text-lg">{profile.roles.join(', ')}</CardDescription>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                 <MapPin className="h-4 w-4" /> {profile.location}
               </div>

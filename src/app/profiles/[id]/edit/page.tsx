@@ -23,8 +23,8 @@ import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
 import { getProfileByIdFromDB, updateProfileInDB } from "@/lib/db-utils";
 import type { UserProfile } from "@/lib/types";
-import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Factory, Package, Truck, Scale, Banknote, Wrench, Sprout, BarChart2, Leaf, Store, Handshake, BookOpen, Users, Home, Building2, PackageOpen, Warehouse, ShoppingBag, DollarSign, HardHat, School, Lightbulb, Network, Barcode, Layers, ShieldCheck, HandCoins } from "lucide-react"; // Import additional icons
-import React from "react"; // Explicitly import React
+import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2 } from "lucide-react";
+import React from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth-utils";
@@ -33,34 +33,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function EditProfilePage() {
   const router = useRouter();
   const params = useParams();
-
-  // Mapping of stakeholder roles to Lucide icons
-  const roleIcons: Record<string, React.ElementType> = {
-    "Farmer": Sprout, // Changed Seedling to Sprout
-    "Buyer": Briefcase,
-    "Input Supplier": Factory,
-    "Logistics/Transportation": Truck,
-    "Processing Unit": Wrench, // Using Wrench for processing
-    "Packaging Supplier": Package,
-    "Warehouse/Storage Provider": Warehouse,
-    "Retailer": Store,
-    "Financial Institution": Banknote,
-    "Government/Regulator": Scale, // Using scale for regulation/standards
-    "Researcher/Academic": BookOpen,
-    "Consultant": Handshake, // Using handshake for consulting/partnerships
-    "Agronomist": Leaf, // Using leaf for agricultural expertise
-    "Data Analyst": BarChart2, // Using bar chart for data
-    "Community Leader/Organizer": Users,
-    "Non-profit Organization (NGO)": Home, // Using Home for community focus
-    "International Aid/Development Agency": Building2, // Using Building2 for official organization
-    "Certification Body": ShieldCheck, // Using ShieldCheck for certification
-    "Technology Provider": Lightbulb, // Using Lightbulb for technology
-    "Market Information Service": Network, // Using Network for market information
-    "Traceability Provider": Barcode, // Using Barcode for traceability
-    "Aggregator": Layers, // Using Layers for combining goods
-    "Crowdfunder (Impact Investor, Individual)": HandCoins,
-    "Other": User // Default icon
-  };
 
   const { toast } = useToast();
   const { user: authUser, loading: authLoading } = useAuth();
@@ -96,7 +68,7 @@ export default function EditProfilePage() {
         form.reset({
           name: userProfile.name,
           email: userProfile.email,
-          role: userProfile.role,
+          role: userProfile.roles[0], // Assuming the first role is the primary one for editing
           profileSummary: userProfile.profileSummary || "",
           bio: userProfile.bio || "",
           location: userProfile.location,
@@ -156,7 +128,7 @@ export default function EditProfilePage() {
     try {
       const profileUpdates: Partial<UserProfile> = {
         name: data.name,
-        role: data.role,
+        roles: [data.role],
         profileSummary: data.profileSummary,
         bio: data.bio,
         location: data.location,
@@ -174,7 +146,7 @@ export default function EditProfilePage() {
         title: "Profile Updated Successfully!",
         description: "Your changes have been saved.",
       });
-      router.push(`/profiles/${profileIdParam}`);
+      router.push(`/profiles/me`);
       router.refresh(); // Force a refresh to show updated data on profile page
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -276,10 +248,6 @@ export default function EditProfilePage() {
                       <SelectContent>
                         {STAKEHOLDER_ROLES.map((roleOption) => (
                           <SelectItem key={roleOption} value={roleOption}>
-                            {/* Render icon next to role name */}
-                            {React.createElement(roleIcons[roleOption] || roleIcons["Other"], {
-                                className: "mr-2 h-4 w-4 text-muted-foreground",
-                              })}
                             {roleOption}
                           </SelectItem>
                         ))}

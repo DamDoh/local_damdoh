@@ -24,7 +24,7 @@ console.warn(
 );
 
 // Define consistent collection names
-const USERS_COLLECTION = 'users';
+const USERS_COLLECTION = 'profiles'; // Changed from 'users' to 'profiles'
 const MARKETPLACE_COLLECTION = 'marketplaceItems';
 const FORUM_TOPICS_COLLECTION = 'forumTopics';
 const FORUM_POSTS_COLLECTION = 'forumPosts';
