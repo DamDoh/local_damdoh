@@ -2,9 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
+const db = admin.firestore();
 
 /**
  * Creates a new Digital Shopfront for an authenticated user.
@@ -20,7 +18,6 @@ export const createShop = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError("invalid-argument", "Shop name, description, and stakeholder type are required.");
   }
 
-  const db = admin.firestore();
   const userId = context.auth.uid;
 
   try {

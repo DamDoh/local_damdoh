@@ -2,9 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
+const db = admin.firestore();
 
 // ... (existing functions) ...
 
@@ -22,15 +20,13 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     throw new functions.https.HttpsError("invalid-argument", "A courseId must be provided.");
   }
 
-  const db = admin.firestore();
-
   try {
     // 1. Fetch the main course document
     const courseDoc = await db.collection('courses').doc(courseId).get();
     if (!courseDoc.exists) {
       throw new functions.https.HttpsError("not-found", "Course not found.");
     }
-    const courseData = { id: courseDoc.id, ...courseDoc.data() };
+    const courseData = { id: courseDoc.id, ...courseDoc.data()! };
 
     // 2. Fetch the modules from the subcollection
     const modulesSnapshot = await db.collection('courses').doc(courseId).collection('modules').get();

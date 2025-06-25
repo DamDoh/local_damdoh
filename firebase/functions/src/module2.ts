@@ -1,13 +1,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-// import { stakeholderProfileSchemas } from "./stakeholder-profile-data"; // This file doesn't exist in the functions directory, causing deployment failure.
 
 const db = admin.firestore();
-
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
 
 /**
  * Validates the structure of profileData based on the stakeholder's role.

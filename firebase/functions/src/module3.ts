@@ -2,9 +2,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
 const db = admin.firestore();
 
 /**
@@ -80,7 +77,7 @@ export const getFarm = functions.https.onCall(async (data, context) => {
         const farmData = farmDoc.data();
 
         // Security check: ensure the authenticated user owns this farm
-        if (farmData.owner_id !== context.auth.uid) {
+        if (farmData!.owner_id !== context.auth.uid) {
             throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this farm.");
         }
         

@@ -2,12 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
-// Initialize Firebase Admin SDK (only once)
-// Avoid re-initializing if it's already done in index.ts
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
-
+// Assuming Firebase Admin SDK is initialized in index.ts
 const db = admin.firestore();
 
 // --- Cross-Cutting Service: Dashboard Data Aggregation ---

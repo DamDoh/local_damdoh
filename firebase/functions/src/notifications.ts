@@ -3,8 +3,6 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 // Assuming admin and db are initialized in index.ts or a shared file
-// import { db } from './index';
-
 const db = admin.firestore();
 const messaging = admin.messaging();
 
@@ -287,36 +285,8 @@ export const sendNotification = functions.https.onCall(async (data, context) => 
   try {
     let response;
     // 3. Use the Firebase Admin SDK to send the push notification.
-    if (targetUserIds && targetUserIds.length > 0) {
-      // Sending to specific devices associated with user UIDs.
-      // You would typically fetch the FCM registration tokens for these user UIDs from your database.
-      // For this example, we'll assume targetUserIds directly correspond to registration tokens for simplicity,
-      // but in a real app, you need to manage token registration and retrieval.
-      // This part needs to be adjusted based on how you store user device tokens.
-
-      // *** Placeholder for fetching FCM tokens for targetUserIds ***
-      // Example: Query a 'fcmTokens' collection where document IDs are user UIDs
-      // and each document contains an array of tokens or a map of tokens to device IDs.
-      // const tokensSnapshot = await admin.firestore().collection('fcmTokens').where(admin.firestore.FieldPath.documentId(), 'in', targetUserIds).get();
-      // let registrationTokens: string[] = [];
-      // tokensSnapshot.forEach(doc => {
-      //   const userData = doc.data();
-      //   // Assuming tokens are stored in an array field called 'tokens'
-      //   if (userData.tokens && Array.isArray(userData.tokens)) {
-      //     registrationTokens = registrationTokens.concat(userData.tokens);
-      //   }
-      // });
-      // if (registrationTokens.length === 0) {
-      //    console.warn('No FCM tokens found for target users:', targetUserIds);
-      //    return { success: false, message: 'No target devices found.' };
-      // }
-      // message.tokens = registrationTokens;
-      // response = await admin.messaging().sendMulticast(message);
-
-
-      // Simplified sending directly to user IDs (requires client-side setup to handle this)
-      // A more robust approach involves fetching tokens as shown above.
-      message.tokens = targetUserIds; // Assuming targetUserIds are registration tokens for this example
+    if (targetUserIds && Array.isArray(targetUserIds) && targetUserIds.length > 0) {
+      message.tokens = targetUserIds;
        if (targetUserIds.length > 100) {
          // FCM sendToDevice has a limit of 100 tokens per call
          throw new functions.https.HttpsError(
@@ -324,7 +294,7 @@ export const sendNotification = functions.https.onCall(async (data, context) => 
             'Cannot send to more than 100 devices at once. Implement batching.'
          );
        }
-      response = await messaging.sendMulticast(message);
+      response = await messaging.sendEachForMulticast(message as admin.messaging.MulticastMessage);
 
 
     } else if (topic) {
@@ -340,14 +310,12 @@ export const sendNotification = functions.https.onCall(async (data, context) => 
     }
 
     // 5. Implement error handling for FCM sending failures.
-    // The response object from sendMulticast or send contains details about success/failure.
     console.log('Successfully sent message:', response);
-    if (response && 'responses' in response) { // sendMulticast response
+    if ('responses' in response) { // sendMulticast response
          const successfulSends = response.responses.filter(r => r.success).length;
          const failedSends = response.responses.filter(r => !r.success).length;
          console.log(`Successful sends: ${successfulSends}, Failed sends: ${failedSends}`);
          if (failedSends > 0) {
-             // Optionally log failed sends with error details
              response.responses.forEach(r => {
                  if (!r.success) {
                      console.error('Failed send error:', r.error);
@@ -355,8 +323,8 @@ export const sendNotification = functions.https.onCall(async (data, context) => 
              });
          }
         return { success: true, successful: successfulSends, failed: failedSends };
-    } else if (response && 'success' in response) { // send response (to topic)
-        return { success: response.success, messageId: response.messageId };
+    } else if ('messageId' in response) { // send response (to topic)
+        return { success: true, messageId: response.messageId };
     }
 
 
@@ -394,24 +362,15 @@ export const updateNotificationPreferences = functions.https.onCall(async (data,
   }
 
   try {
-    // Store preferences in the user's document (e.g., in a 'notificationPreferences' map field)
-    // Or store in a separate 'notification_preferences' collection with userId as document ID.
-
-    // Example storing in user document:
     await db.collection('users').doc(userId).set(
       { notificationPreferences: preferences },
-      { merge: true } // Use merge to update only this field
+      { merge: true }
     );
-
-    // Example storing in a separate collection:
-    // await db.collection('notification_preferences').doc(userId).set(preferences);
-
-    // 3. Return a success response.
+    
     return { success: true, message: 'Notification preferences updated successfully.' };
 
   } catch (error) {
     console.error('Error updating notification preferences:', error);
-    // 4. Return an error response.
     throw new functions.https.HttpsError('internal', 'Failed to update notification preferences.', error);
   }
 });
@@ -429,15 +388,10 @@ export const getNotificationPreferences = functions.https.onCall(async (data, co
   const userId = context.auth.uid;
 
   try {
-    // Retrieve preferences from the user's document or the 'notification_preferences' collection.
     const userDoc = await db.collection('users').doc(userId).get();
-
-    // 2. Return the preferences data.
     return userDoc.exists ? (userDoc.data()?.notificationPreferences || {}) : {};
-
   } catch (error) {
     console.error('Error retrieving notification preferences:', error);
-    // 3. Return an error response.
     throw new functions.https.HttpsError('internal', 'Failed to retrieve notification preferences.', error);
   }
 });
@@ -453,7 +407,6 @@ export const markNotificationAsRead = functions.https.onCall(async (data, contex
     const callerUid = context.auth.uid;
     const { notificationId } = data;
 
-    // Basic validation
     if (!notificationId || typeof notificationId !== 'string') {
         throw new functions.https.HttpsError('invalid-argument', 'Notification ID is required and must be a string.');
     }
@@ -468,16 +421,13 @@ export const markNotificationAsRead = functions.https.onCall(async (data, contex
 
         const notificationData = notificationDoc.data();
 
-        // Authorization Check: Ensure the caller is the target user of the notification
         if (!notificationData || notificationData.userId !== callerUid) {
             throw new functions.https.HttpsError('permission-denied', 'User does not have permission to mark this notification as read.');
         }
 
-        // Only update if it's not already read
         if (notificationData.isRead === false) {
             await notificationRef.update({
                 isRead: true,
-                 // Optional: Add readAt timestamp: readAt: admin.firestore.FieldValue.serverTimestamp(),
             });
             console.log(`Notification ${notificationId} marked as read by user ${callerUid}.`);
         } else {

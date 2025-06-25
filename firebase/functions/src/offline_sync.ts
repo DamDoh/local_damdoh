@@ -2,9 +2,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-// Assuming admin and db are initialized in index.ts or a shared file
-// import { db } from './index';
-
 const db = admin.firestore();
 
 
@@ -12,29 +9,6 @@ const db = admin.firestore();
 
 // This file contains backend components for handling data synchronization
 // from user devices that were offline.
-
-
-// Conceptual Data Model for the 'offline_changes_log' Collection:
-// This collection stores records of changes made by users while offline,
-// waiting to be synchronized with the main database.
-// interface OfflineChange {
-//     changeId: string; // Document ID
-//     userId: string; // ID of the user who made the change
-//     timestamp: admin.firestore.Timestamp; // Client timestamp when the change was made
-//     collectionPath: string; // The Firestore collection path (e.g., 'farm_activity_logs', 'users/userId/subcollection')
-//     documentId: string; // The ID of the document being changed
-//     operation: 'create' | 'update' | 'delete'; // The type of operation
-//     payload: { [key: string]: any } | null; // The data for create/update operations
-//     status: 'pending' | 'processing' | 'completed' | 'failed' | 'conflict'; // Current status of the change log entry
-//     clientDeviceId: string | null; // Optional: Identifier for the client device
-//     processingAttempts: number; // Number of times processing has been attempted
-//     lastAttemptTimestamp: admin.firestore.FieldValue | null; // Timestamp of the last processing attempt
-//     errorMessage: string | null; // Error message if processing failed
-//     conflictDetails: { [key: string]: any } | null; // Details about conflict if status is 'conflict'
-//     createdAt: admin.firestore.FieldValue; // Timestamp when the log record was created in Firestore
-//     processedAt: admin.firestore.FieldValue | null; // Timestamp when the log record was marked completed, failed, or conflict
-// }
- 
 
 // Callable function for authenticated users to upload a batch of offline changes
 export const uploadOfflineChanges = functions.https.onCall(async (data, context) => {
@@ -50,7 +24,6 @@ export const uploadOfflineChanges = functions.https.onCall(async (data, context)
          throw new functions.https.HttpsError('invalid-argument', 'An array of changes is required.');
     }
 
-    // Validate structure of each change record (basic check)
      if (changes.some(change => !change.collectionPath || !change.documentId || !change.operation || !change.timestamp)) {
           throw new functions.https.HttpsError('invalid-argument', 'Each change record must include collectionPath, documentId, operation, and timestamp.');
      }
@@ -63,26 +36,25 @@ export const uploadOfflineChanges = functions.https.onCall(async (data, context)
         console.log(`User ${callerUid} uploading ${changes.length} offline changes.`);
 
         changes.forEach(change => {
-             // Create a new document in the offline_changes_log collection for each change
-             const newChangeRef = db.collection('offline_changes_log').doc(); // Auto-generate document ID
+             const newChangeRef = db.collection('offline_changes_log').doc();
              const changeId = newChangeRef.id;
              uploadedChangeIds.push(changeId);
 
             batch.set(newChangeRef, {
                 changeId: changeId,
                 userId: callerUid,
-                timestamp: admin.firestore.Timestamp.fromMillis(change.timestamp), // Convert client timestamp to Firestore Timestamp
+                timestamp: admin.firestore.Timestamp.fromMillis(change.timestamp),
                 collectionPath: change.collectionPath,
                 documentId: change.documentId,
                 operation: change.operation,
                 payload: change.payload || null,
-                status: 'pending', // Mark as pending for processing
+                status: 'pending', 
                 clientDeviceId: change.clientDeviceId || null,
                 processingAttempts: 0,
                 lastAttemptTimestamp: null,
                 errorMessage: null,
                 conflictDetails: null,
-                createdAt: admin.firestore.FieldValue.serverTimestamp(), // Server timestamp of upload
+                createdAt: admin.firestore.FieldValue.serverTimestamp(),
                 processedAt: null,
             });
         });
@@ -110,14 +82,13 @@ export const processOfflineChange = functions.firestore
         const changeId = context.params.changeId;
         const changeData = snapshot.data();
  
-        if (changeData.status !== 'pending') {
-            console.log(`Offline change log ${changeId} is not pending. Skipping processing.`);
+        if (!changeData || changeData.status !== 'pending') {
+            console.log(`Offline change log ${changeId} is not pending or data is missing. Skipping processing.`);
             return null;
         }
 
         console.log(`Processing offline change log: ${changeId} for user ${changeData.userId}. Operation: ${changeData.operation} on ${changeData.collectionPath}/${changeData.documentId}.`);
 
-        // Mark as processing to prevent re-runs
         await snapshot.ref.update({
             status: 'processing',
             processingAttempts: admin.firestore.FieldValue.increment(1),
@@ -154,7 +125,6 @@ export const processOfflineChange = functions.firestore
                 }
             });
 
-            // If transaction succeeds, mark as completed
             await snapshot.ref.update({ status: 'completed', processedAt: admin.firestore.FieldValue.serverTimestamp() });
 
         } catch (error: any) {

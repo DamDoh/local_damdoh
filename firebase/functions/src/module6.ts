@@ -4,9 +4,6 @@ import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { dummyFeedItems } from './dummy-data'; // Import dummy data from local file
 
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10; // Define a page size for pagination
 const REPLIES_PER_PAGE = 15; // Define a page size for replies

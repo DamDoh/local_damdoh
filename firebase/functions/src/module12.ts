@@ -1,77 +1,26 @@
 
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-
-// Initialize Firebase Admin SDK if not already initialized
-// Assuming admin and db are initialized in index.ts or a shared file
-// import { db } from './index';
+import { BigQuery } from '@google-cloud/bigquery';
 
 const db = admin.firestore();
 
-// Import necessary data retrieval functions or types from other modules if needed
-// import { getVtiDetails } from './module1'; // Example
-import { getUserDocument } from './module2'; // Assuming Module 2 exports these
-import { BigQuery } from '@google-cloud/bigquery'; // Import BigQuery for Module 8 interaction concept
-
-// TODO: Emission Factors Management:
-// Emission factors are crucial for carbon footprint calculation and need to be managed.
-// Consider storing emission factors in a separate collection (e.g., 'emission_factors')
-// structured by region, activity type, input type, etc.
-// Example structure:
-// collection: 'emission_factors'
-// document: {
-//   id: 'fertilizer_nitrogen_regional_europe',
-//   region: 'Europe',
-//   activityType: 'INPUT_APPLIED',
-//   inputType: 'fertilizer',
-//   factorType: 'nitrogen_content', // or 'mass'
-//   value: 1.5, // kg CO2e per unit
-//   unit: 'kg N', // Unit corresponding to the factor value
-//   source: 'IPCC 2019 Refinement',
-//   year: 2019,
-// }
-// NOTE: For simplicity in this example, we will use a placeholder or hardcoded factor.
-// This function would need to query this collection to get the appropriate factor.
-
-// Helper function to get emission factor (Placeholder)
 async function getEmissionFactor(criteria: { region: string, activityType: string, inputType?: string, factorType?: string }): Promise<any | null> {
     console.log('Fetching emission factor for criteria (placeholder):', criteria);
-    // TODO: Implement logic to query the 'emission_factors' collection based on criteria.
-    // Example:
-    // const factorsSnapshot = await db.collection('emission_factors')
-    //     .where('region', '==', criteria.region)
-    //     .where('activityType', '==', criteria.activityType)
-    //     // Add more filters based on inputType, factorType, etc.
-    //     .limit(1).get();
-    // if (!factorsSnapshot.empty) {
-    //     return factorsSnapshot.docs[0].data();
-    // }
-    console.warn('Emission factor not found for criteria:', criteria);
-    // Return a default or null if factor not found
-    return null; // Return null if factor not found
+    return null;
 }
 
-// Helper function to determine region for calculation (Placeholder)
-// This could be based on farm field location, user location, or VTI location.
 async function getRegionForCalculation(data: any): Promise<string | null> {
      console.log('Determining region for calculation (placeholder):', data);
-     // TODO: Implement logic to determine the relevant region.
-     // Example:
-     // If data is from a traceability_event linked to a farmFieldId, get field location from Module 1.
-     // If data is for a user, get user's registered location from Module 2.
-     // For now, returning a default or null.
-     return 'Global'; // Default placeholder region
+     return 'Global';
 }
 
-
-// Firebase trigger to calculate carbon footprint based on traceability events.
 export const calculateCarbonFootprint = functions.firestore
     .document('traceability_events/{eventId}')
-    .onWrite(async (change, context) => { // Using onWrite to handle creates and updates potentially
+    .onWrite(async (change, context) => { 
         const document = change.after.exists ? change.after.data() : null;
         const eventId = context.params.eventId;
 
-        // Only process new documents.
         if (!document || change.before.exists) {
              console.log(`Ignoring update or delete on traceability_events/${eventId}.`);
              return null;
@@ -122,7 +71,6 @@ export const calculateCarbonFootprint = functions.firestore
 
             } else if (eventType === 'TRANSPORTED' && document.payload?.distance && document.payload?.transport_mode) {
                 console.log(`Processing TRANSPORTED event (calculation not implemented yet).`);
-                // Requires distance, transport mode, and relevant emission factors.
             } else {
                 console.log(`Event type '${eventType}' is relevant but detailed calculation not implemented yet.`);
             }
@@ -132,7 +80,6 @@ export const calculateCarbonFootprint = functions.firestore
 
         } catch (error) {
             console.error(`Error calculating carbon footprint for event/${eventId}:`, error);
-            // TODO: Implement error handling.
             return null;
         }
     });
