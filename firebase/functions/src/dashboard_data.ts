@@ -1,3 +1,4 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -694,4 +695,30 @@ export const getProcessingUnitDashboardData = functions.https.onCall(async (data
  */
 export const getWarehouseDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    // const userId = context.auth.uid;
+
+    // TODO: Fetch personalized data for the authenticated user (userId)
+    // from relevant modules (e.g., Module 4 for inventory/shipments,
+    // Module 8 for optimization/alerts).
+    // Replace this mock data fetching with actual database queries and service calls.
+    
+    const mockWarehouseData = {
+        storageOptimization: {
+            utilization: 85,
+            suggestion: "Consolidate pallets in Section C to free up space."
+        },
+        inventoryLevels: {
+            totalItems: 1250,
+            itemsNeedingAttention: 15
+        },
+        predictiveAlerts: [
+            { id: "alert1", alert: "High humidity detected in Cold Storage Unit 2.", actionLink: "/warehouse/alerts/1" },
+            { id: "alert2", alert: "Batch B-456 approaching expiry date.", actionLink: "/warehouse/inventory/B-456" }
+        ]
+    };
+
+    return mockWarehouseData;
+});
