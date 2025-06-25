@@ -408,7 +408,7 @@ export const getAgronomistDashboardData = functions.https.onCall(async (data, co
         pendingConsultationRequests: [
             { id: "req1", farmerName: "Hillside Plots", issueSummary: "Pest identification and treatment recommendations.", requestDate: "2024-05-29", actionLink: "/consultations/req1" },
         ],
-        knowledgeHubContributions: [
+        knowledgeBaseContributions: [
             { id: "kb1", title: "Guide to Organic Pest Control", status: "Published" as const, actionLink: "/knowledge/kb1" },
         ],
     };
@@ -558,3 +558,4 @@ export const getWarehouseDashboardData = functions.https.onCall(async (data, con
 
     return mockWarehouseData;
 });
+
