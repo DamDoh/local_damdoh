@@ -25,7 +25,7 @@ export default function CreatePostPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     
     const functions = getFunctions(firebaseApp);
-    const createPost = useMemo(() => httpsCallable(functions, 'createPost'), [functions]);
+    const createForumPost = useMemo(() => httpsCallable(functions, 'createForumPost'), [functions]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ export default function CreatePostPage() {
         setIsSubmitting(true);
 
         try {
-            await createPost({ topicId, title, content });
+            await createForumPost({ topicId, title, content });
             
             toast({
                 title: "Post Created!",

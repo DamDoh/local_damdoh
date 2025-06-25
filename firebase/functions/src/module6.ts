@@ -100,34 +100,45 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
 });
 
 /**
- * Creates a new post in a topic.
+ * Creates a new post in a forum topic.
  */
-export const createPost = functions.https.onCall(async (data, context) => {
+export const createForumPost = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
     }
 
-    const { content, mediaUrl, pollOptions } = data;
-    if (!content && !mediaUrl && !pollOptions) {
-        throw new functions.https.HttpsError("invalid-argument", "Post must have content, media, or a poll.");
+    const { topicId, title, content } = data;
+    if (!topicId || !title || !content) {
+        throw new functions.https.HttpsError("invalid-argument", "topicId, title, and content are required.");
     }
 
+    const topicRef = db.collection("forums").doc(topicId);
+    const newPostRef = topicRef.collection("posts").doc();
+
     const newPost = {
-        userId: context.auth.uid,
-        content: content || "",
-        mediaUrl: mediaUrl || null,
-        mediaType: mediaUrl ? (mediaUrl.includes('.mp4') ? 'video' : 'image') : null,
-        pollOptions: pollOptions || null,
-        likeCount: 0,
-        commentCount: 0,
-        createdAt: FieldValue.serverTimestamp(),
+        title,
+        content,
+        authorRef: context.auth.uid,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        replyCount: 0,
+        likeCount: 0, // Initialize like count
     };
 
     try {
-        const docRef = await db.collection("posts").add(newPost);
-        return { postId: docRef.id, message: "Post created successfully" };
+        await db.runTransaction(async (transaction) => {
+            // 1. Create the new post document.
+            transaction.set(newPostRef, newPost);
+            
+            // 2. Update the topic's post count and last activity timestamp.
+            transaction.update(topicRef, {
+                postCount: admin.firestore.FieldValue.increment(1),
+                lastActivity: admin.firestore.FieldValue.serverTimestamp()
+            });
+        });
+
+        return { postId: newPostRef.id, message: "Post created successfully" };
     } catch (error) {
-        console.error("Error creating post:", error);
+        console.error(`Error creating post in topic ${topicId}:`, error);
         throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
     }
 });
@@ -137,18 +148,18 @@ export const createPost = functions.https.onCall(async (data, context) => {
  * Fetches replies for a specific post with pagination.
  */
 export const getRepliesForPost = functions.https.onCall(async (data, context) => {
-    const { postId, lastVisible } = data; // Modified to accept postId directly
-    if (!postId) {
-        throw new functions.https.HttpsError("invalid-argument", "A postId must be provided.");
+    const { topicId, postId, lastVisible } = data;
+    if (!topicId || !postId) {
+        throw new functions.https.HttpsError("invalid-argument", "A topicId and postId must be provided.");
     }
 
     try {
-        let query = db.collection(`posts/${postId}/comments`) // Changed collection path
+        let query = db.collection(`forums/${topicId}/posts/${postId}/replies`)
                       .orderBy("timestamp", "asc")
                       .limit(REPLIES_PER_PAGE);
 
         if (lastVisible) {
-            const lastVisibleDoc = await db.collection(`posts/${postId}/comments`).doc(lastVisible).get();
+            const lastVisibleDoc = await db.collection(`forums/${topicId}/posts/${postId}/replies`).doc(lastVisible).get();
             if(lastVisibleDoc.exists){
                 query = query.startAfter(lastVisibleDoc);
             }
@@ -158,9 +169,9 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
         
         const replies = repliesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         
-        // Fetch author profiles for all replies in a single batch
+        // Enrich with author profiles (example implementation)
         const authorIds = [...new Set(replies.map(reply => reply.authorRef))].filter(id => id);
-        const profiles = {};
+        const profiles: Record<string, any> = {};
         if (authorIds.length > 0) {
             const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", authorIds).get();
             userDocs.forEach(doc => {
@@ -168,7 +179,6 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
             });
         }
         
-        // Combine reply data with author data
         const enrichedReplies = replies.map(reply => {
             const author = profiles[reply.authorRef] || { displayName: "Unknown User", avatarUrl: "" };
             return {
@@ -430,7 +440,7 @@ export const getFeed = functions.https.onCall(async (data, context) => {
         }
         
         const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", authorIds).get();
-        const profiles = {};
+        const profiles: Record<string, any> = {};
         userDocs.forEach(doc => {
             profiles[doc.id] = doc.data();
         });
@@ -459,6 +469,39 @@ export const getFeed = functions.https.onCall(async (data, context) => {
     } catch (error) {
         console.error("Error fetching feed:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching the feed.");
+    }
+});
+
+/**
+ * Creates a new post for the main social feed.
+ */
+export const createFeedPost = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
+    }
+
+    const { content, mediaUrl, pollOptions } = data;
+    if (!content && !mediaUrl && !pollOptions) {
+        throw new functions.https.HttpsError("invalid-argument", "Post must have content, media, or a poll.");
+    }
+
+    const newPost = {
+        userId: context.auth.uid,
+        content: content || "",
+        mediaUrl: mediaUrl || null,
+        mediaType: mediaUrl ? (mediaUrl.includes('.mp4') ? 'video' : 'image') : null,
+        pollOptions: pollOptions || null,
+        likeCount: 0,
+        commentCount: 0,
+        createdAt: FieldValue.serverTimestamp(),
+    };
+
+    try {
+        const docRef = await db.collection("posts").add(newPost);
+        return { postId: docRef.id, message: "Post created successfully" };
+    } catch (error) {
+        console.error("Error creating post:", error);
+        throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
     }
 });
 

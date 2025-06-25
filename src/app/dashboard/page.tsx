@@ -33,7 +33,7 @@ export default function DashboardPage() {
 
   // Memoize the callable functions
   const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), [functions]);
-  const createPostCallable = useMemo(() => httpsCallable(functions, 'createPost'), [functions]);
+  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), [functions]);
   const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
 
