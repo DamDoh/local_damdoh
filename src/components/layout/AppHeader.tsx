@@ -95,7 +95,6 @@ const desktopNavItems = [
   { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
   { href: "/forums", icon: MessageSquare, label: "Forums"},
-  { href: "/ai-assistant", icon: Brain, label: "AI Assistant" },
 ];
 
 const mainMobileNavItems = [
@@ -104,7 +103,6 @@ const mainMobileNavItems = [
   { href: "/farm-management", icon: Sprout, label: "Farm Management", isSheetLink: true },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace", isSheetLink: true },
   { href: "/forums", icon: MessageSquare, label: "Forums", isSheetLink: true },
-  { href: "/ai-assistant", icon: Brain, label: "AI Assistant", isSheetLink: true },
   { href: "/notifications", icon: Bell, label: "Notifications", isSheetLink: true },
 ];
 
