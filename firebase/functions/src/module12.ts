@@ -1,3 +1,4 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
@@ -9,7 +10,7 @@ const db = admin.firestore();
 
 // Import necessary data retrieval functions or types from other modules if needed
 // import { getVtiDetails } from './module1'; // Example
-import { getUserDocument, getUserByUid } from './module2'; // Assuming Module 2 exports these
+import { getUserDocument } from './module2'; // Assuming Module 2 exports these
 import { BigQuery } from '@google-cloud/bigquery'; // Import BigQuery for Module 8 interaction concept
 
 // TODO: Emission Factors Management:
@@ -63,153 +64,75 @@ async function getRegionForCalculation(data: any): Promise<string | null> {
 }
 
 
-// Firebase trigger to calculate carbon footprint based on traceability events or farm activity logs
+// Firebase trigger to calculate carbon footprint based on traceability events.
 export const calculateCarbonFootprint = functions.firestore
-    // Trigger on new or updated documents in relevant collections
-    .document('traceability_events/{eventId}') // Trigger on Module 1 events
-    // .document('farm_activity_logs/{logId}') // Optionally trigger on Module 3 logs
+    .document('traceability_events/{eventId}')
     .onWrite(async (change, context) => { // Using onWrite to handle creates and updates potentially
         const document = change.after.exists ? change.after.data() : null;
         const eventId = context.params.eventId;
-        const collectionId = context.params.collectionId; // 'traceability_events' or 'farm_activity_logs'
 
-        // Only process new documents or relevant updates if needed
-        if (!document || (change.before.exists && change.before.data()?.processingStatus === 'processed' && collectionId === 'farm_activity_logs')) {
-             console.log(`Ignoring non-relevant write on ${collectionId}/${eventId}.`);
-             return null; // Avoid processing initial states or irrelevant updates
-        }
-
-        console.log(`Triggered carbon footprint calculation for ${collectionId}/${eventId}`);
-
-
-        // Determine if this event/log type is relevant for carbon calculation
-        const relevantEventTypes = ['INPUT_APPLIED', 'TRANSPORTED']; // Add other relevant types like 'ENERGY_CONSUMED'
-         const relevantLogTypes = ['INPUT_APPLIED_LOG', 'TRANSPORT_LOG']; // Example log types
-
-
-        const eventType = document.eventType || document.activityType; // Get type from event or log
-
-        if (!eventType || (!relevantEventTypes.includes(eventType) && !relevantLogTypes.includes(eventType))) {
-             console.log(`Event/Log type '${eventType}' is not relevant for carbon footprint calculation. Skipping.`);
+        // Only process new documents.
+        if (!document || change.before.exists) {
+             console.log(`Ignoring update or delete on traceability_events/${eventId}.`);
              return null;
         }
 
+        console.log(`Triggered carbon footprint calculation for new event: traceability_events/${eventId}`);
+        
+        const relevantEventTypes = ['INPUT_APPLIED', 'TRANSPORTED'];
+        const eventType = document.eventType;
+
+        if (!eventType || !relevantEventTypes.includes(eventType)) {
+             console.log(`Event type '${eventType}' is not relevant for carbon footprint calculation. Skipping.`);
+             return null;
+        }
 
         try {
-            // Fetch necessary data based on event/log type
-            let vtiId = document.vtiId || null; // Get VTI from event if available
-            let userRef = document.userRef || document.farmerRef || null; // Get user ref from event/log
-             let farmFieldId = document.farmFieldId || null; // Get farm field from event/log
+            const vtiId = document.vtiId || null;
+            const userRef = document.userRef || document.actorRef || null;
+            
+            if (eventType === 'INPUT_APPLIED' && document.payload?.input_type && document.payload?.quantity && document.payload?.unit) {
+                const { input_type, quantity, unit } = document.payload;
+                console.log(`Processing INPUT_APPLIED event for input type ${input_type}, quantity ${quantity} ${unit}`);
+                
+                const region = await getRegionForCalculation(document);
+                const emissionFactor = await getEmissionFactor({ region: region || 'Global', activityType: 'INPUT_APPLIED', inputType: input_type, factorType: unit });
 
+                if (emissionFactor) {
+                    const calculatedEmissions = quantity * emissionFactor.value;
+                    const emissionsUnit = emissionFactor.unit;
 
-            // If processing a farm activity log, we might need data from its details
-            if (collectionId === 'farm_activity_logs') {
-                 // If log type is INPUT_APPLIED_LOG, get input details from payload
-                 if (eventType === 'INPUT_APPLIED_LOG' && document.details?.inputType && document.details?.quantity && document.details?.unit) {
-                      const { inputType, quantity, unit } = document.details;
-                     console.log(`Processing INPUT_APPLIED_LOG for input type ${inputType}, quantity ${quantity} ${unit}`);
-                     // TODO: Fetch more details about the input from master_data_inputs (Module 1) if needed for factors.
-                     // TODO: Fetch the relevant emission factor based on input type, quantity unit, and region.
-                      const region = await getRegionForCalculation(document); // Determine region
-                      const emissionFactor = await getEmissionFactor({ region: region || 'Global', activityType: 'INPUT_APPLIED', inputType: inputType, factorType: unit });
+                    await db.collection('carbon_footprint_data').add({
+                        vtiId: vtiId,
+                        userRef: userRef,
+                        eventType: eventType,
+                        eventRef: db.collection('traceability_events').doc(eventId),
+                        timestamp: document.timestamp || admin.firestore.FieldValue.serverTimestamp(),
+                        calculatedEmissions: calculatedEmissions,
+                        unit: emissionsUnit,
+                        emissionFactorUsed: emissionFactor,
+                        dataSource: 'traceability_event',
+                        region: region,
+                        details: document.payload,
+                    });
+                    console.log(`Carbon footprint calculated and stored for event/${eventId}. Emissions: ${calculatedEmissions} ${emissionsUnit}`);
+                } else {
+                    console.warn(`Emission factor not found for INPUT_APPLIED event type '${input_type}' in region '${region}'.`);
+                }
 
-                      if (emissionFactor) {
-                         // 5. Calculate carbon emissions
-                         const calculatedEmissions = quantity * emissionFactor.value;
-                         const emissionsUnit = emissionFactor.unit; // Unit from factor
-
-                         // 6. Store the calculated emissions
-                         await db.collection('carbon_footprint_data').add({
-                             vtiId: vtiId, // Link to VTI if available
-                             userRef: userRef, // Link to user/organization
-                             eventType: 'INPUT_APPLIED', // Store as standardized event type
-                             eventRef: db.collection(collectionId).doc(eventId), // Link back to triggering doc
-                             timestamp: document.timestamp || admin.firestore.FieldValue.serverTimestamp(), // Timestamp of the event/log
-                             calculatedEmissions: calculatedEmissions,
-                             unit: emissionsUnit,
-                             emissionFactorUsed: emissionFactor, // Store details of the factor used
-                             dataSource: collectionId === 'traceability_events' ? 'traceability_event' : 'farm_activity_log',
-                              region: region,
-                             // Add other relevant details from the event/log payload
-                              details: document.details,
-                         });
-                         console.log(`Carbon footprint calculated and stored for ${collectionId}/${eventId} (Input Applied). Emissions: ${calculatedEmissions} ${emissionsUnit}`);
-
-                     } else {
-                         console.warn(`Emission factor not found for INPUT_APPLIED_LOG type '${inputType}' in region '${region}'. Cannot calculate carbon footprint.`);
-                         // TODO: Handle cases where emission factor is missing - log, alert, mark log/event?
-                     }
-                 } else if (eventType === 'TRANSPORT_LOG' && document.details?.distance && document.details?.transportMode) {
-                      // TODO: Implement calculation for TRANSPORT_LOG
-                      console.log(`Processing TRANSPORT_LOG (calculation not implemented yet).`);
-                       // Requires distance, transport mode, and relevant emission factors.
-                 } else {
-                     console.warn(`Unhandled or incomplete ${eventType} log details for carbon footprint calculation.`);
-                 }
-
-            } else if (collectionId === 'traceability_events') {
-                 // Process traceability events directly
-                 if (eventType === 'INPUT_APPLIED' && document.payload?.input_type && document.payload?.quantity && document.payload?.unit) {
-                      const { input_type, quantity, unit } = document.payload;
-                      console.log(`Processing INPUT_APPLIED event for input type ${input_type}, quantity ${quantity} ${unit}`);
-                      // TODO: Fetch the relevant emission factor based on input type, quantity unit, and region.
-                      const region = await getRegionForCalculation(document); // Determine region
-                      const emissionFactor = await getEmissionFactor({ region: region || 'Global', activityType: 'INPUT_APPLIED', inputType: input_type, factorType: unit });
-
-                       if (emissionFactor) {
-                         // 5. Calculate carbon emissions
-                         const calculatedEmissions = quantity * emissionFactor.value;
-                         const emissionsUnit = emissionFactor.unit; // Unit from factor
-
-                         // 6. Store the calculated emissions
-                         await db.collection('carbon_footprint_data').add({
-                             vtiId: vtiId, // Link to VTI
-                             userRef: userRef, // Link to user/organization
-                             eventType: eventType, // Store the event type
-                             eventRef: db.collection(collectionId).doc(eventId), // Link back to triggering doc
-                             timestamp: document.timestamp || admin.firestore.FieldValue.serverTimestamp(), // Timestamp of the event
-                             calculatedEmissions: calculatedEmissions,
-                             unit: emissionsUnit,
-                             emissionFactorUsed: emissionFactor, // Store details of the factor used
-                             dataSource: 'traceability_event',
-                             region: region,
-                             // Add other relevant details from the event payload
-                              details: document.payload,
-                         });
-                         console.log(`Carbon footprint calculated and stored for ${collectionId}/${eventId} (Input Applied). Emissions: ${calculatedEmissions} ${emissionsUnit}`);
-
-                     } else {
-                         console.warn(`Emission factor not found for INPUT_APPLIED event type '${input_type}' in region '${region}'. Cannot calculate carbon footprint.`);
-                         // TODO: Handle cases where emission factor is missing.
-                     }
-
-                 } else if (eventType === 'TRANSPORTED' && document.payload?.distance && document.payload?.transport_mode) {
-                      // TODO: Implement calculation for TRANSPORTED event
-                       console.log(`Processing TRANSPORTED event (calculation not implemented yet).`);
-                       // Requires distance, transport mode, and relevant emission factors.
-                 } else if (eventType === 'DELIVERED' && document.payload?.distance && document.payload?.transport_mode) {
-                       // TODO: Implement calculation for DELIVERED event (transport part)
-                       console.log(`Processing DELIVERED event (transport calculation not implemented yet).`);
-                        // Requires distance, transport mode, and relevant emission factors.
-                 }
-                 else {
-                     console.log(`Event type '${eventType}' is relevant but detailed calculation not implemented yet.`);
-                 }
+            } else if (eventType === 'TRANSPORTED' && document.payload?.distance && document.payload?.transport_mode) {
+                console.log(`Processing TRANSPORTED event (calculation not implemented yet).`);
+                // Requires distance, transport mode, and relevant emission factors.
+            } else {
+                console.log(`Event type '${eventType}' is relevant but detailed calculation not implemented yet.`);
             }
 
-
-            // 7. Consider how these granular calculations will be aggregated for reporting.
-            // - A trigger on 'carbon_footprint_data' could initiate aggregation for a specific VTI or user.
-            // - Alternatively, aggregation can be done in Module 8 using BigQuery for reports.
-             console.log(`Calculation trigger for ${collectionId}/${eventId} completed.`);
-
-
-            return null; // Indicate successful completion
+            console.log(`Calculation trigger for event/${eventId} completed.`);
+            return null;
 
         } catch (error) {
-            console.error(`Error calculating carbon footprint for ${collectionId}/${eventId}:`, error);
-            // TODO: Implement error handling: log the error, potentially update the original log/event
-             // document status if it was a log from Module 3.
+            console.error(`Error calculating carbon footprint for event/${eventId}:`, error);
+            // TODO: Implement error handling.
             return null;
         }
     });

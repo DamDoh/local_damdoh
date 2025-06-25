@@ -1,3 +1,4 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
@@ -282,6 +283,7 @@ export const processInsuranceClaim = functions.firestore
 export const triggerParametricPayout = functions.firestore
     .document('weather_readings/{readingId}') // Example trigger: on new weather reading
     .onCreate(async (snapshot: admin.firestore.DocumentSnapshot, context: functions.EventContext) => {
+        const weatherReading = snapshot.data();
         const location = weatherReading?.location; // Assuming location data exists
         const readingDate = weatherReading?.timestamp; // Assuming timestamp exists
 

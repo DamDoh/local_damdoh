@@ -1,3 +1,4 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
@@ -65,6 +66,9 @@ export const onDataChangeCreateNotification = functions.firestore
         }
 
         console.log(`Notification trigger received for: ${collectionId}/${documentId}`);
+        
+        const isCreate = !change.before.exists && change.after.exists;
+        const isUpdate = change.before.exists && change.after.exists;
 
         let targetUserId: string | null = null;
         let notificationType: 'new_message' | 'new_order' | 'farm_alert' | 'claim_update' | 'recommendation' | 'event_reminder' | 'compliance_alert' | 'other' = 'other';
@@ -77,7 +81,7 @@ export const onDataChangeCreateNotification = functions.firestore
         // --- Logic to identify target user, type, and content based on the trigger ---
         // This is a crucial part and needs to be expanded for each specific trigger scenario.
 
-        if (collectionId === 'messages' && triggerData.conversationRef?.id && triggerData.senderRef?.id && change.type === 'create') {
+        if (collectionId === 'messages' && triggerData.conversationRef?.id && triggerData.senderRef?.id && isCreate) {
              // Triggered by a new message (Module 6)
              const conversationId = triggerData.conversationRef.id;
              const senderId = triggerData.senderRef.id;
@@ -113,7 +117,7 @@ export const onDataChangeCreateNotification = functions.firestore
              }
 
 
-        } else if (collectionId === 'orders' && triggerData.sellerRef?.id && change.type === 'create') {
+        } else if (collectionId === 'orders' && triggerData.sellerRef?.id && isCreate) {
              // Triggered by a new order (Module 4)
              targetUserId = triggerData.sellerRef.id; // Notify the seller
              notificationType = 'new_order';
@@ -127,7 +131,7 @@ export const onDataChangeCreateNotification = functions.firestore
              // TODO: Generate localized titles and bodies
 
 
-        } else if (collectionId === 'farmer_alerts' && triggerData.farmerRef?.id && change.type === 'create') {
+        } else if (collectionId === 'farmer_alerts' && triggerData.farmerRef?.id && isCreate) {
             // Triggered by a new farm alert (Module 3)
             targetUserId = triggerData.farmerRef.id; // Notify the farmer
             notificationType = 'farm_alert';
@@ -137,7 +141,7 @@ export const onDataChangeCreateNotification = functions.firestore
             // TODO: Use triggerData.message_local for localized bodies
 
 
-        } else if (collectionId === 'claims' && triggerData.policyholderRef?.id && change.type === 'update' && triggerData.status !== oldTriggerData?.status) {
+        } else if (collectionId === 'claims' && triggerData.policyholderRef?.id && isUpdate && triggerData.status !== oldTriggerData?.status) {
             // Triggered by a claim status update (Module 11)
             targetUserId = triggerData.policyholderRef.id; // Notify the policyholder
             notificationType = 'claim_update';
@@ -148,7 +152,7 @@ export const onDataChangeCreateNotification = functions.firestore
             // TODO: Generate localized titles and bodies
 
 
-        } else if (collectionId === 'user_recommendations' && triggerData.userId && change.type === 'create') {
+        } else if (collectionId === 'user_recommendations' && triggerData.userId && isCreate) {
             // Triggered by new recommendations (Module 5)
              targetUserId = triggerData.userId;
              notificationType = 'recommendation';
