@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 
 if (admin.apps.length === 0) {
   admin.initializeApp();
@@ -103,37 +104,34 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
  */
 export const createPost = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to post.");
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
     }
 
-    const { topicId, title, content } = data;
-    if (!topicId || !title || !content) {
-        throw new functions.https.HttpsError("invalid-argument", "topicId, title, and content are required.");
+    const { content, mediaUrl, pollOptions } = data;
+    if (!content && !mediaUrl && !pollOptions) {
+        throw new functions.https.HttpsError("invalid-argument", "Post must have content, media, or a poll.");
     }
 
-    const postData = {
-        title,
-        content,
-        authorRef: context.auth.uid,
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
-        replyCount: 0
+    const newPost = {
+        userId: context.auth.uid,
+        content: content || "",
+        mediaUrl: mediaUrl || null,
+        mediaType: mediaUrl ? (mediaUrl.includes('.mp4') ? 'video' : 'image') : null,
+        pollOptions: pollOptions || null,
+        likeCount: 0,
+        commentCount: 0,
+        createdAt: FieldValue.serverTimestamp(),
     };
 
-    const topicRef = db.collection("forums").doc(topicId);
-
     try {
-        const postRef = await topicRef.collection("posts").add(postData);
-        // Update the topic's post count and last activity
-        await topicRef.update({
-            postCount: admin.firestore.FieldValue.increment(1),
-            lastActivity: admin.firestore.FieldValue.serverTimestamp()
-        });
-        return { postId: postRef.id, message: "Post created successfully" };
+        const docRef = await db.collection("posts").add(newPost);
+        return { postId: docRef.id, message: "Post created successfully" };
     } catch (error) {
-        console.error(`Error creating post in topic ${topicId}:`, error);
+        console.error("Error creating post:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
     }
 });
+
 
 /**
  * Fetches replies for a specific post with pagination.
@@ -377,5 +375,121 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
     } catch (error) {
         console.error(`Error leaving group ${groupId}:`, error);
         throw new functions.https.HttpsError("internal", "An error occurred while leaving the group.");
+    }
+});
+
+
+/**
+ * =================================================================
+ * Module 6: Main Feed Functions
+ * =================================================================
+ */
+
+// Fetches the main social feed posts
+export const getFeed = functions.https.onCall(async (data, context) => {
+    // Optional: Add personalization logic based on data.interests
+    const FEED_LIMIT = 20;
+    try {
+        const postsSnapshot = await db.collection("posts").orderBy("createdAt", "desc").limit(FEED_LIMIT).get();
+        if (postsSnapshot.empty) {
+            return { posts: [] };
+        }
+
+        const posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        // Fetch author profiles for all posts in a single batch
+        const authorIds = [...new Set(posts.map(post => post.userId))].filter(id => id);
+        if (authorIds.length === 0) {
+            return { posts: [] };
+        }
+        
+        const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", authorIds).get();
+        const profiles = {};
+        userDocs.forEach(doc => {
+            profiles[doc.id] = doc.data();
+        });
+
+        // Combine post data with author data to create the feed items
+        const feedItems = posts.map(post => {
+            const author = profiles[post.userId] || { displayName: "Unknown User", profileSummary: "DamDoh Member", avatarUrl: "" };
+            return {
+                id: post.id,
+                content: post.content,
+                timestamp: post.createdAt.toDate().toISOString(),
+                user: {
+                    id: post.userId,
+                    name: author.displayName,
+                    headline: author.profileSummary || "DamDoh Member",
+                    avatarUrl: author.avatarUrl || ""
+                },
+                likes: post.likeCount || 0,
+                comments: post.commentCount || 0,
+                media: post.mediaUrl ? { url: post.mediaUrl, type: post.mediaType || 'image' } : undefined,
+                pollOptions: post.pollOptions || null,
+            };
+        });
+
+        return { posts: feedItems };
+    } catch (error) {
+        console.error("Error fetching feed:", error);
+        throw new functions.https.HttpsError("internal", "An error occurred while fetching the feed.");
+    }
+});
+
+
+// Likes a post
+export const likePost = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to like a post.");
+    }
+    const { postId } = data;
+    if (!postId) {
+        throw new functions.https.HttpsError("invalid-argument", "postId is required.");
+    }
+    const postRef = db.collection("posts").doc(postId);
+
+    // In a real app, you would add logic to prevent multiple likes from the same user
+    // e.g., by checking a subcollection of likes. For now, we just increment.
+    try {
+        await postRef.update({
+            likeCount: FieldValue.increment(1)
+        });
+        return { success: true };
+    } catch (error) {
+        console.error(`Error liking post ${postId}:`, error);
+        throw new functions.https.HttpsError("internal", "An error occurred while liking the post.");
+    }
+});
+
+
+// Adds a comment to a post
+export const addComment = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to comment.");
+    }
+    const { postId, content } = data;
+    if (!postId || !content) {
+        throw new functions.https.HttpsError("invalid-argument", "postId and content are required.");
+    }
+
+    const postRef = db.collection("posts").doc(postId);
+    const commentRef = postRef.collection("comments").doc();
+
+    const newComment = {
+        authorRef: context.auth.uid,
+        content: content,
+        timestamp: FieldValue.serverTimestamp(),
+    };
+
+    const batch = db.batch();
+    batch.set(commentRef, newComment);
+    batch.update(postRef, { commentCount: FieldValue.increment(1) });
+
+    try {
+        await batch.commit();
+        return { success: true, commentId: commentRef.id };
+    } catch (error) {
+        console.error(`Error adding comment to post ${postId}:`, error);
+        throw new functions.https.HttpsError("internal", "An error occurred while adding the comment.");
     }
 });

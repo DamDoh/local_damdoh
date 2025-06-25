@@ -5,43 +5,21 @@ import { useState, useEffect, useMemo, Suspense } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
 import { Card, CardContent } from "@/components/ui/card";
-import type { FeedItem, UserProfile, Post } from '@/lib/types';
+import type { FeedItem, UserProfile } from '@/lib/types';
 import { StartPost } from '@/components/dashboard/StartPost';
 import { FeedItemCard } from "@/components/dashboard/FeedItemCard";
 import { DashboardLeftSidebar } from '@/components/dashboard/DashboardLeftSidebar';
 import { DashboardRightSidebar } from '@/components/dashboard/DashboardRightSidebar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuth } from '@/lib/auth-utils';
-import { collection, query, orderBy, limit, onSnapshot, getFirestore, doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { useToast } from '@/hooks/use-toast';
 
 // Placeholder imports for role-based hubs
-// These components will be implemented in the next steps
 import FarmerHub from '@/components/dashboard/hubs/FarmerHub';
 import BuyerHub from '@/components/dashboard/hubs/BuyerHub';
 import LogisticsHub from '@/components/dashboard/hubs/LogisticsHub';
 // Add imports for other roles as needed
-
-// Helper function to fetch user profiles, with caching
-const userProfileCache: Record<string, UserProfile> = {};
-const fetchUserProfiles = async (userIds: string[]) => {
-    const db = getFirestore(firebaseApp);
-    const userProfiles: Record<string, UserProfile> = {};
-    const usersToFetch = userIds.filter(id => !userProfileCache[id]);
-
-    if (usersToFetch.length > 0) {
-        for (const userId of usersToFetch) {
-            const userDocRef = doc(db, 'users', userId);
-            const userDoc = await userDocRef.get();
-            userProfileCache[userId] = userDoc.exists() 
-                ? (userDoc.data() as UserProfile)
-                : { id: userId, name: "Unknown User", headline: "DamDoh Member", avatarUrl: "" };
-        }
-    }
-    userIds.forEach(id => {
-        userProfiles[id] = userProfileCache[id];
-    });
-    return userProfiles;
-};
 
 export default function DashboardPage() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -49,6 +27,7 @@ export default function DashboardPage() {
   const [userRole, setUserRole] = useState<string | null>(null);
   const [isLoadingRole, setIsLoadingRole] = useState(true);
   const { user } = useAuth();
+  const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
   const db = getFirestore(firebaseApp);
 
@@ -67,14 +46,21 @@ export default function DashboardPage() {
         return;
       }
       setIsLoadingRole(true);
-      const userDocRef = doc(db, 'users', user.uid);
-      const userDoc = await getDoc(userDocRef);
-      setUserRole(userDoc.data()?.role || 'general'); // Assume 'general' if role is not set
-      setIsLoadingRole(false);
+      try {
+        const userDocRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(userDocRef);
+        setUserRole(userDoc.data()?.role || 'general'); // Assume 'general' if role is not set
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+        setUserRole('general'); // Fallback role
+      } finally {
+        setIsLoadingRole(false);
+      }
     };
     fetchUserRole();
   }, [user, db]);
 
+  // Effect to fetch the feed
   useEffect(() => {
     const fetchPersonalizedFeed = async () => {
         setIsLoadingFeed(true);
@@ -82,81 +68,79 @@ export default function DashboardPage() {
             // In a real app, user interests would be fetched from their profile
             const userContext = { interests: ['maize', 'fertilizer', 'weather'] };
             const result = await getFeed(userContext);
-            const posts = (result.data as any).posts as any[];
-
-            if (posts.length > 0) {
-                const userIds = [...new Set(posts.map(post => post.userId))];
-                const profiles = await fetchUserProfiles(userIds);
-                
-                const enrichedFeed: FeedItem[] = posts.map(post => ({
-                    id: post.id,
-                    content: post.content,
-                    timestamp: post.createdAt.toDate().toISOString(),
-                    user: {
-                        id: post.userId,
-                        name: profiles[post.userId]?.name || "Unknown User",
-                        headline: profiles[post.userId]?.headline || "DamDoh Member",
-                        avatarUrl: profiles[post.userId]?.avatarUrl || ""
-                    },
-                    likes: post.likeCount,
-                    comments: post.commentCount,
-                    media: post.mediaUrl ? { url: post.mediaUrl, type: post.mediaType } : undefined,
-                    pollOptions: post.pollOptions,
-                }));
-                setFeedItems(enrichedFeed);
-            } else {
-                setFeedItems([]);
-            }
+            const posts = (result.data as any).posts as FeedItem[];
+            setFeedItems(posts || []);
         } catch (error) {
             console.error("Error fetching personalized feed:", error);
+            toast({
+              title: "Could not load feed",
+              description: "There was an error fetching the latest posts. Please try again later.",
+              variant: "destructive"
+            });
         } finally {
             setIsLoadingFeed(false);
         }
     };
     
-    // Instead of a realtime listener, we now fetch a personalized feed.
-    // A more advanced implementation might combine personalization with a realtime subscription.
+    // We only fetch the feed once on component mount.
+    // For real-time updates without a full listener, a "refresh" button could be added.
     fetchPersonalizedFeed();
 
-  }, [user, getFeed]);
+  }, [getFeed, toast]);
 
   const handleCreatePost = async (content: string, media?: File, pollOptions?: { text: string }[]) => {
     if (!user) return;
     
+    // In a real app, we'd upload the media file to Cloud Storage and get a URL first.
+    // For this demo, we'll just indicate that a media file was part of the post.
     let mediaUrl: string | undefined = undefined;
     if (media) {
-      mediaUrl = "https://placehold.co/800x450.png";
+      mediaUrl = "https://placehold.co/800x450.png"; // Placeholder for uploaded media
+      toast({ title: "Uploading Media...", description: "Media upload is simulated for this demo."});
     }
     
     try {
       await createPostCallable({ content, mediaUrl, pollOptions });
-      // Here, you might trigger a re-fetch of the personalized feed
-      // Or optimistically add the post to the top of the feed.
+      toast({ title: "Post Created!", description: "Your post is now live." });
+      // Refetch feed to show the new post
+      // A more optimistic UI would add the post to the top of the list immediately.
+      const result = await getFeed({});
+      const posts = (result.data as any).posts as FeedItem[];
+      setFeedItems(posts || []);
     } catch (error) {
       console.error("Error creating post:", error);
+      toast({ title: "Failed to create post", variant: "destructive" });
     }
   };
   
   const handleLikePost = async (postId: string) => {
     try {
-      await likePostCallable({ postId });
       // Optimistic update for immediate feedback
       setFeedItems(prevItems => prevItems.map(item => 
-        item.id === postId ? { ...item, likes: item.likes + 1 } : item
+        item.id === postId ? { ...item, likes: (item.likes || 0) + 1 } : item
       ));
+      await likePostCallable({ postId });
     } catch(error) {
       console.error("Error liking post:", error);
+      toast({ title: "Failed to like post", variant: "destructive" });
+      // Revert optimistic update on error
+       setFeedItems(prevItems => prevItems.map(item => 
+        item.id === postId ? { ...item, likes: (item.likes || 0) - 1 } : item
+      ));
     }
   };
   
   const handleCommentOnPost = async (postId: string, comment: string) => {
      try {
         await addCommentCallable({ postId, content: comment });
+        // Optimistic update
         setFeedItems(prevItems => prevItems.map(item => 
-            item.id === postId ? { ...item, comments: item.comments + 1 } : item
+            item.id === postId ? { ...item, comments: (item.comments || 0) + 1 } : item
         ));
+        toast({ title: "Comment added!" });
      } catch(error) {
          console.error("Error adding comment:", error);
+         toast({ title: "Failed to add comment", variant: "destructive" });
      }
   };
 
