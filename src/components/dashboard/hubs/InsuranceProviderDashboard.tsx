@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -10,33 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { Shield, FileText, AlertTriangle } from 'lucide-react';
-
-// Define the data type for the Insurance Provider Dashboard
-interface InsuranceProviderDashboardData {
-    pendingClaims: {
-        id: string;
-        policyHolderName: string;
-        policyType: string; // e.g., 'Crop Insurance', 'Livestock Insurance'
-        claimDate: string;
-        status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-        actionLink: string;
-    }[];
-    activePolicies: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        coverageAmount: number;
-        expiryDate: string;
-        actionLink: string;
-    }[];
-    riskAssessmentAlerts: {
-        id: string;
-        policyHolderName: string;
-        alert: string; // e.g., 'Drought Risk Increased', 'Pest Outbreak Detected'
-        severity: 'High' | 'Medium' | 'Low';
-        actionLink: string;
-    }[];
-}
+import type { InsuranceProviderDashboardData } from '@/lib/types';
 
 // Assume mock getInsuranceProviderDashboardData is available via firebase functions
 const functions = getFunctions(firebaseApp);
@@ -65,7 +40,7 @@ export const InsuranceProviderDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getInsuranceProviderDashboardDataCallable]);
 
   if (isLoading) {
     return (
@@ -231,12 +206,3 @@ export const InsuranceProviderDashboard = () => {
     </div>
   );
 };
-
-const DashboardSkeleton = () => (
-    <div className="space-y-6">
-        <Skeleton className="h-9 w-64 mb-6" />
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
-    </div>
-);

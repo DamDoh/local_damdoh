@@ -20,19 +20,11 @@ const db = admin.firestore();
 /**
  * Cloud Function to get data for the Farmer Dashboard.
  * Ensures the user is authenticated and likely has the Farmer role (enforced by frontend/security rules).
- * (Integrated from hubs.ts)
  */
 export const getFarmerDashboardData = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
   }
-
-  // const userId = context.auth.uid;
-
-  // TODO: In a real application, fetch personalized data for the authenticated user (userId)
-  // from relevant modules (e.g., Module 3 for farm data, Module 4 for matched buyers,
-  // Module 7 for trust score, Module 8 for predictions/recommendations).
-  // Replace this mock data fetching with actual database queries and service calls.
 
   const mockDashboardData = {
     predictedYield: {
@@ -76,19 +68,11 @@ export const getFarmerDashboardData = functions.https.onCall(async (data, contex
 /**
  * Cloud Function to get data for the Buyer Dashboard.
  * Ensures the user is authenticated and likely has the Buyer role.
- * (Integrated from hubs.ts)
  */
 export const getBuyerDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-     // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 4 for marketplace data, Module 1 for traceability,
-    // Module 8 for risk/sourcing recommendations).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockBuyerData = {
         supplyChainRisk: {
@@ -107,7 +91,7 @@ export const getBuyerDashboardData = functions.https.onCall(async (data, context
         ],
         marketPriceIntelligence: {
             product: "Coffee Beans",
-            trend: "up",
+            trend: "up" as const,
             forecast: "Expected to rise 5% in the next quarter.",
             action: {
                 label: "Secure Forward Contract",
@@ -121,20 +105,11 @@ export const getBuyerDashboardData = functions.https.onCall(async (data, context
 
 /**
  * Cloud Function to get data for the Logistics Provider Dashboard.
- * Ensures the user is authenticated and likely has the Logistics Provider role.
- * (Integrated from hubs.ts)
  */
 export const getLogisticsDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 1 for traceability, Module 4 for incoming jobs,
-    // Module 8 for performance metrics).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockLogisticsData = {
         activeShipments: [
@@ -156,20 +131,11 @@ export const getLogisticsDashboardData = functions.https.onCall(async (data, con
 
 /**
  * Cloud Function to get data for the Financial Institution Dashboard.
- * Ensures the user is authenticated and likely has the Financial Institution role.
- * (Integrated from hubs.ts)
  */
 export const getFiDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 7 for applications/portfolio, Module 8 for risk assessment,
-    // Module 5 for market updates/news relevant to finance).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockFiData = {
         pendingApplications: [
@@ -192,20 +158,11 @@ export const getFiDashboardData = functions.https.onCall(async (data, context) =
 
 /**
  * Cloud Function to get data for the Agro Export/Import Dashboard.
- * Ensures the user is authenticated and likely has the Agro Export/Import role.
- * (Integrated from hubs.ts)
  */
 export const getAgroExportDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 1 for traceability/VTI, Module 10 for regulatory compliance,
-    // Module 4 for shipments).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockAgroExportData = {
         pendingCustomsDocs: [
@@ -226,20 +183,11 @@ export const getAgroExportDashboardData = functions.https.onCall(async (data, co
 
 /**
  * Cloud Function to get data for the Input Supplier Dashboard.
- * Ensures the user is authenticated and likely has the Input Supplier role.
- * (Integrated from hubs.ts)
  */
 export const getInputSupplierDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 8 for demand forecasts/product performance,
-    // Module 4 for active orders, Module 3 for farm activity trends).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockInputSupplierData = {
         demandForecast: [
@@ -261,20 +209,11 @@ export const getInputSupplierDashboardData = functions.https.onCall(async (data,
 
 /**
  * Cloud Function to get data for the Field Agent / Agronomist Dashboard.
- * Ensures the user is authenticated and likely has the Field Agent / Agronomist role.
- * (Integrated from hubs.ts)
  */
 export const getFieldAgentDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 3 for assigned farmers/portfolio health,
-    // Module 1 for data verification tasks, Module 5 for knowledge base contributions).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockFieldAgentData = {
         assignedFarmers: [
@@ -300,30 +239,25 @@ export const getFieldAgentDashboardData = functions.https.onCall(async (data, co
 
 /**
  * Cloud Function to get data for the Energy Provider Dashboard.
- * Ensures the user is authenticated and likely has the Energy Provider role.
- * (Integrated from hubs.ts)
  */
 export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 12 for carbon impact, Module 7 for leads/proposals).
-    // Replace this mock data fetching with actual database queries and service calls.
-
+    
     const mockEnergyProviderData = {
-        highPotentialLeads: [
-            { id: "lead1", name: "Sunset Farms", energySpend: 15000, potentialSaving: "25%", actionLink: "/leads/lead1" },
-            { id: "lead2", name: "Agri-Processors Ltd.", energySpend: 50000, potentialSaving: "30%", actionLink: "/leads/lead2" },
+        projectLeads: [
+            { id: 'lead1', entityName: 'Sunset Farms', location: 'Rift Valley', estimatedEnergyNeed: 'High', status: 'New' as const, actionLink: '/leads/lead1' },
+            { id: 'lead2', entityName: 'Agri-Processors Ltd.', location: 'Nairobi', estimatedEnergyNeed: 'Very High', status: 'Contacted' as const, actionLink: '/leads/lead2' },
         ],
-        carbonImpact: {
-            savedThisYear: 500, // tons of CO2e
-            totalProjects: 15,
+        activeProjects: [
+            { id: 'proj1', entityName: 'Green Valley', location: 'Naivasha', solutionType: 'Solar Irrigation', installationDate: '2024-03-15', status: 'Completed' as const, actionLink: '/projects/proj1' }
+        ],
+        impactMetrics: {
+            totalInstallations: 15,
+            totalEstimatedCarbonReduction: '500 tons CO2e/year',
+            actionLink: '/impact-report'
         },
-        pendingProposals: 8,
     };
 
     return mockEnergyProviderData;
@@ -332,20 +266,11 @@ export const getEnergyProviderDashboardData = functions.https.onCall(async (data
 
 /**
  * Cloud Function to get data for the Packaging Supplier Dashboard.
- * Ensures the user is authenticated and likely has the Packaging Supplier role.
- * (Integrated from hubs.ts)
  */
 export const getPackagingSupplierDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 8 for demand forecast, Module 4 for orders,
-    // Module 12 for sustainability impact).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockPackagingSupplierData = {
         demandForecast: {
@@ -367,20 +292,11 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(async (d
 
 /**
  * Cloud Function to get data for the Regulator / Auditor Dashboard.
- * Ensures the user is authenticated and likely has the Regulator / Auditor role.
- * (Integrated from hubs.ts)
  */
 export const getRegulatorDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 10 for compliance/audits, Module 1 for traceability anomalies,
-    // Module 8 for risk alerts).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockRegulatorData = {
         complianceRiskAlerts: [
@@ -402,34 +318,25 @@ export const getRegulatorDashboardData = functions.https.onCall(async (data, con
 
 /**
  * Cloud Function to get data for the Quality Assurance (QA) Dashboard.
- * Ensures the user is authenticated and likely has the Quality Assurance role.
- * (Integrated from hubs.ts)
  */
 export const getQaDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 1 for batches, Module 10 for compliance,
-    // Module 4 for issues reported by buyers).
-    // Replace this mock data fetching with actual database queries and service calls.
-
+    
     const mockQaData = {
             pendingInspections: [
-                { id: "insp1", batchId: "batch-avo-001", product: "Organic Hass Avocados", location: "Warehouse A", dueDate: "2024-06-10", actionLink: "/inspections/insp1" },
-                { id: "insp2", batchId: "batch-maize-088", product: "Grade A Maize", location: "Farm 12", dueDate: "2024-06-12", actionLink: "/inspections/insp2" }
+                { id: "insp1", batchId: "batch-avo-001", productName: "Organic Hass Avocados", sellerName: "Green Valley Farms", dueDate: "2024-06-10", actionLink: "/inspections/insp1" },
+                { id: "insp2", batchId: "batch-maize-088", productName: "Grade A Maize", sellerName: "Sunrise Acres", dueDate: "2024-06-12", actionLink: "/inspections/insp2" }
             ],
-            recentIssues: [
-                { id: "res1", batchId: "batch-coffee-003", issue: "Mold detected in sample", severity: "High" as const, reportedBy: "Processing Unit A", actionLink: "/issues/res1" },
-                { id: "res2", batchId: "batch-tomato-050", issue: "Inconsistent sizing", severity: "Medium" as const, reportedBy: "Buyer X", actionLink: "/issues/res2" }
+            recentResults: [
+                { id: "res1", productName: "Organic Coffee Beans", result: 'Fail' as const, reason: "Mold detected in sample", inspectedAt: "2024-05-28" },
+                { id: "res2", productName: "Tomatoes", result: 'Pass' as const, reason: "Aflatoxin levels within limit", inspectedAt: "2024-05-27" }
             ],
-            complianceChecklistProgress: [
-                { standard: "Global GAP", progress: 85, actionLink: "/compliance/global-gap" },
-                { standard: "ISO 22000", progress: 90, actionLink: "/compliance/iso-22000" },
-            ],
+            qualityMetrics: {
+                passRate: 98,
+                averageScore: 95.5,
+            },
         };
 
     return mockQaData;
@@ -437,20 +344,11 @@ export const getQaDashboardData = functions.https.onCall(async (data, context) =
 
 /**
  * Cloud Function to get data for the Certification Body Dashboard.
- * Ensures the user is authenticated and likely has the Certification Body role.
- * (Integrated from hubs.ts)
  */
 export const getCertificationBodyDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 10 for audits/certifications,
-    // Module 1 for traceability data related to standards monitoring).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockCertificationBodyData = {
         pendingAudits: [
@@ -472,20 +370,11 @@ export const getCertificationBodyDashboardData = functions.https.onCall(async (d
 
 /**
  * Cloud Function to get data for the Researcher / Academic Dashboard.
- * Ensures the user is authenticated and likely has the Researcher / Academic role.
- * (Integrated from hubs.ts)
  */
 export const getResearcherDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 8 for available datasets/projects,
-    // Module 5 for knowledge hub contributions).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockResearcherData = {
         availableDatasets: [
@@ -505,20 +394,11 @@ export const getResearcherDashboardData = functions.https.onCall(async (data, co
 
 /**
  * Cloud Function to get data for the Agronomist / Consultant Dashboard.
- * Ensures the user is authenticated and likely has the Agronomist / Consultant role.
- * (Integrated from hubs.ts)
  */
 export const getAgronomistDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 3 for assigned farmers/portfolio,
-    // Module 6 for consultation requests/community interactions, Module 5 for knowledge base).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockAgronomistData = {
         assignedFarmersOverview: [
@@ -528,8 +408,8 @@ export const getAgronomistDashboardData = functions.https.onCall(async (data, co
         pendingConsultationRequests: [
             { id: "req1", farmerName: "Hillside Plots", issueSummary: "Pest identification and treatment recommendations.", requestDate: "2024-05-29", actionLink: "/consultations/req1" },
         ],
-        knowledgeBaseContributions: [
-            { id: "kb1", title: "Guide to Organic Pest Control", status: "Published", actionLink: "/knowledge/kb1" },
+        knowledgeHubContributions: [
+            { id: "kb1", title: "Guide to Organic Pest Control", status: "Published" as const, actionLink: "/knowledge/kb1" },
         ],
     };
 
@@ -538,19 +418,11 @@ export const getAgronomistDashboardData = functions.https.onCall(async (data, co
 
 /**
  * Cloud Function to get data for the Agro-Tourism Operator Dashboard.
- * Ensures the user is authenticated and likely has the Agro-Tourism Operator role.
- * (Integrated from hubs.ts)
  */
 export const getAgroTourismDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 4 for listings/bookings, Module 6 for reviews).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockAgroTourismData = {
         listedExperiences: [
@@ -570,20 +442,11 @@ export const getAgroTourismDashboardData = functions.https.onCall(async (data, c
 
 /**
  * Cloud Function to get data for the Insurance Provider Dashboard.
- * Ensures the user is authenticated and likely has the Insurance Provider role.
- * (Integrated from hubs.ts)
  */
 export const getInsuranceProviderDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 11 for claims/policies/risk alerts,
-    // Module 8 for risk assessment data).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockInsuranceProviderData = {
         pendingClaims: [
@@ -602,20 +465,11 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(async (d
 
 /**
  * Cloud Function to get data for the Crowdfunder Dashboard.
- * Ensures the user is authenticated and likely has the Crowdfunder role.
- * (Integrated from hubs.ts)
  */
 export const getCrowdfunderDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 7 for projects/investments/impact,
-    // Module 12 for sustainability impact metrics).
-    // Replace this mock data fetching with actual database queries and service calls.
 
     const mockCrowdfunderData = {
         featuredProjects: [
@@ -640,21 +494,12 @@ export const getCrowdfunderDashboardData = functions.https.onCall(async (data, c
 
 /**
  * Cloud Function to get data for the Processing Unit Dashboard.
- * Ensures the user is authenticated and likely has the Processing Unit role.
- * (Integrated from hubs.ts)
  */
 export const getProcessingUnitDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 1 for traceability/batches, Module 8 for optimization/predictions,
-    // Module 4 for orders, Module 12 for waste/packaging impact).
-    // Replace this mock data fetching with actual database queries and service calls.
-
+    
     const mockProcessingUnitData = {
         yieldOptimization: {
             currentYield: 92,
@@ -690,20 +535,11 @@ export const getProcessingUnitDashboardData = functions.https.onCall(async (data
 
 /**
  * Cloud Function to get data for the Warehouse Hub.
- * Ensures the user is authenticated and likely has the Warehouse role.
- * (Integrated from hubs.ts)
  */
 export const getWarehouseDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-
-    // const userId = context.auth.uid;
-
-    // TODO: Fetch personalized data for the authenticated user (userId)
-    // from relevant modules (e.g., Module 4 for inventory/shipments,
-    // Module 8 for optimization/alerts).
-    // Replace this mock data fetching with actual database queries and service calls.
     
     const mockWarehouseData = {
         storageOptimization: {

@@ -278,18 +278,28 @@ export interface InputSupplierDashboardData {
 }
 
 export interface EnergyProviderDashboardData {
-    highPotentialLeads: {
+    projectLeads: {
         id: string;
-        name: string;
-        energySpend: number;
-        potentialSaving: string;
+        entityName: string;
+        location: string;
+        estimatedEnergyNeed: string;
+        status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
         actionLink: string;
     }[];
-    carbonImpact: {
-        savedThisYear: number;
-        totalProjects: number;
+    activeProjects: {
+        id: string;
+        entityName: string;
+        location: string;
+        solutionType: string;
+        installationDate: string;
+        status: 'In Progress' | 'Completed';
+        actionLink: string;
+    }[];
+    impactMetrics: {
+        totalInstallations: number;
+        totalEstimatedCarbonReduction: string;
+        actionLink: string;
     };
-    pendingProposals: number;
 }
 
 export interface PackagingSupplierDashboardData {
@@ -371,42 +381,15 @@ export interface WarehouseDashboardData {
       utilization: number;
       suggestion: string;
   };
-  // Expanded inventory tracking
-  inventoryBatches: {
-      vtiId: string;
-      product: string;
-      quantity: number; // e.g., in tons, crates, etc.
-      location: string; // e.g., "Section A, Rack 3"
-      storageConditions: { // Real-time or last reported conditions
-          temperature: string;
-          humidity: string;
-      };
-      inboundDate: string;
-      actionLink: string; // Link to batch details/history
+  inventoryLevels: {
+      totalItems: number;
+      itemsNeedingAttention: number;
+  };
+  predictiveAlerts: {
+      id: string;
+      alert: string;
+      actionLink: string;
   }[];
-  inventorySummary: { // High-level summary
-      totalBatches: number;
-      totalQuantity: string; // e.g., "1500 tons"
-      itemsNeedingAttention: number; // Batches with alerts, low stock, etc.
-  };
-  environmentalConditions: { // Overview of facility conditions
-      averageTemperature: string;
-      averageHumidity: string;
-      alerts: {
-          id: string;
-          condition: string; // e.g., "High Temperature Alert"
-          location: string; // e.g., "Cold Storage Unit 2"
-          timestamp: string;
-          actionLink: string;
-      }[];
-  };
-  shipmentManagement: {
-      inboundShipments: {
-          id: string;
-          origin: string;
-          estimatedArrival: string;
-          status: 'Scheduled' | 'In Transit
-    }[];
 }
 
 export interface QaDashboardData {
@@ -505,7 +488,7 @@ export interface AgroTourismDashboardData {
     }[];
 }
 
-interface CrowdfunderDashboardData {
+export interface CrowdfunderDashboardData {
  featuredProjects: {
  id: string;
  title: string;
@@ -525,32 +508,60 @@ interface CrowdfunderDashboardData {
  }[];
  impactReport: {
     totalInvested: number;
- totalImpactMetrics: { metric: string; // e.g., 'CO2 Reduced', 'Farmers Supported' value: string; }[]; actionLink: string; }; }
+ totalImpactMetrics: { metric: string; value: string; }[];
+ actionLink: string;
+ };
+}
 
-
-interface GovernmentRegulatorDashboardData {
-    complianceAlerts: {
+export interface AgronomistDashboardData {
+    assignedFarmersOverview: {
         id: string;
- alertType: string; // e.g., 'Food Safety', 'Environmental', 'Trade Compliance'
- entityName: string; // Farm, Processor, etc.
-        summary: string;
- timestamp: string;
- severity: 'High' | 'Medium' | 'Low';
+        name: string;
+        farmLocation: string;
+        lastConsultation: string;
+        alerts: number; // Number of open alerts for this farmer
         actionLink: string;
- }[];
- auditRequests: {
+    }[];
+    pendingConsultationRequests: {
         id: string;
- requestingBody: string;
- entityName: string;
- scope: string; // e.g., 'Organic Certification Audit', 'Export Compliance Check'
- dueDate: string;
- status: 'Pending' | 'In Progress' | 'Completed';
+        farmerName: string;
+        issueSummary: string;
+        requestDate: string;
         actionLink: string;
- }[];
-    policyUpdates: {
- totalInvested: number;
- totalImpactMetrics: { metric: string; // e.g., 'CO2 Reduced', 'Farmers Supported' value: string; }[]; actionLink: string; }; }
+    }[];
+    knowledgeBaseContributions: {
+        id: string;
+        title: string;
+        status: 'Draft' | 'Pending Review' | 'Published';
+        actionLink: string;
+    }[];
+}
 
+export interface InsuranceProviderDashboardData {
+    pendingClaims: {
+        id: string;
+        policyHolderName: string;
+        policyType: string;
+        claimDate: string;
+        status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
+        actionLink: string;
+    }[];
+    activePolicies: {
+        id: string;
+        policyHolderName: string;
+        policyType: string;
+        coverageAmount: number;
+        expiryDate: string;
+        actionLink: string;
+    }[];
+    riskAssessmentAlerts: {
+        id: string;
+        policyHolderName: string;
+        alert: string;
+        severity: 'High' | 'Medium' | 'Low';
+        actionLink: string;
+    }[];
+}
 
 // =================================================================
 // 4. SHARED & MISCELLANEOUS TYPES
