@@ -1,154 +1,148 @@
 
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { useState, useEffect, useMemo } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import type { ForumTopic } from "@/lib/types";
 import { Input } from "@/components/ui/input";
-import { Filter, MessageSquare, PlusCircle, Search, Users, Clock, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { useState, useEffect } from "react";
-import { dummyForumTopics } from "@/lib/dummy-data";
-import { usePathname } from "next/navigation";
-import { useHomepagePreference } from "@/hooks/useHomepagePreference";
-import { useToast } from "@/hooks/use-toast";
-
-const getIcon = (iconName?: string) => {
-  const iconPropsBase = "h-6 w-6 text-primary"; // Mobile
-  const iconPropsDesktop = "h-8 w-8 text-primary"; // Desktop
-  switch (iconName) {
-    case 'Leaf': return <Leaf className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'ShieldAlert': return <ShieldAlert className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Brain': return <Brain className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'TrendingUp': return <TrendingUp className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Award': return <Award className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Tractor': return <Tractor className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Package': return <Package className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Wheat': return <Wheat className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Truck': return <Truck className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    default: return <MessageSquare className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-  }
-};
+import { Skeleton } from "@/components/ui/skeleton";
+import { MessageSquare, PlusCircle, Search, Frown } from "lucide-react";
+import Link from 'next/link';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { firebaseApp } from '@/lib/firebase';
+import type { ForumTopic } from '@/lib/types';
+import { Badge } from '@/components/ui/badge';
+import { useAuth } from '@/lib/auth-utils';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ForumsPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const forumTopics = dummyForumTopics;
+    const [topics, setTopics] = useState<ForumTopic[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+    const { user } = useAuth();
+    const { toast } = useToast();
+    const functions = getFunctions(firebaseApp);
+    const getTopics = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
 
-  const pathname = usePathname();
-  const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
-  const { toast } = useToast();
+    useEffect(() => {
+        const fetchTopics = async () => {
+            setIsLoading(true);
+            try {
+                const result = await getTopics();
+                const data = result.data as { topics: any[] };
+                const formattedTopics = data.topics.map(topic => ({
+                    ...topic,
+                    lastActivity: topic.lastActivity ? new Date(topic.lastActivity._seconds * 1000).toISOString() : new Date().toISOString(),
+                }));
+                setTopics(formattedTopics as ForumTopic[]);
+            } catch (error) {
+                console.error("Error fetching topics:", error);
+                toast({
+                    title: "Failed to load topics",
+                    description: "There was a problem fetching the forum topics. Please try again later.",
+                    variant: "destructive",
+                });
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-  const filteredForumTopics = forumTopics.filter(topic =>
-    topic.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    topic.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+        fetchTopics();
+    }, [getTopics, toast]);
 
-  const isCurrentHomepage = homepagePreference === pathname;
+    const filteredTopics = useMemo(() => {
+        return topics.filter(topic => 
+            topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            topic.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [topics, searchTerm]);
 
-  const handleSetHomepage = () => {
-    if (isCurrentHomepage) {
-      clearHomepagePreference();
-      toast({
-        title: "Homepage Unpinned!",
-        description: "The Dashboard is now your default homepage.",
-      });
-    } else {
-      setHomepagePreference(pathname);
-      toast({
-        title: "Homepage Pinned!",
-        description: "Forums are now your default homepage.",
-      });
-    }
-  };
+    const renderTopicList = () => {
+        if (isLoading) {
+            return (
+                <div className="space-y-4">
+                    <Skeleton className="h-24 w-full" />
+                    <Skeleton className="h-24 w-full" />
+                    <Skeleton className="h-24 w-full" />
+                </div>
+            );
+        }
 
+        if (filteredTopics.length === 0) {
+            return (
+                <div className="text-center py-12">
+                    <Frown className="mx-auto h-12 w-12 text-muted-foreground" />
+                    <h3 className="mt-4 text-lg font-semibold">No Topics Found</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                        {searchTerm ? "Try adjusting your search terms." : "Why not be the first to create one?"}
+                    </p>
+                    {user && !searchTerm && (
+                         <Button asChild className="mt-4">
+                            <Link href="/forums/create-topic">
+                                <PlusCircle className="mr-2 h-4 w-4" />
+                                Create a New Topic
+                            </Link>
+                        </Button>
+                    )}
+                </div>
+            );
+        }
 
-  return (
-    <div className="space-y-6">
-      <Card className="overflow-hidden">
-        <CardHeader className="p-4 md:p-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
-              <CardTitle className="text-xl md:text-2xl">Agricultural Supply Chain Forums</CardTitle>
-              <CardDescription className="text-sm md:text-base">Discuss, share knowledge, and collaborate on all aspects of the agri-food system.</CardDescription>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-              <Button asChild className="w-full sm:w-auto">
-                <Link href="/forums/create">
-                  <PlusCircle className="mr-2 h-4 w-4" /> Start New Discussion
-                </Link>
-              </Button>
-              <Button variant="outline" onClick={handleSetHomepage} className="w-full sm:w-auto">
-                {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
-                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
-              </Button>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent className="p-4 md:p-6">
-          <div className="mb-4 md:mb-6 flex flex-col sm:flex-row gap-3 md:gap-4">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search forums..."
-                className="pl-10 h-10 text-sm"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <Button variant="outline" className="h-10 text-sm shrink-0">
-              <Filter className="mr-2 h-4 w-4" /> Filter by Category
-            </Button>
-          </div>
-
-          <div className="space-y-3 md:space-y-4">
-            {filteredForumTopics.map(topic => (
-              <Card key={topic.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-3 md:p-4">
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="p-2 bg-accent/20 rounded-md hidden sm:block shrink-0">
-                       {getIcon(topic.icon)}
-                    </div>
-                    <div className="flex-grow min-w-0"> {/* Added min-w-0 for better flex truncation */}
-                      <Link href={`/forums/${topic.id}`}>
-                        <CardTitle className="text-base md:text-lg hover:text-primary transition-colors truncate">{topic.title}</CardTitle>
-                      </Link>
-                      <CardDescription className="mt-1 text-xs md:text-sm line-clamp-2">{topic.description}</CardDescription>
-                      <div className="mt-2 md:mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Users className="h-3 w-3" />
-                          <span>{topic.postCount} contributions</span>
+        return (
+            <div className="space-y-4">
+                {filteredTopics.map(topic => (
+                    <Link key={topic.id} href={`/forums/${topic.id}`} passHref>
+                        <div className="p-4 border rounded-lg hover:bg-accent transition-colors cursor-pointer">
+                            <h3 className="font-semibold text-lg flex items-center gap-2">
+                                <MessageSquare className="h-5 w-5 text-primary" />
+                                {topic.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-1 mb-2">{topic.description}</p>
+                            <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                <span>{topic.postCount || 0} posts</span>
+                                <div className="flex gap-1">
+                                    {topic.regionTags?.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          <span>Last activity: {new Date(topic.lastActivityAt).toLocaleDateString()}</span>
-                        </div>
-                      </div>
+                    </Link>
+                ))}
+            </div>
+        );
+    };
+
+    return (
+        <div className="container mx-auto max-w-4xl py-8">
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                    <div>
+                        <CardTitle className="text-2xl">Community Forums</CardTitle>
+                        <CardDescription>Connect, share, and learn with stakeholders from around the world.</CardDescription>
                     </div>
-                    <Button asChild variant="outline" size="sm" className="mt-2 sm:mt-0 sm:ml-auto shrink-0 text-xs h-8 px-3">
-                      <Link href={`/forums/${topic.id}`}>Join</Link>
-                    </Button>
-                  </div>
+                    {user && (
+                        <Button asChild>
+                            <Link href="/forums/create-topic">
+                                <PlusCircle className="mr-2 h-4 w-4" />
+                                Create Topic
+                            </Link>
+                        </Button>
+                    )}
+                </CardHeader>
+                <CardContent>
+                    <div className="mb-6">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input 
+                                placeholder="Search forums..." 
+                                className="pl-10"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    {renderTopicList()}
                 </CardContent>
-              </Card>
-            ))}
-          </div>
-          {filteredForumTopics.length === 0 && (
-            <div className="text-center py-10">
-              <MessageSquare className="mx-auto h-12 w-12 text-muted-foreground/50 mb-3" />
-              <p className="text-md md:text-lg text-muted-foreground">No forums found matching your search.</p>
-              <p className="text-sm text-muted-foreground">Try a different search term or be the first to <Link href="/forums/create" className="text-primary hover:underline">start a discussion</Link>!</p>
-            </div>
-          )}
-           {forumTopics.length === 0 && searchTerm === "" && (
-            <div className="text-center py-10">
-               <MessageSquare className="mx-auto h-12 w-12 text-muted-foreground/50 mb-3" />
-              <p className="text-md md:text-lg text-muted-foreground">No forums available yet.</p>
-              <p className="text-sm text-muted-foreground">Be the first to <Link href="/forums/create" className="text-primary hover:underline">start a discussion</Link> on an agricultural topic!</p>
-            </div>
-           )}
-        </CardContent>
-      </Card>
-    </div>
-  );
+            </Card>
+        </div>
+    );
 }

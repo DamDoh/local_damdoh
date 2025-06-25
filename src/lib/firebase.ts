@@ -1,6 +1,6 @@
 // src/lib/firebase.ts
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, limit, startAfter, documentId } from "firebase/firestore";
 import { getAuth } from "firebase/auth"; // If you need Firebase Auth
 // import { getStorage } from "firebase/storage"; // If you need Firebase Storage
 
@@ -44,17 +44,29 @@ export { app as firebaseApp, db, auth /*, storage */ };
 
 
 // Replaces the old getProductsByCategory to query the unified marketplaceItems collection
-export async function getMarketplaceItemsByCategory(category?: string) {
+export async function getMarketplaceItemsByCategory(category?: string, lastVisible?: any) {
+  const ITEMS_PER_PAGE = 12; // Define a page size for pagination
   try {
     const itemsCollectionRef = collection(db, 'marketplaceItems');
     let q;
     if (category) {
-      q = query(itemsCollectionRef, where('category', '==', category));
+      q = query(itemsCollectionRef, where('category', '==', category), limit(ITEMS_PER_PAGE));
     } else {
-      q = query(itemsCollectionRef);
+      q = query(itemsCollectionRef, limit(ITEMS_PER_PAGE));
     }
+    
+    if (lastVisible) {
+        const lastVisibleDoc = await getDoc(doc(itemsCollectionRef, lastVisible));
+        if(lastVisibleDoc.exists()){
+            q = query(q, startAfter(lastVisibleDoc));
+        }
+    }
+
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]?.id || null;
+
+    return { items, lastVisible: newLastVisible };
   } catch (error) {
     console.error('Error fetching marketplace items by category:', error);
     throw error;

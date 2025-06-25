@@ -43,6 +43,7 @@ import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
+import { UniversalSearchModal } from './UniversalSearchModal';
 
 interface NavLinkProps {
   href: string;
@@ -121,15 +122,26 @@ export function AppHeader() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [initialModalQuery, setInitialModalQuery] = useState("");
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery("");
+      // Instead of navigating, open the modal with the current query
+      setInitialModalQuery(searchQuery.trim());
+      setIsSearchModalOpen(true);
+      setSearchQuery(""); // Clear input after submitting
       if (isMobileSheetOpen) setIsMobileSheetOpen(false);
     }
   };
+  
+  const handleMobileSearchClick = () => {
+    // On mobile, just open the modal without an initial query
+    setInitialModalQuery("");
+    setIsSearchModalOpen(true);
+    if (isMobileSheetOpen) setIsMobileSheetOpen(false);
+  }
 
   const handleLogout = async () => {
     try {
@@ -186,153 +198,150 @@ export function AppHeader() {
   const sectionTitle = getSectionTitle();
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm print:hidden">
-      {/* Desktop Header */}
-      <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2">
-          <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-        </div>
-
-        {/* 
-          // Conceptual Placeholder for Universal Search Bar
-          // This search bar in the header should eventually search across:
-          // - Marketplace listings (products, services, talent, finance)
-          // - User Profiles (people and organizations)
-          // - Forum discussions and posts
-          // - Agri-events
-          // - Potentially other future modules like knowledge base articles, regulatory updates etc.
-          // The current implementation is a basic Marketplace search.
-          // The future implementation would likely involve a more complex search modal or page.
-        */}
-        <div className="flex-1 flex justify-center px-12 lg:px-16">
-          <form onSubmit={handleSearchSubmit} className="relative w-full max-w-md">
-            <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
-            {/* Input field for the universal search. Placeholder text should reflect broader search scope */}
-            <Input type="search" placeholder="Search everything on DamDoh..." className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-          </form>
-        </div>
-
-        <nav className="flex items-center space-x-0.5 h-full">
-          {desktopNavItems.map((item) => (
-            <NavLink key={item.href} {...item} pathname={pathname} />
-          ))}
-           {user && (
-            <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} />
-          )}
-          {/* Conceptual Placeholder for Quick Action Icons (e.g., Messages, Wallet) */}
-          {/* These icons provide quick access to key features */}
-           {user && (
-             <>
-                <NavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} /> {/* Link to the Messaging module */}
-                <NavLink href="/wallet" icon={WalletIcon} label="Wallet" pathname={pathname} /> {/* Link to the Digital Wallet */}
-             </>
-           )}
-          <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full"> {/* Separator before User/Auth */}
-            {authLoading ? (
-              <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
-            ) : user ? (
-              <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
-            ) : (
-              <div className="flex items-center gap-1">
-                <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
-                  <Link href="/auth/signin">Sign In</Link>
-                </Button>
-                <Button variant="outline" asChild className="text-primary bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
-                   <Link href="/auth/signup">Sign Up</Link>
-                </Button>
-              </div>
-            )}
+    <>
+      <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm print:hidden">
+        {/* Desktop Header */}
+        <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2">
+            <Logo iconSize={32} textSize="text-2xl" className="text-white" />
           </div>
-        </nav>
-      </div>
 
-      {/* Mobile Header */}
-      <div className="md:hidden container mx-auto flex h-14 items-center justify-between px-4">
-        <Sheet open={isMobileSheetOpen} onOpenChange={setIsMobileSheetOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
-            <SheetHeader className="p-4 border-b flex flex-row justify-between items-center">
-                <Logo iconSize={28} textSize="text-xl" className="text-primary" />
-                <SheetClose asChild>
-                   <Button variant="ghost" size="icon" className="h-7 w-7"><X className="h-4 w-4"/></Button>
-                </SheetClose>
-            </SheetHeader>
-            <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
-              {mainMobileNavItems.map((item) => (
-                <MobileSheetNavLink
-                  key={`sheet-main-${item.href}`}
-                  {...item}
-                  pathname={pathname}
-                  onClick={() => setIsMobileSheetOpen(false)}
-                />
-              ))}
-              <Separator />
-              {user ? (
-                <>
-                  {mobileSheetSecondaryNavItems.map((item) => (
+          <div className="flex-1 flex justify-center px-12 lg:px-16">
+            <form onSubmit={handleSearchSubmit} className="relative w-full max-w-md">
+              <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
+              <Input 
+                type="search" 
+                placeholder="Ask the AI or search DamDoh..." 
+                className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10" 
+                value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
+          </div>
+
+          <nav className="flex items-center space-x-0.5 h-full">
+            {desktopNavItems.map((item) => (
+              <NavLink key={item.href} {...item} pathname={pathname} />
+            ))}
+            {user && (
+              <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} />
+            )}
+            {user && (
+              <>
+                  <NavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} />
+                  <NavLink href="/wallet" icon={WalletIcon} label="Wallet" pathname={pathname} />
+              </>
+            )}
+            <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
+              {authLoading ? (
+                <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
+              ) : user ? (
+                <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
+              ) : (
+                <div className="flex items-center gap-1">
+                  <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
+                    <Link href="/auth/signin">Sign In</Link>
+                  </Button>
+                  <Button variant="outline" asChild className="text-primary bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
+                    <Link href="/auth/signup">Sign Up</Link>
+                  </Button>
+                </div>
+              )}
+            </div>
+          </nav>
+        </div>
+
+        {/* Mobile Header */}
+        <div className="md:hidden container mx-auto flex h-14 items-center justify-between px-4">
+          <Sheet open={isMobileSheetOpen} onOpenChange={setIsMobileSheetOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
+              <SheetHeader className="p-4 border-b flex flex-row justify-between items-center">
+                  <Logo iconSize={28} textSize="text-xl" className="text-primary" />
+                  <SheetClose asChild>
+                    <Button variant="ghost" size="icon" className="h-7 w-7"><X className="h-4 w-4"/></Button>
+                  </SheetClose>
+              </SheetHeader>
+              <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
+                {mainMobileNavItems.map((item) => (
+                  <MobileSheetNavLink
+                    key={`sheet-main-${item.href}`}
+                    {...item}
+                    pathname={pathname}
+                    onClick={() => setIsMobileSheetOpen(false)}
+                  />
+                ))}
+                <Separator />
+                {user ? (
+                  <>
+                    {mobileSheetSecondaryNavItems.map((item) => (
+                      <MobileSheetNavLink
+                        key={`sheet-extra-${item.href}`}
+                        {...item}
+                        pathname={pathname}
+                        onClick={() => setIsMobileSheetOpen(false)}
+                      />
+                    ))}
                     <MobileSheetNavLink
-                      key={`sheet-extra-${item.href}`}
-                      {...item}
+                      href="/notifications"
+                      icon={Bell}
+                      label="Notifications"
                       pathname={pathname}
                       onClick={() => setIsMobileSheetOpen(false)}
                     />
-                  ))}
-                   {/* Quick access icons for Mobile Sheet */}
-                   <MobileSheetNavLink
-                    href="/notifications"
-                    icon={Bell}
-                    label="Notifications"
-                    pathname={pathname}
-                    onClick={() => setIsMobileSheetOpen(false)}
-                  />
-                   <MobileSheetNavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} /> {/* Link to Messaging */}
-                   <MobileSheetNavLink href="/wallet" icon={WalletIcon} label="Digital Wallet" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} /> {/* Link to Digital Wallet */}
+                    <MobileSheetNavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <MobileSheetNavLink href="/wallet" icon={WalletIcon} label="Digital Wallet" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <Separator />
+                  </>
+                ) : (
+                  <>
+                    <MobileSheetNavLink
+                      href="/auth/signin"
+                      icon={LogIn}
+                      label="Sign In"
+                      pathname={pathname}
+                      onClick={() => setIsMobileSheetOpen(false)}
+                    />
+                    <MobileSheetNavLink
+                      href="/auth/signup"
+                      icon={UserPlus}
+                      label="Sign Up"
+                      pathname={pathname}
+                      onClick={() => setIsMobileSheetOpen(false)}
+                    />
+                  </>
+                )}
+              </nav>
+              <Separator />
+              <div className="p-4 space-y-3 border-t">
+                <HeaderThemeToggle />
+                {user && (
+                  <Button variant="outline" className="w-full" onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" /> Log Out
+                  </Button>
+                )}
+              </div>
+            </SheetContent>
+          </Sheet>
 
-                  <Separator /> {/* Separator before settings/help */}
-                </>
-              ) : (
-                <>
-                  <MobileSheetNavLink
-                    href="/auth/signin"
-                    icon={LogIn}
-                    label="Sign In"
-                    pathname={pathname}
-                    onClick={() => setIsMobileSheetOpen(false)}
-                  />
-                  <MobileSheetNavLink
-                    href="/auth/signup"
-                    icon={UserPlus}
-                    label="Sign Up"
-                    pathname={pathname}
-                    onClick={() => setIsMobileSheetOpen(false)}
-                  />
-                </>
-              )}
-            </nav>
-            <Separator />
-             <div className="p-4 space-y-3 border-t">
-              <HeaderThemeToggle />
-              {user && (
-                <Button variant="outline" className="w-full" onClick={handleLogout}>
-                  <LogOut className="mr-2 h-4 w-4" /> Log Out
-                </Button>
-              )}
-            </div>
-          </SheetContent>
-        </Sheet>
+          <div className="text-lg font-semibold text-white truncate text-center flex-grow mx-4">
+            {sectionTitle}
+          </div>
 
-        <div className="text-lg font-semibold text-white truncate text-center flex-grow mx-4">
-          {sectionTitle}
+          <Button variant="ghost" size="icon" className="text-white hover:bg-white/20" onClick={handleMobileSearchClick}>
+              <SearchIconLucide className="h-5 w-5" />
+          </Button>
         </div>
-
-        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20" onClick={() => { router.push('/search'); if (isMobileSheetOpen) setIsMobileSheetOpen(false); }}>
-            <SearchIconLucide className="h-5 w-5" />
-        </Button>
-      </div>
-    </header>
+      </header>
+      <UniversalSearchModal 
+        isOpen={isSearchModalOpen} 
+        onClose={() => setIsSearchModalOpen(false)}
+        initialQuery={initialModalQuery}
+      />
+    </>
   );
 }
