@@ -38,7 +38,7 @@ export default function RootLayout({
         <AppHeader />
 
         <div className="flex flex-1 overflow-hidden">
-          <main className="flex-1 overflow-y-auto container mx-auto max-w-screen-2xl p-4 md:p-6 lg:p-8 flex-grow pb-20 md:pb-8">
+          <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 flex-grow pb-20 md:pb-8">
             {children}
           </main>
         </div>
