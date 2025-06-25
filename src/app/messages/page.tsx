@@ -1,7 +1,8 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,13 +19,14 @@ const getMockConversations = async (): Promise<Conversation[]> => {
     return [
         { id: "conv1", participant: { id: "user1", name: "Jane Doe", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d" }, lastMessage: "That's a great idea, let's connect tomorrow.", timestamp: new Date().toISOString(), unreadCount: 2 },
         { id: "conv2", participant: { id: "user2", name: "John Smith", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026705d" }, lastMessage: "Can you send over the soil analysis report?", timestamp: new Date(Date.now() - 3600000).toISOString(), unreadCount: 0 },
-        { id: "conv3", participant: { id: "user3", name: "AgriCorp Supplies", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026706d" }, lastMessage: "Your order has been shipped.", timestamp: new Date(Date.now() - 86400000).toISOString(), unreadCount: 0 },
+        { id: "conv3", participant: { id: "quinoaCoopPeru", name: "AgriCorp Supplies", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026706d" }, lastMessage: "Your order has been shipped.", timestamp: new Date(Date.now() - 86400000).toISOString(), unreadCount: 0 },
     ];
 };
 
 // Mock function to simulate fetching messages for a conversation
 const getMockMessages = async (conversationId: string): Promise<Message[]> => {
     await new Promise(resolve => setTimeout(resolve, 500));
+    // In a real app, you'd fetch messages for the specific conversationId
     return [
         { id: "msg1", senderId: "user1", content: "Hi there! I saw your post about organic pesticides.", timestamp: new Date(Date.now() - 7200000).toISOString() },
         { id: "msg2", senderId: "currentUser", content: "Hey Jane! Yes, glad you found it useful.", timestamp: new Date(Date.now() - 7100000).toISOString() },
@@ -40,26 +42,36 @@ export default function MessagesPage() {
     const [isLoadingConversations, setIsLoadingConversations] = useState(true);
     const [isLoadingMessages, setIsLoadingMessages] = useState(false);
     const [newMessage, setNewMessage] = useState("");
+    const searchParams = useSearchParams();
 
-    useEffect(() => {
-        const fetchConversations = async () => {
-            const data = await getMockConversations();
-            setConversations(data);
-            setIsLoadingConversations(false);
-            if (data.length > 0) {
-                handleConversationSelect(data[0]);
-            }
-        };
-        fetchConversations();
-    }, []);
-
-    const handleConversationSelect = async (conversation: Conversation) => {
+    const handleConversationSelect = useCallback(async (conversation: Conversation) => {
         setSelectedConversation(conversation);
         setIsLoadingMessages(true);
         const data = await getMockMessages(conversation.id);
         setMessages(data);
         setIsLoadingMessages(false);
-    };
+    }, []);
+
+    useEffect(() => {
+        const fetchAndSelectConversation = async () => {
+            const data = await getMockConversations();
+            setConversations(data);
+            setIsLoadingConversations(false);
+            
+            const sellerId = searchParams.get('with');
+            if (sellerId) {
+                const targetConvo = data.find(c => c.participant.id === sellerId);
+                if (targetConvo) {
+                    handleConversationSelect(targetConvo);
+                } else if (data.length > 0) {
+                    handleConversationSelect(data[0]); // Fallback to first convo
+                }
+            } else if (data.length > 0) {
+                handleConversationSelect(data[0]);
+            }
+        };
+        fetchAndSelectConversation();
+    }, [searchParams, handleConversationSelect]);
     
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault();
