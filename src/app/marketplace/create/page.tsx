@@ -2,8 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -29,13 +29,15 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from "@/lib/form-schemas";
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, LISTING_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, Leaf, DollarSign, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench, LocateFixed, Tag, ShieldCheck, Warehouse, CalendarDays, Settings2 } from "lucide-react";
+import { ArrowLeft, Save, Leaf, DollarSign, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench, LocateFixed, Tag, ShieldCheck, Warehouse, CalendarDays, Settings2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
 export default function CreateMarketplaceListingPage() {
   const { toast } = useToast();
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<CreateMarketplaceItemValues>({
     resolver: zodResolver(createMarketplaceItemSchema),
@@ -79,20 +81,49 @@ export default function CreateMarketplaceListingPage() {
 
   const watchedListingType = form.watch("listingType");
 
-  function onSubmit(data: CreateMarketplaceItemValues) {
-    console.log("Marketplace Listing Data:", data);
-    if (data.imageFile) {
-      console.log("Uploaded file details:", {
-        name: data.imageFile.name,
-        size: data.imageFile.size,
-        type: data.imageFile.type,
+  async function onSubmit(data: CreateMarketplaceItemValues) {
+    setIsSubmitting(true);
+    try {
+      // In a real app, you would handle imageFile upload to a service like Firebase Storage here
+      // and get back a URL to put into the `imageUrl` field.
+      // For this demo, we will ignore the file and only send the text data.
+      const payload = {
+        ...data,
+        imageFile: undefined, // Remove file object before sending to API
+        // Convert comma-separated strings to arrays where needed
+        skillsRequired: data.skillsRequired?.split(',').map(s => s.trim()).filter(s => s) || [],
+        certifications: data.certifications?.split(',').map(s => s.trim()).filter(s => s) || [],
+      };
+      
+      const response = await fetch('/api/marketplace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || "Failed to create listing.");
+      }
+
+      const newItem = await response.json();
+
+      toast({
+        title: "Listing Created Successfully!",
+        description: `Your listing "${newItem.name}" is now live.`,
+      });
+
+      router.push(`/marketplace/${newItem.id}`);
+
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: error.message,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-    toast({
-      title: "Listing Submitted (Simulated)",
-      description: "Your marketplace listing has been created (details logged to console).",
-    });
-    // form.reset(); // Optionally reset form after submission
   }
 
   const handleFetchLocation = () => {
@@ -524,8 +555,16 @@ export default function CreateMarketplaceListingPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full md:w-auto" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? "Submitting..." : <><Save className="mr-2 h-4 w-4" /> Create Listing</>}
+              <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Save className="mr-2 h-4 w-4" /> Create Listing
+                  </>
+                )}
               </Button>
             </form>
           </Form>
