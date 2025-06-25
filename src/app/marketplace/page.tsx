@@ -52,8 +52,24 @@ function MarketplaceContent() {
     setIsMounted(true);
 
     const fetchItems = async () => {
-      const { items: fetchedItems } = await getMarketplaceItemsByCategory(currentCategory || undefined);
-      setItems(fetchedItems as MarketplaceItem[]); 
+      try {
+        const result = await getMarketplaceItemsByCategory(currentCategory || undefined);
+        // Defensive check to ensure we received the expected object structure
+        if (result && Array.isArray(result.items)) {
+          setItems(result.items as MarketplaceItem[]);
+        } else {
+          console.error("Unexpected data structure received for marketplace items:", result);
+          setItems([]); // Fallback to an empty array
+        }
+      } catch (error) {
+        console.error("Failed to fetch marketplace items:", error);
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Could not fetch marketplace items. Please try again later.",
+        });
+        setItems([]); // Ensure items is an array on error
+      }
     };
     fetchItems();
 
@@ -71,13 +87,15 @@ function MarketplaceContent() {
         const recommendedFullItems: MarketplaceItem[] = [];
         const reasons: Record<string, string> = {};
 
-        recommendationsOutput.suggestedItems.forEach(suggested => {
-          const foundItem = dummyMarketplaceItems.find(item => item.id === suggested.itemId);
-          if (foundItem) {
-            recommendedFullItems.push(foundItem);
-            reasons[foundItem.id] = suggested.reason;
-          }
-        });
+        if (recommendationsOutput && Array.isArray(recommendationsOutput.suggestedItems)) {
+            recommendationsOutput.suggestedItems.forEach(suggested => {
+              const foundItem = dummyMarketplaceItems.find(item => item.id === suggested.itemId);
+              if (foundItem) {
+                recommendedFullItems.push(foundItem);
+                reasons[foundItem.id] = suggested.reason;
+              }
+            });
+        }
         setAiRecommendedItems(recommendedFullItems.slice(0, 5)); 
         setAiRecommendationReasons(reasons);
       } catch (error) {
