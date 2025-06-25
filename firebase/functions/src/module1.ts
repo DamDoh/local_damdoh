@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
+import { getRole } from './module2';
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -487,7 +488,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
      // to log events on behalf of the provided actorVtiId. This might involve:
      // - Checking if the caller's userVtiId matches the actorVtiId (for individual farmers).
      // - Checking if the caller is a member or contact person of the organization represented by actorVtiId.
-    }
+    
      if (geoLocation && (typeof geoLocation.lat !== 'number' || typeof geoLocation.lng !== 'number')) {
         throw new functions.https.HttpsError('invalid-argument', 'The "geoLocation" parameter must be an object with lat and lng if provided.');
     }

@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { getUserDocument } from './module2';
 
 // Assuming admin and db are initialized in index.ts or a shared file
 // import { db } from './index';

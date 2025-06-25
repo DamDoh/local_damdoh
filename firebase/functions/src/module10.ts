@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { getRole } from './module2';
 
 // Assuming admin and db are initialized in index.ts or a shared file
 // import { db } from './index';
@@ -8,7 +9,7 @@ const db = admin.firestore();
 
 // Import necessary functions/types from other modules
 // import { getTraceabilityEventsByVti, getMasterDataProducts, getMasterDataInputs } from './module1';
-// import { getUserDocument, getOrganizationDocument, getRole } from './module2';
+// import { getUserDocument, getOrganizationDocument } from './module2';
 // import { getTraceabilityEventsByFarmField } from './module3'; // Assuming this function exists
 // import { getOrderDetails, getOrdersBySeller, getOrdersByBuyer } from './module4'; // Assuming these functions exist
 // import { getSustainabilityReportDetails } from './module12'; // Assuming this function exists

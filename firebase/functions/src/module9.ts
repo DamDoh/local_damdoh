@@ -404,19 +404,6 @@ export const sendSMSNotification = functions.https.onCall(async (data, context) 
 // - external_api_credentials: Stores sensitive API keys and configurations for external services.
 // - external_api_logs: Stores logs of interactions with external APIs (can be in BigQuery).
 
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-
-// Assuming admin and db are initialized in index.ts or a shared file
-// import { db } from './index';
-
-const db = admin.firestore();
-
-// Import callable functions or direct database access logic from other modules
-// import { getVtiDetails, getTraceabilityEventsByVti } from './module1'; // Example from Module 1
-// import { getUserDocument, getOrganizationDocument } from './module2'; // Example from Module 2
-// import { getListingDetails } from './module4'; // Example from Module 4 (needs to be implemented)
-// import { generateSustainabilityReport } from './module12'; // Example from Module 12
 
 
 // --- Module 9: Ecosystem Services & Partner API Gateway ---
@@ -760,14 +747,7 @@ export const apiInitiatePartnerKYC = functions.https.onCall(async (data, context
      // 4. Return response
      return { status: 'success', data: apiResponseData };
 
-} catch (error) {
-     console.error(`API Error initiating partner KYC for ${context.auth?.uid}:`, error);
-      if (error instanceof functions.https.HttpsError) {
-            throw error;
-        }
-     throw new functions.https.HttpsError('internal', 'An internal error occurred.');
-}
-});
+} );
 
 
 // --- Data Security and Privacy Considerations in API Responses ---

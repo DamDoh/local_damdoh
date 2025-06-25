@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { dummyFeedItems, dummyUsersData } from './dummy-data'; // Import dummy data
+import { dummyFeedItems } from './dummy-data'; // Import dummy data from local file
 
 if (admin.apps.length === 0) {
   admin.initializeApp();
