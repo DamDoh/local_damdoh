@@ -38,18 +38,25 @@ import { useAuth } from '@/lib/auth-utils';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { firebaseApp } from "@/lib/firebase";
 
-function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (postId: string) => void }) {
+function FeedItemCard({ 
+  item, 
+  onDeletePost,
+  onLike,
+  onComment
+}: { 
+  item: FeedItem, 
+  onDeletePost: (postId: string) => void,
+  onLike: (postId: string) => void,
+  onComment: (postId: string, commentText: string) => void
+}) {
   const [isLiked, setIsLiked] = useState(false);
-  const [currentLikes, setCurrentLikes] = useState(item.likesCount || 0);
-  const [currentComments, setCurrentComments] = useState(item.commentsCount || 0);
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [commentText, setCommentText] = useState("");
 
   useEffect(() => {
-    setCurrentLikes(item.likesCount || 0);
-    setCurrentComments(item.commentsCount || 0);
+    // Reset local state when the item prop changes (e.g., parent state update)
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
     setIsLiked(false);
     setVotedOptionIndex(null);
@@ -57,32 +64,21 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
     setCommentText("");
   }, [item]);
 
-  // Debug log for showCommentInput state
-  useEffect(() => {
-    console.log(`FeedItem [${item.id}]: showCommentInput state changed to: ${showCommentInput}`);
-  }, [showCommentInput, item.id]);
-
   const handleLike = () => {
-    if (isLiked) {
-      setCurrentLikes(prev => prev - 1);
-    } else {
-      setCurrentLikes(prev => prev + 1);
-    }
-    setIsLiked(prev => !prev);
-    console.log(`Like toggled for post: ${item.id}. New like status: ${!isLiked}`);
+    setIsLiked(prev => !prev); // Optimistically toggle the like button's appearance
+    onLike(item.id);
   };
 
   const handleCommentButtonClick = () => {
-    setShowCommentInput(prev => !prev); // Toggle the state
-    if (showCommentInput) { // If we are closing it by clicking again
-        setCommentText(""); // Clear text when hiding
+    setShowCommentInput(prev => !prev);
+    if (showCommentInput) {
+      setCommentText("");
     }
   };
   
   const handlePostComment = () => {
     if (!commentText.trim()) return;
-    setCurrentComments(prev => prev + 1);
-    console.log(`Posted comment on post ${item.id}: "${commentText}"`);
+    onComment(item.id, commentText);
     setCommentText(""); 
     setShowCommentInput(false); 
   };
@@ -178,13 +174,13 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
         )}
 
          <div className="flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
-            <span>{currentLikes} Like{currentLikes === 1 ? '' : 's'}</span>
-            <span>{currentComments} Comment{currentComments === 1 ? '' : 's'}</span>
+            <span>{item.likesCount || 0} Like{item.likesCount === 1 ? '' : 's'}</span>
+            <span>{item.commentsCount || 0} Comment{item.commentsCount === 1 ? '' : 's'}</span>
         </div>
       </CardContent>
       
-      <CardFooter className="p-2 flex flex-col items-stretch"> {/* Footer is now flex-col */}
-        <div className="flex justify-around border-t pt-1"> {/* Action buttons in their own row */}
+      <CardFooter className="p-2 flex flex-col items-stretch">
+        <div className="flex justify-around border-t pt-1">
           <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
             <ThumbsUp className="mr-2 h-5 w-5" /> Like
           </Button>
@@ -200,7 +196,7 @@ function FeedItemCard({ item, onDeletePost }: { item: FeedItem, onDeletePost: (p
         </div>
         
         {showCommentInput && (
-          <div className="mt-3 px-2 space-y-2 border-t pt-3"> {/* Comment input section as a new block */}
+          <div className="mt-3 px-2 space-y-2 border-t pt-3">
             <Textarea
               placeholder="Write your comment..."
               value={commentText}
@@ -226,6 +222,10 @@ export default function HomePage() {
   const { user, loading: authLoading } = useAuth();
   const [userRole, setUserRole] = useState<string | null>(null);
   const [isLoadingRole, setIsLoadingRole] = useState(true);
+  const [feedItems, setFeedItems] = useState<FeedItem[]>(initialFeedItems);
+  const router = useRouter();
+  const pathname = usePathname();
+  const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
 
   useEffect(() => {
     if (user) {
@@ -246,10 +246,102 @@ export default function HomePage() {
     }
   }, [user, authLoading]);
 
+  useEffect(() => {
+    if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
+      router.replace(homepagePreference);
+    }
+  }, [homepagePreference, isPreferenceLoading, pathname, router]);
+
+  const handleCreatePost = (content: string, media?: File, pollData?: { text: string }[]) => {
+    const newPost: FeedItem = {
+      id: `post-${Date.now()}`,
+      type: pollData && pollData.length > 0 ? 'poll' : 'shared_article', 
+      timestamp: new Date().toISOString(),
+      userId: 'currentDemoUser', 
+      userName: 'Demo User', 
+      userAvatar: 'https://placehold.co/40x40.png', 
+      userHeadline: 'Agri-Enthusiast | DamDoh Platform',
+      content: content,
+      postImage: media && media.type.startsWith("image/") ? URL.createObjectURL(media) : undefined,
+      dataAiHint: media ? (media.type.startsWith("image/") ? "user content" : "file attachment") : "text post",
+      likesCount: 0,
+      commentsCount: 0,
+      pollOptions: pollData ? pollData.map(opt => ({ text: opt.text, votes: 0 })) : undefined,
+    };
+    setFeedItems(prevItems => [newPost, ...prevItems]);
+  };
+
+  const handleDeletePost = (postId: string) => {
+    setFeedItems(prevItems => prevItems.filter(item => item.id !== postId));
+  };
+  
+  const handleLikePost = (postId: string) => {
+    setFeedItems(prevItems => 
+      prevItems.map(item => {
+        if (item.id === postId) {
+          // This logic is a simple increment for demo. A real app would track who liked it.
+          // The local `isLiked` state in the card will handle the button color change.
+          const currentLikes = item.likesCount || 0;
+          return { ...item, likesCount: currentLikes + 1 };
+        }
+        return item;
+      })
+    );
+  };
+
+  const handleCommentOnPost = (postId: string, commentText: string) => {
+    console.log(`Comment on post ${postId}: ${commentText}`);
+    // Optimistically update the comment count
+    setFeedItems(prevItems =>
+      prevItems.map(item => {
+        if (item.id === postId) {
+          return { ...item, commentsCount: (item.commentsCount || 0) + 1 };
+        }
+        return item;
+      })
+    );
+  };
+
+
   const renderDashboard = () => {
     if (isLoadingRole || authLoading) {
       return <DashboardSkeleton />;
     }
+
+    // Default to feed view if no specific role dashboard matches
+    const defaultFeedView = (
+        <div className="hidden md:grid md:grid-cols-12 gap-6 items-start">
+          <div className="md:col-span-3">
+            <DashboardLeftSidebar />
+          </div>
+          <div className="md:col-span-6 space-y-6">
+            <StartPost onCreatePost={handleCreatePost} />
+            <div className="flex items-center gap-2">
+              <hr className="flex-grow"/>
+              <span className="text-xs text-muted-foreground">Sort by: Top <Button variant="ghost" size="icon" className="h-4 w-4 ml-1 p-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg></Button></span>
+            </div>
+            {feedItems.map(item => (
+              <FeedItemCard 
+                key={item.id} 
+                item={item} 
+                onDeletePost={handleDeletePost}
+                onLike={handleLikePost}
+                onComment={handleCommentOnPost}
+              />
+            ))}
+            {feedItems.length === 0 && (
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="text-sm text-muted-foreground text-center py-10">No activity yet. Share your agricultural insights or explore the network!</p>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+          <div className="md:col-span-3">
+            <DashboardRightSidebar />
+          </div>
+        </div>
+    );
 
     switch (userRole) {
       case "farmer":
@@ -283,9 +375,104 @@ export default function HomePage() {
       case "researcher":
         return <ResearcherDashboard />;
       default:
-        return <FarmerDashboard />;
+        // This includes the mobile view as well as a default for desktop
+        return (
+          <>
+            {/* Mobile View */}
+            <div className="md:hidden space-y-6">
+              <div className="px-0 pt-2"> 
+                <h1 className="text-2xl font-bold mb-4 px-4">Explore DamDoh</h1>
+
+                <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-lg overflow-hidden mb-6">
+                  <Image src="https://placehold.co/600x250.png" alt="DamDoh Promotion" fill style={{objectFit: 'cover'}} data-ai-hint="agriculture banner farm" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex flex-col justify-end p-4">
+                    <h2 className="text-white text-xl font-semibold">Connect & Grow</h2>
+                    <p className="text-white/90 text-sm">Your agricultural supply chain hub.</p>
+                  </div>
+                </div>
+
+                <section className="mb-6">
+                  <div className="flex justify-between items-center mb-2 px-4">
+                    <h2 className="text-xl font-semibold">Categories</h2>
+                    <Link href="/categories" className="text-sm text-primary hover:underline flex items-center">
+                      See All <ChevronRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  </div>
+                  <ScrollArea className="w-full whitespace-nowrap">
+                    <div className="flex gap-3 px-4 pb-2">
+                      {mobileHomeCategories.map((category) => (
+                        <Link key={category.id} href={category.href} className="inline-block">
+                          <Card className="w-32 h-32 flex flex-col items-center justify-center p-3 text-center hover:shadow-md transition-shadow">
+                            <category.icon className="h-8 w-8 text-primary mb-2" />
+                            <p className="text-xs font-medium text-foreground whitespace-normal">{category.name}</p>
+                          </Card>
+                        </Link>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                </section>
+
+                <section className="mb-6">
+                  <div className="flex justify-between items-center mb-3 px-4">
+                      <h2 className="text-xl font-semibold">Discover Opportunities</h2>
+                      <Link href="/discover" className="text-sm text-primary hover:underline flex items-center">
+                          View More <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                  </div>
+                  <ScrollArea className="w-full whitespace-nowrap">
+                    <div className="flex gap-3 px-4 pb-2">
+                      {mobileDiscoverItems.map((item) => (
+                        <Link key={item.id} href={item.link} className="inline-block">
+                          <Card className="w-40 overflow-hidden hover:shadow-md transition-shadow">
+                            <div className="relative w-full aspect-[3/4]">
+                              <Image src={item.imageUrl} alt={item.title} fill style={{objectFit:"cover"}} data-ai-hint={item.dataAiHint || "discover item"}/>
+                            </div>
+                            <CardContent className="p-2">
+                              <p className="text-sm font-medium text-foreground line-clamp-2 h-10 leading-tight">{item.title}</p>
+                              <Badge variant="outline" className="mt-1 text-xs">{item.type}</Badge>
+                            </CardContent>
+                          </Card>
+                        </Link>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                </section>
+
+                <div className="px-4">
+                  <StartPost onCreatePost={handleCreatePost} />
+                </div>
+
+                <section className="mt-6 px-4 space-y-4">
+                  <h2 className="text-xl font-semibold">Feed</h2>
+                  {feedItems.map(item => ( 
+                    <FeedItemCard 
+                      key={item.id} 
+                      item={item} 
+                      onDeletePost={handleDeletePost}
+                      onLike={handleLikePost}
+                      onComment={handleCommentOnPost}
+                    />
+                  ))}
+                  {feedItems.length === 0 && (
+                    <Card>
+                      <CardContent className="pt-6">
+                        <p className="text-sm text-muted-foreground text-center py-10">No activity yet. Share your agricultural insights!</p>
+                      </CardContent>
+                    </Card>
+                  )}
+                </section>
+              </div>
+            </div>
+            {/* Desktop View */}
+            {defaultFeedView}
+          </>
+        );
     }
   };
+
+  if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
+    return <div className="flex justify-center items-center min-h-[calc(100vh-var(--header-height,80px)-var(--bottom-nav-height,64px))]"><p>Loading...</p></div>;
+  }
 
   return <div className="p-4 md:p-6">{renderDashboard()}</div>;
 }
