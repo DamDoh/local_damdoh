@@ -6,11 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
-import { Sliders, Package, Trash2, TrendingUp, AlertTriangle } from 'lucide-react';
+import { Sliders, Package, Trash2, TrendingUp, AlertTriangle, Box, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { ProcessingUnitDashboardData } from '@/lib/types';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export const ProcessingUnitDashboard = () => {
     const [dashboardData, setDashboardData] = useState<ProcessingUnitDashboardData | null>(null);
@@ -46,7 +47,7 @@ export const ProcessingUnitDashboard = () => {
         );
     }
 
-    const { yieldOptimization, inventory, wasteReduction } = dashboardData;
+    const { yieldOptimization, inventory, wasteReduction, packagingOrders, packagingInventory } = dashboardData;
 
     return (
         <div>
@@ -76,23 +77,90 @@ export const ProcessingUnitDashboard = () => {
                     </CardContent>
                 </Card>
                 
-                <Card className="md:col-span-3">
+                <Card className="lg:row-span-2 flex flex-col">
+                     <CardHeader className="pb-2">
+                        <CardTitle className="text-base flex items-center gap-2">
+                            <Box className="h-4 w-4" />
+                            Packaging Inventory
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow space-y-2">
+                       {packagingInventory.map((item, index) => (
+                           <div key={index} className="text-sm p-2 bg-background rounded-md border">
+                               <p className="font-medium">{item.packagingType}</p>
+                               <p className="text-xs">In Stock: {item.unitsInStock.toLocaleString()}</p>
+                               <p className="text-xs text-muted-foreground">Reorder Level: {item.reorderLevel.toLocaleString()}</p>
+                           </div>
+                       ))}
+                    </CardContent>
+                     <CardFooter>
+                        <Button asChild variant="outline" size="sm" className="w-full">
+                            <Link href="/marketplace?category=packaging-solutions">Source Packaging</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                 <Card className="md:col-span-2">
                     <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                             <Package />
                             Raw Material Inventory
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-2">
-                        {inventory.map((item, index) => (
-                            <div key={index} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                                <div>
-                                    <p className="font-medium">{item.product}</p>
-                                    <p className="text-xs text-muted-foreground">Quality: {item.quality}</p>
-                                </div>
-                                <div className="font-bold">{item.tons} tons</div>
-                            </div>
-                        ))}
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Product</TableHead>
+                                    <TableHead>Quality</TableHead>
+                                    <TableHead className="text-right">Quantity (tons)</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {inventory.map((item, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell className="font-medium">{item.product}</TableCell>
+                                        <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
+                                        <TableCell className="text-right font-semibold">{item.tons}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+
+                <Card className="md:col-span-2">
+                    <CardHeader>
+                        <CardTitle className="text-base flex items-center gap-2">
+                            <Truck />
+                           Packaging Orders
+                        </CardTitle>
+                    </CardHeader>
+                     <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Supplier</TableHead>
+                                    <TableHead>Delivery Date</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead className="text-right">Action</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {packagingOrders.map((order) => (
+                                    <TableRow key={order.id}>
+                                        <TableCell className="font-medium">{order.supplierName}</TableCell>
+                                        <TableCell>{order.deliveryDate}</TableCell>
+                                        <TableCell><Badge variant={order.status === 'Pending' ? 'secondary' : 'default'}>{order.status}</Badge></TableCell>
+                                        <TableCell className="text-right">
+                                            <Button asChild variant="ghost" size="sm">
+                                                <Link href={order.actionLink}>View</Link>
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
                     </CardContent>
                 </Card>
             </div>
@@ -104,6 +172,7 @@ const DashboardSkeleton = () => (
     <div>
         <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Skeleton className="h-40 rounded-lg" />
             <Skeleton className="h-40 rounded-lg" />
             <Skeleton className="h-40 rounded-lg" />
             <Skeleton className="h-48 rounded-lg md:col-span-3" />

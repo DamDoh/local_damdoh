@@ -280,9 +280,9 @@ export interface InputSupplierDashboardData {
 export interface EnergyProviderDashboardData {
     projectLeads: {
         id: string;
-        entityName: string;
+        entityName: string; // Farm, Processor, etc.
         location: string;
-        estimatedEnergyNeed: string;
+        estimatedEnergyNeed: string; // e.g., 'High', 'Medium', 'Low', or specific kWh/year
         status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
         actionLink: string;
     }[];
@@ -290,14 +290,14 @@ export interface EnergyProviderDashboardData {
         id: string;
         entityName: string;
         location: string;
-        solutionType: string;
+        solutionType: string; // e.g., 'Solar Panels', 'Biogas Digester'
         installationDate: string;
         status: 'In Progress' | 'Completed';
         actionLink: string;
     }[];
     impactMetrics: {
         totalInstallations: number;
-        totalEstimatedCarbonReduction: string;
+        totalEstimatedCarbonReduction: string; // e.g., '5000 tons CO2e/year'
         actionLink: string;
     };
 }
@@ -355,7 +355,6 @@ export interface ProcessingUnitDashboardData {
         potentialRate: number;
         insight: string;
     };
-    // Added fields for Packaging Supplier integration
     packagingOrders: {
         id: string;
         supplierName: string;
@@ -393,25 +392,25 @@ export interface WarehouseDashboardData {
 }
 
 export interface QaDashboardData {
-  pendingInspections: {
-    id: string;
-    productName: string;
-    sellerName: string;
-    batchId: string;
-    actionLink: string;
-    dueDate: string;
-  }[];
-  recentResults: {
-    id: string;
-    productName: string;
-    result: 'Pass' | 'Fail';
-    reason?: string;
-    inspectedAt: string;
-  }[];
-  qualityMetrics: {
-    passRate: number;
-    averageScore: number;
-  };
+    pendingInspections: {
+        id: string;
+        batchId: string;
+        productName: string;
+        sellerName: string;
+        dueDate: string;
+        actionLink: string;
+    }[];
+    recentResults: {
+        id: string;
+        productName: string;
+        result: 'Pass' | 'Fail';
+        reason?: string;
+        inspectedAt: string;
+    }[];
+    qualityMetrics: {
+        passRate: number;
+        averageScore: number;
+    };
 }
 
 export interface CertificationBodyDashboardData {
@@ -467,7 +466,7 @@ export interface AgroTourismDashboardData {
         id: string;
         title: string;
         location: string;
- status: 'Active' | 'Draft' | 'Paused';
+        status: 'Active' | 'Draft' | 'Paused';
         bookingsCount: number;
         actionLink: string;
     }[];
@@ -478,7 +477,7 @@ export interface AgroTourismDashboardData {
         date: string;
         actionLink: string;
     }[];
- guestReviews: {
+    guestReviews: {
         id: string;
         guestName: string;
         experienceTitle: string;
@@ -508,8 +507,8 @@ export interface CrowdfunderDashboardData {
  }[];
  impactReport: {
     totalInvested: number;
- totalImpactMetrics: { metric: string; value: string; }[];
- actionLink: string;
+    totalImpactMetrics: { metric: string; value: string; }[];
+    actionLink: string;
  };
 }
 
