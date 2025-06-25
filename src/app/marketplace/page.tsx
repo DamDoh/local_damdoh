@@ -13,7 +13,6 @@ import { Badge } from "@/components/ui/badge";
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { LISTING_TYPE_FILTER_OPTIONS, type ListingType } from "@/lib/constants";
-import { dummyMarketplaceItems } from "@/lib/dummy-data"; 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
@@ -24,6 +23,7 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
+import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
 
 function MarketplaceContent() {
   const [isMounted, setIsMounted] = useState(false);
@@ -31,10 +31,9 @@ function MarketplaceContent() {
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>('All');
   const [locationFilter, setLocationFilter] = useState("");
   
-  const [userCoordinates, setUserCoordinates] = useState<{ lat: number; lon: number } | null>(null);
-  const [locationStatus, setLocationStatus] = useState<string>('');
-  const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const [items, setItems] = useState<MarketplaceItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(true);
   const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
@@ -52,15 +51,10 @@ function MarketplaceContent() {
     setIsMounted(true);
 
     const fetchItems = async () => {
+      setIsLoading(true);
       try {
-        const result = await getMarketplaceItemsByCategory(currentCategory || undefined);
-        // Defensive check to ensure we received the expected object structure
-        if (result && Array.isArray(result.items)) {
-          setItems(result.items as MarketplaceItem[]);
-        } else {
-          console.error("Unexpected data structure received for marketplace items:", result);
-          setItems([]); // Fallback to an empty array
-        }
+        const result = await getAllMarketplaceItemsFromDB();
+        setItems(result as MarketplaceItem[]);
       } catch (error) {
         console.error("Failed to fetch marketplace items:", error);
         toast({
@@ -68,14 +62,18 @@ function MarketplaceContent() {
           title: "Error",
           description: "Could not fetch marketplace items. Please try again later.",
         });
-        setItems([]); // Ensure items is an array on error
+        setItems([]);
+      } finally {
+        setIsLoading(false);
       }
     };
+    
     fetchItems();
 
     const fetchAiRecommendations = async () => {
       setIsLoadingAiRecommendations(true);
       try {
+        const allItems = await getAllMarketplaceItemsFromDB();
         const mockUserContext: MarketplaceRecommendationInput = {
           stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
           recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
@@ -89,7 +87,7 @@ function MarketplaceContent() {
 
         if (recommendationsOutput && Array.isArray(recommendationsOutput.suggestedItems)) {
             recommendationsOutput.suggestedItems.forEach(suggested => {
-              const foundItem = dummyMarketplaceItems.find(item => item.id === suggested.itemId);
+              const foundItem = allItems.find(item => item.id === suggested.itemId);
               if (foundItem) {
                 recommendedFullItems.push(foundItem);
                 reasons[foundItem.id] = suggested.reason;
@@ -107,42 +105,8 @@ function MarketplaceContent() {
     };
     fetchAiRecommendations();
 
-  }, [currentCategory, userType, toast]);
-
-  const handleCategorySelect = useCallback((categoryId: string | null) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (categoryId === null || categoryId === currentCategory) { 
-      params.delete('category');
-    } else {
-      params.set('category', categoryId);
-    }
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
-  }, [currentCategory, pathname, router, searchParams]);
+  }, [userType, toast]);
   
-  const handleFetchLocation = useCallback(() => {
-    if (!navigator.geolocation) {
-      setLocationStatus("Geolocation is not supported by your browser.");
-      toast({ variant: "destructive", title: "Geolocation Not Supported", description: "Your browser does not support geolocation." });
-      return;
-    }
-    setIsFetchingLocation(true);
-    setLocationStatus("Fetching your location...");
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setUserCoordinates({ lat: position.coords.latitude, lon: position.coords.longitude });
-        setLocationStatus("Showing items near you. Fresh produce prioritized.");
-        toast({ title: "Location Found!", description: "Displaying nearby listings." });
-        setIsFetchingLocation(false);
-      },
-      () => {
-        setLocationStatus("Could not get location. Please enable location services.");
-        toast({ variant: "destructive", title: "Location Error", description: "Could not get your location." });
-        setUserCoordinates(null);
-        setIsFetchingLocation(false);
-      }
-    );
-  }, [toast]);
-
   const filteredMarketplaceItems = useMemo(() => {
     if (!isMounted) return [];
     
@@ -158,7 +122,6 @@ function MarketplaceContent() {
     });
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, items, isMounted]); 
 
-  const getCategoryName = (categoryId: CategoryNode['id']) => AGRICULTURAL_CATEGORIES.find(c => c.id === categoryId)?.name || categoryId;
   const isCurrentHomepage = homepagePreference === pathname;
   const handleSetHomepage = useCallback(() => {
     if (isCurrentHomepage) {
@@ -170,7 +133,7 @@ function MarketplaceContent() {
     }
   }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
 
-  if (!isMounted) return <MarketplaceSkeleton />;
+  if (isLoading || !isMounted) return <MarketplaceSkeleton />;
   
   return (
     <div className="space-y-6">
@@ -313,7 +276,6 @@ const ItemCard = ({ item, reason }: { item: MarketplaceItem, reason?: string }) 
 );
 
 const MarketplaceSkeleton = () => {
-    const showServicesSkeleton = true; // Simplified for skeleton
     return (
       <div className="space-y-6">
         <Card>
@@ -337,15 +299,6 @@ const MarketplaceSkeleton = () => {
                   {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`fskel-prod-${i}`} className="w-52 h-72 rounded-lg" />)}
                 </div>
               </section>
-
-              {showServicesSkeleton && (
-                <section className="mb-8">
-                  <Skeleton className="h-6 w-1/4 mb-3" />
-                  <div className="flex space-x-4 pb-2">
-                    {Array.from({ length: 5 }).map((_, i) => <Skeleton key={`fskel-serv-${i}`} className="w-52 h-72 rounded-lg" />)}
-                  </div>
-                </section>
-              )}
               
               <Skeleton className="h-6 w-1/4 mb-4" /> 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">

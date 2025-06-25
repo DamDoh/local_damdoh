@@ -24,7 +24,7 @@ console.warn(
 );
 
 // Define consistent collection names
-const USERS_COLLECTION = 'profiles'; // Changed from 'users' to 'profiles'
+const PROFILES_COLLECTION = 'profiles';
 const MARKETPLACE_COLLECTION = 'marketplaceItems';
 const FORUM_TOPICS_COLLECTION = 'forumTopics';
 const FORUM_POSTS_COLLECTION = 'forumPosts';
@@ -34,7 +34,7 @@ const AGRI_EVENTS_COLLECTION = 'agriEvents';
 // --- Profile DB Operations ---
 export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
   try {
-    const profilesCol = collection(db, USERS_COLLECTION);
+    const profilesCol = collection(db, PROFILES_COLLECTION);
     const profileSnapshot = await getDocs(profilesCol);
     if (profileSnapshot.empty) {
         console.log("No profiles found in Firestore, returning dummy data for development.");
@@ -59,7 +59,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
     if (!id) return null;
-    const profileDocRef = doc(db, USERS_COLLECTION, id);
+    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
       const data = profileSnap.data();
@@ -70,18 +70,18 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
     } else {
-      console.log(`No profile found with ID: ${id}, checking dummy data.`);
-      return dummyProfiles.find(p => p.id === id) || null;
+      console.log(`No profile found with ID: ${id}.`);
+      return null;
     }
   } catch (error) {
     console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
-    return dummyProfiles.find(p => p.id === id) || null; // Fallback for development
+    throw error;
   }
 }
 
 export async function createProfileInDB(userId: string, profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
   try {
-    const profileDocRef = doc(db, USERS_COLLECTION, userId); // Use the UID as the document ID
+    const profileDocRef = doc(db, PROFILES_COLLECTION, userId); // Use the UID as the document ID
     const docData = {
       ...profileData,
       createdAt: Timestamp.now(),
@@ -109,7 +109,7 @@ export async function createProfileInDB(userId: string, profileData: Omit<UserPr
 
 export async function updateProfileInDB(id: string, updates: Partial<Omit<UserProfile, 'id' | 'createdAt'>>): Promise<UserProfile | null> {
   try {
-    const profileDocRef = doc(db, USERS_COLLECTION, id);
+    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
     
     const docSnap = await getDoc(profileDocRef);
     if (!docSnap.exists()) {
@@ -143,7 +143,7 @@ export async function updateProfileInDB(id: string, updates: Partial<Omit<UserPr
 
 export async function deleteProfileFromDB(id: string): Promise<boolean> {
   try {
-    const profileDocRef = doc(db, USERS_COLLECTION, id);
+    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
     await deleteDoc(profileDocRef);
     return true;
   } catch (error) {
@@ -155,14 +155,50 @@ export async function deleteProfileFromDB(id: string): Promise<boolean> {
 
 // --- Marketplace DB Operations ---
 export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
-  // This function will continue to use dummy data for now.
-  return Promise.resolve(dummyMarketplaceItems);
+  try {
+    const itemsCol = collection(db, MARKETPLACE_COLLECTION);
+    const itemSnapshot = await getDocs(itemsCol);
+    if (itemSnapshot.empty) {
+        console.log("No marketplace items found in Firestore, returning dummy data for development.");
+        return dummyMarketplaceItems;
+    }
+    const itemList = itemSnapshot.docs.map(docSnap => {
+      const data = docSnap.data();
+      return { 
+        id: docSnap.id, 
+        ...data,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+      } as MarketplaceItem;
+    });
+    return itemList;
+  } catch (error) {
+    console.error("Error fetching all marketplace items from Firestore: ", error);
+    return dummyMarketplaceItems; // Return dummy data on error for development
+  }
 }
 
 export async function getMarketplaceItemByIdFromDB(id: string): Promise<MarketplaceItem | null> {
-  // This function will continue to use dummy data for now.
-  const item = dummyMarketplaceItems.find(item => item.id === id);
-  return Promise.resolve(item || null);
+  try {
+    if (!id) return null;
+    const itemDocRef = doc(db, MARKETPLACE_COLLECTION, id);
+    const itemSnap = await getDoc(itemDocRef);
+    if (itemSnap.exists()) {
+      const data = itemSnap.data();
+      return { 
+        id: itemSnap.id, 
+        ...data,
+        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+      } as MarketplaceItem;
+    } else {
+      console.log(`No marketplace item found with ID: ${id}.`);
+      return null;
+    }
+  } catch (error) {
+    console.error(`Error fetching marketplace item with ID ${id} from Firestore: `, error);
+    throw error;
+  }
 }
 
 export async function createMarketplaceItemInDB(itemData: Omit<MarketplaceItem, 'id' | 'createdAt' | 'updatedAt'>): Promise<MarketplaceItem> {
