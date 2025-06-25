@@ -8,18 +8,7 @@ const db = admin.firestore();
 const messaging = admin.messaging();
 
 // Import necessary functions/types from module2 (for user data and FCM tokens)
-// import { getUserDocument } from './module2'; // Assuming this function exists
-
-// Helper function to get user document (Assuming this is implemented elsewhere or as a placeholder)
-async function getUserDocument(uid: string): Promise<FirebaseFirestore.DocumentSnapshot | null> {
-    try {
-        const userDoc = await db.collection('users').doc(uid).get();
-        return userDoc.exists ? userDoc : null;
-    } catch (error) {
-        console.error('Error getting user document:', error);
-        return null;
-    }
-}
+import { getUserDocument } from './module2';
 
 // --- Cross-Cutting Notification System ---
 
@@ -152,6 +141,7 @@ export const onDataChangeCreateNotification = functions.firestore
             // Triggered by a claim status update (Module 11)
             targetUserId = triggerData.policyholderRef.id; // Notify the policyholder
             notificationType = 'claim_update';
+            const claimId = documentId; // Using documentId as claimId for this context
             title_en = `Claim Status Updated: ${claimId}`;
             body_en = `Your claim status has changed to ${triggerData.status}.`;
              linkedEntity = { collection: 'claims', documentId: documentId };
@@ -448,13 +438,6 @@ export const getNotificationPreferences = functions.https.onCall(async (data, co
   }
 });
 
-
-
-// 4. Callable function to mark a notification as read
-export const markNotificationAsRead = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated to mark a notification as read.');
-    });
 
 
 // 3. Callable function to mark a notification as read

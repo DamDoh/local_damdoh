@@ -805,20 +805,6 @@ export const calculateCarbonFootprint = functions.firestore
      return null; // Background triggers should return null or a Promise resolving to null
   });
 
-// Helper function to get user role (placeholder - implement fully)
-async function getRole(uid: string | undefined): Promise<string | null> {
-    if (!uid) {
-        return null;
-    }
-    try {
-        const userDoc = await db.collection('users').doc(uid).get();
-        return userDoc.data()?.primaryRole || null;
-    } catch (error) {
-        console.error('Error fetching user role:', error);
-        return null;
-    }
-}
-
 // Callable functions for managing Master Data Products
 export const createMasterDataProduct = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -1302,4 +1288,3 @@ export const onCreateTraceabilityEventDocument = functions.firestore
 
         return null; // Background triggers should return null or a Promise resolving to null
     });
-
