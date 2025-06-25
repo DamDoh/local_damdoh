@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -244,15 +244,15 @@ export default function FarmDetailPage() {
                         <CardTitle className="text-lg flex items-center gap-2"><Sprout className="h-5 w-5"/> Crops / Livestock</CardTitle>
                         <Button asChild variant="outline" size="sm">
                            <Link href={`/farm-management/farms/${farmId}/create-crop`}>
-                             <PlusCircle className="mr-2 h-4 w-4"/>Add New Crop
+                             <PlusCircle className="mr-2 h-4 w-4"/>Add New
                            </Link>
                         </Button>
                     </CardHeader>
                     <CardContent>
                         {isLoadingCrops ? (
                             <div className="space-y-2">
-                                <Skeleton className="h-16 w-full" />
-                                <Skeleton className="h-16 w-full" />
+                                <Skeleton className="h-24 w-full" />
+                                <Skeleton className="h-24 w-full" />
                             </div>
                         ) : crops.length > 0 ? (
                             <div className="space-y-3">
@@ -270,17 +270,23 @@ export default function FarmDetailPage() {
                                             </div>
                                             {crop.current_stage && <Badge variant="secondary">{crop.current_stage}</Badge>}
                                         </div>
-                                        <div className="flex items-center gap-2 mt-2 pt-2 border-t">
-                                            <Button asChild variant="secondary" size="sm" className="flex-1">
+                                        <div className="flex flex-wrap items-center gap-2 mt-2 pt-2 border-t">
+                                            <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
                                                 <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
                                                     <NotebookPen className="mr-2 h-4 w-4"/>
                                                     Log Observation
                                                 </Link>
                                             </Button>
-                                            <Button asChild variant="outline" size="sm" className="flex-1">
+                                             <Button asChild variant="default" size="sm" className="flex-1 min-w-[140px]">
+                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest`}>
+                                                    <PackageSearch className="mr-2 h-4 w-4"/>
+                                                    Log Harvest
+                                                </Link>
+                                            </Button>
+                                            <Button asChild variant="outline" size="sm" className="flex-1 min-w-[140px]">
                                                 <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
                                                     <ListChecks className="mr-2 h-4 w-4"/>
-                                                    Manage / View Log
+                                                    Full Log
                                                 </Link>
                                             </Button>
                                         </div>
@@ -290,7 +296,7 @@ export default function FarmDetailPage() {
                         ) : (
                             <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
                                 <p>No crops or livestock added yet.</p>
-                                <p className="text-xs">Use the button above to add your first entry.</p>
+                                <p className="text-xs text-muted-foreground mt-1">Use the button above to add your first entry.</p>
                             </div>
                         )}
                     </CardContent>
@@ -303,7 +309,7 @@ export default function FarmDetailPage() {
                     <CardContent>
                        <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
                             <p>Financial tracking coming soon.</p>
-                            <p className="text-xs">You'll be able to log expenses and revenues here.</p>
+                            <p className="text-xs text-muted-foreground mt-1">You'll be able to log expenses and revenues here.</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -317,7 +323,7 @@ export default function FarmDetailPage() {
                  <CardContent>
                     <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
                         <p>The farm activity log will be displayed here.</p>
-                        <p className="text-xs">This feature is under development.</p>
+                        <p className="text-xs text-muted-foreground mt-1">This feature is under development.</p>
                     </div>
                 </CardContent>
             </Card>

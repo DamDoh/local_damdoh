@@ -110,6 +110,14 @@ export const createObservationSchema = z.object({
   });
 export type CreateObservationValues = z.infer<typeof createObservationSchema>;
 
+export const createHarvestSchema = z.object({
+    harvestDate: z.date({ required_error: "A harvest date is required." }),
+    yield_kg: z.coerce.number({ invalid_type_error: "Yield must be a number." }).min(0, "Yield cannot be negative."),
+    quality_grade: z.string().max(50, "Quality grade is too long.").optional(),
+    notes: z.string().max(500, "Notes are too long.").optional(),
+});
+export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;
+
 
 export const editProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
