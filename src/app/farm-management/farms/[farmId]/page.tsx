@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, BarChart, HardHat } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -251,23 +251,39 @@ export default function FarmDetailPage() {
                     <CardContent>
                         {isLoadingCrops ? (
                             <div className="space-y-2">
-                                <Skeleton className="h-10 w-full" />
-                                <Skeleton className="h-10 w-full" />
+                                <Skeleton className="h-16 w-full" />
+                                <Skeleton className="h-16 w-full" />
                             </div>
                         ) : crops.length > 0 ? (
                             <div className="space-y-3">
                                 {crops.map(crop => (
-                                    <div key={crop.id} className="p-3 border rounded-md text-sm">
-                                        <div className="flex justify-between items-start">
-                                            <p className="font-semibold">{crop.crop_type}</p>
+                                    <div key={crop.id} className="p-3 border rounded-lg">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <div>
+                                                <p className="font-semibold">{crop.crop_type}</p>
+                                                {crop.planting_date && (
+                                                    <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
+                                                        <CalendarDays className="h-3 w-3" />
+                                                        Planted: {new Date(crop.planting_date._seconds * 1000).toLocaleDateString()}
+                                                    </p>
+                                                )}
+                                            </div>
                                             {crop.current_stage && <Badge variant="secondary">{crop.current_stage}</Badge>}
                                         </div>
-                                        {crop.planting_date && (
-                                            <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
-                                                <CalendarDays className="h-3 w-3" />
-                                                Planted: {new Date(crop.planting_date._seconds * 1000).toLocaleDateString()}
-                                            </p>
-                                        )}
+                                        <div className="flex items-center gap-2 mt-2 pt-2 border-t">
+                                            <Button asChild variant="secondary" size="sm" className="flex-1">
+                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
+                                                    <NotebookPen className="mr-2 h-4 w-4"/>
+                                                    Log Observation
+                                                </Link>
+                                            </Button>
+                                            <Button asChild variant="outline" size="sm" className="flex-1">
+                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
+                                                    <ListChecks className="mr-2 h-4 w-4"/>
+                                                    Manage / View Log
+                                                </Link>
+                                            </Button>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
