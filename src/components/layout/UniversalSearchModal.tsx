@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, FormEvent, Fragment } from 'react';
+import { useState, useEffect, FormEvent, Fragment, useRef } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -30,13 +30,21 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
   const [currentQuery, setCurrentQuery] = useState("");
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
+      if (viewport) {
+        viewport.scrollTop = viewport.scrollHeight;
+      }
+    }
+  }, [chatHistory, isLoading]);
 
   useEffect(() => {
     if (isOpen && initialQuery && chatHistory.length === 0) {
-      // If the modal is opened with an initial query, start the conversation
       handleQuerySubmit(initialQuery);
     } else if (!isOpen) {
-      // Reset when closed
       setChatHistory([]);
       setCurrentQuery("");
     }
@@ -44,7 +52,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
   }, [isOpen, initialQuery]);
 
   const handleQuerySubmit = async (queryToSubmit: string) => {
-    if (!queryToSubmit.trim()) return;
+    if (!queryToSubmit.trim() || isLoading) return;
 
     const newUserMessage: ChatMessage = {
       id: `user-${Date.now()}`,
@@ -57,9 +65,6 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     setIsLoading(true);
 
     try {
-      // For a universal search, we can run two things in parallel:
-      // 1. Get a direct conversational answer.
-      // 2. Interpret the query for structured results (which we can render later).
       const [aiResponse, interpretation] = await Promise.all([
         askFarmingAssistant({ query: queryToSubmit }),
         interpretSearchQuery({ rawQuery: queryToSubmit })
@@ -106,12 +111,12 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
         <p className="text-sm whitespace-pre-line">{summary}</p>
         
         {interpretation && interpretation.suggestedFilters && interpretation.suggestedFilters.length > 0 && (
-          <div className="p-3 border bg-muted/50 rounded-lg">
+          <div className="p-3 border bg-background rounded-lg">
             <h4 className="text-xs font-semibold uppercase text-muted-foreground mb-2">Suggested Filters</h4>
             <div className="flex flex-wrap gap-2">
               {interpretation.suggestedFilters.map((filter, idx) => (
                 <Button key={idx} variant="outline" size="sm" className="text-xs h-auto" asChild>
-                  <Link href={`/search?q=${interpretation.originalQuery}&filter_${filter.type}=${filter.value}`}>
+                  <Link href={`/marketplace?q=${interpretation.originalQuery}&filter_${filter.type}=${filter.value}`}>
                     {filter.type}: {filter.value}
                   </Link>
                 </Button>
@@ -123,7 +128,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
         {detailedPoints && detailedPoints.length > 0 && (
             <div className="space-y-2">
                 {detailedPoints.map((point, index) => (
-                    <div key={index} className="p-3 border rounded-md">
+                    <div key={index} className="p-3 border rounded-md bg-background">
                         <h4 className="font-semibold text-sm">{point.title}</h4>
                         <p className="text-sm text-muted-foreground mt-1">{point.content}</p>
                     </div>
@@ -155,21 +160,23 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
           <DialogTitle className='flex items-center gap-2'><Sparkles className="h-5 w-5 text-primary" /> Universal Search Assistant</DialogTitle>
         </DialogHeader>
         
-        <ScrollArea className="flex-grow px-4">
+        <ScrollArea className="flex-grow px-4" ref={scrollAreaRef}>
           <div className='space-y-6 py-4'>
             {chatHistory.map(msg => (
                <div key={msg.id} className={`flex items-start gap-3 w-full ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                  {msg.role === 'assistant' && (
                   <Avatar className="h-8 w-8 border shrink-0">
+                     <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh"/>
                     <AvatarFallback><Bot size={18}/></AvatarFallback>
                   </Avatar>
                  )}
-                 <div className={`p-3 rounded-lg max-w-[85%] ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+                 <div className={`p-3 rounded-lg max-w-[85%] shadow-sm ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
                   {msg.role === 'user' && typeof msg.content === 'string' && <p className="text-sm">{msg.content}</p>}
                   {msg.role === 'assistant' && renderAssistantMessage(msg)}
                  </div>
                  {msg.role === 'user' && (
                   <Avatar className="h-8 w-8 border shrink-0">
+                    <AvatarImage src="https://placehold.co/40x40.png" alt="User Avatar" data-ai-hint="profile person"/>
                     <AvatarFallback><User size={18}/></AvatarFallback>
                   </Avatar>
                  )}
@@ -178,7 +185,8 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             {isLoading && (
               <div className="flex items-start gap-3 justify-start">
                 <Avatar className="h-8 w-8 border shrink-0">
-                    <AvatarFallback><Bot size={18}/></AvatarFallback>
+                  <AvatarImage src="/placeholder-logo.png" alt="AI Avatar" data-ai-hint="logo damdoh"/>
+                  <AvatarFallback><Bot size={18}/></AvatarFallback>
                 </Avatar>
                 <div className="p-3 rounded-lg bg-muted space-y-2 w-1/2">
                     <Skeleton className="h-4 w-full" />
