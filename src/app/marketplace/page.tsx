@@ -109,7 +109,7 @@ function MarketplaceContent() {
     // Call a function like `fetchMarketplaceItems()` to get the list from Firebase/Backend.
     const fetchItems = async () => {
       // Pass currentCategory (which can be string | null) correctly
-      const fetchedItems = await getMarketplaceItemsByCategory(currentCategory || undefined);
+      const { items: fetchedItems } = await getMarketplaceItemsByCategory(currentCategory || undefined);
       setItems(fetchedItems as MarketplaceItem[]); 
     };
 
@@ -699,14 +699,14 @@ function MarketplaceContent() {
                           src={item.imageUrl || "https://placehold.co/150x150.png"} 
                           alt={item.name} 
                           fill={true}
-                          sizes="33vw"
+                          sizes="25vw"
                           style={{objectFit:"cover"}}
                           data-ai-hint={item.dataAiHint || "service agriculture"}
                         />
                       </div>
                       <div className="p-1.5">
                         <p className="text-[11px] font-medium text-foreground line-clamp-2 h-7 leading-tight">{item.name}</p>
-                        {item.compensation && <p className="text-xs font-medium text-primary mt-0.5 line-clamp-1">{item.compensation}</p>}
+                        {item.compensation && <p className="text-xs font-medium text-primary mt-1 line-clamp-1">{item.compensation}</p>}
                       </div>
                     </Link>
                   </Card>
