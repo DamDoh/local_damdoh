@@ -1,3 +1,4 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { getRole } from './module2';
@@ -13,7 +14,7 @@ const db = admin.firestore();
 // import { getTraceabilityEventsByFarmField } from './module3'; // Assuming this function exists
 // import { getOrderDetails, getOrdersBySeller, getOrdersByBuyer } from './module4'; // Assuming these functions exist
 // import { getSustainabilityReportDetails } from './module12'; // Assuming this function exists
-// import { processReportDataWithAI } from './module8'; // Example Module 8 interaction for complex formatting/analysis
+import { _internalProcessReportData } from './module8'; // CORRECT: Import internal AI function
 
 
 // Callable or Scheduled function to generate regulatory reports
@@ -136,9 +137,9 @@ export const generateRegulatoryReport = functions.https.onCall(async (data, cont
         // if (reportType === 'OrganicInputUsageReport') {
         //     reportContent.formattedData = formatOrganicInputReport(fetchedData); // Custom formatting function
         // }
-        // TODO: Potentially call Module 8 for complex data processing or structuring for the report.
-        // const processedContent = await processReportDataWithAI({ reportType, data: reportContent }, context);
-        // reportContent.processedContent = processedContent;
+        // CORRECT: Call internal logic function from Module 8 for complex processing.
+        const processedContent = await _internalProcessReportData({ reportType, data: reportContent });
+        reportContent.processedContent = processedContent;
 
 
         // TODO: 7. Consider how compliance rules might be applied during report generation.
@@ -204,7 +205,7 @@ export const submitReportToAuthority = functions.firestore.document('generated_r
 
         try {
             const reportData = reportAfter;
-
+            
             // 3. Identify the target authority and submission method.
             console.log(`Identifying authority and method for report type "${reportData.reportType}"...`);
             // TODO: Implement logic to determine the authority and method based on reportType or configuration.
@@ -268,11 +269,12 @@ export const submitReportToAuthority = functions.firestore.document('generated_r
                  console.error(`Submission for report ${reportId} failed. Status updated.`);
             }
 
-        } catch (error) {
+        } catch (error: any) {
             console.error(`Error during submission process for report ${reportId}:`, error);
             // TODO: Update submission_logs and generated_reports with failure status and error details.
              await change.after.ref.update({ status: 'submission_failed' });
              // If a submission log entry was already created, update its status too.
+             const submissionLogRef = change.after.data()?.submissionLogRef;
              if (submissionLogRef) { await submissionLogRef.update({ status: 'failed', responseDetails: { error: error.message || 'Unknown error' } }); }
         }
     } else {
@@ -281,4 +283,5 @@ export const submitReportToAuthority = functions.firestore.document('generated_r
 
     // If this was a callable function, you would return a result here.
     // return { status: 'triggered' };
+    return null;
 });

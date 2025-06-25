@@ -1,3 +1,4 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
@@ -11,7 +12,8 @@ const db = admin.firestore();
 // import { getFarmActivityLogsForUser } from './module3'; // For fetching farming data
 // import { getMarketplaceDataForUser } from './module4'; // For fetching marketplace data
 // import { getSustainabilityDataForUser } from './module12'; // For fetching sustainability data
-// import { assessCreditRiskWithAI } from './module8'; // Import the AI credit assessment function
+import { _internalAssessCreditRisk, _internalMatchFundingOpportunities } from './module8'; // Import the INTERNAL AI functions
+
 // Helper function to get user role (Assuming this is implemented elsewhere or as a placeholder)
 // import { getRole } from './module2';
 
@@ -238,15 +240,14 @@ export const calculateDamDohCreditScore = functions.firestore
                 // investments: crowdfundingInvestmentData.docs.map(doc => doc.data()),
             };
             console.log('Sending data to Module 8 AI for score calculation...');
-            // TODO: Call Module 8's API or function to calculate the score.
-            const scoreResult = await assessCreditRiskWithAI(relevantData); // Call the Module 8 function to assess credit risk
+            // CORRECT: Call the internal logic function directly.
+            const scoreResult = await _internalAssessCreditRisk(relevantData); 
 
             // Placeholder result from Module 8
             const calculatedScore = scoreResult.score; // Get the score from Module 8 result
             const riskFactors = scoreResult.riskFactors; // Get risk factors from Module 8 result
             // 2. Send data to Module 8's AI models for calculation.
             // 3. Update the user's document in the 'credit_scores' collection.
-            const userRef = db.collection('users').doc(userId);
             await db.collection('credit_scores').doc(userId).set({
                 userId: userId,
                 userRef: userRef,
@@ -310,7 +311,7 @@ export const matchFundingOpportunities = functions.firestore
 
             if (userCreditScore === undefined || userCreditScore === null) {
                  console.warn(`Credit score not available for user ${relevantUserId}. Skipping matching.`);
-                return null;
+                 return null;
             }
 
              // Extract relevant user profile data for matching (role, location, needs/goals)
@@ -347,16 +348,15 @@ export const matchFundingOpportunities = functions.firestore
 
             // 3. Use Module 8's AI models for matching.
             console.log('Sending data to Module 8 AI for matching...');
-            // TODO: Call Module 8's API/function to match the user with suitable opportunities.
-            // Assume matchFundingOpportunitiesWithAI takes user data, score, and opportunities
-            // Call the Module 8 function to match funding opportunities using AI
-             const matchedOpportunitiesResult = await matchFundingOpportunitiesWithAI({ user: userProfileDataForMatching, opportunities: availableOpportunities });
+            
+            // CORRECT: Call the internal logic function directly
+             const matchedOpportunitiesResult = await _internalMatchFundingOpportunities({ user: userProfileDataForMatching, opportunities: availableOpportunities });
 
              // Receive a list of recommended funding opportunity IDs (or objects with match scores)
-            const matchedOpportunities = matchedOpportunitiesResult.recommendations || [];
+            const matchedOpportunities = matchedOpportunitiesResult.matchedOpportunities || [];
              console.log(`Received ${matchedOpportunities.length} matched opportunities for ${relevantUserId}.`);
              if (matchedOpportunities.length > 0) {
-                console.log(`Matched opportunity IDs: ${matchedOpportunities.map(opp => opp.id).join(', ')}`); // Assuming result includes IDs
+                console.log(`Matched opportunity IDs: ${matchedOpportunities.map(opp => opp.opportunityId).join(', ')}`); // Assuming result includes IDs
              }
 
             // 4. Notify the user about matched opportunities.
@@ -541,7 +541,7 @@ export const distributeCrowdfundingPayouts = functions.firestore
             investmentsSnapshot.docs.forEach(investmentDoc => {
                 const investmentData = investmentDoc.data();
                 const investmentAmount = investmentData.amount || 0;
-                const investorRef = investmentData.investorRef as FirebaseFirestore.DocumentReference;
+                const investorRef = investmentData.investorRef as admin.firestore.DocumentReference;
                 const investorUid = investorRef.id;
 
                 // Calculate individual payout amount
@@ -562,7 +562,7 @@ export const distributeCrowdfundingPayouts = functions.firestore
                     sellerInfo: { projectId: projectId, ownerRef: projectAfter?.ownerRef }, // Project owner/platform as sender
                     description: `Payout for investment in project ${projectId}`,
                     type: 'crowdfunding_payout', // Custom type
-                }, context)); // Pass context if callable
+                })); // Pass context if callable
 
                  // 4. Record the payout transaction.
                  console.log(`Recording payout transaction for investor ${investorUid}...`);

@@ -1,4 +1,5 @@
 
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
@@ -15,7 +16,7 @@ const db = admin.firestore();
 // import { getCreditScore } from './module7'; // Assuming this function exists in Module 7
 // import { getUserDocument } from './module2'; // Import for user document retrieval
 import { getRole } from './module2'; // Assuming getRole is in module2 or a shared helper file
-import { assessRiskWithAI, verifyClaimWithAI } from './module8'; // Example Module 8 interaction for AI assessment and claim verification
+import { _internalAssessInsuranceRisk, _internalVerifyClaim } from './module8'; // CORRECT: Import internal AI functions
 
 
 // --- Management of Insurance Products and Risk Thresholds ---
@@ -39,13 +40,18 @@ export const assessRiskForPolicy = functions.firestore
     .document('insurance_policies/{policyId}') // Example trigger: on new policy creation or update
     .onWrite(async (change, context) => {
         // Prevent infinite loops for updates made by this function
-        if (change.after.data()?.updatedAt?.isEqual(change.before.data()?.updatedAt)) {
+        if (change.after.exists && change.before.exists && change.after.data()?.updatedAt?.isEqual(change.before.data()?.updatedAt)) {
             return null; // Data was not significantly changed by the user/system, might be our own update.
         }
 
         const policyId = context.params.policyId;
         const policyAfter = change.after.data();
-        const policyBefore = change.before.data();
+
+        // If the document was deleted, do nothing.
+        if (!policyAfter) {
+            console.log(`Policy ${policyId} deleted. No action taken.`);
+            return null;
+        }
 
         // Determine the user/organization and assets associated with this policy for assessment
         const policyholderRef = policyAfter?.policyholderRef as admin.firestore.DocumentReference | undefined;
@@ -88,7 +94,7 @@ export const assessRiskForPolicy = functions.firestore
 
                         // TODO: Fetch related data based on asset type and linkages
                         // Example: If asset is a farm field (geospatial_assets):
-                        if (asset.type === 'farm_field' && asset.assetRef.collection('geospatial_assets')) {
+                        if (asset.type === 'farm_field' && asset.assetRef.path.startsWith('geospatial_assets')) {
                             // Fetch weather data for the field's location and policy period (Module 1)
                             // Fetch farm activity logs for the field and policy period (Module 3)
                             // Fetch sustainability data for the field and policy period (Module 12)
@@ -111,16 +117,8 @@ export const assessRiskForPolicy = functions.firestore
 
             // --- 2. Send Data to Module 8 for AI Assessment ---
             console.log('Sending data to Module 8 for AI assessment (placeholder)...');
-            // const assessmentResult = await assessRiskWithAI(relevantData, policyType); // Example Module 8 function
-
-            // Placeholder for AI assessment result
-            const assessmentResult = {
-                score: Math.random() * 100, // Example random score
-                riskFactors: ['weather_volatility', 'farming_practices', 'supply_chain_issues'], // Example factors
-                aiModelVersion: 'v1.0',
-                recommendations_en: ['Improve irrigation systems', 'Diversify crops'],
-                recommendations_local: { 'es': ['Mejorar sistemas de riego', 'Diversificar cultivos'] }
-            };
+            // CORRECT: Call the internal logic function directly.
+            const assessmentResult = await _internalAssessInsuranceRisk(relevantData);
 
             // --- 3. Store Assessment Results ---
             const newRiskAssessmentRef = db.collection('risk_assessments').doc();
@@ -130,13 +128,13 @@ export const assessRiskForPolicy = functions.firestore
                 assessmentId: assessmentId,
                 userRef: policyholderRef,
                 assessmentDate: admin.firestore.FieldValue.serverTimestamp(),
-                score: assessmentResult.score,
+                score: assessmentResult.insuranceRiskScore,
                 riskFactors: assessmentResult.riskFactors,
                 linkedAssets: insuredAssets.map(asset => ({ type: asset.type, assetRef: asset.assetRef })), // Link to the assessed assets
                 dataSourcesUsed: [], // TODO: Populate with references to the actual data sources used
-                aiModelVersion: assessmentResult.aiModelVersion,
-                recommendations_en: assessmentResult.recommendations_en,
-                recommendations_local: assessmentResult.recommendations_local,
+                aiModelVersion: 'v1.0-placeholder',
+                recommendations_en: ['Improve irrigation systems', 'Diversify crops'],
+                recommendations_local: { 'es': ['Mejorar sistemas de riego', 'Diversificar cultivos'] },
                 // Add other relevant assessment details
             });
             console.log(`Risk assessment stored with ID: ${assessmentId} for policy ${policyId}.`);
@@ -144,7 +142,8 @@ export const assessRiskForPolicy = functions.firestore
             // --- 4. Update Policy Document with Risk Assessment Reference ---
             // Use set with merge: true to avoid overwriting other fields if the policy is updated by something else simultaneously.
             await change.after.ref.set({
-                riskAssessmentRef: newRiskAssessmentRef
+                riskAssessmentRef: newRiskAssessmentRef,
+                updatedAt: admin.firestore.FieldValue.serverTimestamp() // Update timestamp to prevent loop
             }, { merge: true });
             console.log(`Policy ${policyId} updated with risk assessment reference.`);
 
@@ -233,17 +232,8 @@ export const processInsuranceClaim = functions.firestore
 
             // --- 2. Use Module 8 AI for Claim Verification and Payout Calculation ---
             console.log('Sending data to Module 8 for claim verification and payout...');
-            // const claimResult = await verifyClaimWithAI(claimVerificationData, policyData.policyType); // Example Module 8 function
-
-            // Placeholder for AI claim result
-            const claimResult = {
-                status: 'approved', // 'approved' or 'rejected'
-                payoutAmount: 500, // Example payout amount
-                assessmentDetails: {
-                    verificationLog: 'Weather data confirmed drought during incident period.',
-                    dataPointsConsidered: ['weather_data', 'farm_activity_logs']
-                }
-            };
+            // CORRECT: Call the internal logic function directly.
+            const claimResult = await _internalVerifyClaim(claimVerificationData);
 
             // --- 3. Update Claim Document Based on Assessment Result ---
             const updateData: any = {
@@ -266,10 +256,10 @@ export const processInsuranceClaim = functions.firestore
 
             return null; // Indicate successful execution
 
-        } catch (error) {
+        } catch (error: any) {
             console.error(`Error during claim processing for claim ${claimId}:`, error);
              // Optionally update claim status to indicate processing error.
-             // await snapshot.ref.update({ status: 'processing_error', assessmentDetails: { error: error.message } });
+             await snapshot.ref.update({ status: 'processing_error', assessmentDetails: { error: error.message } });
             return null; // Allow the function to complete gracefully even on error
         }
     });
