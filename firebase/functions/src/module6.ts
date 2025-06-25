@@ -137,29 +137,55 @@ export const createPost = functions.https.onCall(async (data, context) => {
  * Fetches replies for a specific post with pagination.
  */
 export const getRepliesForPost = functions.https.onCall(async (data, context) => {
-    const { topicId, postId, lastVisible } = data;
-    if (!topicId || !postId) {
-        throw new functions.https.HttpsError("invalid-argument", "topicId and postId must be provided.");
+    const { postId, lastVisible } = data; // Modified to accept postId directly
+    if (!postId) {
+        throw new functions.https.HttpsError("invalid-argument", "A postId must be provided.");
     }
 
     try {
-        let query = db.collection(`forums/${topicId}/posts/${postId}/replies`)
+        let query = db.collection(`posts/${postId}/comments`) // Changed collection path
                       .orderBy("timestamp", "asc")
                       .limit(REPLIES_PER_PAGE);
 
         if (lastVisible) {
-            const lastVisibleDoc = await db.collection(`forums/${topicId}/posts/${postId}/replies`).doc(lastVisible).get();
+            const lastVisibleDoc = await db.collection(`posts/${postId}/comments`).doc(lastVisible).get();
             if(lastVisibleDoc.exists){
                 query = query.startAfter(lastVisibleDoc);
             }
         }
 
         const repliesSnapshot = await query.get();
+        
         const replies = repliesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         
+        // Fetch author profiles for all replies in a single batch
+        const authorIds = [...new Set(replies.map(reply => reply.authorRef))].filter(id => id);
+        const profiles = {};
+        if (authorIds.length > 0) {
+            const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", authorIds).get();
+            userDocs.forEach(doc => {
+                profiles[doc.id] = doc.data();
+            });
+        }
+        
+        // Combine reply data with author data
+        const enrichedReplies = replies.map(reply => {
+            const author = profiles[reply.authorRef] || { displayName: "Unknown User", avatarUrl: "" };
+            return {
+                id: reply.id,
+                content: reply.content,
+                timestamp: reply.timestamp.toDate().toISOString(),
+                author: {
+                    id: reply.authorRef,
+                    name: author.displayName,
+                    avatarUrl: author.avatarUrl
+                }
+            };
+        });
+
         const newLastVisible = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]?.id || null;
 
-        return { replies, lastVisible: newLastVisible };
+        return { replies: enrichedReplies, lastVisible: newLastVisible };
     } catch (error) {
         console.error(`Error fetching replies for post ${postId}:`, error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching replies.");

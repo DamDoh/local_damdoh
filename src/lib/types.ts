@@ -42,6 +42,17 @@ export interface PollOption {
   votes: number;
 }
 
+export interface PostReply {
+  id: string;
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  content: string;
+  timestamp: string;
+}
+
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
@@ -515,6 +526,7 @@ interface CrowdfunderDashboardData {
  impactReport: {
     totalInvested: number;
  totalImpactMetrics: { metric: string; // e.g., 'CO2 Reduced', 'Farmers Supported' value: string; }[]; actionLink: string; }; }
+
 
 interface GovernmentRegulatorDashboardData {
     complianceAlerts: {

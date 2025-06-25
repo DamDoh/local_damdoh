@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
-import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight, CheckCircle, Edit } from "lucide-react";
+import { ThumbsUp, MessageCircle as MessageIcon, Share2, Send, BarChart3, Trash2, ChevronRight, CheckCircle, Edit, Loader2 } from "lucide-react";
 import Link from "next/link";
-import type { FeedItem, PollOption, MobileHomeCategory, MobileDiscoverItem } from "@/lib/types";
+import type { FeedItem, PollOption, MobileHomeCategory, MobileDiscoverItem, PostReply } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
@@ -37,6 +37,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { firebaseApp } from "@/lib/firebase";
+import { httpsCallable, getFunctions } from 'firebase/functions';
+import { useToast } from '@/hooks/use-toast';
 
 function FeedItemCard({ 
   item, 
@@ -52,48 +54,76 @@ function FeedItemCard({
   const [isLiked, setIsLiked] = useState(false);
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
-  const [showCommentInput, setShowCommentInput] = useState(false);
+  
+  const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState<PostReply[]>([]);
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [commentText, setCommentText] = useState("");
+
+  const { toast } = useToast();
+  const functions = getFunctions(firebaseApp);
+  const getRepliesForPost = httpsCallable(functions, 'getRepliesForPost');
 
   useEffect(() => {
     // Reset local state when the item prop changes (e.g., parent state update)
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
     setIsLiked(false);
     setVotedOptionIndex(null);
-    setShowCommentInput(false);
+    setShowComments(false);
+    setComments([]);
+    setIsLoadingComments(false);
     setCommentText("");
   }, [item]);
 
   const handleLike = () => {
-    setIsLiked(prev => !prev); // Optimistically toggle the like button's appearance
+    setIsLiked(prev => !prev); 
     onLike(item.id);
   };
 
-  const handleCommentButtonClick = () => {
-    setShowCommentInput(prev => !prev);
-    if (showCommentInput) {
-      setCommentText("");
+  const handleCommentButtonClick = async () => {
+    const willBeVisible = !showComments;
+    setShowComments(willBeVisible);
+
+    if (willBeVisible && comments.length === 0) {
+        setIsLoadingComments(true);
+        try {
+            const result = await getRepliesForPost({ postId: item.id });
+            const data = result.data as { replies: PostReply[] };
+            setComments(data.replies || []);
+        } catch (error) {
+            console.error("Failed to fetch comments:", error);
+            toast({ title: "Could not load comments.", variant: "destructive" });
+        } finally {
+            setIsLoadingComments(false);
+        }
     }
   };
   
   const handlePostComment = () => {
     if (!commentText.trim()) return;
     onComment(item.id, commentText);
-    setCommentText(""); 
-    setShowCommentInput(false); 
-  };
+    
+    // Optimistically add the new comment to the UI
+    const newComment: PostReply = {
+      id: `temp-${Date.now()}`,
+      content: commentText,
+      author: { id: 'currentUser', name: 'You', avatarUrl: 'https://placehold.co/40x40.png' },
+      timestamp: new Date().toISOString()
+    };
+    setComments(prev => [...prev, newComment]);
 
-  const handleCancelComment = () => {
-    setCommentText("");
-    setShowCommentInput(false);
+    setCommentText(""); 
+    // Comment input stays open to see the new comment
   };
 
   const handleRepost = () => {
-    console.log(`Repost button clicked for post: ${item.id}.`);
+    console.log(`Repost button clicked for post: ${item.id}. This would open a modal to share the post.`);
+    toast({ title: "Repost action triggered (placeholder)." });
   };
 
   const handleSend = () => {
-    console.log(`Send button clicked for post: ${item.id}.`);
+    console.log(`Send button clicked for post: ${item.id}. This would open a modal to send the post to a connection.`);
+    toast({ title: "Send action triggered (placeholder)." });
   };
 
   const handlePollVote = (optionIndex: number) => {
@@ -195,21 +225,48 @@ function FeedItemCard({
           </Button>
         </div>
         
-        {showCommentInput && (
+        {showComments && (
           <div className="mt-3 px-2 space-y-2 border-t pt-3">
-            <Textarea
-              placeholder="Write your comment..."
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              className="min-h-[60px] text-sm"
-              autoFocus
-            />
-            <div className="flex justify-end gap-2">
-              <Button variant="ghost" size="sm" onClick={handleCancelComment}>Cancel</Button>
-              <Button size="sm" onClick={handlePostComment} disabled={!commentText.trim()}>
-                Post Comment
-              </Button>
+            <div className="space-y-3">
+                {isLoadingComments ? (
+                    <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">Loading comments...</span></div>
+                ) : comments.length > 0 ? (
+                    comments.map(reply => (
+                        <div key={reply.id} className="flex items-start gap-2">
+                            <Avatar className="h-7 w-7">
+                                <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} data-ai-hint="profile person"/>
+                                <AvatarFallback>{reply.author.name.substring(0,1)}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1 bg-muted rounded-md p-2 text-sm">
+                                <span className="font-semibold">{reply.author.name}</span>
+                                <p className="whitespace-pre-line break-words">{reply.content}</p>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-xs text-center text-muted-foreground py-2">No comments yet. Be the first to reply!</p>
+                )}
             </div>
+             <div className="flex items-start gap-2 pt-2">
+                <Avatar className="h-7 w-7">
+                    <AvatarImage src={"https://placehold.co/40x40.png"} alt={"Current User"} data-ai-hint="profile person agriculture"/>
+                    <AvatarFallback>ME</AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <Textarea
+                    placeholder="Write a comment..."
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    className="min-h-[40px] text-sm"
+                    autoFocus
+                  />
+                   <div className="flex justify-end gap-2 mt-2">
+                      <Button size="sm" onClick={handlePostComment} disabled={!commentText.trim()}>
+                        Post
+                      </Button>
+                    </div>
+                </div>
+              </div>
           </div>
         )}
       </CardFooter>
@@ -226,6 +283,12 @@ export default function HomePage() {
   const router = useRouter();
   const pathname = usePathname();
   const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
+
+  const functions = getFunctions(firebaseApp);
+  const getFeed = httpsCallable(functions, 'getFeed');
+  const createPostCallable = httpsCallable(functions, 'createPost');
+  const likePostCallable = httpsCallable(functions, 'likePost');
+  const addCommentCallable = httpsCallable(functions, 'addComment');
 
   useEffect(() => {
     if (user) {
@@ -252,54 +315,43 @@ export default function HomePage() {
     }
   }, [homepagePreference, isPreferenceLoading, pathname, router]);
 
-  const handleCreatePost = (content: string, media?: File, pollData?: { text: string }[]) => {
-    const newPost: FeedItem = {
-      id: `post-${Date.now()}`,
-      type: pollData && pollData.length > 0 ? 'poll' : 'shared_article', 
-      timestamp: new Date().toISOString(),
-      userId: 'currentDemoUser', 
-      userName: 'Demo User', 
-      userAvatar: 'https://placehold.co/40x40.png', 
-      userHeadline: 'Agri-Enthusiast | DamDoh Platform',
-      content: content,
-      postImage: media && media.type.startsWith("image/") ? URL.createObjectURL(media) : undefined,
-      dataAiHint: media ? (media.type.startsWith("image/") ? "user content" : "file attachment") : "text post",
-      likesCount: 0,
-      commentsCount: 0,
-      pollOptions: pollData ? pollData.map(opt => ({ text: opt.text, votes: 0 })) : undefined,
-    };
-    setFeedItems(prevItems => [newPost, ...prevItems]);
+  const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
+    try {
+        await createPostCallable({ content, pollOptions: pollData });
+        const result = await getFeed({});
+        setFeedItems((result.data as { posts: FeedItem[] }).posts || []);
+    } catch (error) {
+        console.error("Failed to create post", error);
+    }
   };
 
   const handleDeletePost = (postId: string) => {
     setFeedItems(prevItems => prevItems.filter(item => item.id !== postId));
   };
   
-  const handleLikePost = (postId: string) => {
-    setFeedItems(prevItems => 
-      prevItems.map(item => {
-        if (item.id === postId) {
-          // This logic is a simple increment for demo. A real app would track who liked it.
-          // The local `isLiked` state in the card will handle the button color change.
-          const currentLikes = item.likesCount || 0;
-          return { ...item, likesCount: currentLikes + 1 };
-        }
-        return item;
-      })
-    );
+  const handleLikePost = async (postId: string) => {
+    try {
+      setFeedItems(prevItems => 
+        prevItems.map(item => item.id === postId ? { ...item, likesCount: (item.likesCount || 0) + 1 } : item)
+      );
+      await likePostCallable({ postId });
+    } catch(error) {
+      console.error("Error liking post:", error);
+      setFeedItems(prevItems => 
+        prevItems.map(item => item.id === postId ? { ...item, likesCount: (item.likesCount || 0) - 1 } : item)
+      );
+    }
   };
 
-  const handleCommentOnPost = (postId: string, commentText: string) => {
-    console.log(`Comment on post ${postId}: ${commentText}`);
-    // Optimistically update the comment count
-    setFeedItems(prevItems =>
-      prevItems.map(item => {
-        if (item.id === postId) {
-          return { ...item, commentsCount: (item.commentsCount || 0) + 1 };
-        }
-        return item;
-      })
-    );
+  const handleCommentOnPost = async (postId: string, commentText: string) => {
+    try {
+      await addCommentCallable({ postId, content: commentText });
+      setFeedItems(prevItems =>
+        prevItems.map(item => item.id === postId ? { ...item, commentsCount: (item.commentsCount || 0) + 1 } : item)
+      );
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
   };
 
 
