@@ -15,7 +15,7 @@ interface Farm {
   id: string;
   name: string;
   location: string;
-  farmType: string;
+  farm_type: string;
 }
 
 const getFarmIcon = (farmType: string) => {
@@ -127,7 +127,7 @@ export default function FarmManagementPage() {
               {farms.map((farm) => (
                 <Card key={farm.id} className="flex items-center justify-between p-4 hover:bg-accent/50 transition-colors">
                   <div className="flex items-center gap-4">
-                    {getFarmIcon(farm.farmType)}
+                    {getFarmIcon(farm.farm_type)}
                     <div>
                       <h4 className="font-semibold">{farm.name}</h4>
                       <p className="text-sm text-muted-foreground">{farm.location}</p>

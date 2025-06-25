@@ -1,11 +1,169 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
 if (admin.apps.length === 0) {
   admin.initializeApp();
 }
+const db = admin.firestore();
 
-// ... (existing module3 functions) ...
+/**
+ * Creates a new farm document in Firestore for an authenticated user.
+ */
+export const createFarm = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+  }
+  
+  const { name, location, size, farmType, irrigationMethods, description } = data;
+  if (!name || !location || !size || !farmType) {
+    throw new functions.https.HttpsError("invalid-argument", "Name, location, size, and farm type are required.");
+  }
+
+  try {
+    const newFarmRef = db.collection('farms').doc();
+    await newFarmRef.set({
+      owner_id: context.auth.uid,
+      name,
+      location,
+      size,
+      farm_type: farmType,
+      irrigationMethods: irrigationMethods || "",
+      description: description || "",
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return { success: true, farmId: newFarmRef.id };
+  } catch (error) {
+    console.error("Error creating farm:", error);
+    throw new functions.https.HttpsError("internal", "Failed to create farm.");
+  }
+});
+
+/**
+ * Fetches all farms belonging to the currently authenticated user.
+ */
+export const getUserFarms = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+  }
+
+  try {
+    const farmsSnapshot = await db.collection('farms').where('owner_id', '==', context.auth.uid).get();
+    const farms = farmsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return farms;
+  } catch (error) {
+    console.error("Error fetching user farms:", error);
+    throw new functions.https.HttpsError("internal", "Failed to fetch farms.");
+  }
+});
+
+/**
+ * Fetches a single farm's details.
+ */
+export const getFarm = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { farmId } = data;
+    if (!farmId) {
+        throw new functions.https.HttpsError("invalid-argument", "A farmId must be provided.");
+    }
+    
+    try {
+        const farmDoc = await db.collection('farms').doc(farmId).get();
+        if (!farmDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Farm not found.");
+        }
+        
+        const farmData = farmDoc.data();
+
+        // Security check: ensure the authenticated user owns this farm
+        if (farmData.owner_id !== context.auth.uid) {
+            throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this farm.");
+        }
+        
+        return { id: farmDoc.id, ...farmData };
+    } catch (error) {
+        console.error("Error fetching farm:", error);
+        if (error instanceof functions.https.HttpsError) {
+          throw error;
+        }
+        throw new functions.https.HttpsError("internal", "Failed to fetch farm details.");
+    }
+});
+
+/**
+ * Creates a new crop document associated with a farm.
+ */
+export const createCrop = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    
+    const { farm_id, crop_type, planting_date, harvest_date, expected_yield, current_stage, notes } = data;
+    if (!farm_id || !crop_type || !planting_date) {
+        throw new functions.https.HttpsError("invalid-argument", "Farm ID, crop type, and planting date are required.");
+    }
+
+    // Security Check: Verify owner
+    const farmRef = db.collection('farms').doc(farm_id);
+    const farmDoc = await farmRef.get();
+    if (!farmDoc.exists || farmDoc.data()?.owner_id !== context.auth.uid) {
+        throw new functions.https.HttpsError("permission-denied", "You do not have permission to add a crop to this farm.");
+    }
+
+    try {
+        const newCropRef = db.collection('crops').doc();
+        await newCropRef.set({
+            farm_id,
+            owner_id: context.auth.uid,
+            crop_type,
+            planting_date: admin.firestore.Timestamp.fromDate(new Date(planting_date)),
+            harvest_date: harvest_date ? admin.firestore.Timestamp.fromDate(new Date(harvest_date)) : null,
+            expected_yield: expected_yield || "",
+            current_stage: current_stage || null,
+            notes: notes || "",
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { success: true, cropId: newCropRef.id };
+    } catch (error) {
+        console.error("Error creating crop:", error);
+        throw new functions.https.HttpsError("internal", "Failed to create crop.");
+    }
+});
+
+/**
+ * Fetches all crops associated with a specific farm.
+ */
+export const getFarmCrops = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    
+    const { farmId } = data;
+    if (!farmId) {
+        throw new functions.https.HttpsError("invalid-argument", "A farmId must be provided.");
+    }
+
+    // Security Check: Verify owner
+    const farmRef = db.collection('farms').doc(farmId);
+    const farmDoc = await farmRef.get();
+    if (!farmDoc.exists || farmDoc.data()?.owner_id !== context.auth.uid) {
+        throw new functions.https.HttpsError("permission-denied", "You do not have permission to view crops for this farm.");
+    }
+
+    try {
+        const cropsSnapshot = await db.collection('crops').where('farm_id', '==', farmId).get();
+        const crops = cropsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return crops;
+    } catch (error) {
+        console.error("Error fetching farm crops:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch crops.");
+    }
+});
+
 
 /**
  * Cloud Function to analyze a farmer's data and provide profitability insights.
