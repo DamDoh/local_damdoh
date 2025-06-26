@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData } from "./types";
+import { FarmerDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
