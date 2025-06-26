@@ -1,7 +1,11 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import { UserProfile } from "./types";
+import { _internalInitiatePayment } from './module7'; // Import payment function
+import { _internalLogTraceEvent } from './module1'; // Import trace event logger
 
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10;
@@ -468,4 +472,289 @@ export const addComment = functions.https.onCall(async (data, context) => {
     }
 });
 
+
+// ================== AGRI-BUSINESS EVENTS ==================
+
+export const createAgriEvent = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create an event.");
+    }
+
+    const { title, description, eventDate, location, eventType } = data;
+
+    if (!title || !description || !eventDate || !location || !eventType) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required event fields.");
+    }
+
+    const newEvent = {
+        ...data,
+        organizerId: context.auth.uid, // Use organizerId for clarity
+        createdAt: FieldValue.serverTimestamp(),
+        registeredAttendeesCount: 0,
+    };
+
+    try {
+        const docRef = await db.collection("agri_events").add(newEvent);
+        return { eventId: docRef.id, title: title };
+    } catch (error) {
+        console.error("Error creating agri-event:", error);
+        throw new functions.https.HttpsError("internal", "Failed to create event in the database.");
+    }
+});
+
+export const getAgriEvents = functions.https.onCall(async (data, context) => {
+    try {
+        const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
+        const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return events;
+    } catch (error) {
+        console.error("Error fetching agri-events:", error);
+        throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
+    }
+});
+
+export const getEventDetails = functions.https.onCall(async (data, context) => {
+    const { eventId, includeAttendees } = data;
+    if (!eventId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
+    }
+
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const eventSnap = await eventRef.get();
+
+    if (!eventSnap.exists) {
+        throw new functions.https.HttpsError("not-found", "Event not found.");
+    }
+
+    const eventData = eventSnap.data()!;
+    let isRegistered = false;
+    let attendees: any[] = [];
+
+    if (context.auth) {
+        const registrationRef = eventRef.collection('registrations').doc(context.auth.uid);
+        const registrationSnap = await registrationRef.get();
+        isRegistered = registrationSnap.exists;
+    }
     
+    // Security Check: Only return attendee list if the caller is the organizer
+    if (includeAttendees && context.auth && context.auth.uid === eventData.organizerId) {
+        const registrationsSnap = await eventRef.collection('registrations').get();
+        const attendeeIds = registrationsSnap.docs.map(doc => doc.id);
+
+        if (attendeeIds.length > 0) {
+            const userDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', attendeeIds).get();
+            const profiles: { [key: string]: UserProfile } = {};
+            userDocs.forEach(doc => {
+                profiles[doc.id] = doc.data() as UserProfile;
+            });
+
+            attendees = registrationsSnap.docs.map(regDoc => {
+                const profile = profiles[regDoc.id];
+                const regData = regDoc.data();
+                return {
+                    id: regDoc.id,
+                    displayName: profile?.name || 'Unknown User',
+                    email: profile?.email || 'No email',
+                    avatarUrl: profile?.avatarUrl || '',
+                    registeredAt: regData.registeredAt.toDate().toISOString(),
+                    checkedIn: regData.checkedIn || false,
+                    checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
+                };
+            });
+        }
+    }
+
+    return { ...eventData, id: eventSnap.id, isRegistered, attendees };
+});
+
+
+export const registerForEvent = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to register.");
+    }
+    
+    const { eventId } = data;
+    if (!eventId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
+    }
+
+    const userId = context.auth.uid;
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const registrationRef = eventRef.collection('registrations').doc(userId);
+
+    return db.runTransaction(async (transaction) => {
+        const eventDoc = await transaction.get(eventRef);
+        if (!eventDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Event not found.");
+        }
+
+        const eventData = eventDoc.data()!;
+        if (!eventData.registrationEnabled) {
+             throw new functions.https.HttpsError("failed-precondition", "Registration is not open for this event.");
+        }
+
+        if (eventData.attendeeLimit && eventData.registeredAttendeesCount >= eventData.attendeeLimit) {
+            throw new functions.https.HttpsError("failed-precondition", "This event is full.");
+        }
+
+        const registrationDoc = await transaction.get(registrationRef);
+        if (registrationDoc.exists) {
+            throw new functions.https.HttpsError("already-exists", "You are already registered for this event.");
+        }
+        
+        // Synergy: Payment Integration
+        if (eventData.price && eventData.price > 0) {
+            console.log(`Paid event registration for event ${eventId}. Initiating payment flow.`);
+            try {
+                await _internalInitiatePayment({
+                    orderId: `event_${eventId}_${userId}`,
+                    amount: eventData.price,
+                    currency: eventData.currency || 'USD',
+                    buyerInfo: { userId },
+                    sellerInfo: { organizerId: eventData.organizerId },
+                    description: `Registration for event: ${eventData.title}`
+                });
+                console.log(`Payment initiated for event ${eventId}. Proceeding with registration.`);
+            } catch (paymentError: any) {
+                console.error("Payment initiation failed:", paymentError);
+                throw new functions.https.HttpsError("aborted", "Payment processing failed. Please try again.");
+            }
+        }
+
+        transaction.set(registrationRef, {
+            userId: userId,
+            registeredAt: FieldValue.serverTimestamp(),
+            checkedIn: false,
+            checkedInAt: null
+        });
+        
+        transaction.update(eventRef, {
+            registeredAttendeesCount: FieldValue.increment(1)
+        });
+        
+        return { success: true, message: "Successfully registered for the event." };
+    });
+});
+
+export const checkInAttendee = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be an organizer to check in attendees.");
+    }
+
+    const { eventId, attendeeId } = data;
+    if (!eventId || !attendeeId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID and Attendee ID are required.");
+    }
+
+    const organizerId = context.auth.uid;
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const registrationRef = eventRef.collection('registrations').doc(attendeeId);
+
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to manage this event.");
+    }
+
+    const registrationDoc = await registrationRef.get();
+    if (!registrationDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "This user is not registered for the event.");
+    }
+    
+    if (registrationDoc.data()?.checkedIn) {
+        throw new functions.https.HttpsError("already-exists", "This attendee has already been checked in.");
+    }
+
+    await registrationRef.update({
+        checkedIn: true,
+        checkedInAt: FieldValue.serverTimestamp()
+    });
+
+    // Synergy: Traceability Integration
+    // Log the attendance as a verifiable event on the user's personal VTI log.
+    try {
+        const eventName = eventDoc.data()?.title || 'Unknown Event';
+        console.log(`Logging ATTENDED_EVENT for user ${attendeeId} at event "${eventName}"`);
+        await _internalLogTraceEvent({
+            vtiId: attendeeId, // The user's ID is their personal VTI
+            eventType: 'ATTENDED_EVENT',
+            actorRef: organizerId, // The organizer is the actor verifying attendance
+            geoLocation: null, // Could add event location here in future
+            payload: {
+                eventId: eventId,
+                eventName: eventName,
+                organizerId: organizerId,
+                notes: "Attendee checked in by organizer."
+            },
+            farmFieldId: `user-credential:${attendeeId}` // A way to group user credential events
+        });
+        console.log(`Successfully logged traceable attendance for user ${attendeeId}`);
+    } catch (traceError) {
+        // Log the error but don't fail the check-in process
+        console.error(`Failed to log traceability event for user ${attendeeId}'s attendance:`, traceError);
+    }
+
+
+    return { success: true, message: `Attendee ${attendeeId} checked in.`};
+});
+
+
+export const createEventCoupon = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in.");
+    }
+
+    const { eventId, code, discountType, discountValue, expiresAt, usageLimit } = data;
+    const organizerId = context.auth.uid;
+
+    const eventRef = db.collection("agri_events").doc(eventId);
+    const eventDoc = await eventRef.get();
+
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not the organizer of this event.");
+    }
+    
+    const couponCode = code.toUpperCase();
+    const couponsRef = eventRef.collection('coupons');
+    const existingCouponQuery = await couponsRef.where('code', '==', couponCode).get();
+    if (!existingCouponQuery.empty) {
+        throw new functions.https.HttpsError("already-exists", `A coupon with the code "${couponCode}" already exists for this event.`);
+    }
+
+    const newCoupon = {
+        code: couponCode,
+        discountType,
+        discountValue,
+        expiresAt: expiresAt ? admin.firestore.Timestamp.fromDate(new Date(expiresAt)) : null,
+        usageLimit: usageLimit || null,
+        usageCount: 0,
+        createdAt: FieldValue.serverTimestamp(),
+        organizerId,
+    };
+
+    const couponRef = await couponsRef.add(newCoupon);
+    
+    await eventRef.update({ couponCount: FieldValue.increment(1) });
+
+    return { couponId: couponRef.id, ...newCoupon };
+});
+
+
+export const getEventCoupons = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in.");
+    }
+    const { eventId } = data;
+    const organizerId = context.auth.uid;
+
+    const eventRef = db.collection("agri_events").doc(eventId);
+    const eventDoc = await eventRef.get();
+
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view coupons for this event.");
+    }
+
+    const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
+    const coupons = couponsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    return { coupons };
+});

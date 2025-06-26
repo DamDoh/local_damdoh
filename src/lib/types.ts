@@ -151,6 +151,17 @@ export interface EventAttendee {
   checkedInAt?: string | null; // ISO string
 }
 
+export interface EventCoupon {
+  id: string;
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  discountValue: number;
+  expiresAt?: { _seconds: number, _nanoseconds: number };
+  usageLimit?: number;
+  usageCount: number;
+  createdAt: { _seconds: number, _nanoseconds: number };
+}
+
 
 // =================================================================
 // 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES

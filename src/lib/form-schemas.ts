@@ -194,3 +194,21 @@ export const logFinancialTransactionSchema = z.object({
   category: z.string().max(50, "Category is too long.").optional(),
 });
 export type LogFinancialTransactionValues = z.infer<typeof logFinancialTransactionSchema>;
+
+export const createEventCouponSchema = z.object({
+  code: z.string().min(4, "Code must be at least 4 characters.").max(20, "Code cannot exceed 20 characters.").regex(/^[a-zA-Z0-9]+$/, "Code can only contain letters and numbers."),
+  discountType: z.enum(['percentage', 'fixed'], { required_error: "Please select a discount type." }),
+  discountValue: z.coerce.number().positive("Discount value must be a positive number."),
+  expiresAt: z.date().optional(),
+  usageLimit: z.coerce.number().int().positive("Usage limit must be a positive integer.").optional(),
+}).refine(data => {
+    if (data.discountType === 'percentage' && data.discountValue > 100) {
+        return false;
+    }
+    return true;
+}, {
+    message: "Percentage discount cannot exceed 100.",
+    path: ["discountValue"],
+});
+
+export type CreateEventCouponValues = z.infer<typeof createEventCouponSchema>;
