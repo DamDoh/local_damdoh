@@ -380,7 +380,7 @@ export const handlePlantingEvent = functions.https.onCall(async (data, context) 
              actorRef: actorVtiId,
             geoLocation: geoLocation || null,
             payload: eventPayload,
-            farmFieldId: farmFieldI,
+            farmFieldId: farmFieldId,
         }, context);
 
         return { status: 'success', message: `Planting event logged for farm field ${farmFieldId}.` };

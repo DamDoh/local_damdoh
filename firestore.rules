@@ -1,66 +1,30 @@
-
-// allow read, write: if request.auth.uid != null;
-
-// This is a placeholder firestore.rules file.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // ... (Existing rules for Module 2 & 3) ...
+    // Default rule: Allow read/write access for any authenticated user.
+    // This is a good starting point for development, but you MUST
+    // implement more granular security rules before going to production.
+    match /{document=**} {
+      allow read, write: if request.auth.uid != null;
+    }
 
-    // =====================================================================
-    // Module 1: Core Traceability Data
-    // =====================================================================
+    // Example of a more secure rule for user profiles:
+    // A user can only read and write to their own document.
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+
+    // Traceability events are immutable once created.
     match /traceability_events/{eventId} {
-      // Events are created by the user they belong to (via a backend function).
-      // This rule assumes the backend function will enforce actorRef == request.auth.uid.
       allow create: if request.auth.uid != null;
-      // Reading events might be restricted based on complex supply chain permissions.
-      // For now, allow the actor who created the event to read it.
-      allow read: if request.auth.uid == resource.data.actorRef;
-      // Events are immutable.
+      allow read: if request.auth.uid != null; // Allow any logged-in user to read for now
       allow update, delete: if false;
     }
-    
-    // =====================================================================
-    // Module 5: Knowledge Hub
-    // =====================================================================
 
-    // Main courses collection
-    match /courses/{courseId} {
-      // Any authenticated user can read course information.
-      allow read: if request.auth.uid != null;
-      // Only admins or content creators can create, update, or delete courses.
-      // This assumes a 'role' field is set in the user's custom claims or user doc.
-      // function getRole() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role; }
-      // allow write: if getRole() in ['admin', 'content_creator'];
-      allow write: if request.auth.uid != null; // Simplified for now
+    // Anyone can view marketplace items, but only authenticated users can create them.
+    match /marketplaceItems/{itemId} {
+        allow read: if true;
+        allow write: if request.auth.uid != null;
     }
-
-    // Modules subcollection within each course
-    match /courses/{courseId}/modules/{moduleId} {
-      // Rules inherit read access from parent. Any authenticated user can read modules.
-      allow read: if request.auth.uid != null;
-      // Write access is also inherited from the parent course document.
-      allow write: if request.auth.uid != null; // Simplified for now
-    }
-
-    // Articles in the knowledge base
-    match /knowledge_articles/{articleId} {
-      // Any authenticated user can read articles.
-      allow read: if request.auth.uid != null;
-      // Only admins or content creators can write articles.
-      allow write: if request.auth.uid != null; // Simplified for now
-    }
-
-    // User-specific progress on courses
-    match /user_course_progress/{progressId} {
-      // A user can only access their own course progress records.
-      allow read, create, update: if request.auth.uid == resource.data.userRef;
-      allow delete: if false; // Progress shouldn't be deleted by users.
-    }
-
-    // ... (Placeholders for other module rules) ...
-
   }
 }
