@@ -1,49 +1,79 @@
 
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Rss, Feather, TrendingUp, Leaf } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Rss, Feather } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { useToast } from '@/hooks/use-toast';
 
-const dummyBlogPosts = [
-  {
-    id: "blog1",
-    title: "5 Sustainable Farming Practices to Boost Your Yield and Soil Health",
-    author: "Dr. Green Thumb",
-    date: "October 28, 2023",
-    excerpt: "Discover proven techniques like cover cropping, no-till farming, and integrated pest management that can transform your farm...",
-    category: "Sustainable Agriculture",
-    imageUrl: "https://placehold.co/600x400.png",
-    dataAiHint: "sustainable farming field",
-    slug: "/blog/sustainable-farming-practices"
-  },
-  {
-    id: "blog2",
-    title: "The Future of Agri-Tech: AI and Automation in Farming",
-    author: "Tech Savvy Farmer",
-    date: "October 25, 2023",
-    excerpt: "Explore how artificial intelligence, drones, and robotics are revolutionizing farming operations, from planting to harvest...",
-    category: "Agri-Tech",
-    imageUrl: "https://placehold.co/600x400.png",
-    dataAiHint: "drone agriculture technology",
-    slug: "/blog/future-of-agritech"
-  },
-  {
-    id: "blog3",
-    title: "Navigating Market Volatility: Tips for Smallholder Farmers",
-    author: "Market Analyst Pro",
-    date: "October 22, 2023",
-    excerpt: "Understand the factors driving price fluctuations and learn strategies to mitigate risks and secure better prices for your produce...",
-    category: "Market Insights",
-    imageUrl: "https://placehold.co/600x400.png",
-    dataAiHint: "market chart graph",
-    slug: "/blog/market-volatility-tips"
-  }
-];
+interface BlogPost {
+  id: string;
+  title_en: string;
+  author: string;
+  createdAt: string;
+  excerpt: string;
+  category: string;
+  imageUrl?: string;
+  dataAiHint?: string;
+}
 
+const functions = getFunctions(firebaseApp);
+const getArticlesCallable = httpsCallable(functions, 'getKnowledgeArticles');
+
+function PostCardSkeleton() {
+  return (
+    <Card className="flex flex-col overflow-hidden">
+        <Skeleton className="h-56 w-full" />
+        <CardHeader>
+            <Skeleton className="h-6 w-3/4" />
+            <Skeleton className="h-4 w-1/2 mt-2" />
+        </CardHeader>
+        <CardContent className="flex-grow">
+            <div className="space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+            </div>
+        </CardContent>
+        <CardContent className="pt-2">
+            <Skeleton className="h-10 w-full" />
+        </CardContent>
+    </Card>
+  );
+}
 
 export default function BlogPage() {
-  const posts = dummyBlogPosts; // In a real app, this would be fetched data
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setIsLoading(true);
+      try {
+        const result = await getArticlesCallable();
+        const data = result.data as { success: boolean, articles: any[] };
+        if (data.success) {
+          // Filter for articles with the category 'Blog'
+          const blogPosts = data.articles.filter(article => article.category === 'Blog');
+          setPosts(blogPosts);
+        } else {
+          throw new Error("Failed to fetch articles.");
+        }
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+        toast({ title: "Error", description: "Could not load blog posts.", variant: "destructive" });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPosts();
+  }, [toast]);
 
   return (
     <div className="space-y-8">
@@ -59,28 +89,36 @@ export default function BlogPage() {
         </CardHeader>
       </Card>
 
-      {posts.length > 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+        </div>
+      ) : posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <Card key={post.id} className="flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {post.imageUrl && (
-                <div className="relative h-56 w-full">
-                  <Image
-                    src={post.imageUrl}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    style={{objectFit: 'cover'}}
-                    data-ai-hint={post.dataAiHint || "agriculture blog image"}
-                  />
-                </div>
+                <Link href={`/blog/${post.id}`} className="block">
+                  <div className="relative h-56 w-full">
+                    <Image
+                      src={post.imageUrl}
+                      alt={post.title_en}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{objectFit: 'cover'}}
+                      data-ai-hint={post.dataAiHint || "agriculture blog image"}
+                    />
+                  </div>
+                </Link>
               )}
               <CardHeader>
-                <CardTitle className="text-xl line-clamp-2 hover:text-primary transition-colors">
-                  <Link href={post.slug}>{post.title}</Link>
+                <CardTitle className="text-xl line-clamp-2 hover:text-primary transition-colors h-14">
+                  <Link href={`/blog/${post.id}`}>{post.title_en}</Link>
                 </CardTitle>
                 <CardDescription className="text-xs">
-                  By {post.author} on {post.date} | Category: {post.category}
+                  By {post.author} on {new Date(post.createdAt).toLocaleDateString()}
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
@@ -88,7 +126,7 @@ export default function BlogPage() {
               </CardContent>
               <CardContent className="pt-2">
                 <Button asChild variant="outline" className="w-full">
-                  <Link href={post.slug}>Read More</Link>
+                  <Link href={`/blog/${post.id}`}>Read More</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -101,7 +139,7 @@ export default function BlogPage() {
               <Feather className="h-16 w-16 text-muted-foreground/50 mb-4" />
               <h3 className="text-xl font-semibold text-muted-foreground mb-2">Blog Posts Coming Soon!</h3>
               <p className="text-muted-foreground max-w-md">
-                Our team and community experts are busy preparing insightful articles. Check back soon for the latest updates on sustainable agriculture, market trends, and agri-tech innovations!
+                Our team and community experts are busy preparing insightful articles. Check back soon!
               </p>
             </div>
           </CardContent>

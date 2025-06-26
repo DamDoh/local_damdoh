@@ -84,7 +84,7 @@ export const createModule = functions.https.onCall(async (data, context) => {
 
 
 /**
- * Creates a new knowledge article.
+ * Creates a new knowledge article (used for Blog, News, etc.).
  * Requires admin privileges.
  */
 export const createKnowledgeArticle = functions.https.onCall(async (data, context) => {
@@ -93,16 +93,21 @@ export const createKnowledgeArticle = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
 
-    const { title_en, content_markdown_en, tags } = data;
-    if (!title_en || !content_markdown_en) {
-        throw new functions.https.HttpsError("invalid-argument", "Title and content are required.");
+    const { title_en, content_markdown_en, tags, category, excerpt, imageUrl, dataAiHint, author } = data;
+    if (!title_en || !content_markdown_en || !category || !excerpt) {
+        throw new functions.https.HttpsError("invalid-argument", "Title, content, category, and excerpt are required.");
     }
 
     try {
         const newArticleRef = await db.collection('knowledge_articles').add({
             title_en,
             content_markdown_en,
+            category: category || "General", // e.g., 'Blog', 'Industry News'
+            excerpt: excerpt,
+            imageUrl: imageUrl || null,
+            dataAiHint: dataAiHint || null,
             tags: tags || [],
+            author: author || "DamDoh Team",
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
@@ -111,6 +116,61 @@ export const createKnowledgeArticle = functions.https.onCall(async (data, contex
     } catch (error: any) {
         console.error("Error creating knowledge article:", error);
         throw new functions.https.HttpsError("internal", "Failed to create article.", { originalError: error.message });
+    }
+});
+
+
+/**
+ * Fetches all knowledge articles, ordered by creation date.
+ */
+export const getKnowledgeArticles = functions.https.onCall(async (data, context) => {
+    try {
+        const articlesSnapshot = await db.collection('knowledge_articles').orderBy('createdAt', 'desc').get();
+        const articles = articlesSnapshot.docs.map(doc => ({ 
+            id: doc.id, 
+            ...doc.data(),
+            // Ensure timestamps are ISO strings for the client
+            createdAt: doc.data().createdAt.toDate().toISOString(),
+            updatedAt: doc.data().updatedAt.toDate().toISOString(),
+        }));
+        return { success: true, articles };
+    } catch (error) {
+        console.error("Error fetching articles:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch articles.");
+    }
+});
+
+
+/**
+ * Fetches a single knowledge article by its ID.
+ */
+export const getKnowledgeArticleById = functions.https.onCall(async (data, context) => {
+    const { articleId } = data;
+    if (!articleId) {
+        throw new functions.https.HttpsError("invalid-argument", "An articleId must be provided.");
+    }
+
+    try {
+        const articleDoc = await db.collection('knowledge_articles').doc(articleId).get();
+        if (!articleDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Article not found.");
+        }
+        const articleData = articleDoc.data()!;
+        return { 
+            success: true, 
+            article: {
+                id: articleDoc.id,
+                ...articleData,
+                createdAt: articleData.createdAt.toDate().toISOString(),
+                updatedAt: articleData.updatedAt.toDate().toISOString(),
+            }
+        };
+    } catch (error) {
+        console.error(`Error fetching article ${articleId}:`, error);
+        if (error instanceof functions.https.HttpsError) {
+          throw error;
+        }
+        throw new functions.https.HttpsError("internal", "Failed to fetch article details.");
     }
 });
 
