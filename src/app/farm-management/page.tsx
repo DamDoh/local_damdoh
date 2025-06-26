@@ -11,11 +11,6 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Super App Vision Note: The Farmer's Hub is a primary module.
-// It must be simple to use but powerful enough to form the basis
-// of a farmer's digital operations. Data entered here (Farms, Crops)
-// is the foundational data that flows into other modules like Traceability and Marketplace.
-
 interface Farm {
   id: string;
   name: string;
@@ -39,7 +34,7 @@ export default function FarmManagementPage() {
   const [farms, setFarms] = useState<Farm[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const functions = getFunctions(firebaseApp);
-  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), []);
+  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), [functions]);
 
   useEffect(() => {
     if (user) {

@@ -11,10 +11,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { TrustScoreWidget } from './TrustScoreWidget';
 import type { FarmerDashboardData } from '@/lib/types';
-import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Pie, PieChart, Cell } from "recharts"
 import { Badge } from '@/components/ui/badge';
-
 
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
@@ -123,8 +120,8 @@ export const FarmerDashboard = () => {
                                     <p className="text-xs text-muted-foreground mt-1">{buyer.request}</p>
                                 </div>
                                 <Button asChild size="sm" className="w-full sm:w-auto">
-                                    <Link href={`/messages/new/${buyer.contactId}`}>
-                                        <MessageSquare className="h-4 w-4 mr-2" />
+                                    <Link href={`/messages?with=${buyer.contactId}`}>
+                                        <MessageSquare className="mr-2 h-4 w-4" />
                                         Initiate Contact
                                     </Link>
                                 </Button>
