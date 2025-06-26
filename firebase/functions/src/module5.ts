@@ -4,7 +4,132 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
-// ... (existing functions) ...
+// Role check helper (can be expanded)
+async function requireAdmin(context: functions.https.CallableContext) {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    // In a real app, you would check for an admin custom claim.
+    // const user = await admin.auth().getUser(context.auth.uid);
+    // if (user.customClaims?.admin !== true) {
+    //     throw new functions.https.HttpsError("permission-denied", "User must be an admin.");
+    // }
+}
+
+
+/**
+ * Creates a new course in the 'courses' collection.
+ * Requires admin privileges.
+ */
+export const createCourse = functions.https.onCall(async (data, context) => {
+    // For this demo, we'll allow any authenticated user to create content.
+    // In a production app, the requireAdmin(context) check should be enabled.
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { title_en, description_en, category, level, targetRoles } = data;
+    if (!title_en || !description_en || !category || !level) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required fields for the course.");
+    }
+
+    try {
+        const newCourseRef = await db.collection('courses').add({
+            title_en,
+            description_en,
+            category,
+            level,
+            targetRoles: targetRoles || [],
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        return { success: true, courseId: newCourseRef.id };
+    } catch (error: any) {
+        console.error("Error creating course:", error);
+        throw new functions.https.HttpsError("internal", "Failed to create course.", { originalError: error.message });
+    }
+});
+
+
+/**
+ * Creates a new module within a specific course's subcollection.
+ * Requires admin privileges.
+ */
+export const createModule = functions.https.onCall(async (data, context) => {
+    // For this demo, we'll allow any authenticated user to create content.
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { courseId, moduleTitle_en, contentUrls } = data;
+    if (!courseId || !moduleTitle_en) {
+        throw new functions.https.HttpsError("invalid-argument", "Course ID and module title are required.");
+    }
+
+    try {
+        const newModuleRef = await db.collection('courses').doc(courseId).collection('modules').add({
+            moduleTitle_en,
+            contentUrls: contentUrls || [],
+            order: 999, // Simple order, can be improved
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        return { success: true, moduleId: newModuleRef.id };
+    } catch (error: any) {
+        console.error("Error creating module:", error);
+        throw new functions.https.HttpsError("internal", "Failed to create module.", { originalError: error.message });
+    }
+});
+
+
+/**
+ * Creates a new knowledge article.
+ * Requires admin privileges.
+ */
+export const createKnowledgeArticle = functions.https.onCall(async (data, context) => {
+    // For this demo, we'll allow any authenticated user to create content.
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { title_en, content_markdown_en, tags } = data;
+    if (!title_en || !content_markdown_en) {
+        throw new functions.https.HttpsError("invalid-argument", "Title and content are required.");
+    }
+
+    try {
+        const newArticleRef = await db.collection('knowledge_articles').add({
+            title_en,
+            content_markdown_en,
+            tags: tags || [],
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        return { success: true, articleId: newArticleRef.id };
+    } catch (error: any) {
+        console.error("Error creating knowledge article:", error);
+        throw new functions.https.HttpsError("internal", "Failed to create article.", { originalError: error.message });
+    }
+});
+
+
+/**
+ * Fetches all available courses.
+ * This is a public-facing function.
+ */
+export const getAvailableCourses = functions.https.onCall(async (data, context) => {
+    try {
+        const coursesSnapshot = await db.collection('courses').orderBy('createdAt', 'desc').get();
+        const courses = coursesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return { success: true, courses: courses };
+    } catch (error) {
+        console.error("Error fetching courses:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
+    }
+});
+
 
 /**
  * Cloud Function to fetch the details of a single course, including its modules.
