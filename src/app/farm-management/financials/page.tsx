@@ -33,7 +33,7 @@ export default function FinancialDashboardPage() {
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
   const [transactions, setTransactions] = useState<FinancialTransaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const getFinancialsCallable = useMemo(() => httpsCallable(functions, 'getFinancialSummaryAndTransactions'), [functions]);
+  const getFinancialsCallable = useMemo(() => httpsCallable(functions, 'getFinancialSummaryAndTransactions'), []);
 
   useEffect(() => {
     if (!user) {

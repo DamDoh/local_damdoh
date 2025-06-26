@@ -347,7 +347,7 @@ export interface FiDashboardData {
 }
 
 export interface FieldAgentDashboardData {
-    assignedFarmers: {
+    assignedFarmersOverview: {
         id: string;
         name: string;
         farmLocation: string;

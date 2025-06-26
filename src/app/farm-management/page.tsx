@@ -39,7 +39,7 @@ export default function FarmManagementPage() {
   const [farms, setFarms] = useState<Farm[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const functions = getFunctions(firebaseApp);
-  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), [functions]);
+  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), []);
 
   useEffect(() => {
     if (user) {
