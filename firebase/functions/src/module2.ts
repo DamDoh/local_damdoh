@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { stakeholderProfileSchemas } from "./stakeholder-profile-data";
 
 const db = admin.firestore();
 
@@ -10,20 +11,20 @@ const db = admin.firestore();
  * @param {any} data The profileData object to validate.
  * @throws {functions.https.HttpsError} Throws an error if validation fails.
  */
-// const validateProfileData = (role: string, data: any) => {
-//   // The schema dependency is causing deployment failures because the file is not in the functions directory.
-//   // Commenting out validation to allow deployment.
-//   // const schema = stakeholderProfileSchemas[role as keyof typeof stakeholderProfileSchemas];
-//   // if (schema) {
-//   //   const result = schema.safeParse(data);
-//   //   if (!result.success) {
-//   //     throw new functions.https.HttpsError(
-//   //       'invalid-argument',
-//   //       `Profile data validation failed for role ${role}: ${result.error.message}`
-//   //     );
-//   //   }
-//   // }
-// };
+const validateProfileData = (role: string, data: any) => {
+  // The schema dependency is causing deployment failures because the file is not in the functions directory.
+  // Commenting out validation to allow deployment.
+  const schema = stakeholderProfileSchemas[role as keyof typeof stakeholderProfileSchemas];
+  if (schema) {
+    const result = schema.safeParse(data);
+    if (!result.success) {
+      throw new functions.https.HttpsError(
+        'invalid-argument',
+        `Profile data validation failed for role ${role}: ${result.error.message}`
+      );
+    }
+  }
+};
 
 
 /**
@@ -41,9 +42,9 @@ export const upsertStakeholderProfile = functions.https.onCall(async (data, cont
   }
 
   // Validate the role-specific data before writing to the database
-  // if (profileData) {
-  //   validateProfileData(primaryRole, profileData);
-  // }
+  if (profileData) {
+    validateProfileData(primaryRole, profileData);
+  }
 
   const userId = context.auth.uid;
   
