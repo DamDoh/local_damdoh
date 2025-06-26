@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -10,13 +10,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Users, FileText, MessageSquare, CheckCircle } from 'lucide-react';
+import { Users, FileText, MessageSquare } from 'lucide-react';
 import type { AgronomistDashboardData } from '@/lib/types';
 
-
 const functions = getFunctions(firebaseApp);
-const getAgronomistDashboardDataCallable = httpsCallable<void, AgronomistDashboardData>(functions, 'getAgronomistDashboardData');
-
+const getAgronomistDashboardDataCallable = httpsCallable<void, { assignedFarmersOverview: any[], pendingConsultationRequests: any[], knowledgeBaseContributions: any[] }>(functions, 'getAgronomistDashboardData');
 
 export const AgronomistDashboard = () => {
   const [dashboardData, setDashboardData] = useState<AgronomistDashboardData | null>(null);
@@ -39,8 +37,7 @@ export const AgronomistDashboard = () => {
     };
 
     fetchData();
-
-  }, [getAgronomistDashboardDataCallable]);
+  }, []);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -99,14 +96,14 @@ export const AgronomistDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.pendingConsultationRequests.map((request) => (
+                   {dashboardData.pendingConsultationRequests.map((request: any) => (
                      <TableRow key={request.id}>
                        <TableCell className="font-medium">{request.farmerName}</TableCell>
                        <TableCell>{request.issueSummary}</TableCell>
-                       <TableCell>{request.requestDate}</TableCell>
+                       <TableCell>{new Date(request.requestDate.seconds * 1000).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={request.actionLink}>View Request</Link>
+                           <Link href={`/consultations/${request.id}`}>View Request</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -138,15 +135,15 @@ export const AgronomistDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.assignedFarmersOverview.map((farmer) => (
+                   {dashboardData.assignedFarmersOverview.map((farmer: any) => (
                      <TableRow key={farmer.id}>
                        <TableCell className="font-medium">{farmer.name}</TableCell>
                        <TableCell>{farmer.farmLocation}</TableCell>
-                       <TableCell>{farmer.lastConsultation}</TableCell>
+                       <TableCell>{new Date(farmer.lastConsultation.seconds * 1000).toLocaleDateString()}</TableCell>
                        <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={farmer.actionLink}>View Profile</Link>
+                           <Link href={`/profiles/${farmer.id}`}>View Profile</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -168,14 +165,14 @@ export const AgronomistDashboard = () => {
             <CardContent>
                 {dashboardData.knowledgeBaseContributions.length > 0 ? (
                     <div className="space-y-3">
-                        {dashboardData.knowledgeBaseContributions.map((contribution) => (
+                        {dashboardData.knowledgeBaseContributions.map((contribution: any) => (
                             <div key={contribution.id} className="text-sm p-2 border rounded-lg">
                                 <div className="flex justify-between items-center">
                                     <p className="font-medium">{contribution.title}</p>
                                     <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
                                 </div>
                                 <Button asChild variant="link" size="sm" className="px-0 pt-1">
-                                    <Link href={contribution.actionLink}>View Details</Link>
+                                    <Link href={`/knowledge/${contribution.id}`}>View Details</Link>
                                 </Button>
                             </div>
                         ))}

@@ -12,7 +12,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 
 export default function CreateGroupPage() {

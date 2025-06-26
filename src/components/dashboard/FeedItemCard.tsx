@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -20,7 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
 

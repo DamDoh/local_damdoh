@@ -2,7 +2,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import {getFirestore, collection, query, where, getDocs, limit} from 'firebase/firestore';
-import {firebaseApp} from '@/lib/firebase';
+import { app as firebaseApp } from '@/lib/firebase/client';
 
 const db = getFirestore(firebaseApp);
 

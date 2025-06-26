@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -11,7 +11,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumGroup, UserProfile } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 
@@ -36,39 +36,40 @@ export default function GroupPage() {
     const leaveGroup = useMemo(() => httpsCallable(functions, 'leaveGroup'), [functions]);
 
 
+    const fetchData = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const [groupDetailsResult, groupMembersResult] = await Promise.all([
+                getGroupDetails({ groupId }),
+                getGroupMembers({ groupId })
+            ]);
+
+            setGroup(groupDetailsResult.data as ForumGroup);
+            const fetchedMembers = groupMembersResult.data as UserProfile[]
+            setMembers(fetchedMembers);
+
+            if (user) {
+                const memberIds = fetchedMembers.map(m => m.id);
+                setIsMember(memberIds.includes(user.uid));
+            }
+
+        } catch (error) {
+            console.error("Error fetching group data:", error);
+             toast({
+                title: "Failed to load group",
+                description: "There was a problem fetching the group details.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [groupId, getGroupDetails, getGroupMembers, user, toast]);
+
+
     useEffect(() => {
         if (!groupId) return;
-
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const [groupDetailsResult, groupMembersResult] = await Promise.all([
-                    getGroupDetails({ groupId }),
-                    getGroupMembers({ groupId })
-                ]);
-
-                setGroup(groupDetailsResult.data as ForumGroup);
-                setMembers(groupMembersResult.data as UserProfile[]);
-
-                if (user) {
-                    const memberIds = (groupMembersResult.data as UserProfile[]).map(m => m.id);
-                    setIsMember(memberIds.includes(user.uid));
-                }
-
-            } catch (error) {
-                console.error("Error fetching group data:", error);
-                 toast({
-                    title: "Failed to load group",
-                    description: "There was a problem fetching the group details.",
-                    variant: "destructive"
-                });
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
         fetchData();
-    }, [groupId, getGroupDetails, getGroupMembers, user, toast]);
+    }, [groupId, fetchData]);
 
     const handleJoinGroup = async () => {
         if (!user) {
@@ -81,9 +82,9 @@ export default function GroupPage() {
             setIsMember(true);
             setMembers(prev => [...prev, { id: user.uid, displayName: user.displayName || 'You', photoURL: user.photoURL || '' }]);
             toast({ title: "Successfully joined the group!" });
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error joining group:", error);
-            toast({ title: "Failed to join group", description: "An error occurred. Please try again.", variant: "destructive" });
+            toast({ title: "Failed to join group", description: error.message || "An error occurred. Please try again.", variant: "destructive" });
         } finally {
             setIsJoining(false);
         }
@@ -98,9 +99,9 @@ export default function GroupPage() {
             setIsMember(false);
             setMembers(prev => prev.filter(m => m.id !== user.uid));
             toast({ title: "You have left the group." });
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error leaving group:", error);
-            toast({ title: "Failed to leave group", description: "An error occurred. Please try again.", variant: "destructive" });
+            toast({ title: "Failed to leave group", description: error.message || "An error occurred. Please try again.", variant: "destructive" });
         } finally {
             setIsJoining(false);
         }
@@ -176,8 +177,8 @@ export default function GroupPage() {
                                         <LogOut className="mr-2 h-4 w-4" /> {isJoining ? 'Leaving...' : 'Leave Group'}
                                     </Button>
                                 ) : (
-                                    <Button onClick={handleJoinGroup} className="w-full" disabled={isJoining}>
-                                        <UserPlus className="mr-2 h-4 w-4" /> {isJoining ? 'Joining...' : 'Join Group'}
+                                    <Button onClick={handleJoinGroup} className="w-full" disabled={isJoining || !group.isPublic}>
+                                        <UserPlus className="mr-2 h-4 w-4" /> {isJoining ? 'Joining...' : (group.isPublic ? 'Join Group' : 'Request to Join')}
                                     </Button>
                                 )
                             )}
