@@ -20,6 +20,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 
 // Function to get the category icon (can be reused from marketplace page)
@@ -253,7 +254,7 @@ export default function MarketplaceItemDetailPage() {
           
           {item.listingType === 'Product' && item.price && (
             <div className="p-4 border rounded-md space-y-2 bg-muted/30">
-                <label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-2"><Ticket className="h-4 w-4"/> Have a Coupon?</label>
+                <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-2"><Ticket className="h-4 w-4"/> Have a Coupon?</Label>
                 <div className="flex gap-2">
                     <Input id="coupon-code" placeholder="Enter coupon code" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isValidatingCoupon}/>
                     <Button onClick={handleCouponApply} disabled={isValidatingCoupon || !couponCode.trim()}>
