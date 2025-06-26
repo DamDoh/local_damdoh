@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, AgronomistDashboardData, InsuranceProviderDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, AgroExportDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -166,8 +166,24 @@ export const getFiDashboardData = functions.https.onCall(async (data, context): 
     return mockData;
 });
 
-export const getAgroExportDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("agro-export-dashboard", context);
+export const getAgroExportDashboardData = functions.https.onCall(async (data, context): Promise<AgroExportDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    const mockData: AgroExportDashboardData = {
+        pendingCustomsDocs: [
+            { id: 'doc1', vtiLink: '/traceability/vti-123', destination: 'Rotterdam, NL', status: 'Awaiting Phytosanitary Certificate' },
+            { id: 'doc2', vtiLink: '/traceability/vti-456', destination: 'Hamburg, DE', status: 'Ready for Submission' },
+        ],
+        trackedShipments: [
+            { id: 'ship1', status: 'At Sea', location: 'Indian Ocean', carrier: 'Maersk' },
+            { id: 'ship2', status: 'In Port', location: 'Mombasa Port', carrier: 'MSC' },
+        ],
+        complianceAlerts: [
+            { id: 'alert1', content: 'New EU organic labeling requirements effective Q4 2024.', actionLink: '/news/eu-organic-update' }
+        ]
+    };
+    return mockData;
 });
 
 export const getInputSupplierDashboardData = functions.https.onCall(async (data, context): Promise<InputSupplierDashboardData> => {
@@ -241,16 +257,71 @@ export const getCooperativeDashboardData = functions.https.onCall(async (data, c
     return mockData;
 });
 
-export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("energy-provider-dashboard", context);
+export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context): Promise<EnergyProviderDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: EnergyProviderDashboardData = {
+        projectLeads: [
+            { id: 'lead1', entityName: 'Rift Valley Growers', location: 'Nakuru, Kenya', estimatedEnergyNeed: 'High', status: 'New', actionLink: '#' },
+            { id: 'lead2', entityName: 'Coastal Processors', location: 'Mombasa, Kenya', estimatedEnergyNeed: 'Medium', status: 'Proposal Sent', actionLink: '#' },
+        ],
+        activeProjects: [
+            { id: 'proj1', entityName: 'Green Valley Organics', location: 'Naivasha, Kenya', solutionType: 'Solar-powered irrigation pump', installationDate: new Date(Date.now() - 86400000 * 30).toISOString(), status: 'Completed', actionLink: '#' },
+        ],
+        impactMetrics: {
+            totalInstallations: 15,
+            totalEstimatedCarbonReduction: '120 tons CO2e/year',
+            actionLink: '#',
+        }
+    };
+
+    return mockData;
 });
 
-export const getPackagingSupplierDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("packaging-supplier-dashboard", context);
+export const getPackagingSupplierDashboardData = functions.https.onCall(async (data, context): Promise<PackagingSupplierDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockData: PackagingSupplierDashboardData = {
+        demandForecast: {
+            productType: "Biodegradable Pouches",
+            unitsNeeded: 500000,
+            for: "Dried Fruit Exporters",
+        },
+        integrationRequests: [
+            { from: 'Premium Processors', request: 'API access for automated ordering', actionLink: '#' },
+        ],
+        sustainableShowcase: {
+            views: 1250,
+            leads: 45,
+        }
+    };
+    
+    return mockData;
 });
 
-export const getRegulatorDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("regulator-dashboard", context);
+export const getRegulatorDashboardData = functions.https.onCall(async (data, context): Promise<RegulatorDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockData: RegulatorDashboardData = {
+        complianceRiskAlerts: [
+            { id: 'alert1', region: 'East Africa', issue: 'Unverified organic claims on maize exports.', severity: 'High', actionLink: '#' },
+        ],
+        pendingCertifications: {
+            count: 8,
+            actionLink: '#',
+        },
+        supplyChainAnomalies: [
+            { id: 'anomaly1', description: "VTI batch #VTI-ABC-123 shows unusually long transport time between farm and processing unit.", level: 'Medium', vtiLink: '/traceability/vti-abc-123' },
+        ]
+    };
+    
+    return mockData;
 });
 
 export const getQaDashboardData = functions.https.onCall(async (data, context): Promise<QaDashboardData> => {
