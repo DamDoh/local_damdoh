@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -108,22 +108,27 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
     const [events, setEvents] = useState<TraceabilityEvent[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const functions = getFunctions(firebaseApp);
-    const getEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
+    // There is no getTraceabilityEventsByFarmField function yet, this will fail
+    // We need to implement this in a future step. For now, it will be empty.
+    // const getEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
 
     useEffect(() => {
         const fetchEvents = async () => {
             setIsLoading(true);
             try {
-                const result = await getEventsCallable({ farmFieldId });
-                setEvents(result.data as TraceabilityEvent[]);
+                // This call will fail silently as the function does not exist.
+                // const result = await getEventsCallable({ farmFieldId });
+                // setEvents(result.data as TraceabilityEvent[]);
+                setEvents([]); // Mocking empty for now
             } catch (error) {
                 console.error("Error fetching activity log:", error);
+                setEvents([]);
             } finally {
                 setIsLoading(false);
             }
         };
         fetchEvents();
-    }, [farmFieldId, getEventsCallable]);
+    }, [farmFieldId]);
 
     if (isLoading) {
         return <div className="p-4"><Skeleton className="h-16 w-full" /></div>;

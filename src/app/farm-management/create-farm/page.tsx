@@ -31,7 +31,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { firebaseApp } from "@/lib/firebase";
+import { app as firebaseApp } from "@/lib/firebase/client";
 import { LandPlot } from "lucide-react";
 
 

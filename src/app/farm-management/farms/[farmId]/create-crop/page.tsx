@@ -35,7 +35,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { firebaseApp } from "@/lib/firebase";
+import { app as firebaseApp } from "@/lib/firebase/client";
 
 export default function CreateCropPage() {
   const router = useRouter();

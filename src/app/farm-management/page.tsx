@@ -8,7 +8,7 @@ import { Sprout, Home, Recycle, FlaskConical, ArrowRight, Tractor, DollarSign, B
 import { useEffect, useState, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface Farm {
