@@ -104,6 +104,44 @@ export interface MobileDiscoverItem {
   dataAiHint?: string;
 }
 
+export interface ForumGroup {
+  id: string;
+  name: string;
+  description: string;
+  isPublic: boolean;
+  memberCount: number;
+  ownerId: string;
+  createdAt: string; // ISO string
+}
+
+export interface Conversation {
+  id: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  lastMessage: string;
+  timestamp: string;
+  unreadCount: number;
+}
+export interface Message {
+  id: string;
+  senderId: string;
+  content: string;
+  timestamp: string;
+}
+export interface Notification {
+  id: string;
+  actorId: string;
+  userId: string;
+  type: 'like' | 'comment';
+  postId: string;
+  read: boolean;
+  createdAt: any; // Firestore Timestamp
+}
+
+
 // =================================================================
 // 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
 // These types serve as a blueprint for the data required for the
@@ -616,30 +654,4 @@ export interface TraceabilityEvent {
     lng: number;
   };
   payload: { [key: string]: any };
-}
-export interface Conversation {
-  id: string;
-  participant: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  lastMessage: string;
-  timestamp: string;
-  unreadCount: number;
-}
-export interface Message {
-  id: string;
-  senderId: string;
-  content: string;
-  timestamp: string;
-}
-export interface Notification {
-  id: string;
-  actorId: string;
-  userId: string;
-  type: 'like' | 'comment';
-  postId: string;
-  read: boolean;
-  createdAt: any; // Firestore Timestamp
 }
