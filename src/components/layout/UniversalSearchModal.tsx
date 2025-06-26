@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState, useEffect, FormEvent, Fragment, useRef } from 'react';
+import { useState, useEffect, FormEvent, Fragment, useRef, useCallback } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -41,17 +42,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     }
   }, [chatHistory, isLoading]);
 
-  useEffect(() => {
-    if (isOpen && initialQuery && chatHistory.length === 0) {
-      handleQuerySubmit(initialQuery);
-    } else if (!isOpen) {
-      setChatHistory([]);
-      setCurrentQuery("");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, initialQuery]);
-
-  const handleQuerySubmit = async (queryToSubmit: string) => {
+  const handleQuerySubmit = useCallback(async (queryToSubmit: string) => {
     if (!queryToSubmit.trim() || isLoading) return;
 
     const newUserMessage: ChatMessage = {
@@ -93,7 +84,20 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (isOpen && initialQuery && chatHistory.length === 0) {
+      handleQuerySubmit(initialQuery);
+    } else if (!isOpen) {
+      // Reset state when modal closes
+      setTimeout(() => {
+        setChatHistory([]);
+        setCurrentQuery("");
+        setIsLoading(false);
+      }, 300); // Delay to allow fade-out animation
+    }
+  }, [isOpen, initialQuery, handleQuerySubmit, chatHistory.length]);
 
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
