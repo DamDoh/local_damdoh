@@ -5,13 +5,36 @@ import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDash
 
 const db = admin.firestore();
 
+/**
+ * Serializes a Firestore document snapshot, converting Timestamps to ISO strings.
+ * @param doc The document snapshot to serialize.
+ * @returns A serialized object with the document ID.
+ */
+function serializeDoc(doc: admin.firestore.DocumentSnapshot) {
+    const data = doc.data();
+    if (!data) return null;
+
+    const serializedData: { [key: string]: any } = {};
+    for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+            const value = data[key];
+            if (value instanceof admin.firestore.Timestamp) {
+                serializedData[key] = value.toDate().toISOString();
+            } else {
+                serializedData[key] = value;
+            }
+        }
+    }
+    return { id: doc.id, ...serializedData };
+}
+
 async function getDashboardData(collection: string, context: functions.https.CallableContext) {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
     try {
         const snapshot = await db.collection(collection).where("userId", "==", context.auth.uid).get();
-        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const data = snapshot.docs.map(serializeDoc).filter(d => d !== null);
         return { data };
     } catch (error) {
         console.error(`Error fetching ${collection}:`, error);
@@ -33,8 +56,8 @@ export const getFarmerDashboardData = functions.https.onCall(async (data, contex
 
         const [farmsSnapshot, cropsSnapshot, userProfileSnapshot] = await Promise.all([farmsPromise, cropsPromise, userProfilePromise]);
 
-        const farms = farmsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        const crops = cropsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const farms = farmsSnapshot.docs.map(doc => serializeDoc(doc));
+        const crops = cropsSnapshot.docs.map(doc => serializeDoc(doc));
 
         const userProfile = userProfileSnapshot.data();
         const certifications = userProfile?.profileData?.certifications || [];
