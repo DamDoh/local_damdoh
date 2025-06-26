@@ -24,12 +24,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Loader2, Lock, CheckCircle, AlertTriangle } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
-import { useTranslations } from 'next-intl';
 
 export default function ResetPasswordPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const t = useTranslations('Auth');
   const oobCode = searchParams.get("oobCode");
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -108,12 +106,12 @@ export default function ResetPasswordPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
          <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">{t('resetPasswordPrompt', { appName: APP_NAME })}</p>
+        <p className="text-muted-foreground mt-2">Set your new {APP_NAME} password</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t('resetPasswordTitle')}</CardTitle>
-          <CardDescription>{t('resetPasswordDescription')}</CardDescription>
+          <CardTitle className="text-2xl">Reset Password</CardTitle>
+          <CardDescription>Enter and confirm your new password.</CardDescription>
         </CardHeader>
         <CardContent>
           {authError && (
@@ -151,9 +149,9 @@ export default function ResetPasswordPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('newPasswordLabel')}</FormLabel>
+                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />New Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder={t('newPasswordPlaceholder')} {...field} />
+                        <Input type="password" placeholder="Enter your new password" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -164,9 +162,9 @@ export default function ResetPasswordPage() {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('confirmPasswordLabel')}</FormLabel>
+                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Confirm New Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder={t('confirmPasswordPlaceholder')} {...field} />
+                        <Input type="password" placeholder="Confirm your new password" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -175,10 +173,10 @@ export default function ResetPasswordPage() {
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('resettingPasswordButton')}
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Resetting Password...
                     </>
                   ) : (
-                    t('resetPasswordButton')
+                    "Reset Password"
                   )}
                 </Button>
               </form>
@@ -187,9 +185,9 @@ export default function ResetPasswordPage() {
         </CardContent>
         <CardFooter className="flex flex-col items-center text-sm">
           <p className="text-muted-foreground">
-            {t('rememberPasswordPrompt')}{" "}
+            Remember your password?{" "}
             <Link href="/auth/signin" className="font-medium text-primary hover:underline">
-              {t('signInLink')}
+              Sign In
             </Link>
           </p>
         </CardFooter>

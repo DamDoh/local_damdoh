@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Search, ShoppingCart, MessageSquare, User } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 
 interface NavItem {
   href: string;
@@ -15,21 +14,20 @@ interface NavItem {
 
 export function MobileBottomNavigation() {
   const pathname = usePathname();
-  const t = useTranslations('MobileBottomNav');
 
   const navItems: NavItem[] = [
-    { href: "/", label: t('home'), icon: Home },
-    { href: "/marketplace", label: t('market'), icon: ShoppingCart },
-    { href: "/search", label: t('search'), icon: Search },
-    { href: "/forums", label: t('forums'), icon: MessageSquare },
-    { href: "/profiles/me", label: t('profile'), icon: User },
+    { href: "/", label: "Home", icon: Home },
+    { href: "/marketplace", label: "Market", icon: ShoppingCart },
+    { href: "/search", label: "Search", icon: Search },
+    { href: "/forums", label: "Forums", icon: MessageSquare },
+    { href: "/profiles/me", label: "Profile", icon: User },
   ];
 
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background border-t border-border shadow-lg z-40 flex justify-around items-center print:hidden">
       {navItems.map((item) => {
-        const isActive = item.href === "/" ? pathname.split('/').slice(0,2).join('/') === item.href : pathname.startsWith(item.href);
+        const isActive = item.href === "/" ? pathname === "/" || pathname.startsWith('/en') || pathname.startsWith('/es') : pathname.startsWith(item.href) || pathname.startsWith(`/en${item.href}`) || pathname.startsWith(`/es${item.href}`);
         return (
           <Link
             key={item.label}

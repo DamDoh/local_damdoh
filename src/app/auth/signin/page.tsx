@@ -24,12 +24,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle, CheckCircle, Loader2, Mail, Lock } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
-import { useTranslations } from 'next-intl';
 
 export default function SignInPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const t = useTranslations('Auth');
 
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
@@ -87,12 +85,12 @@ export default function SignInPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
         <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">{t('signInWelcome', { appName: APP_NAME })}</p>
+        <p className="text-muted-foreground mt-2">Welcome back to {APP_NAME}!</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t('signInTitle')}</CardTitle>
-          <CardDescription>{t('signInDescription')}</CardDescription>
+          <CardTitle className="text-2xl">Sign In</CardTitle>
+          <CardDescription>Enter your credentials to access your account.</CardDescription>
         </CardHeader>
         <CardContent>
           {authError && (
@@ -109,9 +107,9 @@ export default function SignInPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />{t('emailLabel')}</FormLabel>
+                    <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />Email Address</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder={t('emailPlaceholder')} {...field} />
+                      <Input type="email" placeholder="you@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,10 +121,10 @@ export default function SignInPage() {
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex justify-between items-center">
-                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('passwordLabel')}</FormLabel>
+                      <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Password</FormLabel>
                       <Link href="/auth/forgot-password"
                             className="text-xs text-primary hover:underline">
-                        {t('forgotPasswordLink')}
+                        Forgot password?
                       </Link>
                     </div>
                     <FormControl>
@@ -139,10 +137,10 @@ export default function SignInPage() {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('signingInButton')}
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Signing In...
                   </>
                 ) : (
-                  t('signInButton')
+                  "Sign In"
                 )}
               </Button>
             </form>
@@ -150,9 +148,9 @@ export default function SignInPage() {
         </CardContent>
         <CardFooter className="flex flex-col items-center text-sm">
           <p className="text-muted-foreground">
-            {t('noAccountPrompt')}{" "}
+            Don't have an account?{" "}
             <Link href="/auth/signup" className="font-medium text-primary hover:underline">
-              {t('signUpLink')}
+              Sign Up
             </Link>
           </p>
         </CardFooter>

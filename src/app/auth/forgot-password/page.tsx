@@ -24,12 +24,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle, CheckCircle, Loader2, Mail, ArrowLeft } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
-import { useTranslations } from 'next-intl';
 
 export default function ForgotPasswordPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const t = useTranslations('Auth');
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [emailSent, setEmailSent] = useState(false);
@@ -93,12 +91,12 @@ export default function ForgotPasswordPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
          <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">{t('forgotPasswordResetPrompt', { appName: APP_NAME })}</p>
+        <p className="text-muted-foreground mt-2">Reset your {APP_NAME} password</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t('forgotPasswordTitle')}</CardTitle>
-          <CardDescription>{t('forgotPasswordDescription')}</CardDescription>
+          <CardTitle className="text-2xl">Forgot Password?</CardTitle>
+          <CardDescription>Enter your email address and we'll send you a link to reset your password.</CardDescription>
         </CardHeader>
         <CardContent>
           {authError && !emailSent && (
@@ -111,7 +109,6 @@ export default function ForgotPasswordPage() {
 
           {emailSent && (
  <>
- {/* Success Alert */}
             <Alert variant="default" className="mb-4 border-green-500 bg-green-50 text-green-700 dark:border-green-600 dark:bg-green-900/30 dark:text-green-300">
               <CheckCircle className="h-4 w-4 !text-green-500 dark:!text-green-400" />
               <AlertTitle>Email Sent</AlertTitle>
@@ -120,10 +117,9 @@ export default function ForgotPasswordPage() {
               </AlertDescription>
             </Alert>
 
- {/* Go to Sign In Button */}
  <div className="text-center mt-6">
  <Button asChild>
- <Link href="/auth/signin">{t('signInLink')}</Link>
+ <Link href="/auth/signin">Sign In</Link>
  </Button>
  </div>
  </>
@@ -136,9 +132,9 @@ export default function ForgotPasswordPage() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />{t('emailLabel')}</FormLabel>
+                      <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />Email Address</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder={t('emailPlaceholder')} {...field} />
+                        <Input type="email" placeholder="you@example.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -147,10 +143,10 @@ export default function ForgotPasswordPage() {
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('sendingEmailButton')}
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending Email...
                     </>
                   ) : (
-                    t('sendResetLinkButton')
+                    "Send Reset Link"
                   )}
                 </Button>
               </form>
@@ -159,9 +155,9 @@ export default function ForgotPasswordPage() {
         </CardContent>
         <CardFooter className="flex flex-col items-center text-sm">
           <p className="text-muted-foreground">
-            {t('rememberPasswordPrompt')}{" "}
+            Remember your password?{" "}
             <Link href="/auth/signin" className="font-medium text-primary hover:underline">
-              {t('signInLink')}
+              Sign In
             </Link>
           </p>
         </CardFooter>

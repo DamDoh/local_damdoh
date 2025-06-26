@@ -33,12 +33,10 @@ import { Logo } from "@/components/Logo";
 import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
 import React from "react";
-import { useTranslations } from 'next-intl';
 
 export default function SignUpPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const t = useTranslations('Auth');
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
 
@@ -128,12 +126,12 @@ export default function SignUpPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <div className="mb-8 text-center">
         <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
-        <p className="text-muted-foreground mt-2">{t('signUpWelcome', { appName: APP_NAME })}</p>
+        <p className="text-muted-foreground mt-2">Join the {APP_NAME} Agricultural Network!</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t('signUpTitle')}</CardTitle>
-          <CardDescription>{t('signUpDescription')}</CardDescription>
+          <CardTitle className="text-2xl">Create Your Account</CardTitle>
+          <CardDescription>Join our community of agricultural stakeholders.</CardDescription>
         </CardHeader>
         <CardContent>
           {authError && (
@@ -150,9 +148,9 @@ export default function SignUpPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center"><User className="mr-2 h-4 w-4 text-muted-foreground" />{t('nameLabel')}</FormLabel>
+                    <FormLabel className="flex items-center"><User className="mr-2 h-4 w-4 text-muted-foreground" />Full Name / Organization Name</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('namePlaceholder')} {...field} />
+                      <Input placeholder="Your Name or Company Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -164,11 +162,11 @@ export default function SignUpPage() {
                 name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center"><Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />{t('roleLabel')}</FormLabel>
+                    <FormLabel className="flex items-center"><Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />Your Primary Role</FormLabel>
                     <Select onValueChange={(value) => field.onChange(value as StakeholderRole)} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder={t('rolePlaceholder')} />
+                          <SelectValue placeholder="Select your role in the supply chain" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -190,9 +188,9 @@ export default function SignUpPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />{t('emailLabel')}</FormLabel>
+                    <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />Email Address</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder={t('emailPlaceholder')} {...field} />
+                      <Input type="email" placeholder="you@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -203,9 +201,9 @@ export default function SignUpPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('passwordLabel')}</FormLabel>
+                    <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder={t('passwordPlaceholder')} {...field} />
+                      <Input type="password" placeholder="•••••••• (min. 6 characters)" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -216,9 +214,9 @@ export default function SignUpPage() {
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('confirmPasswordLabel')}</FormLabel>
+                    <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />Confirm Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder={t('confirmPasswordPlaceholder')} {...field} />
+                      <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -227,11 +225,11 @@ export default function SignUpPage() {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('creatingAccountButton')}
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Creating Account...
                   </>
                 ) : (
                   <>
-                    <UserPlus className="mr-2 h-4 w-4" /> {t('signUpButton')}
+                    <UserPlus className="mr-2 h-4 w-4" /> Sign Up
                   </>
                 )}
               </Button>
@@ -240,9 +238,9 @@ export default function SignUpPage() {
         </CardContent>
         <CardFooter className="flex flex-col items-center text-sm">
           <p className="text-muted-foreground">
-            {t('alreadyHaveAccountPrompt')}{" "}
+            Already have an account?{" "}
             <Link href="/auth/signin" className="font-medium text-primary hover:underline">
-              {t('signInLink')}
+              Sign In
             </Link>
           </p>
         </CardFooter>
