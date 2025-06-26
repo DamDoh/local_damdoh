@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -14,6 +13,7 @@ import { LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { logOut } from "@/lib/auth-utils"; // Import the logOut function
 import { useToast } from "@/hooks/use-toast"; // For user feedback
+import { useRouter } from "next/navigation";
 
 interface UserAvatarProps {
   name?: string | null;
@@ -23,6 +23,7 @@ interface UserAvatarProps {
 
 export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
   const { toast } = useToast();
+  const router = useRouter();
 
   const getInitials = (name?: string | null) => {
     if (!name) return "??";
@@ -36,10 +37,11 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
       await logOut();
       toast({
         title: "Logged Out",
-        description: "You have been successfully logged out. Please refresh or navigate to see changes.",
+        description: "You have been successfully logged out.",
       });
-      // Add redirection or global state update here if needed
-      // For example: window.location.href = '/login';
+      // Redirect to home page after logout to refresh state
+      router.push('/');
+      router.refresh();
     } catch (error) {
       toast({
         variant: "destructive",
@@ -52,7 +54,7 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center rounded-full p-1 hover:bg-accent/50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+        <button className="flex items-center rounded-full p-1 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
           <Avatar className="h-9 w-9">
             {imageUrl && <AvatarImage src={imageUrl} alt={name ?? "User"} data-ai-hint="profile person" />}
             <AvatarFallback>{getInitials(name)}</AvatarFallback>
@@ -74,14 +76,13 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
           </>
         )}
         <DropdownMenuItem asChild>
-          <Link href="/profiles/me" className="flex items-center gap-2">
+          <Link href="/profiles/me" className="flex items-center gap-2 cursor-pointer">
             <User className="h-4 w-4" />
             <span>My Profile</span>
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/settings" className="flex items-center gap-2">
+          <Link href="/settings" className="flex items-center gap-2 cursor-pointer">
             <Settings className="h-4 w-4" />
             <span>Settings</span>
           </Link>
