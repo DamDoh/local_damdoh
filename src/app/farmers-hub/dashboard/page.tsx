@@ -1,93 +1,618 @@
+import type { z } from 'zod';
+import type {
+  StakeholderProfileSchema,
+  MarketplaceItemSchema,
+  ForumTopicSchema,
+  ForumPostSchema,
+  AgriEventSchema
+} from './schemas';
+import type { CategoryNode as CatNodeType } from './category-data';
 
-"use client";
+// =================================================================
+// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
+// These are the primary data structures used across the application.
+// =================================================================
 
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Skeleton } from "@/components/ui/skeleton";
-import { Lightbulb, TrendingUp, ChevronsRight } from 'lucide-react';
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+export type ForumPost = z.infer<typeof ForumPostSchema>;
+export type AgriEvent = z.infer<typeof AgriEventSchema>;
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
-// ... (Conceptual data fetching functions remain the same) ...
-// const fetchFarmerData = async (userId) => { ... };
-// const fetchProfitabilityInsights = async (userId) => { ... };
+// =================================================================
+// 2. UI & COMPONENT-SPECIFIC TYPES
+// Types used for navigation, UI components, and specific page features.
+// =================================================================
 
-// --- UI/UX Enhanced Component: AiInsightsSection ---
-const AiInsightsSection = ({ insights, isLoading }) => (
-  <Card>
-    <CardHeader>
-      <div className="flex items-center gap-3">
-        <Lightbulb className="w-6 h-6 text-blue-600" />
-        <CardTitle>AI Business Advisor</CardTitle>
-      </div>
-      <CardDescription>Your farm's data, transformed into actionable business advice.</CardDescription>
-    </CardHeader>
-    <CardContent>
-      {isLoading ? (
-        <div className="space-y-4">
-          <Skeleton className="h-20 w-full" />
-          <Skeleton className="h-20 w-full" />
-        </div>
-      ) : (
-        <ul className="space-y-4">
-          {insights.map(insight => (
-            <li key={insight.id} className="p-4 bg-blue-50 rounded-lg border border-blue-100">
-              <div className="flex items-start gap-4">
-                <div className="p-2 bg-blue-100 rounded-full mt-1">
-                  <TrendingUp className="w-5 h-5 text-blue-700" />
-                </div>
-                <div>
-                  <h4 className="font-bold">{insight.title}</h4>
-                  <p className="text-sm text-gray-700 mt-1">{insight.details}</p>
-                  <Button variant="link" className="p-0 h-auto text-blue-600 mt-2">
-                    {insight.recommendation}
-                    <ChevronsRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </CardContent>
-  </Card>
-);
+export interface NavItem {
+ title: string;
+ href: string;
+ icon: React.ElementType;
+ disabled?: boolean;
+ external?: boolean;
+ label?: string;
+ description?: string;
+ active?: boolean;
+}
 
-export default function FarmersHubDashboard() {
-  const [dashboardState, setDashboardState] = useState({ data: null, insights: [], isLoading: true, error: null });
+export interface PollOption {
+  id?: string;
+  text: string;
+  votes: number;
+}
 
-  useEffect(() => {
-    const loadData = async () => {
-      // In a real app, these would be calls to our backend functions
-      // const farmerPromise = getFarmerDashboardData();
-      // const insightsPromise = getProfitabilityInsights();
-      // const [farmerResult, insightsResult] = await Promise.all([farmerPromise, insightsPromise]);
-      // For now, we simulate
-      const farmerData = { farmerName: "Sokhom" };
-      const insightData = [
-        { id: 'insight1', title: 'Maize in Field A is a High Performer', details: '35% higher net margin this season.', recommendation: 'Consider allocating more of Field C to Maize.' },
-        { id: 'insight2', title: 'Opportunity to Optimize Fertilizer Costs', details: 'Spending on NPK for Rice was 20% higher than other crops.', recommendation: 'Explore soil testing to optimize usage.' },
-      ];
-      setDashboardState({ data: farmerData, insights: insightData, isLoading: false, error: null });
+export interface PostReply {
+  id: string;
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  content: string;
+  timestamp: string;
+}
+
+export interface FeedItem {
+  id: string;
+  type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
+  timestamp: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  userHeadline?: string;
+  content?: string;
+  postImage?: string;
+  dataAiHint?: string;
+  likesCount: number;
+  commentsCount: number;
+  link?: string;
+  agriEvent?: AgriEvent;
+  pollOptions?: PollOption[];
+  relatedUser?: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+}
+
+export interface DirectMessage {
+  id: string;
+  senderName: string;
+  senderAvatarUrl?: string;
+  lastMessage: string;
+  timestamp: string;
+  unread?: boolean;
+  dataAiHint?: string;
+  relatedListingId?: string;
+}
+
+export interface MobileHomeCategory {
+  id: string;
+  name: string;
+  icon: React.ElementType;
+  href: string;
+  dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
+  link: string;
+  dataAiHint?: string;
+}
+
+// =================================================================
+// 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
+// These types serve as a blueprint for the data required for the
+// various stakeholder-specific dashboards and future features.
+// =================================================================
+
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: string; // ISO string
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
+
+export interface YieldDataPoint {
+    crop: string;
+    historical: number;
+    predicted: number;
+    unit: string;
+}
+
+export interface FarmerDashboardData {
+  yieldData: YieldDataPoint[];
+  irrigationSchedule: {
+    next_run: string;
+    duration_minutes: number;
+    recommendation: string;
+  };
+  matchedBuyers: {
+    id: string;
+    name: string;
+    matchScore: number;
+    request: string;
+    contactId: string;
+  }[];
+  trustScore: {
+      reputation: number;
+      certifications: {
+          id: string;
+          name: string;
+          issuingBody: string;
+      }[];
+  }
+}
+
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
     };
-    loadData();
-  }, []);
-  
-  // ... (Skeleton and Error rendering) ...
-  if (dashboardState.isLoading) return <div>Loading Dashboard...</div>;
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+}
+
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    region: string;
+    issue: string;
+    severity: string;
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: string;
+    vtiLink: string;
+  }[];
+}
+
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+        actionLink: string;
+    }[];
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
+        actionLink: string;
+    };
+}
+
+export interface FiDashboardData {
+    pendingApplications: {
+        id: string;
+        applicantName: string;
+        type: string;
+        amount: number;
+        riskScore: number;
+        actionLink: string;
+    }[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string;
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
+}
+
+export interface InputSupplierDashboardData {
+    demandForecast: {
+        id: string;
+        region: string;
+        product: string;
+        trend: string;
+        reason: string;
+    }[];
+    productPerformance: {
+        id: string;
+        productName: string;
+        rating: number;
+        feedback: string;
+        link: string;
+    }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
+}
+
+export interface EnergyProviderDashboardData {
+    projectLeads: {
+        id: string;
+        entityName: string; // Farm, Processor, etc.
+        location: string;
+        estimatedEnergyNeed: string; // e.g., 'High', 'Medium', 'Low', or specific kWh/year
+        status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+        actionLink: string;
+    }[];
+    activeProjects: {
+        id: string;
+        entityName: string;
+        location: string;
+        solutionType: string; // e.g., 'Solar Panels', 'Biogas Digester'
+        installationDate: string;
+        status: 'In Progress' | 'Completed';
+        actionLink: string;
+    }[];
+    impactMetrics: {
+        totalInstallations: number;
+        totalEstimatedCarbonReduction: string; // e.g., '5000 tons CO2e/year'
+        actionLink: string;
+    };
+}
+
+export interface PackagingSupplierDashboardData {
+    demandForecast: {
+        productType: string;
+        unitsNeeded: number;
+        for: string;
+    };
+    integrationRequests: {
+        from: string;
+        request: string;
+        actionLink: string;
+    }[];
+    sustainableShowcase: {
+        views: number;
+        leads: number;
+    };
+}
+
+export interface AgroExportDashboardData {
+    pendingCustomsDocs: {
+        id: string;
+        vtiLink: string;
+        destination: string;
+        status: string;
+    }[];
+    trackedShipments: {
+        id: string;
+        status: string;
+        location: string;
+        carrier: string;
+    }[];
+    complianceAlerts: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface ProcessingUnitDashboardData {
+    yieldOptimization: {
+        currentYield: number;
+        potentialYield: number;
+        suggestion: string;
+    };
+    inventory: {
+        product: string;
+        tons: number;
+        quality: string;
+    }[];
+    wasteReduction: {
+        currentRate: number;
+        potentialRate: number;
+        insight: string;
+    };
+    packagingOrders: {
+        id: string;
+        supplierName: string;
+        orderDate: string;
+        deliveryDate: string;
+        status: 'Pending' | 'Shipped' | 'Delivered' | 'Canceled';
+        actionLink: string;
+    }[];
+    packagingInventory: {
+        packagingType: string;
+        unitsInStock: number;
+        reorderLevel: number;
+    }[];
+    packagingImpactMetrics: {
+        metric: string; // e.g., 'Recycled Content Used', 'Biodegradable Packaging Rate'
+        value: string;
+        actionLink: string;
+    }[];
+}
+
+export interface WarehouseDashboardData {
+  storageOptimization: {
+      utilization: number;
+      suggestion: string;
+  };
+  inventoryLevels: {
+      totalItems: number;
+      itemsNeedingAttention: number;
+  };
+  predictiveAlerts: {
+      id: string;
+      alert: string;
+      actionLink: string;
+  }[];
+}
+
+export interface QaDashboardData {
+    pendingInspections: {
+        id: string;
+        batchId: string;
+        productName: string;
+        sellerName: string;
+        dueDate: string;
+        actionLink: string;
+    }[];
+    recentResults: {
+        id: string;
+        productName: string;
+        result: 'Pass' | 'Fail';
+        reason?: string;
+        inspectedAt: string;
+    }[];
+    qualityMetrics: {
+        passRate: number;
+        averageScore: number;
+    };
+}
+
+export interface CertificationBodyDashboardData {
+    pendingAudits: {
+        id: string;
+        farmName: string;
+        standard: string;
+        dueDate: string;
+        actionLink: string;
+    }[];
+    certifiedEntities: {
+        id: string;
+        name: string;
+        type: 'Farmer' | 'Processor';
+        certificationStatus: string;
+        actionLink: string;
+    }[];
+    standardsMonitoring: {
+        standard: string;
+        adherenceRate: number;
+        alerts: number;
+        actionLink: string;
+    }[];
+}
+
+export interface ResearcherDashboardData {
+    availableDatasets: {
+        id: string;
+        name: string;
+        description: string;
+        dataType: string;
+        accessLevel: 'Public' | 'Anonymized' | 'Consented';
+        actionLink: string;
+    }[];
+    ongoingProjects: {
+        id: string;
+        title: string;
+        progress: number;
+        collaborators: string[];
+        actionLink: string;
+    }[];
+    knowledgeHubContributions: {
+        id: string;
+        title: string;
+        type: 'Article' | 'Methodology' | 'Tool';
+        status: 'Draft' | 'Pending Review' | 'Published';
+        actionLink: string;
+    }[];
+}
+
+export interface AgroTourismDashboardData {
+    listedExperiences: {
+        id: string;
+        title: string;
+        location: string;
+        status: 'Active' | 'Draft' | 'Paused';
+        bookingsCount: number;
+        actionLink: string;
+    }[];
+    upcomingBookings: {
+        id: string;
+        experienceTitle: string;
+        guestName: string;
+        date: string;
+        actionLink: string;
+    }[];
+    guestReviews: {
+        id: string;
+        guestName: string;
+        experienceTitle: string;
+        rating: number; // e.g., 1-5
+        comment: string;
+        actionLink: string;
+    }[];
+}
+
+export interface CrowdfunderDashboardData {
+ featuredProjects: {
+ id: string;
+ title: string;
+ farmerName: string;
+ amountSought: number;
+ amountRaised: number;
+ progress: number; // Percentage raised
+ actionLink: string;
+ }[];
+ myInvestments: {
+ id: string;
+ projectTitle: string;
+ amountInvested: number;
+ expectedReturn: string; // e.g., '10% ROI', 'Profit Share'
+ status: 'Active' | 'Completed' | 'In Progress';
+ actionLink: string;
+ }[];
+ impactReport: {
+    totalInvested: number;
+    totalImpactMetrics: { metric: string; value: string; }[];
+    actionLink: string;
+ };
+}
+
+export interface AgronomistDashboardData {
+    assignedFarmersOverview: {
+        id: string;
+        name: string;
+        farmLocation: string;
+        lastConsultation: string;
+        alerts: number; // Number of open alerts for this farmer
+        actionLink: string;
+    }[];
+    pendingConsultationRequests: {
+        id: string;
+        farmerName: string;
+        issueSummary: string;
+        requestDate: string;
+        actionLink: string;
+    }[];
+    knowledgeBaseContributions: {
+        id: string;
+        title: string;
+        status: 'Draft' | 'Pending Review' | 'Published';
+        actionLink: string;
+    }[];
+}
+
+export interface InsuranceProviderDashboardData {
+    pendingClaims: {
+        id: string;
+        policyHolderName: string;
+        policyType: string;
+        claimDate: string;
+        status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
+        actionLink: string;
+    }[];
+    activePolicies: {
+        id: string;
+        policyHolderName: string;
+        policyType: string;
+        coverageAmount: number;
+        expiryDate: string;
+        actionLink: string;
+    }[];
+    riskAssessmentAlerts: {
+        id: string;
+        policyHolderName: string;
+        alert: string;
+        severity: 'High' | 'Medium' | 'Low';
+        actionLink: string;
+    }[];
+}
+
+export interface KnfBatch {
+    id: string;
+    userId: string;
+    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
+    typeName: string;
+    ingredients: string;
+    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
+    createdAt: { _seconds: number, _nanoseconds: number } | any;
+}
 
 
-  return (
-    <div className="space-y-8 p-4 md:p-8">
-      <div>
-        <h1 className="text-3xl font-bold">Welcome, {dashboardState.data.farmerName}!</h1>
-        <p className="text-gray-600">This is your farm's command center.</p>
-      </div>
-      
-      {/* Main content can be a grid or flex layout */}
-      <AiInsightsSection insights={dashboardState.insights} isLoading={dashboardState.isLoading} />
-      
-      {/* Other dashboard components like FieldSummary, Alerts, etc. would go here */}
-      
-    </div>
-  );
+// =================================================================
+// 4. SHARED & MISCELLANEOUS TYPES
+// =================================================================
+
+// Re-export CategoryNode type from category-data.ts for easier access
+export type CategoryNode = CatNodeType;
+
+/**
+ * Represents a single event in a product's journey, linked by a VTI.
+ */
+export interface TraceabilityEvent {
+  vtiId: string;
+  timestamp: string;
+  eventType: string;
+  actorRef: string;
+  geoLocation: {
+    lat: number;
+    lng: number;
+  };
+  payload: { [key: string]: any };
 }

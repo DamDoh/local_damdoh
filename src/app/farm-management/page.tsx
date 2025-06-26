@@ -163,9 +163,13 @@ export default function FarmManagementPage() {
             <CardContent>
                  <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
                     <p className="text-sm text-muted-foreground">A summary of your farm transactions will appear here.</p>
-                    <p className="text-xs text-muted-foreground mt-1">(Financial tracking tools are under development)</p>
                 </div>
             </CardContent>
+            <CardFooter>
+                <Button asChild className="w-full">
+                    <Link href="/farm-management/financials">View Financials Dashboard <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+            </CardFooter>
         </Card>
         <Card>
             <CardHeader>

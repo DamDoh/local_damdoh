@@ -110,6 +110,23 @@ export interface MobileDiscoverItem {
 // various stakeholder-specific dashboards and future features.
 // =================================================================
 
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: string; // ISO string
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
+
 export interface YieldDataPoint {
     crop: string;
     historical: number;

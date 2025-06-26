@@ -181,3 +181,12 @@ export const resetPasswordSchema = z.object({
   path: ["confirmPassword"],
 });
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
+
+export const logFinancialTransactionSchema = z.object({
+  type: z.enum(['income', 'expense']),
+  amount: z.coerce.number({ required_error: "Amount is required.", invalid_type_error: "Amount must be a number."}).min(0.01, "Amount must be positive."),
+  currency: z.string().min(3, "Please select a currency.").max(3),
+  description: z.string().min(3, "Description is required.").max(200, "Description is too long."),
+  category: z.string().max(50, "Category is too long.").optional(),
+});
+export type LogFinancialTransactionValues = z.infer<typeof logFinancialTransactionSchema>;
