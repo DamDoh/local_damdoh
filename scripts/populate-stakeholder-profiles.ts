@@ -1,20 +1,22 @@
 
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { stakeholderProfileSchemas } from '../src/lib/stakeholder-profile-data';
 
-// IMPORTANT: Replace with your actual Firebase project configuration.
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDYrR4zOIgOynruKybSkc6Ys4vgYc9gPLM",
-  authDomain: "damdoh.firebaseapp.com",
-  projectId: "damdoh",
-  storageBucket: "damdoh.firebasestorage.app",
-  messagingSenderId: "1015729590190",
-  appId: "1:1015729590190:web:e144ce027045694b56023f"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
 let app: FirebaseApp;
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
@@ -24,8 +26,6 @@ if (!getApps().length) {
 
 const auth = getAuth(app);
 const functions = getFunctions(app);
-// If you're using the Functions emulator, connect to it
-// connectFunctionsEmulator(functions, "localhost", 5001);
 
 const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
 
@@ -36,22 +36,18 @@ const populateProfiles = async () => {
         const displayName = `${role} User`;
 
         try {
-            // Create user in Firebase Auth
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log(`Created user ${displayName} with email ${email}`);
 
-            // Sign in as the new user to get an auth token for the function call
             await signInWithEmailAndPassword(auth, email, password);
 
-            // Create a sample profile data object
             const profileData = {
                 location: "Global",
                 profileSummary: `A sample profile for a ${role}.`,
                 needs: ["Networking", "Information"],
             };
 
-            // Upsert the stakeholder profile
             await upsertStakeholderProfile({ displayName, primaryRole: role, profileData });
             console.log(`Created profile for ${displayName}`);
 
