@@ -11,15 +11,27 @@ import { httpsCallable } from 'firebase/functions';
 
 const getCourseDetailsFunction = httpsCallable(functions, 'getCourseDetails');
 
-const CourseDetailSkeleton = () => ( /* ... */ );
-const ModuleListItem = ({ moduleItem }) => (
+const CourseDetailSkeleton = () => (
+    <div className="max-w-4xl mx-auto">
+        <Skeleton className="h-10 w-3/4 mb-4" />
+        <Skeleton className="h-6 w-full mb-8" />
+        <Skeleton className="h-8 w-1/3 mb-4" />
+        <div className="space-y-4">
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-16 w-full" />
+        </div>
+    </div>
+);
+
+const ModuleListItem = ({ moduleItem }: { moduleItem: any }) => (
   <li className="p-4 border rounded-lg">
     <h3 className="font-semibold">{moduleItem.title}</h3>
   </li>
 );
 
-export default function CourseDetailPage({ params }) {
-  const [courseState, setCourseState] = useState({ course: null, isLoading: true, error: null });
+export default function CourseDetailPage({ params }: { params: { courseId: string }}) {
+  const [courseState, setCourseState] = useState<{ course: any, isLoading: boolean, error: string | null }>({ course: null, isLoading: true, error: null });
   const { courseId } = params;
 
   useEffect(() => {
@@ -35,7 +47,7 @@ export default function CourseDetailPage({ params }) {
         } else {
           throw new Error((result.data as any).message || "Failed to fetch course details.");
         }
-      } catch (err) {
+      } catch (err: any) {
         setCourseState({ course: null, isLoading: false, error: err.message });
       }
     };
@@ -62,7 +74,7 @@ export default function CourseDetailPage({ params }) {
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4">Course Curriculum</h2>
           <ul>
-            {course.modules.map((mod, index) => (
+            {course.modules.map((mod: any, index: number) => (
               <ModuleListItem key={mod.id} moduleItem={mod} />
             ))}
           </ul>

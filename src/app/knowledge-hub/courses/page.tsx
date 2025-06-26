@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,26 +12,46 @@ import { httpsCallable } from 'firebase/functions';
 
 const getCoursesFunction = httpsCallable(functions, 'getAvailableCourses');
 
-const CourseCard = ({ course }) => (
+const CourseCard = ({ course }: { course: any }) => (
   <Card className="flex flex-col">
     <CardHeader>
       <div className="flex justify-between items-center mb-2">
         <Badge variant="secondary">{course.category}</Badge>
         <Badge>{course.level}</Badge>
       </div>
-      <CardTitle className="text-xl h-16">{course.title}</CardTitle>
+      <CardTitle className="text-xl h-16">{course.title_en}</CardTitle>
     </CardHeader>
     <CardContent className="flex-grow">
-      <CardDescription>{course.description}</CardDescription>
+      <CardDescription>{course.description_en}</CardDescription>
     </CardContent>
-    <div className="p-6 pt-0"><Button className="w-full">View Course</Button></div>
+    <div className="p-6 pt-0">
+        <Button asChild className="w-full">
+            <Link href={`/knowledge-hub/courses/${course.id}`}>View Course</Link>
+        </Button>
+    </div>
   </Card>
 );
 
-const CourseCardSkeleton = () => ( /* ... */ );
+const CourseCardSkeleton = () => (
+    <Card className="flex flex-col justify-between">
+        <CardHeader>
+            <div className="flex justify-between items-center mb-2">
+                <Skeleton className="h-5 w-20" />
+                <Skeleton className="h-5 w-16" />
+            </div>
+            <Skeleton className="h-6 w-full mt-2" />
+            <Skeleton className="h-6 w-3/4" />
+        </CardHeader>
+        <CardContent className="flex-grow">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full mt-2" />
+        </CardContent>
+        <div className="p-6 pt-0"><Skeleton className="h-10 w-full" /></div>
+    </Card>
+);
 
 export default function KnowledgeHubCoursesPage() {
-  const [coursesState, setCoursesState] = useState({ courses: [], isLoading: true, error: null });
+  const [coursesState, setCoursesState] = useState<{ courses: any[], isLoading: boolean, error: string | null }>({ courses: [], isLoading: true, error: null });
 
   useEffect(() => {
     const loadCourses = async () => {
@@ -41,7 +62,7 @@ export default function KnowledgeHubCoursesPage() {
         } else {
           throw new Error((result.data as any).message || "Failed to fetch courses.");
         }
-      } catch (err) {
+      } catch (err: any) {
         setCoursesState({ courses: [], isLoading: false, error: err.message });
       }
     };

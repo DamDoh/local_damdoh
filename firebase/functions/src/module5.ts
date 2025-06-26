@@ -154,7 +154,7 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     const courseData = { id: courseDoc.id, ...courseDoc.data()! };
 
     // 2. Fetch the modules from the subcollection
-    const modulesSnapshot = await db.collection('courses').doc(courseId).collection('modules').get();
+    const modulesSnapshot = await db.collection('courses').doc(courseId).collection('modules').orderBy('order', 'asc').get();
     const modulesData = modulesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
     // 3. Combine the data
