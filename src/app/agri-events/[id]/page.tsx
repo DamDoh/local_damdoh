@@ -9,17 +9,21 @@ import QRCode from 'qrcode.react';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import type { AgriEvent } from '@/lib/types';
-import { AGRI_EVENT_TYPES } from '@/lib/constants';
+import type { AgriEvent, EventAttendee } from '@/lib/types';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Ticket, QrCode, CheckCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Ticket, QrCode, CheckCircle, Loader2, Edit } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+interface AgriEventWithAttendees extends AgriEvent {
+  isRegistered?: boolean;
+  attendees?: EventAttendee[];
+}
 
 function EventDetailSkeleton() {
   return (
@@ -58,7 +62,7 @@ export default function AgriEventDetailPage() {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  const [event, setEvent] = useState<AgriEvent & { isRegistered?: boolean } | null>(null);
+  const [event, setEvent] = useState<AgriEventWithAttendees | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRegistering, setIsRegistering] = useState(false);
 
@@ -73,7 +77,7 @@ export default function AgriEventDetailPage() {
       setIsLoading(true);
       try {
         const result = await getEventDetails({ eventId });
-        setEvent(result.data as AgriEvent & { isRegistered?: boolean });
+        setEvent(result.data as AgriEventWithAttendees);
       } catch (error) {
         console.error("Error fetching event details:", error);
         toast({ variant: "destructive", title: "Error", description: "Could not load event details." });
@@ -83,7 +87,7 @@ export default function AgriEventDetailPage() {
       }
     };
     fetchEvent();
-  }, [eventId, getEventDetails, toast]);
+  }, [eventId, getEventDetails, toast, user]); // Re-fetch if user changes
 
   const handleRegistration = async () => {
     if (!user) {
@@ -103,6 +107,8 @@ export default function AgriEventDetailPage() {
         setIsRegistering(false);
     }
   };
+  
+  const isOrganizer = user && event && user.uid === event.organizerId;
 
   if (isLoading) {
     return <EventDetailSkeleton />;
@@ -142,9 +148,20 @@ export default function AgriEventDetailPage() {
             </div>
         )}
         <CardHeader>
-          <Badge variant="secondary" className="w-fit mb-2">{event.eventType}</Badge>
-          <CardTitle className="text-3xl font-bold">{event.title}</CardTitle>
-          {event.organizer && <CardDescription className="text-base">Organized by: {event.organizer}</CardDescription>}
+            <div className="flex justify-between items-start">
+                <div>
+                    <Badge variant="secondary" className="w-fit mb-2">{event.eventType}</Badge>
+                    <CardTitle className="text-3xl font-bold">{event.title}</CardTitle>
+                    {event.organizer && <CardDescription className="text-base">Organized by: {event.organizer}</CardDescription>}
+                </div>
+                {isOrganizer && (
+                    <Button asChild variant="secondary" size="sm">
+                        <Link href={`/agri-events/${event.id}/manage`}>
+                            <Edit className="mr-2 h-4 w-4" /> Manage Event
+                        </Link>
+                    </Button>
+                )}
+            </div>
         </CardHeader>
         <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">

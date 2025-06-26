@@ -186,6 +186,7 @@ export const AgriEventSchema = z.object({
   location: z.string().min(3).max(150),
   eventType: z.enum(AGRI_EVENT_TYPES),
   organizer: z.string().max(100).optional(),
+  organizerId: z.string().cuid2({ message: "Invalid organizer ID" }), // Added organizer ID
   websiteLink: z.string().url().optional().or(z.literal('')),
   imageUrl: z.string().url().optional().or(z.literal('')),
   listerId: z.string().cuid2({ message: "Invalid lister ID" }),

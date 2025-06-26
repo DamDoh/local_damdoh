@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import { UserProfile } from "./types";
 
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10;
@@ -476,7 +477,6 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create an event.");
     }
 
-    // Add validation here if needed (or rely on client-side Zod and trust the client for this demo)
     const { title, description, eventDate, location, eventType } = data;
 
     if (!title || !description || !eventDate || !location || !eventType) {
@@ -485,9 +485,9 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
 
     const newEvent = {
         ...data,
-        listerId: context.auth.uid,
+        organizerId: context.auth.uid, // Use organizerId for clarity
         createdAt: FieldValue.serverTimestamp(),
-        registeredAttendeesCount: 0, // Initialize count
+        registeredAttendeesCount: 0,
     };
 
     try {
@@ -511,26 +511,57 @@ export const getAgriEvents = functions.https.onCall(async (data, context) => {
 });
 
 export const getEventDetails = functions.https.onCall(async (data, context) => {
-    const { eventId } = data;
+    const { eventId, includeAttendees } = data;
     if (!eventId) {
         throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
     }
 
     const eventRef = db.collection('agri_events').doc(eventId);
+    const eventSnap = await eventRef.get();
+
+    if (!eventSnap.exists) {
+        throw new functions.https.HttpsError("not-found", "Event not found.");
+    }
+
+    const eventData = eventSnap.data()!;
     let isRegistered = false;
+    let attendees: any[] = [];
 
     if (context.auth) {
         const registrationRef = eventRef.collection('registrations').doc(context.auth.uid);
         const registrationSnap = await registrationRef.get();
         isRegistered = registrationSnap.exists;
     }
-
-    const eventSnap = await eventRef.get();
-    if (!eventSnap.exists) {
-        throw new functions.https.HttpsError("not-found", "Event not found.");
-    }
     
-    return { ...eventSnap.data(), id: eventSnap.id, isRegistered };
+    // Security Check: Only return attendee list if the caller is the organizer
+    if (includeAttendees && context.auth && context.auth.uid === eventData.organizerId) {
+        const registrationsSnap = await eventRef.collection('registrations').get();
+        const attendeeIds = registrationsSnap.docs.map(doc => doc.id);
+
+        if (attendeeIds.length > 0) {
+            const userDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', attendeeIds).get();
+            const profiles: { [key: string]: UserProfile } = {};
+            userDocs.forEach(doc => {
+                profiles[doc.id] = doc.data() as UserProfile;
+            });
+
+            attendees = registrationsSnap.docs.map(regDoc => {
+                const profile = profiles[regDoc.id];
+                const regData = regDoc.data();
+                return {
+                    id: regDoc.id,
+                    displayName: profile?.name || 'Unknown User',
+                    email: profile?.email || 'No email',
+                    avatarUrl: profile?.avatarUrl || '',
+                    registeredAt: regData.registeredAt.toDate().toISOString(),
+                    checkedIn: regData.checkedIn || false,
+                    checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
+                };
+            });
+        }
+    }
+
+    return { ...eventData, id: eventSnap.id, isRegistered, attendees };
 });
 
 
@@ -570,7 +601,9 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
 
         transaction.set(registrationRef, {
             userId: userId,
-            registeredAt: FieldValue.serverTimestamp()
+            registeredAt: FieldValue.serverTimestamp(),
+            checkedIn: false,
+            checkedInAt: null
         });
         
         transaction.update(eventRef, {
@@ -579,4 +612,40 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
         
         return { success: true, message: "Successfully registered for the event." };
     });
+});
+
+export const checkInAttendee = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be an organizer to check in attendees.");
+    }
+
+    const { eventId, attendeeId } = data;
+    if (!eventId || !attendeeId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID and Attendee ID are required.");
+    }
+
+    const organizerId = context.auth.uid;
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const registrationRef = eventRef.collection('registrations').doc(attendeeId);
+
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to manage this event.");
+    }
+
+    const registrationDoc = await registrationRef.get();
+    if (!registrationDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "This user is not registered for the event.");
+    }
+    
+    if (registrationDoc.data()?.checkedIn) {
+        throw new functions.https.HttpsError("already-exists", "This attendee has already been checked in.");
+    }
+
+    await registrationRef.update({
+        checkedIn: true,
+        checkedInAt: FieldValue.serverTimestamp()
+    });
+
+    return { success: true, message: `Attendee ${attendeeId} checked in.`};
 });

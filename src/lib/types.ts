@@ -54,7 +54,7 @@ export interface PostReply {
 }
 
 export interface FeedItem {
-  id: string;
+  id:string;
   type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
   timestamp: string;
   userId: string;
@@ -139,6 +139,16 @@ export interface Notification {
   postId: string;
   read: boolean;
   createdAt: any; // Firestore Timestamp
+}
+
+export interface EventAttendee {
+  id: string; // This is the User UID
+  email: string;
+  displayName: string;
+  avatarUrl?: string;
+  registeredAt: string; // ISO string
+  checkedIn: boolean;
+  checkedInAt?: string | null; // ISO string
 }
 
 
