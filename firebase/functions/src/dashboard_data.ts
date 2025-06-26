@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -138,8 +138,32 @@ export const getLogisticsDashboardData = functions.https.onCall(async (data, con
     return mockData;
 });
 
-export const getFiDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("fi-dashboard", context);
+export const getFiDashboardData = functions.https.onCall(async (data, context): Promise<FiDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: FiDashboardData = {
+        pendingApplications: [
+            { id: 'app1', applicantName: 'Green Valley Organics', type: 'Working Capital Loan', amount: 50000, riskScore: 720, actionLink: '/fi-portal/applications/app1' },
+            { id: 'app2', applicantName: 'Rift Valley Growers', type: 'Equipment Financing', amount: 120000, riskScore: 680, actionLink: '/fi-portal/applications/app2' },
+        ],
+        portfolioAtRisk: {
+            count: 5,
+            value: 250000,
+            highestRisk: {
+                name: 'Coastal Cashews Ltd',
+                reason: 'Drought conditions affecting harvest projections.',
+            },
+            actionLink: '/fi-portal/portfolio-risk'
+        },
+        marketUpdates: [
+            { id: 'update1', content: 'Central Bank has issued new guidance on agricultural lending rates for the next quarter.', actionLink: '/news/cbr-rates-update' },
+            { id: 'update2', content: 'Policy Update: New government subsidies announced for drought-resistant crop inputs.', actionLink: '/news/gov-subsidies-q3' }
+        ]
+    };
+    
+    return mockData;
 });
 
 export const getAgroExportDashboardData = functions.https.onCall(async (data, context) => {

@@ -18,10 +18,6 @@ import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-// Super App Vision Note: The dashboard is the central hub.
-// This component acts as a router, loading the appropriate role-specific hub.
-// The AI-driven feed is the default for guests, providing a vibrant, informative entry point.
-
 // Hub Components
 import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
 import { BuyerDashboard } from '@/components/dashboard/hubs/BuyerDashboard';
@@ -83,10 +79,6 @@ function MainContent() {
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
   useEffect(() => {
-    // Super App Vision Note: This effect demonstrates the adaptive nature of the dashboard.
-    // It fetches the user's role to display a tailored experience, while also fetching
-    // a personalized feed, which could be powered by AI to show relevant market news,
-    // forum posts, or connection suggestions, making the dashboard feel "alive".
     const fetchUserRoleAndFeed = async () => {
       setIsLoadingRole(true);
       setIsLoadingFeed(true);
