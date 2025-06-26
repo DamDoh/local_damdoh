@@ -565,6 +565,19 @@ export interface InsuranceProviderDashboardData {
     }[];
 }
 
+export interface KnfBatch {
+    id: string;
+    userId: string;
+    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
+    typeName: string;
+    ingredients: string;
+    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
+    createdAt: { _seconds: number, _nanoseconds: number } | any;
+}
+
 
 // =================================================================
 // 4. SHARED & MISCELLANEOUS TYPES
