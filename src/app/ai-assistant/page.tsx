@@ -260,16 +260,28 @@ export default function AiAssistantPage() {
           </CardTitle>
           <div className="flex items-center gap-2">
             <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-[150px] h-9 text-xs">
+              <SelectTrigger className="w-[180px] h-9 text-xs">
                 <Languages className="h-4 w-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="en">English</SelectItem>
-                <SelectItem value="km">ភាសាខ្មែរ (Khmer)</SelectItem>
+                <SelectItem value="es">Español (Spanish)</SelectItem>
+                <SelectItem value="zh">中文 (Mandarin)</SelectItem>
                 <SelectItem value="fr">Français (French)</SelectItem>
+                <SelectItem value="ar">العربية (Arabic)</SelectItem>
+                <SelectItem value="pt">Português (Portuguese)</SelectItem>
+                <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
+                <SelectItem value="ru">Русский (Russian)</SelectItem>
+                <SelectItem value="id">Bahasa Indonesia</SelectItem>
                 <SelectItem value="de">Deutsch (German)</SelectItem>
+                <SelectItem value="tr">Türkçe (Turkish)</SelectItem>
+                <SelectItem value="ja">日本語 (Japanese)</SelectItem>
+                <SelectItem value="km">ភាសាខ្មែរ (Khmer)</SelectItem>
                 <SelectItem value="th">ภาษาไทย (Thai)</SelectItem>
+                <SelectItem value="ko">한국어 (Korean)</SelectItem>
+                <SelectItem value="vi">Tiếng Việt (Vietnamese)</SelectItem>
+                <SelectItem value="ms">Bahasa Melayu (Malaysian)</SelectItem>
               </SelectContent>
             </Select>
             <Button variant="outline" size="icon" className="h-9 w-9" onClick={resetChat} title="Reset Conversation">
