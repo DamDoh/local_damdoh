@@ -35,6 +35,10 @@ import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 
+// Super App Vision Note: This "Create Listing" page is a key point of inter-module synergy.
+// The `useEffect` hook demonstrates how an action in one module (logging a harvest in Farm Management)
+// can seamlessly flow into another (creating a Marketplace listing), pre-filling data to
+// create a simple and intelligent user experience.
 
 export default function CreateMarketplaceListingPage() {
   const { toast } = useToast();
@@ -72,6 +76,7 @@ export default function CreateMarketplaceListingPage() {
   });
 
   useEffect(() => {
+    // Synergy Point: Pre-fill form if navigating from a harvest event.
     const cropId = searchParams.get('cropId');
     const cropName = searchParams.get('cropName');
     if (cropId && cropName) {

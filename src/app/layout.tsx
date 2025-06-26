@@ -32,6 +32,11 @@ export default function RootLayout({
 }: Readonly<{
  children: React.ReactNode;
 }>) {
+  // Super App Vision Note: The root layout is designed to be cohesive.
+  // The AppHeader and AppFooter provide consistent navigation and branding,
+  // while the main content area is flexible enough to accommodate the
+  // diverse dashboards and modules of the super app, ensuring a unified
+  // user experience for all 21 stakeholder types.
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-muted/40`} suppressHydrationWarning>

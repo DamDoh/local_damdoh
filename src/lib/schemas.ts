@@ -2,6 +2,13 @@
 import { z } from "zod";
 import { STAKEHOLDER_ROLES, LISTING_TYPES, UNIFIED_MARKETPLACE_CATEGORY_IDS, AGRI_EVENT_TYPES } from "@/lib/constants";
 
+// Super App Vision Note: The schemas are the DNA of the application.
+// By defining clear, robust data structures, we enable the seamless flow of information
+// between modules. For example, `relatedTraceabilityId` on the MarketplaceItemSchema
+// is a direct link back to the Traceability module, creating a powerful, interconnected system.
+// Future AI features will rely on these well-defined schemas to validate data, detect anomalies
+// (e.g., an illogical sequence of traceability events), and provide intelligent suggestions.
+
 export const ContactInfoSchema = z.object({
   phone: z.string().optional(),
   website: z.string().url({ message: "Invalid website URL" }).optional().or(z.literal('')),
@@ -108,6 +115,8 @@ export const MarketplaceItemSchema = z.object({
   sellerVerification: z.enum(['Verified', 'Pending', 'Unverified']).optional().default('Pending'),
   aiPriceSuggestion: AiPriceSuggestionSchema.optional(),
   stockQuantity: z.number().int().min(0).optional(),
+  // Synergy Point: This field directly links a marketplace product to its source batch,
+  // enabling full "farm to folk" traceability.
   relatedTraceabilityId: z.string().cuid2({ message: "Invalid traceability ID" }).optional(),
   serviceType: z.string().max(50).optional(),
   priceDisplay: z.string().max(100).optional(),
@@ -136,6 +145,10 @@ export const MarketplaceOrderSchema = z.object({
   itemType: z.string().max(50),
   quantity: z.number().min(0).optional(),
   totalPrice: z.number().min(0).optional(),
+  // Synergy Point: These fields link a marketplace order to other modules,
+  // enabling a flow like: A farmer sells produce (Marketplace Order), which updates
+  // their financial history (relatedApplicationId points to a record in Financials),
+  // and the buyer can view the product's history (relatedTraceabilityId).
   relatedTraceabilityId: z.string().cuid2().optional(),
   relatedApplicationId: z.string().cuid2().optional(),
 });
@@ -253,7 +266,7 @@ export const VtiEntrySchema = z.object({
   metadata: z.object({ carbon_footprint_kgCO2e: z.number().optional() }).optional(), // Optional metadata object with optional carbon footprint
 });
 
-export const TraceabilityEventSchema = z.object({
+export const TraceabilityEventSchemaV2 = z.object({ // Renamed to avoid conflict
  vtiId: z.string(),
   timestamp: z.string().datetime({ message: "Invalid ISO datetime string" }),
   eventType: z.string(),

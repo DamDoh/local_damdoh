@@ -13,6 +13,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from '@/lib/utils';
 import type { Conversation, Message } from '@/lib/types'; // Assuming these types exist
 
+// Super App Vision Note: Secure messaging is the lifeblood of a collaborative super app.
+// This page provides the UI for stakeholders to communicate directly, whether it's a
+// farmer negotiating with a buyer, or a logistics provider coordinating with a processor.
+// Future AI integration could provide smart replies, translation, or extract key terms
+// (like prices or dates) from messages to create tasks or reminders.
+
 // Mock function to simulate fetching conversations
 const getMockConversations = async (): Promise<Conversation[]> => {
     await new Promise(resolve => setTimeout(resolve, 500));

@@ -11,6 +11,11 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 
+// Super App Vision Note: The Farmer's Hub is a primary module.
+// It must be simple to use but powerful enough to form the basis
+// of a farmer's digital operations. Data entered here (Farms, Crops)
+// is the foundational data that flows into other modules like Traceability and Marketplace.
+
 interface Farm {
   id: string;
   name: string;
@@ -168,6 +173,10 @@ export default function FarmManagementPage() {
                 <CardDescription>Get personalized alerts and data-driven recommendations.</CardDescription>
             </CardHeader>
             <CardContent>
+                 {/* AI Integration Point: This section would be populated by an AI service
+                     that analyzes farm data (weather, soil, market prices) to provide
+                     proactive, personalized advice to the farmer, making the app a
+                     true digital companion. */}
                 <div className="p-6 border rounded-lg shadow-inner bg-muted/50 text-center">
                     <p className="text-sm text-muted-foreground">Pest alerts, weather warnings, and AI-powered insights will be shown here.</p>
                      <p className="text-xs text-muted-foreground mt-1">(AI integrations are coming soon)</p>

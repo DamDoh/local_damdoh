@@ -25,6 +25,12 @@ import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
 import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
 
+// Super App Vision Note: The Marketplace is more than a list of items.
+// It's a dynamic hub that uses AI to provide personalized recommendations
+// and will eventually integrate directly with other modules like Financial Services
+// (for "Apply Now" buttons) and Traceability (to show a product's history).
+// The goal is to make trade simple, efficient, and trustworthy.
+
 function MarketplaceContent() {
   const [isMounted, setIsMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -70,6 +76,7 @@ function MarketplaceContent() {
     
     fetchItems();
 
+    // AI Integration Point: Fetch personalized recommendations based on user context.
     const fetchAiRecommendations = async () => {
       setIsLoadingAiRecommendations(true);
       try {

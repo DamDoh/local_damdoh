@@ -1,4 +1,12 @@
+
 import { NextResponse } from 'next/server';
+
+// Super App Vision Note: This file contains helpers for our API routes, but more importantly,
+// it outlines the conceptual logic for backend Cloud Functions that will act as the "connective tissue"
+// for the super app. Functions like `requestVerifiedData` are crucial for enabling secure,
+// consent-based data sharing between different modules and stakeholders, a cornerstone of a trusted ecosystem.
+// The AI-related notes describe how backend triggers will proactively provide value, like matching farmers
+// with financial products, which is a key "smart" feature.
 
 interface ApiResponseOptions {
   status?: number;
@@ -71,7 +79,7 @@ export function serverErrorResponse(message: string = "Internal Server Error", d
 // Conceptual Note: Role Assignment for FI/IPs
 // A secure administrative UI or manual process is needed to assign 'financial_institution'
 // and 'insurance_provider' roles to verified users upon successful onboarding.
-}
+
 
 // Conceptual Cloud Function: onCreateApplication
 // This conceptual function would be triggered whenever a new applications document is created (e.g., from the application form).
@@ -123,3 +131,14 @@ export function serverErrorResponse(message: string = "Internal Server Error", d
 
 // Conceptual Note on Monetization:
 // Aggregated and anonymized data insights derived from platform activity (Marketplace, Traceability, etc.) could be a valuable offering for certain users (e.g., researchers, large businesses) as a potential monetization strategy, provided user data consent is strictly managed.
+
+// Conceptual Note on Universal Search:
+// The universal search bar in the header should trigger a single, powerful backend function.
+// This function would use AI to interpret the query's intent (e.g., 'buy', 'find info', 'connect').
+// Based on the intent, it would query multiple collections simultaneously:
+// - 'marketplaceItems' for products/services.
+// - 'users' for people/organizations.
+// - 'forumTopics'/'forumPosts' for discussions.
+// - 'knowledgeHub' for articles.
+// The function would then return a ranked and categorized list of results,
+// providing a seamless "search anything" experience.

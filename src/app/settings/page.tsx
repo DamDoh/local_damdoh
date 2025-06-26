@@ -12,6 +12,11 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Textarea } from "@/components/ui/textarea";
 import { STAKEHOLDER_ROLES } from "@/lib/constants"; 
 
+// Super App Vision Note: This Settings page becomes a critical hub for user trust and control.
+// The new "Privacy & Visibility" section introduces the concept of data consent management,
+// which is foundational for a super app that shares data between modules (e.g., sharing
+// marketplace history with a financial institution for a loan). This empowers users
+// and builds the trust needed for a vibrant digital ecosystem.
 
 export default function SettingsPage() {
   return (
@@ -229,54 +234,38 @@ export default function SettingsPage() {
                 <Switch id="search-engine-indexing" defaultChecked />
               </div>
               <Button><Save className="mr-2 h-4 w-4" />Save Privacy Settings</Button>
-
-              {/* Conceptual Data Consent Management Section */}
-              <Separator className="my-8" /> {/* Add separation */}
+              
+              {/* Super App Vision Note: This section is key for trust. It allows users to control how their data is used across different modules. */}
+              <Separator className="my-8" /> 
               <CardTitle className="text-xl flex items-center gap-2"><Shield className="h-6 w-6 text-primary" /> Data Consent Management</CardTitle>
-              <CardDescription>Manage how your data collected across DamDoh modules is used and shared with other stakeholders or integrated services.</CardDescription>
+              <CardDescription>Manage how your data is used and shared with other stakeholders or integrated services.</CardDescription>
 
-              <div className="space-y-4">
-                {/* Example Data Category 1: Marketplace Activity */}
+              <div className="space-y-4 pt-2">
                 <div className="flex items-center justify-between rounded-lg border p-4">
                   <div>
-                    <p className="font-medium flex items-center"><FileText className="mr-2 h-4 w-4 text-primary" /> Marketplace Activity Data</p>
-                    <p className="text-sm text-muted-foreground ml-6">Includes your listing history, sales records, purchase history, and transaction details.</p>
+                    <p className="font-medium flex items-center"><FileText className="mr-2 h-4 w-4 text-primary" /> Marketplace History</p>
+                    <p className="text-sm text-muted-foreground ml-6">Allows Financial Institutions to view your sales history when you apply for a loan or service, to assess your eligibility.</p>
                   </div>
-                  {/* Conceptual toggle for sharing with Financial Institutions */}
-                  <div className="flex items-center gap-4">
-                     <Label htmlFor="consent-marketplace-fi">Share with Financial Institutions:</Label>
-                     {/* In a real implementation, this would manage consent for FIs to access relevant data (e.g., sales history for loan eligibility) */}
-                     <Switch id="consent-marketplace-fi" defaultChecked /> {/* Default could be on with user consent prompt */}
-                  </div>
+                  <Switch id="consent-marketplace-fi" defaultChecked /> 
                 </div>
 
-                 {/* Example Data Category 2: Traceability Logs */}
                  <div className="flex items-center justify-between rounded-lg border p-4">
                   <div>
-                    <p className="font-medium flex items-center"><SearchCheck className="mr-2 h-4 w-4 text-primary" /> Traceability & Batch Data</p>
-                    <p className="text-sm text-muted-foreground ml-6">Includes farm details, batch information (harvest date, quantity), and logged traceability events (inputs used, treatments, quality checks).</p>
+                    <p className="font-medium flex items-center"><SearchCheck className="mr-2 h-4 w-4 text-primary" /> Traceability Data</p>
+                    <p className="text-sm text-muted-foreground ml-6">Allows buyers to view the public traceability log of products you have listed, building trust and transparency.</p>
                   </div>
-                   {/* Conceptual toggle for sharing with Buyers/Consumers via Traceability ID */}
-                   <div className="flex items-center gap-4">
-                     <Label htmlFor="consent-traceability-public">Share via Traceability ID:</Label>
-                     {/* This toggle would control whether data linked to a specific batch's ID is viewable by others */}
-                     <Switch id="consent-traceability-public" defaultChecked /> {/* Default could be on for transparency */}
-                   </div>
+                   <Switch id="consent-traceability-public" defaultChecked /> 
                  </div>
 
-                 {/* Example Data Category 3: Financial & Insurance Hub Data */}
                  <div className="flex items-center justify-between rounded-lg border p-4">
                    <div>
-                     <p className="font-medium flex items-center"><Briefcase className="mr-2 h-4 w-4 text-primary" /> Financial & Insurance Interaction Data</p>
-                     <p className="text-sm text-muted-foreground ml-6">Includes loan applications, insurance claims, repayment history (within the platform).</p>
+                     <p className="font-medium flex items-center"><Briefcase className="mr-2 h-4 w-4 text-primary" /> Financial Application Data</p>
+                     <p className="text-sm text-muted-foreground ml-6">Allow DamDoh's AI to analyze your application data to recommend other relevant financial products or services to you.</p>
                    </div>
-                    {/* Conceptual toggle for sharing with AI for personalized financial recommendations */}
-                    <div className="flex items-center gap-4">
-                      <Label htmlFor="consent-financial-ai">Allow AI for recommendations:</Label>
-                      <Switch id="consent-financial-ai" defaultChecked /> {/* Explicit consent for AI data processing */}
-                    </div>
+                    <Switch id="consent-financial-ai" defaultChecked /> 
                  </div>
               </div>
+              <Button><Save className="mr-2 h-4 w-4" />Save Consent Settings</Button>
 
             </CardContent>
           </Card>
