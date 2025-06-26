@@ -30,7 +30,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createAgriEventSchema, type CreateAgriEventValues } from "@/lib/form-schemas";
 import { AGRI_EVENT_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle, Ticket } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle, Ticket, DollarSign } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useState, useMemo } from "react";
@@ -66,6 +66,8 @@ export default function CreateAgriEventPage() {
       imageFile: undefined,
       registrationEnabled: false,
       attendeeLimit: undefined,
+      price: undefined,
+      currency: "USD",
     },
   });
 
@@ -91,6 +93,7 @@ export default function CreateAgriEventPage() {
         imageFile: undefined, // Don't send the file object to the backend
         eventDate: data.eventDate.toISOString(), // Convert date to string for backend
         attendeeLimit: data.attendeeLimit ? Number(data.attendeeLimit) : null,
+        price: data.price ? Number(data.price) : null,
       };
 
       const result = await createAgriEventCallable(payload);
@@ -340,20 +343,52 @@ export default function CreateAgriEventPage() {
                 />
 
                 {registrationEnabled && (
-                  <FormField
-                    control={form.control}
-                    name="attendeeLimit"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground"/>Attendee Limit (Optional)</FormLabel>
-                        <FormControl>
-                          <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))} />
-                        </FormControl>
-                        <FormDescription>Leave blank for unlimited attendees.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <>
+                    <FormField
+                      control={form.control}
+                      name="attendeeLimit"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground"/>Attendee Limit (Optional)</FormLabel>
+                          <FormControl>
+                            <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))} />
+                          </FormControl>
+                          <FormDescription>Leave blank for unlimited attendees.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                     <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                            control={form.control}
+                            name="price"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='flex items-center gap-2'><DollarSign className="h-4 w-4 text-muted-foreground" />Price (Optional)</FormLabel>
+                                <FormControl>
+                                <Input type="number" step="0.01" placeholder="e.g., 25.00" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
+                                </FormControl>
+                                <FormDescription>Leave blank for a free event.</FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="currency"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Currency</FormLabel>
+                                <FormControl>
+                                <Input placeholder="e.g., USD" {...field} />
+                                </FormControl>
+                                <FormDescription>3-letter code (e.g. KES).</FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                    </div>
+                  </>
                 )}
                 
                 <FormField

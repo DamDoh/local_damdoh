@@ -97,6 +97,8 @@ export default function AgriEventDetailPage() {
     }
     setIsRegistering(true);
     try {
+        // This is where a real payment gateway would be called if event.price > 0
+        // Our backend function `registerForEvent` now conceptually handles this.
         await registerForEvent({ eventId });
         setEvent(prev => prev ? { ...prev, isRegistered: true, registeredAttendeesCount: (prev.registeredAttendeesCount || 0) + 1 } : null);
         toast({ title: "Registration Successful!", description: "You are now registered for this event."});
@@ -126,6 +128,14 @@ export default function AgriEventDetailPage() {
   
   const isEventFull = event.attendeeLimit ? (event.registeredAttendeesCount || 0) >= event.attendeeLimit : false;
   const qrCodeValue = `damdoh:checkin:eventId=${event.id}:userId=${user?.uid}`;
+
+  const registrationButtonText = () => {
+    if (isRegistering) return 'Registering...';
+    if (event.price && event.price > 0) {
+        return `Register & Pay ${event.currency || 'USD'} ${event.price.toFixed(2)}`;
+    }
+    return 'Register for Free';
+  };
 
   return (
     <div className="space-y-6">
@@ -221,7 +231,7 @@ export default function AgriEventDetailPage() {
             ) : (
                 <Button className="w-full md:w-auto" onClick={handleRegistration} disabled={isRegistering}>
                     {isRegistering ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Ticket className="mr-2 h-4 w-4"/>}
-                    {isRegistering ? 'Registering...' : 'Register for this Event'}
+                    {registrationButtonText()}
                 </Button>
             )
           ) : event.websiteLink ? (

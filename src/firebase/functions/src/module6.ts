@@ -3,6 +3,8 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { UserProfile } from "./types";
+import { _internalInitiatePayment } from './module7'; // Import payment function
+import { _internalLogTraceEvent } from './module1'; // Import trace event logger
 
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10;
@@ -598,6 +600,25 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
         if (registrationDoc.exists) {
             throw new functions.https.HttpsError("already-exists", "You are already registered for this event.");
         }
+        
+        // Synergy: Payment Integration
+        if (eventData.price && eventData.price > 0) {
+            console.log(`Paid event registration for event ${eventId}. Initiating payment flow.`);
+            try {
+                await _internalInitiatePayment({
+                    orderId: `event_${eventId}_${userId}`,
+                    amount: eventData.price,
+                    currency: eventData.currency || 'USD',
+                    buyerInfo: { userId },
+                    sellerInfo: { organizerId: eventData.organizerId },
+                    description: `Registration for event: ${eventData.title}`
+                });
+                console.log(`Payment initiated for event ${eventId}. Proceeding with registration.`);
+            } catch (paymentError: any) {
+                console.error("Payment initiation failed:", paymentError);
+                throw new functions.https.HttpsError("aborted", "Payment processing failed. Please try again.");
+            }
+        }
 
         transaction.set(registrationRef, {
             userId: userId,
@@ -646,6 +667,31 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
         checkedIn: true,
         checkedInAt: FieldValue.serverTimestamp()
     });
+
+    // Synergy: Traceability Integration
+    // Log the attendance as a verifiable event on the user's personal VTI log.
+    try {
+        const eventName = eventDoc.data()?.title || 'Unknown Event';
+        console.log(`Logging ATTENDED_EVENT for user ${attendeeId} at event "${eventName}"`);
+        await _internalLogTraceEvent({
+            vtiId: attendeeId, // The user's ID is their personal VTI
+            eventType: 'ATTENDED_EVENT',
+            actorRef: organizerId, // The organizer is the actor verifying attendance
+            geoLocation: null, // Could add event location here in future
+            payload: {
+                eventId: eventId,
+                eventName: eventName,
+                organizerId: organizerId,
+                notes: "Attendee checked in by organizer."
+            },
+            farmFieldId: `user-credential:${attendeeId}` // A way to group user credential events
+        });
+        console.log(`Successfully logged traceable attendance for user ${attendeeId}`);
+    } catch (traceError) {
+        // Log the error but don't fail the check-in process
+        console.error(`Failed to log traceability event for user ${attendeeId}'s attendance:`, traceError);
+    }
+
 
     return { success: true, message: `Attendee ${attendeeId} checked in.`};
 });

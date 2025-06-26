@@ -73,6 +73,8 @@ export const createAgriEventSchema = z.object({
   imageFile: imageFileSchema,
   registrationEnabled: z.boolean().default(false).optional(),
   attendeeLimit: z.coerce.number().int().positive("Must be a positive number.").optional(),
+  price: z.coerce.number().min(0, "Price cannot be negative.").optional(),
+  currency: z.string().length(3, "Currency must be a 3-letter code.").optional(),
 });
 
 export type CreateAgriEventValues = z.infer<typeof createAgriEventSchema>;
