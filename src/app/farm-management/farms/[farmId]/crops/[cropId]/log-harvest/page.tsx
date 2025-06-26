@@ -104,12 +104,12 @@ export default function LogHarvestPage() {
     setCreatedVtiId(null);
   }
 
-  if (submissionSuccess) {
+  if (submissionSuccess && createdVtiId) {
     return (
        <div className="space-y-6 max-w-2xl mx-auto">
             <Card className="text-center">
                 <CardHeader>
-                    <div className="mx-auto bg-green-100 rounded-full h-16 w-16 flex items-center justify-center">
+                    <div className="mx-auto bg-green-100 dark:bg-green-900/30 rounded-full h-16 w-16 flex items-center justify-center">
                         <CheckCircle className="h-10 w-10 text-green-600" />
                     </div>
                     <CardTitle className="text-2xl pt-4">Harvest Logged Successfully!</CardTitle>
