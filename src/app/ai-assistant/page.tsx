@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent, ChangeEvent } from 'react';
-import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw } from 'lucide-react';
+import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -15,6 +15,7 @@ import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/far
 import { APP_NAME } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface ChatMessage {
   id: string;
@@ -42,6 +43,7 @@ const initialWelcomeMessage: ChatMessage = {
 
 export default function AiAssistantPage() {
   const [inputQuery, setInputQuery] = useState('');
+  const [language, setLanguage] = useState('en');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([initialWelcomeMessage]);
   const [isLoading, setIsLoading] = useState(false);
   const [previewDataUri, setPreviewDataUri] = useState<string | null>(null);
@@ -182,7 +184,8 @@ export default function AiAssistantPage() {
     try {
       const aiResponse = await askFarmingAssistant({
         query: query || (currentImageToSend ? "Please analyze this image." : "Empty query"),
-        photoDataUri: currentImageToSend || undefined
+        photoDataUri: currentImageToSend || undefined,
+        language,
       });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-${Date.now() + 1}`,
@@ -221,7 +224,7 @@ export default function AiAssistantPage() {
     setIsLoading(true);
 
     try {
-      const aiResponse = await askFarmingAssistant({ query });
+      const aiResponse = await askFarmingAssistant({ query, language });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-suggestion-response-${Date.now()}`,
         role: 'assistant',
@@ -255,9 +258,24 @@ export default function AiAssistantPage() {
             <Bot className="h-6 w-6 text-primary" />
             <span>AI Farming Assistant</span>
           </CardTitle>
-          <Button variant="outline" size="sm" onClick={resetChat} title="Reset Conversation">
-            <RefreshCcw className="h-4 w-4"/>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Select value={language} onValueChange={setLanguage}>
+              <SelectTrigger className="w-[150px] h-9 text-xs">
+                <Languages className="h-4 w-4 mr-2" />
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="km">ភាសាខ្មែរ (Khmer)</SelectItem>
+                <SelectItem value="fr">Français (French)</SelectItem>
+                <SelectItem value="de">Deutsch (German)</SelectItem>
+                <SelectItem value="th">ภาษาไทย (Thai)</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button variant="outline" size="icon" className="h-9 w-9" onClick={resetChat} title="Reset Conversation">
+              <RefreshCcw className="h-4 w-4"/>
+            </Button>
+          </div>
         </CardHeader>
         <ScrollArea className="flex-grow p-4 space-y-6 bg-muted/30" ref={scrollAreaRef}>
           {chatHistory.map((msg) => (
