@@ -23,7 +23,8 @@ import {
   Briefcase,
   LogIn, 
   UserPlus,
-  X // Added X icon import
+  X, // Added X icon import
+  Ticket
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -94,6 +95,7 @@ const desktopNavItems = [
   { href: "/network", icon: Users, label: "Network" },
   { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
+  { href: "/marketplace/promotions", icon: Ticket, label: "Coupons" },
   { href: "/forums", icon: MessageSquare, label: "Forums"},
 ];
 
@@ -102,6 +104,7 @@ const mainMobileNavItems = [
   { href: "/network", icon: Users, label: "Network", isSheetLink: true },
   { href: "/farm-management", icon: Sprout, label: "Farm Management", isSheetLink: true },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace", isSheetLink: true },
+  { href: "/marketplace/promotions", icon: Ticket, label: "My Coupons", isSheetLink: true },
   { href: "/forums", icon: MessageSquare, label: "Forums", isSheetLink: true },
   { href: "/notifications", icon: Bell, label: "Notifications", isSheetLink: true },
 ];
