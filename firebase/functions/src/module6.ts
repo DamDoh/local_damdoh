@@ -21,7 +21,15 @@ const REPLIES_PER_PAGE = 15;
 export const getTopics = functions.https.onCall(async (data, context) => {
     try {
         const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
-        const topics = topicsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const topics = topicsSnapshot.docs.map(doc => {
+            const topicData = doc.data();
+            return {
+                id: doc.id,
+                ...topicData,
+                createdAt: topicData.createdAt?.toDate ? topicData.createdAt.toDate().toISOString() : new Date().toISOString(),
+                lastActivity: topicData.lastActivity?.toDate ? topicData.lastActivity.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
         return { topics };
     } catch (error) {
         console.error("Error fetching topics:", error);
@@ -79,7 +87,14 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
         }
 
         const postsSnapshot = await query.get();
-        const posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const posts = postsSnapshot.docs.map(doc => {
+            const postData = doc.data();
+            return {
+                id: doc.id,
+                ...postData,
+                timestamp: postData.timestamp?.toDate ? postData.timestamp.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
         
         const newLastVisible = postsSnapshot.docs[postsSnapshot.docs.length - 1]?.id || null;
 
@@ -148,7 +163,14 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
         }
 
         const repliesSnapshot = await query.get();
-        const replies = repliesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const replies = repliesSnapshot.docs.map(doc => {
+            const replyData = doc.data();
+            return {
+                id: doc.id,
+                ...replyData,
+                timestamp: replyData.timestamp?.toDate ? replyData.timestamp.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
 
         const newLastVisible = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]?.id || null;
 
@@ -196,7 +218,14 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 export const getGroups = functions.https.onCall(async (data, context) => {
     try {
         const groupsSnapshot = await db.collection("groups").where("isPublic", "==", true).get();
-        const groups = groupsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const groups = groupsSnapshot.docs.map(doc => {
+            const groupData = doc.data();
+            return {
+                id: doc.id,
+                ...groupData,
+                createdAt: groupData.createdAt?.toDate ? groupData.createdAt.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
         return { groups };
     } catch (error) {
         console.error("Error fetching groups:", error);
@@ -248,7 +277,12 @@ export const getGroupDetails = functions.https.onCall(async (data, context) => {
         if (!groupDoc.exists) {
             throw new functions.https.HttpsError("not-found", "Group not found.");
         }
-        return { id: groupDoc.id, ...groupDoc.data() };
+        const groupData = groupDoc.data()!;
+        return { 
+            id: groupDoc.id, 
+            ...groupData,
+            createdAt: groupData.createdAt?.toDate ? groupData.createdAt.toDate().toISOString() : new Date().toISOString(),
+        };
     } catch (error) {
         console.error(`Error fetching group details for ${groupId}:`, error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching group details.");
@@ -270,7 +304,15 @@ export const getGroupMembers = functions.https.onCall(async (data, context) => {
         }
 
         const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", memberIds).get();
-        const members = userDocs.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const members = userDocs.docs.map(doc => {
+            const userData = doc.data();
+            return {
+                id: doc.id,
+                ...userData,
+                createdAt: userData.createdAt?.toDate ? userData.createdAt.toDate().toISOString() : new Date().toISOString(),
+                updatedAt: userData.updatedAt?.toDate ? userData.updatedAt.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
 
         return members;
     } catch (error) {
@@ -370,8 +412,16 @@ export const getFeed = functions.https.onCall(async (data, context) => {
         }
 
         const snapshot = await query.get();
-        const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        const newLastVisible = snapshot.docs[snapshot.docs.length - 1]?.id || null;
+        const posts = snapshot.docs.map(doc => {
+            const postData = doc.data();
+            return {
+                id: doc.id,
+                ...postData,
+                createdAt: postData.createdAt?.toDate ? postData.createdAt.toDate().toISOString() : new Date().toISOString(),
+                timestamp: postData.createdAt?.toDate ? postData.createdAt.toDate().toISOString() : new Date().toISOString(), // Alias for compatibility with FeedItemCard
+            };
+        });
+        const newLastVisible = snapshot.docs[postsSnapshot.docs.length - 1]?.id || null;
 
         return { posts, lastVisible: newLastVisible };
     } catch (error) {
@@ -509,8 +559,7 @@ export const getAgriEvents = functions.https.onCall(async (data, context) => {
             return {
                 id: doc.id,
                 ...eventData,
-                // Ensure eventDate is sent in a client-friendly format (ISO string)
-                eventDate: eventData.eventDate ? (eventData.eventDate.toDate ? eventData.eventDate.toDate().toISOString() : eventData.eventDate) : null,
+                eventDate: eventData.eventDate, // Keep as string from backend
             };
         });
         return { events };
@@ -564,7 +613,7 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
                     displayName: profile?.displayName || 'Unknown User',
                     email: profile?.email || 'No email',
                     avatarUrl: profile?.avatarUrl || '',
-                    registeredAt: regData.registeredAt.toDate().toISOString(),
+                    registeredAt: regData.registeredAt?.toDate().toISOString(),
                     checkedIn: regData.checkedIn || false,
                     checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
                 };
@@ -577,7 +626,7 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
         id: eventSnap.id,
         isRegistered,
         attendees,
-        eventDate: eventData.eventDate ? (eventData.eventDate.toDate ? eventData.eventDate.toDate().toISOString() : eventData.eventDate) : null,
+        eventDate: eventData.eventDate,
     };
 
     return eventResult;
@@ -815,7 +864,15 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
     }
 
     const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
-    const coupons = couponsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const coupons = couponsSnapshot.docs.map(doc => {
+        const couponData = doc.data();
+        return {
+            id: doc.id,
+            ...couponData,
+            createdAt: couponData.createdAt?.toDate ? couponData.createdAt.toDate().toISOString() : new Date().toISOString(),
+            expiresAt: couponData.expiresAt?.toDate ? couponData.expiresAt.toDate().toISOString() : null,
+        };
+    });
 
     return { coupons };
 });
@@ -998,7 +1055,14 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
                       .limit(REPLIES_PER_PAGE); // Reuse reply limit
 
         const commentsSnapshot = await query.get();
-        const comments = commentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const comments = commentsSnapshot.docs.map(doc => {
+            const commentData = doc.data();
+            return {
+                id: doc.id,
+                ...commentData,
+                createdAt: commentData.createdAt?.toDate ? commentData.createdAt.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
         
         return { comments };
     } catch (error) {
@@ -1006,3 +1070,5 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
     }
 });
+
+    
