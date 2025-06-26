@@ -65,6 +65,19 @@ export default function LogHarvestPage() {
       return;
     }
 
+    // Offline check
+    if (typeof window !== 'undefined' && !window.navigator.onLine) {
+      toast({
+        title: "You are offline",
+        description: "This harvest log has been queued and will be synced when you're back online. (This is a simulation)",
+        variant: "default",
+      });
+      // In a real app, this data would be saved to a local queue (e.g., IndexedDB)
+      setSubmissionSuccess(true);
+      setCreatedVtiId('offline-vti-placeholder');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -245,7 +258,7 @@ export default function LogHarvestPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving Harvest...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
                     </>
                 ) : (
                     <><Save className="mr-2 h-4 w-4" /> Log Harvest and Create VTI</>

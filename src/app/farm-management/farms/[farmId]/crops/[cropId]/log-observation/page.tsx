@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -66,6 +65,18 @@ export default function LogObservationPage() {
         title: "Not Authenticated",
         description: "You must be logged in to log an observation.",
       });
+      return;
+    }
+
+    // Offline check
+    if (typeof window !== 'undefined' && !window.navigator.onLine) {
+      toast({
+        title: "You are offline",
+        description: "This observation has been queued and will be synced when you're back online. (This is a simulation)",
+        variant: "default",
+      });
+      // In a real app, this data would be saved to a local queue (e.g., IndexedDB)
+      router.push(`/farm-management/farms/${farmId}`);
       return;
     }
 
