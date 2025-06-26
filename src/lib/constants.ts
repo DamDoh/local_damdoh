@@ -5,6 +5,7 @@ export const APP_NAME = "DamDoh";
 
 export const STAKEHOLDER_ROLES = [
   'Farmer',
+  'Agricultural Cooperative',
   'Field Agent/Agronomist (DamDoh Internal)',
   'Operations/Logistics Team (DamDoh Internal)',
   'Quality Assurance Team (DamDoh Internal)',
