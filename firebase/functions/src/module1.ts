@@ -282,7 +282,7 @@ export const handleObservationEvent = functions.runWith({ secrets: ["GEMINI_API_
     const { farmFieldId, observationType, observationDate, details, mediaUrls, actorVtiId, geoLocation } = data;
 
     if (!farmFieldId || !observationType || !observationDate || !details || !actorVtiId) {
-        throw new functions.https.HttpsError('invalid-argument', 'Missing required fields.');
+        throw new functions.https.HttpsError('invalid-argument', 'Missing required fields for observation event.');
     }
 
     try {

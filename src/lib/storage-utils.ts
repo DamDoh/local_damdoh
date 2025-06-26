@@ -1,6 +1,6 @@
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { firebaseApp } from "./firebase/client"; // Use your client-side firebase app instance
+import { app as firebaseApp } from "./firebase/client"; // Use your client-side firebase app instance
 import { v4 as uuidv4 } from 'uuid';
 
 const storage = getStorage(firebaseApp);

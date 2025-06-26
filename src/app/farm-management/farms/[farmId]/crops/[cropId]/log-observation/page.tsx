@@ -36,6 +36,7 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import { uploadFileAndGetURL } from "@/lib/storage-utils";
 
 export default function LogObservationPage() {
   const router = useRouter();
@@ -71,13 +72,13 @@ export default function LogObservationPage() {
     setIsSubmitting(true);
 
     try {
-      // In a real app, if data.imageFile exists, you would first upload it to Firebase Storage
-      // and get the download URL to pass in the `mediaUrls` array.
-      // For now, we'll simulate this and pass an empty array.
-      const mediaUrls = [];
+      let mediaUrls = [];
       if (data.imageFile) {
-        toast({ title: "Image Upload (Simulated)", description: `File "${data.imageFile.name}" would be uploaded.`});
-        // mediaUrls.push(await uploadFileAndGetURL(data.imageFile));
+        toast({ title: "Image Uploading...", description: "Please wait while your image is uploaded." });
+        // Use a more specific path for observation images
+        const imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
+        mediaUrls.push(imageUrl);
+        toast({ title: "Image Upload Complete!", variant: "default" });
       }
 
       const payload = {

@@ -101,13 +101,13 @@ export const createCropSchema = z.object({
 export type CreateCropValues = z.infer<typeof createCropSchema>;
 
 export const createObservationSchema = z.object({
-    observationType: z.string().min(3, "Observation type is required."),
-    observationDate: z.date({
-      required_error: "An observation date is required.",
-    }),
-    details: z.string().min(10, "Details must be at least 10 characters.").max(1000, "Details cannot exceed 1000 characters."),
-    imageFile: imageFileSchema.optional(),
-  });
+  observationType: z.string().min(3, "Observation type is required."),
+  observationDate: z.date({
+    required_error: "An observation date is required.",
+  }),
+  details: z.string().min(10, "Details must be at least 10 characters.").max(1000, "Details cannot exceed 1000 characters."),
+  imageFile: imageFileSchema.optional(),
+});
 export type CreateObservationValues = z.infer<typeof createObservationSchema>;
 
 export const createHarvestSchema = z.object({

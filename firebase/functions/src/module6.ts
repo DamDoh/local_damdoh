@@ -2,11 +2,10 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { dummyFeedItems } from './dummy-data'; // Import dummy data from local file
 
 const db = admin.firestore();
-const POSTS_PER_PAGE = 10; // Define a page size for pagination
-const REPLIES_PER_PAGE = 15; // Define a page size for replies
+const POSTS_PER_PAGE = 10;
+const REPLIES_PER_PAGE = 15;
 
 /**
  * =================================================================
@@ -16,9 +15,6 @@ const REPLIES_PER_PAGE = 15; // Define a page size for replies
 
 // ================== FORUMS ==================
 
-/**
- * Fetches a list of all forum topics.
- */
 export const getTopics = functions.https.onCall(async (data, context) => {
     try {
         const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
@@ -30,9 +26,6 @@ export const getTopics = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Creates a new forum topic.
- */
 export const createTopic = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a topic.");
@@ -64,9 +57,6 @@ export const createTopic = functions.https.onCall(async (data, context) => {
 });
 
 
-/**
- * Fetches posts for a specific topic with pagination.
- */
 export const getPostsForTopic = functions.https.onCall(async (data, context) => {
     const { topicId, lastVisible } = data;
     if (!topicId) {
@@ -97,9 +87,6 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
     }
 });
 
-/**
- * Creates a new post in a forum topic.
- */
 export const createForumPost = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
@@ -119,15 +106,12 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
         authorRef: context.auth.uid,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
         replyCount: 0,
-        likeCount: 0, // Initialize like count
+        likeCount: 0,
     };
 
     try {
         await db.runTransaction(async (transaction) => {
-            // 1. Create the new post document.
             transaction.set(newPostRef, newPost);
-            
-            // 2. Update the topic's post count and last activity timestamp.
             transaction.update(topicRef, {
                 postCount: admin.firestore.FieldValue.increment(1),
                 lastActivity: admin.firestore.FieldValue.serverTimestamp()
@@ -142,9 +126,6 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
 });
 
 
-/**
- * Fetches replies for a specific post with pagination.
- */
 export const getRepliesForPost = functions.https.onCall(async (data, context) => {
     const { topicId, postId, lastVisible } = data;
     if (!topicId || !postId) {
@@ -164,10 +145,8 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
         }
 
         const repliesSnapshot = await query.get();
-        
         const replies = repliesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         
-        // Enrich with author profiles (example implementation)
         const authorIds = [...new Set(replies.map(reply => reply.authorRef))].filter(id => id);
         const profiles: Record<string, any> = {};
         if (authorIds.length > 0) {
@@ -200,9 +179,6 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
     }
 });
 
-/**
- * Adds a reply to a post.
- */
 export const addReplyToPost = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to reply.");
@@ -223,7 +199,6 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 
     try {
         await postRef.collection("replies").add(replyData);
-        // Update the post's reply count and topic's last activity
         await postRef.update({ replyCount: admin.firestore.FieldValue.increment(1) });
         await db.collection("forums").doc(topicId).update({
             lastActivity: admin.firestore.FieldValue.serverTimestamp()
@@ -238,9 +213,6 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 
 // ================== GROUPS ==================
 
-/**
- * Fetches all public groups.
- */
 export const getGroups = functions.https.onCall(async (data, context) => {
     try {
         const groupsSnapshot = await db.collection("groups").where("isPublic", "==", true).get();
@@ -252,9 +224,6 @@ export const getGroups = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Creates a new group.
- */
 export const createGroup = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a group.");
@@ -277,7 +246,6 @@ export const createGroup = functions.https.onCall(async (data, context) => {
 
     try {
         const groupRef = await db.collection("groups").add(newGroup);
-        // Automatically add the creator as the first member
         await groupRef.collection("members").doc(context.auth.uid).set({
             role: "owner",
             joinedAt: admin.firestore.FieldValue.serverTimestamp()
@@ -289,9 +257,6 @@ export const createGroup = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Fetches details for a single group.
- */
 export const getGroupDetails = functions.https.onCall(async (data, context) => {
     const { groupId } = data;
     if (!groupId) {
@@ -310,9 +275,6 @@ export const getGroupDetails = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Fetches members of a specific group.
- */
 export const getGroupMembers = functions.https.onCall(async (data, context) => {
     const { groupId } = data;
     if (!groupId) {
@@ -337,9 +299,6 @@ export const getGroupMembers = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Allows a user to join a group.
- */
 export const joinGroup = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to join a group.");
@@ -380,9 +339,6 @@ export const joinGroup = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Allows a user to leave a group.
- */
 export const leaveGroup = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to leave a group.");
@@ -419,17 +375,31 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
  * =================================================================
  */
 
-// Fetches the main social feed posts
 export const getFeed = functions.https.onCall(async (data, context) => {
-    // For now, this returns dummy data. In a real app, you would fetch from Firestore.
-    // const feedSnapshot = await db.collection("posts").orderBy("createdAt", "desc").limit(20).get();
-    // const posts = feedSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return { posts: dummyFeedItems };
+    try {
+        const { lastVisible } = data;
+        let query = db.collection("posts")
+                      .orderBy("createdAt", "desc")
+                      .limit(POSTS_PER_PAGE);
+
+        if (lastVisible) {
+            const lastVisibleDoc = await db.collection("posts").doc(lastVisible).get();
+            if (lastVisibleDoc.exists) {
+                query = query.startAfter(lastVisibleDoc);
+            }
+        }
+
+        const snapshot = await query.get();
+        const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const newLastVisible = snapshot.docs[snapshot.docs.length - 1]?.id || null;
+
+        return { posts, lastVisible: newLastVisible };
+    } catch (error) {
+        console.error("Error fetching feed:", error);
+        throw new functions.https.HttpsError("internal", "Could not fetch feed.");
+    }
 });
 
-/**
- * Creates a new post for the main social feed.
- */
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
@@ -452,10 +422,8 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
     };
 
     try {
-        // In a real app, you would add the post to Firestore
-        // const docRef = await db.collection("posts").add(newPost);
-        console.log("Simulating post creation:", newPost);
-        return { postId: `simulated-${Date.now()}`, message: "Post created successfully (simulated)" };
+        const docRef = await db.collection("posts").add(newPost);
+        return { postId: docRef.id, message: "Post created successfully" };
     } catch (error) {
         console.error("Error creating post:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
@@ -463,7 +431,6 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
 });
 
 
-// Likes a post
 export const likePost = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to like a post.");
@@ -472,14 +439,31 @@ export const likePost = functions.https.onCall(async (data, context) => {
     if (!postId) {
         throw new functions.https.HttpsError("invalid-argument", "postId is required.");
     }
-    // In a real app, you would add logic to prevent multiple likes from the same user
-    // e.g., by checking a subcollection of likes. And incrementing the count.
-    console.log(`Simulating liking post ${postId} by user ${context.auth.uid}`);
-    return { success: true };
+
+    const postRef = db.collection("posts").doc(postId);
+    const likeRef = postRef.collection("likes").doc(context.auth.uid);
+
+    try {
+        const likeDoc = await likeRef.get();
+
+        if (likeDoc.exists) {
+            // Unlike the post
+            await likeRef.delete();
+            await postRef.update({ likeCount: FieldValue.increment(-1) });
+            return { success: true, message: "Post unliked." };
+        } else {
+            // Like the post
+            await likeRef.set({ createdAt: FieldValue.serverTimestamp() });
+            await postRef.update({ likeCount: FieldValue.increment(1) });
+            return { success: true, message: "Post liked." };
+        }
+    } catch (error) {
+        console.error(`Error liking post ${postId}:`, error);
+        throw new functions.https.HttpsError("internal", "An error occurred while liking the post.");
+    }
 });
 
 
-// Adds a comment to a post
 export const addComment = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to comment.");
@@ -489,7 +473,20 @@ export const addComment = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "postId and content are required.");
     }
 
-    // In a real app, you would add the comment to a subcollection and increment the post's comment count.
-    console.log(`Simulating adding comment to post ${postId} by user ${context.auth.uid}: "${content}"`);
-    return { success: true, commentId: `sim-comment-${Date.now()}` };
+    const newComment = {
+        userId: context.auth.uid,
+        content,
+        createdAt: FieldValue.serverTimestamp(),
+    };
+
+    const postRef = db.collection("posts").doc(postId);
+
+    try {
+        const commentRef = await postRef.collection("comments").add(newComment);
+        await postRef.update({ commentCount: FieldValue.increment(1) });
+        return { success: true, commentId: commentRef.id, message: "Comment added successfully." };
+    } catch (error) {
+        console.error(`Error adding comment to post ${postId}:`, error);
+        throw new functions.https.HttpsError("internal", "An error occurred while adding the comment.");
+    }
 });
