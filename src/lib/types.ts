@@ -18,7 +18,7 @@ export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumTopicSchema>;
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
 // =================================================================
 // 2. UI & COMPONENT-SPECIFIC TYPES
@@ -110,12 +110,15 @@ export interface MobileDiscoverItem {
 // various stakeholder-specific dashboards and future features.
 // =================================================================
 
-export interface FarmerDashboardData {
-  predictedYield: {
+export interface YieldDataPoint {
     crop: string;
-    variance: string;
-    confidence: string;
-  };
+    historical: number;
+    predicted: number;
+    unit: string;
+}
+
+export interface FarmerDashboardData {
+  yieldData: YieldDataPoint[];
   irrigationSchedule: {
     next_run: string;
     duration_minutes: number;

@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { FarmerDashboardData } from "./types";
 
 const db = admin.firestore();
 
@@ -18,8 +19,38 @@ async function getDashboardData(collection: string, context: functions.https.Cal
     }
 }
 
-export const getFarmerDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("farmer-dashboard", context);
+export const getFarmerDashboardData = functions.https.onCall(async (data, context): Promise<FarmerDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    // Returning mock data to power the new dashboard UI
+    const mockData: FarmerDashboardData = {
+        yieldData: [
+            { crop: 'Maize', historical: 7.5, predicted: 8.2, unit: 'Tons/Ha' },
+            { crop: 'Soybeans', historical: 3.2, predicted: 3.5, unit: 'Tons/Ha' },
+            { crop: 'Coffee', historical: 1.8, predicted: 2.1, unit: 'Tons/Ha' },
+            { crop: 'Avocado', historical: 15, predicted: 17, unit: 'Tons/Ha' },
+        ],
+        irrigationSchedule: {
+            next_run: 'Tomorrow, 6 AM',
+            duration_minutes: 45,
+            recommendation: 'Soil moisture is low. Early morning is ideal to reduce evaporation.',
+        },
+        matchedBuyers: [
+            { id: 'buyer1', name: 'Global Grain Traders', matchScore: 92, request: 'Seeking 500 tons of non-GMO maize', contactId: 'globalGrain' },
+            { id: 'buyer2', name: 'Artisan Coffee Roasters', matchScore: 85, request: 'Looking for single-origin specialty coffee beans', contactId: 'artisanCoffee' }
+        ],
+        trustScore: {
+            reputation: 88,
+            certifications: [
+                { id: 'cert1', name: 'GlobalG.A.P.', issuingBody: 'SGS' },
+                { id: 'cert2', name: 'Organic Certified', issuingBody: 'EcoCert' }
+            ],
+        },
+    };
+
+    return mockData;
 });
 
 export const getBuyerDashboardData = functions.https.onCall(async (data, context) => {
