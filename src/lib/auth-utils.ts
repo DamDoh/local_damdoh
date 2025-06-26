@@ -12,32 +12,14 @@ import {
 import { auth, functions } from './firebase/client';
 import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
-import React, { useEffect, useState, createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext } from 'react';
 
-interface AuthContextType {
+export interface AuthContextType {
   user: FirebaseUser | null;
   loading: boolean;
 }
 
-const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
-
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<FirebaseUser | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setLoading(false);
-    });
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
-
-  const value = { user, loading };
-
-  return React.createElement(AuthContext.Provider, { value: value }, children);
-}
+export const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
 
 export const useAuth = () => {
   const context = useContext(AuthContext);

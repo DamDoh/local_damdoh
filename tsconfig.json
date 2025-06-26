@@ -29,5 +29,5 @@
     "next.config.ts",
     "tailwind.config.ts"
   ],
-  "exclude": ["node_modules", "firebase", "src/firebase", "src/usr", "src/examples", "src/user_management"]
+  "exclude": ["node_modules", "firebase", "src/firebase", "src/usr", "src/examples", "src/user_management", "src/frontend_snippets", "src/farmers-hub"]
 }
