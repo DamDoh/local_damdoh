@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { KnfBatch } from "./types";
+import { _internalLogTraceEvent } from "./module1"; // Import internal event logger
 
 const db = admin.firestore();
 
@@ -98,6 +99,7 @@ export const getFarm = functions.https.onCall(async (data, context) => {
 
 /**
  * Creates a new crop document associated with a farm.
+ * After creating the crop, it also logs a 'PLANTED' traceability event.
  */
 export const createCrop = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -118,17 +120,37 @@ export const createCrop = functions.https.onCall(async (data, context) => {
 
     try {
         const newCropRef = db.collection('crops').doc();
+        const plantingDateTimestamp = admin.firestore.Timestamp.fromDate(new Date(planting_date));
+
         await newCropRef.set({
             farm_id,
             owner_id: context.auth.uid,
             crop_type,
-            planting_date: admin.firestore.Timestamp.fromDate(new Date(planting_date)),
+            planting_date: plantingDateTimestamp,
             harvest_date: harvest_date ? admin.firestore.Timestamp.fromDate(new Date(harvest_date)) : null,
             expected_yield: expected_yield || "",
             current_stage: current_stage || null,
             notes: notes || "",
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
+
+        // Synergy: Log a PLANTED traceability event for this new crop
+        const eventPayload = {
+            cropType: crop_type,
+            plantingDate: plantingDateTimestamp,
+            farmFieldId: newCropRef.id,
+            notes: "Initial crop creation",
+        };
+
+        await _internalLogTraceEvent({
+             vtiId: newCropRef.id, 
+             eventType: 'PLANTED', 
+             actorRef: context.auth.uid,
+             geoLocation: null, // Can be added later
+             payload: eventPayload,
+             farmFieldId: newCropRef.id,
+        }, context);
+
         return { success: true, cropId: newCropRef.id };
     } catch (error: any) {
         console.error("Error creating crop:", error);

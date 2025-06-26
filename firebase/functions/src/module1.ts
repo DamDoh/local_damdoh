@@ -78,7 +78,7 @@ export const generateVTI = functions.https.onCall(async (data, context) => {
   }
 });
 
-async function _internalLogTraceEvent(data: any, context?: functions.https.CallableContext) {
+export async function _internalLogTraceEvent(data: any, context?: functions.https.CallableContext) {
     const { vtiId, eventType, actorRef, geoLocation, payload = {}, farmFieldId } = data;
 
     if (!vtiId || typeof vtiId !== 'string') {
@@ -291,7 +291,12 @@ export const handleObservationEvent = functions.runWith({ secrets: ["GEMINI_API_
         if (mediaUrls && mediaUrls.length > 0) {
             const model = getGenerativeModel({ model: "gemini-pro-vision" });
             const prompt = `Analyze this image of a crop observation. The farmer reported the following: "${details}". What do you see? Provide a brief analysis.`;
-            const imagePart = { inlineData: { data: mediaUrls[0], mimeType: 'image/jpeg' } };
+            // Assuming mediaUrls[0] is a base64 data URI string. We need to extract the data part.
+            const base64Data = mediaUrls[0].split(',')[1];
+            if (!base64Data) {
+                 throw new functions.https.HttpsError('invalid-argument', 'Invalid image data URI provided.');
+            }
+            const imagePart = { inlineData: { data: base64Data, mimeType: 'image/jpeg' } };
 
             try {
                 const result = await model.generateContent([prompt, imagePart]);
@@ -316,71 +321,6 @@ export const handleObservationEvent = functions.runWith({ secrets: ["GEMINI_API_
     } catch (error: any) {
         console.error('Error handling observation event:', error);
         throw new functions.https.HttpsError('internal', 'Failed to handle observation event.', error.message);
-    }
-});
-
-export const handlePlantingEvent = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
-    }
-
-    const callerUid = context.auth.uid;
-    const role = await getRole(callerUid);
-
-    if (role !== 'Farmer' && role !== 'system') {
-        throw new functions.https.HttpsError('permission-denied', 'Only farmers or system processes can log planting events.');
-    }
-
-    const { farmFieldId, cropType, plantingDate, seedInputVti, method, actorVtiId, geoLocation } = data;
-    
-    if (!farmFieldId || typeof farmFieldId !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "farmFieldId" parameter is required and must be a string.');
-    }
-    if (!cropType || typeof cropType !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "cropType" parameter is required and must be a string.');
-    }
-    if (!plantingDate) {
-        throw new functions.https.HttpsError('invalid-argument', 'The "plantingDate" parameter is required.');
-    } 
-    if (seedInputVti !== undefined && typeof seedInputVti !== 'string') {
-         throw new functions.https.HttpsError('invalid-argument', 'The "seedInputVti" parameter must be a string if provided.');
-     }
-     if (method !== undefined && typeof method !== 'string') {
-         throw new functions.https.HttpsError('invalid-argument', 'The "method" parameter must be a string if provided.');
-     }
-    if (!actorVtiId || typeof actorVtiId !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "actorVtiId" parameter is required and must be a string (User or Organization VTI ID).');
-    }
-
-     if (geoLocation && (typeof geoLocation.lat !== 'number' || typeof geoLocation.lng !== 'number')) {
-        throw new functions.https.HttpsError('invalid-argument', 'The "geoLocation" parameter must be an object with lat and lng if provided.');
-    }
-
-    try {
-        const eventPayload = {
-            cropType,
-            plantingDate,
-            farmFieldId,
-            seedInputVti: seedInputVti || null,
-            method: method || null,
-        };
-
-        await _internalLogTraceEvent({
-            vtiId: farmFieldId, 
-            eventType: 'PLANTED', 
-             actorRef: actorVtiId,
-            geoLocation: geoLocation || null,
-            payload: eventPayload,
-            farmFieldId: farmFieldId,
-        }, context);
-
-        return { status: 'success', message: `Planting event logged for farm field ${farmFieldId}.` };
-    } catch (error: any) {
-        console.error('Error handling planting event:', error);
-         if (error.code) {
-            throw error; 
-        }
-        throw new functions.https.HttpsError('internal', 'Failed to handle planting event.', error.message);
     }
 });
 

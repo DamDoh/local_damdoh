@@ -174,7 +174,7 @@ export default function LogInputApplicationPage() {
                     <FormItem>
                         <FormLabel className="flex items-center gap-2"><Hash className="h-4 w-4 text-muted-foreground" />Quantity</FormLabel>
                         <FormControl>
-                        <Input type="number" placeholder="e.g., 50" {...field} />
+                        <Input type="number" placeholder="e.g., 50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
