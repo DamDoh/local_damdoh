@@ -2,6 +2,9 @@
 import { config } from 'dotenv';
 config();
 
+// Ensure the Firebase Admin SDK is initialized for server-side operations
+import '@/lib/firebase/admin';
+
 import '@/ai/flows/forum-topic-suggestions.ts';
 import '@/ai/flows/suggested-connections.ts';
 import '@/ai/flows/profile-summary-generator.ts';

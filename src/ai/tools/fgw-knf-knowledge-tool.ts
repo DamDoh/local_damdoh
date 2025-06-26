@@ -1,11 +1,9 @@
+
 'use server';
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import {getFirestore, collection, query, where, getDocs, limit} from 'firebase/firestore';
-import { app as firebaseApp } from '@/lib/firebase/client';
-
-const db = getFirestore(firebaseApp);
+import { adminDb } from '@/lib/firebase/admin'; // Use the Admin SDK
 
 export const fgwKnfKnowledgeTool = ai.defineTool(
   {
@@ -20,19 +18,18 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
     console.log(`[fgwKnfKnowledgeTool] Received query for: "${input.techniqueName}"`);
 
     try {
-      // Create a flexible query to search by name or abbreviation.
-      // This is a simplified search; for production, a more robust search service like Algolia would be better.
       const searchTerm = input.techniqueName.toLowerCase();
-      const articlesRef = collection(db, 'knowledge_base');
-      const snapshot = await getDocs(articlesRef);
+      
+      // Use Admin SDK syntax to query Firestore
+      const articlesRef = adminDb.collection('knowledge_base');
+      const snapshot = await articlesRef.get();
       
       const allDocs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
       // Find the first document where the name or ID contains the search term.
-      // This allows for searching by abbreviation (e.g., "FPJ") if the ID is set to "knf_fpj".
       const result = allDocs.find(doc => 
-        doc.name.toLowerCase().includes(searchTerm) || 
-        doc.id.toLowerCase().includes(searchTerm)
+        (doc.name && doc.name.toLowerCase().includes(searchTerm)) || 
+        (doc.id && doc.id.toLowerCase().includes(searchTerm))
       );
       
       if (!result) {
@@ -45,7 +42,11 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
 
     } catch (error) {
       console.error('[fgwKnfKnowledgeTool] Error searching Firestore:', error);
-      throw new Error('Failed to search the KNF knowledge base. Ensure the "knowledge_base" collection exists.');
+      // Provide a more specific error message if Firestore isn't enabled
+      if (error instanceof Error && 'code' in error && (error as any).code === 5) {
+         throw new Error('Failed to search the KNF knowledge base. Ensure the Firestore database is enabled in your Firebase project.');
+      }
+      throw new Error('Failed to search the KNF knowledge base. Please check server logs.');
     }
   }
 );
