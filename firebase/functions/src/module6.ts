@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { UserProfile } from "./types";
+import type { UserProfile } from "./types";
 import { _internalInitiatePayment } from './module7'; // Import payment function
 import { _internalLogTraceEvent } from './module1'; // Import trace event logger
 
@@ -561,7 +561,7 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
                 const regData = regDoc.data();
                 return {
                     id: regDoc.id,
-                    displayName: profile?.name || 'Unknown User',
+                    displayName: profile?.displayName || 'Unknown User',
                     email: profile?.email || 'No email',
                     avatarUrl: profile?.avatarUrl || '',
                     registeredAt: regData.registeredAt.toDate().toISOString(),
@@ -852,7 +852,7 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
                 avatarUrl: otherParticipantInfo.avatarUrl,
             },
             lastMessage: data.lastMessage,
-            timestamp: data.lastMessageTimestamp.toDate().toISOString(),
+            lastMessageTimestamp: data.lastMessageTimestamp.toDate().toISOString(),
             unreadCount: 0, // Simplified for now
         };
     });
@@ -971,8 +971,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
         const newConversation = {
             participantIds,
             participantInfo: {
-                [uid]: { name: userProfileSnap.data()?.name, avatarUrl: userProfileSnap.data()?.avatarUrl || null },
-                [recipientId]: { name: recipientProfileSnap.data()?.name, avatarUrl: recipientProfileSnap.data()?.avatarUrl || null }
+                [uid]: { name: userProfileSnap.data()?.displayName, avatarUrl: userProfileSnap.data()?.avatarUrl || null },
+                [recipientId]: { name: recipientProfileSnap.data()?.displayName, avatarUrl: recipientProfileSnap.data()?.avatarUrl || null }
             },
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),

@@ -120,9 +120,11 @@ export default function CreateAgriEventPage() {
 
   return (
     <div className="space-y-6">
-      <Link href="/agri-events" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-        <ArrowLeft className="mr-1 h-4 w-4" /> Back to Agri-Business Events
-      </Link>
+      <Button asChild variant="outline" className="mb-4">
+        <Link href="/agri-events">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Agri-Business Events
+        </Link>
+      </Button>
 
       {submissionStatus === 'success' && createdEvent ? (
         <Card className="max-w-2xl mx-auto text-center">
@@ -135,7 +137,7 @@ export default function CreateAgriEventPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <Button asChild className="w-full">
-                <Link href={`/agri-events/${createdEvent.id}`}>View Event Page & Manage Registrations</Link>
+                <Link href={`/agri-events/${createdEvent.id}/manage`}>Manage Event Registrations & Promotions</Link>
               </Button>
             <Button 
               className="w-full" 
@@ -195,7 +197,7 @@ export default function CreateAgriEventPage() {
                   )}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
                     name="eventDate"
@@ -438,8 +440,8 @@ export default function CreateAgriEventPage() {
                   )}
                 />
 
-                <Button type="submit" className="w-full md:w-auto" disabled={submissionStatus === 'submitting'}>
-                  {submissionStatus === 'submitting' ? (
+                <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
+                  {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...
                     </>

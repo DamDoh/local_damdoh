@@ -203,7 +203,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                      coupons.length > 0 ? (
                         <div className="space-y-2">
                             {coupons.map(coupon => (
-                                <div key={coupon.id} className="flex justify-between items-center p-3 border rounded-lg">
+                                <div key={coupon.id} className="flex flex-wrap justify-between items-center gap-2 p-3 border rounded-lg">
                                     <div className="font-mono text-primary bg-primary/10 px-2 py-1 rounded-md text-sm">{coupon.code}</div>
                                     <div className="text-sm">
                                         {coupon.discountType === 'percentage' ? `${coupon.discountValue}% off` : `$${coupon.discountValue.toFixed(2)} off`}
@@ -211,6 +211,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                     <div className="text-xs text-muted-foreground">
                                         Used: {coupon.usageCount} / {coupon.usageLimit || '∞'}
                                     </div>
+                                    <div className="text-xs text-muted-foreground">Expires: {coupon.expiresAt ? format(new Date((coupon.expiresAt as any)._seconds * 1000), 'PPP') : 'Never'}</div>
                                     <Dialog>
                                         <DialogTrigger asChild>
                                             <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4" /> Share</Button>
@@ -282,39 +283,39 @@ export default function ManageEventPage() {
 
   const functions = getFunctions(firebaseApp);
   const getEventDetails = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
-  const checkInAttendee = useMemo(() => httpsCallable(functions, 'checkInAttendee'), [functions]);
+  const checkInAttendeeCallable = useMemo(() => httpsCallable(functions, 'checkInAttendee'), [functions]);
 
+  const fetchEvent = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const result = await getEventDetails({ eventId, includeAttendees: true });
+      const eventData = result.data as AgriEventWithAttendees;
+
+      if (eventData.organizerId !== user?.uid) {
+          toast({ variant: "destructive", title: "Unauthorized", description: "You are not the organizer of this event." });
+          router.push(`/agri-events/${eventId}`);
+          return;
+      }
+
+      setEvent(eventData);
+      setAttendees(eventData.attendees || []);
+    } catch (error) {
+      console.error("Error fetching event details for management:", error);
+      toast({ variant: "destructive", title: "Error", description: "Could not load event management data." });
+      setEvent(null);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [eventId, getEventDetails, toast, user, router]);
+  
   useEffect(() => {
     if (!eventId || !user) return;
-
-    const fetchEvent = async () => {
-      setIsLoading(true);
-      try {
-        const result = await getEventDetails({ eventId, includeAttendees: true });
-        const eventData = result.data as AgriEventWithAttendees;
-
-        if (eventData.organizerId !== user.uid) {
-            toast({ variant: "destructive", title: "Unauthorized", description: "You are not the organizer of this event." });
-            router.push(`/agri-events/${eventId}`);
-            return;
-        }
-
-        setEvent(eventData);
-        setAttendees(eventData.attendees || []);
-      } catch (error) {
-        console.error("Error fetching event details for management:", error);
-        toast({ variant: "destructive", title: "Error", description: "Could not load event management data." });
-        setEvent(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     fetchEvent();
-  }, [eventId, getEventDetails, toast, user, router]);
+  }, [eventId, user, fetchEvent]);
   
   const handleCheckIn = async (attendeeId: string) => {
     try {
-        await checkInAttendee({ eventId, attendeeId });
+        await checkInAttendeeCallable({ eventId, attendeeId });
         setAttendees(prev => prev.map(att => att.id === attendeeId ? {...att, checkedIn: true, checkedInAt: new Date().toISOString()} : att));
         toast({ title: "Check-in Successful", description: "Attendee has been checked in." });
     } catch (error: any) {

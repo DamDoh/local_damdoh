@@ -70,7 +70,7 @@ export default function AgriEventsPage() {
         setIsLoading(true);
         try {
             const result = await getAgriEventsCallable();
-            const fetchedEvents = result.data as AgriEvent[];
+            const fetchedEvents = (result.data as any).events as AgriEvent[];
             setEvents(fetchedEvents);
         } catch(error) {
             console.error("Failed to fetch events:", error);

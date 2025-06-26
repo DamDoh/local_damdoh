@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import QRCode from 'qrcode.react';
 
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import type { AgriEvent, EventAttendee } from '@/lib/types';
