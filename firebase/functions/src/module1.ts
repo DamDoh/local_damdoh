@@ -383,3 +383,34 @@ export const handlePlantingEvent = functions.https.onCall(async (data, context) 
         throw new functions.https.HttpsError('internal', 'Failed to handle planting event.', error.message);
     }
 });
+
+/**
+ * Fetches all traceability events for a given farmFieldId.
+ */
+export const getTraceabilityEventsByFarmField = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
+    }
+    
+    const { farmFieldId } = data;
+    if (!farmFieldId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A farmFieldId must be provided.');
+    }
+
+    // Optional: Add a security check to ensure the user is allowed to view events for this field.
+    // This might involve checking if the farmFieldId belongs to a farm owned by the user.
+
+    try {
+        const eventsSnapshot = await db.collection('traceability_events')
+            .where('farmFieldId', '==', farmFieldId)
+            .orderBy('timestamp', 'asc')
+            .get();
+        
+        const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        
+        return { events };
+    } catch (error) {
+        console.error(`Error fetching events for farmFieldId ${farmFieldId}:`, error);
+        throw new functions.https.HttpsError('internal', 'Failed to fetch traceability events.');
+    }
+});

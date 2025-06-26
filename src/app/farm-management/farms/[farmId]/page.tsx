@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch, Eye, HardHat, Weight } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch, Eye, HardHat, Weight, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -108,18 +108,14 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
     const [events, setEvents] = useState<TraceabilityEvent[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const functions = getFunctions(firebaseApp);
-    // There is no getTraceabilityEventsByFarmField function yet, this will fail
-    // We need to implement this in a future step. For now, it will be empty.
-    // const getEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
+    const getEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
 
     useEffect(() => {
         const fetchEvents = async () => {
             setIsLoading(true);
             try {
-                // This call will fail silently as the function does not exist.
-                // const result = await getEventsCallable({ farmFieldId });
-                // setEvents(result.data as TraceabilityEvent[]);
-                setEvents([]); // Mocking empty for now
+                const result = await getEventsCallable({ farmFieldId });
+                setEvents((result.data as any).events || []);
             } catch (error) {
                 console.error("Error fetching activity log:", error);
                 setEvents([]);
@@ -128,10 +124,10 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
             }
         };
         fetchEvents();
-    }, [farmFieldId]);
+    }, [farmFieldId, getEventsCallable]);
 
     if (isLoading) {
-        return <div className="p-4"><Skeleton className="h-16 w-full" /></div>;
+        return <div className="p-4 flex items-center justify-center"><Loader2 className="h-5 w-5 animate-spin" /></div>;
     }
 
     if (events.length === 0) {
