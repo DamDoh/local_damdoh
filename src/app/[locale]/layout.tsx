@@ -8,6 +8,11 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { getMessages } from 'next-intl/server';
 import { Providers } from "@/components/Providers";
+import { locales } from '../../../i18n';
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({locale}));
+}
 
 export const metadata: Metadata = {
   title: {
