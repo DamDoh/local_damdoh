@@ -1,118 +1,116 @@
 
 "use client";
 
-import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useState, useMemo } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { createForumTopicSchema, type CreateForumTopicValues } from "@/lib/form-schemas";
-import { ArrowLeft, Send, MessageSquare, CaseUpper, FileText } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import { Label } from "@/components/ui/label";
+import { ArrowLeft } from "lucide-react";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth-utils';
 
-export default function CreateForumTopicPage() {
-  const { toast } = useToast();
-  const router = useRouter();
 
-  const form = useForm<CreateForumTopicValues>({
-    resolver: zodResolver(createForumTopicSchema),
-    defaultValues: {
-      title: "",
-      description: "",
-    },
-  });
+export default function CreateTopicPage() {
+    const router = useRouter();
+    const { toast } = useToast();
+    const { user } = useAuth();
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function onSubmit(data: CreateForumTopicValues) {
-    console.log("New Forum Topic Data:", data);
-    // In a real app, you would submit this data to your backend
-    // e.g., await createForumTopicInDB(data);
-    toast({
-      title: "Topic Submitted (Simulated)",
-      description: "Your new forum topic has been created and you will be redirected.",
-    });
-    // Redirect to the forums list after a short delay
-    setTimeout(() => {
-        router.push('/forums');
-    }, 1500);
-  }
+    const functions = getFunctions(firebaseApp);
+    const createTopicCallable = useMemo(() => httpsCallable(functions, 'createTopic'), [functions]);
 
-  return (
-    <div className="space-y-6">
-      <Link href="/forums" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-        <ArrowLeft className="mr-1 h-4 w-4" /> Back to Agri-Supply Chain Forums
-      </Link>
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!user) {
+            toast({
+                title: "Authentication Error",
+                description: "You must be logged in to create a topic.",
+                variant: "destructive"
+            });
+            return;
+        }
 
-      <Card className="max-w-2xl mx-auto">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <MessageSquare className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Start a New Discussion</CardTitle>
-          </div>
-          <CardDescription>Share your insights, ask questions, or propose solutions related to the agricultural supply chain.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><CaseUpper className="h-4 w-4 text-muted-foreground" />Discussion Title</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Best practices for reducing post-harvest losses in maize" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      A clear and concise title helps others understand the topic.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+        if (!name.trim() || !description.trim()) {
+            toast({
+                title: "Incomplete Form",
+                description: "Please fill out both the topic name and description.",
+                variant: "destructive",
+            });
+            return;
+        }
+        setIsSubmitting(true);
 
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Opening Post / Description</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Elaborate on your discussion topic. Provide context, specific questions, or points you'd like to cover..."
-                        className="min-h-[150px]"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      This will be the first post in your new discussion topic.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full md:w-auto" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? (
-                    "Submitting..."
-                ) : (
-                    <><Send className="mr-2 h-4 w-4" /> Post New Discussion</>
-                )}
-              </Button>
+        try {
+            await createTopicCallable({ name, description });
+            toast({
+                title: "Topic Created!",
+                description: "The new topic has been successfully created.",
+            });
+            router.push('/forums');
+        } catch (error: any) {
+            console.error("Error creating topic:", error);
+            toast({
+                title: "Error",
+                description: error.message || "An error occurred while creating the topic.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <div className="container mx-auto max-w-3xl py-8">
+            <Link href="/forums" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                Back to Forums
+            </Link>
+            <form onSubmit={handleSubmit}>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Create a New Topic</CardTitle>
+                        <CardDescription>Start a new discussion by creating a topic for the community.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="topic-name">Topic Name</Label>
+                            <Input 
+                                id="topic-name" 
+                                placeholder="e.g., Sustainable Farming Practices" 
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                disabled={isSubmitting}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="topic-description">Description</Label>
+                            <Textarea 
+                                id="topic-description"
+                                placeholder="A brief description of what this topic will be about."
+                                className="min-h-[100px]"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                                disabled={isSubmitting}
+                            />
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Creating..." : "Create Topic"}
+                        </Button>
+                    </CardFooter>
+                </Card>
             </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </div>
-  );
+        </div>
+    );
 }

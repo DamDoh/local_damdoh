@@ -20,7 +20,7 @@ export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>; // Add new type
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 
 // =================================================================
 // 2. UI & COMPONENT-SPECIFIC TYPES
