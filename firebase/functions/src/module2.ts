@@ -12,8 +12,6 @@ const db = admin.firestore();
  * @throws {functions.https.HttpsError} Throws an error if validation fails.
  */
 const validateProfileData = (role: string, data: any) => {
-  // The schema dependency is causing deployment failures because the file is not in the functions directory.
-  // Commenting out validation to allow deployment.
   const schema = stakeholderProfileSchemas[role as keyof typeof stakeholderProfileSchemas];
   if (schema) {
     const result = schema.safeParse(data);

@@ -142,7 +142,7 @@ export const handleHarvestEvent = functions.https.onCall(async (data, context) =
     const callerUid = context.auth.uid;
     const role = await getRole(callerUid);
 
-    if (role !== 'farmer' && role !== 'system') {
+    if (role !== 'Farmer' && role !== 'system') {
         throw new functions.https.HttpsError('permission-denied', 'Only farmers or system processes can log harvest events.');
     }
 
@@ -208,7 +208,7 @@ export const handleInputApplicationEvent = functions.https.onCall(async (data, c
     const callerUid = context.auth.uid;
     const role = await getRole(callerUid);
 
-    if (role !== 'farmer' && role !== 'system') {
+    if (role !== 'Farmer' && role !== 'system') {
         throw new functions.https.HttpsError('permission-denied', 'Only farmers or system processes can log input application events.');
     }
 
@@ -327,7 +327,7 @@ export const handlePlantingEvent = functions.https.onCall(async (data, context) 
     const callerUid = context.auth.uid;
     const role = await getRole(callerUid);
 
-    if (role !== 'farmer' && role !== 'system') {
+    if (role !== 'Farmer' && role !== 'system') {
         throw new functions.https.HttpsError('permission-denied', 'Only farmers or system processes can log planting events.');
     }
 
