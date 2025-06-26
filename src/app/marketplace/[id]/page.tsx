@@ -16,11 +16,13 @@ import { Separator } from "@/components/ui/separator";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from "@/lib/constants";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getFunctions, httpsCallable } from "firebase/functions";
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { useAuth } from "@/lib/auth-utils";
 
 
 // Function to get the category icon (can be reused from marketplace page)
@@ -68,11 +70,16 @@ export default function MarketplaceItemDetailPage() {
   const params = useParams();
   const id = params.id as string;
   const { toast } = useToast();
+  const { user } = useAuth();
+  const router = useRouter();
   
   const [item, setItem] = useState<MarketplaceItem | null>(null);
   const [seller, setSeller] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isOrdering, setIsOrdering] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [couponCode, setCouponCode] = useState("");
   const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
@@ -80,6 +87,7 @@ export default function MarketplaceItemDetailPage() {
 
   const functions = getFunctions(firebaseApp);
   const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
+  const createOrderCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceOrder'), [functions]);
 
   useEffect(() => {
     if (!id) {
@@ -113,6 +121,38 @@ export default function MarketplaceItemDetailPage() {
 
     fetchItemData();
   }, [id]);
+  
+  const handleOrder = async () => {
+    if (!user) {
+        toast({ variant: "destructive", title: "Not Authenticated", description: "You must be logged in to place an order." });
+        router.push("/auth/signin");
+        return;
+    }
+    if (!item) return;
+
+    setIsOrdering(true);
+    try {
+        const finalPrice = calculateDiscountedPrice();
+        const result = await createOrderCallable({
+            listingId: item.id,
+            quantity: quantity,
+            finalPrice: finalPrice,
+        });
+
+        toast({
+            title: "Order Placed Successfully!",
+            description: "Your order has been sent to the seller.",
+        });
+        setIsDialogOpen(false);
+        // Maybe redirect to an "My Orders" page in the future
+        // router.push(`/orders/${(result.data as any).orderId}`);
+    } catch (error: any) {
+        toast({ variant: "destructive", title: "Order Failed", description: error.message || "Could not place your order." });
+    } finally {
+        setIsOrdering(false);
+    }
+  };
+
 
   const handleCouponApply = async () => {
     if (!couponCode.trim() || !item?.sellerId) return;
@@ -135,14 +175,18 @@ export default function MarketplaceItemDetailPage() {
   };
   
   const calculateDiscountedPrice = () => {
-    if (!appliedDiscount || !item?.price) return item?.price || 0;
-    if (appliedDiscount.type === 'fixed') {
-        return Math.max(0, item.price - appliedDiscount.value);
+    if (!item?.price) return 0;
+    let singleItemPrice = item.price;
+
+    if (appliedDiscount) {
+       if (appliedDiscount.type === 'fixed') {
+            singleItemPrice = Math.max(0, item.price - appliedDiscount.value);
+        }
+        if (appliedDiscount.type === 'percentage') {
+            singleItemPrice = item.price * (1 - appliedDiscount.value / 100);
+        }
     }
-    if (appliedDiscount.type === 'percentage') {
-        return item.price * (1 - appliedDiscount.value / 100);
-    }
-    return item.price;
+    return singleItemPrice * quantity;
   };
 
   if (isLoading) {
@@ -163,7 +207,7 @@ export default function MarketplaceItemDetailPage() {
   let showContactSellerButton = true;
   
   if (item.listingType === 'Product') {
-    callToActionText = "Inquire or Place Order";
+    callToActionText = "Buy Now";
     CallToActionIcon = ShoppingBag;
     callToActionVariant = "default";
   }
@@ -218,14 +262,7 @@ export default function MarketplaceItemDetailPage() {
             </Badge>
             {item.listingType === 'Product' ? (
                 <div>
-                  {appliedDiscount && item.price ? (
-                    <>
-                      <span className="line-through text-muted-foreground/80">${item.price.toFixed(2)}</span>
-                      <span className="ml-2 font-bold">${finalPrice.toFixed(2)}</span>
-                    </>
-                  ) : (
-                    item.price ? `$${item.price.toFixed(2)}` : 'Price Inquire'
-                  )}
+                  {item.price ? `$${item.price.toFixed(2)}` : 'Price Inquire'}
                   {item.perUnit && <span className="text-base text-muted-foreground font-normal ml-1.5">{item.perUnit}</span>}
                 </div>
             ) : (
@@ -252,19 +289,6 @@ export default function MarketplaceItemDetailPage() {
             <p className="text-muted-foreground">{item.description}</p>
           </div>
           
-          {item.listingType === 'Product' && item.price && (
-            <div className="p-4 border rounded-md space-y-2 bg-muted/30">
-                <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-2"><Ticket className="h-4 w-4"/> Have a Coupon?</Label>
-                <div className="flex gap-2">
-                    <Input id="coupon-code" placeholder="Enter coupon code" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isValidatingCoupon}/>
-                    <Button onClick={handleCouponApply} disabled={isValidatingCoupon || !couponCode.trim()}>
-                        {isValidatingCoupon && <Loader2 className="h-4 w-4 animate-spin mr-2"/>}
-                        Apply
-                    </Button>
-                </div>
-            </div>
-          )}
-
            {item.listingType === 'Product' && (
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div className="space-y-2">
@@ -323,10 +347,68 @@ export default function MarketplaceItemDetailPage() {
           <div className="space-y-2" id="inquire-order">
             <h3 className="text-lg font-semibold flex items-center gap-1.5"><CalendarDays className="h-4 w-4 text-muted-foreground"/>Contact & Next Steps</h3>
             <p className="text-muted-foreground text-sm">{item.contactInfo}</p>
-              <Button className="w-full md:w-auto mt-4" variant={callToActionVariant}>
-                 <CallToActionIcon className="mr-2 h-4 w-4"/>
-                 {callToActionText}
-              </Button>
+             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                    <Button className="w-full md:w-auto mt-4" variant={callToActionVariant}>
+                        <CallToActionIcon className="mr-2 h-4 w-4"/>
+                        {callToActionText}
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Confirm Your Order</DialogTitle>
+                        <DialogDescription>Review your order details before confirming.</DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 py-4">
+                        <div className="flex items-center gap-4">
+                            <Image src={item.imageUrl || "https://placehold.co/80x80.png"} alt={item.name} width={80} height={80} className="rounded-md border" />
+                            <div>
+                                <h4 className="font-semibold">{item.name}</h4>
+                                <p className="text-sm text-muted-foreground">Seller: {seller?.name}</p>
+                                <p className="text-sm font-bold text-primary">${item.price?.toFixed(2)} {item.perUnit}</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                             <div className="space-y-1">
+                                <Label htmlFor="quantity">Quantity</Label>
+                                <Input id="quantity" type="number" value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} min="1" />
+                            </div>
+                            <div className="space-y-1">
+                                <Label htmlFor="coupon-code-modal">Coupon Code</Label>
+                                <Input id="coupon-code-modal" placeholder="Optional" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} />
+                                <Button variant="link" size="sm" className="p-0 h-auto text-xs" onClick={handleCouponApply} disabled={isValidatingCoupon}>
+                                    {isValidatingCoupon && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
+                                    Apply Coupon
+                                </Button>
+                            </div>
+                        </div>
+                        <Separator />
+                        <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                                <span>Subtotal</span>
+                                <span>${(item.price! * quantity).toFixed(2)}</span>
+                            </div>
+                            {appliedDiscount && (
+                                <div className="flex justify-between text-green-600">
+                                    <span>Discount ({appliedDiscount.type === 'percentage' ? `${appliedDiscount.value}%` : `$${appliedDiscount.value.toFixed(2)}`})</span>
+                                    <span>-${(item.price! * quantity - finalPrice).toFixed(2)}</span>
+                                </div>
+                            )}
+                            <div className="flex justify-between font-bold text-lg">
+                                <span>Total</span>
+                                <span>${finalPrice.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+                        <Button onClick={handleOrder} disabled={isOrdering}>
+                            {isOrdering && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                            Confirm Purchase
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
 
               {showContactSellerButton && (
                  <Button variant="outline" className="w-full md:w-auto md:ml-2 mt-2 md:mt-4" asChild>

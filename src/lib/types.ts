@@ -5,7 +5,8 @@ import type {
   MarketplaceItemSchema,
   ForumTopicSchema,
   ForumPostSchema,
-  AgriEventSchema
+  AgriEventSchema,
+  MarketplaceOrderSchema, // Import new schema
 } from './schemas';
 import type { CategoryNode as CatNodeType } from './category-data';
 
@@ -16,6 +17,7 @@ import type { CategoryNode as CatNodeType } from './category-data';
 
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>; // Add new type
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumPostSchema>;

@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getRole } from './module2';
+import { _internalInitiatePayment } from "./module7";
 
 const db = admin.firestore();
 
@@ -217,4 +218,70 @@ export const validateMarketplaceCoupon = functions.https.onCall(async (data, con
     throw new functions.https.HttpsError("internal", "Could not validate coupon.");
   }
 });
+
+/**
+ * Creates a new marketplace order, linking a buyer and seller.
+ */
+export const createMarketplaceOrder = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to place an order.");
+    }
     
+    const { listingId, quantity, finalPrice } = data;
+    if (!listingId || !quantity || finalPrice === undefined) {
+        throw new functions.https.HttpsError("invalid-argument", "Listing ID, quantity, and final price are required.");
+    }
+
+    const buyerId = context.auth.uid;
+    const listingRef = db.collection("marketplaceItems").doc(listingId);
+    
+    try {
+        const listingDoc = await listingRef.get();
+        if (!listingDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "The requested listing does not exist.");
+        }
+        
+        const listingData = listingDoc.data()!;
+        const sellerId = listingData.sellerId;
+
+        const newOrderRef = db.collection("marketplace_orders").doc();
+        const orderData = {
+            listingId: listingId,
+            buyerId: buyerId,
+            sellerId: sellerId,
+            quantity: quantity,
+            totalPrice: finalPrice,
+            currency: listingData.currency || 'USD',
+            status: 'pending', // Initial status
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            listingName: listingData.name, // Denormalized for easier access
+            listingImageUrl: listingData.imageUrl || null, // Denormalized
+        };
+        
+        await newOrderRef.set(orderData);
+        
+        // Synergy: Initiate payment if the order has a price > 0
+        if (finalPrice > 0) {
+            await _internalInitiatePayment({
+                orderId: newOrderRef.id,
+                amount: finalPrice,
+                currency: orderData.currency,
+                buyerInfo: { userId: buyerId },
+                sellerInfo: { userId: sellerId },
+                description: `Payment for order of "${listingData.name}"`
+            });
+        }
+
+        // TODO: In a real app, trigger notifications for both buyer and seller.
+
+        return { success: true, orderId: newOrderRef.id };
+
+    } catch (error: any) {
+        console.error("Error creating marketplace order:", error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "An error occurred while creating the order.");
+    }
+});
+    
+

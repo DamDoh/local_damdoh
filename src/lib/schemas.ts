@@ -137,21 +137,18 @@ export const MarketplaceItemSchema = z.object({
 export const MarketplaceOrderSchema = z.object({
   id: z.string().cuid2(),
   listingId: z.string().cuid2(),
+  listingName: z.string(), // Denormalized for easy display
+  listingImageUrl: z.string().url().optional().or(z.literal('')), // Denormalized
   buyerId: z.string().cuid2(),
   sellerId: z.string().cuid2(),
-  timestamp: z.string().datetime(),
-  status: z.string().max(50),
-  listingType: z.enum(LISTING_TYPES),
-  itemType: z.string().max(50),
-  quantity: z.number().min(0).optional(),
-  totalPrice: z.number().min(0).optional(),
-  // Synergy Point: These fields link a marketplace order to other modules,
-  // enabling a flow like: A farmer sells produce (Marketplace Order), which updates
-  // their financial history (relatedApplicationId points to a record in Financials),
-  // and the buyer can view the product's history (relatedTraceabilityId).
-  relatedTraceabilityId: z.string().cuid2().optional(),
-  relatedApplicationId: z.string().cuid2().optional(),
+  quantity: z.number().min(1),
+  totalPrice: z.number().min(0),
+  currency: z.string().length(3),
+  status: z.enum(['pending', 'confirmed', 'shipped', 'completed', 'cancelled']),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
+
 
 export const ForumTopicSchema = z.object({
   id: z.string().cuid2({ message: "Invalid CUID" }),
