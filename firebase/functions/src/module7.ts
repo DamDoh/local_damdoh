@@ -63,7 +63,7 @@ export const calculateDamDohCreditScore = functions.firestore
     .onCreate(async (snapshot, context) => { 
         console.log('Triggered calculateDamDohCreditScore (placeholder).');
 
-        const userId = 'placeholder_user_id'; 
+        const userId = snapshot.data()?.userRef?.id;
 
         if (!userId) {
             console.warn('Could not identify user from trigger data. Skipping score calculation.');
@@ -113,7 +113,7 @@ export const matchFundingOpportunities = functions.firestore
     .onUpdate(async (change, context) => {
 
         console.log('Triggered matchFundingOpportunities by credit score update.');
-        const relevantUserId = 'placeholder_user_id';
+        const relevantUserId = context.params.userId;
 
         if (!relevantUserId) {
              console.warn('Could not identify relevant entity from trigger data. Skipping matching.');
@@ -372,7 +372,7 @@ export const logFinancialTransaction = functions.https.onCall(async (data, conte
     }
 
     const callerUid = context.auth.uid;
-    const { type, amount, currency, description } = data;
+    const { type, amount, currency, description, category } = data;
 
     const validTypes = ['income', 'expense'];
     if (!type || typeof type !== 'string' || !validTypes.includes(type)) {
@@ -403,6 +403,7 @@ export const logFinancialTransaction = functions.https.onCall(async (data, conte
             amount: amount,
             currency: currency,
             description: description,
+            category: category || "Uncategorized",
             timestamp: admin.firestore.FieldValue.serverTimestamp(),
             linkedOrderId: null,
             linkedLoanApplicationId: null,
@@ -419,5 +420,55 @@ export const logFinancialTransaction = functions.https.onCall(async (data, conte
             throw error;
         }
         throw new functions.https.HttpsError('internal', 'Unable to log financial transaction.', error);
+    }
+});
+
+/**
+ * Fetches financial summary and recent transactions for the authenticated user.
+ */
+export const getFinancialSummaryAndTransactions = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const userId = context.auth.uid;
+    
+    try {
+        const transactionsRef = db.collection('financial_transactions');
+        const q = transactionsRef.where('userRef', '==', db.collection('users').doc(userId)).orderBy('timestamp', 'desc');
+
+        const querySnapshot = await q.get();
+
+        let totalIncome = 0;
+        let totalExpense = 0;
+        const transactions: any[] = [];
+
+        querySnapshot.forEach(doc => {
+            const tx = doc.data();
+            if (tx.type === 'income') {
+                totalIncome += tx.amount;
+            } else if (tx.type === 'expense') {
+                totalExpense += tx.amount;
+            }
+
+            // Convert timestamp for client
+            transactions.push({
+                id: doc.id,
+                ...tx,
+                timestamp: tx.timestamp.toDate().toISOString(),
+            });
+        });
+
+        const summary = {
+            totalIncome,
+            totalExpense,
+            netFlow: totalIncome - totalExpense,
+        };
+
+        return { summary, transactions: transactions.slice(0, 10) }; // Return summary and last 10 transactions
+
+    } catch (error) {
+        console.error("Error fetching financial summary:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch financial data.");
     }
 });
