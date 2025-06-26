@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -111,8 +111,31 @@ export const getBuyerDashboardData = functions.https.onCall(async (data, context
     return mockData;
 });
 
-export const getLogisticsDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("logistics-dashboard", context);
+export const getLogisticsDashboardData = functions.https.onCall(async (data, context): Promise<LogisticsDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    // In a real scenario, we would use the logistics provider's UID to fetch their actual data.
+    // For now, we return structured mock data.
+    const mockData: LogisticsDashboardData = {
+        activeShipments: [
+            { id: 'SHIP-001', to: 'Nairobi', status: 'In Transit', eta: '3 hours', vtiLink: '/traceability/vti-123' },
+            { id: 'SHIP-002', to: 'Mombasa Port', status: 'Delayed', eta: '6 hours', vtiLink: '/traceability/vti-456' },
+            { id: 'SHIP-003', to: 'Kampala', status: 'In Transit', eta: '2 days', vtiLink: '/traceability/vti-789' },
+        ],
+        incomingJobs: [
+            { id: 'JOB-A', from: 'Green Valley Organics', to: 'Nairobi Central Market', product: 'Avocados', requirements: 'Refrigerated truck', actionLink: '/jobs/job-a' },
+            { id: 'JOB-B', from: 'Rift Valley Growers', to: 'Mombasa Port', product: 'French Beans', requirements: 'Ventilated truck, 10 tons', actionLink: '/jobs/job-b' },
+        ],
+        performanceMetrics: {
+            onTimePercentage: 97,
+            fuelEfficiency: '8.2 km/L',
+            actionLink: '/logistics/performance-report',
+        }
+    };
+    
+    return mockData;
 });
 
 export const getFiDashboardData = functions.https.onCall(async (data, context) => {
