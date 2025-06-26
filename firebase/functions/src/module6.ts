@@ -421,7 +421,7 @@ export const getFeed = functions.https.onCall(async (data, context) => {
                 timestamp: postData.createdAt?.toDate ? postData.createdAt.toDate().toISOString() : new Date().toISOString(), // Alias for compatibility with FeedItemCard
             };
         });
-        const newLastVisible = snapshot.docs[postsSnapshot.docs.length - 1]?.id || null;
+        const newLastVisible = snapshot.docs[snapshot.docs.length - 1]?.id || null;
 
         return { posts, lastVisible: newLastVisible };
     } catch (error) {
@@ -1070,5 +1070,7 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
     }
 });
+
+    
 
     
