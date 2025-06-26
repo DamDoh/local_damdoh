@@ -32,12 +32,12 @@ import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProvi
 import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
 import { CertificationBodyDashboard } from '@/components/dashboard/hubs/CertificationBodyDashboard';
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
-import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
 import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDashboard';
 import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
 import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
+import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -58,11 +58,11 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,
     'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
     'Researcher/Academic': ResearcherDashboard,
-    'Agronomy Expert/Consultant (External)': AgronomistDashboard,
     'Agro-Tourism Operator': AgroTourismDashboard,
     'Insurance Provider': InsuranceProviderDashboard,
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
+    'Agronomy Expert/Consultant (External)': AgronomistDashboard,
 };
 
 

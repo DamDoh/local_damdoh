@@ -66,7 +66,7 @@ export const InsuranceProviderDashboard = () => {
 
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
-          case 'submitted': return 'secondary';
+          case 'submitted': return 'outline';
           case 'under review': return 'secondary';
           case 'approved': return 'default';
           case 'rejected': return 'destructive';
@@ -113,7 +113,7 @@ export const InsuranceProviderDashboard = () => {
                      <TableRow key={claim.id}>
                        <TableCell className="font-medium">{claim.policyHolderName}</TableCell>
                        <TableCell>{claim.policyType}</TableCell>
-                       <TableCell>{claim.claimDate}</TableCell>
+                       <TableCell>{new Date(claim.claimDate).toLocaleDateString()}</TableCell>
                        <TableCell><Badge variant={getStatusBadgeVariant(claim.status)}>{claim.status}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
@@ -125,7 +125,7 @@ export const InsuranceProviderDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No pending claims.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No pending claims.</p>
              )}
            </CardContent>
          </Card>
@@ -163,7 +163,7 @@ export const InsuranceProviderDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No risk assessment alerts.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No new risk assessment alerts.</p>
              )}
            </CardContent>
          </Card>
@@ -178,10 +178,10 @@ export const InsuranceProviderDashboard = () => {
                 {dashboardData.activePolicies.length > 0 ? (
                     <div className="space-y-3">
                         {dashboardData.activePolicies.map((policy) => (
-                            <div key={policy.id} className="text-sm p-2 border rounded-lg">
+                            <div key={policy.id} className="text-sm p-3 border rounded-lg">
                                 <p className="font-medium">{policy.policyHolderName} ({policy.policyType})</p>
                                 <p className="text-xs text-muted-foreground">Coverage: ${policy.coverageAmount.toLocaleString()}</p>
-                                <p className="text-xs text-muted-foreground">Expires: {policy.expiryDate}</p>
+                                <p className="text-xs text-muted-foreground">Expires: {new Date(policy.expiryDate).toLocaleDateString()}</p>
                                 <Button asChild variant="link" size="sm" className="px-0 pt-1">
                                     <Link href={policy.actionLink}>View Details</Link>
                                 </Button>
@@ -189,7 +189,7 @@ export const InsuranceProviderDashboard = () => {
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No active policies.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">No active policies.</p>
                 )}
             </CardContent>
          </Card>

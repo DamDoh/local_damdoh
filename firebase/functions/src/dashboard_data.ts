@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, AgronomistDashboardData, InsuranceProviderDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -321,33 +321,27 @@ export const getResearcherDashboardData = functions.https.onCall(async (data, co
     return mockData;
 });
 
-export const getAgronomistDashboardData = functions.https.onCall(async (data, context) => {
+export const getAgronomistDashboardData = functions.https.onCall(async (data, context): Promise<AgronomistDashboardData> => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
 
     try {
-        const agronomistId = context.auth.uid;
-
-        const assignedFarmersPromise = db.collection('farmers').where('assignedAgronomist', '==', agronomistId).get();
-        const consultationRequestsPromise = db.collection('consultationRequests').where('agronomistId', '==', agronomistId).where('status', '==', 'pending').get();
-        const knowledgeBasePromise = db.collection('knowledgeBase').where('authorId', '==', agronomistId).get();
-
-        const [assignedFarmersSnapshot, consultationRequestsSnapshot, knowledgeBaseSnapshot] = await Promise.all([
-            assignedFarmersPromise,
-            consultationRequestsPromise,
-            knowledgeBasePromise,
-        ]);
-
-        const assignedFarmersOverview = assignedFarmersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        const pendingConsultationRequests = consultationRequestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        const knowledgeBaseContributions = knowledgeBaseSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        return {
-            assignedFarmersOverview,
-            pendingConsultationRequests,
-            knowledgeBaseContributions,
+        // MOCK DATA: In a real app, this would query Firestore
+        const mockData: AgronomistDashboardData = {
+            assignedFarmersOverview: [
+                { id: 'farmerA', name: 'Green Valley Organics', farmLocation: 'Nakuru, Kenya', lastConsultation: new Date(Date.now() - 86400000 * 10).toISOString(), alerts: 1, actionLink: '#' },
+                { id: 'farmerB', name: 'Rift Valley Growers', farmLocation: 'Eldoret, Kenya', lastConsultation: new Date(Date.now() - 86400000 * 5).toISOString(), alerts: 0, actionLink: '#' },
+            ],
+            pendingConsultationRequests: [
+                { id: 'req1', farmerName: 'Coastal Cashews Ltd', issueSummary: 'Suspected pest infestation in cashew trees.', requestDate: new Date(Date.now() - 86400000 * 2).toISOString(), actionLink: '#' },
+            ],
+            knowledgeBaseContributions: [
+                { id: 'kh1', title: 'A Comparative Study of Drip vs. Furrow Irrigation', status: 'Published', actionLink: '#' },
+                { id: 'kh2', title: 'Managing Fall Armyworm in Maize', status: 'Pending Review', actionLink: '#' },
+            ]
         };
+        return mockData;
 
     } catch (error) {
         console.error("Error fetching Agronomist dashboard data:", error);
@@ -379,8 +373,25 @@ export const getAgroTourismDashboardData = functions.https.onCall(async (data, c
     return mockData;
 });
 
-export const getInsuranceProviderDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("insurance-provider-dashboard", context);
+export const getInsuranceProviderDashboardData = functions.https.onCall(async (data, context): Promise<InsuranceProviderDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    // MOCK DATA
+    const mockData: InsuranceProviderDashboardData = {
+        pendingClaims: [
+            { id: 'claim1', policyHolderName: 'Green Valley Organics', policyType: 'Crop Failure (Drought)', claimDate: new Date(Date.now() - 86400000 * 5).toISOString(), status: 'Under Review', actionLink: '#' },
+        ],
+        activePolicies: [
+            { id: 'pol1', policyHolderName: 'Rift Valley Growers', policyType: 'Multi-Peril Crop Insurance', coverageAmount: 50000, expiryDate: new Date(Date.now() + 86400000 * 180).toISOString(), actionLink: '#' },
+        ],
+        riskAssessmentAlerts: [
+            { id: 'risk1', policyHolderName: 'Green Valley Organics', alert: 'Projected extended drought in region.', severity: 'High', actionLink: '#' },
+        ]
+    };
+    
+    return mockData;
 });
 
 export const getCrowdfunderDashboardData = functions.https.onCall(async (data, context) => {
