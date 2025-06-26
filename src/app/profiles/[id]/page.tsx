@@ -23,19 +23,16 @@ function ProfileSkeleton() {
     <div className="space-y-6">
       <Card className="overflow-hidden">
         <Skeleton className="h-48 w-full" />
-        <CardHeader className="pt-[60px] px-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start">
-            <div>
-              <Skeleton className="h-8 w-48 mb-2" />
-              <Skeleton className="h-6 w-32 mb-2" />
-              <Skeleton className="h-4 w-24" />
+        <div className="relative p-6">
+            <div className="absolute top-[-50px]">
+                <Skeleton className="h-32 w-32 rounded-full border-4 border-background"/>
             </div>
-            <div className="flex gap-2 mt-4 sm:mt-0">
-              <Skeleton className="h-10 w-24" />
-              <Skeleton className="h-10 w-28" />
+            <div className="pt-[72px]">
+                <Skeleton className="h-8 w-48 mb-2" />
+                <Skeleton className="h-6 w-32 mb-2" />
+                <Skeleton className="h-4 w-24" />
             </div>
-          </div>
-        </CardHeader>
+        </div>
         <CardContent className="px-6 space-y-6">
           <div className="space-y-2">
             <Skeleton className="h-6 w-32 mb-2" />
@@ -126,7 +123,7 @@ export default function ProfileDetailPage() {
       <Card className="overflow-hidden">
         <div className="h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
            <Image 
-            src={profile.avatarUrl?.replace(/150x150|80x80|40x40/, '1200x300') || `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
+            src={profile.bannerUrl || `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
             alt={`${profile.name} banner`} 
             fill={true}
             style={{objectFit:"cover"}}

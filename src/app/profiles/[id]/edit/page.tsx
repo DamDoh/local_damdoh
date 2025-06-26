@@ -30,6 +30,27 @@ import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
+function EditProfileSkeleton() {
+    return (
+      <Card className="max-w-3xl mx-auto">
+        <CardHeader>
+          <Skeleton className="h-8 w-2/3" />
+          <Skeleton className="h-4 w-1/2" />
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="space-y-2">
+              <Skeleton className="h-4 w-1/4" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+          ))}
+          <Skeleton className="h-10 w-32" />
+        </CardContent>
+      </Card>
+    );
+}
+
+
 export default function EditProfilePage() {
   const router = useRouter();
   const params = useParams();
@@ -65,13 +86,14 @@ export default function EditProfilePage() {
       const userProfile = await getProfileByIdFromDB(idToFetch);
       if (userProfile) {
         setProfile(userProfile);
+        // Using form.reset to populate the form with fetched data
         form.reset({
-          name: userProfile.name,
-          email: userProfile.email,
-          role: userProfile.roles[0], // Assuming the first role is the primary one for editing
+          name: userProfile.name || "",
+          email: userProfile.email || "",
+          role: userProfile.roles?.[0], 
           profileSummary: userProfile.profileSummary || "",
           bio: userProfile.bio || "",
-          location: userProfile.location,
+          location: userProfile.location || "",
           areasOfInterest: Array.isArray(userProfile.areasOfInterest) ? userProfile.areasOfInterest.join(", ") : "",
           needs: Array.isArray(userProfile.needs) ? userProfile.needs.join(", ") : "",
           contactInfoPhone: userProfile.contactInfo?.phone || "",
@@ -90,18 +112,20 @@ export default function EditProfilePage() {
   }, [form, router, toast]);
 
   useEffect(() => {
-    if (authLoading) return;
+    if (authLoading) return; // Wait until auth state is resolved
 
     let idToFetch: string | null = null;
     if (profileIdParam === "me") {
       if (authUser) {
         idToFetch = authUser.uid;
       } else {
+        // If not authenticated and trying to access 'me', redirect to sign-in
         toast({ variant: "destructive", title: "Not Authenticated", description: "Please sign in to edit your profile." });
         router.push("/auth/signin");
         return;
       }
     } else {
+      // If trying to edit a specific ID, check for ownership
       if (!authUser || authUser.uid !== profileIdParam) {
         toast({ variant: "destructive", title: "Unauthorized", description: "You can only edit your own profile."});
         router.push(`/profiles/${profileIdParam}`);
@@ -113,11 +137,10 @@ export default function EditProfilePage() {
     if (idToFetch) {
       fetchProfileData(idToFetch);
     } else if (!authLoading) {
-        setIsLoadingData(false);
+      // Handle case where auth has loaded but there's no user and no specific ID
+      setIsLoadingData(false);
     }
-
   }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
-
 
   async function onSubmit(data: EditProfileValues) {
     if (!profile?.id) {
@@ -128,12 +151,12 @@ export default function EditProfilePage() {
     try {
       const profileUpdates: Partial<UserProfile> = {
         name: data.name,
-        roles: [data.role],
+        roles: [data.role], // Store as an array
         profileSummary: data.profileSummary,
         bio: data.bio,
         location: data.location,
-        areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(s => s) || [],
-        needs: data.needs?.split(",").map(s => s.trim()).filter(s => s) || [],
+        areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(Boolean) || [],
+        needs: data.needs?.split(",").map(s => s.trim()).filter(Boolean) || [],
         contactInfo: {
           phone: data.contactInfoPhone,
           website: data.contactInfoWebsite,
@@ -161,26 +184,10 @@ export default function EditProfilePage() {
   }
 
   if (isLoadingData || authLoading) {
-    return (
-      <Card className="max-w-3xl mx-auto">
-        <CardHeader>
-          <Skeleton className="h-8 w-2/3" />
-          <Skeleton className="h-4 w-1/2" />
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="space-y-2">
-              <Skeleton className="h-4 w-1/4" />
-              <Skeleton className="h-10 w-full" />
-            </div>
-          ))}
-          <Skeleton className="h-10 w-32" />
-        </CardContent>
-      </Card>
-    );
+    return <EditProfileSkeleton />;
   }
   
-  if (!profile) {
+  if (!profile && !isLoadingData) {
     return (
         <Card className="max-w-3xl mx-auto">
             <CardHeader>
@@ -198,7 +205,7 @@ export default function EditProfilePage() {
     <div className="space-y-6">
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl">Edit Profile: {profile.name}</CardTitle>
+          <CardTitle className="text-2xl">Edit Profile: {profile?.name}</CardTitle>
           <CardDescription>Update your public information for the DamDoh network.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -328,7 +335,7 @@ export default function EditProfilePage() {
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-muted-foreground" />Currently Seeking / Offering</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Buyers for cocoa, Warehousing space" {...field} />
+                      <Input placeholder="e.g., Buyers for cocoa beans, Warehousing space" {...field} />
                     </FormControl>
                     <FormDescription>Comma-separated list.</FormDescription>
                     <FormMessage />
