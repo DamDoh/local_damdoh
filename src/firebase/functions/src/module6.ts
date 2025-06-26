@@ -477,7 +477,7 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
     }
 
     // Add validation here if needed (or rely on client-side Zod and trust the client for this demo)
-    const { title, description, eventDate, eventTime, location, eventType, organizer, websiteLink, imageUrl } = data;
+    const { title, description, eventDate, location, eventType } = data;
 
     if (!title || !description || !eventDate || !location || !eventType) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required event fields.");
@@ -487,6 +487,7 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
         ...data,
         listerId: context.auth.uid,
         createdAt: FieldValue.serverTimestamp(),
+        registeredAttendeesCount: 0, // Initialize count
     };
 
     try {
@@ -507,4 +508,75 @@ export const getAgriEvents = functions.https.onCall(async (data, context) => {
         console.error("Error fetching agri-events:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
     }
+});
+
+export const getEventDetails = functions.https.onCall(async (data, context) => {
+    const { eventId } = data;
+    if (!eventId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
+    }
+
+    const eventRef = db.collection('agri_events').doc(eventId);
+    let isRegistered = false;
+
+    if (context.auth) {
+        const registrationRef = eventRef.collection('registrations').doc(context.auth.uid);
+        const registrationSnap = await registrationRef.get();
+        isRegistered = registrationSnap.exists;
+    }
+
+    const eventSnap = await eventRef.get();
+    if (!eventSnap.exists) {
+        throw new functions.https.HttpsError("not-found", "Event not found.");
+    }
+    
+    return { ...eventSnap.data(), id: eventSnap.id, isRegistered };
+});
+
+
+export const registerForEvent = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to register.");
+    }
+    
+    const { eventId } = data;
+    if (!eventId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
+    }
+
+    const userId = context.auth.uid;
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const registrationRef = eventRef.collection('registrations').doc(userId);
+
+    return db.runTransaction(async (transaction) => {
+        const eventDoc = await transaction.get(eventRef);
+        if (!eventDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Event not found.");
+        }
+
+        const eventData = eventDoc.data()!;
+        if (!eventData.registrationEnabled) {
+             throw new functions.https.HttpsError("failed-precondition", "Registration is not open for this event.");
+        }
+
+        if (eventData.attendeeLimit && eventData.registeredAttendeesCount >= eventData.attendeeLimit) {
+            throw new functions.https.HttpsError("failed-precondition", "This event is full.");
+        }
+
+        const registrationDoc = await transaction.get(registrationRef);
+        if (registrationDoc.exists) {
+            throw new functions.https.HttpsError("already-exists", "You are already registered for this event.");
+        }
+
+        transaction.set(registrationRef, {
+            userId: userId,
+            registeredAt: FieldValue.serverTimestamp()
+        });
+        
+        transaction.update(eventRef, {
+            registeredAttendeesCount: FieldValue.increment(1)
+        });
+        
+        return { success: true, message: "Successfully registered for the event." };
+    });
 });

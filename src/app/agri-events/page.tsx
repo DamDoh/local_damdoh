@@ -179,24 +179,26 @@ export default function AgriEventsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredEvents.map((event) => (
                 <Card key={event.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
-                  {event.imageUrl && (
-                    <div className="relative h-48 w-full">
-                      <Image
-                        src={event.imageUrl}
-                        alt={event.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{objectFit: 'cover'}}
-                        data-ai-hint={event.dataAiHint || "event agriculture"}
-                      />
-                    </div>
-                  )}
+                    <Link href={`/agri-events/${event.id}`} className="block">
+                        {event.imageUrl && (
+                            <div className="relative h-48 w-full">
+                            <Image
+                                src={event.imageUrl}
+                                alt={event.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                style={{objectFit: 'cover'}}
+                                data-ai-hint={event.dataAiHint || "event agriculture"}
+                            />
+                            </div>
+                        )}
+                    </Link>
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-1">
                         {getEventTypeIcon(event.eventType)}
                         <Badge variant="secondary">{event.eventType}</Badge>
                     </div>
-                    <Link href={event.websiteLink || '#'} target="_blank" rel="noopener noreferrer" className="block">
+                    <Link href={`/agri-events/${event.id}`} className="block">
                         <CardTitle className="text-lg hover:text-primary transition-colors line-clamp-2">{event.title}</CardTitle>
                     </Link>
                   </CardHeader>
@@ -219,8 +221,8 @@ export default function AgriEventsPage() {
                   </CardContent>
                   <CardFooter>
                     <Button asChild className="w-full" variant="outline">
-                      <Link href={event.websiteLink || '#'} target="_blank" rel="noopener noreferrer">
-                        Visit Event Page
+                      <Link href={`/agri-events/${event.id}`}>
+                        View Details
                       </Link>
                     </Button>
                   </CardFooter>

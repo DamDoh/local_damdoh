@@ -71,6 +71,8 @@ export const createAgriEventSchema = z.object({
   websiteLink: z.string().url({ message: "Please enter a valid URL for the event website." }).optional().or(z.literal('')),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the event image." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
+  registrationEnabled: z.boolean().default(false).optional(),
+  attendeeLimit: z.coerce.number().int().positive("Must be a positive number.").optional(),
 });
 
 export type CreateAgriEventValues = z.infer<typeof createAgriEventSchema>;

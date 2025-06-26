@@ -24,12 +24,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createAgriEventSchema, type CreateAgriEventValues } from "@/lib/form-schemas";
 import { AGRI_EVENT_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle, Ticket } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useState, useMemo } from "react";
@@ -38,6 +39,7 @@ import { uploadFileAndGetURL } from "@/lib/storage-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { Loader2 } from 'lucide-react';
+import { format } from 'date-fns';
 
 export default function CreateAgriEventPage() {
   const { user } = useAuth();
@@ -62,8 +64,12 @@ export default function CreateAgriEventPage() {
       websiteLink: "",
       imageUrl: "",
       imageFile: undefined,
+      registrationEnabled: false,
+      attendeeLimit: undefined,
     },
   });
+
+  const registrationEnabled = form.watch("registrationEnabled");
 
   async function onSubmit(data: CreateAgriEventValues) {
     if (!user) {
@@ -84,6 +90,7 @@ export default function CreateAgriEventPage() {
         imageUrl: uploadedImageUrl,
         imageFile: undefined, // Don't send the file object to the backend
         eventDate: data.eventDate.toISOString(), // Convert date to string for backend
+        attendeeLimit: data.attendeeLimit ? Number(data.attendeeLimit) : null,
       };
 
       const result = await createAgriEventCallable(payload);
@@ -124,25 +131,15 @@ export default function CreateAgriEventPage() {
                 <CardDescription>Your event has been successfully listed. What would you like to do next?</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
+              <Button asChild className="w-full">
+                <Link href={`/agri-events/${createdEvent.id}`}>View Event Page & Manage Registrations</Link>
+              </Button>
             <Button 
               className="w-full" 
-              onClick={() => console.log(`Action: Post to Feed - Event: ${createdEvent.title}`)}
-            >
-              <Rss className="mr-2 h-4 w-4" /> Post to Feed
-            </Button>
-            <Button 
-              className="w-full" 
-              variant="outline" 
+              variant="outline"
               onClick={() => console.log(`Action: Share Event - Event: ${createdEvent.title}`)}
             >
               <Share2 className="mr-2 h-4 w-4" /> Share Event Link
-            </Button>
-            <Button 
-              className="w-full" 
-              variant="outline" 
-              onClick={() => console.log(`Action: Invite Network - Event: ${createdEvent.title}`)}
-            >
-              <Users className="mr-2 h-4 w-4" /> Invite Network
             </Button>
           </CardContent>
           <CardFooter className="flex flex-col sm:flex-row gap-2 pt-4">
@@ -320,6 +317,44 @@ export default function CreateAgriEventPage() {
                     </FormItem>
                   )}
                 />
+
+                <FormField
+                  control={form.control}
+                  name="registrationEnabled"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                      <div className="space-y-0.5">
+                        <FormLabel className="flex items-center gap-2"><Ticket className="h-4 w-4 text-muted-foreground"/>Enable DamDoh Registration</FormLabel>
+                        <FormDescription>
+                          Allow users to register for this event directly through DamDoh.
+                        </FormDescription>
+                      </div>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+
+                {registrationEnabled && (
+                  <FormField
+                    control={form.control}
+                    name="attendeeLimit"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground"/>Attendee Limit (Optional)</FormLabel>
+                        <FormControl>
+                          <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))} />
+                        </FormControl>
+                        <FormDescription>Leave blank for unlimited attendees.</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
                 
                 <FormField
                   control={form.control}

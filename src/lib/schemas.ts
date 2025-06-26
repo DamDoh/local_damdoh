@@ -191,6 +191,10 @@ export const AgriEventSchema = z.object({
   listerId: z.string().cuid2({ message: "Invalid lister ID" }),
   createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
   dataAiHint: z.string().optional(),
+  // New fields for registration
+  registrationEnabled: z.boolean().default(false),
+  attendeeLimit: z.number().int().positive().optional(),
+  registeredAttendeesCount: z.number().int().min(0).default(0),
 });
 
 export const FinancialProductSchema = z.object({
