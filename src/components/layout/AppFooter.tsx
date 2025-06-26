@@ -70,9 +70,9 @@ export function AppFooter() {
                     src="https://placehold.co/135x40.png" 
                     alt="Get it on Google Play" 
                     width={135} 
-                    height={40}
+                    height={40} 
                     className="rounded hover:opacity-90 transition-opacity"
-                    data-ai-hint="Google Play badge" 
+                    data-ai-hint="google play badge"
                   />
                 </Link>
                 <Link href="#appstore" passHref>
@@ -82,7 +82,7 @@ export function AppFooter() {
                     width={120} 
                     height={40} 
                     className="rounded hover:opacity-90 transition-opacity"
-                    data-ai-hint="App Store badge"
+                    data-ai-hint="apple store badge"
                   />
                 </Link>
               </div>
