@@ -21,14 +21,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { getProfileByIdFromDB, updateProfileInDB } from "@/lib/db-utils";
+import { getProfileByIdFromDB } from "@/lib/db-utils";
 import type { UserProfile } from "@/lib/types";
 import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2 } from "lucide-react";
 import React from "react"; 
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+
 
 function EditProfileSkeleton() {
     return (
@@ -57,6 +60,8 @@ export default function EditProfilePage() {
 
   const { toast } = useToast();
   const { user: authUser, loading: authLoading } = useAuth();
+  const functions = getFunctions(firebaseApp);
+  const upsertStakeholderProfile = useMemo(() => httpsCallable(functions, 'upsertStakeholderProfile'), [functions]);
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(true);
@@ -86,7 +91,6 @@ export default function EditProfilePage() {
       const userProfile = await getProfileByIdFromDB(idToFetch);
       if (userProfile) {
         setProfile(userProfile);
-        // Using form.reset to populate the form with fetched data
         form.reset({
           name: userProfile.name || "",
           email: userProfile.email || "",
@@ -112,20 +116,18 @@ export default function EditProfilePage() {
   }, [form, router, toast]);
 
   useEffect(() => {
-    if (authLoading) return; // Wait until auth state is resolved
+    if (authLoading) return;
 
     let idToFetch: string | null = null;
     if (profileIdParam === "me") {
       if (authUser) {
         idToFetch = authUser.uid;
       } else {
-        // If not authenticated and trying to access 'me', redirect to sign-in
         toast({ variant: "destructive", title: "Not Authenticated", description: "Please sign in to edit your profile." });
         router.push("/auth/signin");
         return;
       }
     } else {
-      // If trying to edit a specific ID, check for ownership
       if (!authUser || authUser.uid !== profileIdParam) {
         toast({ variant: "destructive", title: "Unauthorized", description: "You can only edit your own profile."});
         router.push(`/profiles/${profileIdParam}`);
@@ -137,7 +139,6 @@ export default function EditProfilePage() {
     if (idToFetch) {
       fetchProfileData(idToFetch);
     } else if (!authLoading) {
-      // Handle case where auth has loaded but there's no user and no specific ID
       setIsLoadingData(false);
     }
   }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
@@ -149,34 +150,34 @@ export default function EditProfilePage() {
     }
     setIsSubmitting(true);
     try {
-      const profileUpdates: Partial<UserProfile> = {
-        name: data.name,
-        roles: [data.role], // Store as an array
-        profileSummary: data.profileSummary,
-        bio: data.bio,
-        location: data.location,
-        areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(Boolean) || [],
-        needs: data.needs?.split(",").map(s => s.trim()).filter(Boolean) || [],
-        contactInfo: {
-          phone: data.contactInfoPhone,
-          website: data.contactInfoWebsite,
-          email: profile.email // Keep existing email from profile
-        },
+      const profileUpdates = {
+        displayName: data.name,
+        primaryRole: data.role,
+        profileData: {
+            profileSummary: data.profileSummary,
+            bio: data.bio,
+            location: data.location,
+            areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(Boolean) || [],
+            needs: data.needs?.split(",").map(s => s.trim()).filter(Boolean) || [],
+            contactInfoPhone: data.contactInfoPhone,
+            contactInfoWebsite: data.contactInfoWebsite,
+        }
       };
 
-      await updateProfileInDB(profile.id, profileUpdates);
+      await upsertStakeholderProfile(profileUpdates);
+      
       toast({
         title: "Profile Updated Successfully!",
         description: "Your changes have been saved.",
       });
       router.push(`/profiles/me`);
-      router.refresh(); // Force a refresh to show updated data on profile page
-    } catch (error) {
+      router.refresh();
+    } catch (error: any) {
       console.error("Error updating profile:", error);
       toast({
         variant: "destructive",
         title: "Update Failed",
-        description: "Could not save your profile changes. Please try again.",
+        description: error.details?.originalError || "Could not save your profile changes. Please try again.",
       });
     } finally {
       setIsSubmitting(false);

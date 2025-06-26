@@ -83,7 +83,6 @@ export const createFarmSchema = z.object({
   name: z.string().min(3, "Farm name must be at least 3 characters.").max(100),
   description: z.string().max(500, "Description is too long.").optional(),
   location: z.string().min(3, "Please provide a location.").max(200),
-  size: z.string().min(1, "Please provide the farm size.").max(50),
   farmType: z.enum(['crop', 'livestock', 'mixed', 'aquaculture', 'other'], {
     errorMap: () => ({ message: "Please select a farm type." }),
   }),
