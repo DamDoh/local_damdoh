@@ -681,15 +681,14 @@ export type CategoryNode = CatNodeType;
  * Represents a single event in a product's journey, linked by a VTI.
  */
 export interface TraceabilityEvent {
+  id: string;
   vtiId: string;
-  timestamp: string;
+  timestamp: { _seconds: number; _nanoseconds: number; };
   eventType: string;
-  actorRef: string;
-  geoLocation: {
+  actorRef?: string;
+  geoLocation?: {
     lat: number;
     lng: number;
-  };
+  } | null;
   payload: { [key: string]: any };
 }
-
-    

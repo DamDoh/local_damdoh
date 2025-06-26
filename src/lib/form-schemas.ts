@@ -229,5 +229,3 @@ export const createMarketplaceCouponSchema = z.object({
     path: ["discountValue"],
 });
 export type CreateMarketplaceCouponValues = z.infer<typeof createMarketplaceCouponSchema>;
-
-    

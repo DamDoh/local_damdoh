@@ -435,7 +435,8 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(async (
     
     try {
         const transactionsRef = db.collection('financial_transactions');
-        const q = transactionsRef.where('userRef', '==', db.collection('users').doc(userId)).orderBy('timestamp', 'desc');
+        const userDocRef = db.collection('users').doc(userId);
+        const q = transactionsRef.where('userRef', '==', userDocRef).orderBy('timestamp', 'desc');
 
         const querySnapshot = await q.get();
 
