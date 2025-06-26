@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -170,8 +170,28 @@ export const getAgroExportDashboardData = functions.https.onCall(async (data, co
     return await getDashboardData("agro-export-dashboard", context);
 });
 
-export const getInputSupplierDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("input-supplier-dashboard", context);
+export const getInputSupplierDashboardData = functions.https.onCall(async (data, context): Promise<InputSupplierDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: InputSupplierDashboardData = {
+        demandForecast: [
+            { id: 'forecast1', region: 'Rift Valley, Kenya', product: 'Drought-Resistant Maize Seed', trend: 'High', reason: 'Below-average rainfall predicted for the upcoming planting season.' },
+            { id: 'forecast2', region: 'Western Europe', product: 'Organic Avocado Fertilizer', trend: 'Moderate', reason: 'Increased consumer demand for organic avocados driving farmer investment.' }
+        ],
+        productPerformance: [
+            { id: 'perf1', productName: 'Eco-Gro NPK 10-20-10', rating: 4.5, feedback: 'Good yield results, but packaging needs improvement.', link: '/reviews/eco-gro-1' },
+            { id: 'perf2', productName: 'FungiStop Bio-Fungicide', rating: 3.8, feedback: 'Effective for early-stage blight, less so for advanced cases.', link: '/reviews/fungistop-1' }
+        ],
+        activeOrders: {
+            count: 15,
+            value: 22500,
+            link: '/supplier/orders'
+        }
+    };
+    
+    return mockData;
 });
 
 export const getFieldAgentDashboardData = functions.https.onCall(async (data, context) => {
