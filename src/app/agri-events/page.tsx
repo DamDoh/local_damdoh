@@ -7,12 +7,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Tag, Filter, Search, Frown } from "lucide-react";
-import type { AgriEvent, AgriEventType } from "@/lib/types";
+import type { AgriEvent } from "@/lib/types";
 import { AGRI_EVENT_FILTER_OPTIONS, type AgriEventTypeConstant } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useMemo, useEffect, useMemo as useMemoHook } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -20,7 +20,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 
-const getEventTypeIcon = (eventType: AgriEventType) => {
+const getEventTypeIcon = (eventType: AgriEvent['eventType']) => {
   const iconProps = { className: "h-4 w-4 mr-1.5 text-primary" };
   switch (eventType) {
     case 'Conference': return <Users {...iconProps} />;
@@ -59,7 +59,7 @@ export default function AgriEventsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
-  const getAgriEventsCallable = useMemoHook(() => httpsCallable(functions, 'getAgriEvents'), [functions]);
+  const getAgriEventsCallable = useMemo(() => httpsCallable(functions, 'getAgriEvents'), [functions]);
 
   const pathname = usePathname();
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
@@ -71,9 +71,7 @@ export default function AgriEventsPage() {
         try {
             const result = await getAgriEventsCallable();
             const fetchedEvents = result.data as AgriEvent[];
-            // Ensure dates are parsed correctly
-            const formattedEvents = fetchedEvents.map(e => ({...e, eventDate: new Date(e.eventDate).toISOString()}));
-            setEvents(formattedEvents);
+            setEvents(fetchedEvents);
         } catch(error) {
             console.error("Failed to fetch events:", error);
             toast({

@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
@@ -505,13 +504,22 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
 export const getAgriEvents = functions.https.onCall(async (data, context) => {
     try {
         const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
-        const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const events = eventsSnapshot.docs.map(doc => {
+            const eventData = doc.data();
+            return {
+                id: doc.id,
+                ...eventData,
+                // Ensure eventDate is sent in a client-friendly format (ISO string)
+                eventDate: eventData.eventDate ? (eventData.eventDate.toDate ? eventData.eventDate.toDate().toISOString() : eventData.eventDate) : null,
+            };
+        });
         return events;
     } catch (error) {
         console.error("Error fetching agri-events:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
     }
 });
+
 
 export const getEventDetails = functions.https.onCall(async (data, context) => {
     const { eventId, includeAttendees } = data;
@@ -563,8 +571,16 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
             });
         }
     }
+    
+    const eventResult = {
+        ...eventData,
+        id: eventSnap.id,
+        isRegistered,
+        attendees,
+        eventDate: eventData.eventDate ? (eventData.eventDate.toDate ? eventData.eventDate.toDate().toISOString() : eventData.eventDate) : null,
+    };
 
-    return { ...eventData, id: eventSnap.id, isRegistered, attendees };
+    return eventResult;
 });
 
 
