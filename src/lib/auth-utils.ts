@@ -1,3 +1,4 @@
+"use client";
 
 // src/lib/auth-utils.ts
 import { 
