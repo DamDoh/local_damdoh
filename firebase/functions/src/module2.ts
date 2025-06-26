@@ -59,10 +59,14 @@ export const upsertStakeholderProfile = functions.https.onCall(async (data, cont
 
     return { status: "success", message: "Profile updated successfully." };
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error upserting stakeholder profile:", error);
-    // It's good practice to not expose internal errors to the client.
-    throw new functions.https.HttpsError("internal", "An error occurred while updating the profile.");
+    // Provide a more descriptive error message to the user.
+    throw new functions.https.HttpsError(
+        "internal", 
+        "Failed to write to the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.", 
+        { originalError: error.message }
+    );
   }
 });
 

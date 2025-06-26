@@ -31,9 +31,13 @@ export const createFarm = functions.https.onCall(async (data, context) => {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
     return { success: true, farmId: newFarmRef.id };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error creating farm:", error);
-    throw new functions.https.HttpsError("internal", "Failed to create farm.");
+    throw new functions.https.HttpsError(
+        "internal", 
+        "Failed to create farm in the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
+        { originalError: error.message }
+    );
   }
 });
 
@@ -125,9 +129,13 @@ export const createCrop = functions.https.onCall(async (data, context) => {
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
         return { success: true, cropId: newCropRef.id };
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error creating crop:", error);
-        throw new functions.https.HttpsError("internal", "Failed to create crop.");
+        throw new functions.https.HttpsError(
+            "internal", 
+            "Failed to create crop in the database. Please check your project's Firestore setup.",
+            { originalError: error.message }
+        );
     }
 });
 

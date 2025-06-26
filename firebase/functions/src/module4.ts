@@ -55,8 +55,12 @@ export const createShop = functions.https.onCall(async (data, context) => {
       message: "Digital Shopfront created successfully.",
     };
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error creating shop:", error);
-    throw new functions.https.HttpsError("internal", "Failed to create Digital Shopfront.");
+    throw new functions.https.HttpsError(
+        "internal", 
+        "Failed to create Digital Shopfront. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
+        { originalError: error.message }
+    );
   }
 });
