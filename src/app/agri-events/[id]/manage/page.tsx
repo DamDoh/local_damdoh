@@ -145,7 +145,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                             <FormItem>
                                                 <FormLabel>Discount Value</FormLabel>
                                                 <FormControl>
-                                                    <Input type="number" placeholder="e.g., 10 or 15.50" {...field} />
+                                                    <Input type="number" placeholder="e.g., 10 or 15.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -158,7 +158,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                             <FormItem>
                                                 <FormLabel>Usage Limit (Optional)</FormLabel>
                                                 <FormControl>
-                                                    <Input type="number" placeholder="e.g., 100" {...field} />
+                                                    <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))}/>
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
