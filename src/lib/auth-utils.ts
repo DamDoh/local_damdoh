@@ -9,9 +9,8 @@ import {
   confirmPasswordReset,
   type User as FirebaseUser
 } from "firebase/auth";
-import { auth } from './firebase/client'; 
-import { createProfileInDB } from './db-utils';
-import type { UserProfile } from './types';
+import { auth, functions } from './firebase/client'; 
+import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
 import { useEffect, useState } from 'react';
 
@@ -88,24 +87,16 @@ export async function registerUser(name: string, email: string, password: string
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
+    
+    // Create the initial profile using the callable function
+    const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
 
-    // Create a basic profile document in Firestore, linked to the auth user's UID
-    const newProfileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'> = {
-      name: name,
-      email: email,
-      roles: [role], // Save the single selected role into the new roles array
-      location: 'Not specified', // Default location
-      avatarUrl: `https://placehold.co/150x150.png?text=${name.substring(0,1)}`, // Placeholder avatar
-      profileSummary: `A new ${role} in the DamDoh community.`,
-      bio: '',
-      areasOfInterest: [],
-      needs: [],
-      connections: [],
-      contactInfo: { email }, // Pre-populate contact email
-    };
+    await upsertStakeholderProfile({
+        displayName: name,
+        primaryRole: role,
+        // The backend will set the timestamps and other defaults
+    });
 
-    // The document ID in 'profiles' collection will be the Firebase Auth UID
-    await createProfileInDB(userCredential.user.uid, newProfileData);
     console.log("Basic Firestore profile created for user:", userCredential.user.uid);
     
     return userCredential.user;
@@ -114,6 +105,7 @@ export async function registerUser(name: string, email: string, password: string
     throw error;
   }
 }
+
 
 export async function sendPasswordReset(email: string): Promise<void> {
   try {

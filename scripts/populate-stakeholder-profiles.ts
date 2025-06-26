@@ -4,7 +4,7 @@ import * as path from 'path';
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { stakeholderProfileSchemas } from '../../firebase/functions/src/stakeholder-profile-data';
+import { stakeholderProfileSchemas } from '../firebase/functions/src/stakeholder-profile-data';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
