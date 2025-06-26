@@ -24,8 +24,6 @@
     }
   },
   "include": [
-    "i18n.ts",
-    "middleware.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

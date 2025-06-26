@@ -229,12 +229,18 @@ export default function DashboardPage() {
     const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
 
     useEffect(() => {
-        if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
+        // A path like `/en` has 1 segment after filtering empty strings. A path like `/` has 0.
+        const isLocaleRoot = pathname.split('/').filter(p => p).length <= 1;
+        if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && isLocaleRoot) {
           router.replace(homepagePreference);
         }
     }, [homepagePreference, isPreferenceLoading, pathname, router]);
 
-    if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
+    // A more robust check for root path. A path like `/en` has 1 segment. A path like `/` has 0.
+    const isLocaleRoot = pathname.split('/').filter(p => p).length <= 1;
+
+    // Show a loading indicator while we check for a preference and potentially redirect.
+    if (isPreferenceLoading || (homepagePreference && homepagePreference !== pathname && isLocaleRoot)) {
         return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
     }
 

@@ -1,1 +1,15 @@
-// This file is intentionally left empty. The correct configuration is now in the root i18n.ts
+
+import {getRequestConfig} from 'next-intl/server';
+import {notFound} from 'next/navigation';
+ 
+// Can be imported from a shared config
+const locales = ['en', 'es', 'zh', 'fr', 'ar', 'pt', 'hi', 'ru', 'id', 'de', 'tr', 'ja', 'km', 'th', 'ko', 'vi', 'ms'];
+ 
+export default getRequestConfig(async ({locale}) => {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale as any)) notFound();
+ 
+  return {
+    messages: (await import(`./messages/${locale}.json`)).default
+  };
+});
