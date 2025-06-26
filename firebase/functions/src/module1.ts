@@ -1,7 +1,9 @@
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
 import { getRole } from './module2';
+import { getGenerativeModel } from 'firebase-ai-kit';
 
 const db = admin.firestore();
 
@@ -10,46 +12,34 @@ const db = admin.firestore();
 // Represents an entry in the vti_registry collection
 interface VtiRegistryEntry {
   vtiId: string;
-  type: string; // e.g., 'product_lot', 'farm_batch', 'farm_field', 'user', 'organization'
-  creationTime: admin.firestore.FieldValue; // Server timestamp of creation
-  currentLocation: admin.firestore.GeoPoint | null; // Current geographical location (if applicable)
-  status: string; // e.g., 'active', 'in_transit', 'processed', 'sold', 'archived'
-  linked_vtis: string[]; // Array of VTI IDs linked to this VTI (e.g., batch linked to farm field)
+  type: string; 
+  creationTime: admin.firestore.FieldValue; 
+  currentLocation: admin.firestore.GeoPoint | null; 
+  status: string; 
+  linked_vtis: string[]; 
   metadata: {
-    [key: string]: any; // Flexible field for additional metadata specific to the VTI type
-    carbon_footprint_kgCO2e: number; // Aggregated carbon footprint
-    linkedPreHarvestEvents?: string[]; // Array of traceability event IDs linked to a farm_batch VTI
-    farmFieldId?: string; // For 'farm_batch' VTIs, link back to the farm field
-    plantingDate?: admin.firestore.Timestamp; // For 'farm_batch' VTIs, store planting date
+    [key: string]: any; 
+    carbon_footprint_kgCO2e: number; 
+    linkedPreHarvestEvents?: string[]; 
+    farmFieldId?: string; 
+    plantingDate?: admin.firestore.Timestamp; 
  };
-  // Flag to indicate if this VTI and its basic event history are publicly traceable
   isPublicTraceable: boolean; 
 }
 
-// Represents an entry in the traceability_events collection
 interface TraceabilityEvent {
-  vtiId: string; // The VTI ID associated with this event
-  timestamp: admin.firestore.FieldValue | admin.firestore.Timestamp; // Timestamp of the event
- eventType: string; // Type of event (e.g., 'PLANTED', 'HARVESTED', 'INPUT_APPLIED', 'PROCESSED', 'TRANSPORTED', 'SOLD', 'OBSERVED')
-  actorRef: string; // VTI ID of the user or organization performing the action
-  geoLocation: admin.firestore.GeoPoint | null; // Geographical location where the event occurred (if applicable)
+  vtiId: string; 
+  timestamp: admin.firestore.FieldValue | admin.firestore.Timestamp; 
+ eventType: string; 
+  actorRef: string; 
+  geoLocation: admin.firestore.GeoPoint | null; 
   payload: {
-    [key: string]: any; // Flexible field for event-specific data
-    // Examples of payload fields depending on eventType:
-    // - PLANTED: { cropType: string, plantingDate: Timestamp, farmFieldId: string, seedInputVti?: string, method?: string }
-    // - HARVESTED: { yield_kg: number, quality_grade?: string, farmFieldId: string, cropType: string }
-    // - INPUT_APPLIED: { inputId: string, quantity: number, unit: string, applicationDate: Timestamp, method?: string, farmFieldId: string }
-    // - OBSERVED: { observationType: string, details: string, mediaUrls?: string[], farmFieldId: string }
-    // - PROCESSED: { processType: string, inputVtiIds: string[], outputVtiId: string, facilityRef: string }
-    // - TRANSPORTED: { fromLocation: GeoPoint, toLocation: GeoPoint, transportMode: string, distance_km: number, carrierRef: string }
+    [key: string]: any; 
   };
-  // Optional field to link the event directly to a farm field for easier querying of farm activities
   farmFieldId?: string;
-  // Flag to indicate if this specific event is publicly visible, even if the related VTI isn't fully public
-  isPublicTraceable: boolean; // Changed from isPubliclyVisible to align with VTI flag name
+  isPublicTraceable: boolean; 
 }
 
-// Internal logic for generating a new VTI
 async function _internalGenerateVTI(data: any, context?: functions.https.CallableContext) {
   const { type, linked_vtis = [], metadata = {} } = data;
 
@@ -76,9 +66,7 @@ async function _internalGenerateVTI(data: any, context?: functions.https.Callabl
   return { vtiId, status: 'success' };
 }
 
-// Callable function wrapper for frontend or authorized services to generate a new VTI
 export const generateVTI = functions.https.onCall(async (data, context) => {
-  // Optional: Add authentication/authorization checks here if needed for direct client calls
   try {
     return await _internalGenerateVTI(data, context);
   } catch (error: any) {
@@ -90,7 +78,6 @@ export const generateVTI = functions.https.onCall(async (data, context) => {
   }
 });
 
-// Internal logic for logging a traceability event
 async function _internalLogTraceEvent(data: any, context?: functions.https.CallableContext) {
     const { vtiId, eventType, actorRef, geoLocation, payload = {}, farmFieldId } = data;
 
@@ -121,16 +108,14 @@ async function _internalLogTraceEvent(data: any, context?: functions.https.Calla
       actorRef,
       geoLocation,
       payload,
-      farmFieldId, // Add farmFieldId to the event
+      farmFieldId, 
       isPublicTraceable: false,
     });
     
     return { status: 'success', message: `Event ${eventType} logged for VTI ${vtiId}` };
 }
 
-// Callable function to log a traceability event
 export const logTraceEvent = functions.https.onCall(async (data, context) => {
-  // Optional: Authenticate the user and validate actorRef against context.auth.uid if necessary
   if (!context.auth) {
     throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated to log a trace event.');
   }
@@ -146,7 +131,6 @@ export const logTraceEvent = functions.https.onCall(async (data, context) => {
   }
 });
 
-// Callable function to handle a harvest event logged by a farmer
 export const handleHarvestEvent = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
@@ -207,13 +191,12 @@ export const handleHarvestEvent = functions.https.onCall(async (data, context) =
     } catch (error: any) {
         console.error('Error handling harvest event:', error);
          if (error.code) {
-            throw error; // Re-throw HttpsErrors
+            throw error; 
         }
         throw new functions.https.HttpsError('internal', 'Failed to handle harvest event.', error.message);
     }
 });
 
-// Callable function to handle an input application event logged by a farmer
 export const handleInputApplicationEvent = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
@@ -300,72 +283,39 @@ export const handleInputApplicationEvent = functions.https.onCall(async (data, c
     }
 });
 
-// Callable function to handle an observation event logged by a farmer
-export const handleObservationEvent = functions.https.onCall(async (data, context) => {
+export const handleObservationEvent = functions.runWith({ secrets: ["GEMINI_API_KEY"] }).https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
     }
 
-    const callerUid = context.auth.uid;
-    const role = await getRole(callerUid);
-
-    if (role !== 'farmer' && role !== 'system') {
-        throw new functions.https.HttpsError('permission-denied', 'Only farmers or system processes can log observation events.');
-    }
-
     const { farmFieldId, observationType, observationDate, details, mediaUrls, actorVtiId, geoLocation } = data;
 
-    if (!farmFieldId || typeof farmFieldId !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "farmFieldId" parameter is required and must be a string.');
-    }
-    if (!observationType || typeof observationType !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "observationType" parameter is required and must be a string.');
-    }
-    if (!observationDate) {
-        throw new functions.https.HttpsError('invalid-argument', 'The "observationDate" parameter is required.');
-    }
-     if (!details || typeof details !== 'string') {
-         throw new functions.https.HttpsError('invalid-argument', 'The "details" parameter is required and must be a string.');
-     }
-     if (mediaUrls !== undefined && !Array.isArray(mediaUrls)) {
-         throw new functions.https.HttpsError('invalid-argument', 'The "mediaUrls" parameter must be an array if provided.');
-     }
-    if (!actorVtiId || typeof actorVtiId !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "actorVtiId" parameter is required and must be a string (User or Organization VTI ID).');
-    }
-    
-     if (geoLocation && (typeof geoLocation.lat !== 'number' || typeof geoLocation.lng !== 'number')) {
-        throw new functions.https.HttpsError('invalid-argument', 'The "geoLocation" parameter must be an object with lat and lng if provided.');
+    if (!farmFieldId || !observationType || !observationDate || !details || !actorVtiId) {
+        throw new functions.https.HttpsError('invalid-argument', 'Missing required fields.');
     }
 
     try {
-        let fieldGeoLocation = null;
-        try {
-            const farmFieldDoc = await db.collection('geospatial_assets').doc(farmFieldId).get();
-            if (farmFieldDoc.exists) {
-                 fieldGeoLocation = farmFieldDoc.data()?.geoJson?.features?.[0]?.geometry?.coordinates;
-                 if (fieldGeoLocation && Array.isArray(fieldGeoLocation) && fieldGeoLocation.length >= 2) {
-                      fieldGeoLocation = new admin.firestore.GeoPoint(fieldGeoLocation[1], fieldGeoLocation[0]);
-                 } else {
-                     fieldGeoLocation = null;
-                 }
+        const eventPayload: any = { observationType, details, mediaUrls: mediaUrls || [], farmFieldId };
+
+        if (mediaUrls && mediaUrls.length > 0) {
+            const model = getGenerativeModel({ model: "gemini-pro-vision" });
+            const prompt = `Analyze this image of a crop observation. The farmer reported the following: "${details}". What do you see? Provide a brief analysis.`;
+            const imagePart = { inlineData: { data: mediaUrls[0], mimeType: 'image/jpeg' } };
+
+            try {
+                const result = await model.generateContent([prompt, imagePart]);
+                eventPayload.aiAnalysis = result.response.text();
+            } catch (aiError) {
+                console.error("Error with Gemini analysis:", aiError);
+                eventPayload.aiAnalysis = "AI analysis failed.";
             }
-        } catch (geoError) {
-             console.error('Error fetching farm field location:', geoError);
         }
 
-        const eventPayload = {
-            observationType,
-            details,
-            mediaUrls: mediaUrls || [],
-            farmFieldId, 
-        };
-
         await _internalLogTraceEvent({
-            vtiId: farmFieldId, // Log event against the farm field itself
+            vtiId: farmFieldId,
             eventType: 'OBSERVED',
             actorRef: actorVtiId,
-            geoLocation: geoLocation || fieldGeoLocation || null,
+            geoLocation: geoLocation || null,
             payload: eventPayload,
             farmFieldId: farmFieldId,
         });
@@ -374,14 +324,10 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
 
     } catch (error: any) {
         console.error('Error handling observation event:', error);
-         if (error.code) {
-            throw error;
-        }
         throw new functions.https.HttpsError('internal', 'Failed to handle observation event.', error.message);
     }
 });
 
-// Callable function to handle a planting event logged by a farmer
 export const handlePlantingEvent = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
@@ -390,14 +336,12 @@ export const handlePlantingEvent = functions.https.onCall(async (data, context) 
     const callerUid = context.auth.uid;
     const role = await getRole(callerUid);
 
-    // Allow 'farmer' and 'system' roles to log planting events
     if (role !== 'farmer' && role !== 'system') {
         throw new functions.https.HttpsError('permission-denied', 'Only farmers or system processes can log planting events.');
     }
 
     const { farmFieldId, cropType, plantingDate, seedInputVti, method, actorVtiId, geoLocation } = data;
     
-    // Basic validation for required planting data
     if (!farmFieldId || typeof farmFieldId !== 'string') {
         throw new functions.https.HttpsError('invalid-argument', 'The "farmFieldId" parameter is required and must be a string.');
     }
@@ -436,16 +380,15 @@ export const handlePlantingEvent = functions.https.onCall(async (data, context) 
              actorRef: actorVtiId,
             geoLocation: geoLocation || null,
             payload: eventPayload,
-            farmFieldId: farmFieldId,
+            farmFieldId: farmFieldI,
         }, context);
 
         return { status: 'success', message: `Planting event logged for farm field ${farmFieldId}.` };
     } catch (error: any) {
         console.error('Error handling planting event:', error);
          if (error.code) {
-            throw error; // Re-throw HttpsErrors
+            throw error; 
         }
         throw new functions.https.HttpsError('internal', 'Failed to handle planting event.', error.message);
     }
 });
-// Other functions from module1.ts... (omitted for brevity)
