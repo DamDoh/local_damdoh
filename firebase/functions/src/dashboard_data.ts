@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -194,8 +194,31 @@ export const getInputSupplierDashboardData = functions.https.onCall(async (data,
     return mockData;
 });
 
-export const getFieldAgentDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("field-agent-dashboard", context);
+export const getFieldAgentDashboardData = functions.https.onCall(async (data, context): Promise<FieldAgentDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: FieldAgentDashboardData = {
+        assignedFarmers: [
+            { id: 'farmerA', name: 'Green Valley Organics', lastVisit: '2 weeks ago', issues: 2, actionLink: '/profiles/farmerA' },
+            { id: 'farmerB', name: 'Rift Valley Growers', lastVisit: '1 week ago', issues: 0, actionLink: '/profiles/farmerB' },
+            { id: 'farmerC', name: 'Coastal Cashews Ltd', lastVisit: '3 days ago', issues: 5, actionLink: '/profiles/farmerC' },
+        ],
+        portfolioHealth: {
+            overallScore: 85,
+            alerts: ['Drought warning for Rift Valley region.', 'Pest infestation reported by Coastal Cashews.'],
+            actionLink: '/agent-portal/portfolio-health'
+        },
+        pendingReports: 3,
+        dataVerificationTasks: {
+            count: 7,
+            description: 'VTI events awaiting verification.',
+            actionLink: '/agent-portal/verification-queue'
+        }
+    };
+    
+    return mockData;
 });
 
 export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context) => {
