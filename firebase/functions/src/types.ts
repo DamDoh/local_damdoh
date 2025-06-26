@@ -42,3 +42,4 @@ export interface KnfBatch {
     nextStepDate: FirebaseFirestore.Timestamp;
     createdAt: FirebaseFirestore.Timestamp;
 }
+

@@ -472,7 +472,7 @@ export interface ResearcherDashboardData {
         collaborators: string[];
         actionLink: string;
     }[];
-    knowledgeHubContributions: {
+    knowledgeBaseContributions: {
         id: string;
         title: string;
         type: 'Article' | 'Methodology' | 'Tool';
@@ -616,4 +616,30 @@ export interface TraceabilityEvent {
     lng: number;
   };
   payload: { [key: string]: any };
+}
+export interface Conversation {
+  id: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  lastMessage: string;
+  timestamp: string;
+  unreadCount: number;
+}
+export interface Message {
+  id: string;
+  senderId: string;
+  content: string;
+  timestamp: string;
+}
+export interface Notification {
+  id: string;
+  actorId: string;
+  userId: string;
+  type: 'like' | 'comment';
+  postId: string;
+  read: boolean;
+  createdAt: any; // Firestore Timestamp
 }
