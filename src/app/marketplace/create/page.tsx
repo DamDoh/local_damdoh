@@ -34,6 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import { uploadFileAndGetURL } from "@/lib/storage-utils";
 
 // Super App Vision Note: This "Create Listing" page is a key point of inter-module synergy.
 // The `useEffect` hook demonstrates how an action in one module (logging a harvest in Farm Management)
@@ -105,13 +106,17 @@ export default function CreateMarketplaceListingPage() {
     setIsSubmitting(true);
 
     try {
-      // In a real app, you would handle imageFile upload to a service like Firebase Storage here
-      // and get back a URL to put into the `imageUrl` field.
-      // For this demo, we will ignore the file and only send the text data.
+      let uploadedImageUrl: string | undefined = data.imageUrl;
+      if (data.imageFile) {
+        toast({ title: "Image Uploading...", description: "Please wait while your image is uploaded." });
+        uploadedImageUrl = await uploadFileAndGetURL(data.imageFile, `marketplace-listings/${user.uid}`);
+        toast({ title: "Image Upload Complete!", variant: "default" });
+      }
+
       const payload = {
         ...data,
+        imageUrl: uploadedImageUrl,
         imageFile: undefined, // Remove file object before sending to backend
-        // Convert comma-separated strings to arrays where needed by the backend if necessary
         skillsRequired: data.skillsRequired?.split(',').map(s => s.trim()).filter(Boolean) || [],
         certifications: data.certifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
       };
