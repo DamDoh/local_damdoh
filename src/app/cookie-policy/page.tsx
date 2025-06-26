@@ -1,10 +1,10 @@
 
-"use client"; // Changed to client component to simulate data fetching
+"use client"; 
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Cookie } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cookiePolicyData, type PolicyContent } from "@/lib/policy-data"; // Import dummy data
+import { cookiePolicyData, type PolicyContent } from "@/lib/policy-data"; 
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CookiePolicyPage() {
@@ -12,7 +12,6 @@ export default function CookiePolicyPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate fetching policy data
     const fetchPolicy = async () => {
       setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay

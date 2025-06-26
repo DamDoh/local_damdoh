@@ -1,5 +1,4 @@
 
-// src/components/ThemeToggle.tsx
 "use client";
 
 import { useState, useEffect } from 'react';

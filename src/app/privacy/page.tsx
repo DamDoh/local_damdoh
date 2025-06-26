@@ -1,10 +1,10 @@
 
-"use client"; // Changed to client component to simulate data fetching
+"use client"; 
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
-import { privacyPolicyData, type PolicyContent } from "@/lib/policy-data"; // Import dummy data
+import { privacyPolicyData, type PolicyContent } from "@/lib/policy-data"; 
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function PrivacyPolicyPage() {
@@ -15,10 +15,6 @@ export default function PrivacyPolicyPage() {
     // Simulate fetching policy data
     const fetchPolicy = async () => {
       setIsLoading(true);
-      // In a real app, this would be an API call:
-      // const response = await fetch('/api/policies/privacy');
-      // const data = await response.json();
-      // setPolicy(data);
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
       setPolicy(privacyPolicyData);
       setIsLoading(false);

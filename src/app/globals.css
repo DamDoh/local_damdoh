@@ -112,13 +112,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-/* Remove or comment out .page-background-linkedin as it's not needed with the new theme */
-/*
-.page-background-linkedin {
-  @apply bg-muted/40; 
-}
-.dark .page-background-linkedin {
-   @apply bg-gray-900; 
-}
-*/

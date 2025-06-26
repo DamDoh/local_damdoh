@@ -1,10 +1,10 @@
 
-"use client"; // Changed to client component to simulate data fetching
+"use client"; 
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText } from "lucide-react";
 import { useEffect, useState } from "react";
-import { termsOfServiceData, type PolicyContent } from "@/lib/policy-data"; // Import dummy data
+import { termsOfServiceData, type PolicyContent } from "@/lib/policy-data";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function TermsOfServicePage() {
