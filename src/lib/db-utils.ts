@@ -13,7 +13,7 @@ import {
   where,
   Timestamp // For createdAt/updatedAt fields
 } from "firebase/firestore";
-import { db } from './firebase'; // Import the initialized Firestore instance
+import { db } from './firebase/client'; // Import the client-side initialized Firestore instance
 import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, AgriEvent } from '@/lib/types';
 import { dummyMarketplaceItems, dummyForumTopics, dummyForumPosts, dummyAgriEvents, dummyProfiles } from '@/lib/dummy-data';
 
@@ -24,7 +24,7 @@ console.warn(
 );
 
 // Define consistent collection names
-const PROFILES_COLLECTION = 'profiles';
+const PROFILES_COLLECTION = 'users'; // Changed to 'users' to match auth flow
 const MARKETPLACE_COLLECTION = 'marketplaceItems';
 const FORUM_TOPICS_COLLECTION = 'forumTopics';
 const FORUM_POSTS_COLLECTION = 'forumPosts';
@@ -59,7 +59,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
     if (!id) return null;
-    const profileDocRef = doc(db, 'users', id);
+    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
       const data = profileSnap.data();
@@ -81,7 +81,7 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 
 export async function createProfileInDB(userId: string, profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
   try {
-    const profileDocRef = doc(db, "users", userId); // Use the UID as the document ID
+    const profileDocRef = doc(db, PROFILES_COLLECTION, userId); // Use the UID as the document ID
     const docData = {
       ...profileData,
       createdAt: Timestamp.now(),
@@ -109,7 +109,7 @@ export async function createProfileInDB(userId: string, profileData: Omit<UserPr
 
 export async function updateProfileInDB(id: string, updates: Partial<Omit<UserProfile, 'id' | 'createdAt'>>): Promise<UserProfile | null> {
   try {
-    const profileDocRef = doc(db, 'users', id);
+    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
     
     const docSnap = await getDoc(profileDocRef);
     if (!docSnap.exists()) {
@@ -143,7 +143,7 @@ export async function updateProfileInDB(id: string, updates: Partial<Omit<UserPr
 
 export async function deleteProfileFromDB(id: string): Promise<boolean> {
   try {
-    const profileDocRef = doc(db, 'users', id);
+    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
     await deleteDoc(profileDocRef);
     return true;
   } catch (error) {
