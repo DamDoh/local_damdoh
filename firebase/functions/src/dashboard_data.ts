@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -221,6 +221,26 @@ export const getFieldAgentDashboardData = functions.https.onCall(async (data, co
     return mockData;
 });
 
+export const getCooperativeDashboardData = functions.https.onCall(async (data, context): Promise<CooperativeDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // This is mock data simulating what would be fetched for a cooperative.
+    // In a real app, this would involve complex aggregation queries over member farms.
+    const mockData: CooperativeDashboardData = {
+        memberCount: 152,
+        totalLandArea: 320, // Hectares
+        pendingMemberApplications: 3,
+        aggregatedProduce: [
+            { id: 'agg1', productName: 'Organic Maize', quantity: 250, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 7).toISOString() },
+            { id: 'agg2', productName: 'Hass Avocados', quantity: 20, quality: 'Export Grade', readyBy: new Date(Date.now() + 86400000 * 14).toISOString() },
+            { id: 'agg3', productName: 'Green Beans', quantity: 15, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 3).toISOString() },
+        ]
+    };
+    
+    return mockData;
+});
+
 export const getEnergyProviderDashboardData = functions.https.onCall(async (data, context) => {
     return await getDashboardData("energy-provider-dashboard", context);
 });
@@ -233,13 +253,52 @@ export const getRegulatorDashboardData = functions.https.onCall(async (data, con
     return await getDashboardData("regulator-dashboard", context);
 });
 
-export const getQaDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("qa-dashboard", context);
+export const getQaDashboardData = functions.https.onCall(async (data, context): Promise<QaDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: QaDashboardData = {
+        pendingInspections: [
+            { id: 'insp1', batchId: 'VTI-XYZ-123', productName: 'Organic Hass Avocados', sellerName: 'Green Valley Organics', dueDate: new Date(Date.now() + 86400000 * 3).toISOString(), actionLink: '#' },
+            { id: 'insp2', batchId: 'VTI-ABC-456', productName: 'Sun-dried Tomatoes', sellerName: 'Coastal Farms', dueDate: new Date(Date.now() + 86400000 * 5).toISOString(), actionLink: '#' },
+        ],
+        recentResults: [
+            { id: 'res1', productName: 'Coffee Beans', result: 'Pass', inspectedAt: new Date(Date.now() - 86400000 * 2).toISOString() },
+            { id: 'res2', productName: 'Cashew Nuts', result: 'Fail', reason: 'Aflatoxin levels above acceptable limits.', inspectedAt: new Date(Date.now() - 86400000 * 1).toISOString() },
+        ],
+        qualityMetrics: {
+            passRate: 98.5,
+            averageScore: 95.2,
+        }
+    };
+    
+    return mockData;
 });
 
-export const getCertificationBodyDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("certification-body-dashboard", context);
+export const getCertificationBodyDashboardData = functions.https.onCall(async (data, context): Promise<CertificationBodyDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockData: CertificationBodyDashboardData = {
+        pendingAudits: [
+            { id: 'aud1', farmName: 'Rift Valley Growers', standard: 'GlobalG.A.P.', dueDate: new Date(Date.now() + 86400000 * 14).toISOString(), actionLink: '#' },
+            { id: 'aud2', farmName: 'Green Valley Organics', standard: 'USDA Organic', dueDate: new Date(Date.now() + 86400000 * 21).toISOString(), actionLink: '#' },
+        ],
+        certifiedEntities: [
+            { id: 'ent1', name: 'Coastal Farms', type: 'Farmer', certificationStatus: 'Active', actionLink: '#' },
+            { id: 'ent2', name: 'Premium Processors', type: 'Processor', certificationStatus: 'Pending Renewal', actionLink: '#' },
+        ],
+        standardsMonitoring: [
+            { standard: 'GlobalG.A.P.', adherenceRate: 95, alerts: 2, actionLink: '#' },
+            { standard: 'Fair Trade', adherenceRate: 99, alerts: 0, actionLink: '#' }
+        ]
+    };
+    
+    return mockData;
 });
+
 
 export const getResearcherDashboardData = functions.https.onCall(async (data, context) => {
     return await getDashboardData("researcher-dashboard", context);

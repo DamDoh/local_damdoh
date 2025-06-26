@@ -67,7 +67,7 @@ export const CertificationBodyDashboard = () => {
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
           case 'active': return 'default';
-          case 'pending': return 'secondary';
+          case 'pending renewal': return 'secondary';
           case 'expired': return 'destructive';
           default: return 'outline';
       }
@@ -100,7 +100,7 @@ export const CertificationBodyDashboard = () => {
                      <TableRow key={audit.id}>
                        <TableCell className="font-medium">{audit.farmName}</TableCell>
                        <TableCell>{audit.standard}</TableCell>
-                       <TableCell>{audit.dueDate}</TableCell>
+                       <TableCell>{new Date(audit.dueDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
                            <Link href={audit.actionLink}>Schedule Audit</Link>
@@ -191,6 +191,7 @@ export const CertificationBodyDashboard = () => {
     </div>
   );
 };
+
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">
