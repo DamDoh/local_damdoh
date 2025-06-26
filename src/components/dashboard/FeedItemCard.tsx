@@ -1,15 +1,15 @@
+
 "use client";
 
-import { useState, useEffect } from "react";
-import type { FeedItem, PollOption, PostReply } from "@/lib/types";
+import { useState, useEffect, useMemo } from "react";
+import type { FeedItem, PostReply, UserProfile } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageSquare, ThumbsUp, MoreHorizontal, BarChart3, Edit, Trash2, Share2, Send, CheckCircle } from "lucide-react";
+import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Trash2, Share2, Send, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Progress } from "@/components/ui/progress";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,9 +20,9 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
-
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -37,7 +37,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [currentComments, setCurrentComments] = useState(item.commentsCount || 0);
 
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
-  const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
+  const [currentPollOptions, setCurrentPollOptions] = useState(item.pollOptions?.map(opt => ({ ...opt })) || []);
   
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -48,10 +48,9 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
 
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
-  const getRepliesForPost = httpsCallable(functions, 'getRepliesForPost');
+  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'getCommentsForPost'), [functions]);
   
   useEffect(() => {
-    // Reset local state when the item prop changes (e.g., parent state update)
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
     setCurrentLikes(item.likesCount || 0);
     setCurrentComments(item.commentsCount || 0);
@@ -77,10 +76,37 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     if (willBeVisible && replies.length === 0) {
         setIsLoadingReplies(true);
         try {
-            // Placeholder: A real implementation would call getRepliesForPost
-            console.log("Fetching comments for post:", item.id);
-            await new Promise(res => setTimeout(res, 500)); // Simulate network
-            setReplies([]); // Set to empty array for now, as getRepliesForPost is not fully implemented
+            const result = await getCommentsForPost({ postId: item.id });
+            const backendComments = (result.data as any).comments || [];
+
+            const db = getFirestore(firebaseApp);
+            const authorIds = [...new Set(backendComments.map((c: any) => c.userId))];
+            const profiles: Record<string, UserProfile> = {};
+
+            if (authorIds.length > 0) {
+                const userPromises = authorIds.map(id => getDoc(doc(db, "users", id as string)));
+                const userSnaps = await Promise.all(userPromises);
+                 userSnaps.forEach(userSnap => {
+                    if (userSnap.exists()) {
+                        profiles[userSnap.id] = userSnap.data() as UserProfile;
+                    } else {
+                         profiles[userSnap.id] = { id: userSnap.id, name: "Unknown User", avatarUrl: "" } as UserProfile;
+                    }
+                });
+            }
+
+             const enrichedReplies: PostReply[] = backendComments.map((comment: any) => ({
+                id: comment.id,
+                content: comment.content,
+                timestamp: comment.createdAt ? new Date(comment.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
+                author: {
+                    id: comment.userId,
+                    name: profiles[comment.userId]?.name || "Unknown",
+                    avatarUrl: profiles[comment.userId]?.avatarUrl || ""
+                }
+            }));
+
+            setReplies(enrichedReplies);
         } catch (error) {
             console.error("Failed to fetch comments:", error);
             toast({ title: "Could not load comments.", variant: "destructive" });
@@ -132,7 +158,6 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     }
   };
   
-  // A simple check for demo purposes
   const isPostAuthor = item.userId === 'currentDemoUser';
 
   return (
@@ -228,7 +253,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         </div>
         
         {showCommentInput && (
-          <div className="mt-3 px-2 space-y-2 border-t pt-3">
+          <div className="mt-3 px-2 space-y-2 border-t pt-3 w-full">
              <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
                 {isLoadingReplies ? (
                     <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">Loading comments...</span></div>
