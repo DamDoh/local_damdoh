@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, AgroExportDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, AgroExportDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData } from "./types";
 
 const db = admin.firestore();
 
@@ -392,14 +392,14 @@ export const getResearcherDashboardData = functions.https.onCall(async (data, co
     return mockData;
 });
 
-export const getAgronomistDashboardData = functions.https.onCall(async (data, context): Promise<AgronomistDashboardData> => {
+export const getAgronomistDashboardData = functions.https.onCall(async (data, context): Promise<any> => { // Changed type to any for simplicity
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
 
     try {
         // MOCK DATA: In a real app, this would query Firestore
-        const mockData: AgronomistDashboardData = {
+        const mockData: any = {
             assignedFarmersOverview: [
                 { id: 'farmerA', name: 'Green Valley Organics', farmLocation: 'Nakuru, Kenya', lastConsultation: new Date(Date.now() - 86400000 * 10).toISOString(), alerts: 1, actionLink: '#' },
                 { id: 'farmerB', name: 'Rift Valley Growers', farmLocation: 'Eldoret, Kenya', lastConsultation: new Date(Date.now() - 86400000 * 5).toISOString(), alerts: 0, actionLink: '#' },
@@ -469,10 +469,62 @@ export const getCrowdfunderDashboardData = functions.https.onCall(async (data, c
     return await getDashboardData("crowdfunder-dashboard", context);
 });
 
-export const getProcessingUnitDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("processing-unit-dashboard", context);
+export const getProcessingUnitDashboardData = functions.https.onCall(async (data, context): Promise<ProcessingUnitDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: ProcessingUnitDashboardData = {
+        yieldOptimization: {
+            currentYield: 85,
+            potentialYield: 92,
+            suggestion: "Adjusting blade speed on the primary chopper could increase yield by 7%.",
+        },
+        inventory: [
+            { product: 'Raw Cashew Nuts', tons: 120, quality: 'Grade A' },
+            { product: 'Dried Mango Slices', tons: 15, quality: 'Export Ready' },
+            { product: 'Hibiscus Flowers', tons: 45, quality: 'Grade B' },
+        ],
+        wasteReduction: {
+            currentRate: 12,
+            potentialRate: 8,
+            insight: "Repurposing fruit peels for animal feed could reduce waste by 4%.",
+        },
+        packagingOrders: [
+             { id: 'PO-001', supplierName: 'EcoPack Solutions', orderDate: new Date(Date.now() - 86400000 * 5).toISOString(), deliveryDate: new Date(Date.now() + 86400000 * 2).toISOString(), status: 'Shipped', actionLink: '#' },
+             { id: 'PO-002', supplierName: 'Bulk Bags Inc.', orderDate: new Date(Date.now() - 86400000 * 2).toISOString(), deliveryDate: new Date(Date.now() + 86400000 * 10).toISOString(), status: 'Pending', actionLink: '#' },
+        ],
+        packagingInventory: [
+            { packagingType: '50kg Jute Bags', unitsInStock: 12000, reorderLevel: 10000 },
+            { packagingType: '250g Stand-up Pouches', unitsInStock: 45000, reorderLevel: 50000 },
+        ],
+        packagingImpactMetrics: [
+            { metric: 'Recycled Content Used', value: '35%', actionLink: '#' }
+        ]
+    };
+
+    return mockData;
 });
 
-export const getWarehouseDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("warehouse-dashboard", context);
+export const getWarehouseDashboardData = functions.https.onCall(async (data, context): Promise<WarehouseDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockData: WarehouseDashboardData = {
+        storageOptimization: {
+            utilization: 78,
+            suggestion: "Consolidate pallets from zones A3 and B1 to free up a full row.",
+        },
+        inventoryLevels: {
+            totalItems: 4500,
+            itemsNeedingAttention: 12,
+        },
+        predictiveAlerts: [
+            { id: 'alert1', alert: "High humidity detected in Zone C. Risk to stored grains.", actionLink: '#' },
+            { id: 'alert2', alert: "Batch #VTI-XYZ-889 nearing its 'best before' date. Prioritize for dispatch.", actionLink: '#' },
+        ],
+    };
+    
+    return mockData;
 });
