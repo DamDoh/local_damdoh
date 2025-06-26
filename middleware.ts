@@ -1,2 +1,1 @@
-
-// This file is intentionally left empty. The configuration has been moved to src/middleware.ts to follow standard Next.js project structure with a src directory.
+// This file is intentionally left empty. The configuration has been moved to src/middleware.ts to follow standard Next.js project structure.
