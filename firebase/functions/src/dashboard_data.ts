@@ -23,35 +23,55 @@ export const getFarmerDashboardData = functions.https.onCall(async (data, contex
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
+    const uid = context.auth.uid;
 
-    // Returning mock data to power the new dashboard UI
-    const mockData: FarmerDashboardData = {
-        yieldData: [
-            { crop: 'Maize', historical: 7.5, predicted: 8.2, unit: 'Tons/Ha' },
-            { crop: 'Soybeans', historical: 3.2, predicted: 3.5, unit: 'Tons/Ha' },
-            { crop: 'Coffee', historical: 1.8, predicted: 2.1, unit: 'Tons/Ha' },
-            { crop: 'Avocado', historical: 15, predicted: 17, unit: 'Tons/Ha' },
-        ],
-        irrigationSchedule: {
-            next_run: 'Tomorrow, 6 AM',
-            duration_minutes: 45,
-            recommendation: 'Soil moisture is low. Early morning is ideal to reduce evaporation.',
-        },
-        matchedBuyers: [
+    try {
+        // Fetch user's farms and crops in parallel
+        const farmsPromise = db.collection('farms').where('owner_id', '==', uid).get();
+        const cropsPromise = db.collection('crops').where('owner_id', '==', uid).get();
+        const userProfilePromise = db.collection('users').doc(uid).get();
+
+        const [farmsSnapshot, cropsSnapshot, userProfileSnapshot] = await Promise.all([farmsPromise, cropsPromise, userProfilePromise]);
+
+        const farms = farmsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const crops = cropsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        const userProfile = userProfileSnapshot.data();
+        const certifications = userProfile?.profileData?.certifications || [];
+        
+        // Simple trust score logic: 80 base + 5 per certification
+        const reputationScore = 80 + (certifications.length * 5);
+
+        // This remains mock data as it requires a dedicated AI model
+        const matchedBuyers = [
             { id: 'buyer1', name: 'Global Grain Traders', matchScore: 92, request: 'Seeking 500 tons of non-GMO maize', contactId: 'globalGrain' },
             { id: 'buyer2', name: 'Artisan Coffee Roasters', matchScore: 85, request: 'Looking for single-origin specialty coffee beans', contactId: 'artisanCoffee' }
-        ],
-        trustScore: {
-            reputation: 88,
-            certifications: [
-                { id: 'cert1', name: 'GlobalG.A.P.', issuingBody: 'SGS' },
-                { id: 'cert2', name: 'Organic Certified', issuingBody: 'EcoCert' }
-            ],
-        },
-    };
+        ];
 
-    return mockData;
+        const liveData: FarmerDashboardData = {
+            farmCount: farms.length,
+            cropCount: crops.length,
+            recentCrops: crops.slice(0, 5).map((crop: any) => ({ // Ensure type safety
+                id: crop.id,
+                name: crop.crop_type,
+                stage: crop.current_stage || 'Unknown',
+                farmName: farms.find(f => f.id === crop.farm_id)?.name || 'Unknown Farm'
+            })),
+            trustScore: {
+                reputation: reputationScore,
+                certifications: certifications.map((cert: string, index: number) => ({ id: `cert${index}`, name: cert, issuingBody: 'Self-Reported' }))
+            },
+            matchedBuyers: matchedBuyers,
+        };
+
+        return liveData;
+
+    } catch (error) {
+        console.error("Error fetching farmer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
+    }
 });
+
 
 export const getBuyerDashboardData = functions.https.onCall(async (data, context) => {
     return await getDashboardData("buyer-dashboard", context);

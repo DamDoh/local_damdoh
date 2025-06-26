@@ -209,18 +209,13 @@ export interface YieldDataPoint {
 }
 
 export interface FarmerDashboardData {
-  yieldData: YieldDataPoint[];
-  irrigationSchedule: {
-    next_run: string;
-    duration_minutes: number;
-    recommendation: string;
-  };
-  matchedBuyers: {
-    id: string;
-    name: string;
-    matchScore: number;
-    request: string;
-    contactId: string;
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
+      id: string;
+      name: string;
+      stage: string;
+      farmName: string;
   }[];
   trustScore: {
       reputation: number;
@@ -229,7 +224,14 @@ export interface FarmerDashboardData {
           name: string;
           issuingBody: string;
       }[];
-  }
+  };
+  matchedBuyers: {
+    id: string;
+    name: string;
+    matchScore: number;
+    request: string;
+    contactId: string;
+  }[];
 }
 
 export interface BuyerDashboardData {

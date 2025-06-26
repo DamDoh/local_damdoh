@@ -6,13 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Droplets, Users, MessageSquare, BarChart2 } from 'lucide-react';
+import { Users, MessageSquare, BarChart2, Sprout, Tractor } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { TrustScoreWidget } from './TrustScoreWidget';
 import type { FarmerDashboardData } from '@/lib/types';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Pie, PieChart, Cell } from "recharts"
+import { Badge } from '@/components/ui/badge';
 
 
 export const FarmerDashboard = () => {
@@ -49,19 +50,8 @@ export const FarmerDashboard = () => {
         );
     }
 
-    const { yieldData, irrigationSchedule, matchedBuyers, trustScore } = dashboardData;
+    const { farmCount, cropCount, recentCrops, trustScore, matchedBuyers } = dashboardData;
     
-    const chartConfig = {
-      predicted: {
-        label: "AI Predicted",
-        color: "hsl(var(--chart-1))",
-      },
-      historical: {
-        label: "Historical Avg.",
-        color: "hsl(var(--chart-2))",
-      },
-    }
-
     return (
         <div>
             <h1 className="text-3xl font-bold mb-6">Farmer Mission Control</h1>
@@ -71,65 +61,55 @@ export const FarmerDashboard = () => {
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <BarChart2 className="h-5 w-5 text-primary" />
-                            Yield Performance
+                            Farm Overview
                         </CardTitle>
                         <CardDescription>
-                            Historical yield vs. AI-powered prediction for this season.
+                            A snapshot of your current farming operations.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                       <ChartContainer config={chartConfig} className="min-h-[250px] w-full">
-                         <BarChart accessibilityLayer data={yieldData} margin={{ top: 20, right: 20, bottom: 5, left: 0 }}>
-                            <CartesianGrid vertical={false} />
-                            <XAxis
-                              dataKey="crop"
-                              tickLine={false}
-                              tickMargin={10}
-                              axisLine={false}
-                              tickFormatter={(value) => value.slice(0, 3)}
-                            />
-                            <YAxis
-                              tickLine={false}
-                              axisLine={false}
-                              tickMargin={10}
-                              unit=" T"
-                            />
-                            <ChartTooltip
-                                content={<ChartTooltipContent 
-                                    labelFormatter={(label, payload) => {
-                                        const data = payload && payload.length ? payload[0].payload : null;
-                                        return data ? `${data.crop} (${data.unit})` : label;
-                                    }}
-                                />}
-                            />
-                            <ChartLegend content={<ChartLegendContent />} />
-                            <Bar dataKey="historical" fill="var(--color-historical)" radius={4} />
-                            <Bar dataKey="predicted" fill="var(--color-predicted)" radius={4} />
-                          </BarChart>
-                        </ChartContainer>
+                    <CardContent className="grid grid-cols-2 gap-4">
+                       <div className="p-4 rounded-lg bg-muted/50 flex items-center gap-4">
+                            <Tractor className="h-8 w-8 text-primary"/>
+                            <div>
+                                <p className="text-2xl font-bold">{farmCount}</p>
+                                <p className="text-xs text-muted-foreground">Total Farms</p>
+                            </div>
+                       </div>
+                       <div className="p-4 rounded-lg bg-muted/50 flex items-center gap-4">
+                            <Sprout className="h-8 w-8 text-green-500"/>
+                             <div>
+                                <p className="text-2xl font-bold">{cropCount}</p>
+                                <p className="text-xs text-muted-foreground">Active Crops/Batches</p>
+                            </div>
+                       </div>
+                       <div className="col-span-2">
+                            <h4 className="text-sm font-semibold mb-2">Recently Added Crops</h4>
+                            <div className="space-y-2">
+                                {recentCrops && recentCrops.length > 0 ? recentCrops.map(crop => (
+                                    <div key={crop.id} className="flex justify-between items-center p-2 border rounded-md">
+                                        <div>
+                                            <p className="font-medium text-sm">{crop.name}</p>
+                                            <p className="text-xs text-muted-foreground">{crop.farmName}</p>
+                                        </div>
+                                        <Badge variant="secondary">{crop.stage}</Badge>
+                                    </div>
+                                )) : (
+                                    <p className="text-xs text-muted-foreground text-center py-4">No crops have been added yet.</p>
+                                )}
+                            </div>
+                       </div>
                     </CardContent>
                 </Card>
 
                 <div className="space-y-6">
                     <TrustScoreWidget reputationScore={trustScore.reputation} certifications={trustScore.certifications} />
-
-                    <Card>
-                        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Next Irrigation</CardTitle>
-                            <Droplets className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-xl font-bold">{irrigationSchedule.next_run}</div>
-                            <p className="text-xs text-muted-foreground">{irrigationSchedule.recommendation}</p>
-                        </CardContent>
-                    </Card>
                 </div>
                 
                 <Card className="lg:col-span-3">
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                             <Users className="h-4 w-4" />
-                            Buyer Opportunities
+                            AI-Matched Buyer Opportunities
                         </CardTitle>
                      </CardHeader>
                     <CardContent className="space-y-3">
