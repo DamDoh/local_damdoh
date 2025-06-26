@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { FlaskConical, ArrowLeft, PlusCircle, Calendar, Clock, Edit2, Loader2, CheckCircle } from "lucide-react";
+import { FlaskConical, ArrowLeft, PlusCircle, Calendar, Clock, Edit2, Loader2, CheckCircle, Package, Archive } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { format } from "date-fns";
@@ -26,7 +26,7 @@ interface ActiveBatch {
   typeName: string;
   startDate: string; // ISO String
   ingredients: string;
-  status: string;
+  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
   nextStep: string;
   nextStepDate: string; // ISO String
 }
@@ -38,11 +38,13 @@ export default function KNFInputAssistantPage() {
   
   const createKnfBatchCallable = useMemo(() => httpsCallable(functions, 'createKnfBatch'), [functions]);
   const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'getUserKnfBatches'), [functions]);
+  const updateKnfBatchStatusCallable = useMemo(() => httpsCallable(functions, 'updateKnfBatchStatus'), [functions]);
 
-  const [activeBatches, setActiveBatches] = useState<ActiveBatch[]>([]);
+  const [allBatches, setAllBatches] = useState<ActiveBatch[]>([]);
   const [isLoadingBatches, setIsLoadingBatches] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [updatingBatchId, setUpdatingBatchId] = useState<string | null>(null);
   
   const [selectedInput, setSelectedInput] = useState<KnfInputType | ''>('');
   const [ingredients, setIngredients] = useState('');
@@ -64,7 +66,9 @@ export default function KNFInputAssistantPage() {
     setIsLoadingBatches(true);
     try {
         const result = await getUserKnfBatchesCallable();
-        setActiveBatches(result.data as ActiveBatch[]);
+        const batches = result.data as ActiveBatch[];
+        // Filter out archived batches from the main view
+        setAllBatches(batches.filter(b => b.status !== 'Archived'));
     } catch (error) {
         console.error("Error fetching KNF batches:", error);
         toast({ title: "Could not load your batches", description: "There was an issue connecting to the database. Please try refreshing the page.", variant: "destructive" });
@@ -114,6 +118,23 @@ export default function KNFInputAssistantPage() {
         setIsSubmitting(false);
     }
   };
+  
+  const handleUpdateStatus = async (batchId: string, newStatus: 'Ready' | 'Archived' | 'Used') => {
+    setUpdatingBatchId(batchId);
+    try {
+        await updateKnfBatchStatusCallable({ batchId, status: newStatus });
+        toast({ title: "Batch Updated!", description: `The batch has been marked as ${newStatus}.`});
+        await fetchBatches(); // refetch data
+    } catch (error) {
+        console.error("Error updating batch status:", error);
+        toast({ title: "Update failed", description: "Could not update the batch status.", variant: "destructive" });
+    } finally {
+        setUpdatingBatchId(null);
+    }
+  };
+
+  const fermentingBatches = allBatches.filter(b => b.status === 'Fermenting');
+  const readyBatches = allBatches.filter(b => b.status === 'Ready');
 
   return (
     <div className="space-y-6">
@@ -135,42 +156,83 @@ export default function KNFInputAssistantPage() {
         <CardContent>
             {/* Active Batches Section */}
             <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Active Batches</h3>
+                <h3 className="text-lg font-semibold">Active Batches (Fermenting)</h3>
                 {isLoadingBatches ? (
                     <div className="space-y-4">
                         <Skeleton className="h-32 w-full" />
+                    </div>
+                ) : fermentingBatches.length > 0 ? (
+                    fermentingBatches.map(batch => {
+                        const isActionable = new Date(batch.nextStepDate) <= new Date();
+                        return (
+                            <Card key={batch.id} className="bg-muted/30">
+                                <CardHeader className="pb-3 pt-4">
+                                    <CardTitle className="text-md flex justify-between items-center">
+                                        <span>{batch.typeName}</span>
+                                        <Badge>{batch.status}</Badge>
+                                    </CardTitle>
+                                    <CardDescription className="text-xs">Started: {format(new Date(batch.startDate), 'PPP')}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="text-sm">
+                                    <p><strong className="font-medium">Ingredients:</strong> {batch.ingredients}</p>
+                                    <div className="mt-2 flex items-center text-primary gap-2 p-2 bg-primary/10 rounded-md">
+                                        <Clock className="h-5 w-5"/>
+                                        <div>
+                                            <p className="font-semibold">{batch.nextStep}</p>
+                                            <p>On or around: {format(new Date(batch.nextStepDate), 'PPP')}</p>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                                <CardFooter className="justify-end gap-2">
+                                    <Button size="sm" onClick={() => handleUpdateStatus(batch.id, 'Ready')} disabled={!isActionable || updatingBatchId === batch.id}>
+                                        {updatingBatchId === batch.id && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                                        Mark as Ready
+                                    </Button>
+                                </CardFooter>
+                            </Card>
+                        )
+                    })
+                ) : (
+                    <div className="text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg">
+                        <p>You have no actively fermenting KNF batches.</p>
+                    </div>
+                )}
+            </div>
+
+            <hr className="my-6"/>
+
+             {/* Ready Batches Section */}
+            <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Ready Batches (Inventory)</h3>
+                {isLoadingBatches ? (
+                    <div className="space-y-4">
                         <Skeleton className="h-32 w-full" />
                     </div>
-                ) : activeBatches.length > 0 ? (
-                    activeBatches.map(batch => (
-                        <Card key={batch.id} className="bg-muted/30">
+                ) : readyBatches.length > 0 ? (
+                    readyBatches.map(batch => (
+                        <Card key={batch.id} className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
                             <CardHeader className="pb-3 pt-4">
                                 <CardTitle className="text-md flex justify-between items-center">
                                     <span>{batch.typeName}</span>
-                                    <Badge>{batch.status}</Badge>
+                                    <Badge variant="default" className="bg-green-600 hover:bg-green-700">{batch.status}</Badge>
                                 </CardTitle>
-                                <CardDescription className="text-xs">Started: {format(new Date(batch.startDate), 'PPP')}</CardDescription>
+                                <CardDescription className="text-xs">Ready since: {format(new Date(batch.nextStepDate), 'PPP')}</CardDescription>
                             </CardHeader>
                             <CardContent className="text-sm">
                                 <p><strong className="font-medium">Ingredients:</strong> {batch.ingredients}</p>
-                                <div className="mt-2 flex items-center text-primary gap-2 p-2 bg-primary/10 rounded-md">
-                                    <Clock className="h-5 w-5"/>
-                                    <div>
-                                        <p className="font-semibold">{batch.nextStep}</p>
-                                        <p>On or around: {format(new Date(batch.nextStepDate), 'PPP')}</p>
-                                    </div>
-                                </div>
                             </CardContent>
                             <CardFooter className="justify-end gap-2">
-                                <Button variant="outline" size="sm"><Edit2 className="h-3 w-3 mr-1"/> Log Activity</Button>
-                                <Button size="sm"><CheckCircle className="h-3 w-3 mr-1"/> Mark as Complete</Button>
+                                <Button variant="secondary" size="sm" disabled={updatingBatchId === batch.id}><Package className="h-4 w-4 mr-2"/>Log Usage</Button>
+                                <Button variant="outline" size="sm" onClick={() => handleUpdateStatus(batch.id, 'Archived')} disabled={updatingBatchId === batch.id}>
+                                    {updatingBatchId === batch.id && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                                    <Archive className="h-4 w-4 mr-2"/>Archive
+                                </Button>
                             </CardFooter>
                         </Card>
                     ))
                 ) : (
                     <div className="text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg">
-                        <p>You have no active KNF input batches.</p>
-                        <p>Start a new batch to begin tracking!</p>
+                        <p>You have no ready KNF inputs in your inventory.</p>
                     </div>
                 )}
             </div>

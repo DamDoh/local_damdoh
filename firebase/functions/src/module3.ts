@@ -316,3 +316,51 @@ export const getUserKnfBatches = functions.https.onCall(async (data, context) =>
         throw new functions.https.HttpsError("internal", "Failed to fetch KNF batches.");
     }
 });
+
+/**
+ * Updates the status of a KNF batch.
+ */
+export const updateKnfBatchStatus = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { batchId, status } = data;
+    if (!batchId || !status) {
+        throw new functions.https.HttpsError("invalid-argument", "batchId and status are required.");
+    }
+
+    const validStatuses = ['Fermenting', 'Ready', 'Used', 'Archived'];
+    if (!validStatuses.includes(status)) {
+        throw new functions.https.HttpsError("invalid-argument", `Invalid status provided. Must be one of: ${validStatuses.join(', ')}`);
+    }
+
+    const userId = context.auth.uid;
+    const batchRef = db.collection('knf_batches').doc(batchId);
+
+    try {
+        const batchDoc = await batchRef.get();
+        if (!batchDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Batch not found.");
+        }
+
+        if (batchDoc.data()?.userId !== userId) {
+            throw new functions.https.HttpsError("permission-denied", "You do not have permission to update this batch.");
+        }
+
+        await batchRef.update({ status: status });
+        
+        return { success: true, message: `Batch ${batchId} status updated to ${status}.` };
+
+    } catch (error: any) {
+        console.error(`Error updating KNF batch ${batchId}:`, error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError(
+            "internal", 
+            "Failed to update KNF batch status.",
+            { originalError: error.message }
+        );
+    }
+});
