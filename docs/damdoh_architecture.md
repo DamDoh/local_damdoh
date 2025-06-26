@@ -65,7 +65,8 @@ The data storage strategy will leverage Firebase and Google Cloud services for s
 *   **`users`**: Stores profiles for all 21 stakeholder types, linked to Firebase Auth UID.
     *   `uid`: (string) Firebase Auth UID
     *   `email`: (string)
-    *   `name`: (string)
+    *   `displayName_en`: (string)
+    *   `displayName_local`: (map) e.g., `{ "km": "ឈ្មោះ", "sw": "Jina" }`
     *   `roles`: (array of strings) e.g., ['Farmer', 'Buyer']
     *   `profileData`: (map) Role-specific data. For a **Farmer**, this might include `{farmIds: ['farm1', 'farm2']}`. For a **Financial Institution**, it might include `{fi_name: 'AgriBank', services_offered: ['loan', 'credit']}`.
     *   `createdAt`, `updatedAt`: (timestamps)
@@ -94,7 +95,10 @@ The data storage strategy will leverage Firebase and Google Cloud services for s
     *   `sellerId`: (string) Reference to `users` collection.
     *   `listingType`: (string) 'Product' or 'Service'.
     *   `category`: (string) e.g., 'fresh-produce-fruits'.
-    *   `name`, `description`, `price`, `currency`, `location`.
+    *   `name_en`: (string)
+    *   `description_en`: (string)
+    *   `name_local`, `description_local`: (maps) for i18n
+    *   `price`, `currency`, `location`.
     *   `relatedTraceabilityId`: (string, optional) Links product to its VTI.
 
 *   **`posts`**, **`comments`**, **`likes`**: Manages social feed content.
