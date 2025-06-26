@@ -99,18 +99,9 @@ const desktopNavItems = [
   { href: "/forums", icon: MessageSquare, label: "Forums"},
 ];
 
-const mainMobileNavItems = [
-  { href: "/", icon: Home, label: "Home", isSheetLink: true },
-  { href: "/network", icon: Users, label: "Network", isSheetLink: true },
-  { href: "/farm-management", icon: Sprout, label: "Farm Management", isSheetLink: true },
-  { href: "/marketplace", icon: ShoppingCart, label: "Marketplace", isSheetLink: true },
-  { href: "/traceability", icon: Fingerprint, label: "Traceability", isSheetLink: true },
-  { href: "/forums", icon: MessageSquare, label: "Forums", isSheetLink: true },
-  { href: "/notifications", icon: Bell, label: "Notifications", isSheetLink: true },
-];
-
 const mobileSheetSecondaryNavItems = [
-  { href: "/profiles/me", icon: UserIcon, label: "My Profile", isSheetLink: true }, // Link to the user's profile page
+  { href: "/pinboard", icon: ClipboardList, label: "My Pinboard", isSheetLink: true },
+  { href: "/settings", icon: UserIcon, label: "Settings & Profile", isSheetLink: true },
   { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
 ];
 
@@ -129,20 +120,12 @@ export function AppHeader() {
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (searchQuery.trim()) {
-      // Instead of navigating, open the modal with the current query
       setInitialModalQuery(searchQuery.trim());
       setIsSearchModalOpen(true);
-      setSearchQuery(""); // Clear input after submitting
+      setSearchQuery("");
       if (isMobileSheetOpen) setIsMobileSheetOpen(false);
     }
   };
-  
-  const handleMobileSearchClick = () => {
-    // On mobile, just open the modal without an initial query
-    setInitialModalQuery("");
-    setIsSearchModalOpen(true);
-    if (isMobileSheetOpen) setIsMobileSheetOpen(false);
-  }
 
   const handleLogout = async () => {
     try {
@@ -269,52 +252,27 @@ export function AppHeader() {
                   </SheetClose>
               </SheetHeader>
               <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
-                {mainMobileNavItems.map((item) => (
+                {user && (
+                  <>
+                    <MobileSheetNavLink href="/profiles/me" icon={UserIcon} label="My Profile & Settings" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <Separator />
+                  </>
+                )}
+                
+                {mobileSheetSecondaryNavItems.map((item) => (
                   <MobileSheetNavLink
-                    key={`sheet-main-${item.href}`}
+                    key={`sheet-extra-${item.href}`}
                     {...item}
                     pathname={pathname}
                     onClick={() => setIsMobileSheetOpen(false)}
                   />
                 ))}
-                <Separator />
-                {user ? (
+
+                 {!user && (
                   <>
-                    {mobileSheetSecondaryNavItems.map((item) => (
-                      <MobileSheetNavLink
-                        key={`sheet-extra-${item.href}`}
-                        {...item}
-                        pathname={pathname}
-                        onClick={() => setIsMobileSheetOpen(false)}
-                      />
-                    ))}
-                    <MobileSheetNavLink
-                      href="/notifications"
-                      icon={Bell}
-                      label="Notifications"
-                      pathname={pathname}
-                      onClick={() => setIsMobileSheetOpen(false)}
-                    />
-                    <MobileSheetNavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
-                    <MobileSheetNavLink href="/wallet" icon={WalletIcon} label="Digital Wallet" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
                     <Separator />
-                  </>
-                ) : (
-                  <>
-                    <MobileSheetNavLink
-                      href="/auth/signin"
-                      icon={LogIn}
-                      label="Sign In"
-                      pathname={pathname}
-                      onClick={() => setIsMobileSheetOpen(false)}
-                    />
-                    <MobileSheetNavLink
-                      href="/auth/signup"
-                      icon={UserPlus}
-                      label="Sign Up"
-                      pathname={pathname}
-                      onClick={() => setIsMobileSheetOpen(false)}
-                    />
+                    <MobileSheetNavLink href="/auth/signin" icon={LogIn} label="Sign In" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <MobileSheetNavLink href="/auth/signup" icon={UserPlus} label="Sign Up" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
                   </>
                 )}
               </nav>
@@ -334,8 +292,8 @@ export function AppHeader() {
             {sectionTitle}
           </div>
 
-          <Button variant="ghost" size="icon" className="text-white hover:bg-white/20" onClick={handleMobileSearchClick}>
-              <SearchIconLucide className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="text-white hover:bg-white/20" asChild>
+            <Link href="/search"><SearchIconLucide className="h-5 w-5" /></Link>
           </Button>
         </div>
       </header>
