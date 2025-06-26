@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getRole } from './module2';
 
 const db = admin.firestore();
 
@@ -59,8 +60,42 @@ export const createShop = functions.https.onCall(async (data, context) => {
     console.error("Error creating shop:", error);
     throw new functions.https.HttpsError(
         "internal", 
-        "Failed to create Digital Shopfront. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
+        "Failed to create Digital Shopfront. Please check your project's Firestore setup.",
         { originalError: error.message }
     );
+  }
+});
+
+/**
+ * Creates a new marketplace listing.
+ * This function is callable from the client.
+ */
+export const createMarketplaceListing = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a listing.");
+  }
+  
+  const sellerId = context.auth.uid;
+  const { name, listingType, description, category, location } = data;
+
+  // Basic validation
+  if (!name || !listingType || !description || !category || !location) {
+    throw new functions.https.HttpsError("invalid-argument", "Missing required fields for the listing.");
+  }
+
+  try {
+    const listingData = {
+      ...data, // Include all validated data from the client
+      sellerId: sellerId,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+
+    const docRef = await db.collection("marketplaceItems").add(listingData);
+
+    return { id: docRef.id, name: listingData.name };
+  } catch (error: any) {
+    console.error("Error creating marketplace listing:", error);
+    throw new functions.https.HttpsError("internal", "Failed to create marketplace listing.", { originalError: error.message });
   }
 });

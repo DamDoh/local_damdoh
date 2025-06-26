@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -31,13 +31,20 @@ import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from "@
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, LISTING_TYPE_FORM_OPTIONS } from "@/lib/constants";
 import { ArrowLeft, Save, Leaf, DollarSign, MapPin, FileText, Link as LinkIcon, ImageUp, PackageIcon, ListChecks, Wrench, LocateFixed, Tag, ShieldCheck, Warehouse, CalendarDays, Settings2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/lib/auth-utils";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
 
 
 export default function CreateMarketplaceListingPage() {
   const { toast } = useToast();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const functions = getFunctions(firebaseApp);
+  const createMarketplaceListingCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceListing'), [functions]);
   
   const form = useForm<CreateMarketplaceItemValues>({
     resolver: zodResolver(createMarketplaceItemSchema),
@@ -82,44 +89,43 @@ export default function CreateMarketplaceListingPage() {
   const watchedListingType = form.watch("listingType");
 
   async function onSubmit(data: CreateMarketplaceItemValues) {
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Not Authenticated",
+        description: "You must be logged in to create a listing.",
+      });
+      return;
+    }
     setIsSubmitting(true);
+
     try {
       // In a real app, you would handle imageFile upload to a service like Firebase Storage here
       // and get back a URL to put into the `imageUrl` field.
       // For this demo, we will ignore the file and only send the text data.
       const payload = {
         ...data,
-        imageFile: undefined, // Remove file object before sending to API
-        // Convert comma-separated strings to arrays where needed
-        skillsRequired: data.skillsRequired?.split(',').map(s => s.trim()).filter(s => s) || [],
-        certifications: data.certifications?.split(',').map(s => s.trim()).filter(s => s) || [],
+        imageFile: undefined, // Remove file object before sending to backend
+        // Convert comma-separated strings to arrays where needed by the backend if necessary
+        skillsRequired: data.skillsRequired?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        certifications: data.certifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
       };
       
-      const response = await fetch('/api/marketplace', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || "Failed to create listing.");
-      }
-
-      const newItem = await response.json();
+      const result = await createMarketplaceListingCallable(payload);
+      const newItem = result.data as { id: string; name: string };
 
       toast({
         title: "Listing Created Successfully!",
-        description: `Your listing "${newItem.data.name}" is now live.`,
+        description: `Your listing "${newItem.name}" is now live.`,
       });
 
-      router.push(`/marketplace/${newItem.data.id}`);
+      router.push(`/marketplace/${newItem.id}`);
 
     } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Submission Failed",
-        description: error.message,
+        description: error.message || "Could not create listing. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
