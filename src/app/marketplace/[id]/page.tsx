@@ -9,7 +9,7 @@ import Image from "next/image";
 import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle, Ticket, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState, useMemo } from "react";
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { getMarketplaceItemByIdFromDB, getProfileByIdFromDB } from "@/lib/db-utils"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";

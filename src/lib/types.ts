@@ -86,9 +86,9 @@ export interface Participant {
 
 export interface Conversation {
   id: string;
-  participants: Participant[]; // Array of participants
-  lastMessage?: string;
-  lastMessageTimestamp?: string; // ISO string
+  participant: Participant; // Simplified for 1-on-1 chat
+  lastMessage: string;
+  lastMessageTimestamp: string; // ISO string
   unreadCount: number;
 }
 export interface Message {
