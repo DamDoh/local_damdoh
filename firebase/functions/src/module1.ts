@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
 import { getRole } from './module2';
-import { getGenerativeModel } from 'firebase-ai-kit';
+// NOTE: The firebase-ai-kit import is no longer needed as the Gemini call is removed.
 
 const db = admin.firestore();
 
@@ -286,26 +286,13 @@ export const handleObservationEvent = functions.runWith({ secrets: ["GEMINI_API_
     }
 
     try {
-        const eventPayload: any = { observationType, details, mediaUrls: mediaUrls || [], farmFieldId };
-
-        if (mediaUrls && mediaUrls.length > 0) {
-            const model = getGenerativeModel({ model: "gemini-pro-vision" });
-            const prompt = `Analyze this image of a crop observation. The farmer reported the following: "${details}". What do you see? Provide a brief analysis.`;
-            // Assuming mediaUrls[0] is a base64 data URI string. We need to extract the data part.
-            const base64Data = mediaUrls[0].split(',')[1];
-            if (!base64Data) {
-                 throw new functions.https.HttpsError('invalid-argument', 'Invalid image data URI provided.');
-            }
-            const imagePart = { inlineData: { data: base64Data, mimeType: 'image/jpeg' } };
-
-            try {
-                const result = await model.generateContent([prompt, imagePart]);
-                eventPayload.aiAnalysis = result.response.text();
-            } catch (aiError) {
-                console.error("Error with Gemini analysis:", aiError);
-                eventPayload.aiAnalysis = "AI analysis failed.";
-            }
-        }
+        const eventPayload: any = { 
+            observationType, 
+            details, 
+            mediaUrls: mediaUrls || [], 
+            farmFieldId,
+            aiAnalysis: "AI analysis has been disabled by the administrator." // Indicate that AI is off
+        };
 
         await _internalLogTraceEvent({
             vtiId: farmFieldId,
