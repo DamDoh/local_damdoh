@@ -58,6 +58,13 @@ export default function FarmManagementPage() {
 
   const resourceGuides = [
     {
+      title: "KNF Input Assistant",
+      description: "An interactive guide to creating Korean Natural Farming inputs like IMO, FPJ, and FAA with step-by-step tracking.",
+      link: "/farm-management/knf-inputs",
+      icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
+      dataAiHint: "natural farming inputs",
+    },
+    {
       title: "200sqm Family Farm Model",
       description: "Learn about intensive, bio-diverse farming on a 200 square meter plot for family sustenance and surplus.",
       link: "/farm-management/family-farm",
@@ -65,18 +72,11 @@ export default function FarmManagementPage() {
       dataAiHint: "small farm plan",
     },
     {
-      title: "Compost Method (Farming God's Way)",
+      title: "Compost Method (FGW)",
       description: "Discover the principles and steps for creating high-quality compost using the Farming God's Way methodology.",
       link: "/farm-management/compost-fgw",
       icon: <Recycle className="h-8 w-8 text-primary mb-2" />,
       dataAiHint: "compost heap",
-    },
-    {
-      title: "KNF Input Assistant",
-      description: "An interactive guide to creating Korean Natural Farming inputs like IMO, FPJ, and FAA with step-by-step tracking.",
-      link: "/farm-management/knf-inputs",
-      icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
-      dataAiHint: "natural farming inputs",
     },
     {
       title: "Seed Starting & Seedling Care",
