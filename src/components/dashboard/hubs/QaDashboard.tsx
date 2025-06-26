@@ -1,8 +1,9 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase'; // Assuming firebaseApp is exported from here
+import { firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -10,9 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { CheckCircle, AlertTriangle, FileText } from 'lucide-react';
-import type { QaDashboardData } from '@/lib/types'; // Import the type
+import type { QaDashboardData } from '@/lib/types';
 
-// Assume mock getQaDashboardData is available via firebase functions
 const functions = getFunctions(firebaseApp);
 const getQaDashboardDataCallable = httpsCallable<void, QaDashboardData>(functions, 'getQaDashboardData');
 
@@ -27,7 +27,6 @@ export const QaDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Call the mock Firebase function
         const result = await getQaDashboardDataCallable();
         setDashboardData(result.data);
       } catch (err) {
@@ -39,16 +38,10 @@ export const QaDashboard = () => {
     };
 
     fetchData();
-  }, [getQaDashboardDataCallable]);
+  }, []);
 
   if (isLoading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-32 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   if (error) {
@@ -71,14 +64,6 @@ export const QaDashboard = () => {
       );
   }
 
-  const getSeverityBadgeVariant = (severity: string) => {
-      switch (severity.toLowerCase()) {
-          case 'high': return 'destructive';
-          case 'medium': return 'secondary';
-          default: return 'outline';
-      }
-  };
-
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">Quality Assurance Hub</h1>
@@ -97,7 +82,7 @@ export const QaDashboard = () => {
                    <TableRow>
                      <TableHead>Batch ID</TableHead>
                      <TableHead>Product</TableHead>
-                     <TableHead>Location</TableHead>
+                     <TableHead>Seller</TableHead>
                      <TableHead>Due Date</TableHead>
                      <TableHead>Action</TableHead>
                    </TableRow>
@@ -124,10 +109,10 @@ export const QaDashboard = () => {
            </CardContent>
          </Card>
 
-         {/* Recent Issues */}
+         {/* Recent Results */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/> Recent Quality Issues</CardTitle>
+             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/> Recent Quality Results</CardTitle>
              <CardDescription>Recently reported quality and compliance issues.</CardDescription>
            </CardHeader>
            <CardContent>
@@ -158,11 +143,11 @@ export const QaDashboard = () => {
            </CardContent>
          </Card>
 
-          {/* Compliance Checklist Progress */}
-         <Card>
+          {/* Quality Metrics */}
+         <Card className="col-span-1 md:col-span-2">
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Compliance Progress</CardTitle>
-                <CardDescription>Track adherence to various quality standards.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Quality Metrics</CardTitle>
+                <CardDescription>Aggregated quality metrics.</CardDescription>
             </CardHeader>
             <CardContent>
                 {dashboardData.qualityMetrics ? (
@@ -181,12 +166,20 @@ export const QaDashboard = () => {
                         </div>
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No compliance checklists tracked yet.</p>
+                   <p className="text-sm text-muted-foreground">No metrics available.</p>
                 )}
             </CardContent>
          </Card>
-
       </div>
     </div>
   );
 };
+
+const DashboardSkeleton = () => (
+    <div className="space-y-6">
+        <Skeleton className="h-9 w-64 mb-6" />
+        <Skeleton className="h-48 w-full rounded-lg" />
+        <Skeleton className="h-64 w-full rounded-lg" />
+         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
+    </div>
+);

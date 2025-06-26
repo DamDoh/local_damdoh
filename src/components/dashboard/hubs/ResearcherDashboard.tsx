@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase'; // Assuming firebaseApp is exported from here
+import { firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -13,7 +13,6 @@ import Link from 'next/link';
 import { FlaskConical, Database, Lightbulb } from 'lucide-react';
 import type { ResearcherDashboardData } from '@/lib/types';
 
-// Assume mock getResearcherDashboardData is available via firebase functions
 const functions = getFunctions(firebaseApp);
 const getResearcherDashboardDataCallable = httpsCallable<void, ResearcherDashboardData>(functions, 'getResearcherDashboardData');
 
@@ -28,7 +27,6 @@ export const ResearcherDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Call the mock Firebase function
         const result = await getResearcherDashboardDataCallable();
         setDashboardData(result.data);
       } catch (err) {
@@ -43,13 +41,7 @@ export const ResearcherDashboard = () => {
   }, [getResearcherDashboardDataCallable]);
 
   if (isLoading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-32 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   if (error) {
@@ -184,3 +176,13 @@ export const ResearcherDashboard = () => {
     </div>
   );
 };
+
+
+const DashboardSkeleton = () => (
+    <div className="space-y-6">
+        <Skeleton className="h-9 w-64 mb-6" />
+        <Skeleton className="h-48 w-full rounded-lg" />
+        <Skeleton className="h-64 w-full rounded-lg" />
+         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
+    </div>
+);

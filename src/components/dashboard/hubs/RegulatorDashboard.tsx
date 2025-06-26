@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { firebaseApp } from '@/lib/firebase/client';
 import { AlertTriangle, BadgeCheck, Zap, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -51,6 +51,7 @@ export const RegulatorDashboard = () => {
     const getSeverityBadge = (severity: string) => {
         switch (severity.toLowerCase()) {
             case 'high':
+            case 'critical':
                 return 'destructive';
             case 'medium':
                 return 'secondary';
@@ -114,7 +115,7 @@ export const RegulatorDashboard = () => {
                        {supplyChainAnomalies.map(anomaly => (
                             <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                <div>
-                                   <Badge variant="outline">{anomaly.level}</Badge>
+                                   <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
                                    <p className="mt-1">{anomaly.description}</p>
                                </div>
                                <Button asChild variant="secondary" size="sm">

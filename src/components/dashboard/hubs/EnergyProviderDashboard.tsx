@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";

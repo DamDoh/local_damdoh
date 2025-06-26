@@ -1,8 +1,9 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase'; // Assuming firebaseApp is exported from here
+import { firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -10,33 +11,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { Users, FileText, MessageSquare, CheckCircle } from 'lucide-react';
+import type { AgronomistDashboardData } from '@/lib/types';
 
-// Define the data type for the Agronomist Dashboard
-interface AgronomistDashboardData {
-    assignedFarmersOverview: {
-        id: string;
-        name: string;
-        farmLocation: string;
-        lastConsultation: string;
-        alerts: number; // Number of open alerts for this farmer
-        actionLink: string;
-    }[];
-    pendingConsultationRequests: {
-        id: string;
-        farmerName: string;
-        issueSummary: string;
-        requestDate: string;
-        actionLink: string;
-    }[];
-    knowledgeBaseContributions: {
-        id: string;
-        title: string;
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
 
-// Assume mock getAgronomistDashboardData is available via firebase functions
 const functions = getFunctions(firebaseApp);
 const getAgronomistDashboardDataCallable = httpsCallable<void, AgronomistDashboardData>(functions, 'getAgronomistDashboardData');
 
@@ -51,7 +28,6 @@ export const AgronomistDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Call the mock Firebase function
         const result = await getAgronomistDashboardDataCallable();
         setDashboardData(result.data);
       } catch (err) {
@@ -64,16 +40,10 @@ export const AgronomistDashboard = () => {
 
     fetchData();
 
-  }, []);
+  }, [getAgronomistDashboardDataCallable]);
 
   if (isLoading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-32 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   if (error) {

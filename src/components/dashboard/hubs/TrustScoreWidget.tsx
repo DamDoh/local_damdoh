@@ -15,7 +15,7 @@ interface TrustScoreWidgetProps {
 
 export const TrustScoreWidget = ({ reputationScore, certifications }: TrustScoreWidgetProps) => {
     return (
-        <Card className="bg-gradient-to-br from-green-50 to-blue-50">
+        <Card className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/30 dark:to-blue-900/30">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
                     <ShieldCheck className="h-5 w-5 text-primary" />

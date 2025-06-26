@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { FileText, Ship, Globe, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -101,7 +101,7 @@ export const AgroExportDashboard = () => {
                     </CardHeader>
                     <CardContent className="space-y-2">
                        {complianceAlerts.map(alert => (
-                           <div key={alert.id} className="text-sm p-3 border rounded-lg bg-yellow-50 border-yellow-200">
+                           <div key={alert.id} className="text-sm p-3 border rounded-lg bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
                                <p>{alert.content}</p>
                                <Link href={alert.actionLink} className="text-xs text-primary hover:underline mt-1">Learn More</Link>
                            </div>

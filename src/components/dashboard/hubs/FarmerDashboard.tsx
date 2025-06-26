@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { firebaseApp } from '@/lib/firebase/client';
 import { TrendingUp, Droplets, Users, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -67,7 +67,7 @@ export const FarmerDashboard = () => {
                 </Card>
 
                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Next Irrigation</CardTitle>
                         <Droplets className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>

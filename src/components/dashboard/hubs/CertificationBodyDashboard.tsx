@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase'; // Assuming firebaseApp is exported from here
+import { firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -13,7 +13,6 @@ import Link from 'next/link';
 import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
 import type { CertificationBodyDashboardData } from '@/lib/types';
 
-// Assume mock getCertificationBodyDashboardData is available via firebase functions
 const functions = getFunctions(firebaseApp);
 const getCertificationBodyDashboardDataCallable = httpsCallable<void, CertificationBodyDashboardData>(functions, 'getCertificationBodyDashboardData');
 
@@ -28,7 +27,6 @@ export const CertificationBodyDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Call the mock Firebase function
         const result = await getCertificationBodyDashboardDataCallable();
         setDashboardData(result.data);
       } catch (err) {
@@ -43,13 +41,7 @@ export const CertificationBodyDashboard = () => {
   }, [getCertificationBodyDashboardDataCallable]);
 
   if (isLoading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-32 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   if (error) {
