@@ -1,1 +1,1 @@
-// This file has been moved to the project root to resolve a build issue.
+// This file has been emptied to resolve a build conflict.

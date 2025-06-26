@@ -1,35 +1,27 @@
 "use client";
 
-// src/lib/auth-utils.ts
-import { 
-  getAuth, 
-  onAuthStateChanged, 
-  signOut as firebaseSignOut, 
+import {
+  onAuthStateChanged,
+  signOut as firebaseSignOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,      
+  sendPasswordResetEmail,
   confirmPasswordReset,
   type User as FirebaseUser
 } from "firebase/auth";
-import { auth, functions } from './firebase/client'; 
+import { auth, functions } from './firebase/client';
 import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext, useContext, ReactNode } from 'react';
 
-// This listener will update currentFirebaseUser whenever auth state changes
-// It's good for internal module state but components should prefer useAuth hook
-let internalCurrentFirebaseUser: FirebaseUser | null = null;
-onAuthStateChanged(auth, (user) => {
-  internalCurrentFirebaseUser = user;
-});
+interface AuthContextType {
+  user: FirebaseUser | null;
+  loading: boolean;
+}
 
+const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
 
-/**
- * Custom hook to get the current authenticated user and loading state.
- * This is the recommended way to access auth state in React components.
- * @returns An object with the Firebase user, loading state, and the user's UID.
- */
-export function useAuth() {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -42,9 +34,23 @@ export function useAuth() {
     return () => unsubscribe();
   }, []);
 
-  return { user, uid: user?.uid, loading };
+  const value = { user, loading };
+
+  return React.createElement(AuthContext.Provider, { value: value }, children);
 }
 
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return { ...context, uid: context.user?.uid };
+};
+
+let internalCurrentFirebaseUser: FirebaseUser | null = null;
+onAuthStateChanged(auth, (user) => {
+  internalCurrentFirebaseUser = user;
+});
 
 export function getCurrentUserId(): string | null {
   return auth.currentUser ? auth.currentUser.uid : null;
