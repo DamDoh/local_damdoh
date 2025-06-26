@@ -350,6 +350,7 @@ export interface FieldAgentDashboardData {
     assignedFarmers: {
         id: string;
         name: string;
+        farmLocation: string;
         lastVisit: string;
         issues: number;
         actionLink: string;
