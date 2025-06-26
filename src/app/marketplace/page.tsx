@@ -1,28 +1,26 @@
 
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { MarketplaceItem } from "@/lib/types";
-import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Leaf, Briefcase, Pin, PinOff, CheckCircle, Sparkles, Package as PackageIcon, Users, Apple, Wheat, Sprout, Wrench, Truck, TestTube2, Tractor, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, ShieldCheck, LocateFixed, Tag, LayoutGrid, Building, Handshake, Carrot, ShoppingBag, Star, Flame, Percent, Building2, LandPlot, ChevronRight, Brain } from "lucide-react"; 
-import { Badge } from "@/components/ui/badge";
+import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { LISTING_TYPE_FILTER_OPTIONS, type ListingType } from "@/lib/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
-import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
 import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
+import { Brain } from "lucide-react";
+import { ItemCard } from "@/components/marketplace/ItemCard";
 
 function MarketplaceContent() {
   const [isMounted, setIsMounted] = useState(false);
@@ -53,6 +51,7 @@ function MarketplaceContent() {
       try {
         const result = await getAllMarketplaceItemsFromDB();
         setItems(result as MarketplaceItem[]);
+        return result as MarketplaceItem[]; // Return for chaining
       } catch (error) {
         console.error("Failed to fetch marketplace items:", error);
         toast({
@@ -61,18 +60,19 @@ function MarketplaceContent() {
           description: "Could not fetch marketplace items. Please try again later.",
         });
         setItems([]);
+        return []; // Return empty array on error
       } finally {
         setIsLoading(false);
       }
     };
     
-    const fetchAiRecommendations = async () => {
+    const fetchAiRecommendations = async (allItems: MarketplaceItem[]) => {
+      if (allItems.length === 0) {
+        setIsLoadingAiRecommendations(false);
+        return;
+      }
       setIsLoadingAiRecommendations(true);
       try {
-        // Fetch all items once to be used for matching against recommendations
-        const allItems = items.length > 0 ? items : await getAllMarketplaceItemsFromDB();
-        if (items.length === 0) setItems(allItems as MarketplaceItem[]);
-
         const mockUserContext: MarketplaceRecommendationInput = {
           stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
           recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
@@ -103,9 +103,10 @@ function MarketplaceContent() {
       }
     };
     
-    fetchItems().then(() => fetchAiRecommendations());
-
-  }, [userType, toast]); // Dependency on items removed to prevent re-fetch loop
+    fetchItems().then((fetchedItems) => {
+        fetchAiRecommendations(fetchedItems);
+    });
+  }, [userType, toast]);
   
   const filteredMarketplaceItems = useMemo(() => {
     if (!isMounted) return [];
@@ -220,60 +221,6 @@ function MarketplaceContent() {
     </div>
   );
 }
-
-const ItemCard = ({ item, reason }: { item: MarketplaceItem, reason?: string }) => (
-  <Card className="rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-200 flex flex-col group">
-    <Link href={`/marketplace/${item.id}`} className="block">
-      <div className="relative w-full aspect-[4/3]">
-        <Image 
-          src={item.imageUrl || "https://placehold.co/400x300.png"} alt={item.name} fill
-          sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-          data-ai-hint={item.dataAiHint || `${item.category.split('-')[0]} agricultural`}
-        />
-        <div className="absolute top-2 right-2 flex flex-col gap-1.5 items-end">
-          <Badge variant="secondary" className="py-1 px-2 text-xs flex items-center capitalize shadow-md">
-            {item.listingType === 'Product' ? <PackageIcon className="h-3 w-3 mr-1" /> : <Briefcase className="h-3 w-3 mr-1" />}
-            {item.listingType}
-          </Badge>
-          {item.isSustainable && (
-            <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white py-1 px-2 text-xs shadow-md">
-              <Leaf className="h-3 w-3 mr-1" />Sustainable
-            </Badge>
-          )}
-        </div>
-      </div>
-    </Link>
-    <CardContent className="p-3 flex flex-col flex-grow">
-      <Badge variant="outline" className="text-xs w-fit py-0.5 px-1.5 capitalize mb-2">{item.category.replace(/-/g, ' ')}</Badge>
-      <Link href={`/marketplace/${item.id}`} className="block mb-1">
-        <h3 className="text-sm font-semibold text-foreground hover:text-primary transition-colors line-clamp-2 h-10">
-          {item.name}
-        </h3>
-      </Link>
-      {reason && <p className="text-[11px] text-muted-foreground/80 italic line-clamp-2 h-7" title={reason}>✨ {reason}</p>}
-      <div className="mt-auto">
-        <div className="flex items-center text-xs text-muted-foreground my-2">
-          <MapPin className="h-3.5 w-3.5 mr-1.5 shrink-0" />
-          <span className="truncate">{item.location}</span>
-        </div>
-        {item.listingType === 'Product' ? (
-          <div className="text-lg font-bold text-primary">
-            ${item.price?.toFixed(2) ?? 'Inquire'}
-            {item.perUnit && <span className="text-xs text-muted-foreground font-normal ml-1.5">{item.perUnit}</span>}
-          </div>
-        ) : (
-          item.compensation && <p className="text-sm font-medium text-primary line-clamp-1">{item.compensation}</p>
-        )}
-      </div>
-    </CardContent>
-    <CardFooter className="p-3 border-t">
-      <Button asChild className="w-full h-9 text-xs" variant="outline">
-        <Link href={`/marketplace/${item.id}`}>View Details</Link>
-      </Button>
-    </CardFooter>
-  </Card>
-);
 
 const MarketplaceSkeleton = () => {
     return (
