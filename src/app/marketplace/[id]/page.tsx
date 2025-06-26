@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { MarketplaceItem, UserProfile } from "@/lib/types";
 import Image from "next/image";
-import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle } from "lucide-react";
+import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle, Ticket, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { notFound, useParams } from "next/navigation";
 import { getMarketplaceItemByIdFromDB, getProfileByIdFromDB } from "@/lib/db-utils"; 
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,6 +16,10 @@ import { Separator } from "@/components/ui/separator";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from "@/lib/constants";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
+import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
 
 
 // Function to get the category icon (can be reused from marketplace page)
@@ -62,11 +66,19 @@ function ItemDetailSkeleton() {
 export default function MarketplaceItemDetailPage() {
   const params = useParams();
   const id = params.id as string;
+  const { toast } = useToast();
   
   const [item, setItem] = useState<MarketplaceItem | null>(null);
   const [seller, setSeller] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [couponCode, setCouponCode] = useState("");
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+  const [appliedDiscount, setAppliedDiscount] = useState<{ type: 'fixed' | 'percentage'; value: number } | null>(null);
+
+  const functions = getFunctions(firebaseApp);
+  const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
 
   useEffect(() => {
     if (!id) {
@@ -82,7 +94,6 @@ export default function MarketplaceItemDetailPage() {
         const fetchedItem = await getMarketplaceItemByIdFromDB(id);
         if (fetchedItem) {
           setItem(fetchedItem);
-          // After fetching the item, fetch the seller's profile
           if (fetchedItem.sellerId) {
             const fetchedSeller = await getProfileByIdFromDB(fetchedItem.sellerId);
             setSeller(fetchedSeller);
@@ -102,6 +113,37 @@ export default function MarketplaceItemDetailPage() {
     fetchItemData();
   }, [id]);
 
+  const handleCouponApply = async () => {
+    if (!couponCode.trim() || !item?.sellerId) return;
+    setIsValidatingCoupon(true);
+    setAppliedDiscount(null);
+    try {
+        const result = await validateCouponCallable({ couponCode, sellerId: item.sellerId });
+        const data = result.data as any;
+        if (data.valid) {
+            setAppliedDiscount({ type: data.discountType, value: data.discountValue });
+            toast({ title: "Coupon Applied!", description: `Discount of ${data.discountValue}${data.discountType === 'percentage' ? '%' : ` ${item.currency}`} applied successfully.` });
+        } else {
+            toast({ variant: "destructive", title: "Invalid Coupon", description: data.message });
+        }
+    } catch (error: any) {
+        toast({ variant: "destructive", title: "Error", description: error.message || "Could not validate coupon." });
+    } finally {
+        setIsValidatingCoupon(false);
+    }
+  };
+  
+  const calculateDiscountedPrice = () => {
+    if (!appliedDiscount || !item?.price) return item?.price || 0;
+    if (appliedDiscount.type === 'fixed') {
+        return Math.max(0, item.price - appliedDiscount.value);
+    }
+    if (appliedDiscount.type === 'percentage') {
+        return item.price * (1 - appliedDiscount.value / 100);
+    }
+    return item.price;
+  };
+
   if (isLoading) {
     return <ItemDetailSkeleton />;
   }
@@ -110,23 +152,20 @@ export default function MarketplaceItemDetailPage() {
     return <div className="text-center text-destructive">{error}</div>;
   }
 
-  // Use notFound() hook from Next.js if the item is not found after loading
   if (!item) {
     notFound();
   }
-
+  
   let callToActionText = "View Details";
   let callToActionVariant: "default" | "outline" | "destructive" = "default";
   let CallToActionIcon = LinkIcon;
   let showContactSellerButton = true;
   
-  // For 'Product': Standard purchase flow initiation
   if (item.listingType === 'Product') {
     callToActionText = "Inquire or Place Order";
     CallToActionIcon = ShoppingBag;
     callToActionVariant = "default";
   }
-  // For 'Service': Action depends on the specific service type
   else if (item.listingType === 'Service' && item.serviceType) {
      if (FINANCIAL_SERVICE_TYPES.includes(item.serviceType as any) || INSURANCE_SERVICE_TYPES.includes(item.serviceType as any)) {
        callToActionText = "Initiate Application";
@@ -139,6 +178,8 @@ export default function MarketplaceItemDetailPage() {
        callToActionVariant = "default";
      }
   }
+
+  const finalPrice = calculateDiscountedPrice();
 
   return (
     <div className="space-y-6">
@@ -175,10 +216,17 @@ export default function MarketplaceItemDetailPage() {
               {getCategoryIcon(item.category as any)} {getCategoryName(item.category as CategoryNode['id'])}
             </Badge>
             {item.listingType === 'Product' ? (
-               <>
-                {item.price ? `$${item.price.toFixed(2)}` : 'Price Inquire'}
-                {item.perUnit && <span className="text-base text-muted-foreground font-normal ml-1.5">{item.perUnit}</span>}
-               </>
+                <div>
+                  {appliedDiscount && item.price ? (
+                    <>
+                      <span className="line-through text-muted-foreground/80">${item.price.toFixed(2)}</span>
+                      <span className="ml-2 font-bold">${finalPrice.toFixed(2)}</span>
+                    </>
+                  ) : (
+                    item.price ? `$${item.price.toFixed(2)}` : 'Price Inquire'
+                  )}
+                  {item.perUnit && <span className="text-base text-muted-foreground font-normal ml-1.5">{item.perUnit}</span>}
+                </div>
             ) : (
               item.compensation && <span className="text-base font-medium">{item.compensation}</span>
             )}
@@ -202,6 +250,19 @@ export default function MarketplaceItemDetailPage() {
             <h3 className="text-lg font-semibold">Description</h3>
             <p className="text-muted-foreground">{item.description}</p>
           </div>
+          
+          {item.listingType === 'Product' && item.price && (
+            <div className="p-4 border rounded-md space-y-2 bg-muted/30">
+                <label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-2"><Ticket className="h-4 w-4"/> Have a Coupon?</label>
+                <div className="flex gap-2">
+                    <Input id="coupon-code" placeholder="Enter coupon code" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isValidatingCoupon}/>
+                    <Button onClick={handleCouponApply} disabled={isValidatingCoupon || !couponCode.trim()}>
+                        {isValidatingCoupon && <Loader2 className="h-4 w-4 animate-spin mr-2"/>}
+                        Apply
+                    </Button>
+                </div>
+            </div>
+          )}
 
            {item.listingType === 'Product' && (
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

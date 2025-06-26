@@ -164,4 +164,57 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
   }
 });
 
+/**
+ * Validates a marketplace coupon for a specific seller.
+ */
+export const validateMarketplaceCoupon = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to validate a coupon.");
+  }
+
+  const { couponCode, sellerId } = data;
+  if (!couponCode || !sellerId) {
+    throw new functions.https.HttpsError("invalid-argument", "couponCode and sellerId are required.");
+  }
+
+  try {
+    const couponQuery = db.collection("marketplace_coupons")
+        .where("code", "==", couponCode.toUpperCase())
+        .where("sellerId", "==", sellerId)
+        .limit(1);
+    
+    const snapshot = await couponQuery.get();
+
+    if (snapshot.empty) {
+        return { valid: false, message: "Invalid or expired coupon code." };
+    }
+
+    const couponDoc = snapshot.docs[0];
+    const couponData = couponDoc.data();
+
+    if (!couponData.isActive) {
+        return { valid: false, message: "This coupon is no longer active." };
+    }
+
+    if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
+        await couponDoc.ref.update({ isActive: false }); // Deactivate expired coupon
+        return { valid: false, message: "This coupon has expired." };
+    }
+
+    if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
+        return { valid: false, message: "This coupon has reached its usage limit." };
+    }
+
+    return {
+        valid: true,
+        discountType: couponData.discountType,
+        discountValue: couponData.discountValue,
+        code: couponData.code
+    };
+
+  } catch (error) {
+    console.error("Error validating coupon:", error);
+    throw new functions.https.HttpsError("internal", "Could not validate coupon.");
+  }
+});
     
