@@ -16,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
-
+import type { KnfBatch as KnfBatchType } from '@/firebase/functions/src/types'; // Import from backend types
 
 type KnfInputType = 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
 
