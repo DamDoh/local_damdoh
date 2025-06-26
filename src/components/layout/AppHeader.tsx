@@ -24,7 +24,7 @@ import {
   LogIn, 
   UserPlus,
   X, // Added X icon import
-  Ticket
+  Fingerprint
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -95,7 +95,7 @@ const desktopNavItems = [
   { href: "/network", icon: Users, label: "Network" },
   { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
-  { href: "/marketplace/promotions", icon: Ticket, label: "Coupons" },
+  { href: "/traceability", icon: Fingerprint, label: "Traceability" },
   { href: "/forums", icon: MessageSquare, label: "Forums"},
 ];
 
@@ -104,7 +104,7 @@ const mainMobileNavItems = [
   { href: "/network", icon: Users, label: "Network", isSheetLink: true },
   { href: "/farm-management", icon: Sprout, label: "Farm Management", isSheetLink: true },
   { href: "/marketplace", icon: ShoppingCart, label: "Marketplace", isSheetLink: true },
-  { href: "/marketplace/promotions", icon: Ticket, label: "My Coupons", isSheetLink: true },
+  { href: "/traceability", icon: Fingerprint, label: "Traceability", isSheetLink: true },
   { href: "/forums", icon: MessageSquare, label: "Forums", isSheetLink: true },
   { href: "/notifications", icon: Bell, label: "Notifications", isSheetLink: true },
 ];
@@ -176,6 +176,7 @@ export function AppHeader() {
     if (pathname.startsWith("/forums/create")) return "New Discussion";
     if (pathname.startsWith("/forums/")) return "Forum Topic";
     if (pathname.startsWith("/search")) return "Search Results";
+    if (pathname.startsWith("/traceability")) return "Traceability";
     if (pathname.startsWith("/help-center")) return "Help Center";
     if (pathname.startsWith("/about")) return "About Us";
     if (pathname.startsWith("/contact")) return "Contact";

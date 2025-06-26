@@ -354,3 +354,32 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(async (da
         throw new functions.https.HttpsError('internal', 'Failed to fetch traceability events.');
     }
 });
+
+/**
+ * Fetches all traceability events for a given VTI (Vibrant Traceability ID).
+ */
+export const getTraceabilityEventsForVti = functions.https.onCall(async (data, context) => {
+    // Optional: Add auth check if you only want authenticated users to view
+    // if (!context.auth) {
+    //     throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated.');
+    // }
+    
+    const { vtiId } = data;
+    if (!vtiId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A vtiId must be provided.');
+    }
+
+    try {
+        const eventsSnapshot = await db.collection('traceability_events')
+            .where('vtiId', '==', vtiId)
+            .orderBy('timestamp', 'asc')
+            .get();
+        
+        const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        
+        return { events };
+    } catch (error) {
+        console.error(`Error fetching events for VTI ${vtiId}:`, error);
+        throw new functions.https.HttpsError('internal', 'Failed to fetch traceability events.');
+    }
+});
