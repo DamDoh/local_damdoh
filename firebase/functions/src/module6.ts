@@ -573,7 +573,7 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
         throw new functions.https.HttpsError("unauthenticated", "You must be logged in to register.");
     }
     
-    const { eventId } = data;
+    const { eventId, couponCode } = data;
     if (!eventId) {
         throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
     }
@@ -590,7 +590,7 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
 
         const eventData = eventDoc.data()!;
         if (!eventData.registrationEnabled) {
-             throw new functions.https.HttpsError("failed-precondition", "Registration is not open for this event.");
+             throw new functions.https.HttpsError("failed-precondition", "Registration for this event is not open.");
         }
 
         if (eventData.attendeeLimit && eventData.registeredAttendeesCount >= eventData.attendeeLimit) {
@@ -602,17 +602,53 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
             throw new functions.https.HttpsError("already-exists", "You are already registered for this event.");
         }
         
+        let finalPrice = eventData.price || 0;
+        let couponRef: FirebaseFirestore.DocumentReference | null = null;
+        let discountApplied = 0;
+
+        // --- Coupon Logic ---
+        if (couponCode && typeof couponCode === 'string' && finalPrice > 0) {
+            const couponsQuery = eventRef.collection('coupons').where('code', '==', couponCode.toUpperCase()).limit(1);
+            const couponSnapshot = await transaction.get(couponsQuery);
+            
+            if (couponSnapshot.empty) {
+                throw new functions.https.HttpsError("not-found", "Invalid coupon code.");
+            }
+            
+            const couponDoc = couponSnapshot.docs[0];
+            const couponData = couponDoc.data();
+            couponRef = couponDoc.ref;
+
+            // Check usage limit
+            if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
+                throw new functions.https.HttpsError("failed-precondition", "Coupon has reached its usage limit.");
+            }
+            // Check expiration
+            if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
+                throw new functions.https.HttpsError("failed-precondition", "This coupon has expired.");
+            }
+            
+            // Calculate discounted price
+            if (couponData.discountType === 'percentage') {
+                discountApplied = finalPrice * (couponData.discountValue / 100);
+            } else if (couponData.discountType === 'fixed') {
+                discountApplied = couponData.discountValue;
+            }
+            
+            finalPrice = Math.max(0, finalPrice - discountApplied);
+        }
+
         // Synergy: Payment Integration
-        if (eventData.price && eventData.price > 0) {
-            console.log(`Paid event registration for event ${eventId}. Initiating payment flow.`);
+        if (finalPrice > 0) {
+            console.log(`Paid event registration for event ${eventId}. Final price after discount: ${finalPrice}. Initiating payment flow.`);
             try {
                 await _internalInitiatePayment({
                     orderId: `event_${eventId}_${userId}`,
-                    amount: eventData.price,
+                    amount: finalPrice,
                     currency: eventData.currency || 'USD',
                     buyerInfo: { userId },
                     sellerInfo: { organizerId: eventData.organizerId },
-                    description: `Registration for event: ${eventData.title}`
+                    description: `Registration for event: ${eventData.title}${discountApplied > 0 ? ` (Discount applied: ${eventData.currency || 'USD'} ${discountApplied.toFixed(2)})` : ''}`
                 });
                 console.log(`Payment initiated for event ${eventId}. Proceeding with registration.`);
             } catch (paymentError: any) {
@@ -625,14 +661,20 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
             userId: userId,
             registeredAt: FieldValue.serverTimestamp(),
             checkedIn: false,
-            checkedInAt: null
+            checkedInAt: null,
+            couponUsed: couponCode || null,
+            amountPaid: finalPrice
         });
         
         transaction.update(eventRef, {
             registeredAttendeesCount: FieldValue.increment(1)
         });
         
-        return { success: true, message: "Successfully registered for the event." };
+        if (couponRef) {
+            transaction.update(couponRef, { usageCount: FieldValue.increment(1) });
+        }
+        
+        return { success: true, message: "Successfully registered for the event.", finalPrice, discountApplied };
     });
 });
 
@@ -705,6 +747,10 @@ export const createEventCoupon = functions.https.onCall(async (data, context) =>
 
     const { eventId, code, discountType, discountValue, expiresAt, usageLimit } = data;
     const organizerId = context.auth.uid;
+
+    if (!eventId || !code || !discountType || discountValue === undefined) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
+    }
 
     const eventRef = db.collection("agri_events").doc(eventId);
     const eventDoc = await eventRef.get();

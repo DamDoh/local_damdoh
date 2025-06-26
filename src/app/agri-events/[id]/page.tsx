@@ -2,8 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import QRCode from 'qrcode.react';
 
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -19,6 +18,9 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Ticket, QrCode, CheckCircle, Loader2, Edit } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface AgriEventWithAttendees extends AgriEvent {
   isRegistered?: boolean;
@@ -57,6 +59,7 @@ function EventDetailSkeleton() {
 
 export default function AgriEventDetailPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const eventId = params.id as string;
   const router = useRouter();
   const { user } = useAuth();
@@ -65,6 +68,7 @@ export default function AgriEventDetailPage() {
   const [event, setEvent] = useState<AgriEventWithAttendees | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRegistering, setIsRegistering] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
 
   const functions = getFunctions(firebaseApp);
   const getEventDetails = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
@@ -87,7 +91,18 @@ export default function AgriEventDetailPage() {
       }
     };
     fetchEvent();
-  }, [eventId, getEventDetails, toast, user]); // Re-fetch if user changes
+  }, [eventId, getEventDetails, toast, user]);
+
+  useEffect(() => {
+    const couponFromUrl = searchParams.get('coupon');
+    if (couponFromUrl) {
+        setCouponCode(couponFromUrl);
+        toast({
+            title: "Coupon Applied!",
+            description: `Coupon code "${couponFromUrl}" has been added from your link.`
+        });
+    }
+  }, [searchParams, toast]);
 
   const handleRegistration = async () => {
     if (!user) {
@@ -97,11 +112,17 @@ export default function AgriEventDetailPage() {
     }
     setIsRegistering(true);
     try {
-        // This is where a real payment gateway would be called if event.price > 0
-        // Our backend function `registerForEvent` now conceptually handles this.
-        await registerForEvent({ eventId });
+        const result = await registerForEvent({ eventId, couponCode });
+        const data = result.data as { success: boolean; message: string; finalPrice?: number; discountApplied?: number };
+
         setEvent(prev => prev ? { ...prev, isRegistered: true, registeredAttendeesCount: (prev.registeredAttendeesCount || 0) + 1 } : null);
-        toast({ title: "Registration Successful!", description: "You are now registered for this event."});
+        
+        let toastDescription = "You are now registered for this event.";
+        if (data.discountApplied && data.discountApplied > 0) {
+            toastDescription += ` A discount of ${event?.currency || 'USD'} ${data.discountApplied.toFixed(2)} was applied. Final price: ${event?.currency || 'USD'} ${data.finalPrice?.toFixed(2)}.`;
+        }
+
+        toast({ title: "Registration Successful!", description: toastDescription});
     } catch (error: any) {
         console.error("Registration failed:", error);
         toast({ variant: "destructive", title: "Registration Failed", description: error.message });
@@ -203,7 +224,7 @@ export default function AgriEventDetailPage() {
                 <p>{event.description}</p>
             </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex-col items-start">
           {event.registrationEnabled ? (
             event.isRegistered ? (
                <Dialog>
@@ -229,10 +250,26 @@ export default function AgriEventDetailPage() {
             ) : isEventFull ? (
                 <Button className="w-full md:w-auto" disabled>Event Full</Button>
             ) : (
-                <Button className="w-full md:w-auto" onClick={handleRegistration} disabled={isRegistering}>
-                    {isRegistering ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Ticket className="mr-2 h-4 w-4"/>}
-                    {registrationButtonText()}
-                </Button>
+                <div className="w-full">
+                    {event.price && event.price > 0 && (
+                        <div className="mb-4 space-y-2">
+                            <Label htmlFor="coupon">Have a coupon code?</Label>
+                            <Input 
+                                id="coupon" 
+                                placeholder="Enter code" 
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value)}
+                                className="max-w-xs"
+                                disabled={isRegistering}
+                            />
+                             <p className="text-xs text-muted-foreground">Note: Coupon will be validated during registration.</p>
+                        </div>
+                    )}
+                    <Button className="w-full md:w-auto" onClick={handleRegistration} disabled={isRegistering}>
+                        {isRegistering ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Ticket className="mr-2 h-4 w-4"/>}
+                        {registrationButtonText()}
+                    </Button>
+                </div>
             )
           ) : event.websiteLink ? (
              <Button asChild className="w-full md:w-auto">
