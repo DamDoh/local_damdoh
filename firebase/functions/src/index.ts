@@ -29,3 +29,4 @@ export * from './module12';
 export * from './notifications';
 export * from './offline_sync';
 export * from './search';
+export * from './types';

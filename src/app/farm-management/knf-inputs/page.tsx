@@ -1,17 +1,21 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { FlaskConical, ArrowLeft, Leaf, Droplets, Sprout, CheckCircle, Fish, Egg, Thermometer, Beaker, Zap, Atom, Users, AlertTriangle, PlusCircle, Calendar, Clock, Edit2 } from "lucide-react";
+import { FlaskConical, ArrowLeft, PlusCircle, Calendar, Clock, Edit2, Loader2, CheckCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { format } from "date-fns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from '@/lib/auth-utils';
+import { useToast } from '@/hooks/use-toast';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 type KnfInputType = 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
@@ -20,16 +24,26 @@ interface ActiveBatch {
   id: string;
   type: KnfInputType;
   typeName: string;
-  startDate: Date;
+  startDate: string; // ISO String
   ingredients: string;
   status: string;
   nextStep: string;
-  nextStepDate: Date;
+  nextStepDate: string; // ISO String
 }
 
 export default function KNFInputAssistantPage() {
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const functions = getFunctions(firebaseApp);
+  
+  const createKnfBatchCallable = useMemo(() => httpsCallable(functions, 'createKnfBatch'), [functions]);
+  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'getUserKnfBatches'), [functions]);
+
   const [activeBatches, setActiveBatches] = useState<ActiveBatch[]>([]);
+  const [isLoadingBatches, setIsLoadingBatches] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [selectedInput, setSelectedInput] = useState<KnfInputType | ''>('');
   const [ingredients, setIngredients] = useState('');
   const [startDate, setStartDate] = useState<Date | undefined>(new Date());
@@ -42,44 +56,63 @@ export default function KNFInputAssistantPage() {
     { value: 'lab', label: 'Lactic Acid Bacteria (LAB) Serum', placeholder: 'e.g., Rice wash water' },
   ];
 
-  const handleStartBatch = () => {
-    if (!selectedInput || !ingredients || !startDate) {
-        // Add user feedback (e.g., toast notification)
+  const fetchBatches = async () => {
+    if (!user) {
+        setIsLoadingBatches(false);
         return;
-    }
-    const selectedOption = knfOptions.find(opt => opt.value === selectedInput)!;
-    const nextStepInfo = getNextStep(selectedInput, startDate);
-    
-    const newBatch: ActiveBatch = {
-        id: `batch-${Date.now()}`,
-        type: selectedInput,
-        typeName: selectedOption.label,
-        startDate,
-        ingredients,
-        status: 'Fermenting',
-        ...nextStepInfo,
     };
-
-    setActiveBatches(prev => [...prev, newBatch]);
-    setShowCreateForm(false);
-    setSelectedInput('');
-    setIngredients('');
-    setStartDate(new Date());
+    setIsLoadingBatches(true);
+    try {
+        const result = await getUserKnfBatchesCallable();
+        setActiveBatches(result.data as ActiveBatch[]);
+    } catch (error) {
+        console.error("Error fetching KNF batches:", error);
+        toast({ title: "Could not load your batches", description: "There was an issue connecting to the database. Please try refreshing the page.", variant: "destructive" });
+    } finally {
+        setIsLoadingBatches(false);
+    }
   };
 
-  const getNextStep = (type: KnfInputType, startDate: Date): { nextStep: string; nextStepDate: Date } => {
-    let daysToAdd = 7;
-    let stepDescription = "Ready for Straining";
-    switch(type) {
-      case 'fpj': daysToAdd = 7; stepDescription = "Ready for Straining"; break;
-      case 'faa': daysToAdd = 90; stepDescription = "Ready for Straining (Approx. 3 months)"; break;
-      case 'wca': daysToAdd = 14; stepDescription = "Ready (bubbling should stop)"; break;
-      case 'imo': daysToAdd = 5; stepDescription = "Ready for IMO2 processing"; break;
-      case 'lab': daysToAdd = 7; stepDescription = "Ready for milk cultivation"; break;
+  useEffect(() => {
+    if (user) {
+        fetchBatches();
+    } else {
+        setIsLoadingBatches(false);
     }
-    const nextDate = new Date(startDate);
-    nextDate.setDate(startDate.getDate() + daysToAdd);
-    return { nextStep: stepDescription, nextStepDate: nextDate };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  const handleStartBatch = async () => {
+    if (!selectedInput || !ingredients || !startDate) {
+        toast({ title: "Please fill all required fields", variant: "destructive" });
+        return;
+    }
+    
+    setIsSubmitting(true);
+    
+    const selectedOption = knfOptions.find(opt => opt.value === selectedInput)!;
+
+    try {
+        await createKnfBatchCallable({
+            type: selectedInput,
+            typeName: selectedOption.label,
+            ingredients,
+            startDate: startDate.toISOString(),
+        });
+
+        toast({ title: "Batch Started!", description: "Your new KNF batch is now being tracked." });
+        
+        setShowCreateForm(false);
+        setSelectedInput('');
+        setIngredients('');
+        setStartDate(new Date());
+        await fetchBatches();
+    } catch (error) {
+        console.error("Error creating KNF batch:", error);
+        toast({ title: "Failed to start batch", description: "An unexpected error occurred.", variant: "destructive" });
+    } finally {
+        setIsSubmitting(false);
+    }
   };
 
   return (
@@ -103,7 +136,12 @@ export default function KNFInputAssistantPage() {
             {/* Active Batches Section */}
             <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Active Batches</h3>
-                {activeBatches.length > 0 ? (
+                {isLoadingBatches ? (
+                    <div className="space-y-4">
+                        <Skeleton className="h-32 w-full" />
+                        <Skeleton className="h-32 w-full" />
+                    </div>
+                ) : activeBatches.length > 0 ? (
                     activeBatches.map(batch => (
                         <Card key={batch.id} className="bg-muted/30">
                             <CardHeader className="pb-3 pt-4">
@@ -111,7 +149,7 @@ export default function KNFInputAssistantPage() {
                                     <span>{batch.typeName}</span>
                                     <Badge>{batch.status}</Badge>
                                 </CardTitle>
-                                <CardDescription className="text-xs">Started: {format(batch.startDate, 'PPP')}</CardDescription>
+                                <CardDescription className="text-xs">Started: {format(new Date(batch.startDate), 'PPP')}</CardDescription>
                             </CardHeader>
                             <CardContent className="text-sm">
                                 <p><strong className="font-medium">Ingredients:</strong> {batch.ingredients}</p>
@@ -119,7 +157,7 @@ export default function KNFInputAssistantPage() {
                                     <Clock className="h-5 w-5"/>
                                     <div>
                                         <p className="font-semibold">{batch.nextStep}</p>
-                                        <p>On or around: {format(batch.nextStepDate, 'PPP')}</p>
+                                        <p>On or around: {format(new Date(batch.nextStepDate), 'PPP')}</p>
                                     </div>
                                 </div>
                             </CardContent>
@@ -173,7 +211,6 @@ export default function KNFInputAssistantPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="start-date">Start Date</Label>
-                                    {/* A proper date picker would be better here */}
                                     <Input 
                                         id="start-date" 
                                         type="date"
@@ -182,8 +219,11 @@ export default function KNFInputAssistantPage() {
                                     />
                                 </div>
                                 <div className="flex gap-2 pt-2">
-                                    <Button onClick={handleStartBatch}>Start Batch</Button>
-                                    <Button variant="outline" onClick={() => setShowCreateForm(false)}>Cancel</Button>
+                                    <Button onClick={handleStartBatch} disabled={isSubmitting}>
+                                        {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                                        {isSubmitting ? 'Starting...' : 'Start Batch'}
+                                    </Button>
+                                    <Button variant="outline" onClick={() => setShowCreateForm(false)} disabled={isSubmitting}>Cancel</Button>
                                 </div>
                              </>
                         )}

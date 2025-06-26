@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import type { KnfBatch } from "./types";
 
 const db = admin.firestore();
 
@@ -221,4 +222,97 @@ export const getProfitabilityInsights = functions.https.onCall(async (data, cont
     console.error("Error generating profitability insights:", error);
     throw new functions.https.HttpsError("internal", "Failed to generate insights.");
   }
+});
+
+
+const getNextStepDate = (type: string, startDate: Date): { nextStep: string; nextStepDate: Date } => {
+    let daysToAdd = 7;
+    let stepDescription = "Ready for Straining";
+    switch(type) {
+      case 'fpj': daysToAdd = 7; stepDescription = "Ready for Straining"; break;
+      case 'faa': daysToAdd = 90; stepDescription = "Ready for Straining (Approx. 3 months)"; break;
+      case 'wca': daysToAdd = 14; stepDescription = "Ready (bubbling should stop)"; break;
+      case 'imo': daysToAdd = 5; stepDescription = "Ready for IMO2 processing"; break;
+      case 'lab': daysToAdd = 7; stepDescription = "Ready for milk cultivation"; break;
+    }
+    const nextDate = new Date(startDate);
+    nextDate.setDate(startDate.getDate() + daysToAdd);
+    return { nextStep: stepDescription, nextStepDate: nextDate };
+};
+
+
+/**
+ * Creates a new KNF batch document in Firestore for an authenticated user.
+ */
+export const createKnfBatch = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { type, typeName, ingredients, startDate } = data;
+    if (!type || !typeName || !ingredients || !startDate) {
+        throw new functions.https.HttpsError("invalid-argument", "Type, typeName, ingredients, and startDate are required.");
+    }
+    
+    const userId = context.auth.uid;
+    const startDateObj = new Date(startDate);
+    const { nextStep, nextStepDate } = getNextStepDate(type, startDateObj);
+
+    try {
+        const newBatchRef = db.collection('knf_batches').doc();
+        const batchData: Omit<KnfBatch, 'id'> = {
+            userId: userId,
+            type: type,
+            typeName: typeName,
+            ingredients: ingredients,
+            startDate: admin.firestore.Timestamp.fromDate(startDateObj),
+            status: 'Fermenting',
+            nextStep: nextStep,
+            nextStepDate: admin.firestore.Timestamp.fromDate(nextStepDate),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+
+        await newBatchRef.set(batchData);
+        
+        return { success: true, batchId: newBatchRef.id };
+    } catch (error: any) {
+        console.error("Error creating KNF batch:", error);
+        throw new functions.https.HttpsError(
+            "internal", 
+            "Failed to create KNF batch in the database.",
+            { originalError: error.message }
+        );
+    }
+});
+
+
+/**
+ * Fetches all KNF batches belonging to the currently authenticated user.
+ */
+export const getUserKnfBatches = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    try {
+        const batchesSnapshot = await db.collection('knf_batches')
+            .where('userId', '==', context.auth.uid)
+            .orderBy('createdAt', 'desc')
+            .get();
+            
+        const batches = batchesSnapshot.docs.map(doc => {
+            const docData = doc.data();
+            return {
+                 id: doc.id, 
+                 ...docData,
+                 startDate: docData.startDate.toDate().toISOString(),
+                 nextStepDate: docData.nextStepDate.toDate().toISOString(),
+                 createdAt: docData.createdAt.toDate().toISOString(),
+            };
+        });
+        return batches;
+    } catch (error) {
+        console.error("Error fetching user KNF batches:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch KNF batches.");
+    }
 });
