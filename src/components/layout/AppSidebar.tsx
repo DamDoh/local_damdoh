@@ -23,6 +23,7 @@ import {
   Briefcase,
   Settings as SettingsIcon,
   AlertTriangle,
+  Shield, // Added shield icon
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -40,6 +41,7 @@ const mainNavItems: NavItem[] = [
 
 const secondaryNavItems: NavItem[] = [
    { title: "Settings", href: "/settings", icon: SettingsIcon },
+   { title: "Admin", href: "/admin/content", icon: Shield }, // Added Admin link
 ];
 
 export function AppSidebar() {
