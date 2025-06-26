@@ -59,7 +59,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
     if (!id) return null;
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, 'users', id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
       const data = profileSnap.data();
@@ -70,8 +70,8 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
     } else {
-      console.log(`No profile found with ID: ${id}.`);
-      return null;
+      console.log(`No profile found with ID: ${id}. Trying dummy data.`);
+      return dummyProfiles.find(p => p.id === id) || null;
     }
   } catch (error) {
     console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
@@ -81,7 +81,7 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 
 export async function createProfileInDB(userId: string, profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
   try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, userId); // Use the UID as the document ID
+    const profileDocRef = doc(db, "users", userId); // Use the UID as the document ID
     const docData = {
       ...profileData,
       createdAt: Timestamp.now(),
@@ -109,7 +109,7 @@ export async function createProfileInDB(userId: string, profileData: Omit<UserPr
 
 export async function updateProfileInDB(id: string, updates: Partial<Omit<UserProfile, 'id' | 'createdAt'>>): Promise<UserProfile | null> {
   try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, 'users', id);
     
     const docSnap = await getDoc(profileDocRef);
     if (!docSnap.exists()) {
@@ -143,7 +143,7 @@ export async function updateProfileInDB(id: string, updates: Partial<Omit<UserPr
 
 export async function deleteProfileFromDB(id: string): Promise<boolean> {
   try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, 'users', id);
     await deleteDoc(profileDocRef);
     return true;
   } catch (error) {
@@ -192,8 +192,8 @@ export async function getMarketplaceItemByIdFromDB(id: string): Promise<Marketpl
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
       } as MarketplaceItem;
     } else {
-      console.log(`No marketplace item found with ID: ${id}.`);
-      return null;
+      console.log(`No marketplace item found with ID: ${id}. Checking dummy data.`);
+      return dummyMarketplaceItems.find(item => item.id === id) || null;
     }
   } catch (error) {
     console.error(`Error fetching marketplace item with ID ${id} from Firestore: `, error);

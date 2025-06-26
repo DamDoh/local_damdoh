@@ -16,11 +16,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createHarvestSchema, type CreateHarvestValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, Weight, Award } from "lucide-react";
+import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, Weight, Award, CheckCircle, RefreshCw, DollarSign } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { format } from "date-fns";
@@ -35,10 +35,12 @@ export default function LogHarvestPage() {
   const searchParams = useSearchParams();
   const farmId = params.farmId as string;
   const cropId = params.cropId as string; // This acts as our farmFieldId
-  const cropType = searchParams.get('cropType') || 'Unknown Crop'; // Get cropType from query params
+  const cropType = searchParams.get('cropType') || 'Unknown Crop';
 
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [createdVtiId, setCreatedVtiId] = useState<string | null>(null);
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
   const handleHarvestEvent = httpsCallable(functions, 'handleHarvestEvent');
@@ -77,13 +79,13 @@ export default function LogHarvestPage() {
 
       const result = await handleHarvestEvent(payload);
       const newVtiId = (result.data as any)?.vtiId;
+      setCreatedVtiId(newVtiId);
 
       toast({
         title: "Harvest Logged & VTI Created!",
         description: `Your harvest for ${cropType} has been recorded with VTI: ${newVtiId}`,
       });
-
-      router.push(`/farm-management/farms/${farmId}`);
+      setSubmissionSuccess(true);
     } catch (error: any) {
       console.error("Error logging harvest:", error);
       toast({
@@ -94,6 +96,47 @@ export default function LogHarvestPage() {
     } finally {
       setIsSubmitting(false);
     }
+  }
+  
+  const handleResetForm = () => {
+    form.reset();
+    setSubmissionSuccess(false);
+    setCreatedVtiId(null);
+  }
+
+  if (submissionSuccess) {
+    return (
+       <div className="space-y-6 max-w-2xl mx-auto">
+            <Card className="text-center">
+                <CardHeader>
+                    <div className="mx-auto bg-green-100 rounded-full h-16 w-16 flex items-center justify-center">
+                        <CheckCircle className="h-10 w-10 text-green-600" />
+                    </div>
+                    <CardTitle className="text-2xl pt-4">Harvest Logged Successfully!</CardTitle>
+                    <CardDescription>
+                       Your new batch of {cropType} is now in the system with VTI: <span className="font-mono bg-muted p-1 rounded-sm">{createdVtiId}</span>. What would you like to do next?
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                    <Button size="lg" className="w-full" asChild>
+                        <Link href={`/marketplace/create?cropId=${createdVtiId}&cropName=${encodeURIComponent(cropType)}`}>
+                            <DollarSign className="mr-2 h-4 w-4" /> Sell this Batch on the Marketplace
+                        </Link>
+                    </Button>
+                     <Button size="lg" variant="outline" className="w-full" onClick={handleResetForm}>
+                        <RefreshCw className="mr-2 h-4 w-4" /> Log Another Harvest
+                    </Button>
+                </CardContent>
+                 <CardFooter>
+                    <Button variant="ghost" className="w-full text-muted-foreground" asChild>
+                        <Link href={`/farm-management/farms/${farmId}`}>
+                           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farm Details
+                        </Link>
+                    </Button>
+                </CardFooter>
+            </Card>
+       </div>
+    );
   }
 
   return (

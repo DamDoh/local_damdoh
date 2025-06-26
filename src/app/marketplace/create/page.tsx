@@ -71,10 +71,10 @@ export default function CreateMarketplaceListingPage() {
       form.setValue('relatedTraceabilityId', cropId);
       form.setValue('name', `Freshly Harvested ${cropName}`);
       form.setValue('listingType', 'Product');
-      form.setValue('category', 'fresh-produce-vegetables');
+      form.setValue('category', 'fresh-produce-vegetables'); // A reasonable default
       toast({
-        title: "Listing Pre-filled",
-        description: `Creating a traceable listing for ${cropName}.`,
+        title: "Listing Pre-filled from Harvest",
+        description: `Creating a traceable marketplace listing for your batch of ${cropName}.`,
       });
     }
   }, [searchParams, form, toast]);
@@ -110,10 +110,10 @@ export default function CreateMarketplaceListingPage() {
 
       toast({
         title: "Listing Created Successfully!",
-        description: `Your listing "${newItem.name}" is now live.`,
+        description: `Your listing "${newItem.data.name}" is now live.`,
       });
 
-      router.push(`/marketplace/${newItem.id}`);
+      router.push(`/marketplace/${newItem.data.id}`);
 
     } catch (error: any) {
       toast({
@@ -279,7 +279,7 @@ export default function CreateMarketplaceListingPage() {
                     <FormControl>
                       <Input placeholder="e.g., batch-abc-123" {...field} readOnly={!!searchParams.get('cropId')} className={!!searchParams.get('cropId') ? "bg-muted/50" : ""} />
                     </FormControl>
-                    <FormDescription>This listing is linked to a traceable batch from your farm.</FormDescription>
+                    <FormDescription>Link this listing to a traceable batch from your farm (this may be pre-filled).</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
