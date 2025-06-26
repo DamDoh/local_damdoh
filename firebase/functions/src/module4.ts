@@ -99,3 +99,69 @@ export const createMarketplaceListing = functions.https.onCall(async (data, cont
     throw new functions.https.HttpsError("internal", "Failed to create marketplace listing.", { originalError: error.message });
   }
 });
+
+
+/**
+ * Creates a new marketplace coupon for the authenticated seller.
+ */
+export const createMarketplaceCoupon = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a coupon.");
+  }
+
+  const sellerId = context.auth.uid;
+  const { code, discountType, discountValue, expiresAt, usageLimit, applicableToListingIds, applicableToCategories } = data;
+
+  // Basic validation
+  if (!code || !discountType || discountValue === undefined) {
+    throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
+  }
+
+  const newCoupon = {
+    sellerId,
+    code: code.toUpperCase(),
+    discountType,
+    discountValue,
+    expiresAt: expiresAt ? admin.firestore.Timestamp.fromDate(new Date(expiresAt)) : null,
+    usageLimit: usageLimit || null,
+    usageCount: 0,
+    isActive: true,
+    applicableToListingIds: applicableToListingIds || [],
+    applicableToCategories: applicableToCategories || [],
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+  };
+
+  try {
+    const docRef = await db.collection("marketplace_coupons").add(newCoupon);
+    return { couponId: docRef.id, code: newCoupon.code, message: "Coupon created successfully." };
+  } catch (error: any) {
+    console.error("Error creating marketplace coupon:", error);
+    throw new functions.https.HttpsError("internal", "Could not create coupon.", { originalError: error.message });
+  }
+});
+
+
+/**
+ * Fetches all marketplace coupons for the authenticated seller.
+ */
+export const getSellerCoupons = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to view your coupons.");
+  }
+  const sellerId = context.auth.uid;
+
+  try {
+    const snapshot = await db.collection("marketplace_coupons")
+      .where("sellerId", "==", sellerId)
+      .orderBy("createdAt", "desc")
+      .get();
+      
+    const coupons = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return { coupons };
+  } catch (error) {
+    console.error("Error fetching seller coupons:", error);
+    throw new functions.https.HttpsError("internal", "Could not fetch coupons.");
+  }
+});
+
+    

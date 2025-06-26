@@ -162,6 +162,21 @@ export interface EventCoupon {
   createdAt: { _seconds: number, _nanoseconds: number };
 }
 
+export interface MarketplaceCoupon {
+  id: string;
+  sellerId: string;
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  discountValue: number;
+  expiresAt?: { _seconds: number, _nanoseconds: number }; // Firestore Timestamp
+  usageLimit?: number;
+  usageCount: number;
+  isActive: boolean;
+  applicableToListingIds?: string[];
+  applicableToCategories?: string[];
+  createdAt: { _seconds: number, _nanoseconds: number };
+}
+
 
 // =================================================================
 // 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
@@ -676,3 +691,5 @@ export interface TraceabilityEvent {
   };
   payload: { [key: string]: any };
 }
+
+    
