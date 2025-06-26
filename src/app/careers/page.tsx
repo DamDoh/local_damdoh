@@ -1,35 +1,40 @@
 
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, Sparkles, Users, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-const dummyOpenings = [
-  {
-    id: "job1",
-    title: "Lead Agricultural Supply Chain Analyst",
-    location: "Remote / Global",
-    type: "Full-time",
-    description: "Seeking an experienced analyst to optimize supply chain operations, develop data-driven strategies, and support our network of stakeholders. Strong background in agricultural economics and logistics required.",
-  },
-  {
-    id: "job2",
-    title: "Community Manager - Farmer Engagement",
-    location: "Nairobi, Kenya Hub",
-    type: "Full-time",
-    description: "Passionate about agriculture and community building? Join us to support and grow our farmer network in East Africa. Excellent communication and field experience needed.",
-  },
-  {
-    id: "job3",
-    title: "Senior Full Stack Engineer (Agri-Tech)",
-    location: "Remote / Europe Timezones",
-    type: "Full-time",
-    description: "Develop innovative features for the DamDoh platform. Proficient in Next.js, TypeScript, and backend technologies. Experience with GIS or agricultural data is a plus.",
-  }
-];
+import { useTranslation } from "react-i18next";
 
 export default function CareersPage() {
-  const showOpenings = false; // Set to true to show dummy openings, false for "Coming Soon"
+  const { t } = useTranslation('common');
+
+  const dummyOpenings = [
+    {
+      id: "job1",
+      title: t('careers.openings.job1.title'),
+      location: t('careers.openings.job1.location'),
+      type: t('careers.openings.job1.type'),
+      description: t('careers.openings.job1.description'),
+    },
+    {
+      id: "job2",
+      title: t('careers.openings.job2.title'),
+      location: t('careers.openings.job2.location'),
+      type: t('careers.openings.job2.type'),
+      description: t('careers.openings.job2.description'),
+    },
+    {
+      id: "job3",
+      title: t('careers.openings.job3.title'),
+      location: t('careers.openings.job3.location'),
+      type: t('careers.openings.job3.type'),
+      description: t('careers.openings.job3.description'),
+    }
+  ];
+
+  const showOpenings = true; 
 
   return (
     <div className="space-y-8">
@@ -37,29 +42,29 @@ export default function CareersPage() {
         <CardHeader className="text-center">
           <div className="inline-flex items-center justify-center gap-2 mb-2">
             <Briefcase className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">Join Our Mission at DamDoh</CardTitle>
+            <CardTitle className="text-4xl">{t('careers.title')}</CardTitle>
           </div>
           <CardDescription className="text-lg">
-            We're building a future where technology and collaboration transform the agricultural supply chain for the better.
+            {t('careers.subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 text-muted-foreground">
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Sparkles className="h-6 w-6 text-primary"/>Why Work With Us?</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Sparkles className="h-6 w-6 text-primary"/>{t('careers.whyWorkWithUs.title')}</h2>
             <p>
-              At DamDoh, you'll be part of a dynamic team passionate about solving real-world challenges in agriculture. We foster a culture of innovation, continuous learning, and impact. If you're driven to make a difference and contribute to a more sustainable and equitable food system, DamDoh is the place for you.
+              {t('careers.whyWorkWithUs.intro')}
             </p>
             <ul className="list-disc list-inside space-y-1 pl-5 mt-3">
-              <li>Meaningful work that directly impacts global food security.</li>
-              <li>Collaborative and inclusive team environment.</li>
-              <li>Opportunities for professional growth and development.</li>
-              <li>Competitive compensation and benefits (Details coming soon).</li>
-              <li>Flexible work arrangements for many roles.</li>
+              <li>{t('careers.whyWorkWithUs.point1')}</li>
+              <li>{t('careers.whyWorkWithUs.point2')}</li>
+              <li>{t('careers.whyWorkWithUs.point3')}</li>
+              <li>{t('careers.whyWorkWithUs.point4')}</li>
+              <li>{t('careers.whyWorkWithUs.point5')}</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Users className="h-6 w-6 text-primary"/>Current Openings</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Users className="h-6 w-6 text-primary"/>{t('careers.currentOpenings.title')}</h2>
             {showOpenings && dummyOpenings.length > 0 ? (
               <div className="space-y-4">
                 {dummyOpenings.map(job => (
@@ -75,7 +80,7 @@ export default function CareersPage() {
                       <p className="text-sm text-muted-foreground">{job.description}</p>
                     </CardContent>
                     <CardContent className="pt-2">
-                      <Button>Apply Now (Placeholder)</Button>
+                      <Button>{t('careers.applyNowButton')}</Button>
                     </CardContent>
                   </Card>
                 ))}
@@ -83,9 +88,9 @@ export default function CareersPage() {
             ) : (
               <div className="min-h-[200px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
                 <Briefcase className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
-                <h3 className="text-xl font-semibold text-muted-foreground mb-2">No Current Openings (Or Section Coming Soon)</h3>
+                <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('careers.noOpenings.title')}</h3>
                 <p className="text-muted-foreground max-w-md">
-                  We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">careers@damdoh.org</a>.
+                  {t('careers.noOpenings.content1')} <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">{t('careers.noOpenings.email')}</a>.
                 </p>
               </div>
             )}

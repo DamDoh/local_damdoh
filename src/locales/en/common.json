@@ -53,5 +53,94 @@
     "useCamera": "Use Camera",
     "inputPlaceholder": "Ask about farming, describe your image...",
     "sendMessage": "Send"
+  },
+  "about": {
+    "title": "About DamDoh",
+    "subtitle": "Connecting the agricultural supply chain for a thriving people, profit, and planet.",
+    "mission": {
+      "title": "Our Mission",
+      "content": "To empower every stakeholder in the agricultural value chain through innovative technology, fostering sustainable practices, ensuring food security, and promoting equitable growth. We aim to build a resilient and transparent ecosystem where farmers, traders, and consumers can connect, collaborate, and prosper."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "To be the leading digital platform revolutionizing the global agricultural supply chain, creating a future where sustainable agriculture nourishes the world and supports vibrant rural communities."
+    },
+    "values": {
+      "title": "Our Values",
+      "sustainability": {
+        "title": "Sustainability",
+        "content": "Championing practices that protect our planet for future generations."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "content": "Believing in the power of partnership and shared success."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "content": "Continuously seeking better solutions through technology and creativity."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "content": "Operating with transparency, honesty, and respect for all."
+      },
+      "empowerment": {
+        "title": "Empowerment",
+        "content": "Providing tools and knowledge to uplift every member of the agricultural community."
+      }
+    },
+    "team": {
+      "title": "Meet the Team",
+      "intro": "DamDoh is driven by a passionate team of agricultural experts, technologists, and business leaders dedicated to making a difference. While we are growing, our core team believes in the transformative power of connecting the agricultural world.",
+      "member1Name": "Team Member 1",
+      "member1Role": "Role/Specialty",
+      "member1Bio": "Brief bio about expertise and passion for agriculture coming soon.",
+      "member2Name": "Team Member 2",
+      "member2Role": "Role/Specialty",
+      "member2Bio": "Brief bio about expertise and passion for agriculture coming soon.",
+      "member3Name": "Team Member 3",
+      "member3Role": "Role/Specialty",
+      "member3Bio": "Brief bio about expertise and passion for agriculture coming soon.",
+      "note": "More detailed team profiles coming soon!"
+    }
+  },
+  "careers": {
+    "title": "Join Our Mission at DamDoh",
+    "subtitle": "We're building a future where technology and collaboration transform the agricultural supply chain for the better.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "At DamDoh, you'll be part of a dynamic team passionate about solving real-world challenges in agriculture. We foster a culture of innovation, continuous learning, and impact. If you're driven to make a difference and contribute to a more sustainable and equitable food system, DamDoh is the place for you.",
+      "point1": "Meaningful work that directly impacts global food security.",
+      "point2": "Collaborative and inclusive team environment.",
+      "point3": "Opportunities for professional growth and development.",
+      "point4": "Competitive compensation and benefits (Details coming soon).",
+      "point5": "Flexible work arrangements for many roles."
+    },
+    "currentOpenings": {
+      "title": "Current Openings",
+      "job1": {
+        "title": "Lead Agricultural Supply Chain Analyst",
+        "location": "Remote / Global",
+        "type": "Full-time",
+        "description": "Seeking an experienced analyst to optimize supply chain operations, develop data-driven strategies, and support our network of stakeholders. Strong background in agricultural economics and logistics required."
+      },
+      "job2": {
+        "title": "Community Manager - Farmer Engagement",
+        "location": "Nairobi, Kenya Hub",
+        "type": "Full-time",
+        "description": "Passionate about agriculture and community building? Join us to support and grow our farmer network in East Africa. Excellent communication and field experience needed."
+      },
+      "job3": {
+        "title": "Senior Full Stack Engineer (Agri-Tech)",
+        "location": "Remote / Europe Timezones",
+        "type": "Full-time",
+        "description": "Develop innovative features for the DamDoh platform. Proficient in Next.js, TypeScript, and backend technologies. Experience with GIS or agricultural data is a plus."
+      }
+    },
+    "applyNowButton": "Apply Now (Placeholder)",
+    "noOpenings": {
+      "title": "No Current Openings",
+      "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
+      "email": "careers@damdoh.org"
+    }
   }
 }
