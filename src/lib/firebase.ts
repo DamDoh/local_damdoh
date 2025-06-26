@@ -1,31 +1,26 @@
 // src/lib/firebase.ts
 import { doc, getDoc, collection, query, where, getDocs, limit, startAfter } from "firebase/firestore";
 import { db } from './firebase/client'; // Import the initialized db instance
+import { getAllMarketplaceItemsFromDB } from './db-utils'; // Use centralized fetching
 
 // Replaces the old getProductsByCategory to query the unified marketplaceItems collection
 export async function getMarketplaceItemsByCategory(category?: string, lastVisible?: any) {
-  const ITEMS_PER_PAGE = 12; // Define a page size for pagination
+  const ITEMS_PER_PAGE = 12; 
   try {
-    const itemsCollectionRef = collection(db, 'marketplaceItems');
-    let q;
+    const allItems = await getAllMarketplaceItemsFromDB(); // Fetch all items once
+    
+    let filteredItems = allItems;
     if (category) {
-      q = query(itemsCollectionRef, where('category', '==', category), limit(ITEMS_PER_PAGE));
-    } else {
-      q = query(itemsCollectionRef, limit(ITEMS_PER_PAGE));
+      filteredItems = allItems.filter(item => item.category === category);
     }
 
-    if (lastVisible) {
-        const lastVisibleDoc = await getDoc(doc(itemsCollectionRef, lastVisible));
-        if(lastVisibleDoc.exists()){
-            q = query(q, startAfter(lastVisibleDoc));
-        }
-    }
+    // Manual pagination
+    const startIndex = lastVisible ? filteredItems.findIndex(item => item.id === lastVisible) + 1 : 0;
+    const paginatedItems = filteredItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const newLastVisible = paginatedItems.length === ITEMS_PER_PAGE ? paginatedItems[paginatedItems.length - 1].id : null;
+    
+    return { items: paginatedItems, lastVisible: newLastVisible };
 
-    const querySnapshot = await getDocs(q);
-    const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]?.id || null;
-
-    return { items, lastVisible: newLastVisible };
   } catch (error) {
     console.error('Error fetching marketplace items by category:', error);
     throw error;
