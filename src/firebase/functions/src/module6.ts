@@ -468,4 +468,43 @@ export const addComment = functions.https.onCall(async (data, context) => {
     }
 });
 
-    
+
+// ================== AGRI-BUSINESS EVENTS ==================
+
+export const createAgriEvent = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create an event.");
+    }
+
+    // Add validation here if needed (or rely on client-side Zod and trust the client for this demo)
+    const { title, description, eventDate, eventTime, location, eventType, organizer, websiteLink, imageUrl } = data;
+
+    if (!title || !description || !eventDate || !location || !eventType) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required event fields.");
+    }
+
+    const newEvent = {
+        ...data,
+        listerId: context.auth.uid,
+        createdAt: FieldValue.serverTimestamp(),
+    };
+
+    try {
+        const docRef = await db.collection("agri_events").add(newEvent);
+        return { eventId: docRef.id, title: title };
+    } catch (error) {
+        console.error("Error creating agri-event:", error);
+        throw new functions.https.HttpsError("internal", "Failed to create event in the database.");
+    }
+});
+
+export const getAgriEvents = functions.https.onCall(async (data, context) => {
+    try {
+        const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
+        const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return events;
+    } catch (error) {
+        console.error("Error fetching agri-events:", error);
+        throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
+    }
+});

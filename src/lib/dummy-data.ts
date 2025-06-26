@@ -188,7 +188,7 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
   },
   {
     id: 'service2', name: 'Organic Farm Certification Guidance', listingType: 'Service',
-    description: 'Comprehensive guidance for farms transitioning to organic or seeking certifications (e.g., USDA Organic, EU Organic). Includes audit preparation and documentation support.',
+    description: 'Comprehensive guidance for farms and processors looking to obtain or maintain organic certification (e.g., USDA Organic, EU Organic). Includes audit preparation and documentation support.',
     category: 'certification-services', sellerId: 'organicGrowthAdvisors', location: 'Remote / Global',
     skillsRequired: ['Organic Standards (USDA, EU, JAS)', 'Farm Auditing', 'Sustainable Agriculture', 'Documentation'],
     compensation: 'Project-based or $120/hour', createdAt: new Date(Date.now() - 86400000 * 5).toISOString(), updatedAt: new Date().toISOString(),
@@ -298,71 +298,6 @@ export const dummyDirectMessages: DirectMessage[] = [
   { id: 'msg2', senderName: dummyUsersData['userA'].name, lastMessage: 'Dr. Chen sent the soil analysis report for your West field.', timestamp: 'Yesterday', senderAvatarUrl: dummyUsersData['userA'].avatarUrl, dataAiHint: "scientist profile" },
   { id: 'msg3', senderName: dummyUsersData['freshProduceExporter'].name, lastMessage: 'New RFP for organic cashews posted.', timestamp: 'May 12', senderAvatarUrl: dummyUsersData['freshProduceExporter'].avatarUrl, dataAiHint: "trade group" },
 ];
-
-// --- Agri-Events Page Data ---
-export const dummyAgriEvents: AgriEvent[] = [
-  {
-    id: 'event1',
-    title: 'Global Agri-Tech Summit 2024',
-    description: 'Join industry leaders, innovators, and policymakers to discuss the future of agricultural technology and sustainable farming practices. Keynotes on AI in agriculture, precision farming, and supply chain optimization.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString(),
-    eventTime: '09:00',
-    location: 'Online & San Francisco, CA',
-    eventType: 'Conference',
-    organizer: 'AgriEvents Global',
-    websiteLink: 'https://example.com/agritech-summit',
-    imageUrl: 'https://placehold.co/600x400.png',
-    listerId: 'agriEventsGlobal',
-    createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
-    dataAiHint: "conference tech agriculture",
-  },
-  {
-    id: 'event2',
-    title: 'Webinar: Mastering Organic Certification',
-    description: 'A step-by-step guide for farmers and processors looking to obtain or maintain organic certification. Covers standards, documentation, and audit preparation.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 14)).toISOString(),
-    eventTime: '14:00',
-    location: 'Online',
-    eventType: 'Webinar',
-    organizer: 'Organic Growth Advisors',
-    websiteLink: 'https://example.com/organic-webinar',
-    imageUrl: 'https://placehold.co/600x400.png',
-    listerId: 'organicGrowthAdvisors',
-    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
-    dataAiHint: "webinar agriculture",
-  },
-  {
-    id: 'event3',
-    title: 'Sustainable Farming Field Day',
-    description: 'Visit a model farm implementing innovative sustainable practices, including cover cropping, no-till farming, and integrated pest management. Networking opportunities available.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 45)).toISOString(),
-    eventTime: '10:00',
-    location: 'Green Valley Farms, Ruralville',
-    eventType: 'Field Day',
-    organizer: 'Sunny Acres Farm',
-    websiteLink: 'https://example.com/field-day',
-    imageUrl: 'https://placehold.co/600x400.png',
-    listerId: 'sunnyAcresFarm',
-    createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
-    dataAiHint: "farm field day",
-  },
-   {
-    id: 'event4',
-    title: 'Agri-Food Supply Chain Expo East Africa',
-    description: 'The premier trade show for agricultural inputs, machinery, logistics, and processing solutions in East Africa. Connect with suppliers and buyers.',
-    eventDate: new Date(new Date().setDate(new Date().getDate() + 60)).toISOString(),
-    eventTime: '09:00',
-    location: 'KICC, Nairobi, Kenya',
-    eventType: 'Trade Show',
-    organizer: 'HarvestTech Expo',
-    websiteLink: 'https://example.com/agriexpo-ea',
-    imageUrl: 'https://placehold.co/600x400.png',
-    listerId: 'harvestTechExpo',
-    createdAt: new Date(Date.now() - 86400000 * 15).toISOString(),
-    dataAiHint: "expo agriculture",
-  },
-];
-
 
 // --- Mobile Homepage Data ---
 export const mobileHomeCategories: MobileHomeCategory[] = [

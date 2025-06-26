@@ -6,17 +6,19 @@ import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Tag, Filter, Search } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Tag, Filter, Search, Frown } from "lucide-react";
 import type { AgriEvent, AgriEventType } from "@/lib/types";
-import { dummyAgriEvents, dummyUsersData } from "@/lib/dummy-data";
 import { AGRI_EVENT_FILTER_OPTIONS, type AgriEventTypeConstant } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useMemo as useMemoHook } from "react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
 
 const getEventTypeIcon = (eventType: AgriEventType) => {
   const iconProps = { className: "h-4 w-4 mr-1.5 text-primary" };
@@ -31,14 +33,61 @@ const getEventTypeIcon = (eventType: AgriEventType) => {
   }
 };
 
+const EventCardSkeleton = () => (
+    <Card className="flex flex-col overflow-hidden">
+        <Skeleton className="h-48 w-full" />
+        <CardHeader>
+            <Skeleton className="h-4 w-1/4 mb-1" />
+            <Skeleton className="h-6 w-3/4" />
+        </CardHeader>
+        <CardContent className="flex-grow space-y-2 text-sm">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-1/2" />
+        </CardContent>
+        <CardFooter>
+            <Skeleton className="h-10 w-full" />
+        </CardFooter>
+    </Card>
+);
+
+
 export default function AgriEventsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [eventTypeFilter, setEventTypeFilter] = useState<AgriEventTypeConstant | 'All'>("All");
-  const events = dummyAgriEvents;
+  const [events, setEvents] = useState<AgriEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const functions = getFunctions(firebaseApp);
+  const getAgriEventsCallable = useMemoHook(() => httpsCallable(functions, 'getAgriEvents'), [functions]);
 
   const pathname = usePathname();
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
+  
+  useEffect(() => {
+    const fetchEvents = async () => {
+        setIsLoading(true);
+        try {
+            const result = await getAgriEventsCallable();
+            const fetchedEvents = result.data as AgriEvent[];
+            // Ensure dates are parsed correctly
+            const formattedEvents = fetchedEvents.map(e => ({...e, eventDate: new Date(e.eventDate).toISOString()}));
+            setEvents(formattedEvents);
+        } catch(error) {
+            console.error("Failed to fetch events:", error);
+            toast({
+                title: "Error loading events",
+                description: "Could not fetch the list of events. Please try again later.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    fetchEvents();
+  }, [getAgriEventsCallable, toast]);
+
 
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
@@ -120,7 +169,13 @@ export default function AgriEventsPage() {
             </Select>
           </div>
 
-          {filteredEvents.length > 0 ? (
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <EventCardSkeleton />
+                <EventCardSkeleton />
+                <EventCardSkeleton />
+            </div>
+          ) : filteredEvents.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredEvents.map((event) => (
                 <Card key={event.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
@@ -174,7 +229,7 @@ export default function AgriEventsPage() {
             </div>
           ) : (
             <div className="min-h-[200px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
-              <CalendarDays className="h-16 w-16 text-muted-foreground/50 mb-4" />
+              <Frown className="h-16 w-16 text-muted-foreground/50 mb-4" />
               <h3 className="text-xl font-semibold text-muted-foreground mb-2">No Events Found</h3>
               <p className="text-muted-foreground max-w-md">
                 Try adjusting your search or filters. Or, be the first to <Link href="/agri-events/create" className="text-primary hover:underline">add an event</Link>!

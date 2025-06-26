@@ -2,9 +2,9 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -29,15 +29,25 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createAgriEventSchema, type CreateAgriEventValues } from "@/lib/form-schemas";
 import { AGRI_EVENT_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useAuth } from "@/lib/auth-utils";
+import { uploadFileAndGetURL } from "@/lib/storage-utils";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
+import { Loader2 } from 'lucide-react';
 
 export default function CreateAgriEventPage() {
+  const { user } = useAuth();
+  const router = useRouter();
   const { toast } = useToast();
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
-  const [createdEventTitle, setCreatedEventTitle] = useState<string | null>(null);
+  const [createdEvent, setCreatedEvent] = useState<{ id: string, title: string } | null>(null);
+
+  const functions = getFunctions(firebaseApp);
+  const createAgriEventCallable = useMemo(() => httpsCallable(functions, 'createAgriEvent'), [functions]);
 
   const form = useForm<CreateAgriEventValues>({
     resolver: zodResolver(createAgriEventSchema),
@@ -55,32 +65,47 @@ export default function CreateAgriEventPage() {
     },
   });
 
-  function onSubmit(data: CreateAgriEventValues) {
-    setSubmissionStatus('submitting'); // Optional: for loading states later
-    console.log("New Agri-Event Data:", data);
-    if (data.imageFile) {
-      console.log("Uploaded file details:", {
-        name: data.imageFile.name,
-        size: data.imageFile.size,
-        type: data.imageFile.type,
-      });
+  async function onSubmit(data: CreateAgriEventValues) {
+    if (!user) {
+      toast({ variant: "destructive", title: "Authentication Error", description: "You must be logged in to create an event." });
+      return;
     }
+    setSubmissionStatus('submitting');
+    try {
+      let uploadedImageUrl = data.imageUrl;
+      if (data.imageFile) {
+        toast({ title: "Image Uploading...", description: "Please wait while your event banner is uploaded." });
+        uploadedImageUrl = await uploadFileAndGetURL(data.imageFile, `agri-events/${user.uid}`);
+        toast({ title: "Image Upload Complete!", variant: "default" });
+      }
 
-    // Simulate backend submission
-    setTimeout(() => { // Simulate async operation
-      setCreatedEventTitle(data.title);
+      const payload = {
+        ...data,
+        imageUrl: uploadedImageUrl,
+        imageFile: undefined, // Don't send the file object to the backend
+        eventDate: data.eventDate.toISOString(), // Convert date to string for backend
+      };
+
+      const result = await createAgriEventCallable(payload);
+      const newEvent = result.data as { eventId: string, title: string };
+      
+      setCreatedEvent({ id: newEvent.eventId, title: newEvent.title });
       setSubmissionStatus('success');
       toast({
         title: "Event Created Successfully!",
-        description: `Your event "${data.title}" is ready. What would you like to do next?`,
+        description: `Your event "${data.title}" is now listed.`,
       });
-    }, 1000); // Simulate network delay
+    } catch (error: any) {
+      console.error("Error creating event:", error);
+      toast({ variant: "destructive", title: "Submission Failed", description: error.message || "An error occurred while saving the event." });
+      setSubmissionStatus('idle');
+    }
   }
 
   const handleCreateAnother = () => {
     form.reset();
     setSubmissionStatus('idle');
-    setCreatedEventTitle(null);
+    setCreatedEvent(null);
   };
 
   return (
@@ -89,30 +114,33 @@ export default function CreateAgriEventPage() {
         <ArrowLeft className="mr-1 h-4 w-4" /> Back to Agri-Business Events
       </Link>
 
-      {submissionStatus === 'success' ? (
-        <Card className="max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle className="text-2xl">Event "{createdEventTitle}" Created!</CardTitle>
-            <CardDescription>Your event has been successfully listed. What would you like to do next?</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
+      {submissionStatus === 'success' && createdEvent ? (
+        <Card className="max-w-2xl mx-auto text-center">
+            <CardHeader>
+                <div className="mx-auto bg-green-100 dark:bg-green-900/30 rounded-full h-16 w-16 flex items-center justify-center">
+                    <CheckCircle className="h-10 w-10 text-green-600" />
+                </div>
+                <CardTitle className="text-2xl pt-4">Event "{createdEvent.title}" Created!</CardTitle>
+                <CardDescription>Your event has been successfully listed. What would you like to do next?</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
             <Button 
               className="w-full" 
-              onClick={() => console.log(`Action: Post to Feed - Event: ${createdEventTitle}`)}
+              onClick={() => console.log(`Action: Post to Feed - Event: ${createdEvent.title}`)}
             >
               <Rss className="mr-2 h-4 w-4" /> Post to Feed
             </Button>
             <Button 
               className="w-full" 
               variant="outline" 
-              onClick={() => console.log(`Action: Share Event - Event: ${createdEventTitle}`)}
+              onClick={() => console.log(`Action: Share Event - Event: ${createdEvent.title}`)}
             >
               <Share2 className="mr-2 h-4 w-4" /> Share Event Link
             </Button>
             <Button 
               className="w-full" 
               variant="outline" 
-              onClick={() => console.log(`Action: Invite Network - Event: ${createdEventTitle}`)}
+              onClick={() => console.log(`Action: Invite Network - Event: ${createdEvent.title}`)}
             >
               <Users className="mr-2 h-4 w-4" /> Invite Network
             </Button>
@@ -318,7 +346,6 @@ export default function CreateAgriEventPage() {
                       <FormLabel className="flex items-center gap-2"><UploadCloud className="h-4 w-4 text-muted-foreground" />Or Upload Image (Optional)</FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-2">
-                          {/* <UploadCloud className="h-5 w-5 text-muted-foreground" /> Input component already has icon styling if needed */}
                           <Input 
                             type="file" 
                             accept="image/png, image/jpeg, image/webp"
@@ -341,10 +368,10 @@ export default function CreateAgriEventPage() {
                   )}
                 />
 
-                <Button type="submit" className="w-full md:w-auto" disabled={form.formState.isSubmitting}>
-                  {form.formState.isSubmitting ? (
+                <Button type="submit" className="w-full md:w-auto" disabled={submissionStatus === 'submitting'}>
+                  {submissionStatus === 'submitting' ? (
                     <>
-                      <RefreshCw className="mr-2 h-4 w-4 animate-spin" /> Submitting...
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...
                     </>
                   ) : (
                     <>
@@ -360,5 +387,3 @@ export default function CreateAgriEventPage() {
     </div>
   );
 }
-
-    
