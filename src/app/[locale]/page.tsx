@@ -1,15 +1,13 @@
 
 "use client";
 
-import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState, useMemo } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -42,7 +40,6 @@ import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashb
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-
 const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Farmer': FarmerDashboard,
     'Agricultural Cooperative': CooperativeDashboard,
@@ -66,21 +63,43 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
 };
 
 
-function MainContent() {
+function PageSkeleton() {
+    return (
+        <div className="grid md:grid-cols-12 gap-6 items-start">
+            <div className="md:col-span-3">
+                 <Skeleton className="h-[400px] w-full" />
+            </div>
+            <div className="md:col-span-6 space-y-6">
+                <Skeleton className="h-28 w-full" />
+                <Skeleton className="h-64 w-full" />
+                <Skeleton className="h-56 w-full" />
+            </div>
+            <div className="md:col-span-3">
+                 <Skeleton className="h-[400px] w-full" />
+            </div>
+        </div>
+    );
+}
+
+export default function DashboardPage() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [userRole, setUserRole] = useState<string | null>(null);
   const [isLoadingRole, setIsLoadingRole] = useState(true);
 
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth(); // Use authLoading
   
-  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), []);
-  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
-  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
-  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
+  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), [functions]);
+  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), [functions]);
+  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
+  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
 
   useEffect(() => {
+    if (authLoading) {
+      return; // Wait for authentication to resolve before doing anything
+    }
+
     const fetchUserRoleAndFeed = async () => {
       setIsLoadingRole(true);
       setIsLoadingFeed(true);
@@ -99,6 +118,7 @@ function MainContent() {
       }
       setIsLoadingRole(false);
 
+      // Fetch public feed regardless of user state
       try {
         const result = await getFeed({});
         setFeedItems((result.data as any).posts || []);
@@ -114,8 +134,7 @@ function MainContent() {
       }
     };
     fetchUserRoleAndFeed();
-  }, [user, getFeed, toast]);
-
+  }, [user, authLoading, getFeed, toast]); // Add authLoading here
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
     try {
@@ -154,16 +173,7 @@ function MainContent() {
      toast({ title: "Post Deleted (Simulated)" });
   };
 
-  const renderContent = () => {
-    if (isLoadingRole) {
-      return (
-        <div className="space-y-6">
-          <Skeleton className="h-48 w-full rounded-lg" />
-          <Skeleton className="h-64 w-full rounded-lg" />
-        </div>
-      );
-    }
-  
+  const renderDashboardContent = () => {
     const HubComponent = userRole ? HubComponentMap[userRole] : null;
 
     if (HubComponent) {
@@ -199,6 +209,10 @@ function MainContent() {
     );
   };
 
+  // Show a full-page skeleton while authentication is resolving
+  if (authLoading || (user && isLoadingRole)) {
+    return <PageSkeleton />;
+  }
 
   return (
     <div className="grid md:grid-cols-12 gap-6 items-start">
@@ -213,48 +227,11 @@ function MainContent() {
             <span className="text-xs text-muted-foreground">Sort by: Top <Button variant="ghost" size="icon" className="h-4 w-4 ml-1 p-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg></Button></span>
           </div>
         )}
-        {renderContent()}
+        {renderDashboardContent()}
       </div>
       <div className="md:col-span-3">
         <DashboardRightSidebar />
       </div>
     </div>
   );
-}
-
-
-export default function DashboardPage() {
-    const router = useRouter();
-    const pathname = usePathname();
-    const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
-    const [isRedirecting, setIsRedirecting] = useState(true);
-
-    useEffect(() => {
-        if (isPreferenceLoading) {
-            return; // Wait until we have loaded the preference from storage
-        }
-        
-        // A path like `/en` has 1 segment after filtering empty strings.
-        const isLocaleRoot = pathname.split('/').filter(p => p).length <= 1;
-
-        if (isLocaleRoot && homepagePreference && homepagePreference !== pathname) {
-            // A preference is set, it's different, and we are on the root. Time to redirect.
-            // The component will unmount, so we don't need to set isRedirecting to false.
-            router.replace(homepagePreference);
-        } else {
-            // No redirect is needed, either because there's no preference,
-            // we're already on the preferred page, or we're on a deeper page.
-            setIsRedirecting(false);
-        }
-    }, [isPreferenceLoading, homepagePreference, pathname, router]);
-
-    if (isRedirecting) {
-        return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
-    }
-
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <MainContent />
-      </Suspense>
-    );
 }
