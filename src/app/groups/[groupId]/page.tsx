@@ -11,7 +11,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumGroup, UserProfile } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase/client';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 
@@ -80,7 +80,7 @@ export default function GroupPage() {
         try {
             await joinGroup({ groupId });
             setIsMember(true);
-            setMembers(prev => [...prev, { id: user.uid, displayName: user.displayName || 'You', photoURL: user.photoURL || '' }]);
+            setMembers(prev => [...prev, { id: user.uid, name: user.displayName || 'You', avatarUrl: user.photoURL || '' } as UserProfile]);
             toast({ title: "Successfully joined the group!" });
         } catch (error: any) {
             console.error("Error joining group:", error);
@@ -194,10 +194,10 @@ export default function GroupPage() {
                             {members.map(member => (
                                 <div key={member.id} className="flex items-center gap-3">
                                     <Avatar>
-                                        <AvatarImage src={member.photoURL} alt={member.displayName} />
-                                        <AvatarFallback>{member.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
+                                        <AvatarImage src={member.avatarUrl} alt={member.name} />
+                                        <AvatarFallback>{member.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
-                                    <span className="font-medium text-sm">{member.displayName}</span>
+                                    <span className="font-medium text-sm">{member.name}</span>
                                 </div>
                             ))}
                         </CardContent>
@@ -207,3 +207,5 @@ export default function GroupPage() {
         </div>
     );
 }
+
+    

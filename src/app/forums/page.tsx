@@ -6,10 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff } from "lucide-react";
+import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users } from "lucide-react";
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase/client';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import type { ForumTopic } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/lib/auth-utils';
@@ -53,7 +53,7 @@ export default function ForumsPage() {
                 const data = result.data as { topics: any[] };
                 const formattedTopics = data.topics.map(topic => ({
                     ...topic,
-                    lastActivity: topic.lastActivity ? new Date(topic.lastActivity._seconds * 1000).toISOString() : new Date().toISOString(),
+                    lastActivity: topic.lastActivity ? new Date(topic.lastActivity.seconds * 1000).toISOString() : new Date().toISOString(),
                 }));
                 setTopics(formattedTopics as ForumTopic[]);
             } catch (error) {
@@ -207,3 +207,5 @@ export default function ForumsPage() {
         </div>
     );
 }
+
+    

@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Users, PlusCircle, Search, Lock } from "lucide-react";
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase/client';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import type { ForumGroup } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -112,3 +112,5 @@ export default function GroupsPage() {
         </div>
     );
 }
+
+    

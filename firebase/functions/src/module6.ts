@@ -146,33 +146,10 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
 
         const repliesSnapshot = await query.get();
         const replies = repliesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        
-        const authorIds = [...new Set(replies.map(reply => reply.authorRef))].filter(id => id);
-        const profiles: Record<string, any> = {};
-        if (authorIds.length > 0) {
-            const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", authorIds).get();
-            userDocs.forEach(doc => {
-                profiles[doc.id] = doc.data();
-            });
-        }
-        
-        const enrichedReplies = replies.map(reply => {
-            const author = profiles[reply.authorRef] || { displayName: "Unknown User", avatarUrl: "" };
-            return {
-                id: reply.id,
-                content: reply.content,
-                timestamp: reply.timestamp.toDate().toISOString(),
-                author: {
-                    id: reply.authorRef,
-                    name: author.displayName,
-                    avatarUrl: author.avatarUrl
-                }
-            };
-        });
 
         const newLastVisible = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]?.id || null;
 
-        return { replies: enrichedReplies, lastVisible: newLastVisible };
+        return { replies, lastVisible: newLastVisible };
     } catch (error) {
         console.error(`Error fetching replies for post ${postId}:`, error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching replies.");
@@ -490,3 +467,5 @@ export const addComment = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("internal", "An error occurred while adding the comment.");
     }
 });
+
+    
