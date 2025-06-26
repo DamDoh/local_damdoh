@@ -45,6 +45,7 @@ import { APP_NAME } from "@/lib/constants";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
+import { useTranslations } from 'next-intl';
 
 interface NavLinkProps {
   href: string;
@@ -56,7 +57,7 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
-  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href) && href.length > 1);
+  const isActive = pathname.endsWith(href);
   return (
     <Link
       href={href}
@@ -74,7 +75,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, cl
 };
 
 const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ href, icon: Icon, label, pathname, onClick, isSheetLink }) => {
-  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href) && href.length > 1 && isSheetLink);
+  const isActive = pathname.endsWith(href);
   return (
     <Link
       href={href}
@@ -90,27 +91,28 @@ const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ 
   );
 };
 
-const desktopNavItems = [
-  { href: "/", icon: Home, label: "Home" },
-  { href: "/network", icon: Users, label: "Network" },
-  { href: "/farm-management", icon: Sprout, label: "Farm Mgmt" },
-  { href: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
-  { href: "/traceability", icon: Fingerprint, label: "Traceability" },
-  { href: "/forums", icon: MessageSquare, label: "Forums"},
-];
-
-const mobileSheetSecondaryNavItems = [
-  { href: "/pinboard", icon: ClipboardList, label: "My Pinboard", isSheetLink: true },
-  { href: "/settings", icon: UserIcon, label: "Settings & Profile", isSheetLink: true },
-  { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
-];
-
 
 export function AppHeader() {
+  const t = useTranslations('AppHeader');
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth(); 
+
+  const desktopNavItems = [
+    { href: "/", icon: Home, label: t('home') },
+    { href: "/network", icon: Users, label: t('network') },
+    { href: "/farm-management", icon: Sprout, label: t('farmMgmt') },
+    { href: "/marketplace", icon: ShoppingCart, label: t('marketplace') },
+    { href: "/traceability", icon: Fingerprint, label: t('traceability') },
+    { href: "/forums", icon: MessageSquare, label: t('forums')},
+  ];
+  
+  const mobileSheetSecondaryNavItems = [
+    { href: "/pinboard", icon: ClipboardList, label: "My Pinboard", isSheetLink: true },
+    { href: "/settings", icon: UserIcon, label: t('settings'), isSheetLink: true },
+    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
+  ];
 
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
@@ -146,35 +148,35 @@ export function AppHeader() {
   };
 
   const getSectionTitle = () => {
-    if (pathname === "/") return "Home";
-    const activeDesktopItem = desktopNavItems.find(item => pathname.startsWith(item.href) && item.href !== "/");
+    if (pathname.endsWith("/")) return "Home";
+    const activeDesktopItem = desktopNavItems.find(item => pathname.includes(item.href) && item.href !== "/");
     if (activeDesktopItem) return activeDesktopItem.label;
     
-    if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
-    if (pathname.startsWith("/profiles/me")) return "My Profile";
-    if (pathname.startsWith("/profiles/")) return "Profile Details";
-    if (pathname.startsWith("/marketplace/create")) return "Create Listing";
-    if (pathname.startsWith("/agri-events/create")) return "Create Event";
-    if (pathname.startsWith("/agri-events")) return "Agri-Events";
-    if (pathname.startsWith("/forums/create")) return "New Discussion";
-    if (pathname.startsWith("/forums/")) return "Forum Topic";
-    if (pathname.startsWith("/search")) return "Search Results";
-    if (pathname.startsWith("/traceability")) return "Traceability";
-    if (pathname.startsWith("/help-center")) return "Help Center";
-    if (pathname.startsWith("/about")) return "About Us";
-    if (pathname.startsWith("/contact")) return "Contact";
-    if (pathname.startsWith("/careers")) return "Careers";
-    if (pathname.startsWith("/blog")) return "Agri-Insights Blog";
-    if (pathname.startsWith("/community-guidelines")) return "Community Guidelines";
-    if (pathname.startsWith("/cookie-policy")) return "Cookie Policy";
-    if (pathname.startsWith("/privacy")) return "Privacy Policy";
-    if (pathname.startsWith("/terms")) return "Terms of Service";
-    if (pathname.startsWith("/pinboard")) return "My Pinboard";
-    if (pathname.startsWith("/wallet")) return "Digital Wallet";
-    if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
-    if (pathname.startsWith("/auth/signin")) return "Sign In";
-    if (pathname.startsWith("/auth/signup")) return "Sign Up";
-    if (pathname.startsWith("/auth/forgot-password")) return "Reset Password";
+    if (pathname.includes("/profiles/me/edit")) return "Edit Profile";
+    if (pathname.includes("/profiles/me")) return "My Profile";
+    if (pathname.includes("/profiles/")) return "Profile Details";
+    if (pathname.includes("/marketplace/create")) return "Create Listing";
+    if (pathname.includes("/agri-events/create")) return "Create Event";
+    if (pathname.includes("/agri-events")) return "Agri-Events";
+    if (pathname.includes("/forums/create")) return "New Discussion";
+    if (pathname.includes("/forums/")) return "Forum Topic";
+    if (pathname.includes("/search")) return "Search Results";
+    if (pathname.includes("/traceability")) return "Traceability";
+    if (pathname.includes("/help-center")) return "Help Center";
+    if (pathname.includes("/about")) return "About Us";
+    if (pathname.includes("/contact")) return "Contact";
+    if (pathname.includes("/careers")) return "Careers";
+    if (pathname.includes("/blog")) return "Agri-Insights Blog";
+    if (pathname.includes("/community-guidelines")) return "Community Guidelines";
+    if (pathname.includes("/cookie-policy")) return "Cookie Policy";
+    if (pathname.includes("/privacy")) return "Privacy Policy";
+    if (pathname.includes("/terms")) return "Terms of Service";
+    if (pathname.includes("/pinboard")) return "My Pinboard";
+    if (pathname.includes("/wallet")) return "Digital Wallet";
+    if (pathname.includes("/ai-assistant")) return "AI Farming Assistant";
+    if (pathname.includes("/auth/signin")) return t('signIn');
+    if (pathname.includes("/auth/signup")) return t('signUp');
+    if (pathname.includes("/auth/forgot-password")) return "Reset Password";
 
 
     return APP_NAME; 
@@ -196,7 +198,7 @@ export function AppHeader() {
               <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80 pointer-events-none" />
               <Input 
                 type="search" 
-                placeholder="Ask the AI or search DamDoh..." 
+                placeholder={t('searchPlaceholder')}
                 className="h-9 w-full rounded-md bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30 pl-10" 
                 value={searchQuery} 
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -209,12 +211,12 @@ export function AppHeader() {
               <NavLink key={item.href} {...item} pathname={pathname} />
             ))}
             {user && (
-              <NavLink href="/notifications" icon={Bell} label="Notifications" pathname={pathname} />
+              <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
             )}
             {user && (
               <>
-                  <NavLink href="/messages" icon={MessageSquare} label="Messages" pathname={pathname} />
-                  <NavLink href="/wallet" icon={WalletIcon} label="Wallet" pathname={pathname} />
+                  <NavLink href="/messages" icon={MessageSquare} label={t('messages')} pathname={pathname} />
+                  <NavLink href="/wallet" icon={WalletIcon} label={t('wallet')} pathname={pathname} />
               </>
             )}
             <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
@@ -225,10 +227,10 @@ export function AppHeader() {
               ) : (
                 <div className="flex items-center gap-1">
                   <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
-                    <Link href="/auth/signin">Sign In</Link>
+                    <Link href="/auth/signin">{t('signIn')}</Link>
                   </Button>
                   <Button variant="outline" asChild className="text-primary bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
-                    <Link href="/auth/signup">Sign Up</Link>
+                    <Link href="/auth/signup">{t('signUp')}</Link>
                   </Button>
                 </div>
               )}
@@ -254,7 +256,7 @@ export function AppHeader() {
               <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
                 {user && (
                   <>
-                    <MobileSheetNavLink href="/profiles/me" icon={UserIcon} label="My Profile & Settings" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <MobileSheetNavLink href="/profiles/me" icon={UserIcon} label={t('myProfile')} pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
                     <Separator />
                   </>
                 )}
@@ -271,8 +273,8 @@ export function AppHeader() {
                  {!user && (
                   <>
                     <Separator />
-                    <MobileSheetNavLink href="/auth/signin" icon={LogIn} label="Sign In" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
-                    <MobileSheetNavLink href="/auth/signup" icon={UserPlus} label="Sign Up" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <MobileSheetNavLink href="/auth/signin" icon={LogIn} label={t('signIn')} pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <MobileSheetNavLink href="/auth/signup" icon={UserPlus} label={t('signUp')} pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
                   </>
                 )}
               </nav>
@@ -281,7 +283,7 @@ export function AppHeader() {
                 <HeaderThemeToggle />
                 {user && (
                   <Button variant="outline" className="w-full" onClick={handleLogout}>
-                    <LogOut className="mr-2 h-4 w-4" /> Log Out
+                    <LogOut className="mr-2 h-4 w-4" /> {t('logOut')}
                   </Button>
                 )}
               </div>
