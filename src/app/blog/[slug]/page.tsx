@@ -13,13 +13,16 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
 
 interface BlogPost {
   id: string;
   title_en: string;
+  content_markdown_en: string;
+  title_km?: string;
+  content_markdown_km?: string;
   author: string;
   createdAt: string;
-  content_markdown_en: string;
   category: string;
   imageUrl?: string;
   dataAiHint?: string;
@@ -109,7 +112,6 @@ export default function BlogPostPage() {
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
-                        {/* Placeholder avatar for now */}
                         <AvatarImage src="https://placehold.co/40x40.png" alt={post.author} data-ai-hint="author profile" />
                         <AvatarFallback>{post.author.substring(0,1)}</AvatarFallback>
                     </Avatar>
@@ -136,13 +138,25 @@ export default function BlogPostPage() {
         </div>
       )}
 
-      {/* For now, we'll render markdown content in a pre-formatted block.
-          A library like react-markdown would be needed for full rendering. */}
       <div className="prose dark:prose-invert max-w-none">
           <pre className="whitespace-pre-wrap font-sans text-base">
               {post.content_markdown_en}
           </pre>
       </div>
+      
+      {post.title_km && post.content_markdown_km && (
+        <>
+            <Separator className="my-8" />
+            <div className="space-y-2">
+                <h2 className="text-3xl md:text-4xl font-bold leading-tight">{post.title_km}</h2>
+            </div>
+            <div className="prose dark:prose-invert max-w-none">
+              <pre className="whitespace-pre-wrap font-sans text-base">
+                  {post.content_markdown_km}
+              </pre>
+            </div>
+        </>
+      )}
     </article>
   );
 }

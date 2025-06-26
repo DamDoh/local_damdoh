@@ -11,13 +11,16 @@ import Image from "next/image";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
+import { Separator } from '@/components/ui/separator';
 
 interface BlogPost {
   id: string;
   title_en: string;
+  excerpt_en: string;
+  title_km?: string;
+  excerpt_km?: string;
   author: string;
   createdAt: string;
-  excerpt: string;
   category: string;
   imageUrl?: string;
   dataAiHint?: string;
@@ -59,7 +62,6 @@ export default function BlogPage() {
         const result = await getArticlesCallable();
         const data = result.data as { success: boolean, articles: any[] };
         if (data.success) {
-          // Filter for articles with the category 'Blog'
           const blogPosts = data.articles.filter(article => article.category === 'Blog');
           setPosts(blogPosts);
         } else {
@@ -122,7 +124,13 @@ export default function BlogPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
+                <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt_en}</p>
+                {post.excerpt_km && (
+                  <>
+                    <Separator className="my-2" />
+                    <p className="text-sm text-muted-foreground line-clamp-3 font-serif">{post.excerpt_km}</p>
+                  </>
+                )}
               </CardContent>
               <CardContent className="pt-2">
                 <Button asChild variant="outline" className="w-full">

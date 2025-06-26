@@ -93,8 +93,8 @@ export const createKnowledgeArticle = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
 
-    const { title_en, content_markdown_en, tags, category, excerpt, imageUrl, dataAiHint, author } = data;
-    if (!title_en || !content_markdown_en || !category || !excerpt) {
+    const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km } = data;
+    if (!title_en || !content_markdown_en || !category || !excerpt_en) {
         throw new functions.https.HttpsError("invalid-argument", "Title, content, category, and excerpt are required.");
     }
 
@@ -102,8 +102,11 @@ export const createKnowledgeArticle = functions.https.onCall(async (data, contex
         const newArticleRef = await db.collection('knowledge_articles').add({
             title_en,
             content_markdown_en,
-            category: category || "General", // e.g., 'Blog', 'Industry News'
-            excerpt: excerpt,
+            excerpt_en,
+            title_km: title_km || null,
+            content_markdown_km: content_markdown_km || null,
+            excerpt_km: excerpt_km || null,
+            category: category || "General",
             imageUrl: imageUrl || null,
             dataAiHint: dataAiHint || null,
             tags: tags || [],

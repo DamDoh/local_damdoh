@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { functions } from '@/lib/firebase/client';
 import { httpsCallable } from 'firebase/functions';
+import { Separator } from '@/components/ui/separator';
 
 // Create callable references to our content creation functions
 const createCourseFunction = httpsCallable(functions, 'createCourse');
@@ -56,9 +57,12 @@ export default function ContentManagementPage() {
     try {
       const formData = new FormData(event.target as HTMLFormElement);
       const articleData = {
-        title_en: formData.get('article_title'),
-        excerpt: formData.get('article_excerpt'),
-        content_markdown_en: formData.get('article_content'),
+        title_en: formData.get('article_title_en'),
+        excerpt_en: formData.get('article_excerpt_en'),
+        content_markdown_en: formData.get('article_content_en'),
+        title_km: formData.get('article_title_km'),
+        excerpt_km: formData.get('article_excerpt_km'),
+        content_markdown_km: formData.get('article_content_km'),
         category: formData.get('article_category'),
         author: formData.get('article_author'),
         tags: (formData.get('article_tags') as string).split(',').map(tag => tag.trim()).filter(Boolean),
@@ -121,38 +125,65 @@ export default function ContentManagementPage() {
         </CardHeader>
         <CardContent>
            <form onSubmit={handleCreateArticle} className="space-y-4">
-              <div className="space-y-1.5">
-                <Label htmlFor="article_title">Article Title</Label>
-                <Input id="article_title" name="article_title" required />
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg text-primary">English Content</h4>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_title_en">Article Title (EN)</Label>
+                    <Input id="article_title_en" name="article_title_en" required />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_excerpt_en">Excerpt (EN)</Label>
+                    <Textarea id="article_excerpt_en" name="article_excerpt_en" required className="h-24" />
+                    <p className="text-xs text-muted-foreground">A short summary for the article preview.</p>
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_content_en">Full Content (EN, Markdown supported)</Label>
+                    <Textarea id="article_content_en" name="article_content_en" required className="h-40" />
+                </div>
               </div>
-               <div className="space-y-1.5">
-                <Label htmlFor="article_excerpt">Excerpt</Label>
-                <Textarea id="article_excerpt" name="article_excerpt" required className="h-24" />
-                <p className="text-xs text-muted-foreground">A short summary for the article preview.</p>
+
+              <Separator />
+
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg text-primary">Khmer Content (ភាសាខ្មែរ)</h4>
+                 <div className="space-y-1.5">
+                    <Label htmlFor="article_title_km">Article Title (KM)</Label>
+                    <Input id="article_title_km" name="article_title_km" />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_excerpt_km">Excerpt (KM)</Label>
+                    <Textarea id="article_excerpt_km" name="article_excerpt_km" className="h-24" />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_content_km">Full Content (KM)</Label>
+                    <Textarea id="article_content_km" name="article_content_km" className="h-40" />
+                </div>
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="article_content">Full Content (Markdown supported)</Label>
-                <Textarea id="article_content" name="article_content" required className="h-40" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="article_category">Category</Label>
-                <Input id="article_category" name="article_category" placeholder="e.g., Blog, Industry News, Sustainability" required />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="article_author">Author</Label>
-                <Input id="article_author" name="article_author" placeholder="e.g., Dr. Green Thumb" defaultValue="DamDoh Team" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="article_tags">Tags (comma-separated)</Label>
-                <Input id="article_tags" name="article_tags" />
-              </div>
-               <div className="space-y-1.5">
-                <Label htmlFor="article_image_url">Image URL (Optional)</Label>
-                <Input id="article_image_url" name="article_image_url" placeholder="https://placehold.co/600x400.png" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="article_data_ai_hint">Image AI Hint (Optional)</Label>
-                <Input id="article_data_ai_hint" name="article_data_ai_hint" placeholder="e.g., sustainable farming field" />
+
+              <Separator />
+
+              <div className="space-y-4">
+                <h4 className="font-semibold text-lg text-primary">Metadata</h4>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_category">Category</Label>
+                    <Input id="article_category" name="article_category" placeholder="e.g., Blog, Industry News, Sustainability" required />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_author">Author</Label>
+                    <Input id="article_author" name="article_author" placeholder="e.g., Dr. Green Thumb" defaultValue="DamDoh Team" />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_tags">Tags (comma-separated)</Label>
+                    <Input id="article_tags" name="article_tags" />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_image_url">Image URL (Optional)</Label>
+                    <Input id="article_image_url" name="article_image_url" placeholder="https://placehold.co/600x400.png" />
+                </div>
+                <div className="space-y-1.5">
+                    <Label htmlFor="article_data_ai_hint">Image AI Hint (Optional)</Label>
+                    <Input id="article_data_ai_hint" name="article_data_ai_hint" placeholder="e.g., sustainable farming field" />
+                </div>
               </div>
               <Button type="submit" disabled={articleSubmitting}>
                 {articleSubmitting ? 'Publishing...' : 'Publish Article'}
