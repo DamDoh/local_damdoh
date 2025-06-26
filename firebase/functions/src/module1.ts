@@ -96,7 +96,10 @@ async function _internalLogTraceEvent(data: any, context?: functions.https.Calla
 
     const vtiDoc = await db.collection('vti_registry').doc(vtiId).get();
     if (!vtiDoc.exists) {
-      throw new functions.https.HttpsError('not-found', `VTI with ID ${vtiId} not found.`);
+      // Allow logging against farmFieldId even if no batch VTI exists yet
+      if (!farmFieldId) {
+        throw new functions.https.HttpsError('not-found', `VTI with ID ${vtiId} not found.`);
+      }
     }
 
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
@@ -167,7 +170,7 @@ export const handleHarvestEvent = functions.https.onCall(async (data, context) =
 
         const oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
         const preHarvestEventsQuery = db.collection('traceability_events')
-            .where('payload.farmFieldId', '==', farmFieldId)
+            .where('farmFieldId', '==', farmFieldId)
             .where('timestamp', '>=', admin.firestore.Timestamp.fromDate(oneYearAgo))
             .where('eventType', 'in', ['PLANTED', 'INPUT_APPLIED', 'OBSERVED']);
 
@@ -215,7 +218,7 @@ export const handleInputApplicationEvent = functions.https.onCall(async (data, c
         throw new functions.https.HttpsError('invalid-argument', 'The "farmFieldId" parameter is required and must be a string.');
     }
     if (!inputId || typeof inputId !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'The "inputId" parameter is required and must be a string (Master Data Input ID).');
+        throw new functions.https.HttpsError('invalid-argument', 'The "inputId" parameter is required and must be a string (e.g., KNF Batch Name, Fertilizer Name).');
     }
     if (!applicationDate) {
         throw new functions.https.HttpsError('invalid-argument', 'The "applicationDate" parameter is required.');
@@ -238,21 +241,6 @@ export const handleInputApplicationEvent = functions.https.onCall(async (data, c
     }
 
     try {
-        let fieldGeoLocation = null;
-        try {
-            const farmFieldDoc = await db.collection('geospatial_assets').doc(farmFieldId).get();
-            if (farmFieldDoc.exists) {
-                 fieldGeoLocation = farmFieldDoc.data()?.geoJson?.features?.[0]?.geometry?.coordinates;
-                 if (fieldGeoLocation && Array.isArray(fieldGeoLocation) && fieldGeoLocation.length >= 2) {
-                      fieldGeoLocation = new admin.firestore.GeoPoint(fieldGeoLocation[1], fieldGeoLocation[0]);
-                 } else {
-                     fieldGeoLocation = null;
-                 }
-            }
-        } catch (geoError) {
-             console.error('Error fetching farm field location:', geoError);
-        }
-
         const eventPayload = {
             inputId,
             quantity,
@@ -262,15 +250,17 @@ export const handleInputApplicationEvent = functions.https.onCall(async (data, c
             farmFieldId,
         };
 
-        await db.collection('traceability_events').add({
-             timestamp: applicationDate,
+        // Note: For pre-harvest events, we log against the farmFieldId (which is the cropId)
+        // because a batch VTI doesn't exist yet. The `vtiId` here is used to associate the event
+        // with the field itself.
+        await _internalLogTraceEvent({
+             vtiId: farmFieldId, 
              eventType: 'INPUT_APPLIED',
              actorRef: actorVtiId,
-             geoLocation: geoLocation || fieldGeoLocation || null,
+             geoLocation: geoLocation || null,
              payload: eventPayload,
              farmFieldId: farmFieldId,
-             isPublicTraceable: false,
-        });
+        }, context);
 
         return { status: 'success', message: `Input application event logged for farm field ${farmFieldId}.` };
 
@@ -282,6 +272,7 @@ export const handleInputApplicationEvent = functions.https.onCall(async (data, c
         throw new functions.https.HttpsError('internal', 'Failed to handle input application event.', error.message);
     }
 });
+
 
 export const handleObservationEvent = functions.runWith({ secrets: ["GEMINI_API_KEY"] }).https.onCall(async (data, context) => {
     if (!context.auth) {

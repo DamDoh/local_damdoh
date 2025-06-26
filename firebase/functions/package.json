@@ -1,0 +1,23 @@
+{
+  "name": "damdoh-functions",
+  "description": "Cloud Functions for DamDoh",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.1",
+    "firebase-ai-kit": "^1.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "firebase-functions-test": "^3.0.0"
+  },
+  "private": true
+}

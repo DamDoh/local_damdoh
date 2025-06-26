@@ -118,6 +118,14 @@ export const createHarvestSchema = z.object({
 });
 export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;
 
+export const createInputApplicationSchema = z.object({
+  applicationDate: z.date({ required_error: "An application date is required." }),
+  inputId: z.string().min(2, "Input name/type is required."),
+  quantity: z.coerce.number({ invalid_type_error: "Quantity must be a number." }).min(0, "Quantity must be a positive number."),
+  unit: z.string().min(1, "Unit is required (e.g., kg, L, bags)."),
+  method: z.string().max(100, "Method description is too long.").optional(),
+});
+export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
 
 export const editProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),

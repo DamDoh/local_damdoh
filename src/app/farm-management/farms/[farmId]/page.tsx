@@ -356,6 +356,12 @@ export default function FarmDetailPage() {
                                             </div>
                                             <div className="flex flex-wrap items-center gap-2 pt-4 px-4">
                                                 <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
+                                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-input-application`}>
+                                                        <Droplets className="mr-2 h-4 w-4"/>
+                                                        Log Input
+                                                    </Link>
+                                                </Button>
+                                                <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
                                                         <NotebookPen className="mr-2 h-4 w-4"/>
                                                         Log Observation
@@ -365,12 +371,6 @@ export default function FarmDetailPage() {
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.crop_type)}`}>
                                                         <PackageSearch className="mr-2 h-4 w-4"/>
                                                         Log Harvest
-                                                    </Link>
-                                                </Button>
-                                                <Button asChild variant="outline" size="sm" className="flex-1 min-w-[140px]">
-                                                    <Link href={`/marketplace/create?cropId=${crop.id}&cropName=${encodeURIComponent(crop.crop_type)}`}>
-                                                        <DollarSign className="mr-2 h-4 w-4" />
-                                                        Create Listing
                                                     </Link>
                                                 </Button>
                                             </div>
