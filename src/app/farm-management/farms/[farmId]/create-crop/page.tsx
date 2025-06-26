@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -46,6 +45,7 @@ export default function CreateCropPage() {
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
   const createCropCallable = httpsCallable(functions, 'createCrop');
+  const handlePlantingEvent = httpsCallable(functions, 'handlePlantingEvent');
 
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),
@@ -72,22 +72,39 @@ export default function CreateCropPage() {
     setIsSubmitting(true);
 
     try {
-      const payload = {
+      const cropPayload = {
         farm_id: farmId,
         owner_id: user.uid, // The backend will verify this against the auth context
         crop_type: data.cropType,
-        planting_date: data.plantingDate, // Date objects are handled by the callable function
+        planting_date: data.plantingDate,
         harvest_date: data.harvestDate,
         expected_yield: data.expectedYield,
         current_stage: data.currentStage,
         notes: data.notes,
       };
 
-      await createCropCallable(payload);
+      const result = await createCropCallable(cropPayload);
+      const newCropId = (result.data as any)?.cropId;
+
+      if (!newCropId) {
+        throw new Error("Failed to get new crop ID from backend.");
+      }
+      
+      // Log the planting event automatically
+      const plantingPayload = {
+        farmFieldId: newCropId,
+        cropType: data.cropType,
+        plantingDate: data.plantingDate,
+        actorVtiId: user.uid, // Using user's UID as their VTI for now
+        geoLocation: null, // Geolocation can be added later if needed
+      };
+      
+      await handlePlantingEvent(plantingPayload);
+
 
       toast({
         title: "Crop Added Successfully!",
-        description: `Your crop "${data.cropType}" has been registered for this farm.`,
+        description: `Your crop "${data.cropType}" has been registered and the planting event logged.`,
       });
 
       router.push(`/farm-management/farms/${farmId}`);
