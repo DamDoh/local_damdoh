@@ -14,5 +14,15 @@
   "signUp": "Registrarse",
   "myProfile": "Mi Perfil",
   "settings": "Ajustes",
-  "logOut": "Cerrar Sesión"
+  "logOut": "Cerrar Sesión",
+  "signInWelcome": "¡Bienvenido de nuevo a {appName}!",
+  "signInTitle": "Iniciar Sesión",
+  "signInDescription": "Introduce tus credenciales para acceder a tu cuenta.",
+  "emailLabel": "Dirección de Correo Electrónico",
+  "passwordLabel": "Contraseña",
+  "forgotPasswordLink": "¿Olvidaste la contraseña?",
+  "signInButton": "Iniciar Sesión",
+  "signingInButton": "Iniciando Sesión...",
+  "noAccountPrompt": "¿No tienes una cuenta?",
+  "signUpLink": "Regístrate"
 }

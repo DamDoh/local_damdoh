@@ -14,5 +14,15 @@
   "signUp": "Sign Up",
   "myProfile": "My Profile",
   "settings": "Settings",
-  "logOut": "Log out"
+  "logOut": "Log out",
+  "signInWelcome": "Welcome back to {appName}!",
+  "signInTitle": "Sign In",
+  "signInDescription": "Enter your credentials to access your account.",
+  "emailLabel": "Email Address",
+  "passwordLabel": "Password",
+  "forgotPasswordLink": "Forgot password?",
+  "signInButton": "Sign In",
+  "signingInButton": "Signing In...",
+  "noAccountPrompt": "Don't have an account?",
+  "signUpLink": "Sign Up"
 }
