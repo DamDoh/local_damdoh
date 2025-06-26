@@ -9,6 +9,7 @@ export default getRequestConfig(async ({locale}) => {
   if (!locales.includes(locale as any)) notFound();
  
   return {
+    // Using a relative path is more robust for build tools.
     messages: (await import(`./messages/${locale}.json`)).default
   };
 });
