@@ -103,7 +103,7 @@ export default function CreateTopicPage() {
                                 placeholder="A brief description of what this topic will be about."
                                 className="min-h-[100px]"
                                 value={description}
-                                onChange={(e) => setDescription(e.log_file.target.value)}
+                                onChange={(e) => setDescription(e.target.value)}
                                 required
                                 disabled={isSubmitting}
                             />
