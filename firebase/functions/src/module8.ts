@@ -186,191 +186,114 @@ export const exportUsersToBigQuery = functions.pubsub.schedule('every 24 hours')
 
 /**
  * Internal logic for assessing credit risk.
- * @param data - The data payload for assessment.
- * @returns An object with the score and risk factors.
+ * This is an internal function to be called by other modules (e.g., Module 7).
+ * @param data - The data payload for assessment, typically containing user profile and financial history.
+ * @returns An object with the calculated credit score and contributing risk factors.
  */
 export async function _internalAssessCreditRisk(data: any) {
     console.log("_internalAssessCreditRisk called with data:", data);
     // TODO: Interact with an external AI platform (e.g., Vertex AI) or an internal AI model service.
-    const calculatedScore = Math.random() * 100;
-    const riskFactors = ["Payment history", "Farm yield variability"];
+    const calculatedScore = Math.floor(300 + Math.random() * 550); // Generates a score between 300 and 850
+    const riskFactors = ["Payment history on platform", "Farm yield variability", "Length of operational history"];
     return {
-        score: Math.round(calculatedScore),
+        score: calculatedScore,
         riskFactors: riskFactors,
         status: "placeholder_analysis_complete"
     };
 }
-/**
- * Callable function wrapper for assessing credit risk.
- */
-export const assessCreditRiskWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalAssessCreditRisk(data);
-});
-
 
 /**
- * Internal logic for recommending content.
- * @param data - The data payload for recommendations.
- * @returns An object with recommended content IDs.
- */
-export async function _internalRecommendContent(data: any) {
-    console.log("_internalRecommendContent called with data:", data);
-    const recommendedContentIds = ["course1", "article2", "video3"];
-    return {
-        recommendedContentIds: recommendedContentIds,
-        status: "placeholder_recommendation_complete"
-    };
-}
-/**
- * Callable function wrapper for recommending content.
- */
-export const recommendContentWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalRecommendContent(data);
-});
-
-
-/**
- * Internal logic for matching funding opportunities.
- * @param data - The data payload for matching.
- * @returns An object with matched opportunities.
+ * Internal logic for matching a user with funding opportunities.
+ * This is an internal function to be called by other modules (e.g., Module 7).
+ * @param data - The data payload, containing user profile and available opportunities.
+ * @returns An object with a list of matched opportunities and their relevance scores.
  */
 export async function _internalMatchFundingOpportunities(data: any) {
     console.log("_internalMatchFundingOpportunities called with data:", data);
     const matchedOpportunities = [
-        { opportunityId: "loan1", relevanceScore: 0.85 },
-        { opportunityId: "grantA", relevanceScore: 0.70 }
+        { opportunityId: "loan_product_123", relevanceScore: 0.85, reason: "High credit score and matching crop type." },
+        { opportunityId: "grant_program_456", relevanceScore: 0.70, reason: "Matches sustainability practices and location." }
     ];
     return {
         matchedOpportunities: matchedOpportunities,
         status: "placeholder_matching_complete"
     };
 }
-/**
- * Callable function wrapper for matching funding opportunities.
- */
-export const matchFundingOpportunitiesWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalMatchFundingOpportunities(data);
-});
-
 
 /**
- * Internal logic for generating farm recommendations.
- * @param data - The data payload for farm recommendations.
- * @returns An object with farm recommendations.
- */
-export async function _internalGenerateFarmRecommendations(data: any) {
-    console.log("_internalGenerateFarmRecommendations called with data:", data);
-    const farmRecommendations = [
-        { recommendationType: "irrigation", details: "Increase irrigation by 15% in Field 3 tomorrow." },
-        { recommendationType: "pest_control", details: "Apply recommended pesticide to Field 1 within 48 hours." }
-    ];
-    return {
-        recommendations: farmRecommendations,
-        status: "placeholder_recommendations_complete"
-    };
-}
-/**
- * Callable function wrapper for generating farm recommendations.
- */
-export const generateFarmRecommendationsWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalGenerateFarmRecommendations(data);
-});
-
-
-/**
- * Internal logic for predicting market price.
- * @param data - The data payload for price prediction.
- * @returns An object with the price prediction.
- */
-export async function _internalPredictMarketPrice(data: any) {
-    console.log("_internalPredictMarketPrice called with data:", data);
-    const pricePrediction = {
-        commodity: data.commodity,
-        region: data.region,
-        timeFrame: data.timeFrame,
-        predictedPrice: 1500,
-        confidenceInterval: [1450, 1550],
-        unit: "USD/ton"
-    };
-    return {
-        prediction: pricePrediction,
-        status: "placeholder_prediction_complete"
-    };
-}
-/**
- * Callable function wrapper for predicting market price.
- */
-export const predictMarketPriceWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalPredictMarketPrice(data);
-});
-
-
-/**
- * Internal logic for assessing insurance risk.
- * @param data - The data payload for risk assessment.
- * @returns An object with the insurance risk score and factors.
+ * Internal logic for assessing insurance risk for a policy.
+ * This is an internal function to be called by other modules (e.g., Module 11).
+ * @param data - Data payload including policy, policyholder, and asset details.
+ * @returns An object with the insurance risk score and contributing factors.
  */
 export async function _internalAssessInsuranceRisk(data: any) {
     console.log("_internalAssessInsuranceRisk called with data:", data);
-    const riskScore = Math.random() * 10;
-    const riskFactors = ["Flood risk", "Drought probability"];
+    const riskScore = Math.random() * 10; // Placeholder score
+    const riskFactors = ["High flood risk in region", "Lack of documented pest management", "Monocropping practice"];
     return {
         insuranceRiskScore: riskScore.toFixed(2),
         riskFactors: riskFactors,
         status: "placeholder_assessment_complete"
     };
 }
-/**
- * Callable function wrapper for assessing insurance risk.
- */
-export const assessInsuranceRiskWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalAssessInsuranceRisk(data);
-});
-
 
 /**
- * Internal logic for verifying insurance claims.
- * @param data - The data payload for claim verification.
- * @returns An object with the verification result.
+ * Internal logic for verifying an insurance claim's validity.
+ * This is an internal function to be called by other modules (e.g., Module 11).
+ * @param data - Data payload including claim details, policy, and other evidence (e.g., weather data).
+ * @returns An object with the verification result, including status and payout amount if approved.
  */
 export async function _internalVerifyClaim(data: any) {
     console.log("_internalVerifyClaim called with data:", data);
     const verificationResult = {
-        status: 'approved',
-        payoutAmount: 500,
+        status: Math.random() > 0.3 ? 'approved' : 'rejected', // 70% chance of approval for demo
+        payoutAmount: 500.00, // Example payout
         assessmentDetails: {
-            verificationLog: 'Weather data confirmed drought during incident period.',
-            dataPointsConsidered: ['weather_data', 'farm_activity_logs']
+            verificationLog: 'Weather data confirmed drought during incident period. Farm activity logs consistent.',
+            dataPointsConsidered: ['weather_data', 'farm_activity_logs', 'vti_events']
         }
     };
     return verificationResult;
 }
-/**
- * Callable function wrapper for verifying insurance claims.
- */
-export const verifyClaimWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalVerifyClaim(data);
-});
 
 /**
- * Internal logic for processing report data.
- * @param data - The data payload for report processing.
- * @returns An object with the processed content.
+ * Internal logic for processing regulatory report data with AI.
+ * This is an internal function to be called by other modules (e.g., Module 10).
+ * @param data - The data payload for report processing, including the report type and raw data.
+ * @returns An object with the AI-processed content, such as a summary or flagged anomalies.
  */
 export async function _internalProcessReportData(data: any) {
     console.log("_internalProcessReportData called with data:", data);
     const processedContent = {
-        summary: "This is an AI-generated summary of the report.",
-        //... other structured data
+        summary: `This is an AI-generated summary for report type: ${data.reportType}. Analysis of the provided data indicates general compliance.`,
+        anomalies_detected: [],
+        key_metrics: { 'Total Transactions': 150, 'Compliance Score': '98%' },
     };
     return processedContent;
 }
+
+// --- Callable Wrappers (for direct client invocation if needed, with proper security) ---
+
 /**
- * Callable function wrapper for processing report data.
+ * Callable function wrapper for assessing credit risk.
+ * Note: Exposing this directly to clients should be done with caution and strong security rules.
  */
-export const processReportDataWithAI = functions.https.onCall(async (data, context) => {
-    return await _internalProcessReportData(data);
+export const assessCreditRiskWithAI = functions.https.onCall(async (data, context) => {
+    // TODO: Add authentication and authorization checks
+    return await _internalAssessCreditRisk(data);
 });
+
+/**
+ * Callable function wrapper for matching funding opportunities.
+ */
+export const matchFundingOpportunitiesWithAI = functions.https.onCall(async (data, context) => {
+    // TODO: Add authentication and authorization checks
+    return await _internalMatchFundingOpportunities(data);
+});
+
+
+// ... Other callable wrappers for the remaining internal functions can be added as needed ...
+// e.g., predictMarketPriceWithAI, recommendContentWithAI, generateFarmRecommendationsWithAI
 
 // This file also outlines conceptual data ingestion pipelines to BigQuery,
 // crucial for providing the data foundation for these AI models.

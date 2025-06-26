@@ -2,7 +2,7 @@
 
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { _internalAssessInsuranceRisk, _internalVerifyClaim } from './module8'; 
+import { _internalAssessInsuranceRisk, _internalVerifyClaim } from './module8'; // Import from centralized AI module
 
 const db = admin.firestore();
 
