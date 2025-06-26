@@ -1,0 +1,73 @@
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Function to check if a user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Function to check if the requesting user's ID matches the userId in the path
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ==================================
+    // Publicly Readable Images (e.g., placeholder images)
+    // ==================================
+    // Allow public read access to a 'public' folder if you have one.
+    // Example: match /public/{allPaths=**} {
+    //   allow read: if true;
+    // }
+    
+    // ==================================
+    // Marketplace Listing Images
+    // ==================================
+    // Anyone can read marketplace images.
+    // Only the authenticated user can upload to their own user-specific folder within marketplace-listings.
+    match /marketplace-listings/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+
+    // ==================================
+    // Agri-Event Images
+    // ==================================
+    // Anyone can read event banner images.
+    // Only the authenticated user can upload to their own user-specific folder within agri-events.
+    match /agri-events/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+    
+    // ==================================
+    // Observation Images for Traceability
+    // ==================================
+    // Anyone authenticated can read observation images.
+    // Only authenticated users can write to the observations folder.
+    match /observations/{allPaths=**} {
+        allow read: if isAuthenticated();
+        allow write: if isAuthenticated();
+    }
+    
+    // ==================================
+    // User Profile Pictures (Avatars)
+    // ==================================
+    // Anyone can read profile pictures.
+    // Only the user themselves can upload/update their own avatar.
+    match /avatars/{userId}/{allPaths=**} {
+        allow read: if true;
+        allow write: if isOwner(userId);
+    }
+    
+    // ==================================
+    // Default Deny
+    // ==================================
+    // Deny all other reads and writes by default for security.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

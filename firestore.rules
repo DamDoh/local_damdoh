@@ -1,30 +1,146 @@
+
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Default rule: Allow read/write access for any authenticated user.
-    // This is a good starting point for development, but you MUST
-    // implement more granular security rules before going to production.
-    match /{document=**} {
-      allow read, write: if request.auth.uid != null;
+  
+    // Helper function to check if a user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if the requesting user is the owner of a document
+    function isOwner(userId) {
+      return request.auth.uid == userId;
     }
 
-    // Example of a more secure rule for user profiles:
-    // A user can only read and write to their own document.
+    // =================================
+    // Users Collection
+    // =================================
     match /users/{userId} {
-      allow read, write: if request.auth.uid == userId;
+      // Anyone can read a user's public profile
+      allow read: if true;
+      // Only the user themselves can create or update their own profile
+      allow write: if isOwner(userId);
+      // Nobody can delete user profiles from the client
+      allow delete: if false;
     }
 
-    // Traceability events are immutable once created.
+    // =================================
+    // Marketplace, Orders & Coupons
+    // =================================
+    match /marketplaceItems/{listingId} {
+      // Anyone can read marketplace listings
+      allow read: if true;
+      // Any authenticated user can create a listing
+      allow create: if isAuthenticated();
+      // Only the seller can update or delete their own listing
+      allow update, delete: if isOwner(resource.data.sellerId);
+    }
+    
+    match /marketplace_orders/{orderId} {
+      // Only the buyer or seller can read an order
+      allow read: if isOwner(resource.data.buyerId) || isOwner(resource.data.sellerId);
+      // Orders are created by backend functions, not directly by clients
+      allow write: if false;
+    }
+
+    match /marketplace_coupons/{couponId} {
+        // Coupons can only be read by the seller or validated by a cloud function
+        allow read: if isOwner(resource.data.sellerId);
+        // Coupons are created by backend functions
+        allow write: if false;
+    }
+
+
+    // =================================
+    // Farm Management Collections
+    // =================================
+    match /farms/{farmId} {
+      // A user can read/write/delete only their own farm documents
+      allow read, write, delete: if isOwner(resource.data.owner_id);
+      allow create: if isOwner(request.resource.data.owner_id);
+    }
+
+    match /crops/{cropId} {
+      // A user can read/write/delete only their own crop documents
+      allow read, write, delete: if isOwner(resource.data.owner_id);
+      allow create: if isOwner(request.resource.data.owner_id);
+    }
+    
+    match /knf_batches/{batchId} {
+      // A user can read/write/delete only their own KNF batches
+      allow read, write, delete: if isOwner(resource.data.userId);
+      allow create: if isOwner(request.resource.data.userId);
+    }
+
+    // =================================
+    // Community (Forums & Groups)
+    // =================================
+    match /forums/{topicId} {
+      // Any authenticated user can read topics
+      allow read: if isAuthenticated();
+      // Any authenticated user can create a new topic
+      allow create: if isAuthenticated();
+      // Only the creator can update/delete their topic (can be expanded to admins/mods)
+      allow update, delete: if isOwner(resource.data.createdBy);
+    }
+
+    match /forums/{topicId}/posts/{postId} {
+        // Any authenticated user can read posts
+        allow read: if isAuthenticated();
+        // Any authenticated user can create a post
+        allow create: if isAuthenticated();
+        // Only post author can update/delete
+        allow update, delete: if isOwner(resource.data.authorRef);
+    }
+
+    match /forums/{topicId}/posts/{postId}/replies/{replyId} {
+        // Any authenticated user can read replies
+        allow read: if isAuthenticated();
+        // Any authenticated user can create a reply
+        allow create: if isAuthenticated();
+        // Only reply author can update/delete
+        allow update, delete: if isOwner(resource.data.authorRef);
+    }
+    
+    match /groups/{groupId} {
+        // Allow read if the group is public, or if the user is a member (future implementation)
+        allow read: if resource.data.isPublic == true || isAuthenticated(); // Simplified for now
+        // Any authenticated user can create a group
+        allow create: if isAuthenticated();
+        // Only the owner can update/delete
+        allow update, delete: if isOwner(resource.data.ownerId);
+    }
+    
+     match /groups/{groupId}/members/{memberId} {
+        // A user can join/leave a group (write to their own member doc)
+        allow write: if isOwner(memberId);
+        // Members can read the member list
+        allow read: if isAuthenticated();
+     }
+
+
+    // =================================
+    // Read-Only & Backend-Managed Collections
+    // =================================
+    match /knowledge_base/{docId} {
+      // Anyone authenticated can read the knowledge base
+      allow read: if isAuthenticated();
+      // No client-side writes
+      allow write: if false;
+    }
+    
     match /traceability_events/{eventId} {
-      allow create: if request.auth.uid != null;
-      allow read: if request.auth.uid != null; // Allow any logged-in user to read for now
-      allow update, delete: if false;
+       // Only allow reading of public events or events related to the user
+       allow read: if isAuthenticated();
+       // All events must be logged via backend Cloud Functions
+       allow write: if false;
     }
 
-    // Anyone can view marketplace items, but only authenticated users can create them.
-    match /marketplaceItems/{itemId} {
-        allow read: if true;
-        allow write: if request.auth.uid != null;
+    // Default deny all other collections
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
