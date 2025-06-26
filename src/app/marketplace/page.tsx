@@ -17,19 +17,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { getMarketplaceItemsByCategory } from "@/lib/firebase";
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
 import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
-
-// Super App Vision Note: The Marketplace is more than a list of items.
-// It's a dynamic hub that uses AI to provide personalized recommendations
-// and will eventually integrate directly with other modules like Financial Services
-// (for "Apply Now" buttons) and Traceability (to show a product's history).
-// The goal is to make trade simple, efficient, and trustworthy.
 
 function MarketplaceContent() {
   const [isMounted, setIsMounted] = useState(false);
@@ -45,7 +38,6 @@ function MarketplaceContent() {
   const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
 
   const pathname = usePathname();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get('category');
   const userType = searchParams.get('userType') as 'consumer' | 'farmer' | 'trader' | null;
@@ -74,13 +66,13 @@ function MarketplaceContent() {
       }
     };
     
-    fetchItems();
-
-    // AI Integration Point: Fetch personalized recommendations based on user context.
     const fetchAiRecommendations = async () => {
       setIsLoadingAiRecommendations(true);
       try {
-        const allItems = await getAllMarketplaceItemsFromDB();
+        // Fetch all items once to be used for matching against recommendations
+        const allItems = items.length > 0 ? items : await getAllMarketplaceItemsFromDB();
+        if (items.length === 0) setItems(allItems as MarketplaceItem[]);
+
         const mockUserContext: MarketplaceRecommendationInput = {
           stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
           recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
@@ -96,7 +88,7 @@ function MarketplaceContent() {
             recommendationsOutput.suggestedItems.forEach(suggested => {
               const foundItem = allItems.find(item => item.id === suggested.itemId);
               if (foundItem) {
-                recommendedFullItems.push(foundItem);
+                recommendedFullItems.push(foundItem as MarketplaceItem);
                 reasons[foundItem.id] = suggested.reason;
               }
             });
@@ -110,9 +102,10 @@ function MarketplaceContent() {
         setIsLoadingAiRecommendations(false);
       }
     };
-    fetchAiRecommendations();
+    
+    fetchItems().then(() => fetchAiRecommendations());
 
-  }, [userType, toast]);
+  }, [userType, toast]); // Dependency on items removed to prevent re-fetch loop
   
   const filteredMarketplaceItems = useMemo(() => {
     if (!isMounted) return [];
@@ -324,4 +317,3 @@ export default function MarketplacePage() {
     </Suspense>
   )
 }
-    
