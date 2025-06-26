@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
@@ -77,7 +78,7 @@ function MessagingContent() {
             try {
                 const convResult = await getConversationsCallable();
                 const convos = (convResult.data as { conversations: Conversation[] }).conversations || [];
-                setConversations(convo);
+                setConversations(convos);
 
                 const recipientId = searchParams.get('with');
                 if (recipientId) {

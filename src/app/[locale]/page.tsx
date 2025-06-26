@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState, useMemo, Suspense } from 'react';
+import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -227,20 +227,28 @@ export default function DashboardPage() {
     const router = useRouter();
     const pathname = usePathname();
     const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
+    const [isRedirecting, setIsRedirecting] = useState(true);
 
     useEffect(() => {
-        // A path like `/en` has 1 segment after filtering empty strings. A path like `/` has 0.
-        const isLocaleRoot = pathname.split('/').filter(p => p).length <= 1;
-        if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && isLocaleRoot) {
-          router.replace(homepagePreference);
+        if (isPreferenceLoading) {
+            return; // Wait until we have loaded the preference from storage
         }
-    }, [homepagePreference, isPreferenceLoading, pathname, router]);
+        
+        // A path like `/en` has 1 segment after filtering empty strings.
+        const isLocaleRoot = pathname.split('/').filter(p => p).length <= 1;
 
-    // A more robust check for root path. A path like `/en` has 1 segment. A path like `/` has 0.
-    const isLocaleRoot = pathname.split('/').filter(p => p).length <= 1;
+        if (isLocaleRoot && homepagePreference && homepagePreference !== pathname) {
+            // A preference is set, it's different, and we are on the root. Time to redirect.
+            // The component will unmount, so we don't need to set isRedirecting to false.
+            router.replace(homepagePreference);
+        } else {
+            // No redirect is needed, either because there's no preference,
+            // we're already on the preferred page, or we're on a deeper page.
+            setIsRedirecting(false);
+        }
+    }, [isPreferenceLoading, homepagePreference, pathname, router]);
 
-    // Show a loading indicator while we check for a preference and potentially redirect.
-    if (isPreferenceLoading || (homepagePreference && homepagePreference !== pathname && isLocaleRoot)) {
+    if (isRedirecting) {
         return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
     }
 
