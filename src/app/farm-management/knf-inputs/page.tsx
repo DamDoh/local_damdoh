@@ -16,19 +16,14 @@ import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
-import type { KnfBatch as KnfBatchType } from '@/firebase/functions/src/types'; // Import from backend types
+import type { KnfBatch as KnfBatchType } from '@/lib/types';
 
 type KnfInputType = 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
 
-interface ActiveBatch {
-  id: string;
-  type: KnfInputType;
-  typeName: string;
-  startDate: string; // ISO String
-  ingredients: string;
-  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-  nextStep: string;
-  nextStepDate: string; // ISO String
+interface ActiveBatch extends KnfBatchType {
+  // Frontend uses string dates for easier state management
+  startDate: string; 
+  nextStepDate: string;
 }
 
 export default function KNFInputAssistantPage() {
