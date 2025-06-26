@@ -1,0 +1,18 @@
+
+{
+  "home": "Home",
+  "network": "Network",
+  "farmMgmt": "Farm Mgmt",
+  "marketplace": "Marketplace",
+  "traceability": "Traceability",
+  "forums": "Forums",
+  "notifications": "Notifications",
+  "messages": "Messages",
+  "wallet": "Wallet",
+  "searchPlaceholder": "Ask the AI or search DamDoh...",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "myProfile": "My Profile",
+  "settings": "Settings",
+  "logOut": "Log out"
+}

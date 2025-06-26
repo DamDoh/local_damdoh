@@ -1,0 +1,18 @@
+
+{
+  "home": "Inicio",
+  "network": "Red",
+  "farmMgmt": "G. Finca",
+  "marketplace": "Mercado",
+  "traceability": "Trazabilidad",
+  "forums": "Foros",
+  "notifications": "Notificaciones",
+  "messages": "Mensajes",
+  "wallet": "Billetera",
+  "searchPlaceholder": "Pregúntale a la IA o busca en DamDoh...",
+  "signIn": "Iniciar Sesión",
+  "signUp": "Registrarse",
+  "myProfile": "Mi Perfil",
+  "settings": "Ajustes",
+  "logOut": "Cerrar Sesión"
+}
