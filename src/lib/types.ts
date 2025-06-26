@@ -78,15 +78,25 @@ export interface FeedItem {
   };
 }
 
-export interface DirectMessage {
+export interface Participant {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+}
+
+export interface Conversation {
   id: string;
-  senderName: string;
-  senderAvatarUrl?: string;
-  lastMessage: string;
-  timestamp: string;
-  unread?: boolean;
-  dataAiHint?: string;
-  relatedListingId?: string;
+  participants: Participant[]; // Array of participants
+  lastMessage?: string;
+  lastMessageTimestamp?: string; // ISO string
+  unreadCount: number;
+}
+export interface Message {
+  id:string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string; // ISO string
 }
 
 export interface MobileHomeCategory {
@@ -116,23 +126,6 @@ export interface ForumGroup {
   createdAt: string; // ISO string
 }
 
-export interface Conversation {
-  id: string;
-  participant: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  lastMessage: string;
-  timestamp: string;
-  unreadCount: number;
-}
-export interface Message {
-  id: string;
-  senderId: string;
-  content: string;
-  timestamp: string;
-}
 export interface Notification {
   id: string;
   actorId: string;
