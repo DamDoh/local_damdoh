@@ -53,7 +53,15 @@ export const getUserFarms = functions.https.onCall(async (data, context) => {
 
   try {
     const farmsSnapshot = await db.collection('farms').where('owner_id', '==', context.auth.uid).get();
-    const farms = farmsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const farms = farmsSnapshot.docs.map(doc => {
+        const docData = doc.data();
+        return { 
+            id: doc.id, 
+            ...docData,
+            createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
+            updatedAt: docData.updatedAt?.toDate ? docData.updatedAt.toDate().toISOString() : null,
+        }
+    });
     return farms;
   } catch (error) {
     console.error("Error fetching user farms:", error);
@@ -80,14 +88,19 @@ export const getFarm = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError("not-found", "Farm not found.");
         }
         
-        const farmData = farmDoc.data();
+        const farmData = farmDoc.data()!;
 
         // Security check: ensure the authenticated user owns this farm
-        if (farmData!.owner_id !== context.auth.uid) {
+        if (farmData.owner_id !== context.auth.uid) {
             throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this farm.");
         }
         
-        return { id: farmDoc.id, ...farmData };
+        return { 
+            id: farmDoc.id, 
+            ...farmData,
+            createdAt: farmData.createdAt?.toDate ? farmData.createdAt.toDate().toISOString() : null,
+            updatedAt: farmData.updatedAt?.toDate ? farmData.updatedAt.toDate().toISOString() : null,
+        };
     } catch (error) {
         console.error("Error fetching farm:", error);
         if (error instanceof functions.https.HttpsError) {
@@ -184,7 +197,16 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
 
     try {
         const cropsSnapshot = await db.collection('crops').where('farm_id', '==', farmId).get();
-        const crops = cropsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const crops = cropsSnapshot.docs.map(doc => {
+            const docData = doc.data();
+            return { 
+                id: doc.id, 
+                ...docData,
+                planting_date: docData.planting_date?.toDate ? docData.planting_date.toDate().toISOString() : null,
+                harvest_date: docData.harvest_date?.toDate ? docData.harvest_date.toDate().toISOString() : null,
+                createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
+            };
+        });
         return crops;
     } catch (error) {
         console.error("Error fetching farm crops:", error);
