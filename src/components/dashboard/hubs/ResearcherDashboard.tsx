@@ -38,7 +38,7 @@ export const ResearcherDashboard = () => {
     };
 
     fetchData();
-  }, [getResearcherDashboardDataCallable]);
+  }, []);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -64,6 +64,15 @@ export const ResearcherDashboard = () => {
       );
   }
 
+  const getStatusBadgeVariant = (status: string) => {
+    switch (status.toLowerCase()) {
+        case 'draft': return 'outline';
+        case 'pending review': return 'secondary';
+        case 'published': return 'default';
+        default: return 'secondary';
+    }
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">Research & Analytics Hub</h1>
@@ -73,7 +82,7 @@ export const ResearcherDashboard = () => {
          <Card className="md:col-span-2">
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/> Available Datasets</CardTitle>
-             <CardDescription>Datasets available for research and analysis.</CardDescription>
+             <CardDescription>Datasets available for research and analysis, subject to access levels and user consent.</CardDescription>
            </CardHeader>
            <CardContent>
              {dashboardData.availableDatasets.length > 0 ? (
@@ -94,7 +103,7 @@ export const ResearcherDashboard = () => {
                        <TableCell><Badge variant="secondary">{dataset.accessLevel}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={dataset.actionLink}>Access Data</Link>
+                           <Link href={dataset.actionLink}>Request Access</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -128,7 +137,14 @@ export const ResearcherDashboard = () => {
                    {dashboardData.ongoingProjects.map((project) => (
                      <TableRow key={project.id}>
                        <TableCell className="font-medium">{project.title}</TableCell>
-                       <TableCell><Badge variant="secondary">{project.progress}%</Badge></TableCell>
+                       <TableCell>
+                         <div className="flex items-center gap-2">
+                            <div className="w-20 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${project.progress}%` }}></div>
+                            </div>
+                            <span className="text-xs">{project.progress}%</span>
+                         </div>
+                        </TableCell>
                        <TableCell>{project.collaborators.join(', ')}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
@@ -146,23 +162,21 @@ export const ResearcherDashboard = () => {
          </Card>
 
           {/* Knowledge Hub Contributions */}
-         <Card>
+         <Card className="md:col-span-2">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><Lightbulb className="h-4 w-4 text-yellow-500"/> Knowledge Hub Contributions</CardTitle>
-                <CardDescription>Your contributions to the DamDoh Knowledge Hub.</CardDescription>
+                <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
                 {dashboardData.knowledgeHubContributions.length > 0 ? (
                     <div className="space-y-3">
                         {dashboardData.knowledgeHubContributions.map((contribution) => (
-                            <div key={contribution.id} className="text-sm p-2 border rounded-lg">
-                                <div className="flex justify-between items-center">
+                            <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
+                                <div>
                                     <p className="font-medium">{contribution.title}</p>
-                                    <Badge variant="secondary">{contribution.status}</Badge>
+                                    <p className="text-xs text-muted-foreground">{contribution.type}</p>
                                 </div>
-                                <Button asChild variant="link" size="sm" className="px-0 pt-1">
-                                    <Link href={contribution.actionLink}>View Details</Link>
-                                </Button>
+                                <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
                             </div>
                         ))}
                     </div>
@@ -171,7 +185,6 @@ export const ResearcherDashboard = () => {
                 )}
             </CardContent>
          </Card>
-
       </div>
     </div>
   );
@@ -183,6 +196,5 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
     </div>
 );

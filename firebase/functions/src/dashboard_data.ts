@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, FieldAgentDashboardData, CooperativeDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -300,8 +300,25 @@ export const getCertificationBodyDashboardData = functions.https.onCall(async (d
 });
 
 
-export const getResearcherDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("researcher-dashboard", context);
+export const getResearcherDashboardData = functions.https.onCall(async (data, context): Promise<ResearcherDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: ResearcherDashboardData = {
+        availableDatasets: [
+            { id: 'ds1', name: 'Anonymized Maize Yield Data (2022-2023)', description: 'Yield data from over 500 smallholder farms in East Africa.', dataType: 'Tabular', accessLevel: 'Anonymized', actionLink: '#' },
+            { id: 'ds2', name: 'Public VTI Events for Coffee', description: 'Traceability events for specialty coffee batches marked as public.', dataType: 'Event Stream', accessLevel: 'Public', actionLink: '#' },
+        ],
+        ongoingProjects: [
+            { id: 'proj1', title: 'Impact of Cover Cropping on Soil Health', progress: 65, collaborators: ['Dr. L. Hanson', 'AgriUniversity'], actionLink: '#' },
+        ],
+        knowledgeHubContributions: [
+            { id: 'kh1', title: 'A Comparative Study of Drip vs. Furrow Irrigation', type: 'Article', status: 'Published', actionLink: '#' },
+        ]
+    };
+
+    return mockData;
 });
 
 export const getAgronomistDashboardData = functions.https.onCall(async (data, context) => {
@@ -339,8 +356,27 @@ export const getAgronomistDashboardData = functions.https.onCall(async (data, co
 });
 
 
-export const getAgroTourismDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("agro-tourism-dashboard", context);
+export const getAgroTourismDashboardData = functions.https.onCall(async (data, context): Promise<AgroTourismDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    
+    const mockData: AgroTourismDashboardData = {
+        listedExperiences: [
+            { id: 'exp1', title: 'Organic Coffee Farm Tour & Tasting', location: 'Nyeri, Kenya', status: 'Active', bookingsCount: 45, actionLink: '#' },
+            { id: 'exp2', title: 'Cheese Making Workshop', location: 'Limuru, Kenya', status: 'Paused', bookingsCount: 120, actionLink: '#' },
+        ],
+        upcomingBookings: [
+            { id: 'book1', experienceTitle: 'Organic Coffee Farm Tour & Tasting', guestName: 'Jane Doe', date: new Date(Date.now() + 86400000 * 3).toISOString(), actionLink: '#' },
+            { id: 'book2', experienceTitle: 'Organic Coffee Farm Tour & Tasting', guestName: 'John Smith', date: new Date(Date.now() + 86400000 * 5).toISOString(), actionLink: '#' },
+        ],
+        guestReviews: [
+            { id: 'rev1', guestName: 'Alice', experienceTitle: 'Organic Coffee Farm Tour & Tasting', rating: 5, comment: 'An amazing and educational experience! The coffee was superb.', actionLink: '#' },
+            { id: 'rev2', guestName: 'Bob', experienceTitle: 'Cheese Making Workshop', rating: 4, comment: 'Great fun, learned a lot. The host was very knowledgeable.', actionLink: '#' },
+        ],
+    };
+
+    return mockData;
 });
 
 export const getInsuranceProviderDashboardData = functions.https.onCall(async (data, context) => {

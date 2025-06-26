@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { MapPin, Calendar, Star } from 'lucide-react';
-import { AgroTourismDashboardData } from '@/lib/types';
+import type { AgroTourismDashboardData } from '@/lib/types';
 
 
 const functions = getFunctions(firebaseApp);
@@ -39,7 +39,7 @@ export const AgroTourismDashboard = () => {
     };
 
     fetchData();
-  }, [getAgroTourismDashboardDataCallable]);
+  }, []);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -105,7 +105,7 @@ export const AgroTourismDashboard = () => {
                      <TableRow key={booking.id}>
                        <TableCell className="font-medium">{booking.experienceTitle}</TableCell>
                        <TableCell>{booking.guestName}</TableCell>
-                       <TableCell>{booking.date}</TableCell>
+                       <TableCell>{new Date(booking.date).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
                            <Link href={booking.actionLink}>View Details</Link>
@@ -144,7 +144,7 @@ export const AgroTourismDashboard = () => {
                      <TableRow key={experience.id}>
                        <TableCell className="font-medium">{experience.title}</TableCell>
                        <TableCell>{experience.location}</TableCell>
-                       <TableCell><Badge variant="secondary">{experience.status}</Badge></TableCell>
+                       <TableCell><Badge variant={experience.status === 'Active' ? 'default' : 'secondary'}>{experience.status}</Badge></TableCell>
                        <TableCell>{experience.bookingsCount}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
@@ -162,7 +162,7 @@ export const AgroTourismDashboard = () => {
          </Card>
 
           {/* Guest Reviews */}
-         <Card>
+         <Card className="md:col-span-2">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><Star className="h-4 w-4 text-yellow-500"/> Guest Reviews</CardTitle>
                 <CardDescription>Latest feedback from your guests.</CardDescription>
@@ -171,8 +171,8 @@ export const AgroTourismDashboard = () => {
                 {dashboardData.guestReviews.length > 0 ? (
                     <div className="space-y-3">
                         {dashboardData.guestReviews.map((review) => (
-                            <div key={review.id} className="text-sm p-2 border rounded-lg">
-                                <div className="flex justify-between items-center">
+                            <div key={review.id} className="text-sm p-3 border rounded-lg">
+                                <div className="flex justify-between items-start">
                                     <p className="font-medium">{review.guestName} on "{review.experienceTitle}"</p>
                                     {getRatingStars(review.rating)}
                                 </div>
@@ -199,6 +199,6 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
+         <Skeleton className="h-32 w-full rounded-lg" />
     </div>
 );
