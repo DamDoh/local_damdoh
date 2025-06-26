@@ -1,4 +1,3 @@
-
 // src/lib/db-utils.ts
 import { 
   collection, 
@@ -52,7 +51,8 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
     return profileList;
   } catch (error) {
     console.error("Error fetching all profiles from Firestore: ", error);
-    return dummyProfiles; // Return dummy data on error for development
+    // On error, return dummy data for development purposes to avoid crashing the app.
+    return dummyProfiles;
   }
 }
 
@@ -70,8 +70,8 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
     } else {
-      console.log(`No profile found with ID: ${id}. Trying dummy data.`);
-      return dummyProfiles.find(p => p.id === id) || null;
+      console.log(`No profile found with ID: ${id}.`);
+      return null;
     }
   } catch (error) {
     console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
@@ -128,8 +128,7 @@ export async function updateProfileInDB(id: string, updates: Partial<Omit<UserPr
     if (updatedProfileSnap.exists()) {
         const data = updatedProfileSnap.data();
         return {
-            id: updatedProfileSnap.id,
-            ...data,
+            id: updatedProfileSnap.id, ...data,
             createdAt: (data.createdAt as Timestamp).toDate().toISOString(),
             updatedAt: (data.updatedAt as Timestamp).toDate().toISOString(),
         } as UserProfile;

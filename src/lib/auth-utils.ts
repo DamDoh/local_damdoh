@@ -9,11 +9,11 @@ import {
   confirmPasswordReset,
   type User as FirebaseUser
 } from "firebase/auth";
-import { auth } from './firebase'; 
-import { useEffect, useState } from 'react';
+import { auth } from './firebase/client'; 
 import { createProfileInDB } from './db-utils';
 import type { UserProfile } from './types';
 import type { StakeholderRole } from './constants';
+import { useEffect, useState } from 'react';
 
 // This listener will update currentFirebaseUser whenever auth state changes
 // It's good for internal module state but components should prefer useAuth hook
