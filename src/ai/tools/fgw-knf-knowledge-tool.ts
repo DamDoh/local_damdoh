@@ -1,57 +1,49 @@
 'use server';
-import { defineTool } from 'genkit';
-import { z } from 'zod';
-import { adminDb } from '../../lib/firebase/admin'; // Correctly import the admin SDK
 
-export const fgwKnfKnowledgeTool = defineTool(
+import {ai} from '@/ai/genkit';
+import {z} from 'genkit';
+import {getFirestore, collection, getDocs} from 'firebase/firestore';
+import { app as firebaseApp } from '@/lib/firebase/client'; // Import client-side app
+
+const db = getFirestore(firebaseApp);
+
+export const fgwKnfKnowledgeTool = ai.defineTool(
   {
-    name: 'fgwKnfKnowledge',
-    description: 'Searches the KNF knowledge base for information on specific topics, preparations, or materials.',
+    name: 'getFarmingTechniqueDetails',
+    description: 'Get detailed information, ingredients, and step-by-step instructions for a specific Farming God\'s Way (FGW) or Korean Natural Farming (KNF) technique, practice, or concoction. Use this when a user asks for specific "how to" information, ingredients, or steps.',
     inputSchema: z.object({
-      query: z.string().describe('The search query for the KNF knowledge base.'),
+      techniqueName: z.string().describe('The name of the technique, practice, or recipe. Examples: "Fermented Plant Juice", "FPJ", "God\'s Blanket", "IMO-1"'),
     }),
-    outputSchema: z.object({
-      results: z.array(
-        z.object({
-          id: z.string(),
-          title: z.string(),
-          content: z.string(),
-          category: z.string(),
-        })
-      ),
-    }),
+    outputSchema: z.any(), // The LLM will get the raw document data and can formulate a response from it.
   },
-  async ({ query }) => {
-    console.log(`[fgwKnfKnowledgeTool] Received query: "${query}"`);
+  async (input) => {
+    console.log(`[fgwKnfKnowledgeTool] Received query for: "${input.techniqueName}"`);
 
     try {
-      // Use the admin SDK to access Firestore
-      const articlesRef = adminDb.collection('knowledge_articles');
+      const articlesRef = collection(db, 'knowledge_base');
+      const snapshot = await getDocs(articlesRef);
       
-      // A simple search: check if the query appears in the title or content.
-      // For a real application, consider using a full-text search solution like Algolia or Meilisearch.
-      const snapshot = await articlesRef.get();
-      
-      const results = snapshot.docs
-        .map(doc => ({ id: doc.id, ...doc.data() }))
-        .filter(doc => 
-          doc.title.toLowerCase().includes(query.toLowerCase()) || 
-          doc.content.toLowerCase().includes(query.toLowerCase())
-        )
-        .map(doc => ({
-          id: doc.id,
-          title: doc.title,
-          content: doc.content,
-          category: doc.category,
-        }));
+      const allDocs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-      console.log(`[fgwKnfKnowledgeTool] Found ${results.length} results.`);
-      return { results };
+      const searchTerm = input.techniqueName.toLowerCase();
+      
+      // Find the first document where the name or ID contains the search term.
+      // This allows for searching by abbreviation (e.g., "FPJ") if the ID is set to "knf_fpj".
+      const result = allDocs.find(doc => 
+        doc.name.toLowerCase().includes(searchTerm) || 
+        doc.id.toLowerCase().includes(searchTerm)
+      );
+      
+      if (!result) {
+        console.log(`[fgwKnfKnowledgeTool] No technique found for "${input.techniqueName}".`);
+        return { error: 'Technique not found in the knowledge base.' };
+      }
+
+      console.log(`[fgwKnfKnowledgeTool] Found matching technique: "${result.name}".`);
+      return result; // Return the entire document data.
 
     } catch (error) {
       console.error('[fgwKnfKnowledgeTool] Error searching Firestore:', error);
-      // It's crucial to throw an error or return a structured error response
-      // so the calling flow knows the tool failed.
       throw new Error('Failed to search the KNF knowledge base.');
     }
   }
