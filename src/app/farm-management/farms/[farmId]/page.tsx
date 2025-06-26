@@ -1,16 +1,17 @@
 
 "use client";
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseApp } from '@/lib/firebase';
 import { useAuth } from '@/lib/auth-utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch, Eye, HardHat, Weight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -32,6 +33,12 @@ interface Crop {
     planting_date?: { _seconds: number; _nanoseconds: number; }; // Firestore Timestamp structure
 }
 
+interface TraceabilityEvent {
+    id: string;
+    eventType: string;
+    timestamp: { _seconds: number; _nanoseconds: number; };
+    payload: { [key: string]: any };
+}
 
 const getFarmTypeIcon = (farmType: string) => {
     const iconProps = { className: "h-5 w-5 text-muted-foreground" };
@@ -41,6 +48,17 @@ const getFarmTypeIcon = (farmType: string) => {
         case 'mixed': return <Tractor {...iconProps} />;
         case 'aquaculture': return <Fish {...iconProps} />;
         default: return <Home {...iconProps} />;
+    }
+};
+
+const getEventIcon = (eventType: string) => {
+    const iconProps = { className: "h-5 w-5 text-primary" };
+    switch (eventType) {
+        case 'PLANTED': return <Sprout {...iconProps} />;
+        case 'OBSERVED': return <Eye {...iconProps} />;
+        case 'INPUT_APPLIED': return <Droplets {...iconProps} />;
+        case 'HARVESTED': return <Weight {...iconProps} />;
+        default: return <HardHat {...iconProps} />;
     }
 };
 
@@ -86,6 +104,62 @@ function FarmDetailSkeleton() {
     );
 }
 
+function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
+    const [events, setEvents] = useState<TraceabilityEvent[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const functions = getFunctions(firebaseApp);
+    const getEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            setIsLoading(true);
+            try {
+                const result = await getEventsCallable({ farmFieldId });
+                setEvents(result.data as TraceabilityEvent[]);
+            } catch (error) {
+                console.error("Error fetching activity log:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchEvents();
+    }, [farmFieldId, getEventsCallable]);
+
+    if (isLoading) {
+        return <div className="p-4"><Skeleton className="h-16 w-full" /></div>;
+    }
+
+    if (events.length === 0) {
+        return <p className="p-4 text-xs text-muted-foreground text-center">No activities logged for this crop yet.</p>;
+    }
+    
+    return (
+        <div className="p-4 space-y-4">
+            <h4 className="font-semibold text-sm">Activity Log</h4>
+            <div className="relative pl-6">
+                {/* Timeline line */}
+                <div className="absolute left-3 top-0 h-full w-0.5 bg-border -z-10"></div>
+                {events.map((event) => (
+                    <div key={event.id} className="relative flex items-start gap-4 mb-4">
+                        <div className="absolute left-0 top-0 -translate-x-1/2 h-full flex items-center">
+                           <div className="bg-background p-1 rounded-full border">
+                               {getEventIcon(event.eventType)}
+                           </div>
+                        </div>
+                        <div className="pl-4">
+                            <p className="text-sm font-medium">{event.eventType}</p>
+                            <p className="text-xs text-muted-foreground">{new Date(event.timestamp._seconds * 1000).toLocaleString()}</p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                                {event.payload?.observationType ? `${event.payload.observationType}: ${event.payload.details}` : JSON.stringify(event.payload)}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function FarmDetailPage() {
     const params = useParams();
     const router = useRouter();
@@ -120,7 +194,6 @@ export default function FarmDetailPage() {
                             })
                             .catch((cropsError) => {
                                 console.error("Error fetching farm crops:", cropsError);
-                                // Don't block the page for crop errors, just show empty
                             })
                             .finally(() => {
                                 setIsLoadingCrops(false);
@@ -241,7 +314,7 @@ export default function FarmDetailPage() {
             <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-4">
-                        <CardTitle className="text-lg flex items-center gap-2"><Sprout className="h-5 w-5"/> Crops / Livestock</CardTitle>
+                        <CardTitle className="text-lg flex items-center gap-2"><ListChecks className="h-5 w-5"/> Crops / Livestock</CardTitle>
                         <Button asChild variant="outline" size="sm">
                            <Link href={`/farm-management/farms/${farmId}/create-crop`}>
                              <PlusCircle className="mr-2 h-4 w-4"/>Add New
@@ -255,44 +328,51 @@ export default function FarmDetailPage() {
                                 <Skeleton className="h-24 w-full" />
                             </div>
                         ) : crops.length > 0 ? (
-                            <div className="space-y-3">
+                           <Accordion type="single" collapsible className="w-full">
                                 {crops.map(crop => (
-                                    <div key={crop.id} className="p-3 border rounded-lg">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <div>
-                                                <p className="font-semibold">{crop.crop_type}</p>
-                                                {crop.planting_date && (
-                                                    <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
-                                                        <CalendarDays className="h-3 w-3" />
-                                                        Planted: {new Date(crop.planting_date._seconds * 1000).toLocaleDateString()}
-                                                    </p>
-                                                )}
+                                    <AccordionItem value={crop.id} key={crop.id}>
+                                        <AccordionTrigger className="p-3 hover:bg-accent/50 rounded-lg hover:no-underline">
+                                            <div className="flex justify-between items-start w-full">
+                                                <div>
+                                                    <p className="font-semibold text-left">{crop.crop_type}</p>
+                                                    {crop.planting_date && (
+                                                        <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
+                                                            <CalendarDays className="h-3 w-3" />
+                                                            Planted: {new Date(crop.planting_date._seconds * 1000).toLocaleDateString()}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                                {crop.current_stage && <Badge variant="secondary">{crop.current_stage}</Badge>}
                                             </div>
-                                            {crop.current_stage && <Badge variant="secondary">{crop.current_stage}</Badge>}
-                                        </div>
-                                        <div className="flex flex-wrap items-center gap-2 mt-2 pt-2 border-t">
-                                            <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
-                                                    <NotebookPen className="mr-2 h-4 w-4"/>
-                                                    Log Observation
-                                                </Link>
-                                            </Button>
-                                             <Button asChild variant="default" size="sm" className="flex-1 min-w-[140px]">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.crop_type)}`}>
-                                                    <PackageSearch className="mr-2 h-4 w-4"/>
-                                                    Log Harvest
-                                                </Link>
-                                            </Button>
-                                            <Button asChild variant="outline" size="sm" className="flex-1 min-w-[140px]">
-                                                <Link href={`/marketplace/create?cropId=${crop.id}&cropName=${encodeURIComponent(crop.crop_type)}`}>
-                                                    <DollarSign className="mr-2 h-4 w-4" />
-                                                    Create Listing
-                                                </Link>
-                                            </Button>
-                                        </div>
-                                    </div>
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="border-t border-b">
+                                                <CropActivityLog farmFieldId={crop.id} />
+                                            </div>
+                                            <div className="flex flex-wrap items-center gap-2 pt-4 px-4">
+                                                <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
+                                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
+                                                        <NotebookPen className="mr-2 h-4 w-4"/>
+                                                        Log Observation
+                                                    </Link>
+                                                </Button>
+                                                <Button asChild variant="default" size="sm" className="flex-1 min-w-[140px]">
+                                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.crop_type)}`}>
+                                                        <PackageSearch className="mr-2 h-4 w-4"/>
+                                                        Log Harvest
+                                                    </Link>
+                                                </Button>
+                                                <Button asChild variant="outline" size="sm" className="flex-1 min-w-[140px]">
+                                                    <Link href={`/marketplace/create?cropId=${crop.id}&cropName=${encodeURIComponent(crop.crop_type)}`}>
+                                                        <DollarSign className="mr-2 h-4 w-4" />
+                                                        Create Listing
+                                                    </Link>
+                                                </Button>
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
                                 ))}
-                            </div>
+                            </Accordion>
                         ) : (
                             <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
                                 <p>No crops or livestock added yet.</p>
@@ -314,20 +394,6 @@ export default function FarmDetailPage() {
                     </CardContent>
                 </Card>
             </div>
-
-            <Card>
-                <CardHeader>
-                     <CardTitle className="text-lg flex items-center gap-2"><ListCollapse className="h-5 w-5"/> Activity Log</CardTitle>
-                     <CardDescription>A log of all activities related to this farm, from planting to harvest.</CardDescription>
-                </CardHeader>
-                 <CardContent>
-                    <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
-                        <p>The farm activity log will be displayed here.</p>
-                        <p className="text-xs text-muted-foreground mt-1">This feature is under development.</p>
-                    </div>
-                </CardContent>
-            </Card>
-
         </div>
     );
 }
