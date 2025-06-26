@@ -150,7 +150,7 @@ export const ProcessingUnitDashboard = () => {
                                 {packagingOrders.map((order) => (
                                     <TableRow key={order.id}>
                                         <TableCell className="font-medium">{order.supplierName}</TableCell>
-                                        <TableCell>{order.deliveryDate}</TableCell>
+                                        <TableCell>{new Date(order.deliveryDate).toLocaleDateString()}</TableCell>
                                         <TableCell><Badge variant={order.status === 'Pending' ? 'secondary' : 'default'}>{order.status}</Badge></TableCell>
                                         <TableCell className="text-right">
                                             <Button asChild variant="ghost" size="sm">
