@@ -24,5 +24,34 @@
   "signInButton": "Sign In",
   "signingInButton": "Signing In...",
   "noAccountPrompt": "Don't have an account?",
-  "signUpLink": "Sign Up"
+  "signUpLink": "Sign Up",
+  "alreadyHaveAccountPrompt": "Already have an account?",
+  "mobileNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
+  },
+  "signUpPage": {
+    "welcome": "Join the {appName} Agricultural Network!",
+    "title": "Create Your Account",
+    "description": "Join our community of agricultural stakeholders.",
+    "nameLabel": "Full Name / Organization Name",
+    "namePlaceholder": "Your Name or Company Name",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain",
+    "passwordPlaceholder": "•••••••• (min. 6 characters)",
+    "confirmPasswordLabel": "Confirm Password",
+    "signUpButton": "Sign Up",
+    "creatingAccountButton": "Creating Account..."
+  },
+  "aiAssistant": {
+    "title": "AI Farming Assistant",
+    "resetConversation": "Reset Conversation",
+    "uploadImage": "Upload Image",
+    "useCamera": "Use Camera",
+    "inputPlaceholder": "Ask about farming, describe your image...",
+    "sendMessage": "Send"
+  }
 }

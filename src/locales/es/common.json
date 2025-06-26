@@ -24,5 +24,34 @@
   "signInButton": "Iniciar Sesión",
   "signingInButton": "Iniciando Sesión...",
   "noAccountPrompt": "¿No tienes una cuenta?",
-  "signUpLink": "Regístrate"
+  "signUpLink": "Regístrate",
+  "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
+  "mobileNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  },
+  "signUpPage": {
+    "welcome": "¡Únete a la Red Agrícola de {appName}!",
+    "title": "Crea Tu Cuenta",
+    "description": "Únete a nuestra comunidad de partes interesadas agrícolas.",
+    "nameLabel": "Nombre Completo / Nombre de la Organización",
+    "namePlaceholder": "Tu Nombre o Nombre de la Empresa",
+    "roleLabel": "Tu Rol Principal",
+    "rolePlaceholder": "Selecciona tu rol en la cadena de suministro",
+    "passwordPlaceholder": "•••••••• (mín. 6 caracteres)",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "signUpButton": "Registrarse",
+    "creatingAccountButton": "Creando Cuenta..."
+  },
+  "aiAssistant": {
+    "title": "Asistente Agrícola IA",
+    "resetConversation": "Reiniciar Conversación",
+    "uploadImage": "Subir Imagen",
+    "useCamera": "Usar Cámara",
+    "inputPlaceholder": "Pregunta sobre agricultura, describe tu imagen...",
+    "sendMessage": "Enviar"
+  }
 }

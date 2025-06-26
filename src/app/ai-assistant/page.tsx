@@ -2,7 +2,8 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent, ChangeEvent } from 'react';
-import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw, Languages } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -15,7 +16,6 @@ import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/far
 import { APP_NAME } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface ChatMessage {
   id: string;
@@ -42,8 +42,8 @@ const initialWelcomeMessage: ChatMessage = {
 
 
 export default function AiAssistantPage() {
+  const { t, i18n } = useTranslation('common');
   const [inputQuery, setInputQuery] = useState('');
-  const [language, setLanguage] = useState('en');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([initialWelcomeMessage]);
   const [isLoading, setIsLoading] = useState(false);
   const [previewDataUri, setPreviewDataUri] = useState<string | null>(null);
@@ -185,7 +185,7 @@ export default function AiAssistantPage() {
       const aiResponse = await askFarmingAssistant({
         query: query || (currentImageToSend ? "Please analyze this image." : "Empty query"),
         photoDataUri: currentImageToSend || undefined,
-        language,
+        language: i18n.language,
       });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-${Date.now() + 1}`,
@@ -224,7 +224,7 @@ export default function AiAssistantPage() {
     setIsLoading(true);
 
     try {
-      const aiResponse = await askFarmingAssistant({ query, language });
+      const aiResponse = await askFarmingAssistant({ query, language: i18n.language });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-suggestion-response-${Date.now()}`,
         role: 'assistant',
@@ -256,35 +256,10 @@ export default function AiAssistantPage() {
         <CardHeader className="border-b flex-row justify-between items-center">
           <CardTitle className="flex items-center gap-2 text-xl">
             <Bot className="h-6 w-6 text-primary" />
-            <span>AI Farming Assistant</span>
+            <span>{t('aiAssistant.title')}</span>
           </CardTitle>
           <div className="flex items-center gap-2">
-            <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-[180px] h-9 text-xs">
-                <Languages className="h-4 w-4 mr-2" />
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="en">English</SelectItem>
-                <SelectItem value="es">Español (Spanish)</SelectItem>
-                <SelectItem value="zh">中文 (Mandarin)</SelectItem>
-                <SelectItem value="fr">Français (French)</SelectItem>
-                <SelectItem value="ar">العربية (Arabic)</SelectItem>
-                <SelectItem value="pt">Português (Portuguese)</SelectItem>
-                <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
-                <SelectItem value="ru">Русский (Russian)</SelectItem>
-                <SelectItem value="id">Bahasa Indonesia</SelectItem>
-                <SelectItem value="de">Deutsch (German)</SelectItem>
-                <SelectItem value="tr">Türkçe (Turkish)</SelectItem>
-                <SelectItem value="ja">日本語 (Japanese)</SelectItem>
-                <SelectItem value="km">ភាសាខ្មែរ (Khmer)</SelectItem>
-                <SelectItem value="th">ภาษาไทย (Thai)</SelectItem>
-                <SelectItem value="ko">한국어 (Korean)</SelectItem>
-                <SelectItem value="vi">Tiếng Việt (Vietnamese)</SelectItem>
-                <SelectItem value="ms">Bahasa Melayu (Malaysian)</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button variant="outline" size="icon" className="h-9 w-9" onClick={resetChat} title="Reset Conversation">
+            <Button variant="outline" size="icon" className="h-9 w-9" onClick={resetChat} title={t('aiAssistant.resetConversation')}>
               <RefreshCcw className="h-4 w-4"/>
             </Button>
           </div>
@@ -430,18 +405,18 @@ export default function AiAssistantPage() {
 
         <CardFooter className="p-2 border-t">
           <form onSubmit={handleSendMessage} className="flex items-center gap-2 w-full">
-            <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()} title="Upload Image" disabled={isLoading || isCameraOpen}>
+            <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()} title={t('aiAssistant.uploadImage')} disabled={isLoading || isCameraOpen}>
                 <ImageUp className="h-5 w-5" />
             </Button>
             <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} style={{ display: 'none' }}/>
 
-            <Button variant="ghost" size="icon" type="button" onClick={startCamera} title="Use Camera" disabled={isLoading || isCameraOpen}>
+            <Button variant="ghost" size="icon" type="button" onClick={startCamera} title={t('aiAssistant.useCamera')} disabled={isLoading || isCameraOpen}>
                 <Camera className="h-5 w-5" />
             </Button>
 
             <Input
               type="text"
-              placeholder="Ask about farming, describe your image..."
+              placeholder={t('aiAssistant.inputPlaceholder')}
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               className="flex-grow text-sm h-10"
@@ -449,7 +424,7 @@ export default function AiAssistantPage() {
               autoFocus
             />
             <Button type="submit" disabled={isLoading || (!inputQuery.trim() && !previewDataUri)}>
-              <Send className="mr-2 h-4 w-4" /> Send
+              <Send className="mr-2 h-4 w-4" /> {t('aiAssistant.sendMessage')}
             </Button>
           </form>
         </CardFooter>
