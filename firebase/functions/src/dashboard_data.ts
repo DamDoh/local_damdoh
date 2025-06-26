@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FarmerDashboardData } from "lib/types";
+import { FarmerDashboardData, BuyerDashboardData } from "lib/types";
 
 const db = admin.firestore();
 
@@ -73,8 +73,42 @@ export const getFarmerDashboardData = functions.https.onCall(async (data, contex
 });
 
 
-export const getBuyerDashboardData = functions.https.onCall(async (data, context) => {
-    return await getDashboardData("buyer-dashboard", context);
+export const getBuyerDashboardData = functions.https.onCall(async (data, context): Promise<BuyerDashboardData> => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    // In a real scenario, we would use the buyer's UID (context.auth.uid) to fetch their
+    // preferences and historical data to feed into AI models.
+    // For now, we return structured mock data.
+    
+    const mockData: BuyerDashboardData = {
+        supplyChainRisk: {
+            region: 'East Africa',
+            level: 'Medium',
+            factor: 'Unpredictable rainfall patterns affecting maize harvest.',
+            action: {
+                label: 'View Mitigation Strategies',
+                link: '/forums/topic/risk-mitigation-east-africa'
+            }
+        },
+        sourcingRecommendations: [
+            { id: 'farmer1', name: 'Green Valley Organics', product: 'Organic Hass Avocados', reliability: 95, vtiVerified: true },
+            { id: 'farmer2', name: 'Rift Valley Growers', product: 'Bulk French Beans', reliability: 88, vtiVerified: true },
+            { id: 'farmer3', name: 'Coastal Cashews Ltd', product: 'Raw Cashew Nuts', reliability: 82, vtiVerified: false },
+        ],
+        marketPriceIntelligence: {
+            product: 'Coffee Beans (Arabica)',
+            trend: 'up',
+            forecast: 'Prices expected to increase 5-8% next quarter due to lower-than-expected rainfall in key growing regions.',
+            action: {
+                label: 'Secure Forward Contracts',
+                link: '/marketplace?category=coffee'
+            }
+        }
+    };
+    
+    return mockData;
 });
 
 export const getLogisticsDashboardData = functions.https.onCall(async (data, context) => {

@@ -60,7 +60,7 @@ export const BuyerDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow">
                         <div className="text-2xl font-bold text-orange-600">{supplyChainRisk.level}</div>
-                        <p className="text-xs text-muted-foreground">{supplyChainRisk.factor}</p>
+                        <p className="text-xs text-muted-foreground">{supplyChainRisk.factor} in {supplyChainRisk.region}</p>
                     </CardContent>
                     <CardFooter>
                          <Button asChild variant="outline" size="sm" className="w-full">
@@ -75,7 +75,10 @@ export const BuyerDashboard = () => {
                         <TrendingUp className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{marketPriceIntelligence.product}</div>
+                        <div className="text-2xl font-bold flex items-center gap-2">
+                            {marketPriceIntelligence.product}
+                            <TrendingUp className={`h-5 w-5 ${marketPriceIntelligence.trend === 'up' ? 'text-red-500' : 'text-green-500'}`} />
+                        </div>
                         <p className="text-xs text-muted-foreground">{marketPriceIntelligence.forecast}</p>
                     </CardContent>
                      <CardFooter>
@@ -85,24 +88,24 @@ export const BuyerDashboard = () => {
                     </CardFooter>
                 </Card>
 
-                <Card className="md:col-span-2 lg:col-span-1">
+                <Card className="md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col">
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                             <Search className="h-4 w-4" />
-                            Sourcing Recommendations
+                            AI Sourcing Recommendations
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-3">
+                    <CardContent className="flex-grow space-y-3">
                         {sourcingRecommendations.map(rec => (
-                            <div key={rec.id} className="p-3 rounded-md border text-sm">
+                            <div key={rec.id} className="p-3 rounded-md border text-sm bg-background">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <p className="font-semibold">{rec.name}</p>
                                         <p className="text-xs text-muted-foreground">{rec.product}</p>
                                     </div>
-                                    <Badge variant={rec.vtiVerified ? "default" : "secondary"}>
+                                    <Badge variant={rec.vtiVerified ? "default" : "secondary"} className={`${rec.vtiVerified ? "bg-green-600" : ""}`}>
                                         {rec.vtiVerified ? <CheckCircle className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
-                                        VTI Verified
+                                        VTI
                                     </Badge>
                                 </div>
                                 <div className="text-xs mt-2">
@@ -111,6 +114,11 @@ export const BuyerDashboard = () => {
                             </div>
                         ))}
                     </CardContent>
+                     <CardFooter>
+                         <Button asChild variant="outline" size="sm" className="w-full">
+                            <Link href="/network">Find More Suppliers</Link>
+                        </Button>
+                    </CardFooter>
                 </Card>
             </div>
         </div>
@@ -124,7 +132,7 @@ const DashboardSkeleton = () => (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Skeleton className="h-48 rounded-lg" />
             <Skeleton className="h-48 rounded-lg" />
-            <Skeleton className="h-48 rounded-lg" />
+            <Skeleton className="h-48 rounded-lg lg:row-span-2" />
         </div>
     </div>
 );
