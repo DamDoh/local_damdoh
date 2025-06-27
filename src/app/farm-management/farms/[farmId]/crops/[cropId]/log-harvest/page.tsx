@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createHarvestSchema, type CreateHarvestValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, Weight, Award, CheckCircle, RefreshCw, DollarSign } from "lucide-react";
+import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, Weight, Award, CheckCircle, RefreshCw, DollarSign, GitBranch } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { format } from "date-fns";
@@ -71,7 +71,7 @@ export default function LogHarvestPage() {
       const payload = {
         farmFieldId: cropId,
         cropType: cropType,
-        yield_kg: data.yield_kg,
+        yieldKg: data.yield_kg,
         quality_grade: data.quality_grade,
         actorVtiId: user.uid, // Using user's UID as their VTI for now
         geoLocation: null, // Geolocation can be added later if needed
@@ -118,6 +118,11 @@ export default function LogHarvestPage() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
+                    <Button size="lg" className="w-full" asChild>
+                       <Link href={`/traceability/batches/${createdVtiId}`}>
+                            <GitBranch className="mr-2 h-4 w-4" /> View Traceability Report
+                        </Link>
+                    </Button>
                     <Button size="lg" className="w-full" asChild>
                         <Link href={`/marketplace/create?cropId=${createdVtiId}&cropName=${encodeURIComponent(cropType)}`}>
                             <DollarSign className="mr-2 h-4 w-4" /> Sell this Batch on the Marketplace
