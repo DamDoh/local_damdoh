@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -430,7 +430,25 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
 );
 
 export const getWarehouseDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("warehouse-dashboard", context);
+  async (data, context): Promise<WarehouseDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: WarehouseDashboardData = {
+      storageOptimization: {
+        utilization: 78,
+        suggestion: "Consolidate pallets in Zone C to free up a full row.",
+      },
+      inventoryLevels: {
+        totalItems: 450,
+        itemsNeedingAttention: 12,
+      },
+      predictiveAlerts: [
+        { alert: "High humidity detected in Cold Storage Bay 2.", actionLink: "#" },
+        { alert: "Maize batch #VTI-123 nearing its expiry date.", actionLink: "#" },
+      ]
+    };
+    return mockData;
   },
 );

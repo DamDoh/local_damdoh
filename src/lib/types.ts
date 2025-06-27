@@ -390,6 +390,22 @@ export interface ProcessingUnitDashboardData {
     }[];
 }
 
+export interface WarehouseDashboardData {
+    storageOptimization: {
+        utilization: number;
+        suggestion: string;
+    };
+    inventoryLevels: {
+        totalItems: number;
+        itemsNeedingAttention: number;
+    };
+    predictiveAlerts: {
+        alert: string;
+        actionLink: string;
+    }[];
+}
+
+
 export interface KnfBatch {
     id: string;
     userId: string;
