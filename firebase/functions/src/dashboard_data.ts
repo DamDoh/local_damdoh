@@ -488,6 +488,7 @@ export const getAgroTourismDashboardData = functions.https.onCall(
   },
 );
 
+
 export const getInsuranceProviderDashboardData = functions.https.onCall(
   async (data, context): Promise<InsuranceProviderDashboardData> => {
     if (!context.auth) {
