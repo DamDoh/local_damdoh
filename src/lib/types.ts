@@ -202,13 +202,6 @@ export interface FinancialSummary {
 }
 
 
-export interface YieldDataPoint {
-    crop: string;
-    historical: number;
-    predicted: number;
-    unit: string;
-  }
-
 export interface FarmerDashboardData {
   farmCount: number;
   cropCount: number;
@@ -247,7 +240,7 @@ export interface BuyerDashboardData {
   }[];
   marketPriceIntelligence: {
     product: string;
-    trend: 'up' | 'down';
+    trend: 'up' | 'down' | 'stable';
     forecast: string;
     action: {
       label: string;
@@ -256,25 +249,6 @@ export interface BuyerDashboardData {
   };
 }
 
-export interface RegulatorDashboardData {
-  complianceRiskAlerts: {
-    id: string;
-    region: string;
-    issue: string;
-    severity: string;
-    actionLink: string;
-  }[];
-  pendingCertifications: {
-    count: number;
-    actionLink: string;
-  };
-  supplyChainAnomalies: {
-    id: string;
-    description: string;
-    level: string;
-    vtiLink: string;
-  }[];
-}
 
 export interface LogisticsDashboardData {
     activeShipments: {
@@ -324,27 +298,6 @@ export interface FiDashboardData {
     }[];
 }
 
-export interface FieldAgentDashboardData {
-    assignedFarmers: {
-        id: string;
-        name: string;
-        lastVisit: string;
-        issues: number;
-        actionLink: string;
-    }[];
-    portfolioHealth: {
-        overallScore: number;
-        alerts: string[];
-        actionLink: string;
-    };
-    pendingReports: number;
-    dataVerificationTasks: {
-        count: number;
-        description: string;
-        actionLink: string;
-    };
-}
-
 export interface InputSupplierDashboardData {
     demandForecast: {
         id: string;
@@ -367,45 +320,24 @@ export interface InputSupplierDashboardData {
     };
 }
 
-export interface EnergyProviderDashboardData {
-    projectLeads: {
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
         id: string;
-        entityName: string; // Farm, Processor, etc.
-        location: string;
-        estimatedEnergyNeed: string; // e.g., 'High', 'Medium', 'Low', or specific kWh/year
-        status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+        name: string;
+        lastVisit: string;
+        issues: number;
         actionLink: string;
     }[];
-    activeProjects: {
-        id: string;
-        entityName: string;
-        location: string;
-        solutionType: string; // e.g., 'Solar Panels', 'Biogas Digester'
-        installationDate: string;
-        status: 'In Progress' | 'Completed';
-        actionLink: string;
-    }[];
-    impactMetrics: {
-        totalInstallations: number;
-        totalEstimatedCarbonReduction: string; // e.g., '5000 tons CO2e/year'
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
         actionLink: string;
     };
-}
-
-export interface PackagingSupplierDashboardData {
-    demandForecast: {
-        productType: string;
-        unitsNeeded: number;
-        for: string;
-    };
-    integrationRequests: {
-        from: string;
-        request: string;
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
         actionLink: string;
-    }[];
-    sustainableShowcase: {
-        views: number;
-        leads: number;
     };
 }
 
@@ -425,229 +357,6 @@ export interface AgroExportDashboardData {
     complianceAlerts: {
         id: string;
         content: string;
-        actionLink: string;
-    }[];
-}
-
-export interface ProcessingUnitDashboardData {
-    yieldOptimization: {
-        currentYield: number;
-        potentialYield: number;
-        suggestion: string;
-    };
-    inventory: {
-        product: string;
-        tons: number;
-        quality: string;
-    }[];
-    wasteReduction: {
-        currentRate: number;
-        potentialRate: number;
-        insight: string;
-    };
-    packagingOrders: {
-        id: string;
-        supplierName: string;
-        orderDate: string;
-        deliveryDate: string;
-        status: 'Pending' | 'Shipped' | 'Delivered' | 'Canceled';
-        actionLink: string;
-    }[];
-    packagingInventory: {
-        packagingType: string;
-        unitsInStock: number;
-        reorderLevel: number;
-    }[];
-    packagingImpactMetrics: {
-        metric: string; // e.g., 'Recycled Content Used', 'Biodegradable Packaging Rate'
-        value: string;
-        actionLink: string;
-    }[];
-}
-
-export interface WarehouseDashboardData {
-  storageOptimization: {
-      utilization: number;
-      suggestion: string;
-  };
-  inventoryLevels: {
-      totalItems: number;
-      itemsNeedingAttention: number;
-  };
-  predictiveAlerts: {
-      id: string;
-      alert: string;
-      actionLink: string;
-  }[];
-}
-
-export interface QaDashboardData {
-    pendingInspections: {
-        id: string;
-        batchId: string;
-        productName: string;
-        sellerName: string;
-        dueDate: string;
-        actionLink: string;
-    }[];
-    recentResults: {
-        id: string;
-        productName: string;
-        result: 'Pass' | 'Fail';
-        reason?: string;
-        inspectedAt: string;
-    }[];
-    qualityMetrics: {
-        passRate: number;
-        averageScore: number;
-    };
-}
-
-export interface CertificationBodyDashboardData {
-    pendingAudits: {
-        id: string;
-        farmName: string;
-        standard: string;
-        dueDate: string;
-        actionLink: string;
-    }[];
-    certifiedEntities: {
-        id: string;
-        name: string;
-        type: 'Farmer' | 'Processor';
-        certificationStatus: string;
-        actionLink: string;
-    }[];
-    standardsMonitoring: {
-        standard: string;
-        adherenceRate: number;
-        alerts: number;
-        actionLink: string;
-    }[];
-}
-
-export interface ResearcherDashboardData {
-    availableDatasets: {
-        id: string;
-        name: string;
-        description: string;
-        dataType: string;
-        accessLevel: 'Public' | 'Anonymized' | 'Consented';
-        actionLink: string;
-    }[];
-    ongoingProjects: {
-        id: string;
-        title: string;
-        progress: number;
-        collaborators: string[];
-        actionLink: string;
-    }[];
-    knowledgeHubContributions: {
-        id: string;
-        title: string;
-        type: 'Article' | 'Methodology' | 'Tool';
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
-
-export interface AgroTourismDashboardData {
-    listedExperiences: {
-        id: string;
-        title: string;
-        location: string;
-        status: 'Active' | 'Draft' | 'Paused';
-        bookingsCount: number;
-        actionLink: string;
-    }[];
-    upcomingBookings: {
-        id: string;
-        experienceTitle: string;
-        guestName: string;
-        date: string;
-        actionLink: string;
-    }[];
-    guestReviews: {
-        id: string;
-        guestName: string;
-        experienceTitle: string;
-        rating: number; // e.g., 1-5
-        comment: string;
-        actionLink: string;
-    }[];
-}
-
-export interface CrowdfunderDashboardData {
- featuredProjects: {
- id: string;
- title: string;
- farmerName: string;
- amountSought: number;
- amountRaised: number;
- progress: number; // Percentage raised
- actionLink: string;
- }[];
- myInvestments: {
- id: string;
- projectTitle: string;
- amountInvested: number;
- expectedReturn: string; // e.g., '10% ROI', 'Profit Share'
- status: 'Active' | 'Completed' | 'In Progress';
- actionLink: string;
- }[];
- impactReport: {
-    totalInvested: number;
-    totalImpactMetrics: { metric: string; value: string; }[];
-    actionLink: string;
- };
-}
-
-export interface AgronomistDashboardData {
-    assignedFarmersOverview: {
-        id: string;
-        name: string;
-        farmLocation: string;
-        lastConsultation: string;
-        alerts: number; // Number of open alerts for this farmer
-        actionLink: string;
-    }[];
-    pendingConsultationRequests: {
-        id: string;
-        farmerName: string;
-        issueSummary: string;
-        requestDate: string;
-        actionLink: string;
-    }[];
-    knowledgeBaseContributions: {
-        id: string;
-        title: string;
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
-
-export interface InsuranceProviderDashboardData {
-    pendingClaims: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        claimDate: string;
-        status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-        actionLink: string;
-    }[];
-    activePolicies: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        coverageAmount: number;
-        expiryDate: string;
-        actionLink: string;
-    }[];
-    riskAssessmentAlerts: {
-        id: string;
-        policyHolderName: string;
-        alert: string;
-        severity: 'High' | 'Medium' | 'Low';
         actionLink: string;
     }[];
 }
