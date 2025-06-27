@@ -531,6 +531,28 @@ export interface ResearcherDashboardData {
   }[];
 }
 
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id:string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO string
+  }[];
+  knowledgeBaseContributions: {
+    id: string;
+    title: string;
+    status: 'Draft' | 'Pending Review' | 'Published';
+  }[];
+}
+
+
 export interface KnfBatch {
     id: string;
     userId: string;

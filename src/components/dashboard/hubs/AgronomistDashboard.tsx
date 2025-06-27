@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -14,7 +14,8 @@ import { Users, FileText, MessageSquare } from 'lucide-react';
 import type { AgronomistDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getAgronomistDashboardDataCallable = httpsCallable<void, { assignedFarmersOverview: any[], pendingConsultationRequests: any[], knowledgeBaseContributions: any[] }>(functions, 'getAgronomistDashboardData');
+const getAgronomistDashboardDataCallable = httpsCallable<void, AgronomistDashboardData>(functions, 'getAgronomistDashboardData');
+
 
 export const AgronomistDashboard = () => {
   const [dashboardData, setDashboardData] = useState<AgronomistDashboardData | null>(null);
@@ -63,14 +64,14 @@ export const AgronomistDashboard = () => {
       );
   }
 
-    const getStatusBadgeVariant = (status: string) => {
-        switch (status.toLowerCase()) {
-            case 'draft': return 'secondary';
-            case 'pending review': return 'secondary';
-            case 'published': return 'default';
-            default: return 'outline';
-        }
-    };
+  const getStatusBadgeVariant = (status: string) => {
+    switch (status.toLowerCase()) {
+        case 'draft': return 'secondary';
+        case 'pending review': return 'secondary';
+        case 'published': return 'default';
+        default: return 'outline';
+    }
+};
 
 
   return (
@@ -100,7 +101,7 @@ export const AgronomistDashboard = () => {
                      <TableRow key={request.id}>
                        <TableCell className="font-medium">{request.farmerName}</TableCell>
                        <TableCell>{request.issueSummary}</TableCell>
-                       <TableCell>{new Date(request.requestDate.seconds * 1000).toLocaleDateString()}</TableCell>
+                       <TableCell>{new Date(request.requestDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
                            <Link href={`/consultations/${request.id}`}>View Request</Link>
@@ -139,7 +140,7 @@ export const AgronomistDashboard = () => {
                      <TableRow key={farmer.id}>
                        <TableCell className="font-medium">{farmer.name}</TableCell>
                        <TableCell>{farmer.farmLocation}</TableCell>
-                       <TableCell>{new Date(farmer.lastConsultation.seconds * 1000).toLocaleDateString()}</TableCell>
+                       <TableCell>{new Date(farmer.lastConsultation).toLocaleDateString()}</TableCell>
                        <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
@@ -185,9 +186,9 @@ export const AgronomistDashboard = () => {
 
       </div>
     </div>
-
   );
 };
+
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">

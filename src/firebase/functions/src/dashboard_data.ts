@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgronomistDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -282,8 +282,26 @@ export const getFieldAgentDashboardData = functions.https.onCall(
 );
 
 export const getEnergyProviderDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("energy-provider-dashboard", context);
+  async (data, context): Promise<EnergyProviderDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: EnergyProviderDashboardData = {
+        projectLeads: [
+            { id: 'lead1', entityName: 'Green Valley Farms', location: 'Nakuru, Kenya', estimatedEnergyNeed: 'Solar for irrigation pumps', status: 'New', actionLink: '#' },
+            { id: 'lead2', entityName: 'Coastal Processors', location: 'Mombasa, Kenya', estimatedEnergyNeed: 'Biogas from waste products', status: 'Contacted', actionLink: '#' },
+        ],
+        activeProjects: [
+            { id: 'proj1', projectName: 'Sunrise Cooperative Solar Array', solutionType: 'Solar', status: 'In Progress', completionDate: '2024-12-01' },
+            { id: 'proj2', projectName: 'AgriWaste Biogas Plant', solutionType: 'Biogas', status: 'Completed', completionDate: '2024-03-15' },
+        ],
+        impactMetrics: {
+            totalInstallations: 15,
+            totalEstimatedCarbonReduction: '250 Tons CO2e / year',
+        }
+    };
+    return mockData;
   },
 );
 
@@ -312,86 +330,133 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
 );
 
 export const getRegulatorDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("regulator-dashboard", context);
-  },
-);
-
-export const getQaDashboardData = functions.https.onCall(async (data, context) => {
-  return await getDashboardData("qa-dashboard", context);
-});
-
-export const getCertificationBodyDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("certification-body-dashboard", context);
-  },
-);
-
-export const getResearcherDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("researcher-dashboard", context);
-  },
-);
-
-export const getAgronomistDashboardData = functions.https.onCall(
-  async (data, context) => {
+  async (data, context): Promise<RegulatorDashboardData> => {
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
         "The function must be called while authenticated.",
       );
     }
+    // Returning mock data to power the new dashboard UI
+    const mockData: RegulatorDashboardData = {
+      complianceRiskAlerts: [
+        { id: 'alert1', issue: 'Unverified organic claims from Western Region', region: 'Western Region', severity: 'High', actionLink: '/compliance/investigate/alert1' },
+        { id: 'alert2', issue: 'High pesticide residue detected in batch VTI-XYZ', region: 'Central Valley', severity: 'Medium', actionLink: '/compliance/investigate/alert2' },
+      ],
+      pendingCertifications: {
+        count: 12,
+        actionLink: '/certifications/pending-review',
+      },
+      supplyChainAnomalies: [
+        { id: 'anom1', description: 'Unusual delay between harvest and processing for multiple batches from Eldoret.', level: 'Warning', vtiLink: '/traceability/analysis/eldoret-delay' },
+        { id: 'anom2', description: 'VTI log shows transportation event before harvest event for batch VTI-ABC.', level: 'Critical', vtiLink: '/traceability/batches/vti-abc' },
+      ]
+    };
+    return mockData;
+  },
+);
 
-    try {
-      const agronomistId = context.auth.uid;
+export const getQaDashboardData = functions.https.onCall(
+  async (data, context): Promise<QaDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data for the QA dashboard
+    const mockData: QaDashboardData = {
+      pendingInspections: [
+        { id: 'insp1', batchId: 'VTI-XYZ-001', productName: 'Organic Hass Avocados', sellerName: 'Green Valley Organics', dueDate: new Date(Date.now() + 3 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'insp2', batchId: 'VTI-ABC-007', productName: 'Raw Cashew Nuts', sellerName: 'Coastal Cashews Ltd.', dueDate: new Date(Date.now() + 5 * 86400000).toISOString(), actionLink: '#' },
+      ],
+      recentResults: [
+        { id: 'res1', productName: 'Sun-dried Tomatoes', result: 'Pass', inspectedAt: new Date(Date.now() - 1 * 86400000).toISOString() },
+        { id: 'res2', productName: 'Maize Batch MB-04', result: 'Fail', reason: 'Aflatoxin levels exceed limits', inspectedAt: new Date(Date.now() - 2 * 86400000).toISOString() },
+      ],
+      qualityMetrics: {
+        passRate: 98.5,
+        averageScore: 9.2,
+      }
+    };
+    return mockData;
+  },
+);
 
-      const assignedFarmersPromise = db
-        .collection("farmers")
-        .where("assignedAgronomist", "==", agronomistId)
-        .get();
-      const consultationRequestsPromise = db
-        .collection("consultationRequests")
-        .where("agronomistId", "==", agronomistId)
-        .where("status", "==", "pending")
-        .get();
-      const knowledgeBasePromise = db
-        .collection("knowledgeBase")
-        .where("authorId", "==", agronomistId)
-        .get();
+export const getCertificationBodyDashboardData = functions.https.onCall(
+  async (data, context): Promise<CertificationBodyDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: CertificationBodyDashboardData = {
+      pendingAudits: [
+        { id: 'audit1', farmName: 'Green Valley Organics', standard: 'USDA Organic', dueDate: new Date(Date.now() + 14 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'audit2', farmName: 'Sunrise Cooperative', standard: 'Fair Trade International', dueDate: new Date(Date.now() + 30 * 86400000).toISOString(), actionLink: '#' },
+      ],
+      certifiedEntities: [
+        { id: 'ent1', name: 'Highland Coffee Co-op', type: 'Farm', certificationStatus: 'Active', actionLink: '#' },
+        { id: 'ent2', name: 'Coastal Cashews Ltd.', type: 'Processor', certificationStatus: 'Pending Renewal', actionLink: '#' },
+        { id: 'ent3', name: 'Moringa Leaf Exports', type: 'Processor', certificationStatus: 'Expired', actionLink: '#' },
+      ],
+      standardsMonitoring: [
+          { standard: 'USDA Organic', adherenceRate: 98, alerts: 2, actionLink: '#' },
+          { standard: 'Fair Trade', adherenceRate: 95, alerts: 5, actionLink: '#' },
+      ]
+    };
+    return mockData;
+  },
+);
 
-      const [
-        assignedFarmersSnapshot,
-        consultationRequestsSnapshot,
-        knowledgeBaseSnapshot,
-      ] = await Promise.all([
-        assignedFarmersPromise,
-        consultationRequestsPromise,
-        knowledgeBasePromise,
-      ]);
+export const getResearcherDashboardData = functions.https.onCall(
+  async (data, context): Promise<ResearcherDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
 
-      const assignedFarmersOverview = assignedFarmersSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      const pendingConsultationRequests = consultationRequestsSnapshot.docs.map(
-        (doc) => ({id: doc.id, ...doc.data()}),
-      );
-      const knowledgeBaseContributions = knowledgeBaseSnapshot.docs.map(
-        (doc) => ({id: doc.id, ...doc.data()}),
-      );
+    const mockData: ResearcherDashboardData = {
+      availableDatasets: [
+        { id: 'ds1', name: 'Anonymized Maize Price Data (2022-2023)', dataType: 'Market Data', accessLevel: 'Public', actionLink: '#' },
+        { id: 'ds2', name: 'Regional Soil Health Aggregates', dataType: 'Agronomic Data', accessLevel: 'Requires Request', actionLink: '#' },
+        { id: 'ds3', name: 'Logistics Delay Hotspot Analysis', dataType: 'Supply Chain Data', accessLevel: 'Requires Request', actionLink: '#' },
+      ],
+      ongoingProjects: [
+        { id: 'proj1', title: 'Impact of Cover Cropping on Soil Moisture', progress: 75, collaborators: ['Dr. Bello', 'Dr. Singh'], actionLink: '#' },
+        { id: 'proj2', title: 'Predictive Modeling for Pest Outbreaks', progress: 40, collaborators: ['Dr. Hanson'], actionLink: '#' },
+      ],
+      knowledgeHubContributions: [
+        { id: 'khc1', title: 'A Review of Post-Harvest Loss Technologies', status: 'Published', actionLink: '#' },
+        { id: 'khc2', title: 'The Economics of Smallholder Solar Irrigation', status: 'Pending Review', actionLink: '#' },
+      ]
+    };
 
-      return {
-        assignedFarmersOverview,
-        pendingConsultationRequests,
-        knowledgeBaseContributions,
-      };
-    } catch (error) {
-      console.error("Error fetching Agronomist dashboard data:", error);
+    return mockData;
+  },
+);
+
+export const getAgronomistDashboardData = functions.https.onCall(
+  async (data, context): Promise<AgronomistDashboardData> => {
+    if (!context.auth) {
       throw new functions.https.HttpsError(
-        "internal",
-        "Failed to fetch Agronomist dashboard data.",
+        "unauthenticated",
+        "The function must be called while authenticated.",
       );
     }
+    
+    // Returning mock data to power the new dashboard UI
+    const mockData: AgronomistDashboardData = {
+        assignedFarmersOverview: [
+            { id: 'farmer1', name: 'Green Valley Farms', farmLocation: 'Nakuru, Kenya', lastConsultation: new Date(Date.now() - 7 * 86400000).toISOString(), alerts: 2 },
+            { id: 'farmer2', name: 'Sunrise Cooperative', farmLocation: 'Kiambu, Kenya', lastConsultation: new Date(Date.now() - 14 * 86400000).toISOString(), alerts: 0 },
+        ],
+        pendingConsultationRequests: [
+            { id: 'req1', farmerName: 'Coastal Cashews Ltd.', issueSummary: 'Suspected fungal infection on new seedlings.', requestDate: new Date(Date.now() - 1 * 86400000).toISOString() },
+            { id: 'req2', farmerName: 'Highland Coffee Co-op', issueSummary: 'Need advice on organic pest control for coffee berry borer.', requestDate: new Date(Date.now() - 3 * 86400000).toISOString() },
+        ],
+        knowledgeBaseContributions: [
+            { id: 'kb1', title: 'Integrated Pest Management for Maize', status: 'Published' },
+            { id: 'kb2', title: 'Optimizing Drip Irrigation for Tomatoes', status: 'Pending Review' },
+        ]
+    };
+
+    return mockData;
   },
 );
 
