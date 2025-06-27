@@ -525,7 +525,7 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
       ],
       activePolicies: [
         { id: 'pol1', policyHolderName: 'Highland Coffee Co-op', policyType: 'Crop Insurance', coverageAmount: 50000, expiryDate: new Date(Date.now() + 150 * 86400000).toISOString(), actionLink: '#' },
-        { id: 'pol2', policyHolderName: 'Moringa Leaf Exports', policyType: 'Property Insurance', coverageAmount: 120000, expiryDate: new Date(Date.now() + 200 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'pol2', name: 'Moringa Leaf Exports', policyType: 'Property Insurance', coverageAmount: 120000, expiryDate: new Date(Date.now() + 200 * 86400000).toISOString(), actionLink: '#' },
       ]
     };
     return mockData;
