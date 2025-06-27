@@ -170,6 +170,8 @@ export function AppHeader() {
     if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
     if (pathname.startsWith("/profiles/me")) return "My Profile";
     if (pathname.startsWith("/profiles/")) return "Profile Details";
+    if (pathname.startsWith("/marketplace/create-shop")) return "Create Shop";
+    if (pathname.startsWith("/marketplace/promotions")) return "Promotions";
     if (pathname.startsWith("/marketplace/create")) return "Create Listing";
     if (pathname.startsWith("/agri-events/create")) return "Create Event";
     if (pathname.startsWith("/agri-events")) return "Agri-Events";

@@ -169,13 +169,13 @@ export interface MarketplaceCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: string | null;
-  usageLimit?: number;
+  expiresAt: any; // Can be Timestamp or null
+  usageLimit?: number | null;
   usageCount: number;
   isActive: boolean;
   applicableToListingIds?: string[];
   applicableToCategories?: string[];
-  createdAt: string;
+  createdAt: any; // Firestore Timestamp
 }
 
 
