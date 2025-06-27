@@ -508,29 +508,6 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
-export interface ResearcherDashboardData {
-  availableDatasets: {
-    id: string;
-    name: string;
-    dataType: string;
-    accessLevel: 'Public' | 'Requires Request';
-    actionLink: string;
-  }[];
-  ongoingProjects: {
-    id: string;
-    title: string;
-    progress: number;
-    collaborators: string[];
-    actionLink: string;
-  }[];
-  knowledgeHubContributions: {
-    id: string;
-    title: string;
-    status: 'Draft' | 'Pending Review' | 'Published';
-    actionLink: string;
-  }[];
-}
-
 export interface AgronomistDashboardData {
   assignedFarmersOverview: {
     id: string;
@@ -627,6 +604,28 @@ export interface CrowdfunderDashboardData {
   }[];
 }
 
+export interface ResearcherDashboardData {
+  availableDatasets: {
+    id: string;
+    name: string;
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
+    actionLink: string;
+  }[];
+  ongoingProjects: {
+    id: string;
+    title: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Draft' | 'Pending Review' | 'Published';
+    actionLink: string;
+  }[];
+}
 
 export interface KnfBatch {
     id: string;

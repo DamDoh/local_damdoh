@@ -38,7 +38,7 @@ export const ResearcherDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getResearcherDashboardDataCallable]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
