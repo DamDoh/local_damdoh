@@ -40,22 +40,10 @@ export interface KnfBatch {
 }
 
 export interface FarmerDashboardData {
-  farmCount: number;
-  cropCount: number;
-  recentCrops: {
-    id: string;
-    farmId: string;
-    cropType: string;
-    plantingDate: string;
-    currentStage?: string;
-  }[];
-  knfBatches: {
-    id: string;
-    typeName: string;
-    status: string;
-    nextStep: string;
-    nextStepDate: string;
-  }[];
+  yieldData: YieldData[];
+  irrigationSchedule: IrrigationSchedule;
+  matchedBuyers: MatchedBuyer[];
+  trustScore: TrustScore;
 }
 
 export interface YieldData {
@@ -140,4 +128,57 @@ export interface InsuranceProviderDashboardData {
     expiryDate: string; // ISO string
     actionLink: string;
   }[];
+}
+
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down' | 'stable';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+}
+
+export interface FiDashboardData {
+    pendingApplications: {
+        id: string;
+        applicantName: string;
+        type: string;
+        amount: number;
+        riskScore: number;
+        actionLink: string;
+    }[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
 }
