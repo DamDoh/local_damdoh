@@ -40,11 +40,23 @@ export interface KnfBatch {
 }
 
 export interface FarmerDashboardData {
-    yieldData: YieldData[];
-    irrigationSchedule: IrrigationSchedule;
-    matchedBuyers: MatchedBuyer[];
-    trustScore: TrustScore;
-  }
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
+    id: string;
+    farmId: string;
+    cropType: string;
+    plantingDate: string;
+    currentStage?: string;
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStep: string;
+    nextStepDate: string;
+  }[];
+}
 
 export interface YieldData {
     crop: string;

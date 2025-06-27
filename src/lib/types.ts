@@ -19,7 +19,7 @@ export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumTopicSchema>;
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
 // =================================================================
 // 2. UI & COMPONENT-SPECIFIC TYPES
@@ -210,27 +210,22 @@ export interface YieldDataPoint {
 }
 
 export interface FarmerDashboardData {
-  yieldData: YieldDataPoint[];
-  irrigationSchedule: {
-    next_run: string;
-    duration_minutes: number;
-    recommendation: string;
-  };
-  matchedBuyers: {
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
     id: string;
-    name: string;
-    matchScore: number;
-    request: string;
-    contactId: string;
+    farmId: string;
+    cropType: string;
+    plantingDate: string;
+    currentStage?: string;
   }[];
-  trustScore: {
-      reputation: number;
-      certifications: {
-          id: string;
-          name: string;
-          issuingBody: string;
-      }[];
-  }
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStep: string;
+    nextStepDate: string;
+  }[];
 }
 
 export interface BuyerDashboardData {

@@ -45,49 +45,58 @@ export const getFarmerDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
+    
+    const farmerId = context.auth.uid;
 
-    // Returning mock data to power the new dashboard UI
-    const mockData: FarmerDashboardData = {
-      yieldData: [
-        {crop: "Maize", historical: 7.5, predicted: 8.2, unit: "Tons/Ha"},
-        {crop: "Soybeans", historical: 3.2, predicted: 3.5, unit: "Tons/Ha"},
-        {crop: "Coffee", historical: 1.8, predicted: 2.1, unit: "Tons/Ha"},
-        {crop: "Avocado", historical: 15, predicted: 17, unit: "Tons/Ha"},
-      ],
-      irrigationSchedule: {
-        next_run: "Tomorrow, 6 AM",
-        duration_minutes: 45,
-        recommendation:
-          "Soil moisture is low. Early morning is ideal to reduce evaporation.",
-      },
-      matchedBuyers: [
-        {
-          id: "buyer1",
-          name: "Global Grain Traders",
-          matchScore: 92,
-          request: "Seeking 500 tons of non-GMO maize",
-          contactId: "globalGrain",
-        },
-        {
-          id: "buyer2",
-          name: "Artisan Coffee Roasters",
-          matchScore: 85,
-          request: "Looking for single-origin specialty coffee beans",
-          contactId: "artisanCoffee",
-        },
-      ],
-      trustScore: {
-        reputation: 88,
-        certifications: [
-          {id: "cert1", name: "GlobalG.A.P.", issuingBody: "SGS"},
-          {id: "cert2", name: "Organic Certified", issuingBody: "EcoCert"},
-        ],
-      },
-    };
+    try {
+        // Fetch farms, recent crops, and KNF batches concurrently
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).limit(5).get();
+        const recentCropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('createdAt', 'desc').limit(5).get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
 
-    return mockData;
+        const [farmsSnapshot, recentCropsSnapshot, knfBatchesSnapshot] = await Promise.all([
+            farmsPromise,
+            recentCropsPromise,
+            knfBatchesPromise,
+        ]);
+
+        const farms = farmsSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        const recentCrops = recentCropsSnapshot.docs.map(doc => {
+            const cropData = doc.data();
+            return {
+                id: doc.id,
+                ...cropData,
+                plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
+            };
+        });
+        
+        const knfBatches = knfBatchesSnapshot.docs.map(doc => {
+            const batchData = doc.data();
+            return {
+                id: doc.id,
+                ...batchData,
+                nextStepDate: batchData.nextStepDate?.toDate ? batchData.nextStepDate.toDate().toISOString() : null,
+            };
+        });
+
+        return {
+            farmCount: farms.length,
+            cropCount: recentCrops.length, 
+            recentCrops: recentCrops,
+            knfBatches: knfBatches,
+        };
+
+    } catch (error) {
+        console.error("Error fetching farmer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
+    }
   },
 );
+
 
 export const getBuyerDashboardData = functions.https.onCall(
   async (data, context) => {
