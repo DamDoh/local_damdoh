@@ -6,12 +6,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle } from "lucide-react";
-import Image from "next/image";
-// import { MessagingPanel } from "./MessagingPanel"; 
-import { dummyUsersData } from "@/lib/dummy-data";
 import { useState, useEffect, useCallback } from "react";
 import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import type { StakeholderRole } from "@/lib/constants";
 
 interface AISuggestion {
   id: string;
@@ -22,31 +21,33 @@ interface AISuggestion {
   dataAiHint?: string;
 }
 
-// Mock current user profile for AI input
-const mockCurrentUserProfile: SuggestedConnectionsInput = {
-  profileSummary: "Owner of a mid-sized organic vegetable farm in Kenya, focusing on sustainable practices and looking to expand into local and regional export markets.",
-  stakeholderRole: "Farmer",
-  location: "Nakuru, Kenya",
-  preferences: "Organic farming, sustainable agriculture, fair trade, direct market access, soil health",
-  needs: "Reliable buyers for specialty vegetables (kale, spinach, bell peppers), access to affordable organic inputs, information on export certification for EAC market."
-};
-
-
 export function DashboardRightSidebar() {
   const [followedSuggestions, setFollowedSuggestions] = useState<Set<string>>(new Set());
   const [aiSuggestions, setAiSuggestions] = useState<AISuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
   const [suggestionError, setSuggestionError] = useState<string | null>(null);
 
+  const { profile, loading: loadingProfile } = useUserProfile();
+
   const fetchSuggestions = useCallback(async () => {
+    if (!profile) return; // Wait until the user profile is loaded
+
     setIsLoadingSuggestions(true);
     setSuggestionError(null);
     try {
-      const result: SuggestedConnectionsOutput = await suggestConnections(mockCurrentUserProfile);
+      const userInput: SuggestedConnectionsInput = {
+        profileSummary: profile.profileSummary || profile.bio || "No summary provided.",
+        stakeholderRole: (profile.roles?.[0] as StakeholderRole) || 'Farmer',
+        location: profile.location || "Unknown location",
+        preferences: Array.isArray(profile.areasOfInterest) ? profile.areasOfInterest.join(', ') : "General agriculture",
+        needs: Array.isArray(profile.needs) ? profile.needs.join(', ') : "General connections",
+      };
+
+      const result: SuggestedConnectionsOutput = await suggestConnections(userInput);
       if (result && result.suggestedConnections) {
         setAiSuggestions(result.suggestedConnections.map(s => ({
           ...s,
-          avatarUrl: s.avatarUrl || dummyUsersData[s.id]?.avatarUrl || 'https://placehold.co/50x50.png',
+          avatarUrl: s.avatarUrl || 'https://placehold.co/50x50.png',
           dataAiHint: `${s.role.toLowerCase().split(" ")[0]} profile`
         })));
       } else {
@@ -56,32 +57,29 @@ export function DashboardRightSidebar() {
     } catch (error) {
       console.error("Error fetching AI suggestions:", error);
       setSuggestionError("Failed to load suggestions. Please try again.");
-      setAiSuggestions([]); // Clear previous suggestions on error
+      setAiSuggestions([]);
     } finally {
       setIsLoadingSuggestions(false);
     }
-  }, []);
+  }, [profile]);
 
   useEffect(() => {
-    fetchSuggestions();
-  }, [fetchSuggestions]);
+    if (!loadingProfile) {
+      fetchSuggestions();
+    }
+  }, [loadingProfile, fetchSuggestions]);
 
   const handleFollow = (suggestionId: string) => {
     setFollowedSuggestions(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(suggestionId)) {
-        // newSet.delete(suggestionId); // To allow unfollow if needed
-      } else {
-        newSet.add(suggestionId);
-      }
+      newSet.add(suggestionId);
       return newSet;
     });
-    // In a real app, you'd also send this to a backend.
-    console.log(`${followedSuggestions.has(suggestionId) ? "Unfollowed" : "Followed"} suggestion: ${suggestionId}`);
+    console.log(`Followed suggestion: ${suggestionId}`);
   };
 
   const renderSuggestions = () => {
-    if (isLoadingSuggestions) {
+    if (loadingProfile || isLoadingSuggestions) {
       return Array.from({ length: 3 }).map((_, index) => (
         <li key={`skeleton-${index}`} className="flex items-start gap-3">
           <Skeleton className="h-12 w-12 rounded-md" />
@@ -96,7 +94,7 @@ export function DashboardRightSidebar() {
 
     if (suggestionError) {
       return (
-        <div className="text-center text-red-600 py-4">
+        <div className="text-center text-destructive py-4">
           <AlertTriangle className="inline-block mr-2 h-5 w-5" />
           {suggestionError}
         </div>
@@ -189,7 +187,6 @@ export function DashboardRightSidebar() {
           </div>
         </CardContent>
       </Card>
-      {/* <MessagingPanel /> */}
     </div>
   );
 }

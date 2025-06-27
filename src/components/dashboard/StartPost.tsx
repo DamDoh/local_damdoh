@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { CalendarDays, BarChart3, ImageIcon, FileText } from "lucide-react";
-import { dummyUsersData } from "@/lib/dummy-data";
+import { CalendarDays, BarChart3, ImageIcon } from "lucide-react";
 import { CreatePostModal } from './CreatePostModal'; 
+import { useUserProfile } from '@/hooks/useUserProfile';
+import { Skeleton } from '../ui/skeleton';
 
 interface StartPostProps {
   onCreatePost: (content: string, media?: File, pollOptions?: { text: string }[]) => void;
@@ -16,11 +16,23 @@ interface StartPostProps {
 
 export function StartPost({ onCreatePost }: StartPostProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const currentUserAvatar = dummyUsersData['currentDemoUser']?.avatarUrl || "https://placehold.co/40x40.png";
-  const currentUserFallback = dummyUsersData['currentDemoUser']?.name?.substring(0,2).toUpperCase() || "DU";
+  const { profile, loading } = useUserProfile();
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  if (loading) {
+    return (
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex items-center gap-3">
+            <Skeleton className="h-12 w-12 rounded-full" />
+            <Skeleton className="h-10 flex-grow rounded-full" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <>
@@ -28,8 +40,8 @@ export function StartPost({ onCreatePost }: StartPostProps) {
         <CardContent className="pt-6">
           <div className="flex items-center gap-3">
             <Avatar>
-              <AvatarImage src={currentUserAvatar} alt="Demo User" data-ai-hint="profile person" />
-              <AvatarFallback>{currentUserFallback}</AvatarFallback>
+              <AvatarImage src={profile?.avatarUrl} alt={profile?.name} data-ai-hint="profile person" />
+              <AvatarFallback>{profile?.name?.substring(0,2)?.toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
             <div
               className="flex-grow rounded-full hover:bg-muted/80 focus:bg-muted/90 transition-colors cursor-pointer border border-input h-10 flex items-center px-4 text-muted-foreground text-sm"
