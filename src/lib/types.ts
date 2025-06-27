@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -156,10 +157,10 @@ export interface EventCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: { _seconds: number, _nanoseconds: number };
+  expiresAt?: string | null;
   usageLimit?: number;
   usageCount: number;
-  createdAt: { _seconds: number, _nanoseconds: number };
+  createdAt: string;
 }
 
 export interface MarketplaceCoupon {
@@ -168,13 +169,13 @@ export interface MarketplaceCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: { _seconds: number, _nanoseconds: number }; // Firestore Timestamp
+  expiresAt?: string | null;
   usageLimit?: number;
   usageCount: number;
   isActive: boolean;
   applicableToListingIds?: string[];
   applicableToCategories?: string[];
-  createdAt: { _seconds: number, _nanoseconds: number };
+  createdAt: string;
 }
 
 
