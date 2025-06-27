@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -396,8 +396,36 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
 );
 
 export const getProcessingUnitDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("processing-unit-dashboard", context);
+  async (data, context): Promise<ProcessingUnitDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: ProcessingUnitDashboardData = {
+      yieldOptimization: {
+        currentYield: 85,
+        potentialYield: 92,
+        suggestion: "AI suggests adjusting blade speed on the primary chopper to reduce fine particle loss by an estimated 3%.",
+      },
+      inventory: [
+        { product: 'Raw Cashew Nuts', quality: 'Grade A', tons: 15.5 },
+        { product: 'Dried Mango Cheeks', quality: 'Grade B', tons: 2.1 },
+        { product: 'Hibiscus Flower', quality: 'Premium Export', tons: 8.0 },
+      ],
+      wasteReduction: {
+        currentRate: 12,
+        insight: "Analysis indicates 4% of waste is recoverable as animal feed. Consider partnering with local livestock farmers.",
+      },
+      packagingOrders: [
+          { id: 'po1', supplierName: 'EcoPack Solutions', deliveryDate: '2023-11-10', status: 'In Transit', actionLink: '#' },
+          { id: 'po2', supplierName: 'Bulk Bags Inc.', deliveryDate: '2023-11-15', status: 'Pending', actionLink: '#' },
+      ],
+      packagingInventory: [
+          { packagingType: '5kg Branded Jute Bags', unitsInStock: 2500, reorderLevel: 1000 },
+          { packagingType: '100g Retail Foil Pouches', unitsInStock: 15000, reorderLevel: 20000 },
+      ]
+    };
+    return mockData;
   },
 );
 

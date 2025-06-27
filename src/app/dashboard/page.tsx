@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -79,10 +79,6 @@ function MainContent() {
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
   useEffect(() => {
-    // Super App Vision Note: This effect demonstrates the adaptive nature of the dashboard.
-    // It fetches the user's role to display a tailored experience, while also fetching
-    // a personalized feed, which could be powered by AI to show relevant market news,
-    // forum posts, or connection suggestions, making the dashboard feel "alive".
     const fetchUserRoleAndFeed = async () => {
       setIsLoadingRole(true);
       setIsLoadingFeed(true);

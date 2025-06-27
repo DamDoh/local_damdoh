@@ -361,6 +361,35 @@ export interface AgroExportDashboardData {
     }[];
 }
 
+export interface ProcessingUnitDashboardData {
+    yieldOptimization: {
+        currentYield: number;
+        potentialYield: number;
+        suggestion: string;
+    };
+    inventory: {
+        product: string;
+        quality: string;
+        tons: number;
+    }[];
+    wasteReduction: {
+        currentRate: number;
+        insight: string;
+    };
+    packagingOrders: {
+        id: string;
+        supplierName: string;
+        deliveryDate: string;
+        status: 'Pending' | 'In Transit' | 'Delivered';
+        actionLink: string;
+    }[];
+    packagingInventory: {
+        packagingType: string;
+        unitsInStock: number;
+        reorderLevel: number;
+    }[];
+}
+
 export interface KnfBatch {
     id: string;
     userId: string;
