@@ -60,7 +60,7 @@ exports.createShop = functions.https.onCall(async (data, context) => {
         const batch = db.batch();
         // 1. Create the new shop document.
         batch.set(shopRef, {
-            userId: userId,
+            ownerId: userId,
             name: name,
             description: description,
             stakeholderType: stakeholderType,
@@ -70,6 +70,8 @@ exports.createShop = functions.https.onCall(async (data, context) => {
             logoUrl: null,
             bannerUrl: null,
             contactInfo: {},
+            itemCount: 0,
+            rating: 0,
         });
         // 2. Update the user's document with a reference to their new shop.
         // Using an array to support multiple shopfronts in the future if needed.
@@ -176,7 +178,11 @@ exports.getSellerCoupons = functions.https.onCall(async (data, context) => {
             .where("sellerId", "==", sellerId)
             .orderBy("createdAt", "desc")
             .get();
-        const coupons = snapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const coupons = snapshot.docs.map((doc) => {
+            var _a, _b;
+            const couponData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, couponData), { createdAt: ((_a = couponData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? couponData.createdAt.toDate().toISOString() : null, expiresAt: ((_b = couponData.expiresAt) === null || _b === void 0 ? void 0 : _b.toDate) ? couponData.expiresAt.toDate().toISOString() : null });
+        });
         return { coupons };
     }
     catch (error) {

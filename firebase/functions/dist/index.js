@@ -42,7 +42,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const admin = __importStar(require("firebase-admin"));
+// Initialize the Firebase Admin SDK.
+// This must be done only once, at the entry point of your functions.
 admin.initializeApp();
+// Now, re-export all the functions from your other modules.
+// The Firebase CLI will discover and deploy these exported functions.
 __exportStar(require("./dashboard_data"), exports);
 __exportStar(require("./module1"), exports);
 __exportStar(require("./module3"), exports);
@@ -58,6 +62,6 @@ __exportStar(require("./module12"), exports);
 __exportStar(require("./notifications"), exports);
 __exportStar(require("./offline_sync"), exports);
 __exportStar(require("./search"), exports);
-__exportStar(require("./types"), exports);
 __exportStar(require("./profiles"), exports);
+__exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

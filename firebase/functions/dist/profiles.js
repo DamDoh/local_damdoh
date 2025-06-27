@@ -56,8 +56,8 @@ const validateProfileData = (role, data) => {
     }
 };
 /**
- * Creates or updates a detailed stakeholder profile.
- * @param {any} data The data for the function call.
+ * Creates or updates a detailed stakeholder profile. This is the single, secure entry point for all profile modifications.
+ * @param {any} data The data for the function call. Must include a primaryRole.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, message: string}>} A promise that resolves with the status.
  */
@@ -65,9 +65,9 @@ exports.upsertStakeholderProfile = functions.https.onCall(async (data, context) 
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
-    const { displayName, primaryRole, profileData } = data;
-    if (!displayName || !primaryRole) {
-        throw new functions.https.HttpsError("invalid-argument", "Display name and primary role are required.");
+    const { primaryRole, displayName, profileSummary, bio, location, areasOfInterest, needs, contactInfoPhone, contactInfoWebsite, profileData, } = data;
+    if (!primaryRole) {
+        throw new functions.https.HttpsError("invalid-argument", "A primary role must be provided.");
     }
     if (profileData) {
         validateProfileData(primaryRole, profileData);
@@ -75,12 +75,31 @@ exports.upsertStakeholderProfile = functions.https.onCall(async (data, context) 
     const userId = context.auth.uid;
     try {
         const userRef = db.collection("users").doc(userId);
-        await userRef.set({
-            displayName: displayName,
-            primaryRole: primaryRole,
-            profileData: profileData || {},
+        const updatePayload = {
+            primaryRole,
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        }, { merge: true });
+        };
+        if (displayName)
+            updatePayload.name = displayName;
+        if (profileSummary)
+            updatePayload.profileSummary = profileSummary;
+        if (bio)
+            updatePayload.bio = bio;
+        if (location)
+            updatePayload.location = location;
+        if (Array.isArray(areasOfInterest))
+            updatePayload.areasOfInterest = areasOfInterest;
+        if (Array.isArray(needs))
+            updatePayload.needs = needs;
+        if (contactInfoPhone || contactInfoWebsite) {
+            updatePayload.contactInfo = {
+                phone: contactInfoPhone || null,
+                website: contactInfoWebsite || null,
+            };
+        }
+        if (profileData)
+            updatePayload.profileData = profileData;
+        await userRef.set(updatePayload, { merge: true });
         return { status: "success", message: "Profile updated successfully." };
     }
     catch (error) {
@@ -91,7 +110,7 @@ exports.upsertStakeholderProfile = functions.https.onCall(async (data, context) 
 /**
  * Helper function to get a user's role from Firestore.
  * @param {string | undefined} uid The user's ID.
- * @return {Promise<string | null>} The user's role or null if not found.
+ * @return {Promise<UserRole | null>} The user's role or null if not found.
  */
 async function getRole(uid) {
     var _a;
@@ -100,7 +119,8 @@ async function getRole(uid) {
     }
     try {
         const userDoc = await db.collection("users").doc(uid).get();
-        return ((_a = userDoc.data()) === null || _a === void 0 ? void 0 : _a.primaryRole) || null;
+        const role = (_a = userDoc.data()) === null || _a === void 0 ? void 0 : _a.primaryRole;
+        return role ? role : null;
     }
     catch (error) {
         console.error("Error fetching user role:", error);

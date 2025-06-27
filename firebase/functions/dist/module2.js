@@ -1,14 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRole = getRole;
-exports.getUserDocument = getUserDocument;
-async function getRole(uid) {
-    return "Farmer";
-}
-async function getUserDocument(uid) {
-    return {
-        id: uid,
-        email: "test@test.com",
-    };
-}
+// This module is deprecated. Its functions have been consolidated into `profiles.ts`.
+// This file can be safely removed from the project.
 //# sourceMappingURL=module2.js.map

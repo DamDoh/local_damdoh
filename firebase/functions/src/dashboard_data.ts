@@ -57,7 +57,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, recentCropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             recentCropsPromise,
-            knfBatchesPromise,
+            knfBatchesSnapshot,
         ]);
 
         const farms = farmsSnapshot.docs.map(doc => ({

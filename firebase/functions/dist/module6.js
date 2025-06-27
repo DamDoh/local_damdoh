@@ -51,7 +51,11 @@ const REPLIES_PER_PAGE = 15;
 exports.getTopics = functions.https.onCall(async (data, context) => {
     try {
         const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
-        const topics = topicsSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const topics = topicsSnapshot.docs.map((doc) => {
+            var _a, _b;
+            const data = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, data), { createdAt: ((_a = data.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? data.createdAt.toDate().toISOString() : null, lastActivity: ((_b = data.lastActivity) === null || _b === void 0 ? void 0 : _b.toDate) ? data.lastActivity.toDate().toISOString() : null });
+        });
         return { topics };
     }
     catch (error) {
@@ -102,7 +106,11 @@ exports.getPostsForTopic = functions.https.onCall(async (data, context) => {
             }
         }
         const postsSnapshot = await query.get();
-        const posts = postsSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const posts = postsSnapshot.docs.map((doc) => {
+            var _a;
+            const data = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, data), { timestamp: ((_a = data.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? data.timestamp.toDate().toISOString() : null });
+        });
         const newLastVisible = ((_a = postsSnapshot.docs[postsSnapshot.docs.length - 1]) === null || _a === void 0 ? void 0 : _a.id) || null;
         return { posts, lastVisible: newLastVisible };
     }
@@ -161,7 +169,11 @@ exports.getRepliesForPost = functions.https.onCall(async (data, context) => {
             }
         }
         const repliesSnapshot = await query.get();
-        const replies = repliesSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const replies = repliesSnapshot.docs.map((doc) => {
+            var _a;
+            const data = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, data), { timestamp: ((_a = data.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? data.timestamp.toDate().toISOString() : null });
+        });
         const newLastVisible = ((_a = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]) === null || _a === void 0 ? void 0 : _a.id) || null;
         return { replies, lastVisible: newLastVisible };
     }
@@ -239,6 +251,7 @@ exports.createGroup = functions.https.onCall(async (data, context) => {
     }
 });
 exports.getGroupDetails = functions.https.onCall(async (data, context) => {
+    var _a;
     const { groupId } = data;
     if (!groupId) {
         throw new functions.https.HttpsError("invalid-argument", "A groupId must be provided.");
@@ -248,7 +261,8 @@ exports.getGroupDetails = functions.https.onCall(async (data, context) => {
         if (!groupDoc.exists) {
             throw new functions.https.HttpsError("not-found", "Group not found.");
         }
-        return Object.assign({ id: groupDoc.id }, groupDoc.data());
+        const groupData = groupDoc.data();
+        return Object.assign(Object.assign({ id: groupDoc.id }, groupData), { createdAt: ((_a = groupData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? groupData.createdAt.toDate().toISOString() : null });
     }
     catch (error) {
         console.error(`Error fetching group details for ${groupId}:`, error);
@@ -353,7 +367,11 @@ exports.getFeed = functions.https.onCall(async (data, context) => {
             }
         }
         const snapshot = await query.get();
-        const posts = snapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const posts = snapshot.docs.map((doc) => {
+            var _a;
+            const data = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, data), { createdAt: ((_a = data.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? data.createdAt.toDate().toISOString() : null });
+        });
         const newLastVisible = ((_a = snapshot.docs[snapshot.docs.length - 1]) === null || _a === void 0 ? void 0 : _a.id) || null;
         return { posts, lastVisible: newLastVisible };
     }
@@ -465,7 +483,11 @@ exports.createAgriEvent = functions.https.onCall(async (data, context) => {
 exports.getAgriEvents = functions.https.onCall(async (data, context) => {
     try {
         const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
-        const events = eventsSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const events = eventsSnapshot.docs.map((doc) => {
+            var _a;
+            const eventData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, eventData), { createdAt: ((_a = eventData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? eventData.createdAt.toDate().toISOString() : null, eventDate: eventData.eventDate });
+        });
         return events;
     }
     catch (error) {
@@ -474,6 +496,7 @@ exports.getAgriEvents = functions.https.onCall(async (data, context) => {
     }
 });
 exports.getEventDetails = functions.https.onCall(async (data, context) => {
+    var _a;
     const { eventId, includeAttendees } = data;
     if (!eventId) {
         throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
@@ -491,7 +514,6 @@ exports.getEventDetails = functions.https.onCall(async (data, context) => {
         const registrationSnap = await registrationRef.get();
         isRegistered = registrationSnap.exists;
     }
-    // Security Check: Only return attendee list if the caller is the organizer
     if (includeAttendees && context.auth && context.auth.uid === eventData.organizerId) {
         const registrationsSnap = await eventRef.collection("registrations").get();
         const attendeeIds = registrationsSnap.docs.map((doc) => doc.id);
@@ -506,9 +528,9 @@ exports.getEventDetails = functions.https.onCall(async (data, context) => {
                 const regData = regDoc.data();
                 return {
                     id: regDoc.id,
-                    displayName: (profile === null || profile === void 0 ? void 0 : profile.displayName) || "Unknown User",
+                    displayName: (profile === null || profile === void 0 ? void 0 : profile.name) || "Unknown User",
                     email: (profile === null || profile === void 0 ? void 0 : profile.email) || "No email",
-                    avatarUrl: (profile === null || profile === void 0 ? void 0 : profile.photoURL) || "",
+                    avatarUrl: (profile === null || profile === void 0 ? void 0 : profile.avatarUrl) || "",
                     registeredAt: regData.registeredAt.toDate().toISOString(),
                     checkedIn: regData.checkedIn || false,
                     checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
@@ -516,7 +538,8 @@ exports.getEventDetails = functions.https.onCall(async (data, context) => {
             });
         }
     }
-    return Object.assign(Object.assign({}, eventData), { id: eventSnap.id, isRegistered, attendees });
+    return Object.assign(Object.assign({}, eventData), { id: eventSnap.id, isRegistered,
+        attendees, createdAt: ((_a = eventData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? eventData.createdAt.toDate().toISOString() : null });
 });
 exports.registerForEvent = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -548,7 +571,6 @@ exports.registerForEvent = functions.https.onCall(async (data, context) => {
         let finalPrice = eventData.price || 0;
         let couponRef = null;
         let discountApplied = 0;
-        // --- Coupon Logic ---
         if (couponCode && typeof couponCode === "string" && finalPrice > 0) {
             const couponsQuery = eventRef.collection("coupons").where("code", "==", couponCode.toUpperCase()).limit(1);
             const couponSnapshot = await transaction.get(couponsQuery);
@@ -558,15 +580,12 @@ exports.registerForEvent = functions.https.onCall(async (data, context) => {
             const couponDoc = couponSnapshot.docs[0];
             const couponData = couponDoc.data();
             couponRef = couponDoc.ref;
-            // Check usage limit
             if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
                 throw new functions.https.HttpsError("failed-precondition", "Coupon has reached its usage limit.");
             }
-            // Check expiration
             if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
                 throw new functions.https.HttpsError("failed-precondition", "This coupon has expired.");
             }
-            // Calculate discounted price
             if (couponData.discountType === "percentage") {
                 discountApplied = finalPrice * (couponData.discountValue / 100);
             }
@@ -575,7 +594,6 @@ exports.registerForEvent = functions.https.onCall(async (data, context) => {
             }
             finalPrice = Math.max(0, finalPrice - discountApplied);
         }
-        // Synergy: Payment Integration
         if (finalPrice > 0) {
             console.log(`Paid event registration for event ${eventId}. Final price after discount: ${finalPrice}. Initiating payment flow.`);
             try {
@@ -638,28 +656,25 @@ exports.checkInAttendee = functions.https.onCall(async (data, context) => {
         checkedIn: true,
         checkedInAt: firestore_1.FieldValue.serverTimestamp(),
     });
-    // Synergy: Traceability Integration
-    // Log the attendance as a verifiable event on the user's personal VTI log.
     try {
         const eventName = ((_c = eventDoc.data()) === null || _c === void 0 ? void 0 : _c.title) || "Unknown Event";
         console.log(`Logging ATTENDED_EVENT for user ${attendeeId} at event "${eventName}"`);
         await (0, module1_1._internalLogTraceEvent)({
-            vtiId: attendeeId, // The user's ID is their personal VTI
+            vtiId: attendeeId,
             eventType: "ATTENDED_EVENT",
-            actorRef: organizerId, // The organizer is the actor verifying attendance
-            geoLocation: null, // Could add event location here in future
+            actorRef: organizerId,
+            geoLocation: null,
             payload: {
                 eventId: eventId,
                 eventName: eventName,
                 organizerId: organizerId,
                 notes: "Attendee checked in by organizer.",
             },
-            farmFieldId: `user-credential:${attendeeId}`, // A way to group user credential events
+            farmFieldId: `user-credential:${attendeeId}`,
         });
         console.log(`Successfully logged traceable attendance for user ${attendeeId}`);
     }
     catch (traceError) {
-        // Log the error but don't fail the check-in process
         console.error(`Failed to log traceability event for user ${attendeeId}'s attendance:`, traceError);
     }
     return { success: true, message: `Attendee ${attendeeId} checked in.` };
@@ -685,7 +700,7 @@ exports.createEventCoupon = functions.https.onCall(async (data, context) => {
     if (!existingCouponQuery.empty) {
         throw new functions.https.HttpsError("already-exists", `A coupon with the code "${couponCode}" already exists for this event.`);
     }
-    const newCoupon = {
+    const newCouponData = {
         code: couponCode,
         discountType,
         discountValue,
@@ -695,9 +710,10 @@ exports.createEventCoupon = functions.https.onCall(async (data, context) => {
         createdAt: firestore_1.FieldValue.serverTimestamp(),
         organizerId,
     };
-    const couponRef = await couponsRef.add(newCoupon);
+    const couponRef = await couponsRef.add(newCouponData);
     await eventRef.update({ couponCount: firestore_1.FieldValue.increment(1) });
-    return Object.assign({ couponId: couponRef.id }, newCoupon);
+    const createdCoupon = (await couponRef.get()).data();
+    return Object.assign(Object.assign({ couponId: couponRef.id }, createdCoupon), { expiresAt: createdCoupon.expiresAt ? createdCoupon.expiresAt.toDate().toISOString() : null, createdAt: createdCoupon.createdAt ? createdCoupon.createdAt.toDate().toISOString() : null });
 });
 exports.getEventCoupons = functions.https.onCall(async (data, context) => {
     var _a;
@@ -712,7 +728,10 @@ exports.getEventCoupons = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("permission-denied", "You are not authorized to view coupons for this event.");
     }
     const couponsSnapshot = await eventRef.collection("coupons").orderBy("createdAt", "desc").get();
-    const coupons = couponsSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+    const coupons = couponsSnapshot.docs.map((doc) => {
+        const data = doc.data();
+        return Object.assign(Object.assign({ id: doc.id }, data), { expiresAt: data.expiresAt ? data.expiresAt.toDate().toISOString() : null, createdAt: data.createdAt ? data.createdAt.toDate().toISOString() : null });
+    });
     return { coupons };
 });
 //# sourceMappingURL=module6.js.map

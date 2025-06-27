@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.performSearch = exports.onSourceDocumentWriteIndex = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
-const module2_1 = require("./module2");
+const profiles_1 = require("./profiles");
 const db = admin.firestore();
 /**
  * A generic Firestore trigger that listens to writes on specified collections
@@ -182,7 +182,7 @@ exports.performSearch = functions.https.onCall(async (data, context) => {
     }
     console.log(`Performing search for user ${callerUid} with query: "${query}" and filters: ${JSON.stringify(filters)}`);
     try {
-        const userDoc = await (0, module2_1.getUserDocument)(callerUid);
+        const userDoc = await (0, profiles_1.getUserDocument)(callerUid);
         const userData = userDoc === null || userDoc === void 0 ? void 0 : userDoc.data();
         const userRole = userData === null || userData === void 0 ? void 0 : userData.primaryRole;
         const userRegion = userData === null || userData === void 0 ? void 0 : userData.region;

@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.submitReportToAuthority = exports.generateRegulatoryReport = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
-const module2_1 = require("./module2");
+const profiles_1 = require("./profiles");
 const module8_1 = require("./module8");
 const db = admin.firestore();
 /**
@@ -50,7 +50,7 @@ exports.generateRegulatoryReport = functions.https.onCall(async (data, context) 
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to generate regulatory reports.");
     }
     const callerUid = context.auth.uid;
-    const callerRole = await (0, module2_1.getRole)(callerUid);
+    const callerRole = await (0, profiles_1.getRole)(callerUid);
     const { reportType, userId, orgId, reportPeriod } = data;
     if (!reportType || typeof reportType !== "string") {
         throw new functions.https.HttpsError("invalid-argument", "The 'reportType' parameter is required and must be a string.");
@@ -66,7 +66,7 @@ exports.generateRegulatoryReport = functions.https.onCall(async (data, context) 
     }
     const startDate = admin.firestore.Timestamp.fromMillis(reportPeriod.startDate);
     const endDate = admin.firestore.Timestamp.fromMillis(reportPeriod.endDate);
-    const hasAuthorizedRole = callerRole && ["admin", "regulator", "auditor"].includes(callerRole);
+    const hasAuthorizedRole = callerRole && ["Admin", "Regulator", "Auditor"].includes(callerRole); // Using UserRole type now
     if (!hasAuthorizedRole) {
         throw new functions.https.HttpsError("permission-denied", "User is not authorized to generate regulatory reports.");
     }

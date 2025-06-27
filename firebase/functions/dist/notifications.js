@@ -38,7 +38,7 @@ const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
 const messaging = admin.messaging();
-const module2_1 = require("./module2");
+const profiles_1 = require("./profiles");
 /**
  * =================================================================
  * Cross-Cutting Notification System
@@ -63,7 +63,7 @@ async function createAndSendNotification(userId, notificationPayload) {
     await newNotificationRef.set(Object.assign(Object.assign({ notificationId: newNotificationRef.id, userId: userId }, notificationPayload), { timestamp: admin.firestore.FieldValue.serverTimestamp(), isRead: false }));
     console.log(`Notification document created: ${newNotificationRef.id}`);
     // 2. Attempt to send a push notification via FCM
-    const userDoc = await (0, module2_1.getUserDocument)(userId);
+    const userDoc = await (0, profiles_1.getUserDocument)(userId);
     const fcmToken = (_a = userDoc === null || userDoc === void 0 ? void 0 : userDoc.data()) === null || _a === void 0 ? void 0 : _a.fcmToken;
     if (fcmToken) {
         console.log(`FCM token found for user ${userId}. Attempting to send push notification...`);

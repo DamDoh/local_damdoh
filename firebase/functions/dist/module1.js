@@ -33,12 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTraceabilityEventsByFarmField = exports.handleObservationEvent = exports.handleInputApplicationEvent = exports.handleHarvestEvent = exports.logTraceEvent = exports.generateVTI = void 0;
+exports.getVtiTraceabilityHistory = exports.getTraceabilityEventsByFarmField = exports.handleObservationEvent = exports.handleInputApplicationEvent = exports.handleHarvestEvent = exports.logTraceEvent = exports.generateVTI = void 0;
 exports._internalLogTraceEvent = _internalLogTraceEvent;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const uuid_1 = require("uuid");
-const module2_1 = require("./module2");
+const profiles_1 = require("./profiles");
 const db = admin.firestore();
 /**
  * Internal function to generate a new Verifiable Traceability Identifier (VTI).
@@ -140,7 +140,7 @@ exports.handleHarvestEvent = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
     const callerUid = context.auth.uid;
-    const role = await (0, module2_1.getRole)(callerUid);
+    const role = await (0, profiles_1.getRole)(callerUid);
     if (role !== "Farmer" && role !== "System") {
         throw new functions.https.HttpsError("permission-denied", "Only farmers or system processes can log harvest events.");
     }
@@ -213,7 +213,7 @@ exports.handleInputApplicationEvent = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
     const callerUid = context.auth.uid;
-    const role = await (0, module2_1.getRole)(callerUid);
+    const role = await (0, profiles_1.getRole)(callerUid);
     if (role !== "Farmer" && role !== "System") {
         throw new functions.https.HttpsError("permission-denied", "Only farmers or system processes can log input application events.");
     }
@@ -338,12 +338,71 @@ exports.getTraceabilityEventsByFarmField = functions.https.onCall(async (data, c
             .where("farmFieldId", "==", farmFieldId)
             .orderBy("timestamp", "asc")
             .get();
-        const events = eventsSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const events = eventsSnapshot.docs.map((doc) => {
+            var _a;
+            const eventData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, eventData), { timestamp: ((_a = eventData.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? eventData.timestamp.toDate().toISOString() : null });
+        });
         return { events };
     }
     catch (error) {
         console.error(`Error fetching events for farmFieldId ${farmFieldId}:`, error);
         throw new functions.https.HttpsError("internal", "Failed to fetch traceability events.");
+    }
+});
+/**
+ * Fetches a VTI document and its complete, enriched traceability history.
+ * @param {any} data The data for the function call, containing `vtiId`.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{vti: any, events: any[]}>} A promise resolving with the VTI and its event history.
+ */
+exports.getVtiTraceabilityHistory = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const { vtiId } = data;
+    if (!vtiId) {
+        throw new functions.https.HttpsError("invalid-argument", "A vtiId must be provided.");
+    }
+    try {
+        const db = admin.firestore();
+        // 1. Fetch the VTI document itself
+        const vtiDocRef = db.collection("vti_registry").doc(vtiId);
+        const vtiDoc = await vtiDocRef.get();
+        if (!vtiDoc.exists) {
+            throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
+        }
+        const vtiData = vtiDoc.data();
+        // 2. Fetch all associated events
+        const eventsQuery = db.collection("traceability_events")
+            .where("vtiId", "==", vtiId)
+            .orderBy("timestamp", "asc");
+        const eventsSnapshot = await eventsQuery.get();
+        const eventsData = eventsSnapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
+        // 3. Enrich events with actor information
+        const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
+        const actorProfiles = {};
+        if (actorIds.length > 0) {
+            const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
+            userDocs.forEach(doc => {
+                actorProfiles[doc.id] = {
+                    name: doc.data().displayName || "Unknown Actor",
+                    role: doc.data().primaryRole || "Unknown Role",
+                };
+            });
+        }
+        const enrichedEvents = eventsData.map(event => (Object.assign(Object.assign({}, event), { timestamp: event.timestamp.toDate().toISOString(), actor: actorProfiles[event.actorRef] || { name: "System", role: "System" } })));
+        return {
+            vti: Object.assign(Object.assign({ id: vtiDoc.id }, vtiData), { creationTime: (vtiData === null || vtiData === void 0 ? void 0 : vtiData.creationTime).toDate().toISOString() }),
+            events: enrichedEvents
+        };
+    }
+    catch (error) {
+        console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
     }
 });
 //# sourceMappingURL=module1.js.map

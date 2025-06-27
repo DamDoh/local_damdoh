@@ -151,7 +151,11 @@ exports.getAvailableCourses = functions.https.onCall(async (data, context) => {
             .collection("courses")
             .orderBy("createdAt", "desc")
             .get();
-        const courses = coursesSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        const courses = coursesSnapshot.docs.map((doc) => {
+            var _a, _b;
+            const courseData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, courseData), { createdAt: ((_a = courseData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? courseData.createdAt.toDate().toISOString() : null, updatedAt: ((_b = courseData.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? courseData.updatedAt.toDate().toISOString() : null });
+        });
         return { success: true, courses: courses };
     }
     catch (error) {
