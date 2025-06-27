@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -432,78 +432,89 @@ export const getResearcherDashboardData = functions.https.onCall(
 );
 
 export const getAgronomistDashboardData = functions.https.onCall(
-  async (data, context) => {
+  async (data, context): Promise<AgronomistDashboardData> => {
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
         "The function must be called while authenticated.",
       );
     }
+    
+    // Returning mock data to power the new dashboard UI
+    const mockData: AgronomistDashboardData = {
+        assignedFarmersOverview: [
+            { id: 'farmer1', name: 'Green Valley Farms', farmLocation: 'Nakuru, Kenya', lastConsultation: new Date(Date.now() - 7 * 86400000).toISOString(), alerts: 2 },
+            { id: 'farmer2', name: 'Sunrise Cooperative', farmLocation: 'Kiambu, Kenya', lastConsultation: new Date(Date.now() - 14 * 86400000).toISOString(), alerts: 0 },
+        ],
+        pendingConsultationRequests: [
+            { id: 'req1', farmerName: 'Coastal Cashews Ltd.', issueSummary: 'Suspected fungal infection on new seedlings.', requestDate: new Date(Date.now() - 1 * 86400000).toISOString() },
+            { id: 'req2', farmerName: 'Highland Coffee Co-op', issueSummary: 'Need advice on organic pest control for coffee berry borer.', requestDate: new Date(Date.now() - 3 * 86400000).toISOString() },
+        ],
+        knowledgeBaseContributions: [
+            { id: 'kb1', title: 'Integrated Pest Management for Maize', status: 'Published' },
+            { id: 'kb2', title: 'Optimizing Drip Irrigation for Tomatoes', status: 'Pending Review' },
+        ]
+    };
 
-    try {
-      const agronomistId = context.auth.uid;
-
-      const assignedFarmersPromise = db
-        .collection("farmers")
-        .where("assignedAgronomist", "==", agronomistId)
-        .get();
-      const consultationRequestsPromise = db
-        .collection("consultationRequests")
-        .where("agronomistId", "==", agronomistId)
-        .where("status", "==", "pending")
-        .get();
-      const knowledgeBasePromise = db
-        .collection("knowledgeBase")
-        .where("authorId", "==", agronomistId)
-        .get();
-
-      const [
-        assignedFarmersSnapshot,
-        consultationRequestsSnapshot,
-        knowledgeBaseSnapshot,
-      ] = await Promise.all([
-        assignedFarmersPromise,
-        consultationRequestsPromise,
-        knowledgeBasePromise,
-      ]);
-
-      const assignedFarmersOverview = assignedFarmersSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      const pendingConsultationRequests = consultationRequestsSnapshot.docs.map(
-        (doc) => ({id: doc.id, ...doc.data()}),
-      );
-      const knowledgeBaseContributions = knowledgeBaseSnapshot.docs.map(
-        (doc) => ({id: doc.id, ...doc.data()}),
-      );
-
-      return {
-        assignedFarmersOverview,
-        pendingConsultationRequests,
-        knowledgeBaseContributions,
-      };
-    } catch (error) {
-      console.error("Error fetching Agronomist dashboard data:", error);
-      throw new functions.https.HttpsError(
-        "internal",
-        "Failed to fetch Agronomist dashboard data.",
-      );
-    }
+    return mockData;
   },
 );
 
 export const getAgroTourismDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("agro-tourism-dashboard", context);
+  async (data, context): Promise<AgroTourismDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: AgroTourismDashboardData = {
+      upcomingBookings: [
+        { id: 'booking1', experienceTitle: 'Organic Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date(Date.now() + 3 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'booking2', experienceTitle: 'KNF Workshop', guestName: 'Bob Williams', date: new Date(Date.now() + 7 * 86400000).toISOString(), actionLink: '#' },
+      ],
+      listedExperiences: [
+        { id: 'exp1', title: 'Organic Farm Tour & Tasting', location: 'Nakuru, Kenya', status: 'Published', bookingsCount: 15, actionLink: '#' },
+        { id: 'exp2', title: 'KNF Workshop', location: 'Nakuru, Kenya', status: 'Published', bookingsCount: 8, actionLink: '#' },
+        { id: 'exp3', title: 'Coffee Plantation Experience', location: 'Kiambu, Kenya', status: 'Draft', bookingsCount: 0, actionLink: '#' },
+      ],
+      guestReviews: [
+        { id: 'rev1', guestName: 'Charlie Brown', experienceTitle: 'Organic Farm Tour & Tasting', rating: 5, comment: 'Amazing and educational experience! The fresh produce was delicious.', actionLink: '#' },
+        { id: 'rev2', guestName: 'Diana Prince', experienceTitle: 'KNF Workshop', rating: 4, comment: 'Learned so much about natural farming. Highly recommend.', actionLink: '#' },
+      ],
+    };
+    return mockData;
   },
 );
 
 export const getInsuranceProviderDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("insurance-provider-dashboard", context);
+  async (data, context): Promise<InsuranceProviderDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: InsuranceProviderDashboardData = {
+      pendingClaims: [
+        { id: 'claim1', policyHolderName: 'Green Valley Farms', policyType: 'Crop', claimDate: new Date(Date.now() - 2 * 86400000).toISOString(), status: 'Submitted', actionLink: '#' },
+        { id: 'claim2', policyHolderName: 'Sunrise Cooperative', policyType: 'Livestock', claimDate: new Date(Date.now() - 5 * 86400000).toISOString(), status: 'Under Review', actionLink: '#' },
+      ],
+      riskAssessmentAlerts: [
+        { id: 'alert1', policyHolderName: 'Green Valley Farms', alert: 'High probability of drought reported in Nakuru.', severity: 'High', actionLink: '#' },
+        { id: 'alert2', policyHolderName: 'Coastal Cashews Ltd.', alert: 'Pest outbreak detected in nearby regions.', severity: 'Medium', actionLink: '#' },
+      ],
+      activePolicies: [
+        { id: 'pol1', policyHolderName: 'Highland Coffee Co-op', policyType: 'Crop Insurance', coverageAmount: 50000, expiryDate: new Date(Date.now() + 150 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'pol2', policyHolderName: 'Moringa Leaf Exports', policyType: 'Property Insurance', coverageAmount: 120000, expiryDate: new Date(Date.now() + 200 * 86400000).toISOString(), actionLink: '#' },
+      ]
+    };
+    return mockData;
   },
 );
+
 
 export const getCrowdfunderDashboardData = functions.https.onCall(
   async (data, context) => {

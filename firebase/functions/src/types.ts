@@ -89,3 +89,55 @@ export interface Certification {
     name: string;
     issuingBody: string;
   }
+
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO string
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number; // e.g., 1-5
+    comment: string;
+    actionLink: string;
+  }[];
+}
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string
+    actionLink: string;
+  }[];
+}

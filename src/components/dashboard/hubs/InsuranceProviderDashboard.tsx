@@ -113,7 +113,7 @@ export const InsuranceProviderDashboard = () => {
                      <TableRow key={claim.id}>
                        <TableCell className="font-medium">{claim.policyHolderName}</TableCell>
                        <TableCell>{claim.policyType}</TableCell>
-                       <TableCell>{claim.claimDate}</TableCell>
+                       <TableCell>{new Date(claim.claimDate).toLocaleDateString()}</TableCell>
                        <TableCell><Badge variant={getStatusBadgeVariant(claim.status)}>{claim.status}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
@@ -181,7 +181,7 @@ export const InsuranceProviderDashboard = () => {
                             <div key={policy.id} className="text-sm p-2 border rounded-lg">
                                 <p className="font-medium">{policy.policyHolderName} ({policy.policyType})</p>
                                 <p className="text-xs text-muted-foreground">Coverage: ${policy.coverageAmount.toLocaleString()}</p>
-                                <p className="text-xs text-muted-foreground">Expires: {policy.expiryDate}</p>
+                                <p className="text-xs text-muted-foreground">Expires: {new Date(policy.expiryDate).toLocaleDateString()}</p>
                                 <Button asChild variant="link" size="sm" className="px-0 pt-1">
                                     <Link href={policy.actionLink}>View Details</Link>
                                 </Button>
