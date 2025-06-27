@@ -159,7 +159,8 @@ export const getLogisticsDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
+    // Returning structured, realistic mock data.
+    // In a real system, this would come from live queries on 'shipments' and 'jobs' collections.
     const mockData: LogisticsDashboardData = {
       activeShipments: [
         { id: 'ship1', to: 'Mombasa Port', status: 'On-Time', eta: '2023-10-30', vtiLink: '/traceability/batches/vti-123' },
@@ -619,4 +620,5 @@ export const getWarehouseDashboardData = functions.https.onCall(
     return mockData;
   },
 );
+
 
