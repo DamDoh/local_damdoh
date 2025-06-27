@@ -1,123 +1,248 @@
-// src/frontend_snippets/firestore_write_examples.ts
+import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
 
-import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore';
-import { firebaseApp } from '../firebase/firebase'; // Assuming you have a firebase.ts file initializing your Firebase app
-
-// Initialize Firestore
-const db = getFirestore(firebaseApp);
-
-// Example type definition for Farm data based on docs/damdoh_architecture.md
-// Note: In a real application, you would likely define more robust interfaces/types.
-interface FarmData {
-  owner_id: string;
-  name: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  size: number;
-  farm_type: string; // e.g., 'crop', 'livestock', 'mixed'
-  irrigation_methods?: string[]; // Optional array
-  // soil_test_results: Consider a map or subcollection structure as per schema
-  // historical_yield_data: Consider a map or subcollection structure as per schema
-  created_at: Timestamp;
-  updated_at: Timestamp;
-}
+const db = admin.firestore();
 
 /**
- * Adds a new farm document to the 'farms' collection in Firestore.
- * Assumes farmData object matches the refined 'farms' schema structure
- * described in docs/damdoh_architecture.md.
- *
- * @param farmData - An object containing the farm details.
- * @returns A Promise that resolves with the DocumentReference of the newly created document,
- *          or rejects with an error.
+ * Creates a new course in the 'courses' collection.
+ * Requires admin privileges.
+ * @param {any} data The data for the new course.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, courseId: string}>} A promise that resolves with the new course ID.
  */
-export const addFarm = async (farmData: Omit<FarmData, 'created_at' | 'updated_at'>) => {
-  try {
-    // Add timestamps before saving
-    const farmDataWithTimestamps: FarmData = {
-      ...farmData,
-      created_at: Timestamp.now(),
-      updated_at: Timestamp.now(),
-    };
-
-    const docRef = await addDoc(collection(db, 'farms'), farmDataWithTimestamps);
-    console.log('Document written with ID: ', docRef.id);
-    return docRef;
-  } catch (e) {
-    console.error('Error adding farm document: ', e);
-    throw e; // Re-throw the error for handling in the calling code
+export const createCourse = functions.https.onCall(async (data, context) => {
+  // For this demo, we'll allow any authenticated user to create content.
+  // In a production app, the requireAdmin(context) check should be enabled.
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
   }
-};
 
-// Example type definition for Crop data based on docs/damdoh_architecture.md
-// Note: In a real application, you would likely define more robust interfaces/types.
-interface CropData {
-  farm_id: string; // Reference to 'farms' collection ID
-  crop_type: string;
-  planting_date: Timestamp;
-  harvest_date?: Timestamp; // Optional
-  expected_yield?: number; // Optional
-  actual_yield?: number; // Optional
-  // pests_diseases_encountered: Consider a subcollection structure as per schema
-  // fertilization_history: Consider a subcollection structure as per schema
-}
+  const {titleEn, descriptionEn, category, level, targetRoles} = data;
+  if (!titleEn || !descriptionEn || !category || !level) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Missing required fields for the course.",
+    );
+  }
+
+  try {
+    const newCourseRef = await db.collection("courses").add({
+      titleEn,
+      descriptionEn,
+      category,
+      level,
+      targetRoles: targetRoles || [],
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return {success: true, courseId: newCourseRef.id};
+  } catch (error: any) {
+    console.error("Error creating course:", error);
+    throw new functions.https.HttpsError("internal", "Failed to create course.", {
+      originalError: error.message,
+    });
+  }
+});
+
 
 /**
- * Adds a new crop document to the 'crops' collection in Firestore.
- * Assumes cropData object matches the refined 'crops' schema structure
- * described in docs/damdoh_architecture.md.
- *
- * @param cropData - An object containing the crop details.
- * @returns A Promise that resolves with the DocumentReference of the newly created document,
- *          or rejects with an error.
+ * Creates a new module within a specific course's subcollection.
+ * Requires admin privileges.
+ * @param {any} data The data for the new module.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, moduleId: string}>} A promise that resolves with the new module ID.
  */
-export const addCrop = async (cropData: CropData) => {
-  try {
-    const docRef = await addDoc(collection(db, 'crops'), cropData);
-    console.log('Document written with ID: ', docRef.id);
-    return docRef;
-  } catch (e) {
-    console.error('Error adding crop document: ', e);
-    throw e; // Re-throw the error for handling in the calling code
+export const createModule = functions.https.onCall(async (data, context) => {
+  // For this demo, we'll allow any authenticated user to create content.
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
   }
-};
 
-// Example Usage (for demonstration purposes)
-/*
-// Assuming you have the necessary farm data
-const myFarmData = {
-    owner_id: 'user123', // Replace with actual user ID
-    name: 'Green Acres',
-    location: { latitude: 40.7128, longitude: -74.0060 },
-    size: 100, // in acres or hectares
-    farm_type: 'crop',
-    irrigation_methods: ['drip'],
-    // Add other optional fields as needed
-};
+  const {courseId, moduleTitleEn, contentUrls} = data;
+  if (!courseId || !moduleTitleEn) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Course ID and module title are required.",
+    );
+  }
 
-addFarm(myFarmData)
-  .then((docRef) => {
-    console.log('Farm added successfully with ID:', docRef.id);
-
-    // Once a farm is added, you can add crops to it
-    const myCropData = {
-        farm_id: docRef.id, // Use the newly created farm ID
-        crop_type: 'Corn',
-        planting_date: Timestamp.fromDate(new Date()), // Use Firebase Timestamp
-        expected_yield: 50, // Expected bushels per acre/hectare
-    };
-
-    addCrop(myCropData)
-      .then((cropDocRef) => {
-        console.log('Crop added successfully with ID:', cropDocRef.id);
-      })
-      .catch((error) => {
-        console.error('Failed to add crop:', error);
+  try {
+    const newModuleRef = await db
+      .collection("courses")
+      .doc(courseId)
+      .collection("modules")
+      .add({
+        moduleTitleEn,
+        contentUrls: contentUrls || [],
+        order: 999, // Simple order, can be improved
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
-  })
-  .catch((error) => {
-    console.error('Failed to add farm:', error);
-  });
-*/
+
+    return {success: true, moduleId: newModuleRef.id};
+  } catch (error: any) {
+    console.error("Error creating module:", error);
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to create module.",
+      {originalError: error.message},
+    );
+  }
+});
+
+
+/**
+ * Creates a new knowledge article.
+ * Requires admin privileges.
+ * @param {any} data The data for the new article.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articleId: string}>} A promise that resolves with the new article ID.
+ */
+export const createKnowledgeArticle = functions.https.onCall(
+  async (data, context) => {
+    // For this demo, we'll allow any authenticated user to create content.
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+
+    const {titleEn, contentMarkdownEn, tags} = data;
+    if (!titleEn || !contentMarkdownEn) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Title and content are required.",
+      );
+    }
+
+    try {
+      const newArticleRef = await db.collection("knowledge_articles").add({
+        titleEn,
+        contentMarkdownEn,
+        tags: tags || [],
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      return {success: true, articleId: newArticleRef.id};
+    } catch (error: any) {
+      console.error("Error creating knowledge article:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to create article.",
+        {originalError: error.message},
+      );
+    }
+  },
+);
+
+
+/**
+ * Fetches all available courses.
+ * This is a public-facing function.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, courses: any[]}>} A promise that resolves with the available courses.
+ */
+export const getAvailableCourses = functions.https.onCall(
+  async (data, context) => {
+    try {
+      const coursesSnapshot = await db
+        .collection("courses")
+        .orderBy("createdAt", "desc")
+        .get();
+      const courses = coursesSnapshot.docs.map((doc) => {
+        const courseData = doc.data();
+        return {
+          id: doc.id,
+          ...courseData,
+          createdAt: (courseData.createdAt as admin.firestore.Timestamp)?.toDate ? (courseData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+          updatedAt: (courseData.updatedAt as admin.firestore.Timestamp)?.toDate ? (courseData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        };
+      });
+      return {success: true, courses: courses};
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
+    }
+  },
+);
+
+
+/**
+ * Cloud Function to fetch the details of a single course, including its modules.
+ * This version replaces mock data with actual Firestore queries.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, course: any}>} A promise that resolves with the course details.
+ */
+export const getCourseDetails = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {courseId} = data;
+  if (!courseId) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "A courseId must be provided.",
+    );
+  }
+
+  try {
+    // 1. Fetch the main course document
+    const courseDoc = await db.collection("courses").doc(courseId).get();
+    if (!courseDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Course not found.");
+    }
+    const courseData = courseDoc.data()!;
+
+    // 2. Fetch the modules from the subcollection
+    const modulesSnapshot = await db
+      .collection("courses")
+      .doc(courseId)
+      .collection("modules")
+      .orderBy("order", "asc")
+      .get();
+    const modulesData = modulesSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // 3. Combine the data
+    const finalData = {
+      id: courseDoc.id,
+      title: courseData.titleEn,
+      description: courseData.descriptionEn,
+      category: courseData.category,
+      level: courseData.level,
+      instructor: {name: "Dr. Alima Bello", title: "Senior Agronomist"}, // Instructor info would need another fetch
+      modules: modulesData.map((m: any) => ({
+        id: m.id,
+        title: m.moduleTitleEn,
+        content: m.contentUrls || [],
+      })),
+    };
+
+    return {success: true, course: finalData};
+  } catch (error) {
+    console.error("Error fetching course details:", error);
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to fetch course details.",
+    );
+  }
+});

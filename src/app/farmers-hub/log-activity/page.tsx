@@ -1,618 +1,248 @@
-import type { z } from 'zod';
-import type {
-  StakeholderProfileSchema,
-  MarketplaceItemSchema,
-  ForumTopicSchema,
-  ForumPostSchema,
-  AgriEventSchema
-} from './schemas';
-import type { CategoryNode as CatNodeType } from './category-data';
+import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
 
-// =================================================================
-// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
-// These are the primary data structures used across the application.
-// =================================================================
-
-export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
-export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
-export type ForumPost = z.infer<typeof ForumPostSchema>;
-export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
-
-// =================================================================
-// 2. UI & COMPONENT-SPECIFIC TYPES
-// Types used for navigation, UI components, and specific page features.
-// =================================================================
-
-export interface NavItem {
- title: string;
- href: string;
- icon: React.ElementType;
- disabled?: boolean;
- external?: boolean;
- label?: string;
- description?: string;
- active?: boolean;
-}
-
-export interface PollOption {
-  id?: string;
-  text: string;
-  votes: number;
-}
-
-export interface PostReply {
-  id: string;
-  author: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  content: string;
-  timestamp: string;
-}
-
-export interface FeedItem {
-  id: string;
-  type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
-  timestamp: string;
-  userId: string;
-  userName: string;
-  userAvatar?: string;
-  userHeadline?: string;
-  content?: string;
-  postImage?: string;
-  dataAiHint?: string;
-  likesCount: number;
-  commentsCount: number;
-  link?: string;
-  agriEvent?: AgriEvent;
-  pollOptions?: PollOption[];
-  relatedUser?: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-}
-
-export interface DirectMessage {
-  id: string;
-  senderName: string;
-  senderAvatarUrl?: string;
-  lastMessage: string;
-  timestamp: string;
-  unread?: boolean;
-  dataAiHint?: string;
-  relatedListingId?: string;
-}
-
-export interface MobileHomeCategory {
-  id: string;
-  name: string;
-  icon: React.ElementType;
-  href: string;
-  dataAiHint?: string;
-}
-
-export interface MobileDiscoverItem {
-  id: string;
-  title: string;
-  imageUrl: string;
-  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
-  link: string;
-  dataAiHint?: string;
-}
-
-// =================================================================
-// 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
-// These types serve as a blueprint for the data required for the
-// various stakeholder-specific dashboards and future features.
-// =================================================================
-
-export interface FinancialTransaction {
-    id: string;
-    type: 'income' | 'expense';
-    amount: number;
-    currency: string;
-    description: string;
-    category?: string;
-    timestamp: string; // ISO string
-}
-
-export interface FinancialSummary {
-    totalIncome: number;
-    totalExpense: number;
-    netFlow: number;
-}
-
-
-export interface YieldDataPoint {
-    crop: string;
-    historical: number;
-    predicted: number;
-    unit: string;
-}
-
-export interface FarmerDashboardData {
-  yieldData: YieldDataPoint[];
-  irrigationSchedule: {
-    next_run: string;
-    duration_minutes: number;
-    recommendation: string;
-  };
-  matchedBuyers: {
-    id: string;
-    name: string;
-    matchScore: number;
-    request: string;
-    contactId: string;
-  }[];
-  trustScore: {
-      reputation: number;
-      certifications: {
-          id: string;
-          name: string;
-          issuingBody: string;
-      }[];
-  }
-}
-
-export interface BuyerDashboardData {
-  supplyChainRisk: {
-    region: string;
-    level: string;
-    factor: string;
-    action: {
-      label: string;
-      link: string;
-    };
-  };
-  sourcingRecommendations: {
-    id: string;
-    name: string;
-    product: string;
-    reliability: number;
-    vtiVerified: boolean;
-  }[];
-  marketPriceIntelligence: {
-    product: string;
-    trend: 'up' | 'down';
-    forecast: string;
-    action: {
-      label: string;
-      link: string;
-    };
-  };
-}
-
-export interface RegulatorDashboardData {
-  complianceRiskAlerts: {
-    id: string;
-    region: string;
-    issue: string;
-    severity: string;
-    actionLink: string;
-  }[];
-  pendingCertifications: {
-    count: number;
-    actionLink: string;
-  };
-  supplyChainAnomalies: {
-    id: string;
-    description: string;
-    level: string;
-    vtiLink: string;
-  }[];
-}
-
-export interface LogisticsDashboardData {
-    activeShipments: {
-        id: string;
-        to: string;
-        status: string;
-        eta: string;
-        vtiLink: string;
-    }[];
-    incomingJobs: {
-        id: string;
-        from: string;
-        to: string;
-        product: string;
-        requirements: string;
-        actionLink: string;
-    }[];
-    performanceMetrics: {
-        onTimePercentage: number;
-        fuelEfficiency: string;
-        actionLink: string;
-    };
-}
-
-export interface FiDashboardData {
-    pendingApplications: {
-        id: string;
-        applicantName: string;
-        type: string;
-        amount: number;
-        riskScore: number;
-        actionLink: string;
-    }[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
-    };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-}
-
-export interface FieldAgentDashboardData {
-    assignedFarmers: {
-        id: string;
-        name: string;
-        lastVisit: string;
-        issues: number;
-        actionLink: string;
-    }[];
-    portfolioHealth: {
-        overallScore: number;
-        alerts: string[];
-        actionLink: string;
-    };
-    pendingReports: number;
-    dataVerificationTasks: {
-        count: number;
-        description: string;
-        actionLink: string;
-    };
-}
-
-export interface InputSupplierDashboardData {
-    demandForecast: {
-        id: string;
-        region: string;
-        product: string;
-        trend: string;
-        reason: string;
-    }[];
-    productPerformance: {
-        id: string;
-        productName: string;
-        rating: number;
-        feedback: string;
-        link: string;
-    }[];
-    activeOrders: {
-        count: number;
-        value: number;
-        link: string;
-    };
-}
-
-export interface EnergyProviderDashboardData {
-    projectLeads: {
-        id: string;
-        entityName: string; // Farm, Processor, etc.
-        location: string;
-        estimatedEnergyNeed: string; // e.g., 'High', 'Medium', 'Low', or specific kWh/year
-        status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
-        actionLink: string;
-    }[];
-    activeProjects: {
-        id: string;
-        entityName: string;
-        location: string;
-        solutionType: string; // e.g., 'Solar Panels', 'Biogas Digester'
-        installationDate: string;
-        status: 'In Progress' | 'Completed';
-        actionLink: string;
-    }[];
-    impactMetrics: {
-        totalInstallations: number;
-        totalEstimatedCarbonReduction: string; // e.g., '5000 tons CO2e/year'
-        actionLink: string;
-    };
-}
-
-export interface PackagingSupplierDashboardData {
-    demandForecast: {
-        productType: string;
-        unitsNeeded: number;
-        for: string;
-    };
-    integrationRequests: {
-        from: string;
-        request: string;
-        actionLink: string;
-    }[];
-    sustainableShowcase: {
-        views: number;
-        leads: number;
-    };
-}
-
-export interface AgroExportDashboardData {
-    pendingCustomsDocs: {
-        id: string;
-        vtiLink: string;
-        destination: string;
-        status: string;
-    }[];
-    trackedShipments: {
-        id: string;
-        status: string;
-        location: string;
-        carrier: string;
-    }[];
-    complianceAlerts: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-}
-
-export interface ProcessingUnitDashboardData {
-    yieldOptimization: {
-        currentYield: number;
-        potentialYield: number;
-        suggestion: string;
-    };
-    inventory: {
-        product: string;
-        tons: number;
-        quality: string;
-    }[];
-    wasteReduction: {
-        currentRate: number;
-        potentialRate: number;
-        insight: string;
-    };
-    packagingOrders: {
-        id: string;
-        supplierName: string;
-        orderDate: string;
-        deliveryDate: string;
-        status: 'Pending' | 'Shipped' | 'Delivered' | 'Canceled';
-        actionLink: string;
-    }[];
-    packagingInventory: {
-        packagingType: string;
-        unitsInStock: number;
-        reorderLevel: number;
-    }[];
-    packagingImpactMetrics: {
-        metric: string; // e.g., 'Recycled Content Used', 'Biodegradable Packaging Rate'
-        value: string;
-        actionLink: string;
-    }[];
-}
-
-export interface WarehouseDashboardData {
-  storageOptimization: {
-      utilization: number;
-      suggestion: string;
-  };
-  inventoryLevels: {
-      totalItems: number;
-      itemsNeedingAttention: number;
-  };
-  predictiveAlerts: {
-      id: string;
-      alert: string;
-      actionLink: string;
-  }[];
-}
-
-export interface QaDashboardData {
-    pendingInspections: {
-        id: string;
-        batchId: string;
-        productName: string;
-        sellerName: string;
-        dueDate: string;
-        actionLink: string;
-    }[];
-    recentResults: {
-        id: string;
-        productName: string;
-        result: 'Pass' | 'Fail';
-        reason?: string;
-        inspectedAt: string;
-    }[];
-    qualityMetrics: {
-        passRate: number;
-        averageScore: number;
-    };
-}
-
-export interface CertificationBodyDashboardData {
-    pendingAudits: {
-        id: string;
-        farmName: string;
-        standard: string;
-        dueDate: string;
-        actionLink: string;
-    }[];
-    certifiedEntities: {
-        id: string;
-        name: string;
-        type: 'Farmer' | 'Processor';
-        certificationStatus: string;
-        actionLink: string;
-    }[];
-    standardsMonitoring: {
-        standard: string;
-        adherenceRate: number;
-        alerts: number;
-        actionLink: string;
-    }[];
-}
-
-export interface ResearcherDashboardData {
-    availableDatasets: {
-        id: string;
-        name: string;
-        description: string;
-        dataType: string;
-        accessLevel: 'Public' | 'Anonymized' | 'Consented';
-        actionLink: string;
-    }[];
-    ongoingProjects: {
-        id: string;
-        title: string;
-        progress: number;
-        collaborators: string[];
-        actionLink: string;
-    }[];
-    knowledgeHubContributions: {
-        id: string;
-        title: string;
-        type: 'Article' | 'Methodology' | 'Tool';
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
-
-export interface AgroTourismDashboardData {
-    listedExperiences: {
-        id: string;
-        title: string;
-        location: string;
-        status: 'Active' | 'Draft' | 'Paused';
-        bookingsCount: number;
-        actionLink: string;
-    }[];
-    upcomingBookings: {
-        id: string;
-        experienceTitle: string;
-        guestName: string;
-        date: string;
-        actionLink: string;
-    }[];
-    guestReviews: {
-        id: string;
-        guestName: string;
-        experienceTitle: string;
-        rating: number; // e.g., 1-5
-        comment: string;
-        actionLink: string;
-    }[];
-}
-
-export interface CrowdfunderDashboardData {
- featuredProjects: {
- id: string;
- title: string;
- farmerName: string;
- amountSought: number;
- amountRaised: number;
- progress: number; // Percentage raised
- actionLink: string;
- }[];
- myInvestments: {
- id: string;
- projectTitle: string;
- amountInvested: number;
- expectedReturn: string; // e.g., '10% ROI', 'Profit Share'
- status: 'Active' | 'Completed' | 'In Progress';
- actionLink: string;
- }[];
- impactReport: {
-    totalInvested: number;
-    totalImpactMetrics: { metric: string; value: string; }[];
-    actionLink: string;
- };
-}
-
-export interface AgronomistDashboardData {
-    assignedFarmersOverview: {
-        id: string;
-        name: string;
-        farmLocation: string;
-        lastConsultation: string;
-        alerts: number; // Number of open alerts for this farmer
-        actionLink: string;
-    }[];
-    pendingConsultationRequests: {
-        id: string;
-        farmerName: string;
-        issueSummary: string;
-        requestDate: string;
-        actionLink: string;
-    }[];
-    knowledgeBaseContributions: {
-        id: string;
-        title: string;
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
-
-export interface InsuranceProviderDashboardData {
-    pendingClaims: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        claimDate: string;
-        status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-        actionLink: string;
-    }[];
-    activePolicies: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        coverageAmount: number;
-        expiryDate: string;
-        actionLink: string;
-    }[];
-    riskAssessmentAlerts: {
-        id: string;
-        policyHolderName: string;
-        alert: string;
-        severity: 'High' | 'Medium' | 'Low';
-        actionLink: string;
-    }[];
-}
-
-export interface KnfBatch {
-    id: string;
-    userId: string;
-    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
-    typeName: string;
-    ingredients: string;
-    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
-    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-    nextStep: string;
-    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
-    createdAt: { _seconds: number, _nanoseconds: number } | any;
-}
-
-
-// =================================================================
-// 4. SHARED & MISCELLANEOUS TYPES
-// =================================================================
-
-// Re-export CategoryNode type from category-data.ts for easier access
-export type CategoryNode = CatNodeType;
+const db = admin.firestore();
 
 /**
- * Represents a single event in a product's journey, linked by a VTI.
+ * Creates a new course in the 'courses' collection.
+ * Requires admin privileges.
+ * @param {any} data The data for the new course.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, courseId: string}>} A promise that resolves with the new course ID.
  */
-export interface TraceabilityEvent {
-  vtiId: string;
-  timestamp: string;
-  eventType: string;
-  actorRef: string;
-  geoLocation: {
-    lat: number;
-    lng: number;
-  };
-  payload: { [key: string]: any };
-}
+export const createCourse = functions.https.onCall(async (data, context) => {
+  // For this demo, we'll allow any authenticated user to create content.
+  // In a production app, the requireAdmin(context) check should be enabled.
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {titleEn, descriptionEn, category, level, targetRoles} = data;
+  if (!titleEn || !descriptionEn || !category || !level) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Missing required fields for the course.",
+    );
+  }
+
+  try {
+    const newCourseRef = await db.collection("courses").add({
+      titleEn,
+      descriptionEn,
+      category,
+      level,
+      targetRoles: targetRoles || [],
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return {success: true, courseId: newCourseRef.id};
+  } catch (error: any) {
+    console.error("Error creating course:", error);
+    throw new functions.https.HttpsError("internal", "Failed to create course.", {
+      originalError: error.message,
+    });
+  }
+});
+
+
+/**
+ * Creates a new module within a specific course's subcollection.
+ * Requires admin privileges.
+ * @param {any} data The data for the new module.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, moduleId: string}>} A promise that resolves with the new module ID.
+ */
+export const createModule = functions.https.onCall(async (data, context) => {
+  // For this demo, we'll allow any authenticated user to create content.
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {courseId, moduleTitleEn, contentUrls} = data;
+  if (!courseId || !moduleTitleEn) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Course ID and module title are required.",
+    );
+  }
+
+  try {
+    const newModuleRef = await db
+      .collection("courses")
+      .doc(courseId)
+      .collection("modules")
+      .add({
+        moduleTitleEn,
+        contentUrls: contentUrls || [],
+        order: 999, // Simple order, can be improved
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+    return {success: true, moduleId: newModuleRef.id};
+  } catch (error: any) {
+    console.error("Error creating module:", error);
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to create module.",
+      {originalError: error.message},
+    );
+  }
+});
+
+
+/**
+ * Creates a new knowledge article.
+ * Requires admin privileges.
+ * @param {any} data The data for the new article.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articleId: string}>} A promise that resolves with the new article ID.
+ */
+export const createKnowledgeArticle = functions.https.onCall(
+  async (data, context) => {
+    // For this demo, we'll allow any authenticated user to create content.
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+
+    const {titleEn, contentMarkdownEn, tags} = data;
+    if (!titleEn || !contentMarkdownEn) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Title and content are required.",
+      );
+    }
+
+    try {
+      const newArticleRef = await db.collection("knowledge_articles").add({
+        titleEn,
+        contentMarkdownEn,
+        tags: tags || [],
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      return {success: true, articleId: newArticleRef.id};
+    } catch (error: any) {
+      console.error("Error creating knowledge article:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to create article.",
+        {originalError: error.message},
+      );
+    }
+  },
+);
+
+
+/**
+ * Fetches all available courses.
+ * This is a public-facing function.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, courses: any[]}>} A promise that resolves with the available courses.
+ */
+export const getAvailableCourses = functions.https.onCall(
+  async (data, context) => {
+    try {
+      const coursesSnapshot = await db
+        .collection("courses")
+        .orderBy("createdAt", "desc")
+        .get();
+      const courses = coursesSnapshot.docs.map((doc) => {
+        const courseData = doc.data();
+        return {
+          id: doc.id,
+          ...courseData,
+          createdAt: (courseData.createdAt as admin.firestore.Timestamp)?.toDate ? (courseData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+          updatedAt: (courseData.updatedAt as admin.firestore.Timestamp)?.toDate ? (courseData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        };
+      });
+      return {success: true, courses: courses};
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
+    }
+  },
+);
+
+
+/**
+ * Cloud Function to fetch the details of a single course, including its modules.
+ * This version replaces mock data with actual Firestore queries.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, course: any}>} A promise that resolves with the course details.
+ */
+export const getCourseDetails = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {courseId} = data;
+  if (!courseId) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "A courseId must be provided.",
+    );
+  }
+
+  try {
+    // 1. Fetch the main course document
+    const courseDoc = await db.collection("courses").doc(courseId).get();
+    if (!courseDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Course not found.");
+    }
+    const courseData = courseDoc.data()!;
+
+    // 2. Fetch the modules from the subcollection
+    const modulesSnapshot = await db
+      .collection("courses")
+      .doc(courseId)
+      .collection("modules")
+      .orderBy("order", "asc")
+      .get();
+    const modulesData = modulesSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // 3. Combine the data
+    const finalData = {
+      id: courseDoc.id,
+      title: courseData.titleEn,
+      description: courseData.descriptionEn,
+      category: courseData.category,
+      level: courseData.level,
+      instructor: {name: "Dr. Alima Bello", title: "Senior Agronomist"}, // Instructor info would need another fetch
+      modules: modulesData.map((m: any) => ({
+        id: m.id,
+        title: m.moduleTitleEn,
+        content: m.contentUrls || [],
+      })),
+    };
+
+    return {success: true, course: finalData};
+  } catch (error) {
+    console.error("Error fetching course details:", error);
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to fetch course details.",
+    );
+  }
+});

@@ -162,10 +162,10 @@ export const getAvailableCourses = functions.https.onCall(
       const courses = coursesSnapshot.docs.map((doc) => {
         const courseData = doc.data();
         return {
-            id: doc.id,
-            ...courseData,
-            createdAt: courseData.createdAt?.toDate ? courseData.createdAt.toDate().toISOString() : null,
-            updatedAt: courseData.updatedAt?.toDate ? courseData.updatedAt.toDate().toISOString() : null,
+          id: doc.id,
+          ...courseData,
+          createdAt: (courseData.createdAt as admin.firestore.Timestamp)?.toDate ? (courseData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+          updatedAt: (courseData.updatedAt as admin.firestore.Timestamp)?.toDate ? (courseData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
       });
       return {success: true, courses: courses};
