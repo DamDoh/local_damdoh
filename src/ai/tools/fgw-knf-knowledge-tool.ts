@@ -2,8 +2,9 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-// Use the Firebase Admin SDK for backend services
-import { adminDb } from '@/lib/firebase/admin';
+// Use the CLIENT-SIDE Firestore SDK for this server-side environment
+import { db } from '@/lib/firebase/client';
+import { collection, getDocs } from "firebase/firestore";
 
 export const fgwKnfKnowledgeTool = ai.defineTool(
   {
@@ -22,9 +23,9 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
       // This is a simplified search; for production, a more robust search service like Algolia would be better.
       const searchTerm = input.techniqueName.toLowerCase();
       
-      // Use the Firebase Admin SDK to fetch the data
-      const articlesRef = adminDb.collection('knowledge_base');
-      const snapshot = await articlesRef.get();
+      // Use the Firebase CLIENT SDK to fetch the data
+      const articlesRef = collection(db, 'knowledge_base');
+      const snapshot = await getDocs(articlesRef);
       
       if (snapshot.empty) {
         console.log(`[fgwKnfKnowledgeTool] The 'knowledge_base' collection is empty.`);
