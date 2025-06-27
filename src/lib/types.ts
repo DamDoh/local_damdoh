@@ -463,6 +463,28 @@ export interface EnergyProviderDashboardData {
   };
 }
 
+export interface QaDashboardData {
+  pendingInspections: {
+    id: string;
+    batchId: string;
+    productName: string;
+    sellerName: string;
+    dueDate: string; // ISO string
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string; // ISO string
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
+}
+
 
 export interface KnfBatch {
     id: string;

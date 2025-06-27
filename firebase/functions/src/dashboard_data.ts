@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -356,9 +356,29 @@ export const getRegulatorDashboardData = functions.https.onCall(
   },
 );
 
-export const getQaDashboardData = functions.https.onCall(async (data, context) => {
-  return await getDashboardData("qa-dashboard", context);
-});
+export const getQaDashboardData = functions.https.onCall(
+  async (data, context): Promise<QaDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data for the QA dashboard
+    const mockData: QaDashboardData = {
+      pendingInspections: [
+        { id: 'insp1', batchId: 'VTI-XYZ-001', productName: 'Organic Hass Avocados', sellerName: 'Green Valley Organics', dueDate: new Date(Date.now() + 3 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'insp2', batchId: 'VTI-ABC-007', productName: 'Raw Cashew Nuts', sellerName: 'Coastal Cashews Ltd.', dueDate: new Date(Date.now() + 5 * 86400000).toISOString(), actionLink: '#' },
+      ],
+      recentResults: [
+        { id: 'res1', productName: 'Sun-dried Tomatoes', result: 'Pass', inspectedAt: new Date(Date.now() - 1 * 86400000).toISOString() },
+        { id: 'res2', productName: 'Maize Batch MB-04', result: 'Fail', reason: 'Aflatoxin levels exceed limits', inspectedAt: new Date(Date.now() - 2 * 86400000).toISOString() },
+      ],
+      qualityMetrics: {
+        passRate: 98.5,
+        averageScore: 9.2,
+      }
+    };
+    return mockData;
+  },
+);
 
 export const getCertificationBodyDashboardData = functions.https.onCall(
   async (data, context) => {
