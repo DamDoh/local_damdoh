@@ -5,38 +5,6 @@ import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashb
 
 const db = admin.firestore();
 
-/**
- * Generic function to fetch dashboard data from a specified collection.
- * @param {string} collection The name of the Firestore collection to query.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{data: any[]}>} A promise that resolves with the fetched data.
- */
-async function getDashboardData(
-  collection: string,
-  context: functions.https.CallableContext,
-) {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "The function must be called while authenticated.",
-    );
-  }
-  try {
-    const snapshot = await db
-      .collection(collection)
-      .where("userId", "==", context.auth.uid)
-      .get();
-    const data = snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
-    return {data};
-  } catch (error) {
-    console.error(`Error fetching ${collection}:`, error);
-    throw new functions.https.HttpsError(
-      "internal",
-      `Failed to fetch ${collection}.`,
-    );
-  }
-}
-
 export const getFarmerDashboardData = functions.https.onCall(
   async (data, context): Promise<FarmerDashboardData> => {
     if (!context.auth) {
@@ -45,44 +13,49 @@ export const getFarmerDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
-    const mockData: FarmerDashboardData = {
-        yieldData: [
-            { crop: "Maize", historical: 7.5, predicted: 8.2, unit: "Tons/Ha" },
-            { crop: "Soybeans", historical: 3.2, predicted: 3.5, unit: "Tons/Ha" },
-            { crop: "Coffee", historical: 1.8, predicted: 2.1, unit: "Tons/Ha" },
-            { crop: "Avocado", historical: 15, predicted: 17, unit: "Tons/Ha" },
-        ],
-        irrigationSchedule: {
-            next_run: "Tomorrow, 6 AM",
-            duration_minutes: 45,
-            recommendation: "Soil moisture is low. Early morning is ideal to reduce evaporation.",
-        },
-        matchedBuyers: [
-            {
-                id: "buyer1",
-                name: "Global Grain Traders",
-                matchScore: 92,
-                request: "Seeking 500 tons of non-GMO maize",
-                contactId: "globalGrain",
-            },
-            {
-                id: "buyer2",
-                name: "Artisan Coffee Roasters",
-                matchScore: 85,
-                request: "Looking for single-origin specialty coffee beans",
-                contactId: "artisanCoffee",
-            },
-        ],
-        trustScore: {
-            reputation: 88,
-            certifications: [
-                { id: "cert1", name: "GlobalG.A.P.", issuingBody: "SGS" },
-                { id: "cert2", name: "Organic Certified", issuingBody: "EcoCert" },
-            ],
-        },
-    };
-    return mockData;
+    
+    const farmerId = context.auth.uid;
+
+    try {
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
+        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).get();
+
+        const [farmsSnapshot, cropsSnapshot] = await Promise.all([
+            farmsPromise,
+            cropsPromise,
+        ]);
+        
+        const recentCrops = cropsSnapshot.docs.slice(0, 5).map(doc => {
+            const cropData = doc.data();
+            return {
+                id: doc.id,
+                cropType: cropData.cropType,
+                plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
+            };
+        });
+        
+        const knfBatchesSnapshot = await db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
+        const knfBatches = knfBatchesSnapshot.docs.map(doc => {
+            const batchData = doc.data();
+            return {
+                id: doc.id,
+                typeName: batchData.typeName,
+                status: batchData.status,
+                nextStepDate: batchData.nextStepDate?.toDate ? batchData.nextStepDate.toDate().toISOString() : null,
+            };
+        });
+
+        return {
+            farmCount: farmsSnapshot.size,
+            cropCount: cropsSnapshot.size, 
+            recentCrops: recentCrops as any,
+            knfBatches: knfBatches as any,
+        };
+
+    } catch (error) {
+        console.error("Error fetching farmer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
+    }
   },
 );
 
