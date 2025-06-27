@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -251,8 +251,33 @@ export const getInputSupplierDashboardData = functions.https.onCall(
 );
 
 export const getFieldAgentDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("field-agent-dashboard", context);
+  async (data, context): Promise<FieldAgentDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: FieldAgentDashboardData = {
+        assignedFarmers: [
+            { id: 'farmer1', name: 'John Mwangi', lastVisit: '2023-10-15', issues: 2, actionLink: '/profiles/farmer1' },
+            { id: 'farmer2', name: 'Grace Adhiambo', lastVisit: '2023-10-22', issues: 0, actionLink: '/profiles/farmer2' },
+            { id: 'farmer3', name: 'Samuel Kiprop', lastVisit: '2023-09-30', issues: 1, actionLink: '/profiles/farmer3' },
+        ],
+        portfolioHealth: {
+            overallScore: 88,
+            alerts: ['Pest outbreak reported in Rift Valley region.'],
+            actionLink: '/reports/portfolio/health'
+        },
+        pendingReports: 3,
+        dataVerificationTasks: {
+            count: 5,
+            description: 'Harvest logs pending verification.',
+            actionLink: '/tasks/verification'
+        }
+    };
+    return mockData;
   },
 );
 
@@ -263,8 +288,26 @@ export const getEnergyProviderDashboardData = functions.https.onCall(
 );
 
 export const getPackagingSupplierDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("packaging-supplier-dashboard", context);
+  async (data, context): Promise<PackagingSupplierDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    const mockData: PackagingSupplierDashboardData = {
+      demandForecast: {
+        productType: 'Biodegradable Jute Bags (50kg)',
+        unitsNeeded: 15000,
+        for: 'Q4 Coffee Bean Exports'
+      },
+      integrationRequests: [
+        { from: 'FreshFoods Processors Ltd.', request: 'Request for custom branded retail pouches.', actionLink: '#' },
+        { from: 'GreenValley Organics', request: 'Inquiry for bulk pallet wrap pricing.', actionLink: '#' },
+      ],
+      sustainableShowcase: {
+        views: 2890,
+        leads: 45
+      }
+    };
+    return mockData;
   },
 );
 
@@ -371,13 +414,59 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
 );
 
 export const getProcessingUnitDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("processing-unit-dashboard", context);
+  async (data, context): Promise<ProcessingUnitDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: ProcessingUnitDashboardData = {
+      yieldOptimization: {
+        currentYield: 85,
+        potentialYield: 92,
+        suggestion: "AI suggests adjusting blade speed on the primary chopper to reduce fine particle loss by an estimated 3%.",
+      },
+      inventory: [
+        { product: 'Raw Cashew Nuts', quality: 'Grade A', tons: 15.5 },
+        { product: 'Dried Mango Cheeks', quality: 'Grade B', tons: 2.1 },
+        { product: 'Hibiscus Flower', quality: 'Premium Export', tons: 8.0 },
+      ],
+      wasteReduction: {
+        currentRate: 12,
+        insight: "Analysis indicates 4% of waste is recoverable as animal feed. Consider partnering with local livestock farmers.",
+      },
+      packagingOrders: [
+          { id: 'po1', supplierName: 'EcoPack Solutions', deliveryDate: '2023-11-10', status: 'In Transit', actionLink: '#' },
+          { id: 'po2', supplierName: 'Bulk Bags Inc.', deliveryDate: '2023-11-15', status: 'Pending', actionLink: '#' },
+      ],
+      packagingInventory: [
+          { packagingType: '5kg Branded Jute Bags', unitsInStock: 2500, reorderLevel: 1000 },
+          { packagingType: '100g Retail Foil Pouches', unitsInStock: 15000, reorderLevel: 20000 },
+      ]
+    };
+    return mockData;
   },
 );
 
 export const getWarehouseDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("warehouse-dashboard", context);
+  async (data, context): Promise<WarehouseDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: WarehouseDashboardData = {
+      storageOptimization: {
+        utilization: 78,
+        suggestion: "Consolidate pallets in Zone C to free up a full row.",
+      },
+      inventoryLevels: {
+        totalItems: 450,
+        itemsNeedingAttention: 12,
+      },
+      predictiveAlerts: [
+        { alert: "High humidity detected in Cold Storage Bay 2.", actionLink: "#" },
+        { alert: "Maize batch #VTI-123 nearing its expiry date.", actionLink: "#" },
+      ]
+    };
+    return mockData;
   },
 );

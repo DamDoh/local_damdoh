@@ -405,6 +405,23 @@ export interface WarehouseDashboardData {
     }[];
 }
 
+export interface PackagingSupplierDashboardData {
+  demandForecast: {
+    productType: string;
+    unitsNeeded: number;
+    for: string;
+  };
+  integrationRequests: {
+    from: string;
+    request: string;
+    actionLink: string;
+  }[];
+  sustainableShowcase: {
+    views: number;
+    leads: number;
+  };
+}
+
 
 export interface KnfBatch {
     id: string;
