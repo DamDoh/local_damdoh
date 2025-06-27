@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -440,6 +439,28 @@ export interface RegulatorDashboardData {
         level: 'Critical' | 'Warning';
         vtiLink: string;
     }[];
+}
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: 'Solar' | 'Biogas';
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO string
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string; // e.g., "150 Tons CO2e / year"
+  };
 }
 
 

@@ -1,8 +1,7 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -283,8 +282,26 @@ export const getFieldAgentDashboardData = functions.https.onCall(
 );
 
 export const getEnergyProviderDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("energy-provider-dashboard", context);
+  async (data, context): Promise<EnergyProviderDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: EnergyProviderDashboardData = {
+        projectLeads: [
+            { id: 'lead1', entityName: 'Green Valley Farms', location: 'Nakuru, Kenya', estimatedEnergyNeed: 'Solar for irrigation pumps', status: 'New', actionLink: '#' },
+            { id: 'lead2', entityName: 'Coastal Processors', location: 'Mombasa, Kenya', estimatedEnergyNeed: 'Biogas from waste products', status: 'Contacted', actionLink: '#' },
+        ],
+        activeProjects: [
+            { id: 'proj1', projectName: 'Sunrise Cooperative Solar Array', solutionType: 'Solar', status: 'In Progress', completionDate: '2024-12-01' },
+            { id: 'proj2', projectName: 'AgriWaste Biogas Plant', solutionType: 'Biogas', status: 'Completed', completionDate: '2024-03-15' },
+        ],
+        impactMetrics: {
+            totalInstallations: 15,
+            totalEstimatedCarbonReduction: '250 Tons CO2e / year',
+        }
+    };
+    return mockData;
   },
 );
 
