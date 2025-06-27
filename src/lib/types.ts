@@ -604,6 +604,30 @@ export interface InsuranceProviderDashboardData {
   }[];
 }
 
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO string
+  }[];
+}
+
+
 export interface KnfBatch {
     id: string;
     userId: string;

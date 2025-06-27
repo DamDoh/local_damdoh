@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgronomistDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, CrowdfunderDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -517,8 +517,32 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
 
 
 export const getCrowdfunderDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("crowdfunder-dashboard", context);
+  async (data, context): Promise<CrowdfunderDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: CrowdfunderDashboardData = {
+      portfolioOverview: {
+        totalInvested: 7500,
+        numberOfInvestments: 3,
+        estimatedReturns: 8250,
+      },
+      suggestedOpportunities: [
+        { id: 'proj1', projectName: 'Solar Irrigation for Maasai Mara', category: 'Renewable Energy', fundingGoal: 20000, amountRaised: 5000, actionLink: '#' },
+        { id: 'proj2', projectName: 'Women\'s Hibiscus Processing Co-op', category: 'Value Addition', fundingGoal: 15000, amountRaised: 12000, actionLink: '#' },
+        { id: 'proj3', projectName: 'Cold Storage for Coastal Fishermen', category: 'Infrastructure', fundingGoal: 50000, amountRaised: 10000, actionLink: '#' },
+      ],
+      recentTransactions: [
+        { id: 'txn1', projectName: 'Solar Irrigation for Maasai Mara', type: 'Investment', amount: 2500, date: new Date(Date.now() - 5 * 86400000).toISOString() },
+        { id: 'txn2', projectName: 'Organic Fertilizer Production', type: 'Payout', amount: 1100, date: new Date(Date.now() - 15 * 86400000).toISOString() },
+        { id: 'txn3', projectName: 'Women\'s Hibiscus Processing Co-op', type: 'Investment', amount: 5000, date: new Date(Date.now() - 30 * 86400000).toISOString() },
+      ],
+    };
+    return mockData;
   },
 );
 
