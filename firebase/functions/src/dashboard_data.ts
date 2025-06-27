@@ -17,37 +17,43 @@ export const getFarmerDashboardData = functions.https.onCall(
     const farmerId = context.auth.uid;
 
     try {
-        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
-        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).get();
+        // Fetch farms, recent crops, and KNF batches concurrently
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).limit(5).get();
+        const recentCropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('createdAt', 'desc').limit(5).get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
 
-        const [farmsSnapshot, cropsSnapshot] = await Promise.all([
+        const [farmsSnapshot, recentCropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
-            cropsPromise,
+            recentCropsPromise,
+            knfBatchesPromise,
         ]);
-        
-        const recentCrops = cropsSnapshot.docs.slice(0, 5).map(doc => {
+
+        const farms = farmsSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        const recentCrops = recentCropsSnapshot.docs.map(doc => {
             const cropData = doc.data();
             return {
                 id: doc.id,
-                cropType: cropData.cropType,
+                ...cropData,
                 plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
             };
         });
         
-        const knfBatchesSnapshot = await db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
         const knfBatches = knfBatchesSnapshot.docs.map(doc => {
             const batchData = doc.data();
             return {
                 id: doc.id,
-                typeName: batchData.typeName,
-                status: batchData.status,
+                ...batchData,
                 nextStepDate: batchData.nextStepDate?.toDate ? batchData.nextStepDate.toDate().toISOString() : null,
             };
         });
 
         return {
-            farmCount: farmsSnapshot.size,
-            cropCount: cropsSnapshot.size, 
+            farmCount: farms.length,
+            cropCount: recentCrops.length, 
             recentCrops: recentCrops as any,
             knfBatches: knfBatches as any,
         };
@@ -68,33 +74,48 @@ export const getBuyerDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
-    const mockData: BuyerDashboardData = {
-      supplyChainRisk: {
-        region: "East Africa",
-        level: "Medium",
-        factor: "Potential for port congestion.",
-        action: {
-          label: "View Logistics Report",
-          link: "/logistics/reports/east-africa",
-        },
-      },
-      sourcingRecommendations: [
-        { id: "farmerA", name: "Green Valley Organics", product: "Hass Avocados", reliability: 95, vtiVerified: true },
-        { id: "farmerB", name: "Highland Coffee Co-op", product: "AA Grade Coffee Beans", reliability: 88, vtiVerified: true },
-        { id: "farmerC", name: "Coastal Cashews Ltd.", product: "Raw Cashew Nuts", reliability: 92, vtiVerified: false },
-      ],
-      marketPriceIntelligence: {
-        product: "Coffee Arabica",
-        trend: "up",
-        forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
-        action: {
-          label: "View Full Market Analysis",
-          link: "/market-intelligence/coffee",
-        },
-      },
-    };
-    return mockData;
+    
+    try {
+        // Simulate fetching some farmers as sourcing recommendations
+        const farmersSnapshot = await db.collection("users").where("primaryRole", "==", "Farmer").limit(3).get();
+        const sourcingRecommendations = farmersSnapshot.docs.map(doc => {
+            const farmerData = doc.data();
+            return {
+                id: doc.id,
+                name: farmerData.name || "Unnamed Farm",
+                product: farmerData.profileData?.crops?.[0] || "Various Produce", // Get first listed crop
+                reliability: Math.floor(Math.random() * (98 - 85 + 1) + 85), // Random reliability
+                vtiVerified: Math.random() > 0.3, // Random VTI verification
+            };
+        });
+
+        // Keep mock data for other sections for now, focusing on one live part
+        const liveData: BuyerDashboardData = {
+          supplyChainRisk: {
+            region: "East Africa",
+            level: "Medium",
+            factor: "Potential for port congestion.",
+            action: {
+              label: "View Logistics Report",
+              link: "/logistics/reports/east-africa",
+            },
+          },
+          sourcingRecommendations: sourcingRecommendations,
+          marketPriceIntelligence: {
+            product: "Coffee Arabica",
+            trend: "up",
+            forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
+            action: {
+              label: "View Full Market Analysis",
+              link: "/market-intelligence/coffee",
+            },
+          },
+        };
+        return liveData;
+    } catch (error) {
+        console.error("Error fetching buyer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch buyer dashboard data.");
+    }
   },
 );
 
@@ -567,3 +588,4 @@ export const getWarehouseDashboardData = functions.https.onCall(
     return mockData;
   },
 );
+
