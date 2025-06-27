@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgronomistDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgronomistDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, CrowdfunderDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -106,33 +106,48 @@ export const getBuyerDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
-    const mockData: BuyerDashboardData = {
-      supplyChainRisk: {
-        region: "East Africa",
-        level: "Medium",
-        factor: "Potential for port congestion.",
-        action: {
-          label: "View Logistics Report",
-          link: "/logistics/reports/east-africa",
-        },
-      },
-      sourcingRecommendations: [
-        { id: "supplier1", name: "Green Valley Organics", product: "Organic Avocados", reliability: 95, vtiVerified: true },
-        { id: "supplier2", name: "Highland Coffee Co-op", product: "Specialty Coffee Beans", reliability: 88, vtiVerified: true },
-        { id: "supplier3", name: "Coastal Cashews Ltd.", product: "Raw Cashew Nuts", reliability: 91, vtiVerified: false },
-      ],
-      marketPriceIntelligence: {
-        product: "Coffee Arabica",
-        trend: "up",
-        forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
-        action: {
-          label: "View Full Market Analysis",
-          link: "/market-intelligence/coffee",
-        },
-      },
-    };
-    return mockData;
+    
+    try {
+        // Simulate fetching some farmers as sourcing recommendations
+        const farmersSnapshot = await db.collection("users").where("primaryRole", "==", "Farmer").limit(3).get();
+        const sourcingRecommendations = farmersSnapshot.docs.map(doc => {
+            const farmerData = doc.data();
+            return {
+                id: doc.id,
+                name: farmerData.name || "Unnamed Farm",
+                product: farmerData.profileData?.crops?.[0] || "Various Produce", // Get first listed crop
+                reliability: Math.floor(Math.random() * (98 - 85 + 1) + 85), // Random reliability
+                vtiVerified: Math.random() > 0.3, // Random VTI verification
+            };
+        });
+
+        // Keep mock data for other sections for now, focusing on one live part
+        const liveData: BuyerDashboardData = {
+          supplyChainRisk: {
+            region: "East Africa",
+            level: "Medium",
+            factor: "Potential for port congestion.",
+            action: {
+              label: "View Logistics Report",
+              link: "/logistics/reports/east-africa",
+            },
+          },
+          sourcingRecommendations: sourcingRecommendations,
+          marketPriceIntelligence: {
+            product: "Coffee Arabica",
+            trend: "up",
+            forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
+            action: {
+              label: "View Full Market Analysis",
+              link: "/market-intelligence/coffee",
+            },
+          },
+        };
+        return liveData;
+    } catch (error) {
+        console.error("Error fetching buyer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch buyer dashboard data.");
+    }
   },
 );
 
@@ -461,20 +476,89 @@ export const getAgronomistDashboardData = functions.https.onCall(
 );
 
 export const getAgroTourismDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("agro-tourism-dashboard", context);
+  async (data, context): Promise<AgroTourismDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: AgroTourismDashboardData = {
+      upcomingBookings: [
+        { id: 'booking1', experienceTitle: 'Organic Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date(Date.now() + 3 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'booking2', experienceTitle: 'KNF Workshop', guestName: 'Bob Williams', date: new Date(Date.now() + 7 * 86400000).toISOString(), actionLink: '#' },
+      ],
+      listedExperiences: [
+        { id: 'exp1', title: 'Organic Farm Tour & Tasting', location: 'Nakuru, Kenya', status: 'Published', bookingsCount: 15, actionLink: '#' },
+        { id: 'exp2', title: 'KNF Workshop', location: 'Nakuru, Kenya', status: 'Published', bookingsCount: 8, actionLink: '#' },
+        { id: 'exp3', title: 'Coffee Plantation Experience', location: 'Kiambu, Kenya', status: 'Draft', bookingsCount: 0, actionLink: '#' },
+      ],
+      guestReviews: [
+        { id: 'rev1', guestName: 'Charlie Brown', experienceTitle: 'Organic Farm Tour & Tasting', rating: 5, comment: 'Amazing and educational experience! The fresh produce was delicious.', actionLink: '#' },
+        { id: 'rev2', guestName: 'Diana Prince', experienceTitle: 'KNF Workshop', rating: 4, comment: 'Learned so much about natural farming. Highly recommend.', actionLink: '#' },
+      ],
+    };
+    return mockData;
   },
 );
+
 
 export const getInsuranceProviderDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("insurance-provider-dashboard", context);
+  async (data, context): Promise<InsuranceProviderDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: InsuranceProviderDashboardData = {
+      pendingClaims: [
+        { id: 'claim1', policyHolderName: 'Green Valley Farms', policyType: 'Crop', claimDate: new Date(Date.now() - 2 * 86400000).toISOString(), status: 'Submitted', actionLink: '#' },
+        { id: 'claim2', policyHolderName: 'Sunrise Cooperative', policyType: 'Livestock', claimDate: new Date(Date.now() - 5 * 86400000).toISOString(), status: 'Under Review', actionLink: '#' },
+      ],
+      riskAssessmentAlerts: [
+        { id: 'alert1', policyHolderName: 'Green Valley Farms', alert: 'High probability of drought reported in Nakuru.', severity: 'High', actionLink: '#' },
+        { id: 'alert2', policyHolderName: 'Coastal Cashews Ltd.', alert: 'Pest outbreak detected in nearby regions.', severity: 'Medium', actionLink: '#' },
+      ],
+      activePolicies: [
+        { id: 'pol1', policyHolderName: 'Highland Coffee Co-op', policyType: 'Crop Insurance', coverageAmount: 50000, expiryDate: new Date(Date.now() + 150 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'pol2', policyHolderName: 'Moringa Leaf Exports', policyType: 'Property Insurance', coverageAmount: 120000, expiryDate: new Date(Date.now() + 200 * 86400000).toISOString(), actionLink: '#' },
+      ]
+    };
+    return mockData;
   },
 );
 
+
 export const getCrowdfunderDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("crowdfunder-dashboard", context);
+  async (data, context): Promise<CrowdfunderDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: CrowdfunderDashboardData = {
+      portfolioOverview: {
+        totalInvested: 7500,
+        numberOfInvestments: 3,
+        estimatedReturns: 8250,
+      },
+      suggestedOpportunities: [
+        { id: 'proj1', projectName: 'Solar Irrigation for Maasai Mara', category: 'Renewable Energy', fundingGoal: 20000, amountRaised: 5000, actionLink: '#' },
+        { id: 'proj2', projectName: 'Women\'s Hibiscus Processing Co-op', category: 'Value Addition', fundingGoal: 15000, amountRaised: 12000, actionLink: '#' },
+        { id: 'proj3', projectName: 'Cold Storage for Coastal Fishermen', category: 'Infrastructure', fundingGoal: 50000, amountRaised: 10000, actionLink: '#' },
+      ],
+      recentTransactions: [
+        { id: 'txn1', projectName: 'Solar Irrigation for Maasai Mara', type: 'Investment', amount: 2500, date: new Date(Date.now() - 5 * 86400000).toISOString() },
+        { id: 'txn2', projectName: 'Organic Fertilizer Production', type: 'Payout', amount: 1100, date: new Date(Date.now() - 15 * 86400000).toISOString() },
+        { id: 'txn3', projectName: 'Women\'s Hibiscus Processing Co-op', type: 'Investment', amount: 5000, date: new Date(Date.now() - 30 * 86400000).toISOString() },
+      ],
+    };
+    return mockData;
   },
 );
 
@@ -535,3 +619,4 @@ export const getWarehouseDashboardData = functions.https.onCall(
     return mockData;
   },
 );
+
