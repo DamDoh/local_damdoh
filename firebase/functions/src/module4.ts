@@ -212,7 +212,15 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
       .orderBy("createdAt", "desc")
       .get();
 
-    const coupons = snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+    const coupons = snapshot.docs.map((doc) => {
+        const couponData = doc.data();
+        return {
+            id: doc.id,
+            ...couponData,
+            createdAt: couponData.createdAt?.toDate ? couponData.createdAt.toDate().toISOString() : null,
+            expiresAt: couponData.expiresAt?.toDate ? couponData.expiresAt.toDate().toISOString() : null,
+        };
+    });
     return {coupons};
   } catch (error) {
     console.error("Error fetching seller coupons:", error);

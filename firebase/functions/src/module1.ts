@@ -485,10 +485,14 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
         .orderBy("timestamp", "asc")
         .get();
 
-      const events = eventsSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const events = eventsSnapshot.docs.map((doc) => {
+        const eventData = doc.data();
+        return {
+          id: doc.id,
+          ...eventData,
+          timestamp: eventData.timestamp?.toDate ? eventData.timestamp.toDate().toISOString() : null,
+        };
+      });
 
       return {events};
     } catch (error) {

@@ -159,10 +159,15 @@ export const getAvailableCourses = functions.https.onCall(
         .collection("courses")
         .orderBy("createdAt", "desc")
         .get();
-      const courses = coursesSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const courses = coursesSnapshot.docs.map((doc) => {
+        const courseData = doc.data();
+        return {
+            id: doc.id,
+            ...courseData,
+            createdAt: courseData.createdAt?.toDate ? courseData.createdAt.toDate().toISOString() : null,
+            updatedAt: courseData.updatedAt?.toDate ? courseData.updatedAt.toDate().toISOString() : null,
+        };
+      });
       return {success: true, courses: courses};
     } catch (error) {
       console.error("Error fetching courses:", error);
