@@ -1,114 +1,234 @@
+
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info } from 'lucide-react';
 
-// Placeholder component for Traceability batch detail page
-// This file outlines the basic UI structure for viewing a single batch
-// and its associated traceability events.
+// Define types for the data we expect from the backend
+interface TraceabilityEvent {
+  id: string;
+  eventType: string;
+  timestamp: string; // ISO string
+  payload: any;
+  actor: {
+    name: string;
+    role: string;
+  };
+  geoLocation?: { lat: number; lng: number } | null;
+}
+
+interface VtiData {
+  id: string;
+  type: string;
+  metadata?: {
+    cropType?: string;
+    initialYieldKg?: number;
+    initialQualityGrade?: string;
+  };
+  creationTime: string; // ISO string
+}
+
+interface TraceabilityData {
+  vti: VtiData;
+  events: TraceabilityEvent[];
+}
+
+const getEventIcon = (eventType: string) => {
+    const iconProps = { className: "h-5 w-5" };
+    switch (eventType) {
+        case 'PLANTED': return <Sprout {...iconProps} />;
+        case 'OBSERVED': return <Eye {...iconProps} />;
+        case 'INPUT_APPLIED': return <Droplets {...iconProps} />;
+        case 'HARVESTED': return <Weight {...iconProps} />;
+        case 'PACKAGED': return <Package {...iconProps} />;
+        case 'VERIFIED': return <CheckCircle {...iconProps} />;
+        default: return <HardHat {...iconProps} />;
+    }
+};
+
+const TraceabilitySkeleton = () => (
+    <div className="space-y-6">
+        <Skeleton className="h-9 w-48" />
+        <Card>
+            <CardHeader><Skeleton className="h-8 w-3/4" /></CardHeader>
+            <CardContent>
+                <div className="grid md:grid-cols-3 gap-4">
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-16 w-full" />
+                    <Skeleton className="h-16 w-full" />
+                </div>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardHeader><Skeleton className="h-8 w-1/2" /></CardHeader>
+            <CardContent className="space-y-6">
+                <Skeleton className="h-20 w-full" />
+                <Skeleton className="h-20 w-full" />
+                <Skeleton className="h-20 w-full" />
+            </CardContent>
+        </Card>
+    </div>
+);
 
 export default function TraceabilityBatchDetailPage() {
   const params = useParams();
-  const batchId = params.batchId;
+  const batchId = params.batchId as string;
+  
+  const [data, setData] = useState<TraceabilityData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Conceptual data fetching:
-  // Comment below illustrates where you would fetch the batch data
-  // based on the batchId from the route, e.g.:
-  // const batchData = await fetchBatchDetails(batchId);
+  const functions = getFunctions(firebaseApp);
+  const getVtiHistoryCallable = useMemo(() => httpsCallable(functions, 'getVtiTraceabilityHistory'), [functions]);
 
-  // Comment below illustrates where you would fetch the list of traceability events
-  // associated with this batch, e.g.:
-  // const traceabilityEvents = await fetchTraceabilityEventsForBatch(batchId);
+  useEffect(() => {
+    if (!batchId) {
+        setError("Invalid Batch ID.");
+        setIsLoading(false);
+        return;
+    };
 
-  // Placeholder data structures for conceptual rendering
-  const conceptualBatch = {
-    id: batchId,
-    productName: "Conceptual Product Batch",
-    quantity: 1000,
-    unit: "kg",
-    harvestDate: "2023-10-26",
-    status: "In Storage",
-    farmId: "conceptual-farm-123",
-    // ... other batch fields from schema
-  };
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const result = await getVtiHistoryCallable({ vtiId: batchId });
+        setData(result.data as TraceabilityData);
+      } catch (err: any) {
+        console.error("Error fetching traceability data:", err);
+        setError(err.message || "Could not load traceability history for this batch.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, [batchId, getVtiHistoryCallable]);
 
-  const conceptualEvents = [
-    {
-      id: "event-abc",
-      batchId: batchId,
-      eventType: "Fertilization",
-      timestamp: "2023-07-15T10:00:00Z",
-      details: "Applied organic fertilizer NPK 5-3-2.",
-      // ... other event fields from schema (photoUrl, verificationLink, etc.)
-    },
-    {
-      id: "event-def",
-      batchId: batchId,
-      eventType: "Harvest",
-      timestamp: "2023-10-26T08:30:00Z",
-      details: "Harvest completed for this batch.",
-    },
-    // ... more conceptual events
-  ];
+
+  if (isLoading) {
+    return <TraceabilitySkeleton />;
+  }
+
+  if (error) {
+    return (
+        <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+            <Button asChild variant="secondary" className="mt-4">
+                <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link>
+            </Button>
+        </Alert>
+    );
+  }
+
+  if (!data) {
+     return (
+        <Alert>
+            <Info className="h-4 w-4" />
+            <AlertTitle>Not Found</AlertTitle>
+            <AlertDescription>The traceability history for this batch could not be found.</AlertDescription>
+        </Alert>
+     );
+  }
+
+  const { vti, events } = data;
 
   return (
-    <div className="container mx-auto p-4">
-      {/* Section for displaying Batch Details */}
-      <div className="mb-6 p-4 border rounded-lg shadow-sm">
-        <h2 className="text-xl font-semibold mb-3">Batch Details: {batchId}</h2>
-        {/*
-          Comment below illustrates where batchData would be used to populate UI:
-          <p>Product: {batchData?.productName}</p>
-          <p>Quantity: {batchData?.quantity} {batchData?.unit}</p>
-          <p>Harvest Date: {batchData?.harvestDate}</p>
-          <p>Status: {batchData?.status}</p>
-          <p>Farm ID: {batchData?.farmId}</p>
-        */}
-        {/* Static placeholders using conceptual data */}
-        <p>Product: {conceptualBatch.productName}</p>
-        <p>Quantity: {conceptualBatch.quantity} {conceptualBatch.unit}</p>
-        <p>Harvest Date: {conceptualBatch.harvestDate}</p>
-        <p>Status: {conceptualBatch.status}</p>
-        <p>Farm ID: {conceptualBatch.farmId}</p>
-      </div>
+    <div className="space-y-6">
+      <Button asChild variant="outline" className="mb-4">
+        <Link href="/marketplace">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Marketplace
+        </Link>
+      </Button>
 
-      {/* Section for displaying Traceability Events */}
-      <div className="p-4 border rounded-lg shadow-sm">
-        <h2 className="text-xl font-semibold mb-3">Traceability Events</h2>
-        {/*
-          Comment below illustrates where traceabilityEvents would be iterated over:
-          {traceabilityEvents.map(event => (
-            <div key={event.id} className="mb-4 p-3 border-b last:border-b-0">
-              <p className="font-medium">{event.eventType} - {new Date(event.timestamp).toLocaleString()}</p>
-              <p className="text-sm text-muted-foreground">{event.details}</p>
-              {event.photoUrl && <img src={event.photoUrl} alt="Event photo" className="mt-2 w-24 h-auto"/>}
-              {event.verificationLink && <a href={event.verificationLink} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline mt-1 inline-block">Verify Details</a>}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <GitBranch className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle className="text-2xl">Traceability Report</CardTitle>
+              <CardDescription>
+                VTI Batch ID: <span className="font-mono bg-muted p-1 rounded-sm">{vti.id}</span>
+              </CardDescription>
             </div>
-          ))}
-        */}
-        {/* Static placeholders using conceptual data */}
-        {conceptualEvents.map(event => (
-            <div key={event.id} className="mb-4 p-3 border-b last:border-b-0">
-              <p className="font-medium">{event.eventType} - {new Date(event.timestamp).toLocaleString()}</p>
-              <p className="text-sm text-muted-foreground">{event.details}</p>
-              {/* Placeholder for photo/verification if schema allowed */}
+          </div>
+        </CardHeader>
+        <CardContent>
+            <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div className="p-3 border rounded-lg">
+                    <p className="text-muted-foreground text-xs">Product</p>
+                    <p className="font-semibold">{vti.metadata?.cropType || 'N/A'}</p>
+                </div>
+                <div className="p-3 border rounded-lg">
+                    <p className="text-muted-foreground text-xs">Batch Type</p>
+                    <p className="font-semibold capitalize">{vti.type.replace('_', ' ')}</p>
+                </div>
+                <div className="p-3 border rounded-lg">
+                    <p className="text-muted-foreground text-xs">Created On</p>
+                    <p className="font-semibold">{new Date(vti.creationTime).toLocaleString()}</p>
+                </div>
             </div>
-          ))}
-      </div>
-
-      {/* Placeholder for UI to add new events */}
-      {/*
-        <div className="mt-6 p-4 border rounded-lg shadow-sm">
-            <h3 className="text-lg font-semibold mb-3">Add New Traceability Event</h3>
-            <div className="space-y-4">
-                <input type="text" placeholder="Event Type" className="border p-2 rounded w-full"/>
-                <textarea placeholder="Details" className="border p-2 rounded w-full"></textarea>
-                // Input for photo/verification link
-                <button className="bg-blue-500 text-white p-2 rounded">Add Event</button>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+            <CardTitle>Event Timeline</CardTitle>
+            <CardDescription>A chronological history of events for this batch.</CardDescription>
+        </CardHeader>
+        <CardContent>
+            <div className="relative pl-6 space-y-8">
+                 <div className="absolute left-3 top-0 h-full w-0.5 bg-border -z-10"></div>
+                 {events.map(event => (
+                    <div key={event.id} className="relative flex items-start gap-4">
+                        <div className="absolute left-0 top-0 -translate-x-1/2 h-full flex items-center">
+                            <span className="bg-background p-1.5 rounded-full border-2 border-primary flex items-center justify-center text-primary">
+                                {getEventIcon(event.eventType)}
+                            </span>
+                        </div>
+                        <div className="pl-6 w-full">
+                           <Card className="shadow-sm">
+                                <CardHeader className="p-4 flex-row justify-between items-start">
+                                    <div>
+                                        <CardTitle className="text-base">{event.eventType.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</CardTitle>
+                                        <CardDescription className="text-xs flex items-center gap-1.5 mt-1">
+                                            <Clock className="h-3 w-3"/>
+                                            {new Date(event.timestamp).toLocaleString()}
+                                        </CardDescription>
+                                    </div>
+                                    <div className="text-right">
+                                       <p className="text-xs text-muted-foreground flex items-center gap-1.5 justify-end"><UserCircle className="h-3 w-3"/>{event.actor.name}</p>
+                                       <Badge variant="secondary" className="mt-1">{event.actor.role}</Badge>
+                                    </div>
+                                </CardHeader>
+                                <CardContent className="p-4 pt-0 text-sm">
+                                    <ul className="space-y-1 text-muted-foreground">
+                                        {Object.entries(event.payload).map(([key, value]) => (
+                                             <li key={key}><strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {typeof value === 'object' ? JSON.stringify(value) : String(value)}</li>
+                                        ))}
+                                        {event.geoLocation && (
+                                            <li className="flex items-center gap-1"><MapPin className="h-4 w-4"/> Geo: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}</li>
+                                        )}
+                                    </ul>
+                                </CardContent>
+                           </Card>
+                        </div>
+                    </div>
+                 ))}
             </div>
-            <p className="text-sm text-muted-foreground mt-2">Comment on how adding an event conceptually updates the traceability_events collection for this batch.</p>
-        </div>
-      */}
+        </CardContent>
+      </Card>
     </div>
   );
 }

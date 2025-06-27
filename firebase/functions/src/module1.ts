@@ -507,3 +507,76 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
     }
   },
 );
+
+/**
+ * Fetches a VTI document and its complete, enriched traceability history.
+ * @param {any} data The data for the function call, containing `vtiId`.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{vti: any, events: any[]}>} A promise resolving with the VTI and its event history.
+ */
+export const getVtiTraceabilityHistory = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { vtiId } = data;
+    if (!vtiId) {
+        throw new functions.https.HttpsError("invalid-argument", "A vtiId must be provided.");
+    }
+
+    try {
+        const db = admin.firestore();
+
+        // 1. Fetch the VTI document itself
+        const vtiDocRef = db.collection("vti_registry").doc(vtiId);
+        const vtiDoc = await vtiDocRef.get();
+        if (!vtiDoc.exists) {
+            throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
+        }
+        const vtiData = vtiDoc.data();
+
+        // 2. Fetch all associated events
+        const eventsQuery = db.collection("traceability_events")
+            .where("vtiId", "==", vtiId)
+            .orderBy("timestamp", "asc");
+        
+        const eventsSnapshot = await eventsQuery.get();
+        const eventsData = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        // 3. Enrich events with actor information
+        const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
+        
+        const actorProfiles: { [key: string]: any } = {};
+        if (actorIds.length > 0) {
+            const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
+            userDocs.forEach(doc => {
+                actorProfiles[doc.id] = {
+                    name: doc.data().displayName || "Unknown Actor",
+                    role: doc.data().primaryRole || "Unknown Role",
+                };
+            });
+        }
+        
+        const enrichedEvents = eventsData.map(event => ({
+            ...event,
+            timestamp: (event.timestamp as admin.firestore.Timestamp).toDate().toISOString(),
+            actor: actorProfiles[event.actorRef] || { name: "System", role: "System" }
+        }));
+
+        return {
+            vti: {
+                id: vtiDoc.id,
+                ...vtiData,
+                creationTime: (vtiData?.creationTime as admin.firestore.Timestamp).toDate().toISOString(),
+            },
+            events: enrichedEvents
+        };
+
+    } catch (error) {
+        console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
+    }
+});
