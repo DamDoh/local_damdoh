@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -137,8 +137,30 @@ export const getBuyerDashboardData = functions.https.onCall(
 );
 
 export const getLogisticsDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("logistics-dashboard", context);
+    async (data, context): Promise<LogisticsDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: LogisticsDashboardData = {
+      activeShipments: [
+        { id: 'ship1', to: 'Mombasa Port', status: 'On-Time', eta: '2023-10-30', vtiLink: '/traceability/batches/vti-123' },
+        { id: 'ship2', to: 'Kampala', status: 'Delayed', eta: '2023-11-02', vtiLink: '/traceability/batches/vti-456' },
+      ],
+      incomingJobs: [
+        { id: 'job1', from: 'Eldoret Farms', to: 'Nairobi', product: '10 tons Maize', requirements: 'Standard Truck', actionLink: '/jobs/1' },
+        { id: 'job2', from: 'Coastal Processors', to: 'Mombasa Port', product: '5 tons Cashews', requirements: 'Refrigerated', actionLink: '/jobs/2' },
+      ],
+      performanceMetrics: {
+        onTimePercentage: 97,
+        fuelEfficiency: '12km/L',
+        actionLink: '/reports/performance/q4'
+      }
+    };
+    return mockData;
   },
 );
 
