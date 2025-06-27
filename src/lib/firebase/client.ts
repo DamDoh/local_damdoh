@@ -1,4 +1,3 @@
-
 // src/lib/firebase/client.ts
 // This file is for CLIENT-SIDE Firebase initialization.
 // Do not expose any sensitive credentials here.
@@ -17,6 +16,21 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
+
+// Validate that all required Firebase config values are present.
+// This prevents the app from running with a broken configuration.
+const missingConfigKeys = Object.entries(firebaseConfig)
+  .filter(([, value]) => !value)
+  .map(([key]) => key);
+
+if (missingConfigKeys.length > 0) {
+  throw new Error(
+    `Firebase configuration is missing the following keys: ${missingConfigKeys.join(
+      ', '
+    )}. Please make sure you have set up your .env.local file with all the necessary NEXT_PUBLIC_FIREBASE_* variables.`
+  );
+}
+
 
 // Initialize Firebase
 // We check if an app has already been initialized to prevent errors.
