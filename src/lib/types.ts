@@ -422,6 +422,26 @@ export interface PackagingSupplierDashboardData {
   };
 }
 
+export interface RegulatorDashboardData {
+    complianceRiskAlerts: {
+        id: string;
+        issue: string;
+        region: string;
+        severity: 'High' | 'Medium' | 'Low';
+        actionLink: string;
+    }[];
+    pendingCertifications: {
+        count: number;
+        actionLink: string;
+    };
+    supplyChainAnomalies: {
+        id: string;
+        description: string;
+        level: 'Critical' | 'Warning';
+        vtiLink: string;
+    }[];
+}
+
 
 export interface KnfBatch {
     id: string;

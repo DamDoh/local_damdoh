@@ -1,7 +1,8 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -288,14 +289,53 @@ export const getEnergyProviderDashboardData = functions.https.onCall(
 );
 
 export const getPackagingSupplierDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("packaging-supplier-dashboard", context);
+  async (data, context): Promise<PackagingSupplierDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    const mockData: PackagingSupplierDashboardData = {
+      demandForecast: {
+        productType: 'Biodegradable Jute Bags (50kg)',
+        unitsNeeded: 15000,
+        for: 'Q4 Coffee Bean Exports'
+      },
+      integrationRequests: [
+        { from: 'FreshFoods Processors Ltd.', request: 'Request for custom branded retail pouches.', actionLink: '#' },
+        { from: 'GreenValley Organics', request: 'Inquiry for bulk pallet wrap pricing.', actionLink: '#' },
+      ],
+      sustainableShowcase: {
+        views: 2890,
+        leads: 45
+      }
+    };
+    return mockData;
   },
 );
 
 export const getRegulatorDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("regulator-dashboard", context);
+  async (data, context): Promise<RegulatorDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: RegulatorDashboardData = {
+      complianceRiskAlerts: [
+        { id: 'alert1', issue: 'Unverified organic claims from Western Region', region: 'Western Region', severity: 'High', actionLink: '/compliance/investigate/alert1' },
+        { id: 'alert2', issue: 'High pesticide residue detected in batch VTI-XYZ', region: 'Central Valley', severity: 'Medium', actionLink: '/compliance/investigate/alert2' },
+      ],
+      pendingCertifications: {
+        count: 12,
+        actionLink: '/certifications/pending-review',
+      },
+      supplyChainAnomalies: [
+        { id: 'anom1', description: 'Unusual delay between harvest and processing for multiple batches from Eldoret.', level: 'Warning', vtiLink: '/traceability/analysis/eldoret-delay' },
+        { id: 'anom2', description: 'VTI log shows transportation event before harvest event for batch VTI-ABC.', level: 'Critical', vtiLink: '/traceability/batches/vti-abc' },
+      ]
+    };
+    return mockData;
   },
 );
 
