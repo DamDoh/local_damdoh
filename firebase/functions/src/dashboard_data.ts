@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -197,8 +197,28 @@ export const getFiDashboardData = functions.https.onCall(
 );
 
 export const getAgroExportDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("agro-export-dashboard", context);
+  async (data, context): Promise<AgroExportDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: AgroExportDashboardData = {
+      pendingCustomsDocs: [
+        { id: 'doc1', vtiLink: '/traceability/batches/vti-789', destination: 'Rotterdam, NL', status: 'Awaiting Phytosanitary Certificate' },
+        { id: 'doc2', vtiLink: '/traceability/batches/vti-101', destination: 'Dubai, UAE', status: 'Ready for Submission' },
+      ],
+      trackedShipments: [
+        { id: 'ship3', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' },
+        { id: 'ship4', status: 'At Port', location: 'Port of Singapore', carrier: 'CMA CGM' },
+      ],
+      complianceAlerts: [
+        { id: 'alert1', content: "New EU regulation update for organic produce imports effective Jan 1, 2024.", actionLink: '/news/eu-organic-update' },
+      ]
+    };
+    return mockData;
   },
 );
 
@@ -231,8 +251,33 @@ export const getInputSupplierDashboardData = functions.https.onCall(
 );
 
 export const getFieldAgentDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("field-agent-dashboard", context);
+  async (data, context): Promise<FieldAgentDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: FieldAgentDashboardData = {
+        assignedFarmers: [
+            { id: 'farmer1', name: 'John Mwangi', lastVisit: '2023-10-15', issues: 2, actionLink: '/profiles/farmer1' },
+            { id: 'farmer2', name: 'Grace Adhiambo', lastVisit: '2023-10-22', issues: 0, actionLink: '/profiles/farmer2' },
+            { id: 'farmer3', name: 'Samuel Kiprop', lastVisit: '2023-09-30', issues: 1, actionLink: '/profiles/farmer3' },
+        ],
+        portfolioHealth: {
+            overallScore: 88,
+            alerts: ['Pest outbreak reported in Rift Valley region.'],
+            actionLink: '/reports/portfolio/health'
+        },
+        pendingReports: 3,
+        dataVerificationTasks: {
+            count: 5,
+            description: 'Harvest logs pending verification.',
+            actionLink: '/tasks/verification'
+        }
+    };
+    return mockData;
   },
 );
 
