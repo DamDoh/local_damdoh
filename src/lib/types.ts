@@ -19,7 +19,7 @@ export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 
 // =================================================================
 // 2. UI & COMPONENT-SPECIFIC TYPES
