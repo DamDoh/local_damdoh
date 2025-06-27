@@ -565,6 +565,55 @@ export interface KnfBatch {
     createdAt: { _seconds: number, _nanoseconds: number } | any;
 }
 
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO string
+  }[];
+}
+
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO string
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number; // e.g., 1-5
+    comment: string;
+    actionLink: string;
+  }[];
+}
+
 
 // =================================================================
 // 4. SHARED & MISCELLANEOUS TYPES
