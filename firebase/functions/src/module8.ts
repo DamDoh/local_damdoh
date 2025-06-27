@@ -157,10 +157,10 @@ export async function _internalProcessReportData(data: any) {
  * @return {Promise<any>} A promise that resolves with the assessment.
  */
 export const assessCreditRiskWithAI = functions.https.onCall(
-    async (data, context) => {
+  async (data, context) => {
     // TODO: Add authentication and authorization checks
-      return await _internalAssessCreditRisk(data);
-    },
+    return await _internalAssessCreditRisk(data);
+  },
 );
 
 /**
@@ -171,8 +171,8 @@ export const assessCreditRiskWithAI = functions.https.onCall(
  * @return {Promise<any>} A promise that resolves with the matched opportunities.
  */
 export const matchFundingOpportunitiesWithAI = functions.https.onCall(
-    async (data, context) => {
+  async (data, context) => {
     // TODO: Add authentication and authorization checks
-      return await _internalMatchFundingOpportunities(data);
-    },
+    return await _internalMatchFundingOpportunities(data);
+  },
 );

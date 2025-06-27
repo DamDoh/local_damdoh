@@ -18,8 +18,8 @@ const validateProfileData = (role: string, data: any) => {
     const result = schema.safeParse(data);
     if (!result.success) {
       throw new functions.https.HttpsError(
-          "invalid-argument",
-          `Profile data validation failed for role ${role}: ${result.error.message}`,
+        "invalid-argument",
+        `Profile data validation failed for role ${role}: ${result.error.message}`,
       );
     }
   }
@@ -32,51 +32,51 @@ const validateProfileData = (role: string, data: any) => {
  * @return {Promise<{status: string, message: string}>} A promise that resolves with the status.
  */
 export const upsertStakeholderProfile = functions.https.onCall(
-    async (data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpsError(
-            "unauthenticated",
-            "User must be authenticated.",
-        );
-      }
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
 
-      const {displayName, primaryRole, profileData} = data;
-      if (!displayName || !primaryRole) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "Display name and primary role are required.",
-        );
-      }
+    const {displayName, primaryRole, profileData} = data;
+    if (!displayName || !primaryRole) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Display name and primary role are required.",
+      );
+    }
 
-      if (profileData) {
-        validateProfileData(primaryRole, profileData);
-      }
+    if (profileData) {
+      validateProfileData(primaryRole, profileData);
+    }
 
-      const userId = context.auth.uid;
+    const userId = context.auth.uid;
 
-      try {
-        const userRef = db.collection("users").doc(userId);
+    try {
+      const userRef = db.collection("users").doc(userId);
 
-        await userRef.set(
-            {
-              displayName: displayName,
-              primaryRole: primaryRole,
-              profileData: profileData || {},
-              updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-            },
-            {merge: true},
-        );
+      await userRef.set(
+        {
+          displayName: displayName,
+          primaryRole: primaryRole,
+          profileData: profileData || {},
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        },
+        {merge: true},
+      );
 
-        return {status: "success", message: "Profile updated successfully."};
-      } catch (error: any) {
-        console.error("Error upserting stakeholder profile:", error);
-        throw new functions.https.HttpsError(
-            "internal",
-            "Failed to write to the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
-            {originalError: error.message},
-        );
-      }
-    },
+      return {status: "success", message: "Profile updated successfully."};
+    } catch (error: any) {
+      console.error("Error upserting stakeholder profile:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to write to the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
+        {originalError: error.message},
+      );
+    }
+  },
 );
 
 /**
@@ -103,7 +103,7 @@ export async function getRole(uid: string | undefined): Promise<string | null> {
  * @return {Promise<FirebaseFirestore.DocumentSnapshot | null>} The user's document snapshot or null if not found.
  */
 export async function getUserDocument(
-    uid: string,
+  uid: string,
 ): Promise<FirebaseFirestore.DocumentSnapshot | null> {
   try {
     const userDoc = await db.collection("users").doc(uid).get();

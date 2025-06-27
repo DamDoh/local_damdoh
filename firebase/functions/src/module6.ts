@@ -2,8 +2,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {getFirestore, FieldValue} from "firebase-admin/firestore";
-import {UserProfile} from "./types";
+import {FieldValue} from "firebase-admin/firestore";
+import {UserProfile} from "./models/user-profile";
 import {_internalInitiatePayment} from "./module7"; // Import payment function
 import {_internalLogTraceEvent} from "./module1"; // Import trace event logger
 
@@ -553,9 +553,9 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
         const regData = regDoc.data();
         return {
           id: regDoc.id,
-          displayName: profile?.name || "Unknown User",
+          displayName: profile?.displayName || "Unknown User",
           email: profile?.email || "No email",
-          avatarUrl: profile?.avatarUrl || "",
+          avatarUrl: profile?.photoURL || "",
           registeredAt: regData.registeredAt.toDate().toISOString(),
           checkedIn: regData.checkedIn || false,
           checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,

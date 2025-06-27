@@ -21,8 +21,8 @@ import {getUserDocument} from "./module2";
  * @param {object} notificationPayload - The content of the notification.
  */
 async function createAndSendNotification(
-    userId: string,
-    notificationPayload: {
+  userId: string,
+  notificationPayload: {
       type: string,
       title_en: string,
       body_en: string,
@@ -35,7 +35,7 @@ async function createAndSendNotification(
   }
 
   console.log(
-      `Creating notification for user ${userId}, type: ${notificationPayload.type}`,
+    `Creating notification for user ${userId}, type: ${notificationPayload.type}`,
   );
 
   // 1. Create a document in the 'notifications' collection
@@ -55,7 +55,7 @@ async function createAndSendNotification(
 
   if (fcmToken) {
     console.log(
-        `FCM token found for user ${userId}. Attempting to send push notification...`,
+      `FCM token found for user ${userId}. Attempting to send push notification...`,
     );
     const message: admin.messaging.Message = {
       notification: {
@@ -80,7 +80,7 @@ async function createAndSendNotification(
     }
   } else {
     console.log(
-        `User ${userId} does not have an FCM token. Storing notification only.`,
+      `User ${userId} does not have an FCM token. Storing notification only.`,
     );
   }
 }
@@ -95,58 +95,58 @@ async function createAndSendNotification(
  * @return {Promise<null>} A promise that resolves when the function is complete.
  */
 export const onDataChangeCreateNotification = functions.firestore
-    .document("{collectionId}/{documentId}")
-    .onWrite(async (change, context) => {
-      const {collectionId, documentId} = context.params;
-      const afterData = change.after.exists ? change.after.data() : null;
-      const beforeData = change.before.exists ? change.before.data() : null;
+  .document("{collectionId}/{documentId}")
+  .onWrite(async (change, context) => {
+    const {collectionId, documentId} = context.params;
+    const afterData = change.after.exists ? change.after.data() : null;
+    const beforeData = change.before.exists ? change.before.data() : null;
 
-      if (!afterData && !beforeData) {
-        return null; // Document was deleted, no notification needed.
-      }
+    if (!afterData && !beforeData) {
+      return null; // Document was deleted, no notification needed.
+    }
 
-      let notificationDetails = null;
+    let notificationDetails = null;
 
-      // --- Logic to identify target user and construct notification content ---
-      if (collectionId === "marketplace_orders" && !beforeData && afterData) {
-        notificationDetails = {
-          userId: afterData.sellerId, // Notify the seller
-          payload: {
-            type: "new_order",
-            title_en: "You have a new order!",
-            body_en: `A buyer has placed an order for your listing: "${afterData.listingName}".`,
-            linkedEntity: {collection: "marketplace_orders", documentId},
-          },
-        };
-      } else if (collectionId === "forum_replies" && !beforeData && afterData) {
-        console.log(
-            `Conceptual: New forum reply notification trigger for ${documentId}`,
-        );
-      } else if (
-        collectionId === "applications" &&
+    // --- Logic to identify target user and construct notification content ---
+    if (collectionId === "marketplace_orders" && !beforeData && afterData) {
+      notificationDetails = {
+        userId: afterData.sellerId, // Notify the seller
+        payload: {
+          type: "new_order",
+          title_en: "You have a new order!",
+          body_en: `A buyer has placed an order for your listing: "${afterData.listingName}".`,
+          linkedEntity: {collection: "marketplace_orders", documentId},
+        },
+      };
+    } else if (collectionId === "forum_replies" && !beforeData && afterData) {
+      console.log(
+        `Conceptual: New forum reply notification trigger for ${documentId}`,
+      );
+    } else if (
+      collectionId === "applications" &&
       beforeData?.status !== afterData?.status &&
       afterData
-      ) {
-        notificationDetails = {
-          userId: afterData.applicantId, // Notify the applicant
-          payload: {
-            type: "application_update",
-            title_en: "Your application status has changed",
-            body_en: `The status of your application for "${afterData.productName}" is now: ${afterData.status}.`,
-            linkedEntity: {collection: "applications", documentId},
-          },
-        };
-      }
+    ) {
+      notificationDetails = {
+        userId: afterData.applicantId, // Notify the applicant
+        payload: {
+          type: "application_update",
+          title_en: "Your application status has changed",
+          body_en: `The status of your application for "${afterData.productName}" is now: ${afterData.status}.`,
+          linkedEntity: {collection: "applications", documentId},
+        },
+      };
+    }
 
-      if (notificationDetails) {
-        await createAndSendNotification(
-            notificationDetails.userId,
-            notificationDetails.payload,
-        );
-      }
+    if (notificationDetails) {
+      await createAndSendNotification(
+        notificationDetails.userId,
+        notificationDetails.payload,
+      );
+    }
 
-      return null;
-    });
+    return null;
+  });
 
 /**
  * Marks a specific notification as read for the authenticated user.
@@ -155,38 +155,38 @@ export const onDataChangeCreateNotification = functions.firestore
  * @return {Promise<{status: string}>} A promise that resolves with the status.
  */
 export const markNotificationAsRead = functions.https.onCall(
-    async (data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpsError(
-            "unauthenticated",
-            "User must be authenticated.",
-        );
-      }
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
 
-      const {notificationId} = data;
-      if (!notificationId) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "Notification ID is required.",
-        );
-      }
+    const {notificationId} = data;
+    if (!notificationId) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Notification ID is required.",
+      );
+    }
 
-      const notificationRef = db.collection("notifications").doc(notificationId);
-      const notificationDoc = await notificationRef.get();
+    const notificationRef = db.collection("notifications").doc(notificationId);
+    const notificationDoc = await notificationRef.get();
 
-      if (
-        !notificationDoc.exists ||
+    if (
+      !notificationDoc.exists ||
       notificationDoc.data()?.userId !== context.auth.uid
-      ) {
-        throw new functions.https.HttpsError(
-            "permission-denied",
-            "You do not have permission to update this notification.",
-        );
-      }
+    ) {
+      throw new functions.https.HttpsError(
+        "permission-denied",
+        "You do not have permission to update this notification.",
+      );
+    }
 
-      await notificationRef.update({isRead: true});
-      return {status: "success"};
-    },
+    await notificationRef.update({isRead: true});
+    return {status: "success"};
+  },
 );
 
 /**
@@ -196,22 +196,22 @@ export const markNotificationAsRead = functions.https.onCall(
  * @return {Promise<any>} A promise that resolves with the preferences.
  */
 export const manageNotificationPreferences = functions.https.onCall(
-    async (data, context) => {
-      if (!context.auth) {
-        throw new functions.https.HttpsError(
-            "unauthenticated",
-            "User must be authenticated.",
-        );
-      }
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
 
-      const userRef = db.collection("users").doc(context.auth.uid);
+    const userRef = db.collection("users").doc(context.auth.uid);
 
-      if (data.preferences) {
-        await userRef.set({notificationPreferences: data.preferences}, {merge: true});
-        return {success: true, message: "Preferences updated."};
-      } else {
-        const userDoc = await userRef.get();
-        return userDoc.data()?.notificationPreferences || {};
-      }
-    },
+    if (data.preferences) {
+      await userRef.set({notificationPreferences: data.preferences}, {merge: true});
+      return {success: true, message: "Preferences updated."};
+    } else {
+      const userDoc = await userRef.get();
+      return userDoc.data()?.notificationPreferences || {};
+    }
+  },
 );

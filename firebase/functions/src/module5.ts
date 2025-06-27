@@ -5,25 +5,6 @@ import * as admin from "firebase-admin";
 const db = admin.firestore();
 
 /**
- * Checks if the user has admin privileges.
- * @param {functions.https.CallableContext} context The context of the function call.
- */
-async function requireAdmin(context: functions.https.CallableContext) {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-    );
-  }
-  // In a real app, you would check for an admin custom claim.
-  // const user = await admin.auth().getUser(context.auth.uid);
-  // if (user.customClaims?.admin !== true) {
-  //     throw new functions.https.HttpsError("permission-denied", "User must be an admin.");
-  // }
-}
-
-
-/**
  * Creates a new course in the 'courses' collection.
  * Requires admin privileges.
  * @param {any} data The data for the new course.
@@ -35,16 +16,16 @@ export const createCourse = functions.https.onCall(async (data, context) => {
   // In a production app, the requireAdmin(context) check should be enabled.
   if (!context.auth) {
     throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
+      "unauthenticated",
+      "User must be authenticated.",
     );
   }
 
   const {titleEn, descriptionEn, category, level, targetRoles} = data;
   if (!titleEn || !descriptionEn || !category || !level) {
     throw new functions.https.HttpsError(
-        "invalid-argument",
-        "Missing required fields for the course.",
+      "invalid-argument",
+      "Missing required fields for the course.",
     );
   }
 
@@ -80,38 +61,38 @@ export const createModule = functions.https.onCall(async (data, context) => {
   // For this demo, we'll allow any authenticated user to create content.
   if (!context.auth) {
     throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
+      "unauthenticated",
+      "User must be authenticated.",
     );
   }
 
   const {courseId, moduleTitleEn, contentUrls} = data;
   if (!courseId || !moduleTitleEn) {
     throw new functions.https.HttpsError(
-        "invalid-argument",
-        "Course ID and module title are required.",
+      "invalid-argument",
+      "Course ID and module title are required.",
     );
   }
 
   try {
     const newModuleRef = await db
-        .collection("courses")
-        .doc(courseId)
-        .collection("modules")
-        .add({
-          moduleTitleEn,
-          contentUrls: contentUrls || [],
-          order: 999, // Simple order, can be improved
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
+      .collection("courses")
+      .doc(courseId)
+      .collection("modules")
+      .add({
+        moduleTitleEn,
+        contentUrls: contentUrls || [],
+        order: 999, // Simple order, can be improved
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
 
     return {success: true, moduleId: newModuleRef.id};
   } catch (error: any) {
     console.error("Error creating module:", error);
     throw new functions.https.HttpsError(
-        "internal",
-        "Failed to create module.",
-        {originalError: error.message},
+      "internal",
+      "Failed to create module.",
+      {originalError: error.message},
     );
   }
 });
@@ -125,42 +106,42 @@ export const createModule = functions.https.onCall(async (data, context) => {
  * @return {Promise<{success: boolean, articleId: string}>} A promise that resolves with the new article ID.
  */
 export const createKnowledgeArticle = functions.https.onCall(
-    async (data, context) => {
+  async (data, context) => {
     // For this demo, we'll allow any authenticated user to create content.
-      if (!context.auth) {
-        throw new functions.https.HttpsError(
-            "unauthenticated",
-            "User must be authenticated.",
-        );
-      }
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
 
-      const {titleEn, contentMarkdownEn, tags} = data;
-      if (!titleEn || !contentMarkdownEn) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "Title and content are required.",
-        );
-      }
+    const {titleEn, contentMarkdownEn, tags} = data;
+    if (!titleEn || !contentMarkdownEn) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Title and content are required.",
+      );
+    }
 
-      try {
-        const newArticleRef = await db.collection("knowledge_articles").add({
-          titleEn,
-          contentMarkdownEn,
-          tags: tags || [],
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
+    try {
+      const newArticleRef = await db.collection("knowledge_articles").add({
+        titleEn,
+        contentMarkdownEn,
+        tags: tags || [],
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
 
-        return {success: true, articleId: newArticleRef.id};
-      } catch (error: any) {
-        console.error("Error creating knowledge article:", error);
-        throw new functions.https.HttpsError(
-            "internal",
-            "Failed to create article.",
-            {originalError: error.message},
-        );
-      }
-    },
+      return {success: true, articleId: newArticleRef.id};
+    } catch (error: any) {
+      console.error("Error creating knowledge article:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to create article.",
+        {originalError: error.message},
+      );
+    }
+  },
 );
 
 
@@ -172,22 +153,22 @@ export const createKnowledgeArticle = functions.https.onCall(
  * @return {Promise<{success: boolean, courses: any[]}>} A promise that resolves with the available courses.
  */
 export const getAvailableCourses = functions.https.onCall(
-    async (data, context) => {
-      try {
-        const coursesSnapshot = await db
-            .collection("courses")
-            .orderBy("createdAt", "desc")
-            .get();
-        const courses = coursesSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        return {success: true, courses: courses};
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
-      }
-    },
+  async (data, context) => {
+    try {
+      const coursesSnapshot = await db
+        .collection("courses")
+        .orderBy("createdAt", "desc")
+        .get();
+      const courses = coursesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return {success: true, courses: courses};
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
+    }
+  },
 );
 
 
@@ -201,16 +182,16 @@ export const getAvailableCourses = functions.https.onCall(
 export const getCourseDetails = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
+      "unauthenticated",
+      "User must be authenticated.",
     );
   }
 
   const {courseId} = data;
   if (!courseId) {
     throw new functions.https.HttpsError(
-        "invalid-argument",
-        "A courseId must be provided.",
+      "invalid-argument",
+      "A courseId must be provided.",
     );
   }
 
@@ -220,15 +201,15 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     if (!courseDoc.exists) {
       throw new functions.https.HttpsError("not-found", "Course not found.");
     }
-    const courseData = {id: courseDoc.id, ...courseDoc.data()!};
+    const courseData = courseDoc.data()!;
 
     // 2. Fetch the modules from the subcollection
     const modulesSnapshot = await db
-        .collection("courses")
-        .doc(courseId)
-        .collection("modules")
-        .orderBy("order", "asc")
-        .get();
+      .collection("courses")
+      .doc(courseId)
+      .collection("modules")
+      .orderBy("order", "asc")
+      .get();
     const modulesData = modulesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -236,13 +217,13 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
 
     // 3. Combine the data
     const finalData = {
-      id: courseData.id,
+      id: courseDoc.id,
       title: courseData.titleEn,
       description: courseData.descriptionEn,
       category: courseData.category,
       level: courseData.level,
       instructor: {name: "Dr. Alima Bello", title: "Senior Agronomist"}, // Instructor info would need another fetch
-      modules: modulesData.map((m) => ({
+      modules: modulesData.map((m: any) => ({
         id: m.id,
         title: m.moduleTitleEn,
         content: m.contentUrls || [],
@@ -256,8 +237,8 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
       throw error;
     }
     throw new functions.https.HttpsError(
-        "internal",
-        "Failed to fetch course details.",
+      "internal",
+      "Failed to fetch course details.",
     );
   }
 });

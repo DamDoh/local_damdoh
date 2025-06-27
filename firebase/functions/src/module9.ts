@@ -24,35 +24,33 @@ const db = admin.firestore();
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, data: any}>} A promise that resolves with the market data.
  */
-export const fetchExternalMarketData = functions
-    .runWith({secrets: ["MARKET_DATA_API_KEY"]})
-    .https.onCall(async (data, context) => {
-      const {commodity, region} = data;
-      if (!commodity || !region) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "Commodity and region are required.",
-        );
-      }
+export const fetchExternalMarketData = functions.https.onCall(async (data, context) => {
+    const {commodity, region} = data;
+    if (!commodity || !region) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Commodity and region are required.",
+      );
+    }
 
-      try {
-        console.log(`Fetching external market data for ${commodity} in ${region}...`);
-        // Placeholder for actual external API call using fetch() and the apiKey.
-        const marketData = {
-          price: Math.random() * 100,
-          source: "External Data Provider",
-        };
-        console.log("Successfully fetched external market data.");
-        return {status: "success", data: marketData};
-      } catch (error: any) {
-        console.error("Error fetching external market data:", error);
-        throw new functions.https.HttpsError(
-            "internal",
-            "Unable to fetch external market data.",
-            error.message,
-        );
-      }
-    });
+    try {
+      console.log(`Fetching external market data for ${commodity} in ${region}...`);
+      // Placeholder for actual external API call using fetch() and the apiKey.
+      const marketData = {
+        price: Math.random() * 100,
+        source: "External Data Provider",
+      };
+      console.log("Successfully fetched external market data.");
+      return {status: "success", data: marketData};
+    } catch (error: any) {
+      console.error("Error fetching external market data:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Unable to fetch external market data.",
+        error.message,
+      );
+    }
+  });
 
 /**
  * Sends an SMS notification via an external gateway.
@@ -61,31 +59,29 @@ export const fetchExternalMarketData = functions
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, messageId: string}>} A promise that resolves with the message ID.
  */
-export const sendSmsNotification = functions
-    .runWith({secrets: ["SMS_GATEWAY_API_KEY"]})
-    .https.onCall(async (data, context) => {
-      const {toPhoneNumber, messageBody} = data;
-      if (!toPhoneNumber || !messageBody) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "toPhoneNumber and messageBody are required.",
-        );
-      }
+export const sendSmsNotification = functions.https.onCall(async (data, context) => {
+    const {toPhoneNumber, messageBody} = data;
+    if (!toPhoneNumber || !messageBody) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "toPhoneNumber and messageBody are required.",
+      );
+    }
 
-      try {
-        console.log(`Sending SMS to ${toPhoneNumber}...`);
-        // Placeholder for actual external API call to Twilio, etc.
-        console.log("SMS sent successfully (simulated).");
-        return {status: "success", messageId: `sms_${Date.now()}`};
-      } catch (error: any) {
-        console.error("Error sending SMS:", error);
-        throw new functions.https.HttpsError(
-            "internal",
-            "Unable to send SMS notification.",
-            error.message,
-        );
-      }
-    });
+    try {
+      console.log(`Sending SMS to ${toPhoneNumber}...`);
+      // Placeholder for actual external API call to Twilio, etc.
+      console.log("SMS sent successfully (simulated).");
+      return {status: "success", messageId: `sms_${Date.now()}`};
+    } catch (error: any) {
+      console.error("Error sending SMS:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Unable to send SMS notification.",
+        error.message,
+      );
+    }
+  });
 
 // =================================================================
 // Section 2: Partner API Endpoints (Platform Inbound)
@@ -103,8 +99,8 @@ async function authorizeApiRequest(context: functions.https.CallableContext): Pr
 }> {
   if (!context.auth) {
     throw new functions.https.HttpsError(
-        "unauthenticated",
-        "Authentication via API Key required.",
+      "unauthenticated",
+      "Authentication via API Key required.",
     );
   }
   console.log(`Authorizing API request for partner ${context.auth.uid}...`);
@@ -126,16 +122,16 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
   const {permissions} = await authorizeApiRequest(context);
   if (!permissions.includes("read:vti_details_public")) {
     throw new functions.https.HttpsError(
-        "permission-denied",
-        "Partner does not have permission to read VTI details.",
+      "permission-denied",
+      "Partner does not have permission to read VTI details.",
     );
   }
 
   const {vtiId} = data;
   if (!vtiId) {
     throw new functions.https.HttpsError(
-        "invalid-argument",
-        "vtiId is required.",
+      "invalid-argument",
+      "vtiId is required.",
     );
   }
 
@@ -143,8 +139,8 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
     const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
     if (!vtiDoc.exists || !vtiDoc.data()?.isPublicTraceable) {
       throw new functions.https.HttpsError(
-          "not-found",
-          `Public VTI with ID ${vtiId} not found.`,
+        "not-found",
+        `Public VTI with ID ${vtiId} not found.`,
       );
     }
 
