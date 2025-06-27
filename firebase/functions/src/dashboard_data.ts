@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -57,7 +57,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, recentCropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             recentCropsPromise,
-            knfBatchesPromise,
+            knfBatchesSnapshot,
         ]);
 
         const farms = farmsSnapshot.docs.map(doc => ({
@@ -203,8 +203,30 @@ export const getAgroExportDashboardData = functions.https.onCall(
 );
 
 export const getInputSupplierDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("input-supplier-dashboard", context);
+  async (data, context): Promise<InputSupplierDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: InputSupplierDashboardData = {
+      demandForecast: [
+        { id: "fc1", region: "Rift Valley, Kenya", product: "Drought-Resistant Maize Seed", trend: "High", reason: "Below-average rainfall predicted for the next planting season." },
+        { id: "fc2", region: "Northern Nigeria", product: "Organic NPK Fertilizer", trend: "Steady", reason: "Increased adoption of organic farming practices in the region." },
+      ],
+      productPerformance: [
+        { id: "perf1", productName: "Eco-Fertilizer 5-3-2", rating: 4.5, feedback: "Great results on tomato yield, will re-order.", link: "/products/eco-fertilizer/reviews" },
+        { id: "perf2", productName: "Pioneer P3812W Maize Seed", rating: 4.8, feedback: "Excellent germination rate and crop uniformity.", link: "/products/pioneer-p3812w/reviews" },
+      ],
+      activeOrders: {
+        count: 25,
+        value: 12500,
+        link: "/marketplace/orders/manage"
+      }
+    };
+    return mockData;
   },
 );
 
