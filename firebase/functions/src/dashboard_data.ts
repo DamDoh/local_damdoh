@@ -106,33 +106,48 @@ export const getBuyerDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
-    const mockData: BuyerDashboardData = {
-      supplyChainRisk: {
-        region: "East Africa",
-        level: "Medium",
-        factor: "Potential for port congestion.",
-        action: {
-          label: "View Logistics Report",
-          link: "/logistics/reports/east-africa",
-        },
-      },
-      sourcingRecommendations: [
-        { id: "supplier1", name: "Green Valley Organics", product: "Organic Avocados", reliability: 95, vtiVerified: true },
-        { id: "supplier2", name: "Highland Coffee Co-op", product: "Specialty Coffee Beans", reliability: 88, vtiVerified: true },
-        { id: "supplier3", name: "Coastal Cashews Ltd.", product: "Raw Cashew Nuts", reliability: 91, vtiVerified: false },
-      ],
-      marketPriceIntelligence: {
-        product: "Coffee Arabica",
-        trend: "up",
-        forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
-        action: {
-          label: "View Full Market Analysis",
-          link: "/market-intelligence/coffee",
-        },
-      },
-    };
-    return mockData;
+    
+    try {
+        // Simulate fetching some farmers as sourcing recommendations
+        const farmersSnapshot = await db.collection("users").where("primaryRole", "==", "Farmer").limit(3).get();
+        const sourcingRecommendations = farmersSnapshot.docs.map(doc => {
+            const farmerData = doc.data();
+            return {
+                id: doc.id,
+                name: farmerData.name || "Unnamed Farm",
+                product: farmerData.profileData?.crops?.[0] || "Various Produce", // Get first listed crop
+                reliability: Math.floor(Math.random() * (98 - 85 + 1) + 85), // Random reliability
+                vtiVerified: Math.random() > 0.3, // Random VTI verification
+            };
+        });
+
+        // Keep mock data for other sections for now, focusing on one live part
+        const liveData: BuyerDashboardData = {
+          supplyChainRisk: {
+            region: "East Africa",
+            level: "Medium",
+            factor: "Potential for port congestion.",
+            action: {
+              label: "View Logistics Report",
+              link: "/logistics/reports/east-africa",
+            },
+          },
+          sourcingRecommendations: sourcingRecommendations,
+          marketPriceIntelligence: {
+            product: "Coffee Arabica",
+            trend: "up",
+            forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
+            action: {
+              label: "View Full Market Analysis",
+              link: "/market-intelligence/coffee",
+            },
+          },
+        };
+        return liveData;
+    } catch (error) {
+        console.error("Error fetching buyer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch buyer dashboard data.");
+    }
   },
 );
 
@@ -144,7 +159,8 @@ export const getLogisticsDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
+    // Returning structured, realistic mock data.
+    // In a real system, this would come from live queries on 'shipments' and 'jobs' collections.
     const mockData: LogisticsDashboardData = {
       activeShipments: [
         { id: 'ship1', to: 'Mombasa Port', status: 'On-Time', eta: '2023-10-30', vtiLink: '/traceability/batches/vti-123' },
