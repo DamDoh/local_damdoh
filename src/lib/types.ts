@@ -207,7 +207,7 @@ export interface YieldDataPoint {
     historical: number;
     predicted: number;
     unit: string;
-}
+  }
 
 export interface FarmerDashboardData {
   farmCount: number;

@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -164,9 +164,37 @@ export const getLogisticsDashboardData = functions.https.onCall(
   },
 );
 
-export const getFiDashboardData = functions.https.onCall(async (data, context) => {
-  return await getDashboardData("fi-dashboard", context);
-});
+export const getFiDashboardData = functions.https.onCall(
+  async (data, context): Promise<FiDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: FiDashboardData = {
+      pendingApplications: [
+        { id: "app1", applicantName: "Green Valley Farms", type: "Crop Loan", amount: 25000, riskScore: 720, actionLink: "/applications/app1" },
+        { id: "app2", applicantName: "Sunrise Cooperative", type: "Equipment Financing", amount: 150000, riskScore: 680, actionLink: "/applications/app2" },
+      ],
+      portfolioAtRisk: {
+        count: 12,
+        value: 45000,
+        highestRisk: {
+          name: "Dry Season Farmers Group",
+          reason: "Drought warning in region.",
+        },
+        actionLink: "/risk/analysis/q4",
+      },
+      marketUpdates: [
+        { id: "update1", content: "Central Bank raises interest rates by 0.25%.", actionLink: "/news/cbr-rates-q4" },
+        { id: "update2", content: "New government subsidy announced for organic farming inputs.", actionLink: "/news/organic-subsidy" },
+      ]
+    };
+    return mockData;
+  },
+);
 
 export const getAgroExportDashboardData = functions.https.onCall(
   async (data, context) => {
