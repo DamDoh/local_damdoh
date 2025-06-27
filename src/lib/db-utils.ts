@@ -1,3 +1,4 @@
+
 // src/lib/db-utils.ts
 import { 
   collection, 
@@ -79,66 +80,8 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
   }
 }
 
-export async function createProfileInDB(userId: string, profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
-  try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, userId); // Use the UID as the document ID
-    const docData = {
-      ...profileData,
-      createdAt: Timestamp.now(),
-      updatedAt: Timestamp.now(),
-    };
-    await setDoc(profileDocRef, docData); // Use setDoc to create a document with a specific ID
-    
-    const newDocSnap = await getDoc(profileDocRef);
-    if (newDocSnap.exists()) {
-        const data = newDocSnap.data();
-        return {
-            id: newDocSnap.id,
-            ...data,
-            createdAt: (data.createdAt as Timestamp).toDate().toISOString(),
-            updatedAt: (data.updatedAt as Timestamp).toDate().toISOString(),
-        } as UserProfile;
-    } else {
-        throw new Error("Failed to retrieve newly created profile after adding to Firestore.");
-    }
-  } catch (error) {
-    console.error("Error creating profile in Firestore: ", error);
-    throw error;
-  }
-}
-
-export async function updateProfileInDB(id: string, updates: Partial<Omit<UserProfile, 'id' | 'createdAt'>>): Promise<UserProfile | null> {
-  try {
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
-    
-    const docSnap = await getDoc(profileDocRef);
-    if (!docSnap.exists()) {
-        console.log(`No profile found with ID: ${id} to update.`);
-        return null;
-    }
-
-    const updateData = {
-      ...updates,
-      updatedAt: Timestamp.now(),
-    };
-
-    await updateDoc(profileDocRef, updateData);
-    
-    const updatedProfileSnap = await getDoc(profileDocRef);
-    if (updatedProfileSnap.exists()) {
-        const data = updatedProfileSnap.data();
-        return {
-            id: updatedProfileSnap.id, ...data,
-            createdAt: (data.createdAt as Timestamp).toDate().toISOString(),
-            updatedAt: (data.updatedAt as Timestamp).toDate().toISOString(),
-        } as UserProfile;
-    }
-    return null; 
-  } catch (error) {
-    console.error(`Error updating profile with ID ${id} in Firestore: `, error);
-    throw error;
-  }
-}
+// NOTE: createProfileInDB and updateProfileInDB are being deprecated in favor of the upsertStakeholderProfile Cloud Function
+// for better security and data validation. These client-side methods are no longer used.
 
 export async function deleteProfileFromDB(id: string): Promise<boolean> {
   try {

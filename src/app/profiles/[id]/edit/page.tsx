@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { getProfileByIdFromDB, updateProfileInDB } from "@/lib/db-utils";
+import { getProfileByIdFromDB } from "@/lib/db-utils";
 import type { UserProfile } from "@/lib/types";
 import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2 } from "lucide-react";
 import React from "react"; 
@@ -29,6 +29,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -40,6 +42,9 @@ export default function EditProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const functions = getFunctions(firebaseApp);
+  const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
 
   const profileIdParam = params.id as string;
 
@@ -126,34 +131,33 @@ export default function EditProfilePage() {
     }
     setIsSubmitting(true);
     try {
-      const profileUpdates: Partial<UserProfile> = {
-        name: data.name,
-        roles: [data.role],
-        profileSummary: data.profileSummary,
-        bio: data.bio,
-        location: data.location,
-        areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(s => s) || [],
-        needs: data.needs?.split(",").map(s => s.trim()).filter(s => s) || [],
-        contactInfo: {
-          phone: data.contactInfoPhone,
-          website: data.contactInfoWebsite,
-          email: profile.email // Keep existing email from profile
-        },
+      // Prepare the payload for the Cloud Function
+      const payload = {
+          displayName: data.name,
+          primaryRole: data.role,
+          profileSummary: data.profileSummary,
+          bio: data.bio,
+          location: data.location,
+          areasOfInterest: data.areasOfInterest?.split(',').map(s => s.trim()).filter(Boolean) || [],
+          needs: data.needs?.split(',').map(s => s.trim()).filter(Boolean) || [],
+          contactInfoPhone: data.contactInfoPhone,
+          contactInfoWebsite: data.contactInfoWebsite,
       };
 
-      await updateProfileInDB(profile.id, profileUpdates);
+      await upsertStakeholderProfile(payload);
+
       toast({
         title: "Profile Updated Successfully!",
         description: "Your changes have been saved.",
       });
       router.push(`/profiles/me`);
-      router.refresh(); // Force a refresh to show updated data on profile page
-    } catch (error) {
+      router.refresh(); 
+    } catch (error: any) {
       console.error("Error updating profile:", error);
       toast({
         variant: "destructive",
         title: "Update Failed",
-        description: "Could not save your profile changes. Please try again.",
+        description: error.message || "Could not save your profile changes. Please try again.",
       });
     } finally {
       setIsSubmitting(false);

@@ -26,8 +26,8 @@ const validateProfileData = (role: string, data: any) => {
 };
 
 /**
- * Creates or updates a detailed stakeholder profile.
- * @param {any} data The data for the function call.
+ * Creates or updates a detailed stakeholder profile. This is the single, secure entry point for all profile modifications.
+ * @param {any} data The data for the function call. Must include a primaryRole.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, message: string}>} A promise that resolves with the status.
  */
@@ -40,11 +40,23 @@ export const upsertStakeholderProfile = functions.https.onCall(
       );
     }
 
-    const {displayName, primaryRole, profileData} = data;
-    if (!displayName || !primaryRole) {
+    const {
+      primaryRole,
+      displayName,
+      profileSummary,
+      bio,
+      location,
+      areasOfInterest,
+      needs,
+      contactInfoPhone,
+      contactInfoWebsite,
+      profileData,
+    } = data;
+
+    if (!primaryRole) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "Display name and primary role are required.",
+        "A primary role must be provided.",
       );
     }
 
@@ -57,15 +69,26 @@ export const upsertStakeholderProfile = functions.https.onCall(
     try {
       const userRef = db.collection("users").doc(userId);
 
-      await userRef.set(
-        {
-          displayName: displayName,
-          primaryRole: primaryRole,
-          profileData: profileData || {},
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        },
-        {merge: true},
-      );
+      const updatePayload: {[key: string]: any} = {
+        primaryRole,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      };
+
+      if (displayName) updatePayload.name = displayName;
+      if (profileSummary) updatePayload.profileSummary = profileSummary;
+      if (bio) updatePayload.bio = bio;
+      if (location) updatePayload.location = location;
+      if (Array.isArray(areasOfInterest)) updatePayload.areasOfInterest = areasOfInterest;
+      if (Array.isArray(needs)) updatePayload.needs = needs;
+      if (contactInfoPhone || contactInfoWebsite) {
+        updatePayload.contactInfo = {
+          phone: contactInfoPhone || null,
+          website: contactInfoWebsite || null,
+        };
+      }
+      if (profileData) updatePayload.profileData = profileData;
+
+      await userRef.set(updatePayload, {merge: true});
 
       return {status: "success", message: "Profile updated successfully."};
     } catch (error: any) {
@@ -78,6 +101,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
     }
   },
 );
+
 
 /**
  * Helper function to get a user's role from Firestore.
