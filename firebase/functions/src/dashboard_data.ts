@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -381,8 +381,27 @@ export const getQaDashboardData = functions.https.onCall(
 );
 
 export const getCertificationBodyDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("certification-body-dashboard", context);
+  async (data, context): Promise<CertificationBodyDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: CertificationBodyDashboardData = {
+      pendingAudits: [
+        { id: 'audit1', farmName: 'Green Valley Organics', standard: 'USDA Organic', dueDate: new Date(Date.now() + 14 * 86400000).toISOString(), actionLink: '#' },
+        { id: 'audit2', farmName: 'Sunrise Cooperative', standard: 'Fair Trade International', dueDate: new Date(Date.now() + 30 * 86400000).toISOString(), actionLink: '#' },
+      ],
+      certifiedEntities: [
+        { id: 'ent1', name: 'Highland Coffee Co-op', type: 'Farm', certificationStatus: 'Active', actionLink: '#' },
+        { id: 'ent2', name: 'Coastal Cashews Ltd.', type: 'Processor', certificationStatus: 'Pending Renewal', actionLink: '#' },
+        { id: 'ent3', name: 'Moringa Leaf Exports', type: 'Processor', certificationStatus: 'Expired', actionLink: '#' },
+      ],
+      standardsMonitoring: [
+          { standard: 'USDA Organic', adherenceRate: 98, alerts: 2, actionLink: '#' },
+          { standard: 'Fair Trade', adherenceRate: 95, alerts: 5, actionLink: '#' },
+      ]
+    };
+    return mockData;
   },
 );
 

@@ -485,6 +485,29 @@ export interface QaDashboardData {
   };
 }
 
+export interface CertificationBodyDashboardData {
+  pendingAudits: {
+    id: string;
+    farmName: string;
+    standard: string;
+    dueDate: string; // ISO string
+    actionLink: string;
+  }[];
+  certifiedEntities: {
+    id: string;
+    name: string;
+    type: 'Farm' | 'Processor';
+    certificationStatus: 'Active' | 'Pending Renewal' | 'Expired';
+    actionLink: string;
+  }[];
+  standardsMonitoring: {
+    standard: string;
+    adherenceRate: number;
+    alerts: number;
+    actionLink: string;
+  }[];
+}
+
 
 export interface KnfBatch {
     id: string;

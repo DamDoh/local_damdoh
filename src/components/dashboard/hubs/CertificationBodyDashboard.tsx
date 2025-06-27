@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Award, FileText, CheckCircle } from 'lucide-react';
 import type { CertificationBodyDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
@@ -38,7 +38,7 @@ export const CertificationBodyDashboard = () => {
     };
 
     fetchData();
-  }, [getCertificationBodyDashboardDataCallable]);
+  }, []);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -67,7 +67,7 @@ export const CertificationBodyDashboard = () => {
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
           case 'active': return 'default';
-          case 'pending': return 'secondary';
+          case 'pending renewal': return 'secondary';
           case 'expired': return 'destructive';
           default: return 'outline';
       }
@@ -100,7 +100,7 @@ export const CertificationBodyDashboard = () => {
                      <TableRow key={audit.id}>
                        <TableCell className="font-medium">{audit.farmName}</TableCell>
                        <TableCell>{audit.standard}</TableCell>
-                       <TableCell>{audit.dueDate}</TableCell>
+                       <TableCell>{new Date(audit.dueDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
                            <Link href={audit.actionLink}>Schedule Audit</Link>
@@ -155,7 +155,7 @@ export const CertificationBodyDashboard = () => {
          </Card>
 
           {/* Standards Monitoring */}
-         <Card>
+         <Card className="md:col-span-2">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Standards Adherence Monitoring</CardTitle>
                 <CardDescription>Tracking adherence rates across different standards.</CardDescription>
@@ -192,11 +192,11 @@ export const CertificationBodyDashboard = () => {
   );
 };
 
+
 const DashboardSkeleton = () => (
     <div className="space-y-6">
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
     </div>
 );
