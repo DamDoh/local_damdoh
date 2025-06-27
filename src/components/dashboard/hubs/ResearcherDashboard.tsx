@@ -38,7 +38,7 @@ export const ResearcherDashboard = () => {
     };
 
     fetchData();
-  }, [getResearcherDashboardDataCallable]);
+  }, []);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -64,6 +64,15 @@ export const ResearcherDashboard = () => {
       );
   }
 
+  const getStatusBadgeVariant = (status: string) => {
+      switch (status.toLowerCase()) {
+          case 'draft': return 'secondary';
+          case 'pending review': return 'secondary';
+          case 'published': return 'default';
+          default: return 'outline';
+      }
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">Research & Analytics Hub</h1>
@@ -73,7 +82,7 @@ export const ResearcherDashboard = () => {
          <Card className="md:col-span-2">
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/> Available Datasets</CardTitle>
-             <CardDescription>Datasets available for research and analysis.</CardDescription>
+             <CardDescription>Anonymized datasets available for research and analysis.</CardDescription>
            </CardHeader>
            <CardContent>
              {dashboardData.availableDatasets.length > 0 ? (
@@ -158,7 +167,7 @@ export const ResearcherDashboard = () => {
                             <div key={contribution.id} className="text-sm p-2 border rounded-lg">
                                 <div className="flex justify-between items-center">
                                     <p className="font-medium">{contribution.title}</p>
-                                    <Badge variant="secondary">{contribution.status}</Badge>
+                                    <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
                                 </div>
                                 <Button asChild variant="link" size="sm" className="px-0 pt-1">
                                     <Link href={contribution.actionLink}>View Details</Link>

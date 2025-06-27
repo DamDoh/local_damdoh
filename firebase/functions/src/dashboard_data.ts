@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -406,8 +406,28 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
 );
 
 export const getResearcherDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("researcher-dashboard", context);
+  async (data, context): Promise<ResearcherDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const mockData: ResearcherDashboardData = {
+      availableDatasets: [
+        { id: 'ds1', name: 'Anonymized Maize Price Data (2022-2023)', dataType: 'Market Data', accessLevel: 'Public', actionLink: '#' },
+        { id: 'ds2', name: 'Regional Soil Health Aggregates', dataType: 'Agronomic Data', accessLevel: 'Requires Request', actionLink: '#' },
+        { id: 'ds3', name: 'Logistics Delay Hotspot Analysis', dataType: 'Supply Chain Data', accessLevel: 'Requires Request', actionLink: '#' },
+      ],
+      ongoingProjects: [
+        { id: 'proj1', title: 'Impact of Cover Cropping on Soil Moisture', progress: 75, collaborators: ['Dr. Bello', 'Dr. Singh'], actionLink: '#' },
+        { id: 'proj2', title: 'Predictive Modeling for Pest Outbreaks', progress: 40, collaborators: ['Dr. Hanson'], actionLink: '#' },
+      ],
+      knowledgeHubContributions: [
+        { id: 'khc1', title: 'A Review of Post-Harvest Loss Technologies', status: 'Published', actionLink: '#' },
+        { id: 'khc2', title: 'The Economics of Smallholder Solar Irrigation', status: 'Pending Review', actionLink: '#' },
+      ]
+    };
+
+    return mockData;
   },
 );
 
