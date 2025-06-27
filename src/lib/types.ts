@@ -156,11 +156,12 @@ export interface EventCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: string | null;
-  usageLimit?: number;
+  expiresAt?: string | null; // ISO String
+  usageLimit?: number | null;
   usageCount: number;
-  createdAt: string;
+  createdAt: string; // ISO String
 }
+
 
 export interface MarketplaceCoupon {
   id: string;
