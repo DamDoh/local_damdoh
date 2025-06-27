@@ -19,7 +19,6 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
     console.log(`[fgwKnfKnowledgeTool] Received query for: "${input.techniqueName}"`);
 
     try {
-      // Create a flexible query to search by name or abbreviation.
       // This is a simplified search; for production, a more robust search service like Algolia would be better.
       const searchTerm = input.techniqueName.toLowerCase();
       
