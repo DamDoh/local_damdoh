@@ -542,7 +542,7 @@ export interface ResearcherDashboardData {
         collaborators: string[];
         actionLink: string;
     }[];
-    knowledgeHubContributions: {
+    knowledgeBaseContributions: {
         id: string;
         title: string;
         type: 'Article' | 'Methodology' | 'Tool';

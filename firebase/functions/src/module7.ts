@@ -640,7 +640,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     }
 
     const userId = context.auth.uid;
-
+    
     try {
       const transactionsRef = db.collection("financial_transactions");
       const userDocRef = db.collection("users").doc(userId);
