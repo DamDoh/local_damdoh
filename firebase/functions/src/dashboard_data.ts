@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData} from "./types";
+import {FarmerDashboardData, BuyerDashboardData} from "./types";
 
 const db = admin.firestore();
 
@@ -86,8 +86,8 @@ export const getFarmerDashboardData = functions.https.onCall(
         return {
             farmCount: farms.length,
             cropCount: recentCrops.length, 
-            recentCrops: recentCrops,
-            knfBatches: knfBatches,
+            recentCrops: recentCrops as any,
+            knfBatches: knfBatches as any,
         };
 
     } catch (error) {
@@ -99,8 +99,40 @@ export const getFarmerDashboardData = functions.https.onCall(
 
 
 export const getBuyerDashboardData = functions.https.onCall(
-  async (data, context) => {
-    return await getDashboardData("buyer-dashboard", context);
+  async (data, context): Promise<BuyerDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: BuyerDashboardData = {
+      supplyChainRisk: {
+        region: "East Africa",
+        level: "Medium",
+        factor: "Potential for port congestion.",
+        action: {
+          label: "View Logistics Report",
+          link: "/logistics/reports/east-africa",
+        },
+      },
+      sourcingRecommendations: [
+        { id: "supplier1", name: "Green Valley Organics", product: "Organic Avocados", reliability: 95, vtiVerified: true },
+        { id: "supplier2", name: "Highland Coffee Co-op", product: "Specialty Coffee Beans", reliability: 88, vtiVerified: true },
+        { id: "supplier3", name: "Coastal Cashews Ltd.", product: "Raw Cashew Nuts", reliability: 91, vtiVerified: false },
+      ],
+      marketPriceIntelligence: {
+        product: "Coffee Arabica",
+        trend: "up",
+        forecast: "Prices expected to rise 5-8% in the next quarter due to weather patterns.",
+        action: {
+          label: "View Full Market Analysis",
+          link: "/market-intelligence/coffee",
+        },
+      },
+    };
+    return mockData;
   },
 );
 
