@@ -104,7 +104,7 @@ export default function MarketplacePromotionsPage() {
                                 <form onSubmit={form.handleSubmit(onCouponSubmit)} className="space-y-4">
                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <FormField control={form.control} name="code" render={({ field }) => ( <FormItem> <FormLabel>Coupon Code</FormLabel> <FormControl> <Input placeholder="e.g., HARVEST2024" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
-                                        <FormField control={form.control} name="discountType" render={({ field }) => ( <FormItem> <FormLabel>Discount Type</FormLabel> <Select onValueChange={field.onChange} defaultValue={field.value}> <FormControl> <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger> </FormControl> <SelectContent> <SelectItem value="percentage">Percentage (%)</SelectItem> <SelectItem value="fixed">Fixed Amount</SelectItem> </SelectContent> </Select> <FormMessage /> </FormItem> )} />
+                                        <FormField control={form.control} name="discountType" render={({ field }) => ( <FormItem> <FormLabel>Discount Type</FormLabel> <Select onValueChange={field.onChange} value={field.value}> <FormControl> <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger> </FormControl> <SelectContent> <SelectItem value="percentage">Percentage (%)</SelectItem> <SelectItem value="fixed">Fixed Amount</SelectItem> </SelectContent> </Select> <FormMessage /> </FormItem> )} />
                                    </div>
                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <FormField control={form.control} name="discountValue" render={({ field }) => ( <FormItem> <FormLabel>Discount Value</FormLabel> <FormControl> <Input type="number" placeholder="e.g., 10 or 15.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} /> </FormControl> <FormMessage /> </FormItem> )} />
@@ -127,7 +127,7 @@ export default function MarketplacePromotionsPage() {
                                         <div className="font-mono text-primary bg-primary/10 px-2 py-1 rounded-md text-sm">{coupon.code}</div>
                                         <div className="text-sm"> {coupon.discountType === 'percentage' ? `${coupon.discountValue}% off` : `$${coupon.discountValue.toFixed(2)} off`} </div>
                                         <div className="text-xs text-muted-foreground"> Used: {coupon.usageCount} / {coupon.usageLimit || '∞'} </div>
-                                        <div className="text-xs text-muted-foreground"> Expires: {coupon.expiresAt ? format(new Date((coupon.expiresAt as any)._seconds * 1000), "PPP") : 'Never'} </div>
+                                        <div className="text-xs text-muted-foreground"> Expires: {coupon.expiresAt ? format(new Date(coupon.expiresAt), "PPP") : 'Never'} </div>
                                         <Dialog> <DialogTrigger asChild> <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4" /> Share</Button> </DialogTrigger> <DialogContent> <DialogHeader> <DialogTitle>Share Coupon</DialogTitle> <DialogDescription> Share this code with your customers. You can also send them the link below to have it auto-apply. </DialogDescription> </DialogHeader> <div className="flex items-center space-x-2"> <div className="grid flex-1 gap-2"> <Label htmlFor="link" className="sr-only">Link</Label> <Input id="link" defaultValue={`${window.location.origin}/marketplace?coupon=${coupon.code}`} readOnly /> </div> <Button type="button" size="sm" className="px-3" onClick={() => handleShare(coupon)}> <span className="sr-only">Copy</span> <ClipboardCopy className="h-4 w-4" /> </Button> </div> <DialogFooter> <DialogClose asChild> <Button type="button" variant="secondary">Close</Button> </DialogClose> </DialogFooter> </DialogContent> </Dialog>
                                     </div>
                                 ))}
@@ -140,4 +140,5 @@ export default function MarketplacePromotionsPage() {
         </div>
     );
 }
+
     
