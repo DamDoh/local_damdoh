@@ -12,7 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
-import { ArrowLeft, Users, UserCheck, CheckCircle, Search, Ticket, Loader2, Star, Percent, CalendarIcon, Hash, Copy, Share2, ClipboardCopy } from 'lucide-react';
+import { ArrowLeft, Users, UserCheck, CheckCircle, Search, Ticket, Loader2, Star, Percent, CalendarIcon, Hash, Copy, Share2, ClipboardCopy, Edit } from 'lucide-react';
 import type { AgriEvent, EventAttendee, EventCoupon } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -345,6 +345,12 @@ export default function ManageEventPage() {
   }
 
   const checkedInCount = attendees.filter(a => a.checkedIn).length;
+  
+  const handleShareEvent = () => {
+    navigator.clipboard.writeText(`${window.location.origin}/agri-events/${eventId}`);
+    toast({ title: "Event Link Copied!", description: "A shareable link has been copied to your clipboard." });
+  };
+
 
   return (
     <div className="space-y-6">
@@ -354,7 +360,35 @@ export default function ManageEventPage() {
 
       <Card>
         <CardHeader>
-            <CardTitle className="text-2xl">Manage Event: {event.title}</CardTitle>
+            <div className="flex flex-col sm:flex-row justify-between items-start">
+                <CardTitle className="text-2xl mb-2 sm:mb-0">Manage Event: {event.title}</CardTitle>
+                 <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4"/> Share Event</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Share Event</DialogTitle>
+                            <DialogDescription>
+                                Share this link with your audience to direct them to the event page.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex items-center space-x-2">
+                            <div className="grid flex-1 gap-2">
+                                <Label htmlFor="event-link" className="sr-only">Link</Label>
+                                <Input id="event-link" defaultValue={`${window.location.origin}/agri-events/${eventId}`} readOnly />
+                            </div>
+                            <Button type="button" size="sm" className="px-3" onClick={handleShareEvent}>
+                                <span className="sr-only">Copy</span>
+                                <ClipboardCopy className="h-4 w-4" />
+                            </Button>
+                        </div>
+                        <DialogFooter>
+                            <DialogClose asChild><Button type="button" variant="secondary">Close</Button></DialogClose>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            </div>
             <CardDescription>Oversee registrations, check-ins, and promotions.</CardDescription>
         </CardHeader>
         <CardContent>

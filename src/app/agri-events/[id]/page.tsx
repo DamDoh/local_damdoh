@@ -11,11 +11,11 @@ import { useToast } from '@/hooks/use-toast';
 import type { AgriEvent, EventAttendee } from '@/lib/types';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Ticket, QrCode, CheckCircle, Loader2, Edit } from 'lucide-react';
+import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Ticket, QrCode, CheckCircle, Loader2, Edit, Share2, ClipboardCopy } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -131,6 +131,11 @@ export default function AgriEventDetailPage() {
     }
   };
   
+  const handleShareEvent = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({ title: "Event Link Copied!", description: "A shareable link has been copied to your clipboard." });
+  };
+  
   const isOrganizer = user && event && user.uid === event.organizerId;
 
   if (isLoading) {
@@ -185,13 +190,41 @@ export default function AgriEventDetailPage() {
                     <CardTitle className="text-3xl font-bold">{event.title}</CardTitle>
                     {event.organizer && <CardDescription className="text-base">Organized by: {event.organizer}</CardDescription>}
                 </div>
-                {isOrganizer && (
-                    <Button asChild variant="secondary" size="sm">
-                        <Link href={`/agri-events/${event.id}/manage`}>
-                            <Edit className="mr-2 h-4 w-4" /> Manage Event
-                        </Link>
-                    </Button>
-                )}
+                 <div className="flex gap-2">
+                    {isOrganizer && (
+                        <Button asChild variant="secondary" size="sm">
+                            <Link href={`/agri-events/${event.id}/manage`}>
+                                <Edit className="mr-2 h-4 w-4" /> Manage Event
+                            </Link>
+                        </Button>
+                    )}
+                     <Dialog>
+                        <DialogTrigger asChild>
+                           <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4"/>Share</Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Share this Event</DialogTitle>
+                                <DialogDescription>
+                                    Copy the link below to share this event with your network.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <div className="flex items-center space-x-2">
+                                <div className="grid flex-1 gap-2">
+                                    <Label htmlFor="event-link" className="sr-only">Link</Label>
+                                    <Input id="event-link" defaultValue={window.location.href} readOnly />
+                                </div>
+                                <Button type="button" size="sm" className="px-3" onClick={handleShareEvent}>
+                                    <span className="sr-only">Copy</span>
+                                    <ClipboardCopy className="h-4 w-4" />
+                                </Button>
+                            </div>
+                            <DialogFooter>
+                                <DialogClose asChild><Button type="button" variant="secondary">Close</Button></DialogClose>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
+                </div>
             </div>
         </CardHeader>
         <CardContent className="space-y-6">

@@ -118,6 +118,13 @@ export default function CreateAgriEventPage() {
     setCreatedEvent(null);
   };
 
+  const handleShareLink = () => {
+    if(!createdEvent) return;
+    navigator.clipboard.writeText(`${window.location.origin}/agri-events/${createdEvent.id}`);
+    toast({ title: "Link Copied!", description: "Event link copied to clipboard." });
+  };
+
+
   return (
     <div className="space-y-6">
       <Link href="/agri-events" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
@@ -135,12 +142,12 @@ export default function CreateAgriEventPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <Button asChild className="w-full">
-                <Link href={`/agri-events/${createdEvent.id}`}>View Event Page & Manage Registrations</Link>
+                <Link href={`/agri-events/${createdEvent.id}/manage`}>Manage Event & Attendees</Link>
               </Button>
             <Button 
               className="w-full" 
               variant="outline"
-              onClick={() => console.log(`Action: Share Event - Event: ${createdEvent.title}`)}
+              onClick={handleShareLink}
             >
               <Share2 className="mr-2 h-4 w-4" /> Share Event Link
             </Button>
@@ -438,8 +445,8 @@ export default function CreateAgriEventPage() {
                   )}
                 />
 
-                <Button type="submit" className="w-full md:w-auto" disabled={submissionStatus === 'submitting'}>
-                  {submissionStatus === 'submitting' ? (
+                <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
+                  {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...
                     </>
