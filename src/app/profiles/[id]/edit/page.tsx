@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -332,7 +331,7 @@ export default function EditProfilePage() {
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-muted-foreground" />Currently Seeking / Offering</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Buyers for cocoa, Warehousing space" {...field} />
+                      <Input placeholder="e.g., Buyers for cocoa beans, Warehousing space" {...field} />
                     </FormControl>
                     <FormDescription>Comma-separated list.</FormDescription>
                     <FormMessage />
