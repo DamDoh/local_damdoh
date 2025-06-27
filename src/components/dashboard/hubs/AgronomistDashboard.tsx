@@ -38,7 +38,7 @@ export const AgronomistDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getAgronomistDashboardDataCallable]);
 
   if (isLoading) {
     return <DashboardSkeleton />;

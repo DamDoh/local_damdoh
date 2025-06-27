@@ -508,102 +508,6 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
-export interface AgronomistDashboardData {
-  assignedFarmersOverview: {
-    id: string;
-    name: string;
-    farmLocation: string;
-    lastConsultation: string; // ISO String
-    alerts: number;
-  }[];
-  pendingConsultationRequests: {
-    id:string;
-    farmerName: string;
-    issueSummary: string;
-    requestDate: string; // ISO string
-  }[];
-  knowledgeBaseContributions: {
-    id: string;
-    title: string;
-    status: 'Draft' | 'Pending Review' | 'Published';
-  }[];
-}
-
-export interface AgroTourismDashboardData {
-  upcomingBookings: {
-    id: string;
-    experienceTitle: string;
-    guestName: string;
-    date: string; // ISO string
-    actionLink: string;
-  }[];
-  listedExperiences: {
-    id: string;
-    title: string;
-    location: string;
-    status: 'Published' | 'Draft';
-    bookingsCount: number;
-    actionLink: string;
-  }[];
-  guestReviews: {
-    id: string;
-    guestName: string;
-    experienceTitle: string;
-    rating: number; // e.g., 1-5
-    comment: string;
-    actionLink: string;
-  }[];
-}
-
-export interface InsuranceProviderDashboardData {
-  pendingClaims: {
-    id: string;
-    policyHolderName: string;
-    policyType: 'Crop' | 'Livestock';
-    claimDate: string; // ISO string
-    status: 'Submitted' | 'Under Review';
-    actionLink: string;
-  }[];
-  riskAssessmentAlerts: {
-    id: string;
-    policyHolderName: string;
-    alert: string;
-    severity: 'High' | 'Medium' | 'Low';
-    actionLink: string;
-  }[];
-  activePolicies: {
-    id: string;
-    policyHolderName: string;
-    policyType: string;
-    coverageAmount: number;
-    expiryDate: string; // ISO string
-    actionLink: string;
-  }[];
-}
-
-export interface CrowdfunderDashboardData {
-  portfolioOverview: {
-    totalInvested: number;
-    numberOfInvestments: number;
-    estimatedReturns: number;
-  };
-  suggestedOpportunities: {
-    id: string;
-    projectName: string;
-    category: string;
-    fundingGoal: number;
-    amountRaised: number;
-    actionLink: string;
-  }[];
-  recentTransactions: {
-    id: string;
-    projectName: string;
-    type: 'Investment' | 'Payout';
-    amount: number;
-    date: string; // ISO string
-  }[];
-}
-
 export interface ResearcherDashboardData {
   availableDatasets: {
     id: string;
@@ -624,6 +528,27 @@ export interface ResearcherDashboardData {
     title: string;
     status: 'Draft' | 'Pending Review' | 'Published';
     actionLink: string;
+  }[];
+}
+
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id:string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO string
+  }[];
+  knowledgeBaseContributions: {
+    id: string;
+    title: string;
+    status: 'Draft' | 'Pending Review' | 'Published';
   }[];
 }
 
