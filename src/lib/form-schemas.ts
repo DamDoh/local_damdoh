@@ -229,3 +229,12 @@ export const createMarketplaceCouponSchema = z.object({
     path: ["discountValue"],
 });
 export type CreateMarketplaceCouponValues = z.infer<typeof createMarketplaceCouponSchema>;
+
+export const createShopSchema = z.object({
+  name: z.string().min(3, "Shop name must be at least 3 characters.").max(100),
+  description: z.string().min(10, "Description must be at least 10 characters long.").max(1000),
+  stakeholderType: z.enum(STAKEHOLDER_ROLES, {
+    errorMap: () => ({ message: "Please select a valid business type."}),
+  }),
+});
+export type CreateShopValues = z.infer<typeof createShopSchema>;

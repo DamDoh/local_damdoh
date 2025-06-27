@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { MarketplaceCoupon, MarketplaceItem } from "./types";
 
 const db = admin.firestore();
 
@@ -38,7 +39,7 @@ export const createShop = functions.https.onCall(async (data, context) => {
 
     // 1. Create the new shop document.
     batch.set(shopRef, {
-      userId: userId,
+      ownerId: userId,
       name: name,
       description: description,
       stakeholderType: stakeholderType,
@@ -48,6 +49,8 @@ export const createShop = functions.https.onCall(async (data, context) => {
       logoUrl: null,
       bannerUrl: null,
       contactInfo: {},
+      itemCount: 0,
+      rating: 0,
     });
 
     // 2. Update the user's document with a reference to their new shop.
@@ -81,7 +84,7 @@ export const createShop = functions.https.onCall(async (data, context) => {
  * @return {Promise<{id: string, name: string}>} A promise that resolves with the new listing ID and name.
  */
 export const createMarketplaceListing = functions.https.onCall(
-  async (data, context) => {
+  async (data: Omit<MarketplaceItem, "id" | "sellerId" | "createdAt" | "updatedAt">, context) => {
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
@@ -156,7 +159,7 @@ export const createMarketplaceCoupon = functions.https.onCall(
       );
     }
 
-    const newCoupon = {
+    const newCoupon: Omit<MarketplaceCoupon, "id"> = {
       sellerId,
       code: code.toUpperCase(),
       discountType,
@@ -169,7 +172,7 @@ export const createMarketplaceCoupon = functions.https.onCall(
       isActive: true,
       applicableToListingIds: applicableToListingIds || [],
       applicableToCategories: applicableToCategories || [],
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: admin.firestore.FieldValue.serverTimestamp() as any,
     };
 
     try {
@@ -213,7 +216,7 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
       .get();
 
     const coupons = snapshot.docs.map((doc) => {
-        const couponData = doc.data();
+        const couponData = doc.data() as MarketplaceCoupon;
         return {
             id: doc.id,
             ...couponData,
@@ -265,7 +268,7 @@ export const validateMarketplaceCoupon = functions.https.onCall(
       }
 
       const couponDoc = snapshot.docs[0];
-      const couponData = couponDoc.data();
+      const couponData = couponDoc.data() as MarketplaceCoupon;
 
       if (!couponData.isActive) {
         return {valid: false, message: "This coupon is no longer active."};
