@@ -38,7 +38,7 @@ export const QaDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getQaDashboardDataCallable]);
 
   if (isLoading) {
     return <DashboardSkeleton />;

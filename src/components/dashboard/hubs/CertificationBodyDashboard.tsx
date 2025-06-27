@@ -38,7 +38,7 @@ export const CertificationBodyDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getCertificationBodyDashboardDataCallable]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
