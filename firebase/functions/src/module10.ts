@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {getRole} from "./module2";
+import {getRole} from "./profiles";
 import {_internalProcessReportData} from "./module8";
 
 const db = admin.firestore();
@@ -54,7 +54,7 @@ export const generateRegulatoryReport = functions.https.onCall(
     const endDate = admin.firestore.Timestamp.fromMillis(reportPeriod.endDate);
 
     const hasAuthorizedRole =
-      callerRole && ["admin", "regulator", "auditor"].includes(callerRole);
+      callerRole && ["Admin", "Regulator", "Auditor"].includes(callerRole); // Using UserRole type now
 
     if (!hasAuthorizedRole) {
       throw new functions.https.HttpsError(

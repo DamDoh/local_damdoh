@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {v4 as uuidv4} from "uuid";
-import {getRole} from "./module2";
+import {getRole} from "./profiles";
 
 const db = admin.firestore();
 

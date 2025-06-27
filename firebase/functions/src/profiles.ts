@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
+import { UserRole } from "./types";
 
 const db = admin.firestore();
 
@@ -106,15 +107,16 @@ export const upsertStakeholderProfile = functions.https.onCall(
 /**
  * Helper function to get a user's role from Firestore.
  * @param {string | undefined} uid The user's ID.
- * @return {Promise<string | null>} The user's role or null if not found.
+ * @return {Promise<UserRole | null>} The user's role or null if not found.
  */
-export async function getRole(uid: string | undefined): Promise<string | null> {
+export async function getRole(uid: string | undefined): Promise<UserRole | null> {
   if (!uid) {
     return null;
   }
   try {
     const userDoc = await db.collection("users").doc(uid).get();
-    return userDoc.data()?.primaryRole || null;
+    const role = userDoc.data()?.primaryRole;
+    return role ? (role as UserRole) : null;
   } catch (error) {
     console.error("Error fetching user role:", error);
     return null;

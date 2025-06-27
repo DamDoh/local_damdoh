@@ -5,7 +5,7 @@ import * as admin from "firebase-admin";
 const db = admin.firestore();
 const messaging = admin.messaging();
 
-import {getUserDocument} from "./module2";
+import {getUserDocument} from "./profiles";
 
 /**
  * =================================================================

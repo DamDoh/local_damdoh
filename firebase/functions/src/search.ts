@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {getUserDocument} from "./module2";
+import {getUserDocument} from "./profiles";
 
 const db = admin.firestore();
 
