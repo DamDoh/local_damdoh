@@ -554,3 +554,18 @@ export interface Shop {
   createdAt: string | null;
   updatedAt: string | null;
 }
+
+export interface MarketplaceOrder {
+  id: string;
+  listingId: string;
+  listingName: string;
+  listingImageUrl?: string | null;
+  buyerId: string;
+  sellerId: string;
+  quantity: number;
+  totalPrice: number;
+  currency: string;
+  status: 'pending' | 'confirmed' | 'shipped' | 'completed' | 'cancelled';
+  createdAt: admin.firestore.Timestamp | string | null;
+  updatedAt: admin.firestore.Timestamp | string | null;
+}

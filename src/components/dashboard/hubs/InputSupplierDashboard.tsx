@@ -9,8 +9,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Lightbulb, TrendingUp, PackageCheck, ShoppingCart, Ticket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import type { InputSupplierDashboardData } from '@/lib/types'; // Import the InputSupplierDashboardData type
+import type { InputSupplierDashboardData } from '@/lib/types';
 
 export const InputSupplierDashboard = () => {
     const [dashboardData, setDashboardData] = useState<InputSupplierDashboardData | null>(null);
