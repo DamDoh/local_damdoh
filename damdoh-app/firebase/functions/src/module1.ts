@@ -351,9 +351,6 @@ export const handleInputApplicationEvent = functions.https.onCall(
         farmFieldId,
       };
 
-      // Note: For pre-harvest events, we log against the farmFieldId (which is the cropId)
-      // because a batch VTI doesn't exist yet. The `vtiId` here is used to associate the event
-      // with the field itself.
       await _internalLogTraceEvent(
         {
           vtiId: farmFieldId,
@@ -475,9 +472,6 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
       );
     }
 
-    // Optional: Add a security check to ensure the user is allowed to view events for this field.
-    // This might involve checking if the farmFieldId belongs to a farm owned by the user.
-
     try {
       const eventsSnapshot = await db
         .collection("traceability_events")
@@ -487,12 +481,13 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
 
       const events = eventsSnapshot.docs.map((doc) => {
         const eventData = doc.data();
+        if (!eventData) return null; // Defensive check
         return {
           id: doc.id,
           ...eventData,
-          timestamp: eventData.timestamp?.toDate ? eventData.timestamp.toDate().toISOString() : null,
+          timestamp: (eventData.timestamp as admin.firestore.Timestamp)?.toDate ? (eventData.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
-      });
+      }).filter(Boolean); // Filter out any null results
 
       return {events};
     } catch (error) {
@@ -510,6 +505,7 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
 
 /**
  * Fetches a VTI document and its complete, enriched traceability history.
+ * This function has been hardened to prevent crashes from missing data.
  * @param {any} data The data for the function call, containing `vtiId`.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{vti: any, events: any[]}>} A promise resolving with the VTI and its event history.
@@ -525,15 +521,18 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
     }
 
     try {
-        const db = admin.firestore();
-
         // 1. Fetch the VTI document itself
         const vtiDocRef = db.collection("vti_registry").doc(vtiId);
         const vtiDoc = await vtiDocRef.get();
+
         if (!vtiDoc.exists) {
             throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
         }
+
         const vtiData = vtiDoc.data();
+        if (!vtiData) {
+            throw new functions.https.HttpsError("internal", `VTI document ${vtiId} has no data.`);
+        }
 
         // 2. Fetch all associated events
         const eventsQuery = db.collection("traceability_events")
@@ -541,7 +540,9 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             .orderBy("timestamp", "asc");
         
         const eventsSnapshot = await eventsQuery.get();
-        const eventsData = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const eventsData = eventsSnapshot.docs
+            .map(doc => ({ id: doc.id, ...doc.data() }))
+            .filter(Boolean); // Ensure no undefined data
 
         // 3. Enrich events with actor information
         const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
@@ -550,16 +551,19 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         if (actorIds.length > 0) {
             const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
             userDocs.forEach(doc => {
-                actorProfiles[doc.id] = {
-                    name: doc.data().displayName || "Unknown Actor",
-                    role: doc.data().primaryRole || "Unknown Role",
-                };
+                const docData = doc.data();
+                if (doc.exists && docData) {
+                    actorProfiles[doc.id] = {
+                        name: docData.displayName || "Unknown Actor",
+                        role: docData.primaryRole || "Unknown Role",
+                    };
+                }
             });
         }
         
         const enrichedEvents = eventsData.map(event => ({
             ...event,
-            timestamp: (event.timestamp as admin.firestore.Timestamp).toDate().toISOString(),
+            timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
             actor: actorProfiles[event.actorRef] || { name: "System", role: "System" }
         }));
 
@@ -567,7 +571,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             vti: {
                 id: vtiDoc.id,
                 ...vtiData,
-                creationTime: (vtiData?.creationTime as admin.firestore.Timestamp).toDate().toISOString(),
+                creationTime: (vtiData.creationTime as admin.firestore.Timestamp)?.toDate ? (vtiData.creationTime as admin.firestore.Timestamp).toDate().toISOString() : null,
             },
             events: enrichedEvents
         };
