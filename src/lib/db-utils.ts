@@ -1,4 +1,3 @@
-
 // src/lib/db-utils.ts
 import { 
   collection, 
@@ -27,9 +26,6 @@ console.warn(
 // Define consistent collection names
 const PROFILES_COLLECTION = 'users';
 const MARKETPLACE_COLLECTION = 'marketplaceItems';
-const FORUM_TOPICS_COLLECTION = 'forumTopics';
-const FORUM_POSTS_COLLECTION = 'forumPosts';
-const AGRI_EVENTS_COLLECTION = 'agriEvents';
 
 // --- Callable Function References ---
 const performSearchCallable = httpsCallable(functions, 'performSearch');

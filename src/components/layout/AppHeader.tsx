@@ -1,9 +1,8 @@
-
 "use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Home,
@@ -17,10 +16,6 @@ import {
   LogOut,
   User as UserIcon,
   MessageSquare,
-  Brain,
-  ShoppingCart,
-  ClipboardList,
-  Package,
   Briefcase,
   LogIn, 
   UserPlus,
@@ -37,8 +32,6 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetTitle,
-  SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -93,6 +86,21 @@ const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ 
   );
 };
 
+const desktopNavItems = [
+    { href: "/", icon: Home, label: 'home' },
+    { href: "/network", icon: Users, label: 'network' },
+    { href: "/farm-management", icon: Sprout, label: 'farmMgmt' },
+    { href: "/marketplace", icon: Briefcase, label: 'marketplace' },
+    { href: "/talent-exchange", icon: Briefcase, label: 'talentExchange'},
+    { href: "/traceability", icon: Fingerprint, label: 'traceability' },
+    { href: "/forums", icon: MessageSquare, label: 'forums' },
+];
+  
+const mobileSheetSecondaryNavItems = [
+    { href: "/settings", icon: UserIcon, label: 'settings', isSheetLink: true },
+    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
+];
+
 function HeaderSkeleton() {
   return (
     <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm print:hidden">
@@ -129,21 +137,6 @@ export function AppHeader() {
     setIsMounted(true);
   }, []);
 
-  const desktopNavItems = [
-    { href: "/", icon: Home, label: t('home') },
-    { href: "/network", icon: Users, label: t('network') },
-    { href: "/farm-management", icon: Sprout, label: t('farmMgmt') },
-    { href: "/marketplace", icon: ShoppingCart, label: t('marketplace') },
-    { href: "/traceability", icon: Fingerprint, label: t('traceability') },
-    { href: "/forums", icon: MessageSquare, label: t('forums') },
-  ];
-  
-  const mobileSheetSecondaryNavItems = [
-    { href: "/pinboard", icon: ClipboardList, label: "My Pinboard", isSheetLink: true },
-    { href: "/settings", icon: UserIcon, label: t('settings'), isSheetLink: true },
-    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
-  ];
-
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -178,41 +171,12 @@ export function AppHeader() {
   };
 
   const getSectionTitle = () => {
-    if (pathname === "/") return t('home');
-    const activeDesktopItem = desktopNavItems.find(item => item.href !== "/" && pathname.startsWith(item.href));
-    if (activeDesktopItem) return activeDesktopItem.label;
-    
-    // Specific page titles
-    if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
-    if (pathname.startsWith("/profiles/me")) return t('myProfile');
-    if (pathname.startsWith("/profiles/")) return "Profile Details";
-    if (pathname.startsWith("/marketplace/create-shop")) return "Create Shop";
-    if (pathname.startsWith("/marketplace/promotions")) return "Promotions";
-    if (pathname.startsWith("/marketplace/create")) return "Create Listing";
-    if (pathname.startsWith("/agri-events/create")) return "Create Event";
-    if (pathname.startsWith("/agri-events")) return "Agri-Events";
-    if (pathname.startsWith("/forums/create")) return "New Discussion";
-    if (pathname.startsWith("/forums/")) return "Forum Topic";
-    if (pathname.startsWith("/search")) return "Search Results";
-    if (pathname.startsWith("/traceability")) return t('traceability');
-    if (pathname.startsWith("/help-center")) return "Help Center";
-    if (pathname.startsWith("/about")) return "About Us";
-    if (pathname.startsWith("/contact")) return "Contact";
-    if (pathname.startsWith("/careers")) return "Careers";
-    if (pathname.startsWith("/blog")) return "Agri-Insights Blog";
-    if (pathname.startsWith("/community-guidelines")) return "Community Guidelines";
-    if (pathname.startsWith("/cookie-policy")) return "Cookie Policy";
-    if (pathname.startsWith("/privacy")) return "Privacy Policy";
-    if (pathname.startsWith("/terms")) return "Terms of Service";
-    if (pathname.startsWith("/pinboard")) return "My Pinboard";
-    if (pathname.startsWith("/wallet")) return t('wallet');
-    if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
-    if (pathname.startsWith("/auth/signin")) return "Sign In";
-    if (pathname.startsWith("/auth/signup")) return "Sign Up";
-    if (pathname.startsWith("/auth/forgot-password")) return "Reset Password";
-
-    return APP_NAME; 
-  };
+    // This function can be simplified or improved based on routing patterns.
+    const path = pathname.split('/')[1];
+    if (!path) return t('home');
+    const item = desktopNavItems.find(item => item.href.includes(path));
+    return item ? t(item.label as any) : path.charAt(0).toUpperCase() + path.slice(1);
+  }
 
   const sectionTitle = getSectionTitle();
 
@@ -244,7 +208,7 @@ export function AppHeader() {
 
           <nav className="flex items-center space-x-0.5 h-full">
             {desktopNavItems.map((item) => (
-              <NavLink key={item.href} {...item} pathname={pathname} />
+              <NavLink key={item.href} {...item} label={t(item.label as any)} pathname={pathname} />
             ))}
             {user && (
               <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
@@ -303,6 +267,7 @@ export function AppHeader() {
                   <MobileSheetNavLink
                     key={`sheet-extra-${item.href}`}
                     {...item}
+                    label={t(item.label as any, item.label)}
                     pathname={pathname}
                     onClick={() => setIsMobileSheetOpen(false)}
                   />
@@ -345,4 +310,3 @@ export function AppHeader() {
     </>
   );
 }
-
