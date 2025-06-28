@@ -438,3 +438,88 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Could not create order.");
     }
 });
+
+/**
+ * Fetches all orders for the authenticated seller.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{orders: any[]}>} A promise that resolves with the seller's orders.
+ */
+export const getSellerOrders = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to view your orders.");
+    }
+    const sellerId = context.auth.uid;
+    
+    try {
+        const ordersSnapshot = await db.collection("marketplace_orders")
+            .where("sellerId", "==", sellerId)
+            .orderBy("createdAt", "desc")
+            .get();
+
+        const orders = ordersSnapshot.docs.map(doc => {
+            const data = doc.data() as MarketplaceOrder;
+            return {
+                id: doc.id,
+                ...data,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            };
+        });
+
+        return { orders };
+    } catch (error) {
+        console.error("Error fetching seller orders:", error);
+        throw new functions.https.HttpsError("internal", "Could not fetch your orders.");
+    }
+});
+
+/**
+ * Updates the status of a marketplace order.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, message: string}>} A promise that resolves on successful update.
+ */
+export const updateOrderStatus = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to update orders.");
+    }
+    
+    const sellerId = context.auth.uid;
+    const { orderId, newStatus } = data;
+
+    if (!orderId || !newStatus) {
+        throw new functions.https.HttpsError("invalid-argument", "Order ID and new status are required.");
+    }
+
+    const validStatuses = ['pending', 'confirmed', 'shipped', 'completed', 'cancelled'];
+    if (!validStatuses.includes(newStatus)) {
+        throw new functions.https.HttpsError("invalid-argument", `Invalid status: ${newStatus}`);
+    }
+
+    try {
+        const orderRef = db.collection('marketplace_orders').doc(orderId);
+        const orderDoc = await orderRef.get();
+
+        if (!orderDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Order not found.");
+        }
+
+        if (orderDoc.data()?.sellerId !== sellerId) {
+            throw new functions.https.HttpsError("permission-denied", "You are not authorized to update this order.");
+        }
+        
+        await orderRef.update({
+            status: newStatus,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+        
+        // Future enhancement: Trigger a notification to the buyer here.
+        
+        return { success: true, message: `Order ${orderId} status updated to ${newStatus}.`};
+    } catch (error: any) {
+        console.error("Error updating order status:", error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "Could not update order status.");
+    }
+});
