@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch, Eye, HardHat, Weight, Loader2 } from 'lucide-react';
+import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch, Eye, HardHat, Weight, Loader2, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 // A more detailed Farm type for this page
@@ -153,6 +153,12 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
                             <p className="text-xs text-muted-foreground mt-1">
                                 {event.payload?.observationType ? `${event.payload.observationType}: ${event.payload.details}` : JSON.stringify(event.payload)}
                             </p>
+                             {event.payload?.aiAnalysis?.summary && (
+                                <div className="mt-2 text-xs p-2 bg-blue-50 dark:bg-blue-900/20 border-l-2 border-blue-500 rounded-r-md">
+                                    <p className="font-semibold text-blue-800 dark:text-blue-300 flex items-center gap-1"><Sparkles className="h-3 w-3"/> AI Analysis</p>
+                                    <p className="text-blue-700 dark:text-blue-400">{event.payload.aiAnalysis.summary}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}
@@ -177,42 +183,37 @@ export default function FarmDetailPage() {
     const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
     const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'getFarmCrops'), [functions]);
 
-    useEffect(() => {
-        if (user && farmId) {
-            setIsLoading(true);
-            setError(null);
-            
-            getFarmCallable({ farmId })
-                .then((result) => {
-                    const farmData = result.data as FarmDetails;
-                    if (farmData && farmData.name) { 
-                        setFarm(farmData);
-                        // After fetching farm, fetch its crops
-                        setIsLoadingCrops(true);
-                        getFarmCropsCallable({ farmId })
-                            .then((cropsResult) => {
-                                setCrops(cropsResult.data as Crop[]);
-                            })
-                            .catch((cropsError) => {
-                                console.error("Error fetching farm crops:", cropsError);
-                            })
-                            .finally(() => {
-                                setIsLoadingCrops(false);
-                            });
-                    } else {
-                        setError("Farm not found or you do not have permission to view it.");
-                    }
-                })
-                .catch((err) => {
-                    console.error("Error fetching farm details:", err);
-                    setError(err.message || "Failed to load farm details.");
-                    setFarm(null);
-                })
-                .finally(() => {
-                    setIsLoading(false);
-                });
+    const fetchFarmAndCrops = useCallback(async () => {
+        if (!user || !farmId) return;
+
+        setIsLoading(true);
+        setError(null);
+        
+        try {
+            const farmResult = await getFarmCallable({ farmId });
+            const farmData = farmResult.data as FarmDetails;
+
+            if (farmData && farmData.name) { 
+                setFarm(farmData);
+                setIsLoadingCrops(true);
+                const cropsResult = await getFarmCropsCallable({ farmId });
+                setCrops(cropsResult.data as Crop[]);
+                setIsLoadingCrops(false);
+            } else {
+                setError("Farm not found or you do not have permission to view it.");
+            }
+        } catch (err: any) {
+            console.error("Error fetching farm data:", err);
+            setError(err.message || "Failed to load farm details.");
+            setFarm(null);
+        } finally {
+            setIsLoading(false);
         }
     }, [user, farmId, getFarmCallable, getFarmCropsCallable]);
+
+    useEffect(() => {
+        fetchFarmAndCrops();
+    }, [fetchFarmAndCrops]);
 
     if (isLoading) {
         return <FarmDetailSkeleton />;

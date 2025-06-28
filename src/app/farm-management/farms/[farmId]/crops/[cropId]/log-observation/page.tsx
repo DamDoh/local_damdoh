@@ -27,7 +27,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createObservationSchema, type CreateObservationValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, NotebookPen, ImageUp, UploadCloud, Eye } from "lucide-react";
+import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, NotebookPen, ImageUp, Eye, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { format } from "date-fns";
@@ -36,12 +36,13 @@ import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { uploadFileAndGetURL } from "@/lib/storage-utils";
+import { askFarmingAssistant, type FarmingAssistantOutput } from "@/ai/flows/farming-assistant-flow";
 
 export default function LogObservationPage() {
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
-  const cropId = params.cropId as string; // This will act as our farmFieldId
+  const cropId = params.cropId as string;
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
@@ -68,38 +69,56 @@ export default function LogObservationPage() {
       return;
     }
 
-    // Offline check
-    if (typeof window !== 'undefined' && !window.navigator.onLine) {
-      toast({
-        title: "You are offline",
-        description: "This observation has been queued and will be synced when you're back online. (This is a simulation)",
-        variant: "default",
-      });
-      // In a real app, this data would be saved to a local queue (e.g., IndexedDB)
-      router.push(`/farm-management/farms/${farmId}`);
-      return;
+    setIsSubmitting(true);
+    let mediaUrls: string[] = [];
+    let aiAnalysisResult: FarmingAssistantOutput | null = null;
+
+    // Step 1: Analyze image with AI if present
+    if (data.imageFile) {
+      toast({ title: "Analyzing Image...", description: "Our AI is looking at your photo. Please wait." });
+      try {
+        const getFileDataUri = (file: File): Promise<string> => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+        
+        const photoDataUri = await getFileDataUri(data.imageFile);
+        
+        aiAnalysisResult = await askFarmingAssistant({
+            query: data.details,
+            photoDataUri: photoDataUri,
+            language: 'en' // Or get from i18n context
+        });
+
+        toast({ title: "Analysis Complete!", description: "AI diagnosis has been generated." });
+      } catch (aiError: any) {
+        console.error("Error during AI analysis:", aiError);
+        toast({ variant: "destructive", title: "AI Analysis Failed", description: aiError.message || "Could not analyze the image."});
+        // Don't block the rest of the process if AI fails
+      }
     }
 
-    setIsSubmitting(true);
-
+    // Step 2: Upload image to storage
     try {
-      let mediaUrls = [];
       if (data.imageFile) {
-        toast({ title: "Image Uploading...", description: "Please wait while your image is uploaded." });
-        // Use a more specific path for observation images
+        toast({ title: "Uploading Image...", description: "Please wait while your image is saved." });
         const imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
         mediaUrls.push(imageUrl);
         toast({ title: "Image Upload Complete!", variant: "default" });
       }
 
+      // Step 3: Log the event to Firestore
       const payload = {
         farmFieldId: cropId,
         observationType: data.observationType,
-        observationDate: data.observationDate,
+        observationDate: data.observationDate.toISOString(),
         details: data.details,
         mediaUrls: mediaUrls,
-        actorVtiId: user.uid, // Using user's UID as their VTI for now
-        geoLocation: null, // Geolocation can be added later if needed
+        actorVtiId: user.uid,
+        geoLocation: null, 
+        aiAnalysis: aiAnalysisResult, // Pass the AI result
       };
 
       await handleObservationEvent(payload);
@@ -137,7 +156,7 @@ export default function LogObservationPage() {
             <CardTitle className="text-2xl">Log Farm Observation</CardTitle>
           </div>
           <CardDescription>
-            Record a new observation for this crop. This adds a verifiable event to its traceability history.
+            Record a new observation for this crop. Attaching a photo will trigger an AI-powered diagnosis.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -229,7 +248,7 @@ export default function LogObservationPage() {
                   name="imageFile"
                   render={({ field: { onChange, value, ...rest } }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Upload Photo (Optional)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Upload Photo (for AI Diagnosis)</FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-2">
                           <Input 
@@ -257,7 +276,7 @@ export default function LogObservationPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing...
                     </>
                 ) : (
                     <><Save className="mr-2 h-4 w-4" /> Log Observation</>

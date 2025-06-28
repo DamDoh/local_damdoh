@@ -1,8 +1,8 @@
 
-import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
-import {v4 as uuidv4} from "uuid";
-import {getRole} from "./profiles";
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import { v4 as uuidv4 } from 'uuid';
+import { getRole } from './profiles';
 
 const db = admin.firestore();
 
@@ -397,6 +397,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     mediaUrls,
     actorVtiId,
     geoLocation,
+    aiAnalysis, // Accept pre-computed AI analysis
   } = data;
 
   if (
@@ -418,11 +419,8 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
       details,
       mediaUrls: mediaUrls || [],
       farmFieldId,
+      aiAnalysis: aiAnalysis || null, // Save the AI analysis object if it exists
     };
-
-    if (mediaUrls && mediaUrls.length > 0) {
-      eventPayload.aiAnalysis = "AI analysis not available.";
-    }
 
     await _internalLogTraceEvent(
       {
