@@ -63,13 +63,13 @@ export interface FarmerDashboardData {
   recentCrops: {
     id: string;
     cropType: string;
-    plantingDate: string; // ISO String
+    plantingDate: string | null; // ISO String
   }[];
   knfBatches: {
     id: string;
     typeName: string;
     status: string;
-    nextStepDate: string; // ISO String
+    nextStepDate: string | null; // ISO String
   }[];
 }
 
@@ -501,8 +501,8 @@ export interface MarketplaceItem {
     category: string;
     location: string;
     imageUrl?: string;
-    createdAt: any; // Timestamp or ISO string
-    updatedAt: any; // Timestamp or ISO string
+    createdAt: string | null; // ISO string
+    updatedAt: string | null; // ISO string
     contactInfo?: string;
     dataAiHint?: string;
     isSustainable?: boolean;
@@ -524,4 +524,19 @@ export interface MarketplaceItem {
     condition?: 'New' | 'Used' | 'Refurbished';
     certifications?: string[];
     traceabilityLink?: string;
+}
+
+export interface MarketplaceCoupon {
+  id: string;
+  sellerId: string;
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  discountValue: number;
+  expiresAt: string | null; // ISO String
+  usageLimit?: number | null;
+  usageCount: number;
+  isActive: boolean;
+  applicableToListingIds?: string[];
+  applicableToCategories?: string[];
+  createdAt: string | null; // ISO String
 }
