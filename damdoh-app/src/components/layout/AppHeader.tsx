@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Home,
@@ -53,7 +53,7 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
-  const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+  const isActive = pathname.endsWith(href);
   return (
     <Link
       href={href}
@@ -71,7 +71,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, cl
 };
 
 const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ href, icon: Icon, label, pathname, onClick, isSheetLink }) => {
-  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+  const isActive = pathname.endsWith(href);
   return (
     <Link
       href={href}
@@ -92,6 +92,7 @@ const desktopNavItems = [
     { href: "/network", icon: Users, label: 'network' },
     { href: "/farm-management", icon: Sprout, label: 'farmMgmt' },
     { href: "/marketplace", icon: Briefcase, label: 'marketplace' },
+    { href: "/talent-exchange", icon: Briefcase, label: 'talentExchange'},
     { href: "/traceability", icon: Fingerprint, label: 'traceability' },
     { href: "/forums", icon: MessageSquare, label: 'forums' },
 ];
@@ -170,23 +171,15 @@ export function AppHeader() {
     }
   };
 
- const sectionTitle = useMemo(() => {
-    const segments = pathname.split('/').filter(Boolean);
-    if (segments.length === 0 || (segments[0] === 'en' && segments.length === 1) || (segments[0] === 'es' && segments.length === 1)) {
-        return t('home');
-    }
-    const mainPath = segments.slice(1).join('/') || segments[0];
+  const getSectionTitle = () => {
+    // This function can be simplified or improved based on routing patterns.
+    const path = pathname.split('/')[1];
+    if (!path) return t('home');
+    const item = desktopNavItems.find(item => item.href.includes(path));
+    return item ? item.label : path.charAt(0).toUpperCase() + path.slice(1);
+  }
 
-    const allNavItems = [...desktopNavItems, ...mobileSheetSecondaryNavItems];
-    const activeItem = allNavItems.find(item => item.href === `/${mainPath}`);
-    if (activeItem) {
-        return t(activeItem.label as any, activeItem.label);
-    }
-
-    // Fallback for dynamic routes or unlisted pages
-    return mainPath.split('/')[0].replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  }, [pathname, t]);
-
+  const sectionTitle = getSectionTitle();
 
   if (!isMounted) {
     return <HeaderSkeleton />;

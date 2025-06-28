@@ -1,0 +1,147 @@
+
+{
+  "home": "Inicio",
+  "network": "Red",
+  "farmMgmt": "G. Finca",
+  "marketplace": "Mercado",
+  "talentExchange": "Intercambio de Talentos",
+  "traceability": "Trazabilidad",
+  "forums": "Foros",
+  "notifications": "Notificaciones",
+  "messages": "Mensajes",
+  "wallet": "Billetera",
+  "searchPlaceholder": "Pregúntale a la IA o busca en DamDoh...",
+  "signIn": "Iniciar Sesión",
+  "signUp": "Registrarse",
+  "myProfile": "Mi Perfil",
+  "settings": "Ajustes",
+  "logOut": "Cerrar Sesión",
+  "signInWelcome": "¡Bienvenido de nuevo a {appName}!",
+  "signInTitle": "Iniciar Sesión",
+  "signInDescription": "Introduce tus credenciales para acceder a tu cuenta.",
+  "emailLabel": "Dirección de Correo Electrónico",
+  "passwordLabel": "Contraseña",
+  "forgotPasswordLink": "¿Olvidaste la contraseña?",
+  "signInButton": "Iniciar Sesión",
+  "signingInButton": "Iniciando Sesión...",
+  "noAccountPrompt": "¿No tienes una cuenta?",
+  "signUpLink": "Regístrate",
+  "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
+  "mobileNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  },
+  "signUpPage": {
+    "welcome": "¡Únete a la Red Agrícola de {appName}!",
+    "title": "Crea Tu Cuenta",
+    "description": "Únete a nuestra comunidad de partes interesadas agrícolas.",
+    "nameLabel": "Nombre Completo / Nombre de la Organización",
+    "namePlaceholder": "Tu Nombre o Nombre de la Empresa",
+    "roleLabel": "Tu Rol Principal",
+    "rolePlaceholder": "Selecciona tu rol en la cadena de suministro",
+    "passwordPlaceholder": "•••••••• (mín. 6 caracteres)",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "signUpButton": "Registrarse",
+    "creatingAccountButton": "Creando Cuenta..."
+  },
+  "aiAssistant": {
+    "title": "Asistente Agrícola IA",
+    "resetConversation": "Reiniciar Conversación",
+    "uploadImage": "Subir Imagen",
+    "useCamera": "Usar Cámara",
+    "inputPlaceholder": "Pregunta sobre agricultura, describe tu imagen...",
+    "sendMessage": "Enviar"
+  },
+  "about": {
+    "title": "Sobre DamDoh",
+    "subtitle": "Conectando la cadena de suministro agrícola para un planeta, ganancias y gente prósperos.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "content": "Empoderar a cada actor en la cadena de valor agrícola a través de tecnología innovadora, fomentando prácticas sostenibles, garantizando la seguridad alimentaria y promoviendo un crecimiento equitativo. Nuestro objetivo es construir un ecosistema resiliente y transparente donde agricultores, comerciantes y consumidores puedan conectar, colaborar y prosperar."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "content": "Ser la plataforma digital líder que revoluciona la cadena de suministro agrícola global, creando un futuro donde la agricultura sostenible nutre al mundo y apoya a comunidades rurales vibrantes."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "sustainability": {
+        "title": "Sostenibilidad",
+        "content": "Defendiendo prácticas que protegen nuestro planeta para las generaciones futuras."
+      },
+      "collaboration": {
+        "title": "Colaboración",
+        "content": "Creyendo en el poder de la asociación y el éxito compartido."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "content": "Buscando continuamente mejores soluciones a través de la tecnología y la creatividad."
+      },
+      "integrity": {
+        "title": "Integridad",
+        "content": "Operando con transparencia, honestidad y respeto para todos."
+      },
+      "empowerment": {
+        "title": "Empoderamiento",
+        "content": "Proporcionando herramientas y conocimiento para elevar a cada miembro de la comunidad agrícola."
+      }
+    },
+    "team": {
+      "title": "Conoce al Equipo",
+      "intro": "DamDoh es impulsado por un apasionado equipo de expertos agrícolas, tecnólogos y líderes empresariales dedicados a marcar la diferencia. Mientras crecemos, nuestro equipo central cree en el poder transformador de conectar el mundo agrícola.",
+      "member1Name": "Miembro del Equipo 1",
+      "member1Role": "Rol/Especialidad",
+      "member1Bio": "Breve biografía sobre su experiencia y pasión por la agricultura próximamente.",
+      "member2Name": "Miembro del Equipo 2",
+      "member2Role": "Rol/Especialidad",
+      "member2Bio": "Breve biografía sobre su experiencia y pasión por la agricultura próximamente.",
+      "member3Name": "Miembro del Equipo 3",
+      "member3Role": "Rol/Especialidad",
+      "member3Bio": "Breve biografía sobre su experiencia y pasión por la agricultura próximamente.",
+      "note": "¡Perfiles de equipo más detallados próximamente!"
+    }
+  },
+  "careers": {
+    "title": "Únete a Nuestra Misión en DamDoh",
+    "subtitle": "Estamos construyendo un futuro donde la tecnología y la colaboración transforman la cadena de suministro agrícola para mejor.",
+    "whyWorkWithUs": {
+      "title": "¿Por Qué Trabajar Con Nosotros?",
+      "intro": "En DamDoh, serás parte de un equipo dinámico apasionado por resolver desafíos del mundo real en la agricultura. Fomentamos una cultura de innovación, aprendizaje continuo e impacto. Si te impulsa marcar la diferencia y contribuir a un sistema alimentario más sostenible y equitativo, DamDoh es el lugar para ti.",
+      "point1": "Trabajo significativo que impacta directamente en la seguridad alimentaria mundial.",
+      "point2": "Ambiente de equipo colaborativo e inclusivo.",
+      "point3": "Oportunidades de crecimiento y desarrollo profesional.",
+      "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
+      "point5": "Arreglos de trabajo flexibles para muchos roles."
+    },
+    "currentOpenings": {
+      "title": "Vacantes Actuales",
+      "job1": {
+        "title": "Analista Principal de Cadena de Suministro Agrícola",
+        "location": "Remoto / Global",
+        "type": "Tiempo completo",
+        "description": "Se busca un analista experimentado para optimizar las operaciones de la cadena de suministro, desarrollar estrategias basadas en datos y apoyar nuestra red de partes interesadas. Se requiere una sólida formación en economía agrícola y logística."
+      },
+      "job2": {
+        "title": "Gerente de Comunidad - Compromiso del Agricultor",
+        "location": "Sede de Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "¿Apasionado por la agricultura y la construcción de comunidades? Únete a nosotros para apoyar y hacer crecer nuestra red de agricultores en África Oriental. Se necesita excelente comunicación y experiencia de campo."
+      },
+      "job3": {
+        "title": "Ingeniero Full Stack Senior (Agri-Tech)",
+        "location": "Remoto / Zonas horarias de Europa",
+        "type": "Tiempo completo",
+        "description": "Desarrollar características innovadoras para la plataforma DamDoh. Competente en Next.js, TypeScript y tecnologías de backend. La experiencia con SIG o datos agrícolas es una ventaja."
+      }
+    },
+    "applyNowButton": "Aplicar Ahora (Provisional)",
+    "noOpenings": {
+      "title": "No Hay Vacantes Actuales",
+      "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
+      "email": "careers@damdoh.org"
+    }
+  }
+}
