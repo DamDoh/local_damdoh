@@ -75,7 +75,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       };
 
-      if (displayName) updatePayload.name = displayName;
+      if (displayName) updatePayload.displayName = displayName;
       if (profileSummary) updatePayload.profileSummary = profileSummary;
       if (bio) updatePayload.bio = bio;
       if (location) updatePayload.location = location;
@@ -138,4 +138,36 @@ export async function getUserDocument(
     console.error("Error getting user document:", error);
     return null;
   }
+}
+
+/**
+ * Helper function to get a user's profile from Firestore by their ID.
+ * @param {string} uid The user's ID.
+ * @return {Promise<any | null>} The user's profile data or null if not found.
+ */
+export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
+    if (!uid) {
+        return null;
+    }
+    try {
+        const userDoc = await db.collection("users").doc(uid).get();
+        if (!userDoc.exists) {
+            return null;
+        }
+        const data = userDoc.data();
+        if (!data) return null;
+        
+        // Ensure timestamps are serialized
+        const serializedData = {
+            id: userDoc.id,
+            ...data,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
+            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
+        };
+
+        return serializedData;
+    } catch (error) {
+        console.error("Error fetching user profile by ID:", error);
+        return null;
+    }
 }
