@@ -128,7 +128,7 @@ export default function CreateAgriEventPage() {
   return (
     <div className="space-y-6">
       <Link href="/agri-events" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-        <ArrowLeft className="mr-1 h-4 w-4" /> Back to Agri-Business Events
+        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Agri-Business Events
       </Link>
 
       {submissionStatus === 'success' && createdEvent ? (
@@ -211,6 +211,7 @@ export default function CreateAgriEventPage() {
                         <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Event Date</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
+                            <FormControl>
                               <Button
                                 variant={"outline"}
                                 className={cn(
@@ -225,6 +226,7 @@ export default function CreateAgriEventPage() {
                                   <span>Pick a date</span>
                                 )}
                               </Button>
+                            </FormControl>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
