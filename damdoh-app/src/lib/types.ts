@@ -6,7 +6,7 @@ import type {
   ForumTopicSchema,
   ForumPostSchema,
   AgriEventSchema,
-  MarketplaceOrderSchema, // Import new schema
+  MarketplaceOrderSchema,
 } from './schemas';
 import type { CategoryNode as CatNodeType } from './category-data';
 import type { Timestamp } from "firebase/firestore";
@@ -18,7 +18,7 @@ import type { Timestamp } from "firebase/firestore";
 
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
-export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>; // Add new type
+export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumTopicSchema>;
