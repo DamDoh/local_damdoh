@@ -24,7 +24,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
-            knfBatchesSnapshot,
+            knfBatchesPromise,
         ]);
 
         const farms = farmsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -592,5 +592,3 @@ export const getWarehouseDashboardData = functions.https.onCall(
     return mockData;
   },
 );
-
-    
