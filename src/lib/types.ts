@@ -8,6 +8,7 @@ import type {
   AgriEventSchema
 } from './schemas';
 import type { CategoryNode as CatNodeType } from './category-data';
+import type { Timestamp } from "firebase/firestore";
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -207,10 +208,11 @@ export interface KnfBatch {
   type: string;
   typeName: string;
   ingredients: string;
-  startDate: string; // ISO string
+  startDate: any;
   status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
   nextStep: string;
-  nextStepDate: string; // ISO string;
+  nextStepDate: any;
+  createdAt: any;
 }
 
 export interface FarmerDashboardData {
@@ -639,3 +641,5 @@ export interface CrowdfunderDashboardData {
     date: string; // ISO String
   }[];
 }
+
+    

@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {FieldValue} from "firebase-admin/firestore";
@@ -596,9 +595,9 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
         const regData = regDoc.data();
         return {
           id: regDoc.id,
-          displayName: profile?.name || "Unknown User",
+          displayName: profile?.displayName || "Unknown User",
           email: profile?.email || "No email",
-          avatarUrl: profile?.avatarUrl || "",
+          avatarUrl: profile?.photoURL || "",
           registeredAt: regData.registeredAt.toDate().toISOString(),
           checkedIn: regData.checkedIn || false,
           checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
@@ -779,3 +778,5 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
 
   return {success: true, message: `Attendee ${attendeeId} checked in.`};
 });
+
+    

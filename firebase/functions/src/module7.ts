@@ -666,7 +666,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
         transactions.push({
           id: doc.id,
           ...tx,
-          timestamp: tx.timestamp.toDate().toISOString(),
+          timestamp: tx.timestamp?.toDate ? tx.timestamp.toDate().toISOString() : null,
         });
       });
 
@@ -686,3 +686,5 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     }
   },
 );
+
+    

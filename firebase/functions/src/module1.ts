@@ -533,7 +533,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         if (!vtiDoc.exists) {
             throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
         }
-        const vtiData = vtiDoc.data();
+        const vtiData = vtiDoc.data()!;
 
         // 2. Fetch all associated events
         const eventsQuery = db.collection("traceability_events")
@@ -548,6 +548,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         
         const actorProfiles: { [key: string]: any } = {};
         if (actorIds.length > 0) {
+            // Using FieldPath.documentId() is more efficient for querying multiple specific documents
             const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
             userDocs.forEach(doc => {
                 actorProfiles[doc.id] = {
@@ -559,7 +560,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         
         const enrichedEvents = eventsData.map(event => ({
             ...event,
-            timestamp: (event.timestamp as admin.firestore.Timestamp).toDate().toISOString(),
+            timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
             actor: actorProfiles[event.actorRef] || { name: "System", role: "System" }
         }));
 
@@ -567,7 +568,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             vti: {
                 id: vtiDoc.id,
                 ...vtiData,
-                creationTime: (vtiData?.creationTime as admin.firestore.Timestamp).toDate().toISOString(),
+                creationTime: (vtiData.creationTime as admin.firestore.Timestamp)?.toDate ? (vtiData.creationTime as admin.firestore.Timestamp).toDate().toISOString() : null,
             },
             events: enrichedEvents
         };
@@ -580,3 +581,5 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
     }
 });
+
+    

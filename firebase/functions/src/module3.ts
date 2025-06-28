@@ -454,13 +454,13 @@ export const getUserKnfBatches = functions.https.onCall(
         .get();
 
       const batches = batchesSnapshot.docs.map((doc) => {
-        const docData = doc.data();
+        const docData = doc.data() as KnfBatch;
         return {
           id: doc.id,
           ...docData,
-          startDate: docData.startDate.toDate().toISOString(),
-          nextStepDate: docData.nextStepDate.toDate().toISOString(),
-          createdAt: docData.createdAt.toDate().toISOString(),
+          startDate: (docData.startDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.startDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+          nextStepDate: (docData.nextStepDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.nextStepDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+          createdAt: (docData.createdAt as unknown as admin.firestore.Timestamp)?.toDate ? (docData.createdAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
       });
       return batches;
@@ -537,3 +537,5 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
+
+    

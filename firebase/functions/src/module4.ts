@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { MarketplaceCoupon, MarketplaceItem } from "./types";
+import type { MarketplaceCoupon, MarketplaceItem } from "./types";
 
 const db = admin.firestore();
 
@@ -220,8 +220,8 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
         return {
             id: doc.id,
             ...couponData,
-            createdAt: couponData.createdAt?.toDate ? couponData.createdAt.toDate().toISOString() : null,
-            expiresAt: couponData.expiresAt?.toDate ? couponData.expiresAt.toDate().toISOString() : null,
+            createdAt: (couponData.createdAt as admin.firestore.Timestamp)?.toDate ? (couponData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+            expiresAt: (couponData.expiresAt as admin.firestore.Timestamp)?.toDate ? (couponData.expiresAt as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
     });
     return {coupons};
@@ -274,7 +274,8 @@ export const validateMarketplaceCoupon = functions.https.onCall(
         return {valid: false, message: "This coupon is no longer active."};
       }
 
-      if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
+      const expiresAt = couponData.expiresAt as admin.firestore.Timestamp;
+      if (expiresAt && expiresAt.toDate() < new Date()) {
         await couponDoc.ref.update({isActive: false}); // Deactivate expired coupon
         return {valid: false, message: "This coupon has expired."};
       }
@@ -298,3 +299,5 @@ export const validateMarketplaceCoupon = functions.https.onCall(
     }
   },
 );
+
+    
