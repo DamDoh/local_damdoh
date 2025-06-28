@@ -33,6 +33,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetClose,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
