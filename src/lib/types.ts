@@ -9,6 +9,7 @@ import type {
   MarketplaceOrderSchema, // Import new schema
 } from './schemas';
 import type { CategoryNode as CatNodeType } from './category-data';
+import type { Timestamp } from "firebase/firestore";
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -151,11 +152,12 @@ export interface EventCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: { _seconds: number, _nanoseconds: number };
-  usageLimit?: number;
+  expiresAt?: string | null; // ISO String
+  usageLimit?: number | null;
   usageCount: number;
-  createdAt: { _seconds: number, _nanoseconds: number };
+  createdAt: string; // ISO String
 }
+
 
 export interface MarketplaceCoupon {
   id: string;
@@ -163,13 +165,13 @@ export interface MarketplaceCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: { _seconds: number, _nanoseconds: number }; // Firestore Timestamp
-  usageLimit?: number;
+  expiresAt: any; // Can be Timestamp or null
+  usageLimit?: number | null;
   usageCount: number;
   isActive: boolean;
   applicableToListingIds?: string[];
   applicableToCategories?: string[];
-  createdAt: { _seconds: number, _nanoseconds: number };
+  createdAt: any; // Firestore Timestamp
 }
 
 
@@ -195,18 +197,24 @@ export interface FinancialSummary {
     netFlow: number;
 }
 
-
-export interface YieldDataPoint {
-    crop: string;
-    historical: number;
-    predicted: number;
-    unit: string;
+export interface KnfBatch {
+  id: string;
+  userId: string;
+  type: string;
+  typeName: string;
+  ingredients: string;
+  startDate: any;
+  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+  nextStep: string;
+  nextStepDate: any;
+  createdAt: any;
 }
 
 export interface FarmerDashboardData {
   farmCount: number;
   cropCount: number;
   recentCrops: {
+<<<<<<< HEAD
       id: string;
       name: string;
       stage: string;
@@ -227,6 +235,18 @@ export interface FarmerDashboardData {
     request: string;
     contactId: string;
   }[];
+=======
+    id: string;
+    cropType: string;
+    plantingDate: string; // ISO String
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStepDate: string; // ISO String
+  }[];
+>>>>>>> Market-Place-Traceability
 }
 
 export interface CooperativeDashboardData {
@@ -262,7 +282,7 @@ export interface BuyerDashboardData {
   }[];
   marketPriceIntelligence: {
     product: string;
-    trend: 'up' | 'down';
+    trend: 'up' | 'down' | 'stable';
     forecast: string;
     action: {
       label: string;
@@ -271,48 +291,58 @@ export interface BuyerDashboardData {
   };
 }
 
-export interface RegulatorDashboardData {
-  complianceRiskAlerts: {
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
     id: string;
-    region: string;
-    issue: string;
-    severity: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO string
     actionLink: string;
   }[];
-  pendingCertifications: {
-    count: number;
-    actionLink: string;
-  };
-  supplyChainAnomalies: {
+  listedExperiences: {
     id: string;
-    description: string;
-    level: string;
-    vtiLink: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number; // e.g., 1-5
+    comment: string;
+    actionLink: string;
   }[];
 }
 
-export interface LogisticsDashboardData {
-    activeShipments: {
-        id: string;
-        to: string;
-        status: string;
-        eta: string;
-        vtiLink: string;
-    }[];
-    incomingJobs: {
-        id: string;
-        from: string;
-        to: string;
-        product: string;
-        requirements: string;
-        actionLink: string;
-    }[];
-    performanceMetrics: {
-        onTimePercentage: number;
-        fuelEfficiency: string;
-        actionLink: string;
-    };
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string
+    actionLink: string;
+  }[];
 }
+
 
 export interface FiDashboardData {
     pendingApplications: {
@@ -339,6 +369,7 @@ export interface FiDashboardData {
     }[];
 }
 
+<<<<<<< HEAD
 export interface FieldAgentDashboardData {
     assignedFarmersOverview: {
         id: string;
@@ -346,17 +377,28 @@ export interface FieldAgentDashboardData {
         farmLocation: string;
         lastVisit: string;
         issues: number;
+=======
+
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+>>>>>>> Market-Place-Traceability
         actionLink: string;
     }[];
-    portfolioHealth: {
-        overallScore: number;
-        alerts: string[];
-        actionLink: string;
-    };
-    pendingReports: number;
-    dataVerificationTasks: {
-        count: number;
-        description: string;
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
         actionLink: string;
     };
 }
@@ -366,7 +408,7 @@ export interface InputSupplierDashboardData {
         id: string;
         region: string;
         product: string;
-        trend: string;
+        trend: 'High' | 'Steady' | 'Low';
         reason: string;
     }[];
     productPerformance: {
@@ -383,45 +425,24 @@ export interface InputSupplierDashboardData {
     };
 }
 
-export interface EnergyProviderDashboardData {
-    projectLeads: {
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
         id: string;
-        entityName: string; // Farm, Processor, etc.
-        location: string;
-        estimatedEnergyNeed: string; // e.g., 'High', 'Medium', 'Low', or specific kWh/year
-        status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
         actionLink: string;
     }[];
-    activeProjects: {
-        id: string;
-        entityName: string;
-        location: string;
-        solutionType: string; // e.g., 'Solar Panels', 'Biogas Digester'
-        installationDate: string;
-        status: 'In Progress' | 'Completed';
-        actionLink: string;
-    }[];
-    impactMetrics: {
-        totalInstallations: number;
-        totalEstimatedCarbonReduction: string; // e.g., '5000 tons CO2e/year'
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
         actionLink: string;
     };
-}
-
-export interface PackagingSupplierDashboardData {
-    demandForecast: {
-        productType: string;
-        unitsNeeded: number;
-        for: string;
-    };
-    integrationRequests: {
-        from: string;
-        request: string;
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
         actionLink: string;
-    }[];
-    sustainableShowcase: {
-        views: number;
-        leads: number;
     };
 }
 
@@ -446,261 +467,221 @@ export interface AgroExportDashboardData {
 }
 
 export interface ProcessingUnitDashboardData {
-    yieldOptimization: {
-        currentYield: number;
-        potentialYield: number;
-        suggestion: string;
-    };
-    inventory: {
-        product: string;
-        tons: number;
-        quality: string;
-    }[];
-    wasteReduction: {
-        currentRate: number;
-        potentialRate: number;
-        insight: string;
-    };
-    packagingOrders: {
-        id: string;
-        supplierName: string;
-        orderDate: string;
-        deliveryDate: string;
-        status: 'Pending' | 'Shipped' | 'Delivered' | 'Canceled';
-        actionLink: string;
-    }[];
-    packagingInventory: {
-        packagingType: string;
-        unitsInStock: number;
-        reorderLevel: number;
-    }[];
-    packagingImpactMetrics: {
-        metric: string; // e.g., 'Recycled Content Used', 'Biodegradable Packaging Rate'
-        value: string;
-        actionLink: string;
-    }[];
+  yieldOptimization: {
+    currentYield: number;
+    potentialYield: number;
+    suggestion: string;
+  };
+  inventory: {
+    product: string;
+    quality: string;
+    tons: number;
+  }[];
+  wasteReduction: {
+    currentRate: number;
+    insight: string;
+  };
+  packagingOrders: {
+    id: string;
+    supplierName: string;
+    deliveryDate: string;
+    status: string;
+    actionLink: string;
+  }[];
+  packagingInventory: {
+    packagingType: string;
+    unitsInStock: number;
+    reorderLevel: number;
+  }[];
 }
 
 export interface WarehouseDashboardData {
   storageOptimization: {
-      utilization: number;
-      suggestion: string;
+    utilization: number;
+    suggestion: string;
   };
   inventoryLevels: {
-      totalItems: number;
-      itemsNeedingAttention: number;
+    totalItems: number;
+    itemsNeedingAttention: number;
   };
   predictiveAlerts: {
-      id: string;
-      alert: string;
-      actionLink: string;
+    alert: string;
+    actionLink: string;
+  }[];
+}
+
+export interface PackagingSupplierDashboardData {
+  demandForecast: {
+    productType: string;
+    unitsNeeded: number;
+    for: string;
+  };
+  integrationRequests: {
+    from: string;
+    request: string;
+    actionLink: string;
+  }[];
+  sustainableShowcase: {
+    views: number;
+    leads: number;
+  };
+}
+
+
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    issue: string;
+    region: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: 'Critical' | 'Warning';
+    vtiLink: string;
   }[];
 }
 
 export interface QaDashboardData {
-    pendingInspections: {
-        id: string;
-        batchId: string;
-        productName: string;
-        sellerName: string;
-        dueDate: string;
-        actionLink: string;
-    }[];
-    recentResults: {
-        id: string;
-        productName: string;
-        result: 'Pass' | 'Fail';
-        reason?: string;
-        inspectedAt: string;
-    }[];
-    qualityMetrics: {
-        passRate: number;
-        averageScore: number;
-    };
+  pendingInspections: {
+    id: string;
+    batchId: string;
+    productName: string;
+    sellerName: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string; // ISO String
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
 }
 
 export interface CertificationBodyDashboardData {
-    pendingAudits: {
-        id: string;
-        farmName: string;
-        standard: string;
-        dueDate: string;
-        actionLink: string;
-    }[];
-    certifiedEntities: {
-        id: string;
-        name: string;
-        type: 'Farmer' | 'Processor';
-        certificationStatus: string;
-        actionLink: string;
-    }[];
-    standardsMonitoring: {
-        standard: string;
-        adherenceRate: number;
-        alerts: number;
-        actionLink: string;
-    }[];
+  pendingAudits: {
+    id: string;
+    farmName: string;
+    standard: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  certifiedEntities: {
+    id: string;
+    name: string;
+    type: string;
+    certificationStatus: 'Active' | 'Pending Renewal' | 'Expired';
+    actionLink: string;
+  }[];
+  standardsMonitoring: {
+    standard: string;
+    adherenceRate: number;
+    alerts: number;
+    actionLink: string;
+  }[];
 }
 
 export interface ResearcherDashboardData {
-    availableDatasets: {
-        id: string;
-        name: string;
-        description: string;
-        dataType: string;
-        accessLevel: 'Public' | 'Anonymized' | 'Consented';
-        actionLink: string;
-    }[];
-    ongoingProjects: {
-        id: string;
-        title: string;
-        progress: number;
-        collaborators: string[];
-        actionLink: string;
-    }[];
-    knowledgeHubContributions: {
-        id: string;
-        title: string;
-        type: 'Article' | 'Methodology' | 'Tool';
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
-
-export interface AgroTourismDashboardData {
-    listedExperiences: {
-        id: string;
-        title: string;
-        location: string;
-        status: 'Active' | 'Draft' | 'Paused';
-        bookingsCount: number;
-        actionLink: string;
-    }[];
-    upcomingBookings: {
-        id: string;
-        experienceTitle: string;
-        guestName: string;
-        date: string;
-        actionLink: string;
-    }[];
-    guestReviews: {
-        id: string;
-        guestName: string;
-        experienceTitle: string;
-        rating: number; // e.g., 1-5
-        comment: string;
-        actionLink: string;
-    }[];
-}
-
-export interface CrowdfunderDashboardData {
- featuredProjects: {
- id: string;
- title: string;
- farmerName: string;
- amountSought: number;
- amountRaised: number;
- progress: number; // Percentage raised
- actionLink: string;
- }[];
- myInvestments: {
- id: string;
- projectTitle: string;
- amountInvested: number;
- expectedReturn: string; // e.g., '10% ROI', 'Profit Share'
- status: 'Active' | 'Completed' | 'In Progress';
- actionLink: string;
- }[];
- impactReport: {
-    totalInvested: number;
-    totalImpactMetrics: { metric: string; value: string; }[];
+  availableDatasets: {
+    id: string;
+    name: string;
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
     actionLink: string;
- };
+  }[];
+  ongoingProjects: {
+    id: string;
+    title: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review' | 'Draft';
+    actionLink: string;
+  }[];
 }
+
 
 export interface AgronomistDashboardData {
-    assignedFarmersOverview: {
-        id: string;
-        name: string;
-        farmLocation: string;
-        lastConsultation: string;
-        alerts: number; // Number of open alerts for this farmer
-        actionLink: string;
-    }[];
-    pendingConsultationRequests: {
-        id: string;
-        farmerName: string;
-        issueSummary: string;
-        requestDate: string;
-        actionLink: string;
-    }[];
-    knowledgeBaseContributions: {
-        id: string;
-        title: string;
-        status: 'Draft' | 'Pending Review' | 'Published';
-        actionLink: string;
-    }[];
-}
-
-export interface InsuranceProviderDashboardData {
-    pendingClaims: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        claimDate: string;
-        status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-        actionLink: string;
-    }[];
-    activePolicies: {
-        id: string;
-        policyHolderName: string;
-        policyType: string;
-        coverageAmount: number;
-        expiryDate: string;
-        actionLink: string;
-    }[];
-    riskAssessmentAlerts: {
-        id: string;
-        policyHolderName: string;
-        alert: string;
-        severity: 'High' | 'Medium' | 'Low';
-        actionLink: string;
-    }[];
-}
-
-export interface KnfBatch {
+  assignedFarmersOverview: {
     id: string;
-    userId: string;
-    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
-    typeName: string;
-    ingredients: string;
-    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
-    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-    nextStep: string;
-    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
-    createdAt: { _seconds: number, _nanoseconds: number } | any;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id: string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO String
+  }[];
+  knowledgeBaseContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review';
+  }[];
+}
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: string;
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO String
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string;
+  };
 }
 
 
-// =================================================================
-// 4. SHARED & MISCELLANEOUS TYPES
-// =================================================================
-
-// Re-export CategoryNode type from category-data.ts for easier access
-export type CategoryNode = CatNodeType;
-
-/**
- * Represents a single event in a product's journey, linked by a VTI.
- */
-export interface TraceabilityEvent {
-  id: string;
-  vtiId: string;
-  timestamp: { _seconds: number; _nanoseconds: number; };
-  eventType: string;
-  actorRef?: string;
-  geoLocation?: {
-    lat: number;
-    lng: number;
-  } | null;
-  payload: { [key: string]: any };
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO String
+  }[];
 }
+
+    

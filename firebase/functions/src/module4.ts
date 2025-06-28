@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getRole } from './module2';
+import type { MarketplaceCoupon, MarketplaceItem } from "./types";
 import { _internalInitiatePayment } from "./module7";
 
 const db = admin.firestore();
@@ -9,15 +9,24 @@ const db = admin.firestore();
 /**
  * Creates a new Digital Shopfront for an authenticated user.
  * This is the entry point for stakeholders to establish a presence in the Marketplace (Module 4).
+ * @param {any} data The data for the new shop.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, shopId: string, message: string}>} A promise that resolves with the new shop ID.
  */
 export const createShop = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to create a shop.");
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated to create a shop.",
+    );
   }
 
-  const { name, description, stakeholderType } = data;
+  const {name, description, stakeholderType} = data;
   if (!name || !description || !stakeholderType) {
-    throw new functions.https.HttpsError("invalid-argument", "Shop name, description, and stakeholder type are required.");
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Shop name, description, and stakeholder type are required.",
+    );
   }
 
   const userId = context.auth.uid;
@@ -31,7 +40,7 @@ export const createShop = functions.https.onCall(async (data, context) => {
 
     // 1. Create the new shop document.
     batch.set(shopRef, {
-      userId: userId,
+      ownerId: userId,
       name: name,
       description: description,
       stakeholderType: stakeholderType,
@@ -41,12 +50,14 @@ export const createShop = functions.https.onCall(async (data, context) => {
       logoUrl: null,
       bannerUrl: null,
       contactInfo: {},
+      itemCount: 0,
+      rating: 0,
     });
 
     // 2. Update the user's document with a reference to their new shop.
     // Using an array to support multiple shopfronts in the future if needed.
     batch.update(userRef, {
-      shops: admin.firestore.FieldValue.arrayUnion(shopRef.id)
+      shops: admin.firestore.FieldValue.arrayUnion(shopRef.id),
     });
 
     await batch.commit();
@@ -56,13 +67,12 @@ export const createShop = functions.https.onCall(async (data, context) => {
       shopId: shopRef.id,
       message: "Digital Shopfront created successfully.",
     };
-
   } catch (error: any) {
     console.error("Error creating shop:", error);
     throw new functions.https.HttpsError(
-        "internal", 
-        "Failed to create Digital Shopfront. Please check your project's Firestore setup.",
-        { originalError: error.message }
+      "internal",
+      "Failed to create Digital Shopfront. Please check your project's Firestore setup.",
+      {originalError: error.message},
     );
   }
 });
@@ -70,95 +80,152 @@ export const createShop = functions.https.onCall(async (data, context) => {
 /**
  * Creates a new marketplace listing.
  * This function is callable from the client.
+ * @param {any} data The data for the new listing.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{id: string, name: string}>} A promise that resolves with the new listing ID and name.
  */
-export const createMarketplaceListing = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a listing.");
-  }
-  
-  const sellerId = context.auth.uid;
-  const { name, listingType, description, category, location } = data;
+export const createMarketplaceListing = functions.https.onCall(
+  async (data: Omit<MarketplaceItem, "id" | "sellerId" | "createdAt" | "updatedAt">, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "You must be logged in to create a listing.",
+      );
+    }
 
-  // Basic validation
-  if (!name || !listingType || !description || !category || !location) {
-    throw new functions.https.HttpsError("invalid-argument", "Missing required fields for the listing.");
-  }
+    const sellerId = context.auth.uid;
+    const {name, listingType, description, category, location} = data;
 
-  try {
-    const listingData = {
-      ...data, // Include all validated data from the client
-      sellerId: sellerId,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-    };
+    // Basic validation
+    if (!name || !listingType || !description || !category || !location) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Missing required fields for the listing.",
+      );
+    }
 
-    const docRef = await db.collection("marketplaceItems").add(listingData);
+    try {
+      const listingData = {
+        ...data, // Include all validated data from the client
+        sellerId: sellerId,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      };
 
-    return { id: docRef.id, name: listingData.name };
-  } catch (error: any) {
-    console.error("Error creating marketplace listing:", error);
-    throw new functions.https.HttpsError("internal", "Failed to create marketplace listing.", { originalError: error.message });
-  }
-});
+      const docRef = await db.collection("marketplaceItems").add(listingData);
 
+      return {id: docRef.id, name: listingData.name};
+    } catch (error: any) {
+      console.error("Error creating marketplace listing:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to create marketplace listing.",
+        {originalError: error.message},
+      );
+    }
+  },
+);
 
 /**
  * Creates a new marketplace coupon for the authenticated seller.
+ * @param {any} data The data for the new coupon.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{couponId: string, code: string, message: string}>} A promise that resolves with the new coupon ID.
  */
-export const createMarketplaceCoupon = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a coupon.");
-  }
+export const createMarketplaceCoupon = functions.https.onCall(
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "You must be logged in to create a coupon.",
+      );
+    }
 
-  const sellerId = context.auth.uid;
-  const { code, discountType, discountValue, expiresAt, usageLimit, applicableToListingIds, applicableToCategories } = data;
+    const sellerId = context.auth.uid;
+    const {
+      code,
+      discountType,
+      discountValue,
+      expiresAt,
+      usageLimit,
+      applicableToListingIds,
+      applicableToCategories,
+    } = data;
 
-  // Basic validation
-  if (!code || !discountType || discountValue === undefined) {
-    throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
-  }
+    // Basic validation
+    if (!code || !discountType || discountValue === undefined) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Missing required coupon fields.",
+      );
+    }
 
-  const newCoupon = {
-    sellerId,
-    code: code.toUpperCase(),
-    discountType,
-    discountValue,
-    expiresAt: expiresAt ? admin.firestore.Timestamp.fromDate(new Date(expiresAt)) : null,
-    usageLimit: usageLimit || null,
-    usageCount: 0,
-    isActive: true,
-    applicableToListingIds: applicableToListingIds || [],
-    applicableToCategories: applicableToCategories || [],
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-  };
+    const newCoupon: Omit<MarketplaceCoupon, "id" | "createdAt"> = {
+      sellerId,
+      code: code.toUpperCase(),
+      discountType,
+      discountValue,
+      expiresAt: expiresAt ? admin.firestore.Timestamp.fromDate(new Date(expiresAt)) : null,
+      usageLimit: usageLimit || null,
+      usageCount: 0,
+      isActive: true,
+      applicableToListingIds: applicableToListingIds || [],
+      applicableToCategories: applicableToCategories || [],
+    };
 
-  try {
-    const docRef = await db.collection("marketplace_coupons").add(newCoupon);
-    return { couponId: docRef.id, code: newCoupon.code, message: "Coupon created successfully." };
-  } catch (error: any) {
-    console.error("Error creating marketplace coupon:", error);
-    throw new functions.https.HttpsError("internal", "Could not create coupon.", { originalError: error.message });
-  }
-});
-
+    try {
+      const docRef = await db.collection("marketplace_coupons").add({
+          ...newCoupon,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return {
+        couponId: docRef.id,
+        code: newCoupon.code,
+        message: "Coupon created successfully.",
+      };
+    } catch (error: any) {
+      console.error("Error creating marketplace coupon:", error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Could not create coupon.",
+        {originalError: error.message},
+      );
+    }
+  },
+);
 
 /**
  * Fetches all marketplace coupons for the authenticated seller.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{coupons: any[]}>} A promise that resolves with the seller's coupons.
  */
 export const getSellerCoupons = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to view your coupons.");
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "You must be logged in to view your coupons.",
+    );
   }
   const sellerId = context.auth.uid;
 
   try {
-    const snapshot = await db.collection("marketplace_coupons")
+    const snapshot = await db
+      .collection("marketplace_coupons")
       .where("sellerId", "==", sellerId)
       .orderBy("createdAt", "desc")
       .get();
-      
-    const coupons = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return { coupons };
+
+    const coupons = snapshot.docs.map((doc) => {
+        const couponData = doc.data() as MarketplaceCoupon;
+        return {
+            id: doc.id,
+            ...couponData,
+            createdAt: couponData.createdAt ? (couponData.createdAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+            expiresAt: couponData.expiresAt ? (couponData.expiresAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+        };
+    });
+    return {coupons};
   } catch (error) {
     console.error("Error fetching seller coupons:", error);
     throw new functions.https.HttpsError("internal", "Could not fetch coupons.");
@@ -167,57 +234,72 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
 
 /**
  * Validates a marketplace coupon for a specific seller.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{valid: boolean, message?: string, discountType?: string, discountValue?: number, code?: string}>} A promise that resolves with the validation result.
  */
-export const validateMarketplaceCoupon = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to validate a coupon.");
-  }
+export const validateMarketplaceCoupon = functions.https.onCall(
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "You must be logged in to validate a coupon.",
+      );
+    }
 
-  const { couponCode, sellerId } = data;
-  if (!couponCode || !sellerId) {
-    throw new functions.https.HttpsError("invalid-argument", "couponCode and sellerId are required.");
-  }
+    const {couponCode, sellerId} = data;
+    if (!couponCode || !sellerId) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "couponCode and sellerId are required.",
+      );
+    }
 
-  try {
-    const couponQuery = db.collection("marketplace_coupons")
+    try {
+      const couponQuery = db
+        .collection("marketplace_coupons")
         .where("code", "==", couponCode.toUpperCase())
         .where("sellerId", "==", sellerId)
         .limit(1);
-    
-    const snapshot = await couponQuery.get();
 
-    if (snapshot.empty) {
-        return { valid: false, message: "Invalid or expired coupon code." };
-    }
+      const snapshot = await couponQuery.get();
 
-    const couponDoc = snapshot.docs[0];
-    const couponData = couponDoc.data();
+      if (snapshot.empty) {
+        return {valid: false, message: "Invalid or expired coupon code."};
+      }
 
-    if (!couponData.isActive) {
-        return { valid: false, message: "This coupon is no longer active." };
-    }
+      const couponDoc = snapshot.docs[0];
+      const couponData = couponDoc.data() as MarketplaceCoupon;
 
-    if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
-        await couponDoc.ref.update({ isActive: false }); // Deactivate expired coupon
-        return { valid: false, message: "This coupon has expired." };
-    }
+      if (!couponData.isActive) {
+        return {valid: false, message: "This coupon is no longer active."};
+      }
 
-    if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
-        return { valid: false, message: "This coupon has reached its usage limit." };
-    }
+      const expiresAt = couponData.expiresAt ? (couponData.expiresAt as unknown as admin.firestore.Timestamp).toDate() : null;
+      if (expiresAt && expiresAt < new Date()) {
+        await couponDoc.ref.update({isActive: false}); // Deactivate expired coupon
+        return {valid: false, message: "This coupon has expired."};
+      }
 
-    return {
+      if (
+        couponData.usageLimit &&
+        couponData.usageCount >= couponData.usageLimit
+      ) {
+        return {valid: false, message: "This coupon has reached its usage limit."};
+      }
+
+      return {
         valid: true,
         discountType: couponData.discountType,
         discountValue: couponData.discountValue,
-        code: couponData.code
-    };
-
-  } catch (error) {
-    console.error("Error validating coupon:", error);
-    throw new functions.https.HttpsError("internal", "Could not validate coupon.");
-  }
-});
+        code: couponData.code,
+      };
+    } catch (error) {
+      console.error("Error validating coupon:", error);
+      throw new functions.https.HttpsError("internal", "Could not validate coupon.");
+    }
+  },
+);
 
 /**
  * Creates a new marketplace order, linking a buyer and seller.
@@ -283,5 +365,3 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "An error occurred while creating the order.");
     }
 });
-    
-

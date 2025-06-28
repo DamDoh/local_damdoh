@@ -21,14 +21,13 @@ export default function GroupsPage() {
     const { user } = useAuth();
     const { toast } = useToast();
     const functions = getFunctions(firebaseApp);
-    const getGroups = useMemo(() => httpsCallable(functions, 'getGroups'), [functions]);
+    const getGroupsCallable = useMemo(() => httpsCallable(functions, 'getGroups'), [functions]);
 
     useEffect(() => {
         const fetchGroups = async () => {
             setIsLoading(true);
             try {
-                // Assuming a 'getGroups' function exists in the backend
-                const result = await getGroups();
+                const result = await getGroupsCallable();
                 const data = result.data as { groups: any[] };
                 setGroups(data.groups as ForumGroup[]);
             } catch (error) {
@@ -44,7 +43,7 @@ export default function GroupsPage() {
         };
 
         fetchGroups();
-    }, [getGroups, toast]);
+    }, [getGroupsCallable, toast]);
 
     const filteredGroups = useMemo(() => {
         return groups.filter(group => 

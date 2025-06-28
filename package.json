@@ -51,7 +51,7 @@
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^7.2.1",
     "lucide-react": "^0.475.0",
-    "next": "15.2.3",
+    "next": "^15.3.4",
     "patch-package": "^8.0.0",
     "qrcode.react": "^3.1.0",
     "react": "^18.3.1",

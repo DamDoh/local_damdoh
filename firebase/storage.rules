@@ -1,0 +1,31 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Default deny all reads and writes
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    // Allow users to upload to their own directory in a specific folder.
+    // This pattern is used for marketplace listings, observations, etc.
+    match /marketplace-listings/{userId}/{allPaths=**} {
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /observations/{userId}/{allPaths=**} {
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+     match /agri-events/{userId}/{allPaths=**} {
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Allow global read access to all files.
+    // This is suitable for public content like marketplace images or user avatars.
+    // For sensitive files, create more restrictive rules above this one.
+    match /{allPaths=**} {
+      allow read: if true;
+    }
+  }
+}

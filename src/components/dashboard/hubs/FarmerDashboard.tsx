@@ -2,16 +2,33 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Users, MessageSquare, BarChart2, Sprout, Tractor } from 'lucide-react';
+import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { TrustScoreWidget } from './TrustScoreWidget';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
+import { format, formatDistanceToNow } from 'date-fns';
+
+const StatCard = ({ title, value, icon, actionLink, actionLabel }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string }) => (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        {icon}
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+      </CardContent>
+      <CardFooter>
+        <Button asChild variant="outline" size="sm" className="w-full">
+            <Link href={actionLink}>{actionLabel}</Link>
+        </Button>
+      </CardFooter>
+    </Card>
+);
 
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
@@ -41,110 +58,73 @@ export const FarmerDashboard = () => {
 
     if (!dashboardData) {
         return (
-            <div className="flex items-center justify-center h-64">
+             <div className="flex items-center justify-center h-64">
                 <p className="text-muted-foreground">Could not load dashboard data.</p>
             </div>
         );
     }
-
-    const { farmCount, cropCount, recentCrops, trustScore, matchedBuyers } = dashboardData;
     
+    const { farmCount, cropCount, recentCrops, knfBatches } = dashboardData;
+
     return (
-        <div>
-            <h1 className="text-3xl font-bold mb-6">Farmer Mission Control</h1>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <Card className="lg:col-span-2">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                            <BarChart2 className="h-5 w-5 text-primary" />
-                            Farm Overview
-                        </CardTitle>
-                        <CardDescription>
-                            A snapshot of your current farming operations.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid grid-cols-2 gap-4">
-                       <div className="p-4 rounded-lg bg-muted/50 flex items-center gap-4">
-                            <Tractor className="h-8 w-8 text-primary"/>
+        <div className="space-y-6">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <StatCard title="My Farms" value={farmCount} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Farms"/>
+                <StatCard title="Active Crops" value={cropCount} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Crops"/>
+                <StatCard title="KNF Batches" value={knfBatches.length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
+             </div>
+              <Card>
+                <CardHeader>
+                    <CardTitle className="text-base flex items-center justify-between">
+                        <span>Recent Crops</span>
+                        <Button asChild variant="secondary" size="sm"><Link href="/farm-management/create-farm"><PlusCircle className="h-4 w-4 mr-2"/>Add Crop</Link></Button>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                    {recentCrops.length > 0 ? recentCrops.map(crop => (
+                        <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
                             <div>
-                                <p className="text-2xl font-bold">{farmCount}</p>
-                                <p className="text-xs text-muted-foreground">Total Farms</p>
+                                <p className="font-medium text-sm">{(crop as any).cropType}</p>
+                                <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>
                             </div>
-                       </div>
-                       <div className="p-4 rounded-lg bg-muted/50 flex items-center gap-4">
-                            <Sprout className="h-8 w-8 text-green-500"/>
-                             <div>
-                                <p className="text-2xl font-bold">{cropCount}</p>
-                                <p className="text-xs text-muted-foreground">Active Crops/Batches</p>
-                            </div>
-                       </div>
-                       <div className="col-span-2">
-                            <h4 className="text-sm font-semibold mb-2">Recently Added Crops</h4>
-                            <div className="space-y-2">
-                                {recentCrops && recentCrops.length > 0 ? recentCrops.map(crop => (
-                                    <div key={crop.id} className="flex justify-between items-center p-2 border rounded-md">
-                                        <div>
-                                            <p className="font-medium text-sm">{crop.name}</p>
-                                            <p className="text-xs text-muted-foreground">{crop.farmName}</p>
-                                        </div>
-                                        <Badge variant="secondary">{crop.stage}</Badge>
-                                    </div>
-                                )) : (
-                                    <p className="text-xs text-muted-foreground text-center py-4">No crops have been added yet.</p>
-                                )}
-                            </div>
-                       </div>
-                    </CardContent>
-                </Card>
+                            <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${(crop as any).farmId}`}>View</Link></Button>
+                        </div>
+                    )) : <p className="text-sm text-center text-muted-foreground py-4">No crops added yet.</p>}
+                </CardContent>
+            </Card>
 
-                <div className="space-y-6">
-                    <TrustScoreWidget reputationScore={trustScore.reputation} certifications={trustScore.certifications} />
-                </div>
-                
-                <Card className="lg:col-span-3">
-                     <CardHeader>
-                        <CardTitle className="text-base flex items-center gap-2">
-                            <Users className="h-4 w-4" />
-                            AI-Matched Buyer Opportunities
-                        </CardTitle>
-                     </CardHeader>
-                    <CardContent className="space-y-3">
-                        {matchedBuyers.map(buyer => (
-                            <Card key={buyer.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 gap-3">
-                               <div className="flex-grow">
-                                    <div className="flex justify-between items-baseline">
-                                        <h4 className="font-semibold text-sm">{buyer.name}</h4>
-                                        <span className="font-mono text-xs p-1 bg-accent/80 rounded-md">Match: {buyer.matchScore}%</span>
-                                    </div>
-                                    <p className="text-xs text-muted-foreground mt-1">{buyer.request}</p>
-                                </div>
-                                <Button asChild size="sm" className="w-full sm:w-auto">
-                                    <Link href={`/messages?with=${buyer.contactId}`}>
-                                        <MessageSquare className="mr-2 h-4 w-4" />
-                                        Initiate Contact
-                                    </Link>
-                                </Button>
-                            </Card>
-                        ))}
-                    </CardContent>
-                </Card>
+             <Card>
+                <CardHeader>
+                    <CardTitle className="text-base flex items-center justify-between">
+                        <span>Active KNF Batches</span>
+                         <Button asChild variant="secondary" size="sm"><Link href="/farm-management/knf-inputs"><PlusCircle className="h-4 w-4 mr-2"/>Add Batch</Link></Button>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                    {knfBatches.length > 0 ? knfBatches.map(batch => (
+                         <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">
+                            <div>
+                                <p className="font-medium text-sm">{batch.typeName}</p>
+                                <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" />Next step {formatDistanceToNow(new Date(batch.nextStepDate), { addSuffix: true })}</p>
+                            </div>
+                            <Badge variant={batch.status === 'Ready' ? 'default' : 'secondary'}>{batch.status}</Badge>
+                        </div>
+                    )) : <p className="text-sm text-center text-muted-foreground py-4">No KNF batches started.</p>}
+                </CardContent>
+            </Card>
 
-            </div>
         </div>
     );
 };
 
 const DashboardSkeleton = () => (
-    <div>
-        <Skeleton className="h-9 w-64 mb-6" />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-80 rounded-lg lg:col-span-2" />
-            <div className="space-y-6">
-                <Skeleton className="h-48 rounded-lg" />
-                <Skeleton className="h-32 rounded-lg" />
-            </div>
-            <Skeleton className="h-48 rounded-lg lg:col-span-3" />
+    <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
         </div>
+        <Skeleton className="h-48 rounded-lg" />
+        <Skeleton className="h-48 rounded-lg" />
     </div>
 );

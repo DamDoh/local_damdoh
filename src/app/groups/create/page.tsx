@@ -8,15 +8,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2, Save } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth-utils';
 
 export default function CreateGroupPage() {
     const router = useRouter();
+    const { user } = useAuth();
     const { toast } = useToast();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -28,6 +30,12 @@ export default function CreateGroupPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!user) {
+             toast({ title: "Please log in to create a group.", variant: "destructive" });
+             router.push('/auth/signin');
+             return;
+        }
+
         if (!name.trim() || !description.trim()) {
             toast({
                 title: "Incomplete Form",
@@ -46,11 +54,11 @@ export default function CreateGroupPage() {
                 description: "Your group has been successfully created.",
             });
             router.push(`/groups/${groupId}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error creating group:", error);
             toast({
                 title: "Error",
-                description: "An error occurred while creating the group. Please try again.",
+                description: error.message || "An error occurred while creating the group. Please try again.",
                 variant: "destructive",
             });
         } finally {
@@ -106,6 +114,7 @@ export default function CreateGroupPage() {
                     </CardContent>
                     <CardFooter>
                         <Button type="submit" disabled={isSubmitting}>
+                            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
                             {isSubmitting ? "Creating..." : "Create Group"}
                         </Button>
                     </CardFooter>

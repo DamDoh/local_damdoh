@@ -37,7 +37,7 @@ export const AgronomistDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getAgronomistDashboardDataCallable]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -63,14 +63,14 @@ export const AgronomistDashboard = () => {
       );
   }
 
-    const getStatusBadgeVariant = (status: string) => {
-        switch (status.toLowerCase()) {
-            case 'draft': return 'outline';
-            case 'pending review': return 'secondary';
-            case 'published': return 'default';
-            default: return 'outline';
-        }
-    };
+  const getStatusBadgeVariant = (status: string) => {
+    switch (status.toLowerCase()) {
+        case 'draft': return 'secondary';
+        case 'pending review': return 'secondary';
+        case 'published': return 'default';
+        default: return 'outline';
+    }
+};
 
 
   return (
@@ -183,9 +183,9 @@ export const AgronomistDashboard = () => {
 
       </div>
     </div>
-
   );
 };
+
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">

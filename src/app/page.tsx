@@ -1,7 +1,8 @@
 
 "use client";
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { FeedItem } from "@/lib/types";
@@ -36,9 +37,11 @@ import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
 import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
+import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
+
 
 const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Farmer': FarmerDashboard,
@@ -60,6 +63,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
     'Agronomy Expert/Consultant (External)': AgronomistDashboard,
+    'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
 };
 
 
@@ -90,10 +94,10 @@ export default function DashboardPage() {
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth();
   
-  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), [functions]);
-  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), [functions]);
-  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
-  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
+  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), []);
+  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
+  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
+  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
   useEffect(() => {
     if (authLoading) {
@@ -180,6 +184,7 @@ export default function DashboardPage() {
       return <HubComponent />;
     }
 
+    // Default to feed for guests or users with unhandled roles
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">

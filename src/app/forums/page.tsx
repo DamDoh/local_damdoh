@@ -50,12 +50,8 @@ export default function ForumsPage() {
             setIsLoading(true);
             try {
                 const result = await getTopics();
-                const data = result.data as { topics: any[] };
-                const formattedTopics = data.topics.map(topic => ({
-                    ...topic,
-                    lastActivity: topic.lastActivity ? new Date(topic.lastActivity.seconds * 1000).toISOString() : new Date().toISOString(),
-                }));
-                setTopics(formattedTopics as ForumTopic[]);
+                const data = result.data as { topics: ForumTopic[] };
+                setTopics(data.topics || []);
             } catch (error) {
                 console.error("Error fetching topics:", error);
                 toast({

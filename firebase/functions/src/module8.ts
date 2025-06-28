@@ -1,11 +1,9 @@
 
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
 
 // --- Module 8: The Data Intelligence & Predictive Analytics Hub ---
 // This file contains placeholder backend functions for AI and analytics.
 // In a real application, these would connect to Genkit or Vertex AI models.
-
 /**
  * Internal logic for assessing credit risk.
  * This is an internal function to be called by other modules (e.g., Module 7).
@@ -101,20 +99,31 @@ export async function _internalProcessReportData(data: any) {
 
 // --- Callable Wrappers ---
 // These wrappers remain to avoid breaking client-side calls.
-
 /**
  * Callable function wrapper for assessing credit risk.
- * Note: Exposing this directly to clients should be done with caution and strong security rules.
+ * Note: Exposing this directly to clients should be done with caution.
+ *
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<any>} A promise that resolves with the assessment.
  */
-export const assessCreditRiskWithAI = functions.https.onCall(async (data, context) => {
+export const assessCreditRiskWithAI = functions.https.onCall(
+  async (data, context) => {
     // TODO: Add authentication and authorization checks
     return await _internalAssessCreditRisk(data);
-});
+  },
+);
 
 /**
  * Callable function wrapper for matching funding opportunities.
+ *
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<any>} A promise that resolves with the matched opportunities.
  */
-export const matchFundingOpportunitiesWithAI = functions.https.onCall(async (data, context) => {
+export const matchFundingOpportunitiesWithAI = functions.https.onCall(
+  async (data, context) => {
     // TODO: Add authentication and authorization checks
     return await _internalMatchFundingOpportunities(data);
-});
+  },
+);

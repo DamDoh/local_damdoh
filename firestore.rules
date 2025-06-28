@@ -3,6 +3,7 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+<<<<<<< HEAD
   
     // Helper function to check if a user is authenticated
     function isAuthenticated() {
@@ -141,6 +142,88 @@ service cloud.firestore {
     // Default deny all other collections
     match /{document=**} {
       allow read, write: if false;
+=======
+
+    // By default, deny all access. Specific rules below will override this.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users can read any profile, but only write to their own.
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      // Allow create/update/delete only if the user is modifying their own document.
+      allow write: if request.auth.uid == userId;
+    }
+
+    // Authenticated users can create/read/write/delete their own data in these collections.
+    // The functions check for ownership (e.g., resource.data.owner_id == request.auth.uid)
+    match /farms/{farmId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /crops/{cropId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /knf_batches/{batchId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Marketplace is public to read. Authenticated users can create/edit their own items.
+    match /marketplaceItems/{itemId} {
+      allow read: if true; 
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && resource.data.sellerId == request.auth.uid;
+    }
+    
+    // Marketplace coupons are managed by their seller.
+    match /marketplace_coupons/{couponId} {
+        allow read: if true;
+        allow write: if request.auth != null && resource.data.sellerId == request.auth.uid;
+    }
+
+    // Events are public. Only authenticated users can interact.
+    // Specific write logic (like registering vs editing) is handled in Cloud Functions.
+    match /agri_events/{eventId}/{documents=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Knowledge base is public read-only for clients.
+    match /knowledge_base/{docId} {
+      allow read: if true;
+      allow write: if false; // Managed by backend functions.
+    }
+    
+    // Forums and Groups are public to read, but only authenticated users can write.
+    match /forums/{topicId}/{documents=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    match /groups/{groupId}/{documents=**} {
+        allow read: if true;
+        allow write: if request.auth != null;
+    }
+
+    // Posts are public to read, but writing is restricted.
+    match /posts/{postId}/{documents=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Notifications are private to the user they are for.
+    match /notifications/{notificationId} {
+      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+    
+    // Financial transactions are private to the user.
+    match /financial_transactions/{txId} {
+        // userRef is a document reference, so we access its id with .id
+        allow write: if request.auth != null && request.resource.data.userRef == /databases/$(database)/documents/users/$(request.auth.uid);
+        allow read: if request.auth != null && resource.data.userRef.id == request.auth.uid;
+>>>>>>> Market-Place-Traceability
     }
   }
 }

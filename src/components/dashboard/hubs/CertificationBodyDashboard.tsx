@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Award, FileText, CheckCircle } from 'lucide-react';
 import type { CertificationBodyDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
@@ -155,7 +155,7 @@ export const CertificationBodyDashboard = () => {
          </Card>
 
           {/* Standards Monitoring */}
-         <Card>
+         <Card className="md:col-span-2">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Standards Adherence Monitoring</CardTitle>
                 <CardDescription>Tracking adherence rates across different standards.</CardDescription>
@@ -198,6 +198,5 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
     </div>
 );

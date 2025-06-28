@@ -65,12 +65,21 @@ export const ResearcherDashboard = () => {
   }
 
   const getStatusBadgeVariant = (status: string) => {
+<<<<<<< HEAD
     switch (status.toLowerCase()) {
         case 'draft': return 'outline';
         case 'pending review': return 'secondary';
         case 'published': return 'default';
         default: return 'secondary';
     }
+=======
+      switch (status.toLowerCase()) {
+          case 'draft': return 'secondary';
+          case 'pending review': return 'secondary';
+          case 'published': return 'default';
+          default: return 'outline';
+      }
+>>>>>>> Market-Place-Traceability
   };
 
   return (
@@ -82,7 +91,11 @@ export const ResearcherDashboard = () => {
          <Card className="md:col-span-2">
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/> Available Datasets</CardTitle>
+<<<<<<< HEAD
              <CardDescription>Datasets available for research and analysis, subject to access levels and user consent.</CardDescription>
+=======
+             <CardDescription>Anonymized datasets available for research and analysis.</CardDescription>
+>>>>>>> Market-Place-Traceability
            </CardHeader>
            <CardContent>
              {dashboardData.availableDatasets.length > 0 ? (
@@ -174,7 +187,11 @@ export const ResearcherDashboard = () => {
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
                                 <div>
                                     <p className="font-medium">{contribution.title}</p>
+<<<<<<< HEAD
                                     <p className="text-xs text-muted-foreground">{contribution.type}</p>
+=======
+                                    <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
+>>>>>>> Market-Place-Traceability
                                 </div>
                                 <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
                             </div>

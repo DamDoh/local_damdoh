@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { MarketplaceItem, UserProfile } from "@/lib/types";
 import Image from "next/image";
-import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, Tag, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle, Ticket, Loader2 } from "lucide-react";
+import { MapPin, PackageIcon, Briefcase, CheckCircle, Sparkles, ShieldCheck, FileText, Link as LinkIcon, Wrench, CalendarDays, CircleDollarSign, ShoppingBag, ArrowLeft, MessageCircle, Ticket, Loader2, GitBranch } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState, useMemo } from "react";
 import { notFound, useParams, useRouter } from "next/navigation";
@@ -304,9 +304,13 @@ export default function MarketplaceItemDetailPage() {
                  </div>
                   {item.relatedTraceabilityId && (
                       <div className="space-y-2">
-                         <h4 className="text-md font-semibold flex items-center gap-1.5"><Tag className="h-4 w-4 text-muted-foreground"/>Traceability</h4>
-                         <p className="text-sm text-muted-foreground">This product is linked to a traceable batch.</p>
-                         <Button variant="outline" size="sm">View Traceability History (Coming Soon)</Button>
+                         <h4 className="text-md font-semibold flex items-center gap-1.5"><GitBranch className="h-4 w-4 text-muted-foreground"/>Traceability</h4>
+                         <p className="text-sm text-muted-foreground">This product is linked to a traceable batch. View its full journey from farm to market.</p>
+                          <Button asChild variant="outline" size="sm">
+                            <Link href={`/traceability/batches/${item.relatedTraceabilityId}`}>
+                                <GitBranch className="mr-2 h-4 w-4" /> View Report
+                            </Link>
+                          </Button>
                       </div>
                   )}
              </div>

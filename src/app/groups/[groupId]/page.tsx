@@ -37,6 +37,7 @@ export default function GroupPage() {
 
 
     const fetchData = useCallback(async () => {
+        if (!groupId) return;
         setIsLoading(true);
         try {
             const [groupDetailsResult, groupMembersResult] = await Promise.all([
@@ -67,20 +68,23 @@ export default function GroupPage() {
 
 
     useEffect(() => {
-        if (!groupId) return;
         fetchData();
     }, [groupId, fetchData]);
 
     const handleJoinGroup = async () => {
         if (!user) {
             toast({ title: "Please log in to join a group.", variant: "destructive" });
+            router.push('/auth/signin');
             return;
         }
         setIsJoining(true);
         try {
             await joinGroup({ groupId });
+            // Optimistic update
             setIsMember(true);
             setMembers(prev => [...prev, { id: user.uid, name: user.displayName || 'You', avatarUrl: user.photoURL || '' } as UserProfile]);
+            if (group) setGroup(g => g ? {...g, memberCount: g.memberCount + 1} : null);
+
             toast({ title: "Successfully joined the group!" });
         } catch (error: any) {
             console.error("Error joining group:", error);
@@ -96,8 +100,11 @@ export default function GroupPage() {
         setIsJoining(true); // Reuse the same loading state
         try {
             await leaveGroup({ groupId });
+             // Optimistic update
             setIsMember(false);
             setMembers(prev => prev.filter(m => m.id !== user.uid));
+            if (group) setGroup(g => g ? {...g, memberCount: g.memberCount - 1} : null);
+
             toast({ title: "You have left the group." });
         } catch (error: any) {
             console.error("Error leaving group:", error);
@@ -182,19 +189,19 @@ export default function GroupPage() {
                                     </Button>
                                 )
                             )}
-                            {!user && <p className="text-sm text-muted-foreground">Please log in to join.</p>}
+                            {!user && <Button asChild className="w-full"><Link href="/auth/signin">Log in to Join</Link></Button>}
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">Members ({members.length})</CardTitle>
+                            <CardTitle className="text-lg">Members ({group.memberCount})</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             {members.map(member => (
                                 <div key={member.id} className="flex items-center gap-3">
                                     <Avatar>
-                                        <AvatarImage src={member.avatarUrl} alt={member.name} />
+                                        <AvatarImage src={member.avatarUrl} alt={member.name} data-ai-hint="profile person agriculture" />
                                         <AvatarFallback>{member.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <span className="font-medium text-sm">{member.name}</span>
@@ -207,5 +214,8 @@ export default function GroupPage() {
         </div>
     );
 }
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> Market-Place-Traceability

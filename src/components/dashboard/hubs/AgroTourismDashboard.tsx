@@ -15,13 +15,14 @@ import type { AgroTourismDashboardData } from '@/lib/types';
 
 
 const functions = getFunctions(firebaseApp);
-const getAgroTourismDashboardDataCallable = httpsCallable<void, AgroTourismDashboardData>(functions, 'getAgroTourismDashboardData');
 
 
 export const AgroTourismDashboard = () => {
   const [dashboardData, setDashboardData] = useState<AgroTourismDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const getAgroTourismDashboardDataCallable = useMemo(() => httpsCallable<void, AgroTourismDashboardData>(functions, 'getAgroTourismDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -193,6 +194,7 @@ export const AgroTourismDashboard = () => {
     </div>
   );
 };
+
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">

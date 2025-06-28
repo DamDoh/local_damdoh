@@ -29,6 +29,11 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
       const articlesRef = adminDb.collection('knowledge_base');
       const snapshot = await articlesRef.get();
       
+      if (snapshot.empty) {
+        console.log(`[fgwKnfKnowledgeTool] The 'knowledge_base' collection is empty.`);
+        return { error: 'Knowledge base is currently empty.' };
+      }
+      
       const allDocs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
       // Find the first document where the name or ID contains the search term.
@@ -45,7 +50,7 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
       console.log(`[fgwKnfKnowledgeTool] Found matching technique: "${result.name}".`);
       return result; // Return the entire document data.
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('[fgwKnfKnowledgeTool] Error searching Firestore:', error);
       // Provide a more specific error message if Firestore isn't enabled
       if (error instanceof Error && 'code' in error && (error as any).code === 5) {

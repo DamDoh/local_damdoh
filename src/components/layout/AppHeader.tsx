@@ -153,6 +153,7 @@ export function AppHeader() {
     const activeDesktopItem = desktopNavItems.find(item => pathname.includes(item.href) && item.href !== "/");
     if (activeDesktopItem) return activeDesktopItem.label;
     
+<<<<<<< HEAD
     if (pathname.includes("/profiles/me/edit")) return "Edit Profile";
     if (pathname.includes("/profiles/me")) return t('myProfile');
     if (pathname.includes("/profiles/")) return "Profile Details";
@@ -178,6 +179,34 @@ export function AppHeader() {
     if (pathname.includes("/auth/signin")) return t('signIn');
     if (pathname.includes("/auth/signup")) return t('signUp');
     if (pathname.includes("/auth/forgot-password")) return "Reset Password";
+=======
+    if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
+    if (pathname.startsWith("/profiles/me")) return "My Profile";
+    if (pathname.startsWith("/profiles/")) return "Profile Details";
+    if (pathname.startsWith("/marketplace/create-shop")) return "Create Shop";
+    if (pathname.startsWith("/marketplace/promotions")) return "Promotions";
+    if (pathname.startsWith("/marketplace/create")) return "Create Listing";
+    if (pathname.startsWith("/agri-events/create")) return "Create Event";
+    if (pathname.startsWith("/agri-events")) return "Agri-Events";
+    if (pathname.startsWith("/forums/create")) return "New Discussion";
+    if (pathname.startsWith("/forums/")) return "Forum Topic";
+    if (pathname.startsWith("/search")) return "Search Results";
+    if (pathname.startsWith("/help-center")) return "Help Center";
+    if (pathname.startsWith("/about")) return "About Us";
+    if (pathname.startsWith("/contact")) return "Contact";
+    if (pathname.startsWith("/careers")) return "Careers";
+    if (pathname.startsWith("/blog")) return "Agri-Insights Blog";
+    if (pathname.startsWith("/community-guidelines")) return "Community Guidelines";
+    if (pathname.startsWith("/cookie-policy")) return "Cookie Policy";
+    if (pathname.startsWith("/privacy")) return "Privacy Policy";
+    if (pathname.startsWith("/terms")) return "Terms of Service";
+    if (pathname.startsWith("/pinboard")) return "My Pinboard";
+    if (pathname.startsWith("/wallet")) return "Digital Wallet";
+    if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
+    if (pathname.startsWith("/auth/signin")) return "Sign In";
+    if (pathname.startsWith("/auth/signup")) return "Sign Up";
+    if (pathname.startsWith("/auth/forgot-password")) return "Reset Password";
+>>>>>>> Market-Place-Traceability
 
 
     return APP_NAME; 

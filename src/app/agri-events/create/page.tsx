@@ -118,6 +118,13 @@ export default function CreateAgriEventPage() {
     setCreatedEvent(null);
   };
 
+  const handleShareLink = () => {
+    if(!createdEvent) return;
+    navigator.clipboard.writeText(`${window.location.origin}/agri-events/${createdEvent.id}`);
+    toast({ title: "Link Copied!", description: "Event link copied to clipboard." });
+  };
+
+
   return (
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
@@ -137,12 +144,16 @@ export default function CreateAgriEventPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <Button asChild className="w-full">
+<<<<<<< HEAD
                 <Link href={`/agri-events/${createdEvent.id}/manage`}>Manage Event Registrations & Promotions</Link>
+=======
+                <Link href={`/agri-events/${createdEvent.id}/manage`}>Manage Event & Attendees</Link>
+>>>>>>> Market-Place-Traceability
               </Button>
             <Button 
               className="w-full" 
               variant="outline"
-              onClick={() => console.log(`Action: Share Event - Event: ${createdEvent.title}`)}
+              onClick={handleShareLink}
             >
               <Share2 className="mr-2 h-4 w-4" /> Share Event Link
             </Button>
@@ -206,22 +217,16 @@ export default function CreateAgriEventPage() {
                         <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Event Date</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
+                            <Button
                                 variant={"outline"}
                                 className={cn(
-                                  "w-full pl-3 text-left font-normal",
-                                  !field.value && "text-muted-foreground"
+                                "w-full justify-start text-left font-normal",
+                                !field.value && "text-muted-foreground"
                                 )}
-                              >
-                                {field.value ? (
-                                  format(field.value, "PPP")
-                                ) : (
-                                  <span>Pick a date</span>
-                                )}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                              </Button>
-                            </FormControl>
+                            >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? format(field.value, "PPP") : (<span>Pick a date</span>)}
+                            </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
@@ -433,7 +438,7 @@ export default function CreateAgriEventPage() {
                         </div>
                       </FormControl>
                        <FormDescription>
-                        Upload an image/banner from your device (max 5MB, JPG/PNG/WEBP).
+                        Upload an image from your device (max 5MB, JPG/PNG/WEBP).
                       </FormDescription>
                       <FormMessage />
                     </FormItem>

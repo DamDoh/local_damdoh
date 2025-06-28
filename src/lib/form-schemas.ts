@@ -228,3 +228,32 @@ export const createEventCouponSchema = z.object({
 });
 
 export type CreateEventCouponValues = z.infer<typeof createEventCouponSchema>;
+<<<<<<< HEAD
+=======
+
+export const createMarketplaceCouponSchema = z.object({
+  code: z.string().min(4, "Code must be at least 4 characters.").max(20, "Code cannot exceed 20 characters.").regex(/^[a-zA-Z0-9]+$/, "Code can only contain letters and numbers."),
+  discountType: z.enum(['percentage', 'fixed'], { required_error: "Please select a discount type." }),
+  discountValue: z.coerce.number().positive("Discount value must be a positive number."),
+  expiresAt: z.date().optional(),
+  usageLimit: z.coerce.number().int().positive("Usage limit must be a positive integer.").optional(),
+}).refine(data => {
+    if (data.discountType === 'percentage' && data.discountValue > 100) {
+        return false;
+    }
+    return true;
+}, {
+    message: "Percentage discount cannot exceed 100.",
+    path: ["discountValue"],
+});
+export type CreateMarketplaceCouponValues = z.infer<typeof createMarketplaceCouponSchema>;
+
+export const createShopSchema = z.object({
+  name: z.string().min(3, "Shop name must be at least 3 characters.").max(100),
+  description: z.string().min(10, "Description must be at least 10 characters long.").max(1000),
+  stakeholderType: z.enum(STAKEHOLDER_ROLES, {
+    errorMap: () => ({ message: "Please select a valid business type."}),
+  }),
+});
+export type CreateShopValues = z.infer<typeof createShopSchema>;
+>>>>>>> Market-Place-Traceability

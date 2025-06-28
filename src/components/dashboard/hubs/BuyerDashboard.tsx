@@ -12,6 +12,17 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { BuyerDashboardData } from '@/lib/types';
 
+const DashboardSkeleton = () => (
+    <div>
+        <Skeleton className="h-9 w-64 mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Skeleton className="h-48 rounded-lg" />
+            <Skeleton className="h-48 rounded-lg" />
+            <Skeleton className="h-48 rounded-lg lg:row-span-2" />
+        </div>
+    </div>
+);
+
 export const BuyerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<BuyerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -103,7 +114,7 @@ export const BuyerDashboard = () => {
                                         <p className="font-semibold">{rec.name}</p>
                                         <p className="text-xs text-muted-foreground">{rec.product}</p>
                                     </div>
-                                    <Badge variant={rec.vtiVerified ? "default" : "secondary"} className={`${rec.vtiVerified ? "bg-green-600" : ""}`}>
+                                    <Badge variant={rec.vtiVerified ? 'default' : 'secondary'}>
                                         {rec.vtiVerified ? <CheckCircle className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
                                         VTI
                                     </Badge>
@@ -124,15 +135,3 @@ export const BuyerDashboard = () => {
         </div>
     );
 };
-
-
-const DashboardSkeleton = () => (
-    <div>
-        <Skeleton className="h-9 w-64 mb-6" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-48 rounded-lg" />
-            <Skeleton className="h-48 rounded-lg" />
-            <Skeleton className="h-48 rounded-lg lg:row-span-2" />
-        </div>
-    </div>
-);

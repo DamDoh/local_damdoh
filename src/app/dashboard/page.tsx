@@ -36,8 +36,12 @@ import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDas
 import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
 import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
+<<<<<<< HEAD
 import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
 import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
+=======
+import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
+>>>>>>> Market-Place-Traceability
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -62,7 +66,11 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Insurance Provider': InsuranceProviderDashboard,
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
+<<<<<<< HEAD
     'Agronomy Expert/Consultant (External)': AgronomistDashboard,
+=======
+    'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
+>>>>>>> Market-Place-Traceability
 };
 
 
