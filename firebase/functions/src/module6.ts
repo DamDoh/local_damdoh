@@ -1,17 +1,12 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-<<<<<<< HEAD
-import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import type { UserProfile } from "./types";
-import { _internalInitiatePayment } from './module7'; // Import payment function
-import { _internalLogTraceEvent } from './module1'; // Import trace event logger
-=======
-import {FieldValue} from "firebase-admin/firestore";
-import type { UserProfile } from "./types";
-import {_internalInitiatePayment} from "./module7"; // Import payment function
-import {_internalLogTraceEvent} from "./module1"; // Import trace event logger
->>>>>>> Market-Place-Traceability
+import { FieldValue } from "firebase-admin/firestore";
+import type { UserProfile, EventCoupon, ForumTopic, ForumPost, PostReply } from "./types";
+import { _internalInitiatePayment } from "./module7";
+import { _internalLogTraceEvent } from "./module1";
+import { getProfileByIdFromDB } from "./profiles";
+
 
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10;
@@ -26,16 +21,15 @@ const REPLIES_PER_PAGE = 15;
 // ================== FORUMS ==================
 
 export const getTopics = functions.https.onCall(async (data, context) => {
-<<<<<<< HEAD
     try {
         const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
         const topics = topicsSnapshot.docs.map(doc => {
-            const topicData = doc.data();
+            const topicData = doc.data() as ForumTopic;
             return {
                 id: doc.id,
                 ...topicData,
-                createdAt: topicData.createdAt?.toDate ? topicData.createdAt.toDate().toISOString() : new Date().toISOString(),
-                lastActivity: topicData.lastActivity?.toDate ? topicData.lastActivity.toDate().toISOString() : new Date().toISOString(),
+                createdAt: (topicData.createdAt as any)?.toDate ? (topicData.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+                lastActivityAt: (topicData.lastActivity as any)?.toDate ? (topicData.lastActivity as any).toDate().toISOString() : new Date().toISOString(),
             };
         });
         return { topics };
@@ -43,24 +37,6 @@ export const getTopics = functions.https.onCall(async (data, context) => {
         console.error("Error fetching topics:", error);
         throw new functions.https.HttpsError("internal", "An error occurred while fetching forum topics.");
     }
-=======
-  try {
-    const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
-    const topics = topicsSnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return { 
-            id: doc.id, 
-            ...data,
-            createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : null,
-            lastActivity: data.lastActivity?.toDate ? data.lastActivity.toDate().toISOString() : null,
-        };
-    });
-    return {topics};
-  } catch (error) {
-    console.error("Error fetching topics:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching forum topics.");
-  }
->>>>>>> Market-Place-Traceability
 });
 
 export const createTopic = functions.https.onCall(async (data, context) => {
@@ -114,41 +90,21 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
 
     const postsSnapshot = await query.get();
     const posts = postsSnapshot.docs.map((doc) => {
-        const data = doc.data();
+        const data = doc.data() as ForumPost;
         return { 
             id: doc.id, 
             ...data,
-            timestamp: data.timestamp?.toDate ? data.timestamp.toDate().toISOString() : null,
+            timestamp: (data.timestamp as any)?.toDate?.().toISOString() || null,
         };
     });
 
     const newLastVisible = postsSnapshot.docs[postsSnapshot.docs.length - 1]?.id || null;
 
-<<<<<<< HEAD
-        const postsSnapshot = await query.get();
-        const posts = postsSnapshot.docs.map(doc => {
-            const postData = doc.data();
-            return {
-                id: doc.id,
-                ...postData,
-                timestamp: postData.timestamp?.toDate ? postData.timestamp.toDate().toISOString() : new Date().toISOString(),
-            };
-        });
-        
-        const newLastVisible = postsSnapshot.docs[postsSnapshot.docs.length - 1]?.id || null;
-
-        return { posts, lastVisible: newLastVisible };
-    } catch (error) {
-        console.error(`Error fetching posts for topic ${topicId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching posts.");
-    }
-=======
     return {posts, lastVisible: newLastVisible};
   } catch (error) {
     console.error(`Error fetching posts for topic ${topicId}:`, error);
     throw new functions.https.HttpsError("internal", "An error occurred while fetching posts.");
   }
->>>>>>> Market-Place-Traceability
 });
 
 export const createForumPost = functions.https.onCall(async (data, context) => {
@@ -210,41 +166,21 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
 
     const repliesSnapshot = await query.get();
     const replies = repliesSnapshot.docs.map((doc) => {
-        const data = doc.data();
+        const data = doc.data() as PostReply;
         return { 
             id: doc.id, 
             ...data,
-            timestamp: data.timestamp?.toDate ? data.timestamp.toDate().toISOString() : null,
+            timestamp: (data.timestamp as any)?.toDate?.().toISOString() || null,
         };
     });
 
     const newLastVisible = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]?.id || null;
 
-<<<<<<< HEAD
-        const repliesSnapshot = await query.get();
-        const replies = repliesSnapshot.docs.map(doc => {
-            const replyData = doc.data();
-            return {
-                id: doc.id,
-                ...replyData,
-                timestamp: replyData.timestamp?.toDate ? replyData.timestamp.toDate().toISOString() : new Date().toISOString(),
-            };
-        });
-
-        const newLastVisible = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]?.id || null;
-
-        return { replies, lastVisible: newLastVisible };
-    } catch (error) {
-        console.error(`Error fetching replies for post ${postId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching replies.");
-    }
-=======
     return {replies, lastVisible: newLastVisible};
   } catch (error) {
     console.error(`Error fetching replies for post ${postId}:`, error);
     throw new functions.https.HttpsError("internal", "An error occurred while fetching replies.");
   }
->>>>>>> Market-Place-Traceability
 });
 
 export const addReplyToPost = functions.https.onCall(async (data, context) => {
@@ -282,23 +218,6 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 // ================== GROUPS ==================
 
 export const getGroups = functions.https.onCall(async (data, context) => {
-<<<<<<< HEAD
-    try {
-        const groupsSnapshot = await db.collection("groups").where("isPublic", "==", true).get();
-        const groups = groupsSnapshot.docs.map(doc => {
-            const groupData = doc.data();
-            return {
-                id: doc.id,
-                ...groupData,
-                createdAt: groupData.createdAt?.toDate ? groupData.createdAt.toDate().toISOString() : new Date().toISOString(),
-            };
-        });
-        return { groups };
-    } catch (error) {
-        console.error("Error fetching groups:", error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching groups.");
-    }
-=======
   try {
     const groupsSnapshot = await db.collection("groups").where("isPublic", "==", true).get();
     const groups = groupsSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
@@ -307,7 +226,6 @@ export const getGroups = functions.https.onCall(async (data, context) => {
     console.error("Error fetching groups:", error);
     throw new functions.https.HttpsError("internal", "An error occurred while fetching groups.");
   }
->>>>>>> Market-Place-Traceability
 });
 
 export const createGroup = functions.https.onCall(async (data, context) => {
@@ -349,33 +267,16 @@ export const getGroupDetails = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError("invalid-argument", "A groupId must be provided.");
   }
 
-<<<<<<< HEAD
-    try {
-        const groupDoc = await db.collection("groups").doc(groupId).get();
-        if (!groupDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Group not found.");
-        }
-        const groupData = groupDoc.data()!;
-        return { 
-            id: groupDoc.id, 
-            ...groupData,
-            createdAt: groupData.createdAt?.toDate ? groupData.createdAt.toDate().toISOString() : new Date().toISOString(),
-        };
-    } catch (error) {
-        console.error(`Error fetching group details for ${groupId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching group details.");
-=======
   try {
     const groupDoc = await db.collection("groups").doc(groupId).get();
     if (!groupDoc.exists) {
       throw new functions.https.HttpsError("not-found", "Group not found.");
->>>>>>> Market-Place-Traceability
     }
     const groupData = groupDoc.data()!;
     return {
         id: groupDoc.id, 
         ...groupData,
-        createdAt: groupData.createdAt?.toDate ? groupData.createdAt.toDate().toISOString() : null,
+        createdAt: (groupData.createdAt as admin.firestore.Timestamp)?.toDate ? (groupData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
     };
   } catch (error) {
     console.error(`Error fetching group details for ${groupId}:`, error);
@@ -400,30 +301,11 @@ export const getGroupMembers = functions.https.onCall(async (data, context) => {
     const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", memberIds).get();
     const members = userDocs.docs.map((doc) => ({id: doc.id, ...doc.data()}));
 
-<<<<<<< HEAD
-        const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", memberIds).get();
-        const members = userDocs.docs.map(doc => {
-            const userData = doc.data();
-            return {
-                id: doc.id,
-                ...userData,
-                createdAt: userData.createdAt?.toDate ? userData.createdAt.toDate().toISOString() : new Date().toISOString(),
-                updatedAt: userData.updatedAt?.toDate ? userData.updatedAt.toDate().toISOString() : new Date().toISOString(),
-            };
-        });
-
-        return members;
-    } catch (error) {
-        console.error(`Error fetching members for group ${groupId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching group members.");
-    }
-=======
     return members;
   } catch (error) {
     console.error(`Error fetching members for group ${groupId}:`, error);
     throw new functions.https.HttpsError("internal", "An error occurred while fetching group members.");
   }
->>>>>>> Market-Place-Traceability
 });
 
 export const joinGroup = functions.https.onCall(async (data, context) => {
@@ -461,7 +343,6 @@ export const joinGroup = functions.https.onCall(async (data, context) => {
 
     return {message: "Successfully joined the group."};
   } catch (error: any) {
-    console.error(`Error joining group ${groupId}:`, error);
     if(error instanceof functions.https.HttpsError) throw error;
     throw new functions.https.HttpsError("internal", "An error occurred while joining the group.");
   }
@@ -491,7 +372,6 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
 
     return {message: "Successfully left the group."};
   } catch (error: any) {
-    console.error(`Error leaving group ${groupId}:`, error);
     if(error instanceof functions.https.HttpsError) throw error;
     throw new functions.https.HttpsError("internal", "An error occurred while leaving the group.");
   }
@@ -511,37 +391,11 @@ export const getFeed = functions.https.onCall(async (data, context) => {
       .orderBy("createdAt", "desc")
       .limit(POSTS_PER_PAGE);
 
-<<<<<<< HEAD
-        if (lastVisible) {
-            const lastVisibleDoc = await db.collection("posts").doc(lastVisible).get();
-            if (lastVisibleDoc.exists) {
-                query = query.startAfter(lastVisibleDoc);
-            }
-        }
-
-        const snapshot = await query.get();
-        const posts = snapshot.docs.map(doc => {
-            const postData = doc.data();
-            return {
-                id: doc.id,
-                ...postData,
-                createdAt: postData.createdAt?.toDate ? postData.createdAt.toDate().toISOString() : new Date().toISOString(),
-                timestamp: postData.createdAt?.toDate ? postData.createdAt.toDate().toISOString() : new Date().toISOString(), // Alias for compatibility with FeedItemCard
-            };
-        });
-        const newLastVisible = snapshot.docs[snapshot.docs.length - 1]?.id || null;
-
-        return { posts, lastVisible: newLastVisible };
-    } catch (error) {
-        console.error("Error fetching feed:", error);
-        throw new functions.https.HttpsError("internal", "Could not fetch feed.");
-=======
     if (lastVisible) {
       const lastVisibleDoc = await db.collection("posts").doc(lastVisible).get();
       if (lastVisibleDoc.exists) {
         query = query.startAfter(lastVisibleDoc);
       }
->>>>>>> Market-Place-Traceability
     }
 
     const snapshot = await query.get();
@@ -550,7 +404,7 @@ export const getFeed = functions.https.onCall(async (data, context) => {
         return { 
             id: doc.id, 
             ...data,
-            createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : null,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
     });
     const newLastVisible = snapshot.docs[snapshot.docs.length - 1]?.id || null;
@@ -684,23 +538,6 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
 });
 
 export const getAgriEvents = functions.https.onCall(async (data, context) => {
-<<<<<<< HEAD
-    try {
-        const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
-        const events = eventsSnapshot.docs.map(doc => {
-            const eventData = doc.data();
-            return {
-                id: doc.id,
-                ...eventData,
-                eventDate: eventData.eventDate, // Keep as string from backend
-            };
-        });
-        return { events };
-    } catch (error) {
-        console.error("Error fetching agri-events:", error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
-    }
-=======
   try {
     const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
     const events = eventsSnapshot.docs.map((doc) => {
@@ -708,16 +545,15 @@ export const getAgriEvents = functions.https.onCall(async (data, context) => {
         return {
             id: doc.id, 
             ...eventData,
-            createdAt: eventData.createdAt?.toDate ? eventData.createdAt.toDate().toISOString() : null,
+            createdAt: (eventData.createdAt as admin.firestore.Timestamp)?.toDate ? (eventData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
             eventDate: eventData.eventDate, // This should already be an ISO string from the client
         };
     });
-    return events;
+    return { events };
   } catch (error) {
     console.error("Error fetching agri-events:", error);
     throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
   }
->>>>>>> Market-Place-Traceability
 });
 
 
@@ -763,78 +599,21 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
           displayName: profile?.displayName || "Unknown User",
           email: profile?.email || "No email",
           avatarUrl: profile?.photoURL || "",
-          registeredAt: regData.registeredAt.toDate().toISOString(),
+          registeredAt: (regData.registeredAt as admin.firestore.Timestamp)?.toDate().toISOString(),
           checkedIn: regData.checkedIn || false,
-          checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
+          checkedInAt: regData.checkedInAt ? (regData.checkedInAt as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
       });
     }
   }
 
-<<<<<<< HEAD
-    const eventRef = db.collection('agri_events').doc(eventId);
-    const eventSnap = await eventRef.get();
-
-    if (!eventSnap.exists) {
-        throw new functions.https.HttpsError("not-found", "Event not found.");
-    }
-
-    const eventData = eventSnap.data()!;
-    let isRegistered = false;
-    let attendees: any[] = [];
-
-    if (context.auth) {
-        const registrationRef = eventRef.collection('registrations').doc(context.auth.uid);
-        const registrationSnap = await registrationRef.get();
-        isRegistered = registrationSnap.exists;
-    }
-    
-    // Security Check: Only return attendee list if the caller is the organizer
-    if (includeAttendees && context.auth && context.auth.uid === eventData.organizerId) {
-        const registrationsSnap = await eventRef.collection('registrations').get();
-        const attendeeIds = registrationsSnap.docs.map(doc => doc.id);
-
-        if (attendeeIds.length > 0) {
-            const userDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', attendeeIds).get();
-            const profiles: { [key: string]: UserProfile } = {};
-            userDocs.forEach(doc => {
-                profiles[doc.id] = doc.data() as UserProfile;
-            });
-
-            attendees = registrationsSnap.docs.map(regDoc => {
-                const profile = profiles[regDoc.id];
-                const regData = regDoc.data();
-                return {
-                    id: regDoc.id,
-                    displayName: profile?.displayName || 'Unknown User',
-                    email: profile?.email || 'No email',
-                    avatarUrl: profile?.avatarUrl || '',
-                    registeredAt: regData.registeredAt?.toDate().toISOString(),
-                    checkedIn: regData.checkedIn || false,
-                    checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
-                };
-            });
-        }
-    }
-    
-    const eventResult = {
-        ...eventData,
-        id: eventSnap.id,
-        isRegistered,
-        attendees,
-        eventDate: eventData.eventDate,
-    };
-
-    return eventResult;
-=======
   return {
       ...eventData,
       id: eventSnap.id,
       isRegistered,
       attendees,
-      createdAt: eventData.createdAt?.toDate ? eventData.createdAt.toDate().toISOString() : null,
+      createdAt: (eventData.createdAt as admin.firestore.Timestamp)?.toDate ? (eventData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
   };
->>>>>>> Market-Place-Traceability
 });
 
 export const registerForEvent = functions.https.onCall(async (data, context) => {
@@ -884,13 +663,13 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
       }
 
       const couponDoc = couponSnapshot.docs[0];
-      const couponData = couponDoc.data();
+      const couponData = couponDoc.data() as EventCoupon;
       couponRef = couponDoc.ref;
 
       if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
         throw new functions.https.HttpsError("failed-precondition", "Coupon has reached its usage limit.");
       }
-      if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
+      if (couponData.expiresAt && (couponData.expiresAt as any as admin.firestore.Timestamp).toDate() < new Date()) {
         throw new functions.https.HttpsError("failed-precondition", "This coupon has expired.");
       }
 
@@ -1000,7 +779,6 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
   return {success: true, message: `Attendee ${attendeeId} checked in.`};
 });
 
-<<<<<<< HEAD
 
 export const createEventCoupon = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -1063,12 +841,12 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
 
     const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
     const coupons = couponsSnapshot.docs.map(doc => {
-        const couponData = doc.data();
+        const couponData = doc.data() as EventCoupon;
         return {
             id: doc.id,
             ...couponData,
-            createdAt: couponData.createdAt?.toDate ? couponData.createdAt.toDate().toISOString() : new Date().toISOString(),
-            expiresAt: couponData.expiresAt?.toDate ? couponData.expiresAt.toDate().toISOString() : null,
+            createdAt: (couponData.createdAt as admin.firestore.Timestamp)?.toDate ? (couponData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+            expiresAt: (couponData.expiresAt as admin.firestore.Timestamp)?.toDate ? (couponData.expiresAt as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
     });
 
@@ -1094,23 +872,23 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
         return { conversations: [] };
     }
 
-    const conversations = snapshot.docs.map(doc => {
+    const conversations = await Promise.all(snapshot.docs.map(async doc => {
         const data = doc.data();
         const otherParticipantId = data.participantIds.find((pId: string) => pId !== uid);
-        const otherParticipantInfo = data.participantInfo[otherParticipantId] || { name: 'Unknown User', avatarUrl: '' };
+        const otherParticipantInfo = await getProfileByIdFromDB(otherParticipantId);
 
         return {
             id: doc.id,
             participant: {
                 id: otherParticipantId,
-                name: otherParticipantInfo.name,
-                avatarUrl: otherParticipantInfo.avatarUrl,
+                name: otherParticipantInfo?.displayName || 'Unknown User',
+                avatarUrl: otherParticipantInfo?.photoURL || '',
             },
             lastMessage: data.lastMessage,
-            lastMessageTimestamp: data.lastMessageTimestamp.toDate().toISOString(),
+            lastMessageTimestamp: (data.lastMessageTimestamp as admin.firestore.Timestamp).toDate().toISOString(),
             unreadCount: 0, // Simplified for now
         };
-    });
+    }));
 
     return { conversations };
 });
@@ -1141,7 +919,7 @@ export const getMessagesForConversation = functions.https.onCall(async (data, co
         return {
             id: doc.id,
             ...data,
-            timestamp: data.timestamp.toDate().toISOString(),
+            timestamp: (data.timestamp as admin.firestore.Timestamp).toDate().toISOString(),
         };
     });
 
@@ -1226,8 +1004,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
         const newConversation = {
             participantIds,
             participantInfo: {
-                [uid]: { name: userProfileSnap.data()?.displayName, avatarUrl: userProfileSnap.data()?.avatarUrl || null },
-                [recipientId]: { name: recipientProfileSnap.data()?.displayName, avatarUrl: recipientProfileSnap.data()?.avatarUrl || null }
+                [uid]: { name: userProfileSnap.data()?.displayName, photoURL: userProfileSnap.data()?.photoURL || null },
+                [recipientId]: { name: recipientProfileSnap.data()?.displayName, photoURL: recipientProfileSnap.data()?.photoURL || null }
             },
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
@@ -1258,7 +1036,7 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
             return {
                 id: doc.id,
                 ...commentData,
-                createdAt: commentData.createdAt?.toDate ? commentData.createdAt.toDate().toISOString() : new Date().toISOString(),
+                createdAt: (commentData.createdAt as admin.firestore.Timestamp)?.toDate ? (commentData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
             };
         });
         
@@ -1268,9 +1046,3 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
     }
 });
-
-    
-
-=======
->>>>>>> Market-Place-Traceability
-    

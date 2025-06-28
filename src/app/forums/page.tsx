@@ -16,22 +16,21 @@ import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { usePathname } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
+import { formatDistanceToNow } from 'date-fns';
 
-const getIcon = (iconName?: string) => {
-  const iconPropsBase = "h-6 w-6 text-primary";
-  const iconPropsDesktop = "h-8 w-8 text-primary";
-  switch (iconName) {
-    case 'Leaf': return <Leaf className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'ShieldAlert': return <ShieldAlert className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Brain': return <Brain className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'TrendingUp': return <TrendingUp className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Award': return <Award className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Tractor': return <Tractor className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Package': return <Package className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Wheat': return <Wheat className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    case 'Truck': return <Truck className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-    default: return <MessageSquare className={`${iconPropsBase} md:${iconPropsDesktop}`} />;
-  }
+const getIconForTopic = (topicName: string = '') => {
+  const name = topicName.toLowerCase();
+  const iconProps = "h-8 w-8 text-primary";
+  if (name.includes('sustainab')) return <Leaf className={iconProps} />;
+  if (name.includes('loss') || name.includes('risk')) return <ShieldAlert className={iconProps} />;
+  if (name.includes('logistic') || name.includes('transport')) return <Truck className={iconProps} />;
+  if (name.includes('tech') || name.includes('traceability')) return <Brain className={iconProps} />;
+  if (name.includes('market') || name.includes('price')) return <TrendingUp className={iconProps} />;
+  if (name.includes('financ') || name.includes('grant')) return <Award className={iconProps} />;
+  if (name.includes('packag')) return <Package className={iconProps} />;
+  if (name.includes('crop') || name.includes('grain')) return <Wheat className={iconProps} />;
+  if (name.includes('machinery') || name.includes('equipment')) return <Tractor className={iconProps} />;
+  return <MessageSquare className={iconProps} />;
 };
 
 export default function ForumsPage() {
@@ -41,7 +40,7 @@ export default function ForumsPage() {
     const { user } = useAuth();
     const { toast } = useToast();
     const functions = getFunctions(firebaseApp);
-    const getTopics = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
+    const getTopicsCallable = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
     const pathname = usePathname();
     const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
 
@@ -49,7 +48,7 @@ export default function ForumsPage() {
         const fetchTopics = async () => {
             setIsLoading(true);
             try {
-                const result = await getTopics();
+                const result = await getTopicsCallable();
                 const data = result.data as { topics: ForumTopic[] };
                 setTopics(data.topics || []);
             } catch (error) {
@@ -65,7 +64,7 @@ export default function ForumsPage() {
         };
 
         fetchTopics();
-    }, [getTopics, toast]);
+    }, [getTopicsCallable, toast]);
 
     const filteredTopics = useMemo(() => {
         return topics.filter(topic => 
@@ -92,21 +91,20 @@ export default function ForumsPage() {
         }
     };
 
-
     const renderTopicList = () => {
         if (isLoading) {
             return (
-                <div className="space-y-4">
-                    <Skeleton className="h-24 w-full" />
-                    <Skeleton className="h-24 w-full" />
-                    <Skeleton className="h-24 w-full" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <Skeleton className="h-48 w-full rounded-lg" />
+                    <Skeleton className="h-48 w-full rounded-lg" />
+                    <Skeleton className="h-48 w-full rounded-lg" />
                 </div>
             );
         }
 
         if (filteredTopics.length === 0) {
             return (
-                <div className="text-center py-12">
+                <div className="text-center py-16 col-span-full border-2 border-dashed rounded-lg">
                     <Frown className="mx-auto h-12 w-12 text-muted-foreground" />
                     <h3 className="mt-4 text-lg font-semibold">No Topics Found</h3>
                     <p className="mt-2 text-sm text-muted-foreground">
@@ -114,7 +112,7 @@ export default function ForumsPage() {
                     </p>
                     {user && !searchTerm && (
                          <Button asChild className="mt-4">
-                            <Link href="/forums/create-topic">
+                            <Link href="/forums/create">
                                 <PlusCircle className="mr-2 h-4 w-4" />
                                 Create a New Topic
                             </Link>
@@ -125,35 +123,28 @@ export default function ForumsPage() {
         }
 
         return (
-            <div className="space-y-3 md:space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTopics.map(topic => (
-              <Card key={topic.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-3 md:p-4">
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="p-2 bg-accent/20 rounded-md hidden sm:block shrink-0">
-                       {getIcon(topic.icon)}
+              <Card key={topic.id} className="flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                    <div className="flex items-center justify-between">
+                        {getIconForTopic(topic.name)}
+                        <Badge variant="secondary" className="flex items-center gap-1.5"><Users className="h-3 w-3" />{topic.postCount || 0}</Badge>
                     </div>
-                    <div className="flex-grow min-w-0">
-                      <Link href={`/forums/${topic.id}`}>
-                        <CardTitle className="text-base md:text-lg hover:text-primary transition-colors truncate">{topic.name}</CardTitle>
-                      </Link>
-                      <CardDescription className="mt-1 text-xs md:text-sm line-clamp-2">{topic.description}</CardDescription>
-                      <div className="mt-2 md:mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Users className="h-3 w-3" />
-                          <span>{topic.postCount || 0} contributions</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          <span>Last activity: {new Date(topic.lastActivity).toLocaleDateString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <Button asChild variant="outline" size="sm" className="mt-2 sm:mt-0 sm:ml-auto shrink-0 text-xs h-8 px-3">
-                      <Link href={`/forums/${topic.id}`}>Join</Link>
-                    </Button>
-                  </div>
+                    <CardTitle className="text-lg pt-2 h-20 line-clamp-3">{topic.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <p className="text-sm text-muted-foreground line-clamp-3 h-[60px]">{topic.description}</p>
                 </CardContent>
+                <CardFooter className="flex flex-col items-start gap-2 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1.5">
+                        <Clock className="h-3 w-3" />
+                        <span>Last activity {formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true })}</span>
+                    </div>
+                    <Button asChild className="w-full mt-2">
+                        <Link href={`/forums/${topic.id}`}>Join Discussion</Link>
+                    </Button>
+                </CardFooter>
               </Card>
             ))}
             </div>
@@ -172,7 +163,7 @@ export default function ForumsPage() {
                         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                             {user && (
                                 <Button asChild className="w-full sm:w-auto">
-                                    <Link href="/forums/create-topic">
+                                    <Link href="/forums/create">
                                         <PlusCircle className="mr-2 h-4 w-4" />
                                         Create Topic
                                     </Link>
