@@ -542,7 +542,7 @@ export const getAgriEvents = functions.https.onCall(async (data, context) => {
             eventDate: eventData.eventDate, // This should already be an ISO string from the client
         };
     });
-    return events;
+    return {events};
   } catch (error) {
     console.error("Error fetching agri-events:", error);
     throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
@@ -605,6 +605,7 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
       isRegistered,
       attendees,
       createdAt: eventData.createdAt?.toDate ? eventData.createdAt.toDate().toISOString() : null,
+      eventDate: eventData.eventDate,
   };
 });
 
@@ -771,3 +772,79 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
 
   return {success: true, message: `Attendee ${attendeeId} checked in.`};
 });
+
+
+export const createEventCoupon = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in.");
+    }
+
+    const { eventId, code, discountType, discountValue, expiresAt, usageLimit } = data;
+    const organizerId = context.auth.uid;
+
+    if (!eventId || !code || !discountType || discountValue === undefined) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
+    }
+
+    const eventRef = db.collection("agri_events").doc(eventId);
+    const eventDoc = await eventRef.get();
+
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not the organizer of this event.");
+    }
+    
+    const couponCode = code.toUpperCase();
+    const couponsRef = eventRef.collection('coupons');
+    const existingCouponQuery = await couponsRef.where('code', '==', couponCode).get();
+    if (!existingCouponQuery.empty) {
+        throw new functions.https.HttpsError("already-exists", `A coupon with the code "${couponCode}" already exists for this event.`);
+    }
+
+    const newCoupon = {
+        code: couponCode,
+        discountType,
+        discountValue,
+        expiresAt: expiresAt ? admin.firestore.Timestamp.fromDate(new Date(expiresAt)) : null,
+        usageLimit: usageLimit || null,
+        usageCount: 0,
+        createdAt: FieldValue.serverTimestamp(),
+        organizerId,
+    };
+
+    const couponRef = await couponsRef.add(newCoupon);
+    
+    await eventRef.update({ couponCount: FieldValue.increment(1) });
+
+    return { couponId: couponRef.id, ...newCoupon };
+});
+
+
+export const getEventCoupons = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in.");
+    }
+    const { eventId } = data;
+    const organizerId = context.auth.uid;
+
+    const eventRef = db.collection("agri_events").doc(eventId);
+    const eventDoc = await eventRef.get();
+
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view coupons for this event.");
+    }
+
+    const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
+    const coupons = couponsSnapshot.docs.map(doc => {
+        const couponData = doc.data();
+        return {
+            id: doc.id,
+            ...couponData,
+            createdAt: couponData.createdAt?.toDate ? couponData.createdAt.toDate().toISOString() : null,
+            expiresAt: couponData.expiresAt?.toDate ? couponData.expiresAt.toDate().toISOString() : null,
+        };
+    });
+
+    return { coupons };
+});
+
+    
