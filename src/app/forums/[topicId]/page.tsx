@@ -11,11 +11,10 @@ import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumTopic, ForumPost, UserProfile } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { firebaseApp } from '@/lib/firebase';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 
-// This could be moved to a lib/firebase/api.ts file for better organization
 const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
     const db = getFirestore(firebaseApp);
     const topicRef = doc(db, "forums", topicId);
@@ -31,14 +30,12 @@ const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
     return null;
 };
 
-// This could also be centralized
 const fetchPostAuthors = async (posts: any[]): Promise<Record<string, UserProfile>> => {
     if (posts.length === 0) return {};
     const db = getFirestore(firebaseApp);
     const authorIds = [...new Set(posts.map(p => p.authorRef))];
     const profiles: Record<string, UserProfile> = {};
     
-    // Batch fetch user profiles for efficiency
     const userPromises = authorIds.map(id => getDoc(doc(db, "users", id)));
     const userSnaps = await Promise.all(userPromises);
 
@@ -46,7 +43,7 @@ const fetchPostAuthors = async (posts: any[]): Promise<Record<string, UserProfil
         if (userSnap.exists()) {
             profiles[userSnap.id] = userSnap.data() as UserProfile;
         } else {
-            profiles[userSnap.id] = { id: userSnap.id, displayName: "Unknown User", photoURL: "" };
+            profiles[userSnap.id] = { id: userSnap.id, displayName: "Unknown User" } as UserProfile;
         }
     });
 
@@ -70,6 +67,7 @@ export default function TopicPage() {
     const getPostsForTopic = useMemo(() => httpsCallable(functions, 'getPostsForTopic'), [functions]);
 
     const fetchPosts = useCallback(async (isInitialLoad = false) => {
+        if(!hasMore && !isInitialLoad) return;
         if(isInitialLoad) setIsLoading(true);
         else setIsLoadingMore(true);
 
@@ -77,21 +75,25 @@ export default function TopicPage() {
             const result = await getPostsForTopic({ topicId, lastVisible });
             const data = result.data as { posts: any[], lastVisible: any };
             
-            const authorProfiles = await fetchPostAuthors(data.posts);
+            if (data.posts && data.posts.length > 0) {
+              const authorProfiles = await fetchPostAuthors(data.posts);
 
-            const newPosts: ForumPost[] = data.posts.map((post: any) => ({
-                ...post,
-                timestamp: post.timestamp ? new Date(post.timestamp._seconds * 1000).toISOString() : new Date().toISOString(),
-                author: {
-                    id: post.authorRef,
-                    name: authorProfiles[post.authorRef]?.displayName || "Unknown User",
-                    avatarUrl: authorProfiles[post.authorRef]?.photoURL || ""
-                }
-            }));
-            
-            setPosts(prev => [...prev, ...newPosts]);
-            setLastVisible(data.lastVisible);
-            setHasMore(data.posts.length > 0);
+              const newPosts: ForumPost[] = data.posts.map((post: any) => ({
+                  ...post,
+                  timestamp: post.timestamp ? new Date(post.timestamp.seconds * 1000).toISOString() : new Date().toISOString(),
+                  author: {
+                      id: post.authorRef,
+                      name: authorProfiles[post.authorRef]?.name || "Unknown User",
+                      avatarUrl: authorProfiles[post.authorRef]?.avatarUrl || ""
+                  }
+              }));
+              
+              setPosts(prev => isInitialLoad ? newPosts : [...prev, ...newPosts]);
+              setLastVisible(data.lastVisible);
+              setHasMore(data.posts.length > 0);
+            } else {
+              setHasMore(false);
+            }
 
         } catch (error) {
             console.error("Error fetching posts:", error);
@@ -104,7 +106,7 @@ export default function TopicPage() {
             if(isInitialLoad) setIsLoading(false);
             else setIsLoadingMore(false);
         }
-    }, [topicId, lastVisible, getPostsForTopic, toast]);
+    }, [topicId, lastVisible, getPostsForTopic, toast, hasMore]);
 
 
     useEffect(() => {
@@ -116,6 +118,9 @@ export default function TopicPage() {
                 const topicDetails = await getTopicDetails(topicId);
                 setTopic(topicDetails);
                 if (topicDetails) {
+                    setPosts([]);
+                    setLastVisible(null);
+                    setHasMore(true);
                     await fetchPosts(true);
                 }
             } catch (error) {
@@ -215,6 +220,7 @@ export default function TopicPage() {
                         <Button
                             onClick={() => fetchPosts()}
                             disabled={isLoadingMore}
+                            variant="outline"
                         >
                             {isLoadingMore ? (
                                 <>
