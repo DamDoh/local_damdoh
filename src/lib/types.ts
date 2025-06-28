@@ -165,13 +165,13 @@ export interface MarketplaceCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt: any; // Can be Timestamp or null
+  expiresAt: string | null; // ISO String
   usageLimit?: number | null;
   usageCount: number;
   isActive: boolean;
   applicableToListingIds?: string[];
   applicableToCategories?: string[];
-  createdAt: any; // Firestore Timestamp
+  createdAt: string | null; // ISO String
 }
 
 
@@ -225,20 +225,6 @@ export interface FarmerDashboardData {
     nextStepDate: string; // ISO String
   }[];
 }
-
-export interface CooperativeDashboardData {
-    memberCount: number;
-    totalLandArea: number; // in Hectares
-    aggregatedProduce: {
-        id: string;
-        productName: string;
-        quantity: number; // in tons
-        quality: string;
-        readyBy: string; // ISO Date string
-    }[];
-    pendingMemberApplications: number;
-}
-
 
 export interface BuyerDashboardData {
   supplyChainRisk: {

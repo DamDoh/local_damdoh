@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { MarketplaceCoupon, MarketplaceItem } from "./types";
+import type { MarketplaceCoupon, MarketplaceItem, Shop } from "./types";
 import { _internalInitiatePayment } from "./module7";
 
 const db = admin.firestore();
@@ -221,8 +221,8 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
         return {
             id: doc.id,
             ...couponData,
-            createdAt: couponData.createdAt ? (couponData.createdAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
-            expiresAt: couponData.expiresAt ? (couponData.expiresAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+            createdAt: (couponData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            expiresAt: (couponData.expiresAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
         };
     });
     return {coupons};
@@ -275,7 +275,7 @@ export const validateMarketplaceCoupon = functions.https.onCall(
         return {valid: false, message: "This coupon is no longer active."};
       }
 
-      const expiresAt = couponData.expiresAt ? (couponData.expiresAt as unknown as admin.firestore.Timestamp).toDate() : null;
+      const expiresAt = (couponData.expiresAt as admin.firestore.Timestamp)?.toDate();
       if (expiresAt && expiresAt < new Date()) {
         await couponDoc.ref.update({isActive: false}); // Deactivate expired coupon
         return {valid: false, message: "This coupon has expired."};
@@ -301,67 +301,69 @@ export const validateMarketplaceCoupon = functions.https.onCall(
   },
 );
 
+
 /**
- * Creates a new marketplace order, linking a buyer and seller.
+ * Fetches the details of a specific shop.
+ * @param {any} data The data containing the shopId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<Shop>} A promise that resolves with the shop's details.
  */
-export const createMarketplaceOrder = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to place an order.");
+export const getShopDetails = functions.https.onCall(async (data, context) => {
+  const { shopId } = data;
+  if (!shopId) {
+    throw new functions.https.HttpsError("invalid-argument", "A shopId must be provided.");
+  }
+  
+  try {
+    const shopDoc = await db.collection("shops").doc(shopId).get();
+    if (!shopDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Shop not found.");
     }
+
+    const shopData = shopDoc.data()!;
+    return {
+      id: shopDoc.id,
+      ...shopData,
+      createdAt: (shopData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+      updatedAt: (shopData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+    };
+  } catch (error) {
+    console.error(`Error fetching shop details for ${shopId}:`, error);
+    if (error instanceof functions.https.HttpsError) throw error;
+    throw new functions.https.HttpsError("internal", "Could not fetch shop details.");
+  }
+});
+
+
+/**
+ * Fetches all marketplace listings for a specific seller.
+ * @param {any} data The data containing the sellerId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{items: MarketplaceItem[]}>} A promise that resolves with the seller's listings.
+ */
+export const getListingsBySeller = functions.https.onCall(async (data, context) => {
+  const { sellerId } = data;
+  if (!sellerId) {
+    throw new functions.https.HttpsError("invalid-argument", "A sellerId must be provided.");
+  }
+
+  try {
+    const listingsQuery = db.collection("marketplaceItems").where("sellerId", "==", sellerId);
+    const snapshot = await listingsQuery.get();
     
-    const { listingId, quantity, finalPrice } = data;
-    if (!listingId || !quantity || finalPrice === undefined) {
-        throw new functions.https.HttpsError("invalid-argument", "Listing ID, quantity, and final price are required.");
-    }
+    const items = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+      };
+    });
 
-    const buyerId = context.auth.uid;
-    const listingRef = db.collection("marketplaceItems").doc(listingId);
-    
-    try {
-        const listingDoc = await listingRef.get();
-        if (!listingDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "The requested listing does not exist.");
-        }
-        
-        const listingData = listingDoc.data()!;
-        const sellerId = listingData.sellerId;
-
-        const newOrderRef = db.collection("marketplace_orders").doc();
-        const orderData = {
-            listingId: listingId,
-            buyerId: buyerId,
-            sellerId: sellerId,
-            quantity: quantity,
-            totalPrice: finalPrice,
-            currency: listingData.currency || 'USD',
-            status: 'pending', // Initial status
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-            listingName: listingData.name, // Denormalized for easier access
-            listingImageUrl: listingData.imageUrl || null, // Denormalized
-        };
-        
-        await newOrderRef.set(orderData);
-        
-        // Synergy: Initiate payment if the order has a price > 0
-        if (finalPrice > 0) {
-            await _internalInitiatePayment({
-                orderId: newOrderRef.id,
-                amount: finalPrice,
-                currency: orderData.currency,
-                buyerInfo: { userId: buyerId },
-                sellerInfo: { userId: sellerId },
-                description: `Payment for order of "${listingData.name}"`
-            });
-        }
-
-        // TODO: In a real app, trigger notifications for both buyer and seller.
-
-        return { success: true, orderId: newOrderRef.id };
-
-    } catch (error: any) {
-        console.error("Error creating marketplace order:", error);
-        if (error instanceof functions.https.HttpsError) throw error;
-        throw new functions.https.HttpsError("internal", "An error occurred while creating the order.");
-    }
+    return { items };
+  } catch (error) {
+    console.error(`Error fetching listings for seller ${sellerId}:`, error);
+    throw new functions.https.HttpsError("internal", "Could not fetch seller's listings.");
+  }
 });
