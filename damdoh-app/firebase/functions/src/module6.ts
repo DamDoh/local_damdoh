@@ -5,6 +5,7 @@ import {FieldValue} from "firebase-admin/firestore";
 import type { UserProfile } from "./types";
 import {_internalInitiatePayment} from "./module7"; // Import payment function
 import {_internalLogTraceEvent} from "./module1"; // Import trace event logger
+import { getProfileByIdFromDB } from "./profiles";
 
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10;
@@ -847,4 +848,197 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
     return { coupons };
 });
 
+// ================== MESSAGING ==================
+
+/**
+ * Gets all conversations for the currently authenticated user.
+ */
+export const getConversationsForUser = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const uid = context.auth.uid;
+
+    const conversationsRef = db.collection('conversations');
+    const q = conversationsRef.where('participantIds', 'array-contains', uid).orderBy('lastMessageTimestamp', 'desc');
+
+    const snapshot = await q.get();
+    if (snapshot.empty) {
+        return { conversations: [] };
+    }
+
+    const conversations = snapshot.docs.map(doc => {
+        const data = doc.data();
+        const otherParticipantId = data.participantIds.find((pId: string) => pId !== uid);
+        const otherParticipantInfo = data.participantInfo[otherParticipantId] || { name: 'Unknown User', avatarUrl: '' };
+
+        return {
+            id: doc.id,
+            participant: {
+                id: otherParticipantId,
+                name: otherParticipantInfo.name,
+                avatarUrl: otherParticipantInfo.avatarUrl,
+            },
+            lastMessage: data.lastMessage,
+            lastMessageTimestamp: data.lastMessageTimestamp?.toDate ? data.lastMessageTimestamp.toDate().toISOString() : new Date().toISOString(),
+            unreadCount: 0, // Simplified for now
+        };
+    });
+
+    return { conversations };
+});
+
+/**
+ * Gets all messages for a specific conversation.
+ */
+export const getMessagesForConversation = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const { conversationId } = data;
+    if (!conversationId) {
+        throw new functions.https.HttpsError("invalid-argument", "A conversationId must be provided.");
+    }
+    
+    // Security Check: ensure user is part of the conversation
+    const convoRef = db.collection('conversations').doc(conversationId);
+    const convoSnap = await convoRef.get();
+    if (!convoSnap.exists || !convoSnap.data()?.participantIds.includes(context.auth.uid)) {
+        throw new functions.https.HttpsError("permission-denied", "You do not have access to this conversation.");
+    }
+
+    const messagesRef = convoRef.collection('messages').orderBy('timestamp', 'asc');
+    const snapshot = await messagesRef.get();
+    const messages = snapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            timestamp: data.timestamp?.toDate ? data.timestamp.toDate().toISOString() : new Date().toISOString(),
+        };
+    });
+
+    return { messages };
+});
+
+/**
+ * Sends a message to a conversation.
+ */
+export const sendMessage = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const { conversationId, content } = data;
+    if (!conversationId || !content) {
+        throw new functions.https.HttpsError("invalid-argument", "conversationId and content are required.");
+    }
+
+    const uid = context.auth.uid;
+    const convoRef = db.collection('conversations').doc(conversationId);
+
+    // Security check
+    const convoSnap = await convoRef.get();
+    if (!convoSnap.exists || !convoSnap.data()?.participantIds.includes(uid)) {
+        throw new functions.https.HttpsError("permission-denied", "You do not have access to this conversation.");
+    }
+
+    const message = {
+        senderId: uid,
+        content: content,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    };
+    
+    await convoRef.collection('messages').add(message);
+    await convoRef.update({
+        lastMessage: content,
+        lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true };
+});
+
+/**
+ * Finds an existing conversation between two users or creates a new one.
+ */
+export const getOrCreateConversation = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const { recipientId } = data;
+    if (!recipientId) {
+        throw new functions.https.HttpsError("invalid-argument", "A recipientId must be provided.");
+    }
+
+    const uid = context.auth.uid;
+    if (uid === recipientId) {
+         throw new functions.https.HttpsError("invalid-argument", "Cannot start a conversation with yourself.");
+    }
+
+    const participantIds = [uid, recipientId].sort(); // Sort to ensure consistent query ID
+    
+    const conversationsRef = db.collection('conversations');
+    const q = conversationsRef.where('participantIds', '==', participantIds);
+    
+    const snapshot = await q.get();
+
+    if (!snapshot.empty) {
+        // Conversation already exists
+        const doc = snapshot.docs[0];
+        return { conversationId: doc.id, isNew: false };
+    } else {
+        // Create new conversation
+        const [userProfile, recipientProfile] = await Promise.all([
+            getProfileByIdFromDB(uid),
+            getProfileByIdFromDB(recipientId)
+        ]);
+        
+        if (!userProfile || !recipientProfile) {
+            throw new functions.https.HttpsError("not-found", "One or both user profiles not found.");
+        }
+
+        const newConversation = {
+            participantIds,
+            participantInfo: {
+                [uid]: { name: userProfile.name, avatarUrl: userProfile.avatarUrl || null },
+                [recipientId]: { name: recipientProfile.name, avatarUrl: recipientProfile.avatarUrl || null }
+            },
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+            lastMessage: "Conversation started.",
+        };
+        const newConvoRef = await conversationsRef.add(newConversation);
+        return { conversationId: newConvoRef.id, isNew: true };
+    }
+});
+
+/**
+ * Fetches comments for a specific main feed post.
+ */
+export const getCommentsForPost = functions.https.onCall(async (data, context) => {
+    const { postId } = data;
+    if (!postId) {
+        throw new functions.https.HttpsError("invalid-argument", "A postId must be provided.");
+    }
+
+    try {
+        let query = db.collection(`posts/${postId}/comments`)
+                      .orderBy("createdAt", "asc")
+                      .limit(REPLIES_PER_PAGE); // Reuse reply limit
+
+        const commentsSnapshot = await query.get();
+        const comments = commentsSnapshot.docs.map(doc => {
+            const commentData = doc.data();
+            return {
+                id: doc.id,
+                ...commentData,
+                createdAt: commentData.createdAt?.toDate ? commentData.createdAt.toDate().toISOString() : new Date().toISOString(),
+            };
+        });
+        
+        return { comments };
+    } catch (error) {
+        console.error(`Error fetching comments for post ${postId}:`, error);
+        throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
+    }
+});
     

@@ -3,19 +3,21 @@
 
 import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Send, Search, MessageSquare, Loader2 } from "lucide-react";
+import { Send, Search, MessageSquare, Loader2, ArrowLeft } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from '@/lib/utils';
-import type { Conversation, Message } from '@/lib/types';
+import type { Conversation, Message, UserProfile } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
+import { getProfileByIdFromDB } from '@/lib/db-utils';
+import Link from 'next/link';
 
 const functions = getFunctions(firebaseApp);
 const getConversationsCallable = httpsCallable(functions, 'getConversationsForUser');
@@ -36,6 +38,8 @@ function MessagingContent() {
     const [isLoadingMessages, setIsLoadingMessages] = useState(false);
     const [newMessage, setNewMessage] = useState("");
     const [isSending, setIsSending] = useState(false);
+    const [recipientProfile, setRecipientProfile] = useState<UserProfile | null>(null);
+
 
     const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +90,9 @@ function MessagingContent() {
                     if (existingConvo) {
                         await handleConversationSelect(existingConvo);
                     } else {
+                        // It's a new conversation, fetch recipient profile for header
+                        const profile = await getProfileByIdFromDB(recipientId);
+                        setRecipientProfile(profile);
                         const result = await getOrCreateConversationCallable({ recipientId });
                         const { conversationId } = result.data as { conversationId: string };
                         const newConvResult = await getConversationsCallable();
@@ -108,7 +115,8 @@ function MessagingContent() {
         };
 
         fetchInitialData();
-    }, [user, authLoading, searchParams, toast, handleConversationSelect]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user, authLoading, searchParams, toast]);
     
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -130,6 +138,12 @@ function MessagingContent() {
 
         try {
             await sendMessageCallable({ conversationId: selectedConversation.id, content: originalMessage });
+             // After sending, update the conversation list to show the new last message
+            setConversations(prev => prev.map(c => 
+                c.id === selectedConversation.id 
+                ? { ...c, lastMessage: originalMessage, lastMessageTimestamp: new Date().toISOString() } 
+                : c
+            ).sort((a, b) => new Date(b.lastMessageTimestamp).getTime() - new Date(a.lastMessageTimestamp).getTime()));
         } catch (error) {
             console.error("Failed to send message", error);
             toast({ variant: "destructive", title: "Send Failed", description: "Your message could not be sent." });
@@ -155,10 +169,12 @@ function MessagingContent() {
         );
     }
 
+    const conversationHeaderProfile = selectedConversation?.participant || recipientProfile;
+
     return (
         <Card className="h-[calc(100vh-8rem)] grid grid-cols-1 md:grid-cols-[300px_1fr] overflow-hidden">
             {/* Conversations List Panel */}
-            <div className="flex flex-col border-r h-full">
+            <div className={cn("flex flex-col border-r h-full", selectedConversation && "hidden md:flex")}>
                 <div className="p-4 border-b">
                     <h2 className="text-xl font-semibold">Messages</h2>
                     <div className="relative mt-2">
@@ -185,7 +201,7 @@ function MessagingContent() {
                             >
                                 <Avatar>
                                     <AvatarImage src={convo.participant.avatarUrl} data-ai-hint="profile agriculture" />
-                                    <AvatarFallback>{convo.participant.name.substring(0,2)}</AvatarFallback>
+                                    <AvatarFallback>{convo.participant.name?.substring(0,2) ?? '??'}</AvatarFallback>
                                 </Avatar>
                                 <div className="flex-grow overflow-hidden">
                                     <div className="flex justify-between">
@@ -205,15 +221,18 @@ function MessagingContent() {
             </div>
 
             {/* Active Chat Panel */}
-            <div className="flex flex-col h-full bg-muted/30">
-                {selectedConversation ? (
+            <div className={cn("flex flex-col h-full bg-muted/30", !selectedConversation && "hidden md:flex")}>
+                {conversationHeaderProfile ? (
                     <>
                         <div className="p-4 border-b flex items-center gap-3 bg-background">
+                            <Button variant="ghost" size="icon" className="md:hidden h-7 w-7 mr-2" onClick={() => setSelectedConversation(null)}>
+                                <ArrowLeft className="h-4 w-4"/>
+                            </Button>
                             <Avatar>
-                                <AvatarImage src={selectedConversation.participant.avatarUrl} data-ai-hint="profile person agriculture" />
-                                <AvatarFallback>{selectedConversation.participant.name.substring(0,2)}</AvatarFallback>
+                                <AvatarImage src={conversationHeaderProfile.avatarUrl} data-ai-hint="profile person agriculture" />
+                                <AvatarFallback>{conversationHeaderProfile.name?.substring(0,2) ?? '??'}</AvatarFallback>
                             </Avatar>
-                            <h3 className="font-semibold">{selectedConversation.participant.name}</h3>
+                            <h3 className="font-semibold">{conversationHeaderProfile.name}</h3>
                         </div>
                         <ScrollArea className="flex-grow p-4" ref={scrollAreaRef}>
                             {isLoadingMessages ? (
@@ -227,12 +246,12 @@ function MessagingContent() {
                                             "flex gap-2 items-end",
                                             msg.senderId === user.uid ? "justify-end" : "justify-start"
                                         )}>
-                                            {msg.senderId !== user.uid && <Avatar className="h-6 w-6"><AvatarImage src={selectedConversation.participant.avatarUrl}/><AvatarFallback>{selectedConversation.participant.name.substring(0,1)}</AvatarFallback></Avatar>}
+                                            {msg.senderId !== user.uid && <Avatar className="h-6 w-6"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
                                             <div className={cn(
                                                 "p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm",
                                                 msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none"
                                             )}>
-                                                {msg.content}
+                                                <p className="whitespace-pre-wrap">{msg.content}</p>
                                             </div>
                                              {msg.senderId === user.uid && <Avatar className="h-6 w-6"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
                                         </div>
