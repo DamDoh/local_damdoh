@@ -17,12 +17,13 @@ import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data"
 import { FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from "@/lib/constants";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { useAuth } from "@/lib/auth-utils";
+import { Share2, ClipboardCopy } from "lucide-react";
 
 
 // Function to get the category icon (can be reused from marketplace page)
@@ -188,6 +189,12 @@ export default function MarketplaceItemDetailPage() {
     }
     return singleItemPrice * quantity;
   };
+  
+  const handleShareItem = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({ title: "Link Copied!", description: "A shareable link to this listing has been copied to your clipboard." });
+  };
+
 
   if (isLoading) {
     return <ItemDetailSkeleton />;
@@ -255,20 +262,29 @@ export default function MarketplaceItemDetailPage() {
             </div>
         </div>
         <CardHeader>
-          <CardTitle className="text-3xl font-bold">{item.name}</CardTitle>
-          <CardDescription className="text-lg text-primary flex items-center">
-             <Badge variant="outline" className="text-sm w-fit py-1 px-2 flex items-center capitalize mr-2">
-              {getCategoryIcon(item.category as any)} {getCategoryName(item.category as CategoryNode['id'])}
-            </Badge>
-            {item.listingType === 'Product' ? (
+            <div className="flex flex-col sm:flex-row justify-between items-start">
                 <div>
-                  {item.price ? `$${item.price.toFixed(2)}` : 'Price Inquire'}
-                  {item.perUnit && <span className="text-base text-muted-foreground font-normal ml-1.5">{item.perUnit}</span>}
+                    <CardTitle className="text-3xl font-bold">{item.name}</CardTitle>
+                    <CardDescription className="text-lg text-primary flex items-center mt-1">
+                        <Badge variant="outline" className="text-sm w-fit py-1 px-2 flex items-center capitalize mr-2">
+                        {getCategoryIcon(item.category as any)} {getCategoryName(item.category as CategoryNode['id'])}
+                        </Badge>
+                        {item.listingType === 'Product' ? (
+                            <div>
+                            {item.price ? `$${item.price.toFixed(2)}` : 'Price Inquire'}
+                            {item.perUnit && <span className="text-base text-muted-foreground font-normal ml-1.5">{item.perUnit}</span>}
+                            </div>
+                        ) : (
+                        item.compensation && <span className="text-base font-medium">{item.compensation}</span>
+                        )}
+                    </CardDescription>
                 </div>
-            ) : (
-              item.compensation && <span className="text-base font-medium">{item.compensation}</span>
-            )}
-          </CardDescription>
+                <div className="mt-2 sm:mt-0">
+                    <Button variant="outline" size="sm" onClick={handleShareItem}>
+                        <Share2 className="mr-2 h-4 w-4"/>Share
+                    </Button>
+                </div>
+            </div>
            {item.aiPriceSuggestion && item.listingType === 'Product' && (
              <div className="text-sm text-blue-600 flex items-center mt-2">
                <Sparkles className="h-4 w-4 mr-1" />
@@ -349,7 +365,7 @@ export default function MarketplaceItemDetailPage() {
           <Separator />
           
           <div className="space-y-2" id="inquire-order">
-            <h3 className="text-lg font-semibold flex items-center gap-1.5"><CalendarDays className="h-4 w-4 text-muted-foreground"/>Contact & Next Steps</h3>
+            <h3 className="text-lg font-semibold flex items-center gap-1.5"><CalendarDays className="h-4 w-4 text-muted-foreground"/>Contact &amp; Next Steps</h3>
             <p className="text-muted-foreground text-sm">{item.contactInfo}</p>
              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
@@ -428,7 +444,7 @@ export default function MarketplaceItemDetailPage() {
                 {seller ? (
                   <>
                     <Avatar>
-                      <AvatarImage src={seller.avatarUrl} alt={seller.name} data-ai-hint="profile agriculture person" />
+                      <AvatarImage src={seller.photoURL} alt={seller.name} data-ai-hint="profile agriculture person" />
                       <AvatarFallback>{seller.name.substring(0,1)}</AvatarFallback>
                     </Avatar>
                     <div>
