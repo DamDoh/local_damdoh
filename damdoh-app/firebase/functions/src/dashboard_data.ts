@@ -160,27 +160,47 @@ export const getFiDashboardData = functions.https.onCall(
         "The function must be called while authenticated.",
       );
     }
-    // Returning mock data to power the new dashboard UI
-    const mockData: FiDashboardData = {
-      pendingApplications: [
-        { id: "app1", applicantName: "Green Valley Farms", type: "Crop Loan", amount: 25000, riskScore: 720, actionLink: "/applications/app1" },
-        { id: "app2", applicantName: "Sunrise Cooperative", type: "Equipment Financing", amount: 150000, riskScore: 680, actionLink: "/applications/app2" },
-      ],
-      portfolioAtRisk: {
-        count: 12,
-        value: 45000,
-        highestRisk: {
-          name: "Dry Season Farmers Group",
-          reason: "Drought warning in region.",
-        },
-        actionLink: "/risk/analysis/q4",
-      },
-      marketUpdates: [
-        { id: "update1", content: "Central Bank raises interest rates by 0.25%.", actionLink: "/news/cbr-rates-q4" },
-        { id: "update2", content: "New government subsidy announced for organic farming inputs.", actionLink: "/news/organic-subsidy" },
-      ]
-    };
-    return mockData;
+    // Live data for pending applications, mock for the rest
+    try {
+        const farmersSnapshot = await db.collection("users")
+            .where("primaryRole", "==", "Farmer")
+            .limit(4) // Fetch a few farmers to act as applicants
+            .get();
+
+        const pendingApplications = farmersSnapshot.docs.map(doc => {
+            const farmerData = doc.data();
+            return {
+                id: doc.id,
+                applicantName: farmerData.displayName || "Unnamed Farmer",
+                type: Math.random() > 0.5 ? "Crop Loan" : "Equipment Financing",
+                amount: Math.floor(Math.random() * (100000 - 5000 + 1) + 5000),
+                riskScore: Math.floor(Math.random() * (800 - 600 + 1) + 600), // Random score
+                actionLink: `/applications/${doc.id}`
+            };
+        });
+
+        const liveData: FiDashboardData = {
+            pendingApplications: pendingApplications,
+            portfolioAtRisk: {
+                count: 12,
+                value: 45000,
+                highestRisk: {
+                    name: "Dry Season Farmers Group",
+                    reason: "Drought warning in region.",
+                },
+                actionLink: "/risk/analysis/q4",
+            },
+            marketUpdates: [
+                { id: "update1", content: "Central Bank raises interest rates by 0.25%.", actionLink: "/news/cbr-rates-q4" },
+                { id: "update2", content: "New government subsidy announced for organic farming inputs.", actionLink: "/news/organic-subsidy" },
+            ]
+        };
+        return liveData;
+
+    } catch (error) {
+        console.error("Error fetching FI dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
+    }
   },
 );
 

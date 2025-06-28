@@ -1041,4 +1041,3 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
     }
 });
-    
