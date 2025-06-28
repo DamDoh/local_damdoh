@@ -24,7 +24,7 @@ import {
   Briefcase,
   LogIn, 
   UserPlus,
-  X, // Added X icon import
+  X,
   Fingerprint
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
@@ -47,6 +47,7 @@ import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface NavLinkProps {
   href: string;
@@ -92,6 +93,28 @@ const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ 
   );
 };
 
+function HeaderSkeleton() {
+  return (
+    <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm print:hidden">
+      {/* Desktop Skeleton */}
+      <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Skeleton className="h-8 w-32 bg-white/20" />
+        <Skeleton className="h-9 w-96 bg-white/20" />
+        <div className="flex items-center gap-4">
+          <Skeleton className="h-8 w-48 bg-white/20" />
+          <Skeleton className="h-9 w-9 rounded-full bg-white/20" />
+        </div>
+      </div>
+      {/* Mobile Skeleton */}
+      <div className="md:hidden container mx-auto flex h-14 items-center justify-between px-4">
+        <Skeleton className="h-8 w-8 bg-white/20" />
+        <Skeleton className="h-6 w-32 bg-white/20" />
+        <Skeleton className="h-8 w-8 bg-white/20" />
+      </div>
+    </header>
+  );
+}
+
 
 export function AppHeader() {
   const { t } = useTranslation('common');
@@ -99,6 +122,12 @@ export function AppHeader() {
   const router = useRouter();
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth(); 
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const desktopNavItems = [
     { href: "/", icon: Home, label: t('home') },
@@ -186,6 +215,10 @@ export function AppHeader() {
   };
 
   const sectionTitle = getSectionTitle();
+
+  if (!isMounted) {
+    return <HeaderSkeleton />;
+  }
 
   return (
     <>
@@ -312,3 +345,4 @@ export function AppHeader() {
     </>
   );
 }
+
