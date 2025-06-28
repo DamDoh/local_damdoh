@@ -1,14 +1,17 @@
 
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide } from "lucide-react"; 
+import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe } from "lucide-react"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Textarea } from "@/components/ui/textarea";
 import { STAKEHOLDER_ROLES } from "@/lib/constants"; 
 
@@ -284,6 +287,13 @@ export default function SettingsPage() {
                         <p className="text-sm text-muted-foreground">Select your preferred theme (Light/Dark).</p>
                     </div>
                     <ThemeToggle />
+                </div>
+                <div className="flex items-center justify-between rounded-lg border p-4">
+                    <div>
+                        <p className="font-medium">Language</p>
+                        <p className="text-sm text-muted-foreground">Choose your preferred language for the interface.</p>
+                    </div>
+                    <LanguageSwitcher />
                 </div>
             </CardContent>
           </Card>

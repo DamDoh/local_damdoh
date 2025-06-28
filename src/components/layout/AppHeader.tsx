@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -40,7 +41,6 @@ import { APP_NAME } from "@/lib/constants";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface NavLinkProps {
@@ -221,8 +221,6 @@ export function AppHeader() {
               </>
             )}
             <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
-              <LanguageSwitcher />
-              <HeaderThemeToggle />
               {authLoading ? (
                 <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
               ) : user ? (
@@ -284,7 +282,6 @@ export function AppHeader() {
               </nav>
               <Separator />
               <div className="p-4 space-y-3 border-t">
-                <HeaderThemeToggle />
                 {user && (
                   <Button variant="outline" className="w-full" onClick={handleLogout}>
                     <LogOut className="mr-2 h-4 w-4" /> {t('logOut')}
