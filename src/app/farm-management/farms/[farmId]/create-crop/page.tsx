@@ -72,13 +72,13 @@ export default function CreateCropPage() {
 
     try {
       const payload = {
-        farm_id: farmId,
-        owner_id: user.uid, // The backend will verify this against the auth context
-        crop_type: data.cropType,
-        planting_date: data.plantingDate?.toISOString(),
-        harvest_date: data.harvestDate?.toISOString(),
-        expected_yield: data.expectedYield,
-        current_stage: data.currentStage,
+        farmId: farmId,
+        ownerId: user.uid, // The backend will verify this against the auth context
+        cropType: data.cropType,
+        plantingDate: data.plantingDate?.toISOString(),
+        harvestDate: data.harvestDate?.toISOString(),
+        expectedYield: data.expectedYield,
+        currentStage: data.currentStage,
         notes: data.notes,
       };
 
@@ -152,12 +152,12 @@ export default function CreateCropPage() {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-full pl-3 text-left font-normal",
+                                "w-full justify-start text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}
                             >
+                              <CalendarIcon className="mr-2 h-4 w-4" />
                               {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -186,12 +186,12 @@ export default function CreateCropPage() {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-full pl-3 text-left font-normal",
+                                "w-full justify-start text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}
                             >
+                               <CalendarIcon className="mr-2 h-4 w-4" />
                               {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>

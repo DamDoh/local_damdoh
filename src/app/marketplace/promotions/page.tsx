@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
-import { ArrowLeft, Loader2, Share2, ClipboardCopy, Ticket, Home } from 'lucide-react';
+import { Loader2, Share2, ClipboardCopy, Ticket, Home } from 'lucide-react';
 import type { MarketplaceCoupon } from '@/lib/types';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -110,7 +110,12 @@ export default function MarketplacePromotionsPage() {
                                         <FormField control={form.control} name="discountValue" render={({ field }) => ( <FormItem> <FormLabel>Discount Value</FormLabel> <FormControl> <Input type="number" placeholder="e.g., 10 or 15.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} /> </FormControl> <FormMessage /> </FormItem> )} />
                                         <FormField control={form.control} name="usageLimit" render={({ field }) => ( <FormItem> <FormLabel>Usage Limit (Optional)</FormLabel> <FormControl> <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))}/> </FormControl> <FormMessage /> </FormItem> )} />
                                    </div>
-                                    <FormField control={form.control} name="expiresAt" render={({ field }) => ( <FormItem className="flex flex-col"> <FormLabel>Expiration Date (Optional)</FormLabel> <Popover> <PopoverTrigger asChild> <FormControl> <Button variant={"outline"} className={cn("pl-3 text-left font-normal", !field.value && "text-muted-foreground")}> {field.value ? format(field.value, "PPP") : <span>Pick a date</span>} <CalendarIcon className="ml-auto h-4 w-4 opacity-50" /> </Button> </FormControl> </PopoverTrigger> <PopoverContent className="w-auto p-0" align="start"> <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date()} initialFocus /> </PopoverContent> </Popover> <FormMessage /> </FormItem> )} />
+                                    <FormField control={form.control} name="expiresAt" render={({ field }) => ( <FormItem className="flex flex-col"> <FormLabel>Expiration Date (Optional)</FormLabel> <Popover> <PopoverTrigger asChild> <FormControl>
+                                        <Button variant={"outline"} className={cn("w-full justify-start text-left font-normal", !field.value && "text-muted-foreground")}>
+                                            <CalendarIcon className="mr-2 h-4 w-4" />
+                                            {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                                        </Button>
+                                    </FormControl> </PopoverTrigger> <PopoverContent className="w-auto p-0" align="start"> <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date()} initialFocus /> </PopoverContent> </Popover> <FormMessage /> </FormItem> )} />
                                     <Button type="submit" disabled={form.formState.isSubmitting}> {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>} Create Coupon </Button>
                                 </form>
                             </Form>

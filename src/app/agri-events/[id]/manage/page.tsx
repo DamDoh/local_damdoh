@@ -174,9 +174,9 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                         <Popover>
                                           <PopoverTrigger asChild>
                                             <FormControl>
-                                              <Button variant={"outline"} className={cn("pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                                              <Button variant={"outline"} className={cn("w-full justify-start text-left font-normal", !field.value && "text-muted-foreground")}>
+                                                <CalendarIcon className="mr-2 h-4 w-4" />
                                                 {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                               </Button>
                                             </FormControl>
                                           </PopoverTrigger>
