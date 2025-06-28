@@ -1,8 +1,9 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { MarketplaceCoupon, MarketplaceItem, Shop } from "./types";
+import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "./types";
 import { _internalInitiatePayment } from "./module7";
+import { getProfileByIdFromDB } from "./profiles";
 
 const db = admin.firestore();
 
@@ -366,4 +367,74 @@ export const getListingsBySeller = functions.https.onCall(async (data, context) 
     console.error(`Error fetching listings for seller ${sellerId}:`, error);
     throw new functions.https.HttpsError("internal", "Could not fetch seller's listings.");
   }
+});
+
+/**
+ * Creates a new marketplace order.
+ * @param {any} data The data for the new order.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{orderId: string, message: string}>} A promise that resolves with the new order ID.
+ */
+export const createMarketplaceOrder = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to place an order.");
+    }
+    
+    const buyerId = context.auth.uid;
+    const { listingId, quantity, finalPrice } = data;
+
+    if (!listingId || !quantity || finalPrice === undefined) {
+        throw new functions.https.HttpsError("invalid-argument", "Listing ID, quantity, and final price are required.");
+    }
+
+    try {
+        const listingRef = db.collection('marketplaceItems').doc(listingId);
+        const listingSnap = await listingRef.get();
+        if (!listingSnap.exists) {
+            throw new functions.https.HttpsError("not-found", "The listing you are trying to order from does not exist.");
+        }
+        
+        const listingData = listingSnap.data() as MarketplaceItem;
+        
+        // In a real app, you would check stock quantity here if applicable.
+        // if (listingData.stockQuantity && quantity > listingData.stockQuantity) {
+        //     throw new functions.https.HttpsError("failed-precondition", "Not enough stock available.");
+        // }
+        
+        const newOrderRef = db.collection('marketplace_orders').doc();
+        
+        const newOrder: Omit<MarketplaceOrder, 'id'> = {
+            listingId: listingId,
+            listingName: listingData.name,
+            listingImageUrl: listingData.imageUrl || null,
+            buyerId: buyerId,
+            sellerId: listingData.sellerId,
+            quantity: quantity,
+            totalPrice: finalPrice,
+            currency: listingData.currency || 'USD',
+            status: 'pending', // Initial status
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+
+        await newOrderRef.set(newOrder);
+
+        // Conceptually, trigger payment flow
+        if (finalPrice > 0) {
+            await _internalInitiatePayment({
+                orderId: newOrderRef.id,
+                amount: finalPrice,
+                currency: newOrder.currency,
+                buyerInfo: { userId: buyerId },
+                sellerInfo: { userId: newOrder.sellerId },
+                description: `Order for ${quantity}x ${listingData.name}`,
+            });
+        }
+        
+        return { orderId: newOrderRef.id, message: "Order placed successfully!" };
+    } catch (error: any) {
+        console.error("Error creating marketplace order:", error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "Could not create order.");
+    }
 });
