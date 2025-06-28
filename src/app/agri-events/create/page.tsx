@@ -127,9 +127,11 @@ export default function CreateAgriEventPage() {
 
   return (
     <div className="space-y-6">
-      <Link href="/agri-events" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Agri-Business Events
-      </Link>
+      <Button asChild variant="outline" className="mb-4">
+        <Link href="/agri-events">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Agri-Business Events
+        </Link>
+      </Button>
 
       {submissionStatus === 'success' && createdEvent ? (
         <Card className="max-w-2xl mx-auto text-center">
@@ -211,22 +213,16 @@ export default function CreateAgriEventPage() {
                         <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Event Date</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
+                            <Button
                                 variant={"outline"}
                                 className={cn(
-                                  "w-full justify-start text-left font-normal",
-                                  !field.value && "text-muted-foreground"
+                                "w-full justify-start text-left font-normal",
+                                !field.value && "text-muted-foreground"
                                 )}
-                              >
+                            >
                                 <CalendarIcon className="mr-2 h-4 w-4" />
-                                {field.value ? (
-                                  format(field.value, "PPP")
-                                ) : (
-                                  <span>Pick a date</span>
-                                )}
-                              </Button>
-                            </FormControl>
+                                {field.value ? format(field.value, "PPP") : (<span>Pick a date</span>)}
+                            </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
@@ -438,7 +434,7 @@ export default function CreateAgriEventPage() {
                         </div>
                       </FormControl>
                        <FormDescription>
-                        Upload an image/banner from your device (max 5MB, JPG/PNG/WEBP).
+                        Upload an image from your device (max 5MB, JPG/PNG/WEBP).
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
