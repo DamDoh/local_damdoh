@@ -149,39 +149,13 @@ export function AppHeader() {
   };
 
   const getSectionTitle = () => {
-    if (pathname.endsWith("/")) return t('home');
-    const activeDesktopItem = desktopNavItems.find(item => pathname.includes(item.href) && item.href !== "/");
+    if (pathname === "/") return t('home');
+    const activeDesktopItem = desktopNavItems.find(item => item.href !== "/" && pathname.startsWith(item.href));
     if (activeDesktopItem) return activeDesktopItem.label;
     
-<<<<<<< HEAD
-    if (pathname.includes("/profiles/me/edit")) return "Edit Profile";
-    if (pathname.includes("/profiles/me")) return t('myProfile');
-    if (pathname.includes("/profiles/")) return "Profile Details";
-    if (pathname.includes("/marketplace/create")) return "Create Listing";
-    if (pathname.includes("/agri-events/create")) return "Create Event";
-    if (pathname.includes("/agri-events")) return "Agri-Events";
-    if (pathname.includes("/forums/create")) return "New Discussion";
-    if (pathname.includes("/forums/")) return "Forum Topic";
-    if (pathname.includes("/search")) return "Search Results";
-    if (pathname.includes("/traceability")) return t('traceability');
-    if (pathname.includes("/help-center")) return "Help Center";
-    if (pathname.includes("/about")) return "About Us";
-    if (pathname.includes("/contact")) return "Contact";
-    if (pathname.includes("/careers")) return "Careers";
-    if (pathname.includes("/blog")) return "Agri-Insights Blog";
-    if (pathname.includes("/community-guidelines")) return "Community Guidelines";
-    if (pathname.includes("/cookie-policy")) return "Cookie Policy";
-    if (pathname.includes("/privacy")) return "Privacy Policy";
-    if (pathname.includes("/terms")) return "Terms of Service";
-    if (pathname.includes("/pinboard")) return "My Pinboard";
-    if (pathname.includes("/wallet")) return t('wallet');
-    if (pathname.includes("/ai-assistant")) return "AI Farming Assistant";
-    if (pathname.includes("/auth/signin")) return t('signIn');
-    if (pathname.includes("/auth/signup")) return t('signUp');
-    if (pathname.includes("/auth/forgot-password")) return "Reset Password";
-=======
+    // Specific page titles
     if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
-    if (pathname.startsWith("/profiles/me")) return "My Profile";
+    if (pathname.startsWith("/profiles/me")) return t('myProfile');
     if (pathname.startsWith("/profiles/")) return "Profile Details";
     if (pathname.startsWith("/marketplace/create-shop")) return "Create Shop";
     if (pathname.startsWith("/marketplace/promotions")) return "Promotions";
@@ -191,6 +165,7 @@ export function AppHeader() {
     if (pathname.startsWith("/forums/create")) return "New Discussion";
     if (pathname.startsWith("/forums/")) return "Forum Topic";
     if (pathname.startsWith("/search")) return "Search Results";
+    if (pathname.startsWith("/traceability")) return t('traceability');
     if (pathname.startsWith("/help-center")) return "Help Center";
     if (pathname.startsWith("/about")) return "About Us";
     if (pathname.startsWith("/contact")) return "Contact";
@@ -201,13 +176,11 @@ export function AppHeader() {
     if (pathname.startsWith("/privacy")) return "Privacy Policy";
     if (pathname.startsWith("/terms")) return "Terms of Service";
     if (pathname.startsWith("/pinboard")) return "My Pinboard";
-    if (pathname.startsWith("/wallet")) return "Digital Wallet";
+    if (pathname.startsWith("/wallet")) return t('wallet');
     if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
     if (pathname.startsWith("/auth/signin")) return "Sign In";
     if (pathname.startsWith("/auth/signup")) return "Sign Up";
     if (pathname.startsWith("/auth/forgot-password")) return "Reset Password";
->>>>>>> Market-Place-Traceability
-
 
     return APP_NAME; 
   };

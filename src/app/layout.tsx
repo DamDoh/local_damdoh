@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { AppHeader } from "@/components/layout/AppHeader";
 import { AppFooter } from "@/components/layout/AppFooter";
@@ -23,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
           <div className="flex flex-col min-h-screen">
