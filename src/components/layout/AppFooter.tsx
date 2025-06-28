@@ -10,12 +10,12 @@ export function AppFooter() {
   return (
     <footer className="border-t border-border mt-12">
       {/* Top Section: Logo, Links - NOW GREEN BACKGROUND */}
-      <div className="bg-[#6ec33f] text-primary-foreground"> {/* Green background, light text */}
+      <div className="bg-[#8FBC8F] text-white"> {/* Updated to #8FBC8F */}
         <div className="container mx-auto max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="space-y-3 md:col-span-12 lg:col-span-3">
               <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-              <p className="text-sm text-primary-foreground/80"> {/* Lighter text for tagline */}
+              <p className="text-sm text-white/80"> {/* Lighter text for tagline */}
                 Bridging the agricultural supply chain for a thriving people, profit, and planet.
               </p>
             </div>
@@ -23,7 +23,7 @@ export function AppFooter() {
             <div className="md:col-span-12 lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-8">
               <div>
                 <h4 className="font-semibold mb-3 text-md text-white">DamDoh</h4>
-                <ul className="space-y-2 text-sm text-primary-foreground/90">
+                <ul className="space-y-2 text-sm text-white/90">
                   <li><Link href="/about" className="hover:text-white hover:underline transition-colors">About Us</Link></li>
                   <li><Link href="/contact" className="hover:text-white hover:underline transition-colors">Contact</Link></li>
                   <li><Link href="/careers" className="hover:text-white hover:underline transition-colors">Careers</Link></li>
@@ -32,7 +32,7 @@ export function AppFooter() {
               </div>
               <div>
                 <h4 className="font-semibold mb-3 text-md text-white">Resources</h4>
-                <ul className="space-y-2 text-sm text-primary-foreground/90">
+                <ul className="space-y-2 text-sm text-white/90">
                   <li><Link href="/help-center" className="hover:text-white hover:underline transition-colors">Help Center</Link></li>
                   <li><Link href="/community-guidelines" className="hover:text-white hover:underline transition-colors">Community Guidelines</Link></li>
                   <li><Link href="/industry-news" className="hover:text-white hover:underline transition-colors">Industry News</Link></li>
@@ -41,10 +41,9 @@ export function AppFooter() {
               </div>
               <div>
                 <h4 className="font-semibold mb-3 text-md text-white">Legal</h4>
-                <ul className="space-y-2 text-sm text-primary-foreground/90">
+                <ul className="space-y-2 text-sm text-white/90">
                   <li><Link href="/privacy" className="hover:text-white hover:underline transition-colors">Privacy Policy</Link></li>
                   <li><Link href="/terms" className="hover:text-white hover:underline transition-colors">Terms of Service</Link></li>
-                  <li><Link href="/cookie-policy" className="hover:text-white hover:underline transition-colors">Cookie Policy</Link></li>
                 </ul>
               </div>
             </div>
@@ -58,9 +57,6 @@ export function AppFooter() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
               <p className="text-sm">&copy; {currentYear} {APP_NAME}. All rights reserved.</p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Bridging the agricultural supply chain for a thriving people, profit, and planet.
-              </p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-3">
               <p className="text-md font-medium">Get Our Mobile App</p>

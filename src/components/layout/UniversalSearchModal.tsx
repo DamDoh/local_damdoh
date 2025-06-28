@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Bot, User, Search, Send, Sparkles, ShoppingCart, Users, MessageSquare, Briefcase, Building, FileText } from 'lucide-react';
+import { Bot, User, Search, Send, Sparkles, ShoppingCart, Users, MessageSquare, Briefcase, Building, FileText, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { performSearch as performSearchFunction } from '@/lib/search-actions';

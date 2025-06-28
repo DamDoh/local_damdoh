@@ -5,9 +5,9 @@
 
 @layer base {
   :root {
-    /* DamDoh.org Inspired Light Theme */
-    --background: 48 57% 96%; /* #F9F7F1 */
-    --foreground: 70 60% 12%; /* #1E2601 */
+    /* DamDoh.org Inspired Light Theme - REVISED */
+    --background: 60 56% 96%; /* #F5F5DC - Light Beige */
+    --foreground: 70 60% 12%; /* #1E2601 - Dark, earthy green/black */
 
     --card: 0 0% 100%; /* White cards for contrast */
     --card-foreground: 70 60% 12%;
@@ -15,88 +15,68 @@
     --popover: 0 0% 100%;
     --popover-foreground: 70 60% 12%;
 
-    --primary: 80 57% 51%; /* #6ec33f - Using HSL approximation */
-    --primary-foreground: 0 0% 100%; /* #ffffff */
+    --primary: 120 27% 65%; /* #8FBC8F - Earthy Green */
+    --primary-foreground: 210 40% 98%; /* Almost white text on primary */
 
-    --secondary: 39 77% 39%; /* #b8860b - DarkGoldenrod HSL approximation */
-    --secondary-foreground: 0 0% 100%; /* #ffffff */
+    --secondary: 40 100% 49%; /* #DAA520 - Warm Gold (used for some highlights) */
+    --secondary-foreground: 70 60% 12%; 
 
-    --muted: 48 24% 82%; /* #e0d8c4 - HSL approximation */
-    --muted-foreground: 70 10% 34%; /* #5a624a - HSL approximation */
+    --muted: 60 30% 90%; /* #E8E8E0 - Lighter Beige */
+    --muted-foreground: 60 10% 35%; /* #5A5A4D - Muted Green/Brown Text */
 
-    --accent: 40 100% 49%; /* #DAA520 - Warm Gold HSL approximation */
-    --accent-foreground: 70 60% 12%; /* #1E2601 */
+    --accent: 28 58% 66%; /* #D4A27A - Warm Gold Accent */
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 70% 55%; /* Standard Red */
-    --destructive-foreground: 0 0% 98%; /* White text on destructive */
+    --destructive: 0 84% 60%; /* Standard Red for errors */
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 48 16% 85%; /* #d3cbbd - HSL approximation */
-    --input: 0 0% 100%; /* #ffffff */
-    --ring: 80 57% 51%; /* #6ec33f */
+    --border: 60 15% 85%; /* #DCDCD1 - Light border */
+    --input: 60 50% 98%; /* #FDFDFB - Very light input background */
+    --ring: 120 27% 65%; /* #8FBC8F - Ring color matches primary */
 
-    --chart-1: 80 57% 51%;
-    --chart-2: 80 57% 65%;
-    --chart-3: 70 40% 50%;
-    --chart-4: 70 40% 60%;
-    --chart-5: 48 40% 70%;
+    --chart-1: 120 27% 65%;
+    --chart-2: 28 58% 66%;
+    --chart-3: 120 27% 80%;
+    --chart-4: 28 58% 80%;
+    --chart-5: 70 40% 60%;
     --radius: 0.5rem;
-
-    /* Sidebar specific theme - may need adjustments if sidebar styles are used differently */
-    --sidebar-background: 48 50% 94%; /* Light beige, similar to input */
-    --sidebar-foreground: 70 60% 12%; 
-    --sidebar-primary: 80 57% 51%; 
-    --sidebar-primary-foreground: 80 60% 97%; 
-    --sidebar-accent: 48 40% 90%; 
-    --sidebar-accent-foreground: 70 60% 12%; 
-    --sidebar-border: 70 20% 85%; 
-    --sidebar-ring: 80 57% 55%;
   }
 
   .dark {
-    /* LinkedIn Dark Theme Inspired (Previous) */
-    --background: 224 71.4% 4.1%; /* Dark Blue */
-    --foreground: 210 20% 98%; /* Almost White Text */
+    /* A complementary dark theme */
+    --background: 222 47% 11%; 
+    --foreground: 210 40% 98%;
 
-    --card: 224 71.4% 4.1%; /* Same as background for seamless look */
-    --card-foreground: 210 20% 98%;
+    --card: 222 47% 14%; /* Slightly lighter than background */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%; /* White */
-    --primary-foreground: 220.9 39.3% 11%; /* Dark Blue Text on White Primary */
+    --primary: 120 27% 55%; /* #7AAB7A - Muted dark green */
+    --primary-foreground: 210 40% 98%;
     
-    --secondary: 215 27.9% 16.9%; /* Slightly Lighter Dark Blue */
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 28 58% 56%; /* #C28E5F - Muted dark gold */
+    --secondary-foreground: 210 40% 98%;
     
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 215 20.7% 65.1%; /* Lighter Gray Muted Text */
+    --muted: 222 47% 18%;
+    --muted-foreground: 215 20% 65%; 
     
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 28 58% 66%;
+    --accent-foreground: 222 47% 11%;
     
-    --destructive: 0 62.8% 30.6%; /* Darker Red */
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 63% 31%; 
+    --destructive-foreground: 210 40% 98%;
     
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 210 40% 98%; /* White for focus rings */
+    --border: 222 47% 18%;
+    --input: 222 47% 16%;
+    --ring: 120 27% 55%;
     
-    --chart-1: 210 40% 98%;
-    --chart-2: 140 50% 60%;
-    --chart-3: 30 80% 60%;
-    --chart-4: 280 70% 70%;
-    --chart-5: 50 70% 60%;
-
-    /* Sidebar specific dark theme - may need adjustments */
-    --sidebar-background: 224 71.4% 5.5%; /* Slightly lighter than main dark bg */
-    --sidebar-foreground: 210 20% 95%; 
-    --sidebar-primary: 210 40% 98%; 
-    --sidebar-primary-foreground: 220.9 39.3% 11%; 
-    --sidebar-accent: 215 27.9% 20%; 
-    --sidebar-accent-foreground: 210 20% 98%; 
-    --sidebar-border: 215 27.9% 16.9%; 
-    --sidebar-ring: 210 40% 98%;
+    --chart-1: 120 27% 55%;
+    --chart-2: 28 58% 56%;
+    --chart-3: 120 27% 40%;
+    --chart-4: 28 58% 40%;
+    --chart-5: 215 20% 65%;
   }
 }
 
