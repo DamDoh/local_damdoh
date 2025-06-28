@@ -1,3 +1,4 @@
+
 'use server';
 
 import {ai} from '@/ai/genkit';
@@ -48,7 +49,7 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
       console.log(`[fgwKnfKnowledgeTool] Found matching technique: "${result.name}".`);
       return result; // Return the entire document data.
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('[fgwKnfKnowledgeTool] Error searching Firestore:', error);
       throw new Error('Failed to search the KNF knowledge base. Ensure the "knowledge_base" collection exists and has the correct permissions.');
     }
