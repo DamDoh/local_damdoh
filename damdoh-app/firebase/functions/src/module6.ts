@@ -999,8 +999,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
         const newConversation = {
             participantIds,
             participantInfo: {
-                [uid]: { name: userProfile.name, avatarUrl: userProfile.avatarUrl || null },
-                [recipientId]: { name: recipientProfile.name, avatarUrl: recipientProfile.avatarUrl || null }
+                [uid]: { name: userProfile.displayName, avatarUrl: userProfile.photoURL || null },
+                [recipientId]: { name: recipientProfile.displayName, avatarUrl: recipientProfile.photoURL || null }
             },
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),

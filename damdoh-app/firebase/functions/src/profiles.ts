@@ -139,3 +139,26 @@ export async function getUserDocument(
     return null;
   }
 }
+
+
+/**
+ * Helper function to get a user's profile from Firestore by their ID.
+ * This is intended for use by other backend functions.
+ * @param {string} uid The user's ID.
+ * @return {Promise<any | null>} The user's profile data or null if not found.
+ */
+export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
+    if (!uid) {
+        return null;
+    }
+    try {
+        const userDoc = await db.collection("users").doc(uid).get();
+        if (!userDoc.exists) {
+            return null;
+        }
+        return userDoc.data();
+    } catch (error) {
+        console.error(`Error fetching user profile for uid: ${uid}`, error);
+        return null;
+    }
+}
