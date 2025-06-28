@@ -49,8 +49,8 @@ export default function ManageOrdersPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [updatingStatus, setUpdatingStatus] = useState<Record<string, boolean>>({});
 
-    const getSellerOrders = useMemo(() => httpsCallable(functions, 'getSellerOrders'), [functions]);
-    const updateOrderStatus = useMemo(() => httpsCallable(functions, 'updateOrderStatus'), [functions]);
+    const getSellerOrders = useMemo(() => httpsCallable(functions, 'getSellerOrders'), []);
+    const updateOrderStatus = useMemo(() => httpsCallable(functions, 'updateOrderStatus'), []);
 
     const fetchOrders = useCallback(async () => {
         setIsLoading(true);
@@ -154,11 +154,11 @@ export default function ManageOrdersPage() {
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <span title={new Date(order.createdAt as string).toLocaleString()}>{formatDistanceToNow(new Date(order.createdAt as string), { addSuffix: true })}</span>
+                                            <span title={new Date(order.createdAt as string).toLocaleString()}>{order.createdAt ? formatDistanceToNow(new Date(order.createdAt as string), { addSuffix: true }) : 'N/A'}</span>
                                         </TableCell>
                                         <TableCell className="font-semibold">{order.currency} {order.totalPrice.toFixed(2)}</TableCell>
                                         <TableCell>
-                                            <Badge variant={getStatusBadgeVariant(order.status as OrderStatus)} className={getStatusBadgeClass(order.status as OrderStatus)}>
+                                            <Badge variant={getStatusBadgeVariant(order.status as OrderStatus)} className={cn(getStatusBadgeClass(order.status as OrderStatus))}>
                                                 {order.status}
                                             </Badge>
                                         </TableCell>

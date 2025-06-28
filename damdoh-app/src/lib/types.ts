@@ -229,6 +229,19 @@ export interface FarmerDashboardData {
   }[];
 }
 
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
 export interface BuyerDashboardData {
   supplyChainRisk: {
     region: string;
@@ -656,5 +669,3 @@ export interface Shop {
   createdAt: string | null;
   updatedAt: string | null;
 }
-
-    

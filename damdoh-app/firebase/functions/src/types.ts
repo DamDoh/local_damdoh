@@ -77,6 +77,19 @@ export interface FarmerDashboardData {
   }[];
 }
 
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
 export interface BuyerDashboardData {
   supplyChainRisk: {
     region: string;
@@ -536,13 +549,13 @@ export interface MarketplaceCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt: string | null; // ISO String
+  expiresAt: admin.firestore.Timestamp | null;
   usageLimit?: number | null;
   usageCount: number;
   isActive: boolean;
   applicableToListingIds?: string[];
   applicableToCategories?: string[];
-  createdAt: string | null; // ISO String
+  createdAt: admin.firestore.Timestamp | null;
 }
 
 export interface Shop {
@@ -555,8 +568,8 @@ export interface Shop {
   bannerUrl?: string | null;
   itemCount: number;
   rating: number;
-  createdAt: string | null;
-  updatedAt: string | null;
+  createdAt: admin.firestore.Timestamp | null;
+  updatedAt: admin.firestore.Timestamp | null;
 }
 
 export interface MarketplaceOrder {
@@ -570,8 +583,8 @@ export interface MarketplaceOrder {
   totalPrice: number;
   currency: string;
   status: 'pending' | 'confirmed' | 'shipped' | 'completed' | 'cancelled';
-  createdAt: admin.firestore.Timestamp | string | null;
-  updatedAt: admin.firestore.Timestamp | string | null;
+  createdAt: admin.firestore.Timestamp;
+  updatedAt: admin.firestore.Timestamp;
 }
 
 export interface ForumTopic {
@@ -579,8 +592,8 @@ export interface ForumTopic {
   name: string;
   description: string;
   postCount: number;
-  lastActivity: admin.firestore.Timestamp | string;
-  createdAt: admin.firestore.Timestamp | string;
+  lastActivity: admin.firestore.Timestamp;
+  createdAt: admin.firestore.Timestamp;
 }
 
 export interface ForumPost {
@@ -588,7 +601,7 @@ export interface ForumPost {
     title: string;
     content: string;
     authorRef: string;
-    timestamp: admin.firestore.Timestamp | string;
+    timestamp: admin.firestore.Timestamp;
     replyCount: number;
     likeCount: number;
 }
@@ -597,5 +610,35 @@ export interface PostReply {
   id: string;
   content: string;
   authorRef: string;
-  timestamp: admin.firestore.Timestamp | string;
+  timestamp: admin.firestore.Timestamp;
+}
+
+export interface AgriEvent {
+  id: string;
+  title: string;
+  description: string;
+  eventDate: string; // ISO string
+  eventTime?: string;
+  location: string;
+  eventType: 'Conference' | 'Webinar' | 'Workshop' | 'Trade Show' | 'Field Day' | 'Networking Event' | 'Online Course Launch' | 'Policy Briefing';
+  organizer?: string;
+  organizerId: string;
+  websiteLink?: string;
+  imageUrl?: string;
+  dataAiHint?: string;
+  registrationEnabled: boolean;
+  attendeeLimit?: number;
+  registeredAttendeesCount: number;
+  price?: number;
+  currency?: string;
+}
+
+export interface EventCoupon {
+  id: string;
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  discountValue: number;
+  expiresAt: admin.firestore.Timestamp | null;
+  usageLimit?: number | null;
+  usageCount: number;
 }
