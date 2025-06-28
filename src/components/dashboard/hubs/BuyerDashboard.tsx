@@ -100,7 +100,7 @@ export const BuyerDashboard = () => {
                                         <p className="font-semibold">{rec.name}</p>
                                         <p className="text-xs text-muted-foreground">{rec.product}</p>
                                     </div>
-                                    <Badge variant={rec.vtiVerified ? "default" : "secondary"}>
+                                    <Badge variant={rec.vtiVerified ? 'default' : 'secondary'}>
                                         {rec.vtiVerified ? <CheckCircle className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
                                         VTI Verified
                                     </Badge>

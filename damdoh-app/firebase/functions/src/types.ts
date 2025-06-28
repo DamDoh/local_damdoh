@@ -1,216 +1,60 @@
 
-import type { z } from 'zod';
-import type {
-  StakeholderProfileSchema,
-  MarketplaceItemSchema,
-  ForumTopicSchema,
-  ForumPostSchema,
-  AgriEventSchema
-} from './schemas';
-import type { CategoryNode as CatNodeType } from './category-data';
+import * as admin from "firebase-admin";
 
-// =================================================================
-// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
-// These are the primary data structures used across the application.
-// =================================================================
+export type UserRole =
+  | "Admin"
+  | "System"
+  | "Farmer"
+  | "Agronomist"
+  | "Operation Team"
+  | "Quality Assurance Team"
+  | "Processing & Packaging Unit"
+  | "Buyer"
+  | "Input Supplier"
+  | "Financial Institution"
+  | "Government Regulator"
+  | "Certification Body"
+  | "Consumer"
+  | "Researcher/Academic"
+  | "Logistic Partner"
+  | "Storage/Warehouse Facility"
+  | "Agronomy Expert"
+  | "Agro-Tourism Operator"
+  | "Energy Solutions Provider"
+  | "Agro-Export Facilitator"
+  | "Insurance Provider"
+  | "Packaging Supplier"
+  | "Crowdfunder";
 
-export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
-export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
-export type ForumPost = z.infer<typeof ForumPostSchema>;
-export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
-
-// =================================================================
-// 2. UI & COMPONENT-SPECIFIC TYPES
-// Types used for navigation, UI components, and specific page features.
-// =================================================================
-
-export interface NavItem {
- title: string;
- href: string;
- icon: React.ElementType;
- disabled?: boolean;
- external?: boolean;
- label?: string;
- description?: string;
- active?: boolean;
-}
-
-export interface PollOption {
-  id?: string;
-  text: string;
-  votes: number;
-}
-
-export interface PostReply {
-  id: string;
-  author: {
+export interface UserProfile {
+  uid: string;
+  email?: string | null;
+  displayName?: string | null;
+  photoURL?: string | null;
+  primaryRole: UserRole;
+  secondaryRoles?: UserRole[];
+  organization?: {
     id: string;
     name: string;
-    avatarUrl?: string;
-  };
-  content: string;
-  timestamp: string;
+  } | null;
+  location?: {
+    country: string;
+    city?: string;
+  } | null;
+  lastLogin: admin.firestore.Timestamp;
+  createdAt: admin.firestore.Timestamp;
 }
-
-export interface FeedItem {
-  id:string;
-  type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
-  timestamp: string;
-  userId: string;
-  userName: string;
-  userAvatar?: string;
-  userHeadline?: string;
-  content?: string;
-  postImage?: string;
-  dataAiHint?: string;
-  likesCount: number;
-  commentsCount: number;
-  link?: string;
-  agriEvent?: AgriEvent;
-  pollOptions?: PollOption[];
-  relatedUser?: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-}
-
-export interface DirectMessage {
-  id: string;
-  senderName: string;
-  senderAvatarUrl?: string;
-  lastMessage: string;
-  timestamp: string;
-  unread?: boolean;
-  dataAiHint?: string;
-  relatedListingId?: string;
-}
-
-export interface MobileHomeCategory {
-  id: string;
-  name: string;
-  icon: React.ElementType;
-  href: string;
-  dataAiHint?: string;
-}
-
-export interface MobileDiscoverItem {
-  id: string;
-  title: string;
-  imageUrl: string;
-  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
-  link: string;
-  dataAiHint?: string;
-}
-
-export interface ForumGroup {
-  id: string;
-  name: string;
-  description: string;
-  isPublic: boolean;
-  memberCount: number;
-  ownerId: string;
-  createdAt: string; // ISO string
-}
-
-export interface Conversation {
-  id: string;
-  participant: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  lastMessage: string;
-  timestamp: string;
-  unreadCount: number;
-}
-export interface Message {
-  id: string;
-  senderId: string;
-  content: string;
-  timestamp: string;
-}
-export interface Notification {
-  id: string;
-  actorId: string;
-  userId: string;
-  type: 'like' | 'comment';
-  postId: string;
-  read: boolean;
-  createdAt: any; // Firestore Timestamp
-}
-
-export interface EventAttendee {
-  id: string; // This is the User UID
-  email: string;
-  displayName: string;
-  avatarUrl?: string;
-  registeredAt: string; // ISO string
-  checkedIn: boolean;
-  checkedInAt?: string | null; // ISO string
-}
-
-export interface EventCoupon {
-  id: string;
-  code: string;
-  discountType: 'percentage' | 'fixed';
-  discountValue: number;
-  expiresAt?: string | null; // ISO String
-  usageLimit?: number | null;
-  usageCount: number;
-  createdAt: string; // ISO String
-}
-
-
-export interface MarketplaceCoupon {
-  id: string;
-  sellerId: string;
-  code: string;
-  discountType: 'percentage' | 'fixed';
-  discountValue: number;
-  expiresAt: any; // Can be Timestamp or null
-  usageLimit?: number | null;
-  usageCount: number;
-  isActive: boolean;
-  applicableToListingIds?: string[];
-  applicableToCategories?: string[];
-  createdAt: any; // Firestore Timestamp
-}
-
-
-// =================================================================
-// 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
-// These types serve as a blueprint for the data required for the
-// various stakeholder-specific dashboards and future features.
-// =================================================================
-
-export interface FinancialTransaction {
-    id: string;
-    type: 'income' | 'expense';
-    amount: number;
-    currency: string;
-    description: string;
-    category?: string;
-    timestamp: string; // ISO string
-}
-
-export interface FinancialSummary {
-    totalIncome: number;
-    totalExpense: number;
-    netFlow: number;
-}
-
 export interface KnfBatch {
   id: string;
   userId: string;
   type: string;
   typeName: string;
-  ingredients: string;
-  startDate: string; // ISO string
-  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+  ingredients: string[];
+  startDate: admin.firestore.Timestamp;
+  status: "Fermenting" | "Ready" | "Used" | "Archived";
   nextStep: string;
-  nextStepDate: string; // ISO string;
+  nextStepDate: admin.firestore.Timestamp;
+  createdAt: admin.firestore.Timestamp;
 }
 
 export interface FarmerDashboardData {
@@ -256,6 +100,7 @@ export interface BuyerDashboardData {
     };
   };
 }
+
 
 export interface AgroTourismDashboardData {
   upcomingBookings: {
@@ -335,7 +180,6 @@ export interface FiDashboardData {
     }[];
 }
 
-
 export interface LogisticsDashboardData {
     activeShipments: {
         id: string;
@@ -381,6 +225,7 @@ export interface InputSupplierDashboardData {
     };
 }
 
+
 export interface FieldAgentDashboardData {
     assignedFarmers: {
         id: string;
@@ -401,6 +246,7 @@ export interface FieldAgentDashboardData {
         actionLink: string;
     };
 }
+
 
 export interface AgroExportDashboardData {
     pendingCustomsDocs: {
@@ -504,6 +350,7 @@ export interface RegulatorDashboardData {
   }[];
 }
 
+
 export interface QaDashboardData {
   pendingInspections: {
     id: string;
@@ -549,6 +396,7 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
+
 export interface ResearcherDashboardData {
   availableDatasets: {
     id: string;
@@ -572,7 +420,6 @@ export interface ResearcherDashboardData {
   }[];
 }
 
-
 export interface AgronomistDashboardData {
   assignedFarmersOverview: {
     id: string;
@@ -593,6 +440,7 @@ export interface AgronomistDashboardData {
     status: 'Published' | 'Pending Review';
   }[];
 }
+
 
 export interface EnergyProviderDashboardData {
   projectLeads: {
@@ -638,4 +486,42 @@ export interface CrowdfunderDashboardData {
     amount: number;
     date: string; // ISO String
   }[];
+}
+
+
+export interface MarketplaceItem {
+    id: string;
+    name: string;
+    listingType: 'Product' | 'Service';
+    description: string;
+    price?: number;
+    currency?: string;
+    perUnit?: string;
+    sellerId: string;
+    category: string;
+    location: string;
+    imageUrl?: string;
+    createdAt: any; // Timestamp or ISO string
+    updatedAt: any; // Timestamp or ISO string
+    contactInfo?: string;
+    dataAiHint?: string;
+    isSustainable?: boolean;
+    sellerVerification?: 'Verified' | 'Pending' | 'Unverified';
+    aiPriceSuggestion?: { min: number; max: number; confidence: 'Low' | 'Medium' | 'High' };
+    stockQuantity?: number;
+    relatedTraceabilityId?: string;
+    serviceType?: string;
+    priceDisplay?: string;
+    availabilityStatus?: string;
+    serviceArea?: string;
+    relatedFinancialProductId?: string;
+    relatedInsuranceProductId?: string;
+    skillsRequired?: string[];
+    experienceLevel?: string;
+    compensation?: string;
+    serviceAvailability?: string;
+    brand?: string;
+    condition?: 'New' | 'Used' | 'Refurbished';
+    certifications?: string[];
+    traceabilityLink?: string;
 }

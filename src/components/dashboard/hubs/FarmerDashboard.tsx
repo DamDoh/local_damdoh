@@ -2,16 +2,34 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Sprout, Users, DollarSign, Clock4 } from 'lucide-react';
+import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
-import { TrustScoreWidget } from './TrustScoreWidget';
+import { Badge } from '@/components/ui/badge';
+import { format, formatDistanceToNow } from 'date-fns';
+
+const StatCard = ({ title, value, icon, actionLink, actionLabel }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string }) => (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        {icon}
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+      </CardContent>
+      <CardFooter>
+        <Button asChild variant="outline" size="sm" className="w-full">
+            <Link href={actionLink}>{actionLabel}</Link>
+        </Button>
+      </CardFooter>
+    </Card>
+);
+
 
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
@@ -46,116 +64,68 @@ export const FarmerDashboard = () => {
             </div>
         );
     }
-
-    const { yieldData, irrigationSchedule, matchedBuyers, trustScore } = dashboardData;
+    
+    const { farmCount, cropCount, recentCrops, knfBatches } = dashboardData;
 
     return (
         <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <Card className="col-span-1 lg:col-span-2">
-                    <CardHeader>
-                        <CardTitle className="text-base flex items-center gap-2">
-                            <Sprout className="h-4 w-4" />
-                            Yield Insights (Historical vs. Predicted)
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <ResponsiveContainer width="100%" height={250}>
-                            <BarChart data={yieldData}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="crop" fontSize={12} tickLine={false} axisLine={false} />
-                                <YAxis fontSize={12} tickLine={false} axisLine={false} unit={yieldData[0]?.unit.split('/')[1]} />
-                                <Tooltip />
-                                <Legend />
-                                <Bar dataKey="historical" fill="hsl(var(--secondary))" radius={[4, 4, 0, 0]} />
-                                <Bar dataKey="predicted" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </CardContent>
-                </Card>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <StatCard title="My Farms" value={farmCount} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Farms"/>
+                <StatCard title="Active Crops" value={cropCount} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Crops"/>
+                <StatCard title="KNF Batches" value={knfBatches.length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
+             </div>
+              <Card>
+                <CardHeader>
+                    <CardTitle className="text-base flex items-center justify-between">
+                        <span>Recent Crops</span>
+                        <Button asChild variant="secondary" size="sm"><Link href="/farm-management"><PlusCircle className="h-4 w-4 mr-2"/>Add Crop</Link></Button>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                    {recentCrops.length > 0 ? recentCrops.map(crop => (
+                        <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
+                            <div>
+                                <p className="font-medium text-sm">{(crop as any).cropType}</p>
+                                <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>
+                            </div>
+                            <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${(crop as any).farmId}`}>View</Link></Button>
+                        </div>
+                    )) : <p className="text-sm text-center text-muted-foreground py-4">No crops added yet.</p>}
+                </CardContent>
+            </Card>
 
-                <div className="space-y-6">
-                    <Card>
-                        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">AI Matched Buyers</CardTitle>
-                            <Users className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{matchedBuyers.length}</div>
-                            <p className="text-xs text-muted-foreground">potential buyers found</p>
-                        </CardContent>
-                    </Card>
+             <Card>
+                <CardHeader>
+                    <CardTitle className="text-base flex items-center justify-between">
+                        <span>Active KNF Batches</span>
+                         <Button asChild variant="secondary" size="sm"><Link href="/farm-management/knf-inputs"><PlusCircle className="h-4 w-4 mr-2"/>Add Batch</Link></Button>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                    {knfBatches.length > 0 ? knfBatches.map(batch => (
+                         <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">
+                            <div>
+                                <p className="font-medium text-sm">{batch.typeName}</p>
+                                <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" />Next step {formatDistanceToNow(new Date(batch.nextStepDate), { addSuffix: true })}</p>
+                            </div>
+                            <Badge variant={batch.status === 'Ready' ? 'default' : 'secondary'}>{batch.status}</Badge>
+                        </div>
+                    )) : <p className="text-sm text-center text-muted-foreground py-4">No KNF batches started.</p>}
+                </CardContent>
+            </Card>
 
-                    <Card>
-                        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Next Irrigation Run</CardTitle>
-                            <Clock4 className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{irrigationSchedule.next_run}</div>
-                            <p className="text-xs text-muted-foreground">{irrigationSchedule.recommendation}</p>
-                        </CardContent>
-                    </Card>
-                </div>
-                
-                 <Card className="col-span-1 lg:col-span-2">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-base flex items-center gap-2">
-                           <Users className="h-4 w-4" />
-                           Top Matched Buyers
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                       {matchedBuyers.map(buyer => (
-                           <div key={buyer.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border mb-2">
-                               <div>
-                                   <p className="font-medium">{buyer.name}</p>
-                                   <p className="text-xs text-muted-foreground">{buyer.request}</p>
-                               </div>
-                               <Button asChild size="sm">
-                                   <Link href={`/profiles/${buyer.contactId}`}>Contact</Link>
-                               </Button>
-                           </div>
-                       ))}
-                    </CardContent>
-                </Card>
-                
-                <TrustScoreWidget reputationScore={trustScore.reputation} certifications={trustScore.certifications} />
-                
-                <Card className="col-span-1 lg:col-span-3">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                            <DollarSign className="h-5 w-5" />
-                            Financial Health
-                        </CardTitle>
-                        <CardDescription>Track your farm's income and expenses to understand profitability.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-sm text-muted-foreground italic">Financial tracking tools are coming soon to help you manage your business.</p>
-                    </CardContent>
-                    <CardFooter>
-                         <Button asChild variant="outline">
-                            <Link href="/farm-management/financials">Go to Financials Dashboard</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
-            </div>
         </div>
     );
 };
 
 const DashboardSkeleton = () => (
-    <div>
-        <Skeleton className="h-9 w-64 mb-6" />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-80 rounded-lg col-span-1 lg:col-span-2" />
-            <div className="space-y-6">
-                <Skeleton className="h-40 rounded-lg" />
-                <Skeleton className="h-40 rounded-lg" />
-            </div>
-            <Skeleton className="h-48 rounded-lg col-span-1 lg:col-span-2" />
-            <Skeleton className="h-48 rounded-lg" />
+    <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
         </div>
+        <Skeleton className="h-48 rounded-lg" />
+        <Skeleton className="h-48 rounded-lg" />
     </div>
 );
