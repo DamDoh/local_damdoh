@@ -133,8 +133,11 @@ export interface Notification {
   userId: string;
   type: 'like' | 'comment';
   postId: string;
+  postContentSnippet: string;
   read: boolean;
   createdAt: any; // Firestore Timestamp
+  actorName?: string; // Populated on client
+  actorAvatar?: string; // Populated on client
 }
 
 export interface EventAttendee {
@@ -653,3 +656,5 @@ export interface Shop {
   createdAt: string | null;
   updatedAt: string | null;
 }
+
+    
