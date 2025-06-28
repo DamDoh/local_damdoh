@@ -214,28 +214,6 @@ export interface FarmerDashboardData {
   farmCount: number;
   cropCount: number;
   recentCrops: {
-<<<<<<< HEAD
-      id: string;
-      name: string;
-      stage: string;
-      farmName: string;
-  }[];
-  trustScore: {
-      reputation: number;
-      certifications: {
-          id: string;
-          name: string;
-          issuingBody: string;
-      }[];
-  };
-  matchedBuyers: {
-    id: string;
-    name: string;
-    matchScore: number;
-    request: string;
-    contactId: string;
-  }[];
-=======
     id: string;
     cropType: string;
     plantingDate: string; // ISO String
@@ -246,7 +224,6 @@ export interface FarmerDashboardData {
     status: string;
     nextStepDate: string; // ISO String
   }[];
->>>>>>> Market-Place-Traceability
 }
 
 export interface CooperativeDashboardData {
@@ -369,16 +346,6 @@ export interface FiDashboardData {
     }[];
 }
 
-<<<<<<< HEAD
-export interface FieldAgentDashboardData {
-    assignedFarmersOverview: {
-        id: string;
-        name: string;
-        farmLocation: string;
-        lastVisit: string;
-        issues: number;
-=======
-
 export interface LogisticsDashboardData {
     activeShipments: {
         id: string;
@@ -393,7 +360,6 @@ export interface LogisticsDashboardData {
         to: string;
         product: string;
         requirements: string;
->>>>>>> Market-Place-Traceability
         actionLink: string;
     }[];
     performanceMetrics: {
@@ -425,6 +391,7 @@ export interface InputSupplierDashboardData {
     };
 }
 
+
 export interface FieldAgentDashboardData {
     assignedFarmers: {
         id: string;
@@ -445,6 +412,7 @@ export interface FieldAgentDashboardData {
         actionLink: string;
     };
 }
+
 
 export interface AgroExportDashboardData {
     pendingCustomsDocs: {
@@ -548,6 +516,7 @@ export interface RegulatorDashboardData {
   }[];
 }
 
+
 export interface QaDashboardData {
   pendingInspections: {
     id: string;
@@ -593,6 +562,7 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
+
 export interface ResearcherDashboardData {
   availableDatasets: {
     id: string;
@@ -616,7 +586,6 @@ export interface ResearcherDashboardData {
   }[];
 }
 
-
 export interface AgronomistDashboardData {
   assignedFarmersOverview: {
     id: string;
@@ -637,6 +606,7 @@ export interface AgronomistDashboardData {
     status: 'Published' | 'Pending Review';
   }[];
 }
+
 
 export interface EnergyProviderDashboardData {
   projectLeads: {
@@ -684,4 +654,16 @@ export interface CrowdfunderDashboardData {
   }[];
 }
 
-    
+export interface Shop {
+  id: string;
+  ownerId: string;
+  name: string;
+  description: string;
+  stakeholderType: string;
+  logoUrl?: string | null;
+  bannerUrl?: string | null;
+  itemCount: number;
+  rating: number;
+  createdAt: string | null;
+  updatedAt: string | null;
+}

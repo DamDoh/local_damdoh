@@ -540,3 +540,17 @@ export interface MarketplaceCoupon {
   applicableToCategories?: string[];
   createdAt: string | null; // ISO String
 }
+
+export interface Shop {
+  id: string;
+  ownerId: string;
+  name: string;
+  description: string;
+  stakeholderType: string;
+  logoUrl?: string | null;
+  bannerUrl?: string | null;
+  itemCount: number;
+  rating: number;
+  createdAt: string | null;
+  updatedAt: string | null;
+}

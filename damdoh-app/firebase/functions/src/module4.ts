@@ -1,7 +1,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { MarketplaceCoupon, MarketplaceItem } from "./types";
+import type { MarketplaceCoupon, MarketplaceItem, Shop } from "./types";
+import { _internalInitiatePayment } from "./module7";
 
 const db = admin.firestore();
 
@@ -299,3 +300,70 @@ export const validateMarketplaceCoupon = functions.https.onCall(
     }
   },
 );
+
+
+/**
+ * Fetches the details of a specific shop.
+ * @param {any} data The data containing the shopId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<Shop>} A promise that resolves with the shop's details.
+ */
+export const getShopDetails = functions.https.onCall(async (data, context) => {
+  const { shopId } = data;
+  if (!shopId) {
+    throw new functions.https.HttpsError("invalid-argument", "A shopId must be provided.");
+  }
+  
+  try {
+    const shopDoc = await db.collection("shops").doc(shopId).get();
+    if (!shopDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Shop not found.");
+    }
+
+    const shopData = shopDoc.data()!;
+    return {
+      id: shopDoc.id,
+      ...shopData,
+      createdAt: (shopData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+      updatedAt: (shopData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+    };
+  } catch (error) {
+    console.error(`Error fetching shop details for ${shopId}:`, error);
+    if (error instanceof functions.https.HttpsError) throw error;
+    throw new functions.https.HttpsError("internal", "Could not fetch shop details.");
+  }
+});
+
+
+/**
+ * Fetches all marketplace listings for a specific seller.
+ * @param {any} data The data containing the sellerId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{items: MarketplaceItem[]}>} A promise that resolves with the seller's listings.
+ */
+export const getListingsBySeller = functions.https.onCall(async (data, context) => {
+  const { sellerId } = data;
+  if (!sellerId) {
+    throw new functions.https.HttpsError("invalid-argument", "A sellerId must be provided.");
+  }
+
+  try {
+    const listingsQuery = db.collection("marketplaceItems").where("sellerId", "==", sellerId);
+    const snapshot = await listingsQuery.get();
+    
+    const items = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+      };
+    });
+
+    return { items };
+  } catch (error) {
+    console.error(`Error fetching listings for seller ${sellerId}:`, error);
+    throw new functions.https.HttpsError("internal", "Could not fetch seller's listings.");
+  }
+});
