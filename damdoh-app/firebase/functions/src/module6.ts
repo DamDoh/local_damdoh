@@ -386,18 +386,11 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
 
 export const getFeed = functions.https.onCall(async (data, context) => {
   try {
-    const {lastVisible} = data;
-    let query = db.collection("posts")
-      .limit(POSTS_PER_PAGE);
-
-    if (lastVisible) {
-      const lastVisibleDoc = await db.collection("posts").doc(lastVisible).get();
-      if (lastVisibleDoc.exists) {
-        query = query.startAfter(lastVisibleDoc);
-      }
-    }
-
+    // Simplified query without ordering or pagination to ensure stability.
+    // This avoids potential 'internal' errors from missing Firestore indexes.
+    const query = db.collection("posts").limit(20);
     const snapshot = await query.get();
+    
     const posts = snapshot.docs.map((doc) => {
         const docData = doc.data();
         return { 
@@ -406,12 +399,13 @@ export const getFeed = functions.https.onCall(async (data, context) => {
             createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
         };
     });
-    const newLastVisible = snapshot.docs[snapshot.docs.length - 1]?.id || null;
 
-    return {posts, lastVisible: newLastVisible};
+    // Pagination is removed for now, so lastVisible is always null.
+    return {posts, lastVisible: null};
   } catch (error) {
     console.error("Error fetching feed:", error);
-    throw new functions.https.HttpsError("internal", "Could not fetch feed.");
+    // The specific message helps in debugging if the error is caught client-side.
+    throw new functions.https.HttpsError("internal", "Could not fetch the main feed due to a server-side issue.");
   }
 });
 
