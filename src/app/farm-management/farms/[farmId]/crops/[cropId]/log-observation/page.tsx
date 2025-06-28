@@ -167,7 +167,6 @@ export default function LogObservationPage() {
                       <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Date of Observation</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
-                          <FormControl>
                             <Button
                               variant={"outline"}
                               className={cn(
@@ -178,7 +177,6 @@ export default function LogObservationPage() {
                               <CalendarIcon className="mr-2 h-4 w-4" />
                               {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                             </Button>
-                          </FormControl>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
                           <Calendar

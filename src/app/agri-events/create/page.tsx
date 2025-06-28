@@ -211,7 +211,6 @@ export default function CreateAgriEventPage() {
                         <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Event Date</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
-                            <FormControl>
                               <Button
                                 variant={"outline"}
                                 className={cn(
@@ -226,7 +225,6 @@ export default function CreateAgriEventPage() {
                                   <span>Pick a date</span>
                                 )}
                               </Button>
-                            </FormControl>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
