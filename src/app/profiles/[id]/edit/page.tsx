@@ -28,7 +28,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
-<<<<<<< HEAD
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 
@@ -53,11 +52,6 @@ function EditProfileSkeleton() {
     );
 }
 
-=======
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
->>>>>>> Market-Place-Traceability
-
 export default function EditProfilePage() {
   const router = useRouter();
   const params = useParams();
@@ -71,15 +65,12 @@ export default function EditProfilePage() {
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const functions = getFunctions(firebaseApp);
-  const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
-
   const profileIdParam = params.id as string;
 
   const form = useForm<EditProfileValues>({
     resolver: zodResolver(editProfileSchema),
     defaultValues: {
-      name: "",
+      displayName: "",
       email: "",
       role: undefined,
       profileSummary: "",
@@ -99,7 +90,7 @@ export default function EditProfilePage() {
       if (userProfile) {
         setProfile(userProfile);
         form.reset({
-          name: userProfile.name || "",
+          displayName: userProfile.name || "",
           email: userProfile.email || "",
           role: userProfile.roles?.[0], 
           profileSummary: userProfile.profileSummary || "",
@@ -157,60 +148,33 @@ export default function EditProfilePage() {
     }
     setIsSubmitting(true);
     try {
-<<<<<<< HEAD
-      const profileUpdates = {
-        displayName: data.name,
-        primaryRole: data.role,
-        profileData: {
-            profileSummary: data.profileSummary,
-            bio: data.bio,
-            location: data.location,
-            areasOfInterest: data.areasOfInterest?.split(",").map(s => s.trim()).filter(Boolean) || [],
-            needs: data.needs?.split(",").map(s => s.trim()).filter(Boolean) || [],
-            contactInfoPhone: data.contactInfoPhone,
-            contactInfoWebsite: data.contactInfoWebsite,
-        }
-      };
-
-      await upsertStakeholderProfile(profileUpdates);
-      
-=======
-      // Prepare the payload for the Cloud Function
       const payload = {
-          displayName: data.name,
-          primaryRole: data.role,
-          profileSummary: data.profileSummary,
-          bio: data.bio,
-          location: data.location,
-          areasOfInterest: data.areasOfInterest?.split(',').map(s => s.trim()).filter(Boolean) || [],
-          needs: data.needs?.split(',').map(s => s.trim()).filter(Boolean) || [],
-          contactInfoPhone: data.contactInfoPhone,
-          contactInfoWebsite: data.contactInfoWebsite,
+        displayName: data.displayName,
+        primaryRole: data.role,
+        profileSummary: data.profileSummary,
+        bio: data.bio,
+        location: data.location,
+        areasOfInterest: data.areasOfInterest?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        needs: data.needs?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        contactInfoPhone: data.contactInfoPhone,
+        contactInfoWebsite: data.contactInfoWebsite,
+        profileData: {}, // For future role-specific structured data
       };
 
       await upsertStakeholderProfile(payload);
-
->>>>>>> Market-Place-Traceability
+      
       toast({
         title: "Profile Updated Successfully!",
         description: "Your changes have been saved.",
       });
       router.push(`/profiles/me`);
-<<<<<<< HEAD
-      router.refresh();
-=======
       router.refresh(); 
->>>>>>> Market-Place-Traceability
     } catch (error: any) {
       console.error("Error updating profile:", error);
       toast({
         variant: "destructive",
         title: "Update Failed",
-<<<<<<< HEAD
-        description: error.details?.originalError || "Could not save your profile changes. Please try again.",
-=======
         description: error.message || "Could not save your profile changes. Please try again.",
->>>>>>> Market-Place-Traceability
       });
     } finally {
       setIsSubmitting(false);
@@ -247,7 +211,7 @@ export default function EditProfilePage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
-                name="name"
+                name="displayName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center gap-2"><User className="h-4 w-4 text-muted-foreground" />Full Name / Organization Name</FormLabel>

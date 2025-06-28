@@ -34,7 +34,7 @@ export const createMarketplaceItemSchema = z.object({
   location: z.string().min(2, "Location must be at least 2 characters long.").max(100, "Location cannot exceed 100 characters."),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
-  contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters."),
+  contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters.").optional(),
   skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("For services: Enter skills, comma-separated"),
   compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional().describe("For services: e.g., $50/hr, Project-based"),
    // Fields from extended schema, made optional for the form
@@ -132,7 +132,7 @@ export const createInputApplicationSchema = z.object({
 export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
 
 export const editProfileSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
+  displayName: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
   email: z.string().email("Please enter a valid email address."),
   role: z.enum(STAKEHOLDER_ROLES, {
     errorMap: () => ({ message: "Please select a valid stakeholder role."}),
@@ -228,6 +228,7 @@ export const createMarketplaceCouponSchema = z.object({
     path: ["discountValue"],
 });
 export type CreateMarketplaceCouponValues = z.infer<typeof createMarketplaceCouponSchema>;
+
 
 export const createShopSchema = z.object({
   name: z.string().min(3, "Shop name must be at least 3 characters.").max(100),
