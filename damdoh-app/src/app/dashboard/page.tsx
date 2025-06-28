@@ -9,7 +9,6 @@ import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -252,24 +251,11 @@ function MainContent() {
 }
 
 
-export default function DashboardPage() {
-    const router = useRouter();
-    const pathname = usePathname();
-    const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
-
-    useEffect(() => {
-        if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
-          router.replace(homepagePreference);
-        }
-    }, [homepagePreference, isPreferenceLoading, pathname, router]);
-
-    if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
-        return <div className="flex justify-center items-center min-h-screen"><Loader2 className="h-8 w-8 animate-spin text-primary"/></div>;
-    }
-
+export default function DashboardPageWithSuspense() {
     return (
       <Suspense fallback={<PageSkeleton />}>
         <MainContent />
       </Suspense>
     );
 }
+
