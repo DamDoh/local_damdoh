@@ -17,45 +17,49 @@ export const getFarmerDashboardData = functions.https.onCall(
     const farmerId = context.auth.uid;
 
     try {
-        // Fetch farms, recent crops, and KNF batches concurrently
-        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).limit(5).get();
-        const recentCropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('createdAt', 'desc').limit(5).get();
-        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
+        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).get();
 
-        const [farmsSnapshot, recentCropsSnapshot, knfBatchesSnapshot] = await Promise.all([
+        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
-            recentCropsPromise,
+            cropsPromise,
             knfBatchesSnapshot,
         ]);
 
-        const farms = farmsSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }));
+        const farms = farmsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        const recentCrops = recentCropsSnapshot.docs.map(doc => {
-            const cropData = doc.data();
-            return {
-                id: doc.id,
-                ...cropData,
-                plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
-            };
-        });
+        const recentCrops = cropsSnapshot.docs
+            .map(doc => {
+                const cropData = doc.data();
+                return {
+                    id: doc.id,
+                    ...cropData,
+                    createdAt: (cropData.createdAt as admin.firestore.Timestamp)?.toDate ? (cropData.createdAt as admin.firestore.Timestamp).toDate() : new Date(0),
+                    plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate ? (cropData.plantingDate as admin.firestore.Timestamp).toDate().toISOString() : null,
+                };
+            })
+            .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) // Sort in-memory
+            .slice(0, 5); // Take the 5 most recent
         
-        const knfBatches = knfBatchesSnapshot.docs.map(doc => {
-            const batchData = doc.data();
-            return {
-                id: doc.id,
-                ...batchData,
-                nextStepDate: batchData.nextStepDate?.toDate ? batchData.nextStepDate.toDate().toISOString() : null,
-            };
-        });
+        const activeKnfBatches = knfBatchesSnapshot.docs
+            .map(doc => {
+                const batchData = doc.data();
+                return {
+                    id: doc.id,
+                    ...batchData,
+                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate ? (batchData.nextStepDate as admin.firestore.Timestamp).toDate().toISOString() : null,
+                };
+            })
+            .filter(batch => batch.status === 'Fermenting' || batch.status === 'Ready') // Filter in-memory
+            .slice(0, 5);
+
 
         return {
             farmCount: farms.length,
-            cropCount: recentCrops.length, 
-            recentCrops: recentCrops as any,
-            knfBatches: knfBatches as any,
+            cropCount: cropsSnapshot.size, 
+            recentCrops: recentCrops.map(({ createdAt, ...rest }) => rest) as any, // remove temporary sort key
+            knfBatches: activeKnfBatches as any,
         };
 
     } catch (error) {
@@ -588,3 +592,5 @@ export const getWarehouseDashboardData = functions.https.onCall(
     return mockData;
   },
 );
+
+    
