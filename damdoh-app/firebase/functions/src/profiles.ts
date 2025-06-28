@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
-import { UserRole } from "./types";
+import { UserRole, UserProfile } from "./types";
 
 const db = admin.firestore();
 
@@ -145,9 +145,9 @@ export async function getUserDocument(
  * Helper function to get a user's profile from Firestore by their ID.
  * This is intended for use by other backend functions.
  * @param {string} uid The user's ID.
- * @return {Promise<any | null>} The user's profile data or null if not found.
+ * @return {Promise<UserProfile | null>} The user's profile data or null if not found.
  */
-export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
+export async function getProfileByIdFromDB(uid: string): Promise<UserProfile | null> {
     if (!uid) {
         return null;
     }
@@ -156,7 +156,15 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         if (!userDoc.exists) {
             return null;
         }
-        return userDoc.data();
+        
+        const data = userDoc.data();
+        if (!data) return null;
+        
+        return {
+            uid: userDoc.id,
+            ...data
+        } as UserProfile;
+
     } catch (error) {
         console.error(`Error fetching user profile for uid: ${uid}`, error);
         return null;

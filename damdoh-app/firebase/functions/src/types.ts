@@ -5,26 +5,30 @@ export type UserRole =
   | "Admin"
   | "System"
   | "Farmer"
-  | "Agronomist"
-  | "Operation Team"
-  | "Quality Assurance Team"
+  | "Agricultural Cooperative"
+  | "Field Agent/Agronomist (DamDoh Internal)"
+  | "Operations/Logistics Team (DamDoh Internal)"
+  | "Quality Assurance Team (DamDoh Internal)"
   | "Processing & Packaging Unit"
-  | "Buyer"
-  | "Input Supplier"
-  | "Financial Institution"
-  | "Government Regulator"
-  | "Certification Body"
+  | "Buyer (Restaurant, Supermarket, Exporter)"
+  | "Input Supplier (Seed, Fertilizer, Pesticide)"
+  | "Equipment Supplier (Sales of Machinery/IoT)"
+  | "Financial Institution (Micro-finance/Loans)"
+  | "Government Regulator/Auditor"
+  | "Certification Body (Organic, Fair Trade etc.)"
   | "Consumer"
   | "Researcher/Academic"
-  | "Logistic Partner"
+  | "Logistics Partner (Third-Party Transporter)"
   | "Storage/Warehouse Facility"
-  | "Agronomy Expert"
+  | "Agronomy Expert/Consultant (External)"
   | "Agro-Tourism Operator"
-  | "Energy Solutions Provider"
-  | "Agro-Export Facilitator"
+  | "Energy Solutions Provider (Solar, Biogas)"
+  | "Agro-Export Facilitator/Customs Broker"
+  | "Agri-Tech Innovator/Developer"
+  | "Retailer/City Market Seller"
+  | "Waste Management & Compost Facility"
   | "Insurance Provider"
-  | "Packaging Supplier"
-  | "Crowdfunder";
+  | "Crowdfunder (Impact Investor, Individual)";
 
 export interface UserProfile {
   uid: string;
@@ -568,4 +572,30 @@ export interface MarketplaceOrder {
   status: 'pending' | 'confirmed' | 'shipped' | 'completed' | 'cancelled';
   createdAt: admin.firestore.Timestamp | string | null;
   updatedAt: admin.firestore.Timestamp | string | null;
+}
+
+export interface ForumTopic {
+  id: string;
+  name: string;
+  description: string;
+  postCount: number;
+  lastActivity: admin.firestore.Timestamp | string;
+  createdAt: admin.firestore.Timestamp | string;
+}
+
+export interface ForumPost {
+    id: string;
+    title: string;
+    content: string;
+    authorRef: string;
+    timestamp: admin.firestore.Timestamp | string;
+    replyCount: number;
+    likeCount: number;
+}
+
+export interface PostReply {
+  id: string;
+  content: string;
+  authorRef: string;
+  timestamp: admin.firestore.Timestamp | string;
 }

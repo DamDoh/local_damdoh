@@ -17,10 +17,6 @@ import {
   LogOut,
   User as UserIcon,
   MessageSquare,
-  Brain,
-  ShoppingCart,
-  ClipboardList,
-  Package,
   Briefcase,
   LogIn, 
   UserPlus,
@@ -37,8 +33,6 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetTitle,
-  SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -47,6 +41,7 @@ import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface NavLinkProps {
   href: string;
@@ -58,7 +53,7 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
-  const isActive = pathname.endsWith(href);
+  const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
   return (
     <Link
       href={href}
@@ -76,7 +71,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, cl
 };
 
 const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ href, icon: Icon, label, pathname, onClick, isSheetLink }) => {
-  const isActive = pathname.endsWith(href);
+  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
   return (
     <Link
       href={href}
@@ -92,6 +87,42 @@ const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ 
   );
 };
 
+const desktopNavItems = [
+    { href: "/", icon: Home, label: 'home' },
+    { href: "/network", icon: Users, label: 'network' },
+    { href: "/farm-management", icon: Sprout, label: 'farmMgmt' },
+    { href: "/marketplace", icon: Briefcase, label: 'marketplace' },
+    { href: "/traceability", icon: Fingerprint, label: 'traceability' },
+    { href: "/forums", icon: MessageSquare, label: 'forums' },
+];
+  
+const mobileSheetSecondaryNavItems = [
+    { href: "/settings", icon: UserIcon, label: 'settings', isSheetLink: true },
+    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
+];
+
+function HeaderSkeleton() {
+  return (
+    <header className="sticky top-0 z-30 w-full border-b border-white/20 bg-[#6ec33f] backdrop-blur-sm print:hidden">
+      {/* Desktop Skeleton */}
+      <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Skeleton className="h-8 w-32 bg-white/20" />
+        <Skeleton className="h-9 w-96 bg-white/20" />
+        <div className="flex items-center gap-4">
+          <Skeleton className="h-8 w-48 bg-white/20" />
+          <Skeleton className="h-9 w-9 rounded-full bg-white/20" />
+        </div>
+      </div>
+      {/* Mobile Skeleton */}
+      <div className="md:hidden container mx-auto flex h-14 items-center justify-between px-4">
+        <Skeleton className="h-8 w-8 bg-white/20" />
+        <Skeleton className="h-6 w-32 bg-white/20" />
+        <Skeleton className="h-8 w-8 bg-white/20" />
+      </div>
+    </header>
+  );
+}
+
 
 export function AppHeader() {
   const { t } = useTranslation('common');
@@ -100,20 +131,11 @@ export function AppHeader() {
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth(); 
 
-  const desktopNavItems = [
-    { href: "/", icon: Home, label: t('home') },
-    { href: "/network", icon: Users, label: t('network') },
-    { href: "/farm-management", icon: Sprout, label: t('farmMgmt') },
-    { href: "/marketplace", icon: ShoppingCart, label: t('marketplace') },
-    { href: "/traceability", icon: Fingerprint, label: t('traceability') },
-    { href: "/forums", icon: MessageSquare, label: t('forums') },
-  ];
-  
-  const mobileSheetSecondaryNavItems = [
-    { href: "/pinboard", icon: ClipboardList, label: "My Pinboard", isSheetLink: true },
-    { href: "/settings", icon: UserIcon, label: t('settings'), isSheetLink: true },
-    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
-  ];
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
@@ -148,44 +170,27 @@ export function AppHeader() {
     }
   };
 
-  const getSectionTitle = () => {
-    if (pathname === "/") return t('home');
-    const activeDesktopItem = desktopNavItems.find(item => item.href !== "/" && pathname.startsWith(item.href));
-    if (activeDesktopItem) return activeDesktopItem.label;
-    
-    // Specific page titles
-    if (pathname.startsWith("/profiles/me/edit")) return "Edit Profile";
-    if (pathname.startsWith("/profiles/me")) return t('myProfile');
-    if (pathname.startsWith("/profiles/")) return "Profile Details";
-    if (pathname.startsWith("/marketplace/create-shop")) return "Create Shop";
-    if (pathname.startsWith("/marketplace/promotions")) return "Promotions";
-    if (pathname.startsWith("/marketplace/create")) return "Create Listing";
-    if (pathname.startsWith("/agri-events/create")) return "Create Event";
-    if (pathname.startsWith("/agri-events")) return "Agri-Events";
-    if (pathname.startsWith("/forums/create")) return "New Discussion";
-    if (pathname.startsWith("/forums/")) return "Forum Topic";
-    if (pathname.startsWith("/search")) return "Search Results";
-    if (pathname.startsWith("/traceability")) return t('traceability');
-    if (pathname.startsWith("/help-center")) return "Help Center";
-    if (pathname.startsWith("/about")) return "About Us";
-    if (pathname.startsWith("/contact")) return "Contact";
-    if (pathname.startsWith("/careers")) return "Careers";
-    if (pathname.startsWith("/blog")) return "Agri-Insights Blog";
-    if (pathname.startsWith("/community-guidelines")) return "Community Guidelines";
-    if (pathname.startsWith("/cookie-policy")) return "Cookie Policy";
-    if (pathname.startsWith("/privacy")) return "Privacy Policy";
-    if (pathname.startsWith("/terms")) return "Terms of Service";
-    if (pathname.startsWith("/pinboard")) return "My Pinboard";
-    if (pathname.startsWith("/wallet")) return t('wallet');
-    if (pathname.startsWith("/ai-assistant")) return "AI Farming Assistant";
-    if (pathname.startsWith("/auth/signin")) return "Sign In";
-    if (pathname.startsWith("/auth/signup")) return "Sign Up";
-    if (pathname.startsWith("/auth/forgot-password")) return "Reset Password";
+ const sectionTitle = useMemo(() => {
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments.length === 0 || (segments[0] === 'en' && segments.length === 1) || (segments[0] === 'es' && segments.length === 1)) {
+        return t('home');
+    }
+    const mainPath = segments.slice(1).join('/') || segments[0];
 
-    return APP_NAME; 
-  };
+    const allNavItems = [...desktopNavItems, ...mobileSheetSecondaryNavItems];
+    const activeItem = allNavItems.find(item => item.href === `/${mainPath}`);
+    if (activeItem) {
+        return t(activeItem.label as any, activeItem.label);
+    }
 
-  const sectionTitle = getSectionTitle();
+    // Fallback for dynamic routes or unlisted pages
+    return mainPath.split('/')[0].replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  }, [pathname, t]);
+
+
+  if (!isMounted) {
+    return <HeaderSkeleton />;
+  }
 
   return (
     <>
@@ -211,7 +216,7 @@ export function AppHeader() {
 
           <nav className="flex items-center space-x-0.5 h-full">
             {desktopNavItems.map((item) => (
-              <NavLink key={item.href} {...item} pathname={pathname} />
+              <NavLink key={item.href} {...item} label={t(item.label as any)} pathname={pathname} />
             ))}
             {user && (
               <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
@@ -270,6 +275,7 @@ export function AppHeader() {
                   <MobileSheetNavLink
                     key={`sheet-extra-${item.href}`}
                     {...item}
+                    label={t(item.label as any, item.label)}
                     pathname={pathname}
                     onClick={() => setIsMobileSheetOpen(false)}
                   />
@@ -312,5 +318,3 @@ export function AppHeader() {
     </>
   );
 }
-
-    

@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
-import type { UserProfile, EventCoupon } from "./types";
+import type { UserProfile, EventCoupon, ForumTopic, ForumPost, PostReply } from "./types";
 import { _internalInitiatePayment } from "./module7";
 import { _internalLogTraceEvent } from "./module1";
 import { getProfileByIdFromDB } from "./profiles";
@@ -24,12 +24,12 @@ export const getTopics = functions.https.onCall(async (data, context) => {
     try {
         const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
         const topics = topicsSnapshot.docs.map(doc => {
-            const topicData = doc.data();
+            const topicData = doc.data() as ForumTopic;
             return {
                 id: doc.id,
                 ...topicData,
-                createdAt: topicData.createdAt?.toDate ? topicData.createdAt.toDate().toISOString() : new Date().toISOString(),
-                lastActivity: topicData.lastActivity?.toDate ? topicData.lastActivity.toDate().toISOString() : new Date().toISOString(),
+                createdAt: (topicData.createdAt as any)?.toDate ? (topicData.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+                lastActivity: (topicData.lastActivity as any)?.toDate ? (topicData.lastActivity as any).toDate().toISOString() : new Date().toISOString(),
             };
         });
         return { topics };
@@ -90,11 +90,11 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
 
     const postsSnapshot = await query.get();
     const posts = postsSnapshot.docs.map((doc) => {
-        const data = doc.data();
+        const data = doc.data() as ForumPost;
         return { 
             id: doc.id, 
             ...data,
-            timestamp: (data.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            timestamp: (data.timestamp as any)?.toDate?.().toISOString() || null,
         };
     });
 
@@ -166,11 +166,11 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
 
     const repliesSnapshot = await query.get();
     const replies = repliesSnapshot.docs.map((doc) => {
-        const data = doc.data();
+        const data = doc.data() as PostReply;
         return { 
             id: doc.id, 
             ...data,
-            timestamp: (data.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            timestamp: (data.timestamp as any)?.toDate?.().toISOString() || null,
         };
     });
 
@@ -841,7 +841,7 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
 
     const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
     const coupons = couponsSnapshot.docs.map(doc => {
-        const couponData = doc.data();
+        const couponData = doc.data() as EventCoupon;
         return {
             id: doc.id,
             ...couponData,
