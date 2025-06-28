@@ -202,12 +202,12 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 
   try {
     await postRef.collection("replies").add(replyData);
-    await postRef.update({replyCount: admin.firestore.FieldValue.increment(1)});
+    await postRef.update({ replyCount: admin.firestore.FieldValue.increment(1) });
     await db.collection("forums").doc(topicId).update({
       lastActivity: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    return {message: "Reply added successfully"};
+    return { message: "Reply added successfully" };
   } catch (error) {
     console.error(`Error adding reply to post ${postId}:`, error);
     throw new functions.https.HttpsError("internal", "An error occurred while adding the reply.");
@@ -241,7 +241,7 @@ export const createGroup = functions.https.onCall(async (data, context) => {
   const newGroup = {
     name,
     description,
-    isPublic: isPublic || false,
+    isPublic: isPublic !== false,
     memberCount: 1,
     ownerId: context.auth.uid,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -338,11 +338,12 @@ export const joinGroup = functions.https.onCall(async (data, context) => {
       role: "member",
       joinedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-    await groupRef.update({memberCount: admin.firestore.FieldValue.increment(1)});
+    await groupRef.update({ memberCount: admin.firestore.FieldValue.increment(1) });
 
     return {message: "Successfully joined the group."};
-  } catch (error) {
+  } catch (error: any) {
     console.error(`Error joining group ${groupId}:`, error);
+    if(error instanceof functions.https.HttpsError) throw error;
     throw new functions.https.HttpsError("internal", "An error occurred while joining the group.");
   }
 });
@@ -367,11 +368,12 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
     }
 
     await memberRef.delete();
-    await groupRef.update({memberCount: admin.firestore.FieldValue.increment(-1)});
+    await groupRef.update({ memberCount: admin.firestore.FieldValue.increment(-1) });
 
     return {message: "Successfully left the group."};
-  } catch (error) {
+  } catch (error: any) {
     console.error(`Error leaving group ${groupId}:`, error);
+    if(error instanceof functions.https.HttpsError) throw error;
     throw new functions.https.HttpsError("internal", "An error occurred while leaving the group.");
   }
 });
@@ -464,12 +466,12 @@ export const likePost = functions.https.onCall(async (data, context) => {
     if (likeDoc.exists) {
       // Unlike the post
       await likeRef.delete();
-      await postRef.update({likeCount: FieldValue.increment(-1)});
+      await postRef.update({ likeCount: FieldValue.increment(-1) });
       return {success: true, message: "Post unliked."};
     } else {
       // Like the post
       await likeRef.set({createdAt: FieldValue.serverTimestamp()});
-      await postRef.update({likeCount: FieldValue.increment(1)});
+      await postRef.update({ likeCount: FieldValue.increment(1) });
       return {success: true, message: "Post liked."};
     }
   } catch (error) {
@@ -498,7 +500,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
   try {
     const commentRef = await postRef.collection("comments").add(newComment);
-    await postRef.update({commentCount: FieldValue.increment(1)});
+    await postRef.update({ commentCount: FieldValue.increment(1) });
     return {success: true, commentId: commentRef.id, message: "Comment added successfully."};
   } catch (error) {
     console.error(`Error adding comment to post ${postId}:`, error);
