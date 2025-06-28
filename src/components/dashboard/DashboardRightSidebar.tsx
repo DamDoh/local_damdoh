@@ -37,7 +37,7 @@ export function DashboardRightSidebar() {
     try {
       const userInput: SuggestedConnectionsInput = {
         profileSummary: profile.profileSummary || profile.bio || "No summary provided.",
-        stakeholderRole: (profile.roles?.[0] as StakeholderRole) || 'Farmer',
+        stakeholderRole: (profile.role as StakeholderRole) || 'Farmer',
         location: profile.location || "Unknown location",
         preferences: Array.isArray(profile.areasOfInterest) ? profile.areasOfInterest.join(', ') : "General agriculture",
         needs: Array.isArray(profile.needs) ? profile.needs.join(', ') : "General connections",
@@ -64,10 +64,11 @@ export function DashboardRightSidebar() {
   }, [profile]);
 
   useEffect(() => {
-    if (!loadingProfile) {
+    if (!loadingProfile && profile) {
       fetchSuggestions();
     }
-  }, [loadingProfile, fetchSuggestions]);
+  }, [loadingProfile, profile, fetchSuggestions]);
+
 
   const handleFollow = (suggestionId: string) => {
     setFollowedSuggestions(prev => {

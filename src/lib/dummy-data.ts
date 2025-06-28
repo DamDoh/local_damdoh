@@ -9,37 +9,37 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'userA': { name: 'Dr. Alima Bello', avatarUrl: 'https://placehold.co/40x40.png', headline: "Agricultural Economist & Supply Chain Specialist" },
   'userB': { name: 'GreenLeaf Organics Co-op', avatarUrl: 'https://placehold.co/40x40.png', headline: "Connecting Organic Farmers to Global Buyers" },
   'userC': { name: 'AgriTech Solutions Ltd.', avatarUrl: 'https://placehold.co/40x40.png', headline: "Pioneering Technology for Efficient Agriculture" },
-  'farmerJoe': { name: 'Joe\'s Family Farm', roles: ['Farmer'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'Sustainable corn and soy farmer.' },
-  'agriLogisticsCo': { name: 'AgriLogistics Co-op', roles: ['Logistics Partner (Third-Party Transporter)'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'Efficient produce aggregation and transport.' },
-  'freshFoodsProcessor': { name: 'FreshFoods Processors Ltd.', roles: ['Packaging & Dried Food Processing Unit'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'IQF fruits and vegetable processing.' },
-  'globalCommoditiesTrader': { name: 'Global Commodities Trading', roles: ['Buyer (Restaurant, Supermarket, Exporter)'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'Specializing in coffee, cocoa, and sugar.' },
-  'ecoHarvestRetail': { name: 'EcoHarvest Grocers', roles: ['Retailer/City Market Seller'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'Organic and locally sourced produce retailer.' },
-  'agriTechInnovator': { name: 'Dr. Lena Hanson', roles: ['Researcher/Academic'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'Researcher in agricultural robotics and AI.' },
-  'inputSolutionsInc': { name: 'Input Solutions Inc.', roles: ['Input Supplier (Seed, Fertilizer, Pesticide)'], avatarUrl: 'https://placehold.co/150x150.png', headline: 'Certified seeds and organic fertilizers.' },
-  'agriProcessorSarah': { name: 'Sarah Chen - ValueChain Processors', roles: ['Packaging & Dried Food Processing Unit'], avatarUrl: 'https://placehold.co/200x200.png', headline: 'Transforming raw produce into export-ready goods.' },
-  'logisticsGuru': { name: 'Logistics Expert Mod', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agronomy Expert/Consultant (External)'], headline: 'Supply chain optimization expert.' },
-  'freshProduceExporter': { name: 'Amina Exports Ltd.', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agro-Export Facilitator/Customs Broker'], headline: 'Exporting fresh mangoes and pineapples.' },
-  'coldChainTech': { name: 'CoolTech Solutions', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Equipment Supplier (Sales of Machinery/IoT)'], headline: 'Real-time temperature monitoring solutions.' },
-  'logisticsConsultant': { name: 'Dr. Raj Singh', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agronomy Expert/Consultant (External)'], headline: 'Advising on warehouse optimization.' },
-  'warehouseManagerAnna': { name: 'Anna Petrova', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Storage/Warehouse Facility'], headline: 'Managing multi-commodity storage facilities.' },
-  'storageSolutionsInc': { name: 'StoreSafe Systems', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Equipment Supplier (Sales of Machinery/IoT)'], headline: 'Hermetic storage solutions provider.' },
-  'currentUser': { name: 'My AgriBusiness', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Farmer'], headline: 'Building sustainable food systems.'},
+  'farmerJoe': { name: 'Joe\'s Family Farm', role: 'Farmer', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Sustainable corn and soy farmer.' },
+  'agriLogisticsCo': { name: 'AgriLogistics Co-op', role: 'Logistics Partner (Third-Party Transporter)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Efficient produce aggregation and transport.' },
+  'freshFoodsProcessor': { name: 'FreshFoods Processors Ltd.', role: 'Processing & Packaging Unit', avatarUrl: 'https://placehold.co/150x150.png', headline: 'IQF fruits and vegetable processing.' },
+  'globalCommoditiesTrader': { name: 'Global Commodities Trading', role: 'Buyer (Restaurant, Supermarket, Exporter)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Specializing in coffee, cocoa, and sugar.' },
+  'ecoHarvestRetail': { name: 'EcoHarvest Grocers', role: 'Retailer/City Market Seller', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Organic and locally sourced produce retailer.' },
+  'agriTechInnovator': { name: 'Dr. Lena Hanson', role: 'Researcher/Academic', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Researcher in agricultural robotics and AI.' },
+  'inputSolutionsInc': { name: 'Input Solutions Inc.', role: 'Input Supplier (Seed, Fertilizer, Pesticide)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Certified seeds and organic fertilizers.' },
+  'agriProcessorSarah': { name: 'Sarah Chen - ValueChain Processors', role: 'Processing & Packaging Unit', avatarUrl: 'https://placehold.co/200x200.png', headline: 'Transforming raw produce into export-ready goods.' },
+  'logisticsGuru': { name: 'Logistics Expert Mod', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Supply chain optimization expert.' },
+  'freshProduceExporter': { name: 'Amina Exports Ltd.', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agro-Export Facilitator/Customs Broker', headline: 'Exporting fresh mangoes and pineapples.' },
+  'coldChainTech': { name: 'CoolTech Solutions', avatarUrl: 'https://placehold.co/40x40.png', role: 'Equipment Supplier (Sales of Machinery/IoT)', headline: 'Real-time temperature monitoring solutions.' },
+  'logisticsConsultant': { name: 'Dr. Raj Singh', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Advising on warehouse optimization.' },
+  'warehouseManagerAnna': { name: 'Anna Petrova', avatarUrl: 'https://placehold.co/40x40.png', role: 'Storage/Warehouse Facility', headline: 'Managing multi-commodity storage facilities.' },
+  'storageSolutionsInc': { name: 'StoreSafe Systems', avatarUrl: 'https://placehold.co/40x40.png', role: 'Equipment Supplier (Sales of Machinery/IoT)', headline: 'Hermetic storage solutions provider.' },
+  'currentUser': { name: 'My AgriBusiness', avatarUrl: 'https://placehold.co/40x40.png', role: 'Farmer', headline: 'Building sustainable food systems.'},
   'rajPatel': { name: "Raj Patel", avatarUrl: "https://placehold.co/40x40.png", headline: "Agri-Supply Chain Analyst"},
   'aishaBello': { name: "Aisha Bello", avatarUrl: "https://placehold.co/80x80.png", headline: "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets." },
   'currentDemoUser': { name: "Demo User", avatarUrl: "https://placehold.co/40x40.png", headline: "Agri-Enthusiast | DamDoh Platform"},
-  'sug1': { name: 'Global Alliance for Food Security', roles: ['Government Regulator/Auditor'], avatarUrl: 'https://placehold.co/50x50.png', headline: 'Advocating for sustainable agriculture and food security worldwide. Connect to learn about policy initiatives.' }, // Role adapted
-  'sug2': { name: 'AgriLogistics Innovators Forum', roles: ['Researcher/Academic'], avatarUrl: 'https://placehold.co/50x50.png', headline: 'A forum for discussing cutting-edge supply chain technologies and logistics optimization in agriculture.' }, // Role adapted
-  'sug3': { name: 'DroughtResist Seeds Corp.', roles: ['Input Supplier (Seed, Fertilizer, Pesticide)'], avatarUrl: 'https://placehold.co/50x50.png', headline: 'Developing and supplying climate-resilient seed varieties for arid and semi-arid regions.' },
-  'sugFarmerNetworkKenya': { name: 'Kenya Organic Farmers Network', roles: ['Farmer'], avatarUrl: 'https://placehold.co/50x50.png', headline: 'A network of organic farmers in Kenya sharing best practices and market access opportunities.' },
-  'sugAgriFinanceIndia': { name: 'AgriFinance India', roles: ['Financial Institution (Micro-finance/Loans)'], avatarUrl: 'https://placehold.co/50x50.png', headline: 'Providing micro-loans and financial literacy training for smallholder farmers in India.' },
-  'organicFarmKenya': {name: 'Organic Farm Kenya', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Farmer'], headline: 'Certified organic produce from Kenya.'},
-  'agroInputsGhana': {name: 'Agro Inputs Ghana', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Input Supplier (Seed, Fertilizer, Pesticide)'], headline: 'Reliable supplier of farming inputs.'},
-  'precisionAgNigeria': {name: 'Precision Ag Nigeria', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agri-Tech Innovator/Developer'], headline: 'Tech solutions for modern farming.'},
-  'valueChainExperts': {name: 'Value Chain Experts', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agronomy Expert/Consultant (External)'], headline: 'Consulting for agricultural value chains.'},
-  'landLeaseAfrica': {name: 'LandLease Africa', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Equipment Supplier (Sales of Machinery/IoT)'], headline: 'Connecting farmers with available land.'}, // Simplified role
-  'vetServicesKenya': { name: 'Kenya Veterinary Services', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agronomy Expert/Consultant (External)'], headline: 'Mobile veterinary care for livestock.'}, // Vets often act as consultants
-  'exportDocsPro': { name: 'Export Docs Pro', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Agro-Export Facilitator/Customs Broker'], headline: 'Assistance with agricultural export documentation.'},
-  'honeyHarvestCo': { name: 'Honey Harvest Co-op', avatarUrl: 'https://placehold.co/40x40.png', roles: ['Farmer'], headline: 'Ethically sourced organic honey producers.'},
+  'sug1': { name: 'Global Alliance for Food Security', role: 'Government Regulator/Auditor', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Advocating for sustainable agriculture and food security worldwide. Connect to learn about policy initiatives.' }, // Role adapted
+  'sug2': { name: 'AgriLogistics Innovators Forum', role: 'Researcher/Academic', avatarUrl: 'https://placehold.co/50x50.png', headline: 'A forum for discussing cutting-edge supply chain technologies and logistics optimization in agriculture.' }, // Role adapted
+  'sug3': { name: 'DroughtResist Seeds Corp.', role: 'Input Supplier (Seed, Fertilizer, Pesticide)', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Developing and supplying climate-resilient seed varieties for arid and semi-arid regions.' },
+  'sugFarmerNetworkKenya': { name: 'Kenya Organic Farmers Network', role: 'Farmer', avatarUrl: 'https://placehold.co/50x50.png', headline: 'A network of organic farmers in Kenya sharing best practices and market access opportunities.' },
+  'sugAgriFinanceIndia': { name: 'AgriFinance India', role: 'Financial Institution (Micro-finance/Loans)', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Providing micro-loans and financial literacy training for smallholder farmers in India.' },
+  'organicFarmKenya': {name: 'Organic Farm Kenya', avatarUrl: 'https://placehold.co/40x40.png', role: 'Farmer', headline: 'Certified organic produce from Kenya.'},
+  'agroInputsGhana': {name: 'Agro Inputs Ghana', avatarUrl: 'https://placehold.co/40x40.png', role: 'Input Supplier (Seed, Fertilizer, Pesticide)', headline: 'Reliable supplier of farming inputs.'},
+  'precisionAgNigeria': {name: 'Precision Ag Nigeria', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agri-Tech Innovator/Developer', headline: 'Tech solutions for modern farming.'},
+  'valueChainExperts': {name: 'Value Chain Experts', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Consulting for agricultural value chains.'},
+  'landLeaseAfrica': {name: 'LandLease Africa', avatarUrl: 'https://placehold.co/40x40.png', role: 'Equipment Supplier (Sales of Machinery/IoT)', headline: 'Connecting farmers with available land.'}, // Simplified role
+  'vetServicesKenya': { name: 'Kenya Veterinary Services', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Mobile veterinary care for livestock.'}, // Vets often act as consultants
+  'exportDocsPro': { name: 'Export Docs Pro', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agro-Export Facilitator/Customs Broker', headline: 'Assistance with agricultural export documentation.'},
+  'honeyHarvestCo': { name: 'Honey Harvest Co-op', avatarUrl: 'https://placehold.co/40x40.png', role: 'Farmer', headline: 'Ethically sourced organic honey producers.'},
 };
 
 // --- Dashboard Feed Items ---
@@ -96,11 +96,11 @@ export const dummyProfiles: UserProfile[] = Object.entries(dummyUsersData).map((
   id,
   name: data.name,
   email: `${id.toLowerCase().replace(/[^a-z0-9]/g, '.')}@damdoh.example.com`, // Generic email
-  roles: data.roles || (data.role ? [data.role as StakeholderRole] : []), // Use roles array or convert single role, fallback to empty
+  role: (data.role as StakeholderRole) || 'Farmer',
   location: data.headline?.includes("Kenya") ? "Kenya" : data.headline?.includes("USA") ? "USA" : "Global", // Simple location logic
   avatarUrl: data.avatarUrl,
-  profileSummary: data.headline || `A valued member of the ${APP_NAME} agricultural community${data.roles?.length ? ` with roles in ${data.roles.join(', ')}` : ''}.`,
-  bio: `More information about ${data.name}, including their roles as ${data.roles?.length ? data.roles.join(', ') : 'a valued stakeholder'}. Details coming soon.`,
+  profileSummary: data.headline || `A valued member of the ${APP_NAME} agricultural community with a role in ${data.role || 'various sectors'}.`,
+  bio: `More information about ${data.name}, including their role as ${data.role || 'a valued stakeholder'}. Details coming soon.`,
   yearsOfExperience: Math.floor(Math.random() * 20) + 1,
   areasOfInterest: ["Sustainable Farming", "Market Access"], // Generic interests
   needs: ["New Buyers", "Logistics Support"], // Generic needs
@@ -238,19 +238,19 @@ export const dummyMarketplaceItems: MarketplaceItem[] = [
 
 // --- Forum Topics Page Data ---
 export const dummyForumTopics: ForumTopic[] = [
-  { id: 'ft1', title: 'Sustainable Sourcing & Fair Trade Practices', description: 'Discuss ethical sourcing, certification, and building transparent supply chains for agricultural products.', postCount: 130, lastActivityAt: new Date(Date.now() - 2600000).toISOString(), creatorId: 'ethicaAgri', icon: 'Leaf', createdAt: new Date(Date.now() - 86400000 * 6).toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'ft2', title: 'Post-Harvest Loss Reduction Strategies', description: 'Share innovations and best practices for minimizing spoilage and waste from farm to consumer.', postCount: 95, lastActivityAt: new Date(Date.now() - 6200000).toISOString(), creatorId: 'foodSaverPro', icon: 'ShieldAlert', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'ft3', title: 'Agri-Logistics & Cold Chain Management', description: 'Challenges and solutions in transporting perishable goods, warehouse management, and last-mile delivery.', postCount: 250, lastActivityAt: new Date(Date.now() - 900000).toISOString(), creatorId: 'logisticsGuru', icon: 'Truck', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'ft4', title: 'Global Commodity Market Trends & Price Volatility', description: 'Analysis of grain, coffee, cocoa, and other commodity markets. Hedging and risk management strategies.', postCount: 180, lastActivityAt: new Date(Date.now() - 76400000).toISOString(), creatorId: 'marketAnalystAgri', icon: 'TrendingUp', createdAt: new Date(Date.now() - 86400000 * 9).toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'ft5', title: 'Innovations in Food Packaging & Preservation', description: 'Exploring sustainable packaging options, shelf-life extension technologies, and food safety.', postCount: 70, lastActivityAt: new Date(Date.now() - 162800000).toISOString(), creatorId: 'packagingInnovator', icon: 'Package', createdAt: new Date(Date.now() - 86400000 * 12).toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'ft6', title: 'Access to Finance for Agribusinesses', description: 'Discussing funding sources, grant opportunities, and financial planning for agricultural SMEs and cooperatives.', postCount: 55, lastActivityAt: new Date(Date.now() - 249200000).toISOString(), creatorId: 'agriFinanceExpert', icon: 'Award', createdAt: new Date(Date.now() - 86400000 * 18).toISOString(), updatedAt: new Date().toISOString() },
-  { id: 'ft7', title: 'Digital Traceability in Supply Chains', description: 'Implementing blockchain and other technologies for tracking products from farm to fork.', postCount: 110, lastActivityAt: new Date(Date.now() - 3600000 * 5).toISOString(), creatorId: 'traceTechLead', icon: 'Brain', createdAt: new Date(Date.now() - 86400000 * 7).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft1', name: 'Sustainable Sourcing & Fair Trade Practices', description: 'Discuss ethical sourcing, certification, and building transparent supply chains for agricultural products.', postCount: 130, lastActivityAt: new Date(Date.now() - 2600000).toISOString(), creatorId: 'ethicaAgri', icon: 'Leaf', createdAt: new Date(Date.now() - 86400000 * 6).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft2', name: 'Post-Harvest Loss Reduction Strategies', description: 'Share innovations and best practices for minimizing spoilage and waste from farm to consumer.', postCount: 95, lastActivityAt: new Date(Date.now() - 6200000).toISOString(), creatorId: 'foodSaverPro', icon: 'ShieldAlert', createdAt: new Date(Date.now() - 86400000 * 4).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft3', name: 'Agri-Logistics & Cold Chain Management', description: 'Challenges and solutions in transporting perishable goods, warehouse management, and last-mile delivery.', postCount: 250, lastActivityAt: new Date(Date.now() - 900000).toISOString(), creatorId: 'logisticsGuru', icon: 'Truck', createdAt: new Date(Date.now() - 86400000 * 2).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft4', name: 'Global Commodity Market Trends & Price Volatility', description: 'Analysis of grain, coffee, cocoa, and other commodity markets. Hedging and risk management strategies.', postCount: 180, lastActivityAt: new Date(Date.now() - 76400000).toISOString(), creatorId: 'marketAnalystAgri', icon: 'TrendingUp', createdAt: new Date(Date.now() - 86400000 * 9).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft5', name: 'Innovations in Food Packaging & Preservation', description: 'Exploring sustainable packaging options, shelf-life extension technologies, and food safety.', postCount: 70, lastActivityAt: new Date(Date.now() - 162800000).toISOString(), creatorId: 'packagingInnovator', icon: 'Package', createdAt: new Date(Date.now() - 86400000 * 12).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft6', name: 'Access to Finance for Agribusinesses', description: 'Discussing funding sources, grant opportunities, and financial planning for agricultural SMEs and cooperatives.', postCount: 55, lastActivityAt: new Date(Date.now() - 249200000).toISOString(), creatorId: 'agriFinanceExpert', icon: 'Award', createdAt: new Date(Date.now() - 86400000 * 18).toISOString(), updatedAt: new Date().toISOString() },
+  { id: 'ft7', name: 'Digital Traceability in Supply Chains', description: 'Implementing blockchain and other technologies for tracking products from farm to fork.', postCount: 110, lastActivityAt: new Date(Date.now() - 3600000 * 5).toISOString(), creatorId: 'traceTechLead', icon: 'Brain', createdAt: new Date(Date.now() - 86400000 * 7).toISOString(), updatedAt: new Date().toISOString() },
 ];
 
 // --- Forum Topic Detail Page Data ---
 export const dummyForumTopicDetail: ForumTopic = {
   id: 'agri-logistics',
-  title: 'Agri-Logistics & Cold Chain Management',
+  name: 'Agri-Logistics & Cold Chain Management',
   description: 'A forum for discussing challenges and solutions in transporting perishable goods, warehouse optimization, last-mile delivery strategies, and cold chain technologies to reduce post-harvest losses and ensure quality.',
   postCount: 250,
   lastActivityAt: new Date(Date.now() - 900000).toISOString(),

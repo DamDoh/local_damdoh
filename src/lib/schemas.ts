@@ -25,7 +25,7 @@ export const StakeholderProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100),
   email: z.string().email(),
   avatarUrl: z.string().url().optional(),
-  roles: z.array(z.enum(STAKEHOLDER_ROLES)).min(1, "At least one role is required."),
+  role: z.enum(STAKEHOLDER_ROLES),
   location: z.string().min(2).max(150),
   bio: z.string().max(2000).optional(),
   profileSummary: z.string().max(250).optional(),
@@ -39,6 +39,7 @@ export const StakeholderProfileSchema = z.object({
   // New fields for organizations
   organizationId: z.string().cuid2().optional(),
   isOrgAdmin: z.boolean().default(false).optional(),
+  bannerUrl: z.string().url().optional(),
 });
 
 export const OrganizationSchema = z.object({
@@ -152,7 +153,7 @@ export const MarketplaceOrderSchema = z.object({
 
 export const ForumTopicSchema = z.object({
   id: z.string().cuid2({ message: "Invalid CUID" }),
-  title: z.string().min(10).max(150),
+  name: z.string().min(10).max(150),
   description: z.string().min(20).max(2000),
   creatorId: z.string().cuid2({ message: "Invalid creator ID" }),
   createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }),

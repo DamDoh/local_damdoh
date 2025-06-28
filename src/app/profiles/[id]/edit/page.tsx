@@ -92,7 +92,7 @@ export default function EditProfilePage() {
         form.reset({
           displayName: userProfile.name || "",
           email: userProfile.email || "",
-          role: userProfile.roles?.[0], 
+          role: userProfile.role,
           profileSummary: userProfile.profileSummary || "",
           bio: userProfile.bio || "",
           location: userProfile.location || "",

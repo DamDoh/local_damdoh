@@ -1,6 +1,4 @@
 
-// This file contains the Genkit flow for suggesting connections to users.
-
 'use server';
 
 import {ai} from '@/ai/genkit';
