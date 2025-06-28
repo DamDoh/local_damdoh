@@ -1,1043 +1,495 @@
 
-import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
-import {FieldValue} from "firebase-admin/firestore";
-import type { UserProfile } from "./types";
-import {_internalInitiatePayment} from "./module7"; // Import payment function
-import {_internalLogTraceEvent} from "./module1"; // Import trace event logger
-import { getProfileByIdFromDB } from "./profiles";
+"use client";
 
-const db = admin.firestore();
-const POSTS_PER_PAGE = 10;
-const REPLIES_PER_PAGE = 15;
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { useAuth } from '@/lib/auth-utils';
+import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import Link from 'next/link';
+import { ArrowLeft, Users, UserCheck, CheckCircle, Search, Ticket, Loader2, Star, Percent, CalendarIcon, Hash, Copy, Share2, ClipboardCopy, Edit } from 'lucide-react';
+import type { AgriEvent, EventAttendee, EventCoupon } from '@/lib/types';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { createEventCouponSchema, type CreateEventCouponValues } from "@/lib/form-schemas";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from 'date-fns';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
-/**
- * =================================================================
- * Module 6: Community & Collaboration Backend
- * =================================================================
- */
 
-// ================== FORUMS ==================
+interface AgriEventWithAttendees extends AgriEvent {
+  isRegistered?: boolean;
+  attendees: EventAttendee[];
+}
 
-export const getTopics = functions.https.onCall(async (data, context) => {
-  try {
-    const topicsSnapshot = await db.collection("forums").orderBy("lastActivity", "desc").get();
-    const topics = topicsSnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return { 
-            id: doc.id, 
-            ...data,
-            createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : null,
-            lastActivity: data.lastActivity?.toDate ? data.lastActivity.toDate().toISOString() : null,
-        };
+function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: string; }) {
+    const { toast } = useToast();
+    const [coupons, setCoupons] = useState<EventCoupon[]>([]);
+    const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
+    const functions = getFunctions(firebaseApp);
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createEventCoupon'), [functions]);
+    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), [functions]);
+
+    const form = useForm<CreateEventCouponValues>({
+        resolver: zodResolver(createEventCouponSchema),
+        defaultValues: {
+            code: "",
+            discountType: undefined,
+            discountValue: undefined,
+            expiresAt: undefined,
+            usageLimit: undefined,
+        },
     });
-    return {topics};
-  } catch (error) {
-    console.error("Error fetching topics:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching forum topics.");
-  }
-});
-
-export const createTopic = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a topic.");
-  }
-
-  const {name, description, regionTags} = data;
-
-  if (!name || !description) {
-    throw new functions.https.HttpsError("invalid-argument", "Name and description are required.");
-  }
-
-  const newTopic = {
-    name,
-    description,
-    regionTags: regionTags || ["Global"],
-    postCount: 0,
-    createdBy: context.auth.uid,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    lastActivity: admin.firestore.FieldValue.serverTimestamp(),
-  };
-
-  try {
-    const docRef = await db.collection("forums").add(newTopic);
-    return {topicId: docRef.id, message: "Topic created successfully"};
-  } catch (error) {
-    console.error("Error creating topic:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while creating the topic.");
-  }
-});
-
-
-export const getPostsForTopic = functions.https.onCall(async (data, context) => {
-  const {topicId, lastVisible} = data;
-  if (!topicId) {
-    throw new functions.https.HttpsError("invalid-argument", "A topicId must be provided.");
-  }
-
-  try {
-    let query = db.collection(`forums/${topicId}/posts`)
-      .orderBy("timestamp", "desc")
-      .limit(POSTS_PER_PAGE);
-
-    if (lastVisible) {
-      const lastVisibleDoc = await db.collection(`forums/${topicId}/posts`).doc(lastVisible).get();
-      if (lastVisibleDoc.exists) {
-        query = query.startAfter(lastVisibleDoc);
-      }
-    }
-
-    const postsSnapshot = await query.get();
-    const posts = postsSnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return { 
-            id: doc.id, 
-            ...data,
-            timestamp: data.timestamp?.toDate ? data.timestamp.toDate().toISOString() : null,
-        };
-    });
-
-    const newLastVisible = postsSnapshot.docs[postsSnapshot.docs.length - 1]?.id || null;
-
-    return {posts, lastVisible: newLastVisible};
-  } catch (error) {
-    console.error(`Error fetching posts for topic ${topicId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching posts.");
-  }
-});
-
-export const createForumPost = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
-  }
-
-  const {topicId, title, content} = data;
-  if (!topicId || !title || !content) {
-    throw new functions.https.HttpsError("invalid-argument", "topicId, title, and content are required.");
-  }
-
-  const topicRef = db.collection("forums").doc(topicId);
-  const newPostRef = topicRef.collection("posts").doc();
-
-  const newPost = {
-    title,
-    content,
-    authorRef: context.auth.uid,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    replyCount: 0,
-    likeCount: 0,
-  };
-
-  try {
-    await db.runTransaction(async (transaction) => {
-      transaction.set(newPostRef, newPost);
-      transaction.update(topicRef, {
-        postCount: admin.firestore.FieldValue.increment(1),
-        lastActivity: admin.firestore.FieldValue.serverTimestamp(),
-      });
-    });
-
-    return {postId: newPostRef.id, message: "Post created successfully"};
-  } catch (error) {
-    console.error(`Error creating post in topic ${topicId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
-  }
-});
-
-
-export const getRepliesForPost = functions.https.onCall(async (data, context) => {
-  const {topicId, postId, lastVisible} = data;
-  if (!topicId || !postId) {
-    throw new functions.https.HttpsError("invalid-argument", "A topicId and postId must be provided.");
-  }
-
-  try {
-    let query = db.collection(`forums/${topicId}/posts/${postId}/replies`)
-      .orderBy("timestamp", "asc")
-      .limit(REPLIES_PER_PAGE);
-
-    if (lastVisible) {
-      const lastVisibleDoc = await db.collection(`forums/${topicId}/posts/${postId}/replies`).doc(lastVisible).get();
-      if (lastVisibleDoc.exists) {
-        query = query.startAfter(lastVisibleDoc);
-      }
-    }
-
-    const repliesSnapshot = await query.get();
-    const replies = repliesSnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return { 
-            id: doc.id, 
-            ...data,
-            timestamp: data.timestamp?.toDate ? data.timestamp.toDate().toISOString() : null,
-        };
-    });
-
-    const newLastVisible = repliesSnapshot.docs[repliesSnapshot.docs.length - 1]?.id || null;
-
-    return {replies, lastVisible: newLastVisible};
-  } catch (error) {
-    console.error(`Error fetching replies for post ${postId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching replies.");
-  }
-});
-
-export const addReplyToPost = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to reply.");
-  }
-
-  const {topicId, postId, content} = data;
-  if (!topicId || !postId || !content) {
-    throw new functions.https.HttpsError("invalid-argument", "topicId, postId, and content are required.");
-  }
-
-  const replyData = {
-    content,
-    authorRef: context.auth.uid,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
-  };
-
-  const postRef = db.collection(`forums/${topicId}/posts`).doc(postId);
-
-  try {
-    await postRef.collection("replies").add(replyData);
-    await postRef.update({ replyCount: admin.firestore.FieldValue.increment(1) });
-    await db.collection("forums").doc(topicId).update({
-      lastActivity: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    return { message: "Reply added successfully" };
-  } catch (error) {
-    console.error(`Error adding reply to post ${postId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while adding the reply.");
-  }
-});
-
-// ================== GROUPS ==================
-
-export const getGroups = functions.https.onCall(async (data, context) => {
-  try {
-    const groupsSnapshot = await db.collection("groups").where("isPublic", "==", true).get();
-    const groups = groupsSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
-    return {groups};
-  } catch (error) {
-    console.error("Error fetching groups:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching groups.");
-  }
-});
-
-export const createGroup = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a group.");
-  }
-
-  const {name, description, isPublic} = data;
-
-  if (!name || !description) {
-    throw new functions.https.HttpsError("invalid-argument", "Name and description are required.");
-  }
-
-  const newGroup = {
-    name,
-    description,
-    isPublic: isPublic !== false,
-    memberCount: 1,
-    ownerId: context.auth.uid,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-  };
-
-  try {
-    const groupRef = await db.collection("groups").add(newGroup);
-    await groupRef.collection("members").doc(context.auth.uid).set({
-      role: "owner",
-      joinedAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
-    return {groupId: groupRef.id, message: "Group created successfully"};
-  } catch (error) {
-    console.error("Error creating group:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while creating the group.");
-  }
-});
-
-export const getGroupDetails = functions.https.onCall(async (data, context) => {
-  const {groupId} = data;
-  if (!groupId) {
-    throw new functions.https.HttpsError("invalid-argument", "A groupId must be provided.");
-  }
-
-  try {
-    const groupDoc = await db.collection("groups").doc(groupId).get();
-    if (!groupDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Group not found.");
-    }
-    const groupData = groupDoc.data()!;
-    return {
-        id: groupDoc.id, 
-        ...groupData,
-        createdAt: groupData.createdAt?.toDate ? groupData.createdAt.toDate().toISOString() : null,
-    };
-  } catch (error) {
-    console.error(`Error fetching group details for ${groupId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching group details.");
-  }
-});
-
-export const getGroupMembers = functions.https.onCall(async (data, context) => {
-  const {groupId} = data;
-  if (!groupId) {
-    throw new functions.https.HttpsError("invalid-argument", "A groupId must be provided.");
-  }
-
-  try {
-    const membersSnapshot = await db.collection(`groups/${groupId}/members`).get();
-    const memberIds = membersSnapshot.docs.map((doc) => doc.id);
-
-    if (memberIds.length === 0) {
-      return [];
-    }
-
-    const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", memberIds).get();
-    const members = userDocs.docs.map((doc) => ({id: doc.id, ...doc.data()}));
-
-    return members;
-  } catch (error) {
-    console.error(`Error fetching members for group ${groupId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching group members.");
-  }
-});
-
-export const joinGroup = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to join a group.");
-  }
-
-  const {groupId} = data;
-  if (!groupId) {
-    throw new functions.https.HttpsError("invalid-argument", "A groupId must be provided.");
-  }
-
-  const groupRef = db.collection("groups").doc(groupId);
-  const memberRef = groupRef.collection("members").doc(context.auth.uid);
-
-  try {
-    const groupDoc = await groupRef.get();
-    if (!groupDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Group not found.");
-    }
-    if (!groupDoc.data()?.isPublic) {
-      throw new functions.https.HttpsError("permission-denied", "This is a private group.");
-    }
-
-    const memberDoc = await memberRef.get();
-    if (memberDoc.exists) {
-      throw new functions.https.HttpsError("already-exists", "You are already a member of this group.");
-    }
-
-    await memberRef.set({
-      role: "member",
-      joinedAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
-    await groupRef.update({ memberCount: admin.firestore.FieldValue.increment(1) });
-
-    return {message: "Successfully joined the group."};
-  } catch (error: any) {
-    console.error(`Error joining group ${groupId}:`, error);
-    if(error instanceof functions.https.HttpsError) throw error;
-    throw new functions.https.HttpsError("internal", "An error occurred while joining the group.");
-  }
-});
-
-export const leaveGroup = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to leave a group.");
-  }
-
-  const {groupId} = data;
-  if (!groupId) {
-    throw new functions.https.HttpsError("invalid-argument", "A groupId must be provided.");
-  }
-
-  const groupRef = db.collection("groups").doc(groupId);
-  const memberRef = groupRef.collection("members").doc(context.auth.uid);
-
-  try {
-    const memberDoc = await memberRef.get();
-    if (!memberDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "You are not a member of this group.");
-    }
-
-    await memberRef.delete();
-    await groupRef.update({ memberCount: admin.firestore.FieldValue.increment(-1) });
-
-    return {message: "Successfully left the group."};
-  } catch (error: any) {
-    console.error(`Error leaving group ${groupId}:`, error);
-    if(error instanceof functions.https.HttpsError) throw error;
-    throw new functions.https.HttpsError("internal", "An error occurred while leaving the group.");
-  }
-});
-
-
-/**
- * =================================================================
- * Module 6: Main Feed Functions
- * =================================================================
- */
-
-export const getFeed = functions.https.onCall(async (data, context) => {
-  try {
-    // Simplified query without ordering or pagination to ensure stability.
-    // This avoids potential 'internal' errors from missing Firestore indexes.
-    const query = db.collection("posts").limit(20);
-    const snapshot = await query.get();
     
-    const posts = snapshot.docs.map((doc) => {
-        const docData = doc.data();
-        return { 
-            id: doc.id, 
-            ...docData,
-            createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
-        };
-    });
-
-    // Pagination is removed for now, so lastVisible is always null.
-    return {posts, lastVisible: null};
-  } catch (error) {
-    console.error("Error fetching feed:", error);
-    // The specific message helps in debugging if the error is caught client-side.
-    throw new functions.https.HttpsError("internal", "Could not fetch the main feed due to a server-side issue.");
-  }
-});
-
-export const createFeedPost = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a post.");
-  }
-
-  const {content, mediaUrl, pollOptions} = data;
-  if (!content && !mediaUrl && !pollOptions) {
-    throw new functions.https.HttpsError("invalid-argument", "Post must have content, media, or a poll.");
-  }
-
-  const newPost = {
-    userId: context.auth.uid,
-    content: content || "",
-    mediaUrl: mediaUrl || null,
-    mediaType: mediaUrl ? (mediaUrl.includes(".mp4") ? "video" : "image") : null,
-    pollOptions: pollOptions || null,
-    likeCount: 0,
-    commentCount: 0,
-    createdAt: FieldValue.serverTimestamp(),
-  };
-
-  try {
-    const docRef = await db.collection("posts").add(newPost);
-    return {postId: docRef.id, message: "Post created successfully"};
-  } catch (error) {
-    console.error("Error creating post:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while creating the post.");
-  }
-});
-
-
-export const likePost = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to like a post.");
-  }
-  const {postId} = data;
-  if (!postId) {
-    throw new functions.https.HttpsError("invalid-argument", "postId is required.");
-  }
-
-  const postRef = db.collection("posts").doc(postId);
-  const likeRef = postRef.collection("likes").doc(context.auth.uid);
-
-  try {
-    const likeDoc = await likeRef.get();
-
-    if (likeDoc.exists) {
-      // Unlike the post
-      await likeRef.delete();
-      await postRef.update({ likeCount: FieldValue.increment(-1) });
-      return {success: true, message: "Post unliked."};
-    } else {
-      // Like the post
-      await likeRef.set({createdAt: FieldValue.serverTimestamp()});
-      await postRef.update({ likeCount: FieldValue.increment(1) });
-      return {success: true, message: "Post liked."};
-    }
-  } catch (error) {
-    console.error(`Error liking post ${postId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while liking the post.");
-  }
-});
-
-
-export const addComment = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to comment.");
-  }
-  const {postId, content} = data;
-  if (!postId || !content) {
-    throw new functions.https.HttpsError("invalid-argument", "postId and content are required.");
-  }
-
-  const newComment = {
-    userId: context.auth.uid,
-    content,
-    createdAt: FieldValue.serverTimestamp(),
-  };
-
-  const postRef = db.collection("posts").doc(postId);
-
-  try {
-    const commentRef = await postRef.collection("comments").add(newComment);
-    await postRef.update({ commentCount: FieldValue.increment(1) });
-    return {success: true, commentId: commentRef.id, message: "Comment added successfully."};
-  } catch (error) {
-    console.error(`Error adding comment to post ${postId}:`, error);
-    throw new functions.https.HttpsError("internal", "An error occurred while adding the comment.");
-  }
-});
-
-
-// ================== AGRI-BUSINESS EVENTS ==================
-
-export const createAgriEvent = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create an event.");
-  }
-
-  const {title, description, eventDate, location, eventType} = data;
-
-  if (!title || !description || !eventDate || !location || !eventType) {
-    throw new functions.https.HttpsError("invalid-argument", "Missing required event fields.");
-  }
-
-  const newEvent = {
-    ...data,
-    organizerId: context.auth.uid, // Use organizerId for clarity
-    createdAt: FieldValue.serverTimestamp(),
-    registeredAttendeesCount: 0,
-  };
-
-  try {
-    const docRef = await db.collection("agri_events").add(newEvent);
-    return {eventId: docRef.id, title: title};
-  } catch (error) {
-    console.error("Error creating agri-event:", error);
-    throw new functions.https.HttpsError("internal", "Failed to create event in the database.");
-  }
-});
-
-export const getAgriEvents = functions.https.onCall(async (data, context) => {
-  try {
-    const eventsSnapshot = await db.collection("agri_events").orderBy("eventDate", "asc").get();
-    const events = eventsSnapshot.docs.map((doc) => {
-        const eventData = doc.data();
-        return {
-            id: doc.id, 
-            ...eventData,
-            createdAt: eventData.createdAt?.toDate ? eventData.createdAt.toDate().toISOString() : null,
-            eventDate: eventData.eventDate, // This should already be an ISO string from the client
-        };
-    });
-    return {events};
-  } catch (error) {
-    console.error("Error fetching agri-events:", error);
-    throw new functions.https.HttpsError("internal", "An error occurred while fetching events.");
-  }
-});
-
-export const getEventDetails = functions.https.onCall(async (data, context) => {
-  const {eventId, includeAttendees} = data;
-  if (!eventId) {
-    throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
-  }
-
-  const eventRef = db.collection("agri_events").doc(eventId);
-  const eventSnap = await eventRef.get();
-
-  if (!eventSnap.exists) {
-    throw new functions.https.HttpsError("not-found", "Event not found.");
-  }
-
-  const eventData = eventSnap.data()!;
-  let isRegistered = false;
-  let attendees: any[] = [];
-
-  if (context.auth) {
-    const registrationRef = eventRef.collection("registrations").doc(context.auth.uid);
-    const registrationSnap = await registrationRef.get();
-    isRegistered = registrationSnap.exists;
-  }
-  
-  if (includeAttendees && context.auth && context.auth.uid === eventData.organizerId) {
-    const registrationsSnap = await eventRef.collection("registrations").get();
-    const attendeeIds = registrationsSnap.docs.map((doc) => doc.id);
-
-    if (attendeeIds.length > 0) {
-      const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", attendeeIds).get();
-      const profiles: { [key: string]: UserProfile } = {};
-      userDocs.forEach((doc) => {
-        profiles[doc.id] = doc.data() as UserProfile;
-      });
-
-      attendees = registrationsSnap.docs.map((regDoc) => {
-        const profile = profiles[regDoc.id];
-        const regData = regDoc.data();
-        return {
-          id: regDoc.id,
-          displayName: profile?.displayName || "Unknown User",
-          email: profile?.email || "No email",
-          avatarUrl: profile?.photoURL || "",
-          registeredAt: regData.registeredAt.toDate().toISOString(),
-          checkedIn: regData.checkedIn || false,
-          checkedInAt: regData.checkedInAt ? regData.checkedInAt.toDate().toISOString() : null,
-        };
-      });
-    }
-  }
-
-  return {
-      ...eventData,
-      id: eventSnap.id,
-      isRegistered,
-      attendees,
-      createdAt: eventData.createdAt?.toDate ? eventData.createdAt.toDate().toISOString() : null,
-      eventDate: eventData.eventDate,
-  };
-});
-
-
-export const registerForEvent = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be logged in to register.");
-  }
-
-  const {eventId, couponCode} = data;
-  if (!eventId) {
-    throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
-  }
-
-  const userId = context.auth.uid;
-  const eventRef = db.collection("agri_events").doc(eventId);
-  const registrationRef = eventRef.collection("registrations").doc(userId);
-
-  return db.runTransaction(async (transaction) => {
-    const eventDoc = await transaction.get(eventRef);
-    if (!eventDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Event not found.");
-    }
-
-    const eventData = eventDoc.data()!;
-    if (!eventData.registrationEnabled) {
-      throw new functions.https.HttpsError("failed-precondition", "Registration for this event is not open.");
-    }
-
-    if (eventData.attendeeLimit && eventData.registeredAttendeesCount >= eventData.attendeeLimit) {
-      throw new functions.https.HttpsError("failed-precondition", "This event is full.");
-    }
-
-    const registrationDoc = await transaction.get(registrationRef);
-    if (registrationDoc.exists) {
-      throw new functions.https.HttpsError("already-exists", "You are already registered for this event.");
-    }
-
-    let finalPrice = eventData.price || 0;
-    let couponRef: FirebaseFirestore.DocumentReference | null = null;
-    let discountApplied = 0;
-
-    if (couponCode && typeof couponCode === "string" && finalPrice > 0) {
-      const couponsQuery = eventRef.collection("coupons").where("code", "==", couponCode.toUpperCase()).limit(1);
-      const couponSnapshot = await transaction.get(couponsQuery);
-
-      if (couponSnapshot.empty) {
-        throw new functions.https.HttpsError("not-found", "Invalid coupon code.");
-      }
-
-      const couponDoc = couponSnapshot.docs[0];
-      const couponData = couponDoc.data();
-      couponRef = couponDoc.ref;
-
-      if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
-        throw new functions.https.HttpsError("failed-precondition", "Coupon has reached its usage limit.");
-      }
-      if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
-        throw new functions.https.HttpsError("failed-precondition", "This coupon has expired.");
-      }
-
-      if (couponData.discountType === "percentage") {
-        discountApplied = finalPrice * (couponData.discountValue / 100);
-      } else if (couponData.discountType === "fixed") {
-        discountApplied = couponData.discountValue;
-      }
-
-      finalPrice = Math.max(0, finalPrice - discountApplied);
-    }
-
-    if (finalPrice > 0) {
-      console.log(`Paid event registration for event ${eventId}. Final price after discount: ${finalPrice}. Initiating payment flow.`);
-      try {
-        await _internalInitiatePayment({
-          orderId: `event_${eventId}_${userId}`,
-          amount: finalPrice,
-          currency: eventData.currency || "USD",
-          buyerInfo: {userId},
-          sellerInfo: {organizerId: eventData.organizerId},
-          description: `Registration for event: ${eventData.title}${discountApplied > 0 ? ` (Discount applied: ${eventData.currency || "USD"} ${discountApplied.toFixed(2)})` : ""}`,
-        });
-        console.log(`Payment initiated for event ${eventId}. Proceeding with registration.`);
-      } catch (paymentError: any) {
-        console.error("Payment initiation failed:", paymentError);
-        throw new functions.https.HttpsError("aborted", "Payment processing failed. Please try again.");
-      }
-    }
-
-    transaction.set(registrationRef, {
-      userId: userId,
-      registeredAt: FieldValue.serverTimestamp(),
-      checkedIn: false,
-      checkedInAt: null,
-      couponUsed: couponCode || null,
-      amountPaid: finalPrice,
-    });
-
-    transaction.update(eventRef, {
-      registeredAttendeesCount: FieldValue.increment(1),
-    });
-
-    if (couponRef) {
-      transaction.update(couponRef, {usageCount: FieldValue.increment(1)});
-    }
-
-    return { success: true, message: "Successfully registered for the event.", finalPrice, discountApplied };
-  });
-});
-
-export const checkInAttendee = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "You must be an organizer to check in attendees.");
-  }
-
-  const {eventId, attendeeId} = data;
-  if (!eventId || !attendeeId) {
-    throw new functions.https.HttpsError("invalid-argument", "Event ID and Attendee ID are required.");
-  }
-
-  const organizerId = context.auth.uid;
-  const eventRef = db.collection("agri_events").doc(eventId);
-  const registrationRef = eventRef.collection("registrations").doc(attendeeId);
-
-  const eventDoc = await eventRef.get();
-  if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-    throw new functions.https.HttpsError("permission-denied", "You are not authorized to manage this event.");
-  }
-
-  const registrationDoc = await registrationRef.get();
-  if (!registrationDoc.exists) {
-    throw new functions.https.HttpsError("not-found", "This user is not registered for the event.");
-  }
-
-  if (registrationDoc.data()?.checkedIn) {
-    throw new functions.https.HttpsError("already-exists", "This attendee has already been checked in.");
-  }
-
-  await registrationRef.update({
-    checkedIn: true,
-    checkedInAt: FieldValue.serverTimestamp(),
-  });
-
-  try {
-    const eventName = eventDoc.data()?.title || "Unknown Event";
-    console.log(`Logging ATTENDED_EVENT for user ${attendeeId} at event "${eventName}"`);
-    await _internalLogTraceEvent({
-      vtiId: attendeeId, 
-      eventType: "ATTENDED_EVENT",
-      actorRef: organizerId, 
-      geoLocation: null, 
-      payload: {
-        eventId: eventId,
-        eventName: eventName,
-        organizerId: organizerId,
-        notes: "Attendee checked in by organizer.",
-      },
-      farmFieldId: `user-credential:${attendeeId}`, 
-    });
-    console.log(`Successfully logged traceable attendance for user ${attendeeId}`);
-  } catch (traceError) {
-    console.error(`Failed to log traceability event for user ${attendeeId}'s attendance:`, traceError);
-  }
-
-
-  return {success: true, message: `Attendee ${attendeeId} checked in.`};
-});
-
-
-export const createEventCoupon = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in.");
-    }
-
-    const { eventId, code, discountType, discountValue, expiresAt, usageLimit } = data;
-    const organizerId = context.auth.uid;
-
-    if (!eventId || !code || !discountType || discountValue === undefined) {
-        throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
-    }
-
-    const eventRef = db.collection("agri_events").doc(eventId);
-    const eventDoc = await eventRef.get();
-
-    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not the organizer of this event.");
-    }
-    
-    const couponCode = code.toUpperCase();
-    const couponsRef = eventRef.collection('coupons');
-    const existingCouponQuery = await couponsRef.where('code', '==', couponCode).get();
-    if (!existingCouponQuery.empty) {
-        throw new functions.https.HttpsError("already-exists", `A coupon with the code "${couponCode}" already exists for this event.`);
-    }
-
-    const newCoupon = {
-        code: couponCode,
-        discountType,
-        discountValue,
-        expiresAt: expiresAt ? admin.firestore.Timestamp.fromDate(new Date(expiresAt)) : null,
-        usageLimit: usageLimit || null,
-        usageCount: 0,
-        createdAt: FieldValue.serverTimestamp(),
-        organizerId,
-    };
-
-    const couponRef = await couponsRef.add(newCoupon);
-    
-    await eventRef.update({ couponCount: FieldValue.increment(1) });
-
-    return { couponId: couponRef.id, ...newCoupon };
-});
-
-
-export const getEventCoupons = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in.");
-    }
-    const { eventId } = data;
-    const organizerId = context.auth.uid;
-
-    const eventRef = db.collection("agri_events").doc(eventId);
-    const eventDoc = await eventRef.get();
-
-    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view coupons for this event.");
-    }
-
-    const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
-    const coupons = couponsSnapshot.docs.map(doc => {
-        const couponData = doc.data();
-        return {
-            id: doc.id,
-            ...couponData,
-            createdAt: couponData.createdAt?.toDate ? couponData.createdAt.toDate().toISOString() : null,
-            expiresAt: couponData.expiresAt?.toDate ? couponData.expiresAt.toDate().toISOString() : null,
-        };
-    });
-
-    return { coupons };
-});
-
-// ================== MESSAGING ==================
-
-/**
- * Gets all conversations for the currently authenticated user.
- */
-export const getConversationsForUser = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
-    const uid = context.auth.uid;
-
-    const conversationsRef = db.collection('conversations');
-    const q = conversationsRef.where('participantIds', 'array-contains', uid).orderBy('lastMessageTimestamp', 'desc');
-
-    const snapshot = await q.get();
-    if (snapshot.empty) {
-        return { conversations: [] };
-    }
-
-    const conversations = snapshot.docs.map(doc => {
-        const data = doc.data();
-        const otherParticipantId = data.participantIds.find((pId: string) => pId !== uid);
-        const otherParticipantInfo = data.participantInfo[otherParticipantId] || { name: 'Unknown User', avatarUrl: '' };
-
-        return {
-            id: doc.id,
-            participant: {
-                id: otherParticipantId,
-                name: otherParticipantInfo.name,
-                avatarUrl: otherParticipantInfo.avatarUrl,
-            },
-            lastMessage: data.lastMessage,
-            lastMessageTimestamp: data.lastMessageTimestamp?.toDate ? data.lastMessageTimestamp.toDate().toISOString() : new Date().toISOString(),
-            unreadCount: 0, // Simplified for now
-        };
-    });
-
-    return { conversations };
-});
-
-/**
- * Gets all messages for a specific conversation.
- */
-export const getMessagesForConversation = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
-    const { conversationId } = data;
-    if (!conversationId) {
-        throw new functions.https.HttpsError("invalid-argument", "A conversationId must be provided.");
-    }
-    
-    // Security Check: ensure user is part of the conversation
-    const convoRef = db.collection('conversations').doc(conversationId);
-    const convoSnap = await convoRef.get();
-    if (!convoSnap.exists || !convoSnap.data()?.participantIds.includes(context.auth.uid)) {
-        throw new functions.https.HttpsError("permission-denied", "You do not have access to this conversation.");
-    }
-
-    const messagesRef = convoRef.collection('messages').orderBy('timestamp', 'asc');
-    const snapshot = await messagesRef.get();
-    const messages = snapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-            id: doc.id,
-            ...data,
-            timestamp: data.timestamp?.toDate ? data.timestamp.toDate().toISOString() : new Date().toISOString(),
-        };
-    });
-
-    return { messages };
-});
-
-/**
- * Sends a message to a conversation.
- */
-export const sendMessage = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
-    const { conversationId, content } = data;
-    if (!conversationId || !content) {
-        throw new functions.https.HttpsError("invalid-argument", "conversationId and content are required.");
-    }
-
-    const uid = context.auth.uid;
-    const convoRef = db.collection('conversations').doc(conversationId);
-
-    // Security check
-    const convoSnap = await convoRef.get();
-    if (!convoSnap.exists || !convoSnap.data()?.participantIds.includes(uid)) {
-        throw new functions.https.HttpsError("permission-denied", "You do not have access to this conversation.");
-    }
-
-    const message = {
-        senderId: uid,
-        content: content,
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    };
-    
-    await convoRef.collection('messages').add(message);
-    await convoRef.update({
-        lastMessage: content,
-        lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    return { success: true };
-});
-
-/**
- * Finds an existing conversation between two users or creates a new one.
- */
-export const getOrCreateConversation = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
-    const { recipientId } = data;
-    if (!recipientId) {
-        throw new functions.https.HttpsError("invalid-argument", "A recipientId must be provided.");
-    }
-
-    const uid = context.auth.uid;
-    if (uid === recipientId) {
-         throw new functions.https.HttpsError("invalid-argument", "Cannot start a conversation with yourself.");
-    }
-
-    const participantIds = [uid, recipientId].sort(); // Sort to ensure consistent query ID
-    
-    const conversationsRef = db.collection('conversations');
-    const q = conversationsRef.where('participantIds', '==', participantIds);
-    
-    const snapshot = await q.get();
-
-    if (!snapshot.empty) {
-        // Conversation already exists
-        const doc = snapshot.docs[0];
-        return { conversationId: doc.id, isNew: false };
-    } else {
-        // Create new conversation
-        const [userProfile, recipientProfile] = await Promise.all([
-            getProfileByIdFromDB(uid),
-            getProfileByIdFromDB(recipientId)
-        ]);
-        
-        if (!userProfile || !recipientProfile) {
-            throw new functions.https.HttpsError("not-found", "One or both user profiles not found.");
+    const fetchCoupons = useCallback(async () => {
+        setIsLoadingCoupons(true);
+        try {
+            const result = await getCouponsCallable({ eventId });
+            setCoupons((result.data as any).coupons || []);
+        } catch (error) {
+            toast({ variant: "destructive", title: "Error", description: "Could not fetch coupons." });
+        } finally {
+            setIsLoadingCoupons(false);
         }
+    }, [eventId, getCouponsCallable, toast]);
+    
+    useEffect(() => {
+        fetchCoupons();
+    }, [fetchCoupons]);
 
-        const newConversation = {
-            participantIds,
-            participantInfo: {
-                [uid]: { name: userProfile.displayName, avatarUrl: userProfile.photoURL || null },
-                [recipientId]: { name: recipientProfile.displayName, avatarUrl: recipientProfile.photoURL || null }
-            },
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
-            lastMessage: "Conversation started.",
-        };
-        const newConvoRef = await conversationsRef.add(newConversation);
-        return { conversationId: newConvoRef.id, isNew: true };
-    }
-});
-
-/**
- * Fetches comments for a specific main feed post.
- */
-export const getCommentsForPost = functions.https.onCall(async (data, context) => {
-    const { postId } = data;
-    if (!postId) {
-        throw new functions.https.HttpsError("invalid-argument", "A postId must be provided.");
+    async function onCouponSubmit(data: CreateEventCouponValues) {
+        try {
+            await createCouponCallable({ eventId, ...data, expiresAt: data.expiresAt?.toISOString() });
+            toast({ title: "Success", description: `Coupon "${data.code}" created successfully.` });
+            form.reset();
+            fetchCoupons();
+        } catch (error: any) {
+            console.error("Error creating coupon:", error);
+            toast({ variant: "destructive", title: "Creation Failed", description: error.message || "Could not create the coupon." });
+        }
     }
 
+    const handleShare = (coupon: EventCoupon) => {
+        const url = `${window.location.origin}/agri-events/${eventId}?coupon=${coupon.code}`;
+        navigator.clipboard.writeText(url);
+        toast({ title: "Link Copied!", description: "A shareable link with the coupon has been copied to your clipboard." });
+    };
+
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>Promotions & Coupons</CardTitle>
+                <CardDescription>Create discount codes to promote your event and drive registrations.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-8">
+                 <Card className="bg-muted/30">
+                    <CardHeader>
+                        <CardTitle className="text-lg">Create New Coupon</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                       <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onCouponSubmit)} className="space-y-4">
+                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="code"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Coupon Code</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="e.g., EARLYBIRD10" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="discountType"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Discount Type</FormLabel>
+                                                <Select onValueChange={field.onChange} value={field.value}>
+                                                    <FormControl>
+                                                        <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
+                                                    </FormControl>
+                                                    <SelectContent>
+                                                        <SelectItem value="percentage">Percentage (%)</SelectItem>
+                                                        <SelectItem value="fixed">Fixed Amount</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                               </div>
+                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="discountValue"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Discount Value</FormLabel>
+                                                <FormControl>
+                                                    <Input type="number" placeholder="e.g., 10 or 15.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="usageLimit"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Usage Limit (Optional)</FormLabel>
+                                                <FormControl>
+                                                    <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))}/>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                               </div>
+                                <FormField
+                                    control={form.control}
+                                    name="expiresAt"
+                                    render={({ field }) => (
+                                      <FormItem className="flex flex-col">
+                                        <FormLabel>Expiration Date (Optional)</FormLabel>
+                                        <Popover>
+                                          <PopoverTrigger asChild>
+                                            <FormControl>
+                                              <Button variant={"outline"} className={cn("w-full justify-start text-left font-normal", !field.value && "text-muted-foreground")}>
+                                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                                {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                                              </Button>
+                                            </FormControl>
+                                          </PopoverTrigger>
+                                          <PopoverContent className="w-auto p-0" align="start">
+                                            <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date()} initialFocus />
+                                          </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                      </FormItem>
+                                    )}
+                                  />
+                                <Button type="submit" disabled={form.formState.isSubmitting}>
+                                    {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                                    Create Coupon
+                                </Button>
+                            </form>
+                        </Form>
+                    </CardContent>
+                </Card>
+
+                <div>
+                    <h3 className="text-lg font-semibold mb-2">Existing Coupons</h3>
+                    {isLoadingCoupons ? <Skeleton className="h-20 w-full" /> : 
+                     coupons.length > 0 ? (
+                        <div className="space-y-2">
+                            {coupons.map(coupon => (
+                                <div key={coupon.id} className="flex flex-wrap justify-between items-center gap-2 p-3 border rounded-lg">
+                                    <div className="font-mono text-primary bg-primary/10 px-2 py-1 rounded-md text-sm">{coupon.code}</div>
+                                    <div className="text-sm">
+                                        {coupon.discountType === 'percentage' ? `${coupon.discountValue}% off` : `$${coupon.discountValue.toFixed(2)} off`}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground">
+                                        Used: {coupon.usageCount} / {coupon.usageLimit || '∞'}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground">Expires: {coupon.expiresAt ? format(new Date(coupon.expiresAt), 'PPP') : 'Never'}</div>
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4" /> Share</Button>
+                                        </DialogTrigger>
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>Share Coupon</DialogTitle>
+                                                <DialogDescription>
+                                                    Share this link with your audience. The coupon will be automatically applied for them.
+                                                </DialogDescription>
+                                            </DialogHeader>
+                                            <div className="flex items-center space-x-2">
+                                                <div className="grid flex-1 gap-2">
+                                                    <Label htmlFor="link" className="sr-only">Link</Label>
+                                                    <Input id="link" defaultValue={`${window.location.origin}/agri-events/${eventId}?coupon=${coupon.code}`} readOnly />
+                                                </div>
+                                                <Button type="button" size="sm" className="px-3" onClick={() => handleShare(coupon)}>
+                                                    <span className="sr-only">Copy</span>
+                                                    <ClipboardCopy className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                            <DialogFooter>
+                                                <DialogClose asChild>
+                                                    <Button type="button" variant="secondary">Close</Button>
+                                                </DialogClose>
+                                            </DialogFooter>
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
+                            ))}
+                        </div>
+                     ) : <p className="text-sm text-muted-foreground text-center py-4">No coupons created for this event yet.</p>
+                    }
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+function ManageEventSkeleton() {
+    return (
+        <div className="space-y-6">
+            <Skeleton className="h-9 w-48" />
+            <Card>
+                <CardHeader>
+                    <Skeleton className="h-8 w-1/2 mb-2" />
+                    <Skeleton className="h-5 w-3/4" />
+                </CardHeader>
+                <CardContent>
+                    <Skeleton className="h-10 w-full mb-4" />
+                    <Skeleton className="h-40 w-full" />
+                </CardContent>
+            </Card>
+        </div>
+    );
+}
+
+export default function ManageEventPage() {
+  const params = useParams();
+  const eventId = params.id as string;
+  const router = useRouter();
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const [event, setEvent] = useState<AgriEventWithAttendees | null>(null);
+  const [attendees, setAttendees] = useState<EventAttendee[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const functions = getFunctions(firebaseApp);
+  const getEventDetails = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
+  const checkInAttendeeCallable = useMemo(() => httpsCallable(functions, 'checkInAttendee'), [functions]);
+
+  const fetchEvent = useCallback(async () => {
+    setIsLoading(true);
     try {
-        let query = db.collection(`posts/${postId}/comments`)
-                      .orderBy("createdAt", "asc")
-                      .limit(REPLIES_PER_PAGE); // Reuse reply limit
+      const result = await getEventDetails({ eventId, includeAttendees: true });
+      const eventData = result.data as AgriEventWithAttendees;
 
-        const commentsSnapshot = await query.get();
-        const comments = commentsSnapshot.docs.map(doc => {
-            const commentData = doc.data();
-            return {
-                id: doc.id,
-                ...commentData,
-                createdAt: commentData.createdAt?.toDate ? commentData.createdAt.toDate().toISOString() : new Date().toISOString(),
-            };
-        });
-        
-        return { comments };
+      if (eventData.organizerId !== user?.uid) {
+          toast({ variant: "destructive", title: "Unauthorized", description: "You are not the organizer of this event." });
+          router.push(`/agri-events/${eventId}`);
+          return;
+      }
+
+      setEvent(eventData);
+      setAttendees(eventData.attendees || []);
     } catch (error) {
-        console.error(`Error fetching comments for post ${postId}:`, error);
-        throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
+      console.error("Error fetching event details for management:", error);
+      toast({ variant: "destructive", title: "Error", description: "Could not load event management data." });
+      setEvent(null);
+    } finally {
+      setIsLoading(false);
     }
-});
+  }, [eventId, getEventDetails, toast, user, router]);
+  
+  useEffect(() => {
+    if (!eventId || !user) return;
+    fetchEvent();
+  }, [eventId, user, fetchEvent]);
+  
+  const handleCheckIn = async (attendeeId: string) => {
+    try {
+        await checkInAttendeeCallable({ eventId, attendeeId });
+        setAttendees(prev => prev.map(att => att.id === attendeeId ? {...att, checkedIn: true, checkedInAt: new Date().toISOString()} : att));
+        toast({ title: "Check-in Successful", description: "Attendee has been checked in." });
+    } catch (error: any) {
+        toast({ variant: "destructive", title: "Check-in Failed", description: error.message || "Could not check in attendee."});
+    }
+  };
+
+  const filteredAttendees = useMemo(() => {
+      if (!searchTerm) return attendees;
+      const lowercasedFilter = searchTerm.toLowerCase();
+      return attendees.filter(attendee => 
+          attendee.displayName.toLowerCase().includes(lowercasedFilter) ||
+          attendee.email.toLowerCase().includes(lowercasedFilter)
+      );
+  }, [attendees, searchTerm]);
+
+  if (isLoading) {
+    return <ManageEventSkeleton />;
+  }
+
+  if (!event) {
+    return (
+        <Card>
+            <CardHeader><CardTitle>Event not found.</CardTitle></CardHeader>
+            <CardContent><Button asChild variant="outline"><Link href="/agri-events">Back to Events</Link></Button></CardContent>
+        </Card>
+    );
+  }
+
+  const checkedInCount = attendees.filter(a => a.checkedIn).length;
+  
+  const handleShareEvent = () => {
+    navigator.clipboard.writeText(`${window.location.origin}/agri-events/${eventId}`);
+    toast({ title: "Event Link Copied!", description: "A shareable link has been copied to your clipboard." });
+  };
+
+
+  return (
+    <div className="space-y-6">
+      <Link href={`/agri-events/${eventId}`} className="inline-flex items-center text-sm text-primary hover:underline mb-4">
+        <ArrowLeft className="mr-1 h-4 w-4"/> Back to Event Page
+      </Link>
+
+      <Card>
+        <CardHeader>
+            <div className="flex flex-col sm:flex-row justify-between items-start">
+                <CardTitle className="text-2xl mb-2 sm:mb-0">Manage Event: {event.title}</CardTitle>
+                 <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4"/> Share Event</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Share Event</DialogTitle>
+                            <DialogDescription>
+                                Share this link with your audience to direct them to the event page.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex items-center space-x-2">
+                            <div className="grid flex-1 gap-2">
+                                <Label htmlFor="event-link" className="sr-only">Link</Label>
+                                <Input id="event-link" defaultValue={`${window.location.origin}/agri-events/${eventId}`} readOnly />
+                            </div>
+                            <Button type="button" size="sm" className="px-3" onClick={handleShareEvent}>
+                                <span className="sr-only">Copy</span>
+                                <ClipboardCopy className="h-4 w-4" />
+                            </Button>
+                        </div>
+                        <DialogFooter>
+                            <DialogClose asChild><Button type="button" variant="secondary">Close</Button></DialogClose>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            </div>
+            <CardDescription>Oversee registrations, check-ins, and promotions.</CardDescription>
+        </CardHeader>
+        <CardContent>
+             <Tabs defaultValue="attendees" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="attendees">Attendees ({attendees.length})</TabsTrigger>
+                    <TabsTrigger value="promotions">Promotions</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="attendees" className="mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardTitle className="text-sm font-medium">Total Registered</CardTitle>
+                                <Users className="h-4 w-4 text-muted-foreground" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold">{attendees.length}</div>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardTitle className="text-sm font-medium">Checked In</CardTitle>
+                                <UserCheck className="h-4 w-4 text-muted-foreground" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold">{checkedInCount}</div>
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardTitle className="text-sm font-medium">Remaining Capacity</CardTitle>
+                                <Ticket className="h-4 w-4 text-muted-foreground" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold">{event.attendeeLimit ? (event.attendeeLimit - attendees.length) : 'Unlimited'}</div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                    
+                    <div className="relative mb-4">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        placeholder="Search attendees by name or email..." 
+                        className="pl-10" 
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                    </div>
+                    
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Attendee</TableHead>
+                                <TableHead>Email</TableHead>
+                                <TableHead>Registered At</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead className="text-right">Action</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {filteredAttendees.map(attendee => (
+                                <TableRow key={attendee.id}>
+                                    <TableCell className="font-medium">
+                                        <div className="flex items-center gap-2">
+                                            <Avatar className="h-8 w-8">
+                                                <AvatarImage src={attendee.avatarUrl} alt={attendee.displayName} />
+                                                <AvatarFallback>{attendee.displayName.substring(0, 2)}</AvatarFallback>
+                                            </Avatar>
+                                            {attendee.displayName}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>{attendee.email}</TableCell>
+                                    <TableCell>{new Date(attendee.registeredAt).toLocaleString()}</TableCell>
+                                    <TableCell>
+                                        {attendee.checkedIn ? (
+                                            <Badge variant="default" className="bg-green-600 hover:bg-green-700">
+                                                <CheckCircle className="mr-1 h-3 w-3"/> Checked In
+                                            </Badge>
+                                        ) : (
+                                            <Badge variant="secondary">Registered</Badge>
+                                        )}
+                                    </TableCell>
+                                    <TableCell className="text-right">
+                                        {!attendee.checkedIn && (
+                                            <Button size="sm" onClick={() => handleCheckIn(attendee.id)}>Check In</Button>
+                                        )}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                     {filteredAttendees.length === 0 && <p className="text-center text-sm text-muted-foreground py-6">No attendees found.</p>}
+                </TabsContent>
+                <TabsContent value="promotions" className="mt-4">
+                    <PromotionsTab eventId={eventId} eventTitle={event.title} />
+                </TabsContent>
+             </Tabs>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

@@ -30,7 +30,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createAgriEventSchema, type CreateAgriEventValues } from "@/lib/form-schemas";
 import { AGRI_EVENT_TYPE_FORM_OPTIONS } from "@/lib/constants";
-import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle, Ticket, DollarSign } from "lucide-react";
+import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle, Ticket, DollarSign, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useState, useMemo } from "react";
@@ -38,7 +38,6 @@ import { useAuth } from "@/lib/auth-utils";
 import { uploadFileAndGetURL } from "@/lib/storage-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
-import { Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 
 export default function CreateAgriEventPage() {
@@ -47,6 +46,7 @@ export default function CreateAgriEventPage() {
   const { toast } = useToast();
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [createdEvent, setCreatedEvent] = useState<{ id: string, title: string } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const functions = getFunctions(firebaseApp);
   const createAgriEventCallable = useMemo(() => httpsCallable(functions, 'createAgriEvent'), [functions]);
@@ -109,6 +109,8 @@ export default function CreateAgriEventPage() {
       console.error("Error creating event:", error);
       toast({ variant: "destructive", title: "Submission Failed", description: error.message || "An error occurred while saving the event." });
       setSubmissionStatus('idle');
+    } finally {
+        setIsSubmitting(false);
     }
   }
 
