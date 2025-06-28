@@ -10,17 +10,20 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Bot, User, Search, Send, Sparkles, ShoppingCart, Users, MessageSquare, Briefcase, Building, FileText, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
-import { performSearch as performSearchFunction } from '@/lib/search-actions';
+import { performSearch as performSearchFunction } from '@/lib/db-utils'; // Updated to use db-utils
+import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { APP_NAME } from '@/lib/constants';
 
 interface SearchResult {
   id: string;
-  itemCollection: 'users' | 'marketplaceItems' | 'forums';
+  itemCollection: 'users' | 'marketplaceItems' | 'forums' | 'agriEvents' | 'knowledge_articles';
   title: string;
   description: string;
+  imageUrl?: string;
   tags?: string[];
   location?: string;
 }
@@ -45,6 +48,8 @@ const getLinkForCollection = (result: SearchResult) => {
         case 'users': return `/profiles/${result.itemId}`;
         case 'marketplaceItems': return `/marketplace/${result.itemId}`;
         case 'forums': return `/forums/${result.itemId}`;
+        case 'agriEvents': return `/agri-events/${result.itemId}`;
+        case 'knowledge_articles': return `/blog/${result.itemId}`;
         default: return '#';
     }
 }
@@ -53,6 +58,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
   const [currentQuery, setCurrentQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [aiInterpretation, setAiInterpretation] = useState<SmartSearchInterpretation | null>(null);
   const { toast } = useToast();
 
   const handleQuerySubmit = useCallback(async (queryToSubmit: string) => {
@@ -60,10 +66,17 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     
     setIsLoading(true);
     setSearchResults([]);
+    setAiInterpretation(null);
     
     try {
-      const results = await performSearchFunction(queryToSubmit);
-      setSearchResults(results as SearchResult[]);
+        // Step 1: Get AI interpretation of the query
+        const interpretation = await interpretSearchQuery({ rawQuery: queryToSubmit });
+        setAiInterpretation(interpretation);
+
+        // Step 2: Use the interpretation to perform a smarter search
+        const results = await performSearchFunction(interpretation);
+        setSearchResults(results as SearchResult[]);
+
     } catch (error: any) {
       console.error("Error in universal search:", error);
       toast({
@@ -82,12 +95,12 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
       setCurrentQuery(initialQuery);
       handleQuerySubmit(initialQuery);
     } else if (!isOpen) {
-      // Reset state when modal closes
       setTimeout(() => {
         setCurrentQuery("");
         setSearchResults([]);
         setIsLoading(false);
-      }, 300); // Delay to allow fade-out animation
+        setAiInterpretation(null);
+      }, 300);
     }
   }, [isOpen, initialQuery, handleQuerySubmit]);
 
@@ -125,6 +138,11 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
 
         <ScrollArea className="flex-grow">
           <div className='p-4 space-y-3'>
+             {aiInterpretation && (
+                 <div className="p-3 text-xs text-blue-700 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 rounded-md border border-blue-200 dark:border-blue-800">
+                    <p><strong>AI interpretation:</strong> {aiInterpretation.interpretationNotes}</p>
+                 </div>
+            )}
             {isLoading ? (
                 Array.from({ length: 5 }).map((_, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 border rounded-md">
@@ -140,12 +158,16 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
                   <Link href={getLinkForCollection(result)} key={result.id} onClick={onClose} className="block">
                     <Card className="hover:border-primary/50 hover:bg-accent/50 transition-colors">
                       <CardContent className="p-3 flex items-center gap-3">
-                        <div className="p-2 bg-muted rounded-md">{getIconForCollection(result.itemCollection)}</div>
+                        {result.imageUrl ? (
+                             <Image src={result.imageUrl} alt={result.title} width={40} height={40} className="h-10 w-10 object-cover rounded-md border"/>
+                        ) : (
+                            <div className="p-2 bg-muted rounded-md h-10 w-10 flex items-center justify-center">{getIconForCollection(result.itemCollection)}</div>
+                        )}
                         <div className='flex-grow overflow-hidden'>
                             <p className='font-semibold truncate'>{result.title}</p>
                             <p className='text-xs text-muted-foreground truncate'>{result.description}</p>
                             <div className="flex flex-wrap items-center gap-1 mt-1">
-                                <Badge variant="secondary" className="text-xs capitalize">{result.itemCollection.replace('Items', '')}</Badge>
+                                <Badge variant="secondary" className="text-xs capitalize">{result.itemCollection.replace(/([A-Z])/g, ' $1').replace('Items', '').trim()}</Badge>
                                 {result.tags?.slice(0, 2).map(tag => (
                                     <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
                                 ))}

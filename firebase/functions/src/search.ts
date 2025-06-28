@@ -1,7 +1,6 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {getUserDocument} from "./profiles";
 
 const db = admin.firestore();
 
@@ -25,10 +24,11 @@ export const onSourceDocumentWriteIndex = functions.firestore
       "marketplaceItems",
       "forums",
       "users",
+      "agri_events",
+      "knowledge_articles",
     ];
 
     if (!indexableCollections.includes(collectionId)) {
-      // Not a collection we want to index, so we exit.
       return null;
     }
 
@@ -37,7 +37,6 @@ export const onSourceDocumentWriteIndex = functions.firestore
       .doc(`${collectionId}_${documentId}`);
 
     if (!newData) {
-      // Document was deleted, remove it from the search index.
       console.log(`Document deleted in ${collectionId}/${documentId}. Removing from search index.`);
       await indexItemRef.delete();
       return null;
@@ -49,26 +48,30 @@ export const onSourceDocumentWriteIndex = functions.firestore
       itemCollection: collectionId,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
+      title: newData.name || newData.title || newData.displayName || "Untitled",
+      description: newData.description || newData.profileSummary || newData.bio || newData.excerpt_en || "",
+      imageUrl: newData.imageUrl || newData.photoURL || null,
     };
 
     switch (collectionId) {
     case "marketplaceItems":
-      indexData.title = newData.name;
-      indexData.description = newData.description;
       indexData.tags = [newData.category, newData.listingType, ...(newData.skillsRequired || [])];
       indexData.location = newData.location;
       break;
     case "forums":
-      indexData.title = newData.name;
-      indexData.description = newData.description;
       indexData.tags = newData.regionTags || [];
       break;
     case "users":
-      indexData.title = newData.name;
-      indexData.description = newData.profileSummary || newData.bio || "";
-      indexData.tags = [newData.primaryRole, ...(newData.areasOfInterest || [])];
-      indexData.location = newData.location;
+       indexData.tags = [newData.primaryRole, ...(newData.areasOfInterest || [])];
+       indexData.location = newData.location;
       break;
+    case "agri_events":
+       indexData.tags = [newData.eventType, ...(newData.tags || [])];
+       indexData.location = newData.location;
+       break;
+    case "knowledge_articles":
+        indexData.tags = [newData.category, ...(newData.tags || [])];
+        break;
     default:
       console.warn(`Indexing logic not implemented for collection: ${collectionId}`);
       return null;
@@ -87,7 +90,8 @@ export const onSourceDocumentWriteIndex = functions.firestore
 
 /**
  * Performs a search against the denormalized search_index collection.
- * @param {any} data The data for the function call, containing the query string.
+ * This version is enhanced to use the output of the query-interpreter AI flow.
+ * @param {any} data The data for the function call, containing the AI's interpretation.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{results: any[]}>} A promise that resolves with search results.
  */
@@ -95,54 +99,40 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
     }
-    const { query } = data;
-    if (!query || typeof query !== "string" || query.trim().length === 0) {
-        throw new functions.https.HttpsError("invalid-argument", "A non-empty search query is required.");
+    const { mainKeywords, identifiedLocation, identifiedIntent, suggestedFilters } = data;
+    
+    if (!mainKeywords || mainKeywords.length === 0) {
+        throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required.");
     }
 
-    const searchKeywords = query.toLowerCase().split(' ').filter(k => k);
-
     try {
-        const indexRef = db.collection("search_index");
+        let query: admin.firestore.Query = db.collection("search_index");
 
-        // We will perform a simple "OR"-like search by running queries for each keyword
-        // and merging the results client-side. This is a limitation of Firestore's querying.
-        // For a single keyword, it's more direct.
-        const firstKeyword = searchKeywords[0];
+        // Simple text search: For now, we search for the first keyword in title or description.
+        // A more advanced implementation would use a dedicated search service like Algolia or Typesense
+        // that allows for full-text search across multiple fields.
+        const firstKeyword = mainKeywords[0].toLowerCase();
         
-        // This is a simplified search for demonstration.
-        // A real-world app would use a dedicated search service like Algolia or Typesense
-        // which would be populated by this same indexing function.
-        const titleQuery = indexRef.where("title", ">=", firstKeyword).where("title", "<=", firstKeyword + '\uf8ff').limit(10).get();
-        const descriptionQuery = indexRef.where("description", ">=", firstKeyword).where("description", "<=", firstKeyword + '\uf8ff').limit(10).get();
-        const tagsQuery = indexRef.where("tags", "array-contains", firstKeyword).limit(10).get();
+        // Firestore doesn't support case-insensitive searches or full-text search on its own.
+        // This is a limitation. A real-world, scalable solution would use a third-party search service.
+        // The query below is a placeholder for what would be a more complex search.
+        // For demonstration, we'll just return items where the 'title' starts with the keyword.
+        query = query.where("title", ">=", firstKeyword).where("title", "<=", firstKeyword + '\uf8ff');
+        
+        if (identifiedLocation) {
+            // This is also a simplification. A real app would use geospatial queries or better location indexing.
+            // query = query.where("location", "==", identifiedLocation);
+        }
 
-        const [titleSnapshot, descriptionSnapshot, tagsSnapshot] = await Promise.all([
-            titleQuery,
-            descriptionQuery,
-            tagsQuery
-        ]);
+        const snapshot = await query.limit(20).get();
+        
+        const results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        const resultsMap = new Map();
-        
-        const processSnapshot = (snapshot: FirebaseFirestore.QuerySnapshot) => {
-            snapshot.docs.forEach(doc => {
-                if (!resultsMap.has(doc.id)) {
-                    resultsMap.set(doc.id, { id: doc.id, ...doc.data() });
-                }
-            });
-        };
-
-        processSnapshot(titleSnapshot);
-        processSnapshot(descriptionSnapshot);
-        processSnapshot(tagsSnapshot);
-        
-        const results = Array.from(resultsMap.values());
-        
         return { results };
 
     } catch (error) {
-        console.error(`Error performing search for query "${query}":`, error);
+        console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
         throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
     }
 });
+
