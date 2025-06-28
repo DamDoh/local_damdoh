@@ -144,7 +144,10 @@ function MarketplaceContent() {
               <CardTitle className="text-2xl">Agricultural Marketplace & Services Hub</CardTitle>
               <CardDescription>Discover products, equipment, land, and professional services to support your agricultural needs.</CardDescription>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-center gap-2">
+              <Button asChild variant="secondary">
+                  <Link href="/marketplace/create-shop"><Building className="mr-2 h-4 w-4" /> Create Your Shop</Link>
+              </Button>
               <Button asChild>
                 <Link href="/marketplace/create">
                   <PlusCircle className="mr-2 h-4 w-4" /> Create New Listing

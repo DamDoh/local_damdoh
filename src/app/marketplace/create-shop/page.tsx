@@ -17,6 +17,8 @@ import { useRouter } from 'next/navigation';
 import { Loader2, ArrowLeft, Building, Save } from 'lucide-react';
 import { STAKEHOLDER_ROLES } from '@/lib/constants';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Link from 'next/link';
+import { useAuth } from '@/lib/auth-utils';
 
 /**
  * Frontend component for stakeholders to create their Digital Shopfront.
@@ -24,6 +26,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
  */
 export default function CreateShopPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useAuth();
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
   const router = useRouter();
@@ -39,6 +42,10 @@ export default function CreateShopPage() {
   });
 
   const handleSubmit = async (data: CreateShopValues) => {
+    if (!user) {
+        toast({ title: "Not Authenticated", description: "You must be logged in to create a shop.", variant: "destructive"});
+        return;
+    }
     setIsSubmitting(true);
     try {
       await createShopCallable(data);
