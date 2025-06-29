@@ -637,5 +637,49 @@
     "journeyDescription": "A chronological record of this batch's journey through the supply chain.",
     "geoLocationLabel": "Geo-location",
     "noEvents": "No traceability events found."
+  },
+  "knowledgeHub": {
+    "courses": {
+      "viewButton": "View Course",
+      "errorLoad": "Failed to fetch courses.",
+      "detail": {
+        "notFound": "Course not found.",
+        "curriculum": "Course Curriculum",
+        "errorLoad": "Failed to fetch course details."
+      }
+    }
+  },
+  "sustainability": {
+    "title": "Sustainability & Impact Hub",
+    "description": "Track your progress towards sustainable agriculture, manage certifications, and explore tools for positive impact across the supply chain.",
+    "log": {
+      "title": "Sustainable Practices Log",
+      "description": "Record and verify your on-farm sustainable activities.",
+      "placeholder": "[Conceptual Placeholder: This area will feature a form for farmers to log practices like cover cropping, reduced tillage, or integrated pest management. The system would then use this data to calculate impact metrics and potentially assist in certification processes.]"
+    },
+    "tools": {
+      "title": "Tools & Resources",
+      "description": "Calculators and guides to support your sustainability journey.",
+      "carbonCalc": "Carbon Footprint Calculator (Coming Soon)",
+      "waterGuide": "Water Usage Efficiency Guide",
+      "organicGuide": "Guide to Organic Farming Practices"
+    },
+    "overview": {
+      "title": "Impact Overview",
+      "carbonFootprint": "Carbon Footprint",
+      "carbonFootprintValue": "Estimated: 1.2 Tons CO2e",
+      "waterEfficiency": "Water Usage Efficiency",
+      "waterEfficiencyValue": "Average: 1500 Liters/kg",
+      "biodiversity": "Biodiversity Score",
+      "biodiversityValue": "7/10 (based on practices)"
+    },
+    "certifications": {
+      "title": "My Certifications",
+      "organic": "Organic Certified",
+      "fairTrade": "Fair Trade",
+      "statusValid": "Valid",
+      "statusPending": "Pending Review",
+      "noCerts": "No certifications listed."
+    }
   }
 }

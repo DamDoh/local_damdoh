@@ -504,138 +504,48 @@
       "email": "careers@damdoh.org"
     }
   },
-  "industryNewsPage": {
-    "title": "Noticias e Informes de la Industria",
-    "description": "Mantente informado con las últimas actualizaciones, investigaciones y análisis de mercado relevantes para la cadena de suministro agrícola.",
-    "searchPlaceholder": "Buscar noticias por palabra clave o fuente...",
-    "filterPlaceholder": "Filtrar por categoría",
-    "allCategories": "Todas las Categorías",
-    "marketTrends": "Tendencias del Mercado",
-    "technology": "Tecnología",
-    "sustainability": "Sostenibilidad",
-    "regulations": "Regulaciones",
-    "research": "Investigación",
-    "sourceLabel": "Fuente:",
-    "publishedLabel": "Publicado:",
-    "categoryLabel": "Categoría:",
-    "readArticleButton": "Leer Artículo Completo",
-    "noNewsTitle": "¡Próximamente Noticias e Informes!",
-    "noNewsDescription": "Nuestro equipo está curando las noticias agrícolas, análisis de mercado e investigaciones más relevantes. Vuelve pronto para obtener información que te ayude a tomar decisiones informadas."
-  },
-  "pinboardPage": {
-    "title": "Mi Tablón",
-    "description": "Tus elementos guardados de todo DamDoh: listados de mercado, publicaciones de foros, perfiles, noticias y eventos.",
-    "comingSoonTitle": "Función de Tablón: ¡Próximamente!",
-    "comingSoonDescription1": "Aquí es donde aparecerán tus elementos anclados del Mercado, Red, Foros, Noticias y Eventos para un acceso rápido.",
-    "comingSoonDescription2": "Estamos trabajando para permitirte guardar y organizar tus intereses de toda la plataforma DamDoh. ¡Mantente atento!"
-  },
-  "profilesPage": {
-    "title": "Directorio de Actores Agrícolas",
-    "description": "Encuentra y conecta con participantes de toda la cadena de valor agrícola.",
-    "createEditButton": "Crear/Editar Tu Perfil",
-    "searchPlaceholder": "Buscar por nombre, especialidad o rol en la cadena de suministro...",
-    "locationPlaceholder": "Filtrar por país, región o ciudad",
-    "rolePlaceholder": "Filtrar por rol de actor",
-    "allRoles": "Todos los Roles",
-    "allInterests": "Todos",
-    "notFoundTitle": "No se encontraron actores que coincidan con tus criterios.",
-    "notFoundDescription": "Intenta ajustar tus filtros o ampliar tu búsqueda para mejores conexiones en la cadena de suministro."
-  },
-  "searchPage": {
-    "title": "Buscar en DamDoh",
-    "description": "Encuentra productos, servicios, actores o pregunta a nuestro asistente de IA.",
-    "searchPlaceholder": "¿Qué estás buscando?",
-    "searchButton": "Buscar",
-    "popularSearches": {
-      "title": "Búsquedas Populares",
-      "term1": "Fertilizante Orgánico",
-      "term2": "Granos de Café",
-      "term3": "Logística Kenia",
-      "term4": "Salud del Suelo",
-      "term5": "Alquiler de Tractor"
+  "knowledgeHub": {
+    "courses": {
+      "viewButton": "Ver Curso",
+      "errorLoad": "Error al cargar los cursos.",
+      "detail": {
+        "notFound": "Curso no encontrado.",
+        "curriculum": "Plan de Estudios del Curso",
+        "errorLoad": "Error al cargar los detalles del curso."
+      }
     }
   },
-  "talentExchangePage": {
-    "title": "Intercambio de Talentos",
-    "description": "Encuentra trabajos agrícolas, ofrece tus servicios profesionales y conecta con talento calificado.",
-    "postJobButton": "Publicar un Trabajo o Servicio",
-    "searchPlaceholder": "Busca trabajos o servicios (ej. 'agrónomo', 'operador de tractor', 'kenia')",
-    "viewApplyButton": "Ver y Aplicar",
-    "notFoundTitle": "No se encontraron trabajos o servicios.",
-    "notFoundDescription": "Intenta ajustar tus términos de búsqueda o sé el primero en publicar un servicio."
-  },
-  "walletPage": {
-    "title": "Mi Billetera Digital",
-    "description": "Gestiona tus créditos DamDoh para comerciar, invertir y para servicios de la plataforma (Función Próximamente).",
-    "comingSoonTitle": "Función de Billetera Digital: En Desarrollo",
-    "comingSoonDescription": "Estamos construyendo una billetera digital segura y eficiente para facilitar las transacciones dentro del ecosistema DamDoh. Las capacidades futuras incluirán:",
-    "feature1": "Ver tu saldo de crédito y tu historial de transacciones.",
-    "feature2": "Solicitar crédito para inversiones aprobadas o grandes intercambios comerciales.",
-    "feature3": "Recargar tu billetera de forma segura usando varios métodos de pago.",
-    "feature4": "Facilitar pagos para transacciones del mercado y servicios de la plataforma.",
-    "stayTuned": "Mantente atento a las actualizaciones mientras trabajamos para habilitar actividades financieras seguras y fluidas para la red agrícola de DamDoh."
-  },
-  "adminPage": {
-    "layout": {
-      "adminArea": "Área de Administración",
-      "caution": "Los cambios realizados aquí afectan a toda la plataforma. Por favor, proceda con precaución.",
-      "contentManagement": "Gestión de Contenido",
-      "marketplaceCategories": "Categorías del Mercado"
+  "sustainability": {
+    "title": "Centro de Sostenibilidad e Impacto",
+    "description": "Sigue tu progreso hacia la agricultura sostenible, gestiona certificaciones y explora herramientas para un impacto positivo en la cadena de suministro.",
+    "log": {
+      "title": "Registro de Prácticas Sostenibles",
+      "description": "Registra y verifica tus actividades sostenibles en la finca.",
+      "placeholder": "[Marcador de posición conceptual: Esta área contará con un formulario para que los agricultores registren prácticas como cultivos de cobertura, labranza reducida o manejo integrado de plagas. El sistema usaría estos datos para calcular métricas de impacto y potencialmente ayudar en los procesos de certificación.]"
     },
-    "content": {
-      "createCourseTitle": "Crear Nuevo Curso",
-      "createCourseDescription": "Desarrolla un nuevo curso para el Centro de Conocimiento.",
-      "courseTitleLabel": "Título del Curso",
-      "courseDescriptionLabel": "Descripción del Curso",
-      "categoryLabel": "Categoría",
-      "createCourseButton": "Crear Curso",
-      "creatingCourseButton": "Creando...",
-      "createArticleTitle": "Crear Artículo de Conocimiento",
-      "createArticleDescription": "Escribe una publicación de blog o una actualización de noticias.",
-      "englishContent": "Contenido en Inglés",
-      "articleTitleEn": "Título del Artículo (EN)",
-      "excerptEn": "Extracto (EN)",
-      "excerptDescription": "Un breve resumen para la vista previa del artículo.",
-      "fullContentEn": "Contenido Completo (EN, compatible con Markdown)",
-      "khmerContent": "Contenido en Jemer (ភាសាខ្មែរ)",
-      "articleTitleKm": "Título del Artículo (KM)",
-      "excerptKm": "Extracto (KM)",
-      "fullContentKm": "Contenido Completo (KM)",
-      "metadataTitle": "Metadatos",
-      "articleCategoryLabel": "Categoría",
-      "categoryPlaceholder": "Ej: Blog, Noticias de la Industria, Sostenibilidad",
-      "authorLabel": "Autor",
-      "authorPlaceholder": "Ej: Dr. Dedo Verde",
-      "defaultAuthor": "Equipo DamDoh",
-      "tagsLabel": "Etiquetas (separadas por comas)",
-      "imageUrlLabel": "URL de la Imagen (Opcional)",
-      "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-      "imageAiHintLabel": "Sugerencia de IA para la Imagen (Opcional)",
-      "aiHintPlaceholder": "Ej: campo de agricultura sostenible",
-      "publishButton": "Publicar Artículo",
-      "publishingButton": "Publicando...",
-      "successMessage": "¡Acción exitosa!",
-      "failMessage": "La acción falló.",
-      "courseSuccess": "¡Curso creado con éxito!",
-      "courseFail": "No se pudo crear el curso.",
-      "articleSuccess": "¡Artículo creado con éxito!",
-      "articleFail": "No se pudo crear el artículo."
+    "tools": {
+      "title": "Herramientas y Recursos",
+      "description": "Calculadoras y guías para apoyar tu viaje hacia la sostenibilidad.",
+      "carbonCalc": "Calculadora de Huella de Carbono (Próximamente)",
+      "waterGuide": "Guía de Eficiencia en el Uso del Agua",
+      "organicGuide": "Guía de Prácticas de Agricultura Orgánica"
+    },
+    "overview": {
+      "title": "Resumen de Impacto",
+      "carbonFootprint": "Huella de Carbono",
+      "carbonFootprintValue": "Estimado: 1.2 Toneladas CO2e",
+      "waterEfficiency": "Eficiencia en el Uso del Agua",
+      "waterEfficiencyValue": "Promedio: 1500 Litros/kg",
+      "biodiversity": "Puntuación de Biodiversidad",
+      "biodiversityValue": "7/10 (basado en prácticas)"
+    },
+    "certifications": {
+      "title": "Mis Certificaciones",
+      "organic": "Certificado Orgánico",
+      "fairTrade": "Comercio Justo",
+      "statusValid": "Válido",
+      "statusPending": "Revisión Pendiente",
+      "noCerts": "No hay certificaciones listadas."
     }
-  },
-  "traceabilityDetailPage": {
-    "backLink": "Volver al Mercado",
-    "error": "Error",
-    "notFoundTitle": "Lote no Encontrado",
-    "notFoundDescription": "No se pudo encontrar la información de trazabilidad para este lote.",
-    "traceableProduct": "Producto Trazable",
-    "batchIdLabel": "ID del Lote",
-    "producerLabel": "Productor",
-    "harvestDateLabel": "Fecha de Cosecha",
-    "yieldLabel": "Rendimiento en Cosecha",
-    "qualityLabel": "Grado de Calidad",
-    "journeyTitle": "Ruta de Trazabilidad",
-    "journeyDescription": "Un registro cronológico del viaje de este lote a través de la cadena de suministro.",
-    "geoLocationLabel": "Geolocalización",
-    "noEvents": "No se encontraron eventos de trazabilidad."
   }
 }
