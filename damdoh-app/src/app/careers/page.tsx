@@ -12,24 +12,24 @@ export default function CareersPage() {
   const dummyOpenings = [
     {
       id: "job1",
-      title: t('careers.job1.title'),
-      location: t('careers.job1.location'),
-      type: t('careers.job1.type'),
-      description: t('careers.job1.description'),
+      title: t('careers.openings.job1.title'),
+      location: t('careers.openings.job1.location'),
+      type: t('careers.openings.job1.type'),
+      description: t('careers.openings.job1.description'),
     },
     {
       id: "job2",
-      title: t('careers.job2.title'),
-      location: t('careers.job2.location'),
-      type: t('careers.job2.type'),
-      description: t('careers.job2.description'),
+      title: t('careers.openings.job2.title'),
+      location: t('careers.openings.job2.location'),
+      type: t('careers.openings.job2.type'),
+      description: t('careers.openings.job2.description'),
     },
     {
       id: "job3",
-      title: t('careers.job3.title'),
-      location: t('careers.job3.location'),
-      type: t('careers.job3.type'),
-      description: t('careers.job3.description'),
+      title: t('careers.openings.job3.title'),
+      location: t('careers.openings.job3.location'),
+      type: t('careers.openings.job3.type'),
+      description: t('careers.openings.job3.description'),
     }
   ];
 

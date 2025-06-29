@@ -302,5 +302,142 @@
         "content": "Aprende a crear listados de productos y servicios, buscar en el mercado, conectar con compradores/vendedores y gestionar tus transacciones. Se incluirán consejos para listados efectivos y comercio seguro."
       }
     }
+  },
+  "careers": {
+    "title": "Únete a Nuestra Misión en DamDoh",
+    "subtitle": "Estamos construyendo un futuro donde la tecnología y la colaboración transforman la cadena de suministro agrícola para mejor.",
+    "whyWorkWithUs": {
+      "title": "¿Por Qué Trabajar Con Nosotros?",
+      "intro": "En DamDoh, serás parte de un equipo dinámico apasionado por resolver desafíos del mundo real en la agricultura. Fomentamos una cultura de innovación, aprendizaje continuo e impacto. Si te impulsa marcar la diferencia y contribuir a un sistema alimentario más sostenible y equitativo, DamDoh es el lugar para ti.",
+      "point1": "Trabajo significativo que impacta directamente en la seguridad alimentaria mundial.",
+      "point2": "Ambiente de equipo colaborativo e inclusivo.",
+      "point3": "Oportunidades de crecimiento y desarrollo profesional.",
+      "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
+      "point5": "Arreglos de trabajo flexibles para muchos roles."
+    },
+    "openings": {
+      "title": "Vacantes Actuales",
+      "job1": {
+        "title": "Analista Principal de Cadena de Suministro Agrícola",
+        "location": "Remoto / Global",
+        "type": "Tiempo completo",
+        "description": "Se busca un analista experimentado para optimizar las operaciones de la cadena de suministro, desarrollar estrategias basadas en datos y apoyar nuestra red de partes interesadas. Se requiere una sólida formación en economía agrícola y logística."
+      },
+      "job2": {
+        "title": "Gerente de Comunidad - Compromiso del Agricultor",
+        "location": "Sede de Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "¿Apasionado por la agricultura y la construcción de comunidades? Únete a nosotros para apoyar y hacer crecer nuestra red de agricultores en África Oriental. Se necesita excelente comunicación y experiencia de campo."
+      },
+      "job3": {
+        "title": "Ingeniero Full Stack Senior (Agri-Tech)",
+        "location": "Remoto / Zonas horarias de Europa",
+        "type": "Tiempo completo",
+        "description": "Desarrollar características innovadoras para la plataforma DamDoh. Competente en Next.js, TypeScript y tecnologías de backend. La experiencia con SIG o datos agrícolas es una ventaja."
+      }
+    },
+    "applyNowButton": "Aplicar Ahora (Provisional)",
+    "noOpenings": {
+      "title": "No Hay Vacantes Actuales",
+      "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
+      "email": "careers@damdoh.org"
+    }
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "subtitle": "¡Nos encantaría saber de ti! Si tienes una pregunta, comentarios o una propuesta de asociación, no dudes en contactarnos.",
+    "emailUsTitle": "Envíanos un Correo",
+    "generalInquiries": "Para consultas generales:",
+    "support": "Para soporte:",
+    "partnerships": "Para asociaciones:",
+    "callUsTitle": "Llámanos",
+    "callUsDesc": "Nuestras líneas telefónicas están abiertas de lunes a viernes, de 9 AM a 5 PM (Tu zona horaria).",
+    "phone": "Teléfono: +1 (555) DAM-DOH0 (Provisional)",
+    "officeTitle": "Nuestra Oficina",
+    "officeLine1": "Sede de DamDoh (Provisional)",
+    "officeLine2": "123 Avenida Agri-Tech, Ciudad de la Seguridad Alimentaria, Global",
+    "formTitle": "Envíanos un Mensaje",
+    "formNameLabel": "Nombre Completo",
+    "formNamePlaceholder": "Tu Nombre Completo",
+    "formEmailLabel": "Dirección de Correo Electrónico",
+    "formEmailPlaceholder": "tu.correo@ejemplo.com",
+    "formSubjectLabel": "Asunto",
+    "formSubjectPlaceholder": "Motivo del contacto",
+    "formMessageLabel": "Mensaje",
+    "formMessagePlaceholder": "Tu mensaje detallado...",
+    "sendButton": "Enviar Mensaje",
+    "formNote": "Nota: Este formulario es para demostración. El envío real no está implementado."
+  },
+  "industryNewsPage": {
+    "title": "Noticias e Informes de la Industria",
+    "description": "Mantente informado con las últimas actualizaciones, investigaciones y análisis de mercado relevantes para la cadena de suministro agrícola.",
+    "searchPlaceholder": "Buscar noticias por palabra clave o fuente...",
+    "filterPlaceholder": "Filtrar por categoría",
+    "allCategories": "Todas",
+    "marketTrends": "Tendencias del Mercado",
+    "technology": "Tecnología",
+    "sustainability": "Sostenibilidad",
+    "regulations": "Regulaciones",
+    "research": "Investigación",
+    "sourceLabel": "Fuente:",
+    "publishedLabel": "Publicado:",
+    "categoryLabel": "Categoría:",
+    "readArticleButton": "Leer Artículo Completo",
+    "noNewsTitle": "¡Próximamente Noticias e Informes!",
+    "noNewsDescription": "Nuestro equipo está curando las noticias agrícolas, análisis de mercado e investigaciones más relevantes. Vuelve pronto para obtener información que te ayude a tomar decisiones informadas."
+  },
+  "pinboardPage": {
+    "title": "Mi Tablón",
+    "description": "Tus elementos guardados de todo DamDoh: listados de mercado, publicaciones de foros, perfiles, noticias y eventos.",
+    "comingSoonTitle": "Función de Tablón: ¡Próximamente!",
+    "comingSoonDescription1": "Aquí es donde aparecerán tus elementos anclados del Mercado, Red, Foros, Noticias y Eventos para un acceso rápido.",
+    "comingSoonDescription2": "Estamos trabajando para permitirte guardar y organizar tus intereses de toda la plataforma DamDoh. ¡Mantente atento!"
+  },
+  "profilesPage": {
+    "title": "Directorio de Actores Agrícolas",
+    "description": "Encuentra y conecta con participantes de toda la cadena de valor agrícola.",
+    "createEditButton": "Crear/Editar Tu Perfil",
+    "searchPlaceholder": "Buscar por nombre, especialidad o rol en la cadena de suministro...",
+    "locationPlaceholder": "Filtrar por país, región o puerto",
+    "rolePlaceholder": "Filtrar por rol de actor",
+    "interestPlaceholder": "Filtrar por área de interés",
+    "allRoles": "Todos los Roles",
+    "allInterests": "Todos",
+    "notFoundTitle": "No se encontraron actores que coincidan con tus criterios.",
+    "notFoundDescription": "Intenta ajustar tus filtros o ampliar tu búsqueda para mejores conexiones en la cadena de suministro."
+  },
+  "searchPage": {
+    "title": "Buscar en DamDoh",
+    "description": "Encuentra productos, servicios, actores o pregunta a nuestro asistente de IA.",
+    "searchPlaceholder": "¿Qué estás buscando?",
+    "searchButton": "Buscar",
+    "popularSearches": {
+      "title": "Búsquedas Populares",
+      "term1": "Fertilizante Orgánico",
+      "term2": "Granos de Café",
+      "term3": "Logística Kenia",
+      "term4": "Salud del Suelo",
+      "term5": "Alquiler de Tractor"
+    }
+  },
+  "talentExchangePage": {
+    "title": "Intercambio de Talentos",
+    "description": "Encuentra trabajos agrícolas, ofrece tus servicios profesionales y conecta con talento calificado.",
+    "postJobButton": "Publicar un Trabajo o Servicio",
+    "searchPlaceholder": "Busca trabajos o servicios (ej. 'agrónomo', 'operador de tractor', 'kenia')",
+    "viewApplyButton": "Ver y Aplicar",
+    "notFoundTitle": "No se encontraron trabajos o servicios.",
+    "notFoundDescription": "Intenta ajustar tus términos de búsqueda o sé el primero en publicar un servicio."
+  },
+  "walletPage": {
+    "title": "Mi Billetera Digital",
+    "description": "Gestiona tus créditos DamDoh para comerciar, invertir y para servicios de la plataforma (Función Próximamente).",
+    "comingSoonTitle": "Función de Billetera Digital: En Desarrollo",
+    "comingSoonDescription": "Estamos construyendo una billetera digital segura y eficiente para facilitar las transacciones dentro del ecosistema DamDoh. Las capacidades futuras incluirán:",
+    "feature1": "Ver tu saldo de crédito y tu historial de transacciones.",
+    "feature2": "Solicitar crédito para inversiones aprobadas o grandes intercambios comerciales.",
+    "feature3": "Recargar tu billetera de forma segura usando varios métodos de pago.",
+    "feature4": "Facilitar pagos para transacciones del mercado y servicios de la plataforma.",
+    "stayTuned": "Mantente atento a las actualizaciones mientras trabajamos para habilitar actividades financieras seguras y fluidas para la red agrícola de DamDoh."
   }
 }

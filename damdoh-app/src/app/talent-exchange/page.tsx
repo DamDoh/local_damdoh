@@ -10,6 +10,7 @@ import { Briefcase, MapPin, Search, PlusCircle, Wrench, CircleDollarSign, CheckC
 import type { MarketplaceItem } from '@/lib/types';
 import { getAllMarketplaceItemsFromDB } from '@/lib/db-utils'; 
 import { Input } from '@/components/ui/input';
+import { useTranslation } from "react-i18next";
 
 function JobCardSkeleton() {
   return (
@@ -31,6 +32,7 @@ function JobCardSkeleton() {
 }
 
 export default function TalentExchangePage() {
+  const { t } = useTranslation('common');
   const [listings, setListings] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +42,6 @@ export default function TalentExchangePage() {
       setIsLoading(true);
       try {
         const allItems = await getAllMarketplaceItemsFromDB();
-        // Filter for only 'Service' type listings to act as our job board
         const serviceListings = allItems.filter(item => item.listingType === 'Service');
         setListings(serviceListings);
       } catch (error) {
@@ -68,13 +69,13 @@ export default function TalentExchangePage() {
             <div>
               <div className="flex items-center gap-2">
                 <Briefcase className="h-7 w-7 text-primary" />
-                <CardTitle className="text-2xl">Talent Exchange</CardTitle>
+                <CardTitle className="text-2xl">{t('talentExchangePage.title')}</CardTitle>
               </div>
-              <CardDescription>Find agricultural jobs, offer your professional services, and connect with skilled talent.</CardDescription>
+              <CardDescription>{t('talentExchangePage.description')}</CardDescription>
             </div>
             <Button asChild>
               <Link href="/marketplace/create?type=Service">
-                <PlusCircle className="mr-2 h-4 w-4" /> Post a Job or Service
+                <PlusCircle className="mr-2 h-4 w-4" /> {t('talentExchangePage.postJobButton')}
               </Link>
             </Button>
           </div>
@@ -84,7 +85,7 @@ export default function TalentExchangePage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input 
-                  placeholder="Search for jobs or services (e.g., 'agronomist', 'tractor operator', 'kenya')" 
+                  placeholder={t('talentExchangePage.searchPlaceholder')}
                   className="pl-10" 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -119,15 +120,15 @@ export default function TalentExchangePage() {
                     </CardContent>
                     <CardFooter>
                       <Button asChild className="w-full">
-                        <Link href={`/marketplace/${job.id}`}>View & Apply</Link>
+                        <Link href={`/marketplace/${job.id}`}>{t('talentExchangePage.viewApplyButton')}</Link>
                       </Button>
                     </CardFooter>
                   </Card>
                 ))
               ) : (
                 <div className="col-span-full text-center py-16">
-                  <p className="text-lg text-muted-foreground">No jobs or services found.</p>
-                  <p className="text-sm text-muted-foreground">Try adjusting your search terms or be the first to post a service!</p>
+                  <p className="text-lg text-muted-foreground">{t('talentExchangePage.notFoundTitle')}</p>
+                  <p className="text-sm text-muted-foreground">{t('talentExchangePage.notFoundDescription')}</p>
                 </div>
               )}
             </div>

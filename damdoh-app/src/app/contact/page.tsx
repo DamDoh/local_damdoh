@@ -35,7 +35,7 @@ export default function ContactPage() {
             <div>
               <h3 className="text-xl font-semibold text-foreground mb-2 flex items-center gap-2"><Phone className="h-5 w-5 text-primary"/>{t('contact.callUsTitle')}</h3>
               <p className="text-muted-foreground">{t('contact.callUsDesc')}</p>
-              <p className="text-muted-foreground">{t('contact.phone')} +1 (555) DAM-DOH0 (Placeholder)</p>
+              <p className="text-muted-foreground">{t('contact.phone')}</p>
             </div>
              <div>
               <h3 className="text-xl font-semibold text-foreground mb-2 flex items-center gap-2"><MapPin className="h-5 w-5 text-primary"/>{t('contact.officeTitle')}</h3>
