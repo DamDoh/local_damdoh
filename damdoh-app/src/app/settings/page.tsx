@@ -14,8 +14,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Textarea } from "@/components/ui/textarea";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { useTranslation } from 'react-i18next';
+import React from 'react';
 
 export default function SettingsPage() {
   const { t } = useTranslation('common');
@@ -67,7 +68,7 @@ export default function SettingsPage() {
                         {STAKEHOLDER_ROLES.map(role => (
                             <SelectItem key={role} value={role}>
                                 <div className="flex items-center gap-2">
-                                    {React.createElement(STAKEHOLDER_ICONS[role] || Briefcase, { className: "h-4 w-4 text-muted-foreground" })}
+                                    <StakeholderIcon role={role} className="h-4 w-4 text-muted-foreground" />
                                     <span>{role}</span>
                                 </div>
                             </SelectItem>

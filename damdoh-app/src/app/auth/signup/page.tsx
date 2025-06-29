@@ -31,10 +31,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Users } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
-import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
 import type { StakeholderRole } from "@/lib/constants";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -142,11 +142,10 @@ export default function SignUpPage() {
                       </FormControl>
                       <SelectContent>
                         {STAKEHOLDER_ROLES.map((role) => {
-                          const Icon = STAKEHOLDER_ICONS[role] || Users;
                           return (
                           <SelectItem key={role} value={role}>
                             <div className="flex items-center gap-2">
-                              <Icon className="h-4 w-4 text-muted-foreground" />
+                              <StakeholderIcon role={role} className="h-4 w-4 text-muted-foreground" />
                               <span>{role}</span>
                             </div>
                           </SelectItem>

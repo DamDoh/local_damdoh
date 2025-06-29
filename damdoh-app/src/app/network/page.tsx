@@ -9,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon, Briefcase } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
@@ -151,7 +151,6 @@ export default function NetworkPage() {
               Array.from({ length: 6 }).map((_, i) => <ProfileCardSkeleton key={i} />)
             ) : (
                 filteredConnections.map(profile => {
-                    const RoleIcon = STAKEHOLDER_ICONS[profile.primaryRole as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
                     return (
                         <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                             <CardHeader className="items-center text-center">
@@ -163,7 +162,7 @@ export default function NetworkPage() {
                                     <CardTitle className="text-lg hover:text-primary transition-colors">{profile.displayName}</CardTitle>
                                 </Link>
                                 <CardDescription className="flex items-center gap-2">
-                                    <RoleIcon className="h-4 w-4" />
+                                    <StakeholderIcon role={profile.primaryRole} className="h-4 w-4" />
                                     <span>{profile.primaryRole} - {profile.location}</span>
                                 </CardDescription>
                             </CardHeader>

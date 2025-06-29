@@ -11,7 +11,7 @@ import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConne
 import { Skeleton } from "../ui/skeleton";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import type { StakeholderRole } from "@/lib/constants";
-import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
+import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import React from 'react';
 
 interface AISuggestion {
@@ -109,7 +109,6 @@ export function DashboardRightSidebar() {
     }
 
     return aiSuggestions.map(sug => {
-      const RoleIcon = STAKEHOLDER_ICONS[sug.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
       return (
         <li key={sug.id} className="flex items-start gap-3">
           <Link href={`/profiles/${sug.id}`}>
@@ -123,7 +122,7 @@ export function DashboardRightSidebar() {
               <h4 className="text-sm font-semibold">{sug.name}</h4>
             </Link>
             <p className="text-xs text-muted-foreground line-clamp-1 flex items-center gap-1">
-              <RoleIcon className="h-3 w-3" />
+              <StakeholderIcon role={sug.role} className="h-3 w-3" />
               {sug.role}
             </p>
             {sug.reason && <p className="text-xs text-muted-foreground/80 mt-0.5 line-clamp-2 italic">"{sug.reason}"</p>}

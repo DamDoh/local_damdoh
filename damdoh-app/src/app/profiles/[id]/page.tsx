@@ -10,7 +10,7 @@ import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
 import { getProfileByIdFromDB } from "@/lib/db-utils";
 import { APP_NAME } from "@/lib/constants";
-import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -122,7 +122,6 @@ export default function ProfileDetailPage() {
   }
 
   const isCurrentUserProfile = authUser?.uid === profile.id;
-  const RoleIcon = STAKEHOLDER_ICONS[profile.primaryRole as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
 
   return (
     <div className="space-y-6">
@@ -147,7 +146,7 @@ export default function ProfileDetailPage() {
             <div>
               <CardTitle className="text-3xl">{profile.displayName}</CardTitle>
               <CardDescription className="text-lg flex items-center gap-2">
-                <RoleIcon className="h-5 w-5 text-muted-foreground" />
+                <StakeholderIcon role={profile.primaryRole} className="h-5 w-5 text-muted-foreground" />
                 {profile.primaryRole}
               </CardDescription>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">

@@ -14,7 +14,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Briefcase } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
-import { STAKEHOLDER_ICONS } from '@/lib/stakeholder-icons';
+import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { useTranslation } from 'react-i18next';
 
 // Define types for the data we expect from the backend
@@ -221,7 +221,6 @@ export default function TraceabilityBatchDetailPage() {
                 <div className="relative pl-6">
                     <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
                     {events.map(event => {
-                        const RoleIcon = STAKEHOLDER_ICONS[event.actor.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
                         return (
                             <div key={event.id} className="relative flex items-start gap-4 pb-8">
                                 <div className="absolute left-0 top-0 h-full flex flex-col items-center">
@@ -242,7 +241,7 @@ export default function TraceabilityBatchDetailPage() {
                                             <div className="text-right">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1.5 justify-end"><UserCircle className="h-3 w-3"/>{event.actor.name}</p>
                                             <Badge variant="secondary" className="mt-1 flex items-center gap-1">
-                                                <RoleIcon className="h-3 w-3" />
+                                                <StakeholderIcon role={event.actor.role} className="h-3 w-3" />
                                                 {event.actor.role}
                                             </Badge>
                                             </div>
