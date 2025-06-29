@@ -27,8 +27,8 @@ export const STAKEHOLDER_ROLES = [
   'Agro-Export Facilitator/Customs Broker',
   'Agri-Tech Innovator/Developer',
   'Waste Management & Compost Facility',
-  'Crowdfunder (Impact Investor, Individual)',
-  'Insurance Provider'
+  'Insurance Provider',
+  'Crowdfunder (Impact Investor, Individual)'
 ] as const;
 
 export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
