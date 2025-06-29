@@ -14,8 +14,10 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
+import { useTranslation } from 'react-i18next';
 
 export default function GroupPage() {
+    const { t } = useTranslation('common');
     const params = useParams();
     const router = useRouter();
     const { user } = useAuth();
@@ -57,14 +59,14 @@ export default function GroupPage() {
         } catch (error) {
             console.error("Error fetching group data:", error);
              toast({
-                title: "Failed to load group",
-                description: "There was a problem fetching the group details.",
+                title: t('groups.detail.errorLoadTitle'),
+                description: t('groups.detail.errorLoadDescription'),
                 variant: "destructive"
             });
         } finally {
             setIsLoading(false);
         }
-    }, [groupId, getGroupDetails, getGroupMembers, user, toast]);
+    }, [groupId, getGroupDetails, getGroupMembers, user, toast, t]);
 
 
     useEffect(() => {
@@ -73,22 +75,29 @@ export default function GroupPage() {
 
     const handleJoinGroup = async () => {
         if (!user) {
-            toast({ title: "Please log in to join a group.", variant: "destructive" });
+            toast({ title: t('groups.detail.errorAuth'), variant: "destructive" });
             router.push('/auth/signin');
             return;
         }
         setIsJoining(true);
         try {
             await joinGroup({ groupId });
+            
+            const userProfileData = {
+              id: user.uid,
+              displayName: user.displayName || 'You',
+              photoURL: user.photoURL || ''
+            } as UserProfile;
+
             // Optimistic update
             setIsMember(true);
-            setMembers(prev => [...prev, { id: user.uid, displayName: user.displayName || 'You', photoURL: user.photoURL || '' } as UserProfile]);
+            setMembers(prev => [...prev, userProfileData]);
             if (group) setGroup(g => g ? {...g, memberCount: g.memberCount + 1} : null);
 
-            toast({ title: "Successfully joined the group!" });
+            toast({ title: t('groups.detail.successJoin') });
         } catch (error: any) {
             console.error("Error joining group:", error);
-            toast({ title: "Failed to join group", description: error.message || "An error occurred. Please try again.", variant: "destructive" });
+            toast({ title: t('groups.detail.failJoinTitle'), description: error.message || t('groups.detail.failJoinDescription'), variant: "destructive" });
         } finally {
             setIsJoining(false);
         }
@@ -105,10 +114,10 @@ export default function GroupPage() {
             setMembers(prev => prev.filter(m => m.id !== user.uid));
             if (group) setGroup(g => g ? {...g, memberCount: g.memberCount - 1} : null);
 
-            toast({ title: "You have left the group." });
+            toast({ title: t('groups.detail.successLeave') });
         } catch (error: any) {
             console.error("Error leaving group:", error);
-            toast({ title: "Failed to leave group", description: error.message || "An error occurred. Please try again.", variant: "destructive" });
+            toast({ title: t('groups.detail.failLeaveTitle'), description: error.message || t('groups.detail.failLeaveDescription'), variant: "destructive" });
         } finally {
             setIsJoining(false);
         }
@@ -136,10 +145,10 @@ export default function GroupPage() {
     if (!group) {
         return (
             <div className="container mx-auto max-w-4xl py-8 text-center">
-                <h3 className="text-lg font-semibold">Group not found.</h3>
-                <p className="text-muted-foreground">This group may have been deleted or the link is incorrect.</p>
+                <h3 className="text-lg font-semibold">{t('groups.detail.notFoundTitle')}</h3>
+                <p className="text-muted-foreground">{t('groups.detail.notFoundDescription')}</p>
                 <Button asChild className="mt-4">
-                    <Link href="/groups">Back to Groups</Link>
+                    <Link href="/groups">{t('groups.detail.notFoundBackButton')}</Link>
                 </Button>
             </div>
         );
@@ -149,7 +158,7 @@ export default function GroupPage() {
         <div className="container mx-auto max-w-4xl py-8">
             <Link href="/groups" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to all groups
+                {t('groups.detail.backButton')}
             </Link>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -166,7 +175,7 @@ export default function GroupPage() {
                             {/* Placeholder for group posts/feed */}
                             <div className="py-10 text-center text-muted-foreground">
                                 <MessageSquare className="h-12 w-12 mx-auto" />
-                                <p className="mt-4">Group discussion feed coming soon!</p>
+                                <p className="mt-4">{t('groups.detail.feedComingSoon')}</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -175,27 +184,27 @@ export default function GroupPage() {
                 <div className="space-y-6">
                      <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">Group Actions</CardTitle>
+                            <CardTitle className="text-lg">{t('groups.detail.actionsTitle')}</CardTitle>
                         </CardHeader>
                         <CardContent>
                              {user && (
                                 isMember ? (
                                     <Button onClick={handleLeaveGroup} variant="destructive" className="w-full" disabled={isJoining}>
-                                        <LogOut className="mr-2 h-4 w-4" /> {isJoining ? 'Leaving...' : 'Leave Group'}
+                                        <LogOut className="mr-2 h-4 w-4" /> {isJoining ? t('groups.detail.leavingButton') : t('groups.detail.leaveButton')}
                                     </Button>
                                 ) : (
                                     <Button onClick={handleJoinGroup} className="w-full" disabled={isJoining || !group.isPublic}>
-                                        <UserPlus className="mr-2 h-4 w-4" /> {isJoining ? 'Joining...' : (group.isPublic ? 'Join Group' : 'Request to Join')}
+                                        <UserPlus className="mr-2 h-4 w-4" /> {isJoining ? t('groups.detail.joiningButton') : (group.isPublic ? t('groups.detail.joinButton') : t('groups.detail.requestJoinButton'))}
                                     </Button>
                                 )
                             )}
-                            {!user && <Button asChild className="w-full"><Link href="/auth/signin">Log in to Join</Link></Button>}
+                            {!user && <Button asChild className="w-full"><Link href="/auth/signin">{t('groups.detail.loginToJoinButton')}</Link></Button>}
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">Members ({group.memberCount})</CardTitle>
+                            <CardTitle className="text-lg">{t('groups.detail.membersTitle', { count: group.memberCount })}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             {members.map(member => (

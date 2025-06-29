@@ -1,7 +1,6 @@
-
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { collection, query, where, orderBy, onSnapshot, getFirestore, doc, getDocs } from "firebase/firestore";
@@ -12,6 +11,7 @@ import { ThumbsUp, MessageSquare, Bell } from "lucide-react";
 import type { UserProfile } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface Notification {
   id: string;
@@ -25,29 +25,34 @@ interface Notification {
 }
 
 const userProfileCache: Record<string, UserProfile> = {};
-const fetchNotificationUserProfiles = async (userIds: string[]) => {
-    const db = getFirestore(firebaseApp);
-    const profiles: Record<string, UserProfile> = {};
-    const usersToFetch = [...new Set(userIds)].filter(id => !userProfileCache[id]);
 
-    if (usersToFetch.length === 0) {
-        userIds.forEach(id => profiles[id] = userProfileCache[id]);
-        return profiles;
+// Using useMemo to memoize the callable function might not be ideal in this component structure
+// since it might get re-created. A higher-level provider or singleton could be better.
+const functions = getFunctions(firebaseApp);
+const getProfilesCallable = httpsCallable(functions, 'getProfilesByIds'); 
+
+
+const fetchNotificationUserProfiles = async (userIds: string[]): Promise<Record<string, UserProfile>> => {
+    const profilesToReturn: Record<string, UserProfile> = {};
+    const idsToFetch = [...new Set(userIds)].filter(id => !userProfileCache[id]);
+
+    if (idsToFetch.length > 0) {
+        try {
+            const result = await getProfilesCallable({ uids: idsToFetch });
+            const fetchedProfiles = result.data as Record<string, UserProfile>;
+            for (const id in fetchedProfiles) {
+                userProfileCache[id] = fetchedProfiles[id];
+            }
+        } catch (error) {
+            console.error("Error fetching user profiles:", error);
+        }
     }
-    
-    // Firestore 'in' query can take up to 30 elements
-    const userDocs = await getDocs(query(collection(db, 'users'), where(admin.firestore.FieldPath.documentId(), 'in', usersToFetch)));
-
-    userDocs.forEach(userDoc => {
-        const userData = userDoc.data() as UserProfile;
-        userProfileCache[userDoc.id] = userData;
-    });
 
     userIds.forEach(id => {
-        profiles[id] = userProfileCache[id] || { name: "Someone", photoURL: "" } as UserProfile;
+        profilesToReturn[id] = userProfileCache[id] || { displayName: "Someone", photoURL: "" } as UserProfile;
     });
 
-    return profiles;
+    return profilesToReturn;
 };
 
 const NotificationIcon = ({ type }: { type: 'like' | 'comment' }) => {
@@ -63,6 +68,7 @@ const NotificationIcon = ({ type }: { type: 'like' | 'comment' }) => {
 };
 
 export default function NotificationsPage() {
+    const { t } = useTranslation('common');
     const { user } = useAuth();
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const [actorProfiles, setActorProfiles] = useState<Record<string, UserProfile>>({});
@@ -109,9 +115,9 @@ export default function NotificationsPage() {
                 <CardHeader>
                     <div className="flex items-center gap-2">
                         <Bell className="h-6 w-6 text-primary"/>
-                        <CardTitle>Notifications</CardTitle>
+                        <CardTitle>{t('notificationsPage.title')}</CardTitle>
                     </div>
-                    <CardDescription>Recent activity from across the DamDoh network.</CardDescription>
+                    <CardDescription>{t('notificationsPage.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     {isLoading ? (
@@ -124,6 +130,10 @@ export default function NotificationsPage() {
                         <div className="space-y-2">
                             {notifications.map((notification) => {
                                 const actor = actorProfiles[notification.actorId];
+                                const message = notification.type === 'like' 
+                                    ? t('notificationsPage.likeNotification', { name: actor?.displayName ?? "Someone" })
+                                    : t('notificationsPage.commentNotification', { name: actor?.displayName ?? "Someone" });
+                                
                                 return (
                                 <Link href={`/feed?postId=${notification.postId}`} key={notification.id} passHref>
                                     <div className={cn('flex items-start gap-4 p-3 rounded-lg hover:bg-accent cursor-pointer', !notification.read && 'bg-accent/50')}>
@@ -137,8 +147,7 @@ export default function NotificationsPage() {
                                         <div className="flex-1 pt-1">
                                             <p className="text-sm">
                                                 <span className="font-semibold">{actor?.displayName ?? "Someone"}</span>
-                                                {notification.type === 'like' ? ' liked ' : ' commented on '}
-                                                <span className="font-semibold">your post.</span>
+                                                {` ${message}`}
                                             </p>
                                              <p className="text-xs text-muted-foreground mt-1 italic border-l-2 pl-2">
                                                 "{notification.postContentSnippet}"
@@ -152,12 +161,10 @@ export default function NotificationsPage() {
                             )})}
                         </div>
                     ) : (
-                        <p className="text-center text-muted-foreground py-10">You have no new notifications.</p>
+                        <p className="text-center text-muted-foreground py-10">{t('notificationsPage.noNotifications')}</p>
                     )}
                 </CardContent>
             </Card>
         </div>
     );
 }
-
-    
