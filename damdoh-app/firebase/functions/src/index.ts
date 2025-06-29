@@ -15,17 +15,17 @@ admin.initializeApp();
 // The Firebase CLI will discover and deploy these exported functions.
 
 export * from './dashboard_data';
-export * from './module1';
-export * from './module3';
-export * from './module4';
-export * from './module5';
-export * from './module6';
-export * from './module7';
-export * from './module8';
-export * from './module9';
-export * from './module10';
-export * from './module11';
-export * from './module12';
+export * from './traceability';
+export * from './farm-management';
+export * from './marketplace';
+export * from './knowledge-hub';
+export * from './community';
+export * from './financials';
+export * from './ai-services';
+export * from './integrations';
+export * from './compliance';
+export * from './insurance';
+export * from './sustainability';
 export * from './notifications';
 export * from './offline_sync';
 export * from './search';
