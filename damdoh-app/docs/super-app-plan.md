@@ -1,4 +1,3 @@
-
 # DamDoh Super App Transformation: Conceptual Blueprint
 
 This document summarizes the conceptual plan for transforming DamDoh into a comprehensive agri-supply chain "super app," based on the comments and placeholder structures added throughout the codebase. The goal is to create a unified, intelligent, and indispensable tool for all stakeholders in the agricultural ecosystem.
