@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgronomistDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, CrowdfunderDashboardData, MarketplaceOrder} from "./types";
+import {FarmerDashboardData, BuyerDashboardData, LogisticsDashboardData, FiDashboardData, InputSupplierDashboardData, AgroExportDashboardData, FieldAgentDashboardData, ProcessingUnitDashboardData, WarehouseDashboardData, PackagingSupplierDashboardData, RegulatorDashboardData, EnergyProviderDashboardData, QaDashboardData, CertificationBodyDashboardData, ResearcherDashboardData, AgronomistDashboardData, AgroTourismDashboardData, InsuranceProviderDashboardData, CrowdfunderDashboardData, CooperativeDashboardData, MarketplaceOrder} from "./types";
 
 const db = admin.firestore();
 
@@ -628,6 +628,29 @@ export const getWarehouseDashboardData = functions.https.onCall(
         { alert: "High humidity detected in Cold Storage Bay 2.", actionLink: "#" },
         { alert: "Maize batch #VTI-123 nearing its expiry date.", actionLink: "#" },
       ]
+    };
+    return mockData;
+  },
+);
+
+
+export const getCooperativeDashboardData = functions.https.onCall(
+  async (data, context): Promise<CooperativeDashboardData> => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    // Returning mock data to power the new dashboard UI
+    const mockData: CooperativeDashboardData = {
+      memberCount: 150,
+      totalLandArea: 1200,
+      aggregatedProduce: [
+        { id: 'prod1', productName: 'Organic Avocado', quantity: 25, quality: 'Grade A', readyBy: '2023-11-15' },
+        { id: 'prod2', productName: 'Macadamia Nuts', quantity: 10, quality: 'Grade B', readyBy: '2023-11-20' },
+      ],
+      pendingMemberApplications: 5,
     };
     return mockData;
   },
