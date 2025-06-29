@@ -42,7 +42,7 @@ export function StartPost({ onCreatePost }: StartPostProps) {
         <CardContent className="pt-6">
           <div className="flex items-center gap-3">
             <Avatar>
-              <AvatarImage src={profile?.photoURL} alt={profile?.displayName || 'User'} data-ai-hint="profile person" />
+              <AvatarImage src={profile?.photoURL || undefined} alt={profile?.displayName || 'User'} data-ai-hint="profile person" />
               <AvatarFallback>{profile?.displayName?.substring(0,2)?.toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
             <div

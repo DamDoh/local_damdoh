@@ -48,7 +48,7 @@ export function DashboardLeftSidebar() {
         <CardContent className="pt-6 text-center">
           <Link href="/profiles/me">
             <Avatar className="h-20 w-20 mx-auto mb-2 border-2 border-primary cursor-pointer">
-              <AvatarImage src={profile?.photoURL} alt={profile?.displayName || ''} data-ai-hint="profile agriculture" />
+              <AvatarImage src={profile?.photoURL || undefined} alt={profile?.displayName || ''} data-ai-hint="profile agriculture" />
               <AvatarFallback>{profile?.displayName?.substring(0, 2).toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
           </Link>

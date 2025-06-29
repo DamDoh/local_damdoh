@@ -107,8 +107,8 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
       <DialogContent className="sm:max-w-[600px] p-0">
         <DialogHeader className="p-4 border-b">
           <VisuallyHidden>
-            <DialogTitle>{t('createPostModal.title')}</DialogTitle>
-            <DialogDescription>{t('createPostModal.description')}</DialogDescription>
+            <DialogTitle>{t('dashboard.createPostModal.title')}</DialogTitle>
+            <DialogDescription>{t('dashboard.createPostModal.description')}</DialogDescription>
           </VisuallyHidden>
           <div className="flex items-center gap-2">
             <Avatar className="h-9 w-9">
@@ -117,7 +117,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
             </Avatar>
             <div>
               <p className="font-medium">{currentUser.displayName}</p>
-              <p className="text-xs font-normal text-muted-foreground">{t('createPostModal.shareUpdate')}</p>
+              <p className="text-xs font-normal text-muted-foreground">{t('dashboard.createPostModal.shareUpdate')}</p>
             </div>
           </div>
         </DialogHeader>
@@ -125,7 +125,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
         <ScrollArea className="max-h-[60vh]">
           <div className="p-4 space-y-4">
             <Textarea
-              placeholder={t('createPostModal.placeholder')}
+              placeholder={t('dashboard.createPostModal.placeholder')}
               value={postContent}
               onChange={(e) => setPostContent(e.target.value)}
               className="min-h-[120px] border-none focus-visible:ring-0 text-base resize-none"
@@ -146,7 +146,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
             )}
             {mediaFile && !mediaPreview && (
               <div className="text-sm text-muted-foreground p-2 border rounded-md">
-                {t('createPostModal.selectedFile', { fileName: mediaFile.name, fileType: mediaFile.type })}
+                {t('dashboard.createPostModal.selectedFile', { fileName: mediaFile.name, fileType: mediaFile.type })}
                  <Button variant="ghost" size="icon" className="h-6 w-6 ml-2" onClick={() => { setMediaFile(null); if(fileInputRef.current) fileInputRef.current.value = ""; }}>
                     <Trash2 className="h-4 w-4 text-destructive"/>
                  </Button>
@@ -155,12 +155,12 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
 
             {showPollCreator && (
               <div className="space-y-3 p-3 border rounded-md bg-muted/50">
-                <Label className="text-sm font-medium">{t('createPostModal.poll.title')}</Label>
+                <Label className="text-sm font-medium">{t('dashboard.createPostModal.poll.title')}</Label>
                 {pollOptions.map((option, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <Input
                       type="text"
-                      placeholder={t('createPostModal.poll.optionPlaceholder', { number: index + 1 })}
+                      placeholder={t('dashboard.createPostModal.poll.optionPlaceholder', { number: index + 1 })}
                       value={option}
                       onChange={(e) => handlePollOptionChange(index, e.target.value)}
                       maxLength={80}
@@ -175,10 +175,10 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
                 ))}
                 {pollOptions.length < MAX_POLL_OPTIONS && (
                   <Button variant="outline" size="sm" onClick={handleAddPollOption} className="mt-1">
-                    <PlusCircle className="mr-2 h-4 w-4" /> {t('createPostModal.poll.addOption')}
+                    <PlusCircle className="mr-2 h-4 w-4" /> {t('dashboard.createPostModal.poll.addOption')}
                   </Button>
                 )}
-                 <p className="text-xs text-muted-foreground">{t('createPostModal.poll.note', { maxOptions: MAX_POLL_OPTIONS })}</p>
+                 <p className="text-xs text-muted-foreground">{t('dashboard.createPostModal.poll.note', { maxOptions: MAX_POLL_OPTIONS })}</p>
               </div>
             )}
           </div>
@@ -189,16 +189,16 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
         <div className="p-4 flex flex-wrap items-center justify-between gap-2 border-t">
           <div className="flex items-center gap-1">
             <input type="file" ref={fileInputRef} onChange={handleMediaChange} accept="image/*,video/*" style={{ display: 'none' }} id="media-upload" />
-            <Button variant="ghost" size="icon" onClick={() => fileInputRef.current?.click()} title={t('createPostModal.actions.addMedia')}>
+            <Button variant="ghost" size="icon" onClick={() => fileInputRef.current?.click()} title={t('dashboard.createPostModal.actions.addMedia')}>
               <ImageIcon className="h-5 w-5 text-green-500" />
             </Button>
-            <Button variant="ghost" size="icon" asChild title={t('createPostModal.actions.addEvent')}>
+            <Button variant="ghost" size="icon" asChild title={t('dashboard.createPostModal.actions.addEvent')}>
               <Link href="/agri-events/create"><CalendarDays className="h-5 w-5 text-red-500" /></Link>
             </Button>
-            <Button variant="ghost" size="icon" onClick={() => console.log("Share document clicked")} title={t('createPostModal.actions.addDocument')}>
+            <Button variant="ghost" size="icon" onClick={() => console.log("Share document clicked")} title={t('dashboard.createPostModal.actions.addDocument')}>
               <FileText className="h-5 w-5 text-orange-500" />
             </Button>
-            <Button variant="ghost" size="icon" onClick={handleTogglePollCreator} title={t('createPostModal.actions.addPoll')} className={showPollCreator ? "bg-primary/20" : ""}>
+            <Button variant="ghost" size="icon" onClick={handleTogglePollCreator} title={t('dashboard.createPostModal.actions.addPoll')} className={showPollCreator ? "bg-primary/20" : ""}>
               <BarChart3 className="h-5 w-5 text-blue-500" />
             </Button>
           </div>
@@ -207,7 +207,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
               onClick={handlePost}
               disabled={!postContent.trim() && !mediaFile && (!showPollCreator || pollOptions.every(opt => !opt.trim()))}
             >
-              {t('createPostModal.postButton')}
+              {t('dashboard.createPostModal.postButton')}
             </Button>
           </DialogFooter>
         </div>
