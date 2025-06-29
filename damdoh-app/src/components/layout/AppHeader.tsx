@@ -34,13 +34,12 @@ import {
   SheetContent,
   SheetHeader,
   SheetClose,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
-import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface NavLinkProps {
@@ -90,10 +89,6 @@ const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ 
 const desktopNavItems = [
     { href: "/", icon: Home, label: 'home' },
     { href: "/network", icon: Users, label: 'network' },
-    { href: "/farm-management", icon: Sprout, label: 'farmMgmt' },
-    { href: "/marketplace", icon: Briefcase, label: 'marketplace' },
-    { href: "/talent-exchange", icon: Briefcase, label: 'talentExchange'},
-    { href: "/traceability", icon: Fingerprint, label: 'traceability' },
     { href: "/forums", icon: MessageSquare, label: 'forums' },
 ];
   
@@ -176,7 +171,7 @@ export function AppHeader() {
     const path = pathname.split('/')[1];
     if (!path) return t('home');
     const item = desktopNavItems.find(item => item.href.includes(path));
-    return item ? item.label : path.charAt(0).toUpperCase() + path.slice(1);
+    return item ? t(item.label as any) : path.charAt(0).toUpperCase() + path.slice(1);
   }
 
   const sectionTitle = getSectionTitle();
@@ -212,17 +207,13 @@ export function AppHeader() {
               <NavLink key={item.href} {...item} label={t(item.label as any)} pathname={pathname} />
             ))}
             {user && (
-              <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
-            )}
-            {user && (
               <>
-                  <NavLink href="/messages" icon={MessageSquare} label={t('messages')} pathname={pathname} />
-                  <NavLink href="/wallet" icon={WalletIcon} label={t('wallet')} pathname={pathname} />
+                <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
+                <NavLink href="/messages" icon={MessageSquare} label={t('messages')} pathname={pathname} />
+                <NavLink href="/wallet" icon={WalletIcon} label={t('wallet')} pathname={pathname} />
               </>
             )}
             <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
-              <LanguageSwitcher />
-              <HeaderThemeToggle />
               {authLoading ? (
                 <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
               ) : user ? (
@@ -284,7 +275,6 @@ export function AppHeader() {
               </nav>
               <Separator />
               <div className="p-4 space-y-3 border-t">
-                <HeaderThemeToggle />
                 {user && (
                   <Button variant="outline" className="w-full" onClick={handleLogout}>
                     <LogOut className="mr-2 h-4 w-4" /> {t('logOut')}
