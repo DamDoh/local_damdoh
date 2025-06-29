@@ -1,5 +1,6 @@
 
 {
+  "loading": "Cargando...",
   "home": "Inicio",
   "network": "Red",
   "farmMgmt": "G. Finca",
@@ -18,7 +19,6 @@
   "logOut": "Cerrar Sesión",
   "on": "el",
   "error": "Error",
-  "loading": "Cargando...",
   "privacyPolicyPage": {
     "title": "Política de Privacidad",
     "lastUpdated": "Última Actualización"
@@ -181,6 +181,33 @@
         "tableProject": "Proyecto",
         "tableAmount": "Monto",
         "noTransactions": "No hay transacciones recientes."
+      },
+      "fi": {
+        "title": "Portal de Institución Financiera",
+        "riskTitle": "Cartera en Riesgo",
+        "riskValue": "{count} Cuentas",
+        "riskDescription": "${value} en valor",
+        "reviewRiskButton": "Revisar Riesgo",
+        "applicationsTitle": "Solicitudes Pendientes",
+        "tableApplicant": "Solicitante",
+        "tableAmount": "Monto",
+        "tableRiskScore": "Puntuación de Riesgo",
+        "tableAction": "Acción",
+        "reviewButton": "Revisar",
+        "noApplications": "No hay solicitudes pendientes.",
+        "updatesTitle": "Actualizaciones de Mercado y Políticas",
+        "learnMore": "Saber más"
+      },
+      "logistics": {
+        "title": "Centro de Coordinación Logística",
+        "performanceTitle": "Métricas de Rendimiento",
+        "onTimeRate": "Tasa de Entrega a Tiempo",
+        "viewReportButton": "Ver Informe Completo",
+        "activeShipmentsTitle": "Envíos Activos",
+        "toLabel": "A:",
+        "trackButton": "Rastrear",
+        "incomingJobsTitle": "Trabajos Entrantes",
+        "viewDetailsButton": "Ver Detalles"
       }
     }
   },
@@ -297,9 +324,7 @@
       "needsLabel": "Actualmente Buscando / Ofreciendo (separado por comas)",
       "needsPlaceholder": "Ej: Compradores de granos de cacao, espacio de almacenamiento, consultoría en agronomía",
       "commaSeparated": "Lista separada por comas.",
-      "saveButton": "Guardar Cambios del Perfil",
-      "phoneLabel": "Número de Teléfono (Opcional)",
-      "websiteLabel": "Sitio Web (Opcional)"
+      "saveButton": "Guardar Cambios del Perfil"
     },
     "accountTab": {
       "title": "Ajustes de Cuenta",
@@ -476,7 +501,7 @@
       "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
       "point5": "Arreglos de trabajo flexibles para muchos roles."
     },
-    "openings": {
+    "currentOpenings": {
       "title": "Vacantes Actuales",
       "job1": {
         "title": "Analista Principal de Cadena de Suministro Agrícola",
@@ -502,50 +527,6 @@
       "title": "No Hay Vacantes Actuales",
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
-    }
-  },
-  "knowledgeHub": {
-    "courses": {
-      "viewButton": "Ver Curso",
-      "errorLoad": "Error al cargar los cursos.",
-      "detail": {
-        "notFound": "Curso no encontrado.",
-        "curriculum": "Plan de Estudios del Curso",
-        "errorLoad": "Error al cargar los detalles del curso."
-      }
-    }
-  },
-  "sustainability": {
-    "title": "Centro de Sostenibilidad e Impacto",
-    "description": "Sigue tu progreso hacia la agricultura sostenible, gestiona certificaciones y explora herramientas para un impacto positivo en la cadena de suministro.",
-    "log": {
-      "title": "Registro de Prácticas Sostenibles",
-      "description": "Registra y verifica tus actividades sostenibles en la finca.",
-      "placeholder": "[Marcador de posición conceptual: Esta área contará con un formulario para que los agricultores registren prácticas como cultivos de cobertura, labranza reducida o manejo integrado de plagas. El sistema usaría estos datos para calcular métricas de impacto y potencialmente ayudar en los procesos de certificación.]"
-    },
-    "tools": {
-      "title": "Herramientas y Recursos",
-      "description": "Calculadoras y guías para apoyar tu viaje hacia la sostenibilidad.",
-      "carbonCalc": "Calculadora de Huella de Carbono (Próximamente)",
-      "waterGuide": "Guía de Eficiencia en el Uso del Agua",
-      "organicGuide": "Guía de Prácticas de Agricultura Orgánica"
-    },
-    "overview": {
-      "title": "Resumen de Impacto",
-      "carbonFootprint": "Huella de Carbono",
-      "carbonFootprintValue": "Estimado: 1.2 Toneladas CO2e",
-      "waterEfficiency": "Eficiencia en el Uso del Agua",
-      "waterEfficiencyValue": "Promedio: 1500 Litros/kg",
-      "biodiversity": "Puntuación de Biodiversidad",
-      "biodiversityValue": "7/10 (basado en prácticas)"
-    },
-    "certifications": {
-      "title": "Mis Certificaciones",
-      "organic": "Certificado Orgánico",
-      "fairTrade": "Comercio Justo",
-      "statusValid": "Válido",
-      "statusPending": "Revisión Pendiente",
-      "noCerts": "No hay certificaciones listadas."
     }
   }
 }

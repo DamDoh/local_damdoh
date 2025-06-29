@@ -1,5 +1,6 @@
 
 {
+  "loading": "Loading...",
   "home": "Home",
   "network": "Network",
   "farmMgmt": "Farm Mgmt",
@@ -18,7 +19,6 @@
   "logOut": "Log out",
   "on": "on",
   "error": "Error",
-  "loading": "Loading...",
   "privacyPolicyPage": {
     "title": "Privacy Policy",
     "lastUpdated": "Last Updated"
@@ -181,6 +181,33 @@
         "tableProject": "Project",
         "tableAmount": "Amount",
         "noTransactions": "No recent transactions."
+      },
+      "fi": {
+        "title": "Financial Institution Portal",
+        "riskTitle": "Portfolio At Risk",
+        "riskValue": "{count} Accounts",
+        "riskDescription": "${value} value",
+        "reviewRiskButton": "Review Risk",
+        "applicationsTitle": "Pending Applications",
+        "tableApplicant": "Applicant",
+        "tableAmount": "Amount",
+        "tableRiskScore": "Risk Score",
+        "tableAction": "Action",
+        "reviewButton": "Review",
+        "noApplications": "No pending applications.",
+        "updatesTitle": "Market & Policy Updates",
+        "learnMore": "Learn More"
+      },
+      "logistics": {
+        "title": "Logistics Coordination Hub",
+        "performanceTitle": "Performance Metrics",
+        "onTimeRate": "On-Time Delivery Rate",
+        "viewReportButton": "View Full Report",
+        "activeShipmentsTitle": "Active Shipments",
+        "toLabel": "To:",
+        "trackButton": "Track",
+        "incomingJobsTitle": "Incoming Jobs",
+        "viewDetailsButton": "View Details"
       }
     }
   },
@@ -297,9 +324,7 @@
       "needsLabel": "Currently Seeking / Offering (comma-separated)",
       "needsPlaceholder": "e.g., Buyers for cocoa beans, Warehousing space, Agronomy consulting",
       "commaSeparated": "Comma-separated list.",
-      "saveButton": "Save Profile Changes",
-      "phoneLabel": "Phone Number (Optional)",
-      "websiteLabel": "Website (Optional)"
+      "saveButton": "Save Profile Changes"
     },
     "accountTab": {
       "title": "Account Settings",
@@ -502,184 +527,6 @@
       "title": "No Current Openings",
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Industry News & Reports",
-    "description": "Stay informed with the latest updates, research, and market analysis relevant to the agricultural supply chain.",
-    "searchPlaceholder": "Search news by keyword or source...",
-    "filterPlaceholder": "Filter by category",
-    "allCategories": "All Categories",
-    "marketTrends": "Market Trends",
-    "technology": "Technology",
-    "sustainability": "Sustainability",
-    "regulations": "Regulations",
-    "research": "Research",
-    "sourceLabel": "Source:",
-    "publishedLabel": "Published:",
-    "categoryLabel": "Category:",
-    "readArticleButton": "Read Full Article",
-    "noNewsTitle": "Latest News & Reports Coming Soon!",
-    "noNewsDescription": "Our team is curating the most relevant agricultural news, market analysis, and research findings. Check back regularly for insights to help you make informed decisions."
-  },
-  "pinboardPage": {
-    "title": "My Pin Board",
-    "description": "Your saved items from across DamDoh: marketplace listings, forum posts, profiles, news, and events.",
-    "comingSoonTitle": "Pin Board Feature: Coming Soon!",
-    "comingSoonDescription1": "This is where your pinned items from the Marketplace, Network, Forums, News, and Events will appear for quick access.",
-    "comingSoonDescription2": "We're working on enabling you to save and organize your interests from across the DamDoh platform. Stay tuned!"
-  },
-  "profilesPage": {
-    "title": "Agricultural Stakeholder Directory",
-    "description": "Find and connect with participants across the entire agricultural value chain.",
-    "createEditButton": "Create/Edit Your Profile",
-    "searchPlaceholder": "Search by name, specialty, or supply chain role...",
-    "locationPlaceholder": "Filter by country, region, or city",
-    "rolePlaceholder": "Filter by stakeholder role",
-    "allRoles": "All Roles",
-    "allInterests": "All",
-    "notFoundTitle": "No stakeholders found matching your criteria.",
-    "notFoundDescription": "Try adjusting your filters or broaden your search for better supply chain connections."
-  },
-  "searchPage": {
-    "title": "Search DamDoh",
-    "description": "Find products, services, stakeholders, or ask our AI assistant.",
-    "searchPlaceholder": "What are you looking for?",
-    "searchButton": "Search",
-    "popularSearches": {
-      "title": "Popular Searches",
-      "term1": "Organic Fertilizer",
-      "term2": "Coffee Beans",
-      "term3": "Logistics Kenya",
-      "term4": "Soil Health",
-      "term5": "Tractor Rental"
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find agricultural jobs, offer your professional services, and connect with skilled talent.",
-    "postJobButton": "Post a Job or Service",
-    "searchPlaceholder": "Search for jobs or services (e.g., 'agronomist', 'tractor operator', 'kenya')",
-    "viewApplyButton": "View & Apply",
-    "notFoundTitle": "No jobs or services found.",
-    "notFoundDescription": "Try adjusting your search terms or be the first to post a service!"
-  },
-  "walletPage": {
-    "title": "My Digital Wallet",
-    "description": "Manage your DamDoh credits for trading, investments, and platform services (Feature Coming Soon).",
-    "comingSoonTitle": "Digital Wallet Feature: Under Development",
-    "comingSoonDescription": "We are building a secure and efficient digital wallet to facilitate transactions within the DamDoh ecosystem. Future capabilities will include:",
-    "feature1": "Viewing your credit balance and transaction history.",
-    "feature2": "Requesting credit for approved investments or large trades.",
-    "feature3": "Securely topping-up your wallet using various payment methods.",
-    "feature4": "Facilitating payments for marketplace transactions and platform services.",
-    "stayTuned": "Stay tuned for updates as we work to enable seamless and secure financial activities for the DamDoh agricultural network."
-  },
-  "adminPage": {
-    "layout": {
-      "adminArea": "Admin Area",
-      "caution": "Changes made here affect the entire platform. Please proceed with caution.",
-      "contentManagement": "Content Management",
-      "marketplaceCategories": "Marketplace Categories"
-    },
-    "content": {
-      "createCourseTitle": "Create New Course",
-      "createCourseDescription": "Develop a new course for the Knowledge Hub.",
-      "courseTitleLabel": "Course Title",
-      "courseDescriptionLabel": "Course Description",
-      "categoryLabel": "Category",
-      "createCourseButton": "Create Course",
-      "creatingCourseButton": "Creating...",
-      "createArticleTitle": "Create Knowledge Article",
-      "createArticleDescription": "Write a blog post or news update.",
-      "englishContent": "English Content",
-      "articleTitleEn": "Article Title (EN)",
-      "excerptEn": "Excerpt (EN)",
-      "excerptDescription": "A short summary for the article preview.",
-      "fullContentEn": "Full Content (EN, Markdown supported)",
-      "khmerContent": "Khmer Content (ភាសាខ្មែរ)",
-      "articleTitleKm": "Article Title (KM)",
-      "excerptKm": "Excerpt (KM)",
-      "fullContentKm": "Full Content (KM)",
-      "metadataTitle": "Metadata",
-      "articleCategoryLabel": "Category",
-      "categoryPlaceholder": "e.g., Blog, Industry News, Sustainability",
-      "authorLabel": "Author",
-      "authorPlaceholder": "e.g., Dr. Green Thumb",
-      "defaultAuthor": "DamDoh Team",
-      "tagsLabel": "Tags (comma-separated)",
-      "imageUrlLabel": "Image URL (Optional)",
-      "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-      "imageAiHintLabel": "Image AI Hint (Optional)",
-      "aiHintPlaceholder": "e.g., sustainable farming field",
-      "publishButton": "Publish Article",
-      "publishingButton": "Publishing...",
-      "successMessage": "Action successful!",
-      "failMessage": "Action failed.",
-      "courseSuccess": "Course created successfully!",
-      "courseFail": "Failed to create course.",
-      "articleSuccess": "Article created successfully!",
-      "articleFail": "Failed to create article."
-    }
-  },
-  "traceabilityDetailPage": {
-    "backLink": "Back to Marketplace",
-    "error": "Error",
-    "notFoundTitle": "Batch Not Found",
-    "notFoundDescription": "The traceability information for this batch could not be found.",
-    "traceableProduct": "Traceable Product",
-    "batchIdLabel": "Batch ID",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "yieldLabel": "Yield at Harvest",
-    "qualityLabel": "Quality Grade",
-    "journeyTitle": "Traceability Journey",
-    "journeyDescription": "A chronological record of this batch's journey through the supply chain.",
-    "geoLocationLabel": "Geo-location",
-    "noEvents": "No traceability events found."
-  },
-  "knowledgeHub": {
-    "courses": {
-      "viewButton": "View Course",
-      "errorLoad": "Failed to fetch courses.",
-      "detail": {
-        "notFound": "Course not found.",
-        "curriculum": "Course Curriculum",
-        "errorLoad": "Failed to fetch course details."
-      }
-    }
-  },
-  "sustainability": {
-    "title": "Sustainability & Impact Hub",
-    "description": "Track your progress towards sustainable agriculture, manage certifications, and explore tools for positive impact across the supply chain.",
-    "log": {
-      "title": "Sustainable Practices Log",
-      "description": "Record and verify your on-farm sustainable activities.",
-      "placeholder": "[Conceptual Placeholder: This area will feature a form for farmers to log practices like cover cropping, reduced tillage, or integrated pest management. The system would then use this data to calculate impact metrics and potentially assist in certification processes.]"
-    },
-    "tools": {
-      "title": "Tools & Resources",
-      "description": "Calculators and guides to support your sustainability journey.",
-      "carbonCalc": "Carbon Footprint Calculator (Coming Soon)",
-      "waterGuide": "Water Usage Efficiency Guide",
-      "organicGuide": "Guide to Organic Farming Practices"
-    },
-    "overview": {
-      "title": "Impact Overview",
-      "carbonFootprint": "Carbon Footprint",
-      "carbonFootprintValue": "Estimated: 1.2 Tons CO2e",
-      "waterEfficiency": "Water Usage Efficiency",
-      "waterEfficiencyValue": "Average: 1500 Liters/kg",
-      "biodiversity": "Biodiversity Score",
-      "biodiversityValue": "7/10 (based on practices)"
-    },
-    "certifications": {
-      "title": "My Certifications",
-      "organic": "Organic Certified",
-      "fairTrade": "Fair Trade",
-      "statusValid": "Valid",
-      "statusPending": "Pending Review",
-      "noCerts": "No certifications listed."
     }
   }
 }
