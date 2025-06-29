@@ -12,8 +12,10 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import type { CooperativeDashboardData } from '@/lib/types';
+import { useTranslation } from 'react-i18next';
 
 export const CooperativeDashboard = () => {
+    const { t } = useTranslation('common');
     const [dashboardData, setDashboardData] = useState<CooperativeDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -42,7 +44,7 @@ export const CooperativeDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">{t('dashboard.hubs.noData')}</p>
             </div>
         );
     }
@@ -51,39 +53,39 @@ export const CooperativeDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Agricultural Cooperative Hub</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('dashboard.hubs.cooperative.title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Members</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('dashboard.hubs.cooperative.totalMembers')}</CardTitle>
                         <Users className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{memberCount}</div>
-                        <p className="text-xs text-muted-foreground">farmers in your cooperative</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.hubs.cooperative.membersInCoop')}</p>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Land Area</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('dashboard.hubs.cooperative.totalLand')}</CardTitle>
                         <LandPlot className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{totalLandArea.toLocaleString()}</div>
-                        <p className="text-xs text-muted-foreground">Hectares under cultivation</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.hubs.cooperative.landUnit')}</p>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Pending Applications</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('dashboard.hubs.cooperative.pendingApps')}</CardTitle>
                         <FileCheck className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{pendingMemberApplications}</div>
-                        <p className="text-xs text-muted-foreground">new farmers to review</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.hubs.cooperative.newFarmers')}</p>
                     </CardContent>
                 </Card>
                 
@@ -91,19 +93,19 @@ export const CooperativeDashboard = () => {
                      <CardHeader className="pb-4">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Package className="h-4 w-4" />
-                           Aggregated Produce Ready for Market
+                           {t('dashboard.hubs.cooperative.produceTitle')}
                         </CardTitle>
-                        <CardDescription>Collective inventory from your members available for sale.</CardDescription>
+                        <CardDescription>{t('dashboard.hubs.cooperative.produceDescription')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                        <Table>
                             <TableHeader>
                                 <TableRow>
-                                <TableHead>Product</TableHead>
-                                <TableHead>Quantity (tons)</TableHead>
-                                <TableHead>Quality</TableHead>
-                                <TableHead>Ready By</TableHead>
-                                <TableHead className="text-right">Action</TableHead>
+                                <TableHead>{t('dashboard.hubs.cooperative.tableProduct')}</TableHead>
+                                <TableHead>{t('dashboard.hubs.cooperative.tableQuantity')}</TableHead>
+                                <TableHead>{t('dashboard.hubs.cooperative.tableQuality')}</TableHead>
+                                <TableHead>{t('dashboard.hubs.cooperative.tableReadyBy')}</TableHead>
+                                <TableHead className="text-right">{t('dashboard.hubs.cooperative.tableAction')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -117,7 +119,7 @@ export const CooperativeDashboard = () => {
                                             <Button size="sm" asChild>
                                                 <Link href={`/marketplace/create?batchId=${item.id}&productName=${item.productName}`}>
                                                     <CircleDollarSign className="mr-2 h-4 w-4" />
-                                                    Create Listing
+                                                    {t('dashboard.hubs.cooperative.createListingButton')}
                                                 </Link>
                                             </Button>
                                         </TableCell>
@@ -129,7 +131,7 @@ export const CooperativeDashboard = () => {
                      <CardFooter>
                         <Button variant="secondary" className="w-full">
                             <PlusCircle className="mr-2 h-4 w-4" />
-                            Aggregate New Produce Batch
+                            {t('dashboard.hubs.cooperative.aggregateButton')}
                         </Button>
                      </CardFooter>
                 </Card>

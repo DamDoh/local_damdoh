@@ -11,8 +11,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { LogisticsDashboardData } from '@/lib/types';
+import { useTranslation } from 'react-i18next';
 
 export const LogisticsDashboard = () => {
+    const { t } = useTranslation('common');
     const [dashboardData, setDashboardData] = useState<LogisticsDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -41,7 +43,7 @@ export const LogisticsDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">{t('dashboard.hubs.noData')}</p>
             </div>
         );
     }
@@ -50,21 +52,21 @@ export const LogisticsDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Logistics Coordination Hub</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('dashboard.hubs.logistics.title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Performance Metrics</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('dashboard.hubs.logistics.performanceTitle')}</CardTitle>
                         <BarChart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
                         <div className="text-2xl font-bold">{performanceMetrics.onTimePercentage}%</div>
-                        <p className="text-xs text-muted-foreground">On-Time Delivery Rate</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.hubs.logistics.onTimeRate')}</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href={performanceMetrics.actionLink}>View Full Report</Link>
+                            <Link href={performanceMetrics.actionLink}>{t('dashboard.hubs.logistics.viewReportButton')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -73,20 +75,20 @@ export const LogisticsDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Truck className="h-4 w-4" />
-                           Active Shipments
+                           {t('dashboard.hubs.logistics.activeShipmentsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {activeShipments.map(shipment => (
                            <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                <div>
-                                   <p className="font-medium">To: {shipment.to}</p>
+                                   <p className="font-medium">{t('dashboard.hubs.logistics.toLabel')} {shipment.to}</p>
                                    <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'}>{shipment.status}</Badge>
                                </div>
                                <Button asChild variant="ghost" size="sm">
                                    <Link href={shipment.vtiLink}>
                                         <ExternalLink className="h-3 w-3 mr-1.5" />
-                                        Track
+                                        {t('dashboard.hubs.logistics.trackButton')}
                                    </Link>
                                </Button>
                            </div>
@@ -98,7 +100,7 @@ export const LogisticsDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                            <Briefcase className="h-4 w-4" />
-                           Incoming Jobs
+                           {t('dashboard.hubs.logistics.incomingJobsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -109,7 +111,7 @@ export const LogisticsDashboard = () => {
                                     <p className="text-xs text-muted-foreground">{job.product} ({job.requirements})</p>
                                 </div>
                                 <Button asChild size="sm">
-                                    <Link href={job.actionLink}>View Details</Link>
+                                    <Link href={job.actionLink}>{t('dashboard.hubs.logistics.viewDetailsButton')}</Link>
                                 </Button>
                             </div>
                        ))}
