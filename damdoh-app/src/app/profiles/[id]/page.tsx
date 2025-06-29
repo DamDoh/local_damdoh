@@ -122,33 +122,33 @@ export default function ProfileDetailPage() {
   }
 
   const isCurrentUserProfile = authUser?.uid === profile.id;
-  const RoleIcon = STAKEHOLDER_ICONS[profile.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
+  const RoleIcon = STAKEHOLDER_ICONS[profile.primaryRole as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
 
   return (
     <div className="space-y-6">
       <Card className="overflow-hidden">
         <div className="h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
            <Image 
-            src={profile.bannerUrl || `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.name)}`} 
-            alt={`${profile.name} banner`} 
+            src={profile.bannerUrl || `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.displayName)}`} 
+            alt={`${profile.displayName} banner`} 
             fill={true}
             style={{objectFit:"cover"}}
             priority
-            data-ai-hint={profile.role ? `${profile.role.toLowerCase()} agriculture background` : "agriculture background"} />
+            data-ai-hint={profile.primaryRole ? `${profile.primaryRole.toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-              <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile business food" />
-              <AvatarFallback className="text-4xl">{profile.name.substring(0,1).toUpperCase()}</AvatarFallback>
+              <AvatarImage src={profile.photoURL} alt={profile.displayName} data-ai-hint="profile business food" />
+              <AvatarFallback className="text-4xl">{profile.displayName.substring(0,1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
         </div>
         <CardHeader className="pt-[60px] px-6"> 
           <div className="flex flex-col sm:flex-row justify-between items-start">
             <div>
-              <CardTitle className="text-3xl">{profile.name}</CardTitle>
+              <CardTitle className="text-3xl">{profile.displayName}</CardTitle>
               <CardDescription className="text-lg flex items-center gap-2">
                 <RoleIcon className="h-5 w-5 text-muted-foreground" />
-                {profile.role}
+                {profile.primaryRole}
               </CardDescription>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                 <MapPin className="h-4 w-4" /> {profile.location}
@@ -182,12 +182,12 @@ export default function ProfileDetailPage() {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {profile.yearsOfExperience !== undefined && (
+            {(profile.profileData as any)?.yearsOfExperience !== undefined && (
               <div className="flex items-start gap-3">
                 <Briefcase className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">Industry Experience</h4>
-                  <p className="text-muted-foreground">{profile.yearsOfExperience} years</p>
+                  <p className="text-muted-foreground">{(profile.profileData as any).yearsOfExperience} years</p>
                 </div>
               </div>
             )}
@@ -211,20 +211,20 @@ export default function ProfileDetailPage() {
             )}
           </div>
 
-          {profile.areasOfInterest && profile.areasOfInterest.length > 0 && (
+          {(profile.profileData as any)?.areasOfInterest && (profile.profileData as any).areasOfInterest.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />Areas of Expertise & Interest</h3>
               <div className="flex flex-wrap gap-2">
-                {profile.areasOfInterest.map(interest => <Badge key={interest} variant="secondary">{interest}</Badge>)}
+                {(profile.profileData as any).areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}
               </div>
             </div>
           )}
 
-          {profile.needs && profile.needs.length > 0 && (
+          {(profile.profileData as any)?.needs && (profile.profileData as any).needs.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />Actively Seeking / Offering</h3>
               <div className="flex flex-wrap gap-2">
-                {profile.needs.map(need => <Badge key={need}>{need}</Badge>)}
+                {(profile.profileData as any).needs.map((need: string) => <Badge key={need}>{need}</Badge>)}
               </div>
             </div>
           )}

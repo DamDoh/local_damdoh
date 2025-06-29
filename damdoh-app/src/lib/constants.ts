@@ -1,4 +1,5 @@
 
+import type { LucideIcon } from 'lucide-react';
 import { AGRICULTURAL_CATEGORIES } from './category-data';
 
 export const APP_NAME = "DamDoh";

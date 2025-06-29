@@ -20,19 +20,18 @@ import React from "react";
 function ProfileCardSkeleton() {
   return (
     <Card className="flex flex-col">
-      <CardHeader className="flex flex-row items-center gap-4">
-        <Skeleton className="h-16 w-16 rounded-full" />
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-32" />
-          <Skeleton className="h-3 w-24" />
-        </div>
+      <CardHeader className="items-center text-center">
+        <Skeleton className="h-24 w-24 rounded-full mb-2" />
+        <Skeleton className="h-5 w-3/4" />
+        <Skeleton className="h-4 w-1/2" />
       </CardHeader>
-      <CardContent className="flex-grow space-y-2">
+      <CardContent className="flex-grow space-y-2 text-center">
         <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-5/6" />
+        <Skeleton className="h-4 w-5/6 mx-auto" />
       </CardContent>
-      <CardFooter>
-        <Skeleton className="h-10 w-full" />
+      <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
+        <Skeleton className="h-10 w-full sm:flex-1" />
+        <Skeleton className="h-10 w-full sm:flex-1" />
       </CardFooter>
     </Card>
   );
@@ -71,12 +70,13 @@ export default function NetworkPage() {
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
 
-      const nameMatch = profile.name.toLowerCase().includes(searchLower);
+      const nameMatch = profile.displayName.toLowerCase().includes(searchLower);
       const summaryMatch = profile.profileSummary?.toLowerCase().includes(searchLower) || false;
-      const roleMatch = roleFilter === 'all' || profile.role === roleFilter;
+      const roleMatch = roleFilter === 'all' || profile.primaryRole === roleFilter;
       
+      const areasOfInterest = (profile.profileData as any)?.areasOfInterest || [];
       const interestKeywords = interestFilter.toLowerCase().replace(/-/g, ' ').split(' ');
-      const areasOfInterestLower = (profile.areasOfInterest || []).join(' ').toLowerCase();
+      const areasOfInterestLower = (Array.isArray(areasOfInterest) ? areasOfInterest.join(' ') : '').toLowerCase();
       const interestMatch = interestFilter === 'all' || interestKeywords.every(keyword => areasOfInterestLower.includes(keyword));
       
       const locationMatch = locationFilter === "" || (profile.location && profile.location.toLowerCase().includes(locationLower));
@@ -151,20 +151,20 @@ export default function NetworkPage() {
               Array.from({ length: 6 }).map((_, i) => <ProfileCardSkeleton key={i} />)
             ) : (
                 filteredConnections.map(profile => {
-                    const RoleIcon = STAKEHOLDER_ICONS[profile.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
+                    const RoleIcon = STAKEHOLDER_ICONS[profile.primaryRole as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
                     return (
                         <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                             <CardHeader className="items-center text-center">
                                 <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                                    <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture business" />
-                                    <AvatarFallback className="text-3xl">{profile.name.substring(0,1)}</AvatarFallback>
+                                    <AvatarImage src={profile.photoURL} alt={profile.displayName} data-ai-hint="profile agriculture business" />
+                                    <AvatarFallback className="text-3xl">{profile.displayName.substring(0,1)}</AvatarFallback>
                                 </Avatar>
                                 <Link href={`/profiles/${profile.id}`}>
-                                    <CardTitle className="text-lg hover:text-primary transition-colors">{profile.name}</CardTitle>
+                                    <CardTitle className="text-lg hover:text-primary transition-colors">{profile.displayName}</CardTitle>
                                 </Link>
                                 <CardDescription className="flex items-center gap-2">
                                     <RoleIcon className="h-4 w-4" />
-                                    <span>{profile.role} - {profile.location}</span>
+                                    <span>{profile.primaryRole} - {profile.location}</span>
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="flex-grow text-center">

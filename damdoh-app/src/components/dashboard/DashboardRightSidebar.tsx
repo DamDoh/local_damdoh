@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle, Briefcase } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import type { StakeholderRole } from "@/lib/constants";
 import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
@@ -39,10 +39,10 @@ export function DashboardRightSidebar() {
     try {
       const userInput: SuggestedConnectionsInput = {
         profileSummary: profile.profileSummary || profile.bio || "No summary provided.",
-        stakeholderRole: (profile.role as StakeholderRole) || 'Farmer',
+        stakeholderRole: (profile.primaryRole as StakeholderRole) || 'Farmer',
         location: profile.location || "Unknown location",
-        preferences: Array.isArray(profile.areasOfInterest) ? profile.areasOfInterest.join(', ') : "General agriculture",
-        needs: Array.isArray(profile.needs) ? profile.needs.join(', ') : "General connections",
+        preferences: Array.isArray((profile.profileData as any)?.areasOfInterest) ? (profile.profileData as any).areasOfInterest.join(', ') : "General agriculture",
+        needs: Array.isArray((profile.profileData as any)?.needs) ? (profile.profileData as any).needs.join(', ') : "General connections",
       };
 
       const result: SuggestedConnectionsOutput = await suggestConnections(userInput);
