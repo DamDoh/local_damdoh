@@ -16,23 +16,25 @@
   "myProfile": "My Profile",
   "settings": "Settings",
   "logOut": "Log out",
-  "signInWelcome": "Welcome back to {appName}!",
-  "signInTitle": "Sign In",
-  "signInDescription": "Enter your credentials to access your account.",
-  "emailLabel": "Email Address",
-  "passwordLabel": "Password",
-  "forgotPasswordLink": "Forgot password?",
-  "signInButton": "Sign In",
-  "signingInButton": "Signing In...",
-  "noAccountPrompt": "Don't have an account?",
-  "signUpLink": "Sign Up",
-  "alreadyHaveAccountPrompt": "Already have an account?",
   "mobileNav": {
     "home": "Home",
     "market": "Market",
     "search": "Search",
     "forums": "Forums",
     "profile": "Profile"
+  },
+  "signInPage": {
+    "welcome": "Welcome back to {appName}!",
+    "title": "Sign In",
+    "description": "Enter your credentials to access your account.",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signInButton": "Sign In",
+    "signingInButton": "Signing In...",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "alreadyHaveAccountPrompt": "Already have an account?"
   },
   "signUpPage": {
     "welcome": "Join the {appName} Agricultural Network!",
@@ -47,13 +49,45 @@
     "signUpButton": "Sign Up",
     "creatingAccountButton": "Creating Account..."
   },
+  "forgotPasswordPage": {
+    "prompt": "Reset your {appName} password",
+    "title": "Forgot Password?",
+    "description": "Enter your email address and we'll send you a link to reset your password.",
+    "emailLabel": "Email Address",
+    "sendButton": "Send Reset Link",
+    "sendingButton": "Sending Email...",
+    "rememberPrompt": "Remember your password?",
+    "successTitle": "Password Reset Email Sent",
+    "successDescription": "If an account exists for {email}, a password reset link has been sent. Please check your inbox (and spam folder)."
+  },
+  "resetPasswordPage": {
+    "prompt": "Set your new {appName} password",
+    "title": "Reset Password",
+    "description": "Enter and confirm your new password.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "confirmPasswordLabel": "Confirm New Password",
+    "resetButton": "Reset Password",
+    "resettingButton": "Resetting Password...",
+    "successTitle": "Password Reset Successful",
+    "successDescription": "Your password has been reset. You can now sign in with your new password.",
+    "errorTitle": "Error",
+    "missingCodeTitle": "Missing Code",
+    "missingCodeDescription": "The password reset code is missing from the URL. Please use the link from your reset email."
+  },
   "aiAssistant": {
     "title": "AI Farming Assistant",
     "resetConversation": "Reset Conversation",
     "uploadImage": "Upload Image",
     "useCamera": "Use Camera",
     "inputPlaceholder": "Ask about farming, describe your image...",
-    "sendMessage": "Send"
+    "sendMessage": "Send",
+    "welcome": {
+      "summary": "Hello! I'm {appName}'s AI Knowledge assistant, your dedicated partner for all things agriculture!\nWondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.\n\n**Got a crop concern?**\nTap the image upload icon (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-image-up inline-block relative -top-px\"><path d=\"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16\"></path><path d=\"m14 19.5 3-3 3 3\"></path><path d=\"M17 22v-5.5\"></path><circle cx=\"9\" cy=\"9\" r=\"2\"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-camera inline-block relative -top-px\"><path d=\"M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z\"></path><circle cx=\"12\" cy=\"13\" r=\"3\"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.\n\nReady to explore? How can I assist you today?",
+      "suggestion1": "How do I make Fish Amino Acid?",
+      "suggestion2": "What is 'God's Blanket' in Farming God's Way?",
+      "suggestion3": "How can I improve my soil health?"
+    }
   },
   "about": {
     "title": "About DamDoh",
@@ -116,26 +150,26 @@
       "point4": "Competitive compensation and benefits (Details coming soon).",
       "point5": "Flexible work arrangements for many roles."
     },
-    "currentOpenings": {
-      "title": "Current Openings",
-      "job1": {
-        "title": "Lead Agricultural Supply Chain Analyst",
-        "location": "Remote / Global",
-        "type": "Full-time",
-        "description": "Seeking an experienced analyst to optimize supply chain operations, develop data-driven strategies, and support our network of stakeholders. Strong background in agricultural economics and logistics required."
-      },
-      "job2": {
-        "title": "Community Manager - Farmer Engagement",
-        "location": "Nairobi, Kenya Hub",
-        "type": "Full-time",
-        "description": "Passionate about agriculture and community building? Join us to support and grow our farmer network in East Africa. Excellent communication and field experience needed."
-      },
-      "job3": {
-        "title": "Senior Full Stack Engineer (Agri-Tech)",
-        "location": "Remote / Europe Timezones",
-        "type": "Full-time",
-        "description": "Develop innovative features for the DamDoh platform. Proficient in Next.js, TypeScript, and backend technologies. Experience with GIS or agricultural data is a plus."
-      }
+    "openings": {
+      "title": "Current Openings"
+    },
+    "job1": {
+      "title": "Lead Agricultural Supply Chain Analyst",
+      "location": "Remote / Global",
+      "type": "Full-time",
+      "description": "Seeking an experienced analyst to optimize supply chain operations, develop data-driven strategies, and support our network of stakeholders. Strong background in agricultural economics and logistics required."
+    },
+    "job2": {
+      "title": "Community Manager - Farmer Engagement",
+      "location": "Nairobi, Kenya Hub",
+      "type": "Full-time",
+      "description": "Passionate about agriculture and community building? Join us to support and grow our farmer network in East Africa. Excellent communication and field experience needed."
+    },
+    "job3": {
+      "title": "Senior Full Stack Engineer (Agri-Tech)",
+      "location": "Remote / Europe Timezones",
+      "type": "Full-time",
+      "description": "Develop innovative features for the DamDoh platform. Proficient in Next.js, TypeScript, and backend technologies. Experience with GIS or agricultural data is a plus."
     },
     "applyNowButton": "Apply Now (Placeholder)",
     "noOpenings": {
@@ -143,5 +177,471 @@
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
     }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "We'd love to hear from you! Whether you have a question, feedback, or a partnership proposal, please reach out.",
+    "emailUsTitle": "Email Us",
+    "generalInquiries": "For general inquiries:",
+    "support": "For support:",
+    "partnerships": "For partnerships:",
+    "callUsTitle": "Call Us",
+    "callUsDesc": "Our phone lines are open Monday - Friday, 9 AM - 5 PM (Your Timezone).",
+    "phone": "Phone:",
+    "officeTitle": "Our Office",
+    "officeLine1": "DamDoh Headquarters (Placeholder)",
+    "officeLine2": "123 Agri-Tech Avenue, Food Security City, Global",
+    "formTitle": "Send Us a Message",
+    "formNameLabel": "Full Name",
+    "formNamePlaceholder": "Your Full Name",
+    "formEmailLabel": "Email Address",
+    "formEmailPlaceholder": "your.email@example.com",
+    "formSubjectLabel": "Subject",
+    "formSubjectPlaceholder": "Reason for contacting us",
+    "formMessageLabel": "Message",
+    "formMessagePlaceholder": "Your detailed message...",
+    "sendButton": "Send Message",
+    "formNote": "Note: This form is for demonstration. Actual submission is not implemented."
+  },
+  "communityGuidelines": {
+    "title": "DamDoh Community Guidelines",
+    "subtitle": "Our commitment to fostering a safe, respectful, and productive environment for all agricultural stakeholders.",
+    "intro": "Welcome to DamDoh! By joining our platform, you agree to abide by these guidelines to ensure a positive experience for everyone. Violations may result in content removal, account suspension, or other actions deemed necessary.",
+    "reportingTitle": "Reporting Violations",
+    "reportingContent": "If you encounter content or behavior that violates these guidelines, please report it to our moderation team through the platform's reporting tools or by contacting",
+    "supportEmail": "support@damdoh.org",
+    "conclusion": "Thank you for helping us build a thriving and trustworthy agricultural supply chain community on DamDoh!",
+    "guideline1": {
+      "title": "Be Respectful and Constructive",
+      "description": "Treat all members of the DamDoh community with respect. Engage in constructive discussions, share knowledge positively, and avoid personal attacks, harassment, or hate speech."
+    },
+    "guideline2": {
+      "title": "Maintain Authenticity and Transparency",
+      "description": "Represent yourself and your business honestly. Do not impersonate others or provide misleading information in your profile, listings, or communications. Clearly state your role in the supply chain."
+    },
+    "guideline3": {
+      "title": "Keep Discussions Relevant",
+      "description": "When participating in forums or groups, ensure your contributions are relevant to the topic. Avoid spamming, unsolicited advertising, or off-topic content. Focus on agricultural supply chain matters."
+    },
+    "guideline4": {
+      "title": "Foster Fair and Ethical Trade",
+      "description": "Conduct business dealings with integrity. Honor commitments, provide accurate product/service descriptions, and engage in fair pricing. DamDoh promotes ethical trade practices."
+    },
+    "guideline5": {
+      "title": "Promote Sustainable Practices",
+      "description": "We encourage discussions and sharing of knowledge related to sustainable and regenerative agriculture. Support initiatives that improve soil health, biodiversity, and food security."
+    }
   }
+}
+]],</content>
+  </change>
+  <change>
+    <file>/damdoh-app/src/locales/es/common.json</file>
+    <content><![CDATA[
+{
+  "home": "Inicio",
+  "network": "Red",
+  "farmMgmt": "G. Finca",
+  "marketplace": "Mercado",
+  "talentExchange": "Intercambio de Talentos",
+  "traceability": "Trazabilidad",
+  "forums": "Foros",
+  "notifications": "Notificaciones",
+  "messages": "Mensajes",
+  "wallet": "Billetera",
+  "searchPlaceholder": "Pregúntale a la IA o busca en DamDoh...",
+  "signIn": "Iniciar Sesión",
+  "signUp": "Registrarse",
+  "myProfile": "Mi Perfil",
+  "settings": "Ajustes",
+  "logOut": "Cerrar Sesión",
+  "mobileNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  },
+  "signInPage": {
+    "welcome": "¡Bienvenido de nuevo a {appName}!",
+    "title": "Iniciar Sesión",
+    "description": "Introduce tus credenciales para acceder a tu cuenta.",
+    "emailLabel": "Dirección de Correo Electrónico",
+    "passwordLabel": "Contraseña",
+    "forgotPasswordLink": "¿Olvidaste la contraseña?",
+    "signInButton": "Iniciar Sesión",
+    "signingInButton": "Iniciando Sesión...",
+    "noAccountPrompt": "¿No tienes una cuenta?",
+    "signUpLink": "Regístrate",
+    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?"
+  },
+  "signUpPage": {
+    "welcome": "¡Únete a la Red Agrícola de {appName}!",
+    "title": "Crea Tu Cuenta",
+    "description": "Únete a nuestra comunidad de partes interesadas agrícolas.",
+    "nameLabel": "Nombre Completo / Nombre de la Organización",
+    "namePlaceholder": "Tu Nombre o Nombre de la Empresa",
+    "roleLabel": "Tu Rol Principal",
+    "rolePlaceholder": "Selecciona tu rol en la cadena de suministro",
+    "passwordPlaceholder": "•••••••• (mín. 6 caracteres)",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "signUpButton": "Registrarse",
+    "creatingAccountButton": "Creando Cuenta..."
+  },
+  "forgotPasswordPage": {
+    "prompt": "Restablece tu contraseña de {appName}",
+    "title": "¿Olvidaste tu contraseña?",
+    "description": "Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+    "emailLabel": "Dirección de Correo Electrónico",
+    "sendButton": "Enviar enlace de restablecimiento",
+    "sendingButton": "Enviando correo...",
+    "rememberPrompt": "¿Recuerdas tu contraseña?",
+    "successTitle": "Correo de restablecimiento enviado",
+    "successDescription": "Si existe una cuenta para {email}, se ha enviado un enlace para restablecer la contraseña. Por favor, revisa tu bandeja de entrada (y la carpeta de spam)."
+  },
+  "resetPasswordPage": {
+    "prompt": "Establece tu nueva contraseña de {appName}",
+    "title": "Restablecer Contraseña",
+    "description": "Introduce y confirma tu nueva contraseña.",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Introduce tu nueva contraseña",
+    "confirmPasswordLabel": "Confirmar Nueva Contraseña",
+    "resetButton": "Restablecer Contraseña",
+    "resettingButton": "Restableciendo Contraseña...",
+    "successTitle": "¡Éxito!",
+    "successDescription": "Tu contraseña ha sido restablecida correctamente. Redirigiendo al inicio de sesión...",
+    "errorTitle": "Error",
+    "missingCodeTitle": "Código Faltante",
+    "missingCodeDescription": "El código para restablecer la contraseña falta en la URL. Por favor, usa el enlace de tu correo de restablecimiento."
+  },
+  "aiAssistant": {
+    "title": "Asistente Agrícola IA",
+    "resetConversation": "Reiniciar Conversación",
+    "uploadImage": "Subir Imagen",
+    "useCamera": "Usar Cámara",
+    "inputPlaceholder": "Pregunta sobre agricultura, describe tu imagen...",
+    "sendMessage": "Enviar",
+    "welcome": {
+      "summary": "¡Hola! Soy el Asistente de Conocimiento de {appName}, ¡tu socio dedicado para todo lo relacionado con la agricultura!\n¿Tienes dudas sobre agricultura sostenible, cómo navegar la cadena de suministro agrícola o impulsar tu negocio agrícola? ¡Solo pregunta! También puedo guiarte en el uso de las funciones de la aplicación DamDoh.\n\n**¿Tienes un problema con un cultivo?**\nToca el ícono de subir imagen (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-image-up inline-block relative -top-px\"><path d=\"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16\"></path><path d=\"m14 19.5 3-3 3 3\"></path><path d=\"M17 22v-5.5\"></path><circle cx=\"9\" cy=\"9\" r=\"2\"></circle></svg>) para subir una foto, o el ícono de la cámara (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-camera inline-block relative -top-px\"><path d=\"M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z\"></path><circle cx=\"12\" cy=\"13\" r=\"3\"></circle></svg>) para tomar una foto de cualquier problema con tus plantas. Haré mi mejor esfuerzo para analizarla y sugerir soluciones sostenibles.\n\n¿Listo para explorar? ¿Cómo puedo ayudarte hoy?",
+      "suggestion1": "¿Cómo hago Aminoácido de Pescado?",
+      "suggestion2": "¿Qué es la 'Manta de Dios' en Agricultura a la Manera de Dios?",
+      "suggestion3": "¿Cómo puedo mejorar la salud de mi suelo?"
+    }
+  },
+  "about": {
+    "title": "Sobre DamDoh",
+    "subtitle": "Conectando la cadena de suministro agrícola para un planeta, ganancias y gente prósperos.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "content": "Empoderar a cada actor en la cadena de valor agrícola a través de tecnología innovadora, fomentando prácticas sostenibles, garantizando la seguridad alimentaria y promoviendo un crecimiento equitativo. Nuestro objetivo es construir un ecosistema resiliente y transparente donde agricultores, comerciantes y consumidores puedan conectar, colaborar y prosperar."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "content": "Ser la plataforma digital líder que revoluciona la cadena de suministro agrícola global, creando un futuro donde la agricultura sostenible nutre al mundo y apoya a comunidades rurales vibrantes."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "sustainability": {
+        "title": "Sostenibilidad",
+        "content": "Defendiendo prácticas que protegen nuestro planeta para las generaciones futuras."
+      },
+      "collaboration": {
+        "title": "Colaboración",
+        "content": "Creyendo en el poder de la asociación y el éxito compartido."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "content": "Buscando continuamente mejores soluciones a través de la tecnología y la creatividad."
+      },
+      "integrity": {
+        "title": "Integridad",
+        "content": "Operando con transparencia, honestidad y respeto para todos."
+      },
+      "empowerment": {
+        "title": "Empoderamiento",
+        "content": "Proporcionando herramientas y conocimiento para elevar a cada miembro de la comunidad agrícola."
+      }
+    },
+    "team": {
+      "title": "Conoce al Equipo",
+      "intro": "DamDoh es impulsado por un apasionado equipo de expertos agrícolas, tecnólogos y líderes empresariales dedicados a marcar la diferencia. Mientras crecemos, nuestro equipo central cree en el poder transformador de conectar el mundo agrícola.",
+      "member1Name": "Miembro del Equipo 1",
+      "member1Role": "Rol/Especialidad",
+      "member1Bio": "Breve biografía sobre su experiencia y pasión por la agricultura próximamente.",
+      "member2Name": "Miembro del Equipo 2",
+      "member2Role": "Rol/Especialidad",
+      "member2Bio": "Breve biografía sobre su experiencia y pasión por la agricultura próximamente.",
+      "member3Name": "Miembro del Equipo 3",
+      "member3Role": "Rol/Especialidad",
+      "member3Bio": "Breve biografía sobre su experiencia y pasión por la agricultura próximamente.",
+      "note": "¡Perfiles de equipo más detallados próximamente!"
+    }
+  },
+  "careers": {
+    "title": "Únete a Nuestra Misión en DamDoh",
+    "subtitle": "Estamos construyendo un futuro donde la tecnología y la colaboración transforman la cadena de suministro agrícola para mejor.",
+    "whyWorkWithUs": {
+      "title": "¿Por Qué Trabajar Con Nosotros?",
+      "intro": "En DamDoh, serás parte de un equipo dinámico apasionado por resolver desafíos del mundo real en la agricultura. Fomentamos una cultura de innovación, aprendizaje continuo e impacto. Si te impulsa marcar la diferencia y contribuir a un sistema alimentario más sostenible y equitativo, DamDoh es el lugar para ti.",
+      "point1": "Trabajo significativo que impacta directamente en la seguridad alimentaria mundial.",
+      "point2": "Ambiente de equipo colaborativo e inclusivo.",
+      "point3": "Oportunidades de crecimiento y desarrollo profesional.",
+      "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
+      "point5": "Arreglos de trabajo flexibles para muchos roles."
+    },
+    "openings": {
+      "title": "Vacantes Actuales"
+    },
+    "job1": {
+      "title": "Analista Principal de Cadena de Suministro Agrícola",
+      "location": "Remoto / Global",
+      "type": "Tiempo completo",
+      "description": "Se busca un analista experimentado para optimizar las operaciones de la cadena de suministro, desarrollar estrategias basadas en datos y apoyar nuestra red de partes interesadas. Se requiere una sólida formación en economía agrícola y logística."
+    },
+    "job2": {
+      "title": "Gerente de Comunidad - Compromiso del Agricultor",
+      "location": "Sede de Nairobi, Kenia",
+      "type": "Tiempo completo",
+      "description": "¿Apasionado por la agricultura y la construcción de comunidades? Únete a nosotros para apoyar y hacer crecer nuestra red de agricultores en África Oriental. Se necesita excelente comunicación y experiencia de campo."
+    },
+    "job3": {
+      "title": "Ingeniero Full Stack Senior (Agri-Tech)",
+      "location": "Remoto / Zonas horarias de Europa",
+      "type": "Tiempo completo",
+      "description": "Desarrollar características innovadoras para la plataforma DamDoh. Competente en Next.js, TypeScript y tecnologías de backend. La experiencia con SIG o datos agrícolas es una ventaja."
+    },
+    "applyNowButton": "Aplicar Ahora (Provisional)",
+    "noOpenings": {
+      "title": "No Hay Vacantes Actuales",
+      "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
+      "email": "careers@damdoh.org"
+    }
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "subtitle": "¡Nos encantaría saber de ti! Si tienes una pregunta, comentarios o una propuesta de asociación, no dudes en comunicarte.",
+    "emailUsTitle": "Envíanos un Correo",
+    "generalInquiries": "Para consultas generales:",
+    "support": "Para soporte:",
+    "partnerships": "Para asociaciones:",
+    "callUsTitle": "Llámanos",
+    "callUsDesc": "Nuestras líneas telefónicas están abiertas de lunes a viernes, de 9 a.m. a 5 p.m. (Tu zona horaria).",
+    "phone": "Teléfono:",
+    "officeTitle": "Nuestra Oficina",
+    "officeLine1": "Sede de DamDoh (Provisional)",
+    "officeLine2": "Avenida Agro-Tech 123, Ciudad de la Seguridad Alimentaria, Global",
+    "formTitle": "Envíanos un Mensaje",
+    "formNameLabel": "Nombre Completo",
+    "formNamePlaceholder": "Tu Nombre Completo",
+    "formEmailLabel": "Dirección de Correo",
+    "formEmailPlaceholder": "tu.correo@ejemplo.com",
+    "formSubjectLabel": "Asunto",
+    "formSubjectPlaceholder": "Motivo del contacto",
+    "formMessageLabel": "Mensaje",
+    "formMessagePlaceholder": "Tu mensaje detallado...",
+    "sendButton": "Enviar Mensaje",
+    "formNote": "Nota: Este formulario es para demostración. El envío real no está implementado."
+  },
+  "communityGuidelines": {
+    "title": "Normas de la Comunidad DamDoh",
+    "subtitle": "Nuestro compromiso de fomentar un entorno seguro, respetuoso y productivo para todos los actores agrícolas.",
+    "intro": "¡Bienvenido a DamDoh! Al unirte a nuestra plataforma, aceptas cumplir con estas normas para garantizar una experiencia positiva para todos. Las violaciones pueden resultar en la eliminación de contenido, la suspensión de la cuenta u otras acciones que se consideren necesarias.",
+    "reportingTitle": "Reportar Violaciones",
+    "reportingContent": "Si encuentras contenido o comportamiento que viola estas normas, por favor repórtalo a nuestro equipo de moderación a través de las herramientas de reporte de la plataforma o contactando a",
+    "supportEmail": "support@damdoh.org",
+    "conclusion": "¡Gracias por ayudarnos a construir una comunidad de cadena de suministro agrícola próspera y confiable en DamDoh!",
+    "guideline1": {
+      "title": "Sé Respetuoso y Constructivo",
+      "description": "Trata a todos los miembros de la comunidad DamDoh con respeto. Participa en discusiones constructivas, comparte conocimientos de manera positiva y evita ataques personales, acoso o discursos de odio."
+    },
+    "guideline2": {
+      "title": "Mantén la Autenticidad y Transparencia",
+      "description": "Represéntate a ti mismo y a tu negocio con honestidad. No te hagas pasar por otros ni proporciones información engañosa en tu perfil, listados o comunicaciones. Indica claramente tu rol en la cadena de suministro."
+    },
+    "guideline3": {
+      "title": "Mantén las Discusiones Relevantes",
+      "description": "Al participar en foros o grupos, asegúrate de que tus contribuciones sean relevantes para el tema. Evita el spam, la publicidad no solicitada o el contenido fuera de tema. Concéntrate en asuntos de la cadena de suministro agrícola."
+    },
+    "guideline4": {
+      "title": "Fomenta el Comercio Justo y Ético",
+      "description": "Realiza tratos comerciales con integridad. Cumple con los compromisos, proporciona descripciones precisas de productos/servicios y participa en precios justos. DamDoh promueve prácticas comerciales éticas."
+    },
+    "guideline5": {
+      "title": "Promueve Prácticas Sostenibles",
+      "description": "Fomentamos las discusiones y el intercambio de conocimientos relacionados con la agricultura sostenible y regenerativa. Apoya iniciativas que mejoren la salud del suelo, la biodiversidad y la seguridad alimentaria."
+    }
+  }
+}
+]],</content>
+  </change>
+  <change>
+    <file>/damdoh-app/src/app/auth/forgot-password/page.tsx</file>
+    <content><![CDATA[
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { forgotPasswordSchema, type ForgotPasswordValues } from "@/lib/form-schemas";
+import { sendPasswordReset } from "@/lib/auth-utils";
+import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertTriangle, CheckCircle, Loader2, Mail, ArrowLeft } from "lucide-react";
+import { Logo } from "@/components/Logo";
+import { APP_NAME } from "@/lib/constants";
+import { useTranslation } from "react-i18next";
+
+export default function ForgotPasswordPage() {
+  const router = useRouter();
+  const { toast } = useToast();
+  const { t } = useTranslation('common');
+  const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [emailSent, setEmailSent] = useState(false);
+  const [sentToEmail, setSentToEmail] = useState("");
+
+  const form = useForm<ForgotPasswordValues>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  async function onSubmit(data: ForgotPasswordValues) {
+    setIsLoading(true);
+    setAuthError(null);
+    setEmailSent(false);
+    try {
+      await sendPasswordReset(data.email);
+      setEmailSent(true);
+      setSentToEmail(data.email);
+      toast({
+        title: t('forgotPasswordPage.successTitle'),
+        description: t('forgotPasswordPage.successDescription', { email: data.email }),
+        variant: "default",
+      });
+      form.reset(); 
+    } catch (error: any) {
+      let errorMessage = "An unexpected error occurred. Please try again.";
+      if (error.code) {
+        switch (error.code) {
+          case "auth/user-not-found":
+            setEmailSent(true); 
+            setSentToEmail(data.email);
+            toast({
+                title: t('forgotPasswordPage.successTitle'),
+                description: t('forgotPasswordPage.successDescription', { email: data.email }),
+            });
+            break;
+          case "auth/invalid-email":
+            errorMessage = "The email address is not valid.";
+            break;
+          case "auth/too-many-requests":
+            errorMessage = "Too many requests. Please try again later.";
+            break;
+          default:
+            errorMessage = `Failed to send reset email: ${error.message}`;
+        }
+      }
+      if (!emailSent) {
+        setAuthError(errorMessage);
+        toast({
+            title: "Error",
+            description: errorMessage,
+            variant: "destructive",
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
+      <div className="mb-8 text-center">
+         <Logo iconSize={48} textSize="text-4xl" className="text-primary justify-center" />
+        <p className="text-muted-foreground mt-2">{t('forgotPasswordPage.prompt', { appName: APP_NAME })}</p>
+      </div>
+      <Card className="w-full max-w-md shadow-xl">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl">{t('forgotPasswordPage.title')}</CardTitle>
+          <CardDescription>{t('forgotPasswordPage.description')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {authError && !emailSent && (
+            <Alert variant="destructive" className="mb-4">
+              <AlertTriangle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{authError}</AlertDescription>
+            </Alert>
+          )}
+
+          {emailSent ? (
+            <>
+              <Alert variant="default" className="mb-4 border-green-500 bg-green-50 text-green-700 dark:border-green-600 dark:bg-green-900/30 dark:text-green-300">
+                <CheckCircle className="h-4 w-4 !text-green-500 dark:!text-green-400" />
+                <AlertTitle>{t('forgotPasswordPage.successTitle')}</AlertTitle>
+                <AlertDescription>
+                  {t('forgotPasswordPage.successDescription', { email: sentToEmail })}
+                </AlertDescription>
+              </Alert>
+              <div className="text-center mt-6">
+                <Button asChild>
+                  <Link href="/auth/signin">{t('signIn')}</Link>
+                </Button>
+              </div>
+            </>
+          ) : (
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />{t('forgotPasswordPage.emailLabel')}</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="you@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('forgotPasswordPage.sendingButton')}
+                    </>
+                  ) : (
+                    t('forgotPasswordPage.sendButton')
+                  )}
+                </Button>
+              </form>
+            </Form>
+          )}
+        </CardContent>
+        <CardFooter className="flex flex-col items-center text-sm">
+          <p className="text-muted-foreground">
+            {t('forgotPasswordPage.rememberPrompt')}{" "}
+            <Link href="/auth/signin" className="font-medium text-primary hover:underline">
+              {t('signIn')}
+            </Link>
+          </p>
+        </CardFooter>
+      </Card>
+    </div>
+  );
 }

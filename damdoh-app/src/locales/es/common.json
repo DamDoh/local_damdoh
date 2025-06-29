@@ -16,23 +16,25 @@
   "myProfile": "Mi Perfil",
   "settings": "Ajustes",
   "logOut": "Cerrar Sesión",
-  "signInWelcome": "¡Bienvenido de nuevo a {appName}!",
-  "signInTitle": "Iniciar Sesión",
-  "signInDescription": "Introduce tus credenciales para acceder a tu cuenta.",
-  "emailLabel": "Dirección de Correo Electrónico",
-  "passwordLabel": "Contraseña",
-  "forgotPasswordLink": "¿Olvidaste la contraseña?",
-  "signInButton": "Iniciar Sesión",
-  "signingInButton": "Iniciando Sesión...",
-  "noAccountPrompt": "¿No tienes una cuenta?",
-  "signUpLink": "Regístrate",
-  "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
   "mobileNav": {
     "home": "Inicio",
     "market": "Mercado",
     "search": "Buscar",
     "forums": "Foros",
     "profile": "Perfil"
+  },
+  "signInPage": {
+    "welcome": "¡Bienvenido de nuevo a {appName}!",
+    "title": "Iniciar Sesión",
+    "description": "Introduce tus credenciales para acceder a tu cuenta.",
+    "emailLabel": "Dirección de Correo Electrónico",
+    "passwordLabel": "Contraseña",
+    "forgotPasswordLink": "¿Olvidaste la contraseña?",
+    "signInButton": "Iniciar Sesión",
+    "signingInButton": "Iniciando Sesión...",
+    "noAccountPrompt": "¿No tienes una cuenta?",
+    "signUpLink": "Regístrate",
+    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?"
   },
   "signUpPage": {
     "welcome": "¡Únete a la Red Agrícola de {appName}!",
@@ -47,13 +49,45 @@
     "signUpButton": "Registrarse",
     "creatingAccountButton": "Creando Cuenta..."
   },
+  "forgotPasswordPage": {
+    "prompt": "Restablece tu contraseña de {appName}",
+    "title": "¿Olvidaste tu contraseña?",
+    "description": "Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+    "emailLabel": "Dirección de Correo Electrónico",
+    "sendButton": "Enviar enlace de restablecimiento",
+    "sendingButton": "Enviando correo...",
+    "rememberPrompt": "¿Recuerdas tu contraseña?",
+    "successTitle": "Correo de restablecimiento enviado",
+    "successDescription": "Si existe una cuenta para {email}, se ha enviado un enlace para restablecer la contraseña. Por favor, revisa tu bandeja de entrada (y la carpeta de spam)."
+  },
+  "resetPasswordPage": {
+    "prompt": "Establece tu nueva contraseña de {appName}",
+    "title": "Restablecer Contraseña",
+    "description": "Introduce y confirma tu nueva contraseña.",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Introduce tu nueva contraseña",
+    "confirmPasswordLabel": "Confirmar Nueva Contraseña",
+    "resetButton": "Restablecer Contraseña",
+    "resettingButton": "Restableciendo Contraseña...",
+    "successTitle": "¡Éxito!",
+    "successDescription": "Tu contraseña ha sido restablecida correctamente. Redirigiendo al inicio de sesión...",
+    "errorTitle": "Error",
+    "missingCodeTitle": "Código Faltante",
+    "missingCodeDescription": "El código para restablecer la contraseña falta en la URL. Por favor, usa el enlace de tu correo de restablecimiento."
+  },
   "aiAssistant": {
     "title": "Asistente Agrícola IA",
     "resetConversation": "Reiniciar Conversación",
     "uploadImage": "Subir Imagen",
     "useCamera": "Usar Cámara",
     "inputPlaceholder": "Pregunta sobre agricultura, describe tu imagen...",
-    "sendMessage": "Enviar"
+    "sendMessage": "Enviar",
+    "welcome": {
+      "summary": "¡Hola! Soy el Asistente de Conocimiento de {appName}, ¡tu socio dedicado para todo lo relacionado con la agricultura!\n¿Tienes dudas sobre agricultura sostenible, cómo navegar la cadena de suministro agrícola o impulsar tu negocio agrícola? ¡Solo pregunta! También puedo guiarte en el uso de las funciones de la aplicación DamDoh.\n\n**¿Tienes un problema con un cultivo?**\nToca el ícono de subir imagen (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-image-up inline-block relative -top-px\"><path d=\"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16\"></path><path d=\"m14 19.5 3-3 3 3\"></path><path d=\"M17 22v-5.5\"></path><circle cx=\"9\" cy=\"9\" r=\"2\"></circle></svg>) para subir una foto, o el ícono de la cámara (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-camera inline-block relative -top-px\"><path d=\"M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z\"></path><circle cx=\"12\" cy=\"13\" r=\"3\"></circle></svg>) para tomar una foto de cualquier problema con tus plantas. Haré mi mejor esfuerzo para analizarla y sugerir soluciones sostenibles.\n\n¿Listo para explorar? ¿Cómo puedo ayudarte hoy?",
+      "suggestion1": "¿Cómo hago Aminoácido de Pescado?",
+      "suggestion2": "¿Qué es la 'Manta de Dios' en Agricultura a la Manera de Dios?",
+      "suggestion3": "¿Cómo puedo mejorar la salud de mi suelo?"
+    }
   },
   "about": {
     "title": "Sobre DamDoh",
@@ -116,26 +150,26 @@
       "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
       "point5": "Arreglos de trabajo flexibles para muchos roles."
     },
-    "currentOpenings": {
-      "title": "Vacantes Actuales",
-      "job1": {
-        "title": "Analista Principal de Cadena de Suministro Agrícola",
-        "location": "Remoto / Global",
-        "type": "Tiempo completo",
-        "description": "Se busca un analista experimentado para optimizar las operaciones de la cadena de suministro, desarrollar estrategias basadas en datos y apoyar nuestra red de partes interesadas. Se requiere una sólida formación en economía agrícola y logística."
-      },
-      "job2": {
-        "title": "Gerente de Comunidad - Compromiso del Agricultor",
-        "location": "Sede de Nairobi, Kenia",
-        "type": "Tiempo completo",
-        "description": "¿Apasionado por la agricultura y la construcción de comunidades? Únete a nosotros para apoyar y hacer crecer nuestra red de agricultores en África Oriental. Se necesita excelente comunicación y experiencia de campo."
-      },
-      "job3": {
-        "title": "Ingeniero Full Stack Senior (Agri-Tech)",
-        "location": "Remoto / Zonas horarias de Europa",
-        "type": "Tiempo completo",
-        "description": "Desarrollar características innovadoras para la plataforma DamDoh. Competente en Next.js, TypeScript y tecnologías de backend. La experiencia con SIG o datos agrícolas es una ventaja."
-      }
+    "openings": {
+      "title": "Vacantes Actuales"
+    },
+    "job1": {
+      "title": "Analista Principal de Cadena de Suministro Agrícola",
+      "location": "Remoto / Global",
+      "type": "Tiempo completo",
+      "description": "Se busca un analista experimentado para optimizar las operaciones de la cadena de suministro, desarrollar estrategias basadas en datos y apoyar nuestra red de partes interesadas. Se requiere una sólida formación en economía agrícola y logística."
+    },
+    "job2": {
+      "title": "Gerente de Comunidad - Compromiso del Agricultor",
+      "location": "Sede de Nairobi, Kenia",
+      "type": "Tiempo completo",
+      "description": "¿Apasionado por la agricultura y la construcción de comunidades? Únete a nosotros para apoyar y hacer crecer nuestra red de agricultores en África Oriental. Se necesita excelente comunicación y experiencia de campo."
+    },
+    "job3": {
+      "title": "Ingeniero Full Stack Senior (Agri-Tech)",
+      "location": "Remoto / Zonas horarias de Europa",
+      "type": "Tiempo completo",
+      "description": "Desarrollar características innovadoras para la plataforma DamDoh. Competente en Next.js, TypeScript y tecnologías de backend. La experiencia con SIG o datos agrícolas es una ventaja."
     },
     "applyNowButton": "Aplicar Ahora (Provisional)",
     "noOpenings": {
@@ -143,5 +177,63 @@
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
     }
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "subtitle": "¡Nos encantaría saber de ti! Si tienes una pregunta, comentarios o una propuesta de asociación, no dudes en comunicarte.",
+    "emailUsTitle": "Envíanos un Correo",
+    "generalInquiries": "Para consultas generales:",
+    "support": "Para soporte:",
+    "partnerships": "Para asociaciones:",
+    "callUsTitle": "Llámanos",
+    "callUsDesc": "Nuestras líneas telefónicas están abiertas de lunes a viernes, de 9 a.m. a 5 p.m. (Tu zona horaria).",
+    "phone": "Teléfono:",
+    "officeTitle": "Nuestra Oficina",
+    "officeLine1": "Sede de DamDoh (Provisional)",
+    "officeLine2": "Avenida Agro-Tech 123, Ciudad de la Seguridad Alimentaria, Global",
+    "formTitle": "Envíanos un Mensaje",
+    "formNameLabel": "Nombre Completo",
+    "formNamePlaceholder": "Tu Nombre Completo",
+    "formEmailLabel": "Dirección de Correo",
+    "formEmailPlaceholder": "tu.correo@ejemplo.com",
+    "formSubjectLabel": "Asunto",
+    "formSubjectPlaceholder": "Motivo del contacto",
+    "formMessageLabel": "Mensaje",
+    "formMessagePlaceholder": "Tu mensaje detallado...",
+    "sendButton": "Enviar Mensaje",
+    "formNote": "Nota: Este formulario es para demostración. El envío real no está implementado."
+  },
+  "communityGuidelines": {
+    "title": "Normas de la Comunidad DamDoh",
+    "subtitle": "Nuestro compromiso de fomentar un entorno seguro, respetuoso y productivo para todos los actores agrícolas.",
+    "intro": "¡Bienvenido a DamDoh! Al unirte a nuestra plataforma, aceptas cumplir con estas normas para garantizar una experiencia positiva para todos. Las violaciones pueden resultar en la eliminación de contenido, la suspensión de la cuenta u otras acciones que se consideren necesarias.",
+    "reportingTitle": "Reportar Violaciones",
+    "reportingContent": "Si encuentras contenido o comportamiento que viola estas normas, por favor repórtalo a nuestro equipo de moderación a través de las herramientas de reporte de la plataforma o contactando a",
+    "supportEmail": "support@damdoh.org",
+    "conclusion": "¡Gracias por ayudarnos a construir una comunidad de cadena de suministro agrícola próspera y confiable en DamDoh!",
+    "guideline1": {
+      "title": "Sé Respetuoso y Constructivo",
+      "description": "Trata a todos los miembros de la comunidad DamDoh con respeto. Participa en discusiones constructivas, comparte conocimientos de manera positiva y evita ataques personales, acoso o discursos de odio."
+    },
+    "guideline2": {
+      "title": "Mantén la Autenticidad y Transparencia",
+      "description": "Represéntate a ti mismo y a tu negocio con honestidad. No te hagas pasar por otros ni proporciones información engañosa en tu perfil, listados o comunicaciones. Indica claramente tu rol en la cadena de suministro."
+    },
+    "guideline3": {
+      "title": "Mantén las Discusiones Relevantes",
+      "description": "Al participar en foros o grupos, asegúrate de que tus contribuciones sean relevantes para el tema. Evita el spam, la publicidad no solicitada o el contenido fuera de tema. Concéntrate en asuntos de la cadena de suministro agrícola."
+    },
+    "guideline4": {
+      "title": "Fomenta el Comercio Justo y Ético",
+      "description": "Realiza tratos comerciales con integridad. Cumple con los compromisos, proporciona descripciones precisas de productos/servicios y participa en precios justos. DamDoh promueve prácticas comerciales éticas."
+    },
+    "guideline5": {
+      "title": "Promueve Prácticas Sostenibles",
+      "description": "Fomentamos las discusiones y el intercambio de conocimientos relacionados con la agricultura sostenible y regenerativa. Apoya iniciativas que mejoren la salud del suelo, la biodiversidad y la seguridad alimentaria."
+    }
   }
 }
+]],</content>
+  </change>
+  <change>
+    <file
