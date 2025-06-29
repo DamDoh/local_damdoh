@@ -19,6 +19,28 @@
   "on": "on",
   "error": "Error",
   "loading": "Loading...",
+  "privacyPolicyPage": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated"
+  },
+  "termsPage": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated"
+  },
+  "categoryNav": {
+    "title": "Browse Categories",
+    "deprecationNote": "This sidebar category navigation is currently not used in the main Marketplace. Category selection is handled by the dropdown menu above the listings."
+  },
+  "messagingPanel": {
+    "searchPlaceholder": "Search messages...",
+    "focusedTab": "Focused",
+    "otherTab": "Other",
+    "otherTabDescription": "Automated notifications and less critical messages will appear here.",
+    "noMessages": "No messages found.",
+    "textareaPlaceholder": "Type a message...",
+    "selectConversation": "Select a conversation to start chatting",
+    "headerTitle": "Messaging"
+  },
   "dashboard": {
     "leftSidebar": {
       "proTitle": "DamDoh Pro",
@@ -481,31 +503,6 @@
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
     }
-  },
-  "contact": {
-    "title": "Get In Touch",
-    "subtitle": "We'd love to hear from you! Whether you have a question, feedback, or a partnership proposal, please reach out.",
-    "emailUsTitle": "Email Us",
-    "generalInquiries": "For general inquiries:",
-    "support": "For support:",
-    "partnerships": "For partnerships:",
-    "callUsTitle": "Call Us",
-    "callUsDesc": "Our phone lines are open Monday - Friday, 9 AM - 5 PM (Your Timezone).",
-    "phone": "Phone: +1 (555) DAM-DOH0 (Placeholder)",
-    "officeTitle": "Our Office",
-    "officeLine1": "DamDoh Headquarters (Placeholder)",
-    "officeLine2": "123 Agri-Tech Avenue, Food Security City, Global",
-    "formTitle": "Send Us a Message",
-    "formNameLabel": "Full Name",
-    "formNamePlaceholder": "Your Full Name",
-    "formEmailLabel": "Email Address",
-    "formEmailPlaceholder": "your.email@example.com",
-    "formSubjectLabel": "Subject",
-    "formSubjectPlaceholder": "Reason for contacting us",
-    "formMessageLabel": "Message",
-    "formMessagePlaceholder": "Your detailed message...",
-    "sendButton": "Send Message",
-    "formNote": "Note: This form is for demonstration. Actual submission is not implemented."
   },
   "industryNewsPage": {
     "title": "Industry News & Reports",
