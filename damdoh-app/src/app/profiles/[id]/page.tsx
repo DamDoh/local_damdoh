@@ -9,7 +9,8 @@ import Image from "next/image";
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
 import { getProfileByIdFromDB } from "@/lib/db-utils";
-import { APP_NAME, STAKEHOLDER_ICONS } from "@/lib/constants";
+import { APP_NAME } from "@/lib/constants";
+import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

@@ -11,7 +11,7 @@ import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConne
 import { Skeleton } from "@/components/ui/skeleton";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import type { StakeholderRole } from "@/lib/constants";
-import { STAKEHOLDER_ICONS } from "@/lib/constants";
+import { STAKEHOLDER_ICONS } from "@/lib/stakeholder-icons";
 import React from 'react';
 
 interface AISuggestion {

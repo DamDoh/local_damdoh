@@ -14,7 +14,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Briefcase } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
-import { STAKEHOLDER_ICONS } from '@/lib/constants';
+import { STAKEHOLDER_ICONS } from '@/lib/stakeholder-icons';
 
 // Define types for the data we expect from the backend
 interface TraceabilityEvent {
