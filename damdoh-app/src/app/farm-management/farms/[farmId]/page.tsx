@@ -13,8 +13,8 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowLeft, Home, Tractor, MapPin, Leaf, Droplets, Sprout, PlusCircle, ListCollapse, DollarSign, Edit, Fish, Drumstick, CalendarDays, NotebookPen, ListChecks, PackageSearch, Eye, HardHat, Weight, Loader2, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import type { FarmerDashboardData } from '@/lib/types';
 import { format } from "date-fns";
+import { useTranslation } from 'react-i18next';
 
 // A more detailed Farm type for this page
 interface FarmDetails {
@@ -109,6 +109,7 @@ function FarmDetailSkeleton() {
 }
 
 function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
+    const { t } = useTranslation('common');
     const [events, setEvents] = useState<TraceabilityEvent[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const functions = getFunctions(firebaseApp);
@@ -135,14 +136,13 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
     }
 
     if (events.length === 0) {
-        return <p className="p-4 text-xs text-muted-foreground text-center">No activities logged for this crop yet.</p>;
+        return <p className="p-4 text-xs text-muted-foreground text-center">{t('farmManagement.farmDetail.noActivities')}</p>;
     }
     
     return (
         <div className="p-4 space-y-4">
-            <h4 className="font-semibold text-sm">Activity Log</h4>
+            <h4 className="font-semibold text-sm">{t('farmManagement.farmDetail.activityLog')}</h4>
             <div className="relative pl-6">
-                {/* Timeline line */}
                 <div className="absolute left-3 top-0 h-full w-0.5 bg-border -z-10"></div>
                 {events.map((event) => (
                     <div key={event.id} className="relative flex items-start gap-4 mb-4">
@@ -159,7 +159,7 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
                             </p>
                              {(event.payload?.aiAnalysis?.summary || event.payload?.aiAnalysis) && (
                                 <div className="mt-2 text-xs p-2 bg-blue-50 dark:bg-blue-900/20 border-l-2 border-blue-500 rounded-r-md">
-                                    <p className="font-semibold text-blue-800 dark:text-blue-300 flex items-center gap-1"><Sparkles className="h-3 w-3"/> AI Analysis</p>
+                                    <p className="font-semibold text-blue-800 dark:text-blue-300 flex items-center gap-1"><Sparkles className="h-3 w-3"/> {t('farmManagement.farmDetail.aiAnalysis')}</p>
                                     <p className="text-blue-700 dark:text-blue-400">{typeof event.payload.aiAnalysis === 'string' ? event.payload.aiAnalysis : event.payload.aiAnalysis?.summary}</p>
                                 </div>
                             )}
@@ -172,6 +172,7 @@ function CropActivityLog({ farmFieldId }: { farmFieldId: string }) {
 }
 
 export default function FarmDetailPage() {
+    const { t } = useTranslation('common');
     const params = useParams();
     const router = useRouter();
     const { user } = useAuth();
@@ -189,14 +190,11 @@ export default function FarmDetailPage() {
 
     const fetchFarmAndCrops = useCallback(async () => {
         if (!user || !farmId) return;
-
         setIsLoading(true);
         setError(null);
-        
         try {
             const farmResult = await getFarmCallable({ farmId });
             const farmData = farmResult.data as FarmDetails;
-
             if (farmData && farmData.name) { 
                 setFarm(farmData);
                 setIsLoadingCrops(true);
@@ -227,12 +225,12 @@ export default function FarmDetailPage() {
         return (
             <Card className="text-center">
                 <CardHeader>
-                    <CardTitle className="text-destructive">Error</CardTitle>
+                    <CardTitle className="text-destructive">{t('farmManagement.farmDetail.errorTitle')}</CardTitle>
                     <CardDescription>{error}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Button asChild variant="outline">
-                        <Link href="/farm-management"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Farmer's Hub</Link>
+                        <Link href="/farm-management"><ArrowLeft className="mr-2 h-4 w-4" /> {t('farmManagement.backToHub')}</Link>
                     </Button>
                 </CardContent>
             </Card>
@@ -243,11 +241,11 @@ export default function FarmDetailPage() {
         return (
             <Card className="text-center">
                  <CardHeader>
-                    <CardTitle>Farm Not Found</CardTitle>
+                    <CardTitle>{t('farmManagement.farmDetail.notFoundTitle')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Button asChild variant="outline">
-                        <Link href="/farm-management"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Farmer's Hub</Link>
+                        <Link href="/farm-management"><ArrowLeft className="mr-2 h-4 w-4" /> {t('farmManagement.backToHub')}</Link>
                     </Button>
                 </CardContent>
             </Card>
@@ -258,7 +256,7 @@ export default function FarmDetailPage() {
         <div className="space-y-6">
             <Button asChild variant="outline" className="mb-4">
                 <Link href="/farm-management">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farmer's Hub
+                    <ArrowLeft className="mr-2 h-4 w-4" /> {t('farmManagement.backToHub')}
                 </Link>
             </Button>
             
@@ -278,7 +276,7 @@ export default function FarmDetailPage() {
                         </div>
                         <Button variant="secondary" size="sm">
                             <Edit className="mr-2 h-4 w-4"/>
-                            Edit Farm Details
+                            {t('farmManagement.farmDetail.editButton')}
                         </Button>
                     </div>
                 </CardHeader>
@@ -286,7 +284,7 @@ export default function FarmDetailPage() {
                      <div className="flex items-center gap-2">
                         <div className="p-2 bg-muted rounded-md">{getFarmTypeIcon(farm.farmType)}</div>
                         <div>
-                            <p className="text-sm text-muted-foreground">Farm Type</p>
+                            <p className="text-sm text-muted-foreground">{t('farmManagement.farmDetail.farmType')}</p>
                             <p className="font-medium capitalize">{farm.farmType}</p>
                         </div>
                     </div>
@@ -294,7 +292,7 @@ export default function FarmDetailPage() {
                         <div className="flex items-center gap-2">
                             <div className="p-2 bg-muted rounded-md"><Leaf className="h-5 w-5 text-muted-foreground"/></div>
                             <div>
-                                <p className="text-sm text-muted-foreground">Total Size</p>
+                                <p className="text-sm text-muted-foreground">{t('farmManagement.farmDetail.size')}</p>
                                 <p className="font-medium">{farm.size}</p>
                             </div>
                         </div>
@@ -303,14 +301,14 @@ export default function FarmDetailPage() {
                         <div className="flex items-center gap-2">
                              <div className="p-2 bg-muted rounded-md"><Droplets className="h-5 w-5 text-muted-foreground"/></div>
                              <div>
-                                <p className="text-sm text-muted-foreground">Irrigation</p>
+                                <p className="text-sm text-muted-foreground">{t('farmManagement.farmDetail.irrigation')}</p>
                                 <p className="font-medium">{farm.irrigationMethods}</p>
                              </div>
                         </div>
                      )}
                       {farm.description && (
                         <div className="md:col-span-2">
-                             <h4 className="text-sm font-semibold mb-1">Description</h4>
+                             <h4 className="text-sm font-semibold mb-1">{t('farmManagement.farmDetail.description')}</h4>
                              <p className="text-sm text-muted-foreground">{farm.description}</p>
                         </div>
                       )}
@@ -320,10 +318,10 @@ export default function FarmDetailPage() {
             <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-4">
-                        <CardTitle className="text-lg flex items-center gap-2"><ListChecks className="h-5 w-5"/> Crops / Livestock</CardTitle>
+                        <CardTitle className="text-lg flex items-center gap-2"><ListChecks className="h-5 w-5"/> {t('farmManagement.farmDetail.cropsTitle')}</CardTitle>
                         <Button asChild variant="outline" size="sm">
                            <Link href={`/farm-management/farms/${farmId}/create-crop`}>
-                             <PlusCircle className="mr-2 h-4 w-4"/>Add New
+                             <PlusCircle className="mr-2 h-4 w-4"/>{t('farmManagement.farmDetail.addCropButton')}
                            </Link>
                         </Button>
                     </CardHeader>
@@ -344,7 +342,7 @@ export default function FarmDetailPage() {
                                                     {crop.plantingDate && (
                                                         <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
                                                             <CalendarDays className="h-3 w-3" />
-                                                            Planted: {format(new Date(crop.plantingDate), "PPP")}
+                                                            {t('farmManagement.farmDetail.plantedOn')}: {format(new Date(crop.plantingDate), "PPP")}
                                                         </p>
                                                     )}
                                                 </div>
@@ -359,19 +357,19 @@ export default function FarmDetailPage() {
                                                 <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-input-application`}>
                                                         <Droplets className="mr-2 h-4 w-4"/>
-                                                        Log Input
+                                                        {t('farmManagement.farmDetail.logInputButton')}
                                                     </Link>
                                                 </Button>
                                                 <Button asChild variant="secondary" size="sm" className="flex-1 min-w-[140px]">
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
                                                         <NotebookPen className="mr-2 h-4 w-4"/>
-                                                        Log Observation
+                                                        {t('farmManagement.farmDetail.logObservationButton')}
                                                     </Link>
                                                 </Button>
                                                 <Button asChild variant="default" size="sm" className="flex-1 min-w-[140px]">
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
                                                         <PackageSearch className="mr-2 h-4 w-4"/>
-                                                        Log Harvest
+                                                        {t('farmManagement.farmDetail.logHarvestButton')}
                                                     </Link>
                                                 </Button>
                                             </div>
@@ -381,21 +379,21 @@ export default function FarmDetailPage() {
                             </Accordion>
                         ) : (
                             <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
-                                <p>No crops or livestock added yet.</p>
-                                <p className="text-xs text-muted-foreground mt-1">Use the button above to add your first entry.</p>
+                                <p>{t('farmManagement.farmDetail.noCrops')}</p>
+                                <p className="text-xs text-muted-foreground mt-1">{t('farmManagement.farmDetail.noCropsSub')}</p>
                             </div>
                         )}
                     </CardContent>
                 </Card>
                  <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-4">
-                        <CardTitle className="text-lg flex items-center gap-2"><DollarSign className="h-5 w-5"/> Farm Financials</CardTitle>
-                         <Button variant="outline" size="sm"><PlusCircle className="mr-2 h-4 w-4"/>Add Transaction</Button>
+                        <CardTitle className="text-lg flex items-center gap-2"><DollarSign className="h-5 w-5"/> {t('farmManagement.farmDetail.financialsTitle')}</CardTitle>
+                         <Button variant="outline" size="sm"><PlusCircle className="mr-2 h-4 w-4"/>{t('farmManagement.farmDetail.addTransactionButton')}</Button>
                     </CardHeader>
                     <CardContent>
                        <div className="text-center text-muted-foreground border-2 border-dashed rounded-lg p-8">
-                            <p>Financial tracking coming soon.</p>
-                            <p className="text-xs text-muted-foreground mt-1">You'll be able to log expenses and revenues here.</p>
+                            <p>{t('farmManagement.farmDetail.financialsComingSoon')}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{t('farmManagement.farmDetail.financialsComingSoonSub')}</p>
                         </div>
                     </CardContent>
                 </Card>
