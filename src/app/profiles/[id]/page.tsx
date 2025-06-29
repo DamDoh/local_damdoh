@@ -9,14 +9,17 @@ import Image from "next/image";
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
 import { getProfileByIdFromDB } from "@/lib/db-utils";
-import { APP_NAME } from "@/lib/constants";
+import { APP_NAME, STAKEHOLDER_ICONS } from "@/lib/constants";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, Star, FileText } from "lucide-react";
+import React from 'react';
+import { useTranslation } from "react-i18next";
+
 
 function ProfileSkeleton() {
   return (
@@ -52,6 +55,7 @@ function ProfileSkeleton() {
 }
 
 export default function ProfileDetailPage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const router = useRouter();
   const { user: authUser, loading: authLoading } = useAuth();
@@ -104,12 +108,12 @@ export default function ProfileDetailPage() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Profile Not Found</CardTitle>
-          <CardDescription>Sorry, we couldn't find a profile for the requested user.</CardDescription>
+          <CardTitle>{t('profilesPage.notFoundTitle')}</CardTitle>
+          <CardDescription>{t('profilesPage.notFoundDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Button asChild variant="outline">
-            <Link href="/network"><ArrowLeft className="h-4 w-4 mr-2" />Back to Network</Link>
+            <Link href="/network"><ArrowLeft className="h-4 w-4 mr-2" />{t('profilesPage.backLink')}</Link>
           </Button>
         </CardContent>
       </Card>
@@ -117,6 +121,7 @@ export default function ProfileDetailPage() {
   }
 
   const isCurrentUserProfile = authUser?.uid === profile.id;
+  const RoleIcon = STAKEHOLDER_ICONS[profile.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
 
   return (
     <div className="space-y-6">
@@ -140,18 +145,21 @@ export default function ProfileDetailPage() {
           <div className="flex flex-col sm:flex-row justify-between items-start">
             <div>
               <CardTitle className="text-3xl">{profile.name}</CardTitle>
-              <CardDescription className="text-lg">{profile.role}</CardDescription>
+              <CardDescription className="text-lg flex items-center gap-2">
+                <RoleIcon className="h-5 w-5 text-muted-foreground" />
+                {profile.role}
+              </CardDescription>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                 <MapPin className="h-4 w-4" /> {profile.location}
               </div>
             </div>
             <div className="flex gap-2 mt-4 sm:mt-0">
               {isCurrentUserProfile ? (
-                <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> Edit Profile</Link></Button>
+                <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" />{t('profilesPage.editButton')}</Link></Button>
               ) : (
                 <>
-                  <Button><LinkIcon className="mr-2 h-4 w-4" /> Connect</Button>
-                  <Button variant="outline"><MessageCircle className="mr-2 h-4 w-4" /> Message</Button>
+                  <Button><LinkIcon className="mr-2 h-4 w-4" />{t('profilesPage.connectButton')}</Button>
+                  <Button variant="outline"><MessageCircle className="mr-2 h-4 w-4" />{t('profilesPage.messageButton')}</Button>
                 </>
               )}
             </div>
@@ -160,14 +168,14 @@ export default function ProfileDetailPage() {
         <CardContent className="px-6 space-y-6">
           {profile.profileSummary && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><Leaf className="h-5 w-5 mr-2 text-primary" /> Summary</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><Leaf className="h-5 w-5 mr-2 text-primary" />{t('profilesPage.summaryTitle')}</h3>
               <p className="text-muted-foreground">{profile.profileSummary}</p>
             </div>
           )}
           
           {profile.bio && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />About</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />{t('profilesPage.aboutTitle')}</h3>
               <p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p>
             </div>
           )}
@@ -177,7 +185,7 @@ export default function ProfileDetailPage() {
               <div className="flex items-start gap-3">
                 <Briefcase className="h-5 w-5 mt-1 text-primary" />
                 <div>
-                  <h4 className="font-semibold">Industry Experience</h4>
+                  <h4 className="font-semibold">{t('profilesPage.experienceTitle')}</h4>
                   <p className="text-muted-foreground">{profile.yearsOfExperience} years</p>
                 </div>
               </div>
@@ -186,7 +194,7 @@ export default function ProfileDetailPage() {
               <div className="flex items-start gap-3">
                 <MessageCircle className="h-5 w-5 mt-1 text-primary" />
                 <div>
-                  <h4 className="font-semibold">Business Email</h4>
+                  <h4 className="font-semibold">{t('profilesPage.emailTitle')}</h4>
                   <a href={`mailto:${profile.contactInfo.email}`} className="text-muted-foreground hover:underline">{profile.contactInfo.email}</a>
                 </div>
               </div>
@@ -195,7 +203,7 @@ export default function ProfileDetailPage() {
               <div className="flex items-start gap-3">
                 <Globe className="h-5 w-5 mt-1 text-primary" />
                 <div>
-                  <h4 className="font-semibold">Website</h4>
+                  <h4 className="font-semibold">{t('profilesPage.websiteTitle')}</h4>
                   <a href={profile.contactInfo.website.startsWith('http') ? profile.contactInfo.website : `https://${profile.contactInfo.website}`} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:underline">{profile.contactInfo.website}</a>
                 </div>
               </div>
@@ -204,7 +212,7 @@ export default function ProfileDetailPage() {
 
           {profile.areasOfInterest && profile.areasOfInterest.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />Areas of Expertise & Interest</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />{t('profilesPage.interestsTitle')}</h3>
               <div className="flex flex-wrap gap-2">
                 {profile.areasOfInterest.map(interest => <Badge key={interest} variant="secondary">{interest}</Badge>)}
               </div>
@@ -213,7 +221,7 @@ export default function ProfileDetailPage() {
 
           {profile.needs && profile.needs.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />Actively Seeking / Offering</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />{t('profilesPage.needsTitle')}</h3>
               <div className="flex flex-wrap gap-2">
                 {profile.needs.map(need => <Badge key={need}>{need}</Badge>)}
               </div>
@@ -224,11 +232,11 @@ export default function ProfileDetailPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
-          <CardDescription>This user's recent contributions to the {APP_NAME} network.</CardDescription>
+          <CardTitle>{t('profilesPage.recentActivityTitle')}</CardTitle>
+          <CardDescription>{t('profilesPage.recentActivityDescription', { appName: APP_NAME })}</CardDescription>
         </CardHeader>
         <CardContent>
-             <p className="text-muted-foreground italic text-sm">Recent activity feed for this user will be displayed here. (Feature coming soon)</p>
+             <p className="text-muted-foreground italic text-sm">{t('profilesPage.comingSoon')}</p>
         </CardContent>
       </Card>
     </div>

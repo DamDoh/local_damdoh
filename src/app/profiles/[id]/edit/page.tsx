@@ -30,9 +30,11 @@ import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
+import { useTranslation } from "react-i18next";
 
 
 function EditProfileSkeleton() {
+    const { t } = useTranslation('common');
     return (
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
@@ -53,6 +55,7 @@ function EditProfileSkeleton() {
 }
 
 export default function EditProfilePage() {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const params = useParams();
 
@@ -102,16 +105,16 @@ export default function EditProfilePage() {
           contactInfoWebsite: userProfile.contactInfo?.website || "",
         });
       } else {
-        toast({ variant: "destructive", title: "Profile Not Found", description: "Could not load profile data to edit." });
+        toast({ variant: "destructive", title: t('editProfilePage.loadErrorTitle'), description: t('editProfilePage.loadErrorDescription') });
         router.push("/profiles");
       }
     } catch (error) {
       console.error("Error fetching profile:", error);
-      toast({ variant: "destructive", title: "Error Loading Profile", description: "There was a problem fetching the profile data." });
+      toast({ variant: "destructive", title: t('editProfilePage.loadErrorTitle'), description: "There was a problem fetching the profile data." });
     } finally {
       setIsLoadingData(false);
     }
-  }, [form, router, toast]);
+  }, [form, router, toast, t]);
 
   useEffect(() => {
     if (authLoading) return;
@@ -121,13 +124,13 @@ export default function EditProfilePage() {
       if (authUser) {
         idToFetch = authUser.uid;
       } else {
-        toast({ variant: "destructive", title: "Not Authenticated", description: "Please sign in to edit your profile." });
+        toast({ variant: "destructive", title: t('editProfilePage.notAuthenticatedTitle'), description: t('editProfilePage.notAuthenticatedDescription') });
         router.push("/auth/signin");
         return;
       }
     } else {
       if (!authUser || authUser.uid !== profileIdParam) {
-        toast({ variant: "destructive", title: "Unauthorized", description: "You can only edit your own profile."});
+        toast({ variant: "destructive", title: t('editProfilePage.unauthorizedTitle'), description: t('editProfilePage.unauthorizedDescription')});
         router.push(`/profiles/${profileIdParam}`);
         return;
       }
@@ -139,7 +142,7 @@ export default function EditProfilePage() {
     } else if (!authLoading) {
       setIsLoadingData(false);
     }
-  }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
+  }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData, t]);
 
   async function onSubmit(data: EditProfileValues) {
     if (!profile?.id) {
@@ -158,14 +161,14 @@ export default function EditProfilePage() {
         needs: data.needs?.split(',').map(s => s.trim()).filter(Boolean) || [],
         contactInfoPhone: data.contactInfoPhone,
         contactInfoWebsite: data.contactInfoWebsite,
-        profileData: {}, // For future role-specific structured data
+        profileData: {}, 
       };
 
       await upsertStakeholderProfile(payload);
       
       toast({
-        title: "Profile Updated Successfully!",
-        description: "Your changes have been saved.",
+        title: t('editProfilePage.updateSuccessTitle'),
+        description: t('editProfilePage.updateSuccessDescription'),
       });
       router.push(`/profiles/me`);
       router.refresh(); 
@@ -173,8 +176,8 @@ export default function EditProfilePage() {
       console.error("Error updating profile:", error);
       toast({
         variant: "destructive",
-        title: "Update Failed",
-        description: error.message || "Could not save your profile changes. Please try again.",
+        title: t('editProfilePage.updateFailTitle'),
+        description: error.message || t('editProfilePage.updateFailDescription'),
       });
     } finally {
       setIsSubmitting(false);
@@ -189,8 +192,8 @@ export default function EditProfilePage() {
     return (
         <Card className="max-w-3xl mx-auto">
             <CardHeader>
-            <CardTitle>Profile Not Found</CardTitle>
-            <CardDescription>The requested profile could not be loaded.</CardDescription>
+            <CardTitle>{t('profilesPage.notFoundTitle')}</CardTitle>
+            <CardDescription>{t('profilesPage.notFoundDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
                 <Button variant="outline" asChild><Link href="/"><ArrowLeft className="h-4 w-4 mr-2" />Back to Home</Link></Button>
@@ -203,8 +206,8 @@ export default function EditProfilePage() {
     <div className="space-y-6">
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl">Edit Profile: {profile?.name}</CardTitle>
-          <CardDescription>Update your public information for the DamDoh network.</CardDescription>
+          <CardTitle className="text-2xl">{t('editProfilePage.title', { name: profile?.name })}</CardTitle>
+          <CardDescription>{t('editProfilePage.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -214,9 +217,9 @@ export default function EditProfilePage() {
                 name="displayName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><User className="h-4 w-4 text-muted-foreground" />Full Name / Organization Name</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><User className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.nameLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your name or organization name" {...field} />
+                      <Input placeholder={t('signUpPage.namePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -228,11 +231,11 @@ export default function EditProfilePage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Mail className="h-4 w-4 text-muted-foreground" />Contact Email</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Mail className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.emailLabel')}</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} disabled />
+                      <Input type="email" placeholder="you@example.com" {...field} disabled />
                     </FormControl>
-                    <FormDescription>Email cannot be changed here as it's tied to your login.</FormDescription>
+                    <FormDescription>{t('editProfilePage.emailDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -243,11 +246,11 @@ export default function EditProfilePage() {
                 name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />Primary Role</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.roleLabel')}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select your primary role in the supply chain" />
+                          <SelectValue placeholder={t('signUpPage.rolePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -268,9 +271,9 @@ export default function EditProfilePage() {
                 name="profileSummary"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Profile Summary / Headline</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.summaryLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="A brief summary of your role and expertise" {...field} />
+                      <Input placeholder={t('editProfilePage.summaryPlaceholder')} {...field} />
                     </FormControl>
                     <FormDescription>Max 250 characters.</FormDescription>
                     <FormMessage />
@@ -283,10 +286,10 @@ export default function EditProfilePage() {
                 name="bio"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Detailed Bio / About</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.bioLabel')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Tell us more about yourself, your organization, mission, or services."
+                        placeholder={t('editProfilePage.bioPlaceholder')}
                         className="min-h-[120px]"
                         {...field}
                       />
@@ -302,7 +305,7 @@ export default function EditProfilePage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />Location</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.locationLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., Nairobi, Kenya or Central Valley, CA" {...field} />
                     </FormControl>
@@ -316,11 +319,11 @@ export default function EditProfilePage() {
                 name="areasOfInterest"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Sparkles className="h-4 w-4 text-muted-foreground" />Areas of Interest / Specialties</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Sparkles className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.interestsLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Organic farming, Supply chain logistics, Export" {...field} />
+                      <Input placeholder={t('editProfilePage.interestsPlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>Comma-separated list.</FormDescription>
+                    <FormDescription>{t('editProfilePage.commaSeparated')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -331,11 +334,11 @@ export default function EditProfilePage() {
                 name="needs"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-muted-foreground" />Currently Seeking / Offering</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.needsLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Buyers for cocoa beans, Warehousing space" {...field} />
+                      <Input placeholder={t('editProfilePage.needsPlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>Comma-separated list.</FormDescription>
+                    <FormDescription>{t('editProfilePage.commaSeparated')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -346,7 +349,7 @@ export default function EditProfilePage() {
                 name="contactInfoPhone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground" />Phone Number (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.phoneLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder="+1234567890" {...field} />
                     </FormControl>
@@ -360,7 +363,7 @@ export default function EditProfilePage() {
                 name="contactInfoWebsite"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Globe className="h-4 w-4 text-muted-foreground" />Website (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Globe className="h-4 w-4 text-muted-foreground" />{t('editProfilePage.websiteLabel')}</FormLabel>
                     <FormControl>
                       <Input type="url" placeholder="https://yourwebsite.com" {...field} />
                     </FormControl>
@@ -373,16 +376,16 @@ export default function EditProfilePage() {
                 <Button type="submit" className="w-full sm:w-auto" disabled={isSubmitting || isLoadingData}>
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('editProfilePage.savingButton')}
                     </>
                   ) : (
                     <>
-                      <Save className="mr-2 h-4 w-4" /> Save Changes
+                      <Save className="mr-2 h-4 w-4" /> {t('editProfilePage.saveButton')}
                     </>
                   )}
                 </Button>
                 <Button type="button" variant="outline" className="w-full sm:w-auto" onClick={() => router.back()} disabled={isSubmitting}>
-                  <ArrowLeft className="mr-2 h-4 w-4" /> Cancel
+                  <ArrowLeft className="mr-2 h-4 w-4" /> {t('editProfilePage.cancelButton')}
                 </Button>
               </div>
             </form>

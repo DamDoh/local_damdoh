@@ -11,9 +11,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award } from 'lucide-react';
+import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Briefcase } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
+import { STAKEHOLDER_ICONS } from '@/lib/constants';
+import { useTranslation } from 'react-i18next';
 
 // Define types for the data we expect from the backend
 interface TraceabilityEvent {
@@ -46,7 +48,7 @@ interface TraceabilityData {
 }
 
 const getEventIcon = (eventType: string) => {
-    const iconProps = { className: "h-5 w-5 text-primary" };
+    const iconProps = { className: "h-5 w-5" };
     switch (eventType) {
         case 'PLANTED': return <Sprout {...iconProps} />;
         case 'OBSERVED': return <Eye {...iconProps} />;
@@ -88,6 +90,7 @@ const TraceabilitySkeleton = () => (
 );
 
 export default function TraceabilityBatchDetailPage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const batchId = params.batchId as string;
   
@@ -131,10 +134,10 @@ export default function TraceabilityBatchDetailPage() {
     return (
         <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
+            <AlertTitle>{t('error')}</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
             <Button asChild variant="secondary" className="mt-4">
-                <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link>
+                <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('traceabilityDetailPage.backLink')}</Link>
             </Button>
         </Alert>
     );
@@ -144,8 +147,8 @@ export default function TraceabilityBatchDetailPage() {
      return (
         <Alert>
             <Info className="h-4 w-4" />
-            <AlertTitle>Not Found</AlertTitle>
-            <AlertDescription>The traceability history for this batch could not be found.</AlertDescription>
+            <AlertTitle>{t('traceabilityDetailPage.notFoundTitle')}</AlertTitle>
+            <AlertDescription>{t('traceabilityDetailPage.notFoundDescription')}</AlertDescription>
         </Alert>
      );
   }
@@ -160,7 +163,7 @@ export default function TraceabilityBatchDetailPage() {
     <div className="space-y-6 max-w-4xl mx-auto">
       <Button asChild variant="outline" className="mb-4">
         <Link href="/marketplace">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Marketplace
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('traceabilityDetailPage.backLink')}
         </Link>
       </Button>
 
@@ -170,9 +173,9 @@ export default function TraceabilityBatchDetailPage() {
             <div className="flex items-start gap-3">
               <GitBranch className="h-10 w-10 text-primary mt-1" />
               <div>
-                <CardTitle className="text-2xl">{vti.metadata?.cropType || 'Traceable Product'}</CardTitle>
+                <CardTitle className="text-2xl">{vti.metadata?.cropType || t('traceabilityDetailPage.traceableProduct')}</CardTitle>
                 <CardDescription>
-                  VTI Batch ID: <span className="font-mono bg-muted p-1 rounded-sm text-xs">{vti.id}</span>
+                  {t('traceabilityDetailPage.batchIdLabel')}: <span className="font-mono bg-muted p-1 rounded-sm text-xs">{vti.id}</span>
                 </CardDescription>
               </div>
             </div>
@@ -183,7 +186,7 @@ export default function TraceabilityBatchDetailPage() {
                     <AvatarFallback>{producer.name.substring(0,1)}</AvatarFallback>
                 </Avatar>
                 <div>
-                    <p className="text-xs text-muted-foreground">Producer</p>
+                    <p className="text-xs text-muted-foreground">{t('traceabilityDetailPage.producerLabel')}</p>
                     <p className="font-semibold text-sm">{producer.name}</p>
                 </div>
               </div>
@@ -193,15 +196,15 @@ export default function TraceabilityBatchDetailPage() {
         <CardContent className="border-t pt-6">
             <div className="grid md:grid-cols-3 gap-4 text-sm">
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> Harvest Date</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> {t('traceabilityDetailPage.harvestDateLabel')}</p>
                     <p className="font-semibold text-lg">{harvestEvent ? format(new Date(harvestEvent.timestamp), 'PPP') : 'N/A'}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Weight className="h-4 w-4"/> Initial Yield</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Weight className="h-4 w-4"/> {t('traceabilityDetailPage.yieldLabel')}</p>
                     <p className="font-semibold text-lg">{vti.metadata?.initialYieldKg ? `${vti.metadata.initialYieldKg} kg` : 'N/A'}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> Quality Grade</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> {t('traceabilityDetailPage.qualityLabel')}</p>
                     <p className="font-semibold text-lg">{vti.metadata?.initialQualityGrade || 'Not Specified'}</p>
                 </div>
             </div>
@@ -210,50 +213,56 @@ export default function TraceabilityBatchDetailPage() {
       
       <Card>
         <CardHeader>
-            <CardTitle>Journey of this Batch</CardTitle>
-            <CardDescription>A chronological history of key events for this product from farm to market.</CardDescription>
+            <CardTitle>{t('traceabilityDetailPage.journeyTitle')}</CardTitle>
+            <CardDescription>{t('traceabilityDetailPage.journeyDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
             {events.length > 0 ? (
                 <div className="relative pl-6">
                     <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
-                    {events.map(event => (
-                        <div key={event.id} className="relative flex items-start gap-4 pb-8">
-                            <div className="absolute left-0 top-0 h-full flex flex-col items-center">
-                                <span className="bg-background p-2 rounded-full border-2 border-primary flex items-center justify-center text-primary z-10">
-                                    {getEventIcon(event.eventType)}
-                                </span>
+                    {events.map(event => {
+                        const RoleIcon = STAKEHOLDER_ICONS[event.actor.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
+                        return (
+                            <div key={event.id} className="relative flex items-start gap-4 pb-8">
+                                <div className="absolute left-0 top-0 h-full flex flex-col items-center">
+                                    <span className="bg-background p-1.5 rounded-full border-2 border-primary flex items-center justify-center text-primary z-10">
+                                        {getEventIcon(event.eventType)}
+                                    </span>
+                                </div>
+                                <div className="pl-14 w-full">
+                                <Card className="shadow-sm bg-background/80">
+                                        <CardHeader className="p-4 flex-row justify-between items-start">
+                                            <div>
+                                                <CardTitle className="text-base">{event.eventType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</CardTitle>
+                                                <CardDescription className="text-xs flex items-center gap-1.5 mt-1">
+                                                    <Clock className="h-3 w-3"/>
+                                                    {format(new Date(event.timestamp), 'PPpp')}
+                                                </CardDescription>
+                                            </div>
+                                            <div className="text-right">
+                                            <p className="text-xs text-muted-foreground flex items-center gap-1.5 justify-end"><UserCircle className="h-3 w-3"/>{event.actor.name}</p>
+                                            <Badge variant="secondary" className="mt-1 flex items-center gap-1">
+                                                <RoleIcon className="h-3 w-3" />
+                                                {event.actor.role}
+                                            </Badge>
+                                            </div>
+                                        </CardHeader>
+                                        <CardContent className="p-4 pt-0 text-sm">
+                                            <ul className="space-y-1 text-muted-foreground text-xs">
+                                                {Object.entries(event.payload).map(([key, value]) => {
+                                                    if (typeof value === 'object' && value !== null) return null; // Skip object payloads for this simple view
+                                                    return <li key={key} className="truncate"><strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {String(value)}</li>
+                                                })}
+                                                {event.geoLocation && (
+                                                    <li className="flex items-center gap-1 pt-1"><MapPin className="h-3 w-3"/>{t('traceabilityDetailPage.geoLocationLabel')}: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}</li>
+                                                )}
+                                            </ul>
+                                        </CardContent>
+                                </Card>
+                                </div>
                             </div>
-                            <div className="pl-14 w-full">
-                            <Card className="shadow-sm bg-background/80">
-                                    <CardHeader className="p-4 flex-row justify-between items-start">
-                                        <div>
-                                            <CardTitle className="text-base">{event.eventType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</CardTitle>
-                                            <CardDescription className="text-xs flex items-center gap-1.5 mt-1">
-                                                <Clock className="h-3 w-3"/>
-                                                {format(new Date(event.timestamp), 'PPpp')}
-                                            </CardDescription>
-                                        </div>
-                                        <div className="text-right">
-                                        <p className="text-xs text-muted-foreground flex items-center gap-1.5 justify-end"><UserCircle className="h-3 w-3"/>{event.actor.name}</p>
-                                        <Badge variant="secondary" className="mt-1">{event.actor.role}</Badge>
-                                        </div>
-                                    </CardHeader>
-                                    <CardContent className="p-4 pt-0 text-sm">
-                                        <ul className="space-y-1 text-muted-foreground text-xs">
-                                            {Object.entries(event.payload).map(([key, value]) => {
-                                                if (typeof value === 'object' && value !== null) return null; // Skip object payloads for this simple view
-                                                return <li key={key} className="truncate"><strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {String(value)}</li>
-                                            })}
-                                            {event.geoLocation && (
-                                                <li className="flex items-center gap-1 pt-1"><MapPin className="h-3 w-3"/> Geo-location: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}</li>
-                                            )}
-                                        </ul>
-                                    </CardContent>
-                            </Card>
-                            </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
             ) : (
                  <div className="text-center py-10 text-muted-foreground">No traceability events found.</div>

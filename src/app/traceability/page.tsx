@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -6,8 +7,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, History, Fingerprint } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function TraceabilityHubPage() {
+  const { t } = useTranslation('common');
   const [vti, setVti] = useState("");
   const router = useRouter();
 
@@ -24,36 +27,36 @@ export default function TraceabilityHubPage() {
         <CardHeader className="text-center">
           <div className="inline-flex items-center justify-center gap-2 mb-2">
             <Fingerprint className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">Product Traceability</CardTitle>
+            <CardTitle className="text-4xl">{t('traceabilityPage.title')}</CardTitle>
           </div>
           <CardDescription className="text-lg">
-            Follow the journey of your food from farm to fork. Enter a Vibrant Traceability ID (VTI) to view a product's history.
+            {t('traceabilityPage.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="max-w-xl mx-auto">
           <form onSubmit={handleSearch} className="flex gap-2">
             <Input
               type="text"
-              placeholder="Enter VTI..."
+              placeholder={t('traceabilityPage.inputPlaceholder')}
               value={vti}
               onChange={(e) => setVti(e.target.value)}
               className="h-12 text-lg"
             />
             <Button type="submit" size="lg" disabled={!vti.trim()}>
               <Search className="mr-2 h-5 w-5" />
-              Track
+              {t('traceabilityPage.trackButton')}
             </Button>
           </form>
-          <p className="text-xs text-muted-foreground mt-2">A VTI is a unique ID assigned to a batch of products when harvested, allowing you to trace its journey through the supply chain.</p>
+          <p className="text-xs text-muted-foreground mt-2">{t('traceabilityPage.vtiDescription')}</p>
         </CardContent>
       </Card>
       {/* Placeholder for recent searches or tracked items */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2"><History className="h-5 w-5"/> My Recently Tracked Batches</CardTitle>
+          <CardTitle className="flex items-center gap-2"><History className="h-5 w-5"/> {t('traceabilityPage.recentTitle')}</CardTitle>
         </CardHeader>
         <CardContent>
-            <p className="text-center text-muted-foreground py-8 border-2 border-dashed rounded-lg">Recently tracked items will appear here.</p>
+            <p className="text-center text-muted-foreground py-8 border-2 border-dashed rounded-lg">{t('traceabilityPage.recentDescription')}</p>
         </CardContent>
       </Card>
     </div>
