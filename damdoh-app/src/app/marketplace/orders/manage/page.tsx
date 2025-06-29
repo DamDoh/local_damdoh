@@ -17,6 +17,8 @@ import type { MarketplaceOrder } from '@/lib/types';
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslation } from "react-i18next";
+import { cn } from '@/lib/utils';
 
 const functions = getFunctions(firebaseApp);
 
@@ -43,6 +45,7 @@ const getStatusBadgeClass = (status: OrderStatus) => {
 }
 
 export default function ManageOrdersPage() {
+    const { t } = useTranslation('common');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const [orders, setOrders] = useState<MarketplaceOrder[]>([]);
@@ -59,11 +62,11 @@ export default function ManageOrdersPage() {
             const data = result.data as { orders: MarketplaceOrder[] };
             setOrders(data.orders || []);
         } catch (error: any) {
-            toast({ variant: "destructive", title: "Error", description: `Could not fetch orders: ${error.message}` });
+            toast({ variant: "destructive", title: t('manageOrdersPage.errorTitle'), description: t('manageOrdersPage.errorFetch', { message: error.message }) });
         } finally {
             setIsLoading(false);
         }
-    }, [getSellerOrders, toast]);
+    }, [getSellerOrders, toast, t]);
 
     useEffect(() => {
         if (!authLoading && user) {
@@ -78,11 +81,10 @@ export default function ManageOrdersPage() {
         setUpdatingStatus(prev => ({ ...prev, [orderId]: true }));
         try {
             await updateOrderStatus({ orderId, newStatus });
-            toast({ title: "Status Updated", description: `Order status changed to ${newStatus}.`});
-            // Refetch or update state optimistically
+            toast({ title: t('manageOrdersPage.updateSuccessTitle'), description: t('manageOrdersPage.updateSuccessDescription', { status: newStatus })});
             setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
         } catch (error: any) {
-            toast({ variant: "destructive", title: "Update Failed", description: error.message });
+            toast({ variant: "destructive", title: t('manageOrdersPage.updateFailTitle'), description: error.message });
         } finally {
             setUpdatingStatus(prev => ({ ...prev, [orderId]: false }));
         }
@@ -101,11 +103,11 @@ export default function ManageOrdersPage() {
         return (
             <Card>
                 <CardHeader>
-                    <CardTitle>Unauthorized</CardTitle>
-                    <CardDescription>You must be logged in to manage your orders.</CardDescription>
+                    <CardTitle>{t('manageOrdersPage.unauthorizedTitle')}</CardTitle>
+                    <CardDescription>{t('manageOrdersPage.unauthorizedDescription')}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Button asChild><Link href="/auth/signin">Sign In</Link></Button>
+                    <Button asChild><Link href="/auth/signin">{t('signIn')}</Link></Button>
                 </CardContent>
             </Card>
         );
@@ -114,26 +116,26 @@ export default function ManageOrdersPage() {
     return (
         <div className="space-y-6">
             <Button asChild variant="outline">
-                <Link href="/"><Home className="mr-2 h-4 w-4" />Back to Dashboard</Link>
+                <Link href="/"><Home className="mr-2 h-4 w-4" />{t('manageOrdersPage.backToDashboard')}</Link>
             </Button>
             <Card>
                 <CardHeader>
                     <CardTitle className="text-2xl flex items-center gap-2">
                         <ShoppingCart className="h-6 w-6 text-primary" />
-                        Manage Your Marketplace Orders
+                        {t('manageOrdersPage.title')}
                     </CardTitle>
-                    <CardDescription>View, confirm, and update the status of orders for your products and services.</CardDescription>
+                    <CardDescription>{t('manageOrdersPage.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                    {orders.length > 0 ? (
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Product</TableHead>
-                                    <TableHead>Date</TableHead>
-                                    <TableHead>Total</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead className="text-right">Action</TableHead>
+                                    <TableHead>{t('manageOrdersPage.table.product')}</TableHead>
+                                    <TableHead>{t('manageOrdersPage.table.date')}</TableHead>
+                                    <TableHead>{t('manageOrdersPage.table.total')}</TableHead>
+                                    <TableHead>{t('manageOrdersPage.table.status')}</TableHead>
+                                    <TableHead className="text-right">{t('manageOrdersPage.table.action')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -149,7 +151,7 @@ export default function ManageOrdersPage() {
                                                 />
                                                 <div>
                                                     <p className="font-medium line-clamp-1">{order.listingName}</p>
-                                                    <p className="text-xs text-muted-foreground">Qty: {order.quantity}</p>
+                                                    <p className="text-xs text-muted-foreground">{t('manageOrdersPage.table.qty')}: {order.quantity}</p>
                                                 </div>
                                             </div>
                                         </TableCell>
@@ -159,7 +161,7 @@ export default function ManageOrdersPage() {
                                         <TableCell className="font-semibold">{order.currency} {order.totalPrice.toFixed(2)}</TableCell>
                                         <TableCell>
                                             <Badge variant={getStatusBadgeVariant(order.status as OrderStatus)} className={cn(getStatusBadgeClass(order.status as OrderStatus))}>
-                                                {order.status}
+                                                {t(`manageOrdersPage.statuses.${order.status}`, order.status)}
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="text-right">
@@ -169,14 +171,14 @@ export default function ManageOrdersPage() {
                                                 disabled={updatingStatus[order.id]}
                                             >
                                                 <SelectTrigger className="w-[150px] h-9">
-                                                    <SelectValue placeholder="Update status..." />
+                                                    <SelectValue placeholder={t('manageOrdersPage.updatePlaceholder')} />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="pending">Pending</SelectItem>
-                                                    <SelectItem value="confirmed">Confirmed</SelectItem>
-                                                    <SelectItem value="shipped">Shipped</SelectItem>
-                                                    <SelectItem value="completed">Completed</SelectItem>
-                                                    <SelectItem value="cancelled">Cancelled</SelectItem>
+                                                    <SelectItem value="pending">{t('manageOrdersPage.statuses.pending')}</SelectItem>
+                                                    <SelectItem value="confirmed">{t('manageOrdersPage.statuses.confirmed')}</SelectItem>
+                                                    <SelectItem value="shipped">{t('manageOrdersPage.statuses.shipped')}</SelectItem>
+                                                    <SelectItem value="completed">{t('manageOrdersPage.statuses.completed')}</SelectItem>
+                                                    <SelectItem value="cancelled">{t('manageOrdersPage.statuses.cancelled')}</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </TableCell>
@@ -186,9 +188,9 @@ export default function ManageOrdersPage() {
                         </Table>
                    ) : (
                         <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-lg">
-                            <p className="font-medium">You have no orders yet.</p>
-                            <p className="text-sm mt-1">When buyers order your products, they will appear here.</p>
-                             <Button asChild variant="secondary" className="mt-4"><Link href="/marketplace/create">Create a New Listing</Link></Button>
+                            <p className="font-medium">{t('manageOrdersPage.noOrdersTitle')}</p>
+                            <p className="text-sm mt-1">{t('manageOrdersPage.noOrdersDescription')}</p>
+                             <Button asChild variant="secondary" className="mt-4"><Link href="/marketplace/create">{t('manageOrdersPage.createListingLink')}</Link></Button>
                         </div>
                    )}
                 </CardContent>
