@@ -25,6 +25,16 @@
   "pin": "Pin",
   "unpin": "Unpin",
   "yes": "Yes",
+  "productCard": {
+    "placeholderName": "Product Name",
+    "placeholderDescription": "Product description."
+  },
+  "categoryNav": {
+    "title": "Browse Categories",
+    "deprecationNoteTitle": "Sidebar Deprecated",
+    "deprecationNote": "This sidebar component is no longer in active use for main navigation. Navigation has moved to the top header and mobile bottom bar.",
+    "oldMenuTitle": "Old Menu (Inactive)"
+  },
   "privacyPolicyPage": {
     "title": "Privacy Policy",
     "lastUpdated": "Last Updated"
@@ -32,10 +42,6 @@
   "termsPage": {
     "title": "Terms of Service",
     "lastUpdated": "Last Updated"
-  },
-  "categoryNav": {
-    "title": "Browse Categories",
-    "deprecationNote": "This sidebar category navigation is currently not used in the main Marketplace. Category selection is handled by the dropdown menu above the listings."
   },
   "messagingPanel": {
     "searchPlaceholder": "Search messages...",
@@ -58,7 +64,13 @@
       "profileViewers": "Profile viewers",
       "postImpressions": "Post impressions",
       "proUnlock": "Unlock premium supply chain analytics & tools",
-      "tryPro": "Try DamDoh Pro"
+      "tryPro": "Try DamDoh Pro",
+      "recentTitle": "Recent",
+      "pinboard": "My Pin Board",
+      "forums": "Agricultural Forums",
+      "news": "Industry News & Reports",
+      "events": "Agri-Business Events",
+      "network": "My Supply Chain Network"
     },
     "rightSidebar": {
       "errorNoSuggestions": "No suggestions received from AI.",
@@ -482,55 +494,225 @@
     "uploadImage": "Upload Image",
     "useCamera": "Use Camera",
     "inputPlaceholder": "Ask about farming, describe your image...",
-    "sendMessage": "Send"
+    "sendMessage": "Send",
+    "welcome": {
+      "summary": "Hello! I'm {appName}'s AI Knowledge assistant, your dedicated partner for all things agriculture!\nWondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.\n\n**Got a crop concern?**\nTap the image upload icon (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-image-up inline-block relative -top-px\"><path d=\"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L13 16\"></path><path d=\"m14 19.5 3-3 3 3\"></path><path d=\"M17 22v-5.5\"></path><circle cx=\"9\" cy=\"9\" r=\"2\"></circle></svg>) to upload a photo, or the camera icon (<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" class=\"lucide lucide-camera inline-block relative -top-px\"><path d=\"M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z\"></path><circle cx=\"12\" cy=\"13\" r=\"3\"></circle></svg>) to snap a picture of any plant issues. I'll do my best to analyze it and suggest sustainable solutions.\n\nReady to explore? How can I assist you today?",
+      "suggestion1": "How do I make Fish Amino Acid?",
+      "suggestion2": "What is 'God's Blanket' in Farming God's Way?",
+      "suggestion3": "How can I improve my soil health?"
+    },
+    "knowledgeTitle": "{appName} AI's Knowledge",
+    "playAudio": "Play Audio",
+    "audioPlaybackComingSoon": "Audio playback feature coming soon!",
+    "imagePreviewAlt": "User upload preview",
+    "analyzeImage": "Please analyze this image.",
+    "emptyQuery": "Empty query",
+    "errorSummary": "Sorry, I encountered an error trying to process your request. Please try again.",
+    "capture": "Capture",
+    "closeCamera": "Close Camera",
+    "toast": {
+      "cameraAccessDeniedTitle": "Camera Access Denied",
+      "cameraAccessDeniedDescription": "To use the camera for diagnosis, please enable camera permissions in your browser settings and refresh.",
+      "cameraNotSupportedTitle": "Camera Not Supported",
+      "cameraNotSupportedDescription": "Your browser does not support camera access.",
+      "chatResetTitle": "Chat Reset",
+      "chatResetDescription": "The conversation has been cleared.",
+      "analyzingImageTitle": "Analyzing Image...",
+      "analyzingImageDescription": "Our AI is looking at your photo. Please wait."
+    }
   },
-  "about": {
-    "title": "About DamDoh",
-    "subtitle": "Connecting the agricultural supply chain for a thriving people, profit, and planet.",
-    "mission": {
-      "title": "Our Mission",
-      "content": "To empower every actor in the agricultural value chain through innovative technology, fostering sustainable practices, ensuring food security, and promoting equitable growth. We aim to build a resilient and transparent ecosystem where farmers, traders, and consumers can connect, collaborate, and prosper."
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account, agricultural profile, and platform preferences.",
+    "tabs": {
+      "profile": "Profile",
+      "account": "Account",
+      "notifications": "Notifications",
+      "privacy": "Privacy",
+      "appearance": "Appearance"
     },
-    "vision": {
-      "title": "Our Vision",
-      "content": "To be the leading digital platform revolutionizing the global agricultural supply chain, creating a future where sustainable agriculture nourishes the world and supports vibrant rural communities."
+    "profileTab": {
+      "title": "Stakeholder Profile Settings",
+      "description": "Update your public information for the agricultural supply chain network.",
+      "nameLabel": "Full Name / Organization Name",
+      "emailLabel": "Contact Email",
+      "emailDescription": "Email cannot be changed here as it's tied to your login.",
+      "roleLabel": "Primary Role in Supply Chain",
+      "rolePlaceholder": "Select your primary role",
+      "summaryLabel": "Profile Summary / Headline",
+      "summaryPlaceholder": "e.g., Exporter of fair-trade coffee, specializing in East African beans...",
+      "bioLabel": "Detailed Bio / About Your Organization",
+      "bioPlaceholder": "Share more about your operations, mission, products, services, or what you're seeking in the supply chain...",
+      "interestsLabel": "Areas of Interest / Specialties (comma-separated)",
+      "interestsPlaceholder": "e.g., Organic farming, Supply chain logistics, Export, Cashew processing",
+      "needsLabel": "Currently Seeking / Offering (comma-separated)",
+      "needsPlaceholder": "e.g., Buyers for cocoa beans, Warehousing space, Agronomy consulting",
+      "commaSeparated": "Comma-separated list.",
+      "phoneLabel": "Phone Number (Optional)",
+      "websiteLabel": "Website (Optional)",
+      "saveButton": "Save Profile Changes"
     },
-    "values": {
-      "title": "Our Values",
-      "sustainability": {
-        "title": "Sustainability",
-        "content": "Championing practices that protect our planet for future generations."
+    "accountTab": {
+      "title": "Account Settings",
+      "description": "Manage your login credentials and account security.",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "changePasswordButton": "Change Password",
+      "deactivateButton": "Deactivate Account"
+    },
+    "notificationsTab": {
+      "title": "Notification Settings",
+      "description": "Choose how you want to be notified about supply chain activity and platform updates.",
+      "emailDigest": {
+        "title": "Email Notifications Digest",
+        "description": "Receive a summary of important updates, market news, and connection requests."
       },
-      "collaboration": {
-        "title": "Collaboration",
-        "content": "Believing in the power of partnership and shared success."
+      "connectionRequests": {
+        "title": "New Connection Requests",
+        "description": "Notify me in-app and optionally by email for new stakeholder connection requests."
       },
-      "innovation": {
-        "title": "Innovation",
-        "content": "Continuously seeking better solutions through technology and creativity."
+      "forumMentions": {
+        "title": "Forum Contributions & Mentions",
+        "description": "Notify me for replies to my forum posts or when I'm mentioned."
       },
-      "integrity": {
-        "title": "Integrity",
-        "content": "Operating with transparency, honesty, and respect for all."
+      "marketplaceActivity": {
+        "title": "Marketplace Activity",
+        "description": "Notify me about inquiries on my listings or updates to saved searches."
       },
-      "empowerment": {
-        "title": "Empowerment",
-        "content": "Providing the tools and knowledge to uplift every member of the agricultural community."
+      "jobListings": {
+        "title": "Merged Marketplace Updates (Jobs, Services, etc.)",
+        "description": "Notify me about applications to my job/service listings or new relevant offerings."
+      },
+      "saveButton": "Save Notification Settings"
+    },
+    "privacyTab": {
+      "title": "Privacy & Visibility Settings",
+      "description": "Control who can see your agricultural profile and supply chain activity.",
+      "profileVisibility": {
+        "title": "Profile Visibility",
+        "description": "Control who can view your full stakeholder profile details.",
+        "optionAll": "All DamDoh Members",
+        "optionConnections": "My Connections Only",
+        "optionPrivate": "Only Me (Not Recommended)"
+      },
+      "connectionRequests": {
+        "title": "Connection Requests",
+        "description": "Control who can send you connection requests.",
+        "optionAll": "All DamDoh Members",
+        "optionConnectionsOfConnections": "Connections of Connections"
+      },
+      "contactVisibility": {
+        "title": "Business/Contact Information Visibility",
+        "description": "Control who sees your email, phone, or website if provided.",
+        "optionAll": "All DamDoh Members",
+        "optionConnections": "My Connections Only"
+      },
+      "activityStatus": {
+        "title": "Activity Status",
+        "description": "Let others see when you are online or last active."
+      },
+      "searchIndexing": {
+        "title": "External Search Engine Indexing",
+        "description": "Allow search engines (e.g., Google) to link to your DamDoh profile (public parts only)."
+      },
+      "saveButton": "Save Privacy Settings",
+      "consentManagement": {
+        "title": "Data Consent Management",
+        "description": "Manage how your data is used and shared with other stakeholders or integrated services.",
+        "marketplaceHistory": {
+          "title": "Marketplace History for Financial Services",
+          "description": "Allows Financial Institutions to view your sales history when you apply for a loan or service, to assess your eligibility."
+        },
+        "traceabilityData": {
+          "title": "Public Traceability Data",
+          "description": "Allows buyers to view the public traceability log of products you have listed, building trust and transparency."
+        },
+        "applicationData": {
+          "title": "AI-Powered Service Recommendations",
+          "description": "Allow DamDoh's AI to analyze your application data to recommend other relevant financial products or services to you."
+        }
+      },
+      "consentSaveButton": "Save Consent Settings"
+    },
+    "appearanceTab": {
+      "title": "Appearance",
+      "description": "Customize the look and feel of the DamDoh platform.",
+      "theme": {
+        "title": "Theme",
+        "description": "Select your preferred theme (Light/Dark)."
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose your preferred language for the interface."
+      }
+    }
+  },
+  "communityGuidelines": {
+    "title": "DamDoh Community Guidelines",
+    "subtitle": "Our commitment to fostering a safe, respectful, and productive environment for all agricultural stakeholders.",
+    "intro": "Welcome to DamDoh! By joining our platform, you agree to abide by these guidelines to ensure a positive experience for everyone. Violations may result in content removal, account suspension, or other actions deemed necessary.",
+    "guideline1": {
+      "title": "Be Respectful and Constructive",
+      "description": "Treat all members of the DamDoh community with respect. Engage in constructive discussions, share knowledge positively, and avoid personal attacks, harassment, or hate speech."
+    },
+    "guideline2": {
+      "title": "Maintain Authenticity and Transparency",
+      "description": "Represent yourself and your business honestly. Do not impersonate others or provide misleading information in your profile, listings, or communications. Clearly state your role in the supply chain."
+    },
+    "guideline3": {
+      "title": "Keep Discussions Relevant",
+      "description": "When participating in forums or groups, ensure your contributions are relevant to the topic. Avoid spamming, unsolicited advertising, or off-topic content. Focus on agricultural supply chain matters."
+    },
+    "guideline4": {
+      "title": "Foster Fair and Ethical Trade",
+      "description": "Conduct business dealings with integrity. Honor commitments, provide accurate product/service descriptions, and engage in fair pricing. DamDoh promotes ethical trade practices."
+    },
+    "guideline5": {
+      "title": "Promote Sustainable Practices",
+      "description": "We encourage discussions and sharing of knowledge related to sustainable and regenerative agriculture. Support initiatives that improve soil health, biodiversity, and food security."
+    },
+    "reportingTitle": "Reporting Violations",
+    "reportingContent": "If you encounter content or behavior that violates these guidelines, please report it to our moderation team through the platform's reporting tools or by contacting",
+    "supportEmail": "support@damdoh.org",
+    "conclusion": "Thank you for helping us build a thriving and trustworthy agricultural supply chain community on DamDoh!"
+  },
+  "helpCenter": {
+    "title": "DamDoh Help Center",
+    "subtitle": "Find answers to your questions, tutorials, and guides to get the most out of DamDoh.",
+    "searchPrompt": "How can we help you today?",
+    "searchPlaceholder": "Search our knowledge base (e.g., 'how to list product', 'change password')",
+    "browseTitle": "Browse Topics",
+    "contactPrompt": "Still Need Help?",
+    "contactDescription": "If you can't find what you're looking for, our support team is ready to assist you.",
+    "contactButton": "Contact Support",
+    "topics": {
+      "gettingStarted": {
+        "title": "Getting Started",
+        "description": "Learn the basics of using DamDoh."
+      },
+      "marketplaceGuide": {
+        "title": "Marketplace Guide",
+        "description": "How to buy, sell, and list products/services."
+      },
+      "accountManagement": {
+        "title": "Account Management",
+        "description": "Manage your profile and settings."
+      },
+      "troubleshooting": {
+        "title": "Troubleshooting",
+        "description": "Common issues and how to resolve them."
       }
     },
-    "team": {
-      "title": "Meet the Team",
-      "intro": "DamDoh is driven by a passionate team of agricultural experts, technologists, and business leaders dedicated to making a difference. As we grow, our core team believes in the transformative power of connecting the agricultural world.",
-      "member1Name": "Team Member 1",
-      "member1Role": "Role / Expertise",
-      "member1Bio": "Brief bio about their experience and passion for agriculture coming soon.",
-      "member2Name": "Team Member 2",
-      "member2Role": "Role / Expertise",
-      "member2Bio": "Brief bio about their experience and passion for agriculture coming soon.",
-      "member3Name": "Team Member 3",
-      "member3Role": "Role / Expertise",
-      "member3Bio": "Brief bio about their experience and passion for agriculture coming soon.",
-      "note": "More detailed team profiles coming soon!"
+    "sections": {
+      "gettingStarted": {
+        "title": "Getting Started (Placeholder)",
+        "content": "This section will cover creating your account, setting up your profile, and navigating the DamDoh platform for the first time. Tutorials and step-by-step guides will be available here."
+      },
+      "marketplaceGuide": {
+        "title": "Marketplace Guide (Placeholder)",
+        "content": "Learn how to create listings for products and services, search the marketplace, connect with buyers/sellers, and manage your transactions. Tips for effective listings and safe trading will be included."
+      }
     }
   },
   "careers": {
@@ -572,95 +754,5 @@
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
     }
-  },
-  "adminPage": {
-    "layout": {
-        "contentManagement": "Content Management",
-        "marketplaceCategories": "Marketplace Categories",
-        "adminArea": "Admin Area",
-        "caution": "Changes made here affect the entire platform. Please proceed with caution."
-    },
-    "content": {
-        "createCourseTitle": "Create New Course",
-        "createCourseDescription": "Develop a new course for the Knowledge Hub.",
-        "courseTitleLabel": "Course Title",
-        "courseDescriptionLabel": "Course Description",
-        "categoryLabel": "Category",
-        "creatingCourseButton": "Creating...",
-        "createCourseButton": "Create Course",
-        "createArticleTitle": "Create Knowledge Article",
-        "createArticleDescription": "Write a blog post or news update.",
-        "englishContent": "English Content",
-        "articleTitleEn": "Article Title (EN)",
-        "excerptEn": "Excerpt (EN)",
-        "excerptDescription": "A short summary for the article preview.",
-        "fullContentEn": "Full Content (EN, Markdown supported)",
-        "khmerContent": "Khmer Content (ភាសាខ្មែរ)",
-        "articleTitleKm": "Article Title (KM)",
-        "excerptKm": "Excerpt (KM)",
-        "fullContentKm": "Full Content (KM)",
-        "metadataTitle": "Metadata",
-        "articleCategoryLabel": "Category",
-        "categoryPlaceholder": "e.g., Blog, Industry News, Sustainability",
-        "authorLabel": "Author",
-        "authorPlaceholder": "e.g., Dr. Green Thumb",
-        "defaultAuthor": "DamDoh Team",
-        "tagsLabel": "Tags (comma-separated)",
-        "imageUrlLabel": "Image URL (Optional)",
-        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-        "imageAiHintLabel": "Image AI Hint (Optional)",
-        "aiHintPlaceholder": "e.g., sustainable farming field",
-        "publishingButton": "Publishing...",
-        "publishButton": "Publish Article",
-        "failMessage": "Failed to create",
-        "courseSuccess": "Course created successfully!",
-        "courseFail": "Failed to create course.",
-        "articleSuccess": "Article created successfully!",
-        "articleFail": "Failed to create article."
-    }
-  },
-  "blogPage": {
-    "title": "DamDoh Agri-Insights Blog",
-    "description": "News, insights, success stories, and expert advice from the DamDoh community and agricultural experts.",
-    "readMoreButton": "Read More",
-    "noPostsTitle": "Blog Posts Coming Soon!",
-    "noPostsDescription": "Our team and community experts are busy preparing insightful articles. Check back soon!",
-    "authorLabel": "By",
-    "errorTitle": "Error",
-    "errorDescription": "Could not load blog posts."
-  },
-  "blogPostPage": {
-    "backButton": "Back to All Posts",
-    "errorTitle": "Error",
-    "errorDescription": "Could not load the blog post.",
-    "notFoundTitle": "Post Not Found",
-    "notFoundDescription": "The post you are looking for does not exist or has been moved."
-  },
-  "marketplacePage": {
-    "title": "Agricultural Marketplace & Services Hub",
-    "description": "Discover products, equipment, land, and professional services to support your agricultural needs.",
-    "createShopButton": "Create Your Shop",
-    "createListingButton": "Create New Listing",
-    "allCategories": "All Categories",
-    "searchLabel": "Search Marketplace",
-    "searchPlaceholder": "Search products & services...",
-    "locationLabel": "Filter by location",
-    "locationPlaceholder": "Filter by location",
-    "typePlaceholder": "Filter by Type",
-    "recommendationsTitle": "Recommended For You",
-    "discoverTitle": "Discover More",
-    "notFoundTitle": "No items found matching your criteria.",
-    "notFoundDescription": "Try broadening your search or filters.",
-    "errorLoading": "Could not fetch marketplace items. Please try again later.",
-    "errorAi": "Could not fetch AI recommendations",
-    "viewAllItems": "View All Items",
-    "viewAll": "View All",
-    "aiLocationContext": "Kenya",
-    "unpinnedTitle": "Homepage Unpinned!",
-    "unpinnedDescription": "The Dashboard is now your default homepage.",
-    "pinnedTitle": "Marketplace Pinned!",
-    "pinnedDescription": "The Marketplace is now your default homepage.",
-    "products": "Products",
-    "services": "Services"
   }
 }

@@ -25,6 +25,16 @@
   "pin": "Fijar",
   "unpin": "Desfijar",
   "yes": "Sí",
+  "productCard": {
+    "placeholderName": "Nombre del Producto",
+    "placeholderDescription": "Descripción del producto."
+  },
+  "categoryNav": {
+    "title": "Explorar Categorías",
+    "deprecationNoteTitle": "Barra Lateral Obsoleta",
+    "deprecationNote": "Esta barra lateral de categorías no se usa actualmente en el Mercado principal. La selección de categorías se maneja mediante el menú desplegable sobre los listados.",
+    "oldMenuTitle": "Menú Antiguo (Inactivo)"
+  },
   "privacyPolicyPage": {
     "title": "Política de Privacidad",
     "lastUpdated": "Última Actualización"
@@ -32,10 +42,6 @@
   "termsPage": {
     "title": "Términos de Servicio",
     "lastUpdated": "Última Actualización"
-  },
-  "categoryNav": {
-    "title": "Explorar Categorías",
-    "deprecationNote": "Esta barra lateral de categorías no se usa actualmente en el Mercado principal. La selección de categorías se maneja mediante el menú desplegable sobre los listados."
   },
   "messagingPanel": {
     "searchPlaceholder": "Buscar mensajes...",
@@ -58,7 +64,13 @@
       "profileViewers": "Vistas de perfil",
       "postImpressions": "Impresiones de publicaciones",
       "proUnlock": "Desbloquea análisis y herramientas premium",
-      "tryPro": "Prueba DamDoh Pro"
+      "tryPro": "Prueba DamDoh Pro",
+      "recentTitle": "Reciente",
+      "pinboard": "Mi Tablero",
+      "forums": "Foros Agrícolas",
+      "news": "Noticias de la Industria",
+      "events": "Eventos Agrícolas",
+      "network": "Mi Red de Suministro"
     },
     "rightSidebar": {
       "errorNoSuggestions": "No se recibieron sugerencias de la IA.",
@@ -572,95 +584,5 @@
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
     }
-  },
-  "adminPage": {
-    "layout": {
-        "contentManagement": "Gestión de Contenidos",
-        "marketplaceCategories": "Categorías del Mercado",
-        "adminArea": "Área de Administración",
-        "caution": "Los cambios realizados aquí afectan a toda la plataforma. Proceda con precaución."
-    },
-    "content": {
-        "createCourseTitle": "Crear Nuevo Curso",
-        "createCourseDescription": "Desarrollar un nuevo curso para el Centro de Conocimiento.",
-        "courseTitleLabel": "Título del Curso",
-        "courseDescriptionLabel": "Descripción del Curso",
-        "categoryLabel": "Categoría",
-        "creatingCourseButton": "Creando...",
-        "createCourseButton": "Crear Curso",
-        "createArticleTitle": "Crear Artículo de Conocimiento",
-        "createArticleDescription": "Escribe una publicación de blog o una actualización de noticias.",
-        "englishContent": "Contenido en Inglés",
-        "articleTitleEn": "Título del Artículo (EN)",
-        "excerptEn": "Extracto (EN)",
-        "excerptDescription": "Un breve resumen para la vista previa del artículo.",
-        "fullContentEn": "Contenido Completo (EN, compatible con Markdown)",
-        "khmerContent": "Contenido en Jemer (ភាសាខ្មែរ)",
-        "articleTitleKm": "Título del Artículo (KM)",
-        "excerptKm": "Extracto (KM)",
-        "fullContentKm": "Contenido Completo (KM)",
-        "metadataTitle": "Metadatos",
-        "articleCategoryLabel": "Categoría",
-        "categoryPlaceholder": "Ej: Blog, Noticias de la Industria, Sostenibilidad",
-        "authorLabel": "Autor",
-        "authorPlaceholder": "Ej: Dr. Pulgar Verde",
-        "defaultAuthor": "Equipo DamDoh",
-        "tagsLabel": "Etiquetas (separadas por comas)",
-        "imageUrlLabel": "URL de la Imagen (Opcional)",
-        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-        "imageAiHintLabel": "Sugerencia de IA para Imagen (Opcional)",
-        "aiHintPlaceholder": "Ej: campo de agricultura sostenible",
-        "publishingButton": "Publicando...",
-        "publishButton": "Publicar Artículo",
-        "failMessage": "Error al crear",
-        "courseSuccess": "¡Curso creado con éxito!",
-        "courseFail": "Error al crear el curso.",
-        "articleSuccess": "¡Artículo creado con éxito!",
-        "articleFail": "Error al crear el artículo."
-    }
-  },
-  "blogPage": {
-    "title": "Blog de Agri-Insights de DamDoh",
-    "description": "Noticias, ideas, historias de éxito y consejos de expertos de la comunidad DamDoh y expertos agrícolas.",
-    "readMoreButton": "Leer Más",
-    "noPostsTitle": "¡Próximamente Artículos de Blog!",
-    "noPostsDescription": "Nuestro equipo y los expertos de la comunidad están ocupados preparando artículos interesantes. ¡Vuelve pronto!",
-    "authorLabel": "Por",
-    "errorTitle": "Error",
-    "errorDescription": "No se pudieron cargar las publicaciones del blog."
-  },
-  "blogPostPage": {
-    "backButton": "Volver a Todas las Publicaciones",
-    "errorTitle": "Error",
-    "errorDescription": "No se pudo cargar la publicación del blog.",
-    "notFoundTitle": "Publicación No Encontrada",
-    "notFoundDescription": "La publicación que buscas no existe o ha sido movida."
-  },
-  "marketplacePage": {
-    "title": "Mercado Agrícola y Centro de Servicios",
-    "description": "Descubra productos, equipos, terrenos y servicios profesionales para apoyar sus necesidades agrícolas.",
-    "createShopButton": "Crea Tu Tienda",
-    "createListingButton": "Crear Nuevo Anuncio",
-    "allCategories": "Todas las Categorías",
-    "searchLabel": "Buscar en el Mercado",
-    "searchPlaceholder": "Buscar productos y servicios...",
-    "locationLabel": "Filtrar por ubicación",
-    "locationPlaceholder": "Filtrar por ubicación",
-    "typePlaceholder": "Filtrar por Tipo",
-    "recommendationsTitle": "Recomendado para Ti",
-    "discoverTitle": "Descubrir Más",
-    "notFoundTitle": "No se encontraron artículos que coincidan con tus criterios.",
-    "notFoundDescription": "Intenta ampliar tu búsqueda o tus filtros.",
-    "errorLoading": "No se pudieron obtener los artículos del mercado. Por favor, inténtalo de nuevo más tarde.",
-    "errorAi": "No se pudieron obtener las recomendaciones de la IA",
-    "viewAllItems": "Ver Todos los Artículos",
-    "viewAll": "Ver Todo",
-    "aiLocationContext": "Kenia",
-    "unpinnedTitle": "Página de Inicio Desfijada",
-    "unpinnedDescription": "El Panel de Control es ahora tu página de inicio predeterminada.",
-    "pinnedTitle": "¡Mercado Fijado!",
-    "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-    "products": "Productos",
-    "services": "Servicios"
   }
 }
