@@ -264,7 +264,7 @@ export default function TraceabilityBatchDetailPage() {
                     })}
                 </div>
             ) : (
-                 <div className="text-center py-10 text-muted-foreground">No traceability events found.</div>
+                 <div className="text-center py-10 text-muted-foreground">{t('traceabilityDetailPage.noEvents')}</div>
             )}
         </CardContent>
       </Card>
