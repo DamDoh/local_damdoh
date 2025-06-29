@@ -25,7 +25,6 @@ export type UserRole =
   | "Energy Solutions Provider (Solar, Biogas)"
   | "Agro-Export Facilitator/Customs Broker"
   | "Agri-Tech Innovator/Developer"
-  | "Retailer/City Market Seller"
   | "Waste Management & Compost Facility"
   | "Insurance Provider"
   | "Crowdfunder (Impact Investor, Individual)";
