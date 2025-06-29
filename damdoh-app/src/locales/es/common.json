@@ -69,8 +69,8 @@
     "confirmPasswordLabel": "Confirmar Nueva Contraseña",
     "resetButton": "Restablecer Contraseña",
     "resettingButton": "Restableciendo Contraseña...",
-    "successTitle": "¡Éxito!",
-    "successDescription": "Tu contraseña ha sido restablecida correctamente. Redirigiendo al inicio de sesión...",
+    "successTitle": "Éxito al Restablecer la Contraseña",
+    "successDescription": "Tu contraseña ha sido restablecida. Ahora puedes iniciar sesión con tu nueva contraseña.",
     "errorTitle": "Error",
     "missingCodeTitle": "Código Faltante",
     "missingCodeDescription": "El código para restablecer la contraseña falta en la URL. Por favor, usa el enlace de tu correo de restablecimiento."
@@ -233,7 +233,3 @@
     }
   }
 }
-]],</content>
-  </change>
-  <change>
-    <file
