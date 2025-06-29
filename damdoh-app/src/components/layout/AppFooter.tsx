@@ -93,5 +93,3 @@ export function AppFooter() {
     </footer>
   );
 }
-
-    
