@@ -68,7 +68,7 @@ export function AppFooter() {
                 <Link href="#playstore" passHref>
                   <Image 
                     src="https://placehold.co/135x40.png" 
-                    alt="Get it on Google Play" 
+                    alt={t('footer.googlePlayAlt')} 
                     width={135} 
                     height={40} 
                     className="rounded hover:opacity-90 transition-opacity"
@@ -78,7 +78,7 @@ export function AppFooter() {
                 <Link href="#appstore" passHref>
                   <Image 
                     src="https://placehold.co/120x40.png" 
-                    alt="Download on the App Store" 
+                    alt={t('footer.appStoreAlt')} 
                     width={120} 
                     height={40} 
                     className="rounded hover:opacity-90 transition-opacity"
