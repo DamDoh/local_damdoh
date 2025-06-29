@@ -29,6 +29,7 @@ import { format } from 'date-fns';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 
 interface AgriEventWithAttendees extends AgriEvent {
@@ -37,6 +38,7 @@ interface AgriEventWithAttendees extends AgriEvent {
 }
 
 function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: string; }) {
+    const { t } = useTranslation('common');
     const { toast } = useToast();
     const [coupons, setCoupons] = useState<EventCoupon[]>([]);
     const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
@@ -61,11 +63,11 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
             const result = await getCouponsCallable({ eventId });
             setCoupons((result.data as any).coupons || []);
         } catch (error) {
-            toast({ variant: "destructive", title: "Error", description: "Could not fetch coupons." });
+            toast({ variant: "destructive", title: t('agriEvents.manage.promoTab.errorFetchCouponsTitle'), description: t('agriEvents.manage.promoTab.errorFetchCouponsDescription') });
         } finally {
             setIsLoadingCoupons(false);
         }
-    }, [eventId, getCouponsCallable, toast]);
+    }, [eventId, getCouponsCallable, toast, t]);
     
     useEffect(() => {
         fetchCoupons();
@@ -74,31 +76,31 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
     async function onCouponSubmit(data: CreateEventCouponValues) {
         try {
             await createCouponCallable({ eventId, ...data, expiresAt: data.expiresAt?.toISOString() });
-            toast({ title: "Success", description: `Coupon "${data.code}" created successfully.` });
+            toast({ title: t('agriEvents.manage.promoTab.createSuccessTitle'), description: t('agriEvents.manage.promoTab.createSuccessDescription', { code: data.code }) });
             form.reset();
             fetchCoupons();
         } catch (error: any) {
             console.error("Error creating coupon:", error);
-            toast({ variant: "destructive", title: "Creation Failed", description: error.message || "Could not create the coupon." });
+            toast({ variant: "destructive", title: t('agriEvents.manage.promoTab.createFailTitle'), description: error.message || t('agriEvents.manage.promoTab.createFailDescription') });
         }
     }
 
     const handleShare = (coupon: EventCoupon) => {
         const url = `${window.location.origin}/agri-events/${eventId}?coupon=${coupon.code}`;
         navigator.clipboard.writeText(url);
-        toast({ title: "Link Copied!", description: "A shareable link with the coupon has been copied to your clipboard." });
+        toast({ title: t('agriEvents.manage.promoTab.linkCopiedTitle'), description: t('agriEvents.manage.promoTab.linkCopiedDescription') });
     };
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Promotions & Coupons</CardTitle>
-                <CardDescription>Create discount codes to promote your event and drive registrations.</CardDescription>
+                <CardTitle>{t('agriEvents.manage.promoTab.title')}</CardTitle>
+                <CardDescription>{t('agriEvents.manage.promoTab.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                  <Card className="bg-muted/30">
                     <CardHeader>
-                        <CardTitle className="text-lg">Create New Coupon</CardTitle>
+                        <CardTitle className="text-lg">{t('agriEvents.manage.promoTab.createTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                        <Form {...form}>
@@ -109,9 +111,9 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                         name="code"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Coupon Code</FormLabel>
+                                                <FormLabel>{t('agriEvents.manage.promoTab.form.codeLabel')}</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="e.g., EARLYBIRD10" {...field} />
+                                                    <Input placeholder={t('agriEvents.manage.promoTab.form.codePlaceholder')} {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -122,14 +124,14 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                         name="discountType"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Discount Type</FormLabel>
+                                                <FormLabel>{t('agriEvents.manage.promoTab.form.typeLabel')}</FormLabel>
                                                 <Select onValueChange={field.onChange} value={field.value}>
                                                     <FormControl>
-                                                        <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
+                                                        <SelectTrigger><SelectValue placeholder={t('agriEvents.manage.promoTab.form.typePlaceholder')} /></SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
-                                                        <SelectItem value="percentage">Percentage (%)</SelectItem>
-                                                        <SelectItem value="fixed">Fixed Amount</SelectItem>
+                                                        <SelectItem value="percentage">{t('agriEvents.manage.promoTab.form.typePercentage')}</SelectItem>
+                                                        <SelectItem value="fixed">{t('agriEvents.manage.promoTab.form.typeFixed')}</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                                 <FormMessage />
@@ -143,7 +145,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                         name="discountValue"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Discount Value</FormLabel>
+                                                <FormLabel>{t('agriEvents.manage.promoTab.form.valueLabel')}</FormLabel>
                                                 <FormControl>
                                                     <Input type="number" placeholder="e.g., 10 or 15.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
                                                 </FormControl>
@@ -156,7 +158,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                         name="usageLimit"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Usage Limit (Optional)</FormLabel>
+                                                <FormLabel>{t('agriEvents.manage.promoTab.form.usageLimitLabel')}</FormLabel>
                                                 <FormControl>
                                                     <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))}/>
                                                 </FormControl>
@@ -170,13 +172,13 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                     name="expiresAt"
                                     render={({ field }) => (
                                       <FormItem className="flex flex-col">
-                                        <FormLabel>Expiration Date (Optional)</FormLabel>
+                                        <FormLabel>{t('agriEvents.manage.promoTab.form.expirationLabel')}</FormLabel>
                                         <Popover>
                                           <PopoverTrigger asChild>
                                             <FormControl>
                                               <Button variant={"outline"} className={cn("w-full justify-start text-left font-normal", !field.value && "text-muted-foreground")}>
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
-                                                {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                                                {field.value ? format(field.value, "PPP") : <span>{t('agriEvents.manage.promoTab.form.datePlaceholder')}</span>}
                                               </Button>
                                             </FormControl>
                                           </PopoverTrigger>
@@ -190,7 +192,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                   />
                                 <Button type="submit" disabled={form.formState.isSubmitting}>
                                     {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                                    Create Coupon
+                                    {t('agriEvents.manage.promoTab.form.createButton')}
                                 </Button>
                             </form>
                         </Form>
@@ -198,7 +200,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                 </Card>
 
                 <div>
-                    <h3 className="text-lg font-semibold mb-2">Existing Coupons</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('agriEvents.manage.promoTab.existingTitle')}</h3>
                     {isLoadingCoupons ? <Skeleton className="h-20 w-full" /> : 
                      coupons.length > 0 ? (
                         <div className="space-y-2">
@@ -209,19 +211,17 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                         {coupon.discountType === 'percentage' ? `${coupon.discountValue}% off` : `$${coupon.discountValue.toFixed(2)} off`}
                                     </div>
                                     <div className="text-xs text-muted-foreground">
-                                        Used: {coupon.usageCount} / {coupon.usageLimit || '∞'}
+                                        {t('agriEvents.manage.promoTab.usedLabel')}: {coupon.usageCount} / {coupon.usageLimit || '∞'}
                                     </div>
-                                    <div className="text-xs text-muted-foreground">Expires: {coupon.expiresAt ? format(new Date(coupon.expiresAt), 'PPP') : 'Never'}</div>
+                                    <div className="text-xs text-muted-foreground">{t('agriEvents.manage.promoTab.expiresLabel')}: {coupon.expiresAt ? format(new Date(coupon.expiresAt), 'PPP') : 'Never'}</div>
                                     <Dialog>
                                         <DialogTrigger asChild>
-                                            <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4" /> Share</Button>
+                                            <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4" /> {t('agriEvents.manage.promoTab.shareButton')}</Button>
                                         </DialogTrigger>
                                         <DialogContent>
                                             <DialogHeader>
-                                                <DialogTitle>Share Coupon</DialogTitle>
-                                                <DialogDescription>
-                                                    Share this link with your audience. The coupon will be automatically applied for them.
-                                                </DialogDescription>
+                                                <DialogTitle>{t('agriEvents.manage.promoTab.shareModalTitle')}</DialogTitle>
+                                                <DialogDescription>{t('agriEvents.manage.promoTab.shareModalDescription')}</DialogDescription>
                                             </DialogHeader>
                                             <div className="flex items-center space-x-2">
                                                 <div className="grid flex-1 gap-2">
@@ -229,13 +229,13 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                                     <Input id="link" defaultValue={`${window.location.origin}/agri-events/${eventId}?coupon=${coupon.code}`} readOnly />
                                                 </div>
                                                 <Button type="button" size="sm" className="px-3" onClick={() => handleShare(coupon)}>
-                                                    <span className="sr-only">Copy</span>
+                                                    <span className="sr-only">{t('agriEvents.detail.copyButton')}</span>
                                                     <ClipboardCopy className="h-4 w-4" />
                                                 </Button>
                                             </div>
                                             <DialogFooter>
                                                 <DialogClose asChild>
-                                                    <Button type="button" variant="secondary">Close</Button>
+                                                    <Button type="button" variant="secondary">{t('agriEvents.detail.closeButton')}</Button>
                                                 </DialogClose>
                                             </DialogFooter>
                                         </DialogContent>
@@ -243,7 +243,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
                                 </div>
                             ))}
                         </div>
-                     ) : <p className="text-sm text-muted-foreground text-center py-4">No coupons created for this event yet.</p>
+                     ) : <p className="text-sm text-muted-foreground text-center py-4">{t('agriEvents.manage.promoTab.noCoupons')}</p>
                     }
                 </div>
             </CardContent>
@@ -252,6 +252,7 @@ function PromotionsTab({ eventId, eventTitle }: { eventId: string; eventTitle: s
 }
 
 function ManageEventSkeleton() {
+    const { t } = useTranslation('common');
     return (
         <div className="space-y-6">
             <Skeleton className="h-9 w-48" />
@@ -270,6 +271,7 @@ function ManageEventSkeleton() {
 }
 
 export default function ManageEventPage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const eventId = params.id as string;
   const router = useRouter();
@@ -292,7 +294,7 @@ export default function ManageEventPage() {
       const eventData = result.data as AgriEventWithAttendees;
 
       if (eventData.organizerId !== user?.uid) {
-          toast({ variant: "destructive", title: "Unauthorized", description: "You are not the organizer of this event." });
+          toast({ variant: "destructive", title: t('agriEvents.manage.unauthorizedTitle'), description: t('agriEvents.manage.unauthorizedDescription') });
           router.push(`/agri-events/${eventId}`);
           return;
       }
@@ -301,12 +303,12 @@ export default function ManageEventPage() {
       setAttendees(eventData.attendees || []);
     } catch (error) {
       console.error("Error fetching event details for management:", error);
-      toast({ variant: "destructive", title: "Error", description: "Could not load event management data." });
+      toast({ variant: "destructive", title: t('agriEvents.manage.errorLoadingTitle'), description: t('agriEvents.manage.errorLoadingDescription') });
       setEvent(null);
     } finally {
       setIsLoading(false);
     }
-  }, [eventId, getEventDetails, toast, user, router]);
+  }, [eventId, getEventDetails, toast, user, router, t]);
   
   useEffect(() => {
     if (!eventId || !user) return;
@@ -317,9 +319,9 @@ export default function ManageEventPage() {
     try {
         await checkInAttendeeCallable({ eventId, attendeeId });
         setAttendees(prev => prev.map(att => att.id === attendeeId ? {...att, checkedIn: true, checkedInAt: new Date().toISOString()} : att));
-        toast({ title: "Check-in Successful", description: "Attendee has been checked in." });
+        toast({ title: t('agriEvents.manage.checkInSuccessTitle'), description: t('agriEvents.manage.checkInSuccessDescription') });
     } catch (error: any) {
-        toast({ variant: "destructive", title: "Check-in Failed", description: error.message || "Could not check in attendee."});
+        toast({ variant: "destructive", title: t('agriEvents.manage.checkInFailTitle'), description: error.message || t('agriEvents.manage.checkInFailDescription')});
     }
   };
 
@@ -339,8 +341,8 @@ export default function ManageEventPage() {
   if (!event) {
     return (
         <Card>
-            <CardHeader><CardTitle>Event not found.</CardTitle></CardHeader>
-            <CardContent><Button asChild variant="outline"><Link href="/agri-events">Back to Events</Link></Button></CardContent>
+            <CardHeader><CardTitle>{t('agriEvents.manage.notFoundTitle')}</CardTitle></CardHeader>
+            <CardContent><Button asChild variant="outline"><Link href="/agri-events">{t('agriEvents.detail.backToEventsButton')}</Link></Button></CardContent>
         </Card>
     );
   }
@@ -349,30 +351,28 @@ export default function ManageEventPage() {
   
   const handleShareEvent = () => {
     navigator.clipboard.writeText(`${window.location.origin}/agri-events/${eventId}`);
-    toast({ title: "Event Link Copied!", description: "A shareable link has been copied to your clipboard." });
+    toast({ title: t('agriEvents.detail.linkCopiedTitle'), description: t('agriEvents.detail.linkCopiedDescription') });
   };
 
 
   return (
     <div className="space-y-6">
       <Link href={`/agri-events/${eventId}`} className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-        <ArrowLeft className="mr-1 h-4 w-4"/> Back to Event Page
+        <ArrowLeft className="mr-1 h-4 w-4"/> {t('agriEvents.manage.backLink')}
       </Link>
 
       <Card>
         <CardHeader>
             <div className="flex flex-col sm:flex-row justify-between items-start">
-                <CardTitle className="text-2xl mb-2 sm:mb-0">Manage Event: {event.title}</CardTitle>
+                <CardTitle className="text-2xl mb-2 sm:mb-0">{t('agriEvents.manage.title', { title: event.title })}</CardTitle>
                  <Dialog>
                     <DialogTrigger asChild>
-                        <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4"/> Share Event</Button>
+                        <Button variant="outline" size="sm"><Share2 className="mr-2 h-4 w-4"/> {t('agriEvents.manage.shareButton')}</Button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                            <DialogTitle>Share Event</DialogTitle>
-                            <DialogDescription>
-                                Share this link with your audience to direct them to the event page.
-                            </DialogDescription>
+                            <DialogTitle>{t('agriEvents.manage.shareModalTitle')}</DialogTitle>
+                            <DialogDescription>{t('agriEvents.manage.shareModalDescription')}</DialogDescription>
                         </DialogHeader>
                         <div className="flex items-center space-x-2">
                             <div className="grid flex-1 gap-2">
@@ -380,30 +380,30 @@ export default function ManageEventPage() {
                                 <Input id="event-link" defaultValue={`${window.location.origin}/agri-events/${eventId}`} readOnly />
                             </div>
                             <Button type="button" size="sm" className="px-3" onClick={handleShareEvent}>
-                                <span className="sr-only">Copy</span>
+                                <span className="sr-only">{t('agriEvents.detail.copyButton')}</span>
                                 <ClipboardCopy className="h-4 w-4" />
                             </Button>
                         </div>
                         <DialogFooter>
-                            <DialogClose asChild><Button type="button" variant="secondary">Close</Button></DialogClose>
+                            <DialogClose asChild><Button type="button" variant="secondary">{t('agriEvents.detail.closeButton')}</Button></DialogClose>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
             </div>
-            <CardDescription>Oversee registrations, check-ins, and promotions.</CardDescription>
+            <CardDescription>{t('agriEvents.manage.description')}</CardDescription>
         </CardHeader>
         <CardContent>
              <Tabs defaultValue="attendees" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="attendees">Attendees ({attendees.length})</TabsTrigger>
-                    <TabsTrigger value="promotions">Promotions</TabsTrigger>
+                    <TabsTrigger value="attendees">{t('agriEvents.manage.attendeesTabTitle', { count: attendees.length })}</TabsTrigger>
+                    <TabsTrigger value="promotions">{t('agriEvents.manage.promotionsTabTitle')}</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="attendees" className="mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Total Registered</CardTitle>
+                                <CardTitle className="text-sm font-medium">{t('agriEvents.manage.totalRegistered')}</CardTitle>
                                 <Users className="h-4 w-4 text-muted-foreground" />
                             </CardHeader>
                             <CardContent>
@@ -412,7 +412,7 @@ export default function ManageEventPage() {
                         </Card>
                         <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Checked In</CardTitle>
+                                <CardTitle className="text-sm font-medium">{t('agriEvents.manage.checkedIn')}</CardTitle>
                                 <UserCheck className="h-4 w-4 text-muted-foreground" />
                             </CardHeader>
                             <CardContent>
@@ -421,11 +421,11 @@ export default function ManageEventPage() {
                         </Card>
                          <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Remaining Capacity</CardTitle>
+                                <CardTitle className="text-sm font-medium">{t('agriEvents.manage.remainingCapacity')}</CardTitle>
                                 <Ticket className="h-4 w-4 text-muted-foreground" />
                             </CardHeader>
                             <CardContent>
-                                <div className="text-2xl font-bold">{event.attendeeLimit ? (event.attendeeLimit - attendees.length) : 'Unlimited'}</div>
+                                <div className="text-2xl font-bold">{event.attendeeLimit ? (event.attendeeLimit - attendees.length) : t('agriEvents.detail.unlimited')}</div>
                             </CardContent>
                         </Card>
                     </div>
@@ -433,7 +433,7 @@ export default function ManageEventPage() {
                     <div className="relative mb-4">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input 
-                        placeholder="Search attendees by name or email..." 
+                        placeholder={t('agriEvents.manage.searchPlaceholder')}
                         className="pl-10" 
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -443,11 +443,11 @@ export default function ManageEventPage() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Attendee</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Registered At</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Action</TableHead>
+                                <TableHead>{t('agriEvents.manage.table.attendee')}</TableHead>
+                                <TableHead>{t('agriEvents.manage.table.email')}</TableHead>
+                                <TableHead>{t('agriEvents.manage.table.registeredAt')}</TableHead>
+                                <TableHead>{t('agriEvents.manage.table.status')}</TableHead>
+                                <TableHead className="text-right">{t('agriEvents.manage.table.action')}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -467,22 +467,22 @@ export default function ManageEventPage() {
                                     <TableCell>
                                         {attendee.checkedIn ? (
                                             <Badge variant="default" className="bg-green-600 hover:bg-green-700">
-                                                <CheckCircle className="mr-1 h-3 w-3"/> Checked In
+                                                <CheckCircle className="mr-1 h-3 w-3"/> {t('agriEvents.manage.statusCheckedIn')}
                                             </Badge>
                                         ) : (
-                                            <Badge variant="secondary">Registered</Badge>
+                                            <Badge variant="secondary">{t('agriEvents.manage.statusRegistered')}</Badge>
                                         )}
                                     </TableCell>
                                     <TableCell className="text-right">
                                         {!attendee.checkedIn && (
-                                            <Button size="sm" onClick={() => handleCheckIn(attendee.id)}>Check In</Button>
+                                            <Button size="sm" onClick={() => handleCheckIn(attendee.id)}>{t('agriEvents.manage.checkInButton')}</Button>
                                         )}
                                     </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
-                     {filteredAttendees.length === 0 && <p className="text-center text-sm text-muted-foreground py-6">No attendees found.</p>}
+                     {filteredAttendees.length === 0 && <p className="text-center text-sm text-muted-foreground py-6">{t('agriEvents.manage.noAttendees')}</p>}
                 </TabsContent>
                 <TabsContent value="promotions" className="mt-4">
                     <PromotionsTab eventId={eventId} eventTitle={event.title} />

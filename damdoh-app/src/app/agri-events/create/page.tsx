@@ -39,8 +39,10 @@ import { uploadFileAndGetURL } from "@/lib/storage-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { format } from 'date-fns';
+import { useTranslation } from "react-i18next";
 
 export default function CreateAgriEventPage() {
+  const { t } = useTranslation('common');
   const { user } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -75,23 +77,23 @@ export default function CreateAgriEventPage() {
 
   async function onSubmit(data: CreateAgriEventValues) {
     if (!user) {
-      toast({ variant: "destructive", title: "Authentication Error", description: "You must be logged in to create an event." });
+      toast({ variant: "destructive", title: t('agriEvents.create.authErrorTitle'), description: t('agriEvents.create.authErrorDescription') });
       return;
     }
     setIsSubmitting(true);
     try {
       let uploadedImageUrl = data.imageUrl;
       if (data.imageFile) {
-        toast({ title: "Image Uploading...", description: "Please wait while your event banner is uploaded." });
+        toast({ title: t('agriEvents.create.uploadingTitle'), description: t('agriEvents.create.uploadingDescription') });
         uploadedImageUrl = await uploadFileAndGetURL(data.imageFile, `agri-events/${user.uid}`);
-        toast({ title: "Image Upload Complete!", variant: "default" });
+        toast({ title: t('agriEvents.create.uploadCompleteTitle'), variant: "default" });
       }
 
       const payload = {
         ...data,
         imageUrl: uploadedImageUrl,
-        imageFile: undefined, // Don't send the file object to the backend
-        eventDate: data.eventDate.toISOString(), // Convert date to string for backend
+        imageFile: undefined,
+        eventDate: data.eventDate.toISOString(),
         attendeeLimit: data.attendeeLimit ? Number(data.attendeeLimit) : null,
         price: data.price ? Number(data.price) : null,
       };
@@ -102,12 +104,12 @@ export default function CreateAgriEventPage() {
       setCreatedEvent({ id: newEvent.eventId, title: newEvent.title });
       setSubmissionStatus('success');
       toast({
-        title: "Event Created Successfully!",
-        description: `Your event "${data.title}" is now listed.`,
+        title: t('agriEvents.create.successTitle'),
+        description: t('agriEvents.create.successDescription', { title: data.title }),
       });
     } catch (error: any) {
       console.error("Error creating event:", error);
-      toast({ variant: "destructive", title: "Submission Failed", description: error.message || "An error occurred while saving the event." });
+      toast({ variant: "destructive", title: t('agriEvents.create.failTitle'), description: error.message || t('agriEvents.create.failDescription') });
       setSubmissionStatus('idle');
     } finally {
         setIsSubmitting(false);
@@ -123,7 +125,7 @@ export default function CreateAgriEventPage() {
   const handleShareLink = () => {
     if(!createdEvent) return;
     navigator.clipboard.writeText(`${window.location.origin}/agri-events/${createdEvent.id}`);
-    toast({ title: "Link Copied!", description: "Event link copied to clipboard." });
+    toast({ title: t('agriEvents.create.linkCopiedTitle'), description: t('agriEvents.create.linkCopiedDescription') });
   };
 
 
@@ -131,7 +133,7 @@ export default function CreateAgriEventPage() {
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href="/agri-events">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Agri-Business Events
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('agriEvents.create.backButton')}
         </Link>
       </Button>
 
@@ -141,35 +143,35 @@ export default function CreateAgriEventPage() {
                 <div className="mx-auto bg-green-100 dark:bg-green-900/30 rounded-full h-16 w-16 flex items-center justify-center">
                     <CheckCircle className="h-10 w-10 text-green-600" />
                 </div>
-                <CardTitle className="text-2xl pt-4">Event "{createdEvent.title}" Created!</CardTitle>
-                <CardDescription>Your event has been successfully listed. What would you like to do next?</CardDescription>
+                <CardTitle className="text-2xl pt-4">{t('agriEvents.create.successCardTitle', { title: createdEvent.title })}</CardTitle>
+                <CardDescription>{t('agriEvents.create.successCardDescription')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               <Button asChild className="w-full">
-                <Link href={`/agri-events/${createdEvent.id}/manage`}>Manage Event Registrations & Promotions</Link>
+                <Link href={`/agri-events/${createdEvent.id}/manage`}>{t('agriEvents.create.manageButton')}</Link>
               </Button>
             <Button 
               className="w-full" 
               variant="outline"
               onClick={handleShareLink}
             >
-              <Share2 className="mr-2 h-4 w-4" /> Share Event Link
+              <Share2 className="mr-2 h-4 w-4" /> {t('agriEvents.create.shareButton')}
             </Button>
           </CardContent>
           <CardFooter className="flex flex-col sm:flex-row gap-2 pt-4">
             <Button variant="outline" className="w-full sm:w-auto flex-1" onClick={handleCreateAnother}>
-              <RefreshCw className="mr-2 h-4 w-4" /> Create Another Event
+              <RefreshCw className="mr-2 h-4 w-4" /> {t('agriEvents.create.createAnotherButton')}
             </Button>
             <Button asChild className="w-full sm:w-auto flex-1">
-              <Link href="/agri-events">View All Events</Link>
+              <Link href="/agri-events">{t('agriEvents.create.viewAllButton')}</Link>
             </Button>
           </CardFooter>
         </Card>
       ) : (
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-2xl">Create New Agri-Business Event</CardTitle>
-            <CardDescription>Fill in the details below to list your conference, webinar, workshop, or other agricultural event.</CardDescription>
+            <CardTitle className="text-2xl">{t('agriEvents.create.formTitle')}</CardTitle>
+            <CardDescription>{t('agriEvents.create.formDescription')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -179,9 +181,9 @@ export default function CreateAgriEventPage() {
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><CaseUpper className="h-4 w-4 text-muted-foreground" />Event Title</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CaseUpper className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.titleLabel')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g., Annual Sustainable Agriculture Summit" {...field} />
+                        <Input placeholder={t('agriEvents.create.form.titlePlaceholder')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -193,10 +195,10 @@ export default function CreateAgriEventPage() {
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Detailed Description</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.descriptionLabel')}</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Provide details about the event, agenda, speakers, target audience, etc."
+                          placeholder={t('agriEvents.create.form.descriptionPlaceholder')}
                           className="min-h-[100px]"
                           {...field}
                         />
@@ -212,7 +214,7 @@ export default function CreateAgriEventPage() {
                     name="eventDate"
                     render={({ field }) => (
                       <FormItem className="flex flex-col">
-                        <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Event Date</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.dateLabel')}</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
                             <Button
@@ -223,7 +225,7 @@ export default function CreateAgriEventPage() {
                                 )}
                             >
                                 <CalendarIcon className="mr-2 h-4 w-4" />
-                                {field.value ? format(field.value, "PPP") : (<span>Pick a date</span>)}
+                                {field.value ? format(field.value, "PPP") : (<span>{t('agriEvents.create.form.datePlaceholder')}</span>)}
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
@@ -231,7 +233,7 @@ export default function CreateAgriEventPage() {
                               mode="single"
                               selected={field.value}
                               onSelect={field.onChange}
-                              disabled={(date) => date < new Date(new Date().setHours(0,0,0,0)) } // Disable past dates
+                              disabled={(date) => date < new Date(new Date().setHours(0,0,0,0)) }
                               initialFocus
                             />
                           </PopoverContent>
@@ -245,11 +247,11 @@ export default function CreateAgriEventPage() {
                     name="eventTime"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="flex items-center gap-2"><Clock className="h-4 w-4 text-muted-foreground" />Event Time (Optional)</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><Clock className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.timeLabel')}</FormLabel>
                         <FormControl>
-                          <Input type="time" placeholder="e.g., 14:30" {...field} />
+                          <Input type="time" placeholder={t('agriEvents.create.form.timePlaceholder')} {...field} />
                         </FormControl>
-                        <FormDescription>Use HH:MM format (e.g., 09:00 or 15:30)</FormDescription>
+                        <FormDescription>{t('agriEvents.create.form.timeDescription')}</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -261,13 +263,11 @@ export default function CreateAgriEventPage() {
                   name="location"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />Location</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.locationLabel')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g., Nairobi, Kenya or Online/Virtual" {...field} />
+                        <Input placeholder={t('agriEvents.create.form.locationPlaceholder')} {...field} />
                       </FormControl>
-                      <FormDescription>
-                        Specify the city, venue, or if it's an online event.
-                      </FormDescription>
+                      <FormDescription>{t('agriEvents.create.form.locationDescription')}</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -278,17 +278,17 @@ export default function CreateAgriEventPage() {
                   name="eventType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Tag className="h-4 w-4 text-muted-foreground" />Event Type</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><Tag className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.typeLabel')}</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select an event type" />
+                            <SelectValue placeholder={t('agriEvents.create.form.typePlaceholder')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           {AGRI_EVENT_TYPE_FORM_OPTIONS.map((option) => (
                             <SelectItem key={option.value} value={option.value}>
-                              {option.label}
+                              {t(`agriEvents.types.${option.value}`, option.label)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -303,9 +303,9 @@ export default function CreateAgriEventPage() {
                   name="organizer"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground" />Organizer (Optional)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.organizerLabel')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g., DamDoh Hub, Local Farmers Co-op" {...field} />
+                        <Input placeholder={t('agriEvents.create.form.organizerPlaceholder')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -317,7 +317,7 @@ export default function CreateAgriEventPage() {
                   name="websiteLink"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><LinkIcon className="h-4 w-4 text-muted-foreground" />Event Website/Registration Link (Optional)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><LinkIcon className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.websiteLabel')}</FormLabel>
                       <FormControl>
                         <Input type="url" placeholder="https://example.com/event-details" {...field} />
                       </FormControl>
@@ -332,10 +332,8 @@ export default function CreateAgriEventPage() {
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                       <div className="space-y-0.5">
-                        <FormLabel className="flex items-center gap-2"><Ticket className="h-4 w-4 text-muted-foreground"/>Enable DamDoh Registration</FormLabel>
-                        <FormDescription>
-                          Allow users to register for this event directly through DamDoh.
-                        </FormDescription>
+                        <FormLabel className="flex items-center gap-2"><Ticket className="h-4 w-4 text-muted-foreground"/>{t('agriEvents.create.form.enableRegLabel')}</FormLabel>
+                        <FormDescription>{t('agriEvents.create.form.enableRegDescription')}</FormDescription>
                       </div>
                       <FormControl>
                         <Switch
@@ -354,11 +352,11 @@ export default function CreateAgriEventPage() {
                       name="attendeeLimit"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground"/>Attendee Limit (Optional)</FormLabel>
+                          <FormLabel className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground"/>{t('agriEvents.create.form.attendeeLimitLabel')}</FormLabel>
                           <FormControl>
                             <Input type="number" placeholder="e.g., 100" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))} />
                           </FormControl>
-                          <FormDescription>Leave blank for unlimited attendees.</FormDescription>
+                          <FormDescription>{t('agriEvents.create.form.attendeeLimitDescription')}</FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -369,11 +367,11 @@ export default function CreateAgriEventPage() {
                             name="price"
                             render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='flex items-center gap-2'><DollarSign className="h-4 w-4 text-muted-foreground" />Price (Optional)</FormLabel>
+                                <FormLabel className='flex items-center gap-2'><DollarSign className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.priceLabel')}</FormLabel>
                                 <FormControl>
                                 <Input type="number" step="0.01" placeholder="e.g., 25.00" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
                                 </FormControl>
-                                <FormDescription>Leave blank for a free event.</FormDescription>
+                                <FormDescription>{t('agriEvents.create.form.priceDescription')}</FormDescription>
                                 <FormMessage />
                             </FormItem>
                             )}
@@ -383,11 +381,11 @@ export default function CreateAgriEventPage() {
                             name="currency"
                             render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Currency</FormLabel>
+                                <FormLabel>{t('agriEvents.create.form.currencyLabel')}</FormLabel>
                                 <FormControl>
                                 <Input placeholder="e.g., USD" {...field} />
                                 </FormControl>
-                                <FormDescription>3-letter code (e.g. KES).</FormDescription>
+                                <FormDescription>{t('agriEvents.create.form.currencyDescription')}</FormDescription>
                                 <FormMessage />
                             </FormItem>
                             )}
@@ -401,13 +399,11 @@ export default function CreateAgriEventPage() {
                   name="imageUrl"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Image URL (Optional)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.imageUrlLabel')}</FormLabel>
                       <FormControl>
                         <Input placeholder="https://your-image-host.com/event-banner.png" {...field} />
                       </FormControl>
-                       <FormDescription>
-                        Link to an image/banner for your event if it's hosted online.
-                      </FormDescription>
+                       <FormDescription>{t('agriEvents.create.form.imageUrlDescription')}</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -418,7 +414,7 @@ export default function CreateAgriEventPage() {
                   name="imageFile"
                   render={({ field: { onChange, value, ...rest } }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><UploadCloud className="h-4 w-4 text-muted-foreground" />Or Upload Image (Optional)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><UploadCloud className="h-4 w-4 text-muted-foreground" />{t('agriEvents.create.form.imageUploadLabel')}</FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-2">
                           <Input 
@@ -435,9 +431,7 @@ export default function CreateAgriEventPage() {
                           />
                         </div>
                       </FormControl>
-                       <FormDescription>
-                        Upload an image from your device (max 5MB, JPG/PNG/WEBP).
-                      </FormDescription>
+                       <FormDescription>{t('agriEvents.create.form.imageUploadDescription')}</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -446,11 +440,11 @@ export default function CreateAgriEventPage() {
                 <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('agriEvents.create.submittingButton')}
                     </>
                   ) : (
                     <>
-                      <Save className="mr-2 h-4 w-4" /> Create Event
+                      <Save className="mr-2 h-4 w-4" /> {t('agriEvents.create.submitButton')}
                     </>
                   )}
                 </Button>
