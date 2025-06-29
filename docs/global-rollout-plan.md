@@ -1,4 +1,3 @@
-
 # DamDoh: The Global Rollout Master Plan
 
 ## Overall Strategic Goal

@@ -16,8 +16,7 @@ This prompt is designed to analyze an uploaded image of a crop and identify pote
     *   `user_id`: ID of the farmer.
 
 **Prompt Example:**
-```
-text
+```text
 Analyze the provided image of a [crop_type] crop from [location] taken on [timestamp]. Identify any signs of pests or diseases present. Based on the identification, suggest possible causes and recommended solutions or treatments. Consider local conditions if possible.
 ```
 **Expected Output:**
@@ -52,8 +51,7 @@ This prompt provides comprehensive data about a farmer's specific context and re
 *   `farmer_observations`: Any specific observations or concerns from the farmer.
 
 **Prompt Example:**
-```
-text
+```text
 Provide personalized advice to optimize the growth of the [crop_type] crop on farm [farm_id] located at [location]. The crop was planted on [planting_date] and is currently in the [current_growth_stage] stage. Consider the following data:
 - Soil data: [soil_data]
 - Recent weather: [recent_weather_data]
@@ -77,8 +75,7 @@ This prompt represents a user's query to an AI-powered chatbot and requests a he
 *   `user_context`: (Optional) Information about the user's role, location, or interests to personalize the response.
 
 **Prompt Example:**
-```
-text
+```text
 The user [user_id] has asked: "[user_query]". Provide a helpful and informative response based on your agricultural knowledge. If the query is about a specific region, provide relevant information for that region. Keep the language clear and easy to understand.
 ```
 **Expected Output:**

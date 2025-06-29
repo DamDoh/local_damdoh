@@ -1,4 +1,3 @@
-
 # Plan: AI Assistant FGW & KNF Expert Enhancement
 
 This document outlines the detailed plan to transform the DamDoh AI Assistant into a specialized expert on Farming God's Way (FGW) and Korean Natural Farming (KNF). The goal is to provide users with precise, actionable instructions, including ingredient amounts, timings, and step-by-step guides.
@@ -202,4 +201,3 @@ Once implemented, test the enhanced AI with a variety of queries in the AI Assis
 *   **Conversational Follow-up:** "Okay, and how do I use it on my crops?"
 
 This plan provides a clear and robust path to significantly enhance the AI assistant's expertise, making it a highly valuable tool for your users.
-      
