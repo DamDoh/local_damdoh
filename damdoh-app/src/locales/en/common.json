@@ -34,7 +34,8 @@
     "signingInButton": "Signing In...",
     "noAccountPrompt": "Don't have an account?",
     "signUpLink": "Sign Up",
-    "alreadyHaveAccountPrompt": "Already have an account?"
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "confirmPasswordPlaceholder": "••••••••"
   },
   "signUpPage": {
     "welcome": "Join the {appName} Agricultural Network!",
@@ -150,9 +151,6 @@
       "point4": "Competitive compensation and benefits (Details coming soon).",
       "point5": "Flexible work arrangements for many roles."
     },
-    "openings": {
-      "title": "Current Openings"
-    },
     "job1": {
       "title": "Lead Agricultural Supply Chain Analyst",
       "location": "Remote / Global",
@@ -176,6 +174,9 @@
       "title": "No Current Openings",
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
+    },
+    "openings": {
+      "title": "Current Openings"
     }
   },
   "contact": {
@@ -231,5 +232,23 @@
       "title": "Promote Sustainable Practices",
       "description": "We encourage discussions and sharing of knowledge related to sustainable and regenerative agriculture. Support initiatives that improve soil health, biodiversity, and food security."
     }
+  },
+  "footer": {
+    "tagline": "Bridging the agricultural supply chain for a thriving people, profit, and planet.",
+    "companyTitle": "DamDoh",
+    "resourcesTitle": "Resources",
+    "legalTitle": "Legal",
+    "aboutLink": "About Us",
+    "contactLink": "Contact",
+    "careersLink": "Careers",
+    "blogLink": "Blog",
+    "helpCenterLink": "Help Center",
+    "guidelinesLink": "Community Guidelines",
+    "industryNewsLink": "Industry News",
+    "agriEventsLink": "Events",
+    "privacyLink": "Privacy Policy",
+    "termsLink": "Terms of Service",
+    "getAppTitle": "Get Our Mobile App",
+    "copyright": "© {currentYear} {appName}. All rights reserved."
   }
 }

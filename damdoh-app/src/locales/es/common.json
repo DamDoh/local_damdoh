@@ -34,7 +34,8 @@
     "signingInButton": "Iniciando Sesión...",
     "noAccountPrompt": "¿No tienes una cuenta?",
     "signUpLink": "Regístrate",
-    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?"
+    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
+    "confirmPasswordPlaceholder": "••••••••"
   },
   "signUpPage": {
     "welcome": "¡Únete a la Red Agrícola de {appName}!",
@@ -150,9 +151,6 @@
       "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
       "point5": "Arreglos de trabajo flexibles para muchos roles."
     },
-    "openings": {
-      "title": "Vacantes Actuales"
-    },
     "job1": {
       "title": "Analista Principal de Cadena de Suministro Agrícola",
       "location": "Remoto / Global",
@@ -176,6 +174,9 @@
       "title": "No Hay Vacantes Actuales",
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
+    },
+    "openings": {
+      "title": "Vacantes Actuales"
     }
   },
   "contact": {
@@ -231,5 +232,23 @@
       "title": "Promueve Prácticas Sostenibles",
       "description": "Fomentamos las discusiones y el intercambio de conocimientos relacionados con la agricultura sostenible y regenerativa. Apoya iniciativas que mejoren la salud del suelo, la biodiversidad y la seguridad alimentaria."
     }
+  },
+  "footer": {
+    "tagline": "Uniendo la cadena de suministro agrícola para un planeta, ganancias y gente prósperos.",
+    "companyTitle": "DamDoh",
+    "resourcesTitle": "Recursos",
+    "legalTitle": "Legal",
+    "aboutLink": "Sobre Nosotros",
+    "contactLink": "Contacto",
+    "careersLink": "Carreras",
+    "blogLink": "Blog",
+    "helpCenterLink": "Centro de Ayuda",
+    "guidelinesLink": "Normas de la Comunidad",
+    "industryNewsLink": "Noticias de la Industria",
+    "agriEventsLink": "Eventos",
+    "privacyLink": "Política de Privacidad",
+    "termsLink": "Términos de Servicio",
+    "getAppTitle": "Obtén Nuestra App Móvil",
+    "copyright": "© {currentYear} {appName}. Todos los derechos reservados."
   }
 }
