@@ -151,6 +151,9 @@
       "point4": "Competitive compensation and benefits (Details coming soon).",
       "point5": "Flexible work arrangements for many roles."
     },
+    "openings": {
+      "title": "Current Openings"
+    },
     "job1": {
       "title": "Lead Agricultural Supply Chain Analyst",
       "location": "Remote / Global",
@@ -174,9 +177,6 @@
       "title": "No Current Openings",
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
-    },
-    "openings": {
-      "title": "Current Openings"
     }
   },
   "contact": {
@@ -252,3 +252,5 @@
     "copyright": "© {currentYear} {appName}. All rights reserved."
   }
 }
+
+    

@@ -89,7 +89,7 @@ export default function CareersPage() {
                 <Briefcase className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
                 <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('careers.noOpenings.title')}</h3>
                 <p className="text-muted-foreground max-w-md">
-                  {t('careers.noOpenings.content1')} <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">{t('careers.noOpenings.email')}</a>.
+                  {t('careers.noOpenings.content1')} <a href={`mailto:${t('careers.noOpenings.email')}`} className="text-primary hover:underline">{t('careers.noOpenings.email')}</a>.
                 </p>
               </div>
             )}
@@ -99,3 +99,5 @@ export default function CareersPage() {
     </div>
   );
 }
+
+    

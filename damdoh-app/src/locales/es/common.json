@@ -151,6 +151,9 @@
       "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
       "point5": "Arreglos de trabajo flexibles para muchos roles."
     },
+    "openings": {
+      "title": "Vacantes Actuales"
+    },
     "job1": {
       "title": "Analista Principal de Cadena de Suministro Agrícola",
       "location": "Remoto / Global",
@@ -174,9 +177,6 @@
       "title": "No Hay Vacantes Actuales",
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
-    },
-    "openings": {
-      "title": "Vacantes Actuales"
     }
   },
   "contact": {
@@ -252,3 +252,5 @@
     "copyright": "© {currentYear} {appName}. Todos los derechos reservados."
   }
 }
+
+    
