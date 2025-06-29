@@ -15,6 +15,7 @@ import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { STAKEHOLDER_ICONS } from '@/lib/stakeholder-icons';
+import { useTranslation } from 'react-i18next';
 
 // Define types for the data we expect from the backend
 interface TraceabilityEvent {
@@ -89,6 +90,7 @@ const TraceabilitySkeleton = () => (
 );
 
 export default function TraceabilityBatchDetailPage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const batchId = params.batchId as string;
   
@@ -132,10 +134,10 @@ export default function TraceabilityBatchDetailPage() {
     return (
         <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
+            <AlertTitle>{t('error')}</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
             <Button asChild variant="secondary" className="mt-4">
-                <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link>
+                <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('traceabilityDetailPage.backLink')}</Link>
             </Button>
         </Alert>
     );
@@ -145,8 +147,8 @@ export default function TraceabilityBatchDetailPage() {
      return (
         <Alert>
             <Info className="h-4 w-4" />
-            <AlertTitle>Not Found</AlertTitle>
-            <AlertDescription>The traceability history for this batch could not be found.</AlertDescription>
+            <AlertTitle>{t('traceabilityDetailPage.notFoundTitle')}</AlertTitle>
+            <AlertDescription>{t('traceabilityDetailPage.notFoundDescription')}</AlertDescription>
         </Alert>
      );
   }
@@ -161,7 +163,7 @@ export default function TraceabilityBatchDetailPage() {
     <div className="space-y-6 max-w-4xl mx-auto">
       <Button asChild variant="outline" className="mb-4">
         <Link href="/marketplace">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Marketplace
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('traceabilityDetailPage.backLink')}
         </Link>
       </Button>
 
@@ -171,9 +173,9 @@ export default function TraceabilityBatchDetailPage() {
             <div className="flex items-start gap-3">
               <GitBranch className="h-10 w-10 text-primary mt-1" />
               <div>
-                <CardTitle className="text-2xl">{vti.metadata?.cropType || 'Traceable Product'}</CardTitle>
+                <CardTitle className="text-2xl">{vti.metadata?.cropType || t('traceabilityDetailPage.traceableProduct')}</CardTitle>
                 <CardDescription>
-                  VTI Batch ID: <span className="font-mono bg-muted p-1 rounded-sm text-xs">{vti.id}</span>
+                  {t('traceabilityDetailPage.batchIdLabel')}: <span className="font-mono bg-muted p-1 rounded-sm text-xs">{vti.id}</span>
                 </CardDescription>
               </div>
             </div>
@@ -184,7 +186,7 @@ export default function TraceabilityBatchDetailPage() {
                     <AvatarFallback>{producer.name.substring(0,1)}</AvatarFallback>
                 </Avatar>
                 <div>
-                    <p className="text-xs text-muted-foreground">Producer</p>
+                    <p className="text-xs text-muted-foreground">{t('traceabilityDetailPage.producerLabel')}</p>
                     <p className="font-semibold text-sm">{producer.name}</p>
                 </div>
               </div>
@@ -194,15 +196,15 @@ export default function TraceabilityBatchDetailPage() {
         <CardContent className="border-t pt-6">
             <div className="grid md:grid-cols-3 gap-4 text-sm">
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> Harvest Date</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> {t('traceabilityDetailPage.harvestDateLabel')}</p>
                     <p className="font-semibold text-lg">{harvestEvent ? format(new Date(harvestEvent.timestamp), 'PPP') : 'N/A'}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Weight className="h-4 w-4"/> Initial Yield</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Weight className="h-4 w-4"/> {t('traceabilityDetailPage.yieldLabel')}</p>
                     <p className="font-semibold text-lg">{vti.metadata?.initialYieldKg ? `${vti.metadata.initialYieldKg} kg` : 'N/A'}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> Quality Grade</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> {t('traceabilityDetailPage.qualityLabel')}</p>
                     <p className="font-semibold text-lg">{vti.metadata?.initialQualityGrade || 'Not Specified'}</p>
                 </div>
             </div>
@@ -211,8 +213,8 @@ export default function TraceabilityBatchDetailPage() {
       
       <Card>
         <CardHeader>
-            <CardTitle>Journey of this Batch</CardTitle>
-            <CardDescription>A chronological history of key events for this product from farm to market.</CardDescription>
+            <CardTitle>{t('traceabilityDetailPage.journeyTitle')}</CardTitle>
+            <CardDescription>{t('traceabilityDetailPage.journeyDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
             {events.length > 0 ? (
@@ -252,7 +254,7 @@ export default function TraceabilityBatchDetailPage() {
                                                     return <li key={key} className="truncate"><strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {String(value)}</li>
                                                 })}
                                                 {event.geoLocation && (
-                                                    <li className="flex items-center gap-1 pt-1"><MapPin className="h-3 w-3"/> Geo-location: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}</li>
+                                                    <li className="flex items-center gap-1 pt-1"><MapPin className="h-3 w-3"/>{t('traceabilityDetailPage.geoLocationLabel')}: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}</li>
                                                 )}
                                             </ul>
                                         </CardContent>

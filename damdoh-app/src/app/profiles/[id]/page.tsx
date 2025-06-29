@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, Star, FileText } from "lucide-react";
 import React from 'react';
+import { useTranslation } from "react-i18next";
 
 
 function ProfileSkeleton() {
@@ -55,6 +56,7 @@ function ProfileSkeleton() {
 }
 
 export default function ProfileDetailPage() {
+  const { t } = useTranslation('common');
   const params = useParams();
   const router = useRouter();
   const { user: authUser, loading: authLoading } = useAuth();
