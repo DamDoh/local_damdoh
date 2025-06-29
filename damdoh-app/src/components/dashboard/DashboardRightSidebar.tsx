@@ -13,6 +13,7 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import type { StakeholderRole } from "@/lib/constants";
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import React from 'react';
+import { useTranslation } from "react-i18next";
 
 interface AISuggestion {
   id: string;
@@ -24,6 +25,7 @@ interface AISuggestion {
 }
 
 export function DashboardRightSidebar() {
+  const { t } = useTranslation('common');
   const [followedSuggestions, setFollowedSuggestions] = useState<Set<string>>(new Set());
   const [aiSuggestions, setAiSuggestions] = useState<AISuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
@@ -32,7 +34,7 @@ export function DashboardRightSidebar() {
   const { profile, loading: loadingProfile } = useUserProfile();
 
   const fetchSuggestions = useCallback(async () => {
-    if (!profile) return; // Wait until the user profile is loaded
+    if (!profile) return; 
 
     setIsLoadingSuggestions(true);
     setSuggestionError(null);
@@ -54,16 +56,16 @@ export function DashboardRightSidebar() {
         })));
       } else {
         setAiSuggestions([]);
-        setSuggestionError("No suggestions received from AI.");
+        setSuggestionError(t('dashboard.rightSidebar.errorNoSuggestions'));
       }
     } catch (error) {
       console.error("Error fetching AI suggestions:", error);
-      setSuggestionError("Failed to load suggestions. Please try again.");
+      setSuggestionError(t('dashboard.rightSidebar.errorFailedLoad'));
       setAiSuggestions([]);
     } finally {
       setIsLoadingSuggestions(false);
     }
-  }, [profile]);
+  }, [profile, t]);
 
   useEffect(() => {
     if (!loadingProfile && profile) {
@@ -105,7 +107,7 @@ export function DashboardRightSidebar() {
     }
 
     if (aiSuggestions.length === 0) {
-      return <p className="text-sm text-muted-foreground text-center py-4">No new suggestions at the moment.</p>;
+      return <p className="text-sm text-muted-foreground text-center py-4">{t('dashboard.rightSidebar.noNewSuggestions')}</p>;
     }
 
     return aiSuggestions.map(sug => {
@@ -134,10 +136,10 @@ export function DashboardRightSidebar() {
               disabled={followedSuggestions.has(sug.id)}
             >
               {followedSuggestions.has(sug.id) ? (
-                "Following"
+                t('dashboard.rightSidebar.following')
               ) : (
                 <>
-                  <Plus className="mr-1 h-3 w-3" /> Follow
+                  <Plus className="mr-1 h-3 w-3" /> {t('dashboard.rightSidebar.follow')}
                 </>
               )}
             </Button>
@@ -152,9 +154,9 @@ export function DashboardRightSidebar() {
     <div className="space-y-4 sticky top-20">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <CardTitle className="text-md font-semibold">Grow Your Network</CardTitle>
+          <CardTitle className="text-md font-semibold">{t('dashboard.rightSidebar.title')}</CardTitle>
           <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={fetchSuggestions} className="h-7 w-7" title="Refresh Suggestions" disabled={isLoadingSuggestions}>
+            <Button variant="ghost" size="icon" onClick={fetchSuggestions} className="h-7 w-7" title={t('dashboard.rightSidebar.refreshTooltip')} disabled={isLoadingSuggestions}>
               <RefreshCw className={`h-4 w-4 ${isLoadingSuggestions ? 'animate-spin' : ''}`} />
             </Button>
             <Info className="h-4 w-4 text-muted-foreground cursor-pointer ml-1" />
@@ -167,7 +169,7 @@ export function DashboardRightSidebar() {
           {!isLoadingSuggestions && aiSuggestions.length > 0 && (
              <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2" asChild>
                 <Link href="/network">
-                View all recommendations <ArrowRight className="ml-1 h-3 w-3" />
+                {t('dashboard.rightSidebar.viewAll')} <ArrowRight className="ml-1 h-3 w-3" />
                 </Link>
             </Button>
           )}
@@ -177,9 +179,9 @@ export function DashboardRightSidebar() {
       <Card className="overflow-hidden">
         <CardContent className="p-0">
           <div className="p-2 text-right">
-            <span className="text-xs text-muted-foreground">Ad <MoreHorizontalIcon className="inline h-3 w-3" /></span>
+            <span className="text-xs text-muted-foreground">{t('dashboard.rightSidebar.ad')} <MoreHorizontalIcon className="inline h-3 w-3" /></span>
           </div>
-          <p className="text-xs text-muted-foreground text-center px-4">Stay ahead with DamDoh Market Trends!</p>
+          <p className="text-xs text-muted-foreground text-center px-4">{t('dashboard.rightSidebar.adSlogan')}</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
             <Avatar className="h-12 w-12">
                 <AvatarImage src="https://placehold.co/50x50.png" alt="DamDoh Market Trends Ad" data-ai-hint="market chart agriculture"/>
@@ -187,10 +189,10 @@ export function DashboardRightSidebar() {
             </Avatar>
              <TrendingUp className="h-10 w-10 text-primary" />
           </div>
-          <p className="text-sm font-semibold text-center px-4 my-1">Get exclusive insights on commodity prices and supply chain dynamics.</p>
+          <p className="text-sm font-semibold text-center px-4 my-1">{t('dashboard.rightSidebar.adTitle')}</p>
           <div className="px-4 py-3">
             <Button variant="outline" className="w-full" asChild>
-              <Link href="/industry-news">Explore DamDoh Pro Trends</Link>
+              <Link href="/industry-news">{t('dashboard.rightSidebar.adButton')}</Link>
             </Button>
           </div>
         </CardContent>
