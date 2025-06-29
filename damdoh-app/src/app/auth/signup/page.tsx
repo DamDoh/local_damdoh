@@ -28,7 +28,7 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare, Tractor, Building2 } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare, Tractor, Building2, Medal, Shield } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
@@ -57,32 +57,28 @@ export default function SignUpPage() {
   const STAKEHOLDER_ICONS: Record<string, React.ElementType> = {
     'Farmer': Sprout,
     'Agricultural Cooperative': Building2,
-    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
-    'Financial Institution (Micro-finance/Loans)': Banknote,
-    'Logistics Partner (Third-Party Transporter)': Truck,
-    'Processing & Packaging Unit': Factory,
-    'Agro-Export Facilitator/Customs Broker': TrendingUp,
-    'Government Regulator/Auditor': Scale,
     'Field Agent/Agronomist (DamDoh Internal)': Compass,
     'Operations/Logistics Team (DamDoh Internal)': Truck,
-    'Technology/Data Team (DamDoh Internal)': Bolt,
-    'Community Manager (DamDoh Internal)': Users,
-    'Agro-Tourism Operator': Globe,
-    'Researcher/Academic': BookOpen,
-    'Extension Worker': MessageSquare,
-    'NGO/Development Partner': Network,
-    'Environmental Specialist': Recycle,
-    'Crowdfunder (Impact Investor, Individual)': Banknote,
     'Quality Assurance Team (DamDoh Internal)': Clipboard,
+    'Processing & Packaging Unit': Factory,
+    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
     'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
-    'Certification Body (Organic, Fair Trade etc.)': Scale,
+    'Financial Institution (Micro-finance/Loans)': Landmark,
+    'Government Regulator/Auditor': Scale,
+    'Certification Body (Organic, Fair Trade etc.)': Medal,
     'Consumer': User,
+    'Researcher/Academic': BookOpen,
+    'Logistics Partner (Third-Party Transporter)': Truck,
     'Storage/Warehouse Facility': Warehouse,
     'Agronomy Expert/Consultant (External)': BookOpen,
-    'Waste Management & Compost Facility': Recycle,
+    'Agro-Tourism Operator': Globe,
+    'Energy Solutions Provider (Solar, Biogas)': Bolt,
+    'Agro-Export Facilitator/Customs Broker': TrendingUp,
     'Agri-Tech Innovator/Developer': Lightbulb,
-    'Insurance Provider': ShieldCheck,
+    'Waste Management & Compost Facility': Recycle,
+    'Crowdfunder (Impact Investor, Individual)': Banknote,
+    'Insurance Provider': Shield,
   };
 
   async function onSubmit(data: SignUpValues) {
