@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import './globals.css';
 import { AppHeader } from "@/components/layout/AppHeader";
@@ -26,14 +27,12 @@ export default function RootLayout({
       <body>
         <Providers>
           <div className="flex flex-col min-h-screen">
-            <div className="flex-grow">
-              <AppHeader />
-              <main className="container mx-auto max-w-screen-2xl px-4 py-6 md:px-6 lg:px-8 print:p-0">
-                {children}
-              </main>
-              {/* Spacer for mobile bottom nav */}
-              <div className="md:hidden h-16" />
-            </div>
+            <AppHeader />
+            <main className="flex-grow container mx-auto max-w-screen-2xl px-4 py-6 md:px-6 lg:px-8 print:p-0">
+              {children}
+            </main>
+            {/* Spacer for mobile bottom nav */}
+            <div className="md:hidden h-16" />
             <MobileBottomNavigation />
             <AppFooter />
             <Toaster />

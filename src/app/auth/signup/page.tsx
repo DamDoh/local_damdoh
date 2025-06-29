@@ -80,9 +80,9 @@ export default function SignUpPage() {
     'Consumer': User,
     'Storage/Warehouse Facility': Warehouse,
     'Agronomy Expert/Consultant (External)': BookOpen,
-    'Retailer/City Market Seller': ShoppingBag,
     'Waste Management & Compost Facility': Recycle,
     'Agri-Tech Innovator/Developer': Lightbulb,
+    'Insurance Provider': ShieldCheck,
   };
 
   async function onSubmit(data: SignUpValues) {
