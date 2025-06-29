@@ -88,6 +88,150 @@
       "suggestion1": "¿Cómo hago Aminoácido de Pescado?",
       "suggestion2": "¿Qué es la 'Manta de Dios' en Agricultura a la Manera de Dios?",
       "suggestion3": "¿Cómo puedo mejorar la salud de mi suelo?"
+    },
+    "knowledgeTitle": "Conocimiento de IA de {appName}",
+    "playAudio": "Reproducir Audio",
+    "audioPlaybackComingSoon": "¡La función de reproducción de audio llegará pronto!",
+    "imagePreviewAlt": "Vista previa de la imagen subida",
+    "analyzeImage": "Por favor analiza esta imagen.",
+    "emptyQuery": "Consulta vacía",
+    "errorSummary": "Lo siento, encontré un error al procesar tu solicitud. Por favor, inténtalo de nuevo.",
+    "capture": "Capturar",
+    "closeCamera": "Cerrar Cámara",
+    "toast": {
+      "cameraAccessDeniedTitle": "Acceso a la Cámara Denegado",
+      "cameraAccessDeniedDescription": "Para usar la cámara para diagnósticos, por favor activa los permisos de cámara en la configuración de tu navegador y actualiza.",
+      "cameraNotSupportedTitle": "Cámara no Soportada",
+      "cameraNotSupportedDescription": "Tu navegador no soporta el acceso a la cámara.",
+      "chatResetTitle": "Chat Reiniciado",
+      "chatResetDescription": "La conversación ha sido borrada.",
+      "analyzingImageTitle": "Analizando Imagen...",
+      "analyzingImageDescription": "Nuestra IA está revisando tu foto. Por favor espera."
+    }
+  },
+  "settingsPage": {
+    "title": "Ajustes",
+    "description": "Gestiona tu cuenta, perfil agrícola y preferencias de la plataforma.",
+    "tabs": {
+      "profile": "Perfil",
+      "account": "Cuenta",
+      "notifications": "Notificaciones",
+      "privacy": "Privacidad",
+      "appearance": "Apariencia"
+    },
+    "profileTab": {
+      "title": "Ajustes del Perfil de Actor",
+      "description": "Actualiza tu información pública para la red de la cadena de suministro agrícola.",
+      "nameLabel": "Nombre Completo / Nombre de la Organización",
+      "emailLabel": "Correo de Contacto",
+      "emailDescription": "El correo no se puede cambiar aquí ya que está ligado a tu inicio de sesión.",
+      "roleLabel": "Rol Principal en la Cadena de Suministro",
+      "rolePlaceholder": "Selecciona tu rol principal",
+      "summaryLabel": "Resumen del Perfil / Titular",
+      "summaryPlaceholder": "Ej: Exportador de café de comercio justo, especializado en granos de África Oriental...",
+      "bioLabel": "Biografía Detallada / Sobre Tu Organización",
+      "bioPlaceholder": "Comparte más sobre tus operaciones, misión, productos, servicios o lo que buscas en la cadena de suministro...",
+      "interestsLabel": "Áreas de Interés / Especialidades (separado por comas)",
+      "interestsPlaceholder": "Ej: Agricultura orgánica, logística de la cadena de suministro, exportación, procesamiento de anacardos",
+      "needsLabel": "Actualmente Buscando / Ofreciendo (separado por comas)",
+      "needsPlaceholder": "Ej: Compradores de granos de cacao, espacio de almacenamiento, consultoría en agronomía",
+      "commaSeparated": "Lista separada por comas.",
+      "saveButton": "Guardar Cambios del Perfil"
+    },
+    "accountTab": {
+      "title": "Ajustes de Cuenta",
+      "description": "Gestiona tus credenciales de inicio de sesión y la seguridad de tu cuenta.",
+      "currentPassword": "Contraseña Actual",
+      "newPassword": "Nueva Contraseña",
+      "confirmPassword": "Confirmar Nueva Contraseña",
+      "changePasswordButton": "Cambiar Contraseña",
+      "deactivateButton": "Desactivar Cuenta"
+    },
+    "notificationsTab": {
+      "title": "Ajustes de Notificaciones",
+      "description": "Elige cómo quieres ser notificado sobre la actividad de la cadena de suministro y actualizaciones de la plataforma.",
+      "emailDigest": {
+        "title": "Resumen por Correo Electrónico",
+        "description": "Recibe un resumen de actualizaciones importantes, noticias de mercado y solicitudes de conexión."
+      },
+      "connectionRequests": {
+        "title": "Nuevas Solicitudes de Conexión",
+        "description": "Notificarme en la app y opcionalmente por correo para nuevas solicitudes de conexión."
+      },
+      "forumMentions": {
+        "title": "Contribuciones y Menciones en el Foro",
+        "description": "Notificarme de respuestas a mis publicaciones en el foro o cuando me mencionen."
+      },
+      "marketplaceActivity": {
+        "title": "Actividad del Mercado",
+        "description": "Notificarme sobre consultas en mis listados o actualizaciones de búsquedas guardadas."
+      },
+      "jobListings": {
+        "title": "Actualizaciones del Mercado (Trabajos, Servicios, etc.)",
+        "description": "Notificarme sobre postulaciones a mis listados de trabajo/servicio u ofertas relevantes."
+      },
+      "saveButton": "Guardar Ajustes de Notificación"
+    },
+    "privacyTab": {
+      "title": "Ajustes de Privacidad y Visibilidad",
+      "description": "Controla quién puede ver tu perfil agrícola y tu actividad en la cadena de suministro.",
+      "profileVisibility": {
+        "title": "Visibilidad del Perfil",
+        "description": "Controla quién puede ver los detalles completos de tu perfil de actor.",
+        "optionAll": "Todos los Miembros de DamDoh",
+        "optionConnections": "Solo Mis Conexiones",
+        "optionPrivate": "Solo Yo (No recomendado)"
+      },
+      "connectionRequests": {
+        "title": "Solicitudes de Conexión",
+        "description": "Controla quién puede enviarte solicitudes de conexión.",
+        "optionAll": "Todos los Miembros de DamDoh",
+        "optionConnectionsOfConnections": "Conexiones de Conexiones"
+      },
+      "contactVisibility": {
+        "title": "Visibilidad de la Información de Contacto",
+        "description": "Controla quién ve tu correo, teléfono o sitio web si los proporcionas.",
+        "optionAll": "Todos los Miembros de DamDoh",
+        "optionConnections": "Solo Mis Conexiones"
+      },
+      "activityStatus": {
+        "title": "Estado de Actividad",
+        "description": "Permite que otros vean cuándo estás en línea o cuándo fue tu última actividad."
+      },
+      "searchIndexing": {
+        "title": "Indexación en Motores de Búsqueda Externos",
+        "description": "Permite que los motores de búsqueda (ej. Google) enlacen a tu perfil de DamDoh (solo partes públicas)."
+      },
+      "saveButton": "Guardar Ajustes de Privacidad",
+      "consentManagement": {
+        "title": "Gestión de Consentimiento de Datos",
+        "description": "Gestiona cómo se usan y comparten tus datos con otros actores o servicios integrados.",
+        "marketplaceHistory": {
+          "title": "Historial del Mercado para Servicios Financieros",
+          "description": "Permite que las Instituciones Financieras vean tu historial de ventas cuando solicitas un préstamo o servicio, para evaluar tu elegibilidad."
+        },
+        "traceabilityData": {
+          "title": "Datos de Trazabilidad Públicos",
+          "description": "Permite que los compradores vean el registro de trazabilidad público de los productos que has listado, construyendo confianza y transparencia."
+        },
+        "applicationData": {
+          "title": "Recomendaciones de Servicios por IA",
+          "description": "Permite que la IA de DamDoh analice los datos de tu solicitud para recomendarte otros productos o servicios financieros relevantes."
+        }
+      },
+      "consentSaveButton": "Guardar Consentimientos"
+    },
+    "appearanceTab": {
+      "title": "Apariencia",
+      "description": "Personaliza el aspecto y la sensación de la plataforma DamDoh.",
+      "theme": {
+        "title": "Tema",
+        "description": "Selecciona tu tema preferido (Claro/Oscuro)."
+      },
+      "language": {
+        "title": "Idioma",
+        "description": "Elige tu idioma preferido para la interfaz."
+      }
     }
   },
   "about": {
@@ -252,5 +396,3 @@
     "copyright": "© {currentYear} {appName}. Todos los derechos reservados."
   }
 }
-
-    

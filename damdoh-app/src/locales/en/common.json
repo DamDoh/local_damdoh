@@ -88,6 +88,150 @@
       "suggestion1": "How do I make Fish Amino Acid?",
       "suggestion2": "What is 'God's Blanket' in Farming God's Way?",
       "suggestion3": "How can I improve my soil health?"
+    },
+    "knowledgeTitle": "{appName} AI's Knowledge",
+    "playAudio": "Play Audio",
+    "audioPlaybackComingSoon": "Audio playback feature coming soon!",
+    "imagePreviewAlt": "User upload preview",
+    "analyzeImage": "Please analyze this image.",
+    "emptyQuery": "Empty query",
+    "errorSummary": "Sorry, I encountered an error trying to process your request. Please try again.",
+    "capture": "Capture",
+    "closeCamera": "Close Camera",
+    "toast": {
+      "cameraAccessDeniedTitle": "Camera Access Denied",
+      "cameraAccessDeniedDescription": "To use the camera for diagnosis, please enable camera permissions in your browser settings and refresh.",
+      "cameraNotSupportedTitle": "Camera Not Supported",
+      "cameraNotSupportedDescription": "Your browser does not support camera access.",
+      "chatResetTitle": "Chat Reset",
+      "chatResetDescription": "The conversation has been cleared.",
+      "analyzingImageTitle": "Analyzing Image...",
+      "analyzingImageDescription": "Our AI is looking at your photo. Please wait."
+    }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account, agricultural profile, and platform preferences.",
+    "tabs": {
+      "profile": "Profile",
+      "account": "Account",
+      "notifications": "Notifications",
+      "privacy": "Privacy",
+      "appearance": "Appearance"
+    },
+    "profileTab": {
+      "title": "Stakeholder Profile Settings",
+      "description": "Update your public information for the agricultural supply chain network.",
+      "nameLabel": "Full Name / Organization Name",
+      "emailLabel": "Contact Email",
+      "emailDescription": "Email cannot be changed here as it's tied to your login.",
+      "roleLabel": "Primary Role in Supply Chain",
+      "rolePlaceholder": "Select your primary role",
+      "summaryLabel": "Profile Summary / Headline",
+      "summaryPlaceholder": "e.g., Exporter of fair-trade coffee, specializing in East African beans...",
+      "bioLabel": "Detailed Bio / About Your Organization",
+      "bioPlaceholder": "Share more about your operations, mission, products, services, or what you're seeking in the supply chain...",
+      "interestsLabel": "Areas of Interest / Specialties (comma-separated)",
+      "interestsPlaceholder": "e.g., Organic farming, Supply chain logistics, Export, Cashew processing",
+      "needsLabel": "Currently Seeking / Offering (comma-separated)",
+      "needsPlaceholder": "e.g., Buyers for cocoa beans, Warehousing space, Agronomy consulting",
+      "commaSeparated": "Comma-separated list.",
+      "saveButton": "Save Profile Changes"
+    },
+    "accountTab": {
+      "title": "Account Settings",
+      "description": "Manage your login credentials and account security.",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "changePasswordButton": "Change Password",
+      "deactivateButton": "Deactivate Account"
+    },
+    "notificationsTab": {
+      "title": "Notification Settings",
+      "description": "Choose how you want to be notified about supply chain activity and platform updates.",
+      "emailDigest": {
+        "title": "Email Notifications Digest",
+        "description": "Receive a summary of important updates, market news, and connection requests."
+      },
+      "connectionRequests": {
+        "title": "New Connection Requests",
+        "description": "Notify me in-app and optionally by email for new stakeholder connection requests."
+      },
+      "forumMentions": {
+        "title": "Forum Contributions & Mentions",
+        "description": "Notify me for replies to my forum posts or when I'm mentioned."
+      },
+      "marketplaceActivity": {
+        "title": "Marketplace Activity",
+        "description": "Notify me about inquiries on my listings or updates to saved searches."
+      },
+      "jobListings": {
+        "title": "Merged Marketplace Updates (Jobs, Services, etc.)",
+        "description": "Notify me about applications to my job/service listings or new relevant offerings."
+      },
+      "saveButton": "Save Notification Settings"
+    },
+    "privacyTab": {
+      "title": "Privacy & Visibility Settings",
+      "description": "Control who can see your agricultural profile and supply chain activity.",
+      "profileVisibility": {
+        "title": "Profile Visibility",
+        "description": "Control who can view your full stakeholder profile details.",
+        "optionAll": "All DamDoh Members",
+        "optionConnections": "My Connections Only",
+        "optionPrivate": "Only Me (Not Recommended)"
+      },
+      "connectionRequests": {
+        "title": "Connection Requests",
+        "description": "Control who can send you connection requests.",
+        "optionAll": "All DamDoh Members",
+        "optionConnectionsOfConnections": "Connections of Connections"
+      },
+      "contactVisibility": {
+        "title": "Business/Contact Information Visibility",
+        "description": "Control who sees your email, phone, or website if provided.",
+        "optionAll": "All DamDoh Members",
+        "optionConnections": "My Connections Only"
+      },
+      "activityStatus": {
+        "title": "Activity Status",
+        "description": "Let others see when you are online or last active."
+      },
+      "searchIndexing": {
+        "title": "External Search Engine Indexing",
+        "description": "Allow search engines (e.g., Google) to link to your DamDoh profile (public parts only)."
+      },
+      "saveButton": "Save Privacy Settings",
+      "consentManagement": {
+        "title": "Data Consent Management",
+        "description": "Manage how your data is used and shared with other stakeholders or integrated services.",
+        "marketplaceHistory": {
+          "title": "Marketplace History for Financial Services",
+          "description": "Allows Financial Institutions to view your sales history when you apply for a loan or service, to assess your eligibility."
+        },
+        "traceabilityData": {
+          "title": "Public Traceability Data",
+          "description": "Allows buyers to view the public traceability log of products you have listed, building trust and transparency."
+        },
+        "applicationData": {
+          "title": "AI-Powered Service Recommendations",
+          "description": "Allow DamDoh's AI to analyze your application data to recommend other relevant financial products or services to you."
+        }
+      },
+      "consentSaveButton": "Save Consent Settings"
+    },
+    "appearanceTab": {
+      "title": "Appearance",
+      "description": "Customize the look and feel of the DamDoh platform.",
+      "theme": {
+        "title": "Theme",
+        "description": "Select your preferred theme (Light/Dark)."
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose your preferred language for the interface."
+      }
     }
   },
   "about": {
@@ -252,5 +396,3 @@
     "copyright": "© {currentYear} {appName}. All rights reserved."
   }
 }
-
-    
