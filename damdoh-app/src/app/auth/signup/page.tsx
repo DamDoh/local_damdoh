@@ -28,9 +28,9 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare, Tractor, Building2, Medal, Shield } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Users } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
+import { APP_NAME, STAKEHOLDER_ROLES, STAKEHOLDER_ICONS } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -52,34 +52,6 @@ export default function SignUpPage() {
       confirmPassword: "",
     },
   });
-
-  // Mapping of stakeholder roles to Lucide icons
-  const STAKEHOLDER_ICONS: Record<string, React.ElementType> = {
-    'Farmer': Sprout,
-    'Agricultural Cooperative': Building2,
-    'Field Agent/Agronomist (DamDoh Internal)': Compass,
-    'Operations/Logistics Team (DamDoh Internal)': Truck,
-    'Quality Assurance Team (DamDoh Internal)': Clipboard,
-    'Processing & Packaging Unit': Factory,
-    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
-    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
-    'Financial Institution (Micro-finance/Loans)': Landmark,
-    'Government Regulator/Auditor': Scale,
-    'Certification Body (Organic, Fair Trade etc.)': Medal,
-    'Consumer': User,
-    'Researcher/Academic': BookOpen,
-    'Logistics Partner (Third-Party Transporter)': Truck,
-    'Storage/Warehouse Facility': Warehouse,
-    'Agronomy Expert/Consultant (External)': BookOpen,
-    'Agro-Tourism Operator': Globe,
-    'Energy Solutions Provider (Solar, Biogas)': Bolt,
-    'Agro-Export Facilitator/Customs Broker': TrendingUp,
-    'Agri-Tech Innovator/Developer': Lightbulb,
-    'Waste Management & Compost Facility': Recycle,
-    'Crowdfunder (Impact Investor, Individual)': Banknote,
-    'Insurance Provider': Shield,
-  };
 
   async function onSubmit(data: SignUpValues) {
     setIsLoading(true);
@@ -168,12 +140,17 @@ export default function SignUpPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {STAKEHOLDER_ROLES.map((role) => (
-                          <SelectItem key={role} value={role} className="flex items-center gap-2">
-                             {React.createElement(STAKEHOLDER_ICONS[role] || Users, { className: "mr-2 h-4 w-4 text-muted-foreground" })}
-                            <span>{role}</span>
+                        {STAKEHOLDER_ROLES.map((role) => {
+                          const Icon = STAKEHOLDER_ICONS[role] || Users;
+                          return (
+                          <SelectItem key={role} value={role}>
+                            <div className="flex items-center gap-2">
+                              <Icon className="h-4 w-4 text-muted-foreground" />
+                              <span>{role}</span>
+                            </div>
                           </SelectItem>
-                        ))}
+                          )
+                        })}
                       </SelectContent>
                     </Select>
                     <FormMessage />
