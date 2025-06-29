@@ -235,5 +235,72 @@
         "description": "Elige tu idioma preferido para la interfaz."
       }
     }
+  },
+  "communityGuidelines": {
+    "title": "Directrices de la Comunidad DamDoh",
+    "subtitle": "Nuestro compromiso de fomentar un entorno seguro, respetuoso y productivo para todos los actores agrícolas.",
+    "intro": "¡Bienvenido a DamDoh! Al unirte a nuestra plataforma, aceptas cumplir estas directrices para garantizar una experiencia positiva para todos. Las infracciones pueden resultar en la eliminación de contenido, la suspensión de la cuenta u otras acciones que se consideren necesarias.",
+    "guideline1": {
+      "title": "Sé Respetuoso y Constructivo",
+      "description": "Trata a todos los miembros de la comunidad DamDoh con respeto. Participa en discusiones constructivas, comparte conocimientos de manera positiva y evita ataques personales, acoso o discursos de odio."
+    },
+    "guideline2": {
+      "title": "Mantén la Autenticidad y la Transparencia",
+      "description": "Represéntate a ti mismo y a tu negocio con honestidad. No te hagas pasar por otros ni proporciones información engañosa en tu perfil, listados o comunicaciones. Indica claramente tu rol en la cadena de suministro."
+    },
+    "guideline3": {
+      "title": "Mantén las Discusiones Relevantes",
+      "description": "Cuando participes en foros o grupos, asegúrate de que tus contribuciones sean relevantes para el tema. Evita el spam, la publicidad no solicitada o el contenido fuera de tema. Céntrate en asuntos de la cadena de suministro agrícola."
+    },
+    "guideline4": {
+      "title": "Fomenta el Comercio Justo y Ético",
+      "description": "Realiza tratos comerciales con integridad. Cumple tus compromisos, proporciona descripciones precisas de productos/servicios y participa en precios justos. DamDoh promueve prácticas comerciales éticas."
+    },
+    "guideline5": {
+      "title": "Promueve Prácticas Sostenibles",
+      "description": "Fomentamos las discusiones y el intercambio de conocimientos relacionados con la agricultura sostenible y regenerativa. Apoya iniciativas que mejoren la salud del suelo, la biodiversidad y la seguridad alimentaria."
+    },
+    "reportingTitle": "Denunciar Infracciones",
+    "reportingContent": "Si encuentras contenido o comportamiento que infringe estas directrices, por favor, denúncialo a nuestro equipo de moderación a través de las herramientas de denuncia de la plataforma o contactando a",
+    "supportEmail": "soporte@damdoh.org",
+    "conclusion": "¡Gracias por ayudarnos a construir una comunidad de la cadena de suministro agrícola próspera y de confianza en DamDoh!"
+  },
+  "helpCenter": {
+    "title": "Centro de Ayuda de DamDoh",
+    "subtitle": "Encuentra respuestas a tus preguntas, tutoriales y guías para sacar el máximo provecho de DamDoh.",
+    "searchPrompt": "¿Cómo podemos ayudarte hoy?",
+    "searchPlaceholder": "Busca en nuestra base de conocimientos (p. ej., 'cómo listar un producto', 'cambiar contraseña')",
+    "browseTitle": "Explorar Temas",
+    "contactPrompt": "¿Aún Necesitas Ayuda?",
+    "contactDescription": "Si no encuentras lo que buscas, nuestro equipo de soporte está listo para ayudarte.",
+    "contactButton": "Contactar con Soporte",
+    "topics": {
+      "gettingStarted": {
+        "title": "Para Empezar",
+        "description": "Aprende los conceptos básicos para usar DamDoh."
+      },
+      "marketplaceGuide": {
+        "title": "Guía del Mercado",
+        "description": "Cómo comprar, vender y listar productos/servicios."
+      },
+      "accountManagement": {
+        "title": "Gestión de Cuenta",
+        "description": "Administra tu perfil y configuraciones."
+      },
+      "troubleshooting": {
+        "title": "Solución de Problemas",
+        "description": "Problemas comunes y cómo resolverlos."
+      }
+    },
+    "sections": {
+      "gettingStarted": {
+        "title": "Para Empezar (Marcador de posición)",
+        "content": "Esta sección cubrirá la creación de tu cuenta, la configuración de tu perfil y la navegación por la plataforma DamDoh por primera vez. Aquí estarán disponibles tutoriales y guías paso a paso."
+      },
+      "marketplaceGuide": {
+        "title": "Guía del Mercado (Marcador de posición)",
+        "content": "Aprende a crear listados de productos y servicios, buscar en el mercado, conectar con compradores/vendedores y gestionar tus transacciones. Se incluirán consejos para listados efectivos y comercio seguro."
+      }
+    }
   }
 }
