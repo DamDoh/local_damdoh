@@ -25,26 +25,28 @@ interface ChatMessage {
   timestamp: Date;
 }
 
+const getInitialWelcomeMessage = (t: any): ChatMessage => ({
+  id: `assistant-initial-${Date.now()}`,
+  role: 'assistant',
+  content: {
+    summary: t('aiAssistant.welcome.summary', { appName: APP_NAME }),
+    detailedPoints: [],
+    suggestedQueries: [
+      t('aiAssistant.welcome.suggestion1'),
+      t('aiAssistant.welcome.suggestion2'),
+      t('aiAssistant.welcome.suggestion3'),
+    ]
+  },
+  timestamp: new Date(),
+});
+
+
 export default function AiAssistantPage() {
   const { t, i18n } = useTranslation('common');
+  const { toast } = useToast();
 
-  const getInitialWelcomeMessage = (): ChatMessage => ({
-    id: `assistant-initial-${Date.now()}`,
-    role: 'assistant',
-    content: {
-      summary: t('aiAssistant.welcome.summary', { appName: APP_NAME }),
-      detailedPoints: [],
-      suggestedQueries: [
-        t('aiAssistant.welcome.suggestion1'),
-        t('aiAssistant.welcome.suggestion2'),
-        t('aiAssistant.welcome.suggestion3'),
-      ]
-    },
-    timestamp: new Date(),
-  });
-
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>(() => [getInitialWelcomeMessage(t)]);
   const [inputQuery, setInputQuery] = useState('');
-  const [chatHistory, setChatHistory] = useState<ChatMessage[]>(() => [getInitialWelcomeMessage()]);
   const [isLoading, setIsLoading] = useState(false);
   const [previewDataUri, setPreviewDataUri] = useState<string | null>(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -54,9 +56,7 @@ export default function AiAssistantPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { toast } = useToast();
 
-  // Scroll to bottom of chat
   useEffect(() => {
     if (scrollAreaRef.current) {
       const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
@@ -66,7 +66,6 @@ export default function AiAssistantPage() {
     }
   }, [chatHistory]);
 
-  // Cleanup camera stream on unmount
   useEffect(() => {
     return () => {
       if (videoRef.current?.srcObject) {
@@ -79,40 +78,28 @@ export default function AiAssistantPage() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      if (isCameraOpen) {
-        stopCamera();
-      }
+      if (isCameraOpen) stopCamera();
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewDataUri(reader.result as string);
-      };
+      reader.onloadend = () => setPreviewDataUri(reader.result as string);
       reader.readAsDataURL(file);
     }
   };
 
   const startCamera = async () => {
     if (previewDataUri) setPreviewDataUri(null);
-
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
         setHasCameraPermission(true);
         setIsCameraOpen(true);
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
+        if (videoRef.current) videoRef.current.srcObject = stream;
       } catch (error) {
-        console.error('Error accessing camera:', error);
         setHasCameraPermission(false);
         setIsCameraOpen(false);
-        toast({
-          variant: 'destructive',
-          title: 'Camera Access Denied',
-          description: 'Please enable camera permissions in your browser settings.',
-        });
+        toast({ variant: 'destructive', title: t('aiAssistant.toast.cameraAccessDeniedTitle'), description: t('aiAssistant.toast.cameraAccessDeniedDescription') });
       }
     } else {
-      toast({ variant: 'destructive', title: 'Camera Not Supported', description: 'Your browser does not support camera access.' });
+      toast({ variant: 'destructive', title: t('aiAssistant.toast.cameraNotSupportedTitle'), description: t('aiAssistant.toast.cameraNotSupportedDescription') });
     }
   };
 
@@ -134,8 +121,7 @@ export default function AiAssistantPage() {
       const context = canvas.getContext('2d');
       if (context) {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const dataUri = canvas.toDataURL('image/jpeg');
-        setPreviewDataUri(dataUri);
+        setPreviewDataUri(canvas.toDataURL('image/jpeg'));
         stopCamera();
       }
     }
@@ -143,67 +129,52 @@ export default function AiAssistantPage() {
 
   const clearPreview = () => {
     setPreviewDataUri(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-    if (isCameraOpen) {
-      stopCamera();
-    }
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    if (isCameraOpen) stopCamera();
   };
   
   const resetChat = () => {
-    setChatHistory([getInitialWelcomeMessage()]);
+    setChatHistory([getInitialWelcomeMessage(t)]);
     setInputQuery("");
     setIsLoading(false);
     clearPreview();
-    toast({
-        title: "Chat Reset",
-        description: "The conversation has been cleared.",
-    });
-  }
+    toast({ title: t('aiAssistant.toast.chatResetTitle'), description: t('aiAssistant.toast.chatResetDescription') });
+  };
 
   const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const query = inputQuery.trim();
     if (!query && !previewDataUri) return;
 
+    const userQueryContent = query || (previewDataUri ? t('aiAssistant.analyzeImage') : t('aiAssistant.emptyQuery'));
     const newUserMessage: ChatMessage = {
       id: `user-${Date.now()}`,
       role: 'user',
-      content: query || (previewDataUri ? "Please analyze this image." : "Empty query"),
+      content: userQueryContent,
       imagePreview: previewDataUri || undefined,
       timestamp: new Date(),
     };
     setChatHistory(prev => [...prev, newUserMessage]);
-
+    
     setInputQuery('');
     setIsLoading(true);
     const currentImageToSend = previewDataUri;
     clearPreview();
 
     try {
+      if (currentImageToSend) toast({ title: t('aiAssistant.toast.analyzingImageTitle'), description: t('aiAssistant.toast.analyzingImageDescription') });
       const aiResponse = await askFarmingAssistant({
-        query: query || (currentImageToSend ? "Please analyze this image." : "Empty query"),
+        query: userQueryContent,
         photoDataUri: currentImageToSend || undefined,
         language: i18n.language,
       });
-      const newAssistantMessage: ChatMessage = {
-        id: `assistant-${Date.now() + 1}`,
-        role: 'assistant',
-        content: aiResponse,
-        timestamp: new Date(),
-      };
+      const newAssistantMessage: ChatMessage = { id: `assistant-${Date.now() + 1}`, role: 'assistant', content: aiResponse, timestamp: new Date() };
       setChatHistory(prev => [...prev, newAssistantMessage]);
     } catch (error) {
-      console.error("Error fetching AI response:", error);
       const errorAssistantMessage: ChatMessage = {
         id: `assistant-error-${Date.now() + 1}`,
         role: 'assistant',
-        content: {
-          summary: "Sorry, I encountered an error trying to process your request. Please try again.",
-          detailedPoints: [],
-          suggestedQueries: [],
-        },
+        content: { summary: t('aiAssistant.errorSummary'), detailedPoints: [], suggestedQueries: [] },
         timestamp: new Date(),
       };
       setChatHistory(prev => [...prev, errorAssistantMessage]);
@@ -213,35 +184,19 @@ export default function AiAssistantPage() {
   };
 
   const handleSuggestionClick = async (query: string) => {
-    const newUserMessage: ChatMessage = {
-      id: `user-suggestion-${Date.now()}`,
-      role: 'user',
-      content: query,
-      timestamp: new Date(),
-    };
+    const newUserMessage: ChatMessage = { id: `user-suggestion-${Date.now()}`, role: 'user', content: query, timestamp: new Date() };
     setChatHistory(prev => [...prev, newUserMessage]);
-    
     setIsLoading(true);
 
     try {
       const aiResponse = await askFarmingAssistant({ query, language: i18n.language });
-      const newAssistantMessage: ChatMessage = {
-        id: `assistant-suggestion-response-${Date.now()}`,
-        role: 'assistant',
-        content: aiResponse,
-        timestamp: new Date(),
-      };
+      const newAssistantMessage: ChatMessage = { id: `assistant-suggestion-response-${Date.now()}`, role: 'assistant', content: aiResponse, timestamp: new Date() };
       setChatHistory(prev => [...prev, newAssistantMessage]);
     } catch (error) {
-       console.error("Error fetching AI response from suggestion:", error);
       const errorAssistantMessage: ChatMessage = {
         id: `assistant-error-${Date.now() + 1}`,
         role: 'assistant',
-        content: {
-          summary: "Sorry, I encountered an error trying to process your request. Please try again.",
-          detailedPoints: [],
-          suggestedQueries: [],
-        },
+        content: { summary: t('aiAssistant.errorSummary'), detailedPoints: [], suggestedQueries: [] },
         timestamp: new Date(),
       };
       setChatHistory(prev => [...prev, errorAssistantMessage]);
@@ -278,7 +233,7 @@ export default function AiAssistantPage() {
                   <>
                     {msg.imagePreview && (
                       <div className="mb-2 max-w-full w-auto">
-                        <Image src={msg.imagePreview} alt="User upload preview" width={200} height={150} className="rounded-md object-contain max-h-[200px] max-w-full" data-ai-hint="plant diagnosis image"/>
+                        <Image src={msg.imagePreview} alt={t('aiAssistant.imagePreviewAlt')} width={200} height={150} className="rounded-md object-contain max-h-[200px] max-w-full" data-ai-hint="plant diagnosis image"/>
                       </div>
                     )}
                     <p className="text-sm whitespace-pre-line break-words">{msg.content}</p>
@@ -289,10 +244,10 @@ export default function AiAssistantPage() {
                     <CardHeader className="pb-3 pt-4 px-4">
                       <div className="flex justify-between items-center">
                         <CardTitle className="flex items-center text-md gap-1.5 text-primary">
-                          <Leaf className="h-5 w-5" /> {APP_NAME} AI's Knowledge
+                          <Leaf className="h-5 w-5" /> {t('aiAssistant.knowledgeTitle', { appName: APP_NAME })}
                         </CardTitle>
-                        <Button variant="outline" size="sm" className="h-7 text-xs" onClick={() => alert("Audio playback feature coming soon!")}>
-                          <Volume2 className="mr-1.5 h-3.5 w-3.5" /> Play Audio
+                        <Button variant="outline" size="sm" className="h-7 text-xs" onClick={() => alert(t('aiAssistant.audioPlaybackComingSoon'))}>
+                          <Volume2 className="mr-1.5 h-3.5 w-3.5" /> {t('aiAssistant.playAudio')}
                         </Button>
                       </div>
                     </CardHeader>
@@ -368,7 +323,7 @@ export default function AiAssistantPage() {
               <div className="relative group max-w-[150px] sm:max-w-[200px] mx-auto">
                 <Image
                   src={previewDataUri}
-                  alt="Preview"
+                  alt={t('aiAssistant.imagePreviewAlt')}
                   width={200}
                   height={150}
                   className="rounded-md object-contain max-h-[120px] w-full h-auto border"
@@ -383,8 +338,8 @@ export default function AiAssistantPage() {
               <div className="flex flex-col items-center gap-2">
                 <video ref={videoRef} className="w-full max-w-[300px] aspect-video rounded-md bg-black" autoPlay playsInline muted />
                 <div className="flex gap-2">
-                    <Button onClick={handleCaptureImage} size="sm"><Camera className="mr-2 h-4 w-4" />Capture</Button>
-                    <Button variant="outline" size="sm" onClick={stopCamera}><RefreshCcw className="mr-2 h-4 w-4" />Close Camera</Button>
+                    <Button onClick={handleCaptureImage} size="sm"><Camera className="mr-2 h-4 w-4" />{t('aiAssistant.capture')}</Button>
+                    <Button variant="outline" size="sm" onClick={stopCamera}><RefreshCcw className="mr-2 h-4 w-4" />{t('aiAssistant.closeCamera')}</Button>
                 </div>
               </div>
             )}
@@ -394,9 +349,9 @@ export default function AiAssistantPage() {
         { hasCameraPermission === false && !isCameraOpen && (
            <Alert variant="destructive" className="m-4">
               <Camera className="h-4 w-4" />
-              <AlertTitle>Camera Access Denied</AlertTitle>
+              <AlertTitle>{t('aiAssistant.toast.cameraAccessDeniedTitle')}</AlertTitle>
               <AlertDescription>
-                To use the camera for diagnosis, please enable camera permissions in your browser settings and refresh.
+                {t('aiAssistant.toast.cameraAccessDeniedDescription')}
               </AlertDescription>
             </Alert>
         )}
@@ -432,3 +387,4 @@ export default function AiAssistantPage() {
     </div>
   );
 }
+
