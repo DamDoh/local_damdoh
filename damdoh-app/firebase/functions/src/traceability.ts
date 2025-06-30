@@ -1,8 +1,7 @@
 
-'use server';
 /**
  * =================================================================
- * Module 1: The Core Data & Traceability Engine
+ * Module 1: The Core Data & Traceability Engine (The Immutable Foundation)
  * =================================================================
  * This module is the immutable backbone of the entire DamDoh ecosystem. It's
  * primarily a backend system that handles the creation, storage, and management
@@ -54,7 +53,6 @@ async function _internalGenerateVTI(
   const currentLocation = null;
   const status = "active";
 
-  // Creates the initial document in the vti_registry collection.
   await db.collection("vti_registry").doc(vtiId).set({
     vtiId,
     type,
@@ -186,6 +184,349 @@ export const logTraceEvent = functions.https.onCall(async (data, context) => {
   }
 });
 
+export const handleHarvestEvent = functions.https.onCall(
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+
+    const callerUid = context.auth.uid;
+    const role = await getRole(callerUid);
+
+    if (role !== "Farmer" && role !== "System") {
+      throw new functions.https.HttpsError(
+        "permission-denied",
+        "Only farmers or system processes can log harvest events.",
+      );
+    }
+
+    const {farmFieldId, cropType, yieldKg, qualityGrade, actorVtiId, geoLocation} =
+      data;
+
+    if (!farmFieldId || typeof farmFieldId !== "string") {
+      throw new functions.https.HttpsError("invalid-argument", "'farmFieldId' is required.");
+    }
+    if (!cropType || typeof cropType !== "string") {
+      throw new functions.https.HttpsError("invalid-argument", "'cropType' is required.");
+    }
+    if (yieldKg !== undefined && typeof yieldKg !== "number") {
+      throw new functions.https.HttpsError("invalid-argument", "'yieldKg' must be a number.");
+    }
+    if (qualityGrade !== undefined && typeof qualityGrade !== "string") {
+      throw new functions.https.HttpsError("invalid-argument", "'qualityGrade' must be a string.");
+    }
+    if (!actorVtiId || typeof actorVtiId !== "string") {
+      throw new functions.https.HttpsError("invalid-argument", "'actorVtiId' is required.");
+    }
+
+    try {
+      const generateVTIResult = await _internalGenerateVTI(
+        {
+          type: "farm_batch",
+          linkedVtis: [farmFieldId],
+          metadata: {
+            cropType,
+            initialYieldKg: yieldKg,
+            initialQualityGrade: qualityGrade,
+            linkedPreHarvestEvents: [],
+          },
+        },
+        context,
+      );
+
+      const newVtiId = generateVTIResult.vtiId;
+
+      const oneYearAgo = new Date(
+        new Date().setFullYear(new Date().getFullYear() - 1),
+      );
+      const preHarvestEventsQuery = db
+        .collection("traceability_events")
+        .where("farmFieldId", "==", farmFieldId)
+        .where("timestamp", ">=", admin.firestore.Timestamp.fromDate(oneYearAgo))
+        .where("eventType", "in", ["PLANTED", "INPUT_APPLIED", "OBSERVED"]);
+
+      const preHarvestEventsSnapshot = await preHarvestEventsQuery.get();
+      const linkedEventIds: string[] = preHarvestEventsSnapshot.docs.map(
+        (doc) => doc.id,
+      );
+
+      await db
+        .collection("vti_registry")
+        .doc(newVtiId)
+        .update({
+          "metadata.linked_pre_harvest_events": linkedEventIds,
+        });
+
+      await _internalLogTraceEvent(
+        {
+          vtiId: newVtiId,
+          eventType: "HARVESTED",
+          actorRef: actorVtiId,
+          geoLocation: geoLocation || null,
+          payload: {yieldKg, qualityGrade, farmFieldId, cropType},
+          farmFieldId: farmFieldId,
+        },
+        context,
+      );
+
+      return {
+        status: "success",
+        message: `Harvest event logged and VTI ${newVtiId} created.`,
+        vtiId: newVtiId,
+      };
+    } catch (error: any) {
+      console.error("Error handling harvest event:", error);
+      if (error.code) {
+        throw error;
+      }
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to handle harvest event.",
+        error.message,
+      );
+    }
+  },
+);
+
+export const handleInputApplicationEvent = functions.https.onCall(
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+
+    const callerUid = context.auth.uid;
+    const role = await getRole(callerUid);
+
+    if (role !== "Farmer" && role !== "System") {
+      throw new functions.https.HttpsError(
+        "permission-denied",
+        "Only farmers or system processes can log input application events.",
+      );
+    }
+
+    const {
+      farmFieldId,
+      inputId,
+      applicationDate,
+      quantity,
+      unit,
+      method,
+      actorVtiId,
+      geoLocation,
+    } = data;
+
+    if (!farmFieldId || typeof farmFieldId !== "string") {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'farmFieldId' parameter is required and must be a string.",
+      );
+    }
+    if (!inputId || typeof inputId !== "string") {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'inputId' parameter is required and must be a string (e.g., KNF Batch Name, Fertilizer Name).",
+      );
+    }
+    if (!applicationDate) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'applicationDate' parameter is required.",
+      );
+    }
+    if (quantity === undefined || typeof quantity !== "number" || quantity < 0) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'quantity' parameter is required and must be a non-negative number.",
+      );
+    }
+    if (!unit || typeof unit !== "string") {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'unit' parameter is required and must be a string.",
+      );
+    }
+    if (method !== undefined && typeof method !== "string") {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'method' parameter must be a string if provided.",
+      );
+    }
+    if (!actorVtiId || typeof actorVtiId !== "string") {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'actorVtiId' parameter is required and must be a string (User or Organization VTI ID).",
+      );
+    }
+
+    if (
+      geoLocation &&
+      (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")
+    ) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "The 'geoLocation' parameter must be an object with lat and lng if provided.",
+      );
+    }
+
+    try {
+      const eventPayload = {
+        inputId,
+        quantity,
+        unit,
+        applicationDate,
+        method: method || null,
+        farmFieldId,
+      };
+
+      await _internalLogTraceEvent(
+        {
+          vtiId: farmFieldId,
+          eventType: "INPUT_APPLIED",
+          actorRef: actorVtiId,
+          geoLocation: geoLocation || null,
+          payload: eventPayload,
+          farmFieldId: farmFieldId,
+        },
+        context,
+      );
+
+      return {
+        status: "success",
+        message: `Input application event logged for farm field ${farmFieldId}.`,
+      };
+    } catch (error: any) {
+      console.error("Error handling input application event:", error);
+      if (error.code) {
+        throw error;
+      }
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to handle input application event.",
+        error.message,
+      );
+    }
+  },
+);
+
+export const handleObservationEvent = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {
+    farmFieldId,
+    observationType,
+    observationDate,
+    details,
+    mediaUrls,
+    actorVtiId,
+    geoLocation,
+    aiAnalysis,
+  } = data;
+
+  if (
+    !farmFieldId ||
+    !observationType ||
+    !observationDate ||
+    !details ||
+    !actorVtiId
+  ) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Missing required fields for observation event.",
+    );
+  }
+    
+    try {
+        const eventPayload: any = { 
+            observationType, 
+            details, 
+            mediaUrls: mediaUrls || [], 
+            farmFieldId,
+            aiAnalysis: aiAnalysis || null,
+        };
+
+        await _internalLogTraceEvent({
+            vtiId: farmFieldId,
+            eventType: 'OBSERVED',
+            actorRef: actorVtiId,
+            geoLocation: geoLocation || null,
+            payload: eventPayload,
+            farmFieldId: farmFieldId,
+        });
+
+        return { status: 'success', message: `Observation event logged for farm field ${farmFieldId}.` };
+
+    } catch (error: any) {
+        console.error('Error handling observation event:', error);
+        throw new functions.https.HttpsError('internal', 'Failed to handle observation event.', error.message);
+    }
+});
+
+
+/**
+ * Fetches all traceability events for a given farmFieldId.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{events: any[]}>} A promise that resolves with the traceability events.
+ */
+export const getTraceabilityEventsByFarmField = functions.https.onCall(
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+
+    const {farmFieldId} = data;
+    if (!farmFieldId) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "A farmFieldId must be provided.",
+      );
+    }
+
+    try {
+      const eventsSnapshot = await db
+        .collection("traceability_events")
+        .where("farmFieldId", "==", farmFieldId)
+        .orderBy("timestamp", "asc")
+        .get();
+
+      const events = eventsSnapshot.docs.map((doc) => {
+        const eventData = doc.data();
+        if (!eventData) return null;
+        return {
+          id: doc.id,
+          ...eventData,
+          timestamp: (eventData.timestamp as admin.firestore.Timestamp)?.toDate ? (eventData.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
+        };
+      }).filter(Boolean);
+
+      return {events};
+    } catch (error) {
+      console.error(
+        `Error fetching events for farmFieldId ${farmFieldId}:`,
+        error,
+      );
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to fetch traceability events.",
+      );
+    }
+  },
+);
+
 /**
  * Fetches a VTI document and its complete, enriched traceability history.
  * @param {any} data The data for the function call, containing `vtiId`.
@@ -222,13 +563,12 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         const eventsSnapshot = await eventsQuery.get();
         const eventsData = eventsSnapshot.docs
             .map(doc => ({ id: doc.id, ...doc.data() }))
-            .filter(Boolean); // Ensure no undefined data
+            .filter(Boolean);
 
         const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
         
         const actorProfiles: { [key: string]: any } = {};
         if (actorIds.length > 0) {
-            // Using the new getProfileByIdFromDB helper for consistency
             const profilePromises = actorIds.map(id => getProfileByIdFromDB(id));
             const userProfiles = await Promise.all(profilePromises);
 
@@ -269,7 +609,6 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
 
 // =================================================================
 // CONCEPTUAL FUTURE FUNCTIONS FOR MODULE 1
-// These are placeholders aligned with the platform vision.
 // =================================================================
 
 /**
@@ -303,3 +642,5 @@ export const calculateCarbonFootprint = functions.firestore
         // 4. Update the vti_registry document for the event's vtiId with the new carbon data.
         return null;
     });
+
+    
