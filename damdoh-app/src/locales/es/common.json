@@ -25,6 +25,18 @@
   "pin": "Fijar",
   "unpin": "Desfijar",
   "yes": "Sí",
+  "itemCard": {
+    "viewDetailsButton": "Ver Detalles"
+  },
+  "talentExchangePage": {
+    "title": "Intercambio de Talentos",
+    "description": "Encuentra trabajos agrícolas, ofrece tus servicios profesionales o contrata talento cualificado.",
+    "postJobButton": "Publicar un Trabajo o Servicio",
+    "searchPlaceholder": "Buscar trabajos, servicios o habilidades...",
+    "notFoundTitle": "No se encontraron oportunidades",
+    "notFoundDescription": "Intenta ajustar tus términos de búsqueda. ¡O sé el primero en publicar una oportunidad!",
+    "viewApplyButton": "Ver y Aplicar"
+  },
   "productCard": {
     "placeholderName": "Nombre del Producto",
     "placeholderDescription": "Descripción del producto."

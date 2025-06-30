@@ -46,7 +46,7 @@ export const createFarm = functions.https.onCall(async (data, context) => {
     console.error("Error creating farm:", error);
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to create farm in the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
+      "Failed to create farm in the database. Please check your project's Firestore setup.",
       {originalError: error.message},
     );
   }
@@ -119,8 +119,8 @@ export const getFarm = functions.https.onCall(async (data, context) => {
         }
         
         return { 
-            id: farmDoc.id, 
             ...farmData,
+            id: farmDoc.id, 
             createdAt: farmData.createdAt?.toDate ? farmData.createdAt.toDate().toISOString() : null,
             updatedAt: farmData.updatedAt?.toDate ? farmData.updatedAt.toDate().toISOString() : null,
         };
@@ -264,8 +264,8 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
             return { 
                 id: doc.id, 
                 ...docData,
-                planting_date: docData.planting_date?.toDate ? docData.planting_date.toDate().toISOString() : null,
-                harvest_date: docData.harvest_date?.toDate ? docData.harvest_date.toDate().toISOString() : null,
+                plantingDate: docData.plantingDate?.toDate ? docData.plantingDate.toDate().toISOString() : null,
+                harvestDate: docData.harvestDate?.toDate ? docData.harvestDate.toDate().toISOString() : null,
                 createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
             };
         });

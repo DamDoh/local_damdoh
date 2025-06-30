@@ -1,4 +1,5 @@
 
+import * as admin from "firebase-admin";
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -48,6 +49,12 @@ export interface FarmerDashboardData {
     matchScore: number;
     request: string;
     contactId: string;
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStepDate: string;
   }[];
 }
 

@@ -6,11 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from 'next/link';
-import { Briefcase, MapPin, Search, PlusCircle, Wrench, CircleDollarSign, CheckCircle, Clock } from 'lucide-react';
+import { Briefcase, Search, PlusCircle } from 'lucide-react';
 import type { MarketplaceItem } from '@/lib/types';
 import { getAllMarketplaceItemsFromDB } from '@/lib/db-utils'; 
 import { Input } from '@/components/ui/input';
 import { useTranslation } from "react-i18next";
+import { ItemCard } from '@/components/marketplace/ItemCard';
 
 function JobCardSkeleton() {
   return (
@@ -57,7 +58,7 @@ export default function TalentExchangePage() {
     return listings.filter(listing =>
       listing.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       listing.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (listing.skillsRequired && listing.skillsRequired.join(' ').toLowerCase().includes(searchTerm.toLowerCase()))
+      (Array.isArray(listing.skillsRequired) && listing.skillsRequired.join(' ').toLowerCase().includes(searchTerm.toLowerCase()))
     );
   }, [listings, searchTerm]);
 
@@ -74,7 +75,7 @@ export default function TalentExchangePage() {
               <CardDescription>{t('talentExchangePage.description')}</CardDescription>
             </div>
             <Button asChild>
-              <Link href="/marketplace/create?type=Service">
+              <Link href="/marketplace/create?listingType=Service">
                 <PlusCircle className="mr-2 h-4 w-4" /> {t('talentExchangePage.postJobButton')}
               </Link>
             </Button>
@@ -93,37 +94,12 @@ export default function TalentExchangePage() {
               </div>
             </div>
           
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {isLoading ? (
-                Array.from({ length: 6 }).map((_, i) => <JobCardSkeleton key={i} />)
+                Array.from({ length: 4 }).map((_, i) => <JobCardSkeleton key={i} />)
               ) : filteredListings.length > 0 ? (
                 filteredListings.map(job => (
-                  <Card key={job.id} className="flex flex-col">
-                    <CardHeader>
-                      <Link href={`/marketplace/${job.id}`}>
-                        <CardTitle className="text-lg hover:text-primary transition-colors">{job.name}</CardTitle>
-                      </Link>
-                      <CardDescription className="flex items-center gap-2 text-sm pt-1">
-                        <MapPin className="h-4 w-4" />{job.location}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow space-y-3">
-                      <p className="text-sm text-muted-foreground line-clamp-3">{job.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {job.skillsRequired?.slice(0, 3).map(skill => <div key={skill} className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-md flex items-center gap-1"><Wrench className="h-3 w-3"/>{skill}</div>)}
-                      </div>
-                       <div className="space-y-1.5 pt-2">
-                        {job.compensation && <p className="text-sm font-medium flex items-center gap-1.5"><CircleDollarSign className="h-4 w-4 text-green-600"/>{job.compensation}</p>}
-                        {job.experienceLevel && <p className="text-sm font-medium flex items-center gap-1.5"><CheckCircle className="h-4 w-4 text-blue-600"/>{job.experienceLevel}</p>}
-                        {job.serviceAvailability && <p className="text-sm font-medium flex items-center gap-1.5"><Clock className="h-4 w-4 text-orange-600"/>{job.serviceAvailability}</p>}
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button asChild className="w-full">
-                        <Link href={`/marketplace/${job.id}`}>{t('talentExchangePage.viewApplyButton')}</Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                  <ItemCard key={job.id} item={job} />
                 ))
               ) : (
                 <div className="col-span-full text-center py-16">
