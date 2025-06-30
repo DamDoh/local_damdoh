@@ -95,5 +95,3 @@ const farmingAssistantFlow = ai.defineFlow(
     };
   }
 );
-
-    
