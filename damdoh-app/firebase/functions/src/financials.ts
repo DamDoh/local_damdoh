@@ -1,14 +1,42 @@
 
+/**
+ * =================================================================
+ * Module 7: Financial & Transaction Services (The Agri-Finance Gateway)
+ * =================================================================
+ * This module is the cornerstone for enabling secure, transparent, and inclusive
+ * financial transactions and services within the DamDoh ecosystem. It's designed
+ * to cater to diverse global financial landscapes, including regions with
+ * limited access to traditional banking.
+ *
+ * @purpose To facilitate seamless payments for marketplace transactions, provide
+ * a secure digital wallet, enable credit scoring for agricultural stakeholders,
+ * and connect users to a wide array of funding opportunities, thereby fostering
+ * financial empowerment and growth in the agricultural sector.
+ *
+ * @key_concepts
+ * - Multi-Currency Digital Wallet: For holding balances and making P2P transfers.
+ * - Payment Processing Integration: Secure payments via various gateways (Stripe, M-Pesa, etc.).
+ * - Agricultural Credit Scoring: Uses alternative on-platform data to generate credit scores.
+ * - Funding Opportunities & Loan Facilitation: Connects users to MFIs, banks, and grants.
+ * - Financial Record Keeping: Provides users with transaction history and basic reporting.
+ *
+ * @firebase_data_model
+ * - wallets: User-specific balances per currency.
+ * - transactions: Log of all financial movements (purchases, deposits, etc.).
+ * - credit_scores: Calculated credit scores and contributing factors for users.
+ * - loan_applications: Records of user applications for financial products.
+ * - financial_partners: Directory of integrated financial institutions.
+ *
+ * @synergy
+ * - Integrates with Module 4 (Marketplace) for all transaction payments.
+ * - Uses data from Modules 1, 3, 4, and 5 to power its Credit Scoring engine (Module 6).
+ * - Triggers Module 13 (Notifications) for payment confirmations and status updates.
+ */
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
 const db = admin.firestore();
-
-/**
- * =================================================================
- * Module 7: Financial & Transaction Services
- * =================================================================
- */
 
 // --- Internal AI-Driven Functions (moved from ai-services.ts) ---
 
@@ -559,7 +587,7 @@ export const distributeCrowdfundingPayouts = functions.firestore
             currency: investmentData.currency,
             buyerInfo: {userId: investorUid},
             sellerInfo: {projectId: projectId},
-            description: `Payout for investment in project ${projectId}`,
+            description: `Payout from crowdfunding project ${projectId}`,
             type: "crowdfunding_payout",
           }),
         );
@@ -747,3 +775,35 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     }
   },
 );
+
+
+// =================================================================
+// CONCEPTUAL FUTURE FUNCTIONS FOR MODULE 7
+// =================================================================
+
+/**
+ * [Conceptual] Manages user withdrawal requests.
+ * This would interface with banking/mobile money APIs.
+ */
+export const handleWithdrawal = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Handling withdrawal request with data:", data);
+    return { success: true, transactionId: `withdrawal_${Date.now()}` };
+});
+
+
+/**
+ * [Conceptual] Notifies a financial partner about a new loan application.
+ * This would be triggered by a new document in `loan_applications`.
+ */
+export const notifyLoanPartner = functions.firestore
+    .document("loan_applications/{applicationId}")
+    .onCreate(async (snapshot, context) => {
+        const applicationData = snapshot.data();
+        console.log(`[Conceptual] Notifying partner ${applicationData.partnerRef} about new loan application ${context.params.applicationId}`);
+        // 1. Fetch partner's contact details.
+        // 2. Send an email or push notification via Module 13.
+        return null;
+    });
+
+    
