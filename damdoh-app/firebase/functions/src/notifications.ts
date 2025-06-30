@@ -1,4 +1,36 @@
 
+/**
+ * =================================================================
+ * Module 13: Notifications System (The Engagement Engine)
+ * =================================================================
+ * This module is the ubiquitous communication backbone of the DamDoh Super App,
+ * ensuring users receive timely, relevant, and personalized alerts and updates
+ * across all platform functionalities.
+ *
+ * @purpose To deliver real-time, customizable notifications to users about
+ * critical events, updates, messages, and opportunities, ensuring they stay
+ * informed and engaged.
+ *
+ * @key_concepts
+ * - Multi-Channel Delivery: Supports in-app, push (FCM), SMS, and email notifications.
+ * - Event-Driven Triggers: Listens for events from all other modules (Marketplace,
+ *   Community, Farm Management, etc.) to trigger notifications.
+ * - User Preferences: Allows users to customize which alerts they receive on which channels.
+ * - Localization: Delivers notifications in the user's preferred language and timezone.
+ * - Notification History: An in-app inbox of all past notifications.
+ *
+ * @firebase_data_model
+ * - notifications: Stores individual notification documents for each user.
+ * - user_notification_settings: Stores user-specific preferences for notifications.
+ *
+ * @synergy
+ * - This is a cross-cutting concern, invoked by nearly all other modules.
+ * - Uses Module 2 (Profiles) to get user preferences (language, FCM token).
+ * - Triggers Module 9 (Integrations) to send notifications via third-party
+ *   services like SMS gateways or email providers.
+ */
+
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -8,51 +40,43 @@ const messaging = admin.messaging();
 import {getUserDocument} from "./profiles";
 
 /**
- * =================================================================
- * Cross-Cutting Notification System
- * =================================================================
- * This file contains backend components for creating and sending
- * notifications to users based on various platform events.
- */
-
-/**
  * Creates a notification document in Firestore and attempts to send a push notification.
+ * This is the central internal function for creating and dispatching notifications.
  * @param {string} recipientId - The ID of the user to notify.
  * @param {string} actorId - The ID of the user who performed the action.
- * @param {'like' | 'comment'} type - The type of notification.
- * @param {string} postId - The ID of the post that was interacted with.
- * @param {string} postContentSnippet - A snippet of the post content for context.
+ * @param {'like' | 'comment' | 'new_order' | 'application_update'} type - The type of notification.
+ * @param {string} title - The title of the notification.
+ * @param {string} body - The body content of the notification.
+ * @param {string} link - The in-app link the notification should navigate to.
  */
 async function createAndSendNotification(
   recipientId: string,
   actorId: string,
-  type: 'like' | 'comment',
-  postId: string,
-  postContentSnippet: string
+  type: 'like' | 'comment' | 'new_order' | 'application_update',
+  title: string,
+  body: string,
+  link: string,
 ) {
   if (!recipientId || !actorId || recipientId === actorId) {
     if (recipientId === actorId) {
-        console.log("Skipping notification because user interacted with their own post.");
+        console.log("Skipping notification because user acted on their own content.");
     } else {
         console.warn("Cannot create notification for null recipient or actor.");
     }
     return;
   }
 
-  const actorDoc = await getUserDocument(actorId);
-  const actorName = actorDoc?.data()?.displayName || "Someone";
-  const notificationTitle = type === 'like' ? `${actorName} liked your post` : `${actorName} commented on your post`;
-  const notificationBody = `On your post: "${postContentSnippet}"`;
-
   console.log(`Creating notification for user ${recipientId}, type: ${type}`);
   const newNotificationRef = db.collection("notifications").doc();
+  
   await newNotificationRef.set({
     notificationId: newNotificationRef.id,
     userId: recipientId, // The user receiving the notification
     actorId: actorId, // The user who performed the action
     type: type,
-    postId: postId,
-    postContentSnippet: postContentSnippet,
+    title: title,
+    body: body,
+    link: link,
     read: false,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
   });
@@ -66,13 +90,13 @@ async function createAndSendNotification(
     console.log(`FCM token found for user ${recipientId}. Attempting to send push notification...`);
     const message: admin.messaging.Message = {
       notification: {
-        title: notificationTitle,
-        body: notificationBody,
+        title: title,
+        body: body,
       },
       data: {
         notificationId: newNotificationRef.id,
         type: type,
-        postId: postId,
+        link: link,
       },
       token: fcmToken,
     };
@@ -108,7 +132,17 @@ export const onNewPostLike = functions.firestore
     const postAuthorId = postData.userId;
     const postContentSnippet = postData.content?.substring(0, 50) + "..." || "your post";
     
-    await createAndSendNotification(postAuthorId, actorId, 'like', postId, postContentSnippet);
+    const actorDoc = await getUserDocument(actorId);
+    const actorName = actorDoc?.data()?.displayName || "Someone";
+    
+    await createAndSendNotification(
+        postAuthorId, 
+        actorId, 
+        'like', 
+        `${actorName} liked your post`,
+        `On your post: "${postContentSnippet}"`,
+        `/feed?postId=${postId}`
+    );
   });
 
 /**
@@ -135,7 +169,17 @@ export const onNewPostComment = functions.firestore
         const postAuthorId = postData.userId;
         const postContentSnippet = postData.content?.substring(0, 50) + "..." || "your post";
         
-        await createAndSendNotification(postAuthorId, actorId, 'comment', postId, postContentSnippet);
+        const actorDoc = await getUserDocument(actorId);
+        const actorName = actorDoc?.data()?.displayName || "Someone";
+
+        await createAndSendNotification(
+            postAuthorId, 
+            actorId, 
+            'comment', 
+            `${actorName} commented on your post`,
+            `On your post: "${postContentSnippet}"`,
+            `/feed?postId=${postId}`
+        );
     });
 
 
@@ -207,4 +251,32 @@ export const manageNotificationPreferences = functions.https.onCall(
   },
 );
 
-    
+
+// =================================================================
+// CONCEPTUAL FUTURE FUNCTIONS FOR MODULE 13
+// =================================================================
+
+/**
+ * [Conceptual] Interfaces with a third-party SMS gateway to send critical alerts.
+ * This would be called by the central `createAndSendNotification` function if the
+ * user's preferences indicate they want SMS for a certain notification type.
+ * @param {any} data - Contains `toPhoneNumber` and `messageBody`.
+ * @return {Promise<{status: string, messageId: string}>} - A promise resolving with the message ID.
+ */
+export const sendSmsNotification = functions.https.onCall(async (data, context) => {
+    // 1. Authenticate that this is called by a trusted internal service.
+    // 2. Call Module 9's SMS gateway function.
+    console.log("[Conceptual] Sending SMS with data:", data);
+    return { success: true, messageId: `sms_${Date.now()}` };
+});
+
+/**
+ * [Conceptual] A scheduled job to periodically clean up very old notifications
+ * from the database to keep the collection size manageable.
+ */
+export const cleanOldNotifications = functions.pubsub.schedule('every 30 days').onRun(async (context) => {
+    console.log('[Conceptual] Running scheduled job to clean old notifications...');
+    // 1. Query 'notifications' collection for documents older than a threshold (e.g., 6 months).
+    // 2. Use a batched write to delete the old documents.
+    return null;
+});
