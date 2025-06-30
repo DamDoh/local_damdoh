@@ -569,7 +569,7 @@
       "point4": "Compensación y beneficios competitivos (Detalles próximamente).",
       "point5": "Arreglos de trabajo flexibles para muchos roles."
     },
-    "openings": {
+    "currentOpenings": {
       "title": "Vacantes Actuales",
       "job1": {
         "title": "Analista Principal de Cadena de Suministro Agrícola",
@@ -595,6 +595,77 @@
       "title": "No Hay Vacantes Actuales",
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
+    }
+  },
+  "knowledgeHub": {
+    "title": "Centro de Conocimiento",
+    "coursesLink": "Cursos",
+    "blogLink": "Blog",
+    "featuredArticles": "Artículos Destacados"
+  },
+  "adminPage": {
+    "layout": {
+      "contentManagement": "Gestión de Contenido",
+      "marketplaceCategories": "Categorías del Mercado",
+      "adminArea": "Área de Administración",
+      "caution": "Los cambios realizados aquí afectan a toda la plataforma. Proceda con precaución.",
+      "compliance": "Cumplimiento"
+    },
+    "content": {
+      "createCourseTitle": "Crear Nuevo Curso",
+      "createCourseDescription": "Desarrollar un nuevo curso para el Centro de Conocimiento.",
+      "courseTitleLabel": "Título del Curso",
+      "courseDescriptionLabel": "Descripción del Curso",
+      "categoryLabel": "Categoría",
+      "creatingCourseButton": "Creando...",
+      "createCourseButton": "Crear Curso",
+      "createArticleTitle": "Crear Artículo de Conocimiento",
+      "createArticleDescription": "Escribe una publicación de blog, una actualización de noticias o una entrada en la base de conocimientos.",
+      "englishContent": "Contenido en Inglés",
+      "articleTitleEn": "Título del Artículo (EN)",
+      "excerptEn": "Extracto (EN)",
+      "excerptDescription": "Un breve resumen para la vista previa del artículo.",
+      "fullContentEn": "Contenido Completo (EN, compatible con Markdown)",
+      "khmerContent": "Contenido en Jemer (ភាសាខ្មែរ)",
+      "articleTitleKm": "Título del Artículo (KM)",
+      "excerptKm": "Extracto (KM)",
+      "fullContentKm": "Contenido Completo (KM)",
+      "metadataTitle": "Metadatos",
+      "articleCategoryLabel": "Categoría",
+      "categoryPlaceholder": "Ej: Blog, Noticias de la Industria, Sostenibilidad",
+      "authorLabel": "Autor",
+      "authorPlaceholder": "Ej: Dr. Pulgar Verde",
+      "defaultAuthor": "Equipo DamDoh",
+      "tagsLabel": "Etiquetas (separadas por comas)",
+      "imageUrlLabel": "URL de la Imagen (Opcional)",
+      "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+      "imageAiHintLabel": "Pista de IA para la Imagen (Opcional)",
+      "aiHintPlaceholder": "Ej: campo de cultivo sostenible",
+      "publishingButton": "Publicando...",
+      "publishButton": "Publicar Artículo",
+      "courseSuccess": "¡Curso creado con éxito!",
+      "failMessage": "Operación Fallida",
+      "courseFail": "Error al crear el curso.",
+      "articleSuccess": "¡Artículo creado con éxito!",
+      "articleFail": "Error al crear el artículo."
+    },
+    "compliance": {
+      "title": "Cumplimiento y Reportes",
+      "description": "Genere informes de cumplimiento para las partes interesadas y para fines de auditoría.",
+      "form": {
+        "targetIdLabel": "ID de Usuario u Organización",
+        "targetIdPlaceholder": "Ingrese el UID para generar el informe",
+        "targetIdDescription": "El ID único de la parte interesada para la que se genera el informe.",
+        "dateRangeLabel": "Seleccionar Período del Informe",
+        "dateRangeDescription": "Elija las fechas de inicio y fin para los datos que se incluirán en el informe."
+      },
+      "generateButton": "Generar Informe",
+      "generatingButton": "Generando...",
+      "successTitle": "Generación de Informe Iniciada",
+      "successDescription": "El informe con ID {reportId} se está generando. Estará disponible para su descarga en breve.",
+      "failTitle": "Falló la Generación del Informe",
+      "failDescription": "Ocurrió un error al generar el informe. Verifique el ID e inténtelo de nuevo.",
+      "reportGenerated": "Informe generado con ID"
     }
   }
 }

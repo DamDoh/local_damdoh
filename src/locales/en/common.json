@@ -14,6 +14,12 @@
   "searchPlaceholder": "Ask the AI or search DamDoh...",
   "signIn": "Sign In",
   "signUp": "Sign Up",
+  "knowledgeHub": {
+    "title": "Knowledge Hub",
+    "coursesLink": "Courses",
+    "blogLink": "Blog",
+    "featuredArticles": "Featured Articles"
+  },
   "myProfile": "My Profile",
   "settings": "Settings",
   "logOut": "Log out",

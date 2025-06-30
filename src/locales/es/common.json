@@ -569,5 +569,11 @@
       "content1": "Siempre estamos buscando personas con talento para unirse a nuestro equipo. Por favor, vuelve a consultar más tarde para ver las ofertas de trabajo específicas, o no dudes en enviar tu currículum a",
       "email": "careers@damdoh.org"
     }
+  },
+  "knowledgeHub": {
+    "title": "Centro de Conocimiento",
+    "coursesLink": "Cursos",
+    "blogLink": "Blog",
+    "featuredArticlesTitle": "Artículos Destacados"
   }
 }

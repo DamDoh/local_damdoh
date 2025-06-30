@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Shield, BookOpen, LayoutGrid } from "lucide-react";
+import { Shield, BookOpen, LayoutGrid, ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function AdminLayout({
@@ -19,7 +19,7 @@ export default function AdminLayout({
   const adminNavItems = [
     { href: "/admin/content", label: t('adminPage.layout.contentManagement'), icon: BookOpen },
     { href: "/admin/categories", label: t('adminPage.layout.marketplaceCategories'), icon: LayoutGrid },
-    // Add more admin links here as needed
+    { href: "/admin/compliance", label: t('adminPage.layout.compliance'), icon: ShieldCheck },
   ];
 
   return (
