@@ -1,17 +1,50 @@
+/**
+ * =================================================================
+ * Module 9: API Gateway & Integrations (The Bridge to the Outside World)
+ * =================================================================
+ * This module acts as the secure, controlled, and standardized entry and exit
+ * point for all external communication and data exchange with the DamDoh Super
+ * App. It is crucial for extending DamDoh's functionality through partnerships
+ * and interoperability.
+ *
+ * @purpose To provide a robust and secure API layer that enables seamless
+ * integration with third-party services, external data sources, and trusted
+ * partner systems, while maintaining data integrity, security, and controlled
+ * access. This ensures DamDoh is an open, interoperable platform within the
+ * broader agricultural tech ecosystem.
+ *
+ * @key_concepts
+ * - Unified API Endpoint: A single, versioned API for all external interactions.
+ * - Authentication & Authorization: Uses API Keys/OAuth to secure endpoints and
+ *   assign granular permissions to partners.
+ * - Data Transformation & Validation: Ensures data integrity for all incoming
+ *   and outgoing information.
+ * - Webhooks & Event-Driven Architecture: Allows partners to subscribe to real-time
+ *   events within the DamDoh platform.
+ * - Standardized Integration Patterns: Pre-defined templates for common integrations
+ *   like SMS, weather, IoT, logistics, and ERPs.
+ *
+ * @firebase_data_model
+ * - api_clients: Stores credentials and permissions for each API partner.
+ * - api_logs: Records all API requests and responses for auditing and monitoring.
+ *
+ * @synergy
+ * - This module is the gateway for other modules to interact with the outside world.
+ * - Forwards requests to the appropriate module (e.g., a call to log an event
+ *   is routed to Module 1 - Traceability).
+ * - Enables other modules by ingesting external data (e.g., weather data for
+ *   Module 1, IoT data for Module 3).
+ *
+ * @third_party_integrations
+ * - Google Cloud Endpoints/Apigee for API management.
+ * - Google Cloud Pub/Sub for asynchronous event handling.
+ * - APIs from weather services, logistics providers, financial institutions, etc.
+ */
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
 const db = admin.firestore();
-
-/**
- * =================================================================
- * Module 9: API Gateway & Integration Layer
- * =================================================================
- * This module serves two primary purposes:
- * 1. Integrating with EXTERNAL third-party services (e.g., weather APIs).
- * 2. Exposing INTERNAL platform data to trusted partners via a secure API.
- */
 
 // =================================================================
 // Section 1: External API Integration Functions (Platform Outbound)
@@ -19,7 +52,7 @@ const db = admin.firestore();
 
 /**
  * Fetches external market data for a commodity.
- * Conceptually called by Module 8 (AI) for market price prediction.
+ * Conceptually called by Module 6 (AI) for market price prediction.
  * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, data: any}>} A promise that resolves with the market data.
@@ -54,7 +87,7 @@ export const fetchExternalMarketData = functions.https.onCall(async (data, conte
 
 /**
  * Sends an SMS notification via an external gateway.
- * Conceptually called by the Notification System.
+ * Conceptually called by the Notification System (Module 13).
  * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, messageId: string}>} A promise that resolves with the message ID.
@@ -158,4 +191,45 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
     if (error instanceof functions.https.HttpsError) throw error;
     throw new functions.https.HttpsError("internal", "An internal error occurred.");
   }
+});
+
+
+// =================================================================
+// CONCEPTUAL FUTURE FUNCTIONS FOR MODULE 9
+// =================================================================
+
+/**
+ * [Conceptual] The main entry point for API requests.
+ * This would authenticate, authorize, and route requests to other functions.
+ */
+export const apiProxy = functions.https.onRequest(async (req, res) => {
+    // 1. Authenticate API key from request headers.
+    // 2. Fetch client permissions from 'api_clients' collection.
+    // 3. Authorize request against required endpoint permissions.
+    // 4. Route to the appropriate internal function.
+    res.status(501).send("[Conceptual] API Proxy not implemented.");
+});
+
+/**
+ * [Conceptual] Triggered by internal events to send webhooks to partners.
+ */
+export const webhookSender = functions.firestore
+    .document('traceability_events/{eventId}')
+    .onCreate(async (snap, context) => {
+        const eventData = snap.data();
+        console.log(`[Conceptual] New event to send via webhook:`, eventData);
+        // 1. Check which partners are subscribed to this event type.
+        // 2. Format the payload for the partner's system.
+        // 3. Make a POST request to the partner's registered callback URL.
+        return null;
+    });
+
+/**
+ * [Conceptual] An endpoint for ingesting data from IoT devices.
+ */
+export const ingestIoTData = functions.https.onRequest(async (req, res) => {
+    // 1. Authenticate the IoT device (e.g., using a device-specific token).
+    // 2. Validate and parse the incoming sensor data.
+    // 3. Route the data to be stored in the appropriate module (e.g., updating a farm_field in Module 3).
+    res.status(501).send("[Conceptual] IoT Ingestion not implemented.");
 });
