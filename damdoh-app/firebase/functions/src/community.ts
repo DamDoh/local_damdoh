@@ -1,4 +1,32 @@
 
+/**
+ * =================================================================
+ * Module 5: Community & Collaboration (The Social Heart of Agriculture)
+ * =================================================================
+ * This module fosters a vibrant, interconnected ecosystem of trust and
+ * knowledge-sharing among all DamDoh stakeholders, transcending geographical
+ * boundaries and language barriers. It's designed to facilitate direct
+ * communication, group discussions, and content sharing.
+ *
+ * @purpose To build a global community around agricultural practices, market
+ * insights, and shared challenges, enabling farmers and other stakeholders to
+ * connect, learn from each other, offer support, and collectively address
+ * industry-wide opportunities.
+ *
+ * @key_concepts
+ * - Forums & Discussion Boards: Public, categorized forums for sharing knowledge.
+ * - Private Groups & Circles: User-creatable private spaces for collaboration.
+ * - Direct Messaging: Secure 1:1 and group chat capabilities.
+ * - Main Social Feed: A personalized feed aggregating relevant content from the platform.
+ * - Engagement & Moderation: Systems for likes, comments, and maintaining a healthy community.
+ *
+ * @synergy
+ * - Relies on Module 2 (Profiles) for user identity and information.
+ * - Triggers Module 13 (Notifications) for new messages, likes, etc.
+ * - Can be augmented by Module 6 (AI & Analytics) for content translation and moderation.
+ * - Displays shared articles from Module 8 (Knowledge Hub).
+ */
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
@@ -11,12 +39,6 @@ import { getProfileByIdFromDB } from "./profiles";
 const db = admin.firestore();
 const POSTS_PER_PAGE = 10;
 const REPLIES_PER_PAGE = 15;
-
-/**
- * =================================================================
- * Module 5: Community & Collaboration Backend
- * =================================================================
- */
 
 // ================== FORUMS ==================
 
@@ -378,11 +400,7 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
 });
 
 
-/**
- * =================================================================
- * Module 5: Main Feed Functions
- * =================================================================
- */
+// ================== Main Feed Functions ==================
 
 export const getFeed = functions.https.onCall(async (data, context) => {
   try {
@@ -1046,3 +1064,16 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError("internal", "An error occurred while fetching comments.");
     }
 });
+
+
+/**
+ * [Conceptual] Triggered by reported content, routes to moderation queue.
+ * Could involve AI for initial screening.
+ */
+export const moderateContent = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Moderating content with data:", data);
+    return { success: true, message: "[Conceptual] Content has been flagged for review." };
+});
+
+    
