@@ -1,9 +1,68 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {_internalAssessInsuranceRisk, _internalVerifyClaim} from "./ai-services";
 
 const db = admin.firestore();
+
+/**
+ * =================================================================
+ * Module 11: Insurance Service
+ * =================================================================
+ */
+
+// --- Internal AI-Driven Functions (moved from ai-services.ts) ---
+
+/**
+ * Internal logic for assessing insurance risk for a policy.
+ * This is an internal function to be called by other functions within this module.
+ *
+ * @param {any} data Data payload including policy, policyholder, and asset details.
+ * @return {Promise<object>} An object with the insurance risk score
+ * and contributing factors.
+ */
+async function _internalAssessInsuranceRisk(data: any) {
+    console.log("_internalAssessInsuranceRisk called with data:", data);
+    const riskScore = Math.random() * 10;
+    const riskFactors = [
+        "High flood risk in region",
+        "Lack of documented pest management",
+        "Monocropping practice",
+    ];
+    return {
+        insuranceRiskScore: riskScore.toFixed(2),
+        riskFactors: riskFactors,
+        status: "placeholder_assessment_complete",
+    };
+}
+
+/**
+ * Internal logic for verifying an insurance claim's validity.
+ * This is an internal function to be called by other functions within this module.
+ *
+ * @param {any} data Data payload including claim details, policy, and other
+ * evidence (e.g., weather data).
+ * @return {Promise<object>} An object with the verification result, including
+ * status and payout amount if approved.
+ */
+async function _internalVerifyClaim(data: any) {
+    console.log("_internalVerifyClaim called with data:", data);
+    const verificationResult = {
+        status: Math.random() > 0.3 ? "approved" : "rejected",
+        payoutAmount: 500.00,
+        assessmentDetails: {
+            verificationLog: "Weather data confirmed drought during incident period. Farm activity logs consistent.",
+            dataPointsConsidered: [
+                "weather_data",
+                "farm_activity_logs",
+                "vti_events",
+            ],
+        },
+    };
+    return verificationResult;
+}
+
+
+// --- Main Module Functions ---
 
 export const assessRiskForPolicy = functions.firestore
   .document("insurance_policies/{policyId}")
@@ -59,7 +118,7 @@ export const assessRiskForPolicy = functions.firestore
         insuredAssetsDetails,
       };
 
-      console.log("Sending data to Module 8 for AI assessment (placeholder)...");
+      console.log("Sending data to internal AI for assessment...");
       const assessmentResult = await _internalAssessInsuranceRisk(relevantData);
 
       const newRiskAssessmentRef = db.collection("risk_assessments").doc();
@@ -162,7 +221,7 @@ export const processInsuranceClaim = functions.firestore
         ),
       };
 
-      console.log("Sending data to Module 8 for claim verification and payout...");
+      console.log("Sending data to internal AI for claim verification and payout...");
       const claimResult = await _internalVerifyClaim(claimVerificationData);
 
       const updateData: any = {

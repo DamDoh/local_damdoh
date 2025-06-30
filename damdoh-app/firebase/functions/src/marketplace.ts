@@ -8,8 +8,14 @@ import { getProfileByIdFromDB } from "./profiles";
 const db = admin.firestore();
 
 /**
+ * =================================================================
+ * Module 4: Marketplace & E-commerce
+ * =================================================================
+ */
+
+/**
  * Creates a new Digital Shopfront for an authenticated user.
- * This is the entry point for stakeholders to establish a presence in the Marketplace (Module 4).
+ * This is the entry point for stakeholders to establish a presence in the Marketplace.
  * @param {any} data The data for the new shop.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, shopId: string, message: string}>} A promise that resolves with the new shop ID.

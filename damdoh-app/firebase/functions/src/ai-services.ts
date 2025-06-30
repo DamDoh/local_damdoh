@@ -4,7 +4,9 @@ import '@/ai/dev';
 import {askFarmingAssistant} from './ai/flows/farming-assistant-flow';
 
 // --- Module 6: The AI & Analytics Engine ---
-// This file contains the primary backend functions for interacting with AI models.
+// This file is the primary, user-facing entry point for the AI Assistant.
+// Internal AI/ML functions for other modules have been moved to their respective files
+// (e.g., credit scoring in financials.ts, claim verification in insurance.ts).
 
 /**
  * Callable function wrapper for the AI Farming Assistant.

@@ -1,3 +1,3 @@
-// This file is obsolete.
-// Its functions have been consolidated into `farm-management.ts`.
-// This file can be safely deleted.
+
+// This file is obsolete. Its functions have been consolidated into `farm-management.ts`.
+// It can be safely deleted.
