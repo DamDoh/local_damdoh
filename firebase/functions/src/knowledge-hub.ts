@@ -100,8 +100,15 @@ export const createModule = functions.https.onCall(async (data, context) => {
 /**
  * Fetches the 3 most recent knowledge articles to be featured.
  */
-export const getFeaturedKnowledge = functions.https.onCall(async () => {
+export const getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
   try {
+    const { userId } = data || {};
+
+    if (userId) {
+      // TODO: Integrate with AI & Analytics Engine (Module 6) to fetch personalized recommendations
+      console.log(`Fetching personalized featured articles for user: ${userId}`);
+    }
+
     const articlesSnapshot = await db.collection('knowledge_articles')
       .orderBy('createdAt', 'desc')
       .limit(3)
@@ -335,32 +342,5 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
       "internal",
       "Failed to fetch course details.",
     );
-  }
-});
-
-/**
- * Fetches the 3 most recent knowledge articles to be featured.
- */
-export const getFeaturedKnowledge = functions.https.onCall(async () => {
-  try {
-    const articlesSnapshot = await db.collection('knowledge_articles')
-      .orderBy('createdAt', 'desc')
-      .limit(3)
-      .get();
-      
-    const articles = articlesSnapshot.docs.map(doc => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        ...data,
-        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-      };
-    });
-
-    return { success: true, articles };
-  } catch (error) {
-    console.error("Error fetching featured articles:", error);
-    throw new functions.https.HttpsError("internal", "Failed to fetch featured articles.");
   }
 });

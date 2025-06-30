@@ -22,6 +22,31 @@
   "cancel": "Cancelar",
   "from": "De",
   "for": "para",
+  "pin": "Fijar",
+  "unpin": "Desfijar",
+  "yes": "Sí",
+  "itemCard": {
+    "viewDetailsButton": "Ver Detalles"
+  },
+  "talentExchangePage": {
+    "title": "Intercambio de Talentos",
+    "description": "Encuentra trabajos agrícolas, ofrece tus servicios profesionales o contrata talento cualificado.",
+    "postJobButton": "Publicar un Trabajo o Servicio",
+    "searchPlaceholder": "Buscar trabajos, servicios o habilidades...",
+    "notFoundTitle": "No se encontraron oportunidades",
+    "notFoundDescription": "Intenta ajustar tus términos de búsqueda. ¡O sé el primero en publicar una oportunidad!",
+    "viewApplyButton": "Ver y Aplicar"
+  },
+  "productCard": {
+    "placeholderName": "Nombre del Producto",
+    "placeholderDescription": "Descripción del producto."
+  },
+  "categoryNav": {
+    "title": "Explorar Categorías",
+    "deprecationNoteTitle": "Barra Lateral Obsoleta",
+    "deprecationNote": "Esta barra lateral de categorías no se usa actualmente en el Mercado principal. La selección de categorías se maneja mediante el menú desplegable sobre los listados.",
+    "oldMenuTitle": "Menú Antiguo (Inactivo)"
+  },
   "privacyPolicyPage": {
     "title": "Política de Privacidad",
     "lastUpdated": "Última Actualización"
@@ -29,10 +54,6 @@
   "termsPage": {
     "title": "Términos de Servicio",
     "lastUpdated": "Última Actualización"
-  },
-  "categoryNav": {
-    "title": "Explorar Categorías",
-    "deprecationNote": "Esta barra lateral de categorías no se usa actualmente en el Mercado principal. La selección de categorías se maneja mediante el menú desplegable sobre los listados."
   },
   "messagingPanel": {
     "searchPlaceholder": "Buscar mensajes...",
@@ -55,7 +76,13 @@
       "profileViewers": "Vistas de perfil",
       "postImpressions": "Impresiones de publicaciones",
       "proUnlock": "Desbloquea análisis y herramientas premium",
-      "tryPro": "Prueba DamDoh Pro"
+      "tryPro": "Prueba DamDoh Pro",
+      "recentTitle": "Reciente",
+      "pinboard": "Mi Tablero",
+      "forums": "Foros Agrícolas",
+      "news": "Noticias de la Industria",
+      "events": "Eventos Agrícolas",
+      "network": "Mi Red de Suministro"
     },
     "rightSidebar": {
       "errorNoSuggestions": "No se recibieron sugerencias de la IA.",
@@ -574,6 +601,7 @@
     "title": "Centro de Conocimiento",
     "coursesLink": "Cursos",
     "blogLink": "Blog",
-    "featuredArticlesTitle": "Artículos Destacados"
+    "featuredArticlesTitle": "Artículos Destacados",
+    "personalizedRecommendationsTitle": "Recomendado para Ti"
   }
 }

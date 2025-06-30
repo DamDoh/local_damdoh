@@ -1,9 +1,8 @@
 
 import type { UserProfile } from './types'; // Assuming UserProfile is the base type
+import { stakeholders } from '/src/lib/stakeholder-data';
 
-// This file defines the detailed profile structures for each of the 21 stakeholder types.
-// It extends the base UserProfile with role-specific data.
-
+// This file defines the detailed profile structures for each of the stakeholder types defined in stakeholder-data.ts.
 export interface FarmerProfile extends UserProfile {
     primaryRole: 'farmer';
     farmDetails: {
@@ -50,26 +49,4 @@ export interface RegulatorProfile extends UserProfile {
 
 // ... and so on for the other 18 stakeholder types.
 
-// Example of creating a stakeholder profile object
-const exampleFarmer: FarmerProfile = {
-    id: "user123",
-    primaryRole: 'farmer',
-    displayName: "John Appleseed",
-    email: "john@example.com",
-    profilePictureUrl: "",
-    kycStatus: "verified",
-    farmDetails: {
-        farmName: "Apple Valley Farms",
-        location: {
-            country: "USA",
-            region: "California",
-            geoJson: {}
-        },
-        farmSizeAcres: 100,
-        primaryCrops: ["Apples", "Pears"],
-        farmingMethods: ['organic']
-    },
-    certifications: [
-        { id: "cert1", name: "USDA Organic", issuingBody: "USDA", validUntil: "2025-12-31" }
-    ]
-};
+

@@ -26,7 +26,8 @@ const KnowledgeHubPage = () => {
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
-        const result = await getFeaturedKnowledge(); // Call the imported function
+        const currentUserId = 'placeholderUserId'; // TODO: Replace with actual user ID fetching logic
+        const result = await getFeaturedKnowledge({ userId: currentUserId }); // Call the imported function with user ID
         const data = result.data as { success: boolean, articles: Article[] };
         if (data.success) {
           setFeaturedArticles(data.articles);
