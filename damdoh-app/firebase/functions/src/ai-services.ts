@@ -1,12 +1,49 @@
 
 import * as functions from 'firebase-functions';
+import '@/ai/dev';
+import {askFarmingAssistant} from './ai/flows/farming-assistant-flow';
 
-// --- Module 8: The Data Intelligence & Predictive Analytics Hub ---
-// This file contains placeholder backend functions for AI and analytics.
-// In a real application, these would connect to Genkit or Vertex AI models.
+// --- Module 6: The AI & Analytics Engine ---
+// This file contains the primary backend functions for interacting with AI models.
+
+/**
+ * Callable function wrapper for the AI Farming Assistant.
+ *
+ * @param {any} data The data for the function call, matching FarmingAssistantInput type.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<any>} A promise that resolves with the AI's response.
+ */
+export const callFarmingAssistant = functions.https.onCall(
+  async (data, context) => {
+    // Optional: Add authentication checks if only logged-in users can use it.
+    // if (!context.auth) {
+    //   throw new functions.https.HttpsError(
+    //     'unauthenticated',
+    //     'The function must be called while authenticated.'
+    //   );
+    // }
+    try {
+      // The `askFarmingAssistant` function is imported from the Genkit flow
+      // and directly called with the data from the client.
+      const result = await askFarmingAssistant(data);
+      return result;
+    } catch (error: any) {
+      console.error("Error calling farming assistant flow:", error);
+      // It's good practice to throw a specific error that the client can handle.
+      throw new functions.https.HttpsError(
+        'internal',
+        'An error occurred while communicating with the AI Assistant.',
+        error.message
+      );
+    }
+  }
+);
+
+
+// --- Placeholder Legacy Functions (can be removed or refactored) ---
+
 /**
  * Internal logic for assessing credit risk.
- * This is an internal function to be called by other modules (e.g., Module 7).
  * @param data - The data payload for assessment.
  * @returns A placeholder object with a calculated credit score.
  */
@@ -25,7 +62,6 @@ export async function _internalAssessCreditRisk(data: any) {
 
 /**
  * Internal logic for matching a user with funding opportunities.
- * This is an internal function to be called by other modules (e.g., Module 7).
  * @param data - The data payload, containing user profile and available opportunities.
  * @returns A list of matched opportunities with scores.
  */
@@ -43,7 +79,6 @@ export async function _internalMatchFundingOpportunities(data: any) {
 
 /**
  * Internal logic for assessing insurance risk for a policy.
- * This is an internal function to be called by other modules (e.g., Module 11).
  * @param data - Data payload including policy, policyholder, and asset details.
  * @returns A placeholder object with a calculated risk score.
  */
@@ -60,7 +95,6 @@ export async function _internalAssessInsuranceRisk(data: any) {
 
 /**
  * Internal logic for verifying an insurance claim's validity.
- * This is an internal function to be called by other modules (e.g., Module 11).
  * @param data - Data payload including claim details, policy, and other evidence.
  * @returns A proposed claim status and payout amount.
  */
@@ -81,7 +115,6 @@ export async function _internalVerifyClaim(data: any) {
 
 /**
  * Internal logic for processing regulatory report data with AI.
- * This is an internal function to be called by other modules (e.g., Module 10).
  * @param data - The data payload for report processing.
  * @returns A placeholder object with AI-generated summary and detected anomalies.
  */
@@ -96,34 +129,3 @@ export async function _internalProcessReportData(data: any) {
         },
     };
 }
-
-// --- Callable Wrappers ---
-// These wrappers remain to avoid breaking client-side calls.
-/**
- * Callable function wrapper for assessing credit risk.
- * Note: Exposing this directly to clients should be done with caution.
- *
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any>} A promise that resolves with the assessment.
- */
-export const assessCreditRiskWithAI = functions.https.onCall(
-  async (data, context) => {
-    // TODO: Add authentication and authorization checks
-    return await _internalAssessCreditRisk(data);
-  },
-);
-
-/**
- * Callable function wrapper for matching funding opportunities.
- *
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any>} A promise that resolves with the matched opportunities.
- */
-export const matchFundingOpportunitiesWithAI = functions.https.onCall(
-  async (data, context) => {
-    // TODO: Add authentication and authorization checks
-    return await _internalMatchFundingOpportunities(data);
-  },
-);

@@ -555,3 +555,4 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
+

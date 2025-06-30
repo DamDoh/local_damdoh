@@ -14,7 +14,7 @@ const REPLIES_PER_PAGE = 15;
 
 /**
  * =================================================================
- * Module 6: Community & Collaboration Backend
+ * Module 5: Community & Collaboration Backend
  * =================================================================
  */
 
@@ -380,7 +380,7 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
 
 /**
  * =================================================================
- * Module 6: Main Feed Functions
+ * Module 5: Main Feed Functions
  * =================================================================
  */
 
