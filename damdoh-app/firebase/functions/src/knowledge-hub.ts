@@ -1,4 +1,39 @@
 
+/**
+ * =================================================================
+ * Module 8: Knowledge Hub & Education (The Global Learning Center)
+ * =================================================================
+ * This module serves as the central repository and delivery platform for all
+ * educational content within DamDoh, designed to empower farmers and stakeholders
+ * with accessible, practical, and localized agricultural knowledge. It directly
+ * fuels the intelligence of the AI Assistant (Module 6).
+ *
+ * @purpose To provide a comprehensive, multi-format, and multi-language
+ * learning environment that addresses diverse agricultural needs globally,
+ * improving farming practices, promoting sustainable methods, and enhancing
+ * market understanding.
+ *
+ * @key_concepts
+ * - Curated Educational Content: Formal courses, articles, guides, and videos.
+ * - KNF / FGW Focus: Dedicated resources on Korean Natural Farming and Farming God's Way.
+ * - Searchable Knowledge Base: Powered by natural language processing from Module 6.
+ * - Multi-Language Content Delivery: Enabling users to learn in their native tongue.
+ * - Interactive Learning Elements: Quizzes, self-assessments, and progress tracking.
+ * - Expert Contributions & Curation: A review process to maintain content quality.
+ *
+ * @firebase_data_model
+ * - courses: Stores metadata for structured learning paths.
+ * - modules: Subcollection under courses for individual lessons.
+ * - articles: Standalone knowledge base articles, news, and blog posts.
+ * - user_learning_progress: Tracks user progress through courses.
+ * - knowledge_categories: Manages the taxonomy of educational content.
+ *
+ * @synergy
+ * - Provides the core data for the AI Farming Assistant (Module 6).
+ * - Shared articles and content are displayed in the community feed (Module 5).
+ * - Content is recommended to users based on their profile and activities.
+ */
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -306,4 +341,59 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
       "Failed to fetch course details.",
     );
   }
+});
+
+
+// =================================================================
+// CONCEPTUAL FUTURE FUNCTIONS FOR MODULE 8
+// =================================================================
+
+/**
+ * [Conceptual] Triggered when new video/image content is uploaded to a staging bucket.
+ * This function would handle transcoding for different devices and move the content
+ * to the public content delivery network (CDN).
+ */
+export const processContentUpload = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Processing content upload with data:", data);
+    return { success: true, message: "[Conceptual] Content processed." };
+});
+
+
+/**
+ * [Conceptual] Triggered by new or updated articles/courses.
+ * This function would send the content to a search indexing service like Algolia,
+ * which is then used by Module 6 for fast and relevant search results.
+ */
+export const indexContentForSearch = functions.firestore
+    .document("articles/{articleId}")
+    .onWrite(async (change, context) => {
+        const document = change.after.exists ? change.after.data() : null;
+        console.log(`[Conceptual] Indexing content for search: articles/${context.params.articleId}`, document);
+        // 1. Format document for the search service.
+        // 2. Send data to Algolia/Elasticsearch via their API.
+        return null;
+    });
+
+/**
+ * [Conceptual] Updates a user's progress in a course.
+ * Called from the frontend when a user completes a module or quiz.
+ */
+export const updateLearningProgress = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Updating learning progress with data:", data);
+    return { success: true, message: "[Conceptual] Progress updated." };
+});
+
+/**
+ * [Conceptual] Interacts with Module 6 to get personalized content recommendations.
+ * Called by the frontend to populate recommendation sections.
+ */
+export const recommendContent = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Recommending content for user:", context.auth?.uid);
+    // 1. Fetch user's profile and learning history.
+    // 2. Call an AI model in Module 6 with this context.
+    // 3. Return a list of recommended course/article IDs.
+    return { recommendations: ["courseId1", "articleId2"] };
 });
