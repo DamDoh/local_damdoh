@@ -566,9 +566,7 @@
       "needsLabel": "Currently Seeking / Offering (comma-separated)",
       "needsPlaceholder": "e.g., Buyers for cocoa beans, Warehousing space, Agronomy consulting",
       "commaSeparated": "Comma-separated list.",
-      "saveButton": "Save Profile Changes",
-      "phoneLabel": "Contact Phone",
-      "websiteLabel": "Website"
+      "saveButton": "Save Profile Changes"
     },
     "accountTab": {
       "title": "Account Settings",
@@ -732,3 +730,5 @@
     }
   }
 }
+
+    

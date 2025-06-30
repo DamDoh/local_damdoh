@@ -25,6 +25,26 @@
   "pin": "Fijar",
   "unpin": "Desfijar",
   "yes": "Sí",
+  "FarmManagement": {
+    "createFarm": {
+      "title": "Crear Nueva Finca",
+      "description": "Registra una nueva finca para empezar a gestionarla.",
+      "backToFarms": "Volver a Mis Fincas",
+      "form": {
+        "farmNameLabel": "Nombre de la Finca",
+        "farmNamePlaceholder": "Ej: Finca El Paraíso",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ej: Distrito, Provincia, País",
+        "locationDescription": "Especifica la ubicación geográfica de la finca.",
+        "areaLabel": "Área",
+        "unitLabel": "Unidad",
+        "unitPlaceholder": "Selecciona la unidad",
+        "hectares": "Hectáreas",
+        "acres": "Acres",
+        "submitButton": "Crear Finca"
+      }
+    }
+  },
   "itemCard": {
     "viewDetailsButton": "Ver Detalles"
   },
@@ -604,4 +624,46 @@
     "featuredArticlesTitle": "Artículos Destacados",
     "personalizedRecommendationsTitle": "Recomendado para Ti"
   }
+,"AgriEvents": {
+  "manage": {
+    "title": "Administrar Evento",
+    "subtitlePlaceholder": "Administra los detalles, asistentes y promociones de tu evento.",
+    "tabs": {
+      "dashboard": "Panel",
+      "attendees": "Asistentes",
+      "promotions": "Promociones",
+      "settings": "Configuración"
+    }
+  },
+  "promotions": {
+    "create": {
+      "title": "Crear Nuevo Cupón",
+      "description": "Genera códigos de descuento para promocionar tu evento.",
+      "form": {
+        "code": "Código del Cupón",
+        "codePlaceholder": "Ej: DESCUENTO10",
+        "usageLimit": "Límite de Uso",
+        "usageLimitPlaceholder": "Ej: 100",
+        "discountType": "Tipo de Descuento",
+        "discountTypePlaceholder": "Selecciona el tipo de descuento",
+        "percentage": "Porcentaje",
+        "fixed": "Cantidad Fija",
+        "discountValue": "Valor del Descuento",
+        "expiryDate": "Fecha de Vencimiento",
+        "pickDate": "Selecciona una fecha",
+        "submitButton": "Crear Cupón"
+      }
+    },
+    "list": {
+      "title": "Cupones Existentes",
+      "description": "Gestiona y comparte tus cupones creados.",
+      "expires": "Vence",
+      "usage": "Usados",
+      "share": "Compartir",
+      "noCoupons": "No se han creado cupones aún.",
+      "toastTitle": "¡Enlace Copiado!",
+      "toastDescription": "Comparte este enlace: {link}"
+    }
+  }
+}
 }

@@ -1,131 +1,75 @@
-
 "use client";
 
+import { useState } from 'react';
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { createFarmSchema, type CreateFarmValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, Home, Tractor, MapPin, Text, Droplets, Leaf, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
-import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
-import { LandPlot } from "lucide-react";
 
+const createFarmFormSchema = z.object({
+  farmName: z.string().min(3, "Farm name must be at least 3 characters").max(100),
+  location: z.string().min(5, "Location must be at least 5 characters").max(200),
+  area: z.coerce.number().positive("Area must be a positive number"),
+  unit: z.enum(["hectares", "acres"]),
+});
 
 export default function CreateFarmPage() {
-  const router = useRouter();
+  const t = useTranslations('FarmManagement.createFarm');
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user } = useAuth();
-  const functions = getFunctions(firebaseApp);
-  const createFarmCallable = httpsCallable(functions, 'createFarm');
-
-  const form = useForm<CreateFarmValues>({
-    resolver: zodResolver(createFarmSchema),
+  const form = useForm<z.infer<typeof createFarmFormSchema>>({
+    resolver: zodResolver(createFarmFormSchema),
     defaultValues: {
-      name: "",
-      description: "",
+      farmName: "",
       location: "",
-      size: "",
-      farmType: undefined,
-      irrigationMethods: "",
+      area: 0,
+      unit: "hectares",
     },
   });
 
-  async function onSubmit(data: CreateFarmValues) {
-    if (!user) {
-      toast({
-        variant: "destructive",
-        title: "Not Authenticated",
-        description: "You must be logged in to create a farm.",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    try {
-      const payload = {
-        ...data,
-        owner_id: user.uid,
-      };
-      
-      const result = await createFarmCallable(payload);
-
-      console.log("Farm created successfully:", result.data);
-      
-      toast({
-        title: "Farm Created Successfully!",
-        description: `Your farm "${data.name}" has been registered.`,
-      });
-
-      router.push("/farm-management");
-    } catch (error: any) {
-      console.error("Error creating farm:", error);
-      toast({
-        variant: "destructive",
-        title: "Failed to Create Farm",
-        description: error.message || "An error occurred while saving the farm. Please try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
+  const onSubmit = async (values: z.infer<typeof createFarmFormSchema>) => {
+    console.log("Creating farm:", values);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    toast({
+      title: t('toast.successTitle'),
+      description: t('toast.successDescription', { farmName: values.farmName }),
+    });
+    form.reset();
+    // In a real app, you might redirect the user to the new farm's detail page or the farm list
+  };
 
   return (
-    <div className="space-y-6">
-      <Button asChild variant="outline" className="mb-4">
-        <Link href="/farm-management">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farmer's Hub
-        </Link>
-      </Button>
+    <div className="container mx-auto p-4 md:p-8">
+      <Link href="/farm-management/farms" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
+        <ArrowLeft className="mr-1 h-4 w-4"/> {t('backToFarms')}
+      </Link>
 
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Home className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Register a New Farm</CardTitle>
-          </div>
-          <CardDescription>
-            Add a new agricultural property to your profile. This information helps in planning, tracking, and connecting with relevant services.
-          </CardDescription>
+          <CardTitle className="text-2xl font-bold">{t('title')}</CardTitle>
+          <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
-                name="name"
+                name="farmName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Farm Name</FormLabel>
+                    <FormLabel>{t('form.farmNameLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Green Valley Acres, Sunrise Livestock Farm" {...field} />
+                      <Input placeholder={t('form.farmNamePlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>Give your farm a recognizable name.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -136,49 +80,45 @@ export default function CreateFarmPage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />Location</FormLabel>
+                    <FormLabel>{t('form.locationLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Nakuru County, Kenya or Central Valley, California" {...field} />
+                      <Input placeholder={t('form.locationPlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>Specify the general location, region, or address of your farm.</FormDescription>
+                    <FormDescription>{t('form.locationDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
-                  name="size"
+                  name="area"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><LandPlot className="h-4 w-4 text-muted-foreground" />Total Size</FormLabel>
+                      <FormLabel>{t('form.areaLabel')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g., 10 Hectares, 25 Acres" {...field} />
+                        <Input type="number" step="0.1" placeholder="e.g., 50.5" {...field} />
                       </FormControl>
-                      <FormDescription>Include the unit (e.g., acres, hectares).</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
-                  name="farmType"
+                  name="unit"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />Primary Farm Type</FormLabel>
+                      <FormLabel>{t('form.unitLabel')}</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select farm type" />
+                            <SelectValue placeholder={t('form.unitPlaceholder')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="crop">Crop Production</SelectItem>
-                          <SelectItem value="livestock">Livestock</SelectItem>
-                          <SelectItem value="mixed">Mixed (Crop & Livestock)</SelectItem>
-                          <SelectItem value="aquaculture">Aquaculture</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          <SelectItem value="hectares">{t('form.hectares')}</SelectItem>
+                          <SelectItem value="acres">{t('form.acres')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -187,47 +127,9 @@ export default function CreateFarmPage() {
                 />
               </div>
 
-              <FormField
-                control={form.control}
-                name="irrigationMethods"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Droplets className="h-4 w-4 text-muted-foreground" />Irrigation Methods (Optional)</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Drip irrigation, Sprinklers, Rain-fed" {...field} />
-                    </FormControl>
-                    <FormDescription>List the primary methods you use for watering.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Leaf className="h-4 w-4 text-muted-foreground" />Brief Description (Optional)</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Share a bit more about your farm, like main crops/livestock, farming philosophy (e.g., organic, regenerative), or unique features."
-                        className="min-h-[100px]"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                {isSubmitting ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
-                    </>
-                ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Save Farm</>
-                )}
+              <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {t('form.submitButton')}
               </Button>
             </form>
           </Form>

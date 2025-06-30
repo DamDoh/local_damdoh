@@ -1,122 +1,18 @@
-export const stakeholders = [
-  {
-    id: 'farmer',
-    name: 'Farmer',
-    description: 'The primary producer of agricultural goods.',
-  },
-  {
-    id: 'agricultural-cooperative',
-    name: 'Agricultural Cooperative',
-    description: 'Represents a group of farmers, facilitating collective bargaining, input procurement, processing, and market access.',
-  },
-  {
-    id: 'field-agent-damdoh-internal',
-    name: 'Field Agent/Agronomist (DamDoh Internal)',
-    description: "DamDoh's on-the-ground support, assisting farmers with app adoption, data entry, and basic agronomic advice.",
-  },
-  {
-    id: 'operations-logistics-team-damdoh-internal',
-    name: 'Operations/Logistics Team (DamDoh Internal)',
-    description: 'Manages the internal logistical flow of data and potentially physical goods, ensuring system uptime, data integrity, and smooth operation.',
-  },
-  {
-    id: 'quality-assurance-team-damdoh-internal',
-    name: 'Quality Assurance Team (DamDoh Internal)',
-    description: 'Ensures the accuracy, integrity, and reliability of data within the DamDoh ecosystem, particularly crucial for VTI-linked information.',
-  },
-  {
-    id: 'processing-packaging-unit',
-    name: 'Processing & Packaging Unit',
-    description: 'Transforms raw agricultural produce into processed goods. They introduce new VTIs for processed products.',
-  },
-  {
-    id: 'buyer',
-    name: 'Buyer (Restaurant, Supermarket, Exporter)',
-    description: 'Purchases agricultural products for further sale, consumption, or export. They are key demand drivers and require robust traceability.',
-  },
-  {
-    id: 'input-supplier',
-    name: 'Input Supplier (Seed, Fertilizer, Pesticide)',
-    description: 'Provides essential agricultural inputs to farmers. Their products can also have VTIs for their own supply chain.',
-  },
-  {
-    id: 'equipment-supplier',
-    name: 'Equipment Supplier (Sales of Machinery/IoT)',
-    description: 'Provides agricultural machinery, tools, and IoT devices that enhance farm productivity and data collection.',
-  },
-  {
-    id: 'financial-institution',
-    name: 'Financial Institution (Micro-finance/Loans)',
-    description: 'Provides financial services, including loans, credit, and potentially payment processing, to various stakeholders.',
-  },
-  {
-    id: 'government-regulator-auditor',
-    name: 'Government Regulator/Auditor',
-    description: 'Sets and enforces agricultural policies, food safety standards, and trade regulations. They require transparent and auditable data.',
-  },
-  {
-    id: 'certification-body',
-    name: 'Certification Body (Organic, Fair Trade etc.)',
-    description: 'Certifies agricultural products and practices against specific standards.',
-  },
-  {
-    id: 'consumer',
-    name: 'Consumer',
-    description: 'The end-user of agricultural products. They increasingly demand transparency and sustainable sourcing.',
-  },
-  {
-    id: 'researcher-academic',
-    name: 'Researcher/Academic',
-    description: 'Conducts research on agricultural practices, sustainability, market dynamics, and food security.',
-  },
-  {
-    id: 'logistics-partner',
-    name: 'Logistics Partner (Third-Party Transporter)',
-    description: 'Provides transportation services for agricultural products throughout the supply chain.',
-  },
-  {
-    id: 'storage-warehouse-facility',
-    name: 'Storage/Warehouse Facility',
-    description: 'Provides storage and warehousing services for raw and processed agricultural products.',
-  },
-  {
-    id: 'agronomy-expert-consultant-external',
-    name: 'Agronomy Expert/Consultant (External)',
-    description: 'Provides specialized, often paid, advisory services to farmers and agricultural businesses.',
-  },
-  {
-    id: 'agro-tourism-operator',
-    name: 'Agro-Tourism Operator',
-    description: 'Promotes and facilitates tourism experiences related to agriculture.',
-  },
-  {
-    id: 'energy-solutions-provider',
-    name: 'Energy Solutions Provider (Solar, Biogas)',
-    description: 'Offers renewable energy solutions to farms and agricultural processing units.',
-  },
-  {
-    id: 'agro-export-facilitator-customs-broker',
-    name: 'Agro-Export Facilitator/Customs Broker',
-    description: 'Assists agricultural businesses with export procedures, customs clearance, and navigating international trade regulations.',
-  },
-  {
-    id: 'agri-tech-innovator-developer',
-    name: 'Agri-Tech Innovator/Developer',
-    description: 'Develops new technologies, software, or hardware solutions for agriculture.',
-  },
-  {
-    id: 'waste-management-compost-facility',
-    name: 'Waste Management & Compost Facility',
-    description: 'Processes agricultural waste into valuable resources like compost or biogas, promoting circular economy principles.',
-  },
-  {
-    id: 'crowdfunder',
-    name: 'Crowdfunder (Impact Investor, Individual)',
-    description: 'Provides alternative financing or grants to agricultural projects, often with a focus on social or environmental impact.',
-  },
-  {
-    id: 'insurance-provider',
-    name: 'Insurance Provider',
-    description: 'Offers agricultural insurance products to mitigate risks for farmers and other stakeholders.',
-  },
-];
+
+export const stakeholderData = `
+Key stakeholders in the DamDoh ecosystem include:
+*   **Farmers:** Primary producers. Use DamDoh to find suppliers (Marketplace), buyers (Marketplace), market info (Marketplace, Forums), and best practices (Forums, AI Assistant). They connect with peers (Network, Forums) for knowledge sharing and collaboration.
+*   **Input Suppliers:** Provide seeds, fertilizers, machinery. Use DamDoh to reach farmers (Marketplace, Network), showcase products (Marketplace, Profile), and find distributors (Network).
+*   **Pre-Harvest Contractors:** Offer services like land prep, planting, irrigation. Use DamDoh to find farm clients (Marketplace, Network) and offer specialized services (Marketplace).
+*   **Collection Agents:** Gather produce. Use DamDoh to connect farmers with processors/traders (Marketplace, Network) for efficient aggregation.
+*   **Processors:** Transform raw products into consumable goods. Use DamDoh to find reliable raw material suppliers (Marketplace, Network) and buyers for processed goods (Marketplace, Network).
+*   **Traders:** Buy and sell agricultural products in local/international markets. Use DamDoh for market intelligence (Marketplace, Forums, AI Assistant), finding suppliers (Marketplace, Network), and connecting with buyers (Marketplace, Network).
+*   **Retailers:** Supermarkets, grocery stores. Use DamDoh to source directly from farmers or processors (Marketplace, Network), ensuring quality and traceability.
+*   **Exporters:** Facilitate international trade of agricultural goods. Use DamDoh to connect producers with international buyers (Marketplace, Network) and navigate export requirements (Forums, AI Assistant).
+*   **Consumers:** End-users. While DamDoh is B2B focused, consumers might seek information (AI Assistant, Forums) or direct farm connections (Marketplace, Profiles) for transparency.
+*   **Government Agencies:** Regulators and policy setters. May use DamDoh to disseminate information (Forums, Profiles), share policy updates, and engage with stakeholders (Forums).
+*   **Agricultural Cooperatives:** Farmer groups working together. Use DamDoh to aggregate products, enhance bargaining power, find buyers (Marketplace, Network), share resources (Forums), and access information (Forums, AI Assistant).
+*   **Financial Institutions:** Banks and lenders. Use DamDoh to connect with farmers and agribusinesses needing funding, credit, or insurance (Marketplace - Services, Network).
+*   **Trade Associations:** Advocate for agricultural interests. Use DamDoh for communication (Forums, Profiles), member engagement, and industry updates.
+*   **Development Personnel:** Experts, advisors, researchers. Use DamDoh to share knowledge (Forums, AI Assistant), support agricultural development projects, and connect with stakeholders (Network).
+`;

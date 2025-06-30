@@ -744,5 +744,47 @@
       "content1": "We are always looking for talented individuals to join our team. Please check back later for specific job postings, or feel free to send your resume to",
       "email": "careers@damdoh.org"
     }
+  },
+  "AgriEvents": {
+    "manage": {
+      "title": "Manage Event",
+      "subtitlePlaceholder": "Manage details, attendees, and promotions for your event.",
+      "tabs": {
+        "dashboard": "Dashboard",
+        "attendees": "Attendees",
+        "promotions": "Promotions",
+        "settings": "Settings"
+      }
+    },
+    "promotions": {
+      "create": {
+        "title": "Create New Coupon",
+        "description": "Generate discount codes to promote your event.",
+        "form": {
+          "code": "Coupon Code",
+          "codePlaceholder": "e.g., EARLYBIRD10",
+          "usageLimit": "Usage Limit",
+          "usageLimitPlaceholder": "e.g., 100",
+          "discountType": "Discount Type",
+          "discountTypePlaceholder": "Select discount type",
+          "percentage": "Percentage",
+          "fixed": "Fixed Amount",
+          "discountValue": "Discount Value",
+          "expiryDate": "Expiry Date",
+          "pickDate": "Pick a date",
+          "submitButton": "Create Coupon"
+        }
+      },
+      "list": {
+        "title": "Existing Coupons",
+        "description": "Manage and share your created coupons.",
+        "expires": "Expires",
+        "usage": "Used",
+        "share": "Share",
+        "noCoupons": "No coupons created yet.",
+        "toastTitle": "Link Copied!",
+        "toastDescription": "Share this link: {link}"
+      }
+    }
   }
 }

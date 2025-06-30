@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import type { AgriEvent, EventAttendee } from '@/lib/types';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter, Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from 'next-intl';
 
 interface AgriEventWithAttendees extends AgriEvent {
   isRegistered?: boolean;
@@ -64,6 +65,7 @@ export default function AgriEventDetailPage() {
   const router = useRouter();
   const { user } = useAuth();
   const { toast } = useToast();
+  const t = useTranslations('AgriEvents.promotions.list');
 
   const [event, setEvent] = useState<AgriEventWithAttendees | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -97,8 +99,8 @@ export default function AgriEventDetailPage() {
     const couponFromUrl = searchParams.get('coupon');
     if (couponFromUrl) {
         setCouponCode(couponFromUrl);
-        toast({
-            title: "Coupon Applied!",
+        toast({ // Use the translation keys for the toast message
+            title: t('toastTitle'),
             description: `Coupon code "${couponFromUrl}" has been added from your link.`
         });
     }
