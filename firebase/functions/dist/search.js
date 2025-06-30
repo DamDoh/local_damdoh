@@ -36,7 +36,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.performSearch = exports.onSourceDocumentWriteIndex = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
-const profiles_1 = require("./profiles");
 const db = admin.firestore();
 /**
  * A generic Firestore trigger that listens to writes on specified collections
@@ -53,14 +52,13 @@ exports.onSourceDocumentWriteIndex = functions.firestore
     const newData = change.after.exists ? change.after.data() : null;
     console.log(`Search indexing trigger fired for: ${collectionId}/${documentId}`);
     const indexableCollections = [
-        "master_data_products",
-        "courses",
-        "knowledge_articles",
+        "marketplaceItems",
         "forums",
         "users",
+        "agri_events",
+        "knowledge_articles",
     ];
     if (!indexableCollections.includes(collectionId)) {
-        console.log(`Collection ${collectionId} is not configured for search indexing.`);
         return null;
     }
     const indexItemRef = db
@@ -69,80 +67,41 @@ exports.onSourceDocumentWriteIndex = functions.firestore
     if (!newData) {
         console.log(`Document deleted in ${collectionId}/${documentId}. Removing from search index.`);
         await indexItemRef.delete();
-        console.log(`Removed ${collectionId}/${documentId} from search index.`);
         return null;
     }
-    let titleEn = "";
-    const titleLocal = {};
-    let descriptionEn = "";
-    const descriptionLocal = {};
-    let tags = [];
-    let targetRoles = [];
-    let regionTags = [];
-    let boostScore = 1;
-    console.log(`Extracting data for indexing from ${collectionId}/${documentId} (placeholder)...`);
+    // Prepare a standardized object for our search index.
+    const indexData = {
+        itemId: documentId,
+        itemCollection: collectionId,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
+        title: newData.name || newData.title || newData.displayName || "Untitled",
+        description: newData.description || newData.profileSummary || newData.bio || newData.excerpt_en || "",
+        imageUrl: newData.imageUrl || newData.photoURL || null,
+    };
     switch (collectionId) {
-        case "master_data_products":
-            titleEn = newData.name_en || "";
-            Object.assign(titleLocal, newData.name_local || {});
-            descriptionEn = newData.description_en || "";
-            Object.assign(descriptionLocal, newData.description_local || {});
-            tags = newData.tags || [];
-            regionTags = newData.regionsApplicable || [];
-            boostScore = 2;
-            break;
-        case "courses":
-            titleEn = newData.title_en || "";
-            Object.assign(titleLocal, newData.title_local || {});
-            descriptionEn = newData.description_en || "";
-            Object.assign(descriptionLocal, newData.description_local || {});
-            tags = newData.tags || [];
-            targetRoles = newData.targetRoles || [];
-            regionTags = newData.regionsApplicable || [];
-            break;
-        case "knowledge_articles":
-            titleEn = newData.title_en || "";
-            Object.assign(titleLocal, newData.title_local || {});
-            descriptionEn = newData.content_markdown_en || "";
-            Object.assign(descriptionLocal, newData.content_markdown_local || {});
-            tags = newData.tags || [];
-            targetRoles = newData.targetRoles || [];
+        case "marketplaceItems":
+            indexData.tags = [newData.category, newData.listingType, ...(newData.skillsRequired || [])];
+            indexData.location = newData.location;
             break;
         case "forums":
-            titleEn = newData.name_en || "";
-            Object.assign(titleLocal, newData.name_local || {});
-            descriptionEn = newData.description_en || "";
-            Object.assign(descriptionLocal, newData.description_local || {});
-            tags = newData.tags || [];
-            regionTags = newData.regionTags || [];
+            indexData.tags = newData.regionTags || [];
             break;
         case "users":
-            titleEn = newData.displayName || "";
-            descriptionEn = newData.bio_en || "";
-            Object.assign(descriptionLocal, newData.bio_local || {});
-            tags = newData.expertise || [];
-            targetRoles = [newData.primaryRole].filter((role) => role);
-            regionTags = [newData.country, newData.region].filter((tag) => tag);
-            boostScore = 0.5;
+            indexData.tags = [newData.primaryRole, ...(newData.areasOfInterest || [])];
+            indexData.location = newData.location;
+            break;
+        case "agri_events":
+            indexData.tags = [newData.eventType, ...(newData.tags || [])];
+            indexData.location = newData.location;
+            break;
+        case "knowledge_articles":
+            indexData.tags = [newData.category, ...(newData.tags || [])];
             break;
         default:
             console.warn(`Indexing logic not implemented for collection: ${collectionId}`);
             return null;
     }
-    const indexData = {
-        itemId: documentId,
-        itemCollection: collectionId,
-        title_en: titleEn,
-        title_local: titleLocal,
-        description_en: descriptionEn,
-        description_local: descriptionLocal,
-        tags: tags,
-        targetRoles: targetRoles,
-        regionTags: regionTags,
-        boostScore: boostScore,
-        createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
-        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-    };
     try {
         await indexItemRef.set(indexData, { merge: true });
         console.log(`Indexed ${collectionId}/${documentId} with ID ${indexItemRef.id}.`);
@@ -154,78 +113,41 @@ exports.onSourceDocumentWriteIndex = functions.firestore
     }
 });
 /**
- * This function will be called from the frontend to perform searches.
- * @param {any} data The data for the function call.
+ * Performs a search against the denormalized search_index collection.
+ * This version is enhanced to use the output of the query-interpreter AI flow.
+ * @param {any} data The data for the function call, containing the AI's interpretation.
  * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{results: any[], totalCount: number}>} A promise that resolves with the search results.
+ * @return {Promise<{results: any[]}>} A promise that resolves with search results.
  */
 exports.performSearch = functions.https.onCall(async (data, context) => {
-    var _a;
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
     }
-    const callerUid = context.auth.uid;
-    const { query, filters = {}, pagination = { limit: 20, offset: 0 } } = data;
-    if (!query || typeof query !== "string" || query.trim().length === 0) {
-        throw new functions.https.HttpsError("invalid-argument", "Search query is required.");
+    const { mainKeywords, identifiedLocation, identifiedIntent, suggestedFilters } = data;
+    if (!mainKeywords || mainKeywords.length === 0) {
+        throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required.");
     }
-    if (filters !== null && typeof filters !== "object") {
-        throw new functions.https.HttpsError("invalid-argument", "Filters must be an object or null.");
-    }
-    if (pagination !== null &&
-        (typeof pagination !== "object" ||
-            typeof pagination.limit !== "number" ||
-            typeof pagination.offset !== "number" ||
-            pagination.limit <= 0 ||
-            pagination.offset < 0)) {
-        throw new functions.https.HttpsError("invalid-argument", "Pagination must be an object with valid limit and offset.");
-    }
-    console.log(`Performing search for user ${callerUid} with query: "${query}" and filters: ${JSON.stringify(filters)}`);
     try {
-        const userDoc = await (0, profiles_1.getUserDocument)(callerUid);
-        const userData = userDoc === null || userDoc === void 0 ? void 0 : userDoc.data();
-        const userRole = userData === null || userData === void 0 ? void 0 : userData.primaryRole;
-        const userRegion = userData === null || userData === void 0 ? void 0 : userData.region;
-        const userLanguage = ((_a = userData === null || userData === void 0 ? void 0 : userData.preferredLanguage) === null || _a === void 0 ? void 0 : _a.split("-")[0]) || "en";
-        let queryRef = db.collection("search_index");
-        if (filters.itemCollection && typeof filters.itemCollection === "string") {
-            queryRef = queryRef.where("itemCollection", "==", filters.itemCollection);
+        let query = db.collection("search_index");
+        // Simple text search: For now, we search for the first keyword in title or description.
+        // A more advanced implementation would use a dedicated search service like Algolia or Typesense
+        // that allows for full-text search across multiple fields.
+        const firstKeyword = mainKeywords[0].toLowerCase();
+        // Firestore doesn't support case-insensitive searches or full-text search on its own.
+        // This is a limitation. A real-world, scalable solution would use a third-party search service.
+        // The query below is a placeholder for what would be a more complex search.
+        // For demonstration, we'll just return items where the 'title' starts with the keyword.
+        query = query.where("title", ">=", firstKeyword).where("title", "<=", firstKeyword + '\uf8ff');
+        if (identifiedLocation) {
+            // This is also a simplification. A real app would use geospatial queries or better location indexing.
+            // query = query.where("location", "==", identifiedLocation);
         }
-        if (filters.tags && Array.isArray(filters.tags) && filters.tags.length > 0) {
-            queryRef = queryRef.where("tags", "array-contains-any", filters.tags);
-        }
-        if (userRole) {
-            queryRef = queryRef.where("targetRoles", "array-contains", userRole);
-        }
-        if (userRegion) {
-            queryRef = queryRef.where("regionTags", "array-contains", userRegion);
-        }
-        queryRef = queryRef
-            .where("title_en", ">=", query)
-            .where("title_en", "<=", query + "\uf8ff");
-        queryRef = queryRef.orderBy("title_en").orderBy("createdAt", "desc");
-        queryRef = queryRef.limit(pagination.limit).offset(pagination.offset);
-        const searchResultsSnapshot = await queryRef.get();
-        const searchResults = searchResultsSnapshot.docs.map((doc) => {
-            var _a, _b;
-            const docData = doc.data();
-            const title = ((_a = docData.title_local) === null || _a === void 0 ? void 0 : _a[userLanguage]) || docData.title_en || "";
-            const description = ((_b = docData.description_local) === null || _b === void 0 ? void 0 : _b[userLanguage]) || docData.description_en || "";
-            return {
-                itemId: docData.itemId,
-                itemCollection: docData.itemCollection,
-                title: title,
-                description: description,
-            };
-        });
-        console.log(`Found ${searchResults.length} search results for query "${query}".`);
-        return { results: searchResults, totalCount: searchResultsSnapshot.size };
+        const snapshot = await query.limit(20).get();
+        const results = snapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
+        return { results };
     }
     catch (error) {
-        console.error(`Error performing search for user ${callerUid} with query "${query}":`, error);
-        if (error instanceof functions.https.HttpsError) {
-            throw error;
-        }
+        console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
         throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
     }
 });

@@ -32,65 +32,61 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getWarehouseDashboardData = exports.getProcessingUnitDashboardData = exports.getCrowdfunderDashboardData = exports.getInsuranceProviderDashboardData = exports.getAgroTourismDashboardData = exports.getAgronomistDashboardData = exports.getResearcherDashboardData = exports.getCertificationBodyDashboardData = exports.getQaDashboardData = exports.getRegulatorDashboardData = exports.getPackagingSupplierDashboardData = exports.getEnergyProviderDashboardData = exports.getFieldAgentDashboardData = exports.getInputSupplierDashboardData = exports.getAgroExportDashboardData = exports.getFiDashboardData = exports.getLogisticsDashboardData = exports.getBuyerDashboardData = exports.getFarmerDashboardData = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
-/**
- * Generic function to fetch dashboard data from a specified collection.
- * @param {string} collection The name of the Firestore collection to query.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{data: any[]}>} A promise that resolves with the fetched data.
- */
-async function getDashboardData(collection, context) {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-    try {
-        const snapshot = await db
-            .collection(collection)
-            .where("userId", "==", context.auth.uid)
-            .get();
-        const data = snapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
-        return { data };
-    }
-    catch (error) {
-        console.error(`Error fetching ${collection}:`, error);
-        throw new functions.https.HttpsError("internal", `Failed to fetch ${collection}.`);
-    }
-}
 exports.getFarmerDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
     const farmerId = context.auth.uid;
     try {
-        // Fetch farms, recent crops, and KNF batches concurrently
-        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).limit(5).get();
-        const recentCropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('createdAt', 'desc').limit(5).get();
-        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
-        const [farmsSnapshot, recentCropsSnapshot, knfBatchesSnapshot] = await Promise.all([
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
+        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).get();
+        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
-            recentCropsPromise,
+            cropsPromise,
             knfBatchesPromise,
         ]);
         const farms = farmsSnapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
-        const recentCrops = recentCropsSnapshot.docs.map(doc => {
-            var _a;
+        const recentCrops = cropsSnapshot.docs
+            .map(doc => {
+            var _a, _b;
             const cropData = doc.data();
-            return Object.assign(Object.assign({ id: doc.id }, cropData), { plantingDate: ((_a = cropData.plantingDate) === null || _a === void 0 ? void 0 : _a.toDate) ? cropData.plantingDate.toDate().toISOString() : null });
-        });
-        const knfBatches = knfBatchesSnapshot.docs.map(doc => {
+            return Object.assign(Object.assign({ id: doc.id }, cropData), { createdAt: ((_a = cropData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? cropData.createdAt.toDate() : new Date(0), plantingDate: ((_b = cropData.plantingDate) === null || _b === void 0 ? void 0 : _b.toDate) ? cropData.plantingDate.toDate().toISOString() : null });
+        })
+            .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) // Sort in-memory
+            .slice(0, 5); // Take the 5 most recent
+        const activeKnfBatches = knfBatchesSnapshot.docs
+            .map(doc => {
             var _a;
             const batchData = doc.data();
             return Object.assign(Object.assign({ id: doc.id }, batchData), { nextStepDate: ((_a = batchData.nextStepDate) === null || _a === void 0 ? void 0 : _a.toDate) ? batchData.nextStepDate.toDate().toISOString() : null });
-        });
+        })
+            .filter(batch => batch.status === 'Fermenting' || batch.status === 'Ready') // Filter in-memory
+            .slice(0, 5);
         return {
             farmCount: farms.length,
-            cropCount: recentCrops.length,
-            recentCrops: recentCrops,
-            knfBatches: knfBatches,
+            cropCount: cropsSnapshot.size,
+            recentCrops: recentCrops.map((_a) => {
+                var { createdAt } = _a, rest = __rest(_a, ["createdAt"]);
+                return rest;
+            }), // remove temporary sort key
+            knfBatches: activeKnfBatches,
         };
     }
     catch (error) {
@@ -110,7 +106,7 @@ exports.getBuyerDashboardData = functions.https.onCall(async (data, context) => 
             const farmerData = doc.data();
             return {
                 id: doc.id,
-                name: farmerData.name || "Unnamed Farm",
+                name: farmerData.displayName || "Unnamed Farm",
                 product: ((_b = (_a = farmerData.profileData) === null || _a === void 0 ? void 0 : _a.crops) === null || _b === void 0 ? void 0 : _b[0]) || "Various Produce", // Get first listed crop
                 reliability: Math.floor(Math.random() * (98 - 85 + 1) + 85), // Random reliability
                 vtiVerified: Math.random() > 0.3, // Random VTI verification
@@ -172,27 +168,45 @@ exports.getFiDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-    // Returning mock data to power the new dashboard UI
-    const mockData = {
-        pendingApplications: [
-            { id: "app1", applicantName: "Green Valley Farms", type: "Crop Loan", amount: 25000, riskScore: 720, actionLink: "/applications/app1" },
-            { id: "app2", applicantName: "Sunrise Cooperative", type: "Equipment Financing", amount: 150000, riskScore: 680, actionLink: "/applications/app2" },
-        ],
-        portfolioAtRisk: {
-            count: 12,
-            value: 45000,
-            highestRisk: {
-                name: "Dry Season Farmers Group",
-                reason: "Drought warning in region.",
+    // Live data for pending applications, mock for the rest
+    try {
+        const farmersSnapshot = await db.collection("users")
+            .where("primaryRole", "==", "Farmer")
+            .limit(4) // Fetch a few farmers to act as applicants
+            .get();
+        const pendingApplications = farmersSnapshot.docs.map(doc => {
+            const farmerData = doc.data();
+            return {
+                id: doc.id,
+                applicantName: farmerData.displayName || "Unnamed Farmer",
+                type: Math.random() > 0.5 ? "Crop Loan" : "Equipment Financing",
+                amount: Math.floor(Math.random() * (100000 - 5000 + 1) + 5000),
+                riskScore: Math.floor(Math.random() * (800 - 600 + 1) + 600), // Random score
+                actionLink: `/applications/${doc.id}`
+            };
+        });
+        const liveData = {
+            pendingApplications: pendingApplications,
+            portfolioAtRisk: {
+                count: 12,
+                value: 45000,
+                highestRisk: {
+                    name: "Dry Season Farmers Group",
+                    reason: "Drought warning in region.",
+                },
+                actionLink: "/risk/analysis/q4",
             },
-            actionLink: "/risk/analysis/q4",
-        },
-        marketUpdates: [
-            { id: "update1", content: "Central Bank raises interest rates by 0.25%.", actionLink: "/news/cbr-rates-q4" },
-            { id: "update2", content: "New government subsidy announced for organic farming inputs.", actionLink: "/news/organic-subsidy" },
-        ]
-    };
-    return mockData;
+            marketUpdates: [
+                { id: "update1", content: "Central Bank raises interest rates by 0.25%.", actionLink: "/news/cbr-rates-q4" },
+                { id: "update2", content: "New government subsidy announced for organic farming inputs.", actionLink: "/news/organic-subsidy" },
+            ]
+        };
+        return liveData;
+    }
+    catch (error) {
+        console.error("Error fetching FI dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
+    }
 });
 exports.getAgroExportDashboardData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {

@@ -42,26 +42,19 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const admin = __importStar(require("firebase-admin"));
-// Initialize the Firebase Admin SDK.
-// This must be done only once, at the entry point of your functions.
 admin.initializeApp();
-// Now, re-export all the functions from your other modules.
-// The Firebase CLI will discover and deploy these exported functions.
-__exportStar(require("./dashboard_data"), exports);
-__exportStar(require("./module1"), exports);
-__exportStar(require("./module3"), exports);
-__exportStar(require("./module4"), exports);
-__exportStar(require("./module5"), exports);
-__exportStar(require("./module6"), exports);
-__exportStar(require("./module7"), exports);
-__exportStar(require("./module8"), exports);
-__exportStar(require("./module9"), exports);
-__exportStar(require("./module10"), exports);
-__exportStar(require("./module11"), exports);
-__exportStar(require("./module12"), exports);
-__exportStar(require("./notifications"), exports);
-__exportStar(require("./offline_sync"), exports);
-__exportStar(require("./search"), exports);
+__exportStar(require("./traceability"), exports);
 __exportStar(require("./profiles"), exports);
+__exportStar(require("./farm-management"), exports);
+__exportStar(require("./marketplace"), exports);
+__exportStar(require("./community"), exports);
+__exportStar(require("./ai-and-analytics"), exports);
+__exportStar(require("./financial-services"), exports);
+__exportStar(require("./knowledge-hub"), exports);
+__exportStar(require("./api-gateway"), exports);
+__exportStar(require("./regulatory-and-compliance"), exports);
+__exportStar(require("./insurance"), exports);
+__exportStar(require("./sustainability"), exports);
+__exportStar(require("./notifications"), exports);
 __exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

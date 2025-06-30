@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.upsertStakeholderProfile = void 0;
 exports.getRole = getRole;
 exports.getUserDocument = getUserDocument;
+exports.getProfileByIdFromDB = getProfileByIdFromDB;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const stakeholder_profile_data_1 = require("./stakeholder-profile-data");
@@ -80,7 +81,7 @@ exports.upsertStakeholderProfile = functions.https.onCall(async (data, context) 
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         };
         if (displayName)
-            updatePayload.name = displayName;
+            updatePayload.displayName = displayName;
         if (profileSummary)
             updatePayload.profileSummary = profileSummary;
         if (bio)
@@ -139,6 +140,33 @@ async function getUserDocument(uid) {
     }
     catch (error) {
         console.error("Error getting user document:", error);
+        return null;
+    }
+}
+/**
+ * Helper function to get a user's profile from Firestore by their ID.
+ * @param {string} uid The user's ID.
+ * @return {Promise<any | null>} The user's profile data or null if not found.
+ */
+async function getProfileByIdFromDB(uid) {
+    var _a, _b;
+    if (!uid) {
+        return null;
+    }
+    try {
+        const userDoc = await db.collection("users").doc(uid).get();
+        if (!userDoc.exists) {
+            return null;
+        }
+        const data = userDoc.data();
+        if (!data)
+            return null;
+        // Ensure timestamps are serialized
+        const serializedData = Object.assign(Object.assign({ id: userDoc.id }, data), { createdAt: ((_a = data.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? data.createdAt.toDate().toISOString() : new Date().toISOString(), updatedAt: ((_b = data.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? data.updatedAt.toDate().toISOString() : new Date().toISOString() });
+        return serializedData;
+    }
+    catch (error) {
+        console.error("Error fetching user profile by ID:", error);
         return null;
     }
 }
