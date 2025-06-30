@@ -1,4 +1,34 @@
 
+/**
+ * =================================================================
+ * Module 3: Farm & Asset Management (The Farmer's Operational Hub)
+ * =================================================================
+ * This module is the core operational platform for farmers and agricultural
+ * organizations, providing intuitive tools to manage their physical assets
+ * and farming activities effectively.
+ *
+ * @purpose To empower farmers with a comprehensive digital twin of their farm,
+ * enabling efficient management of land, crops, livestock, equipment, and
+ * sustainable farming practices like Korean Natural Farming (KNF), while
+ * linking directly to traceability and data analytics.
+ *
+ * @key_concepts
+ * - Geospatial Farm Mapping: Delineating farm/field boundaries.
+ * - Crop & Livestock Cycle Management: Logging crop batches and animal records.
+ * - KNF & Sustainable Practice Tracking: Managing KNF input creation and application.
+ * - Equipment & Inventory Management: Cataloging assets and tracking supplies.
+ * - Input-Output Linking: Connecting inputs (seeds, fertilizer) to specific
+ *   crop batches for full traceability via Module 1.
+ *
+ * @synergy
+ * - This module is the primary source of operational data that feeds into
+ *   Module 1 (Traceability) for VTI creation and event logging.
+ * - Data from this module is used by Module 6 (AI Engine) for personalized
+ *   agronomic advice and yield predictions.
+ * - Feeds into Module 12 (Sustainability) by tracking the adoption of
+ *   regenerative practices.
+ */
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type {KnfBatch} from "./types";
@@ -51,6 +81,29 @@ export const createFarm = functions.https.onCall(async (data, context) => {
     );
   }
 });
+
+/**
+ * [Conceptual] Creates a new farm field document.
+ * This would be called to delineate specific fields within a farm,
+ * potentially triggering the creation of a geospatial asset in Module 1.
+ */
+export const createFarmField = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Creating farm field with data:", data);
+    return { success: true, fieldId: `field_${Date.now()}` };
+});
+
+/**
+ * [Conceptual] Logs the application of an input to a crop batch.
+ * This would record what was used, when, and how much, creating a
+ * traceability event in Module 1.
+ */
+export const logApplication = functions.https.onCall(async (data, context) => {
+    // Placeholder logic
+    console.log("Conceptual: Logging input application with data:", data);
+    return { success: true, logId: `log_${Date.now()}` };
+});
+
 
 /**
  * Fetches all farms belonging to the currently authenticated user.
@@ -148,6 +201,7 @@ export const getFarm = functions.https.onCall(async (data, context) => {
 /**
  * Creates a new crop document associated with a farm.
  * After creating the crop, it also logs a 'PLANTED' traceability event.
+ * Aligns with the conceptual 'logCropBatch' function.
  * @param {any} data The data for the new crop.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, cropId: string}>} A promise that resolves with the new crop ID.
@@ -396,6 +450,7 @@ const getNextStepDate = (
 
 /**
  * Creates a new KNF batch document in Firestore for an authenticated user.
+ * Aligns with the conceptual 'logKNFBatch' function.
  * @param {any} data The data for the new batch.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, batchId: string}>} A promise that resolves with the new batch ID.
@@ -555,4 +610,3 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
-
