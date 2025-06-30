@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { MarketplaceCoupon, MarketplaceItem, Shop } from "./types";
-import { _internalInitiatePayment } from "./module7";
+import { _internalInitiatePayment } from "./financial-services";
 
 const db = admin.firestore();
 

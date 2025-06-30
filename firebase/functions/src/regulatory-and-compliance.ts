@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
-import {_internalProcessReportData} from "./module8";
+import {_internalProcessReportData} from "./ai-and-analytics";
 
 const db = admin.firestore();
 

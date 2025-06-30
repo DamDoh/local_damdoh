@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type {KnfBatch} from "./types";
-import {_internalLogTraceEvent} from "./module1";
+import {_internalLogTraceEvent} from "./traceability";
 
 const db = admin.firestore();
 
@@ -67,9 +67,11 @@ export const getUserFarms = functions.https.onCall(async (data, context) => {
   }
 
   try {
-<<<<<<< HEAD
-    const farmsSnapshot = await db.collection('farms').where('owner_id', '==', context.auth.uid).get();
-    const farms = farmsSnapshot.docs.map(doc => {
+    const farmsSnapshot = await db
+      .collection("farms")
+      .where("ownerId", "==", context.auth.uid)
+      .get();
+    const farms = farmsSnapshot.docs.map((doc) => {
         const docData = doc.data();
         return { 
             id: doc.id, 
@@ -78,16 +80,6 @@ export const getUserFarms = functions.https.onCall(async (data, context) => {
             updatedAt: docData.updatedAt?.toDate ? docData.updatedAt.toDate().toISOString() : null,
         }
     });
-=======
-    const farmsSnapshot = await db
-      .collection("farms")
-      .where("ownerId", "==", context.auth.uid)
-      .get();
-    const farms = farmsSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
->>>>>>> Market-Place-Traceability
     return farms;
   } catch (error) {
     console.error("Error fetching user farms:", error);
@@ -108,22 +100,6 @@ export const getFarm = functions.https.onCall(async (data, context) => {
       "User must be authenticated.",
     );
   }
-
-  const {farmId} = data;
-  if (!farmId) {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "A farmId must be provided.",
-    );
-  }
-
-  try {
-    const farmDoc = await db.collection("farms").doc(farmId).get();
-    if (!farmDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Farm not found.");
-    }
-
-<<<<<<< HEAD
     const { farmId } = data;
     if (!farmId) {
         throw new functions.https.HttpsError("invalid-argument", "A farmId must be provided.");
@@ -138,7 +114,7 @@ export const getFarm = functions.https.onCall(async (data, context) => {
         const farmData = farmDoc.data()!;
 
         // Security check: ensure the authenticated user owns this farm
-        if (farmData.owner_id !== context.auth.uid) {
+        if (farmData.ownerId !== context.auth.uid) {
             throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this farm.");
         }
         
@@ -154,28 +130,6 @@ export const getFarm = functions.https.onCall(async (data, context) => {
           throw error;
         }
         throw new functions.https.HttpsError("internal", "Failed to fetch farm details.");
-=======
-    const farmData = farmDoc.data();
-
-    // Security check: ensure the authenticated user owns this farm
-    if (farmData!.ownerId !== context.auth.uid) {
-      throw new functions.https.HttpsError(
-        "permission-denied",
-        "You do not have permission to view this farm.",
-      );
->>>>>>> Market-Place-Traceability
-    }
-
-    return {id: farmDoc.id, ...farmData};
-  } catch (error) {
-    console.error("Error fetching farm:", error);
-    if (error instanceof functions.https.HttpsError) {
-      throw error;
-    }
-    throw new functions.https.HttpsError(
-      "internal",
-      "Failed to fetch farm details.",
-    );
   }
 });
 
@@ -293,9 +247,18 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
     );
   }
 
-<<<<<<< HEAD
-    try {
-        const cropsSnapshot = await db.collection('crops').where('farm_id', '==', farmId).get();
+  // Security Check: Verify owner
+  const farmRef = db.collection("farms").doc(farmId);
+  const farmDoc = await farmRef.get();
+  if (!farmDoc.exists || farmDoc.data()?.ownerId !== context.auth.uid) {
+    throw new functions.https.HttpsError(
+      "permission-denied",
+      "You do not have permission to view crops for this farm.",
+    );
+  }
+
+  try {
+        const cropsSnapshot = await db.collection('crops').where('farmId', '==', farmId).get();
         const crops = cropsSnapshot.docs.map(doc => {
             const docData = doc.data();
             return { 
@@ -311,32 +274,6 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
         console.error("Error fetching farm crops:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch crops.");
     }
-=======
-  // Security Check: Verify owner
-  const farmRef = db.collection("farms").doc(farmId);
-  const farmDoc = await farmRef.get();
-  if (!farmDoc.exists || farmDoc.data()?.ownerId !== context.auth.uid) {
-    throw new functions.https.HttpsError(
-      "permission-denied",
-      "You do not have permission to view crops for this farm.",
-    );
-  }
-
-  try {
-    const cropsSnapshot = await db
-      .collection("crops")
-      .where("farmId", "==", farmId)
-      .get();
-    const crops = cropsSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    return crops;
-  } catch (error) {
-    console.error("Error fetching farm crops:", error);
-    throw new functions.https.HttpsError("internal", "Failed to fetch crops.");
-  }
->>>>>>> Market-Place-Traceability
 });
 
 /**
@@ -603,5 +540,3 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
-
-    

@@ -4,7 +4,7 @@ import * as admin from "firebase-admin";
 import {
   _internalAssessCreditRisk,
   _internalMatchFundingOpportunities,
-} from "./module8";
+} from "./ai-and-analytics";
 
 const db = admin.firestore();
 
@@ -686,5 +686,3 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     }
   },
 );
-
-    
