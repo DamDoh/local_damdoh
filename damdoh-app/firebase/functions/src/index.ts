@@ -21,6 +21,7 @@ export * from "./dashboard_data";
 export * from "./events";
 export * from "./farm-management";
 export * from "./financials";
+export * from "./groups";
 export * from "./insurance";
 export * from "./knowledge-hub";
 export * from "./marketplace";
