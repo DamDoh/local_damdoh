@@ -18,6 +18,7 @@ export * from "./api-gateway";
 export * from "./community";
 export * from "./compliance";
 export * from "./dashboard_data";
+export * from "./events";
 export * from "./farm-management";
 export * from "./financials";
 export * from "./insurance";

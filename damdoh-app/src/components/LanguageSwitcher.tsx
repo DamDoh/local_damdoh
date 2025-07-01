@@ -41,7 +41,7 @@ export function LanguageSwitcher() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
-            disabled={i18n.language === lang.code}
+            disabled={i18n.language.startsWith(lang.code)}
           >
             {lang.name}
           </DropdownMenuItem>
