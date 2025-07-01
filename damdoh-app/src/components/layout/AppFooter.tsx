@@ -13,13 +13,13 @@ export function AppFooter() {
 
   return (
     <footer className="border-t border-border mt-12">
-      {/* Top Section: Logo, Links - NOW GREEN BACKGROUND */}
-      <div className="bg-[#8FBC8F] text-white"> {/* Updated to #8FBC8F */}
+      {/* Top Section: Logo, Links */}
+      <div className="bg-[#6ec33f] text-white">
         <div className="container mx-auto max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="space-y-3 md:col-span-12 lg:col-span-3">
               <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-              <p className="text-sm text-white/80"> {/* Lighter text for tagline */}
+              <p className="text-sm text-white/80">
                 {t('footer.tagline')}
               </p>
             </div>
@@ -55,8 +55,8 @@ export function AppFooter() {
         </div>
       </div>
 
-      {/* Bottom Section: Copyright, App Badges - LIGHT BACKGROUND */}
-      <div className="bg-background text-foreground"> {/* Main page background, default text color */}
+      {/* Bottom Section: Copyright, App Badges */}
+      <div className="bg-background text-foreground">
         <div className="container mx-auto max-w-screen-2xl px-4 py-8 md:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
