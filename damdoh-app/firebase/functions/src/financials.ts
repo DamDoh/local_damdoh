@@ -35,65 +35,12 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import {
+  _internalAssessCreditRisk,
+  _internalMatchFundingOpportunities,
+} from "./ai-and-analytics";
 
 const db = admin.firestore();
-
-// --- Internal AI-Driven Functions (moved from ai-services.ts) ---
-
-/**
- * Internal logic for assessing credit risk.
- * This is an internal function to be called by other functions within this module.
- * @param {any} data The data payload for assessment, typically containing
- * user profile and financial history.
- * @return {Promise<object>} An object with the calculated credit score
- * and contributing risk factors.
- */
-async function _internalAssessCreditRisk(data: any) {
-    console.log("_internalAssessCreditRisk called with data:", data);
-    // In a real implementation, this would interact with an external AI platform
-    // (e.g., Vertex AI) or an internal AI model service.
-    const calculatedScore = Math.floor(300 + Math.random() * 550);
-    const riskFactors = [
-        "Payment history on platform",
-        "Farm yield variability",
-        "Length of operational history",
-    ];
-    return {
-        score: calculatedScore,
-        riskFactors: riskFactors,
-        status: "placeholder_analysis_complete",
-    };
-}
-
-/**
- * Internal logic for matching a user with funding opportunities.
- * This is an internal function to be called by other functions within this module.
- * @param {any} data The data payload, containing user profile and available
- * opportunities.
- * @return {Promise<object>} An object with a list of matched
- * opportunities and their relevance scores.
- */
-async function _internalMatchFundingOpportunities(data: any) {
-    console.log("_internalMatchFundingOpportunities called with data:", data);
-    // This is a placeholder for a real matching algorithm or AI model.
-    const matchedOpportunities = [
-        {
-            opportunityId: "loan_product_123",
-            relevanceScore: 0.85,
-            reason: "High credit score and matching crop type.",
-        },
-        {
-            opportunityId: "grant_program_456",
-            relevanceScore: 0.70,
-            reason: "Matches sustainability practices and location.",
-        },
-    ];
-    return {
-        matchedOpportunities: matchedOpportunities,
-        status: "placeholder_matching_complete",
-    };
-}
-
 
 // --- Main Module Functions ---
 
@@ -380,7 +327,7 @@ export const matchFundingOpportunities = functions.firestore
       );
 
       return null;
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         `Error matching funding opportunities for ${relevantUserId}:`,
         error,
@@ -805,5 +752,3 @@ export const notifyLoanPartner = functions.firestore
         // 2. Send an email or push notification via Module 13.
         return null;
     });
-
-    
