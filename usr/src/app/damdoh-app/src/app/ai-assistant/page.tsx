@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect, FormEvent, ChangeEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw } from 'lucide-react';
+import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -15,9 +15,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { APP_NAME } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-import type { FarmingAssistantOutput } from '@/firebase/functions/src/ai/flows/farming-assistant-flow';
+import { askFarmingAssistant, type FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 
 interface ChatMessage {
   id: string;
@@ -59,9 +57,6 @@ export default function AiAssistantPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  const functions = getFunctions(firebaseApp);
-  const callFarmingAssistant = httpsCallable(functions, 'callFarmingAssistant');
-
   useEffect(() => {
     if (scrollAreaRef.current) {
       const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
@@ -153,13 +148,12 @@ export default function AiAssistantPage() {
     }
 
     try {
-        const result = await callFarmingAssistant({
+        const aiResponse = await askFarmingAssistant({
             query: query,
             photoDataUri: imageUri || undefined,
             language: i18n.language,
         });
 
-        const aiResponse = result.data as FarmingAssistantOutput;
         const newAssistantMessage: ChatMessage = { id: `assistant-${Date.now() + 1}`, role: 'assistant', content: aiResponse, timestamp: new Date() };
         setChatHistory(prev => [...prev, newAssistantMessage]);
 
@@ -175,7 +169,7 @@ export default function AiAssistantPage() {
     } finally {
         setIsLoading(false);
     }
-  }, [callFarmingAssistant, i18n.language, toast, t]);
+  }, [i18n.language, toast, t]);
 
 
   const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
