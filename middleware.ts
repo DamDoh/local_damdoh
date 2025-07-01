@@ -1,7 +1,2 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
-  return NextResponse.next();
-}
-// This file is intentionally left empty.
+// This file is not in use. Middleware for Next.js should be placed inside the `src` directory.
+// This file can be safely deleted.
