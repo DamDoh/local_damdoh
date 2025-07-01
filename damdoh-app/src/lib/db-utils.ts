@@ -16,17 +16,6 @@ import {
 import { db, functions } from './firebase/client'; // Import the client-side initialized Firestore instance
 import { httpsCallable } from 'firebase/functions';
 import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, AgriEvent } from '@/lib/types';
-import { dummyMarketplaceItems, dummyForumTopics, dummyForumPosts, dummyAgriEvents, dummyProfiles } from '@/lib/dummy-data';
-
-console.warn(
-  "db-utils.ts is using a mix of live Firestore calls and dummy data. " +
-  "Ensure your Firebase project is set up. " +
-  "Some functions are still using placeholder data."
-);
-
-// Define consistent collection names
-const PROFILES_COLLECTION = 'users';
-const MARKETPLACE_COLLECTION = 'marketplaceItems';
 
 // --- Callable Function References ---
 const performSearchCallable = httpsCallable(functions, 'performSearch');
@@ -35,11 +24,11 @@ const performSearchCallable = httpsCallable(functions, 'performSearch');
 // --- Profile DB Operations ---
 export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
   try {
-    const profilesCol = collection(db, PROFILES_COLLECTION);
+    const profilesCol = collection(db, 'users');
     const profileSnapshot = await getDocs(profilesCol);
     if (profileSnapshot.empty) {
-        console.log("No profiles found in Firestore, returning dummy data for development.");
-        return dummyProfiles;
+        console.log("No profiles found in Firestore.");
+        return [];
     }
     const profileList = profileSnapshot.docs.map(docSnap => {
       const data = docSnap.data();
@@ -53,14 +42,14 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
     return profileList;
   } catch (error) {
     console.error("Error fetching all profiles from Firestore: ", error);
-    return dummyProfiles;
+    throw error;
   }
 }
 
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
     if (!id) return null;
-    const profileDocRef = doc(db, PROFILES_COLLECTION, id);
+    const profileDocRef = doc(db, 'users', id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
       const data = profileSnap.data();
@@ -83,8 +72,12 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 // --- Marketplace DB Operations ---
 export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
   try {
-    const itemsCol = collection(db, MARKETPLACE_COLLECTION);
+    const itemsCol = collection(db, 'marketplaceItems');
     const itemSnapshot = await getDocs(itemsCol);
+    if (itemSnapshot.empty) {
+        console.log("No marketplace items found in Firestore.");
+        return [];
+    }
     const itemList = itemSnapshot.docs.map(docSnap => {
       const data = docSnap.data();
       return { 
@@ -97,14 +90,14 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
     return itemList;
   } catch (error) {
     console.error("Error fetching all marketplace items from Firestore: ", error);
-    return [];
+    throw error; 
   }
 }
 
 export async function getMarketplaceItemByIdFromDB(id: string): Promise<MarketplaceItem | null> {
   try {
     if (!id) return null;
-    const itemDocRef = doc(db, MARKETPLACE_COLLECTION, id);
+    const itemDocRef = doc(db, 'marketplaceItems', id);
     const itemSnap = await getDoc(itemDocRef);
     if (itemSnap.exists()) {
       const data = itemSnap.data();
