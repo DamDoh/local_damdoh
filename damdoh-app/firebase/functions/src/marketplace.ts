@@ -404,6 +404,21 @@ export const getListingsBySeller = functions.https.onCall(async (data, context) 
 // =================================================================
 
 /**
+ * [Conceptual] Scheduled function to generate market predictions.
+ * This would run daily or weekly, aggregate data from this module,
+ * and update a 'market_predictions' collection for use by the AI Engine.
+ * This function was moved from ai-services.ts for better modularity.
+ */
+export const generateMarketPredictions = functions.pubsub.schedule('every 24 hours').onRun(async (context) => {
+    console.log('[Conceptual] Running scheduled job to generate market predictions...');
+    // 1. Fetch recent transaction data from this module (Marketplace).
+    // 2. Fetch external market data via Module 9 (Integrations).
+    // 3. Run data through a predictive ML model (from Module 6).
+    // 4. Store results in a 'market_predictions' collection.
+    return null;
+});
+
+/**
  * [Conceptual] Triggered when a new order is created in the `orders` collection.
  * This function would handle post-order logic like updating inventory and notifying parties.
  */

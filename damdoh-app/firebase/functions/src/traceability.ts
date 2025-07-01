@@ -12,11 +12,6 @@
  * data and to record every significant event in a product's lifecycle using a
  * robust, auditable, and hierarchical traceability system.
  *
- * @key_concepts
- * - Master Data Management: Centralized repository for products, inputs, certifications.
- * - Vibrant Traceability ID (VTI) System: Unique, immutable identifier for every batch.
- * - Immutable Traceability Event Log: An auditable chain of custody for every product.
- *
  * @future_integrations Satellite data processing, weather data integration.
  */
 
@@ -616,6 +611,21 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
  * This function would process the raw imagery, calculate indices like NDVI,
  * link it to the relevant geospatial_assets, and store summarized data for
  * use in Module 3 (Farm Management) and Module 6 (AI Engine).
+ * This function was moved from ai-services.ts for better modularity.
+ */
+export const analyzeSatelliteImageryForYield = functions.https.onCall(async (data, context) => {
+    console.log('[Conceptual] Analyzing satellite imagery for yield prediction...', data);
+    // 1. Receive payload with farmFieldId and new satellite imagery reference.
+    // 2. Run image through a yield prediction model (from Module 6).
+    // 3. Store the forecast in the 'yield_forecasts' collection.
+    return { success: true, message: '[Conceptual] Yield forecast initiated.' };
+});
+
+/**
+ * [Conceptual] Triggered by new satellite data feeds from external providers.
+ * This function would process the raw imagery, calculate indices like NDVI,
+ * link it to the relevant geospatial_assets, and store summarized data for
+ * use in Module 3 (Farm Management) and Module 6 (AI Engine).
  */
 export const processSatelliteImagery = functions.https.onCall(async (data, context) => {
     console.log("Conceptual: Processing satellite imagery for farm field:", data.farmFieldId);
@@ -625,22 +635,3 @@ export const processSatelliteImagery = functions.https.onCall(async (data, conte
     // 4. Store derived data in BigQuery and/or update the geospatial_assets document in Firestore.
     return { status: "success", message: "Conceptual satellite imagery processed."};
 });
-
-/**
- * [Conceptual] Triggered by new traceability events like 'INPUT_APPLIED' or 'TRANSPORTED'.
- * This function would fetch emission factors and calculate the carbon footprint,
- * updating the metadata of the corresponding VTI in the vti_registry.
- */
-export const calculateCarbonFootprint = functions.firestore
-    .document("traceability_events/{eventId}")
-    .onCreate(async (snapshot, context) => {
-        const eventData = snapshot.data();
-        console.log("Conceptual: Calculating carbon footprint for event:", context.params.eventId);
-        // 1. Check if eventType is relevant (e.g., fertilizer application, transport).
-        // 2. Fetch the corresponding emission factor from a 'emission_factors' master data collection.
-        // 3. Calculate emissions based on event payload (e.g., quantity * factor).
-        // 4. Update the vti_registry document for the event's vtiId with the new carbon data.
-        return null;
-    });
-
-    

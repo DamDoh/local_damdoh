@@ -225,3 +225,21 @@ export async function getProfileByIdFromDB(uid: string): Promise<UserProfile | n
         return null;
     }
 }
+
+// =================================================================
+// CONCEPTUAL FUTURE FUNCTIONS FOR MODULE 2
+// =================================================================
+
+/**
+ * [Conceptual] Scheduled function to update user connection recommendations.
+ * This would run periodically to refresh suggestions based on recent activity.
+ * This function was moved from ai-services.ts for better modularity.
+ */
+export const updateRecommendations = functions.pubsub.schedule('every 12 hours').onRun(async (context) => {
+    console.log('[Conceptual] Running scheduled job to update user recommendations...');
+    // 1. Get a list of active users.
+    // 2. For each user, fetch their latest profile and activity data.
+    // 3. Call the 'suggestConnections' AI flow (from Module 6).
+    // 4. Store the new recommendations in the 'recommendations' collection.
+    return null;
+});
