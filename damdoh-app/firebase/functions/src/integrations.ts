@@ -1,2 +1,1 @@
-// This file is obsolete. All its logic has been moved to api-gateway.ts.
-// It can be safely deleted in a future cleanup.
+// This file is obsolete. Its contents have been migrated to the active functions directory.
