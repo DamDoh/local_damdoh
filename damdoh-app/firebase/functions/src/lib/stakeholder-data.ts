@@ -1,4 +1,4 @@
-// damdoh-app/src/lib/stakeholder-data.ts
+// damdoh-app/firebase/functions/src/lib/stakeholder-data.ts
 export const stakeholderData = `
 # The 24 Stakeholders of the DamDoh Ecosystem
 
