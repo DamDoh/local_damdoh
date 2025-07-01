@@ -12,8 +12,8 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import {fgwKnfKnowledgeTool} from './tools/fgw-knf-knowledge-tool';
-import { stakeholderData } from '@/lib/stakeholder-data';
+import {fgwKnfKnowledgeTool} from '../tools/fgw-knf-knowledge-tool';
+import { stakeholderData } from '../../../../../src/lib/stakeholder-data';
 
 const FarmingAssistantInputSchema = z.object({
   query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
@@ -106,3 +106,5 @@ const farmingAssistantFlow = ai.defineFlow(
     };
   }
 );
+
+    
