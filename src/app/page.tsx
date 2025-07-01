@@ -2,9 +2,7 @@
 "use client";
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
@@ -17,75 +15,74 @@ import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-// Hub Components
-import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
+// Hub Components (Alphabetized)
+import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
+import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDashboard';
+import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
 import { BuyerDashboard } from '@/components/dashboard/hubs/BuyerDashboard';
-import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
+import { CertificationBodyDashboard } from '@/components/dashboard/hubs/CertificationBodyDashboard';
+import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
+import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
+import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProviderDashboard';
+import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
+import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashboard';
 import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
 import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplierDashboard';
-import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashboard';
-import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
-import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
-import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
-import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProviderDashboard';
-import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
-import { CertificationBodyDashboard } from '@/components/dashboard/hubs/CertificationBodyDashboard';
-import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
-import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDashboard';
 import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
+import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
+import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
 import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
+import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
+import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
+import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
-import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
-import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
-import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-
 const HubComponentMap: { [key: string]: React.ComponentType } = {
-    'Farmer': FarmerDashboard,
     'Agricultural Cooperative': CooperativeDashboard,
-    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
-    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
-    'Financial Institution (Micro-finance/Loans)': FiDashboard,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
-    'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
     'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Packaging Supplier': PackagingSupplierDashboard,
-    'Government Regulator/Auditor': RegulatorDashboard,
-    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
-    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
-    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
-    'Researcher/Academic': ResearcherDashboard,
-    'Agro-Tourism Operator': AgroTourismDashboard,
-    'Insurance Provider': InsuranceProviderDashboard,
-    'Processing & Packaging Unit': ProcessingUnitDashboard,
-    'Storage/Warehouse Facility': WarehouseDashboard,
+    'Agri-Tech Innovator/Developer': ResearcherDashboard, // Fallback for now
     'Agronomy Expert/Consultant (External)': AgronomistDashboard,
+    'Agro-Tourism Operator': AgroTourismDashboard,
+    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
+    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
     'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
+    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
+    'Farmer': FarmerDashboard,
+    'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
+    'Financial Institution (Micro-finance/Loans)': FiDashboard,
+    'Government Regulator/Auditor': RegulatorDashboard,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
+    'Insurance Provider': InsuranceProviderDashboard,
+    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
+    'Packaging Supplier': PackagingSupplierDashboard,
+    'Processing & Packaging Unit': ProcessingUnitDashboard,
+    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
+    'Researcher/Academic': ResearcherDashboard,
+    'Storage/Warehouse Facility': WarehouseDashboard,
 };
-
 
 function PageSkeleton() {
     return (
         <div className="grid md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-3">
+            <div className="md:col-span-3 lg:col-span-2">
                  <Skeleton className="h-[400px] w-full" />
             </div>
-            <div className="md:col-span-6 space-y-6">
+            <div className="md:col-span-6 lg:col-span-7 space-y-6">
                 <Skeleton className="h-28 w-full" />
                 <Skeleton className="h-64 w-full" />
                 <Skeleton className="h-56 w-full" />
             </div>
-            <div className="md:col-span-3">
+            <div className="hidden lg:block md:col-span-3">
                  <Skeleton className="h-[400px] w-full" />
             </div>
         </div>
     );
 }
 
-export default function DashboardPage() {
+function MainContent() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -100,9 +97,7 @@ export default function DashboardPage() {
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
   useEffect(() => {
-    if (authLoading) {
-      return;
-    }
+    if (authLoading) return;
 
     const fetchUserRoleAndFeed = async () => {
       setIsLoadingRole(true);
@@ -116,13 +111,14 @@ export default function DashboardPage() {
         } catch (error) {
           console.error("Error fetching user role:", error);
           setUserRole('general'); 
+        } finally {
+            setIsLoadingRole(false);
         }
       } else {
         setUserRole(null);
+        setIsLoadingRole(false);
       }
-      setIsLoadingRole(false);
 
-      // Fetch public feed regardless of user state
       try {
         const result = await getFeed({});
         setFeedItems((result.data as any).posts || []);
@@ -139,6 +135,7 @@ export default function DashboardPage() {
     };
     fetchUserRoleAndFeed();
   }, [user, authLoading, getFeed, toast]);
+
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
     try {
@@ -177,7 +174,16 @@ export default function DashboardPage() {
      toast({ title: "Post Deleted (Simulated)" });
   };
 
-  const renderDashboardContent = () => {
+  const renderContent = () => {
+    if (isLoadingRole) {
+      return (
+        <div className="space-y-6">
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-64 w-full rounded-lg" />
+        </div>
+      );
+    }
+  
     const HubComponent = userRole ? HubComponentMap[userRole] : null;
 
     if (HubComponent) {
@@ -213,16 +219,16 @@ export default function DashboardPage() {
     );
   };
 
-  if (authLoading || (user && isLoadingRole)) {
+  if (authLoading) {
     return <PageSkeleton />;
   }
 
   return (
     <div className="grid md:grid-cols-12 gap-6 items-start">
-      <div className="md:col-span-3">
+      <div className="md:col-span-3 lg:col-span-2">
         <DashboardLeftSidebar />
       </div>
-      <div className="md:col-span-6 space-y-6">
+      <div className="md:col-span-6 lg:col-span-7 space-y-6">
         {user && <StartPost onCreatePost={handleCreatePost} />}
         {user && (
            <div className="flex items-center gap-2">
@@ -230,11 +236,19 @@ export default function DashboardPage() {
             <span className="text-xs text-muted-foreground">Sort by: Top <Button variant="ghost" size="icon" className="h-4 w-4 ml-1 p-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg></Button></span>
           </div>
         )}
-        {renderDashboardContent()}
+        {renderContent()}
       </div>
-      <div className="md:col-span-3">
+      <div className="hidden lg:block md:col-span-3">
         <DashboardRightSidebar />
       </div>
     </div>
   );
+}
+
+export default function RootPage() {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainContent />
+      </Suspense>
+    );
 }
