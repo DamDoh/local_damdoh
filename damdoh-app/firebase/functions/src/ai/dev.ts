@@ -1,15 +1,2 @@
-
-import { config } from 'dotenv';
-config();
-
-// Ensure the Firebase Admin SDK is initialized for server-side operations
-import '@/lib/firebase/admin';
-
-import '@/ai/flows/forum-topic-suggestions.ts';
-import '@/ai/flows/suggested-connections.ts';
-import '@/ai/flows/profile-summary-generator.ts';
-import '@/ai/flows/farming-assistant-flow.ts';
-import '@/ai/flows/market-insights-flow.ts';
-import '@/ai/flows/query-interpreter-flow.ts';
-import '@/ai/flows/marketplace-recommendations.ts';
-import '@/ai/tools/fgw-knf-knowledge-tool';
+// This file is obsolete. All AI flows are now managed within the Next.js app at /src/ai.
+// This file can be safely deleted in a future cleanup.
