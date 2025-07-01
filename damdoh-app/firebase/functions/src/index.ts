@@ -1,3 +1,4 @@
+
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -21,6 +22,7 @@ export * from "./dashboard_data";
 export * from "./events";
 export * from "./farm-management";
 export * from "./financials";
+export * from "./forums";
 export * from "./groups";
 export * from "./insurance";
 export * from "./knowledge-hub";
