@@ -24,6 +24,7 @@ export * from "./financials";
 export * from "./insurance";
 export * from "./knowledge-hub";
 export * from "./marketplace";
+export * from "./messaging";
 export * from "./notifications";
 export * from "./offline_sync";
 export * from "./profiles";
