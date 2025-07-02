@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Tag, Filter, Search, Frown } from "lucide-react";
 import type { AgriEvent } from "@/lib/types";
-import { AGRI_EVENT_FILTER_OPTIONS, type AgriEventTypeConstant } from "@/lib/constants";
+import { getAgriEventFilterOptions, type AgriEventTypeConstant } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import { useTranslations } from "next-intl";
 
 const getEventTypeIcon = (eventType: AgriEvent['eventType']) => {
   const iconProps = { className: "h-4 w-4 mr-1.5 text-primary" };
@@ -53,6 +54,8 @@ const EventCardSkeleton = () => (
 
 
 export default function AgriEventsPage() {
+  const t = useTranslations('agriEventsPage');
+  const tConstants = useTranslations('constants.agriEventTypes');
   const [searchTerm, setSearchTerm] = useState("");
   const [eventTypeFilter, setEventTypeFilter] = useState<AgriEventTypeConstant | 'All'>("All");
   const [events, setEvents] = useState<AgriEvent[]>([]);
@@ -75,8 +78,8 @@ export default function AgriEventsPage() {
         } catch(error) {
             console.error("Failed to fetch events:", error);
             toast({
-                title: "Error loading events",
-                description: "Could not fetch the list of events. Please try again later.",
+                title: t('errorLoadingEvents'),
+                description: t('couldNotFetchEvents'),
                 variant: "destructive"
             });
         } finally {
@@ -84,7 +87,7 @@ export default function AgriEventsPage() {
         }
     };
     fetchEvents();
-  }, [getAgriEventsCallable, toast]);
+  }, [getAgriEventsCallable, toast, t]);
 
 
   const filteredEvents = useMemo(() => {
@@ -105,17 +108,19 @@ export default function AgriEventsPage() {
     if (isCurrentHomepage) {
       clearHomepagePreference();
       toast({
-        title: "Homepage Unpinned!",
-        description: "The Dashboard is now your default homepage.",
+        title: t('homepageUnpinned'),
+        description: t('dashboardIsHomepage'),
       });
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: "Agri-Events Pinned!",
-        description: "Agri-Business Events are now your default homepage.",
+        title: t('agriEventsPinned'),
+        description: t('agriEventsIsHomepage'),
       });
     }
   };
+  
+  const agriEventFilterOptions = getAgriEventFilterOptions(tConstants);
 
   return (
     <div className="space-y-6">
@@ -125,19 +130,19 @@ export default function AgriEventsPage() {
             <div>
               <div className="flex items-center gap-2">
                 <CalendarDays className="h-7 w-7 text-primary" />
-                <CardTitle className="text-2xl">Agri-Business Events</CardTitle>
+                <CardTitle className="text-2xl">{t('title')}</CardTitle>
               </div>
-              <CardDescription>Discover conferences, workshops, webinars, and trade shows in the agricultural sector.</CardDescription>
+              <CardDescription>{t('description')}</CardDescription>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <Button asChild>
                 <Link href="/agri-events/create">
-                  <PlusCircle className="mr-2 h-4 w-4" /> Create New Event
+                  <PlusCircle className="mr-2 h-4 w-4" />{t('createNewEvent')}
                 </Link>
               </Button>
               <Button variant="outline" onClick={handleSetHomepage}>
                 {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
-                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
+                {isCurrentHomepage ? t('unpinHomepage') : t('pinAsHomepage')}
               </Button>
             </div>
           </div>
@@ -145,11 +150,11 @@ export default function AgriEventsPage() {
         <CardContent>
           <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
             <div className="relative lg:col-span-2">
-              <Label htmlFor="search-events" className="sr-only">Search Events</Label>
+              <Label htmlFor="search-events" className="sr-only">{t('searchEvents')}</Label>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-events"
-                placeholder="Search events by title, description, or location..." 
+                placeholder={t('searchPlaceholder')}
                 className="pl-10" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -157,10 +162,10 @@ export default function AgriEventsPage() {
             </div>
             <Select value={eventTypeFilter} onValueChange={(value) => setEventTypeFilter(value as AgriEventTypeConstant | 'All')}>
               <SelectTrigger id="event-type-filter">
-                <SelectValue placeholder="Filter by event type" />
+                <SelectValue placeholder={t('filterPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
-                {AGRI_EVENT_FILTER_OPTIONS.map(opt => (
+                {agriEventFilterOptions.map(opt => (
                   <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                 ))}
               </SelectContent>
@@ -213,14 +218,14 @@ export default function AgriEventsPage() {
                     {event.organizer && (
                       <div className="flex items-center text-muted-foreground">
                         <Users className="h-4 w-4 mr-2" />
-                        Organized by: {event.organizer}
+                        {t('organizedBy', { organizer: event.organizer })}
                       </div>
                     )}
                   </CardContent>
                   <CardFooter>
                     <Button asChild className="w-full" variant="outline">
                       <Link href={`/agri-events/${event.id}`}>
-                        View Details
+                        {t('viewDetails')}
                       </Link>
                     </Button>
                   </CardFooter>
@@ -230,9 +235,11 @@ export default function AgriEventsPage() {
           ) : (
             <div className="min-h-[200px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
               <Frown className="h-16 w-16 text-muted-foreground/50 mb-4" />
-              <h3 className="text-xl font-semibold text-muted-foreground mb-2">No Events Found</h3>
+              <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('noEventsFound')}</h3>
               <p className="text-muted-foreground max-w-md">
-                Try adjusting your search or filters. Or, be the first to <Link href="/agri-events/create" className="text-primary hover:underline">add an event</Link>!
+                {t.rich('noEventsHint', {
+                    link: (chunks) => <Link href="/agri-events/create" className="text-primary hover:underline">{chunks}</Link>
+                })}
               </p>
             </div>
           )}

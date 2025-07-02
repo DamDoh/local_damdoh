@@ -623,47 +623,104 @@
     "blogLink": "Blog",
     "featuredArticlesTitle": "Artículos Destacados",
     "personalizedRecommendationsTitle": "Recomendado para Ti"
-  }
-,"AgriEvents": {
-  "manage": {
-    "title": "Administrar Evento",
-    "subtitlePlaceholder": "Administra los detalles, asistentes y promociones de tu evento.",
-    "tabs": {
-      "dashboard": "Panel",
-      "attendees": "Asistentes",
-      "promotions": "Promociones",
-      "settings": "Configuración"
-    }
   },
-  "promotions": {
-    "create": {
-      "title": "Crear Nuevo Cupón",
-      "description": "Genera códigos de descuento para promocionar tu evento.",
-      "form": {
-        "code": "Código del Cupón",
-        "codePlaceholder": "Ej: DESCUENTO10",
-        "usageLimit": "Límite de Uso",
-        "usageLimitPlaceholder": "Ej: 100",
-        "discountType": "Tipo de Descuento",
-        "discountTypePlaceholder": "Selecciona el tipo de descuento",
-        "percentage": "Porcentaje",
-        "fixed": "Cantidad Fija",
-        "discountValue": "Valor del Descuento",
-        "expiryDate": "Fecha de Vencimiento",
-        "pickDate": "Selecciona una fecha",
-        "submitButton": "Crear Cupón"
+  "AgriEvents": {
+    "manage": {
+      "title": "Administrar Evento",
+      "subtitlePlaceholder": "Administra los detalles, asistentes y promociones de tu evento.",
+      "tabs": {
+        "dashboard": "Panel",
+        "attendees": "Asistentes",
+        "promotions": "Promociones",
+        "settings": "Configuración"
       }
     },
-    "list": {
-      "title": "Cupones Existentes",
-      "description": "Gestiona y comparte tus cupones creados.",
-      "expires": "Vence",
-      "usage": "Usados",
-      "share": "Compartir",
-      "noCoupons": "No se han creado cupones aún.",
-      "toastTitle": "¡Enlace Copiado!",
-      "toastDescription": "Comparte este enlace: {link}"
+    "promotions": {
+      "create": {
+        "title": "Crear Nuevo Cupón",
+        "description": "Genera códigos de descuento para promocionar tu evento.",
+        "form": {
+          "code": "Código del Cupón",
+          "codePlaceholder": "Ej: DESCUENTO10",
+          "usageLimit": "Límite de Uso",
+          "usageLimitPlaceholder": "Ej: 100",
+          "discountType": "Tipo de Descuento",
+          "discountTypePlaceholder": "Selecciona el tipo de descuento",
+          "percentage": "Porcentaje",
+          "fixed": "Cantidad Fija",
+          "discountValue": "Valor del Descuento",
+          "expiryDate": "Fecha de Vencimiento",
+          "pickDate": "Selecciona una fecha",
+          "submitButton": "Crear Cupón"
+        }
+      },
+      "list": {
+        "title": "Cupones Existentes",
+        "description": "Gestiona y comparte tus cupones creados.",
+        "expires": "Vence",
+        "usage": "Usados",
+        "share": "Compartir",
+        "noCoupons": "No se han creado cupones aún.",
+        "toastTitle": "¡Enlace Copiado!",
+        "toastDescription": "Comparte este enlace: {link}"
+      }
+    }
+  },
+  "errors": {
+    "orderId": {
+        "required": "El parámetro 'orderId' es obligatorio."
+    },
+    "amount": {
+        "invalid": "El parámetro 'amount' es obligatorio, debe ser un número y mayor que cero."
+    },
+    "currency": {
+        "required": "El parámetro 'currency' es obligatorio."
+    },
+    "payment": {
+        "initiationFailed": "La iniciación del pago falló con la pasarela."
+    },
+    "unauthenticated": "El llamador debe estar autenticado.",
+    "internal": "Ocurrió un error interno.",
+    "projectId": {
+        "required": "El parámetro 'projectId' es obligatorio."
+    },
+    "project": {
+        "notFound": "No se encontró el proyecto de crowdfunding.",
+        "notOpen": "El proyecto no está abierto para inversión."
+    },
+    "type": {
+        "invalid": "El parámetro 'type' es obligatorio y debe ser uno de: income, expense."
+    },
+    "description": {
+        "required": "El parámetro 'description' es obligatorio."
+    },
+    "financialData": {
+        "fetchFailed": "No se pudieron obtener los datos financieros."
+    },
+    "course": {
+      "missingFields": "Título, descripción, categoría y nivel son campos obligatorios para un curso.",
+      "creationFailed": "No se pudo crear el curso. Por favor, inténtelo de nuevo.",
+      "notFound": "No se pudo encontrar el curso solicitado.",
+      "fetchFailed": "No se pudieron obtener los detalles del curso."
+    },
+    "courses": {
+      "fetchFailed": "No se pudieron obtener los cursos disponibles."
+    },
+    "module": {
+      "missingFields": "Se requieren el ID del curso y el título del módulo.",
+      "creationFailed": "No se pudo crear el módulo. Por favor, inténtelo de nuevo."
+    },
+    "article": {
+      "fetchFailed": "No se pudieron obtener los artículos.",
+      "missingFields": "Título, extracto, contenido y categoría son obligatorios para un artículo.",
+      "creationFailed": "No se pudo crear el artículo. Por favor, inténtelo de nuevo.",
+      "notFound": "No se pudo encontrar el artículo solicitado."
+    },
+    "courseId": {
+      "required": "Se debe proporcionar un ID de curso."
+    },
+    "articleId": {
+      "required": "Se debe proporcionar un ID de artículo."
     }
   }
-}
 }
