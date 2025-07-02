@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Search, ShoppingCart, MessageSquare, User } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
 
 interface NavItem {
   href: string;
@@ -15,14 +15,14 @@ interface NavItem {
 
 export function MobileBottomNavigation() {
   const pathname = usePathname();
-  const { t } = useTranslation('common');
+  const t = useTranslations('MobileBottomNav');
 
   const navItems: NavItem[] = [
-    { href: "/", label: t('mobileNav.home'), icon: Home },
-    { href: "/marketplace", label: t('mobileNav.market'), icon: ShoppingCart },
-    { href: "/search", label: t('mobileNav.search'), icon: Search },
-    { href: "/forums", label: t('mobileNav.forums'), icon: MessageSquare },
-    { href: "/profiles/me", label: t('mobileNav.profile'), icon: User },
+    { href: "/", label: t('home'), icon: Home },
+    { href: "/marketplace", label: t('market'), icon: ShoppingCart },
+    { href: "/search", label: t('search'), icon: Search },
+    { href: "/forums", label: t('forums'), icon: MessageSquare },
+    { href: "/profiles/me", label: t('profile'), icon: User },
   ];
 
 

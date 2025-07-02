@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { getFeaturedKnowledge } from '@/firebase/functions/src/knowledge-hub';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 
 // Define the structure of an article
 interface Article {
@@ -18,7 +18,7 @@ interface Article {
 }
 
 const KnowledgeHubPage = () => {
-  const { t } = useTranslation();
+  const t = useTranslations('knowledgeHub');
   const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,10 +48,10 @@ const KnowledgeHubPage = () => {
     <div className="container mx-auto p-4 md:p-6">
       <header className="text-center mb-12">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
-          {t('knowledgeHub.title')}
+          {t('title')}
         </h1>
         <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-          {t('knowledgeHub.description')}
+          {t('description')}
         </p>
       </header>
 
@@ -59,29 +59,29 @@ const KnowledgeHubPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle>{t('knowledgeHub.courses.title')}</CardTitle>
-            <CardDescription>{t('knowledgeHub.courses.description')}</CardDescription>
+            <CardTitle>{t('courses.title')}</CardTitle>
+            <CardDescription>{t('courses.description')}</CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <p>{t('knowledgeHub.courses.body')}</p>
+            <p>{t('courses.body')}</p>
           </CardContent>
           <div className="p-6 pt-0">
             <Link href="/knowledge-hub/courses" passHref>
-              <Button className="w-full">{t('knowledgeHub.courses.cta')}</Button>
+              <Button className="w-full">{t('courses.cta')}</Button>
             </Link>
           </div>
         </Card>
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle>{t('knowledgeHub.blog.title')}</CardTitle>
-            <CardDescription>{t('knowledgeHub.blog.description')}</CardDescription>
+            <CardTitle>{t('blog.title')}</CardTitle>
+            <CardDescription>{t('blog.description')}</CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <p>{t('knowledgeHub.blog.body')}</p>
+            <p>{t('blog.body')}</p>
           </CardContent>
           <div className="p-6 pt-0">
             <Link href="/blog" passHref>
-              <Button className="w-full">{t('knowledgeHub.blog.cta')}</Button>
+              <Button className="w-full">{t('blog.cta')}</Button>
             </Link>
           </div>
         </Card>
@@ -89,9 +89,9 @@ const KnowledgeHubPage = () => {
 
       {/* Featured Articles */}
       <div>
-        <h2 className="text-3xl font-bold text-center mb-8">{t('knowledgeHub.featured.title')}</h2>
-        {loading && <p className="text-center">{t('knowledgeHub.featured.loading')}</p>}
-        {error && <p className="text-center text-red-500">{t('knowledgeHub.featured.error')}: {error}</p>}
+        <h2 className="text-3xl font-bold text-center mb-8">{t('featured.title')}</h2>
+        {loading && <p className="text-center">{t('featured.loading')}</p>}
+        {error && <p className="text-center text-red-500">{t('featured.error')}: {error}</p>}
         {!loading && !error && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredArticles.map((article) => (

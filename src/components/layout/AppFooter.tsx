@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { APP_NAME } from '@/lib/constants';
 import { Logo } from '@/components/Logo';
+import { useTranslations } from 'next-intl';
 
 export function AppFooter() {
+  const t = useTranslations('AppFooter');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -16,34 +18,34 @@ export function AppFooter() {
             <div className="space-y-3 md:col-span-12 lg:col-span-3">
               <Logo iconSize={32} textSize="text-2xl" className="text-white" />
               <p className="text-sm text-white/80"> {/* Lighter text for tagline */}
-                Bridging the agricultural supply chain for a thriving people, profit, and planet.
+                {t('tagline')}
               </p>
             </div>
             
             <div className="md:col-span-12 lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-8">
               <div>
-                <h4 className="font-semibold mb-3 text-md text-white">DamDoh</h4>
+                <h4 className="font-semibold mb-3 text-md text-white">{t('damdohTitle')}</h4>
                 <ul className="space-y-2 text-sm text-white/90">
-                  <li><Link href="/about" className="hover:text-white hover:underline transition-colors">About Us</Link></li>
-                  <li><Link href="/contact" className="hover:text-white hover:underline transition-colors">Contact</Link></li>
-                  <li><Link href="/careers" className="hover:text-white hover:underline transition-colors">Careers</Link></li>
-                  <li><Link href="/blog" className="hover:text-white hover:underline transition-colors">Blog</Link></li>
+                  <li><Link href="/about" className="hover:text-white hover:underline transition-colors">{t('aboutUs')}</Link></li>
+                  <li><Link href="/contact" className="hover:text-white hover:underline transition-colors">{t('contact')}</Link></li>
+                  <li><Link href="/careers" className="hover:text-white hover:underline transition-colors">{t('careers')}</Link></li>
+                  <li><Link href="/blog" className="hover:text-white hover:underline transition-colors">{t('blog')}</Link></li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-3 text-md text-white">Resources</h4>
+                <h4 className="font-semibold mb-3 text-md text-white">{t('resourcesTitle')}</h4>
                 <ul className="space-y-2 text-sm text-white/90">
-                  <li><Link href="/help-center" className="hover:text-white hover:underline transition-colors">Help Center</Link></li>
-                  <li><Link href="/community-guidelines" className="hover:text-white hover:underline transition-colors">Community Guidelines</Link></li>
-                  <li><Link href="/industry-news" className="hover:text-white hover:underline transition-colors">Industry News</Link></li>
-                  <li><Link href="/agri-events" className="hover:text-white hover:underline transition-colors">Events</Link></li>
+                  <li><Link href="/help-center" className="hover:text-white hover:underline transition-colors">{t('helpCenter')}</Link></li>
+                  <li><Link href="/community-guidelines" className="hover:text-white hover:underline transition-colors">{t('communityGuidelines')}</Link></li>
+                  <li><Link href="/industry-news" className="hover:text-white hover:underline transition-colors">{t('industryNews')}</Link></li>
+                  <li><Link href="/agri-events" className="hover:text-white hover:underline transition-colors">{t('events')}</Link></li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-3 text-md text-white">Legal</h4>
+                <h4 className="font-semibold mb-3 text-md text-white">{t('legalTitle')}</h4>
                 <ul className="space-y-2 text-sm text-white/90">
-                  <li><Link href="/privacy" className="hover:text-white hover:underline transition-colors">Privacy Policy</Link></li>
-                  <li><Link href="/terms" className="hover:text-white hover:underline transition-colors">Terms of Service</Link></li>
+                  <li><Link href="/privacy" className="hover:text-white hover:underline transition-colors">{t('privacyPolicy')}</Link></li>
+                  <li><Link href="/terms" className="hover:text-white hover:underline transition-colors">{t('termsOfService')}</Link></li>
                 </ul>
               </div>
             </div>
@@ -56,15 +58,15 @@ export function AppFooter() {
         <div className="container mx-auto max-w-screen-2xl px-4 py-8 md:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
-              <p className="text-sm">&copy; {currentYear} {APP_NAME}. All rights reserved.</p>
+              <p className="text-sm">{t('copyright', { year: currentYear, appName: APP_NAME })}</p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-3">
-              <p className="text-md font-medium">Get Our Mobile App</p>
+              <p className="text-md font-medium">{t('getMobileApp')}</p>
               <div className="flex gap-3">
                 <Link href="#playstore" passHref>
                   <Image 
                     src="https://placehold.co/135x40.png" 
-                    alt="Get it on Google Play" 
+                    alt={t('googlePlayAlt')}
                     width={135} 
                     height={40} 
                     className="rounded hover:opacity-90 transition-opacity"
@@ -74,7 +76,7 @@ export function AppFooter() {
                 <Link href="#appstore" passHref>
                   <Image 
                     src="https://placehold.co/120x40.png" 
-                    alt="Download on the App Store" 
+                    alt={t('appStoreAlt')}
                     width={120} 
                     height={40} 
                     className="rounded hover:opacity-90 transition-opacity"

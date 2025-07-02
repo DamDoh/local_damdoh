@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next-intl/navigation";
 import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
@@ -25,12 +25,23 @@ export function LanguageSwitcher() {
   };
 
   const languages: { [key: string]: string } = {
-    en: "English",
-    es: "Español",
-    km: "ភាសាខ្មែរ",
-    fr: "Français",
-    zh: "中文",
-    hi: "हिन्दी",
+    'en': 'English',
+    'es': 'Español',
+    'km': 'ភាសាខ្មែរ',
+    'vi': 'Tiếng Việt',
+    'fr': 'Français',
+    'zh': '中文',
+    'hi': 'हिन्दी',
+    'ar': 'العربية',
+    'de': 'Deutsch',
+    'id': 'Bahasa Indonesia',
+    'ja': '日本語',
+    'ko': '한국어',
+    'ms': 'Bahasa Melayu',
+    'pt': 'Português',
+    'ru': 'Русский',
+    'th': 'ไทย',
+    'tr': 'Türkçe',
   };
 
   const currentLanguageName = languages[locale] || locale;

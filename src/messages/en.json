@@ -62,5 +62,128 @@
     "newPasswordPlaceholder": "Enter your new password",
     "resetPasswordButton": "Reset Password",
     "resettingPasswordButton": "Resetting Password..."
+  },
+  "about": {
+    "title": "About DamDoh",
+    "subtitle": "Connecting the global agricultural supply chain for a sustainable future.",
+    "mission": {
+      "title": "Our Mission",
+      "content": "To empower all stakeholders in the agricultural supply chain, from smallholder farmers to multinational corporations, with the data, tools, and connections needed to thrive in a complex and ever-changing global market. We aim to foster transparency, efficiency, and sustainability from farm to fork."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "A globally connected, data-driven agricultural ecosystem where every participant has the opportunity for sustainable growth and prosperity. We envision a world where technology and collaboration have eliminated food insecurity and built resilient, equitable supply chains."
+    },
+    "values": {
+      "title": "Our Core Values",
+      "sustainability": {
+        "title": "Sustainability",
+        "content": "We are committed to practices that support environmental health, social equity, and economic viability for generations to come."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "content": "We believe that by working together, we can solve the industry's biggest challenges. Our platform is built to facilitate partnerships and communication."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "content": "We continuously seek and develop cutting-edge solutions, from AI-driven insights to blockchain-based traceability, to serve our community."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "content": "We operate with transparency and honesty, building trust among our users by ensuring data privacy, security, and accuracy."
+      },
+      "empowerment": {
+        "title": "Empowerment",
+        "content": "We strive to level the playing field by providing all users, regardless of size or location, with access to critical information and market opportunities."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "intro": "DamDoh is led by a diverse team of agronomists, technologists, supply chain experts, and entrepreneurs who are passionate about revolutionizing agriculture.",
+      "member1Name": "Dr. Evelyn Reed",
+      "member1Role": "Founder & CEO",
+      "member1Bio": "An expert in agronomy and international development with 20 years of experience in sustainable agriculture.",
+      "member2Name": "Samuel Chen",
+      "member2Role": "Chief Technology Officer",
+      "member2Bio": "A seasoned software architect with a background in building scalable, secure platforms for global logistics.",
+      "member3Name": "Amina Adebayo",
+      "member3Role": "Head of Global Partnerships",
+      "member3Bio": "A specialist in forging connections between smallholder cooperatives and international markets.",
+      "note": "Note: Team members are illustrative representations for this demo."
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "We'd love to hear from you! Whether you have a question, feedback, or a partnership proposal, please reach out.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "For general inquiries",
+      "support": "For support",
+      "partnerships": "For partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Our phone lines are open Monday - Friday, 9 AM - 5 PM (Your Timezone).",
+      "phone": "Phone: +1 (555) DAM-DOH0 (Placeholder)"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Headquarters (Placeholder)",
+      "address": "123 Agri-Tech Avenue, Food Security City, Global"
+    },
+    "sendMessage": {
+      "title": "Send Us a Message",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Your Full Name",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Reason for contacting us",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Your detailed message...",
+      "buttonText": "Send Message",
+      "note": "Note: This form is for demonstration. Actual submission is not implemented."
+    }
+  },
+  "knowledgeHub": {
+    "title": "DamDoh Knowledge Hub",
+    "description": "Your central resource for agricultural courses, best practices, and industry insights.",
+    "courses": {
+      "title": "Structured Courses",
+      "description": "Learn at your own pace with our expert-led courses.",
+      "body": "From sustainable farming techniques to navigating international trade, our courses are designed to provide you with actionable knowledge and skills. Enroll today to start your learning journey.",
+      "cta": "Browse Courses"
+    },
+    "blog": {
+      "title": "Insights & Articles",
+      "description": "Stay informed with the aatest news and analysis.",
+      "body": "Our blog features articles from industry experts on market trends, new technologies, policy changes, and success stories from the community. Stay ahead of the curve.",
+      "cta": "Read The Blog"
+    },
+    "featured": {
+      "title": "Featured Content",
+      "loading": "Loading featured articles...",
+      "error": "Could not load content"
+    }
+  },
+  "AppFooter": {
+    "tagline": "Bridging the agricultural supply chain for a thriving people, profit, and planet.",
+    "damdohTitle": "DamDoh",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "careers": "Careers",
+    "blog": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenter": "Help Center",
+    "communityGuidelines": "Community Guidelines",
+    "industryNews": "Industry News",
+    "events": "Events",
+    "legalTitle": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyright": "© {year} {appName}. All rights reserved.",
+    "getMobileApp": "Get Our Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   }
 }

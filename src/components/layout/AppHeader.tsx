@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
 import {
   Home,
   Users,
@@ -126,7 +126,7 @@ function HeaderSkeleton() {
 
 
 export function AppHeader() {
-  const { t } = useTranslation('common');
+  const t = useTranslations('AppHeader');
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
