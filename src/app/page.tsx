@@ -1,12 +1,14 @@
-
 "use client";
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
+import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -15,7 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-// Hub Components (Alphabetized)
+// Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
 import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDashboard';
 import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
@@ -245,10 +247,25 @@ function MainContent() {
   );
 }
 
+
 export default function RootPage() {
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <MainContent />
-      </Suspense>
-    );
+  const router = useRouter();
+  const pathname = usePathname();
+  const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
+
+  useEffect(() => {
+      if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
+        router.replace(homepagePreference);
+      }
+  }, [homepagePreference, isPreferenceLoading, pathname, router]);
+
+  if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
+      return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
+  }
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContent />
+    </Suspense>
+  );
 }
