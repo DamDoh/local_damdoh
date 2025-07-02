@@ -1,7 +1,8 @@
-
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname, useRouter } from "next-intl/navigation";
+import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,38 +10,48 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import { Globe, ChevronDown } from "lucide-react";
 
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const [isPending, startTransition] = useTransition();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+  const changeLanguage = (nextLocale: string) => {
+    startTransition(() => {
+      router.replace(pathname, { locale: nextLocale });
+    });
   };
 
-  const languages = [
-    { code: "en", name: "English" },
-    { code: "es", name: "Español" },
-  ];
+  const languages: { [key: string]: string } = {
+    en: "English",
+    es: "Español",
+    km: "ភាសាខ្មែរ",
+    fr: "Français",
+    zh: "中文",
+    hi: "हिन्दी",
+  };
 
-  const currentLanguageName = languages.find(l => l.code === i18n.language)?.name || "Language";
+  const currentLanguageName = languages[locale] || locale;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-[180px] justify-between">
-           <span>{currentLanguageName}</span>
-           <ChevronDown className="h-4 w-4 opacity-50" />
+        <Button variant="outline" className="justify-between min-w-[140px]" disabled={isPending}>
+          <Globe className="h-4 w-4 mr-2" />
+          <span>{currentLanguageName}</span>
+          <ChevronDown className="h-4 w-4 opacity-50 ml-2" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {languages.map((lang) => (
+        {Object.entries(languages).map(([code, name]) => (
           <DropdownMenuItem
-            key={lang.code}
-            onClick={() => changeLanguage(lang.code)}
-            disabled={i18n.language === lang.code}
+            key={code}
+            onClick={() => changeLanguage(code)}
+            disabled={locale === code || isPending}
           >
-            {lang.name}
+            {name}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
