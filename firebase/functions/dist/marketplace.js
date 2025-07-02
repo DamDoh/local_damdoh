@@ -32,6 +32,17 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getListingsBySeller = exports.getShopDetails = exports.validateMarketplaceCoupon = exports.getSellerCoupons = exports.createMarketplaceCoupon = exports.createMarketplaceListing = exports.createShop = void 0;
 const functions = __importStar(require("firebase-functions"));
@@ -177,7 +188,7 @@ exports.getSellerCoupons = functions.https.onCall(async (data, context) => {
             .get();
         const coupons = snapshot.docs.map((doc) => {
             var _a, _b, _c, _d;
-            const couponData = doc.data();
+            const _e = doc.data(), { id } = _e, couponData = __rest(_e, ["id"]);
             return Object.assign(Object.assign({ id: doc.id }, couponData), { createdAt: ((_b = (_a = couponData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, expiresAt: ((_d = (_c = couponData.expiresAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
         });
         return { coupons };
@@ -256,7 +267,7 @@ exports.getShopDetails = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError("not-found", "Shop not found.");
         }
         const shopData = shopDoc.data();
-        return Object.assign(Object.assign({}, shopData), { id: shopDoc.id, createdAt: ((_b = (_a = shopData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, updatedAt: ((_d = (_c = shopData.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
+        return Object.assign(Object.assign({ id: shopDoc.id }, shopData), { createdAt: ((_b = (_a = shopData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, updatedAt: ((_d = (_c = shopData.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
     }
     catch (error) {
         console.error(`Error fetching shop details for ${shopId}:`, error);

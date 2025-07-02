@@ -217,7 +217,7 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
       .get();
 
     const coupons = snapshot.docs.map((doc) => {
-        const couponData = doc.data() as MarketplaceCoupon;
+        const { id, ...couponData } = doc.data() as MarketplaceCoupon;
         return {
             id: doc.id,
             ...couponData,
@@ -322,8 +322,8 @@ export const getShopDetails = functions.https.onCall(async (data, context) => {
 
     const shopData = shopDoc.data()!;
     return {
-      ...shopData,
       id: shopDoc.id,
+      ...shopData,
       createdAt: (shopData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
       updatedAt: (shopData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
     } as Shop;
