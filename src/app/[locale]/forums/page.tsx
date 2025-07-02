@@ -17,6 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 import { usePathname } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 const getIconForTopic = (topicName: string = '') => {
   const name = topicName.toLowerCase();
@@ -34,6 +35,7 @@ const getIconForTopic = (topicName: string = '') => {
 };
 
 export default function ForumsPage() {
+    const t = useTranslations('Forums');
     const [topics, setTopics] = useState<ForumTopic[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
@@ -54,8 +56,8 @@ export default function ForumsPage() {
             } catch (error) {
                 console.error("Error fetching topics:", error);
                 toast({
-                    title: "Failed to load topics",
-                    description: "There was a problem fetching the forum topics. Please try again later.",
+                    title: t('errors.loadTitle'),
+                    description: t('errors.loadDescription'),
                     variant: "destructive",
                 });
             } finally {
@@ -64,7 +66,7 @@ export default function ForumsPage() {
         };
 
         fetchTopics();
-    }, [getTopicsCallable, toast]);
+    }, [getTopicsCallable, toast, t]);
 
     const filteredTopics = useMemo(() => {
         return topics.filter(topic => 
@@ -79,14 +81,14 @@ export default function ForumsPage() {
         if (isCurrentHomepage) {
         clearHomepagePreference();
         toast({
-            title: "Homepage Unpinned!",
-            description: "The Dashboard is now your default homepage.",
+            title: t('pinning.unpinnedTitle'),
+            description: t('pinning.unpinnedDescription'),
         });
         } else {
         setHomepagePreference(pathname);
         toast({
-            title: "Homepage Pinned!",
-            description: "Forums are now your default homepage.",
+            title: t('pinning.pinnedTitle'),
+            description: t('pinning.pinnedDescription'),
         });
         }
     };
@@ -106,15 +108,15 @@ export default function ForumsPage() {
             return (
                 <div className="text-center py-16 col-span-full border-2 border-dashed rounded-lg">
                     <Frown className="mx-auto h-12 w-12 text-muted-foreground" />
-                    <h3 className="mt-4 text-lg font-semibold">No Topics Found</h3>
+                    <h3 className="mt-4 text-lg font-semibold">{t('notFound.title')}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">
-                        {searchTerm ? "Try adjusting your search terms." : "Why not be the first to create one?"}
+                        {searchTerm ? t('notFound.tryDifferentSearch') : t('notFound.beTheFirst')}
                     </p>
                     {user && !searchTerm && (
                          <Button asChild className="mt-4">
                             <Link href="/forums/create">
                                 <PlusCircle className="mr-2 h-4 w-4" />
-                                Create a New Topic
+                                {t('buttons.createTopic')}
                             </Link>
                         </Button>
                     )}
@@ -139,10 +141,10 @@ export default function ForumsPage() {
                 <CardFooter className="flex flex-col items-start gap-2 text-xs text-muted-foreground">
                     <div className="flex items-center gap-1.5">
                         <Clock className="h-3 w-3" />
-                        <span>Last activity {formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true })}</span>
+                        <span>{t('lastActivity', { time: formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true }) })}</span>
                     </div>
                     <Button asChild className="w-full mt-2">
-                        <Link href={`/forums/${topic.id}`}>Join Discussion</Link>
+                        <Link href={`/forums/${topic.id}`}>{t('buttons.joinDiscussion')}</Link>
                     </Button>
                 </CardFooter>
               </Card>
@@ -157,21 +159,21 @@ export default function ForumsPage() {
                 <CardHeader>
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                            <CardTitle className="text-2xl">Community Forums</CardTitle>
-                            <CardDescription>Connect, share, and learn with stakeholders from around the world.</CardDescription>
+                            <CardTitle className="text-2xl">{t('title')}</CardTitle>
+                            <CardDescription>{t('description')}</CardDescription>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                             {user && (
                                 <Button asChild className="w-full sm:w-auto">
                                     <Link href="/forums/create">
                                         <PlusCircle className="mr-2 h-4 w-4" />
-                                        Create Topic
+                                        {t('buttons.createTopic')}
                                     </Link>
                                 </Button>
                             )}
                             <Button variant="outline" onClick={handleSetHomepage} className="w-full sm:w-auto">
                                 {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
-                                {isCurrentHomepage ? "Unpin Homepage" : "Pin as Homepage"}
+                                {isCurrentHomepage ? t('buttons.unpinHomepage') : t('buttons.pinHomepage')}
                              </Button>
                         </div>
                     </div>
@@ -181,7 +183,7 @@ export default function ForumsPage() {
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                             <Input 
-                                placeholder="Search forums..." 
+                                placeholder={t('searchPlaceholder')}
                                 className="pl-10"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}

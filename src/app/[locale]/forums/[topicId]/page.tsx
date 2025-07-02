@@ -14,6 +14,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
+import { useTranslations } from 'next-intl';
 
 const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
     const db = getFirestore(firebaseApp);
@@ -55,6 +56,7 @@ export default function TopicPage() {
     const params = useParams();
     const topicId = params.topicId as string;
     const { toast } = useToast();
+    const t = useTranslations('Forums.topic');
 
     const [topic, setTopic] = useState<ForumTopic | null>(null);
     const [posts, setPosts] = useState<ForumPost[]>([]);
@@ -83,7 +85,7 @@ export default function TopicPage() {
                   timestamp: post.timestamp ? new Date(post.timestamp.seconds * 1000).toISOString() : new Date().toISOString(),
                   author: {
                       id: post.authorRef,
-                      name: authorProfiles[post.authorRef]?.name || "Unknown User",
+                      name: authorProfiles[post.authorRef]?.name || t('unknownUser'),
                       avatarUrl: authorProfiles[post.authorRef]?.avatarUrl || ""
                   }
               }));
@@ -98,15 +100,15 @@ export default function TopicPage() {
         } catch (error) {
             console.error("Error fetching posts:", error);
             toast({
-                title: "Failed to load posts",
-                description: "There was a problem fetching posts for this topic.",
+                title: t('errors.loadPosts.title'),
+                description: t('errors.loadPosts.description'),
                 variant: "destructive"
             });
         } finally {
             if(isInitialLoad) setIsLoading(false);
             else setIsLoadingMore(false);
         }
-    }, [topicId, lastVisible, getPostsForTopic, toast, hasMore]);
+    }, [topicId, lastVisible, getPostsForTopic, toast, hasMore, t]);
 
 
     useEffect(() => {
@@ -125,8 +127,8 @@ export default function TopicPage() {
                 }
             } catch (error) {
                  toast({
-                    title: "Failed to load topic",
-                    description: "There was a problem fetching the topic details.",
+                    title: t('errors.loadTopic.title'),
+                    description: t('errors.loadTopic.description'),
                     variant: "destructive"
                 });
             } finally {
@@ -146,12 +148,12 @@ export default function TopicPage() {
         return (
              <div className="container mx-auto max-w-4xl py-8 text-center">
                  <Frown className="mx-auto h-12 w-12 text-muted-foreground" />
-                 <h3 className="mt-4 text-lg font-semibold">Topic Not Found</h3>
-                 <p className="mt-2 text-sm text-muted-foreground">This topic may have been removed or does not exist.</p>
+                 <h3 className="mt-4 text-lg font-semibold">{t('notFound.title')}</h3>
+                 <p className="mt-2 text-sm text-muted-foreground">{t('notFound.description')}</p>
                 <Button asChild className="mt-4">
                     <Link href="/forums">
                         <ArrowLeft className="mr-2 h-4 w-4" />
-                        Back to Forums
+                        {t('notFound.backButton')}
                     </Link>
                 </Button>
             </div>
@@ -162,7 +164,7 @@ export default function TopicPage() {
         <div className="container mx-auto max-w-4xl py-8">
             <Link href="/forums" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to all forums
+                {t('backLink')}
             </Link>
             <Card>
                 <CardHeader>
@@ -174,7 +176,7 @@ export default function TopicPage() {
                         <Button asChild>
                             <Link href={`/forums/${topicId}/create-post`}>
                                 <PlusCircle className="mr-2 h-4 w-4" />
-                                Create New Post
+                                {t('buttons.createPost')}
                             </Link>
                         </Button>
                     </div>
@@ -190,7 +192,7 @@ export default function TopicPage() {
                                         <div className="flex-grow">
                                             <h4 className="font-semibold">{post.title}</h4>
                                             <p className="text-xs text-muted-foreground">
-                                                By {post.author.name} &bull; {new Date(post.timestamp).toLocaleDateString()}
+                                                {t('postMeta', { author: post.author.name, date: new Date(post.timestamp).toLocaleDateString() })}
                                             </p>
                                         </div>
                                         <div className="text-sm text-muted-foreground flex items-center gap-1 shrink-0">
@@ -203,12 +205,12 @@ export default function TopicPage() {
                         ) : (
                             <div className="text-center py-12">
                                 <MessageSquare className="mx-auto h-12 w-12 text-muted-foreground" />
-                                <h3 className="mt-4 text-lg font-semibold">No Posts Yet</h3>
-                                <p className="mt-2 text-sm text-muted-foreground">Be the first one to contribute to this topic.</p>
+                                <h3 className="mt-4 text-lg font-semibold">{t('noPosts.title')}</h3>
+                                <p className="mt-2 text-sm text-muted-foreground">{t('noPosts.description')}</p>
                                 <Button asChild className="mt-4">
                                     <Link href={`/forums/${topicId}/create-post`}>
                                         <PlusCircle className="mr-2 h-4 w-4" />
-                                        Be the first to post
+                                        {t('noPosts.button')}
                                     </Link>
                                 </Button>
                             </div>
@@ -225,10 +227,10 @@ export default function TopicPage() {
                             {isLoadingMore ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Loading...
+                                    {t('buttons.loadingMore')}
                                 </>
                             ) : (
-                                "Load More Posts"
+                                t('buttons.loadMore')
                             )}
                         </Button>
                     </CardFooter>

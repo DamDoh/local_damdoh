@@ -7,16 +7,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
-
+import { useTranslations } from 'next-intl';
 
 export default function CreateTopicPage() {
+    const t = useTranslations('Forums.create');
     const router = useRouter();
     const { toast } = useToast();
     const { user } = useAuth();
@@ -31,8 +32,8 @@ export default function CreateTopicPage() {
         e.preventDefault();
         if (!user) {
             toast({
-                title: "Authentication Error",
-                description: "You must be logged in to create a topic.",
+                title: t('errors.auth.title'),
+                description: t('errors.auth.description'),
                 variant: "destructive"
             });
             return;
@@ -40,8 +41,8 @@ export default function CreateTopicPage() {
 
         if (!name.trim() || !description.trim()) {
             toast({
-                title: "Incomplete Form",
-                description: "Please fill out both the topic name and description.",
+                title: t('errors.incomplete.title'),
+                description: t('errors.incomplete.description'),
                 variant: "destructive",
             });
             return;
@@ -51,15 +52,15 @@ export default function CreateTopicPage() {
         try {
             await createTopicCallable({ name, description });
             toast({
-                title: "Topic Created!",
-                description: "The new topic has been successfully created.",
+                title: t('success.title'),
+                description: t('success.description'),
             });
             router.push('/forums');
         } catch (error: any) {
             console.error("Error creating topic:", error);
             toast({
-                title: "Error",
-                description: error.message || "An error occurred while creating the topic.",
+                title: t('errors.general.title'),
+                description: error.message || t('errors.general.description'),
                 variant: "destructive",
             });
         } finally {
@@ -71,20 +72,20 @@ export default function CreateTopicPage() {
         <div className="container mx-auto max-w-3xl py-8">
             <Link href="/forums" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to Forums
+                {t('backLink')}
             </Link>
             <form onSubmit={handleSubmit}>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create a New Topic</CardTitle>
-                        <CardDescription>Start a new discussion by creating a topic for the community.</CardDescription>
+                        <CardTitle>{t('title')}</CardTitle>
+                        <CardDescription>{t('description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="topic-name">Topic Name</Label>
+                            <Label htmlFor="topic-name">{t('form.nameLabel')}</Label>
                             <Input 
                                 id="topic-name" 
-                                placeholder="e.g., Sustainable Farming Practices" 
+                                placeholder={t('form.namePlaceholder')} 
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -92,10 +93,10 @@ export default function CreateTopicPage() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="topic-description">Description</Label>
+                            <Label htmlFor="topic-description">{t('form.descriptionLabel')}</Label>
                             <Textarea 
                                 id="topic-description"
-                                placeholder="A brief description of what this topic will be about."
+                                placeholder={t('form.descriptionPlaceholder')}
                                 className="min-h-[100px]"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
@@ -106,7 +107,14 @@ export default function CreateTopicPage() {
                     </CardContent>
                     <CardFooter>
                         <Button type="submit" disabled={isSubmitting}>
-                            {isSubmitting ? "Creating..." : "Create Topic"}
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    {t('form.submittingButton')}
+                                </>
+                            ) : (
+                                t('form.submitButton')
+                            )}
                         </Button>
                     </CardFooter>
                 </Card>

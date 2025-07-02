@@ -14,6 +14,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface BlogPost {
   id: string;
@@ -29,6 +30,7 @@ interface BlogPost {
   tags?: string[];
 }
 
+const functions = getFunctions(firebaseApp);
 const getArticleCallable = httpsCallable(functions, 'getKnowledgeArticleById');
 
 function PostPageSkeleton() {
@@ -60,6 +62,8 @@ export default function BlogPostPage() {
   const { toast } = useToast();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations('Blog');
+  const locale = useLocale();
 
   useEffect(() => {
     if (!slug) return;
@@ -76,14 +80,14 @@ export default function BlogPostPage() {
         }
       } catch (error: any) {
         console.error("Error fetching post:", error);
-        toast({ title: "Error", description: error.message || "Could not load the blog post.", variant: "destructive" });
+        toast({ title: t('errors.title'), description: error.message || t('errors.load'), variant: "destructive" });
         setPost(null);
       } finally {
         setIsLoading(false);
       }
     };
     fetchPost();
-  }, [slug, toast]);
+  }, [slug, toast, t]);
   
   if (isLoading) {
     return <PostPageSkeleton />;
@@ -92,23 +96,27 @@ export default function BlogPostPage() {
   if (!post) {
     return (
         <Card className="max-w-3xl mx-auto text-center">
-            <CardHeader><CardTitle>Post Not Found</CardTitle></CardHeader>
+            <CardHeader><CardTitle>{t('notFound.title')}</CardTitle></CardHeader>
             <CardContent>
-                <p>The post you are looking for does not exist or has been moved.</p>
-                <Button asChild variant="outline" className="mt-4"><Link href="/blog">Back to Blog</Link></Button>
+                <p>{t('notFound.description')}</p>
+                <Button asChild variant="outline" className="mt-4"><Link href="/blog">{t('notFound.backButton')}</Link></Button>
             </CardContent>
         </Card>
     );
   }
 
+  const title = (locale === 'km' && post.title_km) ? post.title_km : post.title_en;
+  const content = (locale === 'km' && post.content_markdown_km) ? post.content_markdown_km : post.content_markdown_en;
+
+
   return (
     <article className="max-w-3xl mx-auto space-y-6">
         <Link href="/blog" className="inline-flex items-center text-sm text-primary hover:underline">
-            <ArrowLeft className="mr-1 h-4 w-4"/> Back to All Posts
+            <ArrowLeft className="mr-1 h-4 w-4"/> {t('backLink')}
         </Link>
       
         <div className="space-y-2">
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight">{post.title_en}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold leading-tight">{title}</h1>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
@@ -128,7 +136,7 @@ export default function BlogPostPage() {
         <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
           <Image
             src={post.imageUrl}
-            alt={post.title_en}
+            alt={title}
             fill
             sizes="(max-width: 768px) 100vw, 896px"
             style={{ objectFit: 'cover' }}
@@ -140,11 +148,11 @@ export default function BlogPostPage() {
 
       <div className="prose dark:prose-invert max-w-none">
           <pre className="whitespace-pre-wrap font-sans text-base">
-              {post.content_markdown_en}
+              {content}
           </pre>
       </div>
       
-      {post.title_km && post.content_markdown_km && (
+      {locale === 'en' && post.title_km && post.content_markdown_km && (
         <>
             <Separator className="my-8" />
             <div className="space-y-2">

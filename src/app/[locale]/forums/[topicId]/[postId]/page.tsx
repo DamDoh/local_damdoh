@@ -16,6 +16,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
+import { useTranslations } from 'next-intl';
 
 // This helper could be centralized in a future refactor
 const getPostDetails = async (topicId: string, postId: string): Promise<ForumPost | null> => {
@@ -91,6 +92,7 @@ export default function PostPage() {
     const params = useParams();
     const { user } = useAuth();
     const { toast } = useToast();
+    const t = useTranslations('Forums.post');
     
     const topicId = params.topicId as string;
     const postId = params.postId as string;
@@ -129,7 +131,7 @@ export default function PostPage() {
                     if (userSnap.exists()) {
                         profiles[userSnap.id] = userSnap.data() as UserProfile;
                     } else {
-                        profiles[userSnap.id] = { id: userSnap.id, displayName: "Unknown User", photoURL: "" };
+                        profiles[userSnap.id] = { id: userSnap.id, displayName: t('unknownUser'), photoURL: "" };
                     }
                 });
             }
@@ -140,7 +142,7 @@ export default function PostPage() {
                 timestamp: reply.timestamp ? new Date(reply.timestamp._seconds * 1000).toISOString() : new Date().toISOString(),
                 author: {
                     id: reply.authorRef,
-                    name: profiles[reply.authorRef]?.displayName || "Unknown User",
+                    name: profiles[reply.authorRef]?.displayName || t('unknownUser'),
                     avatarUrl: profiles[reply.authorRef]?.photoURL || ""
                 }
             }));
@@ -152,15 +154,15 @@ export default function PostPage() {
         } catch (error) {
              console.error("Error fetching replies:", error);
             toast({
-                title: "Failed to load replies",
-                description: "There was a problem fetching the replies for this post.",
+                title: t('errors.loadReplies.title'),
+                description: t('errors.loadReplies.description'),
                 variant: "destructive"
             });
         } finally {
             if(isInitialLoad) setIsLoading(false);
             else setIsLoadingMore(false);
         }
-    }, [topicId, postId, lastVisible, getRepliesForPost, toast]);
+    }, [topicId, postId, lastVisible, getRepliesForPost, toast, t]);
 
     const fetchInitialData = useCallback(async () => {
         setIsLoading(true);
@@ -173,14 +175,14 @@ export default function PostPage() {
         } catch (error) {
             console.error("Error fetching post data:", error);
              toast({
-                title: "Failed to load post",
-                description: "There was a problem fetching the post details.",
+                title: t('errors.loadPost.title'),
+                description: t('errors.loadPost.description'),
                 variant: "destructive"
             });
         } finally {
             setIsLoading(false);
         }
-    }, [topicId, postId, fetchReplies, toast]);
+    }, [topicId, postId, fetchReplies, toast, t]);
 
 
     useEffect(() => {
@@ -191,14 +193,14 @@ export default function PostPage() {
     const handleReplySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!newReply.trim() || !user) {
-            toast({ title: "Cannot submit empty reply.", variant: "destructive"});
+            toast({ title: t('errors.emptyReply'), variant: "destructive"});
             return;
         }
         setIsSubmitting(true);
         try {
             await addReplyToPost({ topicId, postId, content: newReply });
             setNewReply("");
-            toast({ title: "Reply added successfully!" });
+            toast({ title: t('reply.success') });
             // Reset replies and fetch from the beginning
             setReplies([]);
             setLastVisible(null);
@@ -206,8 +208,8 @@ export default function PostPage() {
         } catch (error) {
              console.error("Error adding reply:", error);
              toast({
-                title: "Failed to add reply",
-                description: "There was an error submitting your reply. Please try again.",
+                title: t('errors.submitReply.title'),
+                description: t('errors.submitReply.description'),
                 variant: "destructive"
             });
         } finally {
@@ -223,10 +225,10 @@ export default function PostPage() {
     if (!post) {
         return (
             <div className="container mx-auto max-w-3xl py-8 text-center">
-                <h3 className="text-lg font-semibold">Post not found.</h3>
-                <p className="text-muted-foreground">This post may have been deleted or the link is incorrect.</p>
+                <h3 className="text-lg font-semibold">{t('notFound.title')}</h3>
+                <p className="text-muted-foreground">{t('notFound.description')}</p>
                 <Button asChild className="mt-4">
-                    <Link href="/forums">Back to Forums</Link>
+                    <Link href="/forums">{t('notFound.backButton')}</Link>
                 </Button>
             </div>
         );
@@ -237,7 +239,7 @@ export default function PostPage() {
         <div className="container mx-auto max-w-3xl py-8">
             <Link href={`/forums/${topicId}`} className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to topic: {post.topicName}
+                {t('backLink', { topicName: post.topicName })}
             </Link>
 
             <Card>
@@ -258,11 +260,11 @@ export default function PostPage() {
                 </CardContent>
             </Card>
 
-            <h2 className="text-xl font-semibold mt-8 mb-4">Replies ({post.replyCount || 0})</h2>
+            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: post.replyCount || 0 })}</h2>
             <div className="space-y-4">
                 {replies.length > 0 ? (
                     replies.map(reply => (
-                        <Card key={reply.id} className="bg-slate-50">
+                        <Card key={reply.id} className="bg-slate-50 dark:bg-slate-800/20">
                             <CardHeader className="flex flex-row items-center gap-3 space-y-0 pb-3">
                                  <Avatar className="h-8 w-8">
                                     <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} />
@@ -279,8 +281,8 @@ export default function PostPage() {
                         </Card>
                     ))
                 ) : (
-                    <div className="text-center py-8 text-muted-foreground bg-slate-50 rounded-lg">
-                        <p>No replies yet. Be the first to respond!</p>
+                    <div className="text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-800/20 rounded-lg">
+                        <p>{t('noReplies')}</p>
                     </div>
                 )}
                  {hasMore && (
@@ -293,10 +295,10 @@ export default function PostPage() {
                             {isLoadingMore ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Loading...
+                                    {t('buttons.loadingMore')}
                                 </>
                             ) : (
-                                "Load More Replies"
+                                t('buttons.loadMore')
                             )}
                         </Button>
                     </div>
@@ -306,20 +308,20 @@ export default function PostPage() {
             {user && (
                  <Card className="mt-8">
                     <CardHeader>
-                        <CardTitle>Add Your Reply</CardTitle>
+                        <CardTitle>{t('reply.title')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleReplySubmit}>
                             <div className="grid w-full gap-2">
                                 <Textarea 
-                                    placeholder="Type your message here."
+                                    placeholder={t('reply.placeholder')}
                                     value={newReply}
                                     onChange={(e) => setNewReply(e.target.value)}
                                     rows={4}
                                     disabled={isSubmitting}
                                 />
                                 <Button type="submit" className="w-full sm:w-auto" disabled={isSubmitting || !newReply.trim()}>
-                                    {isSubmitting ? "Submitting..." : "Submit Reply"}
+                                    {isSubmitting ? t('reply.submittingButton') : t('reply.submitButton')}
                                 </Button>
                             </div>
                         </form>

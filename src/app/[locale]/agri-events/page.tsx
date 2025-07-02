@@ -130,7 +130,6 @@ export default function AgriEventsPage() {
             <div>
               <div className="flex items-center gap-2">
                 <CalendarDays className="h-7 w-7 text-primary" />
-                <CardTitle className="text-2xl">{t('title')}</CardTitle>
               </div>
               <CardDescription>{t('description')}</CardDescription>
             </div>
