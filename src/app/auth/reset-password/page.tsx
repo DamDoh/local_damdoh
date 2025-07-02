@@ -137,7 +137,7 @@ export default function ResetPasswordPage() {
                 <AlertTitle>Missing Code</AlertTitle>
                 <AlertDescription>
                   The password reset code is missing from the URL. Please use the link from your reset email.
-                </AlertDescription>
+                </Description>
               </Alert>
           )}
 
