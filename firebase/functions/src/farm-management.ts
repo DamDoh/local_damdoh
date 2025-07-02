@@ -459,8 +459,8 @@ export const getUserKnfBatches = functions.https.onCall(
       const batches = batchesSnapshot.docs.map((doc) => {
         const docData = doc.data() as KnfBatch;
         return {
-          id: doc.id,
           ...docData,
+          id: doc.id,
           startDate: (docData.startDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.startDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
           nextStepDate: (docData.nextStepDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.nextStepDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
           createdAt: (docData.createdAt as unknown as admin.firestore.Timestamp)?.toDate ? (docData.createdAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,

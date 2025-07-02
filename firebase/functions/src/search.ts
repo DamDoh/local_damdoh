@@ -98,7 +98,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
     }
-    const { mainKeywords, identifiedLocation, identifiedIntent, suggestedFilters } = data;
+    const { mainKeywords, identifiedLocation } = data;
     
     if (!mainKeywords || mainKeywords.length === 0) {
         throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required.");

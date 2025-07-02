@@ -401,7 +401,7 @@ exports.getVtiTraceabilityHistory = functions.https.onCall(async (data, context)
             .map(doc => (Object.assign({ id: doc.id }, doc.data())))
             .filter(Boolean); // Ensure no undefined data
         // 3. Enrich events with actor information
-        const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
+        const actorIds = [...new Set(eventsData.map(event => 'actorRef' in event ? event.actorRef : null).filter(Boolean))];
         const actorProfiles = {};
         if (actorIds.length > 0) {
             const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
@@ -417,7 +417,9 @@ exports.getVtiTraceabilityHistory = functions.https.onCall(async (data, context)
         }
         const enrichedEvents = eventsData.map(event => {
             var _a;
-            return (Object.assign(Object.assign({}, event), { timestamp: ((_a = event.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? event.timestamp.toDate().toISOString() : null, actor: actorProfiles[event.actorRef] || { name: "System", role: "System" } }));
+            const timestamp = 'timestamp' in event ? ((_a = event.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? event.timestamp.toDate().toISOString() : null : null;
+            const actorRef = 'actorRef' in event ? event.actorRef : null;
+            return Object.assign(Object.assign({}, event), { timestamp, actor: actorRef ? actorProfiles[actorRef] || { name: "System", role: "System" } : { name: "System", role: "System" } });
         });
         return {
             vti: Object.assign(Object.assign({ id: vtiDoc.id }, vtiData), { creationTime: ((_a = vtiData.creationTime) === null || _a === void 0 ? void 0 : _a.toDate) ? vtiData.creationTime.toDate().toISOString() : null }),

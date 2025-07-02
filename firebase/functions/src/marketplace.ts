@@ -322,11 +322,11 @@ export const getShopDetails = functions.https.onCall(async (data, context) => {
 
     const shopData = shopDoc.data()!;
     return {
-      id: shopDoc.id,
       ...shopData,
+      id: shopDoc.id,
       createdAt: (shopData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
       updatedAt: (shopData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-    };
+    } as Shop;
   } catch (error) {
     console.error(`Error fetching shop details for ${shopId}:`, error);
     if (error instanceof functions.https.HttpsError) throw error;

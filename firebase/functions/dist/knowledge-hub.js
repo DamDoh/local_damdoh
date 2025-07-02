@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCourseDetails = exports.getAvailableCourses = exports.getKnowledgeArticleById = exports.getKnowledgeArticles = exports.createKnowledgeArticle = exports.createModule = exports.createCourse = void 0;
+exports.getCourseDetails = exports.getAvailableCourses = exports.getKnowledgeArticleById = exports.getKnowledgeArticles = exports.createKnowledgeArticle = exports.getFeaturedKnowledge = exports.createModule = exports.createCourse = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
@@ -105,6 +105,32 @@ exports.createModule = functions.https.onCall(async (data, context) => {
     catch (error) {
         console.error("Error creating module:", error);
         throw new functions.https.HttpsError("internal", "Failed to create module.", { originalError: error.message });
+    }
+});
+/**
+ * Fetches the 3 most recent knowledge articles to be featured.
+ */
+exports.getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
+    try {
+        const { userId } = data || {};
+        if (userId) {
+            // TODO: Integrate with AI & Analytics Engine (Module 6) to fetch personalized recommendations
+            console.log(`Fetching personalized featured articles for user: ${userId}`);
+        }
+        const articlesSnapshot = await db.collection('knowledge_articles')
+            .orderBy('createdAt', 'desc')
+            .limit(3)
+            .get();
+        const articles = articlesSnapshot.docs.map(doc => {
+            var _a, _b;
+            const data = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, data), { createdAt: ((_a = data.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? data.createdAt.toDate().toISOString() : null, updatedAt: ((_b = data.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? data.updatedAt.toDate().toISOString() : null });
+        });
+        return { success: true, articles };
+    }
+    catch (error) {
+        console.error("Error fetching featured articles:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch featured articles.");
     }
 });
 /**

@@ -1,11 +1,9 @@
 
-import * as admin from "firebase-admin";
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
   MarketplaceItemSchema,
   MarketplaceOrderSchema,
-  ForumTopicSchema,
   ForumPostSchema,
   AgriEventSchema
 } from './schemas';
@@ -21,6 +19,41 @@ export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Cooperative" | "Field Agent" | "Financial Institution" | "Logistics" | "Processor" | "Researcher" | "QA" | "Certifier" | "Insurance" | "Energy" | "Tourism" | "Packaging" | "Export" | "Crowdfunder" | "Consumer" | "General";
+
+
+export interface MarketplaceCoupon {
+    id: string;
+    sellerId: string;
+    code: string;
+    discountType: 'percentage' | 'fixed';
+    discountValue: number;
+    expiresAt: any;
+    usageLimit: number | null;
+    usageCount: number;
+    isActive: boolean;
+    applicableToListingIds: string[];
+    applicableToCategories: string[];
+    createdAt: any;
+}
+
+export interface Shop {
+    id: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    stakeholderType: string;
+    createdAt: any;
+    updatedAt: any;
+    logoUrl: string | null;
+    bannerUrl: string | null;
+    contactInfo: {
+        phone?: string;
+        website?: string;
+    };
+    itemCount: number;
+    rating: number;
+}
 
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES

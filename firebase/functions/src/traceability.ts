@@ -557,7 +557,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             .filter(Boolean); // Ensure no undefined data
 
         // 3. Enrich events with actor information
-        const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
+        const actorIds = [...new Set(eventsData.map(event => 'actorRef' in event ? event.actorRef : null).filter(Boolean))];
         
         const actorProfiles: { [key: string]: any } = {};
         if (actorIds.length > 0) {
@@ -573,11 +573,18 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             });
         }
         
-        const enrichedEvents = eventsData.map(event => ({
-            ...event,
-            timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
-            actor: actorProfiles[event.actorRef] || { name: "System", role: "System" }
-        }));
+        const enrichedEvents = eventsData.map(event => {
+            const timestamp = 'timestamp' in event ? (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null : null;
+            const actorRef = 'actorRef' in event ? event.actorRef : null;
+            if (!actorRef) {
+              return { ...event, timestamp, actor: { name: "System", role: "System" } };
+            }
+            return {
+                ...event,
+                timestamp,
+                actor: actorProfiles[actorRef] || { name: "System", role: "System" }
+            }
+        });
 
         return {
             vti: {

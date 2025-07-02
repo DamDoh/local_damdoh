@@ -69,7 +69,7 @@ exports.createFarm = functions.https.onCall(async (data, context) => {
     }
     catch (error) {
         console.error("Error creating farm:", error);
-        throw new functions.https.HttpsError("internal", "Failed to create farm in the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.", { originalError: error.message });
+        throw new functions.https.HttpsError("internal", "Failed to create farm in the database. Please check your project's Firestore setup.", { originalError: error.message });
     }
 });
 /**
@@ -124,7 +124,7 @@ exports.getFarm = functions.https.onCall(async (data, context) => {
         if (farmData.ownerId !== context.auth.uid) {
             throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this farm.");
         }
-        return Object.assign(Object.assign({ id: farmDoc.id }, farmData), { createdAt: ((_a = farmData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? farmData.createdAt.toDate().toISOString() : null, updatedAt: ((_b = farmData.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? farmData.updatedAt.toDate().toISOString() : null });
+        return Object.assign(Object.assign({}, farmData), { id: farmDoc.id, createdAt: ((_a = farmData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? farmData.createdAt.toDate().toISOString() : null, updatedAt: ((_b = farmData.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? farmData.updatedAt.toDate().toISOString() : null });
     }
     catch (error) {
         console.error("Error fetching farm:", error);
@@ -220,7 +220,7 @@ exports.getFarmCrops = functions.https.onCall(async (data, context) => {
         const crops = cropsSnapshot.docs.map(doc => {
             var _a, _b, _c;
             const docData = doc.data();
-            return Object.assign(Object.assign({ id: doc.id }, docData), { planting_date: ((_a = docData.planting_date) === null || _a === void 0 ? void 0 : _a.toDate) ? docData.planting_date.toDate().toISOString() : null, harvest_date: ((_b = docData.harvest_date) === null || _b === void 0 ? void 0 : _b.toDate) ? docData.harvest_date.toDate().toISOString() : null, createdAt: ((_c = docData.createdAt) === null || _c === void 0 ? void 0 : _c.toDate) ? docData.createdAt.toDate().toISOString() : null });
+            return Object.assign(Object.assign({ id: doc.id }, docData), { plantingDate: ((_a = docData.plantingDate) === null || _a === void 0 ? void 0 : _a.toDate) ? docData.plantingDate.toDate().toISOString() : null, harvestDate: ((_b = docData.harvestDate) === null || _b === void 0 ? void 0 : _b.toDate) ? docData.harvestDate.toDate().toISOString() : null, createdAt: ((_c = docData.createdAt) === null || _c === void 0 ? void 0 : _c.toDate) ? docData.createdAt.toDate().toISOString() : null });
         });
         return crops;
     }
@@ -370,7 +370,7 @@ exports.getUserKnfBatches = functions.https.onCall(async (data, context) => {
         const batches = batchesSnapshot.docs.map((doc) => {
             var _a, _b, _c;
             const docData = doc.data();
-            return Object.assign(Object.assign({ id: doc.id }, docData), { startDate: ((_a = docData.startDate) === null || _a === void 0 ? void 0 : _a.toDate) ? docData.startDate.toDate().toISOString() : null, nextStepDate: ((_b = docData.nextStepDate) === null || _b === void 0 ? void 0 : _b.toDate) ? docData.nextStepDate.toDate().toISOString() : null, createdAt: ((_c = docData.createdAt) === null || _c === void 0 ? void 0 : _c.toDate) ? docData.createdAt.toDate().toISOString() : null });
+            return Object.assign(Object.assign({}, docData), { id: doc.id, startDate: ((_a = docData.startDate) === null || _a === void 0 ? void 0 : _a.toDate) ? docData.startDate.toDate().toISOString() : null, nextStepDate: ((_b = docData.nextStepDate) === null || _b === void 0 ? void 0 : _b.toDate) ? docData.nextStepDate.toDate().toISOString() : null, createdAt: ((_c = docData.createdAt) === null || _c === void 0 ? void 0 : _c.toDate) ? docData.createdAt.toDate().toISOString() : null });
         });
         return batches;
     }
