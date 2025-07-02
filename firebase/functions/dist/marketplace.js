@@ -256,7 +256,7 @@ exports.getShopDetails = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError("not-found", "Shop not found.");
         }
         const shopData = shopDoc.data();
-        return Object.assign(Object.assign({ id: shopDoc.id }, shopData), { createdAt: ((_b = (_a = shopData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, updatedAt: ((_d = (_c = shopData.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
+        return Object.assign(Object.assign({}, shopData), { id: shopDoc.id, createdAt: ((_b = (_a = shopData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, updatedAt: ((_d = (_c = shopData.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
     }
     catch (error) {
         console.error(`Error fetching shop details for ${shopId}:`, error);

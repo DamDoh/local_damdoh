@@ -573,7 +573,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             });
         }
         
-        const enrichedEvents = eventsData.map(event => {
+        const enrichedEvents: any[] = eventsData.map(event => {
             const timestamp = 'timestamp' in event ? (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null : null;
             const actorRef = 'actorRef' in event ? event.actorRef : null;
             if (!actorRef) {

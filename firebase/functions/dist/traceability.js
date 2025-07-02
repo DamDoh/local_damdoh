@@ -419,7 +419,10 @@ exports.getVtiTraceabilityHistory = functions.https.onCall(async (data, context)
             var _a;
             const timestamp = 'timestamp' in event ? ((_a = event.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? event.timestamp.toDate().toISOString() : null : null;
             const actorRef = 'actorRef' in event ? event.actorRef : null;
-            return Object.assign(Object.assign({}, event), { timestamp, actor: actorRef ? actorProfiles[actorRef] || { name: "System", role: "System" } : { name: "System", role: "System" } });
+            if (!actorRef) {
+                return Object.assign(Object.assign({}, event), { timestamp, actor: { name: "System", role: "System" } });
+            }
+            return Object.assign(Object.assign({}, event), { timestamp, actor: actorProfiles[actorRef] || { name: "System", role: "System" } });
         });
         return {
             vti: Object.assign(Object.assign({ id: vtiDoc.id }, vtiData), { creationTime: ((_a = vtiData.creationTime) === null || _a === void 0 ? void 0 : _a.toDate) ? vtiData.creationTime.toDate().toISOString() : null }),
