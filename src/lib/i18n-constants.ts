@@ -1,6 +1,28 @@
 
 import { useTranslations } from 'next-intl';
 
+export const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'];
+
+export const localeNames: Record<string, string> = {
+  ar: "العربية",
+  de: "Deutsch",
+  en: "English",
+  es: "Español",
+  fr: "Français",
+  hi: "हिन्दी",
+  id: "Bahasa Indonesia",
+  ja: "日本語",
+  km: "ភាសាខ្មែរ",
+  ko: "한국어",
+  ms: "Bahasa Melayu",
+  pt: "Português",
+  ru: "Русский",
+  th: "ไทย",
+  tr: "Türkçe",
+  vi: "Tiếng Việt",
+  zh: "中文"
+};
+
 export const getStakeholderRoles = (t: ReturnType<typeof useTranslations>) => [
   { value: 'Farmer', label: t('stakeholderRoles.Farmer') },
   { value: 'Agricultural Cooperative', label: t('stakeholderRoles.AgriculturalCooperative') },

@@ -1,8 +1,9 @@
+
 "use client";
 
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "next-intl/navigation";
-import { useTransition } from "react";
+import { useMemo } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,59 +11,45 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Globe, ChevronDown } from "lucide-react";
+import { Languages } from "lucide-react";
+import { locales, localeNames } from '@/lib/i18n-constants';
 
 export function LanguageSwitcher() {
-  const [isPending, startTransition] = useTransition();
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('LanguageSwitcher');
 
-  const changeLanguage = (nextLocale: string) => {
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
-    });
+  const languages = useMemo(() => {
+    return locales.map((langCode) => ({
+      code: langCode,
+      name: localeNames[langCode] || langCode.toUpperCase(),
+    }));
+  }, []);
+
+  const changeLocale = (newLocale: string) => {
+    // The pathname includes the current locale, so we need to remove it
+    // before prepending the new locale.
+    const newPath = `/${newLocale}${pathname.substring(3)}`;
+    router.replace(newPath);
   };
-
-  const languages: { [key: string]: string } = {
-    'en': 'English',
-    'es': 'Español',
-    'km': 'ភាសាខ្មែរ',
-    'vi': 'Tiếng Việt',
-    'fr': 'Français',
-    'zh': '中文',
-    'hi': 'हिन्दी',
-    'ar': 'العربية',
-    'de': 'Deutsch',
-    'id': 'Bahasa Indonesia',
-    'ja': '日本語',
-    'ko': '한국어',
-    'ms': 'Bahasa Melayu',
-    'pt': 'Português',
-    'ru': 'Русский',
-    'th': 'ไทย',
-    'tr': 'Türkçe',
-  };
-
-  const currentLanguageName = languages[locale] || locale;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="justify-between min-w-[140px]" disabled={isPending}>
-          <Globe className="h-4 w-4 mr-2" />
-          <span>{currentLanguageName}</span>
-          <ChevronDown className="h-4 w-4 opacity-50 ml-2" />
+        <Button variant="ghost" size="icon">
+          <Languages className="h-[1.2rem] w-[1.2rem]" />
+          <span className="sr-only">{t('toggle')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {Object.entries(languages).map(([code, name]) => (
+        {languages.map((lang) => (
           <DropdownMenuItem
-            key={code}
-            onClick={() => changeLanguage(code)}
-            disabled={locale === code || isPending}
+            key={lang.code}
+            onClick={() => changeLocale(lang.code)}
+            disabled={locale === lang.code}
           >
-            {name}
+            {lang.name}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

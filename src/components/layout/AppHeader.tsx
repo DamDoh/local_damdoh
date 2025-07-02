@@ -42,6 +42,7 @@ import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 interface NavLinkProps {
   href: string;
@@ -221,6 +222,8 @@ export function AppHeader() {
               </>
             )}
             <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
+             <LanguageSwitcher />
+             <HeaderThemeToggle />
               {authLoading ? (
                 <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse"></div>
               ) : user ? (
