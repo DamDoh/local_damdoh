@@ -377,5 +377,18 @@
       "languageLabel": "Sprache",
       "languageDescription": "Wählen Sie Ihre bevorzugte Sprache für die Benutzeroberfläche."
     }
+  },
+  "Marketplace": {
+    "promotions": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Marktplatz-Aktionen",
+      "description": "Erstellen und verwalten Sie Rabattgutscheine für Ihre Produkte und Dienstleistungen, um mehr Käufer anzulocken.",
+      "createNewCoupon": "Neuen Gutschein erstellen"
+    }
+  },
+  "Forums": {
+    "post": {
+      "repliesTitle": "Antworten ({count})"
+    }
   }
 }
