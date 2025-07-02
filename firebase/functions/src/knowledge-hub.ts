@@ -17,7 +17,7 @@ export const createCourse = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -25,7 +25,7 @@ export const createCourse = functions.https.onCall(async (data, context) => {
   if (!titleEn || !descriptionEn || !category || !level) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Missing required fields for the course.",
+      "error.course.missingFields",
     );
   }
 
@@ -43,7 +43,7 @@ export const createCourse = functions.https.onCall(async (data, context) => {
     return {success: true, courseId: newCourseRef.id};
   } catch (error: any) {
     console.error("Error creating course:", error);
-    throw new functions.https.HttpsError("internal", "Failed to create course.", {
+    throw new functions.https.HttpsError("internal", "error.course.creationFailed", {
       originalError: error.message,
     });
   }
@@ -62,7 +62,7 @@ export const createModule = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -70,7 +70,7 @@ export const createModule = functions.https.onCall(async (data, context) => {
   if (!courseId || !moduleTitleEn) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Course ID and module title are required.",
+      "error.module.missingFields",
     );
   }
 
@@ -91,7 +91,7 @@ export const createModule = functions.https.onCall(async (data, context) => {
     console.error("Error creating module:", error);
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to create module.",
+      "error.module.creationFailed",
       {originalError: error.message},
     );
   }
@@ -127,7 +127,7 @@ export const getFeaturedKnowledge = functions.https.onCall(async (data, context)
     return { success: true, articles };
   } catch (error) {
     console.error("Error fetching featured articles:", error);
-    throw new functions.https.HttpsError("internal", "Failed to fetch featured articles.");
+    throw new functions.https.HttpsError("internal", "error.articles.fetchFailed");
   }
 });
 
@@ -148,13 +148,13 @@ export const createKnowledgeArticle = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated.",
+        "error.unauthenticated",
       );
     }
 
     const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km } = data;
     if (!title_en || !content_markdown_en || !category || !excerpt_en) {
-        throw new functions.https.HttpsError("invalid-argument", "Title, content, category, and excerpt are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.article.missingFields");
     }
 
     try {
@@ -179,7 +179,7 @@ export const createKnowledgeArticle = functions.https.onCall(
       console.error("Error creating knowledge article:", error);
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to create article.",
+        "error.article.creationFailed",
         {originalError: error.message},
       );
     }
@@ -203,7 +203,7 @@ export const getKnowledgeArticles = functions.https.onCall(async (data, context)
         return { success: true, articles };
     } catch (error) {
         console.error("Error fetching articles:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch articles.");
+        throw new functions.https.HttpsError("internal", "error.articles.fetchFailed");
     }
 });
 
@@ -214,13 +214,13 @@ export const getKnowledgeArticles = functions.https.onCall(async (data, context)
 export const getKnowledgeArticleById = functions.https.onCall(async (data, context) => {
     const { articleId } = data;
     if (!articleId) {
-        throw new functions.https.HttpsError("invalid-argument", "An articleId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.articleId.required");
     }
 
     try {
         const articleDoc = await db.collection('knowledge_articles').doc(articleId).get();
         if (!articleDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Article not found.");
+            throw new functions.https.HttpsError("not-found", "error.article.notFound");
         }
         const articleData = articleDoc.data()!;
         return { 
@@ -237,7 +237,7 @@ export const getKnowledgeArticleById = functions.https.onCall(async (data, conte
         if (error instanceof functions.https.HttpsError) {
           throw error;
         }
-        throw new functions.https.HttpsError("internal", "Failed to fetch article details.");
+        throw new functions.https.HttpsError("internal", "error.article.fetchFailed");
     }
 });
 
@@ -268,7 +268,7 @@ export const getAvailableCourses = functions.https.onCall(
       return {success: true, courses: courses};
     } catch (error) {
       console.error("Error fetching courses:", error);
-      throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
+      throw new functions.https.HttpsError("internal", "error.courses.fetchFailed");
     }
   },
 );
@@ -285,7 +285,7 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -293,7 +293,7 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
   if (!courseId) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "A courseId must be provided.",
+      "error.courseId.required",
     );
   }
 
@@ -301,7 +301,7 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     // 1. Fetch the main course document
     const courseDoc = await db.collection("courses").doc(courseId).get();
     if (!courseDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Course not found.");
+      throw new functions.https.HttpsError("not-found", "error.course.notFound");
     }
     const courseData = courseDoc.data()!;
 
@@ -340,7 +340,7 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     }
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to fetch course details.",
+      "error.course.fetchFailed",
     );
   }
 });

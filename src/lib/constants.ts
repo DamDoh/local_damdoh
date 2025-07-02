@@ -1,5 +1,6 @@
 
 import { AGRICULTURAL_CATEGORIES } from './category-data';
+import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes } from './i18n-constants';
 
 export const APP_NAME = "DamDoh";
 
@@ -46,17 +47,17 @@ export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketpla
   ...AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name })),
 ];
 
-export const LISTING_TYPE_FILTER_OPTIONS: Array<{ value: ListingType | 'All', label: string }> = [
-  { value: 'All', label: 'All Types (Products & Services)' },
-  ...LISTING_TYPES.map(type => ({ value: type, label: `${type}s` })),
+export const getListingTypeFilterOptions = (t: any) => [
+  { value: 'All', label: t('listingTypes.All') },
+  ...getListingTypes(t).map(type => ({ value: type.value, label: `${type.label}s` })),
 ];
 
 // Form options for Marketplace creation
 export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
   AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name }));
 
-export const LISTING_TYPE_FORM_OPTIONS: Array<{ value: ListingType, label: string }> =
-  LISTING_TYPES.map(type => ({ value: type, label: type }));
+export const getListingTypeFormOptions = (t: any) =>
+    getListingTypes(t).map(type => ({ value: type.value, label: type.label }));
 
 
 export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
@@ -64,12 +65,12 @@ export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
 export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event', 'Online Course Launch', 'Policy Briefing'] as const;
 export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
 
-export const AGRI_EVENT_TYPE_FORM_OPTIONS: Array<{value: AgriEventTypeConstant, label: string}> =
-    AGRI_EVENT_TYPES.map(type => ({value: type, label: type}));
+export const getAgriEventTypeFormOptions = (t: any) =>
+    getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}));
 
-export const AGRI_EVENT_FILTER_OPTIONS: Array<{value: AgriEventTypeConstant | 'All', label: string}> = [
-    {value: 'All', label: 'All Event Types'},
-    ...AGRI_EVENT_TYPES.map(type => ({value: type, label: type}))
+export const getAgriEventFilterOptions = (t: any) => [
+    {value: 'All', label: t('agriEventTypes.All')},
+    ...getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}))
 ];
 
 // Added for financial services module

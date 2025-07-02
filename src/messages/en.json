@@ -185,5 +185,401 @@
     "getMobileApp": "Get Our Mobile App",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
+  },
+  "traceabilityPage": {
+    "title": "Traceability Hub",
+    "description": "Follow the journey of agricultural products from farm to shelf. Enter a Verified Traceability ID (VTI) to begin.",
+    "inputPlaceholder": "Enter VTI here (e.g., VTI-C0FF33-2024-987654)",
+    "trackButton": "Track",
+    "vtiDescription": "A VTI is a unique identifier assigned to a specific batch of products in the DamDoh system.",
+    "recentTitle": "Recently Tracked Items",
+    "recentDescription": "Your recently tracked items will appear here for quick access."
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: 2024-07-29",
+    "introduction": "Welcome to DamDoh. We are committed to protecting your privacy and handling your data in an open and transparent manner. This privacy policy explains how we collect, use, and share your personal and business information when you use our agricultural supply chain platform.",
+    "whatInfoWeCollect": {
+      "heading": "1. What Information Do We Collect?",
+      "content": "We collect information that you provide to us directly, such as when you create an account (name, email, role), build your profile (location, specialties), or list products. We also collect data automatically, like your IP address and device type, and may collect data from third-party sources to supplement your profile, such as from public records or data partners."
+    },
+    "howWeUseInfo": {
+      "heading": "2. How Do We Use Your Information?",
+      "content": "Your information is used to operate, maintain, and improve our platform. This includes facilitating connections, enabling marketplace transactions, personalizing your experience, providing AI-driven insights, and for security and compliance purposes. We may also use your data for analytics to understand industry trends."
+    },
+    "willInfoBeShared": {
+      "heading": "3. Will Your Information Be Shared With Anyone?",
+      "content": "We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations. Your public profile is visible to other platform users. We may share data with trusted third-party service providers for functions like payment processing or data analysis, and with financial institutions if you explicitly consent to apply for a service."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. Do We Use Cookies and Other Tracking Technologies?",
+      "content": "Yes, we use cookies and similar tracking technologies to access or store information to help us operate and analyze our platform's performance. You can control cookie settings through your browser."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. How Long Do We Keep Your Information?",
+      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy policy unless otherwise required by law. This generally means as long as you have an active account with us."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. How Do We Keep Your Information Safe?",
+      "content": "We have implemented a variety of security measures to protect your information, including encryption and access controls. However, no electronic transmission over the internet can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security."
+    },
+    "minors": {
+      "heading": "7. Do We Collect Information From Minors?",
+      "content": "We do not knowingly collect data from or market to children under 18 years of age. By using the platform, you represent that you are at least 18."
+    },
+    "privacyRights": {
+      "heading": "8. What Are Your Privacy Rights?",
+      "content": "You may review, change, or terminate your account at any time. Depending on your location, you may have rights such as the right to access, correct, or delete your personal data. You can manage your data directly in the platform's settings or by contacting us."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. Controls for Do-Not-Track Features",
+      "content": "Most web browsers and some mobile operating systems include a Do-Not-Track ('DNT') feature. At this stage, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online."
+    },
+    "updatesToNotice": {
+      "heading": "10. Do We Make Updates to This Notice?",
+      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws and to reflect any changes in our practices. We will notify you of any material changes by posting a notice on our platform or by sending you a direct notification."
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated: 2024-07-29",
+    "introduction": "These Terms of Service constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the platform. You agree that by accessing the site, you have read, understood, and agree to be bound by all of these Terms of Service.",
+    "agreementToTerms": {
+      "heading": "1. Agreement to Terms",
+      "content": "By using the DamDoh platform, you agree to these terms. If you do not agree with all of these terms, then you are expressly prohibited from using the site and you must discontinue use immediately."
+    },
+    "intellectualProperty": {
+      "heading": "2. Intellectual Property Rights",
+      "content": "Unless otherwise indicated, the platform is our proprietary property. All source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein (the 'Marks') are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws."
+    },
+    "userRepresentations": {
+      "heading": "3. User Representations",
+      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information; (3) you have the legal capacity and you agree to comply with these Terms of Service; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Site through automated or non-human means, whether through a bot, script or otherwise."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Prohibited Activities",
+      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us. This includes, but is not limited to, fraudulent activities, attempting to impersonate another user, and interfering with the platform's security features."
+    },
+    "platformManagement": {
+      "heading": "5. Platform Management",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Service; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Service; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your contributions."
+    },
+    "termAndTermination": {
+      "heading": "6. Term and Termination",
+      "content": "These Terms of Service shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF SERVICE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications and Interruptions",
+      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
+    },
+    "governingLaw": {
+      "heading": "8. Governing Law",
+      "content": "These Terms shall be governed by and defined following the laws of [Your Jurisdiction]. DamDoh and yourself irrevocably consent that the courts of [Your Jurisdiction] shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms."
+    },
+    "disputeResolution": {
+      "heading": "9. Dispute Resolution",
+      "content": "To expedite resolution and control the cost of any dispute, you agree to first attempt to negotiate any dispute informally for at least thirty (30) days before initiating arbitration. Such informal negotiations commence upon written notice from one person to the other."
+    },
+    "contactUs": {
+      "heading": "10. Contact Us",
+      "content": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
+    },
+    "conclusion": "If you have any questions, you can <contactLink>contact us</contactLink>."
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account, agricultural profile, and platform preferences.",
+    "profileTab": "Profile",
+    "accountTab": "Account",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Privacy",
+    "appearanceTab": "Appearance",
+    "stakeholderProfile": {
+      "title": "Stakeholder Profile Settings",
+      "description": "Update your public information for the agricultural supply chain network.",
+      "nameLabel": "Full Name / Organization Name",
+      "emailLabel": "Contact Email",
+      "roleLabel": "Primary Role in Supply Chain",
+      "rolePlaceholder": "Select your primary role",
+      "summaryLabel": "Profile Summary / Headline",
+      "summaryPlaceholder": "e.g., Exporter of fair-trade coffee, specializing in East African beans...",
+      "bioLabel": "Detailed Bio / About Your Organization",
+      "bioPlaceholder": "Share more about your operations, mission, products, services, or what you're seeking in the supply chain...",
+      "interestsLabel": "Areas of Interest / Specialties (comma-separated)",
+      "interestsPlaceholder": "e.g., Organic farming, Supply chain logistics, Export, Cashew processing",
+      "needsLabel": "Currently Seeking / Offering (comma-separated)",
+      "needsPlaceholder": "e.g., Buyers for cocoa beans, Warehousing space, Agronomy consulting",
+      "saveButton": "Save Profile Changes"
+    },
+    "account": {
+      "title": "Account Settings",
+      "description": "Manage your login credentials and account security.",
+      "currentPasswordLabel": "Current Password",
+      "newPasswordLabel": "New Password",
+      "confirmPasswordLabel": "Confirm New Password",
+      "changePasswordButton": "Change Password",
+      "deactivateButton": "Deactivate Account"
+    },
+    "notifications": {
+      "title": "Notification Settings",
+      "description": "Choose how you want to be notified about supply chain activity and platform updates.",
+      "emailDigestLabel": "Email Notifications Digest",
+      "emailDigestDescription": "Receive a summary of important updates, market news, and connection requests.",
+      "connectionRequestsLabel": "New Connection Requests",
+      "connectionRequestsDescription": "Notify me in-app and optionally by email for new stakeholder connection requests.",
+      "forumMentionsLabel": "Forum Contributions & Mentions",
+      "forumMentionsDescription": "Notify me for replies to my forum posts or when I'm mentioned.",
+      "marketplaceActivityLabel": "Marketplace Activity",
+      "marketplaceActivityDescription": "Notify me about inquiries on my listings or updates to saved searches.",
+      "talentExchangeLabel": "Merged Marketplace Updates (Jobs, Services, etc.)",
+      "talentExchangeDescription": "Notify me about applications to my job/service listings or new relevant offerings.",
+      "saveButton": "Save Notification Settings"
+    },
+    "privacy": {
+      "title": "Privacy & Visibility Settings",
+      "description": "Control who can see your agricultural profile and supply chain activity.",
+      "profileVisibilityLabel": "Profile Visibility",
+      "profileVisibilityDescription": "Control who can view your full stakeholder profile details.",
+      "profileVisibilityAll": "All DamDoh Members",
+      "profileVisibilityConnections": "My Connections Only",
+      "profileVisibilityPrivate": "Only Me (Not Recommended for Networking)",
+      "connectionRequestsLabel": "Connection Requests",
+      "connectionRequestsDescription": "Control who can send you connection requests.",
+      "connectionRequestsAll": "All DamDoh Members",
+      "connectionRequestsConnectionsOfConnections": "Connections of Connections",
+      "contactInfoVisibilityLabel": "Business/Contact Information Visibility",
+      "contactInfoVisibilityDescription": "Control who sees your email, phone, or website if provided.",
+      "contactInfoVisibilityAll": "All DamDoh Members",
+      "contactInfoVisibilityConnections": "My Connections Only",
+      "activityStatusLabel": "Activity Status",
+      "activityStatusDescription": "Let others see when you are online or last active.",
+      "searchIndexingLabel": "External Search Engine Indexing",
+      "searchIndexingDescription": "Allow search engines (e.g., Google) to link to your DamDoh profile (public parts only).",
+      "saveButton": "Save Privacy Settings",
+      "dataConsentTitle": "Data Consent Management",
+      "dataConsentDescription": "Manage how your data is used and shared with other stakeholders or integrated services.",
+      "marketplaceHistoryLabel": "Marketplace History",
+      "marketplaceHistoryDescription": "Allows Financial Institutions to view your sales history when you apply for a loan or service, to assess your eligibility.",
+      "traceabilityDataLabel": "Traceability Data",
+      "traceabilityDataDescription": "Allows buyers to view the public traceability log of products you have listed, building trust and transparency.",
+      "financialApplicationDataLabel": "Financial Application Data",
+      "financialApplicationDataDescription": "Allow DamDoh's AI to analyze your application data to recommend other relevant financial products or services to you.",
+      "saveConsentButton": "Save Consent Settings"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Customize the look and feel of the DamDoh platform.",
+      "themeLabel": "Theme",
+      "themeDescription": "Select your preferred theme (Light/Dark).",
+      "languageLabel": "Language",
+      "languageDescription": "Choose your preferred language for the interface."
+    }
+  },
+  "stakeholderRoles": {
+    "Farmer": "Farmer",
+    "AgriculturalCooperative": "Agricultural Cooperative",
+    "FieldAgent": "Field Agent/Agronomist (DamDoh Internal)",
+    "LogisticsTeam": "Operations/Logistics Team (DamDoh Internal)",
+    "QATeam": "Quality Assurance Team (DamDoh Internal)",
+    "ProcessingUnit": "Processing & Packaging Unit",
+    "Buyer": "Buyer (Restaurant, Supermarket, Exporter)",
+    "InputSupplier": "Input Supplier (Seed, Fertilizer, Pesticide)",
+    "EquipmentSupplier": "Equipment Supplier (Sales of Machinery/IoT)",
+    "FinancialInstitution": "Financial Institution (Micro-finance/Loans)",
+    "Regulator": "Government Regulator/Auditor",
+    "CertificationBody": "Certification Body (Organic, Fair Trade etc.)",
+    "Consumer": "Consumer",
+    "Researcher": "Researcher/Academic",
+    "LogisticsPartner": "Logistics Partner (Third-Party Transporter)",
+    "Warehouse": "Storage/Warehouse Facility",
+    "Agronomist": "Agronomy Expert/Consultant (External)",
+    "AgroTourism": "Agro-Tourism Operator",
+    "EnergyProvider": "Energy Solutions Provider (Solar, Biogas)",
+    "AgroExporter": "Agro-Export Facilitator/Customs Broker",
+    "AgriTech": "Agri-Tech Innovator/Developer",
+    "Retailer": "Retailer/City Market Seller",
+    "WasteManagement": "Waste Management & Compost Facility",
+    "Crowdfunder": "Crowdfunder (Impact Investor, Individual)"
+  },
+  "listingTypes": {
+    "Product": "Product",
+    "Service": "Service",
+    "All": "All Types (Products & Services)"
+  },
+  "agriEventTypes": {
+    "Conference": "Conference",
+    "Webinar": "Webinar",
+    "Workshop": "Workshop",
+    "TradeShow": "Trade Show",
+    "FieldDay": "Field Day",
+    "NetworkingEvent": "Networking Event",
+    "OnlineCourseLaunch": "Online Course Launch",
+    "PolicyBriefing": "Policy Briefing",
+    "All": "All Event Types"
+  },
+  "financialServiceTypes": {
+    "loan": "Loan",
+    "credit": "Credit",
+    "grant": "Grant",
+    "savings": "Savings"
+  },
+  "insuranceServiceTypes": {
+    "crop_insurance": "Crop Insurance",
+    "livestock_insurance": "Livestock Insurance",
+    "property_insurance": "Property Insurance"
+  },
+    "marketplacePage": {
+    "title": "Agricultural Marketplace & Services Hub",
+    "description": "Discover products, equipment, land, and professional services to support your agricultural needs.",
+    "createShopButton": "Create Your Shop",
+    "createListingButton": "Create New Listing",
+    "pinButton": "Pin",
+    "unpinButton": "Unpin",
+    "searchPlaceholder": "Search products & services...",
+    "locationPlaceholder": "Filter by location",
+    "typePlaceholder": "Filter by Type",
+    "allCategories": "All Categories",
+    "recommendedForYou": "Recommended For You",
+    "discoverMore": "Discover More",
+    "noItemsFound": "No items found matching your criteria.",
+    "noItemsHint": "Try broadening your search or filters.",
+    "viewDetails": "View Details"
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "defaultActorName": "Someone",
+    "likedYourPost": " liked your post.",
+    "commentedOnYourPost": " commented on your post.",
+    "noNotifications": "You have no new notifications."
+  },
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Search messages...",
+    "noConversations": "No conversations yet.",
+    "selectConversation": "Select a conversation to start chatting",
+    "typeMessagePlaceholder": "Type your message...",
+    "signInToView": "Please sign in to view your messages.",
+    "signIn": "Sign In",
+    "error": "Error",
+    "couldNotLoadMessages": "Could not load messages for this conversation.",
+    "couldNotLoadConversations": "Could not load your conversations.",
+    "sendFailed": "Send Failed",
+    "couldNotSendMessage": "Your message could not be sent."
+  },
+  "networkPage": {
+    "title": "Connect Across the Agri-Supply Chain",
+    "description": "Discover farmers, suppliers, processors, buyers, and other key stakeholders to strengthen your network.",
+    "refreshSuggestions": "Refresh Suggestions",
+    "searchPlaceholder": "Search by name, role, or agricultural focus...",
+    "locationPlaceholder": "Filter by country, region, or port",
+    "rolePlaceholder": "Filter by stakeholder role",
+    "allRoles": "All Roles",
+    "interestPlaceholder": "Filter by area of interest",
+    "connect": "Connect",
+    "message": "Message",
+    "noStakeholdersFound": "No stakeholders found matching your criteria.",
+    "noStakeholdersHint": "Try adjusting your filters or expand your search for better supply chain connections."
+  },
+  "profilesPage": {
+    "title": "Agricultural Stakeholder Directory",
+    "description": "Find and connect with participants across the entire agricultural value chain.",
+    "createEditProfile": "Create/Edit Your Profile",
+    "searchPlaceholder": "Search by name, specialty, or supply chain role...",
+    "locationPlaceholder": "Filter by country, region, or city",
+    "rolePlaceholder": "Filter by stakeholder role",
+    "allRoles": "All Roles",
+    "viewProfile": "View Profile & Connect",
+    "noProfilesFound": "No stakeholder profiles found.",
+    "noProfilesHint": "Adjust your filters or broaden your search."
+  },
+  "searchPage": {
+    "title": "Search DamDoh",
+    "description": "Find products, services, stakeholders, or ask our AI assistant.",
+    "placeholder": "What are you looking for?",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Coffee Beans",
+    "popularSearch3": "Logistics Kenya",
+    "popularSearch4": "Soil Health",
+    "popularSearch5": "Tractor Rental"
+  },
+  "walletPage": {
+    "title": "My Digital Wallet",
+    "description": "Manage your DamDoh credits for trading, investments, and platform services (Feature Coming Soon).",
+    "underDevelopmentTitle": "Digital Wallet Feature: Under Development",
+    "underDevelopmentDescription": "We are building a secure and efficient digital wallet to facilitate transactions within the DamDoh ecosystem. Future capabilities will include:",
+    "feature1": "Viewing your credit balance and transaction history.",
+    "feature2": "Requesting credit for approved investments or large trades.",
+    "feature3": "Securely topping-up your wallet using various payment methods.",
+    "feature4": "Facilitating payments for marketplace transactions and platform services.",
+    "stayTuned": "Stay tuned for updates as we work to enable seamless and secure financial activities for the DamDoh agricultural network."
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability & Impact Hub",
+    "description": "Track your progress towards sustainable agriculture, manage certifications, and explore tools for positive impact across the supply chain.",
+    "practicesLog": {
+      "title": "Sustainable Practices Log",
+      "description": "Record and verify your on-farm sustainable activities.",
+      "placeholder": "[Conceptual Placeholder: This area will feature a form for farmers to log practices like cover cropping, reduced tillage, or integrated pest management. The system would then use this data to calculate impact metrics and potentially assist in certification processes.]"
+    },
+    "toolsAndResources": {
+      "title": "Tools & Resources",
+      "description": "Calculators and guides to support your sustainability journey.",
+      "carbonCalculator": "Carbon Footprint Calculator (Coming Soon)",
+      "waterUsageGuide": "Water Usage Efficiency Guide",
+      "organicFarmingGuide": "Guide to Organic Farming Practices"
+    },
+    "impactOverview": {
+      "title": "Impact Overview",
+      "carbonFootprint": "Carbon Footprint",
+      "carbonFootprintValue": "Estimated: 1.2 Tons CO2e",
+      "waterUsage": "Water Usage Efficiency",
+      "waterUsageValue": "Average: 1500 Liters/kg",
+      "biodiversityScore": "Biodiversity Score",
+      "biodiversityScoreValue": "7/10 (based on practices)"
+    },
+    "myCertifications": {
+      "title": "My Certifications",
+      "organicCertified": "Organic Certified",
+      "valid": "Valid",
+      "fairTrade": "Fair Trade",
+      "pendingReview": "Pending Review"
+    }
+  },
+  "errors": {
+    "orderId": {
+        "required": "The 'orderId' parameter is required."
+    },
+    "amount": {
+        "invalid": "The 'amount' parameter is required, must be a number, and greater than zero."
+    },
+    "currency": {
+        "required": "The 'currency' parameter is required."
+    },
+    "payment": {
+        "initiationFailed": "Payment initiation failed with gateway."
+    },
+    "unauthenticated": "Caller must be authenticated.",
+    "internal": "An internal error occurred.",
+    "projectId": {
+        "required": "The 'projectId' parameter is required."
+    },
+    "project": {
+        "notFound": "Crowdfunding project not found.",
+        "notOpen": "Project is not open for investment."
+    },
+    "type": {
+        "invalid": "The 'type' parameter is required and must be one of: income, expense."
+    },
+    "description": {
+        "required": "The 'description' parameter is required."
+    },
+    "financialData": {
+        "fetchFailed": "Failed to fetch financial data."
+    }
+  },
+  "conceptual": {
+    "applicationSent": "[Conceptual] Application sent to insurer."
   }
 }

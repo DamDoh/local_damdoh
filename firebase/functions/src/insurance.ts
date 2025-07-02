@@ -164,10 +164,6 @@ export const assessRiskForPolicy = functions.firestore
         assessmentDate: admin.firestore.FieldValue.serverTimestamp(),
         score: assessmentResult.insuranceRiskScore,
         riskFactors: assessmentResult.riskFactors,
-        linkedAssets: insuredAssets.map((asset) => ({
-          type: asset.type,
-          assetRef: asset.assetRef,
-        })),
         aiModelVersion: "v1.0-placeholder",
         recommendations_en: [
           "Improve irrigation systems",
@@ -452,7 +448,7 @@ export const triggerParametricPayout = functions.firestore
 export const processInsuranceApplication = functions.https.onCall(async (data, context) => {
     // Placeholder logic
     console.log("Conceptual: Processing insurance application with data:", data);
-    return { success: true, message: "[Conceptual] Application sent to insurer." };
+    return { success: true, message: "conceptual.applicationSent" };
 });
 
 /**

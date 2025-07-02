@@ -23,19 +23,19 @@ export async function _internalInitiatePayment(
   if (!orderId || typeof orderId !== "string") {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "The 'orderId' parameter is required.",
+      "error.orderId.required",
     );
   }
   if (amount === undefined || typeof amount !== "number" || amount <= 0) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "The 'amount' parameter is required, must be a number, and greater than zero.",
+      "error.amount.invalid",
     );
   }
   if (!currency || typeof currency !== "string") {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "The 'currency' parameter is required.",
+      "error.currency.required",
     );
   }
 
@@ -62,7 +62,7 @@ export async function _internalInitiatePayment(
     console.error(`Payment initiation failed for order ${orderId}.`);
     throw new functions.https.HttpsError(
       "aborted",
-      "Payment initiation failed with gateway.",
+      "error.payment.initiationFailed",
     );
   }
 }
@@ -72,7 +72,7 @@ export const initiatePayment = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "Caller must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -85,7 +85,7 @@ export const initiatePayment = functions.https.onCall(async (data, context) => {
     }
     throw new functions.https.HttpsError(
       "internal",
-      "An internal error occurred during payment initiation.",
+      "error.internal",
       error,
     );
   }
@@ -306,7 +306,7 @@ export const processCrowdfundingInvestment = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated to invest.",
+        "error.unauthenticated",
       );
     }
 
@@ -316,19 +316,19 @@ export const processCrowdfundingInvestment = functions.https.onCall(
     if (!projectId || typeof projectId !== "string") {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "The 'projectId' parameter is required.",
+        "error.projectId.required",
       );
     }
     if (amount === undefined || typeof amount !== "number" || amount <= 0) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "The 'amount' parameter is required, must be a number, and greater than zero.",
+        "error.amount.invalid",
       );
     }
     if (!currency || typeof currency !== "string") {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "The 'currency' parameter is required.",
+        "error.currency.required",
       );
     }
 
@@ -346,7 +346,7 @@ export const processCrowdfundingInvestment = functions.https.onCall(
         if (!projectDoc.exists) {
           throw new functions.https.HttpsError(
             "not-found",
-            `Crowdfunding project with ID ${projectId} not found.`,
+            "error.project.notFound",
           );
         }
 
@@ -360,7 +360,7 @@ export const processCrowdfundingInvestment = functions.https.onCall(
         ) {
           throw new functions.https.HttpsError(
             "failed-precondition",
-            `Project ${projectId} is not open for investment.`,
+            "error.project.notOpen",
           );
         }
 
@@ -424,7 +424,7 @@ export const processCrowdfundingInvestment = functions.https.onCall(
       }
       throw new functions.https.HttpsError(
         "internal",
-        "Unable to process crowdfunding investment.",
+        "error.internal",
         error,
       );
     }
@@ -543,7 +543,7 @@ export const logFinancialTransaction = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated to log a financial transaction.",
+        "error.unauthenticated",
       );
     }
 
@@ -554,27 +554,25 @@ export const logFinancialTransaction = functions.https.onCall(
     if (!type || typeof type !== "string" || !validTypes.includes(type)) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        `The 'type' parameter is required and must be one of: ${validTypes.join(
-          ", ",
-        )}.`,
+        "error.type.invalid",
       );
     }
     if (amount === undefined || typeof amount !== "number" || amount <= 0) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "The 'amount' parameter is required, must be a number, and greater than zero.",
+        "error.amount.invalid",
       );
     }
     if (!currency || typeof currency !== "string") {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "The 'currency' parameter is required.",
+        "error.currency.required",
       );
     }
     if (!description || typeof description !== "string") {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "The 'description' parameter is required.",
+        "error.description.required",
       );
     }
 
@@ -617,7 +615,7 @@ export const logFinancialTransaction = functions.https.onCall(
       }
       throw new functions.https.HttpsError(
         "internal",
-        "Unable to log financial transaction.",
+        "error.internal",
         error,
       );
     }
@@ -635,7 +633,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated.",
+        "error.unauthenticated",
       );
     }
 
@@ -681,7 +679,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
       console.error("Error fetching financial summary:", error);
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to fetch financial data.",
+        "error.financialData.fetchFailed",
       );
     }
   },
