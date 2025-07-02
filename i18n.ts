@@ -1,2 +1,12 @@
-// This file is obsolete and has been moved to /src/i18n.ts
-// This file can be safely deleted.
+import {notFound} from 'next/navigation';
+import {getRequestConfig} from 'next-intl/server';
+import {locales} from './src/lib/i18n-constants';
+ 
+export default getRequestConfig(async ({locale}) => {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale as any)) notFound();
+ 
+  return {
+    messages: (await import(`./src/messages/${locale}.json`)).default
+  };
+});
