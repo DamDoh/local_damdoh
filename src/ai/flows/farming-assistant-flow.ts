@@ -14,9 +14,10 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import {fgwKnfKnowledgeTool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import { stakeholderData } from '@/lib/stakeholder-data';
+import { fwg_knf_tool } from "firebase-functions/v1/gen_ai";
 
 const FarmingAssistantInputSchema = z.object({
-  query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
+  query: z.string().describe('The user's question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
   photoDataUri: z.string().optional().describe("A photo of a plant or crop issue, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'. This is used for diagnosis."),
   language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code (e.g., "en", "km", "fr", "de", "th"). Defaults to English if not provided.'),
 });
@@ -42,7 +43,7 @@ const farmingAssistantPrompt = ai.definePrompt({
   name: 'farmingAssistantPrompt',
   input: {schema: FarmingAssistantInputSchema},
   output: {schema: FarmingAssistantOutputSchema},
-  tools: [fgwKnfKnowledgeTool],
+  tools: [fgwKnfKnowledgeTool, fwg_knf_tool],
   prompt: `You are DamDoh AI's Knowledge, an expert AI assistant for the DamDoh platform. 
 
 **CRITICAL INSTRUCTION: You MUST respond in the language specified by the 'language' parameter. The language code is '{{{language}}}'. If no language is specified, you must default to English.**
