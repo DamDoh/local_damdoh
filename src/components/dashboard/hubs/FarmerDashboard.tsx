@@ -84,7 +84,7 @@ export const FarmerDashboard = () => {
                     {recentCrops && recentCrops.length > 0 ? recentCrops.map(crop => (
                         <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
                             <div>
-                                <p className="font-medium text-sm">{crop.cropType}</p>
+                                <p className="font-medium text-sm">{crop.name} <span className="text-xs text-muted-foreground">on {crop.farmName}</span></p>
                                 {crop.plantingDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>}
                             </div>
                             <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${crop.farmId}`}>View</Link></Button>
@@ -128,5 +128,3 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-48 rounded-lg" />
     </div>
 );
-
-    

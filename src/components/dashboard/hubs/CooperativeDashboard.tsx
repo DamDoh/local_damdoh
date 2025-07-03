@@ -96,39 +96,41 @@ export const CooperativeDashboard = () => {
                         <CardDescription>Collective inventory from your members available for sale.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        {aggregatedProduce?.length > 0 ? (
-                            <Table>
-                                    <TableHeader>
-                                        <TableRow>
-                                        <TableHead>Product</TableHead>
-                                        <TableHead>Quantity (tons)</TableHead>
-                                        <TableHead>Quality</TableHead>
-                                        <TableHead>Ready By</TableHead>
-                                        <TableHead className="text-right">Action</TableHead>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                <TableHead>Product</TableHead>
+                                <TableHead>Quantity (tons)</TableHead>
+                                <TableHead>Quality</TableHead>
+                                <TableHead>Ready By</TableHead>
+                                <TableHead className="text-right">Action</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {aggregatedProduce?.length > 0 ? (
+                                    aggregatedProduce.map(item => (
+                                        <TableRow key={item.id}>
+                                            <TableCell className="font-medium">{item.productName}</TableCell>
+                                            <TableCell>{item.quantity}</TableCell>
+                                            <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
+                                            <TableCell>{new Date(item.readyBy).toLocaleDateString()}</TableCell>
+                                            <TableCell className="text-right">
+                                                <Button size="sm" asChild>
+                                                    <Link href={`/marketplace/create?batchId=${item.id}&productName=${item.productName}`}>
+                                                        <CircleDollarSign className="mr-2 h-4 w-4" />
+                                                        Create Listing
+                                                    </Link>
+                                                </Button>
+                                            </TableCell>
                                         </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {aggregatedProduce.map(item => (
-                                            <TableRow key={item.id}>
-                                                <TableCell className="font-medium">{item.productName}</TableCell>
-                                                <TableCell>{item.quantity}</TableCell>
-                                                <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
-                                                <TableCell>{new Date(item.readyBy).toLocaleDateString()}</TableCell>
-                                                <TableCell className="text-right">
-                                                    <Button size="sm" asChild>
-                                                        <Link href={`/marketplace/create?batchId=${item.id}&productName=${item.productName}`}>
-                                                            <CircleDollarSign className="mr-2 h-4 w-4" />
-                                                            Create Listing
-                                                        </Link>
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                        ) : (
-                            <p className="text-sm text-center text-muted-foreground py-4">No aggregated produce available.</p>
-                        )}
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={5} className="text-center h-24">No aggregated produce available.</TableCell>
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
                     </CardContent>
                      <CardFooter>
                         <Button variant="secondary" className="w-full">

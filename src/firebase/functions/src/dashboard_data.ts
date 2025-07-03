@@ -55,11 +55,15 @@ export const getFarmerDashboardData = functions.https.onCall(
             knfBatchesPromise,
         ]);
 
+        const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
+
         const recentCrops = cropsSnapshot.docs.map(doc => {
             const cropData = doc.data();
             return {
                 id: doc.id,
-                cropType: cropData.cropType || "Unknown Crop",
+                name: cropData.cropType || "Unknown Crop",
+                stage: cropData.currentStage || 'Unknown',
+                farmName: farmsMap.get(cropData.farmId) || 'Unknown Farm',
                 farmId: cropData.farmId,
                 plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
             };
@@ -75,9 +79,11 @@ export const getFarmerDashboardData = functions.https.onCall(
             };
         });
 
+        const allCropsSnapshot = await db.collection('crops').where('ownerId', '==', farmerId).get();
+
         return {
             farmCount: farmsSnapshot.size,
-            cropCount: cropsSnapshot.docs.length, // This should query all crops, but we'll approximate for now
+            cropCount: allCropsSnapshot.size,
             recentCrops: recentCrops, 
             knfBatches: activeKnfBatches,
         };
@@ -400,5 +406,3 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
     };
   }
 );
-
-    

@@ -276,7 +276,9 @@ export interface FarmerDashboardData {
   cropCount: number;
   recentCrops: {
       id: string;
-      cropType: string;
+      name: string;
+      stage: string;
+      farmName: string;
       farmId: string;
       plantingDate: string | null;
   }[];
