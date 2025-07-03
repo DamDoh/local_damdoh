@@ -64,6 +64,8 @@ export const CertificationBodyDashboard = () => {
       );
   }
 
+  const { pendingAudits, certifiedEntities, standardsMonitoring } = dashboardData;
+
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
           case 'active': return 'default';
@@ -85,7 +87,7 @@ export const CertificationBodyDashboard = () => {
              <CardDescription>Audits requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.pendingAudits?.length > 0 ? (
+             {(pendingAudits || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -96,7 +98,7 @@ export const CertificationBodyDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.pendingAudits.map((audit) => (
+                   {(pendingAudits || []).map((audit) => (
                      <TableRow key={audit.id}>
                        <TableCell className="font-medium">{audit.farmName}</TableCell>
                        <TableCell>{audit.standard}</TableCell>
@@ -123,7 +125,7 @@ export const CertificationBodyDashboard = () => {
              <CardDescription>Overview of your certified farmers and processors.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.certifiedEntities?.length > 0 ? (
+             {(certifiedEntities || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -134,7 +136,7 @@ export const CertificationBodyDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.certifiedEntities.map((entity) => (
+                   {(certifiedEntities || []).map((entity) => (
                      <TableRow key={entity.id}>
                        <TableCell className="font-medium">{entity.name}</TableCell>
                        <TableCell>{entity.type}</TableCell>
@@ -161,9 +163,9 @@ export const CertificationBodyDashboard = () => {
                 <CardDescription>Tracking adherence rates across different standards.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.standardsMonitoring?.length > 0 ? (
+                {(standardsMonitoring || []).length > 0 ? (
                     <div className="space-y-3">
-                        {dashboardData.standardsMonitoring.map((monitoring, index) => (
+                        {(standardsMonitoring || []).map((monitoring, index) => (
                             <div key={index} className="text-sm">
                                 <div className="flex justify-between items-center">
                                     <p className="font-medium">{monitoring.standard}</p>

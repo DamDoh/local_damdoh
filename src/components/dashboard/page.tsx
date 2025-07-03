@@ -19,54 +19,71 @@ import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 // Hub Components
-import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
-import { BuyerDashboard } from '@/components/dashboard/hubs/BuyerDashboard';
-import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
-import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
-import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplierDashboard';
-import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashboard';
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
-import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
-import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
-import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProviderDashboard';
-import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
-import { CertificationBodyDashboard } from '@/components/dashboard/hubs/CertificationBodyDashboard';
-import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
-import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
 import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDashboard';
-import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
-import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
-import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
+import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
+import { BuyerDashboard } from '@/components/dashboard/hubs/BuyerDashboard';
+import { CertificationBodyDashboard } from '@/components/dashboard/hubs/CertificationBodyDashboard';
 import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
 import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
+import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProviderDashboard';
+import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
+import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashboard';
+import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
+import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplierDashboard';
+import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
+import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
+import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
+import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
+import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
+import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
+import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
+import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-
 const HubComponentMap: { [key: string]: React.ComponentType } = {
-    'Farmer': FarmerDashboard,
     'Agricultural Cooperative': CooperativeDashboard,
-    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
-    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
-    'Financial Institution (Micro-finance/Loans)': FiDashboard,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
-    'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
     'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Packaging Supplier': PackagingSupplierDashboard,
-    'Government Regulator/Auditor': RegulatorDashboard,
-    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
-    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
-    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
-    'Researcher/Academic': ResearcherDashboard,
+    'Agri-Tech Innovator/Developer': ResearcherDashboard, // Fallback for now
     'Agronomy Expert/Consultant (External)': AgronomistDashboard,
     'Agro-Tourism Operator': AgroTourismDashboard,
-    'Insurance Provider': InsuranceProviderDashboard,
-    'Processing & Packaging Unit': ProcessingUnitDashboard,
-    'Storage/Warehouse Facility': WarehouseDashboard,
+    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
+    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
     'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
+    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
+    'Farmer': FarmerDashboard,
+    'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
+    'Financial Institution (Micro-finance/Loans)': FiDashboard,
+    'Government Regulator/Auditor': RegulatorDashboard,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
+    'Insurance Provider': InsuranceProviderDashboard,
+    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
+    'Packaging Supplier': PackagingSupplierDashboard,
+    'Processing & Packaging Unit': ProcessingUnitDashboard,
+    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
+    'Researcher/Academic': ResearcherDashboard,
+    'Storage/Warehouse Facility': WarehouseDashboard,
 };
 
+function PageSkeleton() {
+    return (
+        <div className="grid md:grid-cols-12 gap-6 items-start">
+            <div className="md:col-span-3 lg:col-span-2">
+                 <Skeleton className="h-[400px] w-full" />
+            </div>
+            <div className="md:col-span-6 lg:col-span-7 space-y-6">
+                <Skeleton className="h-28 w-full" />
+                <Skeleton className="h-64 w-full" />
+                <Skeleton className="h-56 w-full" />
+            </div>
+            <div className="hidden lg:block md:col-span-3">
+                 <Skeleton className="h-[400px] w-full" />
+            </div>
+        </div>
+    );
+}
 
 function MainContent() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -75,7 +92,7 @@ function MainContent() {
   const [isLoadingRole, setIsLoadingRole] = useState(true);
 
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   
   const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), []);
   const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
@@ -83,6 +100,8 @@ function MainContent() {
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
   useEffect(() => {
+    if (authLoading) return;
+
     const fetchUserRoleAndFeed = async () => {
       setIsLoadingRole(true);
       setIsLoadingFeed(true);
@@ -95,11 +114,13 @@ function MainContent() {
         } catch (error) {
           console.error("Error fetching user role:", error);
           setUserRole('general'); 
+        } finally {
+            setIsLoadingRole(false);
         }
       } else {
         setUserRole(null);
+        setIsLoadingRole(false);
       }
-      setIsLoadingRole(false);
 
       try {
         const result = await getFeed({});
@@ -116,7 +137,7 @@ function MainContent() {
       }
     };
     fetchUserRoleAndFeed();
-  }, [user, getFeed, toast]);
+  }, [user, authLoading, getFeed, toast]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
@@ -182,7 +203,7 @@ function MainContent() {
       );
     }
     
-    return feedItems.length > 0 ? (
+    return feedItems && feedItems.length > 0 ? (
       feedItems.map(item => (
         <FeedItemCard 
           key={item.id} 
@@ -201,13 +222,16 @@ function MainContent() {
     );
   };
 
+  if (authLoading) {
+    return <PageSkeleton />;
+  }
 
   return (
     <div className="grid md:grid-cols-12 gap-6 items-start">
-      <div className="md:col-span-3">
+      <div className="md:col-span-3 lg:col-span-2">
         <DashboardLeftSidebar />
       </div>
-      <div className="md:col-span-6 space-y-6">
+      <div className="md:col-span-6 lg:col-span-7 space-y-6">
         {user && <StartPost onCreatePost={handleCreatePost} />}
         {user && (
            <div className="flex items-center gap-2">
@@ -217,7 +241,7 @@ function MainContent() {
         )}
         {renderContent()}
       </div>
-      <div className="md:col-span-3">
+      <div className="hidden lg:block md:col-span-3">
         <DashboardRightSidebar />
       </div>
     </div>
@@ -225,24 +249,24 @@ function MainContent() {
 }
 
 
-export default function DashboardPage() {
-    const router = useRouter();
-    const pathname = usePathname();
-    const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
+export default function RootPage() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
 
-    useEffect(() => {
-        if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
-          router.replace(homepagePreference);
-        }
-    }, [homepagePreference, isPreferenceLoading, pathname, router]);
+  useEffect(() => {
+      if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
+        router.replace(homepagePreference);
+      }
+  }, [homepagePreference, isPreferenceLoading, pathname, router]);
 
-    if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
-        return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
-    }
+  if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
+      return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
+  }
 
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <MainContent />
-      </Suspense>
-    );
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContent />
+    </Suspense>
+  );
 }
