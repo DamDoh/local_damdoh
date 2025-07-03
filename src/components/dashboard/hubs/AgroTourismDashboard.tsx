@@ -66,6 +66,8 @@ export const AgroTourismDashboard = () => {
       );
   }
 
+    const { upcomingBookings = [], listedExperiences = [], guestReviews = [] } = dashboardData;
+
     const getRatingStars = (rating: number) => {
         const stars = [];
         for (let i = 0; i < 5; i++) {
@@ -91,7 +93,7 @@ export const AgroTourismDashboard = () => {
              <CardDescription>Your scheduled agro-tourism experiences.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.upcomingBookings?.length > 0 ? (
+             {upcomingBookings.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -102,7 +104,7 @@ export const AgroTourismDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.upcomingBookings.map((booking) => (
+                   {upcomingBookings.map((booking) => (
                      <TableRow key={booking.id}>
                        <TableCell className="font-medium">{booking.experienceTitle}</TableCell>
                        <TableCell>{booking.guestName}</TableCell>
@@ -129,7 +131,7 @@ export const AgroTourismDashboard = () => {
              <CardDescription>Manage your agro-tourism offerings.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.listedExperiences?.length > 0 ? (
+             {listedExperiences.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -141,7 +143,7 @@ export const AgroTourismDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.listedExperiences.map((experience) => (
+                   {listedExperiences.map((experience) => (
                      <TableRow key={experience.id}>
                        <TableCell className="font-medium">{experience.title}</TableCell>
                        <TableCell>{experience.location}</TableCell>
@@ -169,9 +171,9 @@ export const AgroTourismDashboard = () => {
                 <CardDescription>Latest feedback from your guests.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.guestReviews?.length > 0 ? (
+                {guestReviews.length > 0 ? (
                     <div className="space-y-3">
-                        {dashboardData.guestReviews.map((review) => (
+                        {guestReviews.map((review) => (
                             <div key={review.id} className="text-sm p-3 border rounded-lg">
                                 <div className="flex justify-between items-start">
                                     <p className="font-medium">{review.guestName} on "{review.experienceTitle}"</p>

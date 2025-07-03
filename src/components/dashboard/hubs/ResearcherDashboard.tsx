@@ -64,6 +64,8 @@ export const ResearcherDashboard = () => {
       );
   }
 
+  const { availableDatasets = [], ongoingProjects = [], knowledgeHubContributions = [] } = dashboardData;
+
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
           case 'draft': return 'secondary';
@@ -85,7 +87,7 @@ export const ResearcherDashboard = () => {
              <CardDescription>Anonymized datasets available for research and analysis.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.availableDatasets?.length > 0 ? (
+             {availableDatasets.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -96,7 +98,7 @@ export const ResearcherDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.availableDatasets.map((dataset) => (
+                   {availableDatasets.map((dataset) => (
                      <TableRow key={dataset.id}>
                        <TableCell className="font-medium">{dataset.name}</TableCell>
                        <TableCell>{dataset.dataType}</TableCell>
@@ -123,7 +125,7 @@ export const ResearcherDashboard = () => {
              <CardDescription>Your active research projects and their progress.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.ongoingProjects?.length > 0 ? (
+             {ongoingProjects.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -134,7 +136,7 @@ export const ResearcherDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.ongoingProjects.map((project) => (
+                   {ongoingProjects.map((project) => (
                      <TableRow key={project.id}>
                        <TableCell className="font-medium">{project.title}</TableCell>
                        <TableCell>
@@ -168,9 +170,9 @@ export const ResearcherDashboard = () => {
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.knowledgeHubContributions?.length > 0 ? (
+                {knowledgeHubContributions.length > 0 ? (
                     <div className="space-y-3">
-                        {dashboardData.knowledgeHubContributions.map((contribution) => (
+                        {knowledgeHubContributions.map((contribution) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
                                 <p className="font-medium">{contribution.title}</p>
                                 <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>

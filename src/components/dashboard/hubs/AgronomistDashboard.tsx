@@ -63,6 +63,12 @@ export const AgronomistDashboard = () => {
       );
   }
 
+  const {
+    pendingConsultationRequests = [],
+    assignedFarmersOverview = [],
+    knowledgeBaseContributions = [],
+  } = dashboardData;
+
   const getStatusBadgeVariant = (status: string) => {
     switch (status.toLowerCase()) {
         case 'draft': return 'secondary';
@@ -85,7 +91,7 @@ export const AgronomistDashboard = () => {
              <CardDescription>Farmers seeking your expertise.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.pendingConsultationRequests?.length > 0 ? (
+             {pendingConsultationRequests.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -96,7 +102,7 @@ export const AgronomistDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.pendingConsultationRequests.map((request: any) => (
+                   {pendingConsultationRequests.map((request: any) => (
                      <TableRow key={request.id}>
                        <TableCell className="font-medium">{request.farmerName}</TableCell>
                        <TableCell>{request.issueSummary}</TableCell>
@@ -123,7 +129,7 @@ export const AgronomistDashboard = () => {
              <CardDescription>Overview of farmers in your portfolio.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.assignedFarmersOverview?.length > 0 ? (
+             {assignedFarmersOverview.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -135,7 +141,7 @@ export const AgronomistDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.assignedFarmersOverview.map((farmer: any) => (
+                   {assignedFarmersOverview.map((farmer: any) => (
                      <TableRow key={farmer.id}>
                        <TableCell className="font-medium">{farmer.name}</TableCell>
                        <TableCell>{farmer.farmLocation}</TableCell>
@@ -163,9 +169,9 @@ export const AgronomistDashboard = () => {
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.knowledgeBaseContributions?.length > 0 ? (
+                {knowledgeBaseContributions.length > 0 ? (
                     <div className="space-y-3">
-                        {dashboardData.knowledgeBaseContributions.map((contribution: any) => (
+                        {knowledgeBaseContributions.map((contribution: any) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
                                 <div>
                                     <p className="font-medium">{contribution.title}</p>
