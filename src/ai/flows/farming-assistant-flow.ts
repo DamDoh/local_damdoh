@@ -105,12 +105,12 @@ const farmingAssistantFlow = ai.defineFlow(
     const languageInput = {...input, language: input.language || 'en'};
     const {output} = await farmingAssistantPrompt(languageInput);
     
-    // Using ?? (nullish coalescing operator) to safely handle both null and undefined from the AI output.
-    // This guarantees that we always return an array, preventing the .map() error on the frontend.
+    // Safely handle potential null/undefined output from the AI
+    // and provide default values to ensure a valid object is always returned.
     return {
-        summary: output!.summary,
-        detailedPoints: output!.detailedPoints ?? [],
-        suggestedQueries: output!.suggestedQueries ?? [],
+        summary: output?.summary || "I'm sorry, I couldn't generate a response. Please try rephrasing your question.",
+        detailedPoints: output?.detailedPoints ?? [],
+        suggestedQueries: output?.suggestedQueries ?? [],
     };
   }
 );
