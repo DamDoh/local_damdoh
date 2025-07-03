@@ -1,6 +1,8 @@
 
 import { useTranslations } from 'next-intl';
 
+// The `locales` array is now defined directly in `i18n.ts` and `middleware.ts`
+// to prevent build-time resolution issues with next-intl.
 export const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'];
 
 export const localeNames: Record<string, string> = {

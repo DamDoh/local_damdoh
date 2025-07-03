@@ -12,7 +12,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Languages } from "lucide-react";
-import { locales, localeNames } from '@/lib/i18n-constants';
+import { localeNames } from '@/lib/i18n-constants';
+
+// Define locales here to be self-contained and avoid build issues.
+const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'];
 
 export function LanguageSwitcher() {
   const locale = useLocale();
