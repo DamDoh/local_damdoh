@@ -6,7 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigation";
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
-import {NextIntlClientProvider, useMessages} from 'next-intl';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
  
 export const metadata: Metadata = {
   title: {
@@ -17,14 +18,14 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
  
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params: {locale}
 }: {
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  const messages = useMessages();
+  const messages = await getMessages();
  
   return (
     <html lang={locale} suppressHydrationWarning>
