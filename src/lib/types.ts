@@ -175,14 +175,14 @@ export interface MobileDiscoverItem {
   dataAiHint?: string;
 }
 
-export interface ForumGroup {
+export type ForumGroup = {
   id: string;
   name: string;
   description: string;
-  isPublic: boolean;
   memberCount: number;
+  isPublic: boolean;
   ownerId: string;
-  createdAt: string; // ISO string
+  createdAt: string; // ISO String
 }
 
 export type ForumTopic = {
@@ -201,7 +201,7 @@ export type ForumPost = {
   id: string;
   topicId: string;
   topicName?: string;
-  title?: string;
+  title: string;
   content: string;
   author: {
       id: string;
@@ -656,7 +656,7 @@ export interface AgronomistDashboardData {
     issueSummary: string;
     requestDate: string; // ISO String
   }[];
-  knowledgeBaseContributions: {
+  knowledgeHubContributions: {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review';

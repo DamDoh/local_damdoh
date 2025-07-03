@@ -69,10 +69,13 @@ export default function ForumsPage() {
     }, [getTopicsCallable, toast, t]);
 
     const filteredTopics = useMemo(() => {
-        return topics.filter(topic => 
-            topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            topic.description.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        if (!Array.isArray(topics)) return [];
+        return topics.filter(topic => {
+            if (!topic) return false;
+            const nameMatch = (topic.name || '').toLowerCase().includes(searchTerm.toLowerCase());
+            const descMatch = (topic.description || '').toLowerCase().includes(searchTerm.toLowerCase());
+            return nameMatch || descMatch;
+        });
     }, [topics, searchTerm]);
 
     const isCurrentHomepage = homepagePreference === pathname;

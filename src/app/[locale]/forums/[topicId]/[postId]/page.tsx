@@ -30,9 +30,10 @@ const getPostDetails = async (topicId: string, postId: string): Promise<ForumPos
         // Fetch author details
         const userRef = doc(db, "users", data.authorRef);
         const userSnap = await getDoc(userRef);
-        const author = userSnap.exists() 
-            ? userSnap.data() as UserProfile 
-            : { id: data.authorRef, displayName: "Unknown User", photoURL: "" };
+        
+        const authorProfile = userSnap.exists() 
+            ? userSnap.data()
+            : { displayName: "Unknown User", avatarUrl: "" };
         
         // Fetch topic details for breadcrumb
         const topicRef = doc(db, "forums", topicId);
@@ -41,13 +42,16 @@ const getPostDetails = async (topicId: string, postId: string): Promise<ForumPos
 
         return {
             id: postSnap.id,
-            ...data,
-            timestamp: data.timestamp ? new Date(data.timestamp.seconds * 1000).toISOString() : new Date().toISOString(),
+            title: data.title,
+            content: data.content,
+            topicId: topicId,
+            timestamp: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
             author: {
                 id: data.authorRef,
-                name: author.displayName,
-                avatarUrl: author.photoURL,
+                name: authorProfile.displayName,
+                avatarUrl: authorProfile.avatarUrl,
             },
+            replyCount: data.replyCount || 0,
             topicName: topicName,
         } as ForumPost;
     }
@@ -99,7 +103,7 @@ export default function PostPage() {
 
     const [post, setPost] = useState<ForumPost | null>(null);
     const [replies, setReplies] = useState<PostReply[]>([]);
-    const [lastVisible, setLastVisible] = useState<any>(null);
+    const [lastVisible, setLastVisible] = useState<string | null>(null);
     const [hasMore, setHasMore] = useState(true);
     const [newReply, setNewReply] = useState("");
     const [isLoading, setIsLoading] = useState(true);
@@ -111,16 +115,17 @@ export default function PostPage() {
     const addReplyToPost = useMemo(() => httpsCallable(functions, 'addReplyToPost'), [functions]);
 
     const fetchReplies = useCallback(async (isInitialLoad = false) => {
-        if(isInitialLoad) {
-            setIsLoading(true);
+        if (!hasMore && !isInitialLoad) return;
+        
+        if (isInitialLoad) {
+             setIsLoading(true);
         } else {
-            if (!hasMore) return; // Don't fetch if no more replies
             setIsLoadingMore(true);
         }
 
         try {
             const result = await getRepliesForPost({ topicId, postId, lastVisible });
-            const data = result.data as { replies?: any[], lastVisible?: any };
+            const data = result.data as { replies?: any[], lastVisible?: string | null };
             const backendReplies = data?.replies || [];
             
             if (backendReplies.length > 0) {
@@ -136,27 +141,27 @@ export default function PostPage() {
                         if (userSnap.exists()) {
                             profiles[userSnap.id] = userSnap.data() as UserProfile;
                         } else {
-                            profiles[userSnap.id] = { id: userSnap.id, displayName: t('unknownUser'), photoURL: "" };
+                            profiles[userSnap.id] = { id: userSnap.id, displayName: t('unknownUser') } as UserProfile;
                         }
                     });
                 }
 
                 const enrichedReplies: PostReply[] = backendReplies.map((reply: any) => ({
-                    ...reply,
                     id: reply.id,
-                    timestamp: reply.createdAt ? new Date(reply.createdAt._seconds * 1000).toISOString() : new Date().toISOString(),
+                    content: reply.content,
+                    timestamp: reply.createdAt ? new Date(reply.createdAt).toISOString() : new Date().toISOString(),
                     author: {
                         id: reply.authorRef,
                         name: profiles[reply.authorRef]?.displayName || t('unknownUser'),
-                        avatarUrl: profiles[reply.authorRef]?.photoURL || ""
+                        avatarUrl: profiles[reply.authorRef]?.avatarUrl || ""
                     }
                 }));
                 
                 setReplies(prev => isInitialLoad ? enrichedReplies : [...prev, ...enrichedReplies]);
-                setLastVisible(data?.lastVisible);
+                setLastVisible(data?.lastVisible || null);
             }
             
-            setHasMore(backendReplies.length > 0 && !!data?.lastVisible);
+            setHasMore(!!data?.lastVisible);
 
         } catch (error) {
              console.error("Error fetching replies:", error);

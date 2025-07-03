@@ -25,14 +25,15 @@ const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
         return {
             id: topicSnap.id,
             ...data,
-            lastActivity: data.lastActivity ? new Date(data.lastActivity.seconds * 1000).toISOString() : new Date().toISOString(),
+            lastActivityAt: data.lastActivityAt ? new Date(data.lastActivityAt.seconds * 1000).toISOString() : new Date().toISOString(),
+            createdAt: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
         } as ForumTopic;
     }
     return null;
 };
 
 const fetchPostAuthors = async (posts: any[]): Promise<Record<string, UserProfile>> => {
-    if (posts.length === 0) return {};
+    if (!posts || posts.length === 0) return {};
     const db = getFirestore(firebaseApp);
     const authorIds = [...new Set(posts.map(p => p.authorRef))];
     const profiles: Record<string, UserProfile> = {};
@@ -44,7 +45,7 @@ const fetchPostAuthors = async (posts: any[]): Promise<Record<string, UserProfil
         if (userSnap.exists()) {
             profiles[userSnap.id] = userSnap.data() as UserProfile;
         } else {
-            profiles[userSnap.id] = { id: userSnap.id, displayName: "Unknown User" } as UserProfile;
+            profiles[userSnap.id] = { id: userSnap.id, displayName: "Unknown User", avatarUrl: "" } as UserProfile;
         }
     });
 
@@ -76,23 +77,24 @@ export default function TopicPage() {
         try {
             const result = await getPostsForTopic({ topicId, lastVisible });
             const data = result.data as { posts?: any[], lastVisible?: any };
+            const backendPosts = data?.posts || [];
             
-            if (data?.posts && data.posts.length > 0) {
-              const authorProfiles = await fetchPostAuthors(data.posts);
+            if (backendPosts.length > 0) {
+              const authorProfiles = await fetchPostAuthors(backendPosts);
 
-              const newPosts: ForumPost[] = data.posts.map((post: any) => ({
+              const newPosts: ForumPost[] = backendPosts.map((post: any) => ({
                   ...post,
-                  timestamp: post.timestamp ? new Date(post.timestamp.seconds * 1000).toISOString() : new Date().toISOString(),
+                  timestamp: post.createdAt ? new Date(post.createdAt).toISOString() : new Date().toISOString(),
                   author: {
                       id: post.authorRef,
-                      name: authorProfiles[post.authorRef]?.name || t('unknownUser'),
+                      name: authorProfiles[post.authorRef]?.displayName || t('unknownUser'),
                       avatarUrl: authorProfiles[post.authorRef]?.avatarUrl || ""
                   }
               }));
               
               setPosts(prev => isInitialLoad ? newPosts : [...prev, ...newPosts]);
               setLastVisible(data.lastVisible);
-              setHasMore(data.posts.length > 0);
+              setHasMore(!!data.lastVisible);
             } else {
               setHasMore(false);
             }
