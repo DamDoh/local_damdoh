@@ -7,7 +7,10 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import { notFound } from "next/navigation";
+
+// List of supported locales
+const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'];
  
 export const metadata: Metadata = {
   title: {
@@ -17,6 +20,17 @@ export const metadata: Metadata = {
   description: "The Global Agricultural Supply Chain Platform",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
+
+// Direct message loading function to bypass the failing getMessages()
+async function getMessagesForLocale(locale: string) {
+  if (!locales.includes(locale)) notFound();
+  try {
+    return (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    console.error(`Could not load messages for locale: ${locale}`, error);
+    notFound();
+  }
+}
  
 export default async function LocaleLayout({
   children,
@@ -25,7 +39,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  const messages = await getMessages();
+  const messages = await getMessagesForLocale(locale);
  
   return (
     <html lang={locale} suppressHydrationWarning>
