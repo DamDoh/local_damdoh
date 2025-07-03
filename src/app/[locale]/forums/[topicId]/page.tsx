@@ -75,9 +75,9 @@ export default function TopicPage() {
 
         try {
             const result = await getPostsForTopic({ topicId, lastVisible });
-            const data = result.data as { posts: any[], lastVisible: any };
+            const data = result.data as { posts?: any[], lastVisible?: any };
             
-            if (data.posts && data.posts.length > 0) {
+            if (data?.posts && data.posts.length > 0) {
               const authorProfiles = await fetchPostAuthors(data.posts);
 
               const newPosts: ForumPost[] = data.posts.map((post: any) => ({

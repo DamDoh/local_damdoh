@@ -3,7 +3,6 @@ import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
   MarketplaceItemSchema,
-  ForumTopicSchema,
   ForumPostSchema,
   AgriEventSchema,
   MarketplaceOrderSchema,
@@ -19,9 +18,7 @@ import type { Timestamp } from "firebase/firestore";
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
-export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
-export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 export type UserRole =
   | 'Farmer'
   | 'Agricultural Cooperative'
@@ -187,6 +184,34 @@ export interface ForumGroup {
   ownerId: string;
   createdAt: string; // ISO string
 }
+
+export type ForumTopic = {
+  id: string;
+  name: string;
+  description: string;
+  postCount: number;
+  lastActivityAt: string;
+  creatorId: string;
+  icon?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ForumPost = {
+  id: string;
+  topicId: string;
+  topicName?: string;
+  title?: string;
+  content: string;
+  author: {
+      id: string;
+      name: string;
+      avatarUrl?: string;
+  };
+  timestamp: string;
+  replyCount?: number;
+  likes?: number;
+};
 
 export interface Notification {
   id: string;
@@ -730,4 +755,45 @@ export interface Shop {
   rating: number;
   createdAt: string | null;
   updatedAt: string | null;
+}
+
+
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+    mostRented: string;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
 }

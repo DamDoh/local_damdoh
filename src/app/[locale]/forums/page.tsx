@@ -51,8 +51,8 @@ export default function ForumsPage() {
             setIsLoading(true);
             try {
                 const result = await getTopicsCallable();
-                const data = result.data as { topics: ForumTopic[] };
-                setTopics(data.topics || []);
+                const data = result.data as { topics?: ForumTopic[] };
+                setTopics(data?.topics || []);
             } catch (error) {
                 console.error("Error fetching topics:", error);
                 toast({
