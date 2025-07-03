@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
-import { getProfileByIdFromDB } from "@/lib/server-actions";
+import { getProfileByIdFromDB } from "@/lib/db-utils";
 import { APP_NAME } from "@/lib/constants";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -141,7 +141,7 @@ export default function ProfileDetailPage() {
           </div>
         </div>
         <CardHeader className="pt-[60px] px-6"> 
-          <div className="flex flex-col sm:flex-row justify-between items-start">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
             <div>
               <CardTitle className="text-3xl">{profile.displayName}</CardTitle>
               <CardDescription className="text-lg flex items-center gap-2">
@@ -152,13 +152,17 @@ export default function ProfileDetailPage() {
                 <MapPin className="h-4 w-4" /> {profile.location}
               </div>
             </div>
-            <div className="flex gap-2 mt-4 sm:mt-0">
+            <div className="flex gap-2 w-full sm:w-auto">
               {isCurrentUserProfile ? (
                 <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
               ) : (
                 <>
                   <Button><LinkIcon className="mr-2 h-4 w-4" /> {t('connect')}</Button>
-                  <Button variant="outline"><MessageCircle className="mr-2 h-4 w-4" /> {t('message')}</Button>
+                  <Button asChild variant="outline">
+                     <Link href={`/messages?with=${profile.id}`}>
+                      <MessageCircle className="mr-2 h-4 w-4" /> {t('message')}
+                     </Link>
+                  </Button>
                 </>
               )}
             </div>

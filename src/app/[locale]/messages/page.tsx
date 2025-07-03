@@ -88,7 +88,7 @@ function MessagingContent() {
 
                 const recipientId = searchParams.get('with');
                 if (recipientId) {
-                    const existingConvo = convos.find(c => c.participant?.id === recipientId);
+                    const existingConvo = convos.find((c: Conversation) => c.participant?.id === recipientId);
                     if (existingConvo) {
                         await handleConversationSelect(existingConvo);
                     } else {
@@ -100,7 +100,7 @@ function MessagingContent() {
                         const newConvResult = await getConversationsCallable();
                         const newConvos = (newConvResult.data as any)?.conversations || []; // Defensive check
                         setConversations(newConvos);
-                        const newCreatedConvo = newConvos.find(c => c.id === conversationId);
+                        const newCreatedConvo = newConvos.find((c: Conversation) => c.id === conversationId);
                         if (newCreatedConvo) {
                             await handleConversationSelect(newCreatedConvo);
                         }
@@ -118,7 +118,7 @@ function MessagingContent() {
 
         fetchInitialData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, authLoading, searchParams, toast, t, handleConversationSelect]);
+    }, [user, authLoading, searchParams, toast, t]);
     
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -243,7 +243,7 @@ function MessagingContent() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    {messages.map(msg => (
+                                    {messages && messages.map(msg => (
                                         <div key={msg.id} className={cn(
                                             "flex gap-2 items-end",
                                             msg.senderId === user.uid ? "justify-end" : "justify-start"
@@ -322,3 +322,5 @@ export default function MessagesPage() {
         </Suspense>
     )
 }
+
+    

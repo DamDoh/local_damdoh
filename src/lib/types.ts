@@ -390,8 +390,7 @@ export interface InsuranceProviderDashboardData {
     policyHolderName: string;
     policyType: string;
     coverageAmount: number;
-    expiryDate: string; // ISO string
-    actionLink: string;
+    expiryDate: string; // ISO string;
   }[];
 }
 
@@ -553,23 +552,6 @@ export interface WarehouseDashboardData {
   }[];
 }
 
-export interface PackagingSupplierDashboardData {
-  demandForecast: {
-    productType: string;
-    unitsNeeded: number;
-    for: string;
-  };
-  integrationRequests: {
-    from: string;
-    request: string;
-    actionLink: string;
-  }[];
-  sustainableShowcase: {
-    views: number;
-    leads: number;
-  };
-}
-
 
 export interface RegulatorDashboardData {
   complianceRiskAlerts: {
@@ -657,7 +639,6 @@ export interface ResearcherDashboardData {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review' | 'Draft';
-    actionLink: string;
   }[];
 }
 
