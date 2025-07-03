@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -9,10 +9,9 @@ import { useAuth } from '@/lib/auth-utils';
 import type { Shop, MarketplaceItem, UserProfile } from '@/lib/types';
 import { getProfileByIdFromDB } from '@/lib/db-utils';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from '@/components/ui/button';
-import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import Image from "next/image";
 import { ItemCard } from '@/components/marketplace/ItemCard';
@@ -35,14 +34,13 @@ function ShopPageSkeleton() {
             </Card>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {Array.from({ length: 4 }).map((_, i) => (
-                    <Card key={i}>
-                        <Skeleton className="h-40 w-full" />
-                        <CardContent className="p-4 space-y-2">
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-3/4" />
-                            <Skeleton className="h-8 w-1/2 mt-2" />
-                        </CardContent>
-                    </Card>
+                     <div key={i} className="w-52 space-y-2">
+                        <Skeleton className="h-32 w-full rounded-lg" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-3 w-1/2" />
+                        <Skeleton className="h-5 w-1/3" />
+                        <Skeleton className="h-9 w-full" />
+                    </div>
                 ))}
             </div>
         </div>
@@ -72,7 +70,7 @@ export default function ShopFrontPage() {
             setError(null);
             try {
                 const shopResult = await getShopDetails({ shopId });
-                const shopData = shopResult.data as Shop;
+                const shopData = shopResult.data as Shop | null;
 
                 if (!shopData) {
                     throw new Error("Shop not found.");
@@ -86,7 +84,7 @@ export default function ShopFrontPage() {
                 ]);
 
                 setOwner(ownerProfile);
-                setItems((listingsResult.data as { items: MarketplaceItem[] }).items || []);
+                setItems(((listingsResult.data as { items: MarketplaceItem[] })?.items) || []);
 
             } catch (err: any) {
                 console.error("Error fetching shop data:", err);
@@ -146,7 +144,7 @@ export default function ShopFrontPage() {
                             </div>
                             <div>
                                 <CardTitle className="text-2xl md:text-3xl">{shop.name}</CardTitle>
-                                <CardDescription>Owned by <Link href={`/profiles/${shop.ownerId}`} className="text-primary hover:underline">{owner?.name || 'Loading...'}</Link></CardDescription>
+                                <CardDescription>Owned by <Link href={`/profiles/${shop.ownerId}`} className="text-primary hover:underline">{owner?.displayName || 'Loading...'}</Link></CardDescription>
                             </div>
                         </div>
                          <div className="flex gap-2 w-full sm:w-auto">
@@ -184,4 +182,3 @@ export default function ShopFrontPage() {
         </div>
     );
 }
-

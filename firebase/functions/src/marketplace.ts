@@ -217,7 +217,7 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
       .get();
 
     const coupons = snapshot.docs.map((doc) => {
-        const { id, ...couponData } = doc.data() as MarketplaceCoupon;
+        const couponData = doc.data() as Omit<MarketplaceCoupon, 'id'>;
         return {
             id: doc.id,
             ...couponData,
@@ -352,7 +352,7 @@ export const getListingsBySeller = functions.https.onCall(async (data, context) 
     const snapshot = await listingsQuery.get();
     
     const items = snapshot.docs.map(doc => {
-      const data = doc.data();
+      const data = doc.data() as Omit<MarketplaceItem, 'id'>;
       return {
         id: doc.id,
         ...data,
@@ -365,5 +365,37 @@ export const getListingsBySeller = functions.https.onCall(async (data, context) 
   } catch (error) {
     console.error(`Error fetching listings for seller ${sellerId}:`, error);
     throw new functions.https.HttpsError("internal", "Could not fetch seller's listings.");
+  }
+});
+
+/**
+ * Fetches the details of a specific marketplace item.
+ * @param {any} data The data containing the itemId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<MarketplaceItem>} A promise that resolves with the item's details.
+ */
+export const getMarketplaceItemById = functions.https.onCall(async (data, context) => {
+  const { itemId } = data;
+  if (!itemId) {
+    throw new functions.https.HttpsError("invalid-argument", "An itemId must be provided.");
+  }
+  
+  try {
+    const itemDoc = await db.collection("marketplaceItems").doc(itemId).get();
+    if (!itemDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Marketplace item not found.");
+    }
+
+    const itemData = itemDoc.data()!;
+    return {
+      id: itemDoc.id,
+      ...itemData,
+      createdAt: (itemData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+      updatedAt: (itemData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+    } as MarketplaceItem;
+  } catch (error) {
+    console.error(`Error fetching marketplace item details for ${itemId}:`, error);
+    if (error instanceof functions.https.HttpsError) throw error;
+    throw new functions.https.HttpsError("internal", "Could not fetch item details.");
   }
 });
