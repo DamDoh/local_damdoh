@@ -61,7 +61,7 @@ export default function KNFInputAssistantPage() {
     setIsLoadingBatches(true);
     try {
         const result = await getUserKnfBatchesCallable();
-        const batches = result.data as ActiveBatch[];
+        const batches = (result.data as ActiveBatch[]) ?? []; // Use nullish coalescing for safety
         // Filter out archived batches from the main view
         setAllBatches(batches.filter(b => b.status !== 'Archived'));
     } catch (error) {
