@@ -30,3 +30,5 @@ export * from "./offline_sync";
 export * from "./forums";
 export * from "./groups";
 export * from "./messages";
+export * from "./agri-events";
+

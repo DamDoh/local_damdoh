@@ -39,6 +39,7 @@ export function AppFooter() {
                   <li><Link href="/community-guidelines" className="hover:text-white hover:underline transition-colors">{t('communityGuidelinesLabel')}</Link></li>
                   <li><Link href="/industry-news" className="hover:text-white hover:underline transition-colors">{t('industryNewsLabel')}</Link></li>
                   <li><Link href="/agri-events" className="hover:text-white hover:underline transition-colors">{t('eventsLabel')}</Link></li>
+                  <li><Link href="/marketplace?listingType=Service&category=farm-labor-staffing" className="hover:text-white hover:underline transition-colors">{t('talentExchangeLabel')}</Link></li>
                 </ul>
               </div>
               <div>

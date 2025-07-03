@@ -73,7 +73,7 @@ export default function AgriEventsPage() {
         setIsLoading(true);
         try {
             const result = await getAgriEventsCallable();
-            const fetchedEvents = (result.data as any).events as AgriEvent[];
+            const fetchedEvents = (result.data as any)?.events || [];
             setEvents(fetchedEvents);
         } catch(error) {
             console.error("Failed to fetch events:", error);
@@ -91,6 +91,7 @@ export default function AgriEventsPage() {
 
 
   const filteredEvents = useMemo(() => {
+    if (!events) return [];
     return events.filter(event => {
       const searchLower = searchTerm.toLowerCase();
       const titleMatch = event.title.toLowerCase().includes(searchLower);
@@ -130,6 +131,7 @@ export default function AgriEventsPage() {
             <div>
               <div className="flex items-center gap-2">
                 <CalendarDays className="h-7 w-7 text-primary" />
+                <CardTitle className="text-2xl">{t('title')}</CardTitle>
               </div>
               <CardDescription>{t('description')}</CardDescription>
             </div>
