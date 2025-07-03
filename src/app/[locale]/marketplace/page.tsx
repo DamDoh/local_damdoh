@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
-import { LISTING_TYPE_FILTER_OPTIONS, type ListingType } from "@/lib/constants";
+import { getListingTypeFilterOptions, type ListingType } from "@/lib/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
@@ -25,6 +25,7 @@ import { useTranslations } from "next-intl";
 
 function MarketplaceContent() {
   const t = useTranslations('marketplacePage');
+  const tConstants = useTranslations('constants');
   const [isMounted, setIsMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>('All');
@@ -44,6 +45,8 @@ function MarketplaceContent() {
 
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast(); 
+
+  const listingTypeFilterOptions = getListingTypeFilterOptions(tConstants);
 
   useEffect(() => {
     setIsMounted(true);
@@ -188,7 +191,7 @@ function MarketplaceContent() {
                   <SelectValue placeholder={t('typePlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
-                  {LISTING_TYPE_FILTER_OPTIONS.map(typeOpt => (
+                  {listingTypeFilterOptions.map(typeOpt => (
                     <SelectItem key={typeOpt.value} value={typeOpt.value}>{typeOpt.label}</SelectItem>
                   ))}
                 </SelectContent>
@@ -224,5 +227,54 @@ function MarketplaceContent() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+function MarketplaceSkeleton() {
+    return (
+        <div className="space-y-6">
+            <Card>
+                <CardHeader>
+                    <Skeleton className="h-8 w-1/3 mb-2" />
+                    <Skeleton className="h-4 w-2/3" />
+                </CardHeader>
+                <CardContent>
+                    <div className="mb-6 flex flex-col md:flex-row gap-4 items-center">
+                        <Skeleton className="h-10 w-48" />
+                        <div className="flex-grow grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+                            <Skeleton className="h-10 w-full" />
+                            <Skeleton className="h-10 w-full" />
+                            <Skeleton className="h-10 w-full" />
+                        </div>
+                    </div>
+                    <Skeleton className="h-6 w-1/4 mb-4" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                             <Card key={i} className="w-52">
+                                <CardHeader className="p-0">
+                                    <Skeleton className="w-full h-32 rounded-t-lg"/>
+                                </CardHeader>
+                                <CardContent className="p-3 space-y-2">
+                                    <Skeleton className="h-4 w-full" />
+                                    <Skeleton className="h-3 w-1/2" />
+                                    <Skeleton className="h-5 w-1/3" />
+                                </CardContent>
+                                <CardFooter className="p-2">
+                                     <Skeleton className="h-9 w-full" />
+                                </CardFooter>
+                            </Card>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+    );
+}
+
+export default function MarketplacePage() {
+  return (
+    <Suspense fallback={<MarketplaceSkeleton />}>
+      <MarketplaceContent />
+    </Suspense>
   );
 }

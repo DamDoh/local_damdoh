@@ -17,7 +17,7 @@ import { useTranslations } from 'next-intl';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from '@/lib/form-schemas';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, getListingTypeFormOptions } from '@/lib/constants';
 import { useAuth } from '@/lib/auth-utils';
@@ -32,9 +32,12 @@ export default function CreateListingPage() {
     const { user } = useAuth();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuggestingPrice, setIsSuggestingPrice] = useState(false);
+    const [suggestedPrice, setSuggestedPrice] = useState<string | null>(null);
     
     const functions = getFunctions(firebaseApp);
     const createListingCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceListing'), [functions]);
+    const suggestPriceCallable = useMemo(() => httpsCallable(functions, 'suggestMarketPrice'), [functions]);
 
     const form = useForm<CreateMarketplaceItemValues>({
       resolver: zodResolver(createMarketplaceItemSchema),
@@ -50,6 +53,34 @@ export default function CreateListingPage() {
         imageUrl: "",
       },
     });
+
+    const handleSuggestPrice = async () => {
+      const { name, description, category, location } = form.getValues();
+      if (!name || !description) {
+        toast({
+          variant: "destructive",
+          title: "Missing Information",
+          description: "Please enter a name and description before suggesting a price.",
+        });
+        return;
+      }
+      setIsSuggestingPrice(true);
+      setSuggestedPrice(null);
+      try {
+        const result = await suggestPriceCallable({ productName: name, description, category, location });
+        const price = (result.data as { price: number }).price;
+        setSuggestedPrice(price.toFixed(2));
+      } catch (error: any) {
+        console.error("Error suggesting price:", error);
+        toast({
+          variant: "destructive",
+          title: "Price Suggestion Failed",
+          description: "Could not get an AI price suggestion. Please try again or enter a price manually.",
+        });
+      } finally {
+        setIsSuggestingPrice(false);
+      }
+    };
 
     const handleSubmit = async (data: CreateMarketplaceItemValues) => {
         if (!user) {
@@ -143,35 +174,20 @@ export default function CreateListingPage() {
                                 </FormItem>
                               )}
                             />
-
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                               <FormField
-                                  control={form.control}
-                                  name="price"
-                                  render={({ field }) => (
-                                    <FormItem className="sm:col-span-2">
-                                      <FormLabel>{t('form.priceLabel')}</FormLabel>
-                                      <FormControl>
-                                        <Input type="number" step="0.01" placeholder={t('form.pricePlaceholder')} {...field} />
-                                      </FormControl>
-                                      <FormMessage />
-                                    </FormItem>
-                                  )}
-                                />
-                                 <FormField
-                                  control={form.control}
-                                  name="perUnit"
-                                  render={({ field }) => (
-                                    <FormItem>
-                                      <FormLabel>{t('form.unitLabel')}</FormLabel>
-                                      <FormControl>
-                                        <Input placeholder={t('form.unitPlaceholder')} {...field} />
-                                      </FormControl>
-                                      <FormMessage />
-                                    </FormItem>
-                                  )}
-                                />
-                            </div>
+                            
+                            <FormField
+                              control={form.control}
+                              name="location"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>{t('form.locationLabel')}</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder={t('form.locationPlaceholder')} {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
                             <FormField
                               control={form.control}
@@ -197,20 +213,49 @@ export default function CreateListingPage() {
                                 </FormItem>
                               )}
                             />
-                            
-                            <FormField
-                              control={form.control}
-                              name="location"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>{t('form.locationLabel')}</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder={t('form.locationPlaceholder')} {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
+
+                            <div>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                                   <FormField
+                                      control={form.control}
+                                      name="price"
+                                      render={({ field }) => (
+                                        <FormItem className="sm:col-span-2">
+                                          <FormLabel>{t('form.priceLabel')}</FormLabel>
+                                          <FormControl>
+                                            <Input type="number" step="0.01" placeholder={t('form.pricePlaceholder')} {...field} />
+                                          </FormControl>
+                                          <FormMessage />
+                                        </FormItem>
+                                      )}
+                                    />
+                                     <FormField
+                                      control={form.control}
+                                      name="perUnit"
+                                      render={({ field }) => (
+                                        <FormItem>
+                                          <FormLabel>{t('form.unitLabel')}</FormLabel>
+                                          <FormControl>
+                                            <Input placeholder={t('form.unitPlaceholder')} {...field} />
+                                          </FormControl>
+                                          <FormMessage />
+                                        </FormItem>
+                                      )}
+                                    />
+                                </div>
+                                 <div className="mt-2 flex flex-col items-start gap-2">
+                                    <Button type="button" variant="outline" size="sm" onClick={handleSuggestPrice} disabled={isSuggestingPrice}>
+                                      {isSuggestingPrice ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Sparkles className="mr-2 h-4 w-4"/>}
+                                      Suggest Price with AI
+                                    </Button>
+                                    {suggestedPrice && (
+                                      <div className="p-2 bg-primary/10 text-primary-foreground/90 rounded-md text-sm flex items-center gap-2">
+                                        <span>AI Suggestion: <strong>${suggestedPrice}</strong></span>
+                                        <Button type="button" size="sm" className="h-auto px-2 py-1 text-xs" onClick={() => {form.setValue('price', parseFloat(suggestedPrice)); setSuggestedPrice(null);}}>Use this price</Button>
+                                      </div>
+                                    )}
+                                </div>
+                            </div>
                              <FormField
                               control={form.control}
                               name="imageUrl"
