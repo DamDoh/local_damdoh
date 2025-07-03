@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -64,7 +65,7 @@ export const CrowdfunderDashboard = () => {
       );
   }
 
-  const { portfolioOverview, suggestedOpportunities = [], recentTransactions = [] } = dashboardData;
+  const { portfolioOverview, suggestedOpportunities, recentTransactions } = dashboardData;
 
   return (
     <div className="space-y-6">
@@ -84,7 +85,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Projects aligned with your impact goals.</CardDescription>
            </CardHeader>
            <CardContent>
-             {suggestedOpportunities.length > 0 ? (
+             {(suggestedOpportunities && suggestedOpportunities.length > 0) ? (
                <div className="space-y-4">
                  {suggestedOpportunities.map((opp) => {
                    const progress = (opp.amountRaised / opp.fundingGoal) * 100;
@@ -120,7 +121,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Your latest investment activities.</CardDescription>
            </CardHeader>
            <CardContent>
-             {recentTransactions.length > 0 ? (
+             {(recentTransactions && recentTransactions.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>

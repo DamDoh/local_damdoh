@@ -64,7 +64,7 @@ export const InsuranceProviderDashboard = () => {
       );
   }
 
-  const { pendingClaims = [], riskAssessmentAlerts = [], activePolicies = [] } = dashboardData;
+  const { pendingClaims, riskAssessmentAlerts, activePolicies } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
@@ -99,7 +99,7 @@ export const InsuranceProviderDashboard = () => {
              <CardDescription>Claims requiring your review and processing.</CardDescription>
            </CardHeader>
            <CardContent>
-             {pendingClaims.length > 0 ? (
+             {(pendingClaims && pendingClaims.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -139,7 +139,7 @@ export const InsuranceProviderDashboard = () => {
              <CardDescription>Alerts based on farm and supply chain data.</CardDescription>
            </CardHeader>
            <CardContent>
-             {riskAssessmentAlerts.length > 0 ? (
+             {(riskAssessmentAlerts && riskAssessmentAlerts.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -177,16 +177,13 @@ export const InsuranceProviderDashboard = () => {
                 <CardDescription>Overview of active insurance policies.</CardDescription>
             </CardHeader>
             <CardContent>
-                {activePolicies.length > 0 ? (
+                {(activePolicies && activePolicies.length > 0) ? (
                     <div className="space-y-3">
                         {activePolicies.map((policy) => (
                             <div key={policy.id} className="text-sm p-3 border rounded-lg">
                                 <p className="font-medium">{policy.policyHolderName} ({policy.policyType})</p>
                                 <p className="text-xs text-muted-foreground">Coverage: ${policy.coverageAmount.toLocaleString()}</p>
                                 <p className="text-xs text-muted-foreground">Expires: {new Date(policy.expiryDate).toLocaleDateString()}</p>
-                                <Button asChild variant="link" size="sm" className="px-0 pt-1">
-                                    <Link href={policy.actionLink}>View Details</Link>
-                                </Button>
                             </div>
                         ))}
                     </div>

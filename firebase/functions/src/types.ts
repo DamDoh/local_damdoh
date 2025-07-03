@@ -67,27 +67,14 @@ export interface FarmerDashboardData {
       name: string;
       stage: string;
       farmName: string;
-  }[];
-  trustScore: {
-      reputation: number;
-      certifications: {
-          id: string;
-          name: string;
-          issuingBody: string;
-      }[];
-  };
-  matchedBuyers: {
-    id: string;
-    name: string;
-    matchScore: number;
-    request: string;
-    contactId: string;
+      farmId: string;
+      plantingDate: string | null;
   }[];
   knfBatches: {
     id: string;
     typeName: string;
     status: string;
-    nextStepDate: string;
+    nextStepDate: string | null;
   }[];
 }
 
@@ -293,6 +280,7 @@ export interface ProcessingUnitDashboardData {
   }[];
 }
 
+
 export interface WarehouseDashboardData {
   storageOptimization: {
     utilization: number;
@@ -463,6 +451,47 @@ export interface CrowdfunderDashboardData {
   }[];
 }
 
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+    mostRented: string;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+
+
 export interface KnfBatch {
     id: string;
     userId: string;
@@ -556,6 +585,5 @@ export interface InsuranceProviderDashboardData {
     policyType: string;
     coverageAmount: number;
     expiryDate: string; // ISO string
-    actionLink: string;
   }[];
 }

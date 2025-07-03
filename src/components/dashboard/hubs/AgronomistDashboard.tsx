@@ -64,9 +64,9 @@ export const AgronomistDashboard = () => {
   }
 
   const {
-    pendingConsultationRequests = [],
-    assignedFarmersOverview = [],
-    knowledgeBaseContributions = [],
+    pendingConsultationRequests,
+    assignedFarmersOverview,
+    knowledgeBaseContributions,
   } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {
@@ -91,7 +91,7 @@ export const AgronomistDashboard = () => {
              <CardDescription>Farmers seeking your expertise.</CardDescription>
            </CardHeader>
            <CardContent>
-             {pendingConsultationRequests.length > 0 ? (
+             {(pendingConsultationRequests && pendingConsultationRequests.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -129,7 +129,7 @@ export const AgronomistDashboard = () => {
              <CardDescription>Overview of farmers in your portfolio.</CardDescription>
            </CardHeader>
            <CardContent>
-             {assignedFarmersOverview.length > 0 ? (
+             {(assignedFarmersOverview && assignedFarmersOverview.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -169,14 +169,11 @@ export const AgronomistDashboard = () => {
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {knowledgeBaseContributions.length > 0 ? (
+                {(knowledgeBaseContributions && knowledgeBaseContributions.length > 0) ? (
                     <div className="space-y-3">
                         {knowledgeBaseContributions.map((contribution: any) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
-                                <div>
-                                    <p className="font-medium">{contribution.title}</p>
-                                    <p className="text-xs text-muted-foreground">{contribution.type}</p>
-                                </div>
+                                <p className="font-medium">{contribution.title}</p>
                                 <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
                             </div>
                         ))}

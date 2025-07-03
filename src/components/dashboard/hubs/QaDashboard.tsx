@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -63,7 +64,7 @@ export const QaDashboard = () => {
       );
   }
   
-  const { pendingInspections = [], recentResults = [], qualityMetrics } = dashboardData;
+  const { pendingInspections, recentResults, qualityMetrics } = dashboardData;
 
   return (
     <div className="space-y-6">
@@ -77,7 +78,7 @@ export const QaDashboard = () => {
              <CardDescription>Inspections requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {pendingInspections.length > 0 ? (
+             {(pendingInspections && pendingInspections.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -117,7 +118,7 @@ export const QaDashboard = () => {
              <CardDescription>Recently reported quality and compliance issues.</CardDescription>
            </CardHeader>
            <CardContent>
-             {recentResults.length > 0 ? (
+             {(recentResults && recentResults.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>

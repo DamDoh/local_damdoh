@@ -21,7 +21,9 @@ import type {
     AgroTourismDashboardData,
     InsuranceProviderDashboardData,
     EnergyProviderDashboardData,
-    CrowdfunderDashboardData
+    CrowdfunderDashboardData,
+    EquipmentSupplierDashboardData,
+    WasteManagementDashboardData
 } from "./types";
 
 const db = admin.firestore();
@@ -52,14 +54,18 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
-            knfBatchesSnapshot,
+            knfBatchesPromise,
         ]);
+
+        const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
 
         const recentCrops = cropsSnapshot.docs.map(doc => {
             const cropData = doc.data();
             return {
                 id: doc.id,
-                cropType: cropData.cropType || "Unknown Crop",
+                name: cropData.cropType || "Unknown Crop",
+                stage: cropData.currentStage || 'Unknown',
+                farmName: farmsMap.get(cropData.farmId) || 'Unknown Farm',
                 farmId: cropData.farmId,
                 plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
             };
@@ -75,11 +81,13 @@ export const getFarmerDashboardData = functions.https.onCall(
             };
         });
 
+        const allCropsSnapshot = await db.collection('crops').where('ownerId', '==', farmerId).get();
+
         return {
             farmCount: farmsSnapshot.size,
-            cropCount: cropsSnapshot.docs.length, // This should query all crops, but we'll approximate for now
-            recentCrops: recentCrops as any, 
-            knfBatches: activeKnfBatches as any,
+            cropCount: allCropsSnapshot.size,
+            recentCrops: recentCrops, 
+            knfBatches: activeKnfBatches,
         };
 
     } catch (error) {
@@ -401,4 +409,37 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
   }
 );
 
+export const getEquipmentSupplierDashboardData = functions.https.onCall(
+  (data, context): EquipmentSupplierDashboardData => {
+    checkAuth(context);
+    return {
+      listedEquipment: [
+        { id: 'equip1', name: 'John Deere S780 Combine', type: 'Rental', status: 'Available', actionLink: '#' },
+        { id: 'equip2', name: 'Tractor-pulled Plow', type: 'Sale', status: 'Available', actionLink: '#' },
+      ],
+      rentalActivity: { totalRentals: 32, mostRented: 'John Deere S780 Combine' },
+      pendingMaintenanceRequests: [
+        { id: 'maint1', equipmentName: 'Irrigation Pump', issue: 'Low pressure', farmerName: 'Sunrise Farms', actionLink: '#' }
+      ]
+    };
+  }
+);
+
+export const getWasteManagementDashboardData = functions.https.onCall(
+  (data, context): WasteManagementDashboardData => {
+    checkAuth(context);
+    return {
+      incomingWasteStreams: [
+        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
+      ],
+      compostBatches: [
+        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
+        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
+      ],
+      finishedProductInventory: [
+        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
+      ]
+    };
+  }
+);
     

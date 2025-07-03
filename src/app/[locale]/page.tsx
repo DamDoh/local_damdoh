@@ -27,6 +27,7 @@ import { CertificationBodyDashboard } from '@/components/dashboard/hubs/Certific
 import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
 import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
 import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProviderDashboard';
+import { EquipmentSupplierDashboard } from '@/components/dashboard/hubs/EquipmentSupplierDashboard';
 import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
 import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashboard';
 import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
@@ -39,6 +40,7 @@ import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
 import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
+import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -53,6 +55,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
     'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
     'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
+    'Equipment Supplier (Sales of Machinery/IoT)': EquipmentSupplierDashboard,
     'Farmer': FarmerDashboard,
     'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
     'Financial Institution (Micro-finance/Loans)': FiDashboard,
@@ -65,6 +68,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,
     'Researcher/Academic': ResearcherDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
+    'Waste Management & Compost Facility': WasteManagementDashboard,
 };
 
 function PageSkeleton() {
