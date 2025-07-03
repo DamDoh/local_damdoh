@@ -42,39 +42,34 @@ export const onSourceDocumentWriteIndex = functions.firestore
     }
 
     // Prepare a standardized object for our search index.
+    const title = newData.name || newData.title || newData.displayName || "Untitled";
+    const description = newData.description || newData.profileSummary || newData.bio || newData.excerpt_en || "";
+    
+    // Create an array of searchable terms by combining and cleaning various fields.
+    const tags = [
+        ...(newData.tags || []),
+        newData.category,
+        newData.listingType,
+        newData.primaryRole,
+        newData.location
+    ].filter(Boolean); // Filter out any null/undefined values
+
+    const allText = [title, description, ...tags].join(' ').toLowerCase();
+    const searchable_terms = [...new Set(allText.match(/\b(\w+)\b/g) || [])]; // Extract unique words
+
+
     const indexData: any = {
       itemId: documentId,
       itemCollection: collectionId,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
-      title: newData.name || newData.title || newData.displayName || "Untitled",
-      description: newData.description || newData.profileSummary || newData.bio || newData.excerpt_en || "",
+      title: title,
+      description: description,
       imageUrl: newData.imageUrl || newData.photoURL || null,
+      tags: tags,
+      searchable_terms: searchable_terms,
+      location: newData.location || null,
     };
-
-    switch (collectionId) {
-    case "marketplaceItems":
-      indexData.tags = [newData.category, newData.listingType, ...(newData.skillsRequired || [])];
-      indexData.location = newData.location;
-      break;
-    case "forums":
-      indexData.tags = newData.regionTags || [];
-      break;
-    case "users":
-       indexData.tags = [newData.primaryRole, ...(newData.areasOfInterest || [])];
-       indexData.location = newData.location;
-      break;
-    case "agri_events":
-       indexData.tags = [newData.eventType, ...(newData.tags || [])];
-       indexData.location = newData.location;
-       break;
-    case "knowledge_articles":
-        indexData.tags = [newData.category, ...(newData.tags || [])];
-        break;
-    default:
-      console.warn(`Indexing logic not implemented for collection: ${collectionId}`);
-      return null;
-    }
 
     try {
       await indexItemRef.set(indexData, {merge: true});
@@ -98,7 +93,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
     }
-    const { mainKeywords, identifiedLocation } = data;
+    const { mainKeywords, identifiedLocation, suggestedFilters } = data;
     
     if (!mainKeywords || mainKeywords.length === 0) {
         throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required.");
@@ -106,24 +101,30 @@ export const performSearch = functions.https.onCall(async (data, context) => {
 
     try {
         let query: admin.firestore.Query = db.collection("search_index");
-
-        // Simple text search: For now, we search for the first keyword in title or description.
-        // A more advanced implementation would use a dedicated search service like Algolia or Typesense
-        // that allows for full-text search across multiple fields.
-        const firstKeyword = mainKeywords[0].toLowerCase();
         
-        // Firestore doesn't support case-insensitive searches or full-text search on its own.
-        // This is a limitation. A real-world, scalable solution would use a third-party search service.
-        // The query below is a placeholder for what would be a more complex search.
-        // For demonstration, we'll just return items where the 'title' starts with the keyword.
-        query = query.where("title", ">=", firstKeyword).where("title", "<=", firstKeyword + '\uf8ff');
+        // Use the keywords identified by the AI. Firestore's 'array-contains-any' is limited to 10.
+        const searchTerms = mainKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
+        if (searchTerms.length > 0) {
+            query = query.where("searchable_terms", "array-contains-any", searchTerms);
+        }
         
-        if (identifiedLocation) {
-            // This is also a simplification. A real app would use geospatial queries or better location indexing.
-            // query = query.where("location", "==", identifiedLocation);
+        // Apply filters if they exist from the AI's interpretation
+        const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category');
+        if (categoryFilter) {
+            query = query.where('tags', 'array-contains', categoryFilter.value);
+        }
+        
+        const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType');
+         if (listingTypeFilter) {
+            query = query.where('tags', 'array-contains', listingTypeFilter.value);
         }
 
-        const snapshot = await query.limit(20).get();
+        if (identifiedLocation) {
+            // Simple tag search for location for now. A real app might use Geoqueries.
+            query = query.where("tags", "array-contains", identifiedLocation);
+        }
+
+        const snapshot = await query.orderBy("updatedAt", "desc").limit(20).get();
         
         const results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 

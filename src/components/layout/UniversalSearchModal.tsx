@@ -137,17 +137,15 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
 
         <ScrollArea className="flex-grow">
           <div className='p-4 space-y-3'>
-             {aiInterpretation && (
+             {aiInterpretation && aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
                  <div className="p-3 text-xs text-blue-700 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 rounded-md border border-blue-200 dark:border-blue-800">
                     <p><strong>AI interpretation:</strong> {aiInterpretation.interpretationNotes}</p>
-                    {aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-1">
-                            <strong>Filters:</strong>
-                            {aiInterpretation.suggestedFilters.map((filter, i) => (
-                                <Badge key={i} variant="secondary" className="bg-white/50">{filter.type}: {filter.value}</Badge>
-                            ))}
-                        </div>
-                    )}
+                    <div className="mt-2 flex flex-wrap gap-1">
+                        <strong>Filters:</strong>
+                        {aiInterpretation.suggestedFilters.map((filter, i) => (
+                            <Badge key={i} variant="secondary" className="bg-white/50">{filter.type}: {filter.value}</Badge>
+                        ))}
+                    </div>
                  </div>
             )}
             {isLoading ? (

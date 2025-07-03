@@ -42,7 +42,6 @@ import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { performSearch } from "@/lib/server-actions";
 
 interface NavLinkProps {
   href: string;
