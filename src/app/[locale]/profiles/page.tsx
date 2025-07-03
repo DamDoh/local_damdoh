@@ -62,15 +62,17 @@ export default function ProfilesPage() {
 
   const filteredProfiles = useMemo(() => {
     return profiles.filter(profile => {
+      if (!profile) return false;
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
       
-      const nameMatch = profile.name.toLowerCase().includes(searchLower);
-      const summaryMatch = profile.profileSummary?.toLowerCase().includes(searchLower) || false;
-      // Ensure roles is an array before checking
-      const roles = Array.isArray(profile.roles) ? profile.roles : (profile.role ? [profile.role] : []);
-      const roleMatch = roleFilter === 'all' || roles.includes(roleFilter);
-      const locationMatch = locationFilter === "" || profile.location.toLowerCase().includes(locationLower);
+      const nameMatch = (profile.displayName || '').toLowerCase().includes(searchLower);
+      const summaryMatch = (profile.profileSummary || '').toLowerCase().includes(searchLower);
+      
+      const userRoles = [profile.primaryRole, ...(profile.secondaryRoles || [])].filter(Boolean);
+      const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
+
+      const locationMatch = !locationFilter || (profile.location || '').toLowerCase().includes(locationLower);
       
       return (nameMatch || summaryMatch) && roleMatch && locationMatch;
     });
@@ -137,12 +139,12 @@ export default function ProfilesPage() {
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                   <CardHeader className="flex flex-row items-center gap-4">
                     <Avatar className="h-16 w-16 border">
-                      <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture person" />
-                      <AvatarFallback>{profile.name.substring(0,1)}</AvatarFallback>
+                      <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile agriculture person" />
+                      <AvatarFallback>{profile.displayName?.substring(0,1)}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <CardTitle className="text-lg">{profile.name}</CardTitle>
-                      <CardDescription>{Array.isArray(profile.roles) ? profile.roles.join(', ') : profile.role} - {profile.location}</CardDescription>
+                      <CardTitle className="text-lg">{profile.displayName}</CardTitle>
+                      <CardDescription>{profile.primaryRole} - {profile.location}</CardDescription>
                     </div>
                   </CardHeader>
                   <CardContent className="flex-grow">

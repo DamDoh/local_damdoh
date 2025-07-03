@@ -21,26 +21,25 @@ export const GeoPointSchema = z.object({
 });
 
 export const StakeholderProfileSchema = z.object({
-  id: z.string().cuid2({ message: "Invalid CUID" }),
-  name: z.string().min(2, "Name must be at least 2 characters.").max(100),
+  id: z.string(),
+  uid: z.string().optional(),
+  displayName: z.string().min(2, "Name must be at least 2 characters.").max(100),
   email: z.string().email(),
-  avatarUrl: z.string().url().optional(),
-  role: z.enum(STAKEHOLDER_ROLES),
+  avatarUrl: z.string().url().optional().or(z.literal('')),
+  bannerUrl: z.string().url().optional().or(z.literal('')),
+  primaryRole: z.enum(STAKEHOLDER_ROLES),
+  secondaryRoles: z.array(z.string()).optional(),
   location: z.string().min(2).max(150),
-  bio: z.string().max(2000).optional(),
   profileSummary: z.string().max(250).optional(),
-  yearsOfExperience: z.number().int().min(0).optional(),
+  bio: z.string().max(2000).optional(),
   areasOfInterest: z.array(z.string()).optional(),
   needs: z.array(z.string()).optional(),
   contactInfo: ContactInfoSchema.optional(),
-  connections: z.array(z.string().cuid2()).optional(), 
-  createdAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
-  updatedAt: z.string().datetime({ message: "Invalid ISO datetime string" }),
-  // New fields for organizations
-  organizationId: z.string().cuid2().optional(),
-  isOrgAdmin: z.boolean().default(false).optional(),
-  bannerUrl: z.string().url().optional(),
+  connections: z.array(z.string()).optional(), 
+  createdAt: z.any(), // Allow string or timestamp for flexibility
+  updatedAt: z.any(),
 });
+
 
 export const OrganizationSchema = z.object({
   id: z.string().cuid2(),

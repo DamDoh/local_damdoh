@@ -203,7 +203,7 @@ function MainContent() {
       );
     }
     
-    return feedItems.length > 0 ? (
+    return feedItems && feedItems.length > 0 ? (
       feedItems.map(item => (
         <FeedItemCard 
           key={item.id} 
@@ -270,5 +270,3 @@ export default function RootPage() {
     </Suspense>
   );
 }
-
-    

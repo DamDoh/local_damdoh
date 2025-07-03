@@ -68,18 +68,21 @@ export default function NetworkPage() {
 
   const filteredConnections = useMemo(() => {
     return profiles.filter(profile => {
+      if (!profile) return false;
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
 
-      const nameMatch = profile.name.toLowerCase().includes(searchLower);
-      const summaryMatch = profile.profileSummary?.toLowerCase().includes(searchLower) || false;
-      const roleMatch = roleFilter === 'all' || (Array.isArray(profile.roles) && profile.roles.includes(roleFilter));
+      const nameMatch = (profile.displayName || '').toLowerCase().includes(searchLower);
+      const summaryMatch = (profile.profileSummary || '').toLowerCase().includes(searchLower);
+      
+      const userRoles = [profile.primaryRole, ...(profile.secondaryRoles || [])].filter(Boolean);
+      const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
       
       const interestKeywords = interestFilter.toLowerCase().replace(/-/g, ' ').split(' ');
       const areasOfInterestLower = (profile.areasOfInterest || []).join(' ').toLowerCase();
       const interestMatch = interestFilter === 'all' || interestKeywords.every(keyword => areasOfInterestLower.includes(keyword));
       
-      const locationMatch = locationFilter === "" || profile.location.toLowerCase().includes(locationLower);
+      const locationMatch = !locationFilter || (profile.location || '').toLowerCase().includes(locationLower);
 
       return (nameMatch || summaryMatch) && roleMatch && interestMatch && locationMatch;
     });
@@ -154,13 +157,13 @@ export default function NetworkPage() {
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                        <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture business" />
-                        <AvatarFallback className="text-3xl">{profile.name.substring(0,1)}</AvatarFallback>
+                        <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile agriculture business" />
+                        <AvatarFallback className="text-3xl">{profile.displayName?.substring(0,1) ?? '?'}</AvatarFallback>
                     </Avatar>
                     <Link href={`/profiles/${profile.id}`}>
-                        <CardTitle className="text-lg hover:text-primary transition-colors">{profile.name}</CardTitle>
+                        <CardTitle className="text-lg hover:text-primary transition-colors">{profile.displayName}</CardTitle>
                     </Link>
-                    <CardDescription>{(Array.isArray(profile.roles) ? profile.roles.join(', ') : profile.role)} - {profile.location}</CardDescription>
+                    <CardDescription>{profile.primaryRole} - {profile.location}</CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow text-center">
                     <p className="text-sm text-muted-foreground line-clamp-3">{profile.profileSummary}</p>

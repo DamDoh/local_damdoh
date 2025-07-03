@@ -13,7 +13,7 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'agriLogisticsCo': { name: 'AgriLogistics Co-op', role: 'Logistics Partner (Third-Party Transporter)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Efficient produce aggregation and transport.' },
   'freshFoodsProcessor': { name: 'FreshFoods Processors Ltd.', role: 'Processing & Packaging Unit', avatarUrl: 'https://placehold.co/150x150.png', headline: 'IQF fruits and vegetable processing.' },
   'globalCommoditiesTrader': { name: 'Global Commodities Trading', role: 'Buyer (Restaurant, Supermarket, Exporter)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Specializing in coffee, cocoa, and sugar.' },
-  'ecoHarvestRetail': { name: 'EcoHarvest Grocers', role: 'Retailer/City Market Seller', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Organic and locally sourced produce retailer.' },
+  'ecoHarvestRetail': { name: 'EcoHarvest Grocers', role: 'Buyer (Restaurant, Supermarket, Exporter)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Organic and locally sourced produce retailer.' }, // Adapted role
   'agriTechInnovator': { name: 'Dr. Lena Hanson', role: 'Researcher/Academic', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Researcher in agricultural robotics and AI.' },
   'inputSolutionsInc': { name: 'Input Solutions Inc.', role: 'Input Supplier (Seed, Fertilizer, Pesticide)', avatarUrl: 'https://placehold.co/150x150.png', headline: 'Certified seeds and organic fertilizers.' },
   'agriProcessorSarah': { name: 'Sarah Chen - ValueChain Processors', role: 'Processing & Packaging Unit', avatarUrl: 'https://placehold.co/200x200.png', headline: 'Transforming raw produce into export-ready goods.' },
@@ -27,8 +27,8 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'rajPatel': { name: "Raj Patel", avatarUrl: "https://placehold.co/40x40.png", headline: "Agri-Supply Chain Analyst"},
   'aishaBello': { name: "Aisha Bello", avatarUrl: "https://placehold.co/80x80.png", headline: "Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets." },
   'currentDemoUser': { name: "Demo User", avatarUrl: "https://placehold.co/40x40.png", headline: "Agri-Enthusiast | DamDoh Platform"},
-  'sug1': { name: 'Global Alliance for Food Security', role: 'Government Regulator/Auditor', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Advocating for sustainable agriculture and food security worldwide. Connect to learn about policy initiatives.' }, // Role adapted
-  'sug2': { name: 'AgriLogistics Innovators Forum', role: 'Researcher/Academic', avatarUrl: 'https://placehold.co/50x50.png', headline: 'A forum for discussing cutting-edge supply chain technologies and logistics optimization in agriculture.' }, // Role adapted
+  'sug1': { name: 'Global Alliance for Food Security', role: 'Government Regulator/Auditor', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Advocating for sustainable agriculture and food security worldwide. Connect to learn about policy initiatives.' }, 
+  'sug2': { name: 'AgriLogistics Innovators Forum', role: 'Researcher/Academic', avatarUrl: 'https://placehold.co/50x50.png', headline: 'A forum for discussing cutting-edge supply chain technologies and logistics optimization in agriculture.' }, 
   'sug3': { name: 'DroughtResist Seeds Corp.', role: 'Input Supplier (Seed, Fertilizer, Pesticide)', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Developing and supplying climate-resilient seed varieties for arid and semi-arid regions.' },
   'sugFarmerNetworkKenya': { name: 'Kenya Organic Farmers Network', role: 'Farmer', avatarUrl: 'https://placehold.co/50x50.png', headline: 'A network of organic farmers in Kenya sharing best practices and market access opportunities.' },
   'sugAgriFinanceIndia': { name: 'AgriFinance India', role: 'Financial Institution (Micro-finance/Loans)', avatarUrl: 'https://placehold.co/50x50.png', headline: 'Providing micro-loans and financial literacy training for smallholder farmers in India.' },
@@ -36,8 +36,8 @@ export const dummyUsersData: { [key: string]: { name: string, avatarUrl?: string
   'agroInputsGhana': {name: 'Agro Inputs Ghana', avatarUrl: 'https://placehold.co/40x40.png', role: 'Input Supplier (Seed, Fertilizer, Pesticide)', headline: 'Reliable supplier of farming inputs.'},
   'precisionAgNigeria': {name: 'Precision Ag Nigeria', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agri-Tech Innovator/Developer', headline: 'Tech solutions for modern farming.'},
   'valueChainExperts': {name: 'Value Chain Experts', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Consulting for agricultural value chains.'},
-  'landLeaseAfrica': {name: 'LandLease Africa', avatarUrl: 'https://placehold.co/40x40.png', role: 'Equipment Supplier (Sales of Machinery/IoT)', headline: 'Connecting farmers with available land.'}, // Simplified role
-  'vetServicesKenya': { name: 'Kenya Veterinary Services', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Mobile veterinary care for livestock.'}, // Vets often act as consultants
+  'landLeaseAfrica': {name: 'LandLease Africa', avatarUrl: 'https://placehold.co/40x40.png', role: 'Equipment Supplier (Sales of Machinery/IoT)', headline: 'Connecting farmers with available land.'}, 
+  'vetServicesKenya': { name: 'Kenya Veterinary Services', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agronomy Expert/Consultant (External)', headline: 'Mobile veterinary care for livestock.'}, 
   'exportDocsPro': { name: 'Export Docs Pro', avatarUrl: 'https://placehold.co/40x40.png', role: 'Agro-Export Facilitator/Customs Broker', headline: 'Assistance with agricultural export documentation.'},
   'honeyHarvestCo': { name: 'Honey Harvest Co-op', avatarUrl: 'https://placehold.co/40x40.png', role: 'Farmer', headline: 'Ethically sourced organic honey producers.'},
 };
@@ -94,20 +94,19 @@ export const dummyFeedItems: FeedItem[] = [
 // --- Profiles Page Data ---
 export const dummyProfiles: UserProfile[] = Object.entries(dummyUsersData).map(([id, data]) => ({
   id,
-  name: data.name,
-  email: `${id.toLowerCase().replace(/[^a-z0-9]/g, '.')}@damdoh.example.com`, // Generic email
-  role: (data.role as StakeholderRole) || 'Farmer',
-  location: data.headline?.includes("Kenya") ? "Kenya" : data.headline?.includes("USA") ? "USA" : "Global", // Simple location logic
+  displayName: data.name,
+  email: `${id.toLowerCase().replace(/[^a-z0-9]/g, '.')}@damdoh.example.com`,
+  primaryRole: (data.role as StakeholderRole) || 'Farmer',
+  location: data.headline?.includes("Kenya") ? "Kenya" : data.headline?.includes("USA") ? "USA" : "Global",
   avatarUrl: data.avatarUrl,
   profileSummary: data.headline || `A valued member of the ${APP_NAME} agricultural community with a role in ${data.role || 'various sectors'}.`,
   bio: `More information about ${data.name}, including their role as ${data.role || 'a valued stakeholder'}. Details coming soon.`,
-  yearsOfExperience: Math.floor(Math.random() * 20) + 1,
-  areasOfInterest: ["Sustainable Farming", "Market Access"], // Generic interests
-  needs: ["New Buyers", "Logistics Support"], // Generic needs
+  areasOfInterest: ["Sustainable Farming", "Market Access"],
+  needs: ["New Buyers", "Logistics Support"],
   contactInfo: { website: `${id.toLowerCase().replace(/\s+/g, '')}.damdoh.example.com` },
   connections: [],
-  createdAt: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(), // Random date in last 30 days
-  updatedAt: new Date(Date.now() - Math.random() * 7 * 86400000).toISOString(), // Random date in last 7 days
+  createdAt: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
+  updatedAt: new Date(Date.now() - Math.random() * 7 * 86400000).toISOString(),
 }));
 
 
