@@ -1,3 +1,4 @@
+
 // src/app/api/profiles/[id]/route.ts
 import { NextResponse } from 'next/server';
 import type { UserProfile } from '@/lib/types';
@@ -6,7 +7,7 @@ import {
   getProfileByIdFromDB, 
   updateProfileInDB, 
   deleteProfileFromDB 
-} from '@/lib/db-utils';
+} from '@/lib/server-actions';
 import { 
   successResponse, 
   notFoundResponse, 

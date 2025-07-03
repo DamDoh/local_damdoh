@@ -1,3 +1,4 @@
+
 // src/app/api/profiles/route.ts
 import { NextResponse } from 'next/server';
 import type { UserProfile } from '@/lib/types';
@@ -5,7 +6,7 @@ import { StakeholderProfileSchema } from '@/lib/schemas'; // Zod schema for vali
 import { 
   getAllProfilesFromDB,
   createProfileInDB 
-} from '@/lib/db-utils';
+} from '@/lib/server-actions';
 import { 
   successResponse, 
   clientErrorResponse, 

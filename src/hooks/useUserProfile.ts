@@ -4,11 +4,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/lib/auth-utils';
 import type { UserProfile } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/db-utils';
-
-// Simple in-memory cache
-let userProfileCache: UserProfile | null = null;
-let lastFetchedUid: string | null = null;
 
 export function useUserProfile() {
   const { user: authUser, loading: authLoading } = useAuth();
@@ -17,27 +12,20 @@ export function useUserProfile() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchProfile = useCallback(async (uid: string) => {
-    // If we have a cached profile for the current user, use it immediately
-    if (lastFetchedUid === uid && userProfileCache) {
-        setProfile(userProfileCache);
-        setLoading(false);
-        return;
-    }
-
     setLoading(true);
     setError(null);
     try {
-      const userProfile = await getProfileByIdFromDB(uid);
+      const response = await fetch(`/api/profiles/${uid}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || 'Failed to fetch profile.');
+      }
+      const userProfile = await response.json();
       setProfile(userProfile);
-      // Update cache
-      userProfileCache = userProfile;
-      lastFetchedUid = uid;
     } catch (err: any) {
       console.error("Error fetching user profile:", err);
-      setError("Failed to load user profile.");
-      // Clear cache on error
-      userProfileCache = null;
-      lastFetchedUid = null;
+      setError(err.message || "Failed to load user profile.");
+      setProfile(null);
     } finally {
       setLoading(false);
     }
@@ -56,9 +44,6 @@ export function useUserProfile() {
       setProfile(null);
       setLoading(false);
       setError(null);
-      // Clear cache on logout
-      userProfileCache = null;
-      lastFetchedUid = null;
     }
   }, [authUser, authLoading, fetchProfile]);
 

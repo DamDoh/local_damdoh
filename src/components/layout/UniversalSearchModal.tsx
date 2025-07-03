@@ -1,24 +1,24 @@
 "use client";
 
-import { useState, useEffect, FormEvent, Fragment, useRef, useCallback } from 'react';
+import { useState, useEffect, FormEvent, useCallback } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Bot, User, Search, Send, Sparkles, ShoppingCart, Users, MessageSquare, Briefcase, Building, FileText, Loader2 } from 'lucide-react';
+import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { performSearch as performSearchFunction } from '@/lib/db-utils'; // Updated to use db-utils
 import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { APP_NAME } from '@/lib/constants';
+import { Card, CardContent } from '../ui/card';
 
 interface SearchResult {
   id: string;
+  itemId: string;
   itemCollection: 'users' | 'marketplaceItems' | 'forums' | 'agriEvents' | 'knowledge_articles';
   title: string;
   description: string;
@@ -31,6 +31,7 @@ interface UniversalSearchModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialQuery?: string;
+  searchFunction: (interpretation: any) => Promise<any[]>;
 }
 
 const getIconForCollection = (collection: SearchResult['itemCollection']) => {
@@ -53,7 +54,7 @@ const getLinkForCollection = (result: SearchResult) => {
     }
 }
 
-export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: UniversalSearchModalProps) {
+export function UniversalSearchModal({ isOpen, onClose, initialQuery = "", searchFunction }: UniversalSearchModalProps) {
   const [currentQuery, setCurrentQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,12 +69,9 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     setAiInterpretation(null);
     
     try {
-        // Step 1: Get AI interpretation of the query
         const interpretation = await interpretSearchQuery({ rawQuery: queryToSubmit });
         setAiInterpretation(interpretation);
-
-        // Step 2: Use the interpretation to perform a smarter search
-        const results = await performSearchFunction(interpretation);
+        const results = await searchFunction(interpretation);
         setSearchResults(results as SearchResult[]);
 
     } catch (error: any) {
@@ -86,7 +84,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, toast]);
+  }, [isLoading, toast, searchFunction]);
 
 
   useEffect(() => {

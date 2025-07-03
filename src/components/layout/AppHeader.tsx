@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import {
   Home,
@@ -37,12 +37,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { APP_NAME } from "@/lib/constants";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { performSearch } from "@/lib/db-utils";
 
 interface NavLinkProps {
   href: string;
@@ -307,6 +307,7 @@ export function AppHeader() {
         isOpen={isSearchModalOpen} 
         onClose={() => setIsSearchModalOpen(false)}
         initialQuery={initialModalQuery}
+        searchFunction={performSearch}
       />
     </>
   );
