@@ -1,4 +1,3 @@
-
 import {getRequestConfig} from 'next-intl/server';
 import {notFound} from 'next/navigation';
  
@@ -12,32 +11,32 @@ export default getRequestConfig(async ({locale}) => {
   let messages;
   try {
     // Use a switch statement for static analysis by build tools.
-    // The path is relative to the root directory where this file lives.
+    // The path is relative to the current file (`src/i18n.ts`).
     switch (locale) {
       case 'en':
-        messages = (await import('./src/messages/en.json')).default;
+        messages = (await import('./messages/en.json')).default;
         break;
       case 'es':
-        messages = (await import('./src/messages/es.json')).default;
+        messages = (await import('./messages/es.json')).default;
         break;
-      case 'ar': messages = (await import('./src/messages/ar.json')).default; break;
-      case 'de': messages = (await import('./src/messages/de.json')).default; break;
-      case 'fr': messages = (await import('./src/messages/fr.json')).default; break;
-      case 'hi': messages = (await import('./src/messages/hi.json')).default; break;
-      case 'id': messages = (await import('./src/messages/id.json')).default; break;
-      case 'ja': messages = (await import('./src/messages/ja.json')).default; break;
-      case 'km': messages = (await import('./src/messages/km.json')).default; break;
-      case 'ko': messages = (await import('./src/messages/ko.json')).default; break;
-      case 'ms': messages = (await import('./src/messages/ms.json')).default; break;
-      case 'pt': messages = (await import('./src/messages/pt.json')).default; break;
-      case 'ru': messages = (await import('./src/messages/ru.json')).default; break;
-      case 'th': messages = (await import('./src/messages/th.json')).default; break;
-      case 'tr': messages = (await import('./src/messages/tr.json')).default; break;
-      case 'vi': messages = (await import('./src/messages/vi.json')).default; break;
-      case 'zh': messages = (await import('./src/messages/zh.json')).default; break;
+      case 'ar': messages = (await import('./messages/ar.json')).default; break;
+      case 'de': messages = (await import('./messages/de.json')).default; break;
+      case 'fr': messages = (await import('./messages/fr.json')).default; break;
+      case 'hi': messages = (await import('./messages/hi.json')).default; break;
+      case 'id': messages = (await import('./messages/id.json')).default; break;
+      case 'ja': messages = (await import('./messages/ja.json')).default; break;
+      case 'km': messages = (await import('./messages/km.json')).default; break;
+      case 'ko': messages = (await import('./messages/ko.json')).default; break;
+      case 'ms': messages = (await import('./messages/ms.json')).default; break;
+      case 'pt': messages = (await import('./messages/pt.json')).default; break;
+      case 'ru': messages = (await import('./messages/ru.json')).default; break;
+      case 'th': messages = (await import('./messages/th.json')).default; break;
+      case 'tr': messages = (await import('./messages/tr.json')).default; break;
+      case 'vi': messages = (await import('./messages/vi.json')).default; break;
+      case 'zh': messages = (await import('./messages/zh.json')).default; break;
       default:
         // Default to English if a locale is not explicitly handled.
-        messages = (await import('./src/messages/en.json')).default;
+        messages = (await import('./messages/en.json')).default;
     }
   } catch (error) {
     // If a specific locale file is missing or has an error, fall back gracefully.
