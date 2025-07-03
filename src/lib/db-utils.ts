@@ -58,7 +58,8 @@ export async function performSearch(interpretation: SmartSearchInterpretation): 
     try {
         console.log(`[Action] Calling performSearch cloud function with interpretation:`, interpretation);
         const result = await performSearchCallable(interpretation);
-        return (result.data as any).results || [];
+        // Using nullish coalescing operator (??) is safer than || as it only triggers for null/undefined, not other falsy values.
+        return (result.data as any)?.results ?? [];
     } catch (error) {
         console.error("[Action] Error calling performSearch cloud function:", error);
         throw error;

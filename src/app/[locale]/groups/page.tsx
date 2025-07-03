@@ -28,8 +28,9 @@ export default function GroupsPage() {
             setIsLoading(true);
             try {
                 const result = await getGroupsCallable();
-                const data = result.data as { groups?: ForumGroup[] };
-                setGroups(data?.groups || []);
+                // Use nullish coalescing operator for safety
+                const data = (result.data as { groups?: ForumGroup[] })?.groups ?? [];
+                setGroups(data);
             } catch (error) {
                 console.error("Error fetching groups:", error);
                 toast({
