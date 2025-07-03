@@ -493,3 +493,84 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
     }
   },
 );
+
+/**
+ * Fetches the complete traceability history for a given VTI.
+ * This includes the VTI batch details and all associated events, with
+ * actor information enriched from user profiles.
+ *
+ * @param {any} data The data for the function call, containing the vtiId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{vti: any, events: any[]}>} A promise that resolves with the full history.
+ */
+export const getVtiTraceabilityHistory = functions.https.onCall(async (data, context) => {
+    // No auth check here to allow public traceability lookup
+    const { vtiId } = data;
+    if (!vtiId) {
+        throw new functions.https.HttpsError("invalid-argument", "A vtiId must be provided.");
+    }
+
+    try {
+        const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
+        if (!vtiDoc.exists) {
+            throw new functions.https.HttpsError("not-found", `VTI batch with ID ${vtiId} not found.`);
+        }
+
+        const eventsSnapshot = await db.collection("traceability_events")
+            .where("vtiId", "==", vtiId)
+            .orderBy("timestamp", "asc")
+            .get();
+
+        const eventsData = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        // Get unique actor IDs to fetch profiles efficiently
+        const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
+        
+        const actorProfiles: Record<string, any> = {};
+
+        if (actorIds.length > 0) {
+            const profilePromises = actorIds.map(id => db.collection("users").doc(id).get());
+            const profileSnapshots = await Promise.all(profilePromises);
+
+            profileSnapshots.forEach(snap => {
+                if (snap.exists) {
+                    const profileData = snap.data();
+                    actorProfiles[snap.id] = {
+                        name: profileData?.displayName || "Unknown Actor",
+                        role: profileData?.primaryRole || "Unknown Role",
+                        avatarUrl: profileData?.avatarUrl || null
+                    };
+                } else {
+                     actorProfiles[snap.id] = {
+                        name: "Unknown Actor",
+                        role: "Unknown Role",
+                        avatarUrl: null
+                    };
+                }
+            });
+        }
+        
+        const enrichedEvents = eventsData.map(event => ({
+            ...event,
+            timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
+            actor: actorProfiles[event.actorRef] || { name: "System", role: "Platform" }
+        }));
+
+        const vtiData = vtiDoc.data()!;
+        const finalVtiData = {
+            id: vtiDoc.id,
+            ...vtiData,
+            creationTime: (vtiData.creationTime as admin.firestore.Timestamp)?.toDate ? (vtiData.creationTime as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
+        }
+
+        return {
+            vti: finalVtiData,
+            events: enrichedEvents
+        };
+
+    } catch (error) {
+        console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
+    }
+});

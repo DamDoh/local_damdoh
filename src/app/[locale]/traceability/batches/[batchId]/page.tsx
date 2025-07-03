@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Briefcase } from 'lucide-react';
+import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { useTranslations } from "next-intl";
@@ -26,7 +26,7 @@ interface TraceabilityEvent {
   actor: {
     name: string;
     role: string;
-    avatarUrl?: string; // Assuming we can get this
+    avatarUrl?: string;
   };
   geoLocation?: { lat: number; lng: number } | null;
 }
@@ -44,7 +44,7 @@ interface VtiData {
 
 interface TraceabilityData {
   vti: VtiData;
-  events: TraceabilityEvent[];
+  events?: TraceabilityEvent[]; // Make events optional to handle all backend responses safely
 }
 
 const getEventIcon = (eventType: string) => {
@@ -153,7 +153,7 @@ export default function TraceabilityBatchDetailPage() {
      );
   }
 
-  const { vti, events } = data;
+  const { vti, events = [] } = data; // FIX: Default events to an empty array
   const producerEvent = events.find(e => e.eventType === 'HARVESTED' || e.eventType === 'PLANTED');
   const harvestEvent = events.find(e => e.eventType === 'HARVESTED');
   
