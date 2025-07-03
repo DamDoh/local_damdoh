@@ -46,7 +46,7 @@ export default function GroupPage() {
             ]);
 
             setGroup(groupDetailsResult.data as ForumGroup);
-            const fetchedMembers = groupMembersResult.data as UserProfile[]
+            const fetchedMembers = (groupMembersResult.data as UserProfile[]) || [];
             setMembers(fetchedMembers);
 
             if (user) {

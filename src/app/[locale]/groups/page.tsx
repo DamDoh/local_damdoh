@@ -28,8 +28,8 @@ export default function GroupsPage() {
             setIsLoading(true);
             try {
                 const result = await getGroupsCallable();
-                const data = result.data as { groups: any[] };
-                setGroups(data.groups as ForumGroup[]);
+                const data = result.data as { groups?: ForumGroup[] };
+                setGroups(data?.groups || []);
             } catch (error) {
                 console.error("Error fetching groups:", error);
                 toast({
