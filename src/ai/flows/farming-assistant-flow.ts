@@ -14,7 +14,6 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import {fgwKnfKnowledgeTool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import { stakeholderData } from '@/lib/stakeholder-data';
-import { fwg_knf_tool } from "firebase-functions/v1/gen_ai";
 
 const FarmingAssistantInputSchema = z.object({
   query: z.string().describe('The user's question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
@@ -43,7 +42,7 @@ const farmingAssistantPrompt = ai.definePrompt({
   name: 'farmingAssistantPrompt',
   input: {schema: FarmingAssistantInputSchema},
   output: {schema: FarmingAssistantOutputSchema},
-  tools: [fgwKnfKnowledgeTool, fwg_knf_tool],
+  tools: [fgwKnfKnowledgeTool],
   prompt: `You are DamDoh AI's Knowledge, an expert AI assistant for the DamDoh platform. 
 
 **CRITICAL INSTRUCTION: You MUST respond in the language specified by the 'language' parameter. The language code is '{{{language}}}'. If no language is specified, you must default to English.**

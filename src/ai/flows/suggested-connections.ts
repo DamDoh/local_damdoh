@@ -1,106 +1,112 @@
 
 'use server';
+/**
+ * @fileOverview Flow to generate personalized connection suggestions for a user.
+ */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { STAKEHOLDER_ROLES } from '@/lib/constants';
+import {getFirestore} from 'firebase-admin/firestore';
+import { UserProfile } from '@/lib/types';
+
+// Initialize Firestore
+const db = getFirestore();
+
+// Input schema for the flow
+const SuggestedConnectionsInputSchema = z.object({
+  userId: z.string().describe('The ID of the user for whom to generate suggestions.'),
+  count: z.number().optional().default(5).describe('The number of suggestions to generate.'),
+});
+
+// Output schema for a single suggestion
+const ConnectionSuggestionSchema = z.object({
+  userId: z.string().describe("The ID of the suggested user."),
+  name: z.string().describe("The name of the suggested user."),
+  role: z.string().describe("The primary role of the suggested user."),
+  avatarUrl: z.string().optional().describe("The URL of the user's avatar image."),
+  reason: z.string().describe("A brief, personalized reason why this user is a good connection suggestion. (e.g., 'Shares your interest in organic coffee farming.')"),
+});
+
+// Output schema for the entire flow
+const SuggestedConnectionsOutputSchema = z.object({
+  suggestions: z.array(ConnectionSuggestionSchema),
+});
 
 /**
- * @fileOverview This file defines the suggested connections AI agent.
- *
- * - suggestConnections - A function that suggests connections based on user profile data.
- * - SuggestedConnectionsInput - The input type for the suggestConnections function.
- * - SuggestedConnectionsOutput - The return type for the suggestConnections function.
+ * Fetches a batch of potential users to suggest, excluding the current user and those they already follow.
+ * @param currentUserId The ID of the user we are generating suggestions for.
+ * @returns A promise that resolves to an array of UserProfile objects.
  */
-
-const StakeholderRoleSchema = z.enum(STAKEHOLDER_ROLES);
-
-const SuggestedConnectionsInputSchema = z.object({
-  profileSummary: z
-    .string()
-    .describe(
-      'A concise summary of the user profile, including role, preferences, location, and expressed needs.'
-    ),
-  stakeholderRole: StakeholderRoleSchema.describe(
-    'The role of the user within the agricultural supply chain.'
-  ),
-  location: z.string().describe('The location of the user.'),
-  preferences: z
-    .string()
-    .describe('The preferences of the user in connecting with others (e.g., "sustainable farming", "export markets").'),
-  needs: z.string().describe('The needs of the user in connecting with others (e.g., "bulk buyers for coffee", "cold storage solutions").'),
-});
-export type SuggestedConnectionsInput = z.infer<
-  typeof SuggestedConnectionsInputSchema
->;
-
-const SuggestedConnectionSchema = z.object({
-    id: z.string().describe("A unique placeholder identifier for the suggested profile (e.g., 'kenyaNutExporter', 'agriLogisticsEA')."),
-    name: z.string().describe("The name of the suggested individual or organization."),
-    role: z.string().describe("The stakeholder role of the suggested connection (e.g., 'Exporter', 'Logistics Provider', 'Farmer Cooperative')."),
-    avatarUrl: z.string().optional().describe("An optional placeholder image URL for the avatar (e.g., 'https://placehold.co/50x50.png')."),
-    reason: z.string().describe("A brief (1-2 sentence) explanation of why this connection is relevant to the user based on their profile, preferences, and needs.")
-});
-
-const SuggestedConnectionsOutputSchema = z.object({
-  suggestedConnections: z
-    .array(SuggestedConnectionSchema)
-    .describe(
-      'A list of suggested connections, each with an ID, name, role, optional avatar URL, and a reason for the suggestion.'
-    ),
-});
-export type SuggestedConnectionsOutput = z.infer<
-  typeof SuggestedConnectionsOutputSchema
->;
-
-export async function suggestConnections(
-  input: SuggestedConnectionsInput
-): Promise<SuggestedConnectionsOutput> {
-  return suggestConnectionsFlow(input);
+async function getPotentialCandidates(currentUserId: string): Promise<UserProfile[]> {
+    // In a real-world scenario, you would exclude users the current user already follows.
+    // This is simplified for this example.
+    const usersSnapshot = await db.collection('users').limit(50).get();
+    const candidates: UserProfile[] = [];
+    usersSnapshot.forEach(doc => {
+        if (doc.id !== currentUserId) {
+            candidates.push({ id: doc.id, ...doc.data() } as UserProfile);
+        }
+    });
+    return candidates;
 }
 
-const prompt = ai.definePrompt({
-  name: 'suggestConnectionsPrompt',
-  input: {schema: SuggestedConnectionsInputSchema},
-  output: {schema: SuggestedConnectionsOutputSchema},
-  prompt: `You are an AI assistant for DamDoh, an agricultural supply chain networking platform. Your goal is to suggest relevant connections (individuals or organizations) to users.
+// Define the AI prompt
+const connectionSuggesterPrompt = ai.definePrompt({
+  name: 'connectionSuggesterPrompt',
+  input: { schema: z.object({ userProfile: z.any(), candidates: z.any(), count: z.number() }) },
+  output: { schema: SuggestedConnectionsOutputSchema },
+  prompt: `
+    You are an expert networking assistant for an agricultural platform called DamDoh.
+    Your task is to analyze a user's profile and suggest other relevant users to connect with from a provided list of candidates.
 
-  Given the following user profile information:
-  - Profile Summary: {{{profileSummary}}}
-  - Stakeholder Role: {{{stakeholderRole}}}
-  - Location: {{{location}}}
-  - Preferences: {{{preferences}}}
-  - Needs: {{{needs}}}
+    The user's profile is:
+    - Name: {{{userProfile.name}}}
+    - Role: {{{userProfile.role}}}
+    - Bio: {{{userProfile.bio}}}
+    - Interests: {{{userProfile.interests}}}
 
-  Please generate a list of 3-5 plausible, agriculture-focused connections that would be valuable to this user.
-  For each suggestion, provide:
-  1.  A unique placeholder 'id' (e.g., 'freshFruitKenya', 'agriTechSolutionsGlobal').
-  2.  A realistic 'name' for the person or organization.
-  3.  Their 'role' in the agricultural supply chain.
-  4.  An optional 'avatarUrl' (you can use 'https://placehold.co/50x50.png' if you don't have a specific one).
-  5.  A concise 'reason' (1-2 sentences) explaining why this connection is relevant, considering the user's role, preferences, location, and needs. Focus on creating actionable and logical connections within an agricultural context.
+    Analyze the following list of potential candidates:
+    ---
+    {{#each candidates}}
+    - ID: {{this.id}}, Name: {{this.name}}, Role: {{this.role}}, Bio: {{this.bio}}, Interests: {{this.interests}}
+    {{/each}}
+    ---
 
-  Example output format for one suggestion:
-  {
-    "id": "organicCocoaExporterGhana",
-    "name": "EcoHarvest Exports Ghana",
-    "role": "Exporter",
-    "avatarUrl": "https://placehold.co/50x50.png",
-    "reason": "Given your interest in organic cocoa and export markets, EcoHarvest Exports Ghana could be a valuable partner as they specialize in fair-trade organic cocoa beans from West Africa."
-  }
+    Based on the user's profile, select the top {{count}} most relevant candidates to suggest as new connections. For each suggestion, provide a concise and personalized reason explaining why they would be a good connection. Focus on shared interests, complementary roles in the supply chain, or similar goals.
 
-  Prioritize suggesting connections that address the user's stated needs and align with their preferences and role. For instance, if a farmer needs buyers, suggest processors or retailers. If a processor needs reliable suppliers, suggest farmer cooperatives or collection agents.
+    Return the results in the specified JSON format.
   `,
 });
 
-const suggestConnectionsFlow = ai.defineFlow(
+// Define the main flow
+export const suggestConnections = ai.defineFlow(
   {
-    name: 'suggestConnectionsFlow',
+    name: 'suggestConnections',
     inputSchema: SuggestedConnectionsInputSchema,
     outputSchema: SuggestedConnectionsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+  async (input) => {
+    // 1. Fetch the user's profile
+    const userDoc = await db.collection('users').doc(input.userId).get();
+    if (!userDoc.exists) {
+      console.error('User not found:', input.userId);
+      return { suggestions: [] };
+    }
+    const userProfile = userDoc.data();
+
+    // 2. Fetch potential candidates
+    const candidates = await getPotentialCandidates(input.userId);
+    if (candidates.length === 0) {
+        return { suggestions: [] };
+    }
+
+    // 3. Use the AI to generate suggestions
+    const { output } = await connectionSuggesterPrompt({
+      userProfile,
+      candidates,
+      count: input.count,
+    });
+    
+    return output || { suggestions: [] };
   }
 );
