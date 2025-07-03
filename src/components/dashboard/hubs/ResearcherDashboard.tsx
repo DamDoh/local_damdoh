@@ -87,7 +87,7 @@ export const ResearcherDashboard = () => {
              <CardDescription>Anonymized datasets available for research and analysis.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(availableDatasets && availableDatasets.length > 0) ? (
+             {((availableDatasets || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -98,7 +98,7 @@ export const ResearcherDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {availableDatasets.map((dataset) => (
+                   {(availableDatasets || []).map((dataset) => (
                      <TableRow key={dataset.id}>
                        <TableCell className="font-medium">{dataset.name}</TableCell>
                        <TableCell>{dataset.dataType}</TableCell>
@@ -125,7 +125,7 @@ export const ResearcherDashboard = () => {
              <CardDescription>Your active research projects and their progress.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(ongoingProjects && ongoingProjects.length > 0) ? (
+             {((ongoingProjects || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -136,7 +136,7 @@ export const ResearcherDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {ongoingProjects.map((project) => (
+                   {(ongoingProjects || []).map((project) => (
                      <TableRow key={project.id}>
                        <TableCell className="font-medium">{project.title}</TableCell>
                        <TableCell>
@@ -147,7 +147,7 @@ export const ResearcherDashboard = () => {
                             <span className="text-xs">{project.progress}%</span>
                          </div>
                         </TableCell>
-                       <TableCell>{project.collaborators.join(', ')}</TableCell>
+                       <TableCell>{(project.collaborators || []).join(', ')}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
                            <Link href={project.actionLink}>View Project</Link>
@@ -170,9 +170,9 @@ export const ResearcherDashboard = () => {
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {(knowledgeHubContributions && knowledgeHubContributions.length > 0) ? (
+                {((knowledgeHubContributions || []).length > 0) ? (
                     <div className="space-y-3">
-                        {knowledgeHubContributions.map((contribution) => (
+                        {(knowledgeHubContributions || []).map((contribution) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
                                 <p className="font-medium">{contribution.title}</p>
                                 <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>

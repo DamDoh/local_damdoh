@@ -89,9 +89,9 @@ export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
 // Icon mapping for Stakeholder Roles
 import type { LucideIcon } from "lucide-react";
 import {
-  Sprout, Tractor, Package, Users, Briefcase, Truck, Warehouse, Cog, Award,
-  BookOpen, Leaf, Brain, TrendingUp, CircleDollarSign, GraduationCap,
-  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, MessageSquare, Building2,
+  Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
+  BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
+  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
   Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck
 } from 'lucide-react';
 
@@ -110,12 +110,12 @@ export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
     'Certification Body (Organic, Fair Trade etc.)': Award,
     'Consumer': Users,
     'Researcher/Academic': BookOpen,
-    'Logistics Partner (Third-Party Transporter)': Truck,
+    'Logistics Partner (Third-Party Transporter)': GitBranch,
     'Storage/Warehouse Facility': Warehouse,
     'Agronomy Expert/Consultant (External)': GraduationCap,
     'Agro-Tourism Operator': Home,
     'Energy Solutions Provider (Solar, Biogas)': Sun,
-    'Agro-Export Facilitator/Customs Broker': GitBranch,
+    'Agro-Export Facilitator/Customs Broker': Globe,
     'Agri-Tech Innovator/Developer': Brain,
     'Waste Management & Compost Facility': Recycle,
     'Crowdfunder (Impact Investor, Individual)': Banknote,

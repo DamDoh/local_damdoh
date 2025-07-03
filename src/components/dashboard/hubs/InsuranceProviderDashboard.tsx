@@ -99,7 +99,7 @@ export const InsuranceProviderDashboard = () => {
              <CardDescription>Claims requiring your review and processing.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(pendingClaims && pendingClaims.length > 0) ? (
+             {((pendingClaims || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -111,7 +111,7 @@ export const InsuranceProviderDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {pendingClaims.map((claim) => (
+                   {(pendingClaims || []).map((claim) => (
                      <TableRow key={claim.id}>
                        <TableCell className="font-medium">{claim.policyHolderName}</TableCell>
                        <TableCell>{claim.policyType}</TableCell>
@@ -139,7 +139,7 @@ export const InsuranceProviderDashboard = () => {
              <CardDescription>Alerts based on farm and supply chain data.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(riskAssessmentAlerts && riskAssessmentAlerts.length > 0) ? (
+             {((riskAssessmentAlerts || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -150,7 +150,7 @@ export const InsuranceProviderDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {riskAssessmentAlerts.map((alert) => (
+                   {(riskAssessmentAlerts || []).map((alert) => (
                      <TableRow key={alert.id}>
                        <TableCell className="font-medium">{alert.policyHolderName}</TableCell>
                        <TableCell>{alert.alert}</TableCell>
@@ -177,9 +177,9 @@ export const InsuranceProviderDashboard = () => {
                 <CardDescription>Overview of active insurance policies.</CardDescription>
             </CardHeader>
             <CardContent>
-                {(activePolicies && activePolicies.length > 0) ? (
+                {((activePolicies || []).length > 0) ? (
                     <div className="space-y-3">
-                        {activePolicies.map((policy) => (
+                        {(activePolicies || []).map((policy) => (
                             <div key={policy.id} className="text-sm p-3 border rounded-lg">
                                 <p className="font-medium">{policy.policyHolderName} ({policy.policyType})</p>
                                 <p className="text-xs text-muted-foreground">Coverage: ${policy.coverageAmount.toLocaleString()}</p>

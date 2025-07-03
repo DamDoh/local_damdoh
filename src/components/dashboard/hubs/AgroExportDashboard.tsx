@@ -61,8 +61,8 @@ export const AgroExportDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(pendingCustomsDocs?.length > 0) ? (
-                           pendingCustomsDocs.map(doc => (
+                       {((pendingCustomsDocs || []).length > 0) ? (
+                           (pendingCustomsDocs || []).map(doc => (
                                <div key={doc.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <p className="font-medium">To: {doc.destination}</p>
@@ -87,8 +87,8 @@ export const AgroExportDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(trackedShipments?.length > 0) ? (
-                           trackedShipments.map(shipment => (
+                       {((trackedShipments || []).length > 0) ? (
+                           (trackedShipments || []).map(shipment => (
                                 <div key={shipment.id} className="text-sm">
                                     <p className="font-medium">{shipment.carrier}: {shipment.location}</p>
                                     <Badge>{shipment.status}</Badge>
@@ -108,8 +108,8 @@ export const AgroExportDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {(complianceAlerts?.length > 0) ? (
-                           complianceAlerts.map(alert => (
+                       {((complianceAlerts || []).length > 0) ? (
+                           (complianceAlerts || []).map(alert => (
                                <div key={alert.id} className="text-sm p-3 border rounded-lg bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
                                    <p>{alert.content}</p>
                                    <Link href={alert.actionLink} className="text-xs text-primary hover:underline mt-1">Learn More</Link>

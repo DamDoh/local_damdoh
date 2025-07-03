@@ -42,7 +42,7 @@ import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { performSearch } from "@/lib/db-utils";
+import { performSearch } from "@/lib/server-actions";
 
 interface NavLinkProps {
   href: string;
@@ -99,7 +99,7 @@ const desktopNavItems = [
   
 const mobileSheetSecondaryNavItems = [
     { href: "/settings", icon: UserIcon, label: 'settings', isSheetLink: true },
-    { href: "/help-center", icon: HelpCircle, label: "Help Center", isSheetLink: true },
+    { href: "/help-center", icon: HelpCircle, label: "helpCenter", isSheetLink: true },
 ];
 
 function HeaderSkeleton() {
@@ -230,10 +230,10 @@ export function AppHeader() {
               ) : (
                 <div className="flex items-center gap-1">
                   <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
-                    <Link href="/auth/signin">{t('signIn')}</Link>
+                    <Link href="/auth/signin"><LogIn className="mr-1.5 h-3.5 w-3.5"/>{t('signIn')}</Link>
                   </Button>
                   <Button variant="outline" asChild className="text-primary bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
-                    <Link href="/auth/signup">{t('signUp')}</Link>
+                    <Link href="/auth/signup"><UserPlus className="mr-1.5 h-3.5 w-3.5"/>{t('signUp')}</Link>
                   </Button>
                 </div>
               )}
@@ -306,7 +306,6 @@ export function AppHeader() {
         isOpen={isSearchModalOpen} 
         onClose={() => setIsSearchModalOpen(false)}
         initialQuery={initialModalQuery}
-        searchFunction={performSearch}
       />
     </>
   );

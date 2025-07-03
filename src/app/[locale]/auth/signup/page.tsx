@@ -143,9 +143,11 @@ export default function SignUpPage() {
                         {STAKEHOLDER_ROLES.map((role) => {
                           const Icon = STAKEHOLDER_ICONS[role] || Users;
                           return (
-                            <SelectItem key={role} value={role} className="flex items-center gap-2">
-                               <Icon className="mr-2 h-4 w-4 text-muted-foreground" />
-                              <span>{role}</span>
+                            <SelectItem key={role} value={role}>
+                              <div className="flex items-center gap-2">
+                               <Icon className="h-4 w-4 text-muted-foreground" />
+                                <span>{role}</span>
+                              </div>
                             </SelectItem>
                           );
                         })}

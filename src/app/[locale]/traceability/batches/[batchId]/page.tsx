@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useState, useMemo } from 'react';
@@ -13,8 +14,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Briefcase } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
-import { STAKEHOLDER_ICONS } from '@/lib/constants';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from "next-intl";
+import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 
 // Define types for the data we expect from the backend
 interface TraceabilityEvent {
@@ -89,7 +90,7 @@ const TraceabilitySkeleton = () => (
 );
 
 export default function TraceabilityBatchDetailPage() {
-  const { t } = useTranslation('common');
+  const t = useTranslations();
   const params = useParams();
   const batchId = params.batchId as string;
   
@@ -133,7 +134,7 @@ export default function TraceabilityBatchDetailPage() {
     return (
         <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>{t('error')}</AlertTitle>
+            <AlertTitle>{t('common.error')}</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
             <Button asChild variant="secondary" className="mt-4">
                 <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('traceabilityDetailPage.backLink')}</Link>
@@ -220,7 +221,6 @@ export default function TraceabilityBatchDetailPage() {
                 <div className="relative pl-6">
                     <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
                     {events.map(event => {
-                        const RoleIcon = STAKEHOLDER_ICONS[event.actor.role as keyof typeof STAKEHOLDER_ICONS] || Briefcase;
                         return (
                             <div key={event.id} className="relative flex items-start gap-4 pb-8">
                                 <div className="absolute left-0 top-0 h-full flex flex-col items-center">
@@ -241,7 +241,7 @@ export default function TraceabilityBatchDetailPage() {
                                             <div className="text-right">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1.5 justify-end"><UserCircle className="h-3 w-3"/>{event.actor.name}</p>
                                             <Badge variant="secondary" className="mt-1 flex items-center gap-1">
-                                                <RoleIcon className="h-3 w-3" />
+                                                <StakeholderIcon role={event.actor.role} className="h-3 w-3" />
                                                 {event.actor.role}
                                             </Badge>
                                             </div>
