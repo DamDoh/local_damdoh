@@ -93,7 +93,6 @@ const desktopNavItems = [
     { href: "/network", icon: Users, label: 'network' },
     { href: "/farm-management", icon: Sprout, label: 'farmMgmt' },
     { href: "/marketplace", icon: Briefcase, label: 'marketplace' },
-    { href: "/talent-exchange", icon: Briefcase, label: 'talentExchange'},
     { href: "/traceability", icon: Fingerprint, label: 'traceability' },
     { href: "/forums", icon: MessageSquare, label: 'forums' },
 ];

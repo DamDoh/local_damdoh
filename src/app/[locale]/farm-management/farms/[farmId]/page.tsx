@@ -1,15 +1,20 @@
 
 "use client";
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState, useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, Tractor, ClipboardList, PlusCircle } from 'lucide-react';
+import { ArrowLeft, MapPin, Sprout, Tractor, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { useAuth } from '@/lib/auth-utils';
+import { useToast } from '@/hooks/use-toast';
+import { format } from 'date-fns';
 
 interface FarmDetails {
   id: string;
@@ -17,21 +22,36 @@ interface FarmDetails {
   location: string;
   size: number;
   unit: string;
+  createdAt: string;
+}
+
+interface Crop {
+    id: string;
+    cropType: string;
+    plantingDate: string;
+    currentStage?: string;
 }
 
 function FarmDetailSkeleton() {
+  const t = useTranslations('FarmManagement.farmDetail');
   return (
     <div className="container mx-auto p-4 md:p-8">
       <Skeleton className="h-6 w-40 mb-4" />
-      <div className="space-y-4">
+      <div className="space-y-4 mb-8">
         <Skeleton className="h-10 w-1/2" />
         <Skeleton className="h-5 w-1/3" />
       </div>
-      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card><CardHeader><Skeleton className="h-6 w-3/4" /></CardHeader><CardContent><Skeleton className="h-10 w-full" /></CardContent></Card>
-        <Card><CardHeader><Skeleton className="h-6 w-3/4" /></CardHeader><CardContent><Skeleton className="h-10 w-full" /></CardContent></Card>
-        <Card><CardHeader><Skeleton className="h-6 w-3/4" /></CardHeader><CardContent><Skeleton className="h-10 w-full" /></CardContent></Card>
-      </div>
+      <Card>
+        <CardHeader>
+             <Skeleton className="h-6 w-48" />
+        </CardHeader>
+        <CardContent>
+            <div className="space-y-4">
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+            </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
@@ -41,27 +61,45 @@ export default function FarmDetailPage() {
   const farmId = params.farmId as string;
   const t = useTranslations('FarmManagement.farmDetail');
   const [farm, setFarm] = useState<FarmDetails | null>(null);
+  const [crops, setCrops] = useState<Crop[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const functions = getFunctions(firebaseApp);
+  const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
+  const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'getFarmCrops'), [functions]);
 
   useEffect(() => {
-    if (!farmId) return;
+    if (!farmId || !user) {
+        setIsLoading(false);
+        return;
+    };
 
     const fetchFarmDetails = async () => {
       setIsLoading(true);
-      // Simulate fetching data for a specific farm
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const mockFarms = [
-        { id: 'farm1', name: 'Green Valley Farm', location: 'Rural Area, Kenya', size: 10, unit: 'hectares' },
-        { id: 'farm2', name: 'Riverside Orchards', location: 'Near River, Brazil', size: 5, unit: 'acres' },
-        { id: 'farm3', name: 'Mountain View Dairy', location: 'Highlands, India', size: 20, unit: 'acres' },
-      ];
-      const foundFarm = mockFarms.find(f => f.id === farmId);
-      setFarm(foundFarm || null);
-      setIsLoading(false);
+      try {
+        const [farmResult, cropsResult] = await Promise.all([
+          getFarmCallable({ farmId }),
+          getFarmCropsCallable({ farmId })
+        ]);
+
+        setFarm(farmResult.data as FarmDetails);
+        setCrops(cropsResult.data as Crop[]);
+
+      } catch (error: any) {
+        toast({
+            variant: "destructive",
+            title: "Error loading farm data",
+            description: error.message,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchFarmDetails();
-  }, [farmId]);
+  }, [farmId, user, getFarmCallable, getFarmCropsCallable, toast]);
 
   if (isLoading) {
     return <FarmDetailSkeleton />;
@@ -89,60 +127,60 @@ export default function FarmDetailPage() {
         <h1 className="text-4xl font-bold">{farm.name}</h1>
         <div className="flex items-center text-muted-foreground mt-2">
           <MapPin className="mr-2 h-5 w-5" />
-          <span>{farm.location}</span>
+          <span>{farm.location} - Registered on {format(new Date(farm.createdAt), 'PPP')}</span>
         </div>
       </div>
       
-      {/* Placeholder for a map component */}
-      <Card className="mb-8">
-        <CardContent className="h-64 flex items-center justify-center bg-muted rounded-lg">
-          <p className="text-muted-foreground">{t('mapPlaceholder')}</p>
+      <Card>
+        <CardHeader className="flex flex-row justify-between items-center">
+          <div>
+            <CardTitle className="flex items-center gap-2"><Sprout className="h-5 w-5"/>Crops / Livestock</CardTitle>
+            <CardDescription>All active plantings and livestock batches on this farm.</CardDescription>
+          </div>
+          <Button asChild>
+            <Link href={`/farm-management/farms/${farmId}/create-crop`}><PlusCircle className="mr-2 h-4 w-4"/>Add New</Link>
+          </Button>
+        </CardHeader>
+        <CardContent>
+            {crops.length > 0 ? (
+                <div className="space-y-3">
+                    {crops.map((crop) => (
+                        <Card key={crop.id} className="bg-muted/30">
+                            <CardHeader className="p-4">
+                               <div className="flex justify-between items-start">
+                                    <div>
+                                        <CardTitle className="text-lg">{crop.cropType}</CardTitle>
+                                        <CardDescription>Planted: {format(new Date(crop.plantingDate), 'PPP')} | Stage: {crop.currentStage || 'N/A'}</CardDescription>
+                                    </div>
+                               </div>
+                            </CardHeader>
+                             <CardFooter className="p-4 pt-0 flex flex-wrap gap-2">
+                                <Button asChild variant="outline" size="sm">
+                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
+                                        <Weight className="mr-2 h-4 w-4" />Log Harvest
+                                    </Link>
+                                </Button>
+                                 <Button asChild variant="outline" size="sm">
+                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-input-application`}>
+                                        <Droplets className="mr-2 h-4 w-4" />Log Input
+                                    </Link>
+                                </Button>
+                                 <Button asChild variant="outline" size="sm">
+                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
+                                        <NotebookPen className="mr-2 h-4 w-4" />Log Observation
+                                    </Link>
+                                </Button>
+                             </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center py-10 border-2 border-dashed rounded-lg">
+                    <p className="text-muted-foreground">No crops or livestock have been added to this farm yet.</p>
+                </div>
+            )}
         </CardContent>
       </Card>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Manage Fields */}
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Sprout className="h-8 w-8 text-primary"/>
-              <CardTitle>{t('fields.title')}</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>{t('fields.description')}</CardDescription>
-            <Button className="mt-4 w-full" variant="outline" disabled>{t('fields.button')}</Button>
-          </CardContent>
-        </Card>
-        
-        {/* Manage Crops */}
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader>
-             <div className="flex items-center gap-3">
-              <Tractor className="h-8 w-8 text-primary"/>
-              <CardTitle>{t('crops.title')}</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>{t('crops.description')}</CardDescription>
-            <Button className="mt-4 w-full" variant="outline" disabled>{t('crops.button')}</Button>
-          </CardContent>
-        </Card>
-
-        {/* Manage Activities */}
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader>
-             <div className="flex items-center gap-3">
-              <ClipboardList className="h-8 w-8 text-primary"/>
-              <CardTitle>{t('activities.title')}</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>{t('activities.description')}</CardDescription>
-            <Button className="mt-4 w-full" variant="outline" disabled>{t('activities.button')}</Button>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 }

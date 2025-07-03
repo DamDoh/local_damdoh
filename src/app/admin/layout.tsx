@@ -10,8 +10,7 @@ import { Shield, BookOpen, LayoutGrid } from "lucide-react";
 
 const adminNavItems = [
   { href: "/admin/content", label: "Content Management", icon: BookOpen },
-  { href: "/admin/categories", label: "Marketplace Categories", icon: LayoutGrid },
-  // Add more admin links here as needed
+  // { href: "/admin/categories", label: "Marketplace Categories", icon: LayoutGrid }, // This page doesn't exist yet
 ];
 
 export default function AdminLayout({

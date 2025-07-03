@@ -28,9 +28,9 @@ import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
 import { registerUser } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Sprout, Package, TrendingUp, Warehouse, Lightbulb, Landmark, Truck, Compass, BookOpen, Users, Factory, ShoppingBag, Globe, Scale, Clipboard, Recycle, Bolt, Banknote, Calendar, Network, MessageSquare, Tractor, Building2 } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Users } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { APP_NAME, STAKEHOLDER_ROLES } from "@/lib/constants";
+import { APP_NAME, STAKEHOLDER_ROLES, STAKEHOLDER_ICONS } from "@/lib/constants";
 import type { StakeholderRole } from "@/lib/constants";
 import React from "react";
 import { useTranslations } from "next-intl";
@@ -52,38 +52,6 @@ export default function SignUpPage() {
       confirmPassword: "",
     },
   });
-
-  // Mapping of stakeholder roles to Lucide icons
-  const STAKEHOLDER_ICONS: Record<string, React.ElementType> = {
-    'Farmer': Sprout,
-    'Agricultural Cooperative': Building2,
-    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
-    'Financial Institution (Micro-finance/Loans)': Banknote,
-    'Logistics Partner (Third-Party Transporter)': Truck,
-    'Processing & Packaging Unit': Factory,
-    'Agro-Export Facilitator/Customs Broker': TrendingUp,
-    'Government Regulator/Auditor': Scale,
-    'Field Agent/Agronomist (DamDoh Internal)': Compass,
-    'Operations/Logistics Team (DamDoh Internal)': Truck,
-    'Technology/Data Team (DamDoh Internal)': Bolt,
-    'Community Manager (DamDoh Internal)': Users,
-    'Agro-Tourism Operator': Globe,
-    'Researcher/Academic': BookOpen,
-    'Extension Worker': MessageSquare,
-    'NGO/Development Partner': Network,
-    'Environmental Specialist': Recycle,
-    'Crowdfunder (Impact Investor, Individual)': Banknote,
-    'Quality Assurance Team (DamDoh Internal)': Clipboard,
-    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
-    'Certification Body (Organic, Fair Trade etc.)': Scale,
-    'Consumer': User,
-    'Storage/Warehouse Facility': Warehouse,
-    'Agronomy Expert/Consultant (External)': BookOpen,
-    'Waste Management & Compost Facility': Recycle,
-    'Agri-Tech Innovator/Developer': Lightbulb,
-    'Insurance Provider': ShieldCheck,
-  };
 
   async function onSubmit(data: SignUpValues) {
     setIsLoading(true);
@@ -172,12 +140,15 @@ export default function SignUpPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {STAKEHOLDER_ROLES.map((role) => (
-                          <SelectItem key={role} value={role} className="flex items-center gap-2">
-                             {React.createElement(STAKEHOLDER_ICONS[role] || Users, { className: "mr-2 h-4 w-4 text-muted-foreground" })}
-                            <span>{role}</span>
-                          </SelectItem>
-                        ))}
+                        {STAKEHOLDER_ROLES.map((role) => {
+                          const Icon = STAKEHOLDER_ICONS[role] || Users;
+                          return (
+                            <SelectItem key={role} value={role} className="flex items-center gap-2">
+                               <Icon className="mr-2 h-4 w-4 text-muted-foreground" />
+                              <span>{role}</span>
+                            </SelectItem>
+                          );
+                        })}
                       </SelectContent>
                     </Select>
                     <FormMessage />

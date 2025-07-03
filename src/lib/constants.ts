@@ -26,10 +26,11 @@ export const STAKEHOLDER_ROLES = [
   'Energy Solutions Provider (Solar, Biogas)',
   'Agro-Export Facilitator/Customs Broker',
   'Agri-Tech Innovator/Developer',
-  'Retailer/City Market Seller',
   'Waste Management & Compost Facility',
-  'Crowdfunder (Impact Investor, Individual)'
+  'Crowdfunder (Impact Investor, Individual)',
+  'Insurance Provider'
 ] as const;
+
 
 export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
 
@@ -84,3 +85,39 @@ export const INSURANCE_SERVICE_TYPES = [
   'crop_insurance', 'livestock_insurance', 'property_insurance'
 ] as const;
 export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
+
+// Icon mapping for Stakeholder Roles
+import type { LucideIcon } from "lucide-react";
+import {
+  Sprout, Tractor, Package, Users, Briefcase, Truck, Warehouse, Cog, Award,
+  BookOpen, Leaf, Brain, TrendingUp, CircleDollarSign, GraduationCap,
+  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, MessageSquare, Building2,
+  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck
+} from 'lucide-react';
+
+export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
+    'Farmer': Sprout,
+    'Agricultural Cooperative': Building2,
+    'Field Agent/Agronomist (DamDoh Internal)': UserCheck,
+    'Operations/Logistics Team (DamDoh Internal)': Truck,
+    'Quality Assurance Team (DamDoh Internal)': Clipboard,
+    'Processing & Packaging Unit': Factory,
+    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
+    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
+    'Financial Institution (Micro-finance/Loans)': CircleDollarSign,
+    'Government Regulator/Auditor': Scale,
+    'Certification Body (Organic, Fair Trade etc.)': Award,
+    'Consumer': Users,
+    'Researcher/Academic': BookOpen,
+    'Logistics Partner (Third-Party Transporter)': Truck,
+    'Storage/Warehouse Facility': Warehouse,
+    'Agronomy Expert/Consultant (External)': GraduationCap,
+    'Agro-Tourism Operator': Home,
+    'Energy Solutions Provider (Solar, Biogas)': Sun,
+    'Agro-Export Facilitator/Customs Broker': GitBranch,
+    'Agri-Tech Innovator/Developer': Brain,
+    'Waste Management & Compost Facility': Recycle,
+    'Crowdfunder (Impact Investor, Individual)': Banknote,
+    'Insurance Provider': ShieldCheck,
+};

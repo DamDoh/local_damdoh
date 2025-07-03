@@ -36,16 +36,13 @@ export function DashboardRightSidebar() {
     setSuggestionError(null);
     try {
       const userInput: SuggestedConnectionsInput = {
-        profileSummary: profile.profileSummary || profile.bio || "No summary provided.",
-        stakeholderRole: (profile.role as StakeholderRole) || 'Farmer',
-        location: profile.location || "Unknown location",
-        preferences: Array.isArray(profile.areasOfInterest) ? profile.areasOfInterest.join(', ') : "General agriculture",
-        needs: Array.isArray(profile.needs) ? profile.needs.join(', ') : "General connections",
+        userId: profile.id,
+        count: 5,
       };
 
       const result: SuggestedConnectionsOutput = await suggestConnections(userInput);
-      if (result && result.suggestedConnections) {
-        setAiSuggestions(result.suggestedConnections.map(s => ({
+      if (result && result.suggestions) {
+        setAiSuggestions(result.suggestions.map(s => ({
           ...s,
           avatarUrl: s.avatarUrl || 'https://placehold.co/50x50.png',
           dataAiHint: `${s.role.toLowerCase().split(" ")[0]} profile`

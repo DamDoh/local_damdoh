@@ -25,5 +25,5 @@ export * from "./notifications";
 export * from "./types";
 export * from "./ai-services";
 export * from "./dashboard_data";
-
-    
+export * from "./search";
+export * from "./offline_sync";

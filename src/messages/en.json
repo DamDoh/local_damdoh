@@ -110,9 +110,9 @@
       "EnergyProvider": "Energy Solutions Provider (Solar, Biogas)",
       "AgroExporter": "Agro-Export Facilitator/Customs Broker",
       "AgriTech": "Agri-Tech Innovator/Developer",
-      "Retailer": "Retailer/City Market Seller",
       "WasteManagement": "Waste Management & Compost Facility",
-      "Crowdfunder": "Crowdfunder (Impact Investor, Individual)"
+      "Crowdfunder": "Crowdfunder (Impact Investor, Individual)",
+      "InsuranceProvider": "Insurance Provider"
     },
     "listingTypes": {
       "All": "All Types",

@@ -43,9 +43,9 @@ export const getStakeholderRoles = (t: ReturnType<typeof useTranslations>) => [
   { value: 'Energy Solutions Provider (Solar, Biogas)', label: t('stakeholderRoles.EnergyProvider') },
   { value: 'Agro-Export Facilitator/Customs Broker', label: t('stakeholderRoles.AgroExporter') },
   { value: 'Agri-Tech Innovator/Developer', label: t('stakeholderRoles.AgriTech') },
-  { value: 'Retailer/City Market Seller', label: t('stakeholderRoles.Retailer') },
   { value: 'Waste Management & Compost Facility', label: t('stakeholderRoles.WasteManagement') },
   { value: 'Crowdfunder (Impact Investor, Individual)', label: t('stakeholderRoles.Crowdfunder') },
+  { value: 'Insurance Provider', label: t('stakeholderRoles.InsuranceProvider') },
 ];
 
 export const getListingTypes = (t: ReturnType<typeof useTranslations>) => [
