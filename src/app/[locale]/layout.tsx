@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import '../globals.css';
 import { AppHeader } from "@/components/layout/AppHeader";
@@ -8,7 +7,7 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
  
 export const metadata: Metadata = {
   title: {
@@ -26,12 +25,21 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  const messages = await getMessages();
+  let messages;
+  try {
+    // This direct import is more robust for some build environments.
+    // It bypasses the need for getMessages() and a separate i18n.ts config file for messages.
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    // If a locale is requested that we don't have, show a 404 page.
+    // This is a safety mechanism.
+    notFound();
+  }
  
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <div className="flex flex-col min-h-screen">
               <AppHeader />

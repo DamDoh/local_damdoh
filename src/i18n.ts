@@ -1,2 +1,3 @@
-// This file is now obsolete. The correct configuration is located at the project root: /i18n.ts
-// This file can be safely deleted.
+// This file is obsolete and has been removed to avoid configuration conflicts.
+// The primary internationalization logic is now handled directly in the root layout
+// at /src/app/[locale]/layout.tsx.

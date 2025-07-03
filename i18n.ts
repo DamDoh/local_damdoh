@@ -1,15 +1,4 @@
-import {getRequestConfig} from 'next-intl/server';
- 
-export default getRequestConfig(async ({locale}) => {
-  // This is the crucial part: the path is now relative to the project root, 
-  // so it must include `src`.
-  let messages;
-  try {
-    messages = (await import(`./src/messages/${locale}.json`)).default;
-  } catch (error) {
-     console.warn(`Could not load messages for locale: ${locale}. Falling back to 'en'.`);
-     messages = (await import('./src/messages/en.json')).default;
-  }
- 
-  return {messages};
-});
+// This file is obsolete. The message loading logic has been moved directly
+// into the root layout at /src/app/[locale]/layout.tsx for greater stability.
+// The middleware configuration is self-contained in middleware.ts.
+// This file can be safely deleted.
