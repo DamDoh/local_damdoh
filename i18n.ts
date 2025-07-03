@@ -11,7 +11,7 @@ export default getRequestConfig(async ({locale}) => {
   let messages;
   try {
     // Use a switch statement for static analysis by build tools.
-    // The path is now relative to the root directory.
+    // The path is relative to the root directory where this file lives.
     switch (locale) {
       case 'en':
         messages = (await import('./src/messages/en.json')).default;
@@ -35,9 +35,12 @@ export default getRequestConfig(async ({locale}) => {
       case 'vi': messages = (await import('./src/messages/vi.json')).default; break;
       case 'zh': messages = (await import('./src/messages/zh.json')).default; break;
       default:
+        // Default to English if a locale is not explicitly handled.
         messages = (await import('./src/messages/en.json')).default;
     }
   } catch (error) {
+    // If a specific locale file is missing or has an error, fall back gracefully.
+    console.error(`Could not load messages for locale: ${locale}`, error);
     notFound();
   }
 
