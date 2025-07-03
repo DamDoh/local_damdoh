@@ -19,7 +19,7 @@ export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
-export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Cooperative" | "Field Agent" | "Financial Institution" | "Logistics" | "Processor" | "Researcher" | "QA" | "Certifier" | "Insurance" | "Energy" | "Tourism" | "Packaging" | "Export" | "Crowdfunder" | "Consumer" | "General";
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)";
 
 
 export interface MarketplaceCoupon {
@@ -53,6 +53,16 @@ export interface Shop {
     };
     itemCount: number;
     rating: number;
+}
+
+export type ForumGroup = {
+  id: string;
+  name: string;
+  description: string;
+  memberCount: number;
+  isPublic: boolean;
+  ownerId: string;
+  createdAt: string; // ISO String
 }
 
 // =================================================================
@@ -295,24 +305,6 @@ export interface WarehouseDashboardData {
     actionLink: string;
   }[];
 }
-
-export interface PackagingSupplierDashboardData {
-  demandForecast: {
-    productType: string;
-    unitsNeeded: number;
-    for: string;
-  };
-  integrationRequests: {
-    from: string;
-    request: string;
-    actionLink: string;
-  }[];
-  sustainableShowcase: {
-    views: number;
-    leads: number;
-  };
-}
-
 
 export interface QaDashboardData {
   pendingInspections: {

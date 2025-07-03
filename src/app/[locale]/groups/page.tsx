@@ -46,10 +46,12 @@ export default function GroupsPage() {
     }, [getGroupsCallable, toast]);
 
     const filteredGroups = useMemo(() => {
-        return groups.filter(group => 
-            group.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            group.description.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        return (groups || []).filter(group => {
+            if (!group) return false;
+            const nameMatch = group.name?.toLowerCase().includes(searchTerm.toLowerCase()) || false;
+            const descMatch = group.description?.toLowerCase().includes(searchTerm.toLowerCase()) || false;
+            return nameMatch || descMatch;
+        });
     }, [groups, searchTerm]);
 
     return (
@@ -111,5 +113,3 @@ export default function GroupsPage() {
         </div>
     );
 }
-
-    

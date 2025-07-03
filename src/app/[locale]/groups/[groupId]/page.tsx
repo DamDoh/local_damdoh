@@ -44,13 +44,16 @@ export default function GroupPage() {
                 getGroupDetails({ groupId }),
                 getGroupMembers({ groupId })
             ]);
+            
+            const groupData = groupDetailsResult.data as ForumGroup | null;
+            // Updated to handle object response from backend
+            const membersData = (groupMembersResult.data as { members: UserProfile[] })?.members || [];
 
-            setGroup(groupDetailsResult.data as ForumGroup);
-            const fetchedMembers = (groupMembersResult.data as UserProfile[]) || [];
-            setMembers(fetchedMembers);
+            setGroup(groupData);
+            setMembers(membersData);
 
-            if (user) {
-                const memberIds = fetchedMembers.map(m => m.id);
+            if (user && membersData) {
+                const memberIds = membersData.map(m => m.id);
                 setIsMember(memberIds.includes(user.uid));
             }
 
@@ -82,7 +85,7 @@ export default function GroupPage() {
             await joinGroup({ groupId });
             // Optimistic update
             setIsMember(true);
-            setMembers(prev => [...prev, { id: user.uid, name: user.displayName || 'You', avatarUrl: user.photoURL || '' } as UserProfile]);
+            setMembers(prev => [...prev, { id: user.uid, displayName: user.displayName || 'You', avatarUrl: user.photoURL || '' } as UserProfile]);
             if (group) setGroup(g => g ? {...g, memberCount: g.memberCount + 1} : null);
 
             toast({ title: "Successfully joined the group!" });
@@ -198,13 +201,13 @@ export default function GroupPage() {
                             <CardTitle className="text-lg">Members ({group.memberCount})</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
-                            {members.map(member => (
+                            {(members || []).filter(Boolean).map(member => (
                                 <div key={member.id} className="flex items-center gap-3">
                                     <Avatar>
-                                        <AvatarImage src={member.avatarUrl} alt={member.name} data-ai-hint="profile person agriculture" />
-                                        <AvatarFallback>{member.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
+                                        <AvatarImage src={member.avatarUrl} alt={member.displayName} data-ai-hint="profile person agriculture" />
+                                        <AvatarFallback>{member.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
-                                    <span className="font-medium text-sm">{member.name}</span>
+                                    <span className="font-medium text-sm">{member.displayName}</span>
                                 </div>
                             ))}
                         </CardContent>
