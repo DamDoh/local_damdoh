@@ -238,7 +238,7 @@ export function AppHeader() {
                   <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
                     <Link href="/auth/signin"><LogIn className="mr-1.5 h-3.5 w-3.5"/>{t('signIn')}</Link>
                   </Button>
-                  <Button variant="outline" asChild className="text-primary bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
+                  <Button variant="outline" asChild className="text-white bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
                     <Link href="/auth/signup"><UserPlus className="mr-1.5 h-3.5 w-3.5"/>{t('signUp')}</Link>
                   </Button>
                 </div>

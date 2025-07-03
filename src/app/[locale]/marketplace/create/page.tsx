@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Loader2, Sparkles, Save } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -51,8 +51,13 @@ export default function CreateListingPage() {
         location: "",
         isSustainable: false,
         imageUrl: "",
+        skillsRequired: "",
+        experienceLevel: "",
+        compensation: ""
       },
     });
+
+    const listingType = form.watch('listingType');
 
     const handleSuggestPrice = async () => {
       const { name, description, category, location } = form.getValues();
@@ -90,7 +95,12 @@ export default function CreateListingPage() {
 
         setIsSubmitting(true);
         try {
-            await createListingCallable(data);
+            // Transform the comma-separated string of skills into an array
+            const payload = {
+                ...data,
+                skillsRequired: data.skillsRequired ? data.skillsRequired.split(',').map(s => s.trim()).filter(Boolean) : [],
+            };
+            await createListingCallable(payload);
             toast({ title: "Success!", description: "Your listing has been created." });
             router.push('/marketplace');
         } catch (error: any) {
@@ -214,48 +224,88 @@ export default function CreateListingPage() {
                               )}
                             />
 
-                            <div>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
-                                   <FormField
-                                      control={form.control}
-                                      name="price"
-                                      render={({ field }) => (
-                                        <FormItem className="sm:col-span-2">
-                                          <FormLabel>{t('form.priceLabel')}</FormLabel>
-                                          <FormControl>
-                                            <Input type="number" step="0.01" placeholder={t('form.pricePlaceholder')} {...field} />
-                                          </FormControl>
-                                          <FormMessage />
-                                        </FormItem>
-                                      )}
+                            {listingType === 'Service' ? (
+                                <>
+                                    <FormField
+                                        control={form.control}
+                                        name="compensation"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />{t('form.compensationLabel')}</FormLabel>
+                                                <FormControl><Input placeholder={t('form.compensationPlaceholder')} {...field} /></FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
                                     />
-                                     <FormField
-                                      control={form.control}
-                                      name="perUnit"
-                                      render={({ field }) => (
-                                        <FormItem>
-                                          <FormLabel>{t('form.unitLabel')}</FormLabel>
-                                          <FormControl>
-                                            <Input placeholder={t('form.unitPlaceholder')} {...field} />
-                                          </FormControl>
-                                          <FormMessage />
-                                        </FormItem>
-                                      )}
+                                    <FormField
+                                        control={form.control}
+                                        name="experienceLevel"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="flex items-center gap-2"><Star className="h-4 w-4 text-muted-foreground" />{t('form.experienceLabel')}</FormLabel>
+                                                <FormControl><Input placeholder={t('form.experiencePlaceholder')} {...field} /></FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
                                     />
+                                    <FormField
+                                        control={form.control}
+                                        name="skillsRequired"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{t('form.skillsLabel')}</FormLabel>
+                                                <FormControl><Textarea placeholder={t('form.skillsPlaceholder')} {...field} /></FormControl>
+                                                <FormDescription>{t('form.skillsDescription')}</FormDescription>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </>
+                            ) : (
+                                <div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                                    <FormField
+                                        control={form.control}
+                                        name="price"
+                                        render={({ field }) => (
+                                            <FormItem className="sm:col-span-2">
+                                            <FormLabel>{t('form.priceLabel')}</FormLabel>
+                                            <FormControl>
+                                                <Input type="number" step="0.01" placeholder={t('form.pricePlaceholder')} {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                            </FormItem>
+                                        )}
+                                        />
+                                        <FormField
+                                        control={form.control}
+                                        name="perUnit"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                            <FormLabel>{t('form.unitLabel')}</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder={t('form.unitPlaceholder')} {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                            </FormItem>
+                                        )}
+                                        />
+                                    </div>
+                                    <div className="mt-2 flex flex-col items-start gap-2">
+                                        <Button type="button" variant="outline" size="sm" onClick={handleSuggestPrice} disabled={isSuggestingPrice}>
+                                        {isSuggestingPrice ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Sparkles className="mr-2 h-4 w-4"/>}
+                                        Suggest Price with AI
+                                        </Button>
+                                        {suggestedPrice && (
+                                        <div className="p-2 bg-primary/10 text-primary-foreground/90 rounded-md text-sm flex items-center gap-2">
+                                            <span>AI Suggestion: <strong>${suggestedPrice}</strong></span>
+                                            <Button type="button" size="sm" className="h-auto px-2 py-1 text-xs" onClick={() => {form.setValue('price', parseFloat(suggestedPrice)); setSuggestedPrice(null);}}>Use this price</Button>
+                                        </div>
+                                        )}
+                                    </div>
                                 </div>
-                                 <div className="mt-2 flex flex-col items-start gap-2">
-                                    <Button type="button" variant="outline" size="sm" onClick={handleSuggestPrice} disabled={isSuggestingPrice}>
-                                      {isSuggestingPrice ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Sparkles className="mr-2 h-4 w-4"/>}
-                                      Suggest Price with AI
-                                    </Button>
-                                    {suggestedPrice && (
-                                      <div className="p-2 bg-primary/10 text-primary-foreground/90 rounded-md text-sm flex items-center gap-2">
-                                        <span>AI Suggestion: <strong>${suggestedPrice}</strong></span>
-                                        <Button type="button" size="sm" className="h-auto px-2 py-1 text-xs" onClick={() => {form.setValue('price', parseFloat(suggestedPrice)); setSuggestedPrice(null);}}>Use this price</Button>
-                                      </div>
-                                    )}
-                                </div>
-                            </div>
+                            )}
+
                              <FormField
                               control={form.control}
                               name="imageUrl"

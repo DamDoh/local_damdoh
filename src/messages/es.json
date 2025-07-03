@@ -47,5 +47,52 @@
     "search": "Buscar",
     "forums": "Foros",
     "profile": "Perfil"
+  },
+   "Marketplace": {
+      "create": {
+          "backLink": "Volver al Mercado",
+          "title": "Crear un Nuevo Anuncio",
+          "description": "Comparte un producto o servicio con la red de DamDoh.",
+          "form": {
+              "nameLabel": "Nombre del Anuncio",
+              "namePlaceholder": "Ej: Aguacates Orgánicos Hass, Servicio de Alquiler de Tractor",
+              "typeLabel": "Tipo de Anuncio",
+              "typePlaceholder": "Selecciona un tipo de anuncio",
+              "descriptionLabel": "Descripción",
+              "descriptionPlaceholder": "Proporciona una descripción detallada de tu producto o servicio.",
+              "locationLabel": "Ubicación",
+              "locationPlaceholder": "Ej: Nairobi, Kenia o California, EE. UU.",
+              "categoryLabel": "Categoría",
+              "categoryPlaceholder": "Selecciona la categoría más relevante",
+              "priceLabel": "Precio",
+              "pricePlaceholder": "Ej: 25.50",
+              "unitLabel": "Unidad",
+              "unitPlaceholder": "Ej: por kg, por hora",
+              "imageUrlLabel": "URL de la Imagen (Opcional)",
+              "sustainableLabel": "Producto/Servicio Sostenible",
+              "sustainableDescription": "Este artículo o servicio utiliza o promueve prácticas sostenibles.",
+              "compensationLabel": "Compensación / Tarifa",
+              "compensationPlaceholder": "Ej: $50/hora, Basado en proyecto, KES 5,000/día",
+              "experienceLabel": "Nivel de Experiencia",
+              "experiencePlaceholder": "Ej: 5+ años, Profesional Certificado",
+              "skillsLabel": "Habilidades Requeridas",
+              "skillsPlaceholder": "Enumera las habilidades o cualificaciones clave para este servicio.",
+              "skillsDescription": "Separa las habilidades con una coma.",
+              "submittingButton": "Enviando...",
+              "submitButton": "Crear Anuncio"
+          }
+      }
+  },
+  "talentExchangePage": {
+      "title": "Bolsa de Talentos",
+      "description": "Encuentra profesionales calificados y servicios en toda la cadena de valor agrícola.",
+      "listServiceButton": "Publicar un Servicio",
+      "searchPlaceholder": "Buscar por habilidad, servicio o profesional...",
+      "locationPlaceholder": "Filtrar por ubicación...",
+      "rolePlaceholder": "Filtrar por rol...",
+      "allRoles": "Todos los roles",
+      "noResultsTitle": "No se encontraron servicios",
+      "noResultsDescription": "Intenta ajustar tus filtros de búsqueda o vuelve a consultar más tarde para ver nuevos anuncios.",
+      "viewServiceButton": "Ver Servicio"
   }
 }

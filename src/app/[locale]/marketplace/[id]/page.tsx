@@ -15,8 +15,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
 
 function ItemPageSkeleton() {
     return (
@@ -115,6 +116,13 @@ export default function MarketplaceItemPage() {
     }
 
     const isOwner = user?.uid === item.sellerId;
+    
+    // Robustly handle skillsRequired, which might be an array, a string, or undefined.
+    const skills: string[] = Array.isArray(item.skillsRequired)
+        ? item.skillsRequired
+        : (typeof item.skillsRequired === 'string' && item.skillsRequired)
+            ? item.skillsRequired.split(',').map(s => s.trim())
+            : [];
 
     return (
         <div className="max-w-4xl mx-auto space-y-6">
@@ -144,8 +152,16 @@ export default function MarketplaceItemPage() {
                         <Badge variant="secondary">{item.category}</Badge>
                         <h1 className="text-3xl font-bold mt-2">{item.name}</h1>
                         <p className="text-3xl font-light text-primary flex items-center gap-2 mt-2">
-                           <DollarSign className="h-7 w-7"/> {item.price?.toFixed(2)} 
-                           <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
+                           {item.listingType === 'Product' ? (
+                                <>
+                                    <DollarSign className="h-7 w-7"/> {item.price?.toFixed(2)} 
+                                    <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
+                                </>
+                           ) : (
+                                <>
+                                    <DollarSign className="h-7 w-7"/> {item.compensation || 'Contact for rates'}
+                                </>
+                           )}
                         </p>
                         <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
                             <MapPin className="h-4 w-4"/> {item.location}
@@ -154,6 +170,28 @@ export default function MarketplaceItemPage() {
 
                     <p className="text-muted-foreground whitespace-pre-line">{item.description}</p>
                     
+                    {item.listingType === 'Service' && (
+                        <div className="space-y-4">
+                            <Separator />
+                             {skills.length > 0 && (
+                                <div>
+                                    <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-primary" />Skills Required</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {skills.map((skill, index) => (
+                                            <Badge key={index} variant="outline">{skill.trim()}</Badge>
+                                        ))}
+                                    </div>
+                                </div>
+                             )}
+                              {item.experienceLevel && (
+                                <div>
+                                    <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><Star className="h-4 w-4 text-primary" />Experience Level</h3>
+                                    <p className="text-sm text-muted-foreground">{item.experienceLevel}</p>
+                                </div>
+                             )}
+                            <Separator />
+                        </div>
+                    )}
                      {seller && (
                         <Card>
                             <CardHeader>
@@ -182,7 +220,7 @@ export default function MarketplaceItemPage() {
                              <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />Edit Listing</Button>
                         ) : (
                             <>
-                                <Button size="lg" className="w-full"><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>
+                                {item.listingType === 'Product' && <Button size="lg" className="w-full"><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>}
                                 <Button asChild size="lg" variant="outline" className="w-full">
                                     <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact Seller</Link>
                                 </Button>
