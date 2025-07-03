@@ -7,7 +7,7 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
  
 export const metadata: Metadata = {
   title: {
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   description: "The Global Agricultural Supply Chain Platform",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
+
+// All locales are listed here to validate the parameter
+const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'];
  
 export default async function LocaleLayout({
   children,
@@ -25,7 +28,19 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  const messages = await getMessages();
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale)) notFound();
+
+  let messages;
+  try {
+    // Load the messages for the current locale directly, bypassing getMessages()
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    // If a translation file is missing, you can either log the error
+    // and use a fallback (like English) or show a 404 page.
+    console.error(`Could not load messages for locale: ${locale}`, error);
+    notFound();
+  }
  
   return (
     <html lang={locale} suppressHydrationWarning>
