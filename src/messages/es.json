@@ -1,4 +1,50 @@
-
 {
-  "placeholder": "This is a placeholder for translations."
+  "AppHeader": {
+    "home": "Inicio",
+    "network": "Red",
+    "farmMgmt": "Granja",
+    "marketplace": "Mercado",
+    "talentExchange": "Talento",
+    "traceability": "Trazabilidad",
+    "forums": "Foros",
+    "notifications": "Notificaciones",
+    "messages": "Mensajes",
+    "wallet": "Cartera",
+    "searchPlaceholder": "Buscar personas, productos, servicios...",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "settings": "Configuración",
+    "logOut": "Cerrar Sesión"
+  },
+  "AppFooter": {
+    "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre Nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de Ayuda",
+    "communityGuidelinesLabel": "Normas de la Comunidad",
+    "industryNewsLabel": "Noticias de la Industria",
+    "eventsLabel": "Eventos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de Privacidad",
+    "termsOfServiceLabel": "Términos de Servicio",
+    "getMobileApp": "Obtén la App de DamDoh",
+    "googlePlayAlt": "Obtenlo en Google Play",
+    "appStoreAlt": "Descárgalo en la App Store",
+    "copyright": "© {year} {appName}. Todos los Derechos Reservados."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Cambiar Idioma"
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  }
 }
