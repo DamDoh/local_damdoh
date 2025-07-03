@@ -73,7 +73,7 @@ export const EquipmentSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(listedEquipment && listedEquipment.length > 0) ? (
+                       {(listedEquipment?.length > 0) ? (
                            listedEquipment.map(item => (
                                <div key={item.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -99,7 +99,7 @@ export const EquipmentSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {(pendingMaintenanceRequests && pendingMaintenanceRequests.length > 0) ? (
+                       {(pendingMaintenanceRequests?.length > 0) ? (
                            pendingMaintenanceRequests.map(req => (
                                 <div key={req.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>

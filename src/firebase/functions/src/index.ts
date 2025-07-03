@@ -27,3 +27,6 @@ export * from "./ai-services";
 export * from "./dashboard_data";
 export * from "./search";
 export * from "./offline_sync";
+export * from "./forums";
+export * from "./groups";
+export * from "./messages";

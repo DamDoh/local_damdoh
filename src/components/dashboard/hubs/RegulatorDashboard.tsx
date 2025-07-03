@@ -46,7 +46,7 @@ export const RegulatorDashboard = () => {
         );
     }
 
-    const { complianceRiskAlerts = [], pendingCertifications, supplyChainAnomalies = [] } = dashboardData;
+    const { complianceRiskAlerts, pendingCertifications, supplyChainAnomalies } = dashboardData;
 
     const getSeverityBadge = (severity: string) => {
         switch (severity.toLowerCase()) {
@@ -89,7 +89,7 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {complianceRiskAlerts.length > 0 ? (
+                       {(complianceRiskAlerts?.length > 0) ? (
                            complianceRiskAlerts.map(alert => (
                                <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -116,7 +116,7 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {supplyChainAnomalies.length > 0 ? (
+                       {(supplyChainAnomalies?.length > 0) ? (
                            supplyChainAnomalies.map(anomaly => (
                                 <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                    <div>

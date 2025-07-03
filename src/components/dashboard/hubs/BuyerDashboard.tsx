@@ -57,7 +57,7 @@ export const BuyerDashboard = () => {
         );
     }
 
-    const { supplyChainRisk, sourcingRecommendations = [], marketPriceIntelligence } = dashboardData;
+    const { supplyChainRisk, sourcingRecommendations, marketPriceIntelligence } = dashboardData;
 
     return (
         <div>
@@ -107,7 +107,7 @@ export const BuyerDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-3">
-                        {sourcingRecommendations.length > 0 ? (
+                        {(sourcingRecommendations?.length > 0) ? (
                             sourcingRecommendations.map(rec => (
                                 <div key={rec.id} className="p-3 rounded-md border text-sm bg-background">
                                     <div className="flex justify-between items-start">

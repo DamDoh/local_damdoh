@@ -72,7 +72,7 @@ export const WasteManagementDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(incomingWasteStreams && incomingWasteStreams.length > 0) ? (
+                       {(incomingWasteStreams?.length > 0) ? (
                             incomingWasteStreams.map(stream => (
                                <div key={stream.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -96,7 +96,7 @@ export const WasteManagementDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {(compostBatches && compostBatches.length > 0) ? (
+                       {(compostBatches?.length > 0) ? (
                             compostBatches.map(batch => (
                                 <div key={batch.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
@@ -120,7 +120,7 @@ export const WasteManagementDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(finishedProductInventory && finishedProductInventory.length > 0) ? (
+                       {(finishedProductInventory?.length > 0) ? (
                            finishedProductInventory.map(item => (
                                <div key={item.product} className="text-sm">
                                    <p className="font-medium">{item.product}</p>
@@ -129,7 +129,7 @@ export const WasteManagementDashboard = () => {
                            ))
                         ) : (
                            <p className="text-sm text-center text-muted-foreground py-4">No finished products.</p>
-                        )}
+                       )}
                     </CardContent>
                      <CardFooter>
                          <Button asChild className="w-full">

@@ -93,7 +93,7 @@ export const AgroTourismDashboard = () => {
              <CardDescription>Your scheduled agro-tourism experiences.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(upcomingBookings && upcomingBookings.length > 0) ? (
+             {(upcomingBookings?.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -131,7 +131,7 @@ export const AgroTourismDashboard = () => {
              <CardDescription>Manage your agro-tourism offerings.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(listedExperiences && listedExperiences.length > 0) ? (
+             {(listedExperiences?.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -171,7 +171,7 @@ export const AgroTourismDashboard = () => {
                 <CardDescription>Latest feedback from your guests.</CardDescription>
             </CardHeader>
             <CardContent>
-                {(guestReviews && guestReviews.length > 0) ? (
+                {(guestReviews?.length > 0) ? (
                     <div className="space-y-3">
                         {guestReviews.map((review) => (
                             <div key={review.id} className="text-sm p-3 border rounded-lg">

@@ -88,7 +88,7 @@ export const EnergyProviderDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><Zap className="h-4 w-4 text-yellow-500"/> Project Leads</CardTitle>
-            <CardDescription>{(projectLeads || []).length || 0} potential projects</CardDescription>
+            <CardDescription>{(projectLeads?.length || 0)} potential projects</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">{(projectLeads || []).filter(p => p.status === 'New').length || 0}</div>
@@ -99,7 +99,7 @@ export const EnergyProviderDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Active & Completed Projects</CardTitle>
-            <CardDescription>{(activeProjects || []).length || 0} total active projects</CardDescription>
+            <CardDescription>{(activeProjects?.length || 0)} total active projects</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-bold">{(activeProjects || []).filter(p => p.status === 'Completed').length || 0}</div>
@@ -124,7 +124,7 @@ export const EnergyProviderDashboard = () => {
              <CardDescription>Potential opportunities for energy solution installations.</CardDescription>
           </CardHeader>
           <CardContent>
-            {(projectLeads && projectLeads.length > 0) ? (
+            {(projectLeads?.length > 0) ? (
               <Table>
                 <TableHeader>
                   <TableRow>

@@ -13,7 +13,6 @@ import type {
     AgroExportDashboardData,
     ProcessingUnitDashboardData,
     WarehouseDashboardData,
-    PackagingSupplierDashboardData,
     QaDashboardData,
     CertificationBodyDashboardData,
     ResearcherDashboardData,
@@ -21,7 +20,9 @@ import type {
     AgroTourismDashboardData,
     InsuranceProviderDashboardData,
     EnergyProviderDashboardData,
-    CrowdfunderDashboardData
+    CrowdfunderDashboardData,
+    EquipmentSupplierDashboardData,
+    WasteManagementDashboardData
 } from "./types";
 
 const db = admin.firestore();
@@ -260,20 +261,6 @@ export const getWarehouseDashboardData = functions.https.onCall(
   }
 );
 
-export const getPackagingSupplierDashboardData = functions.https.onCall(
-  (data, context): PackagingSupplierDashboardData => {
-    checkAuth(context);
-    return {
-        demandForecast: { productType: '5kg Aseptic Bags', unitsNeeded: 5000, for: 'Fruit Processors' },
-        integrationRequests: [
-            { from: 'FreshFoods Processors', request: 'API integration for automated ordering.', actionLink: '#' }
-        ],
-        sustainableShowcase: { views: 520, leads: 12 }
-    };
-  }
-);
-
-
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
     checkAuth(context);
@@ -406,3 +393,38 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
     };
   }
 );
+
+export const getEquipmentSupplierDashboardData = functions.https.onCall(
+  (data, context): EquipmentSupplierDashboardData => {
+    checkAuth(context);
+    return {
+      listedEquipment: [
+        { id: 'equip1', name: 'John Deere S780 Combine', type: 'Rental', status: 'Available', actionLink: '#' },
+        { id: 'equip2', name: 'Tractor-pulled Plow', type: 'Sale', status: 'Available', actionLink: '#' },
+      ],
+      rentalActivity: { totalRentals: 32, mostRented: 'John Deere S780 Combine' },
+      pendingMaintenanceRequests: [
+        { id: 'maint1', equipmentName: 'Irrigation Pump', issue: 'Low pressure', farmerName: 'Sunrise Farms', actionLink: '#' }
+      ]
+    };
+  }
+);
+
+export const getWasteManagementDashboardData = functions.https.onCall(
+  (data, context): WasteManagementDashboardData => {
+    checkAuth(context);
+    return {
+      incomingWasteStreams: [
+        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
+      ],
+      compostBatches: [
+        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
+        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
+      ],
+      finishedProductInventory: [
+        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
+      ]
+    };
+  }
+);
+    

@@ -280,6 +280,7 @@ export interface ProcessingUnitDashboardData {
   }[];
 }
 
+
 export interface WarehouseDashboardData {
   storageOptimization: {
     utilization: number;
@@ -294,24 +295,6 @@ export interface WarehouseDashboardData {
     actionLink: string;
   }[];
 }
-
-export interface PackagingSupplierDashboardData {
-  demandForecast: {
-    productType: string;
-    unitsNeeded: number;
-    for: string;
-  };
-  integrationRequests: {
-    from: string;
-    request: string;
-    actionLink: string;
-  }[];
-  sustainableShowcase: {
-    views: number;
-    leads: number;
-  };
-}
-
 
 export interface QaDashboardData {
   pendingInspections: {
@@ -450,6 +433,47 @@ export interface CrowdfunderDashboardData {
   }[];
 }
 
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+    mostRented: string;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+
+
 export interface KnfBatch {
     id: string;
     userId: string;
@@ -542,8 +566,7 @@ export interface InsuranceProviderDashboardData {
     policyHolderName: string;
     policyType: string;
     coverageAmount: number;
-    expiryDate: string; // ISO string;
-    actionLink: string;
+    expiryDate: string; // ISO string
   }[];
 }
 

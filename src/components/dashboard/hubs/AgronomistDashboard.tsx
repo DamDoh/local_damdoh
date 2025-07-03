@@ -91,7 +91,7 @@ export const AgronomistDashboard = () => {
              <CardDescription>Farmers seeking your expertise.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(pendingConsultationRequests && pendingConsultationRequests.length > 0) ? (
+             {(pendingConsultationRequests?.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -129,7 +129,7 @@ export const AgronomistDashboard = () => {
              <CardDescription>Overview of farmers in your portfolio.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(assignedFarmersOverview && assignedFarmersOverview.length > 0) ? (
+             {(assignedFarmersOverview?.length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -169,7 +169,7 @@ export const AgronomistDashboard = () => {
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {(knowledgeBaseContributions && knowledgeBaseContributions.length > 0) ? (
+                {(knowledgeBaseContributions?.length > 0) ? (
                     <div className="space-y-3">
                         {knowledgeBaseContributions.map((contribution: any) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">

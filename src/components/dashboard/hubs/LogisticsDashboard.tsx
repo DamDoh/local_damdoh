@@ -46,7 +46,7 @@ export const LogisticsDashboard = () => {
         );
     }
 
-    const { activeShipments = [], incomingJobs = [], performanceMetrics } = dashboardData;
+    const { activeShipments, incomingJobs, performanceMetrics } = dashboardData;
 
     return (
         <div>
@@ -77,7 +77,7 @@ export const LogisticsDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {activeShipments.length > 0 ? (
+                       {(activeShipments?.length > 0) ? (
                            activeShipments.map(shipment => (
                                <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -106,7 +106,7 @@ export const LogisticsDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {incomingJobs.length > 0 ? (
+                       {(incomingJobs?.length > 0) ? (
                            incomingJobs.map(job => (
                                 <div key={job.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
