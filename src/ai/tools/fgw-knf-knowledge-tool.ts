@@ -25,7 +25,6 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
     try {
       const searchTerm = input.techniqueName.toLowerCase();
       
-      // Use Admin SDK syntax to query Firestore
       const articlesRef = adminDb.collection('knowledge_base');
       const snapshot = await articlesRef.get();
       
@@ -37,9 +36,10 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
       const allDocs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
       // Find the first document where the name or ID contains the search term.
+      // This allows for more flexible matching (e.g., "FPJ" matches "Fermented Plant Juice (FPJ)").
       const result = allDocs.find(doc => 
         (doc.name && doc.name.toLowerCase().includes(searchTerm)) || 
-        (doc.id && doc.id.toLowerCase().includes(searchTerm))
+        (doc.id && doc.id.toLowerCase().replace(/_/g, ' ').includes(searchTerm))
       );
       
       if (!result) {

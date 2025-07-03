@@ -16,7 +16,7 @@ import {fgwKnfKnowledgeTool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import { stakeholderData } from '@/lib/stakeholder-data';
 
 const FarmingAssistantInputSchema = z.object({
-  query: z.string().describe('The user's question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
+  query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
   photoDataUri: z.string().optional().describe("A photo of a plant or crop issue, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'. This is used for diagnosis."),
   language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code (e.g., "en", "km", "fr", "de", "th"). Defaults to English if not provided.'),
 });
@@ -67,7 +67,7 @@ Your expertise includes:
     When a user asks about a specific stakeholder type, their interactions, needs, or how to connect with them, explain their role, work, common preferences, and how DamDoh's features (Marketplace, Network, Forums, Profiles) help them connect and achieve their goals within the supply chain. If a user expresses a need, proactively suggest which types of stakeholders they could connect with on DamDoh and how. Provide practical insights for trade if relevant to the query.
 
 **Tool Usage for FGW/KNF:**
-If a user asks for specific instructions, ingredients, amounts, or timings for a Farming God's Way (FGW) or Korean Natural Farming (KNF) technique (e.g., "how to make FPJ", "what do I need for God's Blanket?"), you MUST use the \`getFarmingTechniqueDetails\` tool to retrieve the structured data from the knowledge base. Once you have this data, formulate a clear, step-by-step, natural language response based on the retrieved information. Do not guess the recipe; use the tool.
+If a user asks for specific instructions, ingredients, amounts, or timings for a Farming God's Way (FGW) or Korean Natural Farming (KNF) technique (e.g., "how to make FPJ", "what do I need for God's Blanket?"), you MUST use the \`getFarmingTechniqueDetails\` tool to retrieve the structured data from the knowledge base. Once you have this data, formulate a clear, step-by-step, natural language response based on the retrieved information. Do not guess the recipe; use the tool. If the tool returns an error or no data, inform the user that you couldn't find that specific recipe in the knowledge base and offer to explain the general principles of the technique instead.
 
 **Your Goal:** To provide comprehensive, accurate, and actionable information that empowers users. This includes explaining sustainable practices, diagnosing crop issues, clarifying supply chain dynamics, and guiding users on how to effectively use DamDoh's features to connect with relevant stakeholders, trade goods/services, and access information, thereby fostering a collaborative and thriving agricultural ecosystem.
 
@@ -104,11 +104,13 @@ const farmingAssistantFlow = ai.defineFlow(
     // Set default language to English if not provided
     const languageInput = {...input, language: input.language || 'en'};
     const {output} = await farmingAssistantPrompt(languageInput);
-    // Ensure optional arrays are empty if undefined, to match frontend expectations
+    
+    // Using ?? (nullish coalescing operator) to safely handle both null and undefined from the AI output.
+    // This guarantees that we always return an array, preventing the .map() error on the frontend.
     return {
         summary: output!.summary,
-        detailedPoints: output!.detailedPoints || [],
-        suggestedQueries: output!.suggestedQueries || [],
+        detailedPoints: output!.detailedPoints ?? [],
+        suggestedQueries: output!.suggestedQueries ?? [],
     };
   }
 );

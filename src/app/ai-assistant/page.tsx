@@ -2,7 +2,6 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent, ChangeEvent } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Leaf, Info, Send, Volume2, Bot, User, ImageUp, Camera, XCircle, RefreshCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -42,7 +41,6 @@ const initialWelcomeMessage: ChatMessage = {
 
 
 export default function AiAssistantPage() {
-  const { t, i18n } = useTranslation('common');
   const [inputQuery, setInputQuery] = useState('');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([initialWelcomeMessage]);
   const [isLoading, setIsLoading] = useState(false);
@@ -185,7 +183,7 @@ export default function AiAssistantPage() {
       const aiResponse = await askFarmingAssistant({
         query: query || (currentImageToSend ? "Please analyze this image." : "Empty query"),
         photoDataUri: currentImageToSend || undefined,
-        language: i18n.language,
+        language: 'en',
       });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-${Date.now() + 1}`,
@@ -224,7 +222,7 @@ export default function AiAssistantPage() {
     setIsLoading(true);
 
     try {
-      const aiResponse = await askFarmingAssistant({ query, language: i18n.language });
+      const aiResponse = await askFarmingAssistant({ query, language: 'en' });
       const newAssistantMessage: ChatMessage = {
         id: `assistant-suggestion-response-${Date.now()}`,
         role: 'assistant',
@@ -256,10 +254,10 @@ export default function AiAssistantPage() {
         <CardHeader className="border-b flex-row justify-between items-center">
           <CardTitle className="flex items-center gap-2 text-xl">
             <Bot className="h-6 w-6 text-primary" />
-            <span>{t('aiAssistant.title')}</span>
+            <span>AI Farming Assistant</span>
           </CardTitle>
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon" className="h-9 w-9" onClick={resetChat} title={t('aiAssistant.resetConversation')}>
+            <Button variant="outline" size="icon" className="h-9 w-9" onClick={resetChat} title="Reset Conversation">
               <RefreshCcw className="h-4 w-4"/>
             </Button>
           </div>
@@ -405,18 +403,18 @@ export default function AiAssistantPage() {
 
         <CardFooter className="p-2 border-t">
           <form onSubmit={handleSendMessage} className="flex items-center gap-2 w-full">
-            <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()} title={t('aiAssistant.uploadImage')} disabled={isLoading || isCameraOpen}>
+            <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()} title="Upload Image" disabled={isLoading || isCameraOpen}>
                 <ImageUp className="h-5 w-5" />
             </Button>
             <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} style={{ display: 'none' }}/>
 
-            <Button variant="ghost" size="icon" type="button" onClick={startCamera} title={t('aiAssistant.useCamera')} disabled={isLoading || isCameraOpen}>
+            <Button variant="ghost" size="icon" type="button" onClick={startCamera} title="Use Camera" disabled={isLoading || isCameraOpen}>
                 <Camera className="h-5 w-5" />
             </Button>
 
             <Input
               type="text"
-              placeholder={t('aiAssistant.inputPlaceholder')}
+              placeholder="Ask about farming or describe your image..."
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               className="flex-grow text-sm h-10"
@@ -424,7 +422,7 @@ export default function AiAssistantPage() {
               autoFocus
             />
             <Button type="submit" disabled={isLoading || (!inputQuery.trim() && !previewDataUri)}>
-              <Send className="mr-2 h-4 w-4" /> {t('aiAssistant.sendMessage')}
+              <Send className="mr-2 h-4 w-4" /> Send
             </Button>
           </form>
         </CardFooter>
