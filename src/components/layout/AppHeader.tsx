@@ -21,7 +21,8 @@ import {
   LogIn, 
   UserPlus,
   X,
-  Fingerprint
+  Fingerprint,
+  ShoppingCart
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -53,7 +54,7 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
-  const isActive = pathname.endsWith(href);
+  const isActive = pathname.startsWith(href);
   return (
     <Link
       href={href}
@@ -71,7 +72,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, cl
 };
 
 const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ href, icon: Icon, label, pathname, onClick, isSheetLink }) => {
-  const isActive = pathname.endsWith(href);
+  const isActive = pathname.startsWith(href);
   return (
     <Link
       href={href}
@@ -91,7 +92,8 @@ const desktopNavItems = [
     { href: "/", icon: Home, label: 'home' },
     { href: "/network", icon: Users, label: 'network' },
     { href: "/farm-management", icon: Sprout, label: 'farmMgmt' },
-    { href: "/marketplace", icon: Briefcase, label: 'marketplace' },
+    { href: "/marketplace", icon: ShoppingCart, label: 'marketplace' },
+    { href: "/talent-exchange", icon: Briefcase, label: 'talentExchange' },
     { href: "/traceability", icon: Fingerprint, label: 'traceability' },
     { href: "/forums", icon: MessageSquare, label: 'forums' },
 ];
@@ -171,8 +173,13 @@ export function AppHeader() {
   };
 
   const getSectionTitle = () => {
-    // This function can be simplified or improved based on routing patterns.
-    const path = pathname.split('/')[1];
+    const pathSegments = pathname.split('/').filter(Boolean);
+    // Remove locale if present
+    if (locales.includes(pathSegments[0])) {
+      pathSegments.shift();
+    }
+    const path = pathSegments[0] || '';
+
     if (!path) return t('home');
     const item = desktopNavItems.find(item => item.href.includes(path));
     return item ? t(item.label as any) : path.charAt(0).toUpperCase() + path.slice(1);
@@ -309,3 +316,5 @@ export function AppHeader() {
     </>
   );
 }
+
+const locales = ['en', 'es', 'fr', 'de', 'ja', 'ko', 'zh', 'hi', 'ar', 'pt', 'ru', 'id', 'ms', 'th', 'tr', 'vi', 'km'];

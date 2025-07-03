@@ -77,6 +77,9 @@ const marketplaceRecommendationsFlow = ai.defineFlow(
   },
   async (input) => {
     const {output} = await marketplaceRecommendationsPrompt(input);
-    return output!;
+    // Ensure the output is always a valid object with an array to prevent crashes.
+    return {
+      suggestedItems: output?.suggestedItems ?? [],
+    };
   }
 );
