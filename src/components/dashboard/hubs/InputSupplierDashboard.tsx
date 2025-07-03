@@ -45,7 +45,7 @@ export const InputSupplierDashboard = () => {
         );
     }
 
-    const { demandForecast, productPerformance, activeOrders } = dashboardData;
+    const { demandForecast = [], productPerformance = [], activeOrders } = dashboardData;
 
     return (
         <div>
@@ -58,12 +58,12 @@ export const InputSupplierDashboard = () => {
                         <ShoppingCart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{activeOrders.count}</div>
-                        <p className="text-xs text-muted-foreground">${activeOrders.value.toLocaleString()} in total value</p>
+                        <div className="text-2xl font-bold">{activeOrders?.count || 0}</div>
+                        <p className="text-xs text-muted-foreground">${(activeOrders?.value || 0).toLocaleString()} in total value</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href={activeOrders.link}>Manage Orders</Link>
+                            <Link href={activeOrders?.link || '#'}>Manage Orders</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -91,7 +91,7 @@ export const InputSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {demandForecast?.length > 0 ? (
+                       {demandForecast.length > 0 ? (
                            demandForecast.map(forecast => (
                                <div key={forecast.id} className="text-sm p-2 bg-background rounded-md border">
                                    <p className="font-medium">{forecast.product} in <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
@@ -112,7 +112,7 @@ export const InputSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {productPerformance?.length > 0 ? (
+                       {productPerformance.length > 0 ? (
                            productPerformance.map(perf => (
                                 <div key={perf.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>

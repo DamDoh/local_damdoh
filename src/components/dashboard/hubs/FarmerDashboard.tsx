@@ -64,14 +64,14 @@ export const FarmerDashboard = () => {
         );
     }
     
-    const { farmCount, cropCount, recentCrops, knfBatches } = dashboardData;
+    const { farmCount, cropCount, recentCrops = [], knfBatches = [] } = dashboardData;
 
     return (
         <div className="space-y-6">
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Farms"/>
                 <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Crops"/>
-                <StatCard title="KNF Batches" value={knfBatches?.length || 0} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
+                <StatCard title="KNF Batches" value={knfBatches.length || 0} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
              </div>
               <Card>
                 <CardHeader>
@@ -81,7 +81,7 @@ export const FarmerDashboard = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                    {recentCrops && recentCrops.length > 0 ? recentCrops.map(crop => (
+                    {recentCrops.length > 0 ? recentCrops.map(crop => (
                         <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
                             <div>
                                 <p className="font-medium text-sm">{crop.name} <span className="text-xs text-muted-foreground">on {crop.farmName}</span></p>
@@ -101,7 +101,7 @@ export const FarmerDashboard = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                    {knfBatches && knfBatches.length > 0 ? knfBatches.map(batch => (
+                    {knfBatches.length > 0 ? knfBatches.map(batch => (
                          <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">
                             <div>
                                 <p className="font-medium text-sm">{batch.typeName}</p>

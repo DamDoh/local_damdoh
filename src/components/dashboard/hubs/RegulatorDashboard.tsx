@@ -46,7 +46,7 @@ export const RegulatorDashboard = () => {
         );
     }
 
-    const { complianceRiskAlerts, pendingCertifications, supplyChainAnomalies } = dashboardData;
+    const { complianceRiskAlerts = [], pendingCertifications, supplyChainAnomalies = [] } = dashboardData;
 
     const getSeverityBadge = (severity: string) => {
         switch (severity.toLowerCase()) {
@@ -71,12 +71,12 @@ export const RegulatorDashboard = () => {
                         <BadgeCheck className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{pendingCertifications.count}</div>
+                        <div className="text-2xl font-bold">{pendingCertifications?.count || 0}</div>
                         <p className="text-xs text-muted-foreground">reviews outstanding</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="secondary" size="sm" className="w-full">
-                            <Link href={pendingCertifications.actionLink}>Review All</Link>
+                            <Link href={pendingCertifications?.actionLink || '#'}>Review All</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -89,7 +89,7 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {complianceRiskAlerts?.length > 0 ? (
+                       {complianceRiskAlerts.length > 0 ? (
                            complianceRiskAlerts.map(alert => (
                                <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -116,7 +116,7 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {supplyChainAnomalies?.length > 0 ? (
+                       {supplyChainAnomalies.length > 0 ? (
                            supplyChainAnomalies.map(anomaly => (
                                 <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                    <div>

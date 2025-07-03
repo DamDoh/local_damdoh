@@ -47,7 +47,7 @@ export const FiDashboard = () => {
         );
     }
 
-    const { pendingApplications, portfolioAtRisk, marketUpdates } = dashboardData;
+    const { pendingApplications = [], portfolioAtRisk, marketUpdates = [] } = dashboardData;
 
     return (
         <div>
@@ -78,7 +78,7 @@ export const FiDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {pendingApplications?.length > 0 ? (
+                       {pendingApplications.length > 0 ? (
                            pendingApplications.map(app => (
                                <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -104,7 +104,7 @@ export const FiDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {marketUpdates?.length > 0 ? (
+                        {marketUpdates.length > 0 ? (
                             marketUpdates.map(update => (
                                 <div key={update.id} className="text-sm p-3 border rounded-lg">
                                     <p>{update.content}</p>

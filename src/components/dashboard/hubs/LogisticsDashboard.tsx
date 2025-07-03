@@ -46,7 +46,7 @@ export const LogisticsDashboard = () => {
         );
     }
 
-    const { activeShipments, incomingJobs, performanceMetrics } = dashboardData;
+    const { activeShipments = [], incomingJobs = [], performanceMetrics } = dashboardData;
 
     return (
         <div>
@@ -59,12 +59,12 @@ export const LogisticsDashboard = () => {
                         <BarChart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{performanceMetrics.onTimePercentage}%</div>
+                        <div className="text-2xl font-bold">{performanceMetrics?.onTimePercentage || 0}%</div>
                         <p className="text-xs text-muted-foreground">On-Time Delivery Rate</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href={performanceMetrics.actionLink}>View Full Report</Link>
+                            <Link href={performanceMetrics?.actionLink || '#'}>View Full Report</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -77,7 +77,7 @@ export const LogisticsDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {activeShipments?.length > 0 ? (
+                       {activeShipments.length > 0 ? (
                            activeShipments.map(shipment => (
                                <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
@@ -106,7 +106,7 @@ export const LogisticsDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {incomingJobs?.length > 0 ? (
+                       {incomingJobs.length > 0 ? (
                            incomingJobs.map(job => (
                                 <div key={job.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>

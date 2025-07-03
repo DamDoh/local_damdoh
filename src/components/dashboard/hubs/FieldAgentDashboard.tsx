@@ -46,7 +46,7 @@ export const FieldAgentDashboard = () => {
         );
     }
 
-    const { assignedFarmers, portfolioHealth, pendingReports, dataVerificationTasks } = dashboardData;
+    const { assignedFarmers = [], portfolioHealth, pendingReports, dataVerificationTasks } = dashboardData;
 
     return (
         <div>
@@ -59,8 +59,8 @@ export const FieldAgentDashboard = () => {
                         <Leaf className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{portfolioHealth.overallScore}%</div>
-                        <p className="text-xs text-muted-foreground">{portfolioHealth.alerts?.length || 0} active alerts</p>
+                        <div className="text-2xl font-bold">{portfolioHealth?.overallScore || 0}%</div>
+                        <p className="text-xs text-muted-foreground">{portfolioHealth?.alerts?.length || 0} active alerts</p>
                     </CardContent>
                 </Card>
                 <Card>
@@ -69,7 +69,7 @@ export const FieldAgentDashboard = () => {
                         <ClipboardList className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{pendingReports}</div>
+                        <div className="text-2xl font-bold">{pendingReports || 0}</div>
                         <p className="text-xs text-muted-foreground">reports to be filed</p>
                     </CardContent>
                 </Card>
@@ -79,7 +79,7 @@ export const FieldAgentDashboard = () => {
                         <CheckSquare className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{dataVerificationTasks.count}</div>
+                        <div className="text-2xl font-bold">{dataVerificationTasks?.count || 0}</div>
                         <p className="text-xs text-muted-foreground">tasks pending</p>
                     </CardContent>
                 </Card>
@@ -107,7 +107,7 @@ export const FieldAgentDashboard = () => {
                                 <div key={farmer.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
                                         <p className="font-medium">{farmer.name}</p>
-                                        <p className="text-xs text-muted-foreground">Last Visit: {farmer.lastVisit}</p>
+                                        <p className="text-xs text-muted-foreground">Last Visit: {new Date(farmer.lastVisit).toLocaleDateString()}</p>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         {farmer.issues > 0 && <Badge variant="destructive">{farmer.issues} Issues</Badge>}
