@@ -13,18 +13,22 @@ const db = admin.firestore();
  * @throws {functions.https.HttpsError} Throws an error if validation fails.
  */
 const validateProfileData = (role: string, data: any) => {
-  const schema =
-    stakeholderProfileSchemas[role as keyof typeof stakeholderProfileSchemas];
+  const schemaKey = role as keyof typeof stakeholderProfileSchemas;
+  const schema = stakeholderProfileSchemas[schemaKey];
   if (schema) {
     const result = schema.safeParse(data);
     if (!result.success) {
+      const errorMessage = result.error.errors.map(e => `${e.path.join('.')} - ${e.message}`).join('; ');
       throw new functions.https.HttpsError(
         "invalid-argument",
-        `Profile data validation failed for role ${role}: ${result.error.message}`,
+        `Profile data validation failed for role ${role}: ${errorMessage}`,
       );
     }
+    return result.data; // Return cleaned/validated data
   }
+  return data || {};
 };
+
 
 /**
  * Creates or updates a detailed stakeholder profile. This is the single, secure entry point for all profile modifications.
@@ -61,9 +65,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
       );
     }
 
-    if (profileData) {
-      validateProfileData(primaryRole, profileData);
-    }
+    // Validate the role-specific data if it exists
+    const validatedProfileData = profileData ? validateProfileData(primaryRole, profileData) : {};
 
     const userId = context.auth.uid;
 
@@ -75,28 +78,32 @@ export const upsertStakeholderProfile = functions.https.onCall(
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       };
 
-      if (displayName) updatePayload.displayName = displayName;
-      if (profileSummary) updatePayload.profileSummary = profileSummary;
-      if (bio) updatePayload.bio = bio;
-      if (location) updatePayload.location = location;
+      if (displayName !== undefined) updatePayload.displayName = displayName;
+      if (profileSummary !== undefined) updatePayload.profileSummary = profileSummary;
+      if (bio !== undefined) updatePayload.bio = bio;
+      if (location !== undefined) updatePayload.location = location;
       if (Array.isArray(areasOfInterest)) updatePayload.areasOfInterest = areasOfInterest;
       if (Array.isArray(needs)) updatePayload.needs = needs;
-      if (contactInfoPhone || contactInfoWebsite) {
+      if (contactInfoPhone !== undefined || contactInfoWebsite !== undefined) {
         updatePayload.contactInfo = {
           phone: contactInfoPhone || null,
           website: contactInfoWebsite || null,
         };
       }
-      if (profileData) updatePayload.profileData = profileData;
+      // Add the validated data to the payload
+      if (validatedProfileData) updatePayload.profileData = validatedProfileData;
 
       await userRef.set(updatePayload, {merge: true});
 
       return {status: "success", message: "Profile updated successfully."};
     } catch (error: any) {
       console.error("Error upserting stakeholder profile:", error);
+       if (error instanceof functions.https.HttpsError) {
+        throw error;
+      }
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to write to the database. This might be because Firestore is not enabled in your Firebase project. Please check your project settings.",
+        "Failed to write to the database. This might be because Firestore is not enabled in your Firebase project.",
         {originalError: error.message},
       );
     }

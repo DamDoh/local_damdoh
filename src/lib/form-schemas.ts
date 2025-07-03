@@ -144,6 +144,7 @@ export const editProfileSchema = z.object({
   needs: z.string().max(500, "Needs/offerings cannot exceed 500 characters (use comma-separated values).").optional(),
   contactInfoPhone: z.string().max(30, "Phone number is too long.").optional(),
   contactInfoWebsite: z.string().url({ message: "Please enter a valid website URL."}).optional().or(z.literal('')),
+  profileData: z.any().optional(),
 });
 
 export type EditProfileValues = z.infer<typeof editProfileSchema>;

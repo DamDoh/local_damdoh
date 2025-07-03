@@ -83,6 +83,7 @@ export default function EditProfilePage() {
       needs: "",
       contactInfoPhone: "",
       contactInfoWebsite: "",
+      profileData: {},
     },
   });
 
@@ -93,9 +94,9 @@ export default function EditProfilePage() {
       if (userProfile) {
         setProfile(userProfile);
         form.reset({
-          displayName: userProfile.name || "",
+          displayName: userProfile.displayName || "",
           email: userProfile.email || "",
-          role: userProfile.role,
+          role: userProfile.primaryRole,
           profileSummary: userProfile.profileSummary || "",
           bio: userProfile.bio || "",
           location: userProfile.location || "",
@@ -103,6 +104,7 @@ export default function EditProfilePage() {
           needs: Array.isArray(userProfile.needs) ? userProfile.needs.join(", ") : "",
           contactInfoPhone: userProfile.contactInfo?.phone || "",
           contactInfoWebsite: userProfile.contactInfo?.website || "",
+          profileData: userProfile.profileData || {},
         });
       } else {
         toast({ variant: "destructive", title: "Error", description: "Profile not found." });
@@ -161,7 +163,7 @@ export default function EditProfilePage() {
         needs: data.needs?.split(',').map(s => s.trim()).filter(Boolean) || [],
         contactInfoPhone: data.contactInfoPhone,
         contactInfoWebsite: data.contactInfoWebsite,
-        profileData: {}, 
+        profileData: data.profileData, 
       };
 
       await upsertStakeholderProfile(payload);
@@ -206,7 +208,7 @@ export default function EditProfilePage() {
     <div className="space-y-6">
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl">{t('stakeholderProfile.title', { name: profile?.name })}</CardTitle>
+          <CardTitle className="text-2xl">{t('stakeholderProfile.title', { name: profile?.displayName })}</CardTitle>
           <CardDescription>{t('stakeholderProfile.description')}</CardDescription>
         </CardHeader>
         <CardContent>

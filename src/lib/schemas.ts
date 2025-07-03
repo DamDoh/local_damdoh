@@ -35,6 +35,7 @@ export const StakeholderProfileSchema = z.object({
   areasOfInterest: z.array(z.string()).optional(),
   needs: z.array(z.string()).optional(),
   contactInfo: ContactInfoSchema.optional(),
+  profileData: z.any().optional(),
   connections: z.array(z.string()).optional(), 
   createdAt: z.any(), // Allow string or timestamp for flexibility
   updatedAt: z.any(),
