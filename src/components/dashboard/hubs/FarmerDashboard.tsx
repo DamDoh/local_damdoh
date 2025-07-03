@@ -69,9 +69,9 @@ export const FarmerDashboard = () => {
     return (
         <div className="space-y-6">
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <StatCard title="My Farms" value={farmCount} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Farms"/>
-                <StatCard title="Active Crops" value={cropCount} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Crops"/>
-                <StatCard title="KNF Batches" value={knfBatches.length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
+                <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Farms"/>
+                <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Crops"/>
+                <StatCard title="KNF Batches" value={knfBatches?.length || 0} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
              </div>
               <Card>
                 <CardHeader>
@@ -81,13 +81,13 @@ export const FarmerDashboard = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                    {recentCrops.length > 0 ? recentCrops.map(crop => (
+                    {recentCrops && recentCrops.length > 0 ? recentCrops.map(crop => (
                         <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
                             <div>
-                                <p className="font-medium text-sm">{(crop as any).cropType}</p>
-                                <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>
+                                <p className="font-medium text-sm">{crop.cropType}</p>
+                                {crop.plantingDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>}
                             </div>
-                            <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${(crop as any).farmId}`}>View</Link></Button>
+                            <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${crop.farmId}`}>View</Link></Button>
                         </div>
                     )) : <p className="text-sm text-center text-muted-foreground py-4">No crops added yet.</p>}
                 </CardContent>
@@ -101,11 +101,11 @@ export const FarmerDashboard = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                    {knfBatches.length > 0 ? knfBatches.map(batch => (
+                    {knfBatches && knfBatches.length > 0 ? knfBatches.map(batch => (
                          <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">
                             <div>
                                 <p className="font-medium text-sm">{batch.typeName}</p>
-                                <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" />Next step {formatDistanceToNow(new Date(batch.nextStepDate), { addSuffix: true })}</p>
+                                {batch.nextStepDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" />Next step {formatDistanceToNow(new Date(batch.nextStepDate), { addSuffix: true })}</p>}
                             </div>
                             <Badge variant={batch.status === 'Ready' ? 'default' : 'secondary'}>{batch.status}</Badge>
                         </div>
@@ -128,3 +128,5 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-48 rounded-lg" />
     </div>
 );
+
+    

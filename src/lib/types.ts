@@ -214,15 +214,16 @@ export interface FarmerDashboardData {
   farmCount: number;
   cropCount: number;
   recentCrops: {
-    id: string;
-    cropType: string;
-    plantingDate: string | null; // ISO String
+      id: string;
+      cropType: string;
+      farmId: string;
+      plantingDate: string | null;
   }[];
   knfBatches: {
     id: string;
     typeName: string;
     status: string;
-    nextStepDate: string | null; // ISO String
+    nextStepDate: string | null;
   }[];
 }
 
@@ -639,6 +640,20 @@ export interface CrowdfunderDashboardData {
     date: string; // ISO String
   }[];
 }
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
 
 export interface Shop {
   id: string;

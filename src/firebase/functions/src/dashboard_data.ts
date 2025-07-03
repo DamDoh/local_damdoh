@@ -52,7 +52,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
-            knfBatchesSnapshot,
+            knfBatchesPromise,
         ]);
 
         const recentCrops = cropsSnapshot.docs.map(doc => {
@@ -78,8 +78,8 @@ export const getFarmerDashboardData = functions.https.onCall(
         return {
             farmCount: farmsSnapshot.size,
             cropCount: cropsSnapshot.docs.length, // This should query all crops, but we'll approximate for now
-            recentCrops: recentCrops as any, 
-            knfBatches: activeKnfBatches as any,
+            recentCrops: recentCrops, 
+            knfBatches: activeKnfBatches,
         };
 
     } catch (error) {
