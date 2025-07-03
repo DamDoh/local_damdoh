@@ -95,7 +95,7 @@ export default function FarmDetailPage() {
         }
 
         setFarm(farmResult.data as FarmDetails);
-        setCrops(cropsResult.data as Crop[]);
+        setCrops((cropsResult.data as Crop[]) || []); // Ensure crops is always an array
 
       } catch (error: any) {
         toast({
@@ -152,7 +152,7 @@ export default function FarmDetailPage() {
           </Button>
         </CardHeader>
         <CardContent>
-            {crops && crops.length > 0 ? (
+            {(Array.isArray(crops) && crops.length > 0) ? (
                 <div className="space-y-3">
                     {crops.map((crop) => (
                         <Card key={crop.id} className="bg-muted/30">

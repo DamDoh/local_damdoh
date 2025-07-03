@@ -397,6 +397,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     mediaUrls,
     actorVtiId,
     geoLocation,
+    aiAnalysis,
   } = data;
 
   if (
@@ -412,36 +413,13 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     );
   }
 
-  let aiAnalysisResult = "AI analysis not performed (no image provided).";
-
-    // If there are media URLs, attempt to analyze the first one.
-    if (mediaUrls && mediaUrls.length > 0 && process.env.GEMINI_API_KEY) {
-        try {
-            console.log(`Performing AI analysis on media: ${mediaUrls[0]}`);
-            // This is a placeholder for a real call to a vision model (e.g., Vertex AI Gemini).
-            // A real implementation would require converting the public URL to a format the AI can access (e.g., GCS URI or base64 data).
-            if (details.toLowerCase().includes('blight')) {
-                aiAnalysisResult = "AI analysis suggests possible early signs of blight. Recommended action: Apply a copper-based fungicide and ensure good air circulation around plants. Consider sending a sample for lab verification.";
-            } else if (details.toLowerCase().includes('yellow leaves')) {
-                aiAnalysisResult = "AI analysis indicates potential nitrogen deficiency. Recommended action: Apply a nitrogen-rich organic fertilizer, such as compost tea or well-rotted manure.";
-            } else {
-                 aiAnalysisResult = "AI analysis complete. Observation logged. No immediate critical action suggested, continue monitoring.";
-            }
-            console.log('AI analysis successful (placeholder).');
-        } catch(aiError) {
-            console.error("Error during AI analysis:", aiError);
-            aiAnalysisResult = "AI analysis failed due to an internal error.";
-        }
-    }
-
-
     try {
         const eventPayload: any = { 
             observationType, 
             details, 
             mediaUrls: mediaUrls || [], 
             farmFieldId,
-            aiAnalysis: aiAnalysisResult
+            aiAnalysis: aiAnalysis || "No AI analysis was performed for this observation.",
         };
 
         await _internalLogTraceEvent({
@@ -453,13 +431,14 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
             farmFieldId: farmFieldId,
         });
 
-        return { status: 'success', message: `Observation event logged for farm field ${farmFieldId}.`, aiAnalysis: aiAnalysisResult };
+        return { status: 'success', message: `Observation event logged for farm field ${farmFieldId}.` };
 
     } catch (error: any) {
         console.error('Error handling observation event:', error);
         throw new functions.https.HttpsError('internal', 'Failed to handle observation event.', error.message);
     }
 });
+
 
 /**
  * Fetches all traceability events for a given farmFieldId.
@@ -514,96 +493,3 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
     }
   },
 );
-
-/**
- * Fetches a VTI document and its complete, enriched traceability history.
- * This function has been hardened to prevent crashes from missing data.
- * @param {any} data The data for the function call, containing `vtiId`.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{vti: any, events: any[]}>} A promise resolving with the VTI and its event history.
- */
-export const getVtiTraceabilityHistory = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
-
-    const { vtiId } = data;
-    if (!vtiId) {
-        throw new functions.https.HttpsError("invalid-argument", "A vtiId must be provided.");
-    }
-
-    try {
-        // 1. Fetch the VTI document itself
-        const vtiDocRef = db.collection("vti_registry").doc(vtiId);
-        const vtiDoc = await vtiDocRef.get();
-
-        if (!vtiDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
-        }
-
-        const vtiData = vtiDoc.data();
-        if (!vtiData) {
-            throw new functions.https.HttpsError("internal", `VTI document ${vtiId} has no data.`);
-        }
-
-        // 2. Fetch all associated events
-        const eventsQuery = db.collection("traceability_events")
-            .where("vtiId", "==", vtiId)
-            .orderBy("timestamp", "asc");
-        
-        const eventsSnapshot = await eventsQuery.get();
-        const eventsData = eventsSnapshot.docs
-            .map(doc => ({ id: doc.id, ...doc.data() }))
-            .filter(Boolean); // Ensure no undefined data
-
-        // 3. Enrich events with actor information
-        const actorIds = [...new Set(
-            eventsData
-                .map(event => ('actorRef' in event && typeof event.actorRef === 'string') ? event.actorRef : null)
-                .filter((id): id is string => !!id)
-        )];
-        
-        const actorProfiles: { [key: string]: any } = {};
-        if (actorIds.length > 0) {
-            const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
-            userDocs.forEach(doc => {
-                const docData = doc.data();
-                if (doc.exists && docData) {
-                    actorProfiles[doc.id] = {
-                        name: docData.displayName || "Unknown Actor",
-                        role: docData.primaryRole || "Unknown Role",
-                    };
-                }
-            });
-        }
-        
-        const enrichedEvents: any[] = eventsData.map(event => {
-            const timestamp = 'timestamp' in event ? (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null : null;
-            const actorRef = ('actorRef' in event && typeof event.actorRef === 'string') ? event.actorRef : null;
-            if (!actorRef) {
-              return { ...event, timestamp, actor: { name: "System", role: "System" } };
-            }
-            return {
-                ...event,
-                timestamp,
-                actor: actorProfiles[actorRef] || { name: "Unknown Actor", role: "Unknown Role" }
-            }
-        });
-
-        return {
-            vti: {
-                id: vtiDoc.id,
-                ...vtiData,
-                creationTime: (vtiData.creationTime as admin.firestore.Timestamp)?.toDate ? (vtiData.creationTime as admin.firestore.Timestamp).toDate().toISOString() : null,
-            },
-            events: enrichedEvents
-        };
-
-    } catch (error) {
-        console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
-        if (error instanceof functions.https.HttpsError) {
-            throw error;
-        }
-        throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
-    }
-});
