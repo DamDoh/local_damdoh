@@ -1,12 +1,2 @@
-import createMiddleware from 'next-intl/middleware';
-import {locales} from './i18n';
- 
-export default createMiddleware({
-  locales,
-  defaultLocale: 'en',
-  localePrefix: 'as-needed' 
-});
- 
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
-};
+// This file is obsolete. The correct middleware is now in /src/middleware.ts.
+// This file will be deleted in a future cleanup.
