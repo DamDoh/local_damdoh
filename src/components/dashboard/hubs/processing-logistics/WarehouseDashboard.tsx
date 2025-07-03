@@ -82,14 +82,18 @@ export const WarehouseDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {predictiveAlerts.map((alert, index) => (
-                            <div key={index} className="flex justify-between items-center text-sm p-2 bg-destructive/10 border border-destructive/20 rounded-lg">
-                                <p>{alert.alert}</p>
-                                <Button asChild variant="secondary" size="sm">
-                                    <Link href={alert.actionLink}>Investigate</Link>
-                                </Button>
-                            </div>
-                        ))}
+                        {predictiveAlerts?.length > 0 ? (
+                            predictiveAlerts.map((alert, index) => (
+                                <div key={index} className="flex justify-between items-center text-sm p-2 bg-destructive/10 border border-destructive/20 rounded-lg">
+                                    <p>{alert.alert}</p>
+                                    <Button asChild variant="secondary" size="sm">
+                                        <Link href={alert.actionLink}>Investigate</Link>
+                                    </Button>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No predictive alerts.</p>
+                        )}
                     </CardContent>
                 </Card>
             </div>

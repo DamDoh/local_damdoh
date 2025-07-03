@@ -77,20 +77,24 @@ export const LogisticsDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {activeShipments.map(shipment => (
-                           <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
-                               <div>
-                                   <p className="font-medium">To: {shipment.to}</p>
-                                   <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'}>{shipment.status}</Badge>
+                       {activeShipments?.length > 0 ? (
+                           activeShipments.map(shipment => (
+                               <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
+                                   <div>
+                                       <p className="font-medium">To: {shipment.to}</p>
+                                       <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'}>{shipment.status}</Badge>
+                                   </div>
+                                   <Button asChild variant="ghost" size="sm">
+                                       <Link href={shipment.vtiLink}>
+                                            <ExternalLink className="h-3 w-3 mr-1.5" />
+                                            Track
+                                       </Link>
+                                   </Button>
                                </div>
-                               <Button asChild variant="ghost" size="sm">
-                                   <Link href={shipment.vtiLink}>
-                                        <ExternalLink className="h-3 w-3 mr-1.5" />
-                                        Track
-                                   </Link>
-                               </Button>
-                           </div>
-                       ))}
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No active shipments.</p>
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -102,17 +106,21 @@ export const LogisticsDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {incomingJobs.map(job => (
-                            <div key={job.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                                <div>
-                                    <p className="font-medium">{job.from} → {job.to}</p>
-                                    <p className="text-xs text-muted-foreground">{job.product} ({job.requirements})</p>
+                       {incomingJobs?.length > 0 ? (
+                           incomingJobs.map(job => (
+                                <div key={job.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                                    <div>
+                                        <p className="font-medium">{job.from} → {job.to}</p>
+                                        <p className="text-xs text-muted-foreground">{job.product} ({job.requirements})</p>
+                                    </div>
+                                    <Button asChild size="sm">
+                                        <Link href={job.actionLink}>View Details</Link>
+                                    </Button>
                                 </div>
-                                <Button asChild size="sm">
-                                    <Link href={job.actionLink}>View Details</Link>
-                                </Button>
-                            </div>
-                       ))}
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No incoming jobs.</p>
+                       )}
                     </CardContent>
                 </Card>
             </div>

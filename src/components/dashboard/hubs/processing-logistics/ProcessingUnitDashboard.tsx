@@ -85,13 +85,17 @@ export const ProcessingUnitDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {packagingInventory.map((item, index) => (
-                           <div key={index} className="text-sm p-2 bg-background rounded-md border">
-                               <p className="font-medium">{item.packagingType}</p>
-                               <p className="text-xs">In Stock: {item.unitsInStock.toLocaleString()}</p>
-                               <p className="text-xs text-muted-foreground">Reorder Level: {item.reorderLevel.toLocaleString()}</p>
-                           </div>
-                       ))}
+                       {packagingInventory?.length > 0 ? (
+                           packagingInventory.map((item, index) => (
+                               <div key={index} className="text-sm p-2 bg-background rounded-md border">
+                                   <p className="font-medium">{item.packagingType}</p>
+                                   <p className="text-xs">In Stock: {item.unitsInStock.toLocaleString()}</p>
+                                   <p className="text-xs text-muted-foreground">Reorder Level: {item.reorderLevel.toLocaleString()}</p>
+                               </div>
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No packaging inventory tracked.</p>
+                       )}
                     </CardContent>
                      <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
@@ -108,24 +112,28 @@ export const ProcessingUnitDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Product</TableHead>
-                                    <TableHead>Quality</TableHead>
-                                    <TableHead className="text-right">Quantity (tons)</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {inventory.map((item, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell className="font-medium">{item.product}</TableCell>
-                                        <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
-                                        <TableCell className="text-right font-semibold">{item.tons}</TableCell>
+                        {inventory?.length > 0 ? (
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Product</TableHead>
+                                        <TableHead>Quality</TableHead>
+                                        <TableHead className="text-right">Quantity (tons)</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {inventory.map((item, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell className="font-medium">{item.product}</TableCell>
+                                            <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
+                                            <TableCell className="text-right font-semibold">{item.tons}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No inventory data available.</p>
+                        )}
                     </CardContent>
                 </Card>
 
@@ -137,30 +145,34 @@ export const ProcessingUnitDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                      <CardContent>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Supplier</TableHead>
-                                    <TableHead>Delivery Date</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead className="text-right">Action</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {packagingOrders.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell className="font-medium">{order.supplierName}</TableCell>
-                                        <TableCell>{new Date(order.deliveryDate).toLocaleDateString()}</TableCell>
-                                        <TableCell><Badge variant={order.status === 'Pending' ? 'secondary' : 'default'}>{order.status}</Badge></TableCell>
-                                        <TableCell className="text-right">
-                                            <Button asChild variant="ghost" size="sm">
-                                                <Link href={order.actionLink}>View</Link>
-                                            </Button>
-                                        </TableCell>
+                        {packagingOrders?.length > 0 ? (
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Supplier</TableHead>
+                                        <TableHead>Delivery Date</TableHead>
+                                        <TableHead>Status</TableHead>
+                                        <TableHead className="text-right">Action</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {packagingOrders.map((order) => (
+                                        <TableRow key={order.id}>
+                                            <TableCell className="font-medium">{order.supplierName}</TableCell>
+                                            <TableCell>{new Date(order.deliveryDate).toLocaleDateString()}</TableCell>
+                                            <TableCell><Badge variant={order.status === 'Pending' ? 'secondary' : 'default'}>{order.status}</Badge></TableCell>
+                                            <TableCell className="text-right">
+                                                <Button asChild variant="ghost" size="sm">
+                                                    <Link href={order.actionLink}>View</Link>
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        ) : (
+                             <p className="text-sm text-muted-foreground text-center py-4">No packaging orders found.</p>
+                        )}
                     </CardContent>
                 </Card>
             </div>

@@ -61,17 +61,21 @@ export const AgroExportDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {pendingCustomsDocs.map(doc => (
-                           <div key={doc.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
-                               <div>
-                                   <p className="font-medium">To: {doc.destination}</p>
-                                   <p className="text-xs text-muted-foreground">{doc.status}</p>
+                       {pendingCustomsDocs?.length > 0 ? (
+                           pendingCustomsDocs.map(doc => (
+                               <div key={doc.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
+                                   <div>
+                                       <p className="font-medium">To: {doc.destination}</p>
+                                       <p className="text-xs text-muted-foreground">{doc.status}</p>
+                                   </div>
+                                   <Button asChild variant="secondary" size="sm">
+                                       <Link href={doc.vtiLink}>Prepare Docs</Link>
+                                   </Button>
                                </div>
-                               <Button asChild variant="secondary" size="sm">
-                                   <Link href={doc.vtiLink}>Prepare Docs</Link>
-                               </Button>
-                           </div>
-                       ))}
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No pending documents.</p>
+                       )}
                     </CardContent>
                 </Card>
 
@@ -83,12 +87,16 @@ export const AgroExportDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {trackedShipments.map(shipment => (
-                            <div key={shipment.id} className="text-sm">
-                                <p className="font-medium">{shipment.carrier}: {shipment.location}</p>
-                                <Badge>{shipment.status}</Badge>
-                           </div>
-                       ))}
+                       {trackedShipments?.length > 0 ? (
+                           trackedShipments.map(shipment => (
+                                <div key={shipment.id} className="text-sm">
+                                    <p className="font-medium">{shipment.carrier}: {shipment.location}</p>
+                                    <Badge>{shipment.status}</Badge>
+                               </div>
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No active shipments.</p>
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -100,12 +108,16 @@ export const AgroExportDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {complianceAlerts.map(alert => (
-                           <div key={alert.id} className="text-sm p-3 border rounded-lg bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
-                               <p>{alert.content}</p>
-                               <Link href={alert.actionLink} className="text-xs text-primary hover:underline mt-1">Learn More</Link>
-                           </div>
-                       ))}
+                       {complianceAlerts?.length > 0 ? (
+                           complianceAlerts.map(alert => (
+                               <div key={alert.id} className="text-sm p-3 border rounded-lg bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
+                                   <p>{alert.content}</p>
+                                   <Link href={alert.actionLink} className="text-xs text-primary hover:underline mt-1">Learn More</Link>
+                               </div>
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No compliance alerts.</p>
+                       )}
                     </CardContent>
                 </Card>
             </div>

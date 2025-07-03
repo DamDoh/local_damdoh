@@ -91,12 +91,16 @@ export const InputSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {demandForecast.map(forecast => (
-                           <div key={forecast.id} className="text-sm p-2 bg-background rounded-md border">
-                               <p className="font-medium">{forecast.product} in <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
-                               <p className="text-xs text-muted-foreground">{forecast.reason}</p>
-                           </div>
-                       ))}
+                       {demandForecast?.length > 0 ? (
+                           demandForecast.map(forecast => (
+                               <div key={forecast.id} className="text-sm p-2 bg-background rounded-md border">
+                                   <p className="font-medium">{forecast.product} in <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
+                                   <p className="text-xs text-muted-foreground">{forecast.reason}</p>
+                               </div>
+                           ))
+                       ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No demand forecast available.</p>
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -108,17 +112,21 @@ export const InputSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {productPerformance.map(perf => (
-                            <div key={perf.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                                <div>
-                                    <p className="font-medium">{perf.productName} <Badge variant="secondary">Rating: {perf.rating}/5</Badge></p>
-                                    <p className="text-xs text-muted-foreground italic">"{perf.feedback}"</p>
+                       {productPerformance?.length > 0 ? (
+                           productPerformance.map(perf => (
+                                <div key={perf.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                                    <div>
+                                        <p className="font-medium">{perf.productName} <Badge variant="secondary">Rating: {perf.rating}/5</Badge></p>
+                                        <p className="text-xs text-muted-foreground italic">"{perf.feedback}"</p>
+                                    </div>
+                                    <Button asChild variant="secondary" size="sm">
+                                        <Link href={perf.link}>View All Reviews</Link>
+                                    </Button>
                                 </div>
-                                <Button asChild variant="secondary" size="sm">
-                                    <Link href={perf.link}>View All Reviews</Link>
-                                </Button>
-                            </div>
-                       ))}
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No product feedback yet.</p>
+                       )}
                     </CardContent>
                 </Card>
             </div>

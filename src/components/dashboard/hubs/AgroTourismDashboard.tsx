@@ -91,7 +91,7 @@ export const AgroTourismDashboard = () => {
              <CardDescription>Your scheduled agro-tourism experiences.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.upcomingBookings.length > 0 ? (
+             {dashboardData.upcomingBookings?.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -129,7 +129,7 @@ export const AgroTourismDashboard = () => {
              <CardDescription>Manage your agro-tourism offerings.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.listedExperiences.length > 0 ? (
+             {dashboardData.listedExperiences?.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -169,7 +169,7 @@ export const AgroTourismDashboard = () => {
                 <CardDescription>Latest feedback from your guests.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.guestReviews.length > 0 ? (
+                {dashboardData.guestReviews?.length > 0 ? (
                     <div className="space-y-3">
                         {dashboardData.guestReviews.map((review) => (
                             <div key={review.id} className="text-sm p-3 border rounded-lg">
@@ -201,6 +201,6 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg" />
+         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
     </div>
 );

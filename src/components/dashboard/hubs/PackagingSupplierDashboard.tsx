@@ -82,17 +82,21 @@ export const PackagingSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {integrationRequests.map((req, index) => (
-                             <div key={index} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                                <div>
-                                    <p className="font-medium">From: {req.from}</p>
-                                    <p className="text-xs text-muted-foreground">{req.request}</p>
+                        {integrationRequests?.length > 0 ? (
+                            integrationRequests.map((req, index) => (
+                                <div key={index} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                                    <div>
+                                        <p className="font-medium">From: {req.from}</p>
+                                        <p className="text-xs text-muted-foreground">{req.request}</p>
+                                    </div>
+                                    <Button asChild size="sm">
+                                        <Link href={req.actionLink}>View Request</Link>
+                                    </Button>
                                 </div>
-                                <Button asChild size="sm">
-                                    <Link href={req.actionLink}>View Request</Link>
-                                </Button>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No new integration requests.</p>
+                        )}
                     </CardContent>
                 </Card>
             </div>

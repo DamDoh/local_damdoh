@@ -78,17 +78,21 @@ export const FiDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {pendingApplications.map(app => (
-                           <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
-                               <div>
-                                   <p className="font-medium">{app.applicantName} - ${app.amount.toLocaleString()}</p>
-                                   <p className="text-xs text-muted-foreground">{app.type}</p>
+                       {pendingApplications?.length > 0 ? (
+                           pendingApplications.map(app => (
+                               <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
+                                   <div>
+                                       <p className="font-medium">{app.applicantName} - ${app.amount.toLocaleString()}</p>
+                                       <p className="text-xs text-muted-foreground">{app.type}</p>
+                                   </div>
+                                   <Button asChild size="sm">
+                                       <Link href={app.actionLink}>Review</Link>
+                                   </Button>
                                </div>
-                               <Button asChild size="sm">
-                                   <Link href={app.actionLink}>Review</Link>
-                               </Button>
-                           </div>
-                       ))}
+                           ))
+                       ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No pending applications.</p>
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -100,12 +104,16 @@ export const FiDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {marketUpdates.map(update => (
-                            <div key={update.id} className="text-sm p-3 border rounded-lg">
-                                <p>{update.content}</p>
-                                <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">Read More</Link>
-                            </div>
-                        ))}
+                        {marketUpdates?.length > 0 ? (
+                            marketUpdates.map(update => (
+                                <div key={update.id} className="text-sm p-3 border rounded-lg">
+                                    <p>{update.content}</p>
+                                    <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">Read More</Link>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No new updates.</p>
+                        )}
                     </CardContent>
                 </Card>
             </div>

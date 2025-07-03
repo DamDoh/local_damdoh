@@ -76,7 +76,7 @@ export const QaDashboard = () => {
              <CardDescription>Inspections requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.pendingInspections.length > 0 ? (
+             {dashboardData.pendingInspections?.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -104,7 +104,7 @@ export const QaDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No pending inspections.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No pending inspections.</p>
              )}
            </CardContent>
          </Card>
@@ -116,7 +116,7 @@ export const QaDashboard = () => {
              <CardDescription>Recently reported quality and compliance issues.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.recentResults.length > 0 ? (
+             {dashboardData.recentResults?.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -138,7 +138,7 @@ export const QaDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No recent quality issues reported.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No recent quality issues reported.</p>
              )}
            </CardContent>
          </Card>

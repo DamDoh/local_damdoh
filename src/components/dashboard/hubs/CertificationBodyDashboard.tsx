@@ -85,7 +85,7 @@ export const CertificationBodyDashboard = () => {
              <CardDescription>Audits requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.pendingAudits.length > 0 ? (
+             {dashboardData.pendingAudits?.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -123,7 +123,7 @@ export const CertificationBodyDashboard = () => {
              <CardDescription>Overview of your certified farmers and processors.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.certifiedEntities.length > 0 ? (
+             {dashboardData.certifiedEntities?.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -161,7 +161,7 @@ export const CertificationBodyDashboard = () => {
                 <CardDescription>Tracking adherence rates across different standards.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.standardsMonitoring.length > 0 ? (
+                {dashboardData.standardsMonitoring?.length > 0 ? (
                     <div className="space-y-3">
                         {dashboardData.standardsMonitoring.map((monitoring, index) => (
                             <div key={index} className="text-sm">

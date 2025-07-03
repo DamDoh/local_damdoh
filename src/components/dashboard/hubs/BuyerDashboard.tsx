@@ -107,23 +107,27 @@ export const BuyerDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-3">
-                        {sourcingRecommendations.map(rec => (
-                            <div key={rec.id} className="p-3 rounded-md border text-sm bg-background">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <p className="font-semibold">{rec.name}</p>
-                                        <p className="text-xs text-muted-foreground">{rec.product}</p>
+                        {sourcingRecommendations?.length > 0 ? (
+                            sourcingRecommendations.map(rec => (
+                                <div key={rec.id} className="p-3 rounded-md border text-sm bg-background">
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <p className="font-semibold">{rec.name}</p>
+                                            <p className="text-xs text-muted-foreground">{rec.product}</p>
+                                        </div>
+                                        <Badge variant={rec.vtiVerified ? 'default' : 'secondary'}>
+                                            {rec.vtiVerified ? <CheckCircle className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
+                                            VTI
+                                        </Badge>
                                     </div>
-                                    <Badge variant={rec.vtiVerified ? 'default' : 'secondary'}>
-                                        {rec.vtiVerified ? <CheckCircle className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
-                                        VTI
-                                    </Badge>
+                                    <div className="text-xs mt-2">
+                                        Reliability Score: <span className="font-bold">{rec.reliability}%</span>
+                                    </div>
                                 </div>
-                                <div className="text-xs mt-2">
-                                    Reliability Score: <span className="font-bold">{rec.reliability}%</span>
-                                </div>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">No recommendations available.</p>
+                        )}
                     </CardContent>
                      <CardFooter>
                          <Button asChild variant="outline" size="sm" className="w-full">

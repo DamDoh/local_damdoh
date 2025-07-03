@@ -210,20 +210,20 @@ export default function ProfileDetailPage() {
             )}
           </div>
 
-          {(profile.profileData as any)?.areasOfInterest && (profile.profileData as any).areasOfInterest.length > 0 && (
+          {profile.areasOfInterest && profile.areasOfInterest.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />Areas of Expertise & Interest</h3>
               <div className="flex flex-wrap gap-2">
-                {(profile.profileData as any).areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}
+                {profile.areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}
               </div>
             </div>
           )}
 
-          {(profile.profileData as any)?.needs && (profile.profileData as any).needs.length > 0 && (
+          {profile.needs && profile.needs.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />Actively Seeking / Offering</h3>
               <div className="flex flex-wrap gap-2">
-                {(profile.profileData as any).needs.map((need: string) => <Badge key={need}>{need}</Badge>)}
+                {profile.needs.map((need: string) => <Badge key={need}>{need}</Badge>)}
               </div>
             </div>
           )}

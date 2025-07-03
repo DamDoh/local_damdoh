@@ -89,18 +89,22 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {complianceRiskAlerts.map(alert => (
-                           <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
-                               <div>
-                                   <Badge variant={getSeverityBadge(alert.severity)}>{alert.severity}</Badge>
-                                   <p className="font-medium mt-1">{alert.issue}</p>
-                                   <p className="text-xs text-muted-foreground">{alert.region}</p>
+                       {complianceRiskAlerts?.length > 0 ? (
+                           complianceRiskAlerts.map(alert => (
+                               <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
+                                   <div>
+                                       <Badge variant={getSeverityBadge(alert.severity)}>{alert.severity}</Badge>
+                                       <p className="font-medium mt-1">{alert.issue}</p>
+                                       <p className="text-xs text-muted-foreground">{alert.region}</p>
+                                   </div>
+                                    <Button asChild variant="ghost" size="sm">
+                                        <Link href={alert.actionLink}>Investigate</Link>
+                                    </Button>
                                </div>
-                                <Button asChild variant="ghost" size="sm">
-                                    <Link href={alert.actionLink}>Investigate</Link>
-                                </Button>
-                           </div>
-                       ))}
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No active compliance alerts.</p>
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -112,20 +116,24 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {supplyChainAnomalies.map(anomaly => (
-                            <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                               <div>
-                                   <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
-                                   <p className="mt-1">{anomaly.description}</p>
+                       {supplyChainAnomalies?.length > 0 ? (
+                           supplyChainAnomalies.map(anomaly => (
+                                <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                                   <div>
+                                       <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
+                                       <p className="mt-1">{anomaly.description}</p>
+                                   </div>
+                                   <Button asChild variant="secondary" size="sm">
+                                       <Link href={anomaly.vtiLink}>
+                                           <ExternalLink className="h-3 w-3 mr-1.5" />
+                                           Track VTI
+                                        </Link>
+                                   </Button>
                                </div>
-                               <Button asChild variant="secondary" size="sm">
-                                   <Link href={anomaly.vtiLink}>
-                                       <ExternalLink className="h-3 w-3 mr-1.5" />
-                                       Track VTI
-                                    </Link>
-                               </Button>
-                           </div>
-                       ))}
+                           ))
+                       ) : (
+                           <p className="text-sm text-muted-foreground text-center py-4">No anomalies detected.</p>
+                       )}
                     </CardContent>
                 </Card>
 

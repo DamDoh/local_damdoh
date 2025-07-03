@@ -86,10 +86,10 @@ export const EnergyProviderDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><Zap className="h-4 w-4 text-yellow-500"/> Project Leads</CardTitle>
-            <CardDescription>{dashboardData.projectLeads.length} potential projects</CardDescription>
+            <CardDescription>{dashboardData.projectLeads?.length || 0} potential projects</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold">{dashboardData.projectLeads.filter(p => p.status === 'New').length}</div>
+            <div className="text-4xl font-bold">{dashboardData.projectLeads?.filter(p => p.status === 'New').length || 0}</div>
             <p className="text-xs text-muted-foreground">new leads require attention</p>
           </CardContent>
         </Card>
@@ -97,10 +97,10 @@ export const EnergyProviderDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Active & Completed Projects</CardTitle>
-            <CardDescription>{dashboardData.activeProjects.length} total active projects</CardDescription>
+            <CardDescription>{dashboardData.activeProjects?.length || 0} total active projects</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold">{dashboardData.activeProjects.filter(p => p.status === 'Completed').length}</div>
+            <div className="text-4xl font-bold">{dashboardData.activeProjects?.filter(p => p.status === 'Completed').length || 0}</div>
              <p className="text-xs text-muted-foreground">projects completed</p>
           </CardContent>
         </Card>
@@ -122,7 +122,7 @@ export const EnergyProviderDashboard = () => {
              <CardDescription>Potential opportunities for energy solution installations.</CardDescription>
           </CardHeader>
           <CardContent>
-            {dashboardData.projectLeads.length > 0 ? (
+            {dashboardData.projectLeads?.length > 0 ? (
               <Table>
                 <TableHeader>
                   <TableRow>
