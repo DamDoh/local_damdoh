@@ -2,10 +2,10 @@
 "use client";
 
 import { useEffect, useState, useMemo } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, Tractor, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen } from 'lucide-react';
+import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,8 +20,7 @@ interface FarmDetails {
   id: string;
   name: string;
   location: string;
-  size: number;
-  unit: string;
+  size: string;
   createdAt: string;
 }
 
@@ -47,8 +46,8 @@ function FarmDetailSkeleton() {
         </CardHeader>
         <CardContent>
             <div className="space-y-4">
-                <Skeleton className="h-16 w-full" />
-                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
             </div>
         </CardContent>
       </Card>
@@ -59,6 +58,7 @@ function FarmDetailSkeleton() {
 export default function FarmDetailPage() {
   const params = useParams();
   const farmId = params.farmId as string;
+  const router = useRouter();
   const t = useTranslations('FarmManagement.farmDetail');
   const [farm, setFarm] = useState<FarmDetails | null>(null);
   const [crops, setCrops] = useState<Crop[]>([]);
@@ -72,6 +72,7 @@ export default function FarmDetailPage() {
 
   useEffect(() => {
     if (!farmId || !user) {
+        if (!user) router.push('/auth/signin');
         setIsLoading(false);
         return;
     };
@@ -83,6 +84,15 @@ export default function FarmDetailPage() {
           getFarmCallable({ farmId }),
           getFarmCropsCallable({ farmId })
         ]);
+
+        if(!farmResult.data){
+            toast({
+                variant: "destructive",
+                title: "Farm not found or permission denied",
+            });
+            router.push('/farm-management/farms');
+            return;
+        }
 
         setFarm(farmResult.data as FarmDetails);
         setCrops(cropsResult.data as Crop[]);
@@ -99,7 +109,7 @@ export default function FarmDetailPage() {
     };
 
     fetchFarmDetails();
-  }, [farmId, user, getFarmCallable, getFarmCropsCallable, toast]);
+  }, [farmId, user, getFarmCallable, getFarmCropsCallable, toast, router]);
 
   if (isLoading) {
     return <FarmDetailSkeleton />;
@@ -127,7 +137,7 @@ export default function FarmDetailPage() {
         <h1 className="text-4xl font-bold">{farm.name}</h1>
         <div className="flex items-center text-muted-foreground mt-2">
           <MapPin className="mr-2 h-5 w-5" />
-          <span>{farm.location} - Registered on {format(new Date(farm.createdAt), 'PPP')}</span>
+          <span>{farm.location} - Registered on {farm.createdAt ? format(new Date(farm.createdAt), 'PPP') : 'N/A'}</span>
         </div>
       </div>
       
@@ -142,7 +152,7 @@ export default function FarmDetailPage() {
           </Button>
         </CardHeader>
         <CardContent>
-            {crops.length > 0 ? (
+            {crops && crops.length > 0 ? (
                 <div className="space-y-3">
                     {crops.map((crop) => (
                         <Card key={crop.id} className="bg-muted/30">
@@ -154,8 +164,8 @@ export default function FarmDetailPage() {
                                     </div>
                                </div>
                             </CardHeader>
-                             <CardFooter className="p-4 pt-0 flex flex-wrap gap-2">
-                                <Button asChild variant="outline" size="sm">
+                             <CardContent className="p-4 pt-0 flex flex-wrap gap-2">
+                                <Button asChild variant="default" size="sm">
                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
                                         <Weight className="mr-2 h-4 w-4" />Log Harvest
                                     </Link>
@@ -170,13 +180,18 @@ export default function FarmDetailPage() {
                                         <NotebookPen className="mr-2 h-4 w-4" />Log Observation
                                     </Link>
                                 </Button>
-                             </CardFooter>
+                             </CardContent>
                         </Card>
                     ))}
                 </div>
             ) : (
                 <div className="text-center py-10 border-2 border-dashed rounded-lg">
                     <p className="text-muted-foreground">No crops or livestock have been added to this farm yet.</p>
+                     <Button asChild className="mt-4">
+                        <Link href={`/farm-management/farms/${farmId}/create-crop`}>
+                            <PlusCircle className="mr-2 h-4 w-4"/>Add First Crop/Livestock
+                        </Link>
+                    </Button>
                 </div>
             )}
         </CardContent>

@@ -29,7 +29,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { createCropSchema, type CreateCropValues } from "@/lib/form-schemas";
 import { ArrowLeft, Save, Sprout, CalendarIcon, Text, BarChart, HardHat, FileText, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
@@ -44,13 +44,13 @@ export default function CreateCropPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
-  const createCropCallable = httpsCallable(functions, 'createCrop');
+  const createCropCallable = useMemo(() => httpsCallable(functions, 'createCrop'), [functions]);
 
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),
     defaultValues: {
       cropType: "",
-      plantingDate: undefined,
+      plantingDate: new Date(),
       harvestDate: undefined,
       expectedYield: "",
       currentStage: undefined,
@@ -73,7 +73,6 @@ export default function CreateCropPage() {
     try {
       const payload = {
         farmId: farmId,
-        ownerId: user.uid, // The backend will verify this against the auth context
         cropType: data.cropType,
         plantingDate: data.plantingDate?.toISOString(),
         harvestDate: data.harvestDate?.toISOString(),
