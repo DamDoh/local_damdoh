@@ -46,7 +46,8 @@ export default function GroupsPage() {
     }, [getGroupsCallable, toast]);
 
     const filteredGroups = useMemo(() => {
-        return (groups || []).filter(group => {
+        if (!Array.isArray(groups)) return [];
+        return groups.filter(group => {
             if (!group) return false;
             const nameMatch = group.name?.toLowerCase().includes(searchTerm.toLowerCase()) || false;
             const descMatch = group.description?.toLowerCase().includes(searchTerm.toLowerCase()) || false;

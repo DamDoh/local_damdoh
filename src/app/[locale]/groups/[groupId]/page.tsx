@@ -46,13 +46,12 @@ export default function GroupPage() {
             ]);
             
             const groupData = groupDetailsResult.data as ForumGroup | null;
-            // Updated to handle object response from backend
             const membersData = (groupMembersResult.data as { members: UserProfile[] })?.members || [];
 
             setGroup(groupData);
             setMembers(membersData);
 
-            if (user && membersData) {
+            if (user && Array.isArray(membersData)) {
                 const memberIds = membersData.map(m => m.id);
                 setIsMember(memberIds.includes(user.uid));
             }
@@ -201,7 +200,7 @@ export default function GroupPage() {
                             <CardTitle className="text-lg">Members ({group.memberCount})</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
-                            {(members || []).filter(Boolean).map(member => (
+                            {Array.isArray(members) && members.filter(Boolean).map(member => (
                                 <div key={member.id} className="flex items-center gap-3">
                                     <Avatar>
                                         <AvatarImage src={member.avatarUrl} alt={member.displayName} data-ai-hint="profile person agriculture" />

@@ -43,7 +43,8 @@ export const getGroupDetails = functions.https.onCall(async (data, context) => {
 export const getGroupMembers = functions.https.onCall(async (data, context) => {
     const { groupId } = data;
     console.log("getGroupMembers called for:", groupId);
-    return DUMMY_MEMBERS;
+    // Return an object for consistency with other data-fetching functions
+    return { members: DUMMY_MEMBERS };
 });
 
 export const joinGroup = functions.https.onCall(async (data, context) => {
