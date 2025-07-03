@@ -1,11 +1,65 @@
 
+"use client";
+
 import { useTranslations } from 'next-intl';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Leaf, Sprout, Tractor, DollarSign, FlaskConical } from 'lucide-react';
 
 export default function FarmManagementPage() {
   const t = useTranslations('FarmManagement');
+
+  const navItems = [
+    {
+      title: t('myFarms.title'),
+      description: t('myFarms.description'),
+      link: "/farm-management/farms",
+      icon: <Leaf className="h-8 w-8 text-primary mb-2" />,
+      buttonText: t('myFarms.button'),
+      enabled: true,
+    },
+    {
+      title: t('knf.title'),
+      description: t('knf.description'),
+      link: "/farm-management/knf-inputs",
+      icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
+      buttonText: t('knf.button'),
+      enabled: true,
+    },
+    {
+      title: t('financials.title'),
+      description: t('financials.description'),
+      link: "/farm-management/financials",
+      icon: <DollarSign className="h-8 w-8 text-primary mb-2" />,
+      buttonText: t('financials.button'),
+      enabled: true,
+    },
+     {
+      title: "Seed Starting Guide",
+      description: "Learn how to successfully start seeds indoors to get a head start on the growing season.",
+      link: "/farm-management/seed-starting",
+      icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
+      buttonText: "View Guide",
+      enabled: true,
+    },
+    {
+      title: "Family Farm Model",
+      description: "Explore our 200sqm model for family food self-sustenance using bio-intensive methods.",
+      link: "/farm-management/family-farm",
+      icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
+      buttonText: "Explore Model",
+      enabled: true,
+    },
+    {
+      title: t('assetManagement.title'),
+      description: t('assetManagement.description'),
+      link: "#",
+      icon: <Tractor className="h-8 w-8 text-primary mb-2" />,
+      buttonText: t('assetManagement.button'),
+      enabled: false,
+    },
+  ];
 
   return (
     <div className="container mx-auto p-4 md:p-8">
@@ -15,66 +69,22 @@ export default function FarmManagementPage() {
       </p>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {/* Card for Managing Farms */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('myFarms.title')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="mb-4">{t('myFarms.description')}</p>
-            <Link href="/farm-management/create-farm" passHref>
-              <Button>{t('myFarms.button')}</Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Card for Crop Cycle Management */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('cropCycle.title')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="mb-4">{t('cropCycle.description')}</p>
-            <Button disabled>{t('cropCycle.button')}</Button>
-          </CardContent>
-        </Card>
-
-        {/* Card for KNF & Sustainable Practices */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('knf.title')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="mb-4">{t('knf.description')}</p>
-             <Link href="/farm-management/knf-inputs" passHref>
-               <Button>{t('knf.button')}</Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Card for Asset Management */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('assetManagement.title')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="mb-4">{t('assetManagement.description')}</p>
-            <Button disabled>{t('assetManagement.button')}</Button>
-          </CardContent>
-        </Card>
-        
-        {/* Card for Financials */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('financials.title')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="mb-4">{t('financials.description')}</p>
-            <Link href="/farm-management/financials" passHref>
-              <Button>{t('financials.button')}</Button>
-            </Link>
-          </CardContent>
-        </Card>
+        {navItems.map((item) => (
+            <Card key={item.title} className="flex flex-col">
+                <CardHeader>
+                    {item.icon}
+                    <CardTitle>{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <CardDescription>{item.description}</CardDescription>
+                </CardContent>
+                <div className="p-6 pt-0">
+                     <Button asChild className="w-full" disabled={!item.enabled}>
+                        <Link href={item.link}>{item.buttonText}</Link>
+                    </Button>
+                </div>
+            </Card>
+        ))}
       </div>
     </div>
   );

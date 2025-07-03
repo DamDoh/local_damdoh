@@ -1,5 +1,9 @@
 
 import * as functions from "firebase-functions";
+import {
+  _internalAssessCreditRisk,
+  _internalMatchFundingOpportunities,
+} from "./financial-services";
 
 /**
  * =================================================================
@@ -10,134 +14,11 @@ import * as functions from "firebase-functions";
 // This file will house the core AI and data analytics functions.
 // For now, it will contain the placeholder functions from the original module8.ts.
 // As we refactor, we will move the actual AI-related logic here.
+// Note: The internal logic for financial and insurance services has been moved
+// to their respective modules (financial-services.ts, insurance.ts). This file
+// now primarily holds the callable wrappers that might be used by external services
+// or specific client-side use cases, while keeping the core logic modular.
 
-/**
- * Internal logic for assessing credit risk.
- * This is an internal function to be called by other modules (e.g., financial-services).
- *
- * @param {any} data The data payload for assessment, typically containing
- * user profile and financial history.
- * @return {Promise<object>} An object with the calculated credit score
- * and contributing risk factors.
- */
-export async function _internalAssessCreditRisk(data: any) {
-  console.log("_internalAssessCreditRisk called with data:", data);
-  // In a real implementation, this would interact with an external AI platform
-  // (e.g., Vertex AI) or an internal AI model service.
-  const calculatedScore = Math.floor(300 + Math.random() * 550);
-  const riskFactors = [
-    "Payment history on platform",
-    "Farm yield variability",
-    "Length of operational history",
-  ];
-  return {
-    score: calculatedScore,
-    riskFactors: riskFactors,
-    status: "placeholder_analysis_complete",
-  };
-}
-
-/**
- * Internal logic for matching a user with funding opportunities.
- * This is an internal function to be called by other modules (e.g., financial-services).
- *
- * @param {any} data The data payload, containing user profile and available
- * opportunities.
- * @return {Promise<object>} An object with a list of matched
- * opportunities and their relevance scores.
- */
-export async function _internalMatchFundingOpportunities(data: any) {
-  console.log("_internalMatchFundingOpportunities called with data:", data);
-  // This is a placeholder for a real matching algorithm or AI model.
-  const matchedOpportunities = [
-    {
-      opportunityId: "loan_product_123",
-      relevanceScore: 0.85,
-      reason: "High credit score and matching crop type.",
-    },
-    {
-      opportunityId: "grant_program_456",
-      relevanceScore: 0.70,
-      reason: "Matches sustainability practices and location.",
-    },
-  ];
-  return {
-    matchedOpportunities: matchedOpportunities,
-    status: "placeholder_matching_complete",
-  };
-}
-
-/**
- * Internal logic for assessing insurance risk for a policy.
- * This is an internal function to be called by other modules (e.g., insurance).
- *
- * @param {any} data Data payload including policy, policyholder, and asset details.
- * @return {Promise<object>} An object with the insurance risk score
- * and contributing factors.
- */
-export async function _internalAssessInsuranceRisk(data: any) {
-  console.log("_internalAssessInsuranceRisk called with data:", data);
-  const riskScore = Math.random() * 10;
-  const riskFactors = [
-    "High flood risk in region",
-    "Lack of documented pest management",
-    "Monocropping practice",
-  ];
-  return {
-    insuranceRiskScore: riskScore.toFixed(2),
-    riskFactors: riskFactors,
-    status: "placeholder_assessment_complete",
-  };
-}
-
-/**
- * Internal logic for verifying an insurance claim's validity.
- * This is an internal function to be called by other modules (e.g., insurance).
- *
- * @param {any} data Data payload including claim details, policy, and other
- * evidence (e.g., weather data).
- * @return {Promise<object>} An object with the verification result, including
- * status and payout amount if approved.
- */
-export async function _internalVerifyClaim(data: any) {
-  console.log("_internalVerifyClaim called with data:", data);
-  const verificationResult = {
-    status: Math.random() > 0.3 ? "approved" : "rejected",
-    payoutAmount: 500.00,
-    assessmentDetails: {
-      verificationLog:
-        "Weather data confirmed drought during incident period. Farm activity logs consistent.",
-      dataPointsConsidered: [
-        "weather_data",
-        "farm_activity_logs",
-        "vti_events",
-      ],
-    },
-  };
-  return verificationResult;
-}
-
-/**
- * Internal logic for processing regulatory report data with AI.
- * This is an internal function to be called by other modules (e.g., regulatory-and-compliance).
- *
- * @param {any} data The data payload for report processing, including the report
- * type and raw data.
- * @return {Promise<object>} An object with the AI-processed content, such as
- * a summary or flagged anomalies.
- */
-export async function _internalProcessReportData(data: any) {
-  console.log("_internalProcessReportData called with data:", data);
-  const processedContent = {
-    summary: `This is an AI-generated summary for report type: ${data.reportType}. Analysis of the provided data indicates general compliance.`,
-    anomalies_detected: [],
-    key_metrics: {
-      "Total Transactions": 150,
-      "Compliance Score": "98%",
-    },
-  };
-  return processedContent;
-}
 
 /**
  * Callable function wrapper for assessing credit risk.

@@ -1,39 +1,3 @@
-/**
- * =================================================================
- * Module 11: Insurance Services (Agricultural Risk Mitigation)
- * =================================================================
- * This module provides a dedicated framework within DamDoh for managing and
- * facilitating access to agricultural insurance products, helping farmers and
- * stakeholders mitigate risks associated with unpredictable environmental
- * factors, market fluctuations, and operational challenges.
- *
- * @purpose To connect farmers with relevant and accessible agricultural
- * insurance solutions, streamline the policy management process from risk
- * assessment to claim processing, and ultimately provide financial security
- * against unforeseen events that impact agricultural productivity and income.
- *
- * @key_concepts
- * - Insurance Product Catalog: A curated list of various agricultural
- *   insurance products, including parametric and multi-peril crop insurance.
- * - Risk Assessment & Underwriting Support: Leverages farm data (Module 3)
- *   and environmental data (Module 1) for data-driven risk assessment.
- * - Policy Management: Allows users to browse, apply for, and manage
- *   insurance policies directly within the app.
- * - Claim Processing & Payouts: Streamlined digital claim submission with
- *   support for parametric triggers based on weather/satellite data.
- *
- * @firebase_data_model
- * - insurance_products: Stores available insurance products and their terms.
- * - insurance_policies: Records policies held by users, linked to assets.
- * - insurance_claims: Tracks all claims from submission to settlement.
- * - insurers: A directory of partner insurance providers.
- *
- * @synergy
- * - Relies on Module 1 (Traceability) for weather/satellite data for parametric triggers.
- * - Uses data from Module 3 (Farm Management) for risk assessment.
- * - Integrates with Module 7 (Financials) for premium payments and claim payouts.
- * - Triggers Module 13 (Notifications) for reminders and status updates.
- */
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
@@ -46,7 +10,7 @@ const db = admin.firestore();
  * =================================================================
  */
 
-// --- Internal AI-Driven Functions (moved from ai-services.ts) ---
+// --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
 
 /**
  * Internal logic for assessing insurance risk for a policy.

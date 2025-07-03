@@ -9,10 +9,26 @@ import { ArrowUpCircle, ArrowDownCircle, Banknote, DollarSign, PlusCircle } from
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import type { FinancialSummary, FinancialTransaction } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
+
+interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: string; // ISO string
+}
+
+interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
 
 const functions = getFunctions(firebaseApp);
 
@@ -45,10 +61,12 @@ export default function FinancialDashboardPage() {
         try {
             const result = await getFinancialsCallable();
             const data = result.data as { summary: FinancialSummary; transactions: FinancialTransaction[] };
-            setSummary(data.summary);
-            setTransactions(data.transactions);
+            setSummary(data?.summary || null);
+            setTransactions(data?.transactions || []);
         } catch (err) {
             console.error("Failed to load financial data.", err);
+            setSummary(null);
+            setTransactions([]);
         } finally {
             setIsLoading(false);
         }
