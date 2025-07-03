@@ -145,7 +145,7 @@ export const AgroTourismDashboard = () => {
                      <TableRow key={experience.id}>
                        <TableCell className="font-medium">{experience.title}</TableCell>
                        <TableCell>{experience.location}</TableCell>
-                       <TableCell><Badge variant={experience.status === 'Active' ? 'default' : 'secondary'}>{experience.status}</Badge></TableCell>
+                       <TableCell><Badge variant={experience.status === 'Published' ? 'default' : 'secondary'}>{experience.status}</Badge></TableCell>
                        <TableCell>{experience.bookingsCount}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">

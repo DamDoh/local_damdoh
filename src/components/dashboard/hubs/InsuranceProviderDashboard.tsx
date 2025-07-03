@@ -169,7 +169,7 @@ export const InsuranceProviderDashboard = () => {
          </Card>
 
           {/* Active Policies */}
-         <Card>
+         <Card className="md:col-span-2">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><Shield className="h-4 w-4 text-blue-500"/> Active Policies</CardTitle>
                 <CardDescription>Overview of active insurance policies.</CardDescription>

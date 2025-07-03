@@ -112,28 +112,28 @@ export const ProcessingUnitDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        {inventory?.length > 0 ? (
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Product</TableHead>
-                                        <TableHead>Quality</TableHead>
-                                        <TableHead className="text-right">Quantity (tons)</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {inventory.map((item, index) => (
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Product</TableHead>
+                                    <TableHead>Quality</TableHead>
+                                    <TableHead className="text-right">Quantity (tons)</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {inventory?.length > 0 ? (
+                                    inventory.map((item, index) => (
                                         <TableRow key={index}>
                                             <TableCell className="font-medium">{item.product}</TableCell>
                                             <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
                                             <TableCell className="text-right font-semibold">{item.tons}</TableCell>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        ) : (
-                            <p className="text-sm text-muted-foreground text-center py-4">No inventory data available.</p>
-                        )}
+                                    ))
+                                ) : (
+                                    <TableRow><TableCell colSpan={3} className="text-center h-24">No inventory data available.</TableCell></TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
                     </CardContent>
                 </Card>
 
@@ -145,18 +145,18 @@ export const ProcessingUnitDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                      <CardContent>
-                        {packagingOrders?.length > 0 ? (
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Supplier</TableHead>
-                                        <TableHead>Delivery Date</TableHead>
-                                        <TableHead>Status</TableHead>
-                                        <TableHead className="text-right">Action</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {packagingOrders.map((order) => (
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Supplier</TableHead>
+                                    <TableHead>Delivery Date</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead className="text-right">Action</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {packagingOrders?.length > 0 ? (
+                                    packagingOrders.map((order) => (
                                         <TableRow key={order.id}>
                                             <TableCell className="font-medium">{order.supplierName}</TableCell>
                                             <TableCell>{new Date(order.deliveryDate).toLocaleDateString()}</TableCell>
@@ -167,12 +167,12 @@ export const ProcessingUnitDashboard = () => {
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        ) : (
-                             <p className="text-sm text-muted-foreground text-center py-4">No packaging orders found.</p>
-                        )}
+                                    ))
+                                ) : (
+                                     <TableRow><TableCell colSpan={4} className="text-center h-24">No packaging orders found.</TableCell></TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
                     </CardContent>
                 </Card>
             </div>
