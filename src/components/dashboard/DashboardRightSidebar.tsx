@@ -9,8 +9,10 @@ import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTri
 import { useState, useEffect, useCallback } from "react";
 import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useUserProfile } from "@/hooks/useUserProfile";
+import { useAuth } from "@/lib/auth-utils";
 import type { StakeholderRole } from "@/lib/constants";
+import { useUserProfile } from "@/hooks/useUserProfile";
+
 
 interface AISuggestion {
   id: string;
@@ -26,8 +28,9 @@ export function DashboardRightSidebar() {
   const [aiSuggestions, setAiSuggestions] = useState<AISuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
   const [suggestionError, setSuggestionError] = useState<string | null>(null);
-
-  const { profile, loading: loadingProfile } = useUserProfile();
+  
+  const { user, loading: authLoading } = useAuth();
+  const { profile, loading: profileLoading } = useUserProfile();
 
   const fetchSuggestions = useCallback(async () => {
     if (!profile) return; // Wait until the user profile is loaded
@@ -41,11 +44,14 @@ export function DashboardRightSidebar() {
       };
 
       const result: SuggestedConnectionsOutput = await suggestConnections(userInput);
-      if (result && result.suggestions) {
+      if (result && Array.isArray(result.suggestions)) {
         setAiSuggestions(result.suggestions.map(s => ({
           ...s,
+          id: s.id || `missing-id-${Math.random()}`,
+          name: s.name || "Unnamed User",
+          role: s.role || "Unknown Role",
           avatarUrl: s.avatarUrl || 'https://placehold.co/50x50.png',
-          dataAiHint: `${s.role.toLowerCase().split(" ")[0]} profile`
+          dataAiHint: `${(s.role || 'profile').toLowerCase().split(" ")[0]} profile`
         })));
       } else {
         setAiSuggestions([]);
@@ -61,10 +67,15 @@ export function DashboardRightSidebar() {
   }, [profile]);
 
   useEffect(() => {
-    if (!loadingProfile && profile) {
+    // Only fetch suggestions if we are not loading profile and user exists
+    if (!authLoading && user && !profileLoading && profile) {
       fetchSuggestions();
+    } else if (!authLoading && !user) {
+      // If user is not logged in, stop loading and clear suggestions
+      setIsLoadingSuggestions(false);
+      setAiSuggestions([]);
     }
-  }, [loadingProfile, profile, fetchSuggestions]);
+  }, [authLoading, user, profileLoading, profile, fetchSuggestions]);
 
 
   const handleFollow = (suggestionId: string) => {
@@ -77,7 +88,7 @@ export function DashboardRightSidebar() {
   };
 
   const renderSuggestions = () => {
-    if (loadingProfile || isLoadingSuggestions) {
+    if (authLoading || profileLoading) {
       return Array.from({ length: 3 }).map((_, index) => (
         <li key={`skeleton-${index}`} className="flex items-start gap-3">
           <Skeleton className="h-12 w-12 rounded-md" />
@@ -89,6 +100,24 @@ export function DashboardRightSidebar() {
         </li>
       ));
     }
+    
+    if (!user) {
+        return <p className="text-sm text-muted-foreground text-center py-4">Sign in to get personalized suggestions.</p>;
+    }
+    
+    if (isLoadingSuggestions) {
+       return Array.from({ length: 3 }).map((_, index) => (
+        <li key={`skeleton-${index}`} className="flex items-start gap-3">
+          <Skeleton className="h-12 w-12 rounded-md" />
+          <div className="flex-1 space-y-1">
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-3 w-1/2" />
+            <Skeleton className="h-7 w-20 mt-1" />
+          </div>
+        </li>
+      ));
+    }
+
 
     if (suggestionError) {
       return (
@@ -108,14 +137,14 @@ export function DashboardRightSidebar() {
         <Link href={`/profiles/${sug.id}`}>
           <Avatar className="h-12 w-12 rounded-md cursor-pointer">
             <AvatarImage src={sug.avatarUrl} alt={sug.name} data-ai-hint={sug.dataAiHint || "profile agriculture"} />
-            <AvatarFallback>{sug.name.substring(0, 1)}</AvatarFallback>
+            <AvatarFallback>{sug.name?.substring(0, 1) || '?'}</AvatarFallback>
           </Avatar>
         </Link>
         <div className="flex-1">
           <Link href={`/profiles/${sug.id}`} className="hover:underline">
-            <h4 className="text-sm font-semibold">{sug.name}</h4>
+            <h4 className="text-sm font-semibold">{sug.name || 'Unnamed User'}</h4>
           </Link>
-          <p className="text-xs text-muted-foreground line-clamp-1">{sug.role}</p>
+          <p className="text-xs text-muted-foreground line-clamp-1">{sug.role || 'No Role'}</p>
           {sug.reason && <p className="text-xs text-muted-foreground/80 mt-0.5 line-clamp-2 italic">"{sug.reason}"</p>}
           <Button
             variant="outline"

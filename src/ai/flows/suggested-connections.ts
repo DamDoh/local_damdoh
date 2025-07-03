@@ -110,6 +110,6 @@ export const suggestConnections = ai.defineFlow(
     });
     
     // Ensure the output is always in the correct format, even if the AI fails.
-    return { suggestions: output?.suggestions || [] };
+    return { suggestions: output?.suggestions ?? [] };
   }
 );

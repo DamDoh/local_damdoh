@@ -4,6 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/lib/auth-utils';
 import type { UserProfile } from '@/lib/types';
+import { getProfileByIdFromDB } from '@/lib/db-utils';
 
 export function useUserProfile() {
   const { user: authUser, loading: authLoading } = useAuth();
@@ -12,16 +13,20 @@ export function useUserProfile() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchProfile = useCallback(async (uid: string) => {
+    if (!uid) {
+      setLoading(false);
+      setError("No user ID provided.");
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`/api/profiles/${uid}`);
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Failed to fetch profile.');
+      const userProfile = await getProfileByIdFromDB(uid);
+      if (userProfile) {
+        setProfile(userProfile);
+      } else {
+        setError("Profile not found.");
       }
-      const userProfile = await response.json();
-      setProfile(userProfile);
     } catch (err: any) {
       console.error("Error fetching user profile:", err);
       setError(err.message || "Failed to load user profile.");
