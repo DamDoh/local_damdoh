@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -65,16 +64,16 @@ export const CrowdfunderDashboard = () => {
       );
   }
 
-  const { portfolioOverview, suggestedOpportunities, recentTransactions } = dashboardData;
+  const { portfolioOverview, suggestedOpportunities = [], recentTransactions = [] } = dashboardData;
 
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">Impact Investment & Crowdfunding Hub</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard title="Total Invested" value={portfolioOverview.totalInvested} icon={<Briefcase />} />
-        <StatCard title="Number of Investments" value={portfolioOverview.numberOfInvestments} icon={<BarChart />} isCurrency={false} />
-        <StatCard title="Estimated Returns" value={portfolioOverview.estimatedReturns} icon={<TrendingUp />} />
+        <StatCard title="Total Invested" value={portfolioOverview?.totalInvested || 0} icon={<Briefcase />} />
+        <StatCard title="Number of Investments" value={portfolioOverview?.numberOfInvestments || 0} icon={<BarChart />} isCurrency={false} />
+        <StatCard title="Estimated Returns" value={portfolioOverview?.estimatedReturns || 0} icon={<TrendingUp />} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -85,7 +84,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Projects aligned with your impact goals.</CardDescription>
            </CardHeader>
            <CardContent>
-             {suggestedOpportunities?.length > 0 ? (
+             {suggestedOpportunities.length > 0 ? (
                <div className="space-y-4">
                  {suggestedOpportunities.map((opp) => {
                    const progress = (opp.amountRaised / opp.fundingGoal) * 100;
@@ -121,7 +120,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Your latest investment activities.</CardDescription>
            </CardHeader>
            <CardContent>
-             {recentTransactions?.length > 0 ? (
+             {recentTransactions.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>

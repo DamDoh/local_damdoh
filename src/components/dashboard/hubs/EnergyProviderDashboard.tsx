@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -62,6 +61,8 @@ export const EnergyProviderDashboard = () => {
       </Card>
     );
   }
+  
+  const { projectLeads = [], activeProjects = [], impactMetrics } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {
     switch (status.toLowerCase()) {
@@ -86,10 +87,10 @@ export const EnergyProviderDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><Zap className="h-4 w-4 text-yellow-500"/> Project Leads</CardTitle>
-            <CardDescription>{dashboardData.projectLeads?.length || 0} potential projects</CardDescription>
+            <CardDescription>{projectLeads.length || 0} potential projects</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold">{dashboardData.projectLeads?.filter(p => p.status === 'New').length || 0}</div>
+            <div className="text-4xl font-bold">{projectLeads.filter(p => p.status === 'New').length || 0}</div>
             <p className="text-xs text-muted-foreground">new leads require attention</p>
           </CardContent>
         </Card>
@@ -97,10 +98,10 @@ export const EnergyProviderDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Active & Completed Projects</CardTitle>
-            <CardDescription>{dashboardData.activeProjects?.length || 0} total active projects</CardDescription>
+            <CardDescription>{activeProjects.length || 0} total active projects</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold">{dashboardData.activeProjects?.filter(p => p.status === 'Completed').length || 0}</div>
+            <div className="text-4xl font-bold">{activeProjects.filter(p => p.status === 'Completed').length || 0}</div>
              <p className="text-xs text-muted-foreground">projects completed</p>
           </CardContent>
         </Card>
@@ -111,8 +112,8 @@ export const EnergyProviderDashboard = () => {
              <CardDescription>Aggregate impact of your solutions.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{dashboardData.impactMetrics.totalEstimatedCarbonReduction}</div>
-            <p className="text-xs text-muted-foreground">Total carbon reduction from {dashboardData.impactMetrics.totalInstallations} installations</p>
+            <div className="text-2xl font-bold">{impactMetrics?.totalEstimatedCarbonReduction || 'N/A'}</div>
+            <p className="text-xs text-muted-foreground">Total carbon reduction from {impactMetrics?.totalInstallations || 0} installations</p>
           </CardContent>
         </Card>
 
@@ -122,7 +123,7 @@ export const EnergyProviderDashboard = () => {
              <CardDescription>Potential opportunities for energy solution installations.</CardDescription>
           </CardHeader>
           <CardContent>
-            {dashboardData.projectLeads?.length > 0 ? (
+            {projectLeads.length > 0 ? (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -134,7 +135,7 @@ export const EnergyProviderDashboard = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {dashboardData.projectLeads.map((lead) => (
+                  {projectLeads.map((lead) => (
                     <TableRow key={lead.id}>
                       <TableCell className="font-medium">{lead.entityName}</TableCell>
                       <TableCell>{lead.location}</TableCell>

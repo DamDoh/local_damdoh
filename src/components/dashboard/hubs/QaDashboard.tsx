@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -63,6 +62,8 @@ export const QaDashboard = () => {
            </Card>
       );
   }
+  
+  const { pendingInspections = [], recentResults = [], qualityMetrics } = dashboardData;
 
   return (
     <div className="space-y-6">
@@ -76,7 +77,7 @@ export const QaDashboard = () => {
              <CardDescription>Inspections requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.pendingInspections?.length > 0 ? (
+             {pendingInspections.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -88,7 +89,7 @@ export const QaDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.pendingInspections.map((inspection) => (
+                   {pendingInspections.map((inspection) => (
                      <TableRow key={inspection.id}>
                        <TableCell className="font-mono text-xs">{inspection.batchId}</TableCell>
                        <TableCell>{inspection.productName}</TableCell>
@@ -116,7 +117,7 @@ export const QaDashboard = () => {
              <CardDescription>Recently reported quality and compliance issues.</CardDescription>
            </CardHeader>
            <CardContent>
-             {dashboardData.recentResults?.length > 0 ? (
+             {recentResults.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -127,7 +128,7 @@ export const QaDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {dashboardData.recentResults.map((issue) => (
+                   {recentResults.map((issue) => (
                      <TableRow key={issue.id}>
                        <TableCell>{issue.productName}</TableCell>
                        <TableCell><Badge variant={issue.result === 'Pass' ? 'default' : 'destructive'}>{issue.result}</Badge></TableCell>
@@ -150,19 +151,19 @@ export const QaDashboard = () => {
                 <CardDescription>Aggregated quality metrics.</CardDescription>
             </CardHeader>
             <CardContent>
-                {dashboardData.qualityMetrics ? (
+                {qualityMetrics ? (
                     <div className="space-y-3">
                         <div className="text-sm">
                             <div className="flex justify-between items-center">
                                 <p className="font-medium">Overall Pass Rate</p>
-                                <Badge variant="secondary">{dashboardData.qualityMetrics.passRate}%</Badge>
+                                <Badge variant="secondary">{qualityMetrics.passRate}%</Badge>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700 mt-1">
-                                <div className="bg-green-600 h-2 rounded-full" style={{ width: `${dashboardData.qualityMetrics.passRate}%` }}></div>
+                                <div className="bg-green-600 h-2 rounded-full" style={{ width: `${qualityMetrics.passRate}%` }}></div>
                             </div>
                         </div>
                         <div className="text-sm">
-                           <p>Average Score: {dashboardData.qualityMetrics.averageScore}</p>
+                           <p>Average Score: {qualityMetrics.averageScore}</p>
                         </div>
                     </div>
                 ) : (
