@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview AI flow to interpret user search queries for the DamDoh platform.
@@ -75,6 +76,15 @@ const queryInterpreterFlow = ai.defineFlow(
   },
   async (input) => {
     const {output} = await queryInterpreterPrompt(input);
-    return output!;
+    
+    // Ensure the output is always a valid object with arrays initialized to prevent crashes.
+    return {
+        originalQuery: output?.originalQuery || input.rawQuery,
+        mainKeywords: output?.mainKeywords ?? [],
+        identifiedLocation: output?.identifiedLocation,
+        identifiedIntent: output?.identifiedIntent,
+        suggestedFilters: output?.suggestedFilters ?? [],
+        interpretationNotes: output?.interpretationNotes
+    };
   }
 );

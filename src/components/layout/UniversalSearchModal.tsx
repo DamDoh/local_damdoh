@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, FormEvent, useCallback } from 'react';
@@ -6,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2 } from 'lucide-react';
+import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -15,6 +16,7 @@ import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { APP_NAME } from '@/lib/constants';
 import { Card, CardContent } from '../ui/card';
+import { performSearch } from '@/lib/db-utils';
 
 interface SearchResult {
   id: string;
@@ -31,30 +33,30 @@ interface UniversalSearchModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialQuery?: string;
-  searchFunction: (interpretation: any) => Promise<any[]>;
 }
 
 const getIconForCollection = (collection: SearchResult['itemCollection']) => {
+    const props = { className: "h-5 w-5 text-muted-foreground" };
     switch(collection) {
-        case 'users': return <Users className="h-4 w-4" />;
-        case 'marketplaceItems': return <ShoppingCart className="h-4 w-4" />;
-        case 'forums': return <MessageSquare className="h-4 w-4" />;
-        default: return <FileText className="h-4 w-4" />;
+        case 'users': return <Users {...props} />;
+        case 'marketplaceItems': return <ShoppingCart {...props} />;
+        case 'forums': return <MessageSquare {...props} />;
+        default: return <FileText {...props} />;
     }
 }
 
 const getLinkForCollection = (result: SearchResult) => {
     switch(result.itemCollection) {
         case 'users': return `/profiles/${result.itemId}`;
-        case 'marketplaceItems': return `/marketplace/${result.itemId}`;
-        case 'forums': return `/forums/${result.itemId}`;
+        case 'marketplaceItems': return `/marketplace/items/${result.itemId}`; // Assuming a detail page exists
+        case 'forums': return `/forums/${result.itemId}`; // Adjust if topic/post needs different URL structure
         case 'agriEvents': return `/agri-events/${result.itemId}`;
         case 'knowledge_articles': return `/blog/${result.itemId}`;
         default: return '#';
     }
 }
 
-export function UniversalSearchModal({ isOpen, onClose, initialQuery = "", searchFunction }: UniversalSearchModalProps) {
+export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: UniversalSearchModalProps) {
   const [currentQuery, setCurrentQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +73,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "", searc
     try {
         const interpretation = await interpretSearchQuery({ rawQuery: queryToSubmit });
         setAiInterpretation(interpretation);
-        const results = await searchFunction(interpretation);
+        const results = await performSearch(interpretation);
         setSearchResults(results as SearchResult[]);
 
     } catch (error: any) {
@@ -84,7 +86,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "", searc
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, toast, searchFunction]);
+  }, [isLoading, toast]);
 
 
   useEffect(() => {
@@ -138,6 +140,14 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "", searc
              {aiInterpretation && (
                  <div className="p-3 text-xs text-blue-700 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 rounded-md border border-blue-200 dark:border-blue-800">
                     <p><strong>AI interpretation:</strong> {aiInterpretation.interpretationNotes}</p>
+                    {aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-1">
+                            <strong>Filters:</strong>
+                            {aiInterpretation.suggestedFilters.map((filter, i) => (
+                                <Badge key={i} variant="secondary" className="bg-white/50">{filter.type}: {filter.value}</Badge>
+                            ))}
+                        </div>
+                    )}
                  </div>
             )}
             {isLoading ? (
@@ -152,24 +162,15 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "", searc
                 ))
             ) : searchResults.length > 0 ? (
                 searchResults.map(result => (
-                  <Link href={getLinkForCollection(result)} key={result.id} onClick={onClose} className="block">
+                  <Link href={getLinkForCollection(result)} key={result.id} onClick={onClose} className="block group">
                     <Card className="hover:border-primary/50 hover:bg-accent/50 transition-colors">
-                      <CardContent className="p-3 flex items-center gap-3">
-                        {result.imageUrl ? (
-                             <Image src={result.imageUrl} alt={result.title} width={40} height={40} className="h-10 w-10 object-cover rounded-md border"/>
-                        ) : (
-                            <div className="p-2 bg-muted rounded-md h-10 w-10 flex items-center justify-center">{getIconForCollection(result.itemCollection)}</div>
-                        )}
+                      <CardContent className="p-3 flex items-center gap-4">
+                        <div className="p-3 bg-muted rounded-md h-12 w-12 flex items-center justify-center shrink-0">{getIconForCollection(result.itemCollection)}</div>
                         <div className='flex-grow overflow-hidden'>
-                            <p className='font-semibold truncate'>{result.title}</p>
+                            <p className='font-semibold truncate group-hover:text-primary'>{result.title}</p>
                             <p className='text-xs text-muted-foreground truncate'>{result.description}</p>
-                            <div className="flex flex-wrap items-center gap-1 mt-1">
-                                <Badge variant="secondary" className="text-xs capitalize">{result.itemCollection.replace(/([A-Z])/g, ' $1').replace('Items', '').trim()}</Badge>
-                                {result.tags?.slice(0, 2).map(tag => (
-                                    <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
-                                ))}
-                            </div>
                         </div>
+                        <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 transition-transform"/>
                       </CardContent>
                     </Card>
                   </Link>

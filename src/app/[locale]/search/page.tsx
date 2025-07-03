@@ -1,7 +1,7 @@
+
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,12 +13,12 @@ export default function SearchPage() {
     const t = useTranslations('searchPage');
     const [searchQuery, setSearchQuery] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [initialQuery, setInitialQuery] = useState("");
+    const [initialModalQuery, setInitialModalQuery] = useState("");
 
     const handleSearchSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            setInitialQuery(searchQuery);
+            setInitialModalQuery(searchQuery);
             setIsModalOpen(true);
         }
     };
@@ -61,7 +61,7 @@ export default function SearchPage() {
                     <CardContent className="flex flex-wrap gap-2">
                          {[t('popularSearch1'), t('popularSearch2'), t('popularSearch3'), t('popularSearch4'), t('popularSearch5')].map(term => (
                              <Button key={term} variant="outline" onClick={() => {
-                                 setInitialQuery(term);
+                                 setInitialModalQuery(term);
                                  setIsModalOpen(true);
                              }}>
                                 {term}
@@ -74,7 +74,7 @@ export default function SearchPage() {
             <UniversalSearchModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                initialQuery={initialQuery}
+                initialQuery={initialModalQuery}
             />
         </>
     );

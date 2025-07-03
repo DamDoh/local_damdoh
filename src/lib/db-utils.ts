@@ -3,6 +3,7 @@
 import { httpsCallable } from 'firebase/functions';
 import { functions } from './firebase/client';
 import type { UserProfile } from '@/lib/types';
+import type { SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 
 // This file now only contains code that is safe to run in the browser.
 // All direct server-side database operations have been moved to server-actions.ts
@@ -52,7 +53,7 @@ export async function getAllMarketplaceItemsFromDB(): Promise<any[]> {
 // --- Universal Search Action ---
 // Note: This function calls a Firebase Cloud Function, which is a secure way
 // to interact with the backend from the client.
-export async function performSearch(interpretation: any): Promise<any[]> {
+export async function performSearch(interpretation: SmartSearchInterpretation): Promise<any[]> {
     const performSearchCallable = httpsCallable(functions, 'performSearch');
     try {
         console.log(`[Action] Calling performSearch cloud function with interpretation:`, interpretation);
