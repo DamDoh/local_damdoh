@@ -54,14 +54,14 @@ function MessagingContent() {
         try {
             const result = await getMessagesCallable({ conversationId: conversation.id });
             const data = result.data as { messages: Message[] };
-            setMessages(data.messages || []);
+            setMessages(data?.messages || []); // Defensive check for data and data.messages
         } catch (error) {
             console.error("Failed to fetch messages", error);
             toast({ variant: "destructive", title: t('error'), description: t('couldNotLoadMessages') });
         } finally {
             setIsLoadingMessages(false);
         }
-    }, [selectedConversation?.id, messages.length, toast, t]);
+    }, [selectedConversation?.id, messages.length, toast, t, getMessagesCallable]);
     
     useEffect(() => {
         if (scrollAreaRef.current) {
@@ -83,7 +83,7 @@ function MessagingContent() {
             setIsLoadingConversations(true);
             try {
                 const convResult = await getConversationsCallable();
-                const convos = (convResult.data as { conversations: Conversation[] }).conversations || [];
+                const convos = (convResult.data as any)?.conversations || []; // Defensive check
                 setConversations(convos);
 
                 const recipientId = searchParams.get('with');
@@ -98,7 +98,7 @@ function MessagingContent() {
                         const result = await getOrCreateConversationCallable({ recipientId });
                         const { conversationId } = result.data as { conversationId: string };
                         const newConvResult = await getConversationsCallable();
-                        const newConvos = (newConvResult.data as { conversations: Conversation[] }).conversations || [];
+                        const newConvos = (newConvResult.data as any)?.conversations || []; // Defensive check
                         setConversations(newConvos);
                         const newCreatedConvo = newConvos.find(c => c.id === conversationId);
                         if (newCreatedConvo) {
@@ -118,7 +118,7 @@ function MessagingContent() {
 
         fetchInitialData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, authLoading, searchParams, toast, t]);
+    }, [user, authLoading, searchParams, toast, t, handleConversationSelect]);
     
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -223,7 +223,7 @@ function MessagingContent() {
             </div>
 
             {/* Active Chat Panel */}
-            <div className={cn("flex flex-col h-full bg-muted/30", !selectedConversation && "hidden md:flex")}>
+            <div className={cn("flex flex-col h-full bg-muted/30", !conversationHeaderProfile && !isLoadingConversations && "hidden md:flex")}>
                 {conversationHeaderProfile ? (
                     <>
                         <div className="p-4 border-b flex items-center gap-3 bg-background">
@@ -248,14 +248,14 @@ function MessagingContent() {
                                             "flex gap-2 items-end",
                                             msg.senderId === user.uid ? "justify-end" : "justify-start"
                                         )}>
-                                            {msg.senderId !== user.uid && <Avatar className="h-6 w-6"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
+                                            {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
                                             <div className={cn(
                                                 "p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm",
                                                 msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none"
                                             )}>
                                                 <p className="whitespace-pre-wrap">{msg.content}</p>
                                             </div>
-                                             {msg.senderId === user.uid && <Avatar className="h-6 w-6"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
+                                             {msg.senderId === user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
                                         </div>
                                     ))}
                                 </div>
@@ -312,7 +312,7 @@ function MessagingSkeleton() {
                 </div>
             </div>
         </Card>
-    )
+    );
 }
 
 export default function MessagesPage() {
