@@ -377,7 +377,12 @@
       "themeLabel": "ស្បែក",
       "themeDescription": "ជ្រើសរើសស្បែកที่คุณต้องการ (สว่าง/มืด)។",
       "languageLabel": "ភាសា",
-      "languageDescription": "เลือกภาษาที่คุณต้องการสำหรับส่วนติดต่อ។"
+      "languageDescription": "เลือกภาษาที่คุณต้องการสำหรับส่วนติดต่อ។",
+      "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+      "aboutLabel": "អំពី",
+      "privacyPolicyLabel": "គោលការណ៍ឯកជនភាព",
+      "termsOfServiceLabel": "ល័ក្ខខ័ណ្ឌនៃសេវាកម្ម",
+      "contactLabel": "ទំនាក់ទំនង"
     }
   }
 }
