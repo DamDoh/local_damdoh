@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Home",
@@ -46,5 +47,99 @@
     "search": "Search",
     "forums": "Forums",
     "profile": "Profile"
+  },
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signInTitle": "Sign In",
+    "signInDescription": "Enter your credentials to access your account.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing In...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign up",
+    "signUpWelcome": "Join the {appName} Agricultural Network",
+    "signUpTitle": "Create an Account",
+    "signUpDescription": "Fill in the details below to get started.",
+    "nameLabel": "Your Name or Company Name",
+    "namePlaceholder": "e.g., Jane Doe or Green Valley Farms",
+    "roleLabel": "Your Role in the Supply Chain",
+    "rolePlaceholder": "Select your primary role",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "creatingAccountButton": "Creating Account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "signInLink": "Sign in",
+    "forgotPasswordResetPrompt": "Reset your {appName} password",
+    "forgotPasswordTitle": "Forgot Password",
+    "forgotPasswordDescription": "Enter your email and we'll send you a reset link.",
+    "sendingEmailButton": "Sending Email...",
+    "sendResetLinkButton": "Send Reset Link",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordPrompt": "Set your new {appName} password",
+    "resetPasswordTitle": "Reset Password",
+    "resetPasswordDescription": "Enter and confirm your new password.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "resettingPasswordButton": "Resetting Password...",
+    "resetPasswordButton": "Reset Password"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Farmer",
+      "AgriculturalCooperative": "Agricultural Cooperative",
+      "FieldAgent": "Field Agent/Agronomist (DamDoh Internal)",
+      "LogisticsTeam": "Operations/Logistics Team (DamDoh Internal)",
+      "QATeam": "Quality Assurance Team (DamDoh Internal)",
+      "ProcessingUnit": "Processing & Packaging Unit",
+      "Buyer": "Buyer (Restaurant, Supermarket, Exporter)",
+      "InputSupplier": "Input Supplier (Seed, Fertilizer, Pesticide)",
+      "EquipmentSupplier": "Equipment Supplier (Sales of Machinery/IoT)",
+      "FinancialInstitution": "Financial Institution (Micro-finance/Loans)",
+      "Regulator": "Government Regulator/Auditor",
+      "CertificationBody": "Certification Body (Organic, Fair Trade etc.)",
+      "Consumer": "Consumer",
+      "Researcher": "Researcher/Academic",
+      "LogisticsPartner": "Logistics Partner (Third-Party Transporter)",
+      "Warehouse": "Storage/Warehouse Facility",
+      "Agronomist": "Agronomy Expert/Consultant (External)",
+      "AgroTourism": "Agro-Tourism Operator",
+      "EnergyProvider": "Energy Solutions Provider (Solar, Biogas)",
+      "AgroExporter": "Agro-Export Facilitator/Customs Broker",
+      "AgriTech": "Agri-Tech Innovator/Developer",
+      "Retailer": "Retailer/City Market Seller",
+      "WasteManagement": "Waste Management & Compost Facility",
+      "Crowdfunder": "Crowdfunder (Impact Investor, Individual)"
+    },
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service"
+    },
+    "agriEventTypes": {
+        "All": "All Event Types",
+        "Conference": "Conference",
+        "Webinar": "Webinar",
+        "Workshop": "Workshop",
+        "TradeShow": "Trade Show",
+        "FieldDay": "Field Day",
+        "NetworkingEvent": "Networking Event",
+        "OnlineCourseLaunch": "Online Course Launch",
+        "PolicyBriefing": "Policy Briefing"
+    },
+    "financialServiceTypes": {
+        "loan": "Loan",
+        "credit": "Credit",
+        "grant": "Grant",
+        "savings": "Savings Account"
+    },
+    "insuranceServiceTypes": {
+        "crop_insurance": "Crop Insurance",
+        "livestock_insurance": "Livestock Insurance",
+        "property_insurance": "Property Insurance"
+    }
   }
 }

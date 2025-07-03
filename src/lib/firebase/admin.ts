@@ -1,3 +1,4 @@
+
 import admin from 'firebase-admin';
 
 // Check if the app is already initialized to prevent errors
@@ -6,7 +7,7 @@ if (!admin.apps.length) {
     const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string);
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
-      // Add your other Firebase config here if needed
+      databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`
     });
     console.log("Firebase Admin SDK initialized successfully.");
   } catch (error) {

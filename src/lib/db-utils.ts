@@ -1,9 +1,53 @@
+
 // src/lib/db-utils.ts
 import { httpsCallable } from 'firebase/functions';
 import { functions } from './firebase/client';
+import type { UserProfile } from '@/lib/types';
 
 // This file now only contains code that is safe to run in the browser.
-// All server-side database operations have been moved to server-actions.ts
+// All direct server-side database operations have been moved to server-actions.ts
+
+export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
+    try {
+      const response = await fetch(`/api/profiles/${id}`);
+      if (!response.ok) {
+        return null;
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(`Error fetching profile ${id} from API:`, error);
+      return null;
+    }
+}
+
+
+export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
+   try {
+    const response = await fetch(`/api/profiles`);
+    if (!response.ok) {
+      return [];
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching all profiles from API:`, error);
+    return [];
+  }
+}
+
+
+export async function getAllMarketplaceItemsFromDB(): Promise<any[]> {
+   try {
+    const response = await fetch(`/api/marketplace`);
+    if (!response.ok) {
+      return [];
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching all marketplace items from API:`, error);
+    return [];
+  }
+}
+
 
 // --- Universal Search Action ---
 // Note: This function calls a Firebase Cloud Function, which is a secure way

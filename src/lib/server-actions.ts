@@ -17,6 +17,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
     const profilesCol = collection(adminDb, PROFILES_COLLECTION);
     const profileSnapshot = await getDocs(profilesCol);
     if (profileSnapshot.empty) {
+        console.warn("No profiles found in Firestore, returning dummy data.");
         return dummyProfiles;
     }
     const profileList = profileSnapshot.docs.map(docSnap => {
@@ -49,7 +50,9 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
     } else {
-      return null;
+      // Fallback to dummy data if not found in DB
+      console.warn(`Profile with ID ${id} not found in Firestore, attempting to find in dummy data.`);
+      return dummyProfiles.find(p => p.id === id) || null;
     }
   } catch (error) {
     console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
@@ -90,6 +93,7 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
     const itemsCol = collection(adminDb, MARKETPLACE_COLLECTION);
     const itemSnapshot = await getDocs(itemsCol);
     if (itemSnapshot.empty) {
+        console.warn("No marketplace items found in Firestore, returning dummy data.");
         return dummyMarketplaceItems;
     }
     const itemList = itemSnapshot.docs.map(docSnap => {
@@ -128,4 +132,17 @@ export async function getMarketplaceItemByIdFromDB(id: string): Promise<Marketpl
     console.error(`Error fetching marketplace item with ID ${id} from Firestore: `, error);
     throw error;
   }
+}
+
+export async function updateMarketplaceItemInDB(id: string, data: Partial<MarketplaceItem>): Promise<MarketplaceItem | null> {
+  const itemRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
+  const updateData = { ...data, updatedAt: new Date().toISOString() };
+  await updateDoc(itemRef, updateData);
+  return getMarketplaceItemByIdFromDB(id);
+}
+
+export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> {
+  const itemRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
+  await deleteDoc(itemRef);
+  return true;
 }

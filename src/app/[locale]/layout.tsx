@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import '../globals.css';
 import { AppHeader } from "@/components/layout/AppHeader";
@@ -7,7 +8,7 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import { notFound } from "next/navigation";
  
 export const metadata: Metadata = {
   title: {
@@ -26,7 +27,12 @@ export default async function LocaleLayout({
   params: {locale: string};
 }) {
   const { locale } = params;
-  const messages = await getMessages();
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
  
   return (
     <html lang={locale} suppressHydrationWarning>
