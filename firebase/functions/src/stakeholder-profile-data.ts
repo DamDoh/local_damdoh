@@ -135,27 +135,48 @@ export const crowdfunderProfileSchema = baseProfileSchema.extend({
   averageInvestmentSize: z.string().optional(),
 });
 
+// 22. Agri-Tech Innovator
+export const agriTechInnovatorProfileSchema = baseProfileSchema.extend({
+    technologyFocus: z.array(z.string()).optional(),
+    integrationCapabilities: z.array(z.string()).optional(),
+});
+
+// 23. Waste Management Facility
+export const wasteManagementProfileSchema = baseProfileSchema.extend({
+    wasteTypesAccepted: z.array(z.string()).optional(),
+    outputProducts: z.array(z.string()).optional(),
+});
+
+// 24. Equipment Supplier
+export const equipmentSupplierProfileSchema = baseProfileSchema.extend({
+    equipmentTypes: z.array(z.string()).optional(),
+    brandsCarried: z.array(z.string()).optional(),
+});
+
+
 export const stakeholderProfileSchemas = {
   "Farmer": farmerProfileSchema,
-  "Field Agent / Agronomist": fieldAgentProfileSchema,
-  "Operations / Logistics Team": logisticsTeamProfileSchema,
-  "Quality Assurance (QA) Team": qaTeamProfileSchema,
+  "Agricultural Cooperative": baseProfileSchema, // Placeholder, can be extended
+  "Field Agent/Agronomist (DamDoh Internal)": fieldAgentProfileSchema,
+  "Operations/Logistics Team (DamDoh Internal)": logisticsTeamProfileSchema,
+  "Quality Assurance Team (DamDoh Internal)": qaTeamProfileSchema,
   "Processing & Packaging Unit": processingUnitProfileSchema,
-  "Buyer": buyerProfileSchema,
-  "Input Supplier": inputSupplierProfileSchema,
-  "Financial Institution": financialInstitutionProfileSchema,
-  "Government Regulator / Auditor": regulatorProfileSchema,
-  "Certification Body": certificationBodyProfileSchema,
+  "Buyer (Restaurant, Supermarket, Exporter)": buyerProfileSchema,
+  "Input Supplier (Seed, Fertilizer, Pesticide)": inputSupplierProfileSchema,
+  "Equipment Supplier (Sales of Machinery/IoT)": equipmentSupplierProfileSchema,
+  "Financial Institution (Micro-finance/Loans)": financialInstitutionProfileSchema,
+  "Government Regulator/Auditor": regulatorProfileSchema,
+  "Certification Body (Organic, Fair Trade etc.)": certificationBodyProfileSchema,
   "Consumer": consumerProfileSchema,
-  "Researcher / Academic": researcherProfileSchema,
-  "Logistics Partner": logisticsPartnerProfileSchema,
-  "Storage / Warehouse Facility": warehouseProfileSchema,
-  "Agronomy Expert / Consultant": agronomyExpertProfileSchema,
+  "Researcher/Academic": researcherProfileSchema,
+  "Logistics Partner (Third-Party Transporter)": logisticsPartnerProfileSchema,
+  "Storage/Warehouse Facility": warehouseProfileSchema,
+  "Agronomy Expert/Consultant (External)": agronomyExpertProfileSchema,
   "Agro-Tourism Operator": agroTourismOperatorProfileSchema,
-  "Energy Solutions Provider": energyProviderProfileSchema,
-  "Agro-Export Facilitator / Customs Broker":
-    agroExportFacilitatorProfileSchema,
+  "Energy Solutions Provider (Solar, Biogas)": energyProviderProfileSchema,
+  "Agro-Export Facilitator/Customs Broker": agroExportFacilitatorProfileSchema,
+  "Agri-Tech Innovator/Developer": agriTechInnovatorProfileSchema,
+  "Waste Management & Compost Facility": wasteManagementProfileSchema,
+  "Crowdfunder (Impact Investor, Individual)": crowdfunderProfileSchema,
   "Insurance Provider": insuranceProviderProfileSchema,
-  "Packaging Supplier": packagingSupplierProfileSchema,
-  "Crowdfunder": crowdfunderProfileSchema,
 };

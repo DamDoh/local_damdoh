@@ -24,8 +24,8 @@ export const localeNames: Record<string, string> = {
 export const getStakeholderRoles = (t: ReturnType<typeof useTranslations>) => [
   { value: 'Farmer', label: t('stakeholderRoles.Farmer') },
   { value: 'Agricultural Cooperative', label: t('stakeholderRoles.AgriculturalCooperative') },
-  { value: 'Field Agent/Agronomist (DamDoh Internal)', label: t('stakeholderRoles.FieldAgent') },
-  { value: 'Operations/Logistics Team (DamDoh Internal)', label: t('stakeholderRoles.LogisticsTeam') },
+  { value: 'Field Agent/Agronomist (DamDoh Internal)', label: t('stakeholderRoles.FieldAgentAgronomist') },
+  { value: 'Operations/Logistics Team (DamDoh Internal)', label: t('stakeholderRoles.OperationsLogisticsTeam') },
   { value: 'Quality Assurance Team (DamDoh Internal)', label: t('stakeholderRoles.QATeam') },
   { value: 'Processing & Packaging Unit', label: t('stakeholderRoles.ProcessingUnit') },
   { value: 'Buyer (Restaurant, Supermarket, Exporter)', label: t('stakeholderRoles.Buyer') },

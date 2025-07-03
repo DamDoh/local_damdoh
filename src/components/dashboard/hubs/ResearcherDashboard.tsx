@@ -111,7 +111,7 @@ export const ResearcherDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No datasets available yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No datasets available yet.</p>
              )}
            </CardContent>
          </Card>
@@ -156,7 +156,7 @@ export const ResearcherDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No ongoing research projects.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No ongoing research projects.</p>
              )}
            </CardContent>
          </Card>
@@ -178,7 +178,7 @@ export const ResearcherDashboard = () => {
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No contributions to the Knowledge Base yet.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">No contributions to the Knowledge Base yet.</p>
                 )}
             </CardContent>
          </Card>

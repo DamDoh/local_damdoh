@@ -111,7 +111,7 @@ export const CertificationBodyDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No pending audits.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No pending audits.</p>
              )}
            </CardContent>
          </Card>
@@ -149,7 +149,7 @@ export const CertificationBodyDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No certified entities found.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No certified entities found.</p>
              )}
            </CardContent>
          </Card>
@@ -182,7 +182,7 @@ export const CertificationBodyDashboard = () => {
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No standards monitoring data available.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">No standards monitoring data available.</p>
                 )}
             </CardContent>
          </Card>

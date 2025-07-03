@@ -40,7 +40,7 @@ export const AgroTourismDashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getAgroTourismDashboardDataCallable]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -117,7 +117,7 @@ export const AgroTourismDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No upcoming bookings.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No upcoming bookings.</p>
              )}
            </CardContent>
          </Card>
@@ -157,7 +157,7 @@ export const AgroTourismDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No agro-tourism experiences listed yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No agro-tourism experiences listed yet.</p>
              )}
            </CardContent>
          </Card>
@@ -185,7 +185,7 @@ export const AgroTourismDashboard = () => {
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No guest reviews yet.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">No guest reviews yet.</p>
                 )}
             </CardContent>
          </Card>

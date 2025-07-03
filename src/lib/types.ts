@@ -22,10 +22,71 @@ export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumTopicSchema>;
+export type UserRole =
+  | 'Farmer'
+  | 'Agricultural Cooperative'
+  | 'Field Agent/Agronomist (DamDoh Internal)'
+  | 'Operations/Logistics Team (DamDoh Internal)'
+  | 'Quality Assurance Team (DamDoh Internal)'
+  | 'Processing & Packaging Unit'
+  | 'Buyer (Restaurant, Supermarket, Exporter)'
+  | 'Input Supplier (Seed, Fertilizer, Pesticide)'
+  | 'Equipment Supplier (Sales of Machinery/IoT)'
+  | 'Financial Institution (Micro-finance/Loans)'
+  | 'Government Regulator/Auditor'
+  | 'Certification Body (Organic, Fair Trade etc.)'
+  | 'Consumer'
+  | 'Researcher/Academic'
+  | 'Logistics Partner (Third-Party Transporter)'
+  | 'Storage/Warehouse Facility'
+  | 'Agronomy Expert/Consultant (External)'
+  | 'Agro-Tourism Operator'
+  | 'Energy Solutions Provider (Solar, Biogas)'
+  | 'Agro-Export Facilitator/Customs Broker'
+  | 'Agri-Tech Innovator/Developer'
+  | 'Waste Management & Compost Facility'
+  | 'Crowdfunder (Impact Investor, Individual)'
+  | 'Insurance Provider'
+  | 'Admin'
+  | 'System'
+  | 'General'; // General for un-roled or guest users
+
+
+export interface MarketplaceCoupon {
+    id: string;
+    sellerId: string;
+    code: string;
+    discountType: 'percentage' | 'fixed';
+    discountValue: number;
+    expiresAt: any;
+    usageLimit: number | null;
+    usageCount: number;
+    isActive: boolean;
+    applicableToListingIds: string[];
+    applicableToCategories: string[];
+    createdAt: any;
+}
+
+export interface Shop {
+    id: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    stakeholderType: string;
+    createdAt: any;
+    updatedAt: any;
+    logoUrl: string | null;
+    bannerUrl: string | null;
+    contactInfo: {
+        phone?: string;
+        website?: string;
+    };
+    itemCount: number;
+    rating: number;
+}
 
 // =================================================================
 // 2. UI & COMPONENT-SPECIFIC TYPES
-// Types used for navigation, UI components, and specific page features.
 // =================================================================
 
 export interface NavItem {

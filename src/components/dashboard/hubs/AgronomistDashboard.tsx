@@ -111,7 +111,7 @@ export const AgronomistDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No pending consultation requests.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No pending consultation requests.</p>
              )}
            </CardContent>
          </Card>
@@ -151,7 +151,7 @@ export const AgronomistDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No farmers assigned yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No farmers assigned yet.</p>
              )}
            </CardContent>
          </Card>
@@ -176,7 +176,7 @@ export const AgronomistDashboard = () => {
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No contributions to the Knowledge Base yet.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">No contributions to the Knowledge Base yet.</p>
                 )}
             </CardContent>
          </Card>

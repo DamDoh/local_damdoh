@@ -1,18 +1,28 @@
 
 export const stakeholderData = `
 Key stakeholders in the DamDoh ecosystem include:
-*   **Farmers:** Primary producers. Use DamDoh to find suppliers (Marketplace), buyers (Marketplace), market info (Marketplace, Forums), and best practices (Forums, AI Assistant). They connect with peers (Network, Forums) for knowledge sharing and collaboration.
-*   **Input Suppliers:** Provide seeds, fertilizers, machinery. Use DamDoh to reach farmers (Marketplace, Network), showcase products (Marketplace, Profile), and find distributors (Network).
-*   **Pre-Harvest Contractors:** Offer services like land prep, planting, irrigation. Use DamDoh to find farm clients (Marketplace, Network) and offer specialized services (Marketplace).
-*   **Collection Agents:** Gather produce. Use DamDoh to connect farmers with processors/traders (Marketplace, Network) for efficient aggregation.
-*   **Processors:** Transform raw products into consumable goods. Use DamDoh to find reliable raw material suppliers (Marketplace, Network) and buyers for processed goods (Marketplace, Network).
-*   **Traders:** Buy and sell agricultural products in local/international markets. Use DamDoh for market intelligence (Marketplace, Forums, AI Assistant), finding suppliers (Marketplace, Network), and connecting with buyers (Marketplace, Network).
-*   **Retailers:** Supermarkets, grocery stores. Use DamDoh to source directly from farmers or processors (Marketplace, Network), ensuring quality and traceability.
-*   **Exporters:** Facilitate international trade of agricultural goods. Use DamDoh to connect producers with international buyers (Marketplace, Network) and navigate export requirements (Forums, AI Assistant).
-*   **Consumers:** End-users. While DamDoh is B2B focused, consumers might seek information (AI Assistant, Forums) or direct farm connections (Marketplace, Profiles) for transparency.
-*   **Government Agencies:** Regulators and policy setters. May use DamDoh to disseminate information (Forums, Profiles), share policy updates, and engage with stakeholders (Forums).
-*   **Agricultural Cooperatives:** Farmer groups working together. Use DamDoh to aggregate products, enhance bargaining power, find buyers (Marketplace, Network), share resources (Forums), and access information (Forums, AI Assistant).
-*   **Financial Institutions:** Banks and lenders. Use DamDoh to connect with farmers and agribusinesses needing funding, credit, or insurance (Marketplace - Services, Network).
-*   **Trade Associations:** Advocate for agricultural interests. Use DamDoh for communication (Forums, Profiles), member engagement, and industry updates.
-*   **Development Personnel:** Experts, advisors, researchers. Use DamDoh to share knowledge (Forums, AI Assistant), support agricultural development projects, and connect with stakeholders (Network).
+*   **Farmer:** The primary producer of agricultural goods.
+*   **Agricultural Cooperative:** Represents a group of farmers for collective action.
+*   **Field Agent/Agronomist (DamDoh Internal):** On-the-ground support and data verification.
+*   **Operations/Logistics Team (DamDoh Internal):** Manages system data flow and integrity.
+*   **Quality Assurance Team (DamDoh Internal):** Audits and ensures data quality.
+*   **Processing & Packaging Unit:** Transforms raw produce into processed goods.
+*   **Buyer (Restaurant, Supermarket, Exporter):** Purchases products for resale or export.
+*   **Input Supplier (Seed, Fertilizer, Pesticide):** Provides essential agricultural inputs.
+*   **Equipment Supplier (Sales of Machinery/IoT):** Provides machinery and technology.
+*   **Financial Institution (Micro-finance/Loans):** Offers financial services like loans and credit.
+*   **Government Regulator/Auditor:** Enforces policies and food safety standards.
+*   **Certification Body (Organic, Fair Trade etc.):** Certifies products against standards.
+*   **Consumer:** The end-user of agricultural products, interested in traceability.
+*   **Researcher/Academic:** Conducts research using anonymized platform data.
+*   **Logistics Partner (Third-Party Transporter):** Provides transportation services.
+*   **Storage/Warehouse Facility:** Offers storage for agricultural products.
+*   **Agronomy Expert/Consultant (External):** Provides specialized paid advisory services.
+*   **Agro-Tourism Operator:** Facilitates farm-based tourism experiences.
+*   **Energy Solutions Provider (Solar, Biogas):** Offers renewable energy solutions for farms.
+*   **Agro-Export Facilitator/Customs Broker:** Assists with international trade procedures.
+*   **Agri-Tech Innovator/Developer:** Develops new technologies for the platform.
+*   **Waste Management & Compost Facility:** Manages agricultural waste and promotes circularity.
+*   **Crowdfunder (Impact Investor, Individual):** Provides alternative financing for projects.
+*   **Insurance Provider:** Offers agricultural insurance products to mitigate risk.
 `;

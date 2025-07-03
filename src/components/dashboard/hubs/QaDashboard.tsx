@@ -166,7 +166,7 @@ export const QaDashboard = () => {
                         </div>
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground">No metrics available.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">No metrics available.</p>
                 )}
             </CardContent>
          </Card>
