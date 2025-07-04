@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -16,6 +15,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProfilesFromDB } from "@/lib/db-utils";
 import { useTranslations } from "next-intl";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 
 function ProfileCardSkeleton() {
   return (
@@ -204,4 +204,3 @@ export default function NetworkPage() {
     </div>
   );
 }
-
