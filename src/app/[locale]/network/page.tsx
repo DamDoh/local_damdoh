@@ -9,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon, UserCog } from "lucide-react";
+import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon, UserCog, User } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -49,7 +49,7 @@ export default function NetworkPage() {
   const [interestFilter, setInterestFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
 
-  const { profile: currentUserProfile } = useUserProfile();
+  const { profile: currentUserProfile, loading: profileLoading } = useUserProfile();
   
   const interests = ['All', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
 
@@ -107,6 +107,13 @@ export default function NetworkPage() {
               <CardDescription>{t('description')}</CardDescription>
             </div>
             <div className="flex gap-2">
+                {currentUserProfile && (
+                     <Button asChild>
+                        <Link href="/network/my-network">
+                            <Users className="mr-2 h-4 w-4" /> My Network
+                        </Link>
+                    </Button>
+                )}
                 {isAgent && (
                     <Button asChild>
                         <Link href="/network/agent-tools">

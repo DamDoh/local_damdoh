@@ -1,0 +1,205 @@
+
+"use client";
+
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ArrowLeft, UserPlus, Check, X, Users, UserMinus, Loader2 } from "lucide-react";
+import Link from 'next/link';
+import { useAuth } from '@/lib/auth-utils';
+import { useToast } from '@/hooks/use-toast';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import type { ConnectionRequest, Connection } from '@/lib/types';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { formatDistanceToNow } from 'date-fns';
+import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
+
+export default function MyNetworkPage() {
+    const { user, loading: authLoading } = useAuth();
+    const { toast } = useToast();
+    const [requests, setRequests] = useState<ConnectionRequest[]>([]);
+    const [connections, setConnections] = useState<Connection[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isResponding, setIsResponding] = useState<string | null>(null);
+
+    const functions = getFunctions(firebaseApp);
+    const getPendingRequests = useMemo(() => httpsCallable(functions, 'getPendingRequests'), []);
+    const getConnections = useMemo(() => httpsCallable(functions, 'getConnections'), []);
+    const respondToRequest = useMemo(() => httpsCallable(functions, 'respondToConnectionRequest'), []);
+    const removeConnection = useMemo(() => httpsCallable(functions, 'removeConnection'), []);
+
+    const fetchData = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const [requestsResult, connectionsResult] = await Promise.all([
+                getPendingRequests(),
+                getConnections()
+            ]);
+            setRequests((requestsResult.data as any)?.requests || []);
+            setConnections((connectionsResult.data as any)?.connections || []);
+        } catch (error: any) {
+            console.error("Error fetching network data:", error);
+            toast({ title: "Error", description: "Could not load your network data.", variant: "destructive" });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [getPendingRequests, getConnections, toast]);
+
+    useEffect(() => {
+        if (user) {
+            fetchData();
+        } else if (!authLoading) {
+            setIsLoading(false);
+        }
+    }, [user, authLoading, fetchData]);
+
+    const handleRespondToRequest = async (requestId: string, response: 'accepted' | 'declined') => {
+        setIsResponding(requestId);
+        try {
+            await respondToRequest({ requestId, response });
+            toast({ title: "Success", description: `Request has been ${response}.` });
+            fetchData(); // Refetch all data
+        } catch (error: any) {
+            toast({ title: "Error", description: error.message, variant: "destructive" });
+        } finally {
+            setIsResponding(null);
+        }
+    };
+    
+    const handleRemoveConnection = async (connectionId: string) => {
+        setIsResponding(connectionId); // Reuse loading state
+        try {
+            await removeConnection({ connectionId });
+            toast({ title: "Connection Removed" });
+            fetchData(); // Refetch
+        } catch (error: any) {
+             toast({ title: "Error", description: "Could not remove connection.", variant: "destructive" });
+        } finally {
+            setIsResponding(null);
+        }
+    };
+
+    if (isLoading || authLoading) {
+        return <NetworkPageSkeleton />;
+    }
+
+    if (!user) {
+        return (
+            <Card>
+                <CardHeader>
+                    <CardTitle>Please Sign In</CardTitle>
+                    <CardDescription>You need to be logged in to manage your network.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Button asChild><Link href="/auth/signin">Sign In</Link></Button>
+                </CardContent>
+            </Card>
+        );
+    }
+    
+
+    return (
+        <div className="container mx-auto max-w-4xl py-8">
+            <Link href="/network" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                Back to Network Discovery
+            </Link>
+
+            <Tabs defaultValue="connections" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="connections">My Connections ({connections.length})</TabsTrigger>
+                    <TabsTrigger value="requests">
+                        Pending Requests 
+                        {requests.length > 0 && <Badge className="ml-2">{requests.length}</Badge>}
+                    </TabsTrigger>
+                </TabsList>
+                <TabsContent value="connections" className="mt-4">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>My Connections</CardTitle>
+                            <CardDescription>The people and organizations in your professional network.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {connections.length > 0 ? connections.map(conn => (
+                                    <div key={conn.id} className="p-3 border rounded-lg flex items-center justify-between gap-3">
+                                        <div className="flex items-center gap-3 overflow-hidden">
+                                            <Avatar>
+                                                <AvatarImage src={conn.avatarUrl} alt={conn.displayName} />
+                                                <AvatarFallback>{conn.displayName?.substring(0,1)}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="overflow-hidden">
+                                                <Link href={`/profiles/${conn.id}`} className="hover:underline">
+                                                    <p className="font-semibold truncate">{conn.displayName}</p>
+                                                </Link>
+                                                <p className="text-xs text-muted-foreground truncate flex items-center gap-1">
+                                                    <StakeholderIcon role={conn.primaryRole} className="h-3 w-3 shrink-0"/>
+                                                    {conn.primaryRole}
+                                                </p>
+                                            </div>
+                                        </div>
+                                         <Button size="sm" variant="destructive" onClick={() => handleRemoveConnection(conn.id)} disabled={isResponding === conn.id}>
+                                            {isResponding === conn.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <UserMinus className="h-4 w-4"/>}
+                                        </Button>
+                                    </div>
+                                )) : <p className="text-center text-muted-foreground py-8">You haven't made any connections yet.</p>}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+                <TabsContent value="requests" className="mt-4">
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>Pending Requests</CardTitle>
+                            <CardDescription>People who want to connect with you.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-3">
+                                {requests.length > 0 ? requests.map(req => (
+                                    <div key={req.id} className="p-3 border rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                                        <div className="flex items-center gap-3 overflow-hidden">
+                                            <Avatar>
+                                                <AvatarImage src={req.requester.avatarUrl} alt={req.requester.displayName} />
+                                                <AvatarFallback>{req.requester.displayName?.substring(0,1)}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="overflow-hidden">
+                                                <Link href={`/profiles/${req.requester.id}`} className="hover:underline">
+                                                    <p className="font-semibold truncate">{req.requester.displayName}</p>
+                                                </Link>
+                                                <p className="text-xs text-muted-foreground truncate">{req.requester.primaryRole}</p>
+                                                <p className="text-xs text-muted-foreground">Sent {formatDistanceToNow(new Date(req.createdAt), { addSuffix: true })}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-2 self-end sm:self-center">
+                                            <Button size="sm" variant="secondary" onClick={() => handleRespondToRequest(req.id, 'declined')} disabled={!!isResponding}><X className="h-4 w-4"/></Button>
+                                            <Button size="sm" onClick={() => handleRespondToRequest(req.id, 'accepted')} disabled={!!isResponding}>
+                                                {isResponding === req.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <Check className="h-4 w-4"/>}
+                                            </Button>
+                                        </div>
+                                    </div>
+                                )) : <p className="text-center text-muted-foreground py-8">You have no pending connection requests.</p>}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+            </Tabs>
+        </div>
+    );
+}
+
+const NetworkPageSkeleton = () => (
+    <div className="container mx-auto max-w-4xl py-8">
+        <Skeleton className="h-6 w-48 mb-4" />
+        <Skeleton className="h-10 w-full mb-4" />
+        <Card>
+            <CardHeader><Skeleton className="h-8 w-1/3"/></CardHeader>
+            <CardContent className="space-y-4">
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+            </CardContent>
+        </Card>
+    </div>
+)

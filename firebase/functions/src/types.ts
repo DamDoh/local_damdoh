@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -62,6 +63,25 @@ export type ForumGroup = {
   isPublic: boolean;
   ownerId: string;
   createdAt: string; // ISO String
+}
+
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
+}
+
+export interface ConnectionRequest {
+    id: string; // The request document ID
+    requester: {
+        id: string;
+        displayName: string;
+        avatarUrl?: string;
+        primaryRole: string;
+    };
+    createdAt: string; // ISO string
 }
 
 // =================================================================
@@ -145,6 +165,7 @@ export interface BuyerDashboardData {
   };
 }
 
+
 export interface RegulatorDashboardData {
   complianceRiskAlerts: {
     id: string;
@@ -164,6 +185,7 @@ export interface RegulatorDashboardData {
     vtiLink: string;
   }[];
 }
+
 
 export interface LogisticsDashboardData {
     activeShipments: {
@@ -516,30 +538,9 @@ export interface PackagingSupplierDashboardData {
 }
 
 export interface SustainabilityDashboardData {
-    carbonFootprint: {
-        total: number;
-        unit: string;
-        trend: number;
-    };
-    waterUsage: {
-        efficiency: number;
-        unit: string;
-        trend: number;
-    };
-    biodiversityScore: {
-        score: number;
-        unit: string;
-        trend: number;
-    };
-    sustainablePractices: {
-        id: string;
-        practice: string;
-        lastLogged: string;
-    }[];
-    certifications: {
-        id: string;
-        name: string;
-        status: string;
-        expiry: string;
-    }[];
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
 }

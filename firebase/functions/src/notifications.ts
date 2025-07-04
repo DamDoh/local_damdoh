@@ -137,6 +137,19 @@ export const onDataChangeCreateNotification = functions.firestore
           linkedEntity: {collection: "applications", documentId},
         },
       };
+    } else if (collectionId === 'connection_requests' && !beforeData && afterData?.status === 'pending') {
+        const requesterDoc = await db.collection('users').doc(afterData.requesterId).get();
+        const requesterName = requesterDoc.data()?.displayName || 'Someone';
+
+        notificationDetails = {
+            userId: afterData.recipientId, // Notify the recipient
+            payload: {
+                type: "new_connection_request",
+                title_en: "New Connection Request",
+                body_en: `${requesterName} wants to connect with you.`,
+                linkedEntity: { collection: "network", documentId: "my-network" },
+            },
+        };
     }
 
     if (notificationDetails) {
