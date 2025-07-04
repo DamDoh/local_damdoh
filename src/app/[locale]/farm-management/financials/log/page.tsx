@@ -32,6 +32,8 @@ import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 
+const currencies = ["USD", "KES", "NGN", "GHS", "EUR", "UGX", "TZS", "ZMW"];
+
 export default function LogFinancialTransactionPage() {
   const router = useRouter();
   const { toast } = useToast();
@@ -169,11 +171,7 @@ export default function LogFinancialTransactionPage() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="USD">USD</SelectItem>
-                          <SelectItem value="KES">KES</SelectItem>
-                          <SelectItem value="NGN">NGN</SelectItem>
-                          <SelectItem value="GHS">GHS</SelectItem>
-                          <SelectItem value="EUR">EUR</SelectItem>
+                           {currencies.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                         </SelectContent>
                       </Select>
                       <FormMessage />

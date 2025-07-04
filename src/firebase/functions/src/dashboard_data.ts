@@ -97,24 +97,29 @@ export const getFarmerDashboardData = functions.https.onCall(
 );
 
 
-// =================================================================
-// PLACEHOLDER DASHBOARDS (to be implemented with real data later)
-// =================================================================
-
 export const getCooperativeDashboardData = functions.https.onCall(
   (data, context): CooperativeDashboardData => {
     checkAuth(context);
+    // This is placeholder data. A real implementation would query the DB
+    // to find all users who are members of this cooperative (context.auth.uid)
+    // and aggregate their data.
     return {
         memberCount: 125,
         totalLandArea: 850,
         aggregatedProduce: [
-            { id: 'prod1', productName: 'Organic Maize', quantity: 50, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 7).toISOString() },
-            { id: 'prod2', productName: 'Hass Avocados', quantity: 20, quality: 'Export Grade', readyBy: new Date(Date.now() + 86400000 * 14).toISOString() }
+            { id: 'batch_maize_123', productName: 'Organic Maize', quantity: 50, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 7).toISOString() },
+            { id: 'batch_avocado_456', productName: 'Hass Avocados', quantity: 20, quality: 'Export Grade', readyBy: new Date(Date.now() + 86400000 * 14).toISOString() },
+            { id: 'batch_coffee_789', productName: 'AA Coffee Beans', quantity: 15, quality: 'Specialty Grade', readyBy: new Date(Date.now() + 86400000 * 3).toISOString() },
         ],
         pendingMemberApplications: 3,
     };
   }
 );
+
+
+// =================================================================
+// PLACEHOLDER DASHBOARDS (to be implemented with real data later)
+// =================================================================
 
 export const getBuyerDashboardData = functions.https.onCall(
   (data, context): BuyerDashboardData => {
@@ -428,5 +433,3 @@ export const getWasteManagementDashboardData = functions.https.onCall(
   }
 );
     
-
-```
