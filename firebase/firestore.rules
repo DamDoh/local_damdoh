@@ -1,138 +1,126 @@
+
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Default deny all reads and writes
+  
+    // Default Deny: By default, no one can read or write to any document.
+    // We will open up access on a per-collection basis below.
     match /{document=**} {
       allow read, write: if false;
     }
-    
-    // Allow users to read and write their own data, but not delete their profile.
-    // Profile creation/deletion should be handled by secure Cloud Functions.
+
+    // Users:
+    // - Anyone can read a user's public profile.
+    // - A user can create their own profile document (usually done via backend function).
+    // - A user can only update or delete their own profile.
     match /users/{userId} {
-      allow read: if request.auth.uid == userId;
-      // Allow creation only via backend functions.
-      // Allow updates only by the user themselves.
-      allow write: if request.auth.uid == userId;
-      // Disallow client-side deletion.
-      allow delete: if false; 
+      allow read: if request.auth != null;
+      allow create: if request.auth.uid == userId;
+      allow update, delete: if request.auth.uid == userId;
     }
     
-    // Marketplace items can be read by anyone.
-    // Only the seller (owner) can create, update, or delete their own listings.
+    // Shops:
+    // - Anyone can read a shop's details.
+    // - Only the owner (as defined in the document) can create, update, or delete their shop.
+    match /shops/{shopId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth.uid == request.resource.data.ownerId;
+    }
+    
+    // Marketplace Items:
+    // - Anyone can read marketplace listings.
+    // - An authenticated user can create a listing.
+    // - Only the seller who created the listing can update or delete it.
     match /marketplaceItems/{itemId} {
-      allow read: if true;
+      allow read: if request.auth != null;
       allow create: if request.auth.uid == request.resource.data.sellerId;
       allow update, delete: if request.auth.uid == resource.data.sellerId;
     }
-
-    // Shops can be read by anyone.
-    match /shops/{shopId} {
-      allow read: if true;
-      allow create, update, delete: if request.auth.uid == resource.data.ownerId;
-    }
-
-    // Coupons are private to the seller.
+    
+    // Marketplace Coupons:
+    // - Only the seller can create or view their own coupons.
     match /marketplace_coupons/{couponId} {
-        allow read, write: if request.auth.uid == resource.data.sellerId;
+        allow read, create, update, delete: if request.auth.uid == request.resource.data.sellerId;
     }
 
-    // Knowledge articles are public.
-    match /knowledge_articles/{articleId} {
-      allow read: if true;
-      // Write access should be restricted to admins/curators via custom claims in a real app
-      allow write: if request.auth != null; 
-    }
-    
-    // KNF base data is public.
-     match /knowledge_base/{docId} {
-      allow read: if true;
-      allow write: if false; // Should only be populated by admin scripts
-    }
-
-    // Forums are public, but writing requires authentication.
-    match /forums/{topicId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      // Updates would be for admins/moderators
-      allow update: if false; 
-    }
-    
-    match /forums/{topicId}/posts/{postId} {
-      allow read: if true;
-      allow create: if request.auth.uid == request.resource.data.authorRef;
-      allow update: if request.auth.uid == resource.data.authorRef; // Allow editing own posts
-      allow delete: if request.auth.uid == resource.data.authorRef; // Allow deleting own posts
-    }
-    
-    match /forums/{topicId}/posts/{postId}/replies/{replyId} {
-       allow read: if true;
-       allow create: if request.auth.uid == request.resource.data.authorRef;
-    }
-
-    // Agri-Events are public.
+    // Agri-Events:
+    // - Anyone can read public event details.
+    // - Authenticated users can create events.
+    // - Only the event organizer can update or delete it.
     match /agri_events/{eventId} {
         allow read: if true;
-        allow create: if request.auth.uid == request.resource.data.listerId;
+        allow create: if request.auth != null;
         allow update, delete: if request.auth.uid == resource.data.organizerId;
+
+        // Attendees sub-collection:
+        // - Authenticated users can register themselves (create their own doc).
+        // - Users can read their own registration.
+        // - Only the event organizer can read the full attendee list.
+        match /attendees/{userId} {
+            allow create: if request.auth.uid == userId;
+            allow read: if request.auth.uid == userId || request.auth.uid == get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId;
+        }
+
+        // Coupons sub-collection:
+        // - Only the organizer can manage coupons.
+        match /coupons/{couponId} {
+            allow read, write: if request.auth.uid == get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId;
+        }
     }
 
-    // Agri-Event attendees are private to the user and organizer
-    match /agri_events/{eventId}/attendees/{userId} {
-        // User can see their own registration
-        allow read, write: if request.auth.uid == userId;
-        // Organizer can see all attendees
-        allow read, list: if get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId == request.auth.uid;
-    }
-    
-    // Agri-Event coupons are private to the organizer
-    match /agri_events/{eventId}/coupons/{couponId} {
-        allow read, write: if get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId == request.auth.uid;
-    }
-
-    // Farms and crops are private to the owner.
-    match /farms/{farmId} {
-        allow read, write, delete: if request.auth.uid == resource.data.ownerId;
-    }
-    match /crops/{cropId} {
-        allow read, write, delete: if request.auth.uid == resource.data.ownerId;
-    }
-    match /knf_batches/{batchId} {
-        allow read, write, delete: if request.auth.uid == resource.data.userId;
-    }
-    
-    // Traceability events are public to read, but only authenticated can write.
-    match /traceability_events/{eventId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if false; // Events are immutable
-    }
-
-    // Search index is written by backend functions, read by clients
-     match /search_index/{docId} {
+    // Forums:
+    // - Anyone authenticated can read topics and posts.
+    // - Authenticated users can create topics and posts.
+    // - Users can only edit or delete their own posts/topics.
+    match /forums/{topicId} {
       allow read: if request.auth != null;
-      allow write: if false; // Only backend can write
-    }
+      allow create: if request.auth.uid == request.resource.data.creatorId;
+      allow update, delete: if request.auth.uid == resource.data.creatorId;
+      
+      match /posts/{postId} {
+        allow read: if request.auth != null;
+        allow create: if request.auth.uid == request.resource.data.authorRef;
+        allow update, delete: if request.auth.uid == resource.data.authorRef;
 
-    // Notifications are private to the user
-     match /notifications/{notificationId} {
-      allow read, write, delete: if request.auth.uid == resource.data.userId;
+        match /replies/{replyId} {
+           allow read: if request.auth != null;
+           allow create: if request.auth.uid == request.resource.data.authorRef;
+           allow update, delete: if request.auth.uid == resource.data.authorRef;
+        }
+      }
     }
     
-     match /conversations/{convoId} {
-      // Only participants can read/write to a conversation document
-      allow read, write: if request.auth.uid in resource.data.participantIds;
+    // Search Index:
+    // - This collection should ONLY be written to by Cloud Functions (backend).
+    // - Clients should be able to read from it to perform searches.
+    match /search_index/{indexId} {
+        allow read: if request.auth != null;
+        allow write: if false; // Disallow client writes completely
     }
-
-    match /conversations/{convoId}/messages/{messageId} {
-       // Only participants can read messages
-       allow read: if get(/databases/$(database)/documents/conversations/$(convoId)).data.participantIds.hasAny([request.auth.uid]);
-       // Only the sender can create a message
-       allow create: if request.auth.uid == request.resource.data.senderId;
-       // Messages are immutable
-       allow update, delete: if false;
+    
+    // All other collections for farm management, traceability, etc. should have rules
+    // added here as they become fully functional.
+    // Example for farms:
+    match /farms/{farmId} {
+      allow read, update, delete: if request.auth.uid == resource.data.ownerId;
+      allow create: if request.auth.uid == request.resource.data.ownerId;
     }
-
+     match /crops/{cropId} {
+      allow read, update, delete: if request.auth.uid == resource.data.ownerId;
+      allow create: if request.auth.uid == request.resource.data.ownerId;
+    }
+     match /knf_batches/{batchId} {
+      allow read, update, delete: if request.auth.uid == resource.data.userId;
+      allow create: if request.auth.uid == request.resource.data.userId;
+    }
+    match /traceability_events/{eventId} {
+        allow read: if true; // Public read for traceability
+        allow create: if request.auth != null; // Allow any auth'd user to log events
+    }
+     match /vti_registry/{vtiId} {
+        allow read: if true; // Public read for traceability
+        allow create: if request.auth != null;
+    }
   }
 }
