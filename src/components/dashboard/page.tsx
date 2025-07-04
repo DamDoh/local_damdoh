@@ -39,6 +39,7 @@ import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
 import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
+import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -65,6 +66,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,
     'Researcher/Academic': ResearcherDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
+    'Waste Management & Compost Facility': WasteManagementDashboard,
 };
 
 function PageSkeleton() {

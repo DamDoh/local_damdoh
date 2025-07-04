@@ -1,3 +1,4 @@
+
 import { AGRICULTURAL_CATEGORIES } from './category-data';
 import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes } from './i18n-constants';
 
@@ -30,7 +31,8 @@ export const STAKEHOLDER_ROLES = [
   'Agri-Tech Innovator/Developer',
   'Waste Management & Compost Facility',
   'Crowdfunder (Impact Investor, Individual)',
-  'Insurance Provider'
+  'Insurance Provider',
+  'Packaging Supplier'
 ] as const;
 
 
@@ -94,7 +96,7 @@ import {
   Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
   BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
   Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
-  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck
+  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck, Box
 } from 'lucide-react';
 
 export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
@@ -122,4 +124,5 @@ export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
     'Waste Management & Compost Facility': Recycle,
     'Crowdfunder (Impact Investor, Individual)': Banknote,
     'Insurance Provider': ShieldCheck,
+    'Packaging Supplier': Box,
 };

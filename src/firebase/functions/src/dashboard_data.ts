@@ -22,7 +22,8 @@ import type {
     EnergyProviderDashboardData,
     CrowdfunderDashboardData,
     EquipmentSupplierDashboardData,
-    WasteManagementDashboardData
+    WasteManagementDashboardData,
+    PackagingSupplierDashboardData
 } from "./types";
 
 const db = admin.firestore();
@@ -134,6 +135,41 @@ export const getInputSupplierDashboardData = functions.https.onCall(
   }
 );
 
+export const getFiDashboardData = functions.https.onCall(
+  (data, context): FiDashboardData => {
+    checkAuth(context);
+    return {
+        pendingApplications: [
+            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' },
+            { id: 'app2', applicantName: 'Sunrise Growers', type: 'Grant', amount: 15000, riskScore: 810, actionLink: '#' }
+        ],
+        portfolioAtRisk: { count: 5, value: 25000, highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' }, actionLink: '#' },
+        marketUpdates: [
+            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%. Consider adjusting loan product rates.', actionLink: '#' },
+            { id: 'update2', content: 'New government subsidy announced for climate-resilient farming practices.', actionLink: '#' }
+        ]
+    };
+  }
+);
+
+export const getPackagingSupplierDashboardData = functions.https.onCall(
+  (data, context): PackagingSupplierDashboardData => {
+    checkAuth(context);
+    return {
+      incomingOrders: [
+        { id: 'order1', customerName: 'GreenLeaf Organics', product: '5kg Jute Bags', quantity: 1000, status: 'New', actionLink: '#' },
+        { id: 'order2', customerName: 'Amina Exports Ltd.', product: 'Ventilated Fruit Cartons', quantity: 5000, status: 'Processing', actionLink: '#' }
+      ],
+      inventory: [
+        { id: 'inv1', item: '5kg Jute Bags', stock: 5000, reorderLevel: 2000 },
+        { id: 'inv2', item: 'Ventilated Fruit Cartons', stock: 8000, reorderLevel: 3000 },
+        { id: 'inv3', item: 'GrainPro Hermetic Bags', stock: 1500, reorderLevel: 1000 }
+      ],
+    };
+  }
+);
+
+
 
 // =================================================================
 // PLACEHOLDER DASHBOARDS (to be implemented with real data later)
@@ -187,20 +223,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
   }
 );
 
-export const getFiDashboardData = functions.https.onCall(
-  (data, context): FiDashboardData => {
-    checkAuth(context);
-    return {
-        pendingApplications: [
-            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' }
-        ],
-        portfolioAtRisk: { count: 5, value: 25000, highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' }, actionLink: '#' },
-        marketUpdates: [
-            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%.', actionLink: '#' }
-        ]
-    };
-  }
-);
+
 
 export const getFieldAgentDashboardData = functions.https.onCall(
   (data, context): FieldAgentDashboardData => {
@@ -436,3 +459,4 @@ export const getWasteManagementDashboardData = functions.https.onCall(
     };
   }
 );
+    

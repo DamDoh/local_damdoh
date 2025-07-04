@@ -19,7 +19,7 @@ export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
-export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)";
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
 export interface MarketplaceCoupon {
@@ -367,7 +367,6 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
-
 export interface ResearcherDashboardData {
   availableDatasets: {
     id: string;
@@ -387,6 +386,7 @@ export interface ResearcherDashboardData {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review' | 'Draft';
+    actionLink: string;
   }[];
 }
 
@@ -498,18 +498,35 @@ export interface WasteManagementDashboardData {
   }[];
 }
 
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
+}
+
 
 export interface KnfBatch {
-    id: string;
-    userId: string;
-    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
-    typeName: string;
-    ingredients: string;
-    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
-    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-    nextStep: string;
-    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
-    createdAt: { _seconds: number, _nanoseconds: number } | any;
+  id: string;
+  userId: string;
+  type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
+  typeName: string;
+  ingredients: string;
+  startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
+  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+  nextStep: string;
+  nextStepDate: { _seconds: number, _nanoseconds: number } | any;
+  createdAt: { _seconds: number, _nanoseconds: number } | any;
 }
 
 export interface YieldData {
@@ -593,4 +610,15 @@ export interface InsuranceProviderDashboardData {
     coverageAmount: number;
     expiryDate: string; // ISO string
   }[];
+}
+
+export interface PostReply {
+    id: string;
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    content: string;
+    timestamp: string;
 }

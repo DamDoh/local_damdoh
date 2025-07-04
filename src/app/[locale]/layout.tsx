@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import '../globals.css';
 import { AppHeader } from "@/components/layout/AppHeader";

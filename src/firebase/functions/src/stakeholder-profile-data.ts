@@ -153,6 +153,12 @@ export const agriculturalCooperativeProfileSchema = baseProfileSchema.extend({
   produces: z.array(z.string()).optional().describe("Main products the cooperative deals with"),
 });
 
+// 25. Packaging Supplier
+export const packagingSupplierProfileSchema = baseProfileSchema.extend({
+  packagingTypes: z.array(z.string()).optional().describe("Types of packaging offered, e.g., Jute bags, GrainPro bags, Cardboard boxes"),
+  sustainabilityOptions: z.boolean().optional().describe("Offers biodegradable or recycled packaging options"),
+});
+
 
 export const stakeholderProfileSchemas = {
   "Farmer": farmerProfileSchema,
@@ -179,4 +185,5 @@ export const stakeholderProfileSchemas = {
   "Waste Management & Compost Facility": wasteManagementProfileSchema,
   "Crowdfunder (Impact Investor, Individual)": crowdfunderProfileSchema,
   "Insurance Provider": insuranceProviderProfileSchema,
+  "Packaging Supplier": packagingSupplierProfileSchema,
 };

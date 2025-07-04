@@ -10,8 +10,7 @@ import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle } from 'lucide
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-
-import type { FiDashboardData } from '@/lib/types'; // Import the FiDashboardData type
+import type { FiDashboardData } from '@/lib/types';
 
 export const FiDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
@@ -67,12 +66,12 @@ export const FiDashboard = () => {
                         <AlertTriangle className="h-4 w-4 text-destructive" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{portfolioAtRisk.count} Accounts</div>
-                        <p className="text-xs text-muted-foreground">${portfolioAtRisk.value.toLocaleString()} value</p>
+                        <div className="text-2xl font-bold">{portfolioAtRisk?.count || 0} Accounts</div>
+                        <p className="text-xs text-muted-foreground">${(portfolioAtRisk?.value || 0).toLocaleString()} value</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="destructive" size="sm" className="w-full">
-                            <Link href={portfolioAtRisk.actionLink}>Review Risk</Link>
+                            <Link href={portfolioAtRisk?.actionLink || '#'}>Review Risk</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -90,7 +89,7 @@ export const FiDashboard = () => {
                                <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <p className="font-medium">{app.applicantName} - ${app.amount.toLocaleString()}</p>
-                                       <p className="text-xs text-muted-foreground">{app.type}</p>
+                                       <p className="text-xs text-muted-foreground">{app.type} <span className="mx-1">|</span> AI Risk Score: <span className="font-semibold">{app.riskScore}</span></p>
                                    </div>
                                    <Button asChild size="sm">
                                        <Link href={app.actionLink}>Review</Link>
@@ -113,7 +112,7 @@ export const FiDashboard = () => {
                     <CardContent className="space-y-2">
                         {(marketUpdates || []).length > 0 ? (
                             (marketUpdates || []).map(update => (
-                                <div key={update.id} className="text-sm p-3 border rounded-lg">
+                                <div key={update.id} className="text-sm p-3 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
                                     <p>{update.content}</p>
                                     <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">Read More</Link>
                                 </div>
