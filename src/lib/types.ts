@@ -185,6 +185,14 @@ export type ForumGroup = {
   createdAt: string; // ISO String
 }
 
+export interface GroupMember {
+  id: string; // User ID
+  displayName: string;
+  avatarUrl?: string;
+  role: 'owner' | 'admin' | 'member';
+  joinedAt: string; // ISO string
+}
+
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
 export type ForumPost = {

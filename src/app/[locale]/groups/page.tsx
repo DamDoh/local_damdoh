@@ -94,7 +94,8 @@ export default function GroupsPage() {
                         </div>
                     ) : (
                         <div className="space-y-4">
-                            {filteredGroups.map(group => (
+                            {filteredGroups.length > 0 ? (
+                                filteredGroups.map(group => (
                                 <Link key={group.id} href={`/groups/${group.id}`}>
                                     <div className="p-4 border rounded-lg hover:bg-accent transition-colors">
                                         <h3 className="font-semibold text-lg flex items-center gap-2">
@@ -107,7 +108,9 @@ export default function GroupsPage() {
                                         </div>
                                     </div>
                                 </Link>
-                            ))}
+                            ))) : (
+                                <div className="text-center py-12 text-muted-foreground border-2 border-dashed rounded-lg">No groups found.</div>
+                            )}
                         </div>
                     )}
                 </CardContent>

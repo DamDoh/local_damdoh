@@ -26,7 +26,7 @@ export default function CreateGroupPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const createGroup = useMemo(() => httpsCallable(functions, 'createGroup'), [functions]);
+    const createGroupCallable = useMemo(() => httpsCallable(functions, 'createGroup'), [functions]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,7 +47,7 @@ export default function CreateGroupPage() {
         setIsSubmitting(true);
 
         try {
-            const result = await createGroup({ name, description, isPublic });
+            const result = await createGroupCallable({ name, description, isPublic });
             const groupId = (result.data as { groupId: string }).groupId;
             toast({
                 title: "Group Created!",

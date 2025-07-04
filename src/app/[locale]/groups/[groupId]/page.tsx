@@ -9,7 +9,7 @@ import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare } from "lucide-
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumGroup, UserProfile } from '@/lib/types';
+import type { ForumGroup, GroupMember } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -24,7 +24,7 @@ export default function GroupPage() {
     const groupId = params.groupId as string;
 
     const [group, setGroup] = useState<ForumGroup | null>(null);
-    const [members, setMembers] = useState<UserProfile[]>([]);
+    const [members, setMembers] = useState<GroupMember[]>([]);
     const [isMember, setIsMember] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isJoining, setIsJoining] = useState(false);
@@ -34,7 +34,6 @@ export default function GroupPage() {
     const getGroupMembers = useMemo(() => httpsCallable(functions, 'getGroupMembers'), [functions]);
     const joinGroup = useMemo(() => httpsCallable(functions, 'joinGroup'), [functions]);
     const leaveGroup = useMemo(() => httpsCallable(functions, 'leaveGroup'), [functions]);
-
 
     const fetchData = useCallback(async () => {
         if (!groupId) return;
@@ -46,7 +45,7 @@ export default function GroupPage() {
             ]);
             
             const groupData = groupDetailsResult.data as ForumGroup | null;
-            const membersData = (groupMembersResult.data as { members: UserProfile[] })?.members || [];
+            const membersData = (groupMembersResult.data as { members: GroupMember[] })?.members || [];
 
             setGroup(groupData);
             setMembers(membersData);
@@ -72,7 +71,7 @@ export default function GroupPage() {
     useEffect(() => {
         fetchData();
     }, [groupId, fetchData]);
-
+    
     const handleJoinGroup = async () => {
         if (!user) {
             toast({ title: "Please log in to join a group.", variant: "destructive" });
@@ -82,12 +81,8 @@ export default function GroupPage() {
         setIsJoining(true);
         try {
             await joinGroup({ groupId });
-            // Optimistic update
-            setIsMember(true);
-            setMembers(prev => [...prev, { id: user.uid, displayName: user.displayName || 'You', avatarUrl: user.photoURL || '' } as UserProfile]);
-            if (group) setGroup(g => g ? {...g, memberCount: g.memberCount + 1} : null);
-
             toast({ title: "Successfully joined the group!" });
+            fetchData(); // Refetch all data to update UI
         } catch (error: any) {
             console.error("Error joining group:", error);
             toast({ title: "Failed to join group", description: error.message || "An error occurred. Please try again.", variant: "destructive" });
@@ -102,12 +97,8 @@ export default function GroupPage() {
         setIsJoining(true); // Reuse the same loading state
         try {
             await leaveGroup({ groupId });
-             // Optimistic update
-            setIsMember(false);
-            setMembers(prev => prev.filter(m => m.id !== user.uid));
-            if (group) setGroup(g => g ? {...g, memberCount: g.memberCount - 1} : null);
-
             toast({ title: "You have left the group." });
+            fetchData(); // Refetch all data to update UI
         } catch (error: any) {
             console.error("Error leaving group:", error);
             toast({ title: "Failed to leave group", description: error.message || "An error occurred. Please try again.", variant: "destructive" });
