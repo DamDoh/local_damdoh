@@ -7,7 +7,7 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
   }
   return context.auth.uid;
 };
@@ -74,7 +74,9 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
     const conversations = snapshot.docs.map(doc => {
         const data = doc.data();
         const otherParticipantId = data.participantIds.find((id: string) => id !== userId);
-        const otherParticipantInfo = data.participantInfo[otherParticipantId] || { name: 'Unknown User', avatarUrl: '' };
+        
+        // FIX: Ensure the default object has the correct shape to prevent frontend errors.
+        const otherParticipantInfo = data.participantInfo[otherParticipantId] || { displayName: 'Unknown User', avatarUrl: '' };
 
         return {
             id: doc.id,
