@@ -99,6 +99,7 @@ export interface Notification {
   createdAt: any; // Firestore Timestamp
 }
 
+
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
