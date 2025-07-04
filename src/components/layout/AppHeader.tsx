@@ -267,6 +267,7 @@ export function AppHeader() {
                 {user && (
                   <>
                     <MobileSheetNavLink href="/profiles/me" icon={UserIcon} label={t('myProfile')} pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
+                    <MobileSheetNavLink href="/marketplace/my-orders" icon={ShoppingCart} label="My Orders" pathname={pathname} onClick={() => setIsMobileSheetOpen(false)} />
                     <Separator />
                   </>
                 )}

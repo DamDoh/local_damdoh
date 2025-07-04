@@ -7,6 +7,17 @@ import { _internalInitiatePayment } from "./financial-services";
 
 const db = admin.firestore();
 
+// Helper to check for authentication
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+  return context.auth.uid;
+};
+
 /**
  * Creates a new Digital Shopfront for an authenticated user.
  * This is the entry point for stakeholders to establish a presence in the Marketplace (Module 4).
@@ -453,5 +464,91 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
         console.error("Error creating marketplace order:", error);
         if (error instanceof functions.https.HttpsError) throw error;
         throw new functions.https.HttpsError("internal", "Failed to create order.", { originalError: error.message });
+    }
+});
+
+export const getSellerOrders = functions.https.onCall(async (data, context) => {
+    const sellerId = checkAuth(context);
+    
+    try {
+        const ordersSnapshot = await db.collection("marketplace_orders")
+            .where("sellerId", "==", sellerId)
+            .orderBy("createdAt", "desc")
+            .get();
+        
+        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
+        const buyerProfiles: Record<string, any> = {};
+
+        if (buyerIds.length > 0) {
+            const profileChunks = [];
+            for (let i = 0; i < buyerIds.length; i += 30) {
+                profileChunks.push(buyerIds.slice(i, i + 30));
+            }
+
+            for (const chunk of profileChunks) {
+                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+                profilesSnapshot.forEach(doc => {
+                    buyerProfiles[doc.id] = {
+                        displayName: doc.data().displayName,
+                        avatarUrl: doc.data().avatarUrl || null,
+                    };
+                });
+            }
+        }
+
+        const orders = ordersSnapshot.docs.map(doc => {
+            const orderData = doc.data();
+            return {
+                id: doc.id,
+                ...orderData,
+                buyerProfile: buyerProfiles[orderData.buyerId] || { displayName: 'Unknown Buyer', avatarUrl: null },
+                createdAt: (orderData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                updatedAt: (orderData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            };
+        });
+
+        return { orders };
+    } catch (error) {
+        console.error("Error fetching seller orders:", error);
+        throw new functions.https.HttpsError("internal", "Could not fetch orders.");
+    }
+});
+
+export const updateOrderStatus = functions.https.onCall(async (data, context) => {
+    const sellerId = checkAuth(context);
+    const { orderId, newStatus } = data;
+
+    if (!orderId || !newStatus) {
+        throw new functions.https.HttpsError("invalid-argument", "Order ID and new status are required.");
+    }
+    
+    const validStatuses = ["new", "confirmed", "shipped", "completed", "cancelled"];
+    if (!validStatuses.includes(newStatus)) {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid status provided.");
+    }
+    
+    const orderRef = db.collection("marketplace_orders").doc(orderId);
+    
+    try {
+        const orderDoc = await orderRef.get();
+        if (!orderDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Order not found.");
+        }
+
+        if (orderDoc.data()?.sellerId !== sellerId) {
+            throw new functions.https.HttpsError("permission-denied", "You are not authorized to update this order.");
+        }
+        
+        await orderRef.update({
+            status: newStatus,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        
+        return { success: true, message: `Order status updated to ${newStatus}.` };
+
+    } catch (error: any) {
+         if (error instanceof functions.https.HttpsError) throw error;
+         console.error("Error updating order status:", error);
+         throw new functions.https.HttpsError("internal", "Could not update the order status.");
     }
 });
