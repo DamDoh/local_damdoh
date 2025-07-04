@@ -204,8 +204,8 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
         return {
             id: doc.id,
             ...data,
-            bookedAt: (data.bookedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-            checkedInAt: (data.checkedInAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            bookedAt: (data.bookedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            checkedInAt: (data.checkedInAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
         }
     });
 
