@@ -18,7 +18,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2 } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 
@@ -62,11 +62,13 @@ function ItemPageContent() {
     const [couponCode, setCouponCode] = useState('');
     const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
     const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; type: 'fixed' | 'percentage' } | null>(null);
+    const [isBooking, setIsBooking] = useState(false);
 
     const functions = getFunctions(firebaseApp);
     const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
     const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'getShopDetails'), [functions]);
     const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
+    const bookAgroTourismServiceCallable = useMemo(() => httpsCallable(functions, 'bookAgroTourismService'), [functions]);
     
     useEffect(() => {
         const couponFromUrl = searchParams.get('coupon');
@@ -132,6 +134,25 @@ function ItemPageContent() {
             setIsApplyingCoupon(false);
         }
     };
+    
+    const handleBooking = async () => {
+        if (!user) {
+            toast({ variant: 'destructive', title: "Authentication Required", description: "Please sign in to book this service." });
+            router.push('/auth/signin');
+            return;
+        }
+        setIsBooking(true);
+        try {
+            await bookAgroTourismServiceCallable({ itemId: item?.id });
+            toast({ title: "Success!", description: "You have successfully booked this service. Check your profile for details." });
+            // Optionally refresh item data to show updated booking count etc.
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: "Booking Failed", description: error.message || "An unexpected error occurred." });
+        } finally {
+            setIsBooking(false);
+        }
+    };
+
 
     const calculateDiscountedPrice = () => {
         if (!appliedCoupon || !item?.price) return item?.price;
@@ -151,6 +172,7 @@ function ItemPageContent() {
     if (!item) return notFound();
 
     const isOwner = user?.uid === item.sellerId;
+    const isAgroTourismService = item.category === 'agri-tourism-services';
     const skills: string[] = Array.isArray(item.skillsRequired) ? item.skillsRequired : (typeof item.skillsRequired === 'string' && item.skillsRequired) ? item.skillsRequired.split(',').map(s => s.trim()) : [];
 
     return (
@@ -256,8 +278,20 @@ function ItemPageContent() {
                      )}
 
                     <div className="flex flex-col sm:flex-row gap-2">
-                        {isOwner ? (
-                             <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />Edit Listing</Button>
+                         {isOwner ? (
+                             <>
+                                <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />Edit Listing</Button>
+                                {isAgroTourismService && (
+                                    <Button asChild size="lg" variant="secondary" className="w-full">
+                                        <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />Manage Service</Link>
+                                    </Button>
+                                )}
+                            </>
+                        ) : isAgroTourismService ? (
+                            <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking}>
+                                {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
+                                {isBooking ? 'Booking...' : 'Book Now'}
+                            </Button>
                         ) : (
                             <>
                                 <Button size="lg" className="w-full" onClick={() => toast({title: "Coming Soon!", description: "The shopping cart and checkout process will be implemented in a future update."})}><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>

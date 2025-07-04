@@ -32,3 +32,4 @@ export * from "./groups";
 export * from "./messages";
 export * from "./agri-events";
 export * from "./universal-id";
+export * from "./agro-tourism";

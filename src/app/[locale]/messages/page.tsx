@@ -247,15 +247,19 @@ function MessagingContent() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    {messages.map(msg => (
-                                        <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.uid ? "justify-end" : "justify-start")}>
-                                            {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
-                                            <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
-                                                <p className="whitespace-pre-wrap">{msg.content}</p>
+                                    {messages && messages.length > 0 ? (
+                                        messages.map(msg => (
+                                            <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.uid ? "justify-end" : "justify-start")}>
+                                                {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
+                                                <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
+                                                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                                                </div>
+                                                 {msg.senderId === user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
                                             </div>
-                                             {msg.senderId === user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
-                                        </div>
-                                    ))}
+                                        ))
+                                    ) : (
+                                        <div className="text-center text-sm text-muted-foreground pt-10">{t('noMessages')}</div>
+                                    )}
                                      <div ref={messagesEndRef} />
                                 </div>
                             )}
