@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { FlaskConical, ArrowLeft, PlusCircle, Calendar, Clock, Edit2, Loader2, CheckCircle, Package, Archive } from "lucide-react";
+import { FlaskConical, ArrowLeft, PlusCircle, Calendar, Clock, Edit2, Loader2, CheckCircle, Package, Archive, BookOpen, ListOrdered, Beaker } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { format } from "date-fns";
@@ -17,6 +17,8 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 import type { KnfBatch as KnfBatchType } from '@/lib/types';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Separator } from "@/components/ui/separator";
 
 type KnfInputType = 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
 
@@ -25,6 +27,45 @@ interface ActiveBatch extends KnfBatchType {
   startDate: string; 
   nextStepDate: string;
 }
+
+const knfRecipeData = [
+  {
+    id: "fpj",
+    name: "Fermented Plant Juice (FPJ)",
+    description: "A fermented extract of a plant's sap and chlorophylls. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+    ingredients: [
+      "1 kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+      "1 kg of brown sugar or molasses"
+    ],
+    steps: [
+      "Collect plant materials before sunrise. Do not wash them.",
+      "Roughly chop the plant materials.",
+      "Add an equal weight of brown sugar and mix thoroughly.",
+      "Pack tightly into a clay pot or glass jar (about 2/3 full).",
+      "Cover with a breathable cloth and store in a cool, dark place.",
+      "Let it ferment for 7 days. Strain the liquid.",
+    ],
+    usage: "Dilution ratio: 1:500 to 1:1000 with water. Apply as foliar spray or soil drench."
+  },
+  {
+    id: "faa",
+    name: "Fish Amino Acid (FAA)",
+    description: "A powerful liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
+    ingredients: [
+      "1 kg of fish scraps (heads, bones, guts)",
+      "1 kg of brown sugar or molasses"
+    ],
+    steps: [
+      "Chop the fish parts into small pieces.",
+      "In a container, layer the fish parts and brown sugar.",
+      "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+      "Store in a cool, dark place and let it ferment for at least 3-6 months.",
+      "Strain the liquid before use."
+    ],
+    usage: "Dilution ratio: 1:1000 with water. Primarily used as a soil drench."
+  }
+];
+
 
 export default function KNFInputAssistantPage() {
   const { user } = useAuth();
@@ -149,6 +190,38 @@ export default function KNFInputAssistantPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-2 flex items-center gap-2"><BookOpen className="h-5 w-5"/>KNF Recipe Guides</h3>
+              <Accordion type="single" collapsible className="w-full">
+                {knfRecipeData.map((recipe) => (
+                  <AccordionItem value={recipe.id} key={recipe.id}>
+                    <AccordionTrigger>{recipe.name}</AccordionTrigger>
+                    <AccordionContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground">{recipe.description}</p>
+                      <div>
+                        <h4 className="font-semibold text-sm mb-1 flex items-center gap-2"><Beaker className="h-4 w-4"/>Ingredients</h4>
+                        <ul className="list-disc list-inside pl-5 text-sm">
+                          {recipe.ingredients.map((ing, i) => <li key={i}>{ing}</li>)}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-sm mb-1 flex items-center gap-2"><ListOrdered className="h-4 w-4"/>Steps</h4>
+                        <ol className="list-decimal list-inside pl-5 text-sm space-y-1">
+                          {recipe.steps.map((step, i) => <li key={i}>{step}</li>)}
+                        </ol>
+                      </div>
+                       <div>
+                        <h4 className="font-semibold text-sm mb-1">Usage</h4>
+                        <p className="text-sm">{recipe.usage}</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+            
+            <Separator className="my-6" />
+
             {/* Active Batches Section */}
             <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Active Batches (Fermenting)</h3>
@@ -194,7 +267,7 @@ export default function KNFInputAssistantPage() {
                 )}
             </div>
 
-            <hr className="my-6"/>
+            <Separator className="my-6"/>
 
              {/* Ready Batches Section */}
             <div className="space-y-4">
@@ -232,7 +305,7 @@ export default function KNFInputAssistantPage() {
                 )}
             </div>
 
-            <hr className="my-6"/>
+            <Separator className="my-6"/>
 
             {/* Create New Batch Section */}
             <div>
