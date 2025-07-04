@@ -3,9 +3,9 @@ import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
   MarketplaceItemSchema,
-  ForumPostSchema,
-  AgriEventSchema,
   MarketplaceOrderSchema,
+  ForumPostSchema,
+  AgriEventSchema
 } from './schemas';
 import type { CategoryNode as CatNodeType } from './category-data';
 import type { Timestamp } from "firebase/firestore";
@@ -19,6 +19,7 @@ export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type UserRole =
   | 'Farmer'
   | 'Agricultural Cooperative'
@@ -298,6 +299,18 @@ export interface KnfBatch {
   createdAt: any;
 }
 
+export interface FinancialApplication {
+  id: string;
+  applicantName: string;
+  type: 'Loan' | 'Grant';
+  amount: number;
+  currency: string;
+  status: 'Pending' | 'Approved' | 'Rejected' | 'Under Review';
+  riskScore: number;
+  submittedAt: string; // ISO String
+  actionLink: string;
+}
+
 export interface FarmerDashboardData {
   farmCount: number;
   cropCount: number;
@@ -345,81 +358,27 @@ export interface BuyerDashboardData {
   };
 }
 
-export interface AgroTourismDashboardData {
-  upcomingBookings: {
-    id: string;
-    experienceTitle: string;
-    guestName: string;
-    date: string; // ISO string
-    actionLink: string;
-  }[];
-  listedExperiences: {
-    id: string;
-    title: string;
-    location: string;
-    status: 'Published' | 'Draft';
-    bookingsCount: number;
-    actionLink: string;
-  }[];
-  guestReviews: {
-    id: string;
-    guestName: string;
-    experienceTitle: string;
-    rating: number; // e.g., 1-5
-    comment: string;
-    actionLink: string;
-  }[];
-}
 
-export interface InsuranceProviderDashboardData {
-  pendingClaims: {
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
     id: string;
-    policyHolderName: string;
-    policyType: 'Crop' | 'Livestock';
-    claimDate: string; // ISO string
-    status: 'Submitted' | 'Under Review';
-    actionLink: string;
-  }[];
-  riskAssessmentAlerts: {
-    id: string;
-    policyHolderName: string;
-    alert: string;
+    issue: string;
+    region: string;
     severity: 'High' | 'Medium' | 'Low';
     actionLink: string;
   }[];
-  activePolicies: {
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
     id: string;
-    policyHolderName: string;
-    policyType: string;
-    coverageAmount: number;
-    expiryDate: string; // ISO string;
+    description: string;
+    level: 'Critical' | 'Warning';
+    vtiLink: string;
   }[];
 }
 
-export interface FiDashboardData {
-    pendingApplications: {
-        id: string;
-        applicantName: string;
-        type: string;
-        amount: number;
-        riskScore: number;
-        actionLink: string;
-    }[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
-    };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-}
 
 export interface LogisticsDashboardData {
     activeShipments: {
@@ -440,6 +399,45 @@ export interface LogisticsDashboardData {
     performanceMetrics: {
         onTimePercentage: number;
         fuelEfficiency: string;
+        actionLink: string;
+    };
+}
+
+export interface FiDashboardData {
+  pendingApplications: FinancialApplication[];
+  portfolioAtRisk: {
+    count: number;
+    value: number;
+    highestRisk: {
+      name: string;
+      reason: string;
+    };
+    actionLink: string;
+  };
+  marketUpdates: {
+    id: string;
+    content: string;
+    actionLink: string;
+  }[];
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
         actionLink: string;
     };
 }
@@ -465,29 +463,6 @@ export interface InputSupplierDashboardData {
         link: string;
     };
 }
-
-
-export interface FieldAgentDashboardData {
-    assignedFarmers: {
-        id: string;
-        name: string;
-        lastVisit: string; // ISO string
-        issues: number;
-        actionLink: string;
-    }[];
-    portfolioHealth: {
-        overallScore: number;
-        alerts: string[];
-        actionLink: string;
-    };
-    pendingReports: number;
-    dataVerificationTasks: {
-        count: number;
-        description: string;
-        actionLink: string;
-    };
-}
-
 
 export interface AgroExportDashboardData {
     pendingCustomsDocs: {
@@ -538,6 +513,7 @@ export interface ProcessingUnitDashboardData {
   }[];
 }
 
+
 export interface WarehouseDashboardData {
   storageOptimization: {
     utilization: number;
@@ -550,27 +526,6 @@ export interface WarehouseDashboardData {
   predictiveAlerts: {
     alert: string;
     actionLink: string;
-  }[];
-}
-
-
-export interface RegulatorDashboardData {
-  complianceRiskAlerts: {
-    id: string;
-    issue: string;
-    region: string;
-    severity: 'High' | 'Medium' | 'Low';
-    actionLink: string;
-  }[];
-  pendingCertifications: {
-    count: number;
-    actionLink: string;
-  };
-  supplyChainAnomalies: {
-    id: string;
-    description: string;
-    level: 'Critical' | 'Warning';
-    vtiLink: string;
   }[];
 }
 
@@ -597,6 +552,7 @@ export interface QaDashboardData {
   };
 }
 
+
 export interface CertificationBodyDashboardData {
   pendingAudits: {
     id: string;
@@ -619,7 +575,6 @@ export interface CertificationBodyDashboardData {
     actionLink: string;
   }[];
 }
-
 
 export interface ResearcherDashboardData {
   availableDatasets: {
@@ -769,12 +724,51 @@ export interface PackagingSupplierDashboardData {
 }
 
 export interface SustainabilityDashboardData {
-  carbonFootprint: { total: number; unit: string; trend: number; };
-  waterUsage: { efficiency: number; unit: string; trend: number; };
-  biodiversityScore: { score: number; unit: string; trend: number; };
-  sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
-  certifications: { id:string; name: string; status: string; expiry: string; }[];
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
 }
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
+}
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
 
 export interface Connection {
     id: string; // User ID of the connection

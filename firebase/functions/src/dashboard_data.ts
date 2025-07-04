@@ -24,7 +24,8 @@ import type {
     CrowdfunderDashboardData,
     EquipmentSupplierDashboardData,
     WasteManagementDashboardData,
-    PackagingSupplierDashboardData
+    PackagingSupplierDashboardData,
+    FinancialApplication,
 } from "./types";
 
 const db = admin.firestore();
@@ -159,8 +160,59 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
 
 
 // =================================================================
-// PLACEHOLDER DASHBOARDS (to be implemented with real data later)
+// DASHBOARDS WITH PARTIAL OR MOCK DATA
 // =================================================================
+
+export const getFiDashboardData = functions.https.onCall(
+  async (data, context): Promise<FiDashboardData> => {
+    const fiId = checkAuth(context);
+    try {
+        // Fetch real pending applications
+        const applicationsSnapshot = await db.collection('financial_applications')
+            .where('fiId', '==', fiId) // Assuming applications are assigned to an FI
+            .where('status', 'in', ['Pending', 'Under Review'])
+            .orderBy('submittedAt', 'desc')
+            .limit(10)
+            .get();
+            
+        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
+            const appData = doc.data();
+            return {
+                id: doc.id,
+                applicantName: appData.applicantName,
+                type: appData.type,
+                amount: appData.amount,
+                currency: appData.currency,
+                status: appData.status,
+                riskScore: appData.riskScore,
+                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                actionLink: `/fi/applications/${doc.id}`,
+            };
+        });
+
+        // Mock data for other sections
+        const portfolioAtRisk = {
+            count: 5,
+            value: 25000,
+            highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' },
+            actionLink: '#'
+        };
+        const marketUpdates = [
+            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%.', actionLink: '#' }
+        ];
+
+        return {
+            pendingApplications,
+            portfolioAtRisk,
+            marketUpdates,
+        };
+    } catch (error) {
+        console.error("Error fetching Financial Institution dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
+    }
+  }
+);
+
 
 export const getCooperativeDashboardData = functions.https.onCall(
   (data, context): CooperativeDashboardData => {
@@ -225,21 +277,6 @@ export const getLogisticsDashboardData = functions.https.onCall(
   }
 );
 
-export const getFiDashboardData = functions.https.onCall(
-  (data, context): FiDashboardData => {
-    checkAuth(context);
-    return {
-        pendingApplications: [
-            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' },
-            { id: 'app2', applicantName: 'Sunrise Growers', type: 'Grant', amount: 15000, riskScore: 810, actionLink: '#' }
-        ],
-        portfolioAtRisk: { count: 5, value: 25000, highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' }, actionLink: '#' },
-        marketUpdates: [
-            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%.', actionLink: '#' }
-        ]
-    };
-  }
-);
 
 export const getFieldAgentDashboardData = functions.https.onCall(
   (data, context): FieldAgentDashboardData => {

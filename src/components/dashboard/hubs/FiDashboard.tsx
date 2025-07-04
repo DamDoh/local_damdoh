@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -11,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { FiDashboardData } from '@/lib/types';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export const FiDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
@@ -85,17 +87,32 @@ export const FiDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {(pendingApplications || []).length > 0 ? (
-                           (pendingApplications || []).map(app => (
-                               <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
-                                   <div>
-                                       <p className="font-medium">{app.applicantName} - ${app.amount.toLocaleString()}</p>
-                                       <p className="text-xs text-muted-foreground">{app.type} <span className="mx-1">|</span> AI Risk Score: <span className="font-semibold">{app.riskScore}</span></p>
-                                   </div>
-                                   <Button asChild size="sm">
-                                       <Link href={app.actionLink}>Review</Link>
-                                   </Button>
-                               </div>
-                           ))
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Applicant</TableHead>
+                                        <TableHead>Type</TableHead>
+                                        <TableHead>Amount</TableHead>
+                                        <TableHead>Risk Score</TableHead>
+                                        <TableHead className="text-right">Action</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {pendingApplications.map(app => (
+                                        <TableRow key={app.id}>
+                                            <TableCell className="font-medium">{app.applicantName}</TableCell>
+                                            <TableCell><Badge variant="outline">{app.type}</Badge></TableCell>
+                                            <TableCell>${app.amount.toLocaleString()}</TableCell>
+                                            <TableCell>{app.riskScore}</TableCell>
+                                            <TableCell className="text-right">
+                                                 <Button asChild size="sm">
+                                                    <Link href={app.actionLink}>Review</Link>
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
                        ) : (
                             <p className="text-sm text-muted-foreground text-center py-4">No pending applications.</p>
                        )}
@@ -122,6 +139,7 @@ export const FiDashboard = () => {
                         )}
                     </CardContent>
                 </Card>
+
             </div>
         </div>
     );
