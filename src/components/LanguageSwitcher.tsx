@@ -12,10 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Languages } from "lucide-react";
-import { localeNames } from '@/lib/i18n-constants';
-
-// Define locales here to be self-contained and avoid build issues.
-const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'];
+import { locales, localeNames } from '@/i18n';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
@@ -33,7 +30,7 @@ export function LanguageSwitcher() {
   const changeLocale = (newLocale: string) => {
     // Correctly reconstruct the path by removing the old locale
     const pathSegments = pathname.split('/').filter(Boolean);
-    if (pathSegments.length > 0 && locales.includes(pathSegments[0])) {
+    if (pathSegments.length > 0 && (locales as readonly string[]).includes(pathSegments[0])) {
       pathSegments.shift(); // Remove the old locale
     }
     const newPath = `/${newLocale}/${pathSegments.join('/')}`;
