@@ -50,6 +50,23 @@
     "forums": "Forums",
     "profile": "Profile"
   },
+  "marketplacePage": {
+    "title": "Global Marketplace",
+    "description": "Discover agricultural products, equipment, and services from around the world.",
+    "createListingButton": "Create Listing",
+    "createShopButton": "Create Shopfront",
+    "pinButton": "Pin as Homepage",
+    "unpinButton": "Unpin Homepage",
+    "searchPlaceholder": "Search by product or service...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "allTypes": "All Types",
+    "recommendedForYou": "Recommended For You",
+    "discoverMore": "Discover More",
+    "noItemsFound": "No items found",
+    "noItemsHint": "Try adjusting your search or filters.",
+    "viewDetails": "View Details"
+  },
   "Marketplace": {
       "create": {
           "backLink": "Back to Marketplace",

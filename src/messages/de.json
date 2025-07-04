@@ -40,6 +40,10 @@
     "appStoreAlt": "Im App Store herunterladen",
     "copyright": "© {year} {appName}. Alle Rechte vorbehalten."
   },
+  "marketplacePage": {
+    "recommendedForYou": "Für Sie empfohlen",
+    "discoverMore": "Mehr entdecken"
+  },
   "Marketplace": {
       "create": {
           "form": {

@@ -40,6 +40,10 @@
     "appStoreAlt": "Télécharger dans l'App Store",
     "copyright": "© {year} {appName}. Tous droits réservés."
   },
+  "marketplacePage": {
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus"
+  },
   "Marketplace": {
       "create": {
           "form": {

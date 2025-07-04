@@ -49,6 +49,10 @@
     "forums": "Foros",
     "profile": "Perfil"
   },
+  "marketplacePage": {
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubre más"
+  },
    "Marketplace": {
       "create": {
           "backLink": "Volver al Mercado",
