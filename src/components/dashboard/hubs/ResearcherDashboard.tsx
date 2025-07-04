@@ -171,14 +171,32 @@ export const ResearcherDashboard = () => {
             </CardHeader>
             <CardContent>
                 {(knowledgeHubContributions || []).length > 0 ? (
-                    <div className="space-y-3">
-                        {(knowledgeHubContributions || []).map((contribution) => (
-                            <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
-                                <p className="font-medium">{contribution.title}</p>
-                                <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
-                            </div>
-                        ))}
-                    </div>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Title</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="text-right">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(knowledgeHubContributions || []).map((contribution) => (
+                        <TableRow key={contribution.id}>
+                          <TableCell className="font-medium">
+                            <Link href={`/blog/${contribution.id}`} className="hover:underline">{contribution.title}</Link>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button asChild variant="outline" size="sm">
+                              <Link href={`/blog/${contribution.id}`}>View</Link>
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
                 ) : (
                    <p className="text-sm text-muted-foreground text-center py-4">No contributions to the Knowledge Base yet.</p>
                 )}
