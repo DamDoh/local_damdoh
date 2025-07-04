@@ -36,7 +36,9 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         isPublic,
         ownerId: uid,
         memberCount: 1,
+        postCount: 0,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        lastActivityAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
     const memberRef = groupRef.collection('members').doc(uid);
@@ -161,4 +163,137 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
     const { groupId } = data;
     await modifyMembership(groupId, uid, false);
     return { success: true, message: 'Successfully left the group.' };
+});
+
+// --- NEW FUNCTIONS FOR GROUP DISCUSSIONS ---
+
+export const createGroupPost = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { groupId, title, content } = data;
+    if (!groupId || !title || !content) {
+        throw new functions.https.HttpsError('invalid-argument', 'Group ID, title, and content are required.');
+    }
+
+    const memberRef = db.collection(`groups/${groupId}/members`).doc(uid);
+    const memberDoc = await memberRef.get();
+    if (!memberDoc.exists) {
+        throw new functions.https.HttpsError('permission-denied', 'You must be a member of this group to post.');
+    }
+
+    const postRef = db.collection(`groups/${groupId}/posts`).doc();
+    const groupRef = db.collection('groups').doc(groupId);
+    const timestamp = admin.firestore.FieldValue.serverTimestamp();
+
+    const userProfile = await db.collection('users').doc(uid).get();
+
+    const batch = db.batch();
+
+    batch.set(postRef, {
+        title,
+        content,
+        authorRef: uid,
+        authorName: userProfile.data()?.displayName || 'Unknown User',
+        authorAvatarUrl: userProfile.data()?.avatarUrl || null,
+        createdAt: timestamp,
+        replyCount: 0,
+        likes: 0,
+    });
+    
+    batch.update(groupRef, {
+        postCount: admin.firestore.FieldValue.increment(1),
+        lastActivityAt: timestamp
+    });
+    
+    await batch.commit();
+
+    return { postId: postRef.id };
+});
+
+export const getGroupPosts = functions.https.onCall(async (data, context) => {
+    const { groupId, lastVisible } = data;
+    if (!groupId) throw new functions.https.HttpsError('invalid-argument', 'Group ID is required.');
+
+    const POSTS_PER_PAGE = 10;
+    let query = db.collection(`groups/${groupId}/posts`).orderBy('createdAt', 'desc').limit(POSTS_PER_PAGE);
+
+    if (lastVisible) {
+        const lastDocSnapshot = await db.collection(`groups/${groupId}/posts`).doc(lastVisible).get();
+        if(lastDocSnapshot.exists) {
+            query = query.startAfter(lastDocSnapshot);
+        }
+    }
+    
+    const postsSnapshot = await query.get();
+    
+    const posts = postsSnapshot.docs.map(doc => ({ 
+        id: doc.id, 
+        ...doc.data(),
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
+    }));
+
+    const newLastVisible = posts.length > 0 ? posts[posts.length - 1].id : null;
+
+    return { posts, lastVisible: newLastVisible };
+});
+
+export const addGroupPostReply = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { groupId, postId, content } = data;
+    if (!groupId || !postId || !content) {
+        throw new functions.https.HttpsError('invalid-argument', 'Group ID, post ID, and content are required.');
+    }
+    
+    const memberRef = db.collection(`groups/${groupId}/members`).doc(uid);
+    const memberDoc = await memberRef.get();
+    if (!memberDoc.exists) {
+        throw new functions.https.HttpsError('permission-denied', 'You must be a member of this group to reply.');
+    }
+
+    const replyRef = db.collection(`groups/${groupId}/posts/${postId}/replies`).doc();
+    const postRef = db.collection(`groups/${groupId}/posts`).doc(postId);
+
+    const batch = db.batch();
+    const userProfile = await db.collection('users').doc(uid).get();
+
+    batch.set(replyRef, {
+        content,
+        authorRef: uid,
+        authorName: userProfile.data()?.displayName || 'Unknown User',
+        authorAvatarUrl: userProfile.data()?.avatarUrl || null,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    batch.update(postRef, {
+        replyCount: admin.firestore.FieldValue.increment(1),
+    });
+
+    await batch.commit();
+    return { replyId: replyRef.id };
+});
+
+export const getGroupPostReplies = functions.https.onCall(async (data, context) => {
+    const { groupId, postId, lastVisible } = data;
+    if (!groupId || !postId) throw new functions.https.HttpsError('invalid-argument', 'Group ID and Post ID are required.');
+
+    const REPLIES_PER_PAGE = 15;
+    let query = db.collection(`groups/${groupId}/posts/${postId}/replies`).orderBy('createdAt', 'asc').limit(REPLIES_PER_PAGE);
+    
+    if (lastVisible) {
+        const lastDocSnapshot = await db.collection(`groups/${groupId}/posts/${postId}/replies`).doc(lastVisible).get();
+        if(lastDocSnapshot.exists) {
+            query = query.startAfter(lastDocSnapshot);
+        }
+    }
+
+    const repliesSnapshot = await query.get();
+
+    const replies = repliesSnapshot.docs.map(doc => ({ 
+        id: doc.id, 
+        ...doc.data(),
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
+    }));
+    
+    const newLastVisible = replies.length > 0 ? replies[replies.length - 1].id : null;
+    
+    return { replies, lastVisible: newLastVisible };
 });
