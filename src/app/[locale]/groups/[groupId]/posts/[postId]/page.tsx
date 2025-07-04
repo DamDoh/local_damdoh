@@ -16,7 +16,6 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
-import { useTranslations } from 'next-intl';
 
 interface GroupPost {
     id: string;

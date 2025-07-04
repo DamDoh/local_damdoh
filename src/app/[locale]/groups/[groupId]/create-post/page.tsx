@@ -14,7 +14,6 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
-import { useTranslations } from 'next-intl';
 
 export default function CreateGroupPostPage() {
     const params = useParams();
