@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -382,114 +383,182 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
-export interface KnfBatch {
-  id: string;
-  userId: string;
-  type: string;
-  typeName: string;
-  ingredients: string;
-  startDate: any;
-  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-  nextStep: string;
-  nextStepDate: any;
-  createdAt: any;
-}
-
-export interface FinancialApplication {
-  id: string;
-  applicantName: string;
-  type: 'Loan' | 'Grant';
-  amount: number;
-  currency: string;
-  status: 'Pending' | 'Approved' | 'Rejected' | 'Under Review';
-  riskScore: number;
-  submittedAt: string; // ISO String
-  actionLink: string;
-}
-
-export interface Notification {
-  id: string;
-  userId: string;
-  type: 'like' | 'comment' | 'new_order' | 'event_reminder' | 'service_reminder' | 'new_connection_request';
-  title_en: string;
-  body_en: string;
-  actorId: string;
-  linkedEntity: {
-    collection: string;
-    documentId: string;
-  } | null;
-  createdAt: any; // Firestore Timestamp
-  isRead: boolean;
-  postId?: string; // Legacy field, to be phased out
-}
-
-export interface FeedItem {
-  id: string;
-  type: string;
-  timestamp: string;
-  userId: string;
-  userName: string;
-  userAvatar: string;
-  userHeadline?: string;
-  content: string;
-  link: string;
-  postImage?: string;
-  dataAiHint?: string;
-  likesCount: number;
-  commentsCount: number;
-  pollOptions?: { text: string; votes: number }[];
-}
-
-export interface DirectMessage {
-  id: string;
-  senderName: string;
-  lastMessage: string;
-  timestamp: string;
-  senderAvatarUrl?: string;
-  unread: boolean;
-  dataAiHint?: string;
-}
-
-export interface ForumPost {
-    id: string;
-    topicId: string;
-    topicName?: string;
-    title: string;
-    content: string;
-    author: {
-        id: string;
-        name: string;
-        avatarUrl?: string;
-    };
-    timestamp: string;
-    replyCount?: number;
-}
-
-
-export interface PostReply {
-    id: string;
-    content: string;
-    author: {
-        id: string;
-        name: string;
-        avatarUrl?: string;
-    };
-    timestamp: string;
-}
-
-export interface MobileHomeCategory {
+export interface ResearcherDashboardData {
+  availableDatasets: {
     id: string;
     name: string;
-    icon: React.ElementType;
-    href: string;
-    dataAiHint?: string;
-}
-
-export interface MobileDiscoverItem {
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
+    actionLink: string;
+  }[];
+  ongoingProjects: {
     id: string;
     title: string;
-    imageUrl: string;
-    type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
-    link: string;
-    dataAiHint?: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review' | 'Draft';
+  }[];
+}
+
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id: string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO String
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review';
+  }[];
+}
+
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: string;
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO String
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string;
+  };
+}
+
+
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO String
+  }[];
+}
+
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+    
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
+}
+
+export interface SustainabilityDashboardData {
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
 }
