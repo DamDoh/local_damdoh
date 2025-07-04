@@ -21,58 +21,41 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 
 export const getFeed = functions.https.onCall(async (data, context) => {
-    // This is a placeholder implementation.
-    // A real implementation would involve complex logic to aggregate posts,
-    // marketplace listings, user connections, etc., into a personalized feed.
-    const dummyPosts = [
-        {
-            id: 'feed1',
-            type: 'forum_post',
-            timestamp: new Date(Date.now() - 3600000).toISOString(),
-            userId: 'userA',
-            userName: 'Dr. Alima Bello',
-            userAvatar: 'https://placehold.co/40x40.png',
-            userHeadline: "Agricultural Economist & Supply Chain Specialist",
-            content: 'Shared insights from the West Africa Post-Harvest Losses Summit. Key strategies discussed for improving storage and transportation for grains. Full report linked in the "Sustainable Agriculture" forum. #PostHarvest #FoodSecurity #AgriLogistics',
-            link: '/forums/ft2',
-            postImage: "https://placehold.co/600x350.png",
-            dataAiHint: "conference agriculture",
-            likesCount: 78,
-            commentsCount: 12,
-        },
-        {
-            id: 'feed2',
-            type: 'marketplace_listing',
-            timestamp: new Date(Date.now() - 7200000).toISOString(),
-            userId: 'userB',
-            userName: 'GreenLeaf Organics Co-op',
-            userAvatar: 'https://placehold.co/40x40.png',
-            userHeadline: "Connecting Organic Farmers to Global Buyers",
-            content: "Fresh listing: 500kg of certified organic ginger, ready for export. Seeking partners in the European market. View specs and pricing on our Marketplace profile. #OrganicGinger #Export #DirectSourcing",
-            link: '/marketplace/item3',
-            postImage: "https://placehold.co/600x400.png",
-            dataAiHint: "ginger harvest",
-            likesCount: 135,
-            commentsCount: 22,
-        },
-        {
-            id: 'feed3',
-            type: 'success_story',
-            timestamp: new Date(Date.now() - 86400000).toISOString(),
-            userId: 'userC',
-            userName: 'AgriTech Solutions Ltd.',
-            userAvatar: 'https://placehold.co/40x40.png',
-            userHeadline: "Pioneering Technology for Efficient Agriculture",
-            content: "Proud to announce our new partnership with 'FarmFresh Logistics' to implement AI-powered route optimization for their fleet, reducing fuel consumption by 15% and ensuring faster delivery of perishable goods! #AgriTech #Sustainability #LogisticsInnovation",
-            link: '/profiles/agriTechSolutions',
-            postImage: "https://placehold.co/600x350.png",
-            dataAiHint: "technology agriculture",
-            likesCount: 210,
-            commentsCount: 35,
-        }
-    ];
+    // A real-world implementation would involve complex algorithmic sorting.
+    // For now, we'll fetch the most recent posts from the 'posts' collection.
+    try {
+        const postsSnapshot = await db.collection('posts')
+            .orderBy('createdAt', 'desc')
+            .limit(20) // Limit to the 20 most recent posts
+            .get();
+        
+        const posts = postsSnapshot.docs.map(doc => {
+            const postData = doc.data();
+            return {
+                id: doc.id,
+                type: postData.pollOptions ? 'poll' : 'forum_post', // Simple logic to differentiate post types
+                timestamp: (postData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+                userId: postData.userId,
+                userName: postData.userName,
+                userAvatar: postData.userAvatar,
+                userHeadline: postData.userHeadline,
+                content: postData.content,
+                likesCount: postData.likesCount || 0,
+                commentsCount: postData.commentsCount || 0,
+                pollOptions: postData.pollOptions || null,
+                // These are placeholders as we don't store them on this post model yet
+                link: `/posts/${doc.id}`, // A conceptual link
+                postImage: null, 
+                dataAiHint: null, 
+            };
+        });
+        
+        return { posts };
 
-    return { posts: dummyPosts };
+    } catch (error) {
+        console.error("Error fetching feed posts:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch feed data.");
+    }
 });
 
 
@@ -178,4 +161,3 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
 
     return { comments };
 });
-
