@@ -13,12 +13,13 @@ import Link from 'next/link';
 import { Zap, BarChart, CheckCircle } from 'lucide-react';
 import type { EnergyProviderDashboardData } from '@/lib/types';
 
+const functions = getFunctions(firebaseApp);
+
 export const EnergyProviderDashboard = () => {
   const [dashboardData, setDashboardData] = useState<EnergyProviderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const functions = getFunctions(firebaseApp);
   const getEnergyProviderData = useMemo(() => httpsCallable(functions, 'getEnergyProviderDashboardData'), [functions]);
 
   useEffect(() => {
