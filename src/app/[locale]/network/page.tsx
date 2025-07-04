@@ -9,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon, UserCog, User } from "lucide-react";
+import { Filter, Search, UserPlus, MessageSquare, Shuffle, MapPin, LinkIcon, UserCog, User, Frown } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -51,7 +51,7 @@ export default function NetworkPage() {
 
   const { profile: currentUserProfile, loading: profileLoading } = useUserProfile();
   
-  const interests = ['All', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
+  const interests = ['all', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -188,14 +188,17 @@ export default function NetworkPage() {
                     <Link href={`/profiles/${profile.id}`}>
                         <CardTitle className="text-lg hover:text-primary transition-colors">{profile.displayName}</CardTitle>
                     </Link>
-                    <CardDescription>{profile.primaryRole} - {profile.location}</CardDescription>
+                    <CardDescription className="flex items-center gap-2">
+                      <StakeholderIcon role={profile.primaryRole} className="h-4 w-4 text-muted-foreground" />
+                      {profile.primaryRole} - {profile.location}
+                    </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow text-center">
                     <p className="text-sm text-muted-foreground line-clamp-3">{profile.profileSummary}</p>
                     </CardContent>
                     <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
                     <Button className="w-full sm:flex-1"><LinkIcon className="mr-2 h-4 w-4" />{t('connect')}</Button>
-                    <Button variant="outline" className="w-full sm:flex-1"><MessageCircle className="mr-2 h-4 w-4" />{t('message')}</Button>
+                    <Button variant="outline" className="w-full sm:flex-1"><MessageSquare className="mr-2 h-4 w-4" />{t('message')}</Button>
                     </CardFooter>
                 </Card>
                 )) : (

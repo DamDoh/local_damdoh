@@ -179,5 +179,20 @@
     "websiteLabel": "Public Website",
     "savingButton": "Saving...",
     "cancelButton": "Cancel"
+  },
+  "networkPage": {
+    "title": "Discover Your Network",
+    "description": "Find and connect with stakeholders across the entire agricultural value chain.",
+    "refreshSuggestions": "Refresh Suggestions",
+    "searchPlaceholder": "Search by name, role, or summary...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "interestPlaceholder": "Filter by interest...",
+    "allInterests": "All Interests",
+    "noStakeholdersFound": "No Stakeholders Found",
+    "noStakeholdersHint": "Try adjusting your search filters or check back later.",
+    "connect": "Connect",
+    "message": "Message"
   }
 }
