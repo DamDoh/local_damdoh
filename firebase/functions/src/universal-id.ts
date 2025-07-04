@@ -3,6 +3,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import { getRole } from "./profiles";
+import { randomBytes } from 'crypto'; // For generating a secret
 
 const db = admin.firestore();
 
@@ -168,3 +169,101 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
     }
 });
 
+
+/**
+ * Creates a temporary, secure session for account recovery.
+ * The user provides their phone number to initiate this process.
+ * The function returns a session ID and a value to be embedded in a temporary QR code.
+ */
+export const createRecoverySession = functions.https.onCall(async (data, context) => {
+    const { phoneNumber } = data;
+    if (!phoneNumber) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+    }
+    
+    // Find user by phone number
+    const usersRef = db.collection("users");
+    const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+
+    if (querySnapshot.empty) {
+        throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+    }
+
+    const userToRecoverDoc = querySnapshot.docs[0];
+    
+    // Generate a secure, short-lived session
+    const sessionId = uuidv4();
+    const recoverySecret = randomBytes(16).toString('hex'); // A secret that the friend's app will send back
+    const recoveryQrValue = `damdoh:recover:${sessionId}:${recoverySecret}`; // Format: standard:action:sessionId:secret
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+
+    await sessionRef.set({
+        sessionId,
+        userIdToRecover: userToRecoverDoc.id,
+        recoverySecret,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        status: 'pending', // pending -> confirmed -> completed
+        confirmedBy: null, // UID of the friend who confirms
+        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Session expires in 10 minutes
+    });
+
+    return { sessionId, recoveryQrValue };
+});
+
+
+/**
+ * Called by a logged-in user (the "friend") who has scanned the recovery QR code.
+ * This function verifies the session and secret, and if valid, marks the recovery as confirmed.
+ */
+export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
+    }
+
+    const friendUid = context.auth.uid;
+    const { sessionId, scannedSecret } = data;
+
+    if (!sessionId || !scannedSecret) {
+        throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
+    }
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+    const sessionDoc = await sessionRef.get();
+
+    if (!sessionDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
+    }
+
+    const sessionData = sessionDoc.data()!;
+    const expiresAt = (sessionData.expiresAt as admin.firestore.Timestamp).toDate();
+
+    if (new Date() > expiresAt) {
+        await sessionRef.update({ status: 'expired' });
+        throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired. Please start over.");
+    }
+    
+    if (sessionData.status !== 'pending') {
+        throw new functions.https.HttpsError("failed-precondition", "This recovery session has already been used or is invalid.");
+    }
+
+    if (sessionData.recoverySecret !== scannedSecret) {
+        throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
+    }
+    
+    if (sessionData.userIdToRecover === friendUid) {
+        throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
+    }
+    
+    // Mark session as confirmed
+    await sessionRef.update({
+        status: 'confirmed',
+        confirmedBy: friendUid,
+    });
+    
+    // In a real application, the next step would be for the original user's device
+    // to poll the session status. Once 'confirmed', it would request a custom auth token.
+    // For this demo, we'll just return a success message.
+    
+    return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
+});
