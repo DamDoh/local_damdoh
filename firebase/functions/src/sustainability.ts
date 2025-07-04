@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -127,3 +128,40 @@ export const calculateCarbonFootprint = functions.firestore
       return null;
     }
   });
+
+
+export const getSustainabilityDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const userId = context.auth.uid;
+
+    // In a real app, this would involve complex aggregation queries on the `carbon_footprint_data` collection
+    // and other data sources. For now, we return mock data.
+    return {
+        carbonFootprint: {
+            total: 1250, // kg CO2e
+            unit: 'kg CO2e',
+            trend: -5, // % change over last period
+        },
+        waterUsage: {
+            efficiency: 85, // %
+            unit: '% efficiency',
+            trend: 2,
+        },
+        biodiversityScore: {
+            score: 7.8,
+            unit: '/ 10',
+            trend: 0.5,
+        },
+        sustainablePractices: [
+            { id: 'p1', practice: 'Cover Cropping', lastLogged: new Date().toISOString() },
+            { id: 'p2', practice: 'No-Till Farming', lastLogged: new Date(Date.now() - 86400000 * 10).toISOString() },
+            { id: 'p3', practice: 'Integrated Pest Management', lastLogged: new Date(Date.now() - 86400000 * 5).toISOString() },
+        ],
+        certifications: [
+            { id: 'c1', name: 'USDA Organic', status: 'Active', expiry: new Date(Date.now() + 86400000 * 180).toISOString() },
+            { id: 'c2', name: 'Fair Trade Certified', status: 'Active', expiry: new Date(Date.now() + 86400000 * 300).toISOString() },
+        ]
+    };
+});

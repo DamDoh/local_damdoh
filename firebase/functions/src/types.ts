@@ -17,7 +17,6 @@ import type {
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
-export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)";
@@ -323,6 +322,7 @@ export interface WarehouseDashboardData {
   }[];
 }
 
+
 export interface QaDashboardData {
   pendingInspections: {
     id: string;
@@ -344,6 +344,7 @@ export interface QaDashboardData {
     averageScore: number;
   };
 }
+
 
 export interface CertificationBodyDashboardData {
   pendingAudits: {
@@ -513,4 +514,33 @@ export interface PackagingSupplierDashboardData {
     stock: number;
     reorderLevel: number;
   }[];
+}
+
+export interface SustainabilityDashboardData {
+    carbonFootprint: {
+        total: number;
+        unit: string;
+        trend: number;
+    };
+    waterUsage: {
+        efficiency: number;
+        unit: string;
+        trend: number;
+    };
+    biodiversityScore: {
+        score: number;
+        unit: string;
+        trend: number;
+    };
+    sustainablePractices: {
+        id: string;
+        practice: string;
+        lastLogged: string;
+    }[];
+    certifications: {
+        id: string;
+        name: string;
+        status: string;
+        expiry: string;
+    }[];
 }

@@ -1,108 +1,180 @@
-import React from 'react';
+
+"use client";
+
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Leaf } from "lucide-react";
-import { useTranslations } from 'next-intl';
+import { Skeleton } from "@/components/ui/skeleton";
+import { Leaf, Droplets, PawPrint, Award, TrendingUp, TrendingDown, Circle, CheckCircle } from "lucide-react";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { useAuth } from '@/lib/auth-utils';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { format } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+import type { SustainabilityDashboardData } from '@/lib/types';
 
-// Super App Vision Note: The Sustainability Hub is a core feature that embodies
-// the "planet" aspect of the "people, profit, planet" vision.
-// It's not just a static page, but a dashboard that will integrate with
-// other modules. For example, it will pull data from Farm Management (logged practices)
-// and Traceability (carbon footprint calculations) to provide tangible metrics.
-// AI can be used to suggest sustainable practices or identify opportunities for
-// carbon credit programs based on this data.
+const MetricCard = ({ title, value, unit, trend, icon, higherIsBetter = true }: { title: string, value: number, unit: string, trend: number, icon: React.ReactNode, higherIsBetter?: boolean }) => {
+    const isGoodTrend = higherIsBetter ? trend >= 0 : trend < 0;
+    return (
+        <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                {icon}
+            </CardHeader>
+            <CardContent>
+                <div className="text-2xl font-bold">{value.toLocaleString()}{unit}</div>
+                <p className="text-xs text-muted-foreground flex items-center">
+                    {trend !== 0 && (isGoodTrend ? 
+                        <TrendingUp className="h-4 w-4 mr-1 text-green-500" /> :
+                        <TrendingDown className="h-4 w-4 mr-1 text-red-500" />
+                    )}
+                    {trend > 0 ? '+' : ''}{trend}% from last month
+                </p>
+            </CardContent>
+        </Card>
+    );
+};
 
-const MetricCard = ({ title, value }: { title: string; value: string }) => (
-    <div className="p-4 border-b last:border-b-0">
-        <p className="font-medium">{title}:</p>
-        <p className="text-muted-foreground text-sm">{value}</p>
-    </div>
-);
-
-const CertificationItem = ({ name, status, color = "text-muted-foreground" }: { name: string; status: string; color?: string }) => (
-    <div className="p-3 border-b last:border-b-0 flex justify-between items-center">
-        <p className="font-medium">{name}</p>
-        <p className={`text-sm font-semibold ${color}`}>{status}</p>
-    </div>
-);
-
-const ToolLink = ({ name, href }: { name: string; href: string }) => (
-    <div className="p-3 border-b last:border-b-0">
-        <a href={href} className="text-primary hover:underline">{name}</a>
+const SustainabilitySkeleton = () => (
+    <div className="space-y-6">
+        <div className="flex items-center gap-2">
+            <Skeleton className="h-8 w-8 rounded-full" />
+            <Skeleton className="h-8 w-64" />
+        </div>
+        <Skeleton className="h-5 w-96" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Skeleton className="h-64 w-full" />
+            <Skeleton className="h-64 w-full" />
+        </div>
     </div>
 );
 
 export default function SustainabilityPage() {
-  const t = useTranslations('sustainabilityPage');
-  return (
-    <div className="container mx-auto py-8">
-      <Card>
-          <CardHeader>
-              <div className="flex items-center gap-2">
-                <Leaf className="h-7 w-7 text-green-600" />
-                <CardTitle className="text-3xl">{t('title')}</CardTitle>
-              </div>
-              <CardDescription>
-                {t('description')}
-              </CardDescription>
-          </CardHeader>
-          <CardContent>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Column */}
-                <div className="lg:col-span-2 space-y-8">
-                     {/* Sustainable Practices Log Section */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>{t('practicesLog.title')}</CardTitle>
-                            <CardDescription>{t('practicesLog.description')}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                           <p className="text-muted-foreground text-center p-8 border-2 border-dashed rounded-md">
-                                {t('practicesLog.placeholder')}
-                           </p>
-                        </CardContent>
-                    </Card>
-                     {/* Tools & Resources Section */}
-                     <Card>
-                        <CardHeader>
-                            <CardTitle>{t('toolsAndResources.title')}</CardTitle>
-                            <CardDescription>{t('toolsAndResources.description')}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <ToolLink name={t('toolsAndResources.carbonCalculator')} href="#" />
-                            <ToolLink name={t('toolsAndResources.waterUsageGuide')} href="#" />
-                            <ToolLink name={t('toolsAndResources.organicFarmingGuide')} href="#" />
-                        </CardContent>
-                    </Card>
-                </div>
+    const { user, loading: authLoading } = useAuth();
+    const [data, setData] = useState<SustainabilityDashboardData | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-                {/* Sidebar Column */}
-                <div className="space-y-8">
-                    {/* Overview & Metrics Section */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>{t('impactOverview.title')}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <MetricCard title={t('impactOverview.carbonFootprint')} value={t('impactOverview.carbonFootprintValue')} />
-                            <MetricCard title={t('impactOverview.waterUsage')} value={t('impactOverview.waterUsageValue')} />
-                            <MetricCard title={t('impactOverview.biodiversityScore')} value={t('impactOverview.biodiversityScoreValue')} />
-                        </CardContent>
-                    </Card>
-                    
-                    {/* Certifications Section */}
-                     <Card>
-                        <CardHeader>
-                            <CardTitle>{t('myCertifications.title')}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <CertificationItem name={t('myCertifications.organicCertified')} status={t('myCertifications.valid')} color="text-green-600" />
-                            <CertificationItem name={t('myCertifications.fairTrade')} status={t('myCertifications.pendingReview')} color="text-orange-500" />
-                        </CardContent>
-                    </Card>
-                </div>
-              </div>
-          </CardContent>
-      </Card>
-    </div>
-  );
-};
+    const functions = getFunctions(firebaseApp);
+    const getSustainabilityDataCallable = useMemo(() => httpsCallable(functions, 'getSustainabilityDashboardData'), [functions]);
+
+    useEffect(() => {
+        if (authLoading) return;
+        if (!user) {
+            setIsLoading(false);
+            return;
+        }
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const result = await getSustainabilityDataCallable();
+                setData(result.data as SustainabilityDashboardData);
+            } catch (error) {
+                console.error("Error fetching sustainability data:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, [user, authLoading, getSustainabilityDataCallable]);
+    
+    if (isLoading || authLoading) {
+        return <SustainabilitySkeleton />;
+    }
+
+    if (!user) {
+        return (
+            <Card className="text-center py-8">
+                <CardHeader><CardTitle>Please Sign In</CardTitle></CardHeader>
+                <CardContent>
+                    <CardDescription>You must be logged in to view your sustainability hub.</CardDescription>
+                    <Button asChild className="mt-4"><Link href="/auth/signin">Sign In</Link></Button>
+                </CardContent>
+            </Card>
+        );
+    }
+
+    if (!data) {
+        return (
+            <Card className="text-center py-8">
+                <CardHeader><CardTitle>No Data Available</CardTitle></CardHeader>
+                <CardContent>
+                    <CardDescription>We couldn't load your sustainability data. Please try again later.</CardDescription>
+                </CardContent>
+            </Card>
+        );
+    }
+
+    return (
+        <div className="space-y-6">
+            <div className="flex items-center gap-2">
+                <Leaf className="h-8 w-8 text-green-600" />
+                <h1 className="text-3xl font-bold">Sustainability Hub</h1>
+            </div>
+            <p className="text-muted-foreground">Track and manage your farm's environmental impact and sustainable practices.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <MetricCard title="Carbon Footprint" value={data.carbonFootprint.total} unit={data.carbonFootprint.unit} trend={data.carbonFootprint.trend} icon={<Circle className="h-4 w-4 text-muted-foreground" />} higherIsBetter={false} />
+                <MetricCard title="Water Efficiency" value={data.waterUsage.efficiency} unit={data.waterUsage.unit} trend={data.waterUsage.trend} icon={<Droplets className="h-4 w-4 text-muted-foreground" />} />
+                <MetricCard title="Biodiversity Score" value={data.biodiversityScore.score} unit={data.biodiversityScore.unit} trend={data.biodiversityScore.trend} icon={<PawPrint className="h-4 w-4 text-muted-foreground" />} />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2"><CheckCircle className="h-5 w-5"/> Logged Sustainable Practices</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Practice</TableHead>
+                                    <TableHead>Last Logged</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {data.sustainablePractices.map(p => (
+                                    <TableRow key={p.id}>
+                                        <TableCell className="font-medium">{p.practice}</TableCell>
+                                        <TableCell>{format(new Date(p.lastLogged), 'PPP')}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2"><Award className="h-5 w-5"/> Certifications</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                         <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Certification</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Expiry</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {data.certifications.map(c => (
+                                    <TableRow key={c.id}>
+                                        <TableCell className="font-medium">{c.name}</TableCell>
+                                        <TableCell><Badge>{c.status}</Badge></TableCell>
+                                        <TableCell>{format(new Date(c.expiry), 'PPP')}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}

@@ -781,3 +781,11 @@ export interface PackagingSupplierDashboardData {
     reorderLevel: number;
   }[];
 }
+
+export interface SustainabilityDashboardData {
+  carbonFootprint: { total: number; unit: string; trend: number; };
+  waterUsage: { efficiency: number; unit: string; trend: number; };
+  biodiversityScore: { score: number; unit: string; trend: number; };
+  sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+  certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
