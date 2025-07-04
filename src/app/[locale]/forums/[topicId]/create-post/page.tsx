@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles, Save } from "lucide-react";
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -174,7 +174,7 @@ export default function CreatePostPage() {
                                     {t('form.submittingButton')}
                                 </>
                             ) : (
-                                t('form.submitButton')
+                                <><Save className="h-4 w-4 mr-2" />{t('form.submitButton')}</>
                             )}
                         </Button>
                     </CardFooter>

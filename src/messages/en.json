@@ -230,5 +230,54 @@
     "popularSearch3": "Coffee Buyers Europe",
     "popularSearch4": "Soil Testing Services",
     "popularSearch5": "Tractor for Rent"
+  },
+  "Forums": {
+    "createPost": {
+      "backLink": "Back to Topic",
+      "aiHelper": {
+        "title": "AI Post Helper",
+        "description": "Don't know where to start? Give the AI a prompt and it will generate a draft for you.",
+        "promptLabel": "Your Idea or Question",
+        "promptPlaceholder": "e.g., What are the best natural methods to control aphids on kale?",
+        "generatingButton": "Generating...",
+        "generateButton": "Generate Draft with AI"
+      },
+      "title": "Start a New Discussion",
+      "description": "Share your knowledge or ask a question to the community.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "A clear, engaging title for your post",
+        "contentLabel": "Your Content",
+        "contentPlaceholder": "Elaborate on your question or idea here...",
+        "submittingButton": "Posting...",
+        "submitButton": "Submit Post"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Prompt Required",
+          "description": "Please enter a prompt for the AI to generate a draft."
+        },
+        "aiDraft": {
+          "title": "AI Draft Failed",
+          "description": "There was an error generating the draft. Please try again."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Could not create the post. Please try again."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Draft Generated!",
+          "description": "Your post has been drafted by AI. Feel free to edit it before submitting."
+        },
+        "title": "Post Created!",
+        "description": "Your discussion has been started."
+      }
+    }
   }
 }
