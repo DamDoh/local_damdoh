@@ -81,6 +81,27 @@ All critical operations are handled by secure, server-side Cloud Functions.
 -   **QR Code Content**: The QR code **only** contains the `universalId`. It is structured as a deep link for potential future use, e.g., `damdoh://user?id=a-unique-non-sensitive-uuid-v4`.
 -   **QR Code Display**: The user's QR code is accessible within their profile, displayed in a modal/dialog to be scanned by others.
 
+### 2.4. Social Account Recovery (Phase 2)
+
+A critical feature for users without stable email or phone access is the ability to recover their account through their network.
+
+#### Recovery Flow Overview
+
+1.  **Initiation**: The user, on a new device, navigates to `/auth/recover`. They click "Start Recovery."
+2.  **Session Creation**: The app calls a secure `createRecoverySession` Cloud Function. This function generates a temporary session ID and a unique secret.
+3.  **Display Recovery QR**: The app displays a temporary QR code containing the session details. This QR code is *different* from the user's permanent Universal ID.
+4.  **Friend Confirmation**: The user shows this QR code to a trusted friend who is also a DamDoh user. The friend uses a "Help Friend Recover" feature in their app to scan the code.
+5.  **Verification**: The friend's app calls a `scanRecoveryQr` Cloud Function, sending the scanned data. The backend verifies the session and records the friend's confirmation.
+6.  **Human Factor**: As an added layer, the system might require the friend to verbally ask the recovering user a pre-set security question. The recovering user types the answer into their app, which is then verified by the backend.
+7.  **Access Granted**: Once enough confirmations are received, the backend links the recovering user's account to their new device.
+
+#### Relevant Components
+
+*   **`src/app/[locale]/auth/recover/page.tsx`**: The UI for initiating and managing the recovery process.
+*   **`createRecoverySession` (Cloud Function)**: Creates and manages the secure, temporary recovery session in Firestore.
+*   **`scanRecoveryQr` (Cloud Function)**: Verifies and records a recovery attempt from a trusted friend.
+
+
 ## 3. Security Model
 
 -   **Data Minimization in QR**: The QR code contains no Personally Identifiable Information (PII). It is a pointer, not a data store.

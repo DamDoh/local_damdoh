@@ -51,9 +51,10 @@ export default function ProfilesPage() {
       setIsLoading(true);
       try {
         const fetchedProfiles = await getAllProfilesFromDB();
-        setProfiles(fetchedProfiles);
+        setProfiles(Array.isArray(fetchedProfiles) ? fetchedProfiles : []);
       } catch (error) {
         console.error("Failed to load profiles:", error);
+        setProfiles([]);
       } finally {
         setIsLoading(false);
       }
@@ -62,6 +63,8 @@ export default function ProfilesPage() {
   }, []);
 
   const filteredProfiles = useMemo(() => {
+    if (!Array.isArray(profiles)) return [];
+    
     return profiles.filter(profile => {
       if (!profile) return false;
       const searchLower = searchTerm.toLowerCase();

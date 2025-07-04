@@ -56,7 +56,7 @@ export default function TalentExchangePage() {
             setIsLoading(true);
             try {
                 const result = await getAllMarketplaceItemsFromDB();
-                setItems(result as MarketplaceItem[]);
+                setItems(Array.isArray(result) ? (result as MarketplaceItem[]) : []);
             } catch (error) {
                 console.error("Failed to fetch marketplace items:", error);
                 toast({
@@ -64,6 +64,7 @@ export default function TalentExchangePage() {
                     title: "Error",
                     description: "Could not fetch available talent and services.",
                 });
+                setItems([]);
             } finally {
                 setIsLoading(false);
             }
@@ -72,10 +73,11 @@ export default function TalentExchangePage() {
     }, [toast]);
 
     const filteredServices = useMemo(() => {
-        return items.filter(item => {
-            if (item.listingType !== 'Service') return false;
+        if (!Array.isArray(items)) return [];
 
-            // Defensive skills handling
+        return items.filter(item => {
+            if (!item || item.listingType !== 'Service') return false;
+
             const skillsArray: string[] = Array.isArray(item.skillsRequired)
                 ? item.skillsRequired
                 : (typeof item.skillsRequired === 'string' && item.skillsRequired)
@@ -85,11 +87,10 @@ export default function TalentExchangePage() {
             const searchLower = searchTerm.toLowerCase();
             const locationLower = locationFilter.toLowerCase();
 
-            const nameMatch = item.name.toLowerCase().includes(searchLower);
-            const descriptionMatch = item.description.toLowerCase().includes(searchLower);
+            const nameMatch = (item.name || '').toLowerCase().includes(searchLower);
+            const descriptionMatch = (item.description || '').toLowerCase().includes(searchLower);
             const skillsMatch = skillsArray.join(' ').toLowerCase().includes(searchLower);
-            const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
-            // This is a simplified role filter; a real app might match against the seller's profile role
+            const locationMatch = locationFilter === "" || (item.location || '').toLowerCase().includes(locationLower);
             const roleMatch = roleFilter === 'all' || (item.category && item.category.toLowerCase().includes(roleFilter.toLowerCase()));
 
             return (nameMatch || descriptionMatch || skillsMatch) && locationMatch && roleMatch;

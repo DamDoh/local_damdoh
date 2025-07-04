@@ -55,8 +55,8 @@ function MarketplaceContent() {
       setIsLoading(true);
       try {
         const result = await getAllMarketplaceItemsFromDB();
-        setItems(result as MarketplaceItem[]);
-        return result as MarketplaceItem[]; // Return for chaining
+        setItems(Array.isArray(result) ? (result as MarketplaceItem[]) : []);
+        return Array.isArray(result) ? (result as MarketplaceItem[]) : [];
       } catch (error) {
         console.error("Failed to fetch marketplace items:", error);
         toast({
@@ -65,7 +65,7 @@ function MarketplaceContent() {
           description: "Could not fetch marketplace items. Please try again later.",
         });
         setItems([]);
-        return []; // Return empty array on error
+        return [];
       } finally {
         setIsLoading(false);
       }
@@ -91,7 +91,7 @@ function MarketplaceContent() {
 
         if (recommendationsOutput && Array.isArray(recommendationsOutput.suggestedItems)) {
             recommendationsOutput.suggestedItems.forEach(suggested => {
-              const foundItem = allItems.find(item => item.id === suggested.itemId);
+              const foundItem = allItems.find(item => item && item.id === suggested.itemId);
               if (foundItem) {
                 recommendedFullItems.push(foundItem as MarketplaceItem);
                 reasons[foundItem.id] = suggested.reason;
@@ -114,16 +114,17 @@ function MarketplaceContent() {
   }, [userType, toast]);
   
   const filteredMarketplaceItems = useMemo(() => {
-    if (!isMounted) return [];
+    if (!isMounted || !Array.isArray(items)) return [];
     
-    return items.filter(item => { 
+    return items.filter(item => {
+      if (!item) return false;
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
-      const nameMatch = item.name.toLowerCase().includes(searchLower);
-      const descriptionMatch = item.description.toLowerCase().includes(searchLower);
+      const nameMatch = (item.name || '').toLowerCase().includes(searchLower);
+      const descriptionMatch = (item.description || '').toLowerCase().includes(searchLower);
       const categoryPass = !currentCategory || item.category === currentCategory;
       const listingTypePass = listingTypeFilter === 'All' || item.listingType === listingTypeFilter;
-      const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
+      const locationMatch = locationFilter === "" || (item.location || '').toLowerCase().includes(locationLower);
       return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
     });
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, items, isMounted]); 

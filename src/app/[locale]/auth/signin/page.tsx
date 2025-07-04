@@ -148,13 +148,23 @@ export default function SignInPage() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex flex-col items-center text-sm">
+        <CardFooter className="flex flex-col items-center text-sm gap-4">
           <p className="text-muted-foreground">
             {t('noAccountPrompt')}{" "}
             <Link href="/auth/signup" className="font-medium text-primary hover:underline">
               {t('signUpLink')}
             </Link>
           </p>
+           <div className="text-center w-full">
+            <div className="flex items-center my-2">
+              <div className="flex-grow border-t border-muted-foreground/20"></div>
+              <span className="flex-shrink mx-2 text-xs text-muted-foreground">OR</span>
+              <div className="flex-grow border-t border-muted-foreground/20"></div>
+            </div>
+            <Link href="/auth/recover" className="text-xs text-primary hover:underline">
+              {t('recoverWithUniversalIdPrompt')}
+            </Link>
+          </div>
         </CardFooter>
       </Card>
     </div>

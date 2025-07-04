@@ -84,7 +84,22 @@
     "newPasswordLabel": "New Password",
     "newPasswordPlaceholder": "Enter your new password",
     "resettingPasswordButton": "Resetting Password...",
-    "resetPasswordButton": "Reset Password"
+    "resetPasswordButton": "Reset Password",
+    "recoverWithUniversalIdPrompt": "Can't access your email? Recover with Universal ID",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Regain access to your account using your Universal ID and trusted connections, even without email.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Start the recovery process to generate a temporary QR code.",
+      "step2": "Ask a trusted friend or agent on DamDoh to scan this code.",
+      "step3": "Once enough trusted members confirm, you'll regain access.",
+      "startButton": "Start Recovery",
+      "startingButton": "Starting...",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted connection on DamDoh scan this temporary QR code to help you recover your account.",
+      "scanNote": "For security, this code is temporary and will expire. Do not share it publicly.",
+      "startOverButton": "Start Over"
+    }
   },
   "Marketplace": {
       "create": {
