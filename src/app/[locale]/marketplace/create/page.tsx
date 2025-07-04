@@ -94,11 +94,7 @@ export default function CreateListingPage() {
 
         setIsSubmitting(true);
         try {
-            // Transform the comma-separated string of skills into an array
-            const payload = {
-                ...data,
-                skillsRequired: data.skillsRequired ? data.skillsRequired.split(',').map(s => s.trim()).filter(Boolean) : [],
-            };
+            const payload = { ...data };
             await createListingCallable(payload);
             toast({ title: "Success!", description: "Your listing has been created." });
             router.push('/marketplace');

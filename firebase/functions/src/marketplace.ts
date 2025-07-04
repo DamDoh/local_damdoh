@@ -117,12 +117,17 @@ export const createMarketplaceListing = functions.https.onCall(
     }
 
     try {
-      const listingData = {
+      const listingData: any = {
         ...data, // Include all validated data from the client
         sellerId: sellerId,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       };
+
+      // Convert skillsRequired string to array if it's a Service listing
+      if (listingData.listingType === 'Service' && typeof listingData.skillsRequired === 'string') {
+        listingData.skillsRequired = listingData.skillsRequired.split(',').map((s: string) => s.trim()).filter(Boolean);
+      }
 
       const docRef = await db.collection("marketplaceItems").add(listingData);
 
