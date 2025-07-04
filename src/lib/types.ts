@@ -210,6 +210,17 @@ export interface LogisticsDashboardData {
     };
 }
 
+export interface FinancialApplication {
+    id: string;
+    applicantName: string;
+    type: string;
+    amount: number;
+    currency: string;
+    status: string;
+    riskScore: number;
+    submittedAt: string | null; // ISO string
+    actionLink: string;
+}
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
     portfolioAtRisk: {
