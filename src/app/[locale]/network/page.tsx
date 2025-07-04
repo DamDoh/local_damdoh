@@ -54,10 +54,10 @@ export default function NetworkPage() {
       setIsLoading(true);
       try {
         const fetchedProfiles = await getAllProfilesFromDB();
-        setProfiles(fetchedProfiles);
+        setProfiles(Array.isArray(fetchedProfiles) ? fetchedProfiles : []);
       } catch (error) {
         console.error("Failed to load profiles:", error);
-        // Here you might want to show a toast message to the user
+        setProfiles([]);
       } finally {
         setIsLoading(false);
       }
@@ -67,6 +67,8 @@ export default function NetworkPage() {
 
 
   const filteredConnections = useMemo(() => {
+    if (!Array.isArray(profiles)) return [];
+
     return profiles.filter(profile => {
       if (!profile) return false;
       const searchLower = searchTerm.toLowerCase();
@@ -79,7 +81,7 @@ export default function NetworkPage() {
       const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
       
       const interestKeywords = interestFilter.toLowerCase().replace(/-/g, ' ').split(' ');
-      const areasOfInterestLower = (profile.areasOfInterest || []).join(' ').toLowerCase();
+      const areasOfInterestLower = (Array.isArray(profile.areasOfInterest) ? profile.areasOfInterest : []).join(' ').toLowerCase();
       const interestMatch = interestFilter === 'all' || interestKeywords.every(keyword => areasOfInterestLower.includes(keyword));
       
       const locationMatch = !locationFilter || (profile.location || '').toLowerCase().includes(locationLower);
@@ -187,3 +189,4 @@ export default function NetworkPage() {
     </div>
   );
 }
+

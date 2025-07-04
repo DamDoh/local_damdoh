@@ -1,38 +1,63 @@
 
 "use client";
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { QrCode, ArrowLeft, Users, Shield, Loader2 } from 'lucide-react';
+import { QrCode, ArrowLeft, Users, Shield, Loader2, Phone } from 'lucide-react';
 import QRCode from 'qrcode.react';
 import { useTranslations } from 'next-intl';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { useToast } from '@/hooks/use-toast';
 
 export default function RecoverPage() {
   const t = useTranslations('Auth.recoverPage');
-  const [recoveryStep, setRecoveryStep] = useState<'initial' | 'display_qr' | 'error'>('initial');
+  const { toast } = useToast();
+  const functions = getFunctions(firebaseApp);
+
+  const [recoveryStep, setRecoveryStep] = useState<'initial' | 'enter_phone' | 'display_qr' | 'error'>('initial');
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string } | null>(null);
 
-  const handleStartRecovery = async () => {
+  const createRecoverySession = useMemo(() => httpsCallable(functions, 'createRecoverySession'), [functions]);
+
+  const handleStartRecovery = () => {
+    setRecoveryStep('enter_phone');
+    setErrorMessage(null);
+  };
+
+  const handlePhoneNumberSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!phoneNumber.trim()) {
+      setErrorMessage("Please enter a valid phone number.");
+      return;
+    }
     setIsLoading(true);
-    // In a real app, this would call a backend function.
-    // For now, we simulate success after a delay.
-    setTimeout(() => {
-      const sessionId = `rec_${Date.now()}`;
-      const recoveryQrValue = `damdoh:recover:${sessionId}:secret123abc`;
-      setRecoverySession({ sessionId, recoveryQrValue });
-      setRecoveryStep('display_qr');
-      setIsLoading(false);
-    }, 1500);
+    setErrorMessage(null);
+
+    try {
+        const result = await createRecoverySession({ phoneNumber });
+        const data = result.data as { sessionId: string, recoveryQrValue: string };
+        setRecoverySession(data);
+        setRecoveryStep('display_qr');
+    } catch (error: any) {
+        console.error("Error creating recovery session:", error);
+        setErrorMessage(error.message || "Could not start recovery. Please check the phone number and try again.");
+        setRecoveryStep('enter_phone');
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   const renderInitialStep = () => (
     <>
       <CardTitle className="text-2xl">{t('title')}</CardTitle>
-      <CardDescription>
-        {t('description')}
-      </CardDescription>
+      <CardDescription>{t('description')}</CardDescription>
       <CardContent className="pt-6 space-y-4">
         <div className="p-4 border rounded-lg bg-muted/50">
           <h4 className="font-semibold flex items-center gap-2"><Shield className="h-5 w-5 text-primary" /> {t('howItWorksTitle')}</h4>
@@ -42,10 +67,39 @@ export default function RecoverPage() {
             <li>{t('step3')}</li>
           </ol>
         </div>
-        <Button onClick={handleStartRecovery} className="w-full" disabled={isLoading}>
-          {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : null}
-          {isLoading ? t('startingButton') : t('startButton')}
+        <Button onClick={handleStartRecovery} className="w-full">
+          {t('startButton')}
         </Button>
+      </CardContent>
+    </>
+  );
+
+  const renderEnterPhoneStep = () => (
+    <>
+      <CardTitle className="text-2xl">Enter Your Phone Number</CardTitle>
+      <CardDescription>
+        Provide the phone number associated with the account you wish to recover.
+      </CardDescription>
+      <CardContent className="pt-6">
+        <form onSubmit={handlePhoneNumberSubmit} className="space-y-4">
+            <div className="space-y-2">
+                <Label htmlFor="phone-number" className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground"/> Phone Number</Label>
+                <Input
+                    id="phone-number"
+                    type="tel"
+                    placeholder="e.g., +14155552671"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    disabled={isLoading}
+                    required
+                />
+            </div>
+             {errorMessage && <p className="text-sm text-destructive">{errorMessage}</p>}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : null}
+              {isLoading ? 'Verifying...' : 'Get Recovery Code'}
+            </Button>
+        </form>
       </CardContent>
     </>
   );
@@ -53,20 +107,25 @@ export default function RecoverPage() {
   const renderDisplayQrStep = () => (
     <>
       <CardTitle className="text-2xl">{t('scanTitle')}</CardTitle>
-      <CardDescription>
-        {t('scanDescription')}
-      </CardDescription>
+      <CardDescription>{t('scanDescription')}</CardDescription>
       <CardContent className="pt-6 flex flex-col items-center gap-4">
         <div className="p-4 bg-white rounded-lg border shadow-md">
           <QRCode value={recoverySession?.recoveryQrValue || ''} size={256} />
         </div>
-        <p className="text-sm text-muted-foreground text-center">
-          {t('scanNote')}
-        </p>
+        <p className="text-sm text-muted-foreground text-center">{t('scanNote')}</p>
         <Button variant="outline" onClick={() => setRecoveryStep('initial')}>{t('startOverButton')}</Button>
       </CardContent>
     </>
   );
+
+  const renderContent = () => {
+    switch(recoveryStep) {
+        case 'initial': return renderInitialStep();
+        case 'enter_phone': return renderEnterPhoneStep();
+        case 'display_qr': return renderDisplayQrStep();
+        default: return renderInitialStep();
+    }
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
@@ -78,8 +137,7 @@ export default function RecoverPage() {
             </Button>
           </div>
           <QrCode className="h-10 w-10 mx-auto text-primary mb-2" />
-          {recoveryStep === 'initial' && renderInitialStep()}
-          {recoveryStep === 'display_qr' && renderDisplayQrStep()}
+          {renderContent()}
         </CardHeader>
       </Card>
     </div>

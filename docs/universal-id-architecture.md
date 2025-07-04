@@ -88,12 +88,16 @@ A critical feature for users without stable email or phone access is the ability
 #### Recovery Flow Overview
 
 1.  **Initiation**: The user, on a new device, navigates to `/auth/recover`. They click "Start Recovery."
-2.  **Session Creation**: The app calls a secure `createRecoverySession` Cloud Function. This function generates a temporary session ID and a unique secret.
-3.  **Display Recovery QR**: The app displays a temporary QR code containing the session details. This QR code is *different* from the user's permanent Universal ID.
-4.  **Friend Confirmation**: The user shows this QR code to a trusted friend who is also a DamDoh user. The friend uses a "Help Friend Recover" feature in their app to scan the code.
-5.  **Verification**: The friend's app calls a `scanRecoveryQr` Cloud Function, sending the scanned data. The backend verifies the session and records the friend's confirmation.
-6.  **Human Factor**: As an added layer, the system might require the friend to verbally ask the recovering user a pre-set security question. The recovering user types the answer into their app, which is then verified by the backend.
-7.  **Access Granted**: Once enough confirmations are received, the backend links the recovering user's account to their new device.
+2.  **Phone Number Entry**: The user enters their registered phone number.
+3.  **Session Creation**: The app calls the secure `createRecoverySession` Cloud Function, passing the phone number.
+    *   The backend function finds the user by phone number, generates a temporary session ID and a unique secret.
+    *   It stores this session in a new `recovery_sessions` collection in Firestore.
+    *   It returns the session details (including the temporary QR value) to the user's app.
+4.  **Display Recovery QR**: The app displays a temporary QR code containing the session details. This QR code is *different* from the user's permanent Universal ID.
+5.  **Friend Confirmation**: The user shows this QR code to a trusted friend who is also a DamDoh user. The friend uses a "Help Friend Recover" feature in their app to scan the code.
+6.  **Verification**: The friend's app calls a `scanRecoveryQr` Cloud Function, sending the scanned data. The backend verifies the session and records the friend's confirmation.
+7.  **Human Factor**: As an added layer, the system might require the friend to verbally ask the recovering user a pre-set security question. The recovering user types the answer into their app, which is then verified by the backend.
+8.  **Access Granted**: Once enough confirmations are received, the backend links the recovering user's account to their new device.
 
 #### Relevant Components
 
