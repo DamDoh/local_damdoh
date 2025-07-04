@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Leaf, Sprout, Tractor, DollarSign, FlaskConical } from 'lucide-react';
+import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home } from 'lucide-react';
 
 export default function FarmManagementPage() {
   const t = useTranslations('FarmManagement');
@@ -15,7 +15,7 @@ export default function FarmManagementPage() {
       title: t('myFarms.title'),
       description: t('myFarms.description'),
       link: "/farm-management/farms",
-      icon: <Leaf className="h-8 w-8 text-primary mb-2" />,
+      icon: <Home className="h-8 w-8 text-primary mb-2" />,
       buttonText: t('myFarms.button'),
       enabled: true,
     },
@@ -47,7 +47,7 @@ export default function FarmManagementPage() {
       title: "Family Farm Model",
       description: "Explore our 200sqm model for family food self-sustenance using bio-intensive methods.",
       link: "/farm-management/family-farm",
-      icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
+      icon: <Leaf className="h-8 w-8 text-primary mb-2" />,
       buttonText: "Explore Model",
       enabled: true,
     },

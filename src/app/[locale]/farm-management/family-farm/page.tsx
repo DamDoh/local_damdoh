@@ -241,7 +241,7 @@ export default function FamilyFarmPage() {
             {farmZones.map((zone) => (
               <AccordionItem value={zone.id} key={zone.id}>
                 <AccordionTrigger className="text-lg hover:no-underline py-3">
-                  <div className="flex items-center gap-3 text-left"> {/* Added text-left for better trigger text alignment */}
+                  <div className="flex items-center gap-3 text-left">
                     {zone.icon}
                     {zone.title}
                   </div>
