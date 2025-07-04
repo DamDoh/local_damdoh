@@ -105,7 +105,9 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         let query: admin.firestore.Query = db.collection("search_index");
         
         // Use the keywords identified by the AI. Firestore's 'array-contains-any' is limited to 10.
-        const searchTerms = mainKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
+        const validKeywords = mainKeywords.filter((k): k is string => typeof k === 'string' && k.trim() !== '');
+        const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
+
         if (searchTerms.length > 0) {
             query = query.where("searchable_terms", "array-contains-any", searchTerms);
         }

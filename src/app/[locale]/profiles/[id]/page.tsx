@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import QRCode from 'qrcode.react';
 
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
@@ -16,7 +17,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 
@@ -120,6 +122,7 @@ export default function ProfileDetailPage() {
   }
 
   const isCurrentUserProfile = authUser?.uid === profile.id;
+  const qrCodeValue = profile.universalId ? `damdoh:user?id=${profile.universalId}` : 'error';
   
   const areasOfInterest = profile.stakeholderProfile?.areasOfInterest;
   const needs = profile.stakeholderProfile?.needs;
@@ -156,7 +159,28 @@ export default function ProfileDetailPage() {
             </div>
             <div className="flex gap-2 mt-4 sm:mt-0">
               {isCurrentUserProfile ? (
-                <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
+                <>
+                  <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline"><QrCode className="mr-2 h-4 w-4" /> Show My Universal ID</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-xs">
+                        <DialogHeader>
+                            <DialogTitle className="text-center">My Universal ID</DialogTitle>
+                            <DialogDescription className="text-center">
+                                Present this QR code to authorized agents or partners to securely share your public profile information.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="p-4 flex flex-col items-center justify-center gap-4">
+                            <div className="p-4 bg-white rounded-lg border shadow-md">
+                                <QRCode value={qrCodeValue} size={200} />
+                            </div>
+                            <p className="text-xs text-muted-foreground font-mono">{profile.universalId}</p>
+                        </div>
+                    </DialogContent>
+                  </Dialog>
+                </>
               ) : (
                 <>
                   <Button><LinkIcon className="mr-2 h-4 w-4" /> {t('connect')}</Button>

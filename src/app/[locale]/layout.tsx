@@ -9,7 +9,7 @@ import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { locales } from "../../../i18n";
+import { locales } from "../../i18n";
 import { notFound } from "next/navigation";
  
 export const metadata: Metadata = {
@@ -32,6 +32,9 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale as any)) notFound();
+ 
   const messages = await getMessages();
  
   return (
