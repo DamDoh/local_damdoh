@@ -99,7 +99,7 @@ export const InsuranceProviderDashboard = () => {
              <CardDescription>Claims requiring your review and processing.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((pendingClaims || []).length > 0) ? (
+             {(pendingClaims || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -139,7 +139,7 @@ export const InsuranceProviderDashboard = () => {
              <CardDescription>Alerts based on farm and supply chain data.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((riskAssessmentAlerts || []).length > 0) ? (
+             {(riskAssessmentAlerts || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -177,7 +177,7 @@ export const InsuranceProviderDashboard = () => {
                 <CardDescription>Overview of active insurance policies.</CardDescription>
             </CardHeader>
             <CardContent>
-                {((activePolicies || []).length > 0) ? (
+                {(activePolicies || []).length > 0 ? (
                     <div className="space-y-3">
                         {(activePolicies || []).map((policy) => (
                             <div key={policy.id} className="text-sm p-3 border rounded-lg">

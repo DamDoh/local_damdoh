@@ -13,7 +13,6 @@ import type {
     AgroExportDashboardData,
     ProcessingUnitDashboardData,
     WarehouseDashboardData,
-    PackagingSupplierDashboardData,
     QaDashboardData,
     CertificationBodyDashboardData,
     ResearcherDashboardData,
@@ -258,19 +257,6 @@ export const getWarehouseDashboardData = functions.https.onCall(
         predictiveAlerts: [
             { alert: 'High humidity detected in Cold Storage 2. Risk of mold.', actionLink: '#' }
         ]
-    };
-  }
-);
-
-export const getPackagingSupplierDashboardData = functions.https.onCall(
-  (data, context): PackagingSupplierDashboardData => {
-    checkAuth(context);
-    return {
-        demandForecast: { productType: '5kg Aseptic Bags', unitsNeeded: 5000, for: 'Fruit Processors' },
-        integrationRequests: [
-            { from: 'FreshFoods Processors', request: 'API integration for automated ordering.', actionLink: '#' }
-        ],
-        sustainableShowcase: { views: 520, leads: 12 }
     };
   }
 );

@@ -78,7 +78,7 @@ export const QaDashboard = () => {
              <CardDescription>Inspections requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((pendingInspections || []).length > 0) ? (
+             {(pendingInspections || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -118,7 +118,7 @@ export const QaDashboard = () => {
              <CardDescription>Recently reported quality and compliance issues.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((recentResults || []).length > 0) ? (
+             {(recentResults || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>

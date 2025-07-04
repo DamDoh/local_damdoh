@@ -135,14 +135,23 @@ const CheckInTab = () => {
         setCheckInResult(null);
 
         try {
-            const url = new URL(decodedText);
-            const scannedUniversalId = url.searchParams.get('id');
-
-            if (!scannedUniversalId) {
-                throw new Error("Invalid QR Code: No Universal ID found.");
+            if (!decodedText.startsWith('damdoh:checkin')) {
+                throw new Error("Invalid QR Code: Not a DamDoh check-in code.");
             }
             
-            const result = await checkInCallable({ eventId, scannedUniversalId });
+            const urlParams = new URLSearchParams(decodedText.split('?')[1]);
+            const scannedEventId = urlParams.get('eventId');
+            const attendeeUid = urlParams.get('userId');
+
+            if (scannedEventId !== eventId) {
+                throw new Error("This ticket is for a different event.");
+            }
+
+            if (!attendeeUid) {
+                throw new Error("Invalid QR Code: No User ID found.");
+            }
+            
+            const result = await checkInCallable({ eventId, attendeeUid });
             const data = result.data as { success: boolean, message: string };
             
             if (data.success) {
@@ -152,10 +161,7 @@ const CheckInTab = () => {
                  throw new Error(data.message || "Check-in failed for an unknown reason.");
             }
         } catch (error: any) {
-             const message = error.message.includes('permission-denied') ? "You are not authorized to check-in for this event." :
-                            error.message.includes('not-found') ? "Attendee not found or not registered." :
-                            error.message.includes('already-exists') ? "This attendee has already been checked in." :
-                            error.message;
+             const message = error.message;
             setCheckInResult({ type: 'error', message: message });
             toast({ variant: "destructive", title: "Check-in Failed", description: message });
         } finally {
@@ -174,7 +180,7 @@ const CheckInTab = () => {
         <Card>
             <CardHeader>
                 <CardTitle>Attendee Check-in</CardTitle>
-                <CardDescription>Scan attendee Universal ID QR codes to check them into the event.</CardDescription>
+                <CardDescription>Scan attendee's unique event ticket QR code to check them into the event.</CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-4">
                 <Button size="lg" onClick={() => setIsScanning(true)} disabled={isProcessing}>
@@ -187,7 +193,7 @@ const CheckInTab = () => {
                 {checkInResult && (
                     <Alert variant={checkInResult.type === 'error' ? 'destructive' : 'default'} className="text-left">
                         {checkInResult.type === 'success' ? <UserCheck className="h-4 w-4" /> : <AlertCircle className="h-4 w-4" />}
-                        <CardTitle className="text-base">{checkInResult.type === 'success' ? "Success" : "Error"}</CardTitle>
+                        <AlertTitle>{checkInResult.type === 'success' ? "Success" : "Error"}</AlertTitle>
                         <AlertDescription>{checkInResult.message}</AlertDescription>
                     </Alert>
                 )}

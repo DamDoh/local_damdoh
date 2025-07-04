@@ -85,7 +85,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Projects aligned with your impact goals.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((suggestedOpportunities || []).length > 0) ? (
+             {(suggestedOpportunities || []).length > 0 ? (
                <div className="space-y-4">
                  {(suggestedOpportunities || []).map((opp) => {
                    const progress = (opp.amountRaised / opp.fundingGoal) * 100;
@@ -121,7 +121,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Your latest investment activities.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((recentTransactions || []).length > 0) ? (
+             {(recentTransactions || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>

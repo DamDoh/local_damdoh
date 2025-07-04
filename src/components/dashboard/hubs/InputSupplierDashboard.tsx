@@ -98,7 +98,7 @@ export const InputSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {((demandForecast || []).length > 0) ? (
+                       {(demandForecast || []).length > 0 ? (
                            (demandForecast || []).map(forecast => (
                                <div key={forecast.id} className="text-sm p-2 bg-background rounded-md border">
                                    <p className="font-medium">{forecast.product} in <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
@@ -119,7 +119,7 @@ export const InputSupplierDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {((productPerformance || []).length > 0) ? (
+                       {(productPerformance || []).length > 0 ? (
                            (productPerformance || []).map(perf => (
                                 <div key={perf.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>

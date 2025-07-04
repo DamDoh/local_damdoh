@@ -89,7 +89,7 @@ export const WarehouseDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {((predictiveAlerts || []).length > 0) ? (
+                        {(predictiveAlerts || []).length > 0 ? (
                             (predictiveAlerts || []).map((alert, index) => (
                                 <div key={index} className="flex justify-between items-center text-sm p-2 bg-destructive/10 border border-destructive/20 rounded-lg">
                                     <p>{alert.alert}</p>

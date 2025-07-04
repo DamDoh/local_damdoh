@@ -124,7 +124,7 @@ export const EnergyProviderDashboard = () => {
              <CardDescription>Potential opportunities for energy solution installations.</CardDescription>
           </CardHeader>
           <CardContent>
-            {((projectLeads || []).length > 0) ? (
+            {(projectLeads || []).length > 0 ? (
               <Table>
                 <TableHeader>
                   <TableRow>

@@ -109,7 +109,7 @@ export const FieldAgentDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {((assignedFarmers || []).length > 0) ? (
+                       {(assignedFarmers || []).length > 0 ? (
                            (assignedFarmers || []).map(farmer => (
                                 <div key={farmer.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>

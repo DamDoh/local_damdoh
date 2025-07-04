@@ -63,10 +63,10 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
 export const checkInAgroTourismBooking = functions.https.onCall(async (data, context) => {
     const callerId = checkAuth(context);
-    const { itemId, scannedUniversalId } = data;
+    const { itemId, attendeeUid } = data;
 
-    if (!itemId || !scannedUniversalId) {
-        throw new functions.https.HttpsError("invalid-argument", "Item ID and scanned Universal ID are required.");
+    if (!itemId || !attendeeUid) {
+        throw new functions.https.HttpsError("invalid-argument", "Item ID and Attendee UID are required.");
     }
     
     const itemRef = db.collection('marketplaceItems').doc(itemId);
@@ -84,16 +84,13 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
         throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in guests for this service.");
     }
 
-    const usersRef = db.collection('users');
-    const userQuery = await usersRef.where('universalId', '==', scannedUniversalId).limit(1).get();
-    if (userQuery.empty) {
-        throw new functions.https.HttpsError("not-found", "No user found with this Universal ID.");
+    const guestUserDoc = await db.collection('users').doc(attendeeUid).get();
+    if (!guestUserDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "No user found with this ID.");
     }
-    const guestUserDoc = userQuery.docs[0];
-    const guestUid = guestUserDoc.id;
-    const guestName = guestUserDoc.data().displayName || 'Unknown Guest';
+    const guestName = guestUserDoc.data()?.displayName || 'Unknown Guest';
 
-    const bookingRef = itemRef.collection('bookings').doc(guestUid);
+    const bookingRef = itemRef.collection('bookings').doc(attendeeUid);
     return db.runTransaction(async (transaction) => {
         const bookingDoc = await transaction.get(bookingRef);
         if (!bookingDoc.exists) {

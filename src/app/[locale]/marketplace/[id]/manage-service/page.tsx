@@ -52,14 +52,23 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
         setCheckInResult(null);
 
         try {
-            const url = new URL(decodedText);
-            const scannedUniversalId = url.searchParams.get('id');
+            if (!decodedText.startsWith('damdoh:checkin')) {
+                throw new Error("Invalid QR Code: Not a DamDoh check-in code.");
+            }
 
-            if (!scannedUniversalId) {
-                throw new Error("Invalid QR Code: No Universal ID found.");
+            const urlParams = new URLSearchParams(decodedText.split('?')[1]);
+            const scannedItemId = urlParams.get('itemId');
+            const attendeeUid = urlParams.get('userId');
+
+            if (scannedItemId !== itemId) {
+                throw new Error("This ticket is for a different service.");
             }
             
-            const result = await checkInCallable({ itemId, scannedUniversalId });
+            if (!attendeeUid) {
+                throw new Error("Invalid QR Code: No User ID found.");
+            }
+            
+            const result = await checkInCallable({ itemId, attendeeUid });
             const data = result.data as { success: boolean, message: string };
             
             if (data.success) {
@@ -88,12 +97,12 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
         <Card>
             <CardHeader>
                 <CardTitle>Guest Check-in</CardTitle>
-                <CardDescription>Scan a guest's Universal ID QR code to verify their booking and check them in for '{itemName}'.</CardDescription>
+                <CardDescription>Scan a guest's service ticket QR code to verify their booking and check them in for '{itemName}'.</CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-4">
                 <Button size="lg" onClick={() => setIsScanning(true)} disabled={isProcessing}>
                     <ScanLine className="mr-2 h-6 w-6" />
-                    Scan Guest's Universal ID
+                    Scan Guest's Ticket
                 </Button>
 
                 {isProcessing && <div className="flex justify-center items-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /> Verifying...</div>}

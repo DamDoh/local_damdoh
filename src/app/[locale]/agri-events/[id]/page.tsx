@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import type { AgriEvent, EventAttendee } from '@/lib/types';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
@@ -162,7 +162,7 @@ export default function AgriEventDetailPage() {
   }
   
   const isEventFull = event.attendeeLimit ? (event.registeredAttendeesCount || 0) >= event.attendeeLimit : false;
-  const qrCodeValue = `damdoh:checkin:eventId=${event.id}:userId=${user?.uid}`;
+  const qrCodeValue = `damdoh:checkin?eventId=${event.id}&userId=${user?.uid}`;
 
   const registrationButtonText = () => {
     if (isRegistering) return t('buttons.registering');
@@ -272,20 +272,22 @@ export default function AgriEventDetailPage() {
                <Dialog>
                  <DialogTrigger asChild>
                     <Button className="w-full md:w-auto" variant="secondary">
-                        <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
-                        {t('buttons.registered')}
+                        <Ticket className="mr-2 h-4 w-4" />
+                        {t('buttons.viewTicket')}
                     </Button>
                  </DialogTrigger>
                  <DialogContent className="sm:max-w-xs">
                     <DialogHeader>
                         <DialogTitle className="text-center">{t('ticket.title')}</DialogTitle>
+                         <DialogDescription className="text-center">
+                            For {event.title}
+                        </DialogDescription>
                     </DialogHeader>
                     <div className="p-4 flex flex-col items-center justify-center gap-4">
                         <div className="p-4 bg-white rounded-lg">
                             <QRCode value={qrCodeValue} size={200} />
                         </div>
                         <p className="text-sm text-center text-muted-foreground">{t('ticket.scan')}</p>
-                        <p className="text-xs text-center font-mono break-all">{qrCodeValue}</p>
                     </div>
                  </DialogContent>
                </Dialog>

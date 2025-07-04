@@ -8,6 +8,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
 import { getProfileByIdFromDB } from '@/lib/db-utils';
+import QRCode from 'qrcode.react';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -18,9 +19,10 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, CalendarIcon, QrCode, CheckCircle } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 
 function ItemPageSkeleton() {
     return (
@@ -63,6 +65,7 @@ function ItemPageContent() {
     const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
     const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; type: 'fixed' | 'percentage' } | null>(null);
     const [isBooking, setIsBooking] = useState(false);
+    const [isBooked, setIsBooked] = useState(false); // New state to track if user has booked
 
     const functions = getFunctions(firebaseApp);
     const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
@@ -145,7 +148,7 @@ function ItemPageContent() {
         try {
             await bookAgroTourismServiceCallable({ itemId: item?.id });
             toast({ title: "Success!", description: "You have successfully booked this service. Check your profile for details." });
-            // Optionally refresh item data to show updated booking count etc.
+            setIsBooked(true);
         } catch (error: any) {
             toast({ variant: 'destructive', title: "Booking Failed", description: error.message || "An unexpected error occurred." });
         } finally {
@@ -174,6 +177,7 @@ function ItemPageContent() {
     const isOwner = user?.uid === item.sellerId;
     const isAgroTourismService = item.category === 'agri-tourism-services';
     const skills: string[] = Array.isArray(item.skillsRequired) ? item.skillsRequired : (typeof item.skillsRequired === 'string' && item.skillsRequired) ? item.skillsRequired.split(',').map(s => s.trim()) : [];
+    const serviceQrCodeValue = `damdoh:checkin?itemId=${item.id}&userId=${user?.uid}`;
 
     return (
         <div className="max-w-4xl mx-auto space-y-6">
@@ -209,7 +213,7 @@ function ItemPageContent() {
 
                     <p className="text-muted-foreground whitespace-pre-line">{item.description}</p>
                     
-                    {item.listingType === 'Service' ? (
+                    {item.listingType === 'Service' && !isAgroTourismService ? (
                          <div className="space-y-4">
                             <Separator />
                              {skills.length > 0 && (
@@ -240,6 +244,7 @@ function ItemPageContent() {
                                 {discountedPrice?.toFixed(2)}
                                 <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
                             </p>
+                            { !isAgroTourismService &&
                             <div className="mt-4 p-4 border rounded-lg bg-muted/30">
                                 <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />Have a coupon code?</Label>
                                 <div className="flex gap-2 mt-2">
@@ -251,6 +256,7 @@ function ItemPageContent() {
                                 </div>
                                 {appliedCoupon && <p className="text-xs text-green-600 mt-1">Successfully applied coupon: {appliedCoupon.code}</p>}
                             </div>
+                            }
                          </div>
                     )}
                      
@@ -288,10 +294,30 @@ function ItemPageContent() {
                                 )}
                             </>
                         ) : isAgroTourismService ? (
-                            <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking}>
-                                {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
-                                {isBooking ? 'Booking...' : 'Book Now'}
-                            </Button>
+                            isBooked ? (
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button size="lg" className="w-full" variant="secondary"><CheckCircle className="mr-2 h-4 w-4" />View Your Ticket</Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="sm:max-w-xs">
+                                        <DialogHeader>
+                                            <DialogTitle className="text-center">Your Digital Ticket</DialogTitle>
+                                            <DialogDescription className="text-center">For {item.name}</DialogDescription>
+                                        </DialogHeader>
+                                        <div className="p-4 flex flex-col items-center justify-center gap-4">
+                                            <div className="p-4 bg-white rounded-lg border">
+                                                <QRCode value={serviceQrCodeValue} size={200} />
+                                            </div>
+                                            <p className="text-sm text-center text-muted-foreground">Present this code to the operator for check-in.</p>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
+                            ) : (
+                                <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking}>
+                                    {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
+                                    {isBooking ? 'Booking...' : 'Book Now'}
+                                </Button>
+                            )
                         ) : (
                             <>
                                 <Button size="lg" className="w-full" onClick={() => toast({title: "Coming Soon!", description: "The shopping cart and checkout process will be implemented in a future update."})}><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>

@@ -114,7 +114,7 @@ export const CooperativeDashboard = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {((aggregatedProduce || []).length > 0) ? (
+                                {(aggregatedProduce || []).length > 0 ? (
                                     (aggregatedProduce || []).map(item => (
                                         <TableRow key={item.id}>
                                             <TableCell className="font-medium">{item.productName}</TableCell>

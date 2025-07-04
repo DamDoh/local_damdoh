@@ -87,7 +87,7 @@ export const ResearcherDashboard = () => {
              <CardDescription>Anonymized datasets available for research and analysis.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((availableDatasets || []).length > 0) ? (
+             {(availableDatasets || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -125,7 +125,7 @@ export const ResearcherDashboard = () => {
              <CardDescription>Your active research projects and their progress.</CardDescription>
            </CardHeader>
            <CardContent>
-             {((ongoingProjects || []).length > 0) ? (
+             {(ongoingProjects || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -170,7 +170,7 @@ export const ResearcherDashboard = () => {
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {((knowledgeHubContributions || []).length > 0) ? (
+                {(knowledgeHubContributions || []).length > 0 ? (
                     <div className="space-y-3">
                         {(knowledgeHubContributions || []).map((contribution) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
