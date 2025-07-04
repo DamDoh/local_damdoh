@@ -178,3 +178,74 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         return null;
     }
 }
+
+export const getUserActivity = functions.https.onCall(async (data, context) => {
+    const { userId } = data;
+    if (!userId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A userId must be provided.');
+    }
+
+    try {
+        const postsPromise = db.collection('posts').where('userId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
+        const ordersPromise = db.collection('marketplace_orders').where('buyerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
+        const salesPromise = db.collection('marketplace_orders').where('sellerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
+        const eventsPromise = db.collection('traceability_events').where('actorRef', '==', userId).orderBy('timestamp', 'desc').limit(5).get();
+
+        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesPromise, eventsPromise]);
+        
+        const activities: any[] = [];
+
+        postsSnap.forEach(doc => {
+            const post = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'Shared a Post',
+                title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
+                timestamp: post.createdAt.toDate().toISOString(),
+                icon: 'MessageSquare'
+            });
+        });
+
+        ordersSnap.forEach(doc => {
+            const order = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'Placed an Order',
+                title: `For: ${order.listingName}`,
+                timestamp: order.createdAt.toDate().toISOString(),
+                icon: 'ShoppingCart'
+            });
+        });
+
+        salesSnap.forEach(doc => {
+            const sale = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'Received an Order',
+                title: `For: ${sale.listingName}`,
+                timestamp: sale.createdAt.toDate().toISOString(),
+                icon: 'CircleDollarSign'
+            });
+        });
+        
+        eventsSnap.forEach(doc => {
+            const event = doc.data();
+            activities.push({
+                id: doc.id,
+                type: `Logged Event: ${event.eventType}`,
+                title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
+                timestamp: event.timestamp.toDate().toISOString(),
+                icon: 'GitBranch'
+            });
+        });
+
+        // Sort all activities by date and take the most recent 10
+        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+        return { activities: activities.slice(0, 10) };
+
+    } catch (error) {
+        console.error(`Error fetching activity for user ${userId}:`, error);
+        throw new functions.https.HttpsError('internal', 'Could not fetch user activity.');
+    }
+});

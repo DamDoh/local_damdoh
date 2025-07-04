@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,10 +17,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
+import { formatDistanceToNow } from "date-fns";
 
 function ProfileSkeleton() {
   return (
@@ -55,6 +58,13 @@ function ProfileSkeleton() {
   );
 }
 
+const activityIconMap: Record<string, React.ElementType> = {
+    MessageSquare,
+    ShoppingCart,
+    CircleDollarSign,
+    GitBranch,
+};
+
 export default function ProfileDetailPage() {
   const t = useTranslations('ProfilePage');
   const params = useParams();
@@ -62,7 +72,12 @@ export default function ProfileDetailPage() {
   const { user: authUser, loading: authLoading } = useAuth();
   
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [activity, setActivity] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isActivityLoading, setIsActivityLoading] = useState(true);
+
+  const functions = getFunctions(firebaseApp);
+  const getUserActivity = useMemo(() => httpsCallable(functions, 'getUserActivity'), [functions]);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
@@ -88,6 +103,17 @@ export default function ProfileDetailPage() {
       getProfileByIdFromDB(idToFetch)
         .then(fetchedProfile => {
           setProfile(fetchedProfile);
+          if (fetchedProfile) {
+            setIsActivityLoading(true);
+            getUserActivity({ userId: fetchedProfile.id })
+              .then(result => {
+                  setActivity((result.data as any).activities || []);
+              })
+              .catch(err => {
+                  console.error("Failed to fetch activity:", err);
+              })
+              .finally(() => setIsActivityLoading(false));
+          }
         })
         .catch(error => {
           console.error("Error fetching profile:", error);
@@ -99,7 +125,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router]);
+  }, [params.id, authUser, authLoading, router, getUserActivity]);
 
   if (isLoading || authLoading) {
     return <ProfileSkeleton />;
@@ -184,7 +210,7 @@ export default function ProfileDetailPage() {
               ) : (
                 <>
                   <Button><LinkIcon className="mr-2 h-4 w-4" /> {t('connect')}</Button>
-                  <Button variant="outline"><MessageCircle className="mr-2 h-4 w-4" /> {t('message')}</Button>
+                  <Button variant="outline"><MessageSquare className="mr-2 h-4 w-4" /> {t('message')}</Button>
                 </>
               )}
             </div>
@@ -217,7 +243,7 @@ export default function ProfileDetailPage() {
             )}
              {profile.contactInfo?.email && (
               <div className="flex items-start gap-3">
-                <MessageCircle className="h-5 w-5 mt-1 text-primary" />
+                <MessageSquare className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">{t('emailTitle')}</h4>
                   <a href={`mailto:${profile.contactInfo.email}`} className="text-muted-foreground hover:underline">{profile.contactInfo.email}</a>
@@ -272,11 +298,36 @@ export default function ProfileDetailPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>{t('recentActivityTitle')}</CardTitle>
+          <CardTitle className="flex items-center gap-2"><Activity className="h-5 w-5"/>{t('recentActivityTitle')}</CardTitle>
           <CardDescription>{t('recentActivityDescription', { appName: APP_NAME })}</CardDescription>
         </CardHeader>
         <CardContent>
-             <p className="text-muted-foreground italic text-sm">{t('comingSoon')}</p>
+            {isActivityLoading ? (
+                <div className="space-y-4">
+                    <Skeleton className="h-12 w-full" />
+                    <Skeleton className="h-12 w-full" />
+                    <Skeleton className="h-12 w-full" />
+                </div>
+            ) : activity.length > 0 ? (
+                <div className="space-y-3">
+                    {activity.map(act => {
+                        const Icon = activityIconMap[act.icon] || GitBranch; // Fallback icon
+                        return (
+                            <div key={act.id} className="flex items-start gap-3 p-3 border rounded-md bg-muted/40">
+                                <div className="p-2 bg-background rounded-full border">
+                                <Icon className="h-4 w-4 text-muted-foreground" />
+                                </div>
+                                <div>
+                                    <p className="font-medium text-sm">{act.title}</p>
+                                    <p className="text-xs text-muted-foreground">{act.type} &bull; {formatDistanceToNow(new Date(act.timestamp), { addSuffix: true })}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            ) : (
+                <p className="text-sm text-muted-foreground text-center py-4">{t('noRecentActivity')}</p>
+            )}
         </CardContent>
       </Card>
     </div>
