@@ -9,7 +9,7 @@ import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare, PlusCircle } f
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumGroup, UserProfile } from '@/lib/types';
+import type { ForumGroup, UserProfile, GroupPost } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -22,17 +22,6 @@ interface GroupMember {
   role: 'owner' | 'admin' | 'member';
   joinedAt: string; // ISO string
 }
-
-interface GroupPost {
-  id: string;
-  title: string;
-  authorRef: string;
-  authorName: string;
-  authorAvatarUrl: string;
-  replyCount: number;
-  createdAt: string; // ISO
-}
-
 
 export default function GroupPage() {
     const params = useParams();

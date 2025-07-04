@@ -643,6 +643,17 @@ export interface ForumPost {
   replyCount: number;
 }
 
+export interface GroupPost {
+  id: string;
+  title: string;
+  content: string;
+  authorRef: string;
+  authorName: string;
+  authorAvatarUrl: string;
+  replyCount: number;
+  createdAt: string; // ISO
+}
+
 export interface PostReply {
     id: string;
     content: string;
