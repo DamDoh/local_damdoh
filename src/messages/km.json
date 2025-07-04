@@ -58,15 +58,15 @@
       }
   },
   "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find skilled professionals and services across the agricultural value chain.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search by skill, service, or professional...",
-    "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter by role...",
-    "allRoles": "All Roles",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters or check back later for new listings.",
-    "viewServiceButton": "View Service"
+    "title": "ផ្សារអ្នកជំនាញ",
+    "description": "ស្វែងរកអ្នកជំនាញ និងសេវាកម្មដែលមានជំនាញក្នុងខ្សែសង្វាក់តម្លៃកសិកម្ម។",
+    "listServiceButton": "ចុះបញ្ជីសេវាកម្ម",
+    "searchPlaceholder": "ស្វែងរកតាមជំនាញ សេវាកម្ម ឬអ្នកជំនាញ...",
+    "locationPlaceholder": "ត្រងតាមទីតាំង...",
+    "rolePlaceholder": "ត្រងតាមតួនាទី...",
+    "allRoles": "គ្រប់តួនាទី",
+    "noResultsTitle": "រកមិនឃើញសេវាកម្មទេ",
+    "noResultsDescription": "ព្យាយាមកែតម្រូវតម្រងស្វែងរករបស់អ្នក ឬពិនិត្យមើលពេលក្រោយសម្រាប់ការចុះបញ្ជីថ្មី។",
+    "viewServiceButton": "មើលសេវាកម្ម"
   }
 }

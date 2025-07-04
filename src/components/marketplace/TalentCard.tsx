@@ -52,10 +52,18 @@ export function TalentCard({ item, className }: TalentCardProps) {
                 )}
             </CardContent>
             <CardFooter className="flex-col items-start gap-3 p-4 pt-2">
-                <div className="text-sm font-semibold flex items-center gap-1.5">
-                    <DollarSign className="h-4 w-4 text-primary" />
-                    <span>{item.compensation || 'Contact for rates'}</span>
-                </div>
+                 {item.compensation && (
+                    <div className="text-sm font-semibold flex items-center gap-1.5">
+                        <DollarSign className="h-4 w-4 text-primary" />
+                        <span>{item.compensation}</span>
+                    </div>
+                 )}
+                 {item.experienceLevel && (
+                     <div className="text-sm font-semibold flex items-center gap-1.5">
+                        <Star className="h-4 w-4 text-primary" />
+                        <span>{item.experienceLevel}</span>
+                    </div>
+                 )}
                 <Button asChild className="w-full">
                     <Link href={`/marketplace/${item.id}`}>{t('viewServiceButton')}</Link>
                 </Button>

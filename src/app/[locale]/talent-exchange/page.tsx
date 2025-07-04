@@ -26,8 +26,8 @@ function TalentPageSkeleton() {
                     <Skeleton className="h-4 w-2/3" />
                 </CardHeader>
                 <CardContent>
-                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <Skeleton className="h-10 w-full lg:col-span-2" />
+                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <Skeleton className="h-10 w-full lg:col-span-1" />
                         <Skeleton className="h-10 w-full" />
                         <Skeleton className="h-10 w-full" />
                     </div>
@@ -120,8 +120,8 @@ export default function TalentExchangePage() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-                        <div className="relative lg:col-span-2">
+                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+                        <div className="relative">
                             <Label htmlFor="search-talent" className="sr-only">{t('searchPlaceholder')}</Label>
                             <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                             <Input 
