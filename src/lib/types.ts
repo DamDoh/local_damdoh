@@ -426,6 +426,7 @@ export interface AgronomistDashboardData {
   }[];
 }
 
+
 export interface AgroTourismDashboardData {
   upcomingBookings: {
     id: string;
