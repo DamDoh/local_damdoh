@@ -736,7 +736,6 @@ export interface EquipmentSupplierDashboardData {
   }[];
   rentalActivity: {
     totalRentals: number;
-    mostRented: string;
   };
   pendingMaintenanceRequests: {
     id: string;

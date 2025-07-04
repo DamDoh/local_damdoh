@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { EquipmentSupplierDashboardData } from '@/lib/types';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const functions = getFunctions(firebaseApp);
 
@@ -63,12 +64,12 @@ export const EquipmentSupplierDashboard = () => {
                 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Rental Activity</CardTitle>
+                        <CardTitle className="text-sm font-medium">Rental & Sales Orders</CardTitle>
                         <BarChart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{rentalActivity?.totalRentals || 0} Total Rentals</div>
-                        <p className="text-xs text-muted-foreground">Most Rented: {rentalActivity?.mostRented || 'N/A'}</p>
+                        <div className="text-2xl font-bold">{rentalActivity?.totalRentals || 0} Total Orders</div>
+                        <p className="text-xs text-muted-foreground">Across all equipment listings</p>
                     </CardContent>
                 </Card>
 
@@ -76,26 +77,44 @@ export const EquipmentSupplierDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Tractor className="h-4 w-4" />
-                           Listed Equipment
+                           Your Listed Equipment
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex-grow space-y-2">
+                    <CardContent className="flex-grow">
                        {(listedEquipment || []).length > 0 ? (
-                           (listedEquipment || []).map(item => (
-                               <div key={item.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
-                                   <div>
-                                       <p className="font-medium">{item.name} <Badge variant="outline">{item.type}</Badge></p>
-                                       <p className={`text-xs ${item.status === 'Available' ? 'text-green-600' : 'text-orange-600'}`}>{item.status}</p>
-                                   </div>
-                                   <Button asChild variant="ghost" size="sm">
-                                       <Link href={item.actionLink}>Manage</Link>
-                                   </Button>
-                               </div>
-                           ))
-                        ) : (
+                           <Table>
+                               <TableHeader>
+                                   <TableRow>
+                                       <TableHead>Name</TableHead>
+                                       <TableHead>Type</TableHead>
+                                       <TableHead>Status</TableHead>
+                                       <TableHead className="text-right">Action</TableHead>
+                                   </TableRow>
+                               </TableHeader>
+                               <TableBody>
+                                   {(listedEquipment || []).slice(0, 5).map(item => ( // Show first 5
+                                       <TableRow key={item.id}>
+                                           <TableCell className="font-medium">{item.name}</TableCell>
+                                           <TableCell><Badge variant="secondary">{item.type}</Badge></TableCell>
+                                           <TableCell><Badge variant={item.status === 'Available' ? 'default' : 'outline'}>{item.status}</Badge></TableCell>
+                                           <TableCell className="text-right">
+                                               <Button asChild variant="ghost" size="sm">
+                                                   <Link href={item.actionLink}>Manage</Link>
+                                               </Button>
+                                           </TableCell>
+                                       </TableRow>
+                                   ))}
+                               </TableBody>
+                           </Table>
+                       ) : (
                            <p className="text-sm text-center text-muted-foreground py-4">No equipment listed.</p>
                        )}
                     </CardContent>
+                    <CardFooter>
+                         <Button asChild className="w-full">
+                           <Link href="/marketplace/create?category=heavy-machinery-sale">List New Equipment</Link>
+                         </Button>
+                    </CardFooter>
                 </Card>
                 
                 <Card className="col-span-1 md:col-span-3">
@@ -133,7 +152,7 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Skeleton className="h-32 rounded-lg" />
-            <Skeleton className="h-32 rounded-lg md:col-span-2" />
+            <Skeleton className="h-56 rounded-lg md:col-span-2" />
             <Skeleton className="h-48 rounded-lg md:col-span-3" />
         </div>
     </div>

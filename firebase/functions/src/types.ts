@@ -490,7 +490,6 @@ export interface EquipmentSupplierDashboardData {
   }[];
   rentalActivity: {
     totalRentals: number;
-    mostRented: string;
   };
   pendingMaintenanceRequests: {
     id: string;
@@ -519,6 +518,7 @@ export interface WasteManagementDashboardData {
     actionLink: string;
   }[];
 }
+    
 
 export interface PackagingSupplierDashboardData {
   incomingOrders: {

@@ -55,7 +55,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
-            knfBatchesPromise,
+            knfBatchesSnapshot,
         ]);
 
         const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
@@ -458,18 +458,49 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
 );
 
 export const getEquipmentSupplierDashboardData = functions.https.onCall(
-  (data, context): EquipmentSupplierDashboardData => {
-    checkAuth(context);
-    return {
-      listedEquipment: [
-        { id: 'equip1', name: 'John Deere S780 Combine', type: 'Rental', status: 'Available', actionLink: '#' },
-        { id: 'equip2', name: 'Tractor-pulled Plow', type: 'Sale', status: 'Available', actionLink: '#' },
-      ],
-      rentalActivity: { totalRentals: 32, mostRented: 'John Deere S780 Combine' },
-      pendingMaintenanceRequests: [
-        { id: 'maint1', equipmentName: 'Irrigation Pump', issue: 'Low pressure', farmerName: 'Sunrise Farms', actionLink: '#' }
-      ]
-    };
+  async (data, context): Promise<EquipmentSupplierDashboardData> => {
+    const supplierId = checkAuth(context);
+    try {
+        // 1. Fetch listed equipment
+        const equipmentSnapshot = await db.collection('marketplaceItems')
+            .where('sellerId', '==', supplierId)
+            .where('category', 'in', ['heavy-machinery-sale', 'equipment-rental-operation', 'farm-tools-small-equip'])
+            .get();
+
+        const listedEquipment = equipmentSnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                name: item.name,
+                type: item.category === 'heavy-machinery-sale' ? 'Sale' : 'Rental', // simplified logic
+                status: item.availabilityStatus || 'Available',
+                actionLink: `/marketplace/${doc.id}`,
+            };
+        });
+
+        // 2. Fetch rental activity
+        const rentalOrdersSnapshot = await db.collection('marketplace_orders')
+            .where('sellerId', '==', supplierId)
+            // Ideally, we'd also filter by item category being a rental, but that requires a join.
+            // We'll count all orders for simplicity in this step.
+            .get();
+        
+        const rentalActivity = {
+            totalRentals: rentalOrdersSnapshot.size,
+        };
+
+        // 3. Fetch maintenance requests (mocked for now)
+        const pendingMaintenanceRequests: any[] = []; // No data source for this yet
+
+        return {
+            listedEquipment,
+            rentalActivity,
+            pendingMaintenanceRequests,
+        };
+    } catch (error) {
+        console.error("Error fetching equipment supplier dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
