@@ -117,6 +117,24 @@ export const getCooperativeDashboardData = functions.https.onCall(
 );
 
 
+export const getInputSupplierDashboardData = functions.https.onCall(
+  (data, context): InputSupplierDashboardData => {
+    checkAuth(context);
+    return {
+        demandForecast: [
+            { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' },
+            { id: 'df2', region: 'Central Kenya', product: 'Foliar Fertilizer', trend: 'Steady', reason: 'Coffee berry growth stage' },
+        ],
+        productPerformance: [
+            { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' },
+            { id: 'pp2', productName: 'PestGuard Organic', rating: 4.2, feedback: 'Effective against aphids on vegetables.', link: '#' }
+        ],
+        activeOrders: { count: 15, value: 12500, link: '/marketplace/orders' }
+    };
+  }
+);
+
+
 // =================================================================
 // PLACEHOLDER DASHBOARDS (to be implemented with real data later)
 // =================================================================
@@ -200,23 +218,6 @@ export const getFieldAgentDashboardData = functions.https.onCall(
 );
 
 
-export const getInputSupplierDashboardData = functions.https.onCall(
-  (data, context): InputSupplierDashboardData => {
-    checkAuth(context);
-    return {
-        demandForecast: [
-            { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' },
-            { id: 'df2', region: 'Central Kenya', product: 'Foliar Fertilizer', trend: 'Steady', reason: 'Coffee berry growth stage' },
-        ],
-        productPerformance: [
-            { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' },
-            { id: 'pp2', productName: 'PestGuard Organic', rating: 4.2, feedback: 'Effective against aphids on vegetables.', link: '#' }
-        ],
-        activeOrders: { count: 15, value: 12500, link: '/marketplace/orders' }
-    };
-  }
-);
-
 export const getAgroExportDashboardData = functions.https.onCall(
   (data, context): AgroExportDashboardData => {
     checkAuth(context);
@@ -267,6 +268,7 @@ export const getWarehouseDashboardData = functions.https.onCall(
     };
   }
 );
+
 
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
@@ -434,4 +436,3 @@ export const getWasteManagementDashboardData = functions.https.onCall(
     };
   }
 );
-    

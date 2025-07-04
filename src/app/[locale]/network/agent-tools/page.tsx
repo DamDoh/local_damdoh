@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useMemo } from 'react';
@@ -29,7 +30,7 @@ export default function AgentToolsPage() {
     const [foundUser, setFoundUser] = useState<UserProfile | null>(null);
     const [searchError, setSearchError] = useState<string | null>(null);
 
-    const lookupUserCallable = useMemo(() => httpsCallable(functions, 'lookupUserByPhone'), [functions]);
+    const lookupUserCallable = useMemo(() => httpsCallable(functions, 'lookupUserByPhone'), []);
 
     const handleLookup = async (e: React.FormEvent) => {
         e.preventDefault();

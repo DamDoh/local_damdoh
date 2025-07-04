@@ -1,8 +1,8 @@
 
 import createMiddleware from 'next-intl/middleware';
 
-// The middleware MUST be self-contained and have NO imports from other project files.
-// This is the definitive fix to prevent crashes in the Edge runtime.
+// Define locales directly within the middleware to ensure it's self-contained
+// and has no dependencies on other project files, which is crucial for the Edge runtime.
 const locales = ['en', 'fr', 'de', 'km'];
 const defaultLocale = 'en';
  

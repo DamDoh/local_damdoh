@@ -550,5 +550,3 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
     }
 });
-
-```
