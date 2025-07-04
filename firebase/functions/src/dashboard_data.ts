@@ -215,17 +215,67 @@ export const getFiDashboardData = functions.https.onCall(
 
 
 export const getCooperativeDashboardData = functions.https.onCall(
-  (data, context): CooperativeDashboardData => {
-    checkAuth(context);
-    return {
-        memberCount: 125,
-        totalLandArea: 850,
-        aggregatedProduce: [
-            { id: 'prod1', productName: 'Organic Maize', quantity: 50, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 7).toISOString() },
-            { id: 'prod2', productName: 'Hass Avocados', quantity: 20, quality: 'Export Grade', readyBy: new Date(Date.now() + 86400000 * 14).toISOString() }
-        ],
-        pendingMemberApplications: 3,
-    };
+  async (data, context): Promise<CooperativeDashboardData> => {
+    const cooperativeId = checkAuth(context);
+    
+    try {
+        // --- Member Data ---
+        // In a real app, you'd fetch members from a subcollection on the cooperative's document.
+        // For this demo, we'll simulate by finding a few farmers.
+        const membersSnapshot = await db.collection('users').where('primaryRole', '==', 'Farmer').limit(5).get();
+        const memberIds = membersSnapshot.docs.map(doc => doc.id);
+        const memberCount = membersSnapshot.size;
+        
+        // --- Aggregated Land Area ---
+        let totalLandArea = 0;
+        if (memberIds.length > 0) {
+            const farmsSnapshot = await db.collection('farms').where('ownerId', 'in', memberIds).get();
+            farmsSnapshot.forEach(doc => {
+                // Assuming 'size' is a string like "50 Hectares", we parse the number.
+                const sizeString = doc.data().size || '0';
+                const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
+                totalLandArea += sizeValue;
+            });
+        }
+
+        // --- Aggregated Produce ---
+        const aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
+        if (memberIds.length > 0) {
+            const cropsSnapshot = await db.collection('crops')
+                .where('ownerId', 'in', memberIds)
+                .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
+                .orderBy('harvestDate', 'desc')
+                .limit(5)
+                .get();
+
+            cropsSnapshot.forEach(doc => {
+                const cropData = doc.data();
+                aggregatedProduce.push({
+                    id: doc.id,
+                    productName: cropData.cropType || 'Unknown Produce',
+                    // Assuming yield is stored on the crop document, or would be on the harvest event
+                    quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
+                    quality: 'Grade A', // Placeholder as it's not on the crop model
+                    readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+                });
+            });
+        }
+
+        // --- Pending Applications ---
+        // This remains mocked as the application system is not built yet.
+        const pendingMemberApplications = 3;
+
+        return {
+            memberCount,
+            totalLandArea,
+            aggregatedProduce,
+            pendingMemberApplications,
+        };
+
+    } catch (error) {
+        console.error("Error fetching cooperative dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
@@ -611,4 +661,7 @@ export const getWasteManagementDashboardData = functions.https.onCall(
     };
   }
 );
+    
+
+
     
