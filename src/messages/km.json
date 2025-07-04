@@ -1,1 +1,40 @@
-{"placeholder": "នេះគឺជាកន្លែងដាក់សម្រាប់ការបកប្រែ។"}
+{
+  "AppHeader": {
+    "home": "ទំព័រដើម",
+    "network": "បណ្ដាញ",
+    "farmMgmt": "កសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "អ្នកជំនាញ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូប",
+    "searchPlaceholder": "ស្វែងរកមនុស្ស, ផលិតផល, សេវាកម្ម...",
+    "signIn": "ចូលគណនី",
+    "signUp": "បង្កើតគណនី",
+    "myProfile": "គណនីខ្ញុំ",
+    "settings": "ការកំណត់",
+    "logOut": "ចាកចេញ"
+  },
+  "AppFooter": {
+    "tagline": "វេទិកាសកលសម្រាប់ខ្សែចង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
+    "damdohTitle": "ដាំដុះ",
+    "aboutLabel": "អំពីយើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍សហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
+    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
+    "getMobileApp": "ទាញយកកម្មវិធី ដាំដុះ",
+    "googlePlayAlt": "ទាញយកពី Google Play",
+    "appStoreAlt": "ទាញយកពី App Store",
+    "copyright": "© {year} {appName}. រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។"
+  }
+}

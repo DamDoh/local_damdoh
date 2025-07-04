@@ -2,7 +2,7 @@
 import createMiddleware from 'next-intl/middleware';
  
 // Hardcode locales for middleware stability to prevent any import resolution issues.
-const locales = ['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ja', 'km', 'ko', 'ms', 'pt', 'ru', 'th', 'tr', 'vi', 'zh'] as const;
+const locales = ['en', 'fr', 'de', 'km'] as const;
 
 export default createMiddleware({
   // A list of all locales that are supported

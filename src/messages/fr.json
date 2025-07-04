@@ -1,1 +1,40 @@
-{"placeholder": "Ceci est un espace réservé pour les traductions."}
+{
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher des personnes, produits, services...",
+    "signIn": "Connexion",
+    "signUp": "Inscription",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "logOut": "Déconnexion"
+  },
+  "AppFooter": {
+    "tagline": "La plateforme mondiale de la chaîne d'approvisionnement agricole.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "getMobileApp": "Obtenez l'application DamDoh",
+    "googlePlayAlt": "Disponible sur Google Play",
+    "appStoreAlt": "Télécharger dans l'App Store",
+    "copyright": "© {year} {appName}. Tous droits réservés."
+  }
+}

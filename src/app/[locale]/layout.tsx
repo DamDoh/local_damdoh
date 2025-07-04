@@ -8,7 +8,7 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import { notFound } from "next/navigation";
+import { getMessages } from 'next-intl/server';
  
 export const metadata: Metadata = {
   title: {
@@ -21,18 +21,12 @@ export const metadata: Metadata = {
  
 export default async function LocaleLayout({
   children,
-  params,
+  params: {locale},
 }: {
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  const { locale } = params;
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+  const messages = await getMessages();
  
   return (
     <html lang={locale} suppressHydrationWarning>
