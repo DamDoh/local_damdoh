@@ -119,8 +119,8 @@ export const getFarm = functions.https.onCall(async (data, context) => {
         }
         
         return { 
-            ...farmData,
             id: farmDoc.id, 
+            ...farmData,
             createdAt: farmData.createdAt?.toDate ? farmData.createdAt.toDate().toISOString() : null,
             updatedAt: farmData.updatedAt?.toDate ? farmData.updatedAt.toDate().toISOString() : null,
         };
@@ -202,9 +202,10 @@ export const createCrop = functions.https.onCall(async (data, context) => {
       notes: "Initial crop creation",
     };
 
+    // Log a pre-harvest event against the field/crop plot ID.
+    // A VTI is not created at this stage.
     await _internalLogTraceEvent(
       {
-        vtiId: newCropRef.id,
         eventType: "PLANTED",
         actorRef: context.auth.uid,
         geoLocation: null, // Can be added later

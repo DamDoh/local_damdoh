@@ -70,62 +70,48 @@ export async function _internalLogTraceEvent(
   data: any,
   context?: functions.https.CallableContext,
 ) {
-  const {vtiId, eventType, actorRef, geoLocation, payload = {}, farmFieldId} =
-    data;
+  const {vtiId, eventType, actorRef, geoLocation, payload = {}, farmFieldId} = data;
 
-  if (!vtiId || typeof vtiId !== "string") {
+  if (!farmFieldId && !vtiId) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "The 'vtiId' parameter is required and must be a string.",
+      "Either a 'farmFieldId' (for pre-harvest) or a 'vtiId' (for post-harvest) must be provided.",
     );
   }
+
+  // Common validation for required fields
   if (!eventType || typeof eventType !== "string") {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "The 'eventType' parameter is required and must be a string.",
-    );
+    throw new functions.https.HttpsError("invalid-argument", "The 'eventType' parameter is required.");
   }
   if (!actorRef || typeof actorRef !== "string") {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "The 'actorRef' parameter is required and must be a string (user or organization VTI ID).",
-    );
+    throw new functions.https.HttpsError("invalid-argument", "The 'actorRef' parameter is required.");
   }
-  if (
-    geoLocation &&
-    (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")
-  ) {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "The 'geoLocation' parameter must be an object with lat and lng.",
-    );
+  if (geoLocation && (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")) {
+    throw new functions.https.HttpsError("invalid-argument", "The 'geoLocation' parameter must be an object with lat and lng.");
   }
 
-  const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
-  if (!vtiDoc.exists) {
-    // Allow logging against farmFieldId even if no batch VTI exists yet
-    if (!farmFieldId) {
-      throw new functions.https.HttpsError(
-        "not-found",
-        `VTI with ID ${vtiId} not found.`,
-      );
+  // If a vtiId is provided for post-harvest events, ensure it exists.
+  if (vtiId) {
+    const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
+    if (!vtiDoc.exists) {
+      throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
     }
   }
 
   const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
   await db.collection("traceability_events").add({
-    vtiId,
+    vtiId: vtiId || null,
+    farmFieldId: farmFieldId || null,
     timestamp,
     eventType,
     actorRef,
-    geoLocation,
+    geoLocation: geoLocation || null,
     payload,
-    farmFieldId,
     isPublicTraceable: false,
   });
 
-  return {status: "success", message: `Event ${eventType} logged for VTI ${vtiId}`};
+  return {status: "success", message: `Event ${eventType} logged successfully for ${farmFieldId || vtiId}`};
 }
 
 export const logTraceEvent = functions.https.onCall(async (data, context) => {
@@ -190,15 +176,27 @@ export const handleHarvestEvent = functions.https.onCall(
     }
 
     try {
+      // Query for all pre-harvest events associated with this crop/field.
+      const preHarvestEventsQuery = db
+        .collection("traceability_events")
+        .where("farmFieldId", "==", farmFieldId)
+        .orderBy("timestamp", "asc");
+
+      const preHarvestEventsSnapshot = await preHarvestEventsQuery.get();
+      const linkedEventIds: string[] = preHarvestEventsSnapshot.docs.map(
+        (doc) => doc.id,
+      );
+
+      // Now create the VTI with the linked events in its metadata
       const generateVTIResult = await _internalGenerateVTI(
         {
           type: "farm_batch",
-          linkedVtis: [farmFieldId],
+          linkedVtis: [farmFieldId], // Link back to the original crop ID
           metadata: {
             cropType,
             initialYieldKg: yieldKg,
             initialQualityGrade: qualityGrade,
-            linkedPreHarvestEvents: [],
+            linkedPreHarvestEventIds: linkedEventIds, // Store the array of event IDs
           },
         },
         context,
@@ -206,27 +204,7 @@ export const handleHarvestEvent = functions.https.onCall(
 
       const newVtiId = generateVTIResult.vtiId;
 
-      const oneYearAgo = new Date(
-        new Date().setFullYear(new Date().getFullYear() - 1),
-      );
-      const preHarvestEventsQuery = db
-        .collection("traceability_events")
-        .where("farmFieldId", "==", farmFieldId)
-        .where("timestamp", ">=", admin.firestore.Timestamp.fromDate(oneYearAgo))
-        .where("eventType", "in", ["PLANTED", "INPUT_APPLIED", "OBSERVED"]);
-
-      const preHarvestEventsSnapshot = await preHarvestEventsQuery.get();
-      const linkedEventIds: string[] = preHarvestEventsSnapshot.docs.map(
-        (doc) => doc.id,
-      );
-
-      await db
-        .collection("vti_registry")
-        .doc(newVtiId)
-        .update({
-          "metadata.linked_pre_harvest_events": linkedEventIds,
-        });
-
+      // Now log the HARVESTED event itself, associated with the new VTI
       await _internalLogTraceEvent(
         {
           vtiId: newVtiId,
@@ -234,7 +212,7 @@ export const handleHarvestEvent = functions.https.onCall(
           actorRef: actorVtiId,
           geoLocation: geoLocation || null,
           payload: {yieldKg, qualityGrade, farmFieldId, cropType},
-          farmFieldId: farmFieldId,
+          farmFieldId: farmFieldId, // Keep for cross-reference
         },
         context,
       );
@@ -353,7 +331,6 @@ export const handleInputApplicationEvent = functions.https.onCall(
 
       await _internalLogTraceEvent(
         {
-          vtiId: farmFieldId,
           eventType: "INPUT_APPLIED",
           actorRef: actorVtiId,
           geoLocation: geoLocation || null,
@@ -423,7 +400,6 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
         };
 
         await _internalLogTraceEvent({
-            vtiId: farmFieldId,
             eventType: 'OBSERVED',
             actorRef: actorVtiId,
             geoLocation: geoLocation || null,

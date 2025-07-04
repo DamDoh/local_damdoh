@@ -249,7 +249,7 @@ export default function TraceabilityBatchDetailPage() {
                                         </CardHeader>
                                         <CardContent className="p-4 pt-0 text-sm">
                                             <ul className="space-y-1 text-muted-foreground text-xs">
-                                                {Object.entries(event.payload).map(([key, value]) => {
+                                                {event.payload && typeof event.payload === 'object' && Object.entries(event.payload).map(([key, value]) => {
                                                     if (typeof value === 'object' && value !== null) return null; // Skip object payloads for this simple view
                                                     return <li key={key} className="truncate"><strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {String(value)}</li>
                                                 })}
