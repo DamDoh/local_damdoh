@@ -9,6 +9,8 @@ import { useAuth } from '@/lib/auth-utils';
 import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
 import { getProfileByIdFromDB } from '@/lib/db-utils';
 import QRCode from 'qrcode.react';
+import { addDays, differenceInCalendarDays } from 'date-fns';
+import type { DateRange } from "react-day-picker";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -19,11 +21,16 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, CalendarIcon, QrCode, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageSquare, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, Calendar as CalendarIcon, QrCode, CheckCircle, XCircle } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Textarea } from '@/components/ui/textarea';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
+
 
 function ItemPageSkeleton() {
     return (
@@ -66,7 +73,11 @@ function ItemPageContent() {
     const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
     const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; type: 'fixed' | 'percentage' } | null>(null);
     const [isBooking, setIsBooking] = useState(false);
-    const [isBooked, setIsBooked] = useState(false); // New state to track if user has booked
+    const [isBooked, setIsBooked] = useState(false);
+    
+    // State for Agro-Tourism Booking Widget
+    const [date, setDate] = useState<DateRange | undefined>();
+    const [guests, setGuests] = useState(1);
     
     // State for the order dialog
     const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
@@ -153,9 +164,20 @@ function ItemPageContent() {
             router.push('/auth/signin');
             return;
         }
+        if (!date?.from || !date?.to) {
+            toast({ variant: 'destructive', title: "Booking Failed", description: "Please select a check-in and check-out date." });
+            return;
+        }
         setIsBooking(true);
         try {
-            await bookAgroTourismServiceCallable({ itemId: item?.id });
+            const bookingDetails = {
+                startDate: date.from.toISOString(),
+                endDate: date.to.toISOString(),
+                guests: guests,
+                totalPrice: totalBookingPrice,
+                currency: item?.currency
+            };
+            await bookAgroTourismServiceCallable({ itemId: item?.id, bookingDetails });
             toast({ title: "Success!", description: "You have successfully booked this service. Check your profile for details." });
             setIsBooked(true);
         } catch (error: any) {
@@ -187,7 +209,6 @@ function ItemPageContent() {
         }
     };
 
-
     const calculateDiscountedPrice = () => {
         if (!appliedCoupon || !item?.price) return item?.price;
         if (appliedCoupon.type === 'fixed') {
@@ -198,8 +219,12 @@ function ItemPageContent() {
         }
         return item.price;
     };
-
     const discountedPrice = calculateDiscountedPrice();
+
+    const numberOfNights = date?.from && date?.to ? differenceInCalendarDays(date.to, date.from) : 0;
+    const baseBookingPrice = (item?.price || 0) * numberOfNights;
+    const serviceFee = baseBookingPrice * 0.1; // Example 10% service fee
+    const totalBookingPrice = baseBookingPrice + serviceFee;
 
     if (isLoading) return <ItemPageSkeleton />;
     if (error) return <div className="text-center py-10"><p className="text-destructive">{error}</p><Button variant="outline" asChild className="mt-4"><Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link></Button></div>;
@@ -269,6 +294,58 @@ function ItemPageContent() {
                             </div>
                             <Separator />
                         </div>
+                    ) : isAgroTourismService ? (
+                        // Agro-Tourism Booking Widget
+                        <Card className="shadow-lg">
+                           <CardContent className="pt-6 space-y-4">
+                                <div className="flex items-baseline gap-2">
+                                    <p className="text-2xl font-bold">${item.price?.toFixed(2)}</p>
+                                    <p className="text-sm text-muted-foreground">/ night</p>
+                                </div>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <div className="grid grid-cols-2 border rounded-lg">
+                                            <div className="p-2 border-r">
+                                                <Label className="text-xs font-semibold">CHECK-IN</Label>
+                                                <p>{date?.from ? format(date.from, "LLL dd, y") : "Add date"}</p>
+                                            </div>
+                                            <div className="p-2">
+                                                <Label className="text-xs font-semibold">CHECK-OUT</Label>
+                                                <p>{date?.to ? format(date.to, "LLL dd, y") : "Add date"}</p>
+                                            </div>
+                                        </div>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0" align="start">
+                                        <Calendar
+                                            initialFocus
+                                            mode="range"
+                                            defaultMonth={date?.from}
+                                            selected={date}
+                                            onSelect={setDate}
+                                            numberOfMonths={1}
+                                            disabled={(day) => day < new Date(new Date().setHours(0,0,0,0))}
+                                        />
+                                    </PopoverContent>
+                                </Popover>
+                                <div>
+                                    <Label htmlFor="guests" className="text-xs font-semibold">GUESTS</Label>
+                                    <Input id="guests" type="number" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value, 10) || 1)} />
+                                </div>
+                                 <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking || isBooked || !date?.from || !date?.to}>
+                                    {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : isBooked ? <CheckCircle className="mr-2 h-4 w-4" /> : <CalendarIcon className="mr-2 h-4 w-4" />}
+                                    {isBooked ? 'Booked!' : isBooking ? 'Reserving...' : 'Reserve'}
+                                </Button>
+                                {numberOfNights > 0 && (
+                                    <div className="text-sm space-y-1">
+                                        <p className="text-center text-muted-foreground">You won't be charged yet</p>
+                                        <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} nights</span><span>${baseBookingPrice.toFixed(2)}</span></div>
+                                        <div className="flex justify-between"><span>Service fee</span><span>${serviceFee.toFixed(2)}</span></div>
+                                        <Separator className="my-1"/>
+                                        <div className="flex justify-between font-bold"><span>Total</span><span>${totalBookingPrice.toFixed(2)}</span></div>
+                                    </div>
+                                )}
+                           </CardContent>
+                        </Card>
                     ) : (
                          <div>
                             <p className="text-3xl font-light text-primary flex items-center gap-2">
@@ -277,7 +354,6 @@ function ItemPageContent() {
                                 {discountedPrice?.toFixed(2)}
                                 <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
                             </p>
-                            { !isAgroTourismService && isProduct &&
                             <div className="mt-4 p-4 border rounded-lg bg-muted/30">
                                 <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />Have a coupon code?</Label>
                                 <div className="flex gap-2 mt-2">
@@ -289,7 +365,6 @@ function ItemPageContent() {
                                 </div>
                                 {appliedCoupon && <p className="text-xs text-green-600 mt-1">Successfully applied coupon: {appliedCoupon.code}</p>}
                             </div>
-                            }
                          </div>
                     )}
                      
@@ -345,19 +420,14 @@ function ItemPageContent() {
                                         </div>
                                     </DialogContent>
                                 </Dialog>
-                            ) : (
-                                <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking}>
-                                    {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
-                                    {isBooking ? 'Booking...' : 'Book Now'}
-                                </Button>
-                            )
+                            ) : null // The reserve button is now inside the booking widget
                         ) : isProduct ? (
                             <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
                                 <ShoppingCart className="mr-2 h-4 w-4" />Buy Now
                             </Button>
                         ) : (
                              <Button asChild size="lg" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact for Service</Link>
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />Contact for Service</Link>
                             </Button>
                         )}
                         {!isOwner && !isProduct && !isAgroTourismService && (
