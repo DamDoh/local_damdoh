@@ -1,3 +1,2 @@
-
-// This file is obsolete and has been moved to /src/app/[locale]/privacy/page.tsx
-// This file can be safely deleted.
+// This file is obsolete and has been removed.
+// The active page is now located at /src/app/[locale]/privacy/page.tsx

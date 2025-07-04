@@ -1,2 +1,2 @@
-// This file is obsolete. The correct middleware is now in /src/middleware.ts.
-// This file will be deleted in a future cleanup.
+// This file is obsolete and has been removed to improve codebase hygiene.
+// The active middleware is located at /src/middleware.ts.

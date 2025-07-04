@@ -1,3 +1,1 @@
-
-// This file is obsolete and has been removed to avoid code duplication.
-// This file can be safely deleted.
+// This file is part of an obsolete directory structure and has been removed.

@@ -1,2 +1,2 @@
-// This file is part of an obsolete directory structure and can be safely deleted.
-// The active logic for this page is in /src/app/[locale]/search/page.tsx.
+// This file is obsolete and has been removed.
+// The active page is now located at /src/app/[locale]/search/page.tsx

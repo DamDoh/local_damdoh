@@ -1,5 +1,2 @@
-// This file has been deprecated and its contents removed to maintain codebase hygiene.
-// The main dashboard at src/app/page.tsx now serves as the primary feed and hub.
-export default function DeprecatedFeedPage() {
-  return null;
-}
+// This file is obsolete and has been removed.
+// The main feed is now part of the root dashboard at /src/app/[locale]/page.tsx
