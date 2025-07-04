@@ -75,12 +75,19 @@ export default function TalentExchangePage() {
         return items.filter(item => {
             if (item.listingType !== 'Service') return false;
 
+            // Defensive skills handling
+            const skillsArray: string[] = Array.isArray(item.skillsRequired)
+                ? item.skillsRequired
+                : (typeof item.skillsRequired === 'string' && item.skillsRequired)
+                    ? item.skillsRequired.split(',').map(s => s.trim())
+                    : [];
+
             const searchLower = searchTerm.toLowerCase();
             const locationLower = locationFilter.toLowerCase();
 
             const nameMatch = item.name.toLowerCase().includes(searchLower);
             const descriptionMatch = item.description.toLowerCase().includes(searchLower);
-            const skillsMatch = (item.skillsRequired || []).join(' ').toLowerCase().includes(searchLower);
+            const skillsMatch = skillsArray.join(' ').toLowerCase().includes(searchLower);
             const locationMatch = locationFilter === "" || item.location.toLowerCase().includes(locationLower);
             // This is a simplified role filter; a real app might match against the seller's profile role
             const roleMatch = roleFilter === 'all' || (item.category && item.category.toLowerCase().includes(roleFilter.toLowerCase()));
@@ -158,4 +165,3 @@ export default function TalentExchangePage() {
         </div>
     );
 }
-

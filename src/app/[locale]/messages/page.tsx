@@ -21,10 +21,6 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
-const getConversationsCallable = httpsCallable(functions, 'getConversationsForUser');
-const getMessagesCallable = httpsCallable(functions, 'getMessagesForConversation');
-const sendMessageCallable = httpsCallable(functions, 'sendMessage');
-const getOrCreateConversationCallable = httpsCallable(functions, 'getOrCreateConversation');
 
 function MessagingContent() {
     const t = useTranslations('messagingPage');
@@ -42,92 +38,106 @@ function MessagingContent() {
     const [isSending, setIsSending] = useState(false);
     const [recipientProfile, setRecipientProfile] = useState<UserProfile | null>(null);
 
+    const getConversationsCallable = useCallback(() => httpsCallable(functions, 'getConversationsForUser')(), [functions]);
+    const getMessagesCallable = useCallback((conversationId: string) => httpsCallable(functions, 'getMessagesForConversation')({ conversationId }), [functions]);
+    const sendMessageCallable = useCallback((conversationId: string, content: string) => httpsCallable(functions, 'sendMessage')({ conversationId, content }), [functions]);
+    const getOrCreateConversationCallable = useCallback((recipientId: string) => httpsCallable(functions, 'getOrCreateConversation')({ recipientId }), [functions]);
+    
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const scrollAreaRef = useRef<HTMLDivElement>(null);
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
-    const handleConversationSelect = useCallback(async (conversation: Conversation) => {
-        if (selectedConversation?.id === conversation.id && messages.length > 0) return;
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
+    const handleSelectConversation = useCallback(async (conversation: Conversation) => {
+        setRecipientProfile(null);
+        if (selectedConversation?.id === conversation.id) {
+            return;
+        }
+        
         setSelectedConversation(conversation);
         setIsLoadingMessages(true);
         setMessages([]);
+
         try {
-            const result = await getMessagesCallable({ conversationId: conversation.id });
+            const result = await getMessagesCallable(conversation.id);
             const data = result.data as { messages: Message[] };
-            setMessages(data?.messages || []); // Defensive check for data and data.messages
+            setMessages(data?.messages ?? []);
         } catch (error) {
             console.error("Failed to fetch messages", error);
             toast({ variant: "destructive", title: t('error'), description: t('couldNotLoadMessages') });
         } finally {
             setIsLoadingMessages(false);
         }
-    }, [selectedConversation?.id, messages.length, toast, t, getMessagesCallable]);
-    
-    useEffect(() => {
-        if (scrollAreaRef.current) {
-          const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
-          if (viewport) {
-            viewport.scrollTop = viewport.scrollHeight;
-          }
+    }, [selectedConversation, toast, t, getMessagesCallable]);
+
+     const fetchConversations = useCallback(async () => {
+        setIsLoadingConversations(true);
+        try {
+            const convResult = await getConversationsCallable();
+            const convos = (convResult.data as any)?.conversations ?? [];
+            setConversations(convos);
+            return convos;
+        } catch (error) {
+            console.error("Error fetching conversations:", error);
+            toast({ variant: "destructive", title: t('error'), description: t('couldNotLoadConversations') });
+            return [];
+        } finally {
+            setIsLoadingConversations(false);
         }
-    }, [messages]);
+    }, [getConversationsCallable, toast, t]);
 
     useEffect(() => {
-        if (authLoading) return;
-        if (!user) {
+        if (authLoading || !user) {
             setIsLoadingConversations(false);
             return;
         }
 
-        const fetchInitialData = async () => {
-            setIsLoadingConversations(true);
-            try {
-                const convResult = await getConversationsCallable();
-                const convos = (convResult.data as any)?.conversations || []; // Defensive check
-                setConversations(convos);
+        const initializeMessaging = async () => {
+            const allConvos = await fetchConversations();
+            const recipientId = searchParams.get('with');
 
-                const recipientId = searchParams.get('with');
-                if (recipientId) {
-                    const existingConvo = convos.find((c: Conversation) => c.participant?.id === recipientId);
-                    if (existingConvo) {
-                        await handleConversationSelect(existingConvo);
-                    } else {
-                        // It's a new conversation, fetch recipient profile for header
+            if (recipientId) {
+                const existingConvo = allConvos.find((c: Conversation) => c.participant?.id === recipientId);
+                if (existingConvo) {
+                    await handleSelectConversation(existingConvo);
+                } else {
+                    try {
                         const profile = await getProfileByIdFromDB(recipientId);
                         setRecipientProfile(profile);
-                        const result = await getOrCreateConversationCallable({ recipientId });
+                        const result = await getOrCreateConversationCallable(recipientId);
                         const { conversationId } = result.data as { conversationId: string };
-                        const newConvResult = await getConversationsCallable();
-                        const newConvos = (newConvResult.data as any)?.conversations || []; // Defensive check
-                        setConversations(newConvos);
-                        const newCreatedConvo = newConvos.find((c: Conversation) => c.id === conversationId);
+                        const newConvos = await fetchConversations();
+                        const newCreatedConvo = newConvos.find((c: any) => c.id === conversationId);
                         if (newCreatedConvo) {
-                            await handleConversationSelect(newCreatedConvo);
+                            await handleSelectConversation(newCreatedConvo);
                         }
+                    } catch (error) {
+                        console.error("Error creating new conversation:", error);
+                        toast({ variant: "destructive", title: t('error'), description: t('couldNotStartConversation') });
                     }
-                } else if (convos.length > 0) {
-                    await handleConversationSelect(convos[0]);
                 }
-            } catch (error) {
-                console.error("Error fetching initial conversations:", error);
-                toast({ variant: "destructive", title: t('error'), description: t('couldNotLoadConversations') });
-            } finally {
-                setIsLoadingConversations(false);
+            } else if (allConvos.length > 0 && !selectedConversation) {
+                await handleSelectConversation(allConvos[0]);
             }
         };
 
-        fetchInitialData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, authLoading, searchParams, toast, t]);
+        initializeMessaging();
+    }, [user, authLoading, searchParams, toast, t, fetchConversations, handleSelectConversation, getOrCreateConversationCallable, selectedConversation]);
     
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
-        if(!newMessage.trim() || !selectedConversation || !user) return;
+        const currentConvo = selectedConversation;
+        if (!newMessage.trim() || !currentConvo || !user) return;
         
         const tempId = `temp-${Date.now()}`;
         const message: Message = {
             id: tempId,
-            conversationId: selectedConversation.id,
+            conversationId: currentConvo.id,
             senderId: user.uid,
             content: newMessage,
             timestamp: new Date().toISOString()
@@ -139,20 +149,15 @@ function MessagingContent() {
         setIsSending(true);
 
         try {
-            await sendMessageCallable({ conversationId: selectedConversation.id, content: originalMessage });
-             // After sending, update the conversation list to show the new last message
-            setConversations(prev => prev.map(c => 
-                c.id === selectedConversation.id 
-                ? { ...c, lastMessage: originalMessage, lastMessageTimestamp: new Date().toISOString() } 
-                : c
-            ).sort((a, b) => new Date(b.lastMessageTimestamp).getTime() - new Date(a.lastMessageTimestamp).getTime()));
+            await sendMessageCallable(currentConvo.id, originalMessage);
+            fetchConversations();
         } catch (error) {
             console.error("Failed to send message", error);
             toast({ variant: "destructive", title: t('sendFailed'), description: t('couldNotSendMessage') });
-            setMessages(prev => prev.filter(m => m.id !== tempId)); // Remove optimistic message on failure
+            setMessages(prev => prev.filter(m => m.id !== tempId));
             setNewMessage(originalMessage);
         } finally {
-             setIsSending(false);
+            setIsSending(false);
         }
     };
     
@@ -172,11 +177,11 @@ function MessagingContent() {
     }
 
     const conversationHeaderProfile = selectedConversation?.participant || recipientProfile;
+    const showChatPanel = !!conversationHeaderProfile;
 
     return (
-        <Card className="h-[calc(100vh-8rem)] grid grid-cols-1 md:grid-cols-[300px_1fr] overflow-hidden">
-            {/* Conversations List Panel */}
-            <div className={cn("flex flex-col border-r h-full", selectedConversation && "hidden md:flex")}>
+        <Card className="h-[calc(100vh-8rem)] grid grid-cols-1 md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr] overflow-hidden">
+            <div className={cn("flex flex-col border-r h-full", showChatPanel && "hidden md:flex")}>
                 <div className="p-4 border-b">
                     <h2 className="text-xl font-semibold">{t('title')}</h2>
                     <div className="relative mt-2">
@@ -199,7 +204,7 @@ function MessagingContent() {
                                     "p-4 flex gap-3 cursor-pointer hover:bg-accent",
                                     selectedConversation?.id === convo.id && "bg-accent"
                                 )}
-                                onClick={() => handleConversationSelect(convo)}
+                                onClick={() => handleSelectConversation(convo)}
                             >
                                 <Avatar>
                                     <AvatarImage src={convo.participant.avatarUrl} data-ai-hint="profile agriculture" />
@@ -222,12 +227,11 @@ function MessagingContent() {
                 </ScrollArea>
             </div>
 
-            {/* Active Chat Panel */}
-            <div className={cn("flex flex-col h-full bg-muted/30", !conversationHeaderProfile && !isLoadingConversations && "hidden md:flex")}>
-                {conversationHeaderProfile ? (
+            <div className={cn("flex flex-col h-full bg-muted/30", !showChatPanel && "hidden md:flex")}>
+                {showChatPanel ? (
                     <>
                         <div className="p-4 border-b flex items-center gap-3 bg-background">
-                            <Button variant="ghost" size="icon" className="md:hidden h-7 w-7 mr-2" onClick={() => setSelectedConversation(null)}>
+                            <Button variant="ghost" size="icon" className="md:hidden h-8 w-8 mr-2" onClick={() => setSelectedConversation(null)}>
                                 <ArrowLeft className="h-4 w-4"/>
                             </Button>
                             <Avatar>
@@ -236,39 +240,29 @@ function MessagingContent() {
                             </Avatar>
                             <h3 className="font-semibold">{conversationHeaderProfile.name}</h3>
                         </div>
-                        <ScrollArea className="flex-grow p-4" ref={scrollAreaRef}>
+                        <ScrollArea className="flex-grow p-4">
                             {isLoadingMessages ? (
                                 <div className="flex justify-center items-center h-full">
                                     <Loader2 className="h-8 w-8 animate-spin text-primary"/>
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    {messages && messages.map(msg => (
-                                        <div key={msg.id} className={cn(
-                                            "flex gap-2 items-end",
-                                            msg.senderId === user.uid ? "justify-end" : "justify-start"
-                                        )}>
+                                    {messages.map(msg => (
+                                        <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.uid ? "justify-end" : "justify-start")}>
                                             {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
-                                            <div className={cn(
-                                                "p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm",
-                                                msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none"
-                                            )}>
+                                            <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
                                                 <p className="whitespace-pre-wrap">{msg.content}</p>
                                             </div>
                                              {msg.senderId === user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
                                         </div>
                                     ))}
+                                     <div ref={messagesEndRef} />
                                 </div>
                             )}
                         </ScrollArea>
                         <div className="p-4 border-t bg-background">
                             <form onSubmit={handleSendMessage} className="flex gap-2">
-                                <Input 
-                                    placeholder={t('typeMessagePlaceholder')}
-                                    value={newMessage}
-                                    onChange={(e) => setNewMessage(e.target.value)}
-                                    disabled={isSending}
-                                />
+                                <Input placeholder={t('typeMessagePlaceholder')} value={newMessage} onChange={(e) => setNewMessage(e.target.value)} disabled={isSending} />
                                 <Button type="submit" disabled={!newMessage.trim() || isSending}>
                                     {isSending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                                  </Button>
@@ -277,14 +271,8 @@ function MessagingContent() {
                     </>
                 ) : (
                     <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
-                        {isLoadingConversations ? (
-                            <Loader2 className="h-8 w-8 animate-spin text-primary"/>
-                        ) : (
-                            <>
-                                <MessageSquare className="h-12 w-12 mb-4"/>
-                                <p>{t('selectConversation')}</p>
-                            </>
-                        )}
+                        <MessageSquare className="h-12 w-12 mb-4"/>
+                        <p>{t('selectConversation')}</p>
                     </div>
                 )}
             </div>
@@ -294,7 +282,7 @@ function MessagingContent() {
 
 function MessagingSkeleton() {
     return (
-        <Card className="h-[calc(100vh-8rem)] grid grid-cols-1 md:grid-cols-[300px_1fr] overflow-hidden">
+        <Card className="h-[calc(100vh-8rem)] grid grid-cols-1 md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr] overflow-hidden">
             <div className="flex flex-col border-r h-full">
                 <div className="p-4 border-b space-y-2">
                     <Skeleton className="h-6 w-3/4" />
@@ -320,7 +308,5 @@ export default function MessagesPage() {
         <Suspense fallback={<MessagingSkeleton />}>
             <MessagingContent />
         </Suspense>
-    )
+    );
 }
-
-    
