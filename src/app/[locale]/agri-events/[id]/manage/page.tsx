@@ -152,7 +152,7 @@ const CheckInTab = () => {
             }
             
             const result = await checkInCallable({ eventId, attendeeUid });
-            const data = result.data as { success: boolean, message: string };
+            const data = (result?.data as { success: boolean, message: string }) || { success: false, message: 'An unknown error occurred during check-in.' };
             
             if (data.success) {
                 setCheckInResult({ type: 'success', message: data.message });
@@ -223,7 +223,7 @@ const StaffManagementTab = ({ eventId, organizerId }: { eventId: string, organiz
         setIsLoadingStaff(true);
         try {
             const result = await getStaffCallable({ eventId });
-            setCurrentStaff((result.data as any)?.staff || []);
+            setCurrentStaff((result?.data as any)?.staff || []);
         } catch (error: any) {
             toast({ variant: 'destructive', title: "Error", description: "Could not fetch event staff." });
         } finally {
@@ -244,7 +244,7 @@ const StaffManagementTab = ({ eventId, organizerId }: { eventId: string, organiz
         setIsSearching(true);
         try {
             const result = await searchUsersCallable({ query: searchQuery });
-            setSearchResults((result.data as any)?.users || []);
+            setSearchResults((result?.data as any)?.users || []);
         } catch (error: any) {
             toast({ variant: 'destructive', title: "Search failed", description: error.message });
         } finally {
@@ -354,7 +354,7 @@ export default function ManageEventPage() {
     useEffect(() => { 
         if(eventId) { 
             fetchCoupons();
-            getEventDetailsCallable({ eventId }).then(result => setEvent(result.data as AgriEvent)).catch(console.error);
+            getEventDetailsCallable({ eventId }).then(result => setEvent((result?.data as AgriEvent) || null)).catch(console.error);
         }
     }, [eventId, fetchCoupons, getEventDetailsCallable]);
 
@@ -371,19 +371,19 @@ export default function ManageEventPage() {
                     <TabsTrigger value="promotions">{t('tabs.promotions')}</TabsTrigger>
                 </TabsList>
                 
-                <TabsContent value="check-in">
+                <TabsContent value="check-in" className="mt-4">
                     <CheckInTab />
                 </TabsContent>
-                 <TabsContent value="staff">
+                 <TabsContent value="staff" className="mt-4">
                     <StaffManagementTab eventId={eventId} organizerId={event?.organizerId} />
                 </TabsContent>
-                <TabsContent value="dashboard">
+                <TabsContent value="dashboard" className="mt-4">
                     <Card><CardHeader><CardTitle>Dashboard</CardTitle></CardHeader><CardContent><p>Event dashboard will be here.</p></CardContent></Card>
                 </TabsContent>
-                <TabsContent value="attendees">
+                <TabsContent value="attendees" className="mt-4">
                     <Card><CardHeader><CardTitle>Attendees</CardTitle></CardHeader><CardContent><p>Attendee management will be here.</p></CardContent></Card>
                 </TabsContent>
-                <TabsContent value="promotions">
+                <TabsContent value="promotions" className="mt-4">
                     <div className="space-y-6">
                        <CouponCreationForm onCouponCreated={fetchCoupons} />
                        <ExistingCouponsList coupons={coupons} isLoading={isLoadingCoupons} />

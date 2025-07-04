@@ -25,7 +25,7 @@ export const createMarketplaceItemSchema = z.object({
   }),
   description: z.string().min(10, "Description must be at least 10 characters long.").max(2000, "Description cannot exceed 2000 characters."),
   price: z.coerce.number({ invalid_type_error: "Price must be a number." }).min(0, "Price cannot be negative.").optional(),
-  currency: z.string().length(3, "Currency code must be 3 characters (e.g., USD).").default("USD").transform(value => value.toUpperCase()),
+  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD").transform(value => value.toUpperCase()),
   perUnit: z.string().max(30, "Unit description (e.g., /kg, /ton, /hour) is too long.").optional(),
   category: z.enum(UNIFIED_MARKETPLACE_CATEGORY_IDS, {
     errorMap: () => ({ message: "Please select a valid category." }),
@@ -227,10 +227,8 @@ export const createAgriEventCouponSchema = z.object({
   code: z.string().min(4, "Code must be at least 4 characters").max(20),
   discountType: z.enum(["percentage", "fixed"]),
   discountValue: z.coerce.number().positive("Value must be positive"),
-  expiryDate: z.date({
-    required_error: "An expiry date is required.",
-  }),
-  usageLimit: z.coerce.number().int().positive("Limit must be a positive number"),
+  expiryDate: z.date().optional(),
+  usageLimit: z.coerce.number().int().positive("Limit must be a positive number").optional(),
 }).refine(data => {
     if (data.discountType === 'percentage' && data.discountValue > 100) {
         return false;

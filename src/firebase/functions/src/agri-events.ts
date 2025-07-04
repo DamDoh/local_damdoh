@@ -261,10 +261,10 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
 
 export const checkInAttendee = functions.https.onCall(async (data, context) => {
     const callerId = checkAuth(context);
-    const { eventId, scannedUniversalId } = data;
+    const { eventId, attendeeUid } = data;
 
-    if (!eventId || !scannedUniversalId) {
-        throw new functions.https.HttpsError("invalid-argument", "Event ID and scanned Universal ID are required.");
+    if (!eventId || !attendeeUid) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID and Attendee UID are required.");
     }
     
     // 1. Verify the caller is the event organizer or designated staff
@@ -283,15 +283,12 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in attendees for this event.");
     }
 
-    // 2. Find the user by their Universal ID
-    const usersRef = db.collection('users');
-    const userQuery = await usersRef.where('universalId', '==', scannedUniversalId).limit(1).get();
-    if (userQuery.empty) {
-        throw new functions.https.HttpsError("not-found", "No user found with this Universal ID.");
+    // 2. Get attendee's name for response message
+    const attendeeUserDoc = await db.collection('users').doc(attendeeUid).get();
+    if (!attendeeUserDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "No user found with the provided ID.");
     }
-    const attendeeUserDoc = userQuery.docs[0];
-    const attendeeUid = attendeeUserDoc.id;
-    const attendeeName = attendeeUserDoc.data().displayName || 'Unknown Attendee';
+    const attendeeName = attendeeUserDoc.data()?.displayName || 'Unknown Attendee';
 
     // 3. Check registration and update status
     const attendeeRef = eventRef.collection('attendees').doc(attendeeUid);
