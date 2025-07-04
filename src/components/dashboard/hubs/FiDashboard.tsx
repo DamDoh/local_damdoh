@@ -78,8 +78,8 @@ export const FiDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(pendingApplications?.length > 0) ? (
-                           pendingApplications?.map(app => (
+                       {((pendingApplications || []).length > 0) ? (
+                           (pendingApplications || []).map(app => (
                                <div key={app.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <p className="font-medium">{app.applicantName} - ${app.amount.toLocaleString()}</p>
@@ -104,8 +104,8 @@ export const FiDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        {(marketUpdates?.length > 0) ? (
-                            marketUpdates?.map(update => (
+                        {((marketUpdates || []).length > 0) ? (
+                            (marketUpdates || []).map(update => (
                                 <div key={update.id} className="text-sm p-3 border rounded-lg">
                                     <p>{update.content}</p>
                                     <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">Read More</Link>

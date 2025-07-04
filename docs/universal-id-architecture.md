@@ -63,6 +63,18 @@ All critical operations are handled by secure, server-side Cloud Functions.
         -   **If any other authenticated user scans the ID**: Return only basic public profile information (`displayName`, `primaryRole`, `location`, `avatarUrl`).
 -   **Security**: This is the most critical security component. It prevents the QR code from being a universal key and enforces context-aware data sharing.
 
+#### `lookupUserByPhone` (HTTPS Callable)
+
+-   **Purpose**: Allows authorized agents to find a user if the QR code is unavailable (e.g., lost card).
+-   **Inputs**: `{ phoneNumber: string }`
+-   **Authentication**: The function requires the caller (agent) to be authenticated and have an authorized role (e.g., 'Field Agent/Agronomist (DamDoh Internal)', 'Admin').
+-   **Logic**:
+    1.  Verifies the caller's role. Throws a permission-denied error if unauthorized.
+    2.  Queries the `users` collection for a document where `phoneNumber` matches the input.
+    3.  If a user is found, it returns a subset of their data appropriate for the agent's role (similar to the data returned by `getUniversalIdData`).
+    4.  If no user is found, it returns a "not-found" error.
+-   **Security**: This provides a necessary fallback while maintaining security through strict role-based access control.
+
 ### 2.3. Client-Side Implementation
 
 -   **QR Code Generation**: The app uses a client-side library (`qrcode.react`) to generate the QR code.
@@ -72,8 +84,8 @@ All critical operations are handled by secure, server-side Cloud Functions.
 ## 3. Security Model
 
 -   **Data Minimization in QR**: The QR code contains no Personally Identifiable Information (PII). It is a pointer, not a data store.
--   **Firestore Rules**: Direct client-side writes to the `users` collection are heavily restricted. Sensitive fields can only be modified via trusted Cloud Functions. Read access is limited to a user reading their own profile, with all other access brokered by `getUniversalIdData`.
+-   **Firestore Rules**: Direct client-side writes to the `users` collection are heavily restricted. Sensitive fields can only be modified via trusted Cloud Functions. Read access is limited to a user reading their own profile, with all other access brokered by `getUniversalIdData` or other secure functions.
 -   **Authenticated Endpoints**: All Cloud Functions are protected, requiring authenticated users to invoke them.
--   **Role-Based Access Control (RBAC)**: The authorization logic is centralized within the `getUniversalIdData` Cloud Function, making the security model easier to manage and audit.
+-   **Role-Based Access Control (RBAC)**: The authorization logic is centralized within the Cloud Functions (`getUniversalIdData`, `lookupUserByPhone`), making the security model easier to manage and audit.
 
 This foundational phase establishes a secure and scalable system ready for the subsequent implementation of account recovery, agent workflows, and payment integrations.

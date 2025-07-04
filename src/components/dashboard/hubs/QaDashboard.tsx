@@ -78,7 +78,7 @@ export const QaDashboard = () => {
              <CardDescription>Inspections requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(pendingInspections && pendingInspections.length > 0) ? (
+             {((pendingInspections || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -90,7 +90,7 @@ export const QaDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {pendingInspections?.map((inspection) => (
+                   {(pendingInspections || []).map((inspection) => (
                      <TableRow key={inspection.id}>
                        <TableCell className="font-mono text-xs">{inspection.batchId}</TableCell>
                        <TableCell>{inspection.productName}</TableCell>
@@ -118,7 +118,7 @@ export const QaDashboard = () => {
              <CardDescription>Recently reported quality and compliance issues.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(recentResults && recentResults.length > 0) ? (
+             {((recentResults || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -129,7 +129,7 @@ export const QaDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {recentResults?.map((issue) => (
+                   {(recentResults || []).map((issue) => (
                      <TableRow key={issue.id}>
                        <TableCell>{issue.productName}</TableCell>
                        <TableCell><Badge variant={issue.result === 'Pass' ? 'default' : 'destructive'}>{issue.result}</Badge></TableCell>

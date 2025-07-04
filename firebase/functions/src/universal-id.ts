@@ -112,3 +112,59 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
     }
 });
 
+
+/**
+ * Securely retrieves a user's data by their phone number for authorized agents.
+ */
+export const lookupUserByPhone = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to perform this action.");
+    }
+
+    const { phoneNumber } = data;
+    if (!phoneNumber) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+    }
+
+    const agentUid = context.auth.uid;
+    const agentRole = await getRole(agentUid);
+
+    // Security Check: Only allow authorized roles to perform this lookup
+    const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
+    if (!agentRole || !authorizedRoles.includes(agentRole)) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
+    }
+
+    try {
+        const usersRef = db.collection("users");
+        const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+
+        if (querySnapshot.empty) {
+            throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+        }
+
+        const foundUserDoc = querySnapshot.docs[0];
+        const foundUserData = foundUserDoc.data();
+
+        // Return a subset of data, similar to getUniversalIdData for an agent
+        const userProfileSubset = {
+            uid: foundUserDoc.id,
+            universalId: foundUserData.universalId,
+            displayName: foundUserData.displayName,
+            primaryRole: foundUserData.primaryRole,
+            avatarUrl: foundUserData.avatarUrl || null,
+            location: foundUserData.location || null,
+            phoneNumber: foundUserData.phoneNumber,
+        };
+        
+        return userProfileSubset;
+
+    } catch (error) {
+        console.error("Error looking up user by phone:", error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
+    }
+});
+

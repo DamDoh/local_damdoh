@@ -60,7 +60,7 @@ export const FieldAgentDashboard = () => {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{portfolioHealth?.overallScore || 0}%</div>
-                        <p className="text-xs text-muted-foreground">{portfolioHealth?.alerts?.length || 0} active alerts</p>
+                        <p className="text-xs text-muted-foreground">{(portfolioHealth?.alerts || []).length || 0} active alerts</p>
                     </CardContent>
                 </Card>
                 <Card>
@@ -102,8 +102,8 @@ export const FieldAgentDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                       {(assignedFarmers?.length > 0) ? (
-                           assignedFarmers?.map(farmer => (
+                       {((assignedFarmers || []).length > 0) ? (
+                           (assignedFarmers || []).map(farmer => (
                                 <div key={farmer.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
                                         <p className="font-medium">{farmer.name}</p>

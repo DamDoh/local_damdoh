@@ -91,7 +91,7 @@ export const EnergyProviderDashboard = () => {
             <CardDescription>{(projectLeads?.length || 0)} potential projects</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold">{(projectLeads || []).filter(p => p.status === 'New').length || 0}</div>
+            <div className="text-4xl font-bold">{((projectLeads || []).filter(p => p.status === 'New')).length || 0}</div>
             <p className="text-xs text-muted-foreground">new leads require attention</p>
           </CardContent>
         </Card>
@@ -102,7 +102,7 @@ export const EnergyProviderDashboard = () => {
             <CardDescription>{(activeProjects?.length || 0)} total active projects</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold">{(activeProjects || []).filter(p => p.status === 'Completed').length || 0}</div>
+            <div className="text-4xl font-bold">{((activeProjects || []).filter(p => p.status === 'Completed')).length || 0}</div>
              <p className="text-xs text-muted-foreground">projects completed</p>
           </CardContent>
         </Card>
@@ -124,7 +124,7 @@ export const EnergyProviderDashboard = () => {
              <CardDescription>Potential opportunities for energy solution installations.</CardDescription>
           </CardHeader>
           <CardContent>
-            {(projectLeads?.length > 0) ? (
+            {((projectLeads || []).length > 0) ? (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -136,7 +136,7 @@ export const EnergyProviderDashboard = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {projectLeads?.map((lead) => (
+                  {(projectLeads || []).map((lead) => (
                     <TableRow key={lead.id}>
                       <TableCell className="font-medium">{lead.entityName}</TableCell>
                       <TableCell>{lead.location}</TableCell>

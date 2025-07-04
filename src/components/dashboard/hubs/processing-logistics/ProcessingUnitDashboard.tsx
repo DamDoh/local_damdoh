@@ -85,8 +85,8 @@ export const ProcessingUnitDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {packagingInventory?.length > 0 ? (
-                           packagingInventory.map((item, index) => (
+                       {((packagingInventory || []).length > 0) ? (
+                           (packagingInventory || []).map((item, index) => (
                                <div key={index} className="text-sm p-2 bg-background rounded-md border">
                                    <p className="font-medium">{item.packagingType}</p>
                                    <p className="text-xs">In Stock: {item.unitsInStock.toLocaleString()}</p>
@@ -121,8 +121,8 @@ export const ProcessingUnitDashboard = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {inventory?.length > 0 ? (
-                                    inventory.map((item, index) => (
+                                {((inventory || []).length > 0) ? (
+                                    (inventory || []).map((item, index) => (
                                         <TableRow key={index}>
                                             <TableCell className="font-medium">{item.product}</TableCell>
                                             <TableCell><Badge variant="outline">{item.quality}</Badge></TableCell>
@@ -155,8 +155,8 @@ export const ProcessingUnitDashboard = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {packagingOrders?.length > 0 ? (
-                                    packagingOrders.map((order) => (
+                                {((packagingOrders || []).length > 0) ? (
+                                    (packagingOrders || []).map((order) => (
                                         <TableRow key={order.id}>
                                             <TableCell className="font-medium">{order.supplierName}</TableCell>
                                             <TableCell>{new Date(order.deliveryDate).toLocaleDateString()}</TableCell>
