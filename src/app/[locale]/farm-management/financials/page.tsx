@@ -129,7 +129,7 @@ export default function FinancialDashboardPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-                {transactions.length > 0 ? (
+                {Array.isArray(transactions) && transactions.length > 0 ? (
                     transactions.map(tx => (
                         <TableRow key={tx.id}>
                             <TableCell>{tx.timestamp ? new Date(tx.timestamp).toLocaleDateString() : 'N/A'}</TableCell>
