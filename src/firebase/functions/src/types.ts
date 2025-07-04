@@ -387,7 +387,6 @@ export interface ResearcherDashboardData {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review' | 'Draft';
-    actionLink: string;
   }[];
 }
 

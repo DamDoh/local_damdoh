@@ -136,7 +136,7 @@ export const EnergyProviderDashboard = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {projectLeads.map((lead) => (
+                  {projectLeads?.map((lead) => (
                     <TableRow key={lead.id}>
                       <TableCell className="font-medium">{lead.entityName}</TableCell>
                       <TableCell>{lead.location}</TableCell>

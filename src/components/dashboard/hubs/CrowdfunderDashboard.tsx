@@ -87,7 +87,7 @@ export const CrowdfunderDashboard = () => {
            <CardContent>
              {(suggestedOpportunities?.length > 0) ? (
                <div className="space-y-4">
-                 {suggestedOpportunities.map((opp) => {
+                 {suggestedOpportunities?.map((opp) => {
                    const progress = (opp.amountRaised / opp.fundingGoal) * 100;
                    return (
                      <div key={opp.id} className="p-3 border rounded-lg">
@@ -130,7 +130,7 @@ export const CrowdfunderDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {recentTransactions.map((tx) => (
+                   {recentTransactions?.map((tx) => (
                      <TableRow key={tx.id}>
                        <TableCell>
                          <div className="font-medium">{tx.projectName}</div>

@@ -73,7 +73,7 @@ export const WasteManagementDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {(incomingWasteStreams?.length > 0) ? (
-                            incomingWasteStreams.map(stream => (
+                            incomingWasteStreams?.map(stream => (
                                <div key={stream.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <p className="font-medium">{stream.type} ({stream.quantity})</p>
@@ -97,7 +97,7 @@ export const WasteManagementDashboard = () => {
                     </CardHeader>
                     <CardContent className="space-y-2">
                        {(compostBatches?.length > 0) ? (
-                            compostBatches.map(batch => (
+                            compostBatches?.map(batch => (
                                 <div key={batch.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
                                         <p className="font-medium">Batch #{batch.id}</p>
@@ -121,7 +121,7 @@ export const WasteManagementDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {(finishedProductInventory?.length > 0) ? (
-                           finishedProductInventory.map(item => (
+                           finishedProductInventory?.map(item => (
                                <div key={item.product} className="text-sm">
                                    <p className="font-medium">{item.product}</p>
                                    <p className="text-xs text-muted-foreground">In Stock: {item.quantity}</p>

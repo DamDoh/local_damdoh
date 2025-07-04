@@ -108,7 +108,7 @@ export const BuyerDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-3">
                         {(sourcingRecommendations?.length > 0) ? (
-                            sourcingRecommendations.map(rec => (
+                            sourcingRecommendations?.map(rec => (
                                 <div key={rec.id} className="p-3 rounded-md border text-sm bg-background">
                                     <div className="flex justify-between items-start">
                                         <div>

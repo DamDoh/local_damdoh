@@ -9,12 +9,13 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, PlusCircle, Search, MapPin, Frown } from "lucide-react";
+import { PlusCircle, Search, MapPin, Frown } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProfilesFromDB } from "@/lib/db-utils";
 import { useTranslations } from "next-intl";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 
 function ProfileCardSkeleton() {
   return (
@@ -125,7 +126,12 @@ export default function ProfilesPage() {
               <SelectContent>
                 <SelectItem value="all">{t('allRoles')}</SelectItem>
                 {STAKEHOLDER_ROLES.map(role => (
-                  <SelectItem key={role} value={role}>{role}</SelectItem>
+                  <SelectItem key={role} value={role}>
+                    <div className="flex items-center gap-2">
+                      <StakeholderIcon role={role} className="h-4 w-4 text-muted-foreground" />
+                      <span>{role}</span>
+                    </div>
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>

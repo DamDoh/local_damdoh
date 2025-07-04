@@ -90,7 +90,7 @@ export const RegulatorDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {(complianceRiskAlerts?.length > 0) ? (
-                           complianceRiskAlerts.map(alert => (
+                           complianceRiskAlerts?.map(alert => (
                                <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <Badge variant={getSeverityBadge(alert.severity)}>{alert.severity}</Badge>
@@ -117,7 +117,7 @@ export const RegulatorDashboard = () => {
                     </CardHeader>
                     <CardContent className="space-y-2">
                        {(supplyChainAnomalies?.length > 0) ? (
-                           supplyChainAnomalies.map(anomaly => (
+                           supplyChainAnomalies?.map(anomaly => (
                                 <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                    <div>
                                        <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
