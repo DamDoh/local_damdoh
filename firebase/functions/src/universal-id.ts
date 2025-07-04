@@ -68,8 +68,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
 
         const scannedUserDoc = querySnapshot.docs[0];
         const scannedUserData = scannedUserDoc.data();
-        const scannedUserRole = scannedUserData.primaryRole || 'Consumer';
-
+        
         // Get the role of the user who is doing the scanning
         const scannerRole = await getRole(scannerUid);
 
@@ -112,3 +111,4 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError("internal", "An unexpected error occurred while fetching user data.");
     }
 });
+

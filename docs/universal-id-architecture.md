@@ -53,13 +53,14 @@ All critical operations are handled by secure, server-side Cloud Functions.
 -   **Inputs**: `{ scannedUniversalId: string }`
 -   **Authentication**: The function requires the *scanner* to be an authenticated Firebase user.
 -   **Logic**:
-    1.  Authenticates the scanner's request.
-    2.  Fetches the scanner's user profile to determine their role (e.g., 'Field Agent', 'Farmer').
-    3.  Queries the `users` collection for the document where `universalId` matches `scannedUniversalId`.
-    4.  Based on the scanner's role, it returns a specific, limited subset of the scanned user's data.
-        -   *Example*: A fellow 'Farmer' might only see `displayName`, `primaryRole`, and `location`.
-        -   *Example*: A 'Field Agent' might see the above plus farm-related data.
-        -   *Example*: A 'Financial Institution' partner might see anonymized financial history (with user consent).
+    1.  Authenticates the scanner's request and gets their `scannerUid`.
+    2.  Fetches the scanner's user profile from Firestore to determine their role (e.g., 'Field Agent', 'Farmer', 'Admin').
+    3.  Queries the `users` collection for the document where `universalId` matches the `scannedUniversalId`.
+    4.  If the scanned user is not found, it returns a "not-found" error.
+    5.  Based on the scanner's role, it returns a specific, limited subset of the scanned user's data. This enforces context-aware data sharing.
+        -   **If the user scans their own ID**: Return most of their own non-sensitive profile data, including email and phone number.
+        -   **If an Admin or Field Agent scans the ID**: Return a more detailed data set, including contact information, but not highly sensitive data like linked financial accounts.
+        -   **If any other authenticated user scans the ID**: Return only basic public profile information (`displayName`, `primaryRole`, `location`, `avatarUrl`).
 -   **Security**: This is the most critical security component. It prevents the QR code from being a universal key and enforces context-aware data sharing.
 
 ### 2.3. Client-Side Implementation

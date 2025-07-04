@@ -237,7 +237,7 @@ export default function ProfileDetailPage() {
             )}
           </div>
 
-          {profile.areasOfInterest && profile.areasOfInterest.length > 0 && (
+          {Array.isArray(profile.areasOfInterest) && profile.areasOfInterest.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />{t('interestsTitle')}</h3>
               <div className="flex flex-wrap gap-2">
@@ -246,7 +246,7 @@ export default function ProfileDetailPage() {
             </div>
           )}
 
-          {profile.needs && profile.needs.length > 0 && (
+          {Array.isArray(profile.needs) && profile.needs.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />{t('needsTitle')}</h3>
               <div className="flex flex-wrap gap-2">
