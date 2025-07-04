@@ -11,7 +11,7 @@ import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { UserProfile, Booking, StaffMember } from "@/lib/types";
+import type { UserProfile } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { QrScanner } from '@/components/QrScanner';
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -21,6 +21,20 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
+
+interface Booking {
+    id: string;
+    displayName: string;
+    bookedAt: string;
+    checkedIn: boolean;
+    checkedInAt: string | null;
+}
+
+interface StaffMember {
+    id: string;
+    displayName?: string;
+    avatarUrl?: string;
+}
 
 // --- Check-in Tab ---
 
