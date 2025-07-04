@@ -258,3 +258,50 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
         return { success: true, message: 'Successfully registered for the event.', finalPrice, discountApplied };
     });
 });
+
+export const checkInAttendee = functions.https.onCall(async (data, context) => {
+    const organizerId = checkAuth(context);
+    const { eventId, scannedUniversalId } = data;
+
+    if (!eventId || !scannedUniversalId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID and scanned Universal ID are required.");
+    }
+    
+    // 1. Verify the caller is the event organizer
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to manage this event.");
+    }
+
+    // 2. Find the user by their Universal ID
+    const usersRef = db.collection('users');
+    const userQuery = await usersRef.where('universalId', '==', scannedUniversalId).limit(1).get();
+    if (userQuery.empty) {
+        throw new functions.https.HttpsError("not-found", "No user found with this Universal ID.");
+    }
+    const attendeeUserDoc = userQuery.docs[0];
+    const attendeeUid = attendeeUserDoc.id;
+    const attendeeName = attendeeUserDoc.data().displayName || 'Unknown Attendee';
+
+    // 3. Check registration and update status
+    const attendeeRef = eventRef.collection('attendees').doc(attendeeUid);
+    return db.runTransaction(async (transaction) => {
+        const attendeeDoc = await transaction.get(attendeeRef);
+        if (!attendeeDoc.exists) {
+            throw new functions.https.HttpsError("not-found", `${attendeeName} is not registered for this event.`);
+        }
+        
+        const attendeeData = attendeeDoc.data()!;
+        if (attendeeData.checkedIn) {
+            throw new functions.https.HttpsError("already-exists", `${attendeeName} has already been checked in.`);
+        }
+
+        transaction.update(attendeeRef, {
+            checkedIn: true,
+            checkedInAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+        
+        return { success: true, message: `Successfully checked in ${attendeeName}.` };
+    });
+});
