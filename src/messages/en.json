@@ -167,5 +167,17 @@
       "scanNote": "This code is valid for 10 minutes.",
       "startOverButton": "Start Over"
     }
+  },
+  "editProfilePage": {
+    "title": "Edit Profile for {name}",
+    "description": "Update your public-facing information. Your changes will be visible to other users on the platform.",
+    "profileTab": "Profile",
+    "detailsTab": "Details & Interests",
+    "contactTab": "Contact Info",
+    "locationLabel": "Primary Location",
+    "phoneLabel": "Public Phone Number",
+    "websiteLabel": "Public Website",
+    "savingButton": "Saving...",
+    "cancelButton": "Cancel"
   }
 }
