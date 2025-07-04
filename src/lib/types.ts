@@ -658,7 +658,7 @@ export interface AgronomistDashboardData {
     issueSummary: string;
     requestDate: string; // ISO String
   }[];
-  knowledgeBaseContributions: {
+  knowledgeHubContributions: {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review';
