@@ -363,18 +363,75 @@ export const getRegulatorDashboardData = functions.https.onCall(
 
 
 export const getLogisticsDashboardData = functions.https.onCall(
-  (data, context): LogisticsDashboardData => {
+  async (data, context): Promise<LogisticsDashboardData> => {
     checkAuth(context);
-    return {
-        activeShipments: [
-            { id: 'ship1', to: 'Mombasa Port', status: 'On Time', eta: new Date(Date.now() + 86400000 * 1).toISOString(), vtiLink: '#' },
-            { id: 'ship2', to: 'Nairobi Central', status: 'Delayed', eta: new Date(Date.now() + 86400000 * 2).toISOString(), vtiLink: '#' }
-        ],
-        incomingJobs: [
-            { id: 'job1', from: 'Eldoret Farms', to: 'Kampala', product: 'Maize (30 tons)', requirements: 'Standard Transport', actionLink: '#' }
-        ],
-        performanceMetrics: { onTimePercentage: 97, fuelEfficiency: '12km/L', actionLink: '#' }
-    };
+    
+    try {
+        // --- Active Shipments ---
+        // Simulating active shipments by fetching recently shipped orders.
+        const shipmentsSnapshot = await db.collection('marketplace_orders')
+            .where('status', '==', 'shipped')
+            .orderBy('updatedAt', 'desc')
+            .limit(5)
+            .get();
+
+        const activeShipments = shipmentsSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                // In a real app, 'to' would be on the order. We'll use buyer's location as a placeholder.
+                to: order.buyerLocation || 'Unknown Destination', 
+                status: 'In Transit', // Assume 'shipped' means 'in transit'
+                eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(), // Mock ETA
+                vtiLink: `/traceability/batches/${order.itemId}` // conceptual link
+            };
+        });
+
+        // --- Incoming Jobs ---
+        // Simulating jobs by fetching confirmed orders that might need logistics.
+        const jobsSnapshot = await db.collection('marketplace_orders')
+            .where('status', '==', 'confirmed')
+            .orderBy('createdAt', 'desc')
+            .limit(5)
+            .get();
+            
+        const sellerIds = [...new Set(jobsSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerProfiles: Record<string, any> = {};
+        if (sellerIds.length > 0) {
+            const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
+            sellersSnapshot.forEach(doc => {
+                sellerProfiles[doc.id] = { location: doc.data().location || 'Unknown Origin' };
+            });
+        }
+
+        const incomingJobs = jobsSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
+                to: order.buyerLocation || 'Unknown Destination',
+                product: `${order.listingName} (${order.quantity} units)`,
+                requirements: 'Standard Transport', // Placeholder
+                actionLink: `/marketplace/my-orders/${order.id}` // conceptual link
+            };
+        });
+
+        // --- Performance Metrics (remains mocked) ---
+        const performanceMetrics = { 
+            onTimePercentage: 97, 
+            fuelEfficiency: '12km/L', 
+            actionLink: '#' 
+        };
+
+        return {
+            activeShipments,
+            incomingJobs,
+            performanceMetrics,
+        };
+    } catch (error) {
+        console.error("Error fetching logistics dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for logistics.");
+    }
   }
 );
 
@@ -856,6 +913,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 
