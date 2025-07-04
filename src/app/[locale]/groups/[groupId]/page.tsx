@@ -2,14 +2,14 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare } from "lucide-react";
+import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare, PlusCircle } from "lucide-react";
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumGroup } from '@/lib/types';
+import type { ForumGroup, UserProfile } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -23,6 +23,17 @@ interface GroupMember {
   joinedAt: string; // ISO string
 }
 
+interface GroupPost {
+  id: string;
+  title: string;
+  authorRef: string;
+  authorName: string;
+  authorAvatarUrl: string;
+  replyCount: number;
+  createdAt: string; // ISO
+}
+
+
 export default function GroupPage() {
     const params = useParams();
     const router = useRouter();
@@ -33,6 +44,7 @@ export default function GroupPage() {
 
     const [group, setGroup] = useState<ForumGroup | null>(null);
     const [members, setMembers] = useState<GroupMember[]>([]);
+    const [posts, setPosts] = useState<GroupPost[]>([]);
     const [isMember, setIsMember] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isJoining, setIsJoining] = useState(false);
@@ -40,6 +52,7 @@ export default function GroupPage() {
     const functions = getFunctions(firebaseApp);
     const getGroupDetails = useMemo(() => httpsCallable(functions, 'getGroupDetails'), [functions]);
     const getGroupMembers = useMemo(() => httpsCallable(functions, 'getGroupMembers'), [functions]);
+    const getGroupPosts = useMemo(() => httpsCallable(functions, 'getGroupPosts'), [functions]);
     const joinGroup = useMemo(() => httpsCallable(functions, 'joinGroup'), [functions]);
     const leaveGroup = useMemo(() => httpsCallable(functions, 'leaveGroup'), [functions]);
 
@@ -47,16 +60,20 @@ export default function GroupPage() {
         if (!groupId) return;
         setIsLoading(true);
         try {
-            const [groupDetailsResult, groupMembersResult] = await Promise.all([
+            const [groupDetailsResult, groupMembersResult, groupPostsResult] = await Promise.all([
                 getGroupDetails({ groupId }),
-                getGroupMembers({ groupId })
+                getGroupMembers({ groupId }),
+                getGroupPosts({ groupId })
             ]);
             
             const groupData = groupDetailsResult.data as ForumGroup | null;
             const membersData = (groupMembersResult.data as { members: GroupMember[] })?.members || [];
+            const postsData = (groupPostsResult.data as { posts: GroupPost[] })?.posts || [];
+
 
             setGroup(groupData);
             setMembers(membersData);
+            setPosts(postsData);
 
             if (user && Array.isArray(membersData)) {
                 const memberIds = membersData.map(m => m.id);
@@ -73,7 +90,7 @@ export default function GroupPage() {
         } finally {
             setIsLoading(false);
         }
-    }, [groupId, getGroupDetails, getGroupMembers, user, toast]);
+    }, [groupId, getGroupDetails, getGroupMembers, getGroupPosts, user, toast]);
 
 
     useEffect(() => {
@@ -154,7 +171,7 @@ export default function GroupPage() {
             </Link>
             
             <div className="grid md:grid-cols-3 gap-6">
-                <div className="md:col-span-2">
+                <div className="md:col-span-2 space-y-6">
                     <Card>
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2 text-2xl">
@@ -163,11 +180,53 @@ export default function GroupPage() {
                             </CardTitle>
                             <CardDescription>{group.description}</CardDescription>
                         </CardHeader>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                             <div className="flex justify-between items-center">
+                                <CardTitle className="text-lg">Discussions</CardTitle>
+                                {isMember && (
+                                    <Button asChild>
+                                        <Link href={`/groups/${groupId}/create-post`}>
+                                            <PlusCircle className="mr-2 h-4 w-4"/>Start a Discussion
+                                        </Link>
+                                    </Button>
+                                )}
+                             </div>
+                        </CardHeader>
                         <CardContent>
-                            {/* Placeholder for group posts/feed */}
-                            <div className="py-10 text-center text-muted-foreground">
-                                <MessageSquare className="h-12 w-12 mx-auto" />
-                                <p className="mt-4">Group discussion feed coming soon!</p>
+                            <div className="space-y-3">
+                                {isLoading ? (
+                                    <Skeleton className="h-40 w-full" />
+                                ) : posts.length > 0 ? (
+                                    posts.map(post => (
+                                        <Link key={post.id} href={`/groups/${groupId}/posts/${post.id}`}>
+                                            <div className="p-3 border rounded-lg hover:bg-accent flex items-start gap-3 transition-colors cursor-pointer">
+                                                <Avatar className="h-9 w-9">
+                                                    <AvatarImage src={post.authorAvatarUrl} alt={post.authorName} />
+                                                    <AvatarFallback>{post.authorName?.substring(0, 1) || '?'}</AvatarFallback>
+                                                </Avatar>
+                                                <div className="flex-grow overflow-hidden">
+                                                    <h4 className="font-semibold truncate text-sm">{post.title}</h4>
+                                                    <p className="text-xs text-muted-foreground">
+                                                        By {post.authorName} &bull; {new Date(post.createdAt).toLocaleDateString()}
+                                                    </p>
+                                                </div>
+                                                <div className="text-sm text-muted-foreground flex items-center gap-1 shrink-0">
+                                                    <MessageSquare className="h-4 w-4" />
+                                                    {post.replyCount || 0}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))
+                                ) : (
+                                    <div className="text-center py-10 border-2 border-dashed rounded-lg">
+                                        <MessageSquare className="mx-auto h-12 w-12 text-muted-foreground" />
+                                        <h3 className="mt-4 text-lg font-semibold">No discussions yet</h3>
+                                        {isMember && <p className="mt-2 text-sm text-muted-foreground">Be the first to start a conversation in this group!</p>}
+                                    </div>
+                                )}
                             </div>
                         </CardContent>
                     </Card>

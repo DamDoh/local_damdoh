@@ -84,6 +84,17 @@ export interface ConnectionRequest {
     createdAt: string; // ISO string
 }
 
+export interface PostReply {
+  id: string;
+  content: string;
+  timestamp: string; // ISO string
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+}
+
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
@@ -210,27 +221,6 @@ export interface LogisticsDashboardData {
     };
 }
 
-export interface FieldAgentDashboardData {
-    assignedFarmers: {
-        id: string;
-        name: string;
-        lastVisit: string; // ISO string
-        issues: number;
-        actionLink: string;
-    }[];
-    portfolioHealth: {
-        overallScore: number;
-        alerts: string[];
-        actionLink: string;
-    };
-    pendingReports: number;
-    dataVerificationTasks: {
-        count: number;
-        description: string;
-        actionLink: string;
-    };
-}
-
 export interface FiDashboardData {
     pendingApplications: {
         id: string;
@@ -254,6 +244,27 @@ export interface FiDashboardData {
         content: string;
         actionLink: string;
     }[];
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
 }
 
 export interface InputSupplierDashboardData {
@@ -434,32 +445,6 @@ export interface AgronomistDashboardData {
 }
 
 
-export interface AgroTourismDashboardData {
-  upcomingBookings: {
-    id: string;
-    experienceTitle: string;
-    guestName: string;
-    date: string; // ISO String
-    actionLink: string;
-  }[];
-  listedExperiences: {
-    id: string;
-    title: string;
-    location: string;
-    status: 'Published' | 'Draft';
-    bookingsCount: number;
-    actionLink: string;
-  }[];
-  guestReviews: {
-    id: string;
-    guestName: string;
-    experienceTitle: string;
-    rating: number;
-    comment: string;
-    actionLink: string;
-  }[];
-}
-
 export interface EnergyProviderDashboardData {
   projectLeads: {
     id: string;
@@ -595,3 +580,4 @@ export interface InsuranceProviderDashboardData {
     expiryDate: string; // ISO string;
   }[];
 }
+
