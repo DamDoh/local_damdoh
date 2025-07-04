@@ -39,5 +39,30 @@
     "googlePlayAlt": "Disponible sur Google Play",
     "appStoreAlt": "Télécharger dans l'App Store",
     "copyright": "© {year} {appName}. Tous droits réservés."
+  },
+  "Marketplace": {
+      "create": {
+          "form": {
+              "compensationLabel": "Rémunération / Tarif",
+              "compensationPlaceholder": "Ex: 50 €/h, par projet",
+              "experienceLabel": "Niveau d'expérience",
+              "experiencePlaceholder": "Ex: 5+ ans, Professionnel certifié",
+              "skillsLabel": "Compétences requises",
+              "skillsPlaceholder": "Énumérez les compétences clés pour ce service.",
+              "skillsDescription": "Séparez les compétences par une virgule."
+          }
+      }
+  },
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez des professionnels qualifiés et des services à travers la chaîne de valeur agricole.",
+    "listServiceButton": "Lister un Service",
+    "searchPlaceholder": "Rechercher par compétence, service ou professionnel...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les rôles",
+    "noResultsTitle": "Aucun service trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles annonces.",
+    "viewServiceButton": "Voir le Service"
   }
 }

@@ -39,5 +39,30 @@
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen",
     "copyright": "© {year} {appName}. Alle Rechte vorbehalten."
+  },
+  "Marketplace": {
+      "create": {
+          "form": {
+              "compensationLabel": "Vergütung / Tarif",
+              "compensationPlaceholder": "z.B. 50 €/Std, projektbasiert",
+              "experienceLabel": "Erfahrungslevel",
+              "experiencePlaceholder": "z.B. 5+ Jahre, Zertifizierter Profi",
+              "skillsLabel": "Benötigte Fähigkeiten",
+              "skillsPlaceholder": "Listen Sie die wichtigsten Fähigkeiten für diesen Service auf.",
+              "skillsDescription": "Trennen Sie Fähigkeiten mit einem Komma."
+          }
+      }
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte und Dienstleistungen entlang der landwirtschaftlichen Wertschöpfungskette.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Suche nach Fähigkeit, Service oder Fachkraft...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei, um neue Angebote zu sehen.",
+    "viewServiceButton": "Dienstleistung ansehen"
   }
 }

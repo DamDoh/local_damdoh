@@ -39,5 +39,30 @@
     "googlePlayAlt": "ទាញយកពី Google Play",
     "appStoreAlt": "ទាញយកពី App Store",
     "copyright": "© {year} {appName}. រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។"
+  },
+  "Marketplace": {
+      "create": {
+          "form": {
+              "compensationLabel": "Compensation / Rate",
+              "compensationPlaceholder": "e.g., $50/hr, Project-based",
+              "experienceLabel": "Experience Level",
+              "experiencePlaceholder": "e.g., 5+ years, Certified Professional",
+              "skillsLabel": "Skills Required",
+              "skillsPlaceholder": "List key skills for this service.",
+              "skillsDescription": "Separate skills with a comma."
+          }
+      }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled professionals and services across the agricultural value chain.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search by skill, service, or professional...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or check back later for new listings.",
+    "viewServiceButton": "View Service"
   }
 }
