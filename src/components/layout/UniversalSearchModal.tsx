@@ -21,7 +21,7 @@ import { performSearch } from '@/lib/db-utils';
 interface SearchResult {
   id: string;
   itemId: string;
-  itemCollection: 'users' | 'marketplaceItems' | 'forums' | 'agriEvents' | 'knowledge_articles';
+  itemCollection: 'users' | 'marketplaceItems' | 'forums' | 'agri_events' | 'knowledge_articles';
   title: string;
   description: string;
   imageUrl?: string;
@@ -50,7 +50,7 @@ const getLinkForCollection = (result: SearchResult) => {
         case 'users': return `/profiles/${result.itemId}`;
         case 'marketplaceItems': return `/marketplace/${result.itemId}`;
         case 'forums': return `/forums/${result.itemId}`; // Adjust if topic/post needs different URL structure
-        case 'agriEvents': return `/agri-events/${result.itemId}`;
+        case 'agri_events': return `/agri-events/${result.itemId}`;
         case 'knowledge_articles': return `/blog/${result.itemId}`;
         default: return '#';
     }
