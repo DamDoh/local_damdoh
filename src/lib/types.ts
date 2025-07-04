@@ -734,3 +734,24 @@ export interface AgroTourismDashboardData {
     actionLink: string;
   }[];
 }
+
+export interface AgriTechInnovatorDashboardData {
+  apiKeys: {
+    id: string;
+    key: string;
+    status: 'Active' | 'Revoked';
+    environment: 'Sandbox' | 'Production';
+    createdAt: string; // ISO String
+  }[];
+  sandboxStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastReset: string; // ISO String
+  };
+  integrationProjects: {
+    id: string;
+    title: string;
+    status: 'In Development' | 'Live' | 'Archived';
+    partner: string;
+    actionLink: string;
+  }[];
+}

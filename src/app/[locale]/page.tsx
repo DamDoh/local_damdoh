@@ -42,6 +42,7 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { OperationsDashboard } from '@/components/dashboard/hubs/OperationsDashboard';
+import { AgriTechInnovatorDashboard } from '@/components/dashboard/hubs/AgriTechInnovatorDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -49,7 +50,7 @@ const db = getFirestore(firebaseApp);
 const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Agricultural Cooperative': CooperativeDashboard,
     'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Agri-Tech Innovator/Developer': ResearcherDashboard, // Fallback for now
+    'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
     'Agronomy Expert/Consultant (External)': AgronomistDashboard,
     'Agro-Tourism Operator': AgroTourismDashboard,
     'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,

@@ -27,6 +27,7 @@ import type {
     PackagingSupplierDashboardData,
     FinancialApplication,
     OperationsDashboardData,
+    AgriTechInnovatorDashboardData,
 } from "./types";
 
 const db = admin.firestore();
@@ -57,7 +58,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
-            knfBatchesPromise,
+            knfBatchesSnapshot,
         ]);
 
         const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
@@ -685,9 +686,32 @@ export const getOperationsDashboardData = functions.https.onCall(
     };
   }
 );
+
+export const getAgriTechInnovatorDashboardData = functions.https.onCall(
+  (data, context): AgriTechInnovatorDashboardData => {
+    checkAuth(context);
+    // In a real app, this data would be pulled from a secure datastore.
+    return {
+      apiKeys: [
+        { id: 'key1', key: 'sk_test_..._xyz1', status: 'Active', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 30).toISOString() },
+        { id: 'key2', key: 'sk_prod_..._abc2', status: 'Active', environment: 'Production', createdAt: new Date(Date.now() - 86400000 * 90).toISOString() },
+        { id: 'key3', key: 'sk_test_..._pqr3', status: 'Revoked', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 120).toISOString() },
+      ],
+      sandboxStatus: {
+        status: 'Operational',
+        lastReset: new Date(Date.now() - 86400000 * 3).toISOString(),
+      },
+      integrationProjects: [
+        { id: 'proj1', title: 'Real-time Cold Chain Monitoring with CoolTech', status: 'Live', partner: 'CoolTech Solutions', actionLink: '#' },
+        { id: 'proj2', title: 'Drone-based Crop Scouting API Integration', status: 'In Development', partner: 'SkyAgroScout', actionLink: '#' },
+      ],
+    };
+  }
+);
     
 
 
     
+
 
 
