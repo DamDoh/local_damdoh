@@ -1,3 +1,4 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -46,8 +47,9 @@ export const onSourceDocumentWriteIndex = functions.firestore
     const description = newData.description || newData.profileSummary || newData.bio || newData.excerpt_en || "";
     
     // Create an array of searchable terms by combining and cleaning various fields.
+    const sourceTags = Array.isArray(newData.tags) ? newData.tags : [];
     const tags = [
-        ...(newData.tags || []),
+        ...sourceTags,
         newData.category,
         newData.listingType,
         newData.primaryRole,
@@ -95,8 +97,8 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     }
     const { mainKeywords, identifiedLocation, suggestedFilters } = data;
     
-    if (!mainKeywords || mainKeywords.length === 0) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required.");
+    if (!Array.isArray(mainKeywords) || mainKeywords.length === 0) {
+        throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required for search.");
     }
 
     try {

@@ -5,7 +5,6 @@ import type { UserProfile } from '@/lib/types';
 import { StakeholderProfileSchema } from '@/lib/schemas'; // Zod schema for validation
 import { 
   getAllProfilesFromDB,
-  createProfileInDB 
 } from '@/lib/server-actions';
 import { 
   successResponse, 
@@ -24,43 +23,7 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
-  if (!await isAuthenticated(request)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-  
-  try {
-    const body = await request.json();
-    
-    // Exclude fields that are auto-generated or not part of creation
-    const creationSchema = StakeholderProfileSchema.omit({ 
-      id: true, 
-      createdAt: true, 
-      updatedAt: true,
-      // Optional fields that might not be present on creation but are in the main schema:
-      avatarUrl: true, 
-      connections: true,
-      // Other fields to potentially omit if they are not part of creation DTO
-    });
-    
-    const validation = creationSchema.safeParse(body);
-
-    if (!validation.success) {
-      return clientErrorResponse('Invalid profile data.', validation.error.format());
-    }
-
-    // Construct the data to be passed to DB function, ensuring all required fields are present
-    // and defaults are handled if necessary by the schema or DB layer.
-    const profileToCreate = validation.data as Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>;
-
-
-    const newProfile = await createProfileInDB(profileToCreate);
-    return successResponse(newProfile, { status: 201 });
-
-  } catch (error: any) {
-    if (error.name === 'SyntaxError') { // JSON parsing error
-        return clientErrorResponse('Invalid JSON payload.');
-    }
-    return serverErrorResponse('Failed to create profile.', error);
-  }
-}
+// NOTE: The POST functionality for creating a profile is now handled by the
+// `registerUser` function in `auth-utils.ts`, which calls a secure Cloud Function.
+// This ensures that a user profile document is only created upon successful
+// Firebase Authentication user creation. This POST endpoint is no longer needed.
