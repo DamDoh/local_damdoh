@@ -23,9 +23,15 @@ export const GeoPointSchema = z.object({
 export const StakeholderProfileSchema = z.object({
   id: z.string(),
   uid: z.string().optional(),
+  universalId: z.string().uuid().optional(),
+  phoneNumber: z.string().optional(),
+  isActive: z.boolean().default(true).optional(),
+  qrCardPrinted: z.boolean().default(false).optional(),
+  physicalCardId: z.string().optional(),
   displayName: z.string().min(2, "Name must be at least 2 characters.").max(100),
   email: z.string().email(),
   avatarUrl: z.string().url().optional().or(z.literal('')),
+  photoURL: z.string().url().optional().or(z.literal('')), // Add photoURL for compatibility with FirebaseUser
   bannerUrl: z.string().url().optional().or(z.literal('')),
   primaryRole: z.enum(STAKEHOLDER_ROLES),
   secondaryRoles: z.array(z.string()).optional(),
@@ -37,6 +43,7 @@ export const StakeholderProfileSchema = z.object({
   contactInfo: ContactInfoSchema.optional(),
   profileData: z.any().optional(),
   connections: z.array(z.string()).optional(), 
+  linkedAccounts: z.any().optional(),
   createdAt: z.any(), // Allow string or timestamp for flexibility
   updatedAt: z.any(),
 });
