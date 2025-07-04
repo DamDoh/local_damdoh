@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -245,6 +246,7 @@ export const createKnowledgeArticle = functions.https.onCall(
         "error.unauthenticated",
       );
     }
+    const callerUid = context.auth.uid; // Get the UID of the user calling the function
 
     const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km } = data;
     if (!title_en && !title_km) {
@@ -270,6 +272,7 @@ export const createKnowledgeArticle = functions.https.onCall(
             dataAiHint: dataAiHint || null,
             tags: tags || [],
             author: author || "DamDoh Team",
+            authorId: callerUid, // Store the author's UID
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
