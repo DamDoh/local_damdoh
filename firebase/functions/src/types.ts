@@ -387,7 +387,6 @@ export interface ResearcherDashboardData {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review' | 'Draft';
-    actionLink: string;
   }[];
 }
 
@@ -405,7 +404,7 @@ export interface AgronomistDashboardData {
     issueSummary: string;
     requestDate: string; // ISO String
   }[];
-  knowledgeBaseContributions: {
+  knowledgeHubContributions: {
     id: string;
     title: string;
     status: 'Published' | 'Pending Review';
@@ -499,111 +498,19 @@ export interface WasteManagementDashboardData {
   }[];
 }
 
-
-export interface KnfBatch {
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
     id: string;
-    userId: string;
-    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
-    typeName: string;
-    ingredients: string;
-    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
-    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-    nextStep: string;
-    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
-    createdAt: { _seconds: number, _nanoseconds: number } | any;
-}
-
-export interface YieldData {
-    crop: string;
-    historical: number;
-    predicted: number;
-    unit: string;
-  }
-
-export interface IrrigationSchedule {
-    next_run: string;
-    duration_minutes: number;
-    recommendation: string;
-  }
-
-export interface MatchedBuyer {
-    id: string;
-    name: string;
-    matchScore: number;
-    request: string;
-    contactId: string;
-  }
-
-export interface TrustScore {
-    reputation: number;
-    certifications: Certification[];
-  }
-
-export interface Certification {
-    id: string;
-    name: string;
-    issuingBody: string;
-  }
-
-export interface AgroTourismDashboardData {
-  upcomingBookings: {
-    id: string;
-    experienceTitle: string;
-    guestName: string;
-    date: string; // ISO string
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
     actionLink: string;
   }[];
-  listedExperiences: {
+  inventory: {
     id: string;
-    title: string;
-    location: string;
-    status: 'Published' | 'Draft';
-    bookingsCount: number;
-    actionLink: string;
-  }[];
-  guestReviews: {
-    id: string;
-    guestName: string;
-    experienceTitle: string;
-    rating: number; // e.g., 1-5
-    comment: string;
-    actionLink: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
   }[];
 }
-
-export interface InsuranceProviderDashboardData {
-  pendingClaims: {
-    id: string;
-    policyHolderName: string;
-    policyType: 'Crop' | 'Livestock';
-    claimDate: string; // ISO string
-    status: 'Submitted' | 'Under Review';
-    actionLink: string;
-  }[];
-  riskAssessmentAlerts: {
-    id: string;
-    policyHolderName: string;
-    alert: string;
-    severity: 'High' | 'Medium' | 'Low';
-    actionLink: string;
-  }[];
-  activePolicies: {
-    id: string;
-    policyHolderName: string;
-    policyType: string;
-    coverageAmount: number;
-    expiryDate: string; // ISO string
-  }[];
-}
-
-export interface PostReply {
-    id: string;
-    author: {
-        id: string;
-        name: string;
-        avatarUrl?: string;
-    };
-    content: string;
-    timestamp: string;
-}
-

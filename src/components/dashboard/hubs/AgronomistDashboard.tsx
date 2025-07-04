@@ -67,7 +67,7 @@ export const AgronomistDashboard = () => {
   const {
     pendingConsultationRequests,
     assignedFarmersOverview,
-    knowledgeBaseContributions,
+    knowledgeHubContributions: knowledgeBaseContributions,
   } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {

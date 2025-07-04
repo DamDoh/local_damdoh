@@ -1,2 +1,6 @@
-// This file is obsolete and has been removed.
-// The active page is now located at /src/app/[locale]/page.tsx
+
+// This component renders the main dashboard and is used for the root path.
+// The primary, internationalized page is at /src/app/[locale]/page.tsx.
+import RootPage from './[locale]/page';
+
+export default RootPage;
