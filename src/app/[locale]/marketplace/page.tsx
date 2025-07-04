@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
-import { getListingTypeFilterOptions, type ListingType } from "@/lib/constants";
+import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
@@ -18,7 +18,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
-import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
+import { getAllMarketplaceItemsFromDB, performSearch } from "@/lib/db-utils";
 import { Brain } from "lucide-react";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
@@ -31,9 +31,10 @@ function MarketplaceContent() {
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>('All');
   const [locationFilter, setLocationFilter] = useState("");
   
-  const [items, setItems] = useState<MarketplaceItem[]>([]);
+  const [displayedItems, setDisplayedItems] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
+  const [allItemsForAI, setAllItemsForAI] = useState<MarketplaceItem[]>([]);
   const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(true);
   const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
@@ -48,86 +49,111 @@ function MarketplaceContent() {
 
   const listingTypeFilterOptions = getListingTypeFilterOptions(tConstants);
 
+  // Effect to fetch ALL items once, just for AI recommendations.
   useEffect(() => {
     setIsMounted(true);
-
-    const fetchItems = async () => {
-      setIsLoading(true);
-      try {
+    const fetchAllForAI = async () => {
         const result = await getAllMarketplaceItemsFromDB();
-        setItems(Array.isArray(result) ? (result as MarketplaceItem[]) : []);
-        return Array.isArray(result) ? (result as MarketplaceItem[]) : [];
+        const allFetchedItems = Array.isArray(result) ? (result as MarketplaceItem[]) : [];
+        setAllItemsForAI(allFetchedItems);
+    }
+    fetchAllForAI();
+  }, []);
+
+  // Effect to generate AI recommendations once all items are fetched.
+  useEffect(() => {
+    if (allItemsForAI.length === 0) {
+        setIsLoadingAiRecommendations(false);
+        return;
+    }
+    const fetchAiRecommendations = async () => {
+        setIsLoadingAiRecommendations(true);
+        try {
+            const mockUserContext: MarketplaceRecommendationInput = {
+            stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
+            recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
+            viewedCategories: userType === 'farmer' ? ["fertilizers-soil"] : userType === 'trader' ? ["grains-cereals"] : ["fresh-produce-vegetables"],
+            currentLocation: "Kenya" 
+            };
+            const recommendationsOutput = await getMarketplaceRecommendations(mockUserContext);
+            
+            const recommendedFullItems: MarketplaceItem[] = [];
+            const reasons: Record<string, string> = {};
+
+            if (recommendationsOutput && Array.isArray(recommendationsOutput.suggestedItems)) {
+                recommendationsOutput.suggestedItems.forEach(suggested => {
+                const foundItem = allItemsForAI.find(item => item && item.id === suggested.itemId);
+                if (foundItem) {
+                    recommendedFullItems.push(foundItem as MarketplaceItem);
+                    reasons[foundItem.id] = suggested.reason;
+                }
+                });
+            }
+            setAiRecommendedItems(recommendedFullItems.slice(0, 5)); 
+            setAiRecommendationReasons(reasons);
+        } catch (error) {
+            console.error("Error fetching AI marketplace recommendations:", error);
+            toast({ variant: "destructive", title: "Could not fetch AI recommendations" });
+        } finally {
+            setIsLoadingAiRecommendations(false);
+        }
+    };
+    fetchAiRecommendations();
+  }, [allItemsForAI, userType, toast]);
+  
+  // Effect to perform search when filters change
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const fetchFilteredItems = async () => {
+      setIsLoading(true);
+      const filters = [];
+      if (currentCategory) {
+        filters.push({ type: 'category', value: currentCategory });
+      }
+      if (listingTypeFilter !== 'All') {
+        filters.push({ type: 'listingType', value: listingTypeFilter });
+      }
+
+      const searchPayload = {
+        mainKeywords: searchTerm.split(' ').filter(Boolean),
+        identifiedLocation: locationFilter,
+        suggestedFilters: filters,
+      };
+
+      try {
+        const results = await performSearch(searchPayload);
+        const mappedItems = results.map((res: any): MarketplaceItem => ({
+            id: res.itemId,
+            name: res.title,
+            description: res.description,
+            imageUrl: res.imageUrl,
+            location: res.location,
+            listingType: res.listingType,
+            price: res.price,
+            currency: res.currency,
+            perUnit: res.perUnit,
+            category: res.tags?.find((t: string) => UNIFIED_MARKETPLACE_CATEGORY_IDS.includes(t)) || res.tags?.[0] || '',
+            sellerId: 'unknown',
+            createdAt: res.createdAt?.toDate ? res.createdAt.toDate().toISOString() : new Date().toISOString(),
+            updatedAt: res.updatedAt?.toDate ? res.updatedAt.toDate().toISOString() : new Date().toISOString(),
+        }));
+        setDisplayedItems(mappedItems);
       } catch (error) {
-        console.error("Failed to fetch marketplace items:", error);
+        console.error("Failed to perform search:", error);
         toast({
           variant: "destructive",
-          title: "Error",
-          description: "Could not fetch marketplace items. Please try again later.",
+          title: "Search Error",
+          description: "Could not fetch marketplace items.",
         });
-        setItems([]);
-        return [];
+        setDisplayedItems([]);
       } finally {
         setIsLoading(false);
       }
     };
-    
-    const fetchAiRecommendations = async (allItems: MarketplaceItem[]) => {
-      if (allItems.length === 0) {
-        setIsLoadingAiRecommendations(false);
-        return;
-      }
-      setIsLoadingAiRecommendations(true);
-      try {
-        const mockUserContext: MarketplaceRecommendationInput = {
-          stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
-          recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
-          viewedCategories: userType === 'farmer' ? ["fertilizers-soil"] : userType === 'trader' ? ["grains-cereals"] : ["fresh-produce-vegetables"],
-          currentLocation: "Kenya" 
-        };
-        const recommendationsOutput = await getMarketplaceRecommendations(mockUserContext);
-        
-        const recommendedFullItems: MarketplaceItem[] = [];
-        const reasons: Record<string, string> = {};
 
-        if (recommendationsOutput && Array.isArray(recommendationsOutput.suggestedItems)) {
-            recommendationsOutput.suggestedItems.forEach(suggested => {
-              const foundItem = allItems.find(item => item && item.id === suggested.itemId);
-              if (foundItem) {
-                recommendedFullItems.push(foundItem as MarketplaceItem);
-                reasons[foundItem.id] = suggested.reason;
-              }
-            });
-        }
-        setAiRecommendedItems(recommendedFullItems.slice(0, 5)); 
-        setAiRecommendationReasons(reasons);
-      } catch (error) {
-        console.error("Error fetching AI marketplace recommendations:", error);
-        toast({ variant: "destructive", title: "Could not fetch AI recommendations" });
-      } finally {
-        setIsLoadingAiRecommendations(false);
-      }
-    };
-    
-    fetchItems().then((fetchedItems) => {
-        fetchAiRecommendations(fetchedItems);
-    });
-  }, [userType, toast]);
-  
-  const filteredMarketplaceItems = useMemo(() => {
-    if (!isMounted || !Array.isArray(items)) return [];
-    
-    return items.filter(item => {
-      if (!item) return false;
-      const searchLower = searchTerm.toLowerCase();
-      const locationLower = locationFilter.toLowerCase();
-      const nameMatch = (item.name || '').toLowerCase().includes(searchLower);
-      const descriptionMatch = (item.description || '').toLowerCase().includes(searchLower);
-      const categoryPass = !currentCategory || item.category === currentCategory;
-      const listingTypePass = listingTypeFilter === 'All' || item.listingType === listingTypeFilter;
-      const locationMatch = locationFilter === "" || (item.location || '').toLowerCase().includes(locationLower);
-      return (nameMatch || descriptionMatch) && categoryPass && listingTypePass && locationMatch;
-    });
-  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, items, isMounted]); 
+    fetchFilteredItems();
+  }, [isMounted, searchTerm, currentCategory, listingTypeFilter, locationFilter, toast]);
 
   const isCurrentHomepage = homepagePreference === pathname;
   const handleSetHomepage = useCallback(() => {
@@ -140,7 +166,7 @@ function MarketplaceContent() {
     }
   }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
 
-  if (isLoading || !isMounted) return <MarketplaceSkeleton />;
+  if (!isMounted) return <MarketplaceSkeleton />;
   
   return (
     <div className="space-y-6">
@@ -215,9 +241,21 @@ function MarketplaceContent() {
           )}
 
           <h2 className="text-xl font-semibold mb-4 mt-6">{t('discoverMore')}</h2>
-          {filteredMarketplaceItems.length > 0 ? (
+          {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {filteredMarketplaceItems.map(item => <ItemCard key={item.id} item={item} />)}
+                {Array.from({ length: 5 }).map((_, i) => (
+                    <div key={i} className="w-52 space-y-2">
+                        <Skeleton className="h-32 w-full rounded-lg" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-3 w-1/2" />
+                        <Skeleton className="h-5 w-1/3" />
+                        <Skeleton className="h-9 w-full" />
+                    </div>
+                ))}
+            </div>
+          ) : displayedItems.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              {displayedItems.map(item => <ItemCard key={item.id} item={item} />)}
             </div>
           ) : (
             <div className="text-center py-16 col-span-full border-2 border-dashed rounded-lg">

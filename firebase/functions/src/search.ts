@@ -73,6 +73,14 @@ export const onSourceDocumentWriteIndex = functions.firestore
       searchable_terms: searchable_terms,
       location: newData.location || null,
     };
+    
+    // Add specific fields for marketplace items to allow for richer filtering
+    if (collectionId === 'marketplaceItems') {
+        indexData.price = newData.price ?? null;
+        indexData.currency = newData.currency ?? null;
+        indexData.perUnit = newData.perUnit ?? null;
+        indexData.listingType = newData.listingType ?? null; 
+    }
 
     try {
       await indexItemRef.set(indexData, {merge: true});
@@ -98,35 +106,33 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     }
     const { mainKeywords, identifiedLocation, suggestedFilters } = data;
     
-    if (!Array.isArray(mainKeywords) || mainKeywords.length === 0) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required for search.");
+    if (!Array.isArray(mainKeywords)) {
+        throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
     }
 
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
-        // FIX: Ensure all keywords are strings before processing to prevent crashes.
         const validKeywords = mainKeywords.filter((k): k is string => typeof k === 'string' && k.trim() !== '');
-        const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
-
-        if (searchTerms.length > 0) {
-            query = query.where("searchable_terms", "array-contains-any", searchTerms);
+        if (validKeywords.length > 0) {
+            const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
+            if (searchTerms.length > 0) {
+                 query = query.where("searchable_terms", "array-contains-any", searchTerms);
+            }
         }
         
-        // Apply filters if they exist from the AI's interpretation
         const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category');
-        if (categoryFilter) {
+        if (categoryFilter?.value) {
             query = query.where('tags', 'array-contains', categoryFilter.value);
         }
         
         const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType');
-         if (listingTypeFilter) {
-            query = query.where('tags', 'array-contains', listingTypeFilter.value);
+         if (listingTypeFilter?.value) {
+            query = query.where('listingType', '==', listingTypeFilter.value);
         }
 
         if (identifiedLocation) {
-            // Simple tag search for location for now. A real app might use Geoqueries.
-            query = query.where("tags", "array-contains", identifiedLocation);
+            query = query.where("location", "==", identifiedLocation);
         }
 
         const snapshot = await query.orderBy("updatedAt", "desc").limit(20).get();
