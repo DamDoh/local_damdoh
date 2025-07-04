@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -209,35 +210,6 @@ export interface LogisticsDashboardData {
     };
 }
 
-export interface FinancialApplication {
-    id: string;
-    applicantName: string;
-    type: string;
-    amount: number;
-    currency: string;
-    status: string;
-    riskScore: number;
-    submittedAt: string | null; // ISO string
-    actionLink: string;
-}
-export interface FiDashboardData {
-    pendingApplications: FinancialApplication[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
-    };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-}
-
 export interface FieldAgentDashboardData {
     assignedFarmers: {
         id: string;
@@ -257,6 +229,31 @@ export interface FieldAgentDashboardData {
         description: string;
         actionLink: string;
     };
+}
+
+export interface FiDashboardData {
+    pendingApplications: {
+        id: string;
+        applicantName: string;
+        type: string;
+        amount: number;
+        riskScore: number;
+        actionLink: string;
+    }[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
 }
 
 export interface InputSupplierDashboardData {
