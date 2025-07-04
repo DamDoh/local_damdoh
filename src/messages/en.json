@@ -182,7 +182,7 @@
   },
   "networkPage": {
     "title": "Discover Your Network",
-    "description": "Find and connect with stakeholders across the entire agricultural value chain.",
+    "description": "Find and connect with stakeholders across the entire agricultural supply chain.",
     "refreshSuggestions": "Refresh Suggestions",
     "searchPlaceholder": "Search by name, role, or summary...",
     "locationPlaceholder": "Filter by location...",
@@ -194,5 +194,17 @@
     "noStakeholdersHint": "Try adjusting your search filters or check back later.",
     "connect": "Connect",
     "message": "Message"
+  },
+  "Blog": {
+    "backLink": "Back to Blog",
+    "errors": {
+      "title": "Error",
+      "load": "Could not load the blog post. Please try again later."
+    },
+    "notFound": {
+      "title": "Post Not Found",
+      "description": "The blog post you are looking for does not exist.",
+      "backButton": "Back to Blog"
+    }
   }
 }
