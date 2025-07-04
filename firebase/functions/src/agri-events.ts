@@ -312,6 +312,34 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
     });
 });
 
+export const getEventAttendees = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { eventId } = data;
+    if (!eventId) {
+        throw new functions.https.HttpsError("invalid-argument", "An eventId must be provided.");
+    }
+
+    const eventRef = db.collection("agri_events").doc(eventId);
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== uid) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view attendees for this event.");
+    }
+
+    const attendeesSnapshot = await eventRef.collection('attendees').orderBy('registeredAt', 'desc').get();
+    
+    const attendees = attendeesSnapshot.docs.map(doc => {
+        const attendeeData = doc.data();
+        return {
+            id: doc.id,
+            ...attendeeData,
+            registeredAt: (attendeeData.registeredAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            checkedInAt: (attendeeData.checkedInAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+        }
+    });
+
+    return { attendees };
+});
+
 // =================================================================
 // STAFF MANAGEMENT FUNCTIONS
 // =================================================================

@@ -4,7 +4,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy, QrCode, ScanLine, UserCheck, XCircle, AlertCircle, Info, Users, UserPlus, Trash2, Search } from "lucide-react";
+import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy, QrCode, ScanLine, UserCheck, XCircle, AlertCircle, Info, Users, UserPlus, Trash2, Search, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -30,6 +30,8 @@ import { QrScanner } from '@/components/QrScanner';
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useAuth } from "@/lib/auth-utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 
 // Duplicating these types here because they are specific to this management page and might evolve.
 // In a larger app, these could be in a more shared but specific types file.
@@ -46,6 +48,13 @@ interface EventStaffMember {
   id: string;
   displayName?: string;
   avatarUrl?: string;
+}
+interface EventAttendee {
+    id: string;
+    displayName: string;
+    email: string;
+    registeredAt: string;
+    checkedIn: boolean;
 }
 
 // --- Promotions Tab Components ---
@@ -340,6 +349,83 @@ const StaffManagementTab = ({ eventId, organizerId }: { eventId: string, organiz
     );
 };
 
+// --- Attendees Tab Component ---
+const AttendeesTab = ({ eventId }: { eventId: string }) => {
+    const t = useTranslations('AgriEvents.attendees');
+    const { toast } = useToast();
+    const [attendees, setAttendees] = useState<EventAttendee[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getAttendeesCallable = useMemo(() => httpsCallable(functions, 'getEventAttendees'), []);
+
+    useEffect(() => {
+        if (!eventId) return;
+        const fetchAttendees = async () => {
+            setIsLoading(true);
+            try {
+                const result = await getAttendeesCallable({ eventId });
+                setAttendees((result.data as any)?.attendees || []);
+            } catch (error: any) {
+                toast({ variant: 'destructive', title: "Error", description: "Could not fetch event attendees." });
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchAttendees();
+    }, [eventId, getAttendeesCallable, toast]);
+
+    const handleDownloadCsv = () => {
+        // Placeholder functionality
+        toast({ title: "Feature Coming Soon", description: "CSV export for attendee list will be available in a future update." });
+    };
+
+    return (
+        <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                    <CardTitle>{t('title')} ({attendees.length})</CardTitle>
+                    <CardDescription>{t('description')}</CardDescription>
+                </div>
+                <Button onClick={handleDownloadCsv} variant="outline" size="sm">
+                    <Download className="mr-2 h-4 w-4" />
+                    {t('downloadCsv')}
+                </Button>
+            </CardHeader>
+            <CardContent>
+                {isLoading ? <Skeleton className="h-40 w-full" /> : 
+                attendees.length > 0 ? (
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>{t('nameHeader')}</TableHead>
+                                <TableHead>{t('emailHeader')}</TableHead>
+                                <TableHead>{t('registeredOnHeader')}</TableHead>
+                                <TableHead>{t('statusHeader')}</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {attendees.map(attendee => (
+                                <TableRow key={attendee.id}>
+                                    <TableCell className="font-medium">{attendee.displayName}</TableCell>
+                                    <TableCell>{attendee.email}</TableCell>
+                                    <TableCell>{new Date(attendee.registeredAt).toLocaleDateString()}</TableCell>
+                                    <TableCell>
+                                        <Badge variant={attendee.checkedIn ? 'default' : 'secondary'}>
+                                            {attendee.checkedIn ? t('statusCheckedIn') : t('statusRegistered')}
+                                        </Badge>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                ) : (
+                    <p className="text-sm text-center text-muted-foreground py-8">{t('noAttendees')}</p>
+                )}
+            </CardContent>
+        </Card>
+    );
+};
+
 
 // --- Main Page Component ---
 export default function ManageEventPage() {
@@ -397,7 +483,7 @@ export default function ManageEventPage() {
                     <Card><CardHeader><CardTitle>Dashboard</CardTitle></CardHeader><CardContent><p>Event dashboard will be here.</p></CardContent></Card>
                 </TabsContent>
                 <TabsContent value="attendees" className="mt-4">
-                    <Card><CardHeader><CardTitle>Attendees</CardTitle></CardHeader><CardContent><p>Attendee management will be here.</p></CardContent></Card>
+                   <AttendeesTab eventId={eventId} />
                 </TabsContent>
                 <TabsContent value="promotions" className="mt-4">
                     <div className="space-y-6">
