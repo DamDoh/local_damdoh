@@ -22,7 +22,7 @@ import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { AgriEvent, EventCoupon, EventStaffMember, UserProfile } from "@/lib/types";
+import type { AgriEvent, UserProfile } from "@/lib/types";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -31,6 +31,22 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useAuth } from "@/lib/auth-utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+// Duplicating these types here because they are specific to this management page and might evolve.
+// In a larger app, these could be in a more shared but specific types file.
+interface EventCoupon {
+  id: string;
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  discountValue?: number;
+  expiresAt?: string | null;
+  usageCount: number;
+  usageLimit?: number | null;
+}
+interface EventStaffMember {
+  id: string;
+  displayName?: string;
+  avatarUrl?: string;
+}
 
 // --- Promotions Tab Components ---
 

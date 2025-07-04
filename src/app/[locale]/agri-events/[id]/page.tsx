@@ -8,7 +8,7 @@ import QRCode from 'qrcode.react';
 import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import type { AgriEvent, EventAttendee } from '@/lib/types';
+import type { AgriEvent } from '@/lib/types';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
@@ -25,7 +25,6 @@ import { useTranslations } from 'next-intl';
 
 interface AgriEventWithAttendees extends AgriEvent {
   isRegistered?: boolean;
-  attendees?: EventAttendee[];
 }
 
 function EventDetailSkeleton() {
