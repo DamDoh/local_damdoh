@@ -14,6 +14,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
+import { generateForumPostDraft } from '@/ai/flows/generate-forum-post-draft';
 
 export default function CreatePostPage() {
     const params = useParams();
@@ -30,7 +31,6 @@ export default function CreatePostPage() {
     
     const functions = getFunctions(firebaseApp);
     const createForumPost = useMemo(() => httpsCallable(functions, 'createForumPost'), [functions]);
-    const generateForumPostDraft = useMemo(() => httpsCallable(functions, 'generateForumPostDraft'), [functions]);
 
     const handleGenerateWithAi = async () => {
         if (!aiPrompt.trim()) {
@@ -44,18 +44,17 @@ export default function CreatePostPage() {
         setIsGenerating(true);
         try {
             const result = await generateForumPostDraft({ topicId, prompt: aiPrompt });
-            const draft = result.data as { title: string, content: string };
-            setTitle(draft.title);
-            setContent(draft.content);
+            setTitle(result.title);
+            setContent(result.content);
             toast({
                 title: t('success.aiDraft.title'),
                 description: t('success.aiDraft.description'),
             });
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error generating post draft:", error);
             toast({
                 title: t('errors.aiDraft.title'),
-                description: t('errors.aiDraft.description'),
+                description: error.message || t('errors.aiDraft.description'),
                 variant: "destructive",
             });
         } finally {
@@ -84,11 +83,11 @@ export default function CreatePostPage() {
             });
             
             router.push(`/forums/${topicId}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error creating post:", error);
             toast({
                 title: t('errors.general.title'),
-                description: t('errors.general.description'),
+                description: error.message || t('errors.general.description'),
                 variant: "destructive",
             });
         } finally {
