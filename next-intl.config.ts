@@ -1,5 +1,3 @@
-import {getRequestConfig} from 'next-intl/server';
- 
-export default getRequestConfig(async ({locale}) => ({
-  messages: (await import(`./src/messages/${locale}.json`)).default
-}));
+
+// This file is obsolete and can be deleted.
+// The configuration logic has been moved to the root i18n.ts file.

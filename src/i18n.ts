@@ -1,9 +1,2 @@
-export const locales = ['en', 'fr', 'de', 'km'] as const;
-export type Locale = (typeof locales)[number];
- 
-export const localeNames: Record<string, string> = {
-  en: "English",
-  fr: "Français",
-  de: "Deutsch",
-  km: "ភាសាខ្មែរ",
-};
+// This file is obsolete. The logic has been moved to the root i18n.ts file.
+// This file can be deleted.

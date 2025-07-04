@@ -43,6 +43,7 @@ import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { locales } from "../../../i18n";
 
 interface NavLinkProps {
   href: string;
@@ -175,7 +176,7 @@ export function AppHeader() {
   const getSectionTitle = () => {
     const pathSegments = pathname.split('/').filter(Boolean);
     // Remove locale if present
-    if (locales.includes(pathSegments[0])) {
+    if (locales.includes(pathSegments[0] as any)) {
       pathSegments.shift();
     }
     const path = pathSegments[0] || '';
@@ -325,5 +326,3 @@ export function AppHeader() {
     </>
   );
 }
-
-const locales = ['en', 'es', 'fr', 'de', 'ja', 'ko', 'zh', 'hi', 'ar', 'pt', 'ru', 'id', 'ms', 'th', 'tr', 'vi', 'km'];
