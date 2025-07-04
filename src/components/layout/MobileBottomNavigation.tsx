@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Home, Search, ShoppingCart, MessageSquare, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { locales } from "../../../i18n";
 
 interface NavItem {
   href: string;
@@ -29,7 +30,9 @@ export function MobileBottomNavigation() {
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background border-t border-border shadow-lg z-40 flex justify-around items-center print:hidden">
       {navItems.map((item) => {
-        const isActive = item.href === "/" ? pathname === "/" || pathname.startsWith('/en') || pathname.startsWith('/es') : pathname.startsWith(item.href) || pathname.startsWith(`/en${item.href}`) || pathname.startsWith(`/es${item.href}`);
+        const pathWithoutLocale = pathname.startsWith('/en') || pathname.startsWith('/es') || pathname.startsWith('/de') || pathname.startsWith('/km') ? pathname.substring(3) : pathname;
+        const isActive = item.href === "/" ? pathWithoutLocale === "/" : pathWithoutLocale.startsWith(item.href);
+
         return (
           <Link
             key={item.label}

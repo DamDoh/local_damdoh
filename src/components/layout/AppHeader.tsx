@@ -176,7 +176,7 @@ export function AppHeader() {
   const getSectionTitle = () => {
     const pathSegments = pathname.split('/').filter(Boolean);
     // Remove locale if present
-    if (locales.includes(pathSegments[0] as any)) {
+    if (pathSegments.length > 0 && (locales as readonly string[]).includes(pathSegments[0])) {
       pathSegments.shift();
     }
     const path = pathSegments[0] || '';

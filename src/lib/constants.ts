@@ -3,16 +3,8 @@ import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialSe
 
 export const APP_NAME = "DamDoh";
 
-export const locales = ['en', 'fr', 'de', 'km'] as const;
-export type Locale = (typeof locales)[number];
- 
-export const localeNames: Record<string, string> = {
-  en: "English",
-  fr: "Français",
-  de: "Deutsch",
-  km: "ភាសាខ្មែរ",
-};
-
+// These have been moved to the root i18n.ts file to be the single source of truth
+// and to avoid dependency issues with the middleware.
 
 export const STAKEHOLDER_ROLES = [
   'Farmer',
