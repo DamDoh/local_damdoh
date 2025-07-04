@@ -426,6 +426,31 @@ export interface AgronomistDashboardData {
   }[];
 }
 
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO String
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number;
+    comment: string;
+    actionLink: string;
+  }[];
+}
 
 export interface EnergyProviderDashboardData {
   projectLeads: {
