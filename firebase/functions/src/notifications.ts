@@ -46,9 +46,8 @@ async function createAndSendNotification(
     notificationId: newNotificationRef.id,
     userId: userId,
     ...notificationPayload,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
     isRead: false,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(), // For consistency with other collections
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
   });
   console.log(`Notification document created: ${newNotificationRef.id}`);
 
@@ -132,17 +131,14 @@ export const onNewConnectionRequest = functions.firestore
         const requesterName = requesterDoc.data()?.displayName || 'Someone';
 
         const notificationPayload = {
-            userId: requestData.recipientId, // Notify the recipient
-            payload: {
-                type: "new_connection_request",
-                title_en: "New Connection Request",
-                body_en: `${requesterName} wants to connect with you.`,
-                actorId: requestData.requesterId,
-                linkedEntity: { collection: "network", documentId: "my-network" },
-            },
+            type: "new_connection_request",
+            title_en: "New Connection Request",
+            body_en: `${requesterName} wants to connect with you.`,
+            actorId: requestData.requesterId,
+            linkedEntity: { collection: "network", documentId: "my-network" },
         };
 
-        await createAndSendNotification(notificationPayload.userId, notificationPayload.payload);
+        await createAndSendNotification(requestData.recipientId, notificationPayload);
     });
 
 /**

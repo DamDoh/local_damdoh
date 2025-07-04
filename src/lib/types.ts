@@ -97,7 +97,6 @@ export interface Notification {
   } | null;
   isRead: boolean;
   createdAt: any; // Firestore Timestamp
-  postId?: string; // For backwards compatibility if needed
 }
 
 // =================================================================
