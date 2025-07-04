@@ -396,7 +396,6 @@ export interface InsuranceProviderDashboardData {
   }[];
 }
 
-
 export interface FiDashboardData {
     pendingApplications: {
         id: string;
@@ -712,20 +711,6 @@ export interface CrowdfunderDashboardData {
   }[];
 }
 
-export interface CooperativeDashboardData {
-    memberCount: number;
-    totalLandArea: number; // in Hectares
-    aggregatedProduce: {
-        id: string;
-        productName: string;
-        quantity: number; // in tons
-        quality: string;
-        readyBy: string; // ISO Date string
-    }[];
-    pendingMemberApplications: number;
-}
-
-
 export interface EquipmentSupplierDashboardData {
   listedEquipment: {
     id: string;
@@ -764,6 +749,7 @@ export interface WasteManagementDashboardData {
     actionLink: string;
   }[];
 }
+    
 
 export interface PackagingSupplierDashboardData {
   incomingOrders: {

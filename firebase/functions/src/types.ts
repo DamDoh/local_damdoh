@@ -544,3 +544,28 @@ export interface SustainabilityDashboardData {
     sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
     certifications: { id:string; name: string; status: string; expiry: string; }[];
 }
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
+}
