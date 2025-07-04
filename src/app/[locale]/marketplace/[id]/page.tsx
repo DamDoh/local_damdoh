@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
-import { useParams, notFound } from 'next/navigation';
+import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useParams, notFound, useSearchParams, useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
@@ -13,9 +13,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 
@@ -43,20 +46,34 @@ function ItemPageSkeleton() {
     );
 }
 
-export default function MarketplaceItemPage() {
+function ItemPageContent() {
     const params = useParams();
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const itemId = params.id as string;
     const { user } = useAuth();
+    const { toast } = useToast();
   
     const [item, setItem] = useState<MarketplaceItem | null>(null);
     const [seller, setSeller] = useState<UserProfile | null>(null);
     const [shop, setShop] = useState<Shop | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [couponCode, setCouponCode] = useState('');
+    const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
+    const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; type: 'fixed' | 'percentage' } | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
     const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'getShopDetails'), [functions]);
+    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
+    
+    useEffect(() => {
+        const couponFromUrl = searchParams.get('coupon');
+        if (couponFromUrl) {
+            setCouponCode(couponFromUrl);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         if (!itemId) return;
@@ -64,21 +81,17 @@ export default function MarketplaceItemPage() {
         const fetchData = async () => {
             setIsLoading(true);
             setError(null);
+            setAppliedCoupon(null);
             try {
-                // Fetch the item first
                 const itemResult = await getMarketplaceItemById({ itemId });
                 const itemData = itemResult.data as MarketplaceItem | null;
 
-                if (!itemData) {
-                    throw new Error("Marketplace item not found.");
-                }
+                if (!itemData) throw new Error("Marketplace item not found.");
                 setItem(itemData);
 
-                // Then fetch seller and shop details
                 const sellerProfile = await getProfileByIdFromDB(itemData.sellerId);
                 setSeller(sellerProfile);
                 
-                // Assuming the first shop is the relevant one for now
                 if(sellerProfile && sellerProfile.shops && sellerProfile.shops.length > 0) {
                      const shopResult = await getShopDetailsCallable({ shopId: sellerProfile.shops[0] });
                      setShop(shopResult.data as Shop);
@@ -94,35 +107,51 @@ export default function MarketplaceItemPage() {
 
         fetchData();
     }, [itemId, getMarketplaceItemById, getShopDetailsCallable]);
-
-
-    if (isLoading) {
-        return <ItemPageSkeleton />;
-    }
     
-    if (error) {
-        return (
-            <div className="text-center py-10">
-                <p className="text-destructive">{error}</p>
-                <Button variant="outline" asChild className="mt-4">
-                    <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link>
-                </Button>
-            </div>
-        )
-    }
+    const handleApplyCoupon = async () => {
+        if (!couponCode.trim() || !item) return;
+        setIsApplyingCoupon(true);
+        setAppliedCoupon(null);
+        try {
+            const result = await validateCouponCallable({ couponCode, sellerId: item.sellerId });
+            const data = result.data as { valid: boolean; message?: string; discountType?: 'fixed' | 'percentage'; discountValue?: number; code?: string };
 
-    if (!item) {
-        return notFound();
-    }
+            if(data.valid && data.discountType && data.discountValue && data.code){
+                setAppliedCoupon({
+                    code: data.code,
+                    type: data.discountType,
+                    discount: data.discountValue
+                });
+                toast({ title: "Coupon Applied!", description: `Discount of ${data.discountType === 'fixed' ? `$${data.discountValue}` : `${data.discountValue}%`} has been applied.` });
+            } else {
+                toast({ variant: 'destructive', title: "Invalid Coupon", description: data.message || "The coupon code could not be applied." });
+            }
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: 'Error', description: error.message || "An unexpected error occurred." });
+        } finally {
+            setIsApplyingCoupon(false);
+        }
+    };
+
+    const calculateDiscountedPrice = () => {
+        if (!appliedCoupon || !item?.price) return item?.price;
+        if (appliedCoupon.type === 'fixed') {
+            return Math.max(0, item.price - appliedCoupon.discount);
+        }
+        if (appliedCoupon.type === 'percentage') {
+            return item.price * (1 - appliedCoupon.discount / 100);
+        }
+        return item.price;
+    };
+
+    const discountedPrice = calculateDiscountedPrice();
+
+    if (isLoading) return <ItemPageSkeleton />;
+    if (error) return <div className="text-center py-10"><p className="text-destructive">{error}</p><Button variant="outline" asChild className="mt-4"><Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link></Button></div>;
+    if (!item) return notFound();
 
     const isOwner = user?.uid === item.sellerId;
-    
-    // Robustly handle skillsRequired, which might be an array, a string, or undefined.
-    const skills: string[] = Array.isArray(item.skillsRequired)
-        ? item.skillsRequired
-        : (typeof item.skillsRequired === 'string' && item.skillsRequired)
-            ? item.skillsRequired.split(',').map(s => s.trim())
-            : [];
+    const skills: string[] = Array.isArray(item.skillsRequired) ? item.skillsRequired : (typeof item.skillsRequired === 'string' && item.skillsRequired) ? item.skillsRequired.split(',').map(s => s.trim()) : [];
 
     return (
         <div className="max-w-4xl mx-auto space-y-6">
@@ -151,35 +180,21 @@ export default function MarketplaceItemPage() {
                     <div>
                         <Badge variant="secondary">{item.category}</Badge>
                         <h1 className="text-3xl font-bold mt-2">{item.name}</h1>
-                        <p className="text-3xl font-light text-primary flex items-center gap-2 mt-2">
-                           {item.listingType === 'Product' ? (
-                                <>
-                                    <DollarSign className="h-7 w-7"/> {item.price?.toFixed(2)} 
-                                    <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
-                                </>
-                           ) : (
-                                <>
-                                    <DollarSign className="h-7 w-7"/> {item.compensation || 'Contact for rates'}
-                                </>
-                           )}
-                        </p>
-                        <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                         <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
                             <MapPin className="h-4 w-4"/> {item.location}
                         </div>
                     </div>
 
                     <p className="text-muted-foreground whitespace-pre-line">{item.description}</p>
                     
-                    {item.listingType === 'Service' && (
-                        <div className="space-y-4">
+                    {item.listingType === 'Service' ? (
+                         <div className="space-y-4">
                             <Separator />
                              {skills.length > 0 && (
                                 <div>
                                     <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-primary" />Skills Required</h3>
                                     <div className="flex flex-wrap gap-2">
-                                        {skills.map((skill, index) => (
-                                            <Badge key={index} variant="outline">{skill.trim()}</Badge>
-                                        ))}
+                                        {skills.map((skill, index) => <Badge key={index} variant="outline">{skill.trim()}</Badge>)}
                                     </div>
                                 </div>
                              )}
@@ -189,9 +204,34 @@ export default function MarketplaceItemPage() {
                                     <p className="text-sm text-muted-foreground">{item.experienceLevel}</p>
                                 </div>
                              )}
+                            <div>
+                                <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><DollarSign className="h-4 w-4 text-primary" />Compensation</h3>
+                                <p className="text-sm text-muted-foreground">{item.compensation || 'Contact for rates'}</p>
+                            </div>
                             <Separator />
                         </div>
+                    ) : (
+                         <div>
+                            <p className="text-3xl font-light text-primary flex items-center gap-2">
+                                <DollarSign className="h-7 w-7"/> 
+                                {appliedCoupon && item.price && <span className="text-muted-foreground line-through text-2xl">${item.price.toFixed(2)}</span>}
+                                {discountedPrice?.toFixed(2)}
+                                <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
+                            </p>
+                            <div className="mt-4 p-4 border rounded-lg bg-muted/30">
+                                <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />Have a coupon code?</Label>
+                                <div className="flex gap-2 mt-2">
+                                    <Input id="coupon-code" placeholder="Enter code" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isApplyingCoupon || !!appliedCoupon} />
+                                    <Button onClick={handleApplyCoupon} disabled={!couponCode || isApplyingCoupon || !!appliedCoupon}>
+                                        {isApplyingCoupon && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        Apply
+                                    </Button>
+                                </div>
+                                {appliedCoupon && <p className="text-xs text-green-600 mt-1">Successfully applied coupon: {appliedCoupon.code}</p>}
+                            </div>
+                         </div>
                     )}
+                     
                      {seller && (
                         <Card>
                             <CardHeader>
@@ -220,7 +260,7 @@ export default function MarketplaceItemPage() {
                              <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />Edit Listing</Button>
                         ) : (
                             <>
-                                {item.listingType === 'Product' && <Button size="lg" className="w-full"><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>}
+                                <Button size="lg" className="w-full" onClick={() => toast({title: "Coming Soon!", description: "The shopping cart and checkout process will be implemented in a future update."})}><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>
                                 <Button asChild size="lg" variant="outline" className="w-full">
                                     <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact Seller</Link>
                                 </Button>
@@ -231,4 +271,12 @@ export default function MarketplaceItemPage() {
             </div>
         </div>
     )
+}
+
+export default function MarketplaceItemPageWrapper() {
+  return (
+    <Suspense fallback={<ItemPageSkeleton />}>
+      <ItemPageContent />
+    </Suspense>
+  );
 }

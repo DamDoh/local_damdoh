@@ -30,7 +30,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                 </Badge>
                 <Link href={`/marketplace/${item.id}`}>
                     <Image
-                        src={item.imageUrls?.[0] || 'https://placehold.co/600x400.png'}
+                        src={item.imageUrl || (Array.isArray(item.imageUrls) && item.imageUrls[0]) || 'https://placehold.co/600x400.png'}
                         alt={item.name}
                         width={300}
                         height={200}
@@ -44,10 +44,15 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                     <CardTitle className="text-sm font-semibold line-clamp-2 leading-tight h-8">{item.name}</CardTitle>
                 </Link>
                 <CardDescription className="text-xs text-muted-foreground">{item.location}</CardDescription>
-                <p className="text-md font-bold pt-1">
-                    ${item.price.toFixed(2)} 
-                    {item.priceUnit && <span className="text-xs font-normal text-muted-foreground"> / {item.priceUnit}</span>}
-                </p>
+                {/* Safely handle optional price */}
+                {typeof item.price === 'number' ? (
+                    <p className="text-md font-bold pt-1">
+                        ${item.price.toFixed(2)} 
+                        {item.perUnit && <span className="text-xs font-normal text-muted-foreground"> / {item.perUnit}</span>}
+                    </p>
+                ) : (
+                    <p className="text-sm font-semibold pt-1 text-muted-foreground">Contact for price</p>
+                )}
                 {reason && <p className="text-xs text-blue-500 pt-1 italic">"{reason}"</p>}
             </CardContent>
             <CardFooter className="p-2 pt-0">

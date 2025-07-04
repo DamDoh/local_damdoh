@@ -9,7 +9,6 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import { Loader2, Share2, ClipboardCopy, Ticket, Home } from 'lucide-react';
 import type { MarketplaceCoupon } from '@/lib/types';

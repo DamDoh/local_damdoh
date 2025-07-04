@@ -245,22 +245,6 @@ export interface EventCoupon {
 }
 
 
-export interface MarketplaceCoupon {
-  id: string;
-  sellerId: string;
-  code: string;
-  discountType: 'percentage' | 'fixed';
-  discountValue: number;
-  expiresAt: string | null; // ISO String
-  usageLimit?: number | null;
-  usageCount: number;
-  isActive: boolean;
-  applicableToListingIds?: string[];
-  applicableToCategories?: string[];
-  createdAt: string | null; // ISO String
-}
-
-
 // =================================================================
 // 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
 // These types serve as a blueprint for the data required for the
@@ -721,21 +705,6 @@ export interface CooperativeDashboardData {
         readyBy: string; // ISO Date string
     }[];
     pendingMemberApplications: number;
-}
-
-
-export interface Shop {
-  id: string;
-  ownerId: string;
-  name: string;
-  description: string;
-  stakeholderType: string;
-  logoUrl?: string | null;
-  bannerUrl?: string | null;
-  itemCount: number;
-  rating: number;
-  createdAt: string | null;
-  updatedAt: string | null;
 }
 
 
