@@ -295,56 +295,80 @@ function ItemPageContent() {
                             <Separator />
                         </div>
                     ) : isAgroTourismService ? (
-                        // Agro-Tourism Booking Widget
                         <Card className="shadow-lg">
-                           <CardContent className="pt-6 space-y-4">
-                                <div className="flex items-baseline gap-2">
-                                    <p className="text-2xl font-bold">${item.price?.toFixed(2)}</p>
-                                    <p className="text-sm text-muted-foreground">/ night</p>
-                                </div>
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <div className="grid grid-cols-2 border rounded-lg">
-                                            <div className="p-2 border-r">
-                                                <Label className="text-xs font-semibold">CHECK-IN</Label>
-                                                <p>{date?.from ? format(date.from, "LLL dd, y") : "Add date"}</p>
+                            {isBooked ? (
+                                <CardContent className="pt-6 text-center">
+                                    <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-2" />
+                                    <p className="font-semibold">Successfully Booked!</p>
+                                    <p className="text-sm text-muted-foreground mb-4">You can view your ticket below.</p>
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <Button className="w-full" variant="secondary"><QrCode className="mr-2 h-4 w-4" />View Your Ticket</Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="sm:max-w-xs">
+                                            <DialogHeader>
+                                                <DialogTitle className="text-center">Your Digital Ticket</DialogTitle>
+                                                <DialogDescription className="text-center">For {item.name}</DialogDescription>
+                                            </DialogHeader>
+                                            <div className="p-4 flex flex-col items-center justify-center gap-4">
+                                                <div className="p-4 bg-white rounded-lg border">
+                                                    <QRCode value={serviceQrCodeValue} size={200} />
+                                                </div>
+                                                <p className="text-sm text-center text-muted-foreground">Present this code to the operator for check-in.</p>
                                             </div>
-                                            <div className="p-2">
-                                                <Label className="text-xs font-semibold">CHECK-OUT</Label>
-                                                <p>{date?.to ? format(date.to, "LLL dd, y") : "Add date"}</p>
-                                            </div>
-                                        </div>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0" align="start">
-                                        <Calendar
-                                            initialFocus
-                                            mode="range"
-                                            defaultMonth={date?.from}
-                                            selected={date}
-                                            onSelect={setDate}
-                                            numberOfMonths={1}
-                                            disabled={(day) => day < new Date(new Date().setHours(0,0,0,0))}
-                                        />
-                                    </PopoverContent>
-                                </Popover>
-                                <div>
-                                    <Label htmlFor="guests" className="text-xs font-semibold">GUESTS</Label>
-                                    <Input id="guests" type="number" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value, 10) || 1)} />
-                                </div>
-                                 <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking || isBooked || !date?.from || !date?.to}>
-                                    {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : isBooked ? <CheckCircle className="mr-2 h-4 w-4" /> : <CalendarIcon className="mr-2 h-4 w-4" />}
-                                    {isBooked ? 'Booked!' : isBooking ? 'Reserving...' : 'Reserve'}
-                                </Button>
-                                {numberOfNights > 0 && (
-                                    <div className="text-sm space-y-1">
-                                        <p className="text-center text-muted-foreground">You won't be charged yet</p>
-                                        <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} nights</span><span>${baseBookingPrice.toFixed(2)}</span></div>
-                                        <div className="flex justify-between"><span>Service fee</span><span>${serviceFee.toFixed(2)}</span></div>
-                                        <Separator className="my-1"/>
-                                        <div className="flex justify-between font-bold"><span>Total</span><span>${totalBookingPrice.toFixed(2)}</span></div>
+                                        </DialogContent>
+                                    </Dialog>
+                                </CardContent>
+                            ) : (
+                                <CardContent className="pt-6 space-y-4">
+                                    <div className="flex items-baseline gap-2">
+                                        <p className="text-2xl font-bold">${item.price?.toFixed(2)}</p>
+                                        <p className="text-sm text-muted-foreground">/ night</p>
                                     </div>
-                                )}
-                           </CardContent>
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <div className="grid grid-cols-2 border rounded-lg cursor-pointer">
+                                                <div className="p-2 border-r">
+                                                    <Label className="text-xs font-semibold">CHECK-IN</Label>
+                                                    <p>{date?.from ? format(date.from, "LLL dd, y") : "Add date"}</p>
+                                                </div>
+                                                <div className="p-2">
+                                                    <Label className="text-xs font-semibold">CHECK-OUT</Label>
+                                                    <p>{date?.to ? format(date.to, "LLL dd, y") : "Add date"}</p>
+                                                </div>
+                                            </div>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                            <Calendar
+                                                initialFocus
+                                                mode="range"
+                                                defaultMonth={date?.from}
+                                                selected={date}
+                                                onSelect={setDate}
+                                                numberOfMonths={1}
+                                                disabled={(day) => day < new Date(new Date().setHours(0,0,0,0))}
+                                            />
+                                        </PopoverContent>
+                                    </Popover>
+                                    <div>
+                                        <Label htmlFor="guests" className="text-xs font-semibold">GUESTS</Label>
+                                        <Input id="guests" type="number" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value, 10) || 1)} />
+                                    </div>
+                                    <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking || !date?.from || !date?.to}>
+                                        {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
+                                        {isBooking ? 'Reserving...' : 'Reserve'}
+                                    </Button>
+                                    {numberOfNights > 0 && (
+                                        <div className="text-sm space-y-1">
+                                            <p className="text-center text-muted-foreground">You won't be charged yet</p>
+                                            <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} nights</span><span>${baseBookingPrice.toFixed(2)}</span></div>
+                                            <div className="flex justify-between"><span>Service fee</span><span>${serviceFee.toFixed(2)}</span></div>
+                                            <Separator className="my-1"/>
+                                            <div className="flex justify-between font-bold"><span>Total</span><span>${totalBookingPrice.toFixed(2)}</span></div>
+                                        </div>
+                                    )}
+                                </CardContent>
+                            )}
                         </Card>
                     ) : (
                          <div>
@@ -401,27 +425,8 @@ function ItemPageContent() {
                                     </Button>
                                 )}
                             </>
-                        ) : isAgroTourismService ? (
-                            isBooked ? (
-                                <Dialog>
-                                    <DialogTrigger asChild>
-                                        <Button size="lg" className="w-full" variant="secondary"><CheckCircle className="mr-2 h-4 w-4" />View Your Ticket</Button>
-                                    </DialogTrigger>
-                                    <DialogContent className="sm:max-w-xs">
-                                        <DialogHeader>
-                                            <DialogTitle className="text-center">Your Digital Ticket</DialogTitle>
-                                            <DialogDescription className="text-center">For {item.name}</DialogDescription>
-                                        </DialogHeader>
-                                        <div className="p-4 flex flex-col items-center justify-center gap-4">
-                                            <div className="p-4 bg-white rounded-lg border">
-                                                <QRCode value={serviceQrCodeValue} size={200} />
-                                            </div>
-                                            <p className="text-sm text-center text-muted-foreground">Present this code to the operator for check-in.</p>
-                                        </div>
-                                    </DialogContent>
-                                </Dialog>
-                            ) : null // The reserve button is now inside the booking widget
-                        ) : isProduct ? (
+                        ) : isAgroTourismService ? null 
+                        : isProduct ? (
                             <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
                                 <ShoppingCart className="mr-2 h-4 w-4" />Buy Now
                             </Button>
@@ -432,7 +437,7 @@ function ItemPageContent() {
                         )}
                         {!isOwner && !isProduct && !isAgroTourismService && (
                             <Button asChild size="lg" variant="outline" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact Seller</Link>
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />Contact Seller</Link>
                             </Button>
                         )}
                     </div>
