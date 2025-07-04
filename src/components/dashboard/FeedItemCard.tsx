@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import type { FeedItem, PostReply, UserProfile } from "@/lib/types";
+import type { FeedItem, PostReply } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -20,9 +20,9 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -49,6 +49,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
   const getCommentsForPost = useMemo(() => httpsCallable(functions, 'getCommentsForPost'), [functions]);
+  const { profile: currentUserProfile } = useUserProfile();
   
   useEffect(() => {
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
@@ -77,36 +78,8 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         setIsLoadingReplies(true);
         try {
             const result = await getCommentsForPost({ postId: item.id });
-            const backendComments = (result.data as any).comments || [];
-
-            const db = getFirestore(firebaseApp);
-            const authorIds = [...new Set(backendComments.map((c: any) => c.userId))];
-            const profiles: Record<string, UserProfile> = {};
-
-            if (authorIds.length > 0) {
-                const userPromises = authorIds.map(id => getDoc(doc(db, "users", id as string)));
-                const userSnaps = await Promise.all(userPromises);
-                 userSnaps.forEach(userSnap => {
-                    if (userSnap.exists()) {
-                        profiles[userSnap.id] = userSnap.data() as UserProfile;
-                    } else {
-                         profiles[userSnap.id] = { id: userSnap.id, name: "Unknown User", avatarUrl: "" } as UserProfile;
-                    }
-                });
-            }
-
-             const enrichedReplies: PostReply[] = backendComments.map((comment: any) => ({
-                id: comment.id,
-                content: comment.content,
-                timestamp: comment.createdAt ? new Date(comment.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
-                author: {
-                    id: comment.userId,
-                    name: profiles[comment.userId]?.name || "Unknown",
-                    avatarUrl: profiles[comment.userId]?.avatarUrl || ""
-                }
-            }));
-
-            setReplies(enrichedReplies);
+            const commentsData = (result.data as { comments: PostReply[] })?.comments || [];
+            setReplies(commentsData);
         } catch (error) {
             console.error("Failed to fetch comments:", error);
             toast({ title: "Could not load comments.", variant: "destructive" });
@@ -126,7 +99,11 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       const newComment: PostReply = {
         id: `temp-${Date.now()}`,
         content: commentText,
-        author: { id: 'currentUser', name: 'You', avatarUrl: 'https://placehold.co/40x40.png' },
+        author: { 
+            id: currentUserProfile?.id || 'currentUser', 
+            name: currentUserProfile?.displayName || 'You', 
+            avatarUrl: currentUserProfile?.avatarUrl || 'https://placehold.co/40x40.png' 
+        },
         timestamp: new Date().toISOString()
       };
       setReplies(prev => [...prev, newComment]);
@@ -276,8 +253,8 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
             </div>
              <div className="flex items-start gap-2 pt-2">
                 <Avatar className="h-7 w-7">
-                    <AvatarImage src={"https://placehold.co/40x40.png"} alt={"Current User"} data-ai-hint="profile person agriculture"/>
-                    <AvatarFallback>ME</AvatarFallback>
+                    <AvatarImage src={currentUserProfile?.avatarUrl || "https://placehold.co/40x40.png"} alt={"Current User"} data-ai-hint="profile person agriculture"/>
+                    <AvatarFallback>{currentUserProfile?.displayName?.substring(0, 1) || 'U'}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <Textarea

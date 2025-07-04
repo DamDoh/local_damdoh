@@ -150,12 +150,44 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     
     const commentsSnapshot = await db.collection(`posts/${postId}/comments`).orderBy('createdAt', 'asc').get();
 
+    if (commentsSnapshot.empty) {
+        return { comments: [] };
+    }
+
+    // Get unique author IDs to fetch profiles efficiently
+    const authorIds = [...new Set(commentsSnapshot.docs.map(doc => doc.data().userId).filter(Boolean))];
+    const profiles: Record<string, any> = {};
+
+    if (authorIds.length > 0) {
+        // Fetch profiles in batches of 30, which is the 'in' query limit
+        const profileChunks = [];
+        for (let i = 0; i < authorIds.length; i += 30) {
+            profileChunks.push(authorIds.slice(i, i + 30));
+        }
+
+        for (const chunk of profileChunks) {
+            const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+            profileDocs.forEach(doc => {
+                profiles[doc.id] = {
+                    displayName: doc.data().displayName || 'Unknown User',
+                    avatarUrl: doc.data().avatarUrl || null,
+                };
+            });
+        }
+    }
+
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
+        const authorProfile = profiles[commentData.userId] || { displayName: 'Unknown User', avatarUrl: null };
         return {
             id: doc.id,
-            ...commentData,
-            createdAt: (commentData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            content: commentData.content,
+            author: {
+                id: commentData.userId,
+                name: authorProfile.displayName,
+                avatarUrl: authorProfile.avatarUrl,
+            },
+            timestamp: (commentData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
 
