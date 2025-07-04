@@ -587,6 +587,62 @@ export interface OperationsDashboardData {
   }[];
 }
 
+export interface FinancialApplication {
+  id: string;
+  applicantName: string;
+  type: string;
+  amount: number;
+  currency: string;
+  status: string;
+  riskScore: number;
+  submittedAt: string | null;
+  actionLink: string;
+}
+
+export type KnfBatch = {
+    id: string;
+    userId: string;
+    type: string; // 'fpj', 'faa', etc.
+    typeName: string; // "Fermented Plant Juice"
+    ingredients: string;
+    startDate: any; // Firestore Timestamp
+    nextStepDate: any; // Firestore Timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    createdAt?: any;
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  read: boolean;
+  createdAt: any; // Firestore Timestamp
+  postId?: string; // For backwards compatibility if needed
+}
+
+export interface ForumPost {
+  id: string;
+  title: string;
+  content: string;
+  topicId: string;
+  topicName: string;
+  timestamp: string; // ISO String
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  replyCount: number;
+}
+
 export interface PostReply {
     id: string;
     content: string;
@@ -642,46 +698,28 @@ export interface MobileDiscoverItem {
     dataAiHint?: string;
 }
 
-export interface KnfBatch {
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
     id: string;
-    userId: string;
-    type: string; // 'fpj', 'faa', etc.
-    typeName: string; // "Fermented Plant Juice"
-    ingredients: string;
-    startDate: any; // Firestore Timestamp
-    nextStepDate: any; // Firestore Timestamp
-    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-    nextStep: string;
-    createdAt?: any;
-}
-
-export interface Notification {
-  id: string;
-  userId: string;
-  actorId: string;
-  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder';
-  title_en: string;
-  body_en: string;
-  linkedEntity: {
-    collection: string;
-    documentId: string;
-  } | null;
-  read: boolean;
-  createdAt: any; // Firestore Timestamp
-  postId?: string; // For backwards compatibility if needed
-}
-
-export interface ForumPost {
-  id: string;
-  title: string;
-  content: string;
-  topicId: string;
-  topicName: string;
-  timestamp: string; // ISO String
-  author: {
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO String
+    actionLink: string;
+  }[];
+  listedExperiences: {
     id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  replyCount: number;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number;
+    comment: string;
+    actionLink: string;
+  }[];
 }
