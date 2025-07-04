@@ -200,5 +200,6 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
+         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
     </div>
 );

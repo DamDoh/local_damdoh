@@ -159,10 +159,6 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
 );
 
 
-// =================================================================
-// DASHBOARDS WITH PARTIAL OR MOCK DATA
-// =================================================================
-
 export const getFiDashboardData = functions.https.onCall(
   async (data, context): Promise<FiDashboardData> => {
     const fiId = checkAuth(context);
@@ -212,6 +208,11 @@ export const getFiDashboardData = functions.https.onCall(
     }
   }
 );
+
+
+// =================================================================
+// DASHBOARDS WITH PARTIAL OR MOCK DATA
+// =================================================================
 
 
 export const getCooperativeDashboardData = functions.https.onCall(
