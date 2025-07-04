@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './profiles';
@@ -37,7 +38,7 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
         const bookingDoc = await transaction.get(bookingRef);
         if (bookingDoc.exists) {
-            throw new functions.https.HttpsError('already-exists', 'You are already booked for this service.');
+            throw new functions.https.HttpsError('already-exists', 'You have already booked this service.');
         }
 
         // TODO: Add payment processing logic here if the service has a price.

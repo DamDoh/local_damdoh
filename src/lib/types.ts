@@ -224,11 +224,23 @@ export interface EventAttendee {
   checkedInAt?: string | null; // ISO string
 }
 
-export interface EventStaffMember {
-  id: string;
+export interface Booking {
+  id: string; // This is the User UID (the booker)
   displayName: string;
   avatarUrl?: string;
-  email?: string;
+  bookedAt: string; // ISO string
+  checkedIn: boolean;
+  checkedInAt: string | null; // ISO string
+  // You can add more booking-specific details here if needed
+  // e.g., bookingDate, numberOfPeople etc.
+}
+
+
+export interface StaffMember {
+  id: string; // This is the User UID of the staff member
+  displayName: string;
+  avatarUrl?: string;
+  email?: string; // Optional email for display/contact
 }
 
 export interface EventCoupon {

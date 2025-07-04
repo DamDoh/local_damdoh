@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -366,7 +367,6 @@ export interface CertificationBodyDashboardData {
     actionLink: string;
   }[];
 }
-
 
 export interface ResearcherDashboardData {
   availableDatasets: {

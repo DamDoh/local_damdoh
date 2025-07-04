@@ -43,7 +43,7 @@ import { useToast } from "@/hooks/use-toast";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { locales } from "../../../middleware";
+import { locales } from '@/i18n-config';
 
 interface NavLinkProps {
   href: string;

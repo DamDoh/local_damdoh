@@ -1,13 +1,6 @@
 
 import createMiddleware from 'next-intl/middleware';
-
-export const locales = ['en', 'fr', 'de', 'km'] as const;
-export const localeNames: Record<string, string> = {
-  en: "English",
-  fr: "Français",
-  de: "Deutsch",
-  km: "ភាសាខ្មែរ",
-};
+import { locales } from './src/i18n-config';
  
 export default createMiddleware({
   // A list of all locales that are supported

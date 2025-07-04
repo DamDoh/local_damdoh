@@ -1,3 +1,3 @@
 
-// This file is obsolete and can be deleted.
-// The configuration logic has been moved to the root i18n.ts file.
+// This file is obsolete and has been removed to avoid configuration conflicts.
+// The primary i18n logic is now in `i18n.ts` and `middleware.ts` at the project root.

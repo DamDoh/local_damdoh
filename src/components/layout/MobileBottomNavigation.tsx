@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Home, Search, ShoppingCart, MessageSquare, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { locales } from "../../../middleware";
+import { locales } from '@/i18n-config';
 
 interface NavItem {
   href: string;
