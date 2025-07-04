@@ -692,17 +692,19 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     try {
       const transactionsRef = db.collection("financial_transactions");
       const userDocRef = db.collection("users").doc(userId);
+      // 1. Fetch ALL transactions for the user
       const q = transactionsRef
         .where("userRef", "==", userDocRef)
         .orderBy("timestamp", "desc");
 
-      const querySnapshot = await q.get();
+      const allTransactionsSnapshot = await q.get();
 
       let totalIncome = 0;
       let totalExpense = 0;
-      const transactions: any[] = [];
+      const allTransactions: any[] = [];
 
-      querySnapshot.forEach((doc) => {
+      // 2. & 3. Iterate once through all transactions
+      allTransactionsSnapshot.forEach((doc) => {
         const tx = doc.data();
         if (tx.type === "income") {
           totalIncome += tx.amount;
@@ -710,21 +712,23 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
           totalExpense += tx.amount;
         }
 
-        // Convert timestamp for client
-        transactions.push({
+        // Convert timestamp for client and add to full list
+        allTransactions.push({
           id: doc.id,
           ...tx,
           timestamp: tx.timestamp?.toDate ? tx.timestamp.toDate().toISOString() : null,
         });
       });
 
+      // 4. Create summary object
       const summary = {
         totalIncome,
         totalExpense,
         netFlow: totalIncome - totalExpense,
       };
 
-      return {summary, transactions: transactions.slice(0, 10)}; // Return summary and last 10 transactions
+      // 5. Return summary and sliced list of recent transactions
+      return {summary, transactions: allTransactions.slice(0, 10)};
     } catch (error) {
       console.error("Error fetching financial summary:", error);
       throw new functions.https.HttpsError(

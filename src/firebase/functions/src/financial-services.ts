@@ -692,45 +692,43 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     try {
       const transactionsRef = db.collection("financial_transactions");
       const userDocRef = db.collection("users").doc(userId);
+      // 1. Fetch ALL transactions for the user
       const q = transactionsRef
         .where("userRef", "==", userDocRef)
-        .orderBy("timestamp", "desc")
-        .limit(10); // Limit to the last 10 transactions for the dashboard
+        .orderBy("timestamp", "desc");
 
-      const querySnapshot = await q.get();
+      const allTransactionsSnapshot = await q.get();
 
       let totalIncome = 0;
       let totalExpense = 0;
-      
-      // For summary, we need to fetch ALL transactions, not just the last 10
-      const allTransactionsSnapshot = await transactionsRef.where("userRef", "==", userDocRef).get();
+      const allTransactions: any[] = [];
+
+      // 2. & 3. Iterate once through all transactions
       allTransactionsSnapshot.forEach((doc) => {
         const tx = doc.data();
-        if (tx.type === 'income') {
+        if (tx.type === "income") {
           totalIncome += tx.amount;
-        } else if (tx.type === 'expense') {
+        } else if (tx.type === "expense") {
           totalExpense += tx.amount;
         }
-      });
 
-      const transactions: any[] = [];
-      querySnapshot.forEach((doc) => {
-        const tx = doc.data();
-        // Convert timestamp for client
-        transactions.push({
+        // Convert timestamp for client and add to full list
+        allTransactions.push({
           id: doc.id,
           ...tx,
           timestamp: tx.timestamp?.toDate ? tx.timestamp.toDate().toISOString() : null,
         });
       });
 
+      // 4. Create summary object
       const summary = {
         totalIncome,
         totalExpense,
         netFlow: totalIncome - totalExpense,
       };
 
-      return {summary, transactions};
+      // 5. Return summary and sliced list of recent transactions
+      return {summary, transactions: allTransactions.slice(0, 10)};
     } catch (error) {
       console.error("Error fetching financial summary:", error);
       throw new functions.https.HttpsError(
