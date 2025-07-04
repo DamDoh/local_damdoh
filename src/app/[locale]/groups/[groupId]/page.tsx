@@ -9,11 +9,19 @@ import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare } from "lucide-
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumGroup, GroupMember } from '@/lib/types';
+import type { ForumGroup } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
+
+interface GroupMember {
+  id: string; // User ID
+  displayName: string;
+  avatarUrl?: string;
+  role: 'owner' | 'admin' | 'member';
+  joinedAt: string; // ISO string
+}
 
 export default function GroupPage() {
     const params = useParams();

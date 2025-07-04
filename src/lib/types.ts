@@ -46,7 +46,8 @@ export type UserRole =
   | 'Insurance Provider'
   | 'Admin'
   | 'System'
-  | 'General'; // General for un-roled or guest users
+  | 'General'
+  | 'Packaging Supplier';
 
 
 export interface MarketplaceCoupon {
@@ -788,4 +789,23 @@ export interface SustainabilityDashboardData {
   biodiversityScore: { score: number; unit: string; trend: number; };
   sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
   certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
+
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
+}
+
+export interface ConnectionRequest {
+    id: string; // The request document ID
+    requester: {
+        id: string;
+        displayName: string;
+        avatarUrl?: string;
+        primaryRole: string;
+    };
+    createdAt: string; // ISO string
 }
