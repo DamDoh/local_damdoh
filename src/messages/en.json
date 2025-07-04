@@ -152,5 +152,20 @@
       "statusCheckedIn": "Checked-in",
       "statusRegistered": "Registered"
     }
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Account Recovery",
+      "description": "Regain access to your account using your trusted network.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Enter your phone number to start.",
+      "step2": "Show the generated QR code to a trusted friend on DamDoh.",
+      "step3": "Your friend scans the code to confirm your identity, restoring your access.",
+      "startButton": "Start Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh connection scan this temporary QR code with the 'Help a Friend' feature.",
+      "scanNote": "This code is valid for 10 minutes.",
+      "startOverButton": "Start Over"
+    }
   }
 }
