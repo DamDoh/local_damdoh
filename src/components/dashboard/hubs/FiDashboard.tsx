@@ -16,6 +16,7 @@ import type { FiDashboardData } from '@/lib/types'; // Import the FiDashboardDat
 export const FiDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getFiData = useMemo(() => httpsCallable(functions, 'getFiDashboardData'), [functions]);
@@ -23,11 +24,13 @@ export const FiDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getFiData();
                 setDashboardData(result.data as FiDashboardData);
             } catch (error) {
                 console.error("Error fetching FI dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -39,10 +42,14 @@ export const FiDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }

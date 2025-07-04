@@ -14,13 +14,13 @@ import { FlaskConical, Database, Lightbulb } from 'lucide-react';
 import type { ResearcherDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getResearcherDashboardDataCallable = httpsCallable<void, ResearcherDashboardData>(functions, 'getResearcherDashboardData');
-
 
 export const ResearcherDashboard = () => {
   const [dashboardData, setDashboardData] = useState<ResearcherDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const getResearcherDashboardDataCallable = useMemo(() => httpsCallable<void, ResearcherDashboardData>(functions, 'getResearcherDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {

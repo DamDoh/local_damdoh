@@ -14,13 +14,13 @@ import { CheckCircle, AlertTriangle, FileText } from 'lucide-react';
 import type { QaDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getQaDashboardDataCallable = httpsCallable<void, QaDashboardData>(functions, 'getQaDashboardData');
-
 
 export const QaDashboard = () => {
   const [dashboardData, setDashboardData] = useState<QaDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const getQaDashboardDataCallable = useMemo(() => httpsCallable<void, QaDashboardData>(functions, 'getQaDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {

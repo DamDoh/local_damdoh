@@ -14,6 +14,7 @@ import type { InputSupplierDashboardData } from '@/lib/types';
 export const InputSupplierDashboard = () => {
     const [dashboardData, setDashboardData] = useState<InputSupplierDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getInputSupplierData = useMemo(() => httpsCallable(functions, 'getInputSupplierDashboardData'), [functions]);
@@ -21,11 +22,13 @@ export const InputSupplierDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getInputSupplierData();
                 setDashboardData(result.data as InputSupplierDashboardData);
             } catch (error) {
                 console.error("Error fetching input supplier dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -37,10 +40,14 @@ export const InputSupplierDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }

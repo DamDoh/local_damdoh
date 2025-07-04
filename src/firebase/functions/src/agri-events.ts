@@ -260,18 +260,27 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
 });
 
 export const checkInAttendee = functions.https.onCall(async (data, context) => {
-    const organizerId = checkAuth(context);
+    const callerId = checkAuth(context);
     const { eventId, scannedUniversalId } = data;
 
     if (!eventId || !scannedUniversalId) {
         throw new functions.https.HttpsError("invalid-argument", "Event ID and scanned Universal ID are required.");
     }
     
-    // 1. Verify the caller is the event organizer
+    // 1. Verify the caller is the event organizer or designated staff
     const eventRef = db.collection('agri_events').doc(eventId);
     const eventDoc = await eventRef.get();
-    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to manage this event.");
+    const eventData = eventDoc.data();
+    if (!eventDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Event not found.");
+    }
+    
+    const organizerId = eventData?.organizerId;
+    const staffRef = db.collection(`agri_events/${eventId}/staff`).doc(callerId);
+    const staffDoc = await staffRef.get();
+
+    if (organizerId !== callerId && !staffDoc.exists) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in attendees for this event.");
     }
 
     // 2. Find the user by their Universal ID
@@ -304,4 +313,118 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
         
         return { success: true, message: `Successfully checked in ${attendeeName}.` };
     });
+});
+
+// =================================================================
+// STAFF MANAGEMENT FUNCTIONS
+// =================================================================
+
+export const searchUsersForStaffing = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { query } = data;
+    if (!query || typeof query !== 'string' || query.length < 3) {
+        throw new functions.https.HttpsError("invalid-argument", "A search query of at least 3 characters is required.");
+    }
+    
+    const usersRef = db.collection('users');
+    const queryLower = query.toLowerCase();
+    
+    const nameQuery = usersRef
+        .where('displayName', '>=', query)
+        .where('displayName', '<=', query + '\uf8ff')
+        .limit(10);
+        
+    const emailQuery = usersRef.where('email', '==', queryLower).limit(10);
+
+    const [nameSnapshot, emailSnapshot] = await Promise.all([nameQuery.get(), emailQuery.get()]);
+    
+    const results = new Map();
+    
+    const processSnapshot = (snapshot: admin.firestore.QuerySnapshot) => {
+        snapshot.forEach(doc => {
+            if (!results.has(doc.id)) {
+                const data = doc.data();
+                results.set(doc.id, {
+                    id: doc.id,
+                    displayName: data.displayName,
+                    email: data.email,
+                    avatarUrl: data.avatarUrl || null,
+                });
+            }
+        });
+    };
+    
+    processSnapshot(nameSnapshot);
+    processSnapshot(emailSnapshot);
+    
+    return { users: Array.from(results.values()) };
+});
+
+
+export const addEventStaff = functions.https.onCall(async (data, context) => {
+    const organizerId = checkAuth(context);
+    const { eventId, staffUserId, staffDisplayName, staffAvatarUrl } = data;
+    if (!eventId || !staffUserId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID and Staff User ID are required.");
+    }
+    
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to add staff to this event.");
+    }
+
+    const staffRef = eventRef.collection('staff').doc(staffUserId);
+    await staffRef.set({
+        displayName: staffDisplayName || "Unknown Staff",
+        avatarUrl: staffAvatarUrl || null,
+        addedAt: admin.firestore.FieldValue.serverTimestamp(),
+        addedBy: organizerId,
+    });
+
+    return { success: true, message: `${staffDisplayName || 'User'} has been added as staff.` };
+});
+
+
+export const getEventStaff = functions.https.onCall(async (data, context) => {
+    const organizerId = checkAuth(context);
+    const { eventId } = data;
+    if (!eventId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID is required.");
+    }
+
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view staff for this event.");
+    }
+    
+    const staffSnapshot = await eventRef.collection('staff').get();
+    const staffList = staffSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+
+    return { staff: staffList };
+});
+
+
+export const removeEventStaff = functions.https.onCall(async (data, context) => {
+    const organizerId = checkAuth(context);
+    const { eventId, staffUserId } = data;
+
+    if (!eventId || !staffUserId) {
+        throw new functions.https.HttpsError("invalid-argument", "Event ID and Staff User ID are required.");
+    }
+    
+    const eventRef = db.collection('agri_events').doc(eventId);
+    const eventDoc = await eventRef.get();
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to remove staff from this event.");
+    }
+
+    const staffRef = eventRef.collection('staff').doc(staffUserId);
+    await staffRef.delete();
+    
+    return { success: true, message: "Staff member has been removed." };
 });

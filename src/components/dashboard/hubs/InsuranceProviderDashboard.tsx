@@ -14,13 +14,13 @@ import { Shield, FileText, AlertTriangle } from 'lucide-react';
 import type { InsuranceProviderDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getInsuranceProviderDashboardDataCallable = httpsCallable<void, InsuranceProviderDashboardData>(functions, 'getInsuranceProviderDashboardData');
-
 
 export const InsuranceProviderDashboard = () => {
   const [dashboardData, setDashboardData] = useState<InsuranceProviderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  const getInsuranceProviderDashboardDataCallable = useMemo(() => httpsCallable<void, InsuranceProviderDashboardData>(functions, 'getInsuranceProviderDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {

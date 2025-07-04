@@ -224,6 +224,13 @@ export interface EventAttendee {
   checkedInAt?: string | null; // ISO string
 }
 
+export interface EventStaffMember {
+  id: string;
+  displayName: string;
+  avatarUrl?: string;
+  email?: string;
+}
+
 export interface EventCoupon {
   id: string;
   code: string;
@@ -738,4 +745,3 @@ export interface WasteManagementDashboardData {
     actionLink: string;
   }[];
 }
-

@@ -12,20 +12,10 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { BuyerDashboardData } from '@/lib/types';
 
-const DashboardSkeleton = () => (
-    <div>
-        <Skeleton className="h-9 w-64 mb-6" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-48 rounded-lg" />
-            <Skeleton className="h-48 rounded-lg" />
-            <Skeleton className="h-48 rounded-lg lg:row-span-2" />
-        </div>
-    </div>
-);
-
 export const BuyerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<BuyerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getBuyerData = useMemo(() => httpsCallable(functions, 'getBuyerDashboardData'), [functions]);
@@ -33,11 +23,13 @@ export const BuyerDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getBuyerData();
                 setDashboardData(result.data as BuyerDashboardData);
             } catch (error) {
                 console.error("Error fetching buyer dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -48,11 +40,15 @@ export const BuyerDashboard = () => {
     if (isLoading) {
         return <DashboardSkeleton />;
     }
+    
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
 
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }
@@ -107,7 +103,7 @@ export const BuyerDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-3">
-                        {(sourcingRecommendations || []).length > 0 ? (
+                        {((sourcingRecommendations || []).length > 0) ? (
                             (sourcingRecommendations || []).map(rec => (
                                 <div key={rec.id} className="p-3 rounded-md border text-sm bg-background">
                                     <div className="flex justify-between items-start">
@@ -139,3 +135,14 @@ export const BuyerDashboard = () => {
         </div>
     );
 };
+
+const DashboardSkeleton = () => (
+    <div>
+        <Skeleton className="h-9 w-64 mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Skeleton className="h-48 rounded-lg" />
+            <Skeleton className="h-48 rounded-lg" />
+            <Skeleton className="h-48 rounded-lg lg:row-span-2" />
+        </div>
+    </div>
+);

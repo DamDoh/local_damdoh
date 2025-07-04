@@ -16,6 +16,7 @@ import type { CooperativeDashboardData } from '@/lib/types';
 export const CooperativeDashboard = () => {
     const [dashboardData, setDashboardData] = useState<CooperativeDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getCooperativeData = useMemo(() => httpsCallable(functions, 'getCooperativeDashboardData'), [functions]);
@@ -23,11 +24,13 @@ export const CooperativeDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getCooperativeData();
                 setDashboardData(result.data as CooperativeDashboardData);
             } catch (error) {
                 console.error("Error fetching cooperative dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -39,10 +42,14 @@ export const CooperativeDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }
@@ -107,7 +114,7 @@ export const CooperativeDashboard = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {(aggregatedProduce || []).length > 0 ? (
+                                {((aggregatedProduce || []).length > 0) ? (
                                     (aggregatedProduce || []).map(item => (
                                         <TableRow key={item.id}>
                                             <TableCell className="font-medium">{item.productName}</TableCell>

@@ -15,6 +15,7 @@ import type { FieldAgentDashboardData } from '@/lib/types'; // Import the type
 export const FieldAgentDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FieldAgentDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getFieldAgentData = useMemo(() => httpsCallable(functions, 'getFieldAgentDashboardData'), [functions]);
@@ -22,11 +23,13 @@ export const FieldAgentDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getFieldAgentData();
                 setDashboardData(result.data as FieldAgentDashboardData);
             } catch (error) {
                 console.error("Error fetching field agent dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -38,10 +41,14 @@ export const FieldAgentDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }
@@ -89,7 +96,7 @@ export const FieldAgentDashboard = () => {
                         <Users className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{assignedFarmers?.length || 0}</div>
+                        <div className="text-2xl font-bold">{(assignedFarmers || []).length}</div>
                         <p className="text-xs text-muted-foreground">farmers in your portfolio</p>
                     </CardContent>
                 </Card>

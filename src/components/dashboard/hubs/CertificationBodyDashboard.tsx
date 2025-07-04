@@ -14,13 +14,13 @@ import { Award, FileText, CheckCircle } from 'lucide-react';
 import type { CertificationBodyDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getCertificationBodyDashboardDataCallable = httpsCallable<void, CertificationBodyDashboardData>(functions, 'getCertificationBodyDashboardData');
-
 
 export const CertificationBodyDashboard = () => {
   const [dashboardData, setDashboardData] = useState<CertificationBodyDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const getCertificationBodyDashboardDataCallable = useMemo(() => httpsCallable<void, CertificationBodyDashboardData>(functions, 'getCertificationBodyDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +87,7 @@ export const CertificationBodyDashboard = () => {
              <CardDescription>Audits requiring your attention.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(pendingAudits || []).length > 0 ? (
+             {((pendingAudits || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -125,7 +125,7 @@ export const CertificationBodyDashboard = () => {
              <CardDescription>Overview of your certified farmers and processors.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(certifiedEntities || []).length > 0 ? (
+             {((certifiedEntities || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -163,7 +163,7 @@ export const CertificationBodyDashboard = () => {
                 <CardDescription>Tracking adherence rates across different standards.</CardDescription>
             </CardHeader>
             <CardContent>
-                {(standardsMonitoring || []).length > 0 ? (
+                {((standardsMonitoring || []).length > 0) ? (
                     <div className="space-y-3">
                         {(standardsMonitoring || []).map((monitoring, index) => (
                             <div key={index} className="text-sm">

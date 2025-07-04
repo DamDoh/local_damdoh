@@ -85,7 +85,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Projects aligned with your impact goals.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(suggestedOpportunities || []).length > 0 ? (
+             {((suggestedOpportunities || []).length > 0) ? (
                <div className="space-y-4">
                  {(suggestedOpportunities || []).map((opp) => {
                    const progress = (opp.amountRaised / opp.fundingGoal) * 100;
@@ -109,7 +109,7 @@ export const CrowdfunderDashboard = () => {
                  })}
                </div>
              ) : (
-               <p className="text-sm text-muted-foreground">No suggested opportunities at the moment.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No suggested opportunities at the moment.</p>
              )}
            </CardContent>
          </Card>
@@ -121,7 +121,7 @@ export const CrowdfunderDashboard = () => {
              <CardDescription>Your latest investment activities.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(recentTransactions || []).length > 0 ? (
+             {((recentTransactions || []).length > 0) ? (
                <Table>
                  <TableHeader>
                    <TableRow>
@@ -147,7 +147,7 @@ export const CrowdfunderDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground">No recent transactions.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">No recent transactions.</p>
              )}
            </CardContent>
          </Card>

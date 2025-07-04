@@ -4,7 +4,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy, QrCode, ScanLine, UserCheck, XCircle, AlertCircle, Info } from "lucide-react";
+import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy, QrCode, ScanLine, UserCheck, XCircle, AlertCircle, Info, Users, UserPlus, Trash2, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -22,12 +22,15 @@ import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { EventCoupon } from "@/lib/types";
+import type { AgriEvent, EventCoupon, EventStaffMember, UserProfile } from "@/lib/types";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { QrScanner } from '@/components/QrScanner';
 import { Alert } from "@/components/ui/alert";
+import { useAuth } from "@/lib/auth-utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 
 // --- Promotions Tab Components ---
 
@@ -194,6 +197,127 @@ const CheckInTab = () => {
     );
 };
 
+// --- Staff Management Tab ---
+
+const StaffManagementTab = ({ eventId, organizerId }: { eventId: string, organizerId: string | undefined }) => {
+    const { user } = useAuth();
+    const { toast } = useToast();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState<UserProfile[]>([]);
+    const [currentStaff, setCurrentStaff] = useState<EventStaffMember[]>([]);
+    const [isSearching, setIsSearching] = useState(false);
+    const [isLoadingStaff, setIsLoadingStaff] = useState(true);
+
+    const searchUsersCallable = useMemo(() => httpsCallable(functions, 'searchUsersForStaffing'), []);
+    const addStaffCallable = useMemo(() => httpsCallable(functions, 'addEventStaff'), []);
+    const getStaffCallable = useMemo(() => httpsCallable(functions, 'getEventStaff'), []);
+    const removeStaffCallable = useMemo(() => httpsCallable(functions, 'removeEventStaff'), []);
+    
+    const fetchStaff = useCallback(async () => {
+        setIsLoadingStaff(true);
+        try {
+            const result = await getStaffCallable({ eventId });
+            setCurrentStaff((result.data as any)?.staff || []);
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: "Error", description: "Could not fetch event staff." });
+        } finally {
+            setIsLoadingStaff(false);
+        }
+    }, [eventId, getStaffCallable, toast]);
+    
+    useEffect(() => {
+        if (eventId) fetchStaff();
+    }, [eventId, fetchStaff]);
+
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.length < 3) {
+            toast({ title: "Please enter at least 3 characters to search." });
+            return;
+        }
+        setIsSearching(true);
+        try {
+            const result = await searchUsersCallable({ query: searchQuery });
+            setSearchResults((result.data as any)?.users || []);
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: "Search failed", description: error.message });
+        } finally {
+            setIsSearching(false);
+        }
+    };
+    
+    const handleAddStaff = async (staffMember: UserProfile) => {
+        try {
+            await addStaffCallable({ 
+                eventId, 
+                staffUserId: staffMember.id,
+                staffDisplayName: staffMember.displayName,
+                staffAvatarUrl: staffMember.avatarUrl
+            });
+            toast({ title: "Success", description: `${staffMember.displayName} added as staff.`});
+            fetchStaff(); // Refresh the list
+            setSearchResults([]); // Clear search results
+            setSearchQuery('');
+        } catch (error: any) {
+             toast({ variant: 'destructive', title: "Failed to add staff", description: error.message });
+        }
+    };
+    
+    const handleRemoveStaff = async (staffMember: EventStaffMember) => {
+        try {
+            await removeStaffCallable({ eventId, staffUserId: staffMember.id });
+            toast({ title: "Success", description: `${staffMember.displayName} removed from staff.`});
+            fetchStaff();
+        } catch(error: any) {
+             toast({ variant: 'destructive', title: "Failed to remove staff", description: error.message });
+        }
+    };
+
+    return (
+        <Card>
+            <CardHeader><CardTitle>Manage Event Staff</CardTitle><CardDescription>Add or remove staff who can help you check-in attendees.</CardDescription></CardHeader>
+            <CardContent className="space-y-6">
+                <div>
+                    <h3 className="text-lg font-medium mb-2">Add New Staff</h3>
+                    <form onSubmit={handleSearch} className="flex gap-2">
+                        <Input placeholder="Search user by name or email..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+                        <Button type="submit" disabled={isSearching}>{isSearching ? <Loader2 className="h-4 w-4 animate-spin"/> : <Search className="h-4 w-4"/>}</Button>
+                    </form>
+                    <div className="mt-2 space-y-2">
+                        {searchResults.map(res => (
+                            <div key={res.id} className="flex items-center justify-between p-2 border rounded-md">
+                                <div className="flex items-center gap-2">
+                                    <Avatar className="h-8 w-8"><AvatarImage src={res.avatarUrl} /><AvatarFallback>{res.displayName?.substring(0,1)}</AvatarFallback></Avatar>
+                                    <div><p className="text-sm font-medium">{res.displayName}</p><p className="text-xs text-muted-foreground">{res.email}</p></div>
+                                </div>
+                                <Button size="sm" onClick={() => handleAddStaff(res)}><UserPlus className="h-4 w-4 mr-2"/>Add</Button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                 <div>
+                    <h3 className="text-lg font-medium mb-2">Current Staff ({currentStaff.length})</h3>
+                    {isLoadingStaff ? <Skeleton className="h-24 w-full" /> : 
+                     currentStaff.length > 0 ? (
+                        <div className="space-y-2">
+                             {currentStaff.map(staff => (
+                                <div key={staff.id} className="flex items-center justify-between p-2 border rounded-md">
+                                     <div className="flex items-center gap-2">
+                                        <Avatar className="h-8 w-8"><AvatarImage src={staff.avatarUrl} /><AvatarFallback>{staff.displayName?.substring(0,1)}</AvatarFallback></Avatar>
+                                        <p className="text-sm font-medium">{staff.displayName}</p>
+                                    </div>
+                                    <Button size="sm" variant="destructive" onClick={() => handleRemoveStaff(staff)}><Trash2 className="h-4 w-4 mr-2"/>Remove</Button>
+                                </div>
+                             ))}
+                        </div>
+                     ) : <p className="text-sm text-muted-foreground text-center py-4">No staff members added.</p>
+                    }
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
+
 
 // --- Main Page Component ---
 export default function ManageEventPage() {
@@ -203,8 +327,10 @@ export default function ManageEventPage() {
     const params = useParams();
     const eventId = params.id as string;
     const { toast } = useToast();
+    const [event, setEvent] = useState<AgriEvent | null>(null);
 
     const getEventCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), []);
+    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), []);
 
     const fetchCoupons = useCallback(async () => {
         setIsLoadingCoupons(true);
@@ -219,15 +345,21 @@ export default function ManageEventPage() {
         }
     }, [eventId, getEventCouponsCallable, toast]);
 
-    useEffect(() => { if(eventId) { fetchCoupons(); } }, [eventId, fetchCoupons]);
+    useEffect(() => { 
+        if(eventId) { 
+            fetchCoupons();
+            getEventDetailsCallable({ eventId }).then(result => setEvent(result.data as AgriEvent)).catch(console.error);
+        }
+    }, [eventId, fetchCoupons, getEventDetailsCallable]);
 
     return (
         <div className="container mx-auto p-4 md:p-8">
             <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
-            <p className="text-muted-foreground mb-6">{t('subtitlePlaceholder')}</p>
+            <p className="text-muted-foreground mb-6">{event?.title || 'Loading event...'}</p>
             <Tabs defaultValue="check-in" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
+                <TabsList className="grid w-full grid-cols-5">
                     <TabsTrigger value="check-in">{t('tabs.checkin')}</TabsTrigger>
+                    <TabsTrigger value="staff">{t('tabs.staff')}</TabsTrigger>
                     <TabsTrigger value="dashboard">{t('tabs.dashboard')}</TabsTrigger>
                     <TabsTrigger value="attendees">{t('tabs.attendees')}</TabsTrigger>
                     <TabsTrigger value="promotions">{t('tabs.promotions')}</TabsTrigger>
@@ -235,6 +367,9 @@ export default function ManageEventPage() {
                 
                 <TabsContent value="check-in">
                     <CheckInTab />
+                </TabsContent>
+                 <TabsContent value="staff">
+                    <StaffManagementTab eventId={eventId} organizerId={event?.organizerId} />
                 </TabsContent>
                 <TabsContent value="dashboard">
                     <Card><CardHeader><CardTitle>Dashboard</CardTitle></CardHeader><CardContent><p>Event dashboard will be here.</p></CardContent></Card>

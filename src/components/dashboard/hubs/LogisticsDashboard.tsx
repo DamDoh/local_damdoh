@@ -15,6 +15,7 @@ import type { LogisticsDashboardData } from '@/lib/types'; // Import the type
 export const LogisticsDashboard = () => {
     const [dashboardData, setDashboardData] = useState<LogisticsDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getLogisticsData = useMemo(() => httpsCallable(functions, 'getLogisticsDashboardData'), [functions]);
@@ -22,11 +23,13 @@ export const LogisticsDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getLogisticsData();
                 setDashboardData(result.data as LogisticsDashboardData);
             } catch (error) {
                 console.error("Error fetching logistics dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -38,10 +41,14 @@ export const LogisticsDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }

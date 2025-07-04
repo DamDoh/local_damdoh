@@ -14,12 +14,13 @@ import { Users, FileText, MessageSquare } from 'lucide-react';
 import type { AgronomistDashboardData } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getAgronomistDashboardDataCallable = httpsCallable<void, AgronomistDashboardData>(functions, 'getAgronomistDashboardData');
 
 export const AgronomistDashboard = () => {
   const [dashboardData, setDashboardData] = useState<AgronomistDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const getAgronomistDashboardDataCallable = useMemo(() => httpsCallable<void, AgronomistDashboardData>(functions, 'getAgronomistDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,7 +110,7 @@ export const AgronomistDashboard = () => {
                        <TableCell>{new Date(request.requestDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={request.actionLink}>View Request</Link>
+                           <Link href="#">View Request</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -149,7 +150,7 @@ export const AgronomistDashboard = () => {
                        <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={farmer.actionLink}>View Profile</Link>
+                           <Link href="#">View Profile</Link>
                          </Button>
                        </TableCell>
                      </TableRow>

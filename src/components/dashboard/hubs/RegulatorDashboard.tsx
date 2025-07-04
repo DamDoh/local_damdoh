@@ -15,6 +15,7 @@ import { RegulatorDashboardData } from "@/lib/types";
 export const RegulatorDashboard = () => {
     const [dashboardData, setDashboardData] = useState<RegulatorDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getRegulatorData = useMemo(() => httpsCallable(functions, 'getRegulatorDashboardData'), [functions]);
@@ -22,11 +23,13 @@ export const RegulatorDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getRegulatorData();
                 setDashboardData(result.data as RegulatorDashboardData);
             } catch (error) {
                 console.error("Error fetching regulator dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -38,10 +41,14 @@ export const RegulatorDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }
@@ -152,5 +159,3 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
-
-    

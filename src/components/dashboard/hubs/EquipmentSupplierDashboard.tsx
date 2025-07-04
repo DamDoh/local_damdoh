@@ -17,17 +17,20 @@ const functions = getFunctions(firebaseApp);
 export const EquipmentSupplierDashboard = () => {
     const [dashboardData, setDashboardData] = useState<EquipmentSupplierDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const getEquipmentData = useMemo(() => httpsCallable(functions, 'getEquipmentSupplierDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getEquipmentData();
                 setDashboardData(result.data as EquipmentSupplierDashboardData);
             } catch (error) {
                 console.error("Error fetching equipment supplier dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -39,10 +42,14 @@ export const EquipmentSupplierDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }
@@ -87,7 +94,7 @@ export const EquipmentSupplierDashboard = () => {
                            ))
                         ) : (
                            <p className="text-sm text-center text-muted-foreground py-4">No equipment listed.</p>
-                        )}
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -111,7 +118,7 @@ export const EquipmentSupplierDashboard = () => {
                                     </Button>
                                 </div>
                            ))
-                        ) : (
+                       ) : (
                            <p className="text-sm text-center text-muted-foreground py-4">No pending maintenance requests.</p>
                        )}
                     </CardContent>

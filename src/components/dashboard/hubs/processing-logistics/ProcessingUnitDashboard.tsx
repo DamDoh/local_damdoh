@@ -16,6 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 export const ProcessingUnitDashboard = () => {
     const [dashboardData, setDashboardData] = useState<ProcessingUnitDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
     const getProcessingUnitData = useMemo(() => httpsCallable(functions, 'getProcessingUnitDashboardData'), [functions]);
@@ -23,11 +24,13 @@ export const ProcessingUnitDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            setError(null);
             try {
                 const result = await getProcessingUnitData();
                 setDashboardData(result.data as ProcessingUnitDashboardData);
             } catch (error) {
                 console.error("Error fetching processing unit dashboard data:", error);
+                setError("Could not load dashboard data. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -39,10 +42,14 @@ export const ProcessingUnitDashboard = () => {
         return <DashboardSkeleton />;
     }
 
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">Could not load dashboard data.</p>
+                <p className="text-muted-foreground">No dashboard data available.</p>
             </div>
         );
     }
