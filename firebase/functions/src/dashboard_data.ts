@@ -536,19 +536,46 @@ export const getAgronomistDashboardData = functions.https.onCall(
 
 
 export const getAgroTourismDashboardData = functions.https.onCall(
-  (data, context): AgroTourismDashboardData => {
-    checkAuth(context);
-    return {
-        upcomingBookings: [
+  async (data, context): Promise<AgroTourismDashboardData> => {
+    const operatorId = checkAuth(context);
+    try {
+        // --- Fetch Live Data for Listed Experiences ---
+        const experiencesSnapshot = await db.collection('marketplaceItems')
+            .where('sellerId', '==', operatorId)
+            .where('category', '==', 'agri-tourism-services')
+            .orderBy('createdAt', 'desc')
+            .get();
+
+        const listedExperiences = experiencesSnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                title: item.name,
+                location: item.location,
+                status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
+                bookingsCount: item.bookingsCount || 0, // A field we can increment
+                actionLink: `/marketplace/${doc.id}/manage-service`
+            };
+        });
+
+        // --- Keep Mock Data for other sections for now ---
+        const upcomingBookings = [
             { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
-        ],
-        listedExperiences: [
-            { id: 'exp1', title: 'Organic Farm Stay', location: 'Limuru', status: 'Published', bookingsCount: 12, actionLink: '#' }
-        ],
-        guestReviews: [
+        ];
+        const guestReviews = [
             { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
-        ]
-    };
+        ];
+
+        return {
+            listedExperiences,
+            upcomingBookings,
+            guestReviews,
+        };
+
+    } catch (error) {
+        console.error("Error fetching Agro-Tourism dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
@@ -712,6 +739,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 
