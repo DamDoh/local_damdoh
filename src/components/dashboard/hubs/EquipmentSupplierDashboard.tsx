@@ -9,9 +9,9 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Tractor, Wrench, BarChart, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
 import type { EquipmentSupplierDashboardData } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from '@/components/ui/badge';
 
 const functions = getFunctions(firebaseApp);
 
