@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -82,17 +81,6 @@ export interface ConnectionRequest {
         primaryRole: string;
     };
     createdAt: string; // ISO string
-}
-
-export interface PostReply {
-  id: string;
-  content: string;
-  timestamp: string; // ISO string
-  author: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
 }
 
 // =================================================================
@@ -581,3 +569,119 @@ export interface InsuranceProviderDashboardData {
   }[];
 }
 
+export interface OperationsDashboardData {
+  vtiGenerationRate: {
+    rate: number;
+    unit: 'VTIs/hour';
+    trend: number;
+  };
+  dataPipelineStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastChecked: string; // ISO string
+  };
+  flaggedEvents: {
+    id: string;
+    type: 'Anomalous Geolocation' | 'Unusual Time Lag' | 'Data Mismatch';
+    description: string;
+    vtiLink: string;
+  }[];
+}
+
+export interface PostReply {
+    id: string;
+    content: string;
+    timestamp: string; // ISO string
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+}
+
+export interface FeedItem {
+  id: string;
+  type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
+  timestamp: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  userHeadline?: string;
+  content: string;
+  link: string;
+  postImage?: string;
+  dataAiHint?: string;
+  likesCount: number;
+  commentsCount: number;
+  pollOptions?: { text: string; votes?: number }[];
+}
+
+export interface DirectMessage {
+  id: string;
+  senderName: string;
+  lastMessage: string;
+  timestamp: string;
+  senderAvatarUrl?: string;
+  unread: boolean;
+  dataAiHint?: string;
+}
+
+export interface MobileHomeCategory {
+    id: string;
+    name: string;
+    icon: React.ElementType;
+    href: string;
+    dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+    id: string;
+    title: string;
+    imageUrl: string;
+    type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
+    link: string;
+    dataAiHint?: string;
+}
+
+export interface KnfBatch {
+    id: string;
+    userId: string;
+    type: string; // 'fpj', 'faa', etc.
+    typeName: string; // "Fermented Plant Juice"
+    ingredients: string;
+    startDate: any; // Firestore Timestamp
+    nextStepDate: any; // Firestore Timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    createdAt?: any;
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  read: boolean;
+  createdAt: any; // Firestore Timestamp
+  postId?: string; // For backwards compatibility if needed
+}
+
+export interface ForumPost {
+  id: string;
+  title: string;
+  content: string;
+  topicId: string;
+  topicName: string;
+  timestamp: string; // ISO String
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  replyCount: number;
+}

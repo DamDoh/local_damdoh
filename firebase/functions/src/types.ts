@@ -569,3 +569,46 @@ export interface InsuranceProviderDashboardData {
     expiryDate: string; // ISO string;
   }[];
 }
+
+export interface OperationsDashboardData {
+  vtiGenerationRate: {
+    rate: number;
+    unit: 'VTIs/hour';
+    trend: number;
+  };
+  dataPipelineStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastChecked: string; // ISO string
+  };
+  flaggedEvents: {
+    id: string;
+    type: 'Anomalous Geolocation' | 'Unusual Time Lag' | 'Data Mismatch';
+    description: string;
+    vtiLink: string;
+  }[];
+}
+
+export interface FinancialApplication {
+  id: string;
+  applicantName: string;
+  type: string;
+  amount: number;
+  currency: string;
+  status: string;
+  riskScore: number;
+  submittedAt: string | null;
+  actionLink: string;
+}
+
+export type KnfBatch = {
+    id: string;
+    userId: string;
+    type: string; // 'fpj', 'faa', etc.
+    typeName: string; // "Fermented Plant Juice"
+    ingredients: string;
+    startDate: any; // Firestore Timestamp
+    nextStepDate: any; // Firestore Timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    createdAt?: any;
+}

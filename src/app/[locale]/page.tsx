@@ -42,6 +42,7 @@ import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboa
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
+import { OperationsDashboard } from '@/components/dashboard/hubs/OperationsDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -64,6 +65,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
     'Insurance Provider': InsuranceProviderDashboard,
     'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
+    'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
     'Packaging Supplier': PackagingSupplierDashboard,
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,

@@ -26,6 +26,7 @@ import type {
     WasteManagementDashboardData,
     PackagingSupplierDashboardData,
     FinancialApplication,
+    OperationsDashboardData,
 } from "./types";
 
 const db = admin.firestore();
@@ -659,6 +660,28 @@ export const getWasteManagementDashboardData = functions.https.onCall(
       finishedProductInventory: [
         { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
       ]
+    };
+  }
+);
+
+export const getOperationsDashboardData = functions.https.onCall(
+  (data, context): OperationsDashboardData => {
+    checkAuth(context);
+    // In a real app, this data would be pulled from system monitoring tools and data analysis queries.
+    return {
+      vtiGenerationRate: {
+        rate: 150,
+        unit: 'VTIs/hour',
+        trend: 5,
+      },
+      dataPipelineStatus: {
+        status: 'Operational',
+        lastChecked: new Date().toISOString(),
+      },
+      flaggedEvents: [
+        { id: 'flag1', type: 'Unusual Time Lag', description: 'Harvest to Transport delay > 48h for perishable goods.', vtiLink: '#' },
+        { id: 'flag2', type: 'Anomalous Geolocation', description: 'Processing event logged 500km from previous event location.', vtiLink: '#' },
+      ],
     };
   }
 );
