@@ -74,7 +74,7 @@ export const getAgriEventTypeFormOptions = (t: any) =>
     getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}));
 
 export const getAgriEventFilterOptions = (t: any) => [
-    {value: 'All', label: t('agriEventTypes.All')},
+    {value: 'All', label: t('All')},
     ...getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}))
 ];
 

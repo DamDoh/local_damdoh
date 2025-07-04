@@ -29,7 +29,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { createAgriEventSchema, type CreateAgriEventValues } from "@/lib/form-schemas";
-import { AGRI_EVENT_TYPE_FORM_OPTIONS } from "@/lib/constants";
+import { getAgriEventTypeFormOptions } from "@/lib/constants";
 import { ArrowLeft, Save, UploadCloud, CalendarIcon, Clock, MapPin, Tag, Users, Link as LinkIcon, ImageUp, CaseUpper, FileText, Rss, Share2, RefreshCw, CheckCircle, Ticket, DollarSign, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -43,6 +43,7 @@ import { useTranslations } from "next-intl";
 
 export default function CreateAgriEventPage() {
   const t = useTranslations('AgriEvents');
+  const tConstants = useTranslations('constants');
   const { user } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -128,6 +129,7 @@ export default function CreateAgriEventPage() {
     toast({ title: t('create.linkCopiedTitle'), description: t('create.linkCopiedDescription') });
   };
 
+  const agriEventTypeOptions = getAgriEventTypeFormOptions(tConstants);
 
   return (
     <div className="space-y-6">
@@ -286,9 +288,9 @@ export default function CreateAgriEventPage() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {AGRI_EVENT_TYPE_FORM_OPTIONS.map((option) => (
+                          {agriEventTypeOptions.map((option) => (
                             <SelectItem key={option.value} value={option.value}>
-                              {t(`types.${option.value}`, option.label)}
+                              {option.label}
                             </SelectItem>
                           ))}
                         </SelectContent>
