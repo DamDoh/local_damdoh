@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -755,5 +754,22 @@ export interface WasteManagementDashboardData {
     product: string;
     quantity: string; // e.g., '20 tons'
     actionLink: string;
+  }[];
+}
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
   }[];
 }

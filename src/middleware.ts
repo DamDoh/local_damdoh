@@ -1,3 +1,1 @@
-
-// This file is obsolete. The middleware has been moved to the project root.
-// This file can be deleted.
+// This file is intentionally blank. The middleware is located at the project root.
