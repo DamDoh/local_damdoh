@@ -73,10 +73,14 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
 
     const conversations = snapshot.docs.map(doc => {
         const data = doc.data();
-        const otherParticipantId = data.participantIds.find((id: string) => id !== userId);
         
-        // FIX: Ensure the default object has the correct shape to prevent frontend errors.
-        const otherParticipantInfo = data.participantInfo[otherParticipantId] || { displayName: 'Unknown User', avatarUrl: '' };
+        // Defensive coding: Ensure data structure is valid before accessing properties.
+        const participantIds = data.participantIds || [];
+        const participantInfo = data.participantInfo || {};
+        const otherParticipantId = participantIds.find((id: string) => id !== userId);
+        
+        // Gracefully handle cases where the other participant might be missing.
+        const otherParticipantInfo = (otherParticipantId ? participantInfo[otherParticipantId] : null) || { displayName: 'Unknown User', avatarUrl: '' };
 
         return {
             id: doc.id,
@@ -89,7 +93,7 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
             lastMessageTimestamp: (data.lastMessageTimestamp as admin.firestore.Timestamp)?.toDate?.().toISOString(),
             unreadCount: data.unreadCount?.[userId] || 0, // Placeholder for unread count logic
         };
-    });
+    }).filter(Boolean); // Filter out any potentially null results from malformed data
     
     return { conversations };
 });

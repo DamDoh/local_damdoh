@@ -5,11 +5,10 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import QRCode from 'qrcode.react';
 
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
-import { getProfileByIdFromDB } from "@/lib/db-utils";
+import { getProfileByIdFromDB } from "@/lib/server-actions";
 import { APP_NAME } from "@/lib/constants";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,11 +16,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, User as UserIcon, HelpCircle, LogIn, UserPlus, QrCode } from "lucide-react";
+import { Briefcase, MapPin, MessageCircle, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-
 
 function ProfileSkeleton() {
   return (
@@ -123,7 +120,9 @@ export default function ProfileDetailPage() {
   }
 
   const isCurrentUserProfile = authUser?.uid === profile.id;
-  const qrCodeValue = `damdoh://user?id=${profile.universalId}`;
+  
+  const areasOfInterest = profile.stakeholderProfile?.areasOfInterest;
+  const needs = profile.stakeholderProfile?.needs;
 
   return (
     <div className="space-y-6">
@@ -144,7 +143,7 @@ export default function ProfileDetailPage() {
           </div>
         </div>
         <CardHeader className="pt-[60px] px-6"> 
-          <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start">
             <div>
               <CardTitle className="text-3xl">{profile.displayName}</CardTitle>
               <CardDescription className="text-lg flex items-center gap-2">
@@ -155,38 +154,13 @@ export default function ProfileDetailPage() {
                 <MapPin className="h-4 w-4" /> {profile.location}
               </div>
             </div>
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex gap-2 mt-4 sm:mt-0">
               {isCurrentUserProfile ? (
-                <>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                       <Button variant="secondary"><QrCode className="mr-2 h-4 w-4" /> My Universal ID</Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-xs">
-                        <DialogHeader>
-                          <DialogTitle className="text-center">My Universal ID</DialogTitle>
-                           <DialogDescription className="text-center">
-                            Show this QR code to agents, partners, or other users for quick identification and interaction.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="p-4 flex flex-col items-center justify-center gap-4">
-                            <div className="p-4 bg-white rounded-lg border">
-                                <QRCode value={qrCodeValue} size={200} />
-                            </div>
-                            <p className="text-xs text-center text-muted-foreground">This code uniquely identifies you within the {APP_NAME} ecosystem.</p>
-                        </div>
-                    </DialogContent>
-                  </Dialog>
-                  <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
-                </>
+                <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
               ) : (
                 <>
                   <Button><LinkIcon className="mr-2 h-4 w-4" /> {t('connect')}</Button>
-                  <Button asChild variant="outline">
-                     <Link href={`/messages?with=${profile.id}`}>
-                      <MessageCircle className="mr-2 h-4 w-4" /> {t('message')}
-                     </Link>
-                  </Button>
+                  <Button variant="outline"><MessageCircle className="mr-2 h-4 w-4" /> {t('message')}</Button>
                 </>
               )}
             </div>
@@ -208,12 +182,12 @@ export default function ProfileDetailPage() {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {profile.profileData?.yearsOfExperience !== undefined && (
+            {(profile.stakeholderProfile as any)?.yearsOfExperience !== undefined && (
               <div className="flex items-start gap-3">
                 <Briefcase className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">{t('experienceTitle')}</h4>
-                  <p className="text-muted-foreground">{profile.profileData.yearsOfExperience} years</p>
+                  <p className="text-muted-foreground">{(profile.stakeholderProfile as any).yearsOfExperience} years</p>
                 </div>
               </div>
             )}
@@ -237,27 +211,27 @@ export default function ProfileDetailPage() {
             )}
           </div>
 
-          {Array.isArray(profile.areasOfInterest) && profile.areasOfInterest.length > 0 && (
+          {Array.isArray(areasOfInterest) && areasOfInterest.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />{t('interestsTitle')}</h3>
               <div className="flex flex-wrap gap-2">
-                {profile.areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}
+                {areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}
               </div>
             </div>
           )}
 
-          {Array.isArray(profile.needs) && profile.needs.length > 0 && (
+          {Array.isArray(needs) && needs.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />{t('needsTitle')}</h3>
               <div className="flex flex-wrap gap-2">
-                {profile.needs.map((need: string) => <Badge key={need}>{need}</Badge>)}
+                {needs.map((need: string) => <Badge key={need}>{need}</Badge>)}
               </div>
             </div>
           )}
         </CardContent>
       </Card>
       
-      {profile.profileData && Object.keys(profile.profileData).length > 0 && (
+      {profile.stakeholderProfile && Object.keys(profile.stakeholderProfile).length > 0 && (
         <Card>
             <CardHeader>
                 <CardTitle>{profile.primaryRole} {t('detailsTitle')}</CardTitle>
@@ -265,7 +239,7 @@ export default function ProfileDetailPage() {
             </CardHeader>
             <CardContent>
                 <pre className="p-4 bg-muted rounded-md text-xs whitespace-pre-wrap">
-                    {JSON.stringify(profile.profileData, null, 2)}
+                    {JSON.stringify(profile.stakeholderProfile, null, 2)}
                 </pre>
                 <p className="text-xs text-muted-foreground mt-2">{t('tempDisplayNotice')}</p>
             </CardContent>

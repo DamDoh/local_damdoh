@@ -48,7 +48,7 @@ const getIconForCollection = (collection: SearchResult['itemCollection']) => {
 const getLinkForCollection = (result: SearchResult) => {
     switch(result.itemCollection) {
         case 'users': return `/profiles/${result.itemId}`;
-        case 'marketplaceItems': return `/marketplace/items/${result.itemId}`; // Assuming a detail page exists
+        case 'marketplaceItems': return `/marketplace/${result.itemId}`;
         case 'forums': return `/forums/${result.itemId}`; // Adjust if topic/post needs different URL structure
         case 'agriEvents': return `/agri-events/${result.itemId}`;
         case 'knowledge_articles': return `/blog/${result.itemId}`;
@@ -137,7 +137,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
 
         <ScrollArea className="flex-grow">
           <div className='p-4 space-y-3'>
-             {aiInterpretation && aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
+             {aiInterpretation && aiInterpretation.suggestedFilters && Array.isArray(aiInterpretation.suggestedFilters) && aiInterpretation.suggestedFilters.length > 0 && (
                  <div className="p-3 text-xs text-blue-700 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 rounded-md border border-blue-200 dark:border-blue-800">
                     <p><strong>AI interpretation:</strong> {aiInterpretation.interpretationNotes}</p>
                     <div className="mt-2 flex flex-wrap gap-1">
@@ -158,7 +158,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
                         </div>
                     </div>
                 ))
-            ) : searchResults.length > 0 ? (
+            ) : Array.isArray(searchResults) && searchResults.length > 0 ? (
                 searchResults.map(result => (
                   <Link href={getLinkForCollection(result)} key={result.id} onClick={onClose} className="block group">
                     <Card className="hover:border-primary/50 hover:bg-accent/50 transition-colors">
