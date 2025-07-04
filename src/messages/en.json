@@ -206,5 +206,17 @@
       "description": "The blog post you are looking for does not exist.",
       "backButton": "Back to Blog"
     }
+  },
+  "searchPage": {
+    "title": "Search DamDoh",
+    "description": "Find exactly what you're looking for across our entire platform.",
+    "placeholder": "Search for people, products, services...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Logistics in Kenya",
+    "popularSearch3": "Coffee Buyers Europe",
+    "popularSearch4": "Soil Testing Services",
+    "popularSearch5": "Tractor for Rent"
   }
 }
