@@ -12,22 +12,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
-
-interface FinancialTransaction {
-    id: string;
-    type: 'income' | 'expense';
-    amount: number;
-    currency: string;
-    description: string;
-    category?: string;
-    timestamp: string; // ISO string
-}
-
-interface FinancialSummary {
-    totalIncome: number;
-    totalExpense: number;
-    netFlow: number;
-}
+import type { FinancialSummary, FinancialTransaction } from '@/lib/types';
 
 
 const functions = getFunctions(firebaseApp);
@@ -61,8 +46,11 @@ export default function FinancialDashboardPage() {
         try {
             const result = await getFinancialsCallable();
             const data = result.data as { summary: FinancialSummary; transactions: FinancialTransaction[] };
-            setSummary(data?.summary || null);
-            setTransactions(data?.transactions || []);
+            
+            // Robustly set state, providing empty fallbacks to prevent crashes
+            setSummary(data?.summary ?? { totalIncome: 0, totalExpense: 0, netFlow: 0 });
+            setTransactions(data?.transactions ?? []);
+
         } catch (err) {
             console.error("Failed to load financial data.", err);
             setSummary(null);
@@ -144,7 +132,7 @@ export default function FinancialDashboardPage() {
                 {transactions.length > 0 ? (
                     transactions.map(tx => (
                         <TableRow key={tx.id}>
-                            <TableCell>{new Date(tx.timestamp).toLocaleDateString()}</TableCell>
+                            <TableCell>{tx.timestamp ? new Date(tx.timestamp).toLocaleDateString() : 'N/A'}</TableCell>
                             <TableCell className="font-medium">{tx.description}</TableCell>
                             <TableCell><Badge variant="outline">{tx.category || 'Uncategorized'}</Badge></TableCell>
                             <TableCell className={`text-right font-semibold ${tx.type === 'income' ? 'text-green-600' : 'text-red-600'}`}>

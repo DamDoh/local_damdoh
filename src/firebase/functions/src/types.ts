@@ -55,9 +55,35 @@ export interface Shop {
     rating: number;
 }
 
+export type ForumGroup = {
+  id: string;
+  name: string;
+  description: string;
+  memberCount: number;
+  isPublic: boolean;
+  ownerId: string;
+  createdAt: string; // ISO String
+}
+
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
+
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: any; // Allow for firestore timestamp
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
 
 export interface FarmerDashboardData {
   farmCount: number;
@@ -568,14 +594,4 @@ export interface InsuranceProviderDashboardData {
     coverageAmount: number;
     expiryDate: string; // ISO string
   }[];
-}
-
-export type ForumGroup = {
-  id: string;
-  name: string;
-  description: string;
-  memberCount: number;
-  isPublic: boolean;
-  ownerId: string;
-  createdAt: string; // ISO String
 }
