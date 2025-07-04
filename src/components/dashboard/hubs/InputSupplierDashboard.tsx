@@ -10,6 +10,8 @@ import { TrendingUp, PackageCheck, ShoppingCart, Ticket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { InputSupplierDashboardData } from '@/lib/types';
+import { Badge } from '@/components/ui/badge';
+
 
 export const InputSupplierDashboard = () => {
     const [dashboardData, setDashboardData] = useState<InputSupplierDashboardData | null>(null);

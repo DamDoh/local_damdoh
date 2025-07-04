@@ -295,17 +295,42 @@ export const getFieldAgentDashboardData = functions.https.onCall(
 
 
 export const getInputSupplierDashboardData = functions.https.onCall(
-  (data, context): InputSupplierDashboardData => {
-    checkAuth(context);
-    return {
-        demandForecast: [
-            { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' }
-        ],
-        productPerformance: [
-            { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' }
-        ],
-        activeOrders: { count: 15, value: 12500, link: '#' }
-    };
+  async (data, context): Promise<InputSupplierDashboardData> => {
+    const supplierId = checkAuth(context);
+
+    try {
+      // 1. Fetch active orders
+      const ordersSnapshot = await db.collection('marketplace_orders')
+        .where('sellerId', '==', supplierId)
+        .get();
+
+      const ordersData = ordersSnapshot.docs.map(doc => doc.data());
+      const totalValue = ordersData.reduce((sum, order) => sum + (order.totalPrice || 0), 0);
+
+      const activeOrders = {
+        count: ordersSnapshot.size,
+        value: totalValue,
+        link: '/orders/manage' // A conceptual link for now
+      };
+
+      // 2. Keep other sections as mock data for now
+      const demandForecast = [
+        { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' }
+      ];
+      const productPerformance = [
+        { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' }
+      ];
+
+      return {
+        demandForecast,
+        productPerformance,
+        activeOrders,
+      };
+
+    } catch (error) {
+        console.error("Error fetching Input Supplier dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
