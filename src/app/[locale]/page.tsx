@@ -34,6 +34,7 @@ import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
 import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplierDashboard';
 import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
 import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
+import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
 import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
 import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
 import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
@@ -62,6 +63,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
     'Insurance Provider': InsuranceProviderDashboard,
     'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
+    'Packaging Supplier': PackagingSupplierDashboard,
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,
     'Researcher/Academic': ResearcherDashboard,

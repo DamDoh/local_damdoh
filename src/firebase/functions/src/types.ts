@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -498,35 +499,18 @@ export interface WasteManagementDashboardData {
   }[];
 }
 
-export interface PackagingSupplierDashboardData {
-  incomingOrders: {
-    id: string;
-    customerName: string;
-    product: string;
-    quantity: number;
-    status: 'New' | 'Processing' | 'Shipped';
-    actionLink: string;
-  }[];
-  inventory: {
-    id: string;
-    item: string;
-    stock: number;
-    reorderLevel: number;
-  }[];
-}
-
 
 export interface KnfBatch {
-  id: string;
-  userId: string;
-  type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
-  typeName: string;
-  ingredients: string;
-  startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
-  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-  nextStep: string;
-  nextStepDate: { _seconds: number, _nanoseconds: number } | any;
-  createdAt: { _seconds: number, _nanoseconds: number } | any;
+    id: string;
+    userId: string;
+    type: 'fpj' | 'faa' | 'wca' | 'imo' | 'lab';
+    typeName: string;
+    ingredients: string;
+    startDate: { _seconds: number, _nanoseconds: number } | any; // Allow for firestore timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    nextStepDate: { _seconds: number, _nanoseconds: number } | any;
+    createdAt: { _seconds: number, _nanoseconds: number } | any;
 }
 
 export interface YieldData {
@@ -621,4 +605,21 @@ export interface PostReply {
     };
     content: string;
     timestamp: string;
+}
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
 }

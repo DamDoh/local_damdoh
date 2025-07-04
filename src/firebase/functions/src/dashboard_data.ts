@@ -98,60 +98,6 @@ export const getFarmerDashboardData = functions.https.onCall(
 );
 
 
-export const getCooperativeDashboardData = functions.https.onCall(
-  (data, context): CooperativeDashboardData => {
-    checkAuth(context);
-    // This is placeholder data. A real implementation would query the DB
-    // to find all users who are members of this cooperative (context.auth.uid)
-    // and aggregate their data.
-    return {
-        memberCount: 125,
-        totalLandArea: 850,
-        aggregatedProduce: [
-            { id: 'batch_maize_123', productName: 'Organic Maize', quantity: 50, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 7).toISOString() },
-            { id: 'batch_avocado_456', productName: 'Hass Avocados', quantity: 20, quality: 'Export Grade', readyBy: new Date(Date.now() + 86400000 * 14).toISOString() },
-            { id: 'batch_coffee_789', productName: 'AA Coffee Beans', quantity: 15, quality: 'Specialty Grade', readyBy: new Date(Date.now() + 86400000 * 3).toISOString() },
-        ],
-        pendingMemberApplications: 3,
-    };
-  }
-);
-
-
-export const getInputSupplierDashboardData = functions.https.onCall(
-  (data, context): InputSupplierDashboardData => {
-    checkAuth(context);
-    return {
-        demandForecast: [
-            { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' },
-            { id: 'df2', region: 'Central Kenya', product: 'Foliar Fertilizer', trend: 'Steady', reason: 'Coffee berry growth stage' },
-        ],
-        productPerformance: [
-            { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' },
-            { id: 'pp2', productName: 'PestGuard Organic', rating: 4.2, feedback: 'Effective against aphids on vegetables.', link: '#' }
-        ],
-        activeOrders: { count: 15, value: 12500, link: '/marketplace/orders' }
-    };
-  }
-);
-
-export const getFiDashboardData = functions.https.onCall(
-  (data, context): FiDashboardData => {
-    checkAuth(context);
-    return {
-        pendingApplications: [
-            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' },
-            { id: 'app2', applicantName: 'Sunrise Growers', type: 'Grant', amount: 15000, riskScore: 810, actionLink: '#' }
-        ],
-        portfolioAtRisk: { count: 5, value: 25000, highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' }, actionLink: '#' },
-        marketUpdates: [
-            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%. Consider adjusting loan product rates.', actionLink: '#' },
-            { id: 'update2', content: 'New government subsidy announced for climate-resilient farming practices.', actionLink: '#' }
-        ]
-    };
-  }
-);
-
 export const getPackagingSupplierDashboardData = functions.https.onCall(
   (data, context): PackagingSupplierDashboardData => {
     checkAuth(context);
@@ -170,10 +116,24 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
 );
 
 
-
 // =================================================================
 // PLACEHOLDER DASHBOARDS (to be implemented with real data later)
 // =================================================================
+
+export const getCooperativeDashboardData = functions.https.onCall(
+  (data, context): CooperativeDashboardData => {
+    checkAuth(context);
+    return {
+        memberCount: 125,
+        totalLandArea: 850,
+        aggregatedProduce: [
+            { id: 'prod1', productName: 'Organic Maize', quantity: 50, quality: 'Grade A', readyBy: new Date(Date.now() + 86400000 * 7).toISOString() },
+            { id: 'prod2', productName: 'Hass Avocados', quantity: 20, quality: 'Export Grade', readyBy: new Date(Date.now() + 86400000 * 14).toISOString() }
+        ],
+        pendingMemberApplications: 3,
+    };
+  }
+);
 
 export const getBuyerDashboardData = functions.https.onCall(
   (data, context): BuyerDashboardData => {
@@ -223,7 +183,21 @@ export const getLogisticsDashboardData = functions.https.onCall(
   }
 );
 
-
+export const getFiDashboardData = functions.https.onCall(
+  (data, context): FiDashboardData => {
+    checkAuth(context);
+    return {
+        pendingApplications: [
+            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' },
+            { id: 'app2', applicantName: 'Sunrise Growers', type: 'Grant', amount: 15000, riskScore: 810, actionLink: '#' }
+        ],
+        portfolioAtRisk: { count: 5, value: 25000, highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' }, actionLink: '#' },
+        marketUpdates: [
+            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%.', actionLink: '#' }
+        ]
+    };
+  }
+);
 
 export const getFieldAgentDashboardData = functions.https.onCall(
   (data, context): FieldAgentDashboardData => {
@@ -240,6 +214,21 @@ export const getFieldAgentDashboardData = functions.https.onCall(
   }
 );
 
+
+export const getInputSupplierDashboardData = functions.https.onCall(
+  (data, context): InputSupplierDashboardData => {
+    checkAuth(context);
+    return {
+        demandForecast: [
+            { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' }
+        ],
+        productPerformance: [
+            { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' }
+        ],
+        activeOrders: { count: 15, value: 12500, link: '#' }
+    };
+  }
+);
 
 export const getAgroExportDashboardData = functions.https.onCall(
   (data, context): AgroExportDashboardData => {
@@ -353,7 +342,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
         pendingConsultationRequests: [
             { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
         ],
-        knowledgeBaseContributions: [
+        knowledgeHubContributions: [
             { id: 'kb1', title: 'Identifying Fall Armyworm', status: 'Published' }
         ]
     };
@@ -459,4 +448,3 @@ export const getWasteManagementDashboardData = functions.https.onCall(
     };
   }
 );
-    
