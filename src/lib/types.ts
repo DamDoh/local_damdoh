@@ -228,10 +228,10 @@ export interface EventCoupon {
   code: string;
   discountType: 'percentage' | 'fixed';
   discountValue: number;
-  expiresAt?: string | null; // ISO String
+  expiresAt?: string | null;
   usageLimit?: number | null;
   usageCount: number;
-  createdAt: string; // ISO String
+  createdAt: string;
 }
 
 

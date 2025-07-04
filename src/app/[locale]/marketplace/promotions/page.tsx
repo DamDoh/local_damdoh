@@ -33,8 +33,8 @@ export default function MarketplacePromotionsPage() {
     const [coupons, setCoupons] = useState<MarketplaceCoupon[]>([]);
     const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
     const functions = getFunctions(firebaseApp);
-    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceCoupon'), [functions]);
-    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getSellerCoupons'), [functions]);
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceCoupon'), []);
+    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getSellerCoupons'), []);
 
     const form = useForm<CreateMarketplaceCouponValues>({
         resolver: zodResolver(createMarketplaceCouponSchema),
@@ -46,7 +46,7 @@ export default function MarketplacePromotionsPage() {
         setIsLoadingCoupons(true);
         try {
             const result = await getCouponsCallable();
-            setCoupons((result.data as any).coupons || []);
+            setCoupons((result?.data as any)?.coupons || []);
         } catch (error) {
             toast({ variant: "destructive", title: "Error", description: "Could not fetch your existing coupons." });
         } finally {
@@ -148,7 +148,7 @@ export default function MarketplacePromotionsPage() {
                     <div>
                         <h3 className="text-lg font-semibold mb-2">My Coupons</h3>
                         {isLoadingCoupons ? <Skeleton className="h-20 w-full" /> : 
-                         coupons.length > 0 ? (
+                         (Array.isArray(coupons) && coupons.length > 0) ? (
                             <div className="space-y-2">
                                 {coupons.map(coupon => (
                                     <div key={coupon.id} className="flex flex-wrap justify-between items-center gap-2 p-3 border rounded-lg">

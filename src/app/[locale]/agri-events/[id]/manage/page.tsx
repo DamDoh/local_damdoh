@@ -1,9 +1,10 @@
+
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon } from "lucide-react";
+import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,32 +17,46 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { createAgriEventCouponSchema, type CreateAgriEventCouponValues } from "@/lib/form-schemas";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "@/lib/firebase/client";
+import { useParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { EventCoupon } from "@/lib/types";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 
-
-const couponFormSchema = z.object({
-  code: z.string().min(4, "Code must be at least 4 characters").max(20),
-  discountType: z.enum(["percentage", "fixed"]),
-  discountValue: z.coerce.number().positive("Value must be positive"),
-  expiryDate: z.date({
-    required_error: "An expiry date is required.",
-  }),
-  usageLimit: z.coerce.number().int().positive("Limit must be a positive number"),
-});
-
-
-const CouponCreationForm = () => {
+const CouponCreationForm = ({ onCouponCreated }: { onCouponCreated: () => void }) => {
     const t = useTranslations('AgriEvents.promotions');
-    const form = useForm<z.infer<typeof couponFormSchema>>({
-        resolver: zodResolver(couponFormSchema),
+    const { toast } = useToast();
+    const params = useParams();
+    const eventId = params.id as string;
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createEventCoupon'), []);
+
+    const form = useForm<CreateAgriEventCouponValues>({
+        resolver: zodResolver(createAgriEventCouponSchema),
         defaultValues: {
             code: "",
             discountType: "percentage",
+            usageLimit: 100,
         },
     });
 
-    function onSubmit(values: z.infer<typeof couponFormSchema>) {
-        console.log("Creating coupon:", values);
-        // Placeholder for submission logic
+    async function onSubmit(values: CreateAgriEventCouponValues) {
+        try {
+            await createCouponCallable({
+                ...values,
+                eventId,
+                expiryDate: values.expiryDate?.toISOString()
+            });
+            toast({ title: "Coupon Created!", description: `The coupon "${values.code}" is now active.` });
+            onCouponCreated();
+            form.reset();
+        } catch (error: any) {
+            console.error("Error creating coupon:", error);
+            toast({ variant: "destructive", title: "Creation Failed", description: error.message });
+        }
     }
 
     return (
@@ -154,18 +169,12 @@ const CouponCreationForm = () => {
     );
 };
 
-const ExistingCouponsList = () => {
+const ExistingCouponsList = ({ coupons, isLoading }: { coupons: EventCoupon[], isLoading: boolean }) => {
     const t = useTranslations('AgriEvents.promotions');
     const { toast } = useToast();
-    const coupons = [
-        { id: '1', code: 'EARLYBIRD10', discount: '10% off', uses: 15, limit: 100, expiry: '2024-12-31' },
-        { id: '2', code: 'DAMDOH5', discount: '$5 off', uses: 45, limit: 200, expiry: '2024-11-30' },
-    ];
 
     const handleShare = (code: string) => {
-        // This is a client-side component, so we can use window.
-        // In a real app, the event ID would come from component props or URL params hook.
-        const eventId = window.location.pathname.split('/')[2]; 
+        const eventId = window.location.pathname.split('/agri-events/')[1].split('/')[0];
         const shareLink = `${window.location.origin}/agri-events/${eventId}?coupon=${code}`;
         navigator.clipboard.writeText(shareLink);
         toast({
@@ -174,6 +183,21 @@ const ExistingCouponsList = () => {
         });
     };
 
+    if (isLoading) {
+      return (
+        <Card>
+            <CardHeader>
+                <Skeleton className="h-6 w-1/3" />
+                <Skeleton className="h-4 w-2/3" />
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <Skeleton className="h-20 w-full" />
+                <Skeleton className="h-20 w-full" />
+            </CardContent>
+        </Card>
+      );
+    }
+
     return (
         <Card>
             <CardHeader>
@@ -181,7 +205,8 @@ const ExistingCouponsList = () => {
                 <CardDescription>{t('list.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                {coupons.map((coupon) => (
+                {Array.isArray(coupons) && coupons.length > 0 ? (
+                    coupons.map((coupon) => (
                     <Card key={coupon.id} className="flex flex-col md:flex-row items-start md:items-center justify-between p-4">
                         <div className="mb-4 md:mb-0">
                             <div className="flex items-center gap-2">
@@ -189,19 +214,50 @@ const ExistingCouponsList = () => {
                                 <p className="text-lg font-bold">{coupon.code}</p>
                             </div>
                             <p className="text-sm text-muted-foreground">
-                                {coupon.discount} | {t('list.expires')}: {coupon.expiry}
+                                {coupon.discountType === 'fixed' ? `$${coupon.discountValue?.toFixed(2) ?? '0.00'}` : `${coupon.discountValue ?? 0}%`} off | {t('list.expires')}: {coupon.expiresAt ? format(new Date(coupon.expiresAt), "PPP") : 'Never'}
                             </p>
                             <p className="text-sm">
-                                {t('list.usage')}: {coupon.uses} / {coupon.limit}
+                                {t('list.usage')}: {coupon.usageCount} / {coupon.usageLimit || '∞'}
                             </p>
                         </div>
-                        <Button variant="outline" size="sm" onClick={() => handleShare(coupon.code)}>
-                            <Share2 className="mr-2 h-4 w-4" />
-                            {t('list.share')}
-                        </Button>
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button variant="outline" size="sm">
+                                    <Share2 className="mr-2 h-4 w-4" />
+                                    {t('list.share')}
+                                </Button>
+                            </DialogTrigger>
+                             <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Share Coupon</DialogTitle>
+                                    <DialogDescription>
+                                        Share this code or link with potential attendees.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <div className="flex items-center space-x-2">
+                                    <div className="grid flex-1 gap-2">
+                                        <Label htmlFor="link" className="sr-only">
+                                        Link
+                                        </Label>
+                                        <Input
+                                        id="link"
+                                        defaultValue={`${window.location.origin}/agri-events/${window.location.pathname.split('/agri-events/')[1].split('/')[0]}?coupon=${coupon.code}`}
+                                        readOnly
+                                        />
+                                    </div>
+                                    <Button type="button" size="sm" className="px-3" onClick={() => handleShare(coupon.code)}>
+                                        <span className="sr-only">Copy</span>
+                                        <ClipboardCopy className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                                <DialogFooter>
+                                    <DialogClose asChild><Button type="button" variant="secondary">Close</Button></DialogClose>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </Card>
-                ))}
-                 {coupons.length === 0 && (
+                    ))
+                ) : (
                     <p className="text-sm text-center text-muted-foreground pt-4">{t('list.noCoupons')}</p>
                 )}
             </CardContent>
@@ -211,6 +267,36 @@ const ExistingCouponsList = () => {
 
 export default function ManageEventPage() {
     const t = useTranslations('AgriEvents.manage');
+    const [coupons, setCoupons] = useState<EventCoupon[]>([]);
+    const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
+    const params = useParams();
+    const eventId = params.id as string;
+    const { toast } = useToast();
+
+    const getEventCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), []);
+
+    const fetchCoupons = useCallback(async () => {
+        setIsLoadingCoupons(true);
+        try {
+            const result = await getEventCouponsCallable({ eventId });
+            setCoupons((result?.data as any)?.coupons || []); // Safeguard against undefined result.data
+        } catch (error) {
+            console.error("Error fetching event coupons:", error);
+            toast({ variant: "destructive", title: "Error", description: "Could not fetch existing coupons." });
+        } finally {
+            setIsLoadingCoupons(false);
+        }
+    }, [eventId, getEventCouponsCallable, toast]);
+
+    useEffect(() => {
+        if(eventId) {
+            fetchCoupons();
+        }
+    }, [eventId, fetchCoupons]);
+
+    const handleCouponCreated = () => {
+        fetchCoupons();
+    };
 
     return (
         <div className="container mx-auto p-4 md:p-8">
@@ -233,8 +319,8 @@ export default function ManageEventPage() {
                 </TabsContent>
                 <TabsContent value="promotions">
                     <div className="space-y-6">
-                       <CouponCreationForm />
-                       <ExistingCouponsList />
+                       <CouponCreationForm onCouponCreated={handleCouponCreated} />
+                       <ExistingCouponsList coupons={coupons} isLoading={isLoadingCoupons} />
                     </div>
                 </TabsContent>
                 <TabsContent value="settings">
