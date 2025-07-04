@@ -100,19 +100,60 @@ export const getFarmerDashboardData = functions.https.onCall(
 
 
 export const getPackagingSupplierDashboardData = functions.https.onCall(
-  (data, context): PackagingSupplierDashboardData => {
-    checkAuth(context);
-    return {
-      incomingOrders: [
-        { id: 'order1', customerName: 'GreenLeaf Organics', product: '5kg Jute Bags', quantity: 1000, status: 'New', actionLink: '#' },
-        { id: 'order2', customerName: 'Amina Exports Ltd.', product: 'Ventilated Fruit Cartons', quantity: 5000, status: 'Processing', actionLink: '#' }
-      ],
-      inventory: [
-        { id: 'inv1', item: '5kg Jute Bags', stock: 5000, reorderLevel: 2000 },
-        { id: 'inv2', item: 'Ventilated Fruit Cartons', stock: 8000, reorderLevel: 3000 },
-        { id: 'inv3', item: 'GrainPro Hermetic Bags', stock: 1500, reorderLevel: 1000 }
-      ],
-    };
+  async (data, context): Promise<PackagingSupplierDashboardData> => {
+    const supplierId = checkAuth(context);
+    try {
+        // Fetch real inventory data
+        const inventorySnapshot = await db.collection('marketplaceItems')
+            .where('sellerId', '==', supplierId)
+            .where('category', '==', 'packaging-solutions')
+            .get();
+
+        const inventory = inventorySnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                item: item.name,
+                stock: item.stock || 0, // Assuming a stock field exists
+                reorderLevel: item.reorderLevel || 100, // Assuming a reorderLevel field
+            };
+        });
+        
+        // Fetch real orders
+         const ordersSnapshot = await db.collection('marketplace_orders')
+            .where('sellerId', '==', supplierId)
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
+
+        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
+        const buyerProfiles: {[key: string]: string} = {};
+        if(buyerIds.length > 0) {
+            const buyerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', buyerIds).get();
+            buyerDocs.forEach(doc => {
+                buyerProfiles[doc.id] = doc.data().displayName || 'Unknown Customer';
+            });
+        }
+
+        const incomingOrders = ordersSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                customerName: buyerProfiles[order.buyerId] || 'Unknown Customer',
+                product: order.listingName,
+                quantity: order.quantity,
+                status: order.status,
+                actionLink: `/orders/${order.id}`,
+            };
+        });
+
+
+        return { incomingOrders, inventory };
+
+    } catch (error) {
+        console.error("Error fetching packaging supplier dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
@@ -450,5 +491,3 @@ export const getWasteManagementDashboardData = functions.https.onCall(
   }
 );
     
-
-

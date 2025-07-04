@@ -399,3 +399,58 @@ export const getMarketplaceItemById = functions.https.onCall(async (data, contex
     throw new functions.https.HttpsError("internal", "Could not fetch item details.");
   }
 });
+
+
+/**
+ * Creates a new marketplace order.
+ * This is a secure function callable from the client.
+ */
+export const createMarketplaceOrder = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to place an order.");
+    }
+
+    const { itemId, quantity, buyerNotes } = data;
+    const buyerId = context.auth.uid;
+
+    if (!itemId || !quantity || quantity <= 0) {
+        throw new functions.https.HttpsError("invalid-argument", "Item ID and a valid quantity are required.");
+    }
+
+    try {
+        const itemRef = db.collection("marketplaceItems").doc(itemId);
+        const itemDoc = await itemRef.get();
+
+        if (!itemDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "The item you are trying to order does not exist.");
+        }
+
+        const itemData = itemDoc.data() as MarketplaceItem;
+        const sellerId = itemData.sellerId;
+        const totalPrice = (itemData.price || 0) * quantity;
+
+        const orderRef = db.collection("marketplace_orders").doc();
+        await orderRef.set({
+            orderId: orderRef.id,
+            itemId: itemId,
+            listingName: itemData.name, // For notifications
+            buyerId: buyerId,
+            sellerId: sellerId,
+            quantity: quantity,
+            totalPrice: totalPrice,
+            currency: itemData.currency,
+            buyerNotes: buyerNotes || "",
+            status: "new", // e.g., new -> confirmed -> shipped -> completed/cancelled
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        // The onWrite trigger in notifications.ts will handle sending a notification to the seller.
+
+        return { success: true, orderId: orderRef.id };
+    } catch (error: any) {
+        console.error("Error creating marketplace order:", error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "Failed to create order.", { originalError: error.message });
+    }
+});

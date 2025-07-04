@@ -19,10 +19,11 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, CalendarIcon, QrCode, CheckCircle } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageCircle, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, CalendarIcon, QrCode, CheckCircle, XCircle } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Textarea } from '@/components/ui/textarea';
 
 function ItemPageSkeleton() {
     return (
@@ -66,12 +67,20 @@ function ItemPageContent() {
     const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; type: 'fixed' | 'percentage' } | null>(null);
     const [isBooking, setIsBooking] = useState(false);
     const [isBooked, setIsBooked] = useState(false); // New state to track if user has booked
+    
+    // State for the order dialog
+    const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
+    const [orderQuantity, setOrderQuantity] = useState(1);
+    const [orderNotes, setOrderNotes] = useState("");
+    const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+
 
     const functions = getFunctions(firebaseApp);
     const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
     const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'getShopDetails'), [functions]);
     const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
     const bookAgroTourismServiceCallable = useMemo(() => httpsCallable(functions, 'bookAgroTourismService'), [functions]);
+    const createMarketplaceOrderCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceOrder'), [functions]);
     
     useEffect(() => {
         const couponFromUrl = searchParams.get('coupon');
@@ -156,6 +165,28 @@ function ItemPageContent() {
         }
     };
 
+    const handlePlaceOrder = async () => {
+        if (!user) {
+             toast({ variant: 'destructive', title: "Authentication Required", description: "Please sign in to place an order." });
+             router.push('/auth/signin');
+             return;
+        }
+        if (orderQuantity <= 0) {
+            toast({ variant: 'destructive', title: "Invalid Quantity", description: "Please enter a valid quantity." });
+            return;
+        }
+        setIsPlacingOrder(true);
+        try {
+            await createMarketplaceOrderCallable({ itemId: item?.id, quantity: orderQuantity, buyerNotes: orderNotes });
+            toast({ title: "Order Placed!", description: "Your order has been sent to the seller." });
+            setIsOrderDialogOpen(false);
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: "Order Failed", description: error.message || "Could not place the order. Please try again." });
+        } finally {
+            setIsPlacingOrder(false);
+        }
+    };
+
 
     const calculateDiscountedPrice = () => {
         if (!appliedCoupon || !item?.price) return item?.price;
@@ -176,10 +207,12 @@ function ItemPageContent() {
 
     const isOwner = user?.uid === item.sellerId;
     const isAgroTourismService = item.category === 'agri-tourism-services';
+    const isProduct = item.listingType === 'Product';
     const skills: string[] = Array.isArray(item.skillsRequired) ? item.skillsRequired : (typeof item.skillsRequired === 'string' && item.skillsRequired) ? item.skillsRequired.split(',').map(s => s.trim()) : [];
     const serviceQrCodeValue = `damdoh:checkin?itemId=${item.id}&userId=${user?.uid}`;
 
     return (
+      <>
         <div className="max-w-4xl mx-auto space-y-6">
              <Link href="/marketplace" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
                 <ArrowLeft className="mr-1 h-4 w-4"/> Back to Marketplace
@@ -244,7 +277,7 @@ function ItemPageContent() {
                                 {discountedPrice?.toFixed(2)}
                                 <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
                             </p>
-                            { !isAgroTourismService &&
+                            { !isAgroTourismService && isProduct &&
                             <div className="mt-4 p-4 border rounded-lg bg-muted/30">
                                 <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />Have a coupon code?</Label>
                                 <div className="flex gap-2 mt-2">
@@ -318,18 +351,62 @@ function ItemPageContent() {
                                     {isBooking ? 'Booking...' : 'Book Now'}
                                 </Button>
                             )
+                        ) : isProduct ? (
+                            <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
+                                <ShoppingCart className="mr-2 h-4 w-4" />Buy Now
+                            </Button>
                         ) : (
-                            <>
-                                <Button size="lg" className="w-full" onClick={() => toast({title: "Coming Soon!", description: "The shopping cart and checkout process will be implemented in a future update."})}><ShoppingCart className="mr-2 h-4 w-4" />Add to Cart</Button>
-                                <Button asChild size="lg" variant="outline" className="w-full">
-                                    <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact Seller</Link>
-                                </Button>
-                            </>
+                             <Button asChild size="lg" className="w-full">
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact for Service</Link>
+                            </Button>
+                        )}
+                        {!isOwner && !isProduct && !isAgroTourismService && (
+                            <Button asChild size="lg" variant="outline" className="w-full">
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageCircle className="mr-2 h-4 w-4" />Contact Seller</Link>
+                            </Button>
                         )}
                     </div>
                 </div>
             </div>
         </div>
+
+        <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Place Order for: {item.name}</DialogTitle>
+                    <DialogDescription>Confirm your quantity and add any notes for the seller.</DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="quantity">Quantity</Label>
+                        <Input
+                            id="quantity"
+                            type="number"
+                            value={orderQuantity}
+                            onChange={(e) => setOrderQuantity(Math.max(1, parseInt(e.target.value, 10)))}
+                            min="1"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="notes">Notes for Seller (Optional)</Label>
+                        <Textarea
+                            id="notes"
+                            placeholder="e.g., specific delivery instructions, quality requirements..."
+                            value={orderNotes}
+                            onChange={(e) => setOrderNotes(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <DialogFooter>
+                    <Button variant="outline" onClick={() => setIsOrderDialogOpen(false)}>Cancel</Button>
+                    <Button onClick={handlePlaceOrder} disabled={isPlacingOrder}>
+                        {isPlacingOrder && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                        Confirm Order
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+      </>
     )
 }
 
