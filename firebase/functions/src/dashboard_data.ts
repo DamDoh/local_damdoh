@@ -22,7 +22,8 @@ import type {
     EnergyProviderDashboardData,
     CrowdfunderDashboardData,
     EquipmentSupplierDashboardData,
-    WasteManagementDashboardData
+    WasteManagementDashboardData,
+    PackagingSupplierDashboardData
 } from "./types";
 
 const db = admin.firestore();
@@ -94,6 +95,24 @@ export const getFarmerDashboardData = functions.https.onCall(
         throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
     }
   },
+);
+
+
+export const getPackagingSupplierDashboardData = functions.https.onCall(
+  (data, context): PackagingSupplierDashboardData => {
+    checkAuth(context);
+    return {
+      incomingOrders: [
+        { id: 'order1', customerName: 'GreenLeaf Organics', product: '5kg Jute Bags', quantity: 1000, status: 'New', actionLink: '#' },
+        { id: 'order2', customerName: 'Amina Exports Ltd.', product: 'Ventilated Fruit Cartons', quantity: 5000, status: 'Processing', actionLink: '#' }
+      ],
+      inventory: [
+        { id: 'inv1', item: '5kg Jute Bags', stock: 5000, reorderLevel: 2000 },
+        { id: 'inv2', item: 'Ventilated Fruit Cartons', stock: 8000, reorderLevel: 3000 },
+        { id: 'inv3', item: 'GrainPro Hermetic Bags', stock: 1500, reorderLevel: 1000 }
+      ],
+    };
+  }
 );
 
 
@@ -169,7 +188,8 @@ export const getFiDashboardData = functions.https.onCall(
     checkAuth(context);
     return {
         pendingApplications: [
-            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' }
+            { id: 'app1', applicantName: 'Green Valley Farms', type: 'Loan', amount: 5000, riskScore: 720, actionLink: '#' },
+            { id: 'app2', applicantName: 'Sunrise Growers', type: 'Grant', amount: 15000, riskScore: 810, actionLink: '#' }
         ],
         portfolioAtRisk: { count: 5, value: 25000, highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' }, actionLink: '#' },
         marketUpdates: [
@@ -322,7 +342,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
         pendingConsultationRequests: [
             { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
         ],
-        knowledgeBaseContributions: [
+        knowledgeHubContributions: [
             { id: 'kb1', title: 'Identifying Fall Armyworm', status: 'Published' }
         ]
     };
