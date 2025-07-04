@@ -518,19 +518,42 @@ export const getResearcherDashboardData = functions.https.onCall(
 
 
 export const getAgronomistDashboardData = functions.https.onCall(
-  (data, context): AgronomistDashboardData => {
-    checkAuth(context);
-    return {
-        assignedFarmersOverview: [
+  async (data, context): Promise<AgronomistDashboardData> => {
+    const userId = checkAuth(context);
+    try {
+        // Fetch knowledge hub contributions made by this user
+        const articlesSnapshot = await db.collection('knowledge_articles')
+            .where('authorId', '==', userId)
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
+
+        const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
+            const article = doc.data();
+            return {
+                id: doc.id,
+                title: article.title_en || article.title_km || "Untitled Article",
+                status: 'Published' as const,
+            };
+        });
+
+        // Mock data for other sections
+        const assignedFarmersOverview = [
             { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
-        ],
-        pendingConsultationRequests: [
+        ];
+        const pendingConsultationRequests = [
             { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
-        ],
-        knowledgeHubContributions: [
-            { id: 'kb1', title: 'Identifying Fall Armyworm', status: 'Published' }
-        ]
-    };
+        ];
+
+        return {
+            assignedFarmersOverview,
+            pendingConsultationRequests,
+            knowledgeHubContributions,
+        };
+    } catch (error) {
+        console.error("Error fetching agronomist dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
@@ -739,6 +762,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 

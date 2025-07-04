@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -67,7 +68,7 @@ export const AgronomistDashboard = () => {
   const {
     pendingConsultationRequests,
     assignedFarmersOverview,
-    knowledgeHubContributions: knowledgeBaseContributions,
+    knowledgeHubContributions,
   } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {
@@ -164,17 +165,17 @@ export const AgronomistDashboard = () => {
          </Card>
 
           {/* Knowledge Base Contributions */}
-         <Card>
+         <Card className="md:col-span-2">
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Knowledge Base Contributions</CardTitle>
+                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Knowledge Hub Contributions</CardTitle>
                 <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
             </CardHeader>
             <CardContent>
-                {(knowledgeBaseContributions || []).length > 0 ? (
+                {(knowledgeHubContributions || []).length > 0 ? (
                     <div className="space-y-3">
-                        {(knowledgeBaseContributions || []).map((contribution: any) => (
+                        {(knowledgeHubContributions || []).map((contribution: any) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
-                                <p className="font-medium">{contribution.title}</p>
+                                <Link href={`/blog/${contribution.id}`} className="font-medium hover:underline">{contribution.title}</Link>
                                 <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
                             </div>
                         ))}
