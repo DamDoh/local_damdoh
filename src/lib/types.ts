@@ -1,14 +1,12 @@
 
 import type { z } from 'zod';
-import type {
-  StakeholderProfileSchema,
-  MarketplaceItemSchema,
-  MarketplaceOrderSchema,
-  ForumPostSchema,
-  AgriEventSchema
+import type { 
+    StakeholderProfileSchema,
+    MarketplaceItemSchema,
+    MarketplaceOrderSchema,
+    ForumPostSchema,
+    AgriEventSchema
 } from './schemas';
-import type { CategoryNode as CatNodeType } from './category-data';
-import type { Timestamp } from "firebase/firestore";
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -20,35 +18,7 @@ export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 export type AgriEvent = z.infer<typeof AgriEventSchema>;
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
-export type UserRole =
-  | 'Farmer'
-  | 'Agricultural Cooperative'
-  | 'Field Agent/Agronomist (DamDoh Internal)'
-  | 'Operations/Logistics Team (DamDoh Internal)'
-  | 'Quality Assurance Team (DamDoh Internal)'
-  | 'Processing & Packaging Unit'
-  | 'Buyer (Restaurant, Supermarket, Exporter)'
-  | 'Input Supplier (Seed, Fertilizer, Pesticide)'
-  | 'Equipment Supplier (Sales of Machinery/IoT)'
-  | 'Financial Institution (Micro-finance/Loans)'
-  | 'Government Regulator/Auditor'
-  | 'Certification Body (Organic, Fair Trade etc.)'
-  | 'Consumer'
-  | 'Researcher/Academic'
-  | 'Logistics Partner (Third-Party Transporter)'
-  | 'Storage/Warehouse Facility'
-  | 'Agronomy Expert/Consultant (External)'
-  | 'Agro-Tourism Operator'
-  | 'Energy Solutions Provider (Solar, Biogas)'
-  | 'Agro-Export Facilitator/Customs Broker'
-  | 'Agri-Tech Innovator/Developer'
-  | 'Waste Management & Compost Facility'
-  | 'Crowdfunder (Impact Investor, Individual)'
-  | 'Insurance Provider'
-  | 'Admin'
-  | 'System'
-  | 'General'
-  | 'Packaging Supplier';
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
 export interface MarketplaceCoupon {
@@ -84,99 +54,6 @@ export interface Shop {
     rating: number;
 }
 
-// =================================================================
-// 2. UI & COMPONENT-SPECIFIC TYPES
-// =================================================================
-
-export interface NavItem {
- title: string;
- href: string;
- icon: React.ElementType;
- disabled?: boolean;
- external?: boolean;
- label?: string;
- description?: string;
- active?: boolean;
-}
-
-export interface PollOption {
-  id?: string;
-  text: string;
-  votes: number;
-}
-
-export interface PostReply {
-  id: string;
-  author: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  content: string;
-  timestamp: string;
-}
-
-export interface FeedItem {
-  id:string;
-  type: 'forum_post' | 'marketplace_listing' | 'connection' | 'shared_article' | 'industry_news' | 'success_story' | 'poll';
-  timestamp: string;
-  userId: string;
-  userName: string;
-  userAvatar?: string;
-  userHeadline?: string;
-  content?: string;
-  postImage?: string;
-  dataAiHint?: string;
-  likesCount: number;
-  commentsCount: number;
-  link?: string;
-  agriEvent?: AgriEvent;
-  pollOptions?: PollOption[];
-  relatedUser?: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-}
-
-export interface Participant {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-}
-
-export interface Conversation {
-  id: string;
-  participant: Participant; // Simplified for 1-on-1 chat
-  lastMessage: string;
-  lastMessageTimestamp: string; // ISO string
-  unreadCount: number;
-}
-export interface Message {
-  id:string;
-  conversationId: string;
-  senderId: string;
-  content: string;
-  timestamp: string; // ISO string
-}
-
-export interface MobileHomeCategory {
-  id: string;
-  name: string;
-  icon: React.ElementType;
-  href: string;
-  dataAiHint?: string;
-}
-
-export interface MobileDiscoverItem {
-  id: string;
-  title: string;
-  imageUrl: string;
-  type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
-  link: string;
-  dataAiHint?: string;
-}
-
 export type ForumGroup = {
   id: string;
   name: string;
@@ -187,87 +64,27 @@ export type ForumGroup = {
   createdAt: string; // ISO String
 }
 
-export interface GroupMember {
-  id: string; // User ID
-  displayName: string;
-  avatarUrl?: string;
-  role: 'owner' | 'admin' | 'member';
-  joinedAt: string; // ISO string
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
 }
 
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
-
-export type ForumPost = {
-  id: string;
-  topicId: string;
-  topicName?: string;
-  title: string;
-  content: string;
-  author: {
-      id: string;
-      name: string;
-      avatarUrl?: string;
-  };
-  timestamp: string;
-  replyCount?: number;
-  likes?: number;
-};
-
-export interface Notification {
-  id: string;
-  actorId: string;
-  userId: string;
-  type: 'like' | 'comment';
-  postId: string;
-  read: boolean;
-  createdAt: any; // Firestore Timestamp
+export interface ConnectionRequest {
+    id: string; // The request document ID
+    requester: {
+        id: string;
+        displayName: string;
+        avatarUrl?: string;
+        primaryRole: string;
+    };
+    createdAt: string; // ISO string
 }
-
-export interface EventAttendee {
-  id: string; // This is the User UID
-  email: string;
-  displayName: string;
-  avatarUrl?: string;
-  registeredAt: string; // ISO string
-  checkedIn: boolean;
-  checkedInAt?: string | null; // ISO string
-}
-
-export interface Booking {
-  id: string; // This is the User UID (the booker)
-  displayName: string;
-  avatarUrl?: string;
-  bookedAt: string; // ISO string
-  checkedIn: boolean;
-  checkedInAt: string | null; // ISO string
-  // You can add more booking-specific details here if needed
-  // e.g., bookingDate, numberOfPeople etc.
-}
-
-
-export interface StaffMember {
-  id: string; // This is the User UID of the staff member
-  displayName: string;
-  avatarUrl?: string;
-  email?: string; // Optional email for display/contact
-}
-
-export interface EventCoupon {
-  id: string;
-  code: string;
-  discountType: 'percentage' | 'fixed';
-  discountValue: number;
-  expiresAt?: string | null;
-  usageLimit?: number | null;
-  usageCount: number;
-  createdAt: string;
-}
-
 
 // =================================================================
-// 3. CONCEPTUAL "SUPER APP" & DASHBOARD DATA STRUCTURES
-// These types serve as a blueprint for the data required for the
-// various stakeholder-specific dashboards and future features.
+// 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
 
 export interface FinancialTransaction {
@@ -277,38 +94,13 @@ export interface FinancialTransaction {
     currency: string;
     description: string;
     category?: string;
-    timestamp: string; // ISO string
+    timestamp: any; // Allow for firestore timestamp
 }
 
 export interface FinancialSummary {
     totalIncome: number;
     totalExpense: number;
     netFlow: number;
-}
-
-export interface KnfBatch {
-  id: string;
-  userId: string;
-  type: string;
-  typeName: string;
-  ingredients: string;
-  startDate: any;
-  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
-  nextStep: string;
-  nextStepDate: any;
-  createdAt: any;
-}
-
-export interface FinancialApplication {
-  id: string;
-  applicantName: string;
-  type: 'Loan' | 'Grant';
-  amount: number;
-  currency: string;
-  status: 'Pending' | 'Approved' | 'Rejected' | 'Under Review';
-  riskScore: number;
-  submittedAt: string; // ISO String
-  actionLink: string;
 }
 
 export interface FarmerDashboardData {
@@ -329,6 +121,20 @@ export interface FarmerDashboardData {
     nextStepDate: string | null;
   }[];
 }
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
 
 export interface BuyerDashboardData {
   supplyChainRisk: {
@@ -404,21 +210,28 @@ export interface LogisticsDashboardData {
 }
 
 export interface FiDashboardData {
-  pendingApplications: FinancialApplication[];
-  portfolioAtRisk: {
-    count: number;
-    value: number;
-    highestRisk: {
-      name: string;
-      reason: string;
+    pendingApplications: {
+        id: string;
+        applicantName: string;
+        type: string;
+        amount: number;
+        riskScore: number;
+        actionLink: string;
+    }[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
     };
-    actionLink: string;
-  };
-  marketUpdates: {
-    id: string;
-    content: string;
-    actionLink: string;
-  }[];
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
 }
 
 export interface FieldAgentDashboardData {
@@ -754,6 +567,31 @@ export interface InsuranceProviderDashboardData {
     coverageAmount: number;
     expiryDate: string; // ISO string;
   }[];
+}
+
+export interface KnfBatch {
+  id: string;
+  userId: string;
+  type: string;
+  typeName: string;
+  ingredients: string;
+  startDate: any;
+  status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+  nextStep: string;
+  nextStepDate: any;
+  createdAt: any;
+}
+
+export interface FinancialApplication {
+  id: string;
+  applicantName: string;
+  type: 'Loan' | 'Grant';
+  amount: number;
+  currency: string;
+  status: 'Pending' | 'Approved' | 'Rejected' | 'Under Review';
+  riskScore: number;
+  submittedAt: string; // ISO String
+  actionLink: string;
 }
 
 export interface CooperativeDashboardData {
