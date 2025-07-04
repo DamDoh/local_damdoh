@@ -35,7 +35,9 @@ const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
 const fetchPostAuthors = async (posts: any[]): Promise<Record<string, UserProfile>> => {
     if (!posts || posts.length === 0) return {};
     const db = getFirestore(firebaseApp);
-    const authorIds = [...new Set(posts.map(p => p.authorRef))];
+    const authorIds = [...new Set(posts.map(p => p.authorRef))].filter(Boolean) as string[]; // FIX: Filter out undefined/null IDs
+    if (authorIds.length === 0) return {};
+
     const profiles: Record<string, UserProfile> = {};
     
     const userPromises = authorIds.map(id => getDoc(doc(db, "users", id)));

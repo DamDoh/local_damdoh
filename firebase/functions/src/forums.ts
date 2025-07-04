@@ -3,7 +3,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
 const db = admin.firestore();
-const USERS_COLLECTION = 'users';
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
@@ -17,7 +16,8 @@ export const getTopics = functions.https.onCall(async (data, context) => {
     const topics = topicsSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
-        lastActivityAt: (doc.data().lastActivityAt as admin.firestore.Timestamp)?.toDate ? (doc.data().lastActivityAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString()
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        lastActivityAt: (doc.data().lastActivityAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
     }));
     return { topics };
 });
@@ -51,14 +51,21 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
     let query = db.collection(`forums/${topicId}/posts`).orderBy('createdAt', 'desc').limit(POSTS_PER_PAGE);
 
     if (lastVisible) {
-        const lastDoc = await db.doc(`forums/${topicId}/posts/${lastVisible}`).get();
-        query = query.startAfter(lastDoc);
+        const lastDocSnapshot = await db.collection(`forums/${topicId}/posts`).doc(lastVisible).get();
+        if(lastDocSnapshot.exists) {
+            query = query.startAfter(lastDocSnapshot);
+        }
     }
     
     const postsSnapshot = await query.get();
-    const posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    
+    const posts = postsSnapshot.docs.map(doc => ({ 
+        id: doc.id, 
+        ...doc.data(),
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
+    }));
 
-    const newLastVisible = posts.length === POSTS_PER_PAGE ? posts[posts.length - 1].id : null;
+    const newLastVisible = posts.length > 0 ? posts[posts.length - 1].id : null;
 
     return { posts, lastVisible: newLastVisible };
 });
@@ -99,18 +106,25 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
     const { topicId, postId, lastVisible } = data;
     if (!topicId || !postId) throw new functions.https.HttpsError('invalid-argument', 'Topic ID and Post ID are required.');
 
-    const REPLIES_PER_PAGE = 10;
+    const REPLIES_PER_PAGE = 15;
     let query = db.collection(`forums/${topicId}/posts/${postId}/replies`).orderBy('createdAt', 'asc').limit(REPLIES_PER_PAGE);
     
     if (lastVisible) {
-        const lastDoc = await db.doc(`forums/${topicId}/posts/${postId}/replies/${lastVisible}`).get();
-        query = query.startAfter(lastDoc);
+        const lastDocSnapshot = await db.collection(`forums/${topicId}/posts/${postId}/replies`).doc(lastVisible).get();
+        if(lastDocSnapshot.exists) {
+            query = query.startAfter(lastDocSnapshot);
+        }
     }
 
     const repliesSnapshot = await query.get();
-    const replies = repliesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    const replies = repliesSnapshot.docs.map(doc => ({ 
+        id: doc.id, 
+        ...doc.data(),
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
+    }));
     
-    const newLastVisible = replies.length === REPLIES_PER_PAGE ? replies[replies.length - 1].id : null;
+    const newLastVisible = replies.length > 0 ? replies[replies.length - 1].id : null;
     
     return { replies, lastVisible: newLastVisible };
 });
@@ -139,4 +153,14 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 
     await batch.commit();
     return { replyId: replyRef.id };
+});
+
+// For fetching comments on feed items, which might be different from forum replies
+export const getCommentsForPost = functions.https.onCall(async (data, context) => {
+    const { postId } = data;
+    if (!postId) {
+        throw new functions.https.HttpsError("invalid-argument", "Post ID is required.");
+    }
+    // This is a placeholder. A real implementation would query a 'comments' subcollection on a 'feed_posts' document.
+    return { comments: [] }; 
 });

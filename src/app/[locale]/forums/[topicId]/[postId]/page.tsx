@@ -130,11 +130,11 @@ export default function PostPage() {
             
             if (backendReplies.length > 0) {
                 const db = getFirestore(firebaseApp);
-                const authorIds = [...new Set(backendReplies.map((r: any) => r.authorRef))];
+                const authorIds = [...new Set(backendReplies.map((r: any) => r.authorRef))].filter(Boolean) as string[]; // FIX: Filter out undefined/null IDs
                 const profiles: Record<string, UserProfile> = {};
 
                 if (authorIds.length > 0) {
-                    const userPromises = authorIds.map(id => getDoc(doc(db, "users", id as string)));
+                    const userPromises = authorIds.map(id => getDoc(doc(db, "users", id)));
                     const userSnaps = await Promise.all(userPromises);
 
                     userSnaps.forEach(userSnap => {

@@ -69,6 +69,22 @@ export type ForumGroup = {
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
 
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: string; // ISO string
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
 export interface FarmerDashboardData {
   farmCount: number;
   cropCount: number;
@@ -579,3 +595,15 @@ export interface InsuranceProviderDashboardData {
     expiryDate: string; // ISO string
   }[];
 }
+
+export interface PostReply {
+    id: string;
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    content: string;
+    timestamp: string;
+}
+
