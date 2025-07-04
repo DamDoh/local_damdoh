@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type {
   StakeholderProfileSchema,
@@ -248,7 +249,7 @@ export interface FinancialTransaction {
     currency: string;
     description: string;
     category?: string;
-    timestamp: string; // ISO string
+    timestamp: any; // Allow for firestore timestamp
 }
 
 export interface FinancialSummary {
@@ -737,3 +738,4 @@ export interface WasteManagementDashboardData {
     actionLink: string;
   }[];
 }
+

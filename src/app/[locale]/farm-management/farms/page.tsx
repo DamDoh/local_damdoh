@@ -56,7 +56,7 @@ export default function MyFarmsPage() {
       setIsLoading(true);
       try {
         const result = await getUserFarmsCallable();
-        setFarms(result.data as Farm[]);
+        setFarms((result.data as Farm[]) ?? []); // Safeguard against undefined result
       } catch (error: any) {
         console.error("Failed to fetch farms:", error);
         toast({
@@ -64,6 +64,7 @@ export default function MyFarmsPage() {
             title: "Could not load farms",
             description: error.message
         });
+        setFarms([]); // Ensure farms is an array on error
       } finally {
         setIsLoading(false);
       }
@@ -101,7 +102,7 @@ export default function MyFarmsPage() {
         <FarmListSkeleton />
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {farms && farms.length > 0 ? (
+          {farms.length > 0 ? (
             farms.map(farm => (
               <Card key={farm.id}>
                 <CardHeader>

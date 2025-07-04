@@ -9,12 +9,13 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon } from "lucide-react";
+import { Filter, Search, UserPlus, MessageCircle, Shuffle, MapPin, LinkIcon, UserCog } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProfilesFromDB } from "@/lib/db-utils";
 import { useTranslations } from "next-intl";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 function ProfileCardSkeleton() {
   return (
@@ -46,6 +47,8 @@ export default function NetworkPage() {
   const [roleFilter, setRoleFilter] = useState("all");
   const [interestFilter, setInterestFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
+
+  const { profile: currentUserProfile } = useUserProfile();
   
   const interests = ['All', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
 
@@ -90,6 +93,9 @@ export default function NetworkPage() {
     });
   }, [searchTerm, roleFilter, interestFilter, locationFilter, profiles]);
 
+  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
+
+
   return (
     <div className="space-y-6">
       <Card>
@@ -99,7 +105,16 @@ export default function NetworkPage() {
               <CardTitle className="text-2xl">{t('title')}</CardTitle>
               <CardDescription>{t('description')}</CardDescription>
             </div>
-             <Button variant="outline"><Shuffle className="mr-2 h-4 w-4" />{t('refreshSuggestions')}</Button>
+            <div className="flex gap-2">
+                {isAgent && (
+                    <Button asChild>
+                        <Link href="/network/agent-tools">
+                            <UserCog className="mr-2 h-4 w-4" /> Agent Tools
+                        </Link>
+                    </Button>
+                )}
+                 <Button variant="outline"><Shuffle className="mr-2 h-4 w-4" />{t('refreshSuggestions')}</Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent>
@@ -155,7 +170,7 @@ export default function NetworkPage() {
             {isLoading ? (
               Array.from({ length: 6 }).map((_, i) => <ProfileCardSkeleton key={i} />)
             ) : (
-                filteredConnections.map(profile => (
+                filteredConnections.length > 0 ? filteredConnections.map(profile => (
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
@@ -175,15 +190,15 @@ export default function NetworkPage() {
                     <Button variant="outline" className="w-full sm:flex-1"><MessageCircle className="mr-2 h-4 w-4" />{t('message')}</Button>
                     </CardFooter>
                 </Card>
-                ))
+                )) : (
+                    <div className="col-span-full text-center py-16">
+                        <Frown className="mx-auto h-12 w-12 text-muted-foreground/50" />
+                        <p className="mt-4 text-lg text-muted-foreground">{t('noStakeholdersFound')}</p>
+                        <p className="text-sm text-muted-foreground">{t('noStakeholdersHint')}</p>
+                    </div>
+                )
             )}
           </div>
-          {filteredConnections.length === 0 && !isLoading && (
-            <div className="text-center py-10 col-span-full">
-              <p className="text-lg text-muted-foreground">{t('noStakeholdersFound')}</p>
-              <p className="text-sm text-muted-foreground">{t('noStakeholdersHint')}</p>
-            </div>
-          )}
         </CardContent>
       </Card>
     </div>

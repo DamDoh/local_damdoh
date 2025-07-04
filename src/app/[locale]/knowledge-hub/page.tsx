@@ -1,10 +1,11 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { getFeaturedKnowledge } from '@/firebase/functions/src/knowledge-hub';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -23,26 +24,31 @@ const KnowledgeHubPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const getFeaturedKnowledge = useMemo(() => httpsCallable(functions, 'getFeaturedKnowledge'), []);
+
   useEffect(() => {
     const fetchFeatured = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const currentUserId = 'placeholderUserId'; // TODO: Replace with actual user ID fetching logic
-        const result = await getFeaturedKnowledge({ userId: currentUserId }); // Call the imported function with user ID
+        const result = await getFeaturedKnowledge({ userId: currentUserId });
         const data = result.data as { success: boolean, articles: Article[] };
         if (data.success) {
-          setFeaturedArticles(data.articles);
+          setFeaturedArticles(data.articles ?? []); // Safeguard against undefined articles
         } else {
           throw new Error('Failed to fetch featured articles.');
         }
       } catch (err: any) {
         setError(err.message);
+        setFeaturedArticles([]); // Ensure it's an array on error
       } finally {
         setLoading(false);
       }
     };
 
     fetchFeatured();
-  }, []);
+  }, [getFeaturedKnowledge]);
 
   return (
     <div className="container mx-auto p-4 md:p-6">
@@ -94,21 +100,25 @@ const KnowledgeHubPage = () => {
         {error && <p className="text-center text-red-500">{t('featured.error')}: {error}</p>}
         {!loading && !error && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredArticles.map((article) => (
-              <Link key={article.id} href={`/blog/${article.id}`} passHref>
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                  {article.imageUrl && (
-                    <img src={article.imageUrl} alt={article.title_en} className="w-full h-48 object-cover" />
-                  )}
-                  <CardHeader>
-                    <CardTitle>{article.title_en}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700 dark:text-gray-300">{article.excerpt_en}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+            {featuredArticles.length > 0 ? (
+                featuredArticles.map((article) => (
+                <Link key={article.id} href={`/blog/${article.id}`} passHref>
+                    <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                    {article.imageUrl && (
+                        <img src={article.imageUrl} alt={article.title_en} className="w-full h-48 object-cover" />
+                    )}
+                    <CardHeader>
+                        <CardTitle>{article.title_en}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-gray-700 dark:text-gray-300">{article.excerpt_en}</p>
+                    </CardContent>
+                    </Card>
+                </Link>
+                ))
+            ) : (
+                <p className="col-span-full text-center text-muted-foreground">{t('featured.noArticles')}</p>
+            )}
           </div>
         )}
       </div>
