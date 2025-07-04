@@ -1,4 +1,5 @@
 
+
 {
   "AppHeader": {
     "home": "Home",
@@ -26,7 +27,7 @@
     "contactLabel": "Contact",
     "careersLabel": "Careers",
     "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
+    "resourcesTitle": "Ressourcen",
     "helpCenterLabel": "Help Center",
     "communityGuidelinesLabel": "Community Guidelines",
     "industryNewsLabel": "Industry News",
@@ -138,6 +139,17 @@
     "showUniversalIdButton": "Show My Universal ID",
     "universalIdModalTitle": "My Universal ID",
     "universalIdModalDescription": "Present this QR code to authorized agents or partners to securely share your public profile information."
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Recent activity from across the DamDoh platform.",
+    "noNotifications": "You have no new notifications.",
+    "defaultActorName": "Someone",
+    "likedYourPost": "liked your post.",
+    "commentedOnYourPost": "commented on your post.",
+    "viewedYourProfile": "viewed your profile.",
+    "sentConnectionRequest": "sent you a connection request.",
+    "placedNewOrder": "placed a new order for one of your items."
   },
   "AgriEvents": {
     "attendees": {

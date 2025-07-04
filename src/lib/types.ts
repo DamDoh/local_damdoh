@@ -84,6 +84,22 @@ export interface ConnectionRequest {
     createdAt: string; // ISO string
 }
 
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder' | 'profile_view';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  isRead: boolean;
+  createdAt: any; // Firestore Timestamp
+  postId?: string; // For backwards compatibility if needed
+}
+
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
@@ -611,22 +627,6 @@ export type KnfBatch = {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
-}
-
-export interface Notification {
-  id: string;
-  userId: string;
-  actorId: string;
-  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder';
-  title_en: string;
-  body_en: string;
-  linkedEntity: {
-    collection: string;
-    documentId: string;
-  } | null;
-  read: boolean;
-  createdAt: any; // Firestore Timestamp
-  postId?: string; // For backwards compatibility if needed
 }
 
 export interface ForumPost {

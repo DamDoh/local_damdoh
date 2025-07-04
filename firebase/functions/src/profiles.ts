@@ -1,10 +1,18 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
 
 const db = admin.firestore();
+
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
 
 /**
  * Validates the structure of profileData based on the stakeholder's role.
@@ -178,6 +186,35 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         return null;
     }
 }
+
+export const logProfileView = functions.https.onCall(async (data, context) => {
+    const viewerId = checkAuth(context);
+    const { viewedId } = data;
+
+    if (!viewedId) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'viewedId' must be provided.");
+    }
+
+    // Don't log self-views
+    if (viewerId === viewedId) {
+        console.log("User viewed their own profile. No log created.");
+        return { success: true, message: "Self-view, not logged." };
+    }
+    
+    // To prevent spamming notifications, we could add a check here.
+    // e.g., only log a view from the same viewer for the same profile once per day.
+    // For now, we'll keep it simple and log every view.
+
+    const logRef = db.collection('profile_views').doc();
+    await logRef.set({
+        viewerId,
+        viewedId,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, logId: logRef.id };
+});
+
 
 export const getUserActivity = functions.https.onCall(async (data, context) => {
     const { userId } = data;

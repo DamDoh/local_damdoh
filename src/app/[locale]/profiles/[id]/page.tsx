@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
@@ -78,6 +79,7 @@ export default function ProfileDetailPage() {
 
   const functions = getFunctions(firebaseApp);
   const getUserActivity = useMemo(() => httpsCallable(functions, 'getUserActivity'), [functions]);
+  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'logProfileView'), [functions]);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
@@ -104,6 +106,12 @@ export default function ProfileDetailPage() {
         .then(fetchedProfile => {
           setProfile(fetchedProfile);
           if (fetchedProfile) {
+            // Log the profile view if applicable
+            if (authUser && fetchedProfile.id !== authUser.uid) {
+                logProfileViewCallable({ viewedId: fetchedProfile.id }).catch(err => console.error("Failed to log profile view:", err));
+            }
+            
+            // Fetch activity
             setIsActivityLoading(true);
             getUserActivity({ userId: fetchedProfile.id })
               .then(result => {
@@ -125,7 +133,8 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity]);
+  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable]);
+
 
   if (isLoading || authLoading) {
     return <ProfileSkeleton />;
