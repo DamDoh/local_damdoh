@@ -3,6 +3,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
 import { getRole } from './profiles';
+import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 
 const db = admin.firestore();
 
@@ -176,27 +177,15 @@ export const handleHarvestEvent = functions.https.onCall(
     }
 
     try {
-      // Query for all pre-harvest events associated with this crop/field.
-      const preHarvestEventsQuery = db
-        .collection("traceability_events")
-        .where("farmFieldId", "==", farmFieldId)
-        .orderBy("timestamp", "asc");
-
-      const preHarvestEventsSnapshot = await preHarvestEventsQuery.get();
-      const linkedEventIds: string[] = preHarvestEventsSnapshot.docs.map(
-        (doc) => doc.id,
-      );
-
-      // Now create the VTI with the linked events in its metadata
+      // Create the VTI with the linked events in its metadata
       const generateVTIResult = await _internalGenerateVTI(
         {
           type: "farm_batch",
-          linkedVtis: [farmFieldId], // Link back to the original crop ID
           metadata: {
             cropType,
             initialYieldKg: yieldKg,
             initialQualityGrade: qualityGrade,
-            linkedPreHarvestEventIds: linkedEventIds, // Store the array of event IDs
+            farmFieldId: farmFieldId, // explicitly add farmFieldId to metadata
           },
         },
         context,
@@ -472,8 +461,7 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
 
 /**
  * Fetches the complete traceability history for a given VTI.
- * This includes the VTI batch details and all associated events, with
- * actor information enriched from user profiles.
+ * This includes pre-harvest and post-harvest events.
  *
  * @param {any} data The data for the function call, containing the vtiId.
  * @param {functions.https.CallableContext} context The context of the function call.
@@ -491,16 +479,42 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         if (!vtiDoc.exists) {
             throw new functions.https.HttpsError("not-found", `VTI batch with ID ${vtiId} not found.`);
         }
+        const vtiData = vtiDoc.data()!;
 
-        const eventsSnapshot = await db.collection("traceability_events")
-            .where("vtiId", "==", vtiId)
-            .orderBy("timestamp", "asc")
-            .get();
+        // --- NEW LOGIC TO FETCH PRE-HARVEST EVENTS ---
+        const farmFieldId = vtiData.metadata?.farmFieldId;
+        let allEventsData: any[] = [];
 
-        const eventsData = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Fetch post-harvest events (linked by vtiId)
+        const postHarvestQuery = db.collection("traceability_events")
+            .where("vtiId", "==", vtiId);
+        
+        // Fetch pre-harvest events if farmFieldId exists
+        if (farmFieldId) {
+            const preHarvestQuery = db.collection("traceability_events")
+                .where("farmFieldId", "==", farmFieldId)
+                .where("vtiId", "==", null); // Only get events before a VTI was assigned
+            
+            const [preHarvestSnapshot, postHarvestSnapshot] = await Promise.all([
+                preHarvestQuery.get(),
+                postHarvestQuery.get()
+            ]);
 
+            const preHarvestEvents = preHarvestSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            const postHarvestEvents = postHarvestSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            allEventsData = [...preHarvestEvents, ...postHarvestEvents];
+        } else {
+            // Fallback for older data or different VTI types
+            const postHarvestSnapshot = await postHarvestQuery.get();
+            allEventsData = postHarvestSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        }
+
+        // Sort all events chronologically
+        allEventsData.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis());
+        
         // Get unique actor IDs to fetch profiles efficiently
-        const actorIds = [...new Set(eventsData.map(event => event.actorRef).filter(Boolean))];
+        const actorIds = [...new Set(allEventsData.map(event => event.actorRef).filter(Boolean))];
         
         const actorProfiles: Record<string, any> = {};
 
@@ -526,13 +540,12 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
             });
         }
         
-        const enrichedEvents = eventsData.map(event => ({
+        const enrichedEvents = allEventsData.map(event => ({
             ...event,
             timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate ? (event.timestamp as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
             actor: actorProfiles[event.actorRef] || { name: "System", role: "Platform" }
         }));
 
-        const vtiData = vtiDoc.data()!;
         const finalVtiData = {
             id: vtiDoc.id,
             ...vtiData,

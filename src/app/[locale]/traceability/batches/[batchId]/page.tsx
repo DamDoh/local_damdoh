@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award } from 'lucide-react';
+import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Truck } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { useTranslations } from "next-intl";
@@ -56,9 +56,57 @@ const getEventIcon = (eventType: string) => {
         case 'HARVESTED': return <Weight {...iconProps} />;
         case 'PACKAGED': return <Package {...iconProps} />;
         case 'VERIFIED': return <CheckCircle {...iconProps} />;
+        case 'TRANSPORTED': return <Truck {...iconProps} />;
         default: return <HardHat {...iconProps} />;
     }
 };
+
+const EventPayload = ({ payload }: { payload: any }) => {
+    if (!payload || typeof payload !== 'object' || Object.keys(payload).length === 0) {
+        return <p className="text-xs text-muted-foreground italic">No specific details provided for this event.</p>;
+    }
+
+    // Custom rendering for specific payload types
+    if (payload.yieldKg !== undefined) {
+        return (
+            <div className="text-sm text-muted-foreground space-y-1">
+                <p><strong>Yield:</strong> {payload.yieldKg} kg</p>
+                {payload.qualityGrade && <p><strong>Quality Grade:</strong> {payload.qualityGrade}</p>}
+            </div>
+        )
+    }
+
+    if (payload.observationType) { // From an observation event
+        return (
+            <div className="text-sm text-muted-foreground space-y-1">
+                 <p className="font-semibold text-foreground">{payload.observationType}</p>
+                 <p>{payload.details}</p>
+            </div>
+        )
+    }
+
+    if(payload.inputId) { // From an input application event
+        return (
+             <div className="text-sm text-muted-foreground space-y-1">
+                <p><strong>Input:</strong> {payload.inputId}</p>
+                <p><strong>Quantity:</strong> {payload.quantity} {payload.unit}</p>
+                {payload.method && <p><strong>Method:</strong> {payload.method}</p>}
+            </div>
+        )
+    }
+
+    // Default renderer for other payloads
+    return (
+        <ul className="space-y-1 text-muted-foreground text-xs list-disc list-inside">
+            {Object.entries(payload).map(([key, value]) => {
+                if (typeof value === 'object' && value !== null) return null; // Skip complex objects
+                const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                return <li key={key} className="truncate"><strong>{formattedKey}:</strong> {String(value)}</li>
+            })}
+        </ul>
+    );
+};
+
 
 const TraceabilitySkeleton = () => (
     <div className="space-y-6 max-w-4xl mx-auto">
@@ -221,7 +269,7 @@ export default function TraceabilityBatchDetailPage() {
             {events.length > 0 ? (
                 <div className="relative pl-6">
                     <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
-                    {events.map(event => {
+                    {events.map((event, index) => {
                         return (
                             <div key={event.id} className="relative flex items-start gap-4 pb-8">
                                 <div className="absolute left-0 top-0 h-full flex flex-col items-center">
@@ -248,15 +296,12 @@ export default function TraceabilityBatchDetailPage() {
                                             </div>
                                         </CardHeader>
                                         <CardContent className="p-4 pt-0 text-sm">
-                                            <ul className="space-y-1 text-muted-foreground text-xs">
-                                                {event.payload && typeof event.payload === 'object' && Object.entries(event.payload).map(([key, value]) => {
-                                                    if (typeof value === 'object' && value !== null) return null; // Skip object payloads for this simple view
-                                                    return <li key={key} className="truncate"><strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {String(value)}</li>
-                                                })}
-                                                {event.geoLocation && (
-                                                    <li className="flex items-center gap-1 pt-1"><MapPin className="h-3 w-3"/>{t('traceabilityDetailPage.geoLocationLabel')}: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}</li>
-                                                )}
-                                            </ul>
+                                            <EventPayload payload={event.payload} />
+                                            {event.geoLocation && (
+                                                <div className="text-xs text-muted-foreground flex items-center gap-1 pt-2 mt-2 border-t border-dashed">
+                                                    <MapPin className="h-3 w-3"/>{t('traceabilityDetailPage.geoLocationLabel')}: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}
+                                                </div>
+                                            )}
                                         </CardContent>
                                 </Card>
                                 </div>
