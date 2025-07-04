@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -625,4 +626,91 @@ export interface ConnectionRequest {
         primaryRole: string;
     };
     createdAt: string; // ISO string
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  type: 'like' | 'comment' | 'new_order' | 'event_reminder' | 'service_reminder' | 'new_connection_request';
+  title_en: string;
+  body_en: string;
+  actorId: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  createdAt: any; // Firestore Timestamp
+  isRead: boolean;
+  postId?: string; // Legacy field, to be phased out
+}
+
+export interface FeedItem {
+  id: string;
+  type: string;
+  timestamp: string;
+  userId: string;
+  userName: string;
+  userAvatar: string;
+  userHeadline?: string;
+  content: string;
+  link: string;
+  postImage?: string;
+  dataAiHint?: string;
+  likesCount: number;
+  commentsCount: number;
+  pollOptions?: { text: string; votes: number }[];
+}
+
+export interface DirectMessage {
+  id: string;
+  senderName: string;
+  lastMessage: string;
+  timestamp: string;
+  senderAvatarUrl?: string;
+  unread: boolean;
+  dataAiHint?: string;
+}
+
+export interface ForumPost {
+    id: string;
+    topicId: string;
+    topicName?: string;
+    title: string;
+    content: string;
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    timestamp: string;
+    replyCount?: number;
+}
+
+
+export interface PostReply {
+    id: string;
+    content: string;
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    timestamp: string;
+}
+
+export interface MobileHomeCategory {
+    id: string;
+    name: string;
+    icon: React.ElementType;
+    href: string;
+    dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+    id: string;
+    title: string;
+    imageUrl: string;
+    type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
+    link: string;
+    dataAiHint?: string;
 }

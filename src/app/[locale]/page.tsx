@@ -35,7 +35,7 @@ import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplie
 import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
 import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
 import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
-import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/ProcessingUnitDashboard';
+import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
 import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
 import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
