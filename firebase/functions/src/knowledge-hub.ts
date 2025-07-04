@@ -1,8 +1,102 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const db = admin.firestore();
+
+// Initialize the Gemini AI model for translation
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+
+
+/**
+ * A helper function to translate text using the Gemini API.
+ * @param {string} text The text to translate.
+ * @param {string} targetLanguage The target language code (e.g., 'km' for Khmer).
+ * @return {Promise<string>} The translated text.
+ */
+async function translateText(text: string, targetLanguage: string): Promise<string> {
+    if (!text) return "";
+    try {
+        const prompt = `Translate the following text to ${targetLanguage}:\n\n"${text}"\n\nReturn only the translated text, without any introductory phrases or quotation marks.`;
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        return response.text().trim();
+    } catch (error) {
+        console.error(`Error translating text to ${targetLanguage}:`, error);
+        return `[Translation Error]`; // Return a noticeable error string
+    }
+}
+
+
+/**
+ * Firestore trigger that automatically translates new or updated knowledge articles.
+ * Checks for English or Khmer content and translates to the other language if missing.
+ */
+export const onArticleWriteTranslate = functions.firestore
+  .document("knowledge_articles/{articleId}")
+  .onWrite(async (change, context) => {
+    const beforeData = change.before.data();
+    const afterData = change.after.data();
+
+    if (!afterData) {
+        console.log(`Article ${context.params.articleId} deleted. No action needed.`);
+        return null;
+    }
+
+    // Determine if a translation is needed to prevent infinite loops.
+    // Case 1: Translate to Khmer if English is new or updated, and Khmer is missing/stale.
+    const needsKhmerTranslation = (
+        (afterData.title_en && afterData.content_markdown_en && beforeData?.title_en !== afterData.title_en) &&
+        !afterData.title_km
+    );
+
+    // Case 2: Translate to English if Khmer is new or updated, and English is missing/stale.
+     const needsEnglishTranslation = (
+        (afterData.title_km && afterData.content_markdown_km && beforeData?.title_km !== afterData.title_km) &&
+        !afterData.title_en
+    );
+    
+    if (!needsKhmerTranslation && !needsEnglishTranslation) {
+        console.log(`No translation needed for article ${context.params.articleId}.`);
+        return null;
+    }
+
+    const updatePayload: {[key: string]: any} = {};
+
+    if (needsKhmerTranslation) {
+        console.log(`Translating article ${context.params.articleId} to Khmer...`);
+        const [title_km, excerpt_km, content_markdown_km] = await Promise.all([
+            translateText(afterData.title_en, 'km'),
+            translateText(afterData.excerpt_en, 'km'),
+            translateText(afterData.content_markdown_en, 'km'),
+        ]);
+        updatePayload.title_km = title_km;
+        updatePayload.excerpt_km = excerpt_km;
+        updatePayload.content_markdown_km = content_markdown_km;
+    }
+
+    if (needsEnglishTranslation) {
+        console.log(`Translating article ${context.params.articleId} to English...`);
+        const [title_en, excerpt_en, content_markdown_en] = await Promise.all([
+            translateText(afterData.title_km, 'en'),
+            translateText(afterData.excerpt_km, 'en'),
+            translateText(afterData.content_markdown_km, 'en'),
+        ]);
+        updatePayload.title_en = title_en;
+        updatePayload.excerpt_en = excerpt_en;
+        updatePayload.content_markdown_en = content_markdown_en;
+    }
+
+    if (Object.keys(updatePayload).length > 0) {
+        return change.after.ref.update(updatePayload);
+    }
+    
+    return null;
+  });
+
+
 
 /**
  * Creates a new course in the 'courses' collection.
@@ -153,15 +247,21 @@ export const createKnowledgeArticle = functions.https.onCall(
     }
 
     const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km } = data;
-    if (!title_en || !content_markdown_en || !category || !excerpt_en) {
-        throw new functions.https.HttpsError("invalid-argument", "error.article.missingFields");
+    if (!title_en && !title_km) {
+        throw new functions.https.HttpsError("invalid-argument", "At least one title (English or Khmer) is required.");
+    }
+     if (!content_markdown_en && !content_markdown_km) {
+        throw new functions.https.HttpsError("invalid-argument", "At least one content block (English or Khmer) is required.");
+    }
+     if (!excerpt_en && !excerpt_km) {
+        throw new functions.https.HttpsError("invalid-argument", "At least one excerpt (English or Khmer) is required.");
     }
 
     try {
         const newArticleRef = await db.collection('knowledge_articles').add({
-            title_en,
-            content_markdown_en,
-            excerpt_en,
+            title_en: title_en || null,
+            content_markdown_en: content_markdown_en || null,
+            excerpt_en: excerpt_en || null,
             title_km: title_km || null,
             content_markdown_km: content_markdown_km || null,
             excerpt_km: excerpt_km || null,

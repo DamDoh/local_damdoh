@@ -75,7 +75,7 @@ export default function ContentManagementPage() {
 
       if (!(result.data as any).success) throw new Error((result.data as any).message);
 
-      setFeedback({ type: 'success', message: 'Article created successfully!' });
+      setFeedback({ type: 'success', message: 'Article created successfully! It will be auto-translated shortly.' });
       (event.target as HTMLFormElement).reset();
     } catch (error: any) {
       setFeedback({ type: 'error', message: error.message || 'Failed to create article.' });
@@ -121,7 +121,7 @@ export default function ContentManagementPage() {
       <Card className="md:col-span-1">
         <CardHeader>
           <CardTitle>Create Knowledge Article</CardTitle>
-          <CardDescription>Write a blog post or news update.</CardDescription>
+          <CardDescription>Write a blog post or news update. The system will auto-translate to the other language if one is left blank.</CardDescription>
         </CardHeader>
         <CardContent>
            <form onSubmit={handleCreateArticle} className="space-y-4">
@@ -129,16 +129,16 @@ export default function ContentManagementPage() {
                 <h4 className="font-semibold text-lg text-primary">English Content</h4>
                 <div className="space-y-1.5">
                     <Label htmlFor="article_title_en">Article Title (EN)</Label>
-                    <Input id="article_title_en" name="article_title_en" required />
+                    <Input id="article_title_en" name="article_title_en" />
                 </div>
                 <div className="space-y-1.5">
                     <Label htmlFor="article_excerpt_en">Excerpt (EN)</Label>
-                    <Textarea id="article_excerpt_en" name="article_excerpt_en" required className="h-24" />
+                    <Textarea id="article_excerpt_en" name="article_excerpt_en" className="h-24" />
                     <p className="text-xs text-muted-foreground">A short summary for the article preview.</p>
                 </div>
                 <div className="space-y-1.5">
                     <Label htmlFor="article_content_en">Full Content (EN, Markdown supported)</Label>
-                    <Textarea id="article_content_en" name="article_content_en" required className="h-40" />
+                    <Textarea id="article_content_en" name="article_content_en" className="h-40" />
                 </div>
               </div>
 

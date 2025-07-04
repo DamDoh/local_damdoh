@@ -105,9 +105,13 @@ export default function BlogPostPage() {
     );
   }
 
-  const title = (locale === 'km' && post.title_km) ? post.title_km : post.title_en;
-  const content = (locale === 'km' && post.content_markdown_km) ? post.content_markdown_km : post.content_markdown_en;
-
+  const isKhmer = locale === 'km';
+  const displayTitle = isKhmer && post.title_km ? post.title_km : post.title_en;
+  const displayContent = isKhmer && post.content_markdown_km ? post.content_markdown_km : post.content_markdown_en;
+  
+  const originalLang = isKhmer ? 'en' : 'km';
+  const originalTitle = originalLang === 'en' ? post.title_en : post.title_km;
+  const originalContent = originalLang === 'en' ? post.content_markdown_en : post.content_markdown_km;
 
   return (
     <article className="max-w-3xl mx-auto space-y-6">
@@ -116,7 +120,7 @@ export default function BlogPostPage() {
         </Link>
       
         <div className="space-y-2">
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight">{title}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold leading-tight">{displayTitle}</h1>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
@@ -136,7 +140,7 @@ export default function BlogPostPage() {
         <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
           <Image
             src={post.imageUrl}
-            alt={title}
+            alt={displayTitle}
             fill
             sizes="(max-width: 768px) 100vw, 896px"
             style={{ objectFit: 'cover' }}
@@ -148,22 +152,22 @@ export default function BlogPostPage() {
 
       <div className="prose dark:prose-invert max-w-none">
           <pre className="whitespace-pre-wrap font-sans text-base">
-              {content}
+              {displayContent}
           </pre>
       </div>
       
-      {locale === 'en' && post.title_km && post.content_markdown_km && (
-        <>
-            <Separator className="my-8" />
-            <div className="space-y-2">
-                <h2 className="text-3xl md:text-4xl font-bold leading-tight">{post.title_km}</h2>
+      {originalTitle && originalContent && (
+        <div className="pt-6 mt-6 border-t border-dashed">
+            <h3 className="text-sm font-semibold text-muted-foreground mb-2">Original Content ({originalLang.toUpperCase()})</h3>
+            <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
+                <h2 className="text-2xl font-bold leading-tight">{originalTitle}</h2>
+                 <div className="prose dark:prose-invert max-w-none">
+                    <pre className="whitespace-pre-wrap font-sans text-base text-muted-foreground">
+                        {originalContent}
+                    </pre>
+                </div>
             </div>
-            <div className="prose dark:prose-invert max-w-none">
-              <pre className="whitespace-pre-wrap font-sans text-base">
-                  {post.content_markdown_km}
-              </pre>
-            </div>
-        </>
+        </div>
       )}
     </article>
   );
