@@ -1,7 +1,7 @@
 
 "use client";
 import { useState, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { QrCode, ArrowLeft, Users, Shield, Loader2, Phone } from 'lucide-react';
@@ -12,19 +12,24 @@ import { Label } from '@/components/ui/label';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth-utils';
+import { QrScanner } from '@/components/QrScanner';
 
 export default function RecoverPage() {
   const t = useTranslations('Auth.recoverPage');
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
+  const { user, loading: authLoading } = useAuth();
 
   const [recoveryStep, setRecoveryStep] = useState<'initial' | 'enter_phone' | 'display_qr' | 'error'>('initial');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string } | null>(null);
+  const [isScanning, setIsScanning] = useState(false);
 
   const createRecoverySession = useMemo(() => httpsCallable(functions, 'createRecoverySession'), [functions]);
+  const scanRecoveryQrCallable = useMemo(() => httpsCallable(functions, 'scanRecoveryQr'), [functions]);
 
   const handleStartRecovery = () => {
     setRecoveryStep('enter_phone');
@@ -52,6 +57,42 @@ export default function RecoverPage() {
     } finally {
         setIsLoading(false);
     }
+  };
+  
+  const handleHelpFriend = () => {
+    setIsScanning(true);
+  };
+
+  const handleScanSuccess = async (decodedText: string) => {
+    setIsScanning(false);
+    // Expected format: damdoh:recover:SESSION_ID:SECRET
+    const parts = decodedText.split(':');
+    if (parts.length !== 4 || parts[0] !== 'damdoh' || parts[1] !== 'recover') {
+        toast({ title: "Invalid QR Code", description: "This is not a valid DamDoh recovery code.", variant: "destructive"});
+        return;
+    }
+    const [, , sessionId, scannedSecret] = parts;
+    
+    setIsLoading(true); // Show loading indicator
+    try {
+        const result = await scanRecoveryQrCallable({ sessionId, scannedSecret });
+        const data = result.data as { success: boolean; message: string; recoveryComplete: boolean };
+        if (data.success) {
+            toast({ title: "Confirmation Successful!", description: data.message });
+        } else {
+            throw new Error((data.message) || "Confirmation failed.");
+        }
+    } catch(error: any) {
+        toast({ title: "Confirmation Failed", description: error.message, variant: "destructive" });
+    } finally {
+        setIsLoading(false);
+    }
+  };
+
+  const handleScanFailure = (error: string) => {
+      console.error("QR Scan Error:", error);
+      toast({ title: "Scan Failed", description: "Could not read the QR code. Please try again.", variant: "destructive"});
+      setIsScanning(false);
   };
 
   const renderInitialStep = () => (
@@ -128,6 +169,14 @@ export default function RecoverPage() {
   }
 
   return (
+    <>
+    {isScanning && (
+        <QrScanner
+            onScanSuccess={handleScanSuccess}
+            onScanFailure={handleScanFailure}
+            onClose={() => setIsScanning(false)}
+        />
+    )}
     <div className="flex flex-col items-center justify-center min-h-screen bg-muted/40 py-12 px-4">
       <Card className="w-full max-w-lg shadow-xl">
         <CardHeader className="text-center relative">
@@ -139,7 +188,18 @@ export default function RecoverPage() {
           <QrCode className="h-10 w-10 mx-auto text-primary mb-2" />
           {renderContent()}
         </CardHeader>
+        <CardFooter>
+            {!authLoading && user && (
+                <div className="text-center w-full pt-4 border-t">
+                    <p className="text-sm text-muted-foreground mb-2">Know someone trying to recover their account?</p>
+                    <Button variant="secondary" onClick={handleHelpFriend}>
+                        <Users className="mr-2 h-4 w-4" /> Help a Friend Recover
+                    </Button>
+                </div>
+            )}
+        </CardFooter>
       </Card>
     </div>
+    </>
   );
 }

@@ -6,6 +6,13 @@ import { getRole } from "./profiles";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * Triggered on new user creation to generate a unique, non-sensitive Universal ID.
  * This ID is then stored back into the user's document.
@@ -168,6 +175,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
     }
 });
 
+
 /**
  * Creates a secure, temporary recovery session for a user.
  */
@@ -219,26 +227,74 @@ export const createRecoverySession = functions.https.onCall(async (data, context
 });
 
 /**
- * [Placeholder] Verifies a recovery QR code scanned by a trusted friend.
+ * Verifies a recovery QR code scanned by a trusted friend.
  */
 export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
+    const friendUid = checkAuth(context);
     const { sessionId, scannedSecret } = data;
     if (!sessionId || !scannedSecret) {
         throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
     }
+    
+    const sessionRef = db.collection("recovery_sessions").doc(sessionId);
+    
+    try {
+        const result = await db.runTransaction(async (transaction) => {
+            const sessionDoc = await transaction.get(sessionRef);
 
-    // In a real implementation:
-    // 1. Fetch the recovery_sessions document.
-    // 2. Verify the session is 'pending' and not expired.
-    // 3. Verify the scannedSecret matches the stored secret.
-    // 4. Add the authenticated context.auth.uid to the 'confirmedBy' array.
-    // 5. Check if confirmedBy.length >= requiredConfirmations.
-    // 6. If so, update the session status to 'confirmed' and trigger a custom auth token minting process
-    //    to allow the original user to log into their new device.
-    // 7. This is a complex and highly sensitive step and would need careful implementation.
+            if (!sessionDoc.exists) {
+                throw new functions.https.HttpsError("not-found", "Recovery session not found or has expired.");
+            }
 
-    console.log(`[Placeholder] User ${context.auth!.uid} confirmed recovery for session ${sessionId}`);
+            const sessionData = sessionDoc.data()!;
 
-    return { success: true, message: "Confirmation received (placeholder)." };
+            if (sessionData.status !== 'pending') {
+                throw new functions.https.HttpsError("failed-precondition", "This recovery session is no longer active.");
+            }
+            if (sessionData.expiresAt.toDate() < new Date()) {
+                transaction.update(sessionRef, { status: 'expired' });
+                throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired.");
+            }
+
+            if (sessionData.recoveryQrSecret !== scannedSecret) {
+                throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
+            }
+
+            const confirmedBy = sessionData.confirmedBy || [];
+            if (confirmedBy.includes(friendUid)) {
+                return { success: true, message: "You have already confirmed this recovery." };
+            }
+            
+            const newConfirmedBy = [...confirmedBy, friendUid];
+            
+            const requiredConfirmations = sessionData.requiredConfirmations || 2;
+            let newStatus = sessionData.status;
+            let recoveryComplete = false;
+            
+            if (newConfirmedBy.length >= requiredConfirmations) {
+                newStatus = 'confirmed';
+                recoveryComplete = true;
+            }
+            
+            transaction.update(sessionRef, {
+                confirmedBy: newConfirmedBy,
+                status: newStatus,
+            });
+
+            return {
+                success: true,
+                recoveryComplete,
+                message: recoveryComplete ? "Recovery confirmed! The user can now regain access." : `Confirmation successful. ${requiredConfirmations - newConfirmedBy.length} more needed.`
+            };
+        });
+
+        return result;
+
+    } catch(error) {
+        console.error("Error during recovery scan:", error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while confirming recovery.");
+    }
 });
