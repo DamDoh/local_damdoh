@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Home",
@@ -15,6 +16,7 @@
     "signUp": "Sign Up",
     "myProfile": "My Profile",
     "settings": "Settings",
+    "helpCenter": "Help Center",
     "logOut": "Log Out"
   },
   "AppFooter": {
@@ -29,6 +31,7 @@
     "communityGuidelinesLabel": "Community Guidelines",
     "industryNewsLabel": "Industry News",
     "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
     "legalTitle": "Legal",
     "privacyPolicyLabel": "Privacy Policy",
     "termsOfServiceLabel": "Terms of Service",
@@ -36,5 +39,62 @@
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store",
     "copyright": "© {year} {appName}. All Rights Reserved."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Change Language"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
+  },
+  "Marketplace": {
+      "create": {
+          "backLink": "Back to Marketplace",
+          "title": "Create a New Listing",
+          "description": "Share a product or service with the DamDoh network.",
+          "form": {
+              "nameLabel": "Listing Name",
+              "namePlaceholder": "e.g., Organic Hass Avocados, Tractor Rental Service",
+              "typeLabel": "Listing Type",
+              "typePlaceholder": "Select a listing type",
+              "descriptionLabel": "Description",
+              "descriptionPlaceholder": "Provide a detailed description of your product or service.",
+              "locationLabel": "Location",
+              "locationPlaceholder": "e.g., Nairobi, Kenya or California, USA",
+              "categoryLabel": "Category",
+              "categoryPlaceholder": "Select the most relevant category",
+              "priceLabel": "Price",
+              "pricePlaceholder": "e.g., 25.50",
+              "unitLabel": "Unit",
+              "unitPlaceholder": "e.g., per kg, per hour",
+              "imageUrlLabel": "Image URL (Optional)",
+              "sustainableLabel": "Sustainable Product/Service",
+              "sustainableDescription": "This item or service utilizes or promotes sustainable practices.",
+              "compensationLabel": "Compensation / Rate",
+              "compensationPlaceholder": "e.g., $50/hr, Project-based, KES 5,000/day",
+              "experienceLabel": "Experience Level",
+              "experiencePlaceholder": "e.g., 5+ years, Certified Professional",
+              "skillsLabel": "Skills Required",
+              "skillsPlaceholder": "List the key skills or qualifications for this service.",
+              "skillsDescription": "Separate skills with a comma.",
+              "submittingButton": "Submitting...",
+              "submitButton": "Create Listing"
+          }
+      }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled professionals and services across the agricultural value chain.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search by skill, service, or professional...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or check back later for new listings.",
+    "viewServiceButton": "View Service"
   }
 }

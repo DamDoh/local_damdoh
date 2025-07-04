@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Startseite",
@@ -15,6 +16,7 @@
     "signUp": "Registrieren",
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
     "logOut": "Abmelden"
   },
   "AppFooter": {
@@ -29,6 +31,7 @@
     "communityGuidelinesLabel": "Community-Richtlinien",
     "industryNewsLabel": "Branchennachrichten",
     "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
     "legalTitle": "Rechtliches",
     "privacyPolicyLabel": "Datenschutzrichtlinie",
     "termsOfServiceLabel": "Nutzungsbedingungen",

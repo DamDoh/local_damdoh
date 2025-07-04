@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "ទំព័រដើម",
@@ -15,6 +16,7 @@
     "signUp": "បង្កើតគណនី",
     "myProfile": "គណនីខ្ញុំ",
     "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
     "logOut": "ចាកចេញ"
   },
   "AppFooter": {
@@ -29,6 +31,7 @@
     "communityGuidelinesLabel": "គោលការណ៍សហគមន៍",
     "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
     "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ផ្សារអ្នកជំនាញ",
     "legalTitle": "ផ្នែកច្បាប់",
     "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
     "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
