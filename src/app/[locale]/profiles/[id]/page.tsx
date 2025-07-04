@@ -17,7 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
@@ -189,13 +189,13 @@ export default function ProfileDetailPage() {
                   <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="outline"><QrCode className="mr-2 h-4 w-4" /> Show My Universal ID</Button>
+                      <Button variant="outline"><QrCode className="mr-2 h-4 w-4" /> {t('showUniversalIdButton')}</Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-xs">
                         <DialogHeader>
-                            <DialogTitle className="text-center">My Universal ID</DialogTitle>
+                            <DialogTitle className="text-center">{t('universalIdModalTitle')}</DialogTitle>
                             <DialogDescription className="text-center">
-                                Present this QR code to authorized agents or partners to securely share your public profile information.
+                                {t('universalIdModalDescription')}
                             </DialogDescription>
                         </DialogHeader>
                         <div className="p-4 flex flex-col items-center justify-center gap-4">
