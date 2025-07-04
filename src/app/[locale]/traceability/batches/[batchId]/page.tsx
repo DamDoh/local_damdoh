@@ -44,7 +44,7 @@ interface VtiData {
 
 interface TraceabilityData {
   vti: VtiData;
-  events?: TraceabilityEvent[]; // Make events optional to handle all backend responses safely
+  events?: TraceabilityEvent[]; // Events are optional
 }
 
 const getEventIcon = (eventType: string) => {
@@ -137,7 +137,7 @@ export default function TraceabilityBatchDetailPage() {
             <AlertTitle>{t('common.error')}</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
             <Button asChild variant="secondary" className="mt-4">
-                <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('traceabilityDetailPage.backLink')}</Link>
+                <Link href="/traceability"><ArrowLeft className="mr-2 h-4 w-4" />{t('traceabilityDetailPage.backLink')}</Link>
             </Button>
         </Alert>
     );
@@ -153,7 +153,8 @@ export default function TraceabilityBatchDetailPage() {
      );
   }
 
-  const { vti, events = [] } = data; // FIX: Default events to an empty array
+  // Safely destructure events, providing an empty array as a fallback to prevent crashes
+  const { vti, events = [] } = data;
   const producerEvent = events.find(e => e.eventType === 'HARVESTED' || e.eventType === 'PLANTED');
   const harvestEvent = events.find(e => e.eventType === 'HARVESTED');
   
@@ -162,7 +163,7 @@ export default function TraceabilityBatchDetailPage() {
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       <Button asChild variant="outline" className="mb-4">
-        <Link href="/marketplace">
+        <Link href="/traceability">
           <ArrowLeft className="mr-2 h-4 w-4" /> {t('traceabilityDetailPage.backLink')}
         </Link>
       </Button>

@@ -269,6 +269,15 @@ export function AppHeader() {
                     <Separator />
                   </>
                 )}
+                 {desktopNavItems.map((item) => (
+                  <MobileSheetNavLink
+                    key={`sheet-main-${item.href}`}
+                    {...item}
+                    label={t(item.label as any, item.label)}
+                    pathname={pathname}
+                    onClick={() => setIsMobileSheetOpen(false)}
+                  />
+                ))}
                 
                 {mobileSheetSecondaryNavItems.map((item) => (
                   <MobileSheetNavLink

@@ -185,17 +185,7 @@ export type ForumGroup = {
   createdAt: string; // ISO String
 }
 
-export type ForumTopic = {
-  id: string;
-  name: string;
-  description: string;
-  postCount: number;
-  lastActivityAt: string;
-  creatorId: string;
-  icon?: string;
-  createdAt: string;
-  updatedAt: string;
-}
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
 export type ForumPost = {
   id: string;
