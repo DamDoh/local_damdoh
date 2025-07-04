@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
@@ -106,7 +107,7 @@ function ItemPageContent() {
                 const sellerProfile = await getProfileByIdFromDB(itemData.sellerId);
                 setSeller(sellerProfile);
                 
-                if(sellerProfile && sellerProfile.shops && sellerProfile.shops.length > 0) {
+                if(sellerProfile && Array.isArray(sellerProfile.shops) && sellerProfile.shops.length > 0) {
                      const shopResult = await getShopDetailsCallable({ shopId: sellerProfile.shops[0] });
                      setShop(shopResult.data as Shop);
                 }
