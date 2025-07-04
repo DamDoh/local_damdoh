@@ -129,7 +129,7 @@ export const PackagingSupplierDashboard = () => {
                                         <p className="font-medium">{item.item}</p>
                                         <p className={needsRestock ? 'font-bold text-amber-600' : ''}>{item.stock.toLocaleString()}</p>
                                     </div>
-                                    <p className="text-xs text-muted-foreground">Reorder at {item.reorderLevel.toLocaleString()}</p>
+                                    <p className="text-xs text-muted-foreground">Reorder Level: {item.reorderLevel.toLocaleString()}</p>
                                     {needsRestock && <p className="text-xs text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1 mt-1"><AlertTriangle className="h-3 w-3" />Low Stock</p>}
                                 </div>
                                 )
