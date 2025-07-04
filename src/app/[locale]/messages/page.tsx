@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Search, MessageSquare, Loader2, ArrowLeft } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from '@/lib/utils';
-import type { Conversation, Message, UserProfile } from '@/lib/types';
+import type { UserProfile } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -21,6 +21,26 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
+
+interface Conversation {
+  id: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  lastMessage: string;
+  lastMessageTimestamp: string;
+  unreadCount: number;
+}
+
+interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string;
+}
 
 function MessagingContent() {
     const t = useTranslations('messagingPage');
@@ -109,7 +129,7 @@ function MessagingContent() {
                     try {
                         const profile = await getProfileByIdFromDB(recipientId);
                         setRecipientProfile(profile);
-                        const result = await getOrCreateConversationCallable(recipientId);
+                        const result = await getOrCreateConversationCallable({ recipientId });
                         const { conversationId } = result.data as { conversationId: string };
                         const newConvos = await fetchConversations();
                         const newCreatedConvo = newConvos.find((c: any) => c.id === conversationId);
@@ -252,7 +272,7 @@ function MessagingContent() {
                                             <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.uid ? "justify-end" : "justify-start")}>
                                                 {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
                                                 <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
-                                                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                                                    <p className="whitespace-pre-line break-words">{msg.content}</p>
                                                 </div>
                                                  {msg.senderId === user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
                                             </div>

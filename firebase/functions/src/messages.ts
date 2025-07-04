@@ -1,65 +1,167 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getProfileByIdFromDB } from './profiles';
 
 const db = admin.firestore();
 
-// Placeholder implementation for getting conversations
-export const getConversationsForUser = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
+// Gets or creates a conversation between the authenticated user and a recipient.
+export const getOrCreateConversation = functions.https.onCall(async (data, context) => {
+    const userId = checkAuth(context);
+    const { recipientId } = data;
+    if (!recipientId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A recipientId must be provided.');
     }
-    // In a real app, you would query a 'conversations' collection
-    // For now, returning dummy data.
-    return {
-        conversations: [
-            { id: 'msg1', participant: { id: 'userA', name: 'Dr. Alima Bello', avatarUrl: 'https://placehold.co/40x40.png' }, lastMessage: 'Your grain shipment is confirmed...', lastMessageTimestamp: new Date(Date.now() - 3600000).toISOString(), unreadCount: 1 },
-            { id: 'msg2', participant: { id: 'userB', name: 'GreenLeaf Organics Co-op', avatarUrl: 'https://placehold.co/40x40.png' }, lastMessage: 'Sounds good, let\'s proceed.', lastMessageTimestamp: new Date(Date.now() - 86400000).toISOString(), unreadCount: 0 },
-        ]
-    };
+    if (userId === recipientId) {
+        throw new functions.https.HttpsError('invalid-argument', 'Cannot create a conversation with yourself.');
+    }
+
+    const participantIds = [userId, recipientId].sort();
+    const conversationId = participantIds.join('_');
+    const conversationRef = db.collection('conversations').doc(conversationId);
+
+    const conversationSnap = await conversationRef.get();
+
+    if (!conversationSnap.exists) {
+        // Fetch profiles to store basic info in the conversation doc for easier access
+        const userProfile = await getProfileByIdFromDB(userId);
+        const recipientProfile = await getProfileByIdFromDB(recipientId);
+
+        if (!userProfile || !recipientProfile) {
+            throw new functions.https.HttpsError('not-found', 'One or more user profiles could not be found.');
+        }
+
+        await conversationRef.set({
+            participantIds,
+            participantInfo: {
+                [userId]: {
+                    displayName: userProfile.displayName,
+                    avatarUrl: userProfile.avatarUrl || null,
+                },
+                [recipientId]: {
+                    displayName: recipientProfile.displayName,
+                    avatarUrl: recipientProfile.avatarUrl || null,
+                },
+            },
+            lastMessage: "Conversation started.",
+            lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+    }
+
+    return { conversationId };
 });
 
-// Placeholder for getting messages
-export const getMessagesForConversation = functions.https.onCall(async (data, context) => {
-     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
-    const { conversationId } = data;
-    const userId = context.auth.uid;
-    // In a real app, query messages subcollection of a conversation
-    const messages = [
-            { id: 'm1', conversationId, senderId: 'userA', content: 'Your grain shipment is confirmed for Tuesday.', timestamp: new Date(Date.now() - 3600000).toISOString() },
-            { id: 'm2', conversationId, senderId: userId, content: 'Great, thanks for the update!', timestamp: new Date(Date.now() - 3500000).toISOString() },
-    ];
 
-    if (conversationId === 'msg2') {
-        messages.splice(0, messages.length); // Clear for this example
-        messages.push({ id: 'm3', conversationId, senderId: 'userB', content: 'Sounds good, let\'s proceed.', timestamp: new Date(Date.now() - 86400000).toISOString() });
-    }
+// Fetches all conversations for the authenticated user.
+export const getConversationsForUser = functions.https.onCall(async (data, context) => {
+    const userId = checkAuth(context);
     
+    const conversationsQuery = db.collection('conversations').where('participantIds', 'array-contains', userId).orderBy('lastMessageTimestamp', 'desc');
+    const snapshot = await conversationsQuery.get();
+
+    if (snapshot.empty) {
+        return { conversations: [] };
+    }
+
+    const conversations = snapshot.docs.map(doc => {
+        const data = doc.data();
+        
+        // Defensive coding: Ensure data structure is valid before accessing properties.
+        const participantIds = data.participantIds || [];
+        const participantInfo = data.participantInfo || {};
+        const otherParticipantId = participantIds.find((id: string) => id !== userId);
+        
+        // Gracefully handle cases where the other participant might be missing.
+        const otherParticipantInfo = (otherParticipantId ? participantInfo[otherParticipantId] : null) || { displayName: 'Unknown User', avatarUrl: '' };
+
+        return {
+            id: doc.id,
+            participant: {
+                id: otherParticipantId,
+                name: otherParticipantInfo.displayName,
+                avatarUrl: otherParticipantInfo.avatarUrl
+            },
+            lastMessage: data.lastMessage,
+            lastMessageTimestamp: (data.lastMessageTimestamp as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            unreadCount: data.unreadCount?.[userId] || 0, // Placeholder for unread count logic
+        };
+    }).filter(Boolean); // Filter out any potentially null results from malformed data
+    
+    return { conversations };
+});
+
+
+// Fetches all messages for a specific conversation.
+export const getMessagesForConversation = functions.https.onCall(async (data, context) => {
+    const userId = checkAuth(context);
+    const { conversationId } = data;
+
+    if (!conversationId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A conversationId must be provided.');
+    }
+
+    // Security check: Ensure the user is part of this conversation
+    const conversationRef = db.collection('conversations').doc(conversationId);
+    const conversationSnap = await conversationRef.get();
+    if (!conversationSnap.exists || !conversationSnap.data()?.participantIds.includes(userId)) {
+        throw new functions.https.HttpsError('permission-denied', 'You are not a participant in this conversation.');
+    }
+
+    const messagesQuery = conversationRef.collection('messages').orderBy('timestamp', 'asc');
+    const snapshot = await messagesQuery.get();
+    
+    const messages = snapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            conversationId: conversationId,
+            senderId: data.senderId,
+            content: data.content,
+            timestamp: (data.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        }
+    });
+
     return { messages };
 });
 
-// Placeholder for sending a message
+// Sends a new message to a conversation.
 export const sendMessage = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
+    const userId = checkAuth(context);
     const { conversationId, content } = data;
-    // In a real app, you would add a new document to the messages subcollection and update the conversation's lastMessage field.
-    console.log(`Message received for conversation ${conversationId}: ${content}`);
-    return { success: true };
-});
-
-// Placeholder for getting or creating a conversation
-export const getOrCreateConversation = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    if (!conversationId || !content) {
+        throw new functions.https.HttpsError('invalid-argument', 'conversationId and content are required.');
     }
-    const { recipientId } = data;
-    // This function would look for an existing conversation between the two users.
-    // If it doesn't exist, it would create one and return its ID.
-    // For now, let's just pretend we created a new one or found an existing one.
-    console.log(`Getting or creating conversation for recipient: ${recipientId}`);
-    return { conversationId: "msg-new-example" };
+
+    const conversationRef = db.collection('conversations').doc(conversationId);
+    const conversationSnap = await conversationRef.get();
+    if (!conversationSnap.exists || !conversationSnap.data()?.participantIds.includes(userId)) {
+        throw new functions.https.HttpsError('permission-denied', 'You are not a participant in this conversation.');
+    }
+
+    const messageRef = conversationRef.collection('messages').doc();
+    
+    const batch = db.batch();
+
+    batch.set(messageRef, {
+        senderId: userId,
+        content: content,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    batch.update(conversationRef, {
+        lastMessage: content,
+        lastMessageTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    await batch.commit();
+
+    return { success: true, messageId: messageRef.id };
 });

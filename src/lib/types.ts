@@ -268,7 +268,7 @@ export interface FinancialTransaction {
     currency: string;
     description: string;
     category?: string;
-    timestamp: any; // Allow for firestore timestamp
+    timestamp: string; // ISO string
 }
 
 export interface FinancialSummary {
