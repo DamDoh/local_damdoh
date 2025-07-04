@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Languages } from "lucide-react";
-import { locales, localeNames } from "../../../middleware";
+import { locales, localeNames } from "../../middleware";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
