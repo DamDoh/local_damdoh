@@ -135,7 +135,7 @@ export const PackagingSupplierDashboard = () => {
                                 )
                             })
                        ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No inventory data.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">No inventory data.</p>
                        )}
                     </CardContent>
                      <CardFooter>
