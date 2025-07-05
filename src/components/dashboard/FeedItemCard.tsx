@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -296,4 +295,3 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     </Card>
   );
 }
-

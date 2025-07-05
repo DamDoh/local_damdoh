@@ -1,6 +1,8 @@
 
-// This component renders the main dashboard and is used for the root path.
-// The primary, internationalized page is at /src/app/[locale]/page.tsx.
-import RootPage from './[locale]/page';
+import { redirect } from 'next/navigation';
+import { locales } from '@/i18n-config';
 
-export default RootPage;
+// This page only redirects to the default locale.
+export default function RootPage() {
+  redirect(`/${locales[0]}`);
+}
