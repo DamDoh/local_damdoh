@@ -2,10 +2,10 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Calendar, Clock } from "lucide-react";
+import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Calendar, Clock, Eye } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -19,7 +19,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface Worker {
   id: string;
@@ -29,16 +28,6 @@ interface Worker {
   payRateUnit?: string;
   totalHoursLogged?: number;
   totalPaid?: number;
-}
-
-interface Log {
-    id: string;
-    date: string;
-    hours?: number;
-    taskDescription?: string;
-    amount?: number;
-    currency?: string;
-    notes?: string;
 }
 
 export default function LaborManagementPage() {
@@ -177,19 +166,22 @@ export default function LaborManagementPage() {
                     workers.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {workers.map(worker => (
-                                <Card key={worker.id}>
-                                    <CardHeader className="flex flex-row items-center gap-3">
+                                <Card key={worker.id} className="flex flex-col">
+                                    <CardHeader className="flex flex-row items-center gap-3 pb-2">
                                         <Avatar><AvatarFallback>{worker.name.substring(0,1)}</AvatarFallback></Avatar>
                                         <CardTitle className="text-lg">{worker.name}</CardTitle>
                                     </CardHeader>
-                                    <CardContent className="text-sm space-y-2">
+                                    <CardContent className="text-sm space-y-2 flex-grow">
                                         <p><strong>Hours Logged:</strong> {worker.totalHoursLogged || 0}</p>
                                         <p><strong>Total Paid:</strong> ${worker.totalPaid || 0}</p>
                                     </CardContent>
-                                    <CardContent className="flex gap-2">
+                                    <CardFooter className="grid grid-cols-2 gap-2">
                                         <Button variant="outline" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogHoursOpen(true); }}><Clock className="mr-2 h-4 w-4"/>Log Hours</Button>
                                         <Button variant="secondary" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogPaymentOpen(true); }}><DollarSign className="mr-2 h-4 w-4"/>Log Payment</Button>
-                                    </CardContent>
+                                        <Button asChild variant="ghost" className="col-span-2">
+                                            <Link href={`/farm-management/labor/${worker.id}`}><Eye className="mr-2 h-4 w-4"/> View Details</Link>
+                                        </Button>
+                                    </CardFooter>
                                 </Card>
                             ))}
                         </div>

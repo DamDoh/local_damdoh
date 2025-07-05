@@ -774,3 +774,19 @@ export interface Worker {
   totalHoursLogged?: number;
   totalPaid?: number;
 }
+
+export interface WorkLog {
+    id: string;
+    hours: number;
+    date: string; // ISO string
+    taskDescription: string;
+    isPaid: boolean;
+}
+
+export interface PaymentLog {
+    id: string;
+    amount: number;
+    currency: string;
+    date: string; // ISO string
+    notes: string;
+}

@@ -155,11 +155,25 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         throw new functions.https.HttpsError('not-found', 'Worker not found.');
     }
     
-    const workLogs = workLogsSnap.docs.map(doc => ({ id: doc.id, ...doc.data(), date: doc.data().date.toDate().toISOString() }));
-    const payments = paymentsSnap.docs.map(doc => ({ id: doc.id, ...doc.data(), date: doc.data().date.toDate().toISOString() }));
+    const workLogs = workLogsSnap.docs.map(doc => ({ 
+        id: doc.id, 
+        ...doc.data(), 
+        date: doc.data().date.toDate().toISOString(),
+        createdAt: doc.data().createdAt.toDate().toISOString(),
+    }));
+    const payments = paymentsSnap.docs.map(doc => ({ 
+        id: doc.id, 
+        ...doc.data(), 
+        date: doc.data().date.toDate().toISOString(),
+        createdAt: doc.data().createdAt.toDate().toISOString(),
+    }));
 
     return {
-        profile: { id: workerSnap.id, ...workerSnap.data() },
+        profile: { 
+            id: workerSnap.id, 
+            ...workerSnap.data(),
+            createdAt: workerSnap.data()?.createdAt.toDate().toISOString(),
+        },
         workLogs,
         payments
     }
