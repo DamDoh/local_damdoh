@@ -222,21 +222,3 @@ export const createMarketplaceCouponSchema = z.object({
     path: ["discountValue"],
 });
 export type CreateMarketplaceCouponValues = z.infer<typeof createMarketplaceCouponSchema>;
-
-export const createAgriEventCouponSchema = z.object({
-  code: z.string().min(4, "Code must be at least 4 characters").max(20),
-  discountType: z.enum(["percentage", "fixed"]),
-  discountValue: z.coerce.number().positive("Value must be positive"),
-  expiryDate: z.date().optional(),
-  usageLimit: z.coerce.number().int().positive("Limit must be a positive number").optional(),
-}).refine(data => {
-    if (data.discountType === 'percentage' && data.discountValue > 100) {
-        return false;
-    }
-    return true;
-}, {
-    message: "Percentage discount cannot exceed 100.",
-    path: ["discountValue"],
-});
-export type CreateAgriEventCouponValues = z.infer<typeof createAgriEventCouponSchema>;
-    
