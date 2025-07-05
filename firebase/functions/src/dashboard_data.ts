@@ -28,6 +28,7 @@ import type {
     FinancialApplication,
     AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
+    OperationsDashboardData,
 } from "./types";
 
 const db = admin.firestore();
@@ -140,6 +141,9 @@ export const getFarmerDashboardData = functions.https.onCall(
             netFlow: totalIncome - totalExpense,
         };
         
+        const certsSnapshot = await db.collection('users').doc(farmerId).collection('certifications').get();
+        const certifications = certsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as FarmerDashboardData['certifications'];
+
 
         return {
             farmCount: farmsSnapshot.size,
@@ -148,6 +152,7 @@ export const getFarmerDashboardData = functions.https.onCall(
             knfBatches: activeKnfBatches,
             financialSummary: financialSummary,
             alerts: alerts,
+            certifications: certifications,
         };
 
     } catch (error) {
@@ -420,33 +425,41 @@ export const getRegulatorDashboardData = functions.https.onCall(
 
 export const getLogisticsDashboardData = functions.https.onCall(
   async (data, context): Promise<LogisticsDashboardData> => {
-    checkAuth(context);
+    const logisticsProviderId = checkAuth(context);
     
     try {
-        // --- Active Shipments ---
-        // Simulating active shipments by fetching recently shipped orders.
         const shipmentsSnapshot = await db.collection('marketplace_orders')
             .where('status', '==', 'shipped')
+            // In a real app, we'd also filter by logisticsProviderId if that field existed on the order
             .orderBy('updatedAt', 'desc')
             .limit(5)
             .get();
 
+        const itemIdsForVti = [...new Set(shipmentsSnapshot.docs.map(doc => doc.data().itemId))];
+        const itemDetails: Record<string, any> = {};
+        if (itemIdsForVti.length > 0) {
+            const itemsSnapshot = await db.collection('marketplaceItems').where(admin.firestore.FieldPath.documentId(), 'in', itemIdsForVti).get();
+            itemsSnapshot.forEach(doc => {
+                itemDetails[doc.id] = { relatedTraceabilityId: doc.data().relatedTraceabilityId };
+            });
+        }
+
         const activeShipments = shipmentsSnapshot.docs.map(doc => {
             const order = doc.data();
+            const relatedVtiId = itemDetails[order.itemId]?.relatedTraceabilityId;
             return {
                 id: doc.id,
-                // In a real app, 'to' would be on the order. We'll use buyer's location as a placeholder.
                 to: order.buyerLocation || 'Unknown Destination', 
-                status: 'In Transit', // Assume 'shipped' means 'in transit'
-                eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(), // Mock ETA
-                vtiLink: `/traceability/batches/${order.itemId}` // conceptual link
+                status: 'In Transit',
+                eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(),
+                vtiLink: relatedVtiId ? `/traceability/batches/${relatedVtiId}` : '#'
             };
         });
 
-        // --- Incoming Jobs ---
-        // Simulating jobs by fetching confirmed orders that might need logistics.
         const jobsSnapshot = await db.collection('marketplace_orders')
             .where('status', '==', 'confirmed')
+            // Filter where no logistics provider is assigned yet
+            //.where('logisticsProviderId', '==', null) 
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
@@ -467,12 +480,11 @@ export const getLogisticsDashboardData = functions.https.onCall(
                 from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
                 to: order.buyerLocation || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
-                requirements: 'Standard Transport', // Placeholder
-                actionLink: `/marketplace/my-orders/${order.id}` // conceptual link
+                requirements: 'Standard Transport',
+                actionLink: `/marketplace/my-orders/${order.id}`
             };
         });
 
-        // --- Performance Metrics (remains mocked) ---
         const performanceMetrics = { 
             onTimePercentage: 97, 
             fuelEfficiency: '12km/L', 
@@ -923,7 +935,7 @@ export const getWasteManagementDashboardData = functions.https.onCall(
 );
 
 export const getOperationsDashboardData = functions.https.onCall(
-  (data, context): any => { // Type OperationsDashboardData is not defined, using any
+  (data, context): OperationsDashboardData => {
     checkAuth(context);
     // In a real app, this data would be pulled from system monitoring tools and data analysis queries.
     return {
@@ -969,6 +981,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 

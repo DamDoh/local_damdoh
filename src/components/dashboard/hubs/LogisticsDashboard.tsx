@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -6,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Truck, Clock, Briefcase, BarChart, ExternalLink } from 'lucide-react';
+import { Truck, Clock, Briefcase, BarChart, ExternalLink, GitBranch } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -91,9 +92,9 @@ export const LogisticsDashboard = () => {
                                        <p className="font-medium">To: {shipment.to}</p>
                                        <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'}>{shipment.status}</Badge>
                                    </div>
-                                   <Button asChild variant="ghost" size="sm">
+                                   <Button asChild variant="ghost" size="sm" disabled={shipment.vtiLink === '#'}>
                                        <Link href={shipment.vtiLink}>
-                                            <ExternalLink className="h-3 w-3 mr-1.5" />
+                                            <GitBranch className="h-3 w-3 mr-1.5" />
                                             Track
                                        </Link>
                                    </Button>
@@ -121,7 +122,7 @@ export const LogisticsDashboard = () => {
                                         <p className="text-xs text-muted-foreground">{job.product} ({job.requirements})</p>
                                     </div>
                                     <Button asChild size="sm">
-                                        <Link href={job.actionLink}>View Details</Link>
+                                        <Link href={job.actionLink}>Accept Job</Link>
                                     </Button>
                                 </div>
                            ))
