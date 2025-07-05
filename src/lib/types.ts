@@ -613,15 +613,20 @@ export interface OperationsDashboardData {
 
 export interface FinancialApplication {
   id: string;
+  applicantId: string;
   applicantName: string;
+  fiId: string;
   type: string;
   amount: number;
   currency: string;
   status: string;
-  riskScore: number;
+  riskScore?: number;
+  purpose: string;
   submittedAt: string | null;
-  actionLink: string;
+  actionLink?: string;
+  applicantProfile?: UserProfile;
 }
+
 
 export type KnfBatch = {
     id: string;

@@ -239,11 +239,14 @@ export const getFiDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 applicantName: appData.applicantName,
+                applicantId: appData.applicantId,
+                fiId: appData.fiId,
                 type: appData.type,
                 amount: appData.amount,
                 currency: appData.currency,
                 status: appData.status,
                 riskScore: appData.riskScore,
+                purpose: appData.purpose,
                 submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
                 actionLink: `/fi/applications/${doc.id}`,
             };

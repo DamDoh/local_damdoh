@@ -739,3 +739,81 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
     }
   },
 );
+
+const checkFiAuth = async (context: functions.https.CallableContext) => {
+    const uid = context.auth?.uid;
+    if (!uid) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+
+    const userDoc = await db.collection("users").doc(uid).get();
+    const userRole = userDoc.data()?.primaryRole;
+    
+    if (userRole !== 'Financial Institution (Micro-finance/Loans)') {
+         throw new functions.https.HttpsError("permission-denied", "You are not authorized to perform this action.");
+    }
+    
+    return uid;
+};
+
+export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
+    await checkFiAuth(context);
+    const { applicationId } = data;
+    if (!applicationId) {
+        throw new functions.https.HttpsError('invalid-argument', 'Application ID is required.');
+    }
+
+    const appRef = db.collection('financial_applications').doc(applicationId);
+    const appDoc = await appRef.get();
+
+    if (!appDoc.exists) {
+        throw new functions.https.HttpsError('not-found', 'Application not found.');
+    }
+
+    const appData = appDoc.data()!;
+    let applicantProfile = null;
+
+    if (appData.applicantId) {
+        const profileDoc = await db.collection('users').doc(appData.applicantId).get();
+        if (profileDoc.exists) {
+            const data = profileDoc.data()!;
+            applicantProfile = {
+                id: profileDoc.id,
+                ...data,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+            };
+        }
+    }
+    
+    const serializedAppData = {
+        ...appData,
+        id: appDoc.id,
+        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate ? (appData.submittedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+    };
+
+    return { application: serializedAppData, applicant: applicantProfile };
+});
+
+export const updateFinancialApplicationStatus = functions.https.onCall(async (data, context) => {
+    await checkFiAuth(context);
+    const { applicationId, status } = data;
+
+    if (!applicationId || !status) {
+        throw new functions.https.HttpsError('invalid-argument', 'Application ID and a new status are required.');
+    }
+    
+    const validStatuses = ['Approved', 'Rejected', 'More Info Required'];
+    if (!validStatuses.includes(status)) {
+         throw new functions.https.HttpsError('invalid-argument', 'Invalid status provided.');
+    }
+
+    const appRef = db.collection('financial_applications').doc(applicationId);
+    
+    await appRef.update({
+        status: status,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    return { success: true, message: `Application status updated to ${status}.` };
+});
