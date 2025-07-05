@@ -11,7 +11,7 @@ import { getProfileByIdFromDB } from '@/lib/db-utils';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import Image from "next/image";
 import { ItemCard } from '@/components/marketplace/ItemCard';

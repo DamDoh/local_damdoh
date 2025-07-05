@@ -759,19 +759,3 @@ export interface Worker {
   totalHoursLogged?: number;
   totalPaid?: number;
 }
-
-export interface WorkLog {
-  id: string;
-  date: string; // ISO
-  hours: number;
-  taskDescription: string;
-  isPaid: boolean;
-}
-
-export interface PaymentLog {
-    id: string;
-    date: string; // ISO
-    amount: number;
-    currency: string;
-    notes?: string;
-}
