@@ -46,12 +46,12 @@ export function DashboardLeftSidebar() {
         <CardContent className="pt-6 text-center">
           <Link href="/profiles/me">
             <Avatar className="h-20 w-20 mx-auto mb-2 border-2 border-primary cursor-pointer">
-              <AvatarImage src={profile?.avatarUrl} alt={profile?.name} data-ai-hint="profile agriculture" />
-              <AvatarFallback>{profile?.name?.substring(0, 2).toUpperCase() || 'U'}</AvatarFallback>
+              <AvatarImage src={profile?.avatarUrl} alt={profile?.displayName} data-ai-hint="profile agriculture" />
+              <AvatarFallback>{profile?.displayName?.substring(0, 2).toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
           </Link>
           <Link href="/profiles/me">
-            <h3 className="text-lg font-semibold hover:underline">{profile?.name || 'Your Name'}</h3>
+            <h3 className="text-lg font-semibold hover:underline">{profile?.displayName || 'Your Name'}</h3>
           </Link>
           <p className="text-xs text-muted-foreground px-2">{profile?.profileSummary || 'Your Headline'}</p>
           <p className="text-xs text-muted-foreground mt-1">{profile?.location || 'Your Location'}</p>
