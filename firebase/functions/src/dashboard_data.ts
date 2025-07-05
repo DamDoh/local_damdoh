@@ -238,8 +238,8 @@ export const getFiDashboardData = functions.https.onCall(
             const appData = doc.data();
             return {
                 id: doc.id,
-                applicantName: appData.applicantName,
                 applicantId: appData.applicantId,
+                applicantName: appData.applicantName,
                 fiId: appData.fiId,
                 type: appData.type,
                 amount: appData.amount,
