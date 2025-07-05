@@ -41,6 +41,7 @@ import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboa
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
+import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -48,7 +49,7 @@ const db = getFirestore(firebaseApp);
 const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Agricultural Cooperative': CooperativeDashboard,
     'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Agri-Tech Innovator/Developer': ResearcherDashboard, // Fallback for now
+    'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
     'Agronomy Expert/Consultant (External)': AgronomistDashboard,
     'Agro-Tourism Operator': AgroTourismDashboard,
     'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
@@ -258,7 +259,7 @@ function MainContent() {
 }
 
 
-export default function RootPage() {
+export function MainDashboard() {
   const router = useRouter();
   const pathname = usePathname();
   const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
