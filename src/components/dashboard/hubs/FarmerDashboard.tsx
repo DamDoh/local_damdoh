@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -6,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign } from 'lucide-react';
+import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
@@ -32,6 +33,16 @@ const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrenc
       </CardFooter>
     </Card>
 );
+
+const AlertIcon = ({ icon }: { icon: 'FlaskConical' | 'Sprout' }) => {
+    const iconMap = {
+        FlaskConical: FlaskConical,
+        Sprout: Sprout
+    };
+    const IconComponent = iconMap[icon];
+    return <IconComponent className="h-5 w-5" />;
+};
+
 
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
@@ -67,10 +78,33 @@ export const FarmerDashboard = () => {
         );
     }
     
-    const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary } = dashboardData;
+    const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary, alerts = [] } = dashboardData;
 
     return (
         <div className="space-y-6">
+             {alerts.length > 0 && (
+                <Card className="border-primary/50 bg-primary/10">
+                    <CardHeader>
+                        <CardTitle className="text-base flex items-center gap-2">
+                           <AlertCircle className="h-5 w-5 text-primary"/>
+                           Farm Alerts & Next Steps
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                        {alerts.map(alert => (
+                           <div key={alert.id} className="flex justify-between items-center text-sm p-3 bg-background rounded-lg border">
+                                <div className="flex items-center gap-3">
+                                   <AlertIcon icon={alert.icon} />
+                                    <span>{alert.message}</span>
+                                </div>
+                               <Button asChild variant="secondary" size="sm">
+                                   <Link href={alert.link}>View</Link>
+                               </Button>
+                           </div>
+                        ))}
+                    </CardContent>
+                </Card>
+             )}
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
                 <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Farms"/>
                 <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Crops"/>

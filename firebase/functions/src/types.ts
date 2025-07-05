@@ -103,6 +103,13 @@ export interface Notification {
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
+export interface FarmerDashboardAlert {
+    id: string;
+    icon: 'FlaskConical' | 'Sprout';
+    type: 'info' | 'warning';
+    message: string;
+    link: string;
+}
 
 export interface FinancialTransaction {
     id: string;
@@ -138,6 +145,7 @@ export interface FarmerDashboardData {
     nextStepDate: string | null;
   }[];
   financialSummary?: FinancialSummary;
+  alerts?: FarmerDashboardAlert[];
 }
 
 export interface CooperativeDashboardData {
