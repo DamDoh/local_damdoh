@@ -9,10 +9,42 @@ import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Link2 } from "luci
 import { useToast } from "@/hooks/use-toast";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "../ui/skeleton";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/lib/auth-utils";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "@/lib/firebase/client";
+
 
 export function DashboardLeftSidebar() {
   const { toast } = useToast();
   const { profile, loading } = useUserProfile();
+  const { user } = useAuth();
+  
+  const [stats, setStats] = useState<{ profileViews: number, postLikes: number, postComments: number } | null>(null);
+  const [isLoadingStats, setIsLoadingStats] = useState(true);
+
+
+  useEffect(() => {
+    if (user) {
+        const getStatsCallable = httpsCallable(functions, 'getUserEngagementStats');
+        getStatsCallable()
+            .then(result => {
+                setStats(result.data as any);
+            })
+            .catch(error => {
+                console.error("Error fetching stats:", error);
+                // Don't show a toast for this, just fail gracefully
+                setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
+            })
+            .finally(() => {
+                setIsLoadingStats(false);
+            });
+    } else {
+        setIsLoadingStats(false);
+        setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
+    }
+  }, [user]);
+
 
   const handleTryProClick = () => {
     toast({
@@ -39,6 +71,8 @@ export function DashboardLeftSidebar() {
       </div>
     );
   }
+  
+  const totalEngagements = (stats?.postLikes || 0) + (stats?.postComments || 0);
 
   return (
     <div className="space-y-4 sticky top-20">
@@ -61,14 +95,23 @@ export function DashboardLeftSidebar() {
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs space-y-1">
-          <div className="flex justify-between items-center p-1 rounded-sm">
-            <span>Profile viewers</span>
-            <span className="text-primary font-semibold">48</span>
-          </div>
-          <div className="flex justify-between items-center p-1 rounded-sm">
-            <span>Post impressions</span>
-            <span className="text-primary font-semibold">230</span>
-          </div>
+          {isLoadingStats ? (
+            <div className="space-y-2 p-1">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+            </div>
+          ) : (
+            <>
+                <div className="flex justify-between items-center p-1 rounded-sm">
+                    <span>Profile viewers</span>
+                    <span className="text-primary font-semibold">{stats?.profileViews ?? 0}</span>
+                </div>
+                <div className="flex justify-between items-center p-1 rounded-sm">
+                    <span>Post engagements</span>
+                    <span className="text-primary font-semibold">{totalEngagements}</span>
+                </div>
+            </>
+          )}
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs">

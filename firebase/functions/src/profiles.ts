@@ -286,3 +286,32 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('internal', 'Could not fetch user activity.');
     }
 });
+
+export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
+    const userId = checkAuth(context);
+
+    try {
+        const viewsQuery = db.collection('profile_views').where('viewedId', '==', userId).get();
+        const postsQuery = db.collection('posts').where('userId', '==', userId).get();
+
+        const [viewsSnapshot, postsSnapshot] = await Promise.all([viewsQuery, postsQuery]);
+
+        const profileViews = viewsSnapshot.size;
+
+        let postLikes = 0;
+        let postComments = 0;
+        postsSnapshot.forEach(doc => {
+            postLikes += doc.data().likesCount || 0;
+            postComments += doc.data().commentsCount || 0;
+        });
+
+        return {
+            profileViews,
+            postLikes,
+            postComments
+        };
+    } catch (error) {
+        console.error(`Error fetching engagement stats for user ${userId}:`, error);
+        throw new functions.https.HttpsError('internal', 'Could not fetch engagement statistics.');
+    }
+});
