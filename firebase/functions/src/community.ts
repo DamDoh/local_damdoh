@@ -22,7 +22,11 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
-    const { content, pollOptions } = data; // pollOptions is an array of strings
+    const { content, pollOptions } = data; // pollOptions is an array of objects with a 'text' property
+
+    if (pollOptions && (!Array.isArray(pollOptions) || pollOptions.length < 2)) {
+        throw new functions.https.HttpsError('invalid-argument', 'A poll must have at least two options.');
+    }
 
     const userProfile = await getProfileByIdFromDB(uid);
     if (!userProfile) {
@@ -159,4 +163,48 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     const newLastVisible = comments.length > 0 ? comments[comments.length - 1].id : null;
 
     return { comments, lastVisible: newLastVisible };
+});
+
+
+export const voteOnPoll = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { postId, optionIndex } = data;
+
+    if (!postId || typeof optionIndex !== 'number') {
+        throw new functions.https.HttpsError('invalid-argument', 'Post ID and a valid option index are required.');
+    }
+
+    const postRef = db.collection('posts').doc(postId);
+    const voteRef = postRef.collection('votes').doc(uid);
+
+    return db.runTransaction(async (transaction) => {
+        const postDoc = await transaction.get(postRef);
+        if (!postDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Post not found.');
+        }
+
+        const voteDoc = await transaction.get(voteRef);
+        if (voteDoc.exists) {
+            throw new functions.https.HttpsError('already-exists', 'You have already voted on this poll.');
+        }
+
+        const postData = postDoc.data()!;
+        if (!postData.pollOptions || optionIndex < 0 || optionIndex >= postData.pollOptions.length) {
+            throw new functions.https.HttpsError('invalid-argument', 'Invalid poll option.');
+        }
+
+        // Atomically update the vote count for the specific option
+        const newPollOptions = [...postData.pollOptions];
+        newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
+        
+        transaction.update(postRef, { pollOptions: newPollOptions });
+
+        // Record the user's vote to prevent duplicates
+        transaction.set(voteRef, {
+            optionIndex,
+            votedAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+        
+        return { success: true, pollOptions: newPollOptions };
+    });
 });

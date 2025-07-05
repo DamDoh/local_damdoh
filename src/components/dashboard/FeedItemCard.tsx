@@ -25,7 +25,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useAuth } from "@/lib/auth-utils";
-import { Progress } from "@/components/ui/progress";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -33,6 +32,8 @@ interface FeedItemCardProps {
   onComment: (id: string, commentText: string) => void;
   onDeletePost: (id: string) => void;
 }
+
+const functions = getFunctions(firebaseApp);
 
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
   const { user } = useAuth();
@@ -42,9 +43,12 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
   
   useEffect(() => {
-      // Deep copy to prevent state mutation issues
       setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
-  }, [item.pollOptions]);
+      // Here you could add logic to check if the user has already voted on this poll
+      // e.g., by checking a `votes` subcollection on the post.
+      // For this implementation, we rely on client-side state after the first vote.
+      setVotedOptionIndex(null); 
+  }, [item.pollOptions, item.id]);
 
   const totalVotes = useMemo(() => {
     return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
@@ -61,14 +65,12 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [hasMoreComments, setHasMoreComments] = useState(true);
 
   const { toast } = useToast();
-  const functions = getFunctions(firebaseApp);
   const getCommentsForPost = useMemo(() => httpsCallable(functions, 'getCommentsForPost'), [functions]);
   const { profile: currentUserProfile } = useUserProfile();
   
   useEffect(() => {
     // Reset state when the item prop changes
     setIsLiked(false); 
-    setVotedOptionIndex(null);
     setShowCommentInput(false);
     setCommentText("");
     setIsSubmittingComment(false);
@@ -125,13 +127,31 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   };
 
   const handleRepost = () => toast({ title: "Repost action triggered (placeholder)." });
-  const handleSend = () => toast({ title: "Send action triggered (placeholder)." });
-  const handlePollVote = (optionIndex: number) => {
-    if (votedOptionIndex === null && currentPollOptions.length > 0) {
-      // In a real app, this would call a cloud function to register the vote.
-      const newPollOptions = currentPollOptions.map((opt, idx) => ({ ...opt, votes: (opt.votes || 0) + (idx === optionIndex ? 1 : 0) }));
-      setCurrentPollOptions(newPollOptions);
-      setVotedOptionIndex(optionIndex);
+  
+  const handlePollVote = async (optionIndex: number) => {
+    if (votedOptionIndex !== null || !user) {
+        if (!user) toast({ title: "Please sign in to vote.", variant: "destructive" });
+        return;
+    }
+    
+    const voteOnPollCallable = httpsCallable(functions, 'voteOnPoll');
+    
+    // Optimistic UI update
+    const newPollOptions = [...currentPollOptions];
+    newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
+    setCurrentPollOptions(newPollOptions);
+    setVotedOptionIndex(optionIndex);
+
+    try {
+        await voteOnPollCallable({ postId: item.id, optionIndex });
+        toast({ title: "Vote counted!" });
+    } catch (error: any) {
+        toast({ title: "Failed to register vote", description: error.message, variant: "destructive" });
+        // Revert UI on error
+        const revertedPollOptions = [...currentPollOptions];
+        revertedPollOptions[optionIndex].votes = (revertedPollOptions[optionIndex].votes || 1) - 1;
+        setCurrentPollOptions(revertedPollOptions);
+        setVotedOptionIndex(null);
     }
   };
   

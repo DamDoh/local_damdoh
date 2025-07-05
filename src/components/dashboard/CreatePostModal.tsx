@@ -17,6 +17,7 @@ import Image from "next/image";
 import type { PollOption } from "@/lib/types";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { useUserProfile } from '@/hooks/useUserProfile';
+import { useToast } from '@/hooks/use-toast';
 
 
 interface CreatePostModalProps {
@@ -37,6 +38,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
   const [pollOptions, setPollOptions] = useState<string[]>(["", ""]); // Start with 2 empty options
 
   const { profile } = useUserProfile();
+  const { toast } = useToast();
 
   const handleMediaChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -55,11 +57,19 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
   };
 
   const handlePost = () => {
-    if (!postContent.trim() && !mediaFile && (!showPollCreator || pollOptions.every(opt => !opt.trim()))) {
-      // Optionally, show a toast or validation message
+    const finalPollOptions = showPollCreator ? pollOptions.filter(opt => opt.trim()) : [];
+
+    if (showPollCreator && finalPollOptions.length < 2) {
+      toast({ title: "Poll requires at least 2 options.", variant: "destructive" });
       return;
     }
-    const activePollOptions = showPollCreator ? pollOptions.filter(opt => opt.trim()).map(opt => ({ text: opt })) : undefined;
+
+    if (!postContent.trim() && !mediaFile && (!showPollCreator || finalPollOptions.length < 2)) {
+      toast({ title: "Please add some content, an image, or a valid poll to your post.", variant: "destructive" });
+      return;
+    }
+
+    const activePollOptions = showPollCreator ? finalPollOptions.map(opt => ({ text: opt })) : undefined;
     onCreatePost(postContent, mediaFile || undefined, activePollOptions);
     resetModal();
   };
@@ -111,11 +121,11 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
           </VisuallyHidden>
           <div className="flex items-center gap-2">
             <Avatar className="h-9 w-9">
-              <AvatarImage src={profile?.avatarUrl} alt={profile?.name} data-ai-hint="profile person agriculture" />
-              <AvatarFallback>{profile?.name?.substring(0, 1) ?? 'U'}</AvatarFallback>
+              <AvatarImage src={profile?.avatarUrl} alt={profile?.displayName} data-ai-hint="profile person agriculture" />
+              <AvatarFallback>{profile?.displayName?.substring(0, 1) ?? 'U'}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-medium">{profile?.name || 'Your Name'}</p>
+              <p className="font-medium">{profile?.displayName || 'Your Name'}</p>
               <p className="text-xs font-normal text-muted-foreground">Share an update</p>
             </div>
           </div>
@@ -204,7 +214,6 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
           <DialogFooter className="sm:justify-end p-0 mt-0">
             <Button 
               onClick={handlePost}
-              disabled={!postContent.trim() && !mediaFile && (!showPollCreator || pollOptions.every(opt => !opt.trim()))}
             >
               Post
             </Button>
