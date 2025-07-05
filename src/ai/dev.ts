@@ -16,3 +16,4 @@ import '@/ai/tools/fgw-knf-knowledge-tool';
 import '@/ai/tools/stakeholder-info-tool';
 import '@/ai/flows/generate-forum-post-draft.ts';
 import '@/ai/flows/suggest-market-price-flow.ts';
+import '@/ai/tools/fgw-knf-knowledge-tool.ts';
