@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,9 +14,10 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Textarea } from "@/components/ui/textarea";
 import { getStakeholderRoles } from "@/lib/i18n-constants"; 
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 // Super App Vision Note: This Settings page becomes a critical hub for user trust and control.
-// The new "Privacy & Visibility" section introduces the concept of data consent management,
+// The "Privacy & Visibility" section introduces the concept of data consent management,
 // which is foundational for a super app that shares data between modules (e.g., sharing
 // marketplace history with a financial institution for a loan). This empowers users
 // and builds the trust needed for a vibrant digital ecosystem.
@@ -51,47 +51,13 @@ export default function SettingsPage() {
               <CardTitle>{t('stakeholderProfile.title')}</CardTitle>
               <CardDescription>{t('stakeholderProfile.description')}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6"> 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> 
-                <div className="space-y-1.5"> 
-                  <Label htmlFor="name" className="flex items-center gap-1.5"><User className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.nameLabel')}</Label>
-                  <Input id="name" defaultValue="Aisha Bello / Sahel Organics" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email" className="flex items-center gap-1.5"><Mail className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.emailLabel')}</Label>
-                  <Input id="email" type="email" defaultValue="contact@sahelorganics.com" />
-                </div>
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="role" className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.roleLabel')}</Label>
-                <Select defaultValue="Farmer">
-                    <SelectTrigger id="role">
-                        <SelectValue placeholder={t('stakeholderProfile.rolePlaceholder')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {stakeholderRoles.map(role => (
-                            <SelectItem key={role.value} value={role.value}>{role.label}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="profile-summary" className="flex items-center gap-1.5"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.summaryLabel')}</Label>
-                <Textarea id="profile-summary" placeholder={t('stakeholderProfile.summaryPlaceholder')} defaultValue="Founder, Sahel Organics | Connecting smallholder farmers to sustainable markets for premium hibiscus and sesame." className="min-h-[80px]" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="bio" className="flex items-center gap-1.5"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.bioLabel')}</Label>
-                <Textarea id="bio" placeholder={t('stakeholderProfile.bioPlaceholder')} defaultValue="Sahel Organics is a social enterprise empowering women farmer cooperatives in Northern Nigeria. We focus on organic certification, quality improvement, and direct market access for hibiscus, sesame, and moringa. Seeking partnerships with international buyers and impact investors." className="min-h-[120px]" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="areas-of-interest" className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.interestsLabel')}</Label>
-                <Input id="areas-of-interest" placeholder={t('stakeholderProfile.interestsPlaceholder')} defaultValue="Organic certification, Fair trade, Hibiscus, Sesame, Women empowerment, Export to EU" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="needs" className="flex items-center gap-1.5"><TrendingUp className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.needsLabel')}</Label>
-                <Input id="needs" placeholder={t('stakeholderProfile.needsPlaceholder')} defaultValue="Bulk buyers for dried hibiscus, Logistics partners for shipping, Impact investment" />
-              </div>
-               <Button><Save className="mr-2 h-4 w-4" />{t('stakeholderProfile.saveButton')}</Button>
+            <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">Your profile is your identity on DamDoh. A complete and detailed profile helps build trust and attracts the right connections and opportunities.</p>
+                <Button asChild>
+                    <Link href="/profiles/me/edit">
+                         <Edit className="mr-2 h-4 w-4" /> Go to Profile Editor
+                    </Link>
+                </Button>
             </CardContent>
           </Card>
         </TabsContent>

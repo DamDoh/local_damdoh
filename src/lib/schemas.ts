@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 
 // Note: For backend schemas, we use z.string() for enums instead of z.enum(...)
@@ -29,7 +28,7 @@ export const StakeholderProfileSchema = z.object({
     website: z.string().url().optional(),
   }).optional(),
   connections: z.array(z.string()).optional(), // Array of user IDs
-  stakeholderProfile: z.any().optional(), // For role-specific data
+  profileData: z.any().optional(), // For role-specific data
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
 });

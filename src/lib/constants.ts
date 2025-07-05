@@ -1,6 +1,13 @@
-
 import { AGRICULTURAL_CATEGORIES } from './category-data';
 import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes } from './i18n-constants';
+import type { LucideIcon } from "lucide-react";
+import {
+  Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
+  BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
+  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
+  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck, Box
+} from 'lucide-react';
+
 
 export const APP_NAME = "DamDoh";
 
@@ -91,14 +98,6 @@ export const INSURANCE_SERVICE_TYPES = [
 export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
 
 // Icon mapping for Stakeholder Roles
-import type { LucideIcon } from "lucide-react";
-import {
-  Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
-  BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
-  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
-  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck, Box
-} from 'lucide-react';
-
 export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
     'Farmer': Sprout,
     'Agricultural Cooperative': Building2,
