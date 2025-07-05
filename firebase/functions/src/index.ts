@@ -35,4 +35,3 @@ export * from "./agro-tourism";
 export * from "./network";
 export * from "./labor";
 export * from "./ai-services";
-
