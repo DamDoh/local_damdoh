@@ -1,14 +1,14 @@
 
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star } from "lucide-react";
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -25,6 +25,7 @@ import { Switch } from '@/components/ui/switch';
 
 export default function CreateListingPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { toast } = useToast();
     const t = useTranslations('Marketplace.create');
     const tConstants = useTranslations('constants');
@@ -52,9 +53,23 @@ export default function CreateListingPage() {
         imageUrl: "",
         skillsRequired: "",
         experienceLevel: "",
-        compensation: ""
+        compensation: "",
+        relatedTraceabilityId: ""
       },
     });
+    
+    useEffect(() => {
+        const vtiId = searchParams.get('vtiId');
+        const productName = searchParams.get('productName');
+        if (vtiId) {
+            form.setValue('relatedTraceabilityId', vtiId);
+        }
+        if (productName) {
+            form.setValue('name', `Fresh Harvested ${productName}`);
+            form.setValue('listingType', 'Product');
+        }
+    }, [searchParams, form]);
+
 
     const listingType = form.watch('listingType');
 
@@ -193,6 +208,22 @@ export default function CreateListingPage() {
                                 </FormItem>
                               )}
                             />
+                            
+                             <FormField
+                              control={form.control}
+                              name="relatedTraceabilityId"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Related VTI / Batch ID (Optional)</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Enter the VTI if this listing is for a specific batch" {...field} />
+                                  </FormControl>
+                                  <FormDescription>Linking a VTI increases buyer trust.</FormDescription>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+
 
                             <FormField
                               control={form.control}

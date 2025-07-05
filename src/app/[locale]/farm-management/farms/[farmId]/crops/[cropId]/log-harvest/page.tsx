@@ -137,7 +137,7 @@ export default function LogHarvestPage() {
                         </Link>
                     </Button>
                     <Button size="lg" className="w-full" asChild>
-                        <Link href={`/marketplace/create?cropId=${createdVtiId}&cropName=${encodeURIComponent(cropType)}`}>
+                        <Link href={`/marketplace/create?vtiId=${createdVtiId}&productName=${encodeURIComponent(cropType)}`}>
                             <DollarSign className="mr-2 h-4 w-4" /> Sell this Batch on the Marketplace
                         </Link>
                     </Button>
