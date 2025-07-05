@@ -193,7 +193,7 @@ export default function TopicPage() {
                                             <AvatarImage src={post.author.avatarUrl} alt={post.author.name} />
                                             <AvatarFallback>{post.author.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                         </Avatar>
-                                        <div className="flex-grow">
+                                        <div className="flex-grow overflow-hidden">
                                             <h4 className="font-semibold">{post.title}</h4>
                                             <p className="text-xs text-muted-foreground">
                                                 {t('postMeta', { author: post.author.name, date: new Date(post.timestamp).toLocaleDateString() })}

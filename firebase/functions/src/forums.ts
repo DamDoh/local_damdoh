@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import type { UserProfile } from "./types";
 
 const db = admin.firestore();
 
@@ -153,14 +154,4 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 
     await batch.commit();
     return { replyId: replyRef.id };
-});
-
-// For fetching comments on feed items, which might be different from forum replies
-export const getCommentsForPost = functions.https.onCall(async (data, context) => {
-    const { postId } = data;
-    if (!postId) {
-        throw new functions.https.HttpsError("invalid-argument", "Post ID is required.");
-    }
-    // This is a placeholder. A real implementation would query a 'comments' subcollection on a 'feed_posts' document.
-    return { comments: [] }; 
 });

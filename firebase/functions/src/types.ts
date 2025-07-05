@@ -630,3 +630,40 @@ export type KnfBatch = {
     nextStep: string;
     createdAt?: any;
 }
+
+export interface ForumPost {
+  id: string;
+  title: string;
+  content: string;
+  topicId: string;
+  topicName: string;
+  timestamp: string; // ISO String
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  replyCount: number;
+}
+
+export interface GroupPost {
+  id: string;
+  title: string;
+  content: string;
+  authorRef: string;
+  authorName: string;
+  authorAvatarUrl: string;
+  replyCount: number;
+  createdAt: string; // ISO
+}
+
+export interface PostReply {
+    id: string;
+    content: string;
+    timestamp: string; // ISO string
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+}
