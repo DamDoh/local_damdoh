@@ -25,7 +25,6 @@ const APPLICATIONS_DATA = [
       riskScore: 720,
       purpose: 'Purchase of certified organic seeds and a new irrigation pump for the upcoming season.',
       submittedAt: new Date(Date.now() - 86400000 * 5).toISOString(),
-      actionLink: '#',
     },
     {
       id: 'app2',
@@ -39,7 +38,6 @@ const APPLICATIONS_DATA = [
       riskScore: 810,
       purpose: 'Funding for a community-owned processing unit to add value to quinoa production before export.',
       submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-      actionLink: '#',
     },
     {
       id: 'app3',
@@ -53,7 +51,6 @@ const APPLICATIONS_DATA = [
       riskScore: 680,
       purpose: 'Financing for greenhouse repairs and purchase of new soil amendments.',
       submittedAt: new Date(Date.now() - 86400000 * 1).toISOString(),
-      actionLink: '#',
     }
 ];
 

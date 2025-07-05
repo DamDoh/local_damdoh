@@ -17,6 +17,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore, collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -42,6 +43,7 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
+import { OperationsDashboard } from './hubs/OperationsDashboard';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -70,6 +72,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Researcher/Academic': ResearcherDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
     'Waste Management & Compost Facility': WasteManagementDashboard,
+    'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
 };
 
 function PageSkeleton() {
@@ -93,42 +96,21 @@ function PageSkeleton() {
 function MainContent() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
-  const [userRole, setUserRole] = useState<string | null>(null);
-  const [isLoadingRole, setIsLoadingRole] = useState(true);
-
+  
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth();
+  const { profile, loading: profileLoading } = useUserProfile();
   
   const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
   const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
-
+  
   useEffect(() => {
-    if (authLoading) return;
-
     let unsubscribeFeed: () => void = () => {};
 
-    const fetchUserRoleAndFeed = async () => {
-      setIsLoadingRole(true);
+    // Set up real-time listener for the feed only if no specific hub will be shown
+    if (!profileLoading && (!profile || !HubComponentMap[profile.primaryRole])) {
       setIsLoadingFeed(true);
-
-      if (user) {
-        try {
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDoc = await getDoc(userDocRef);
-          setUserRole(userDoc.data()?.primaryRole || 'general'); 
-        } catch (error) {
-          console.error("Error fetching user role:", error);
-          setUserRole('general'); 
-        } finally {
-            setIsLoadingRole(false);
-        }
-      } else {
-        setUserRole(null);
-        setIsLoadingRole(false);
-      }
-
-      // Set up real-time listener for the feed
       const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
       unsubscribeFeed = onSnapshot(q, (snapshot) => {
           const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as FeedItem));
@@ -143,13 +125,12 @@ function MainContent() {
           });
           setIsLoadingFeed(false);
       });
-    };
-
-    fetchUserRoleAndFeed();
-
-    // Cleanup listener on component unmount
+    } else {
+        setIsLoadingFeed(false);
+    }
+    
     return () => unsubscribeFeed();
-  }, [user, authLoading, toast]);
+  }, [profile, profileLoading, toast]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
@@ -188,7 +169,7 @@ function MainContent() {
   };
 
   const renderContent = () => {
-    if (isLoadingRole) {
+    if (authLoading || profileLoading) {
       return (
         <div className="space-y-6">
           <Skeleton className="h-48 w-full rounded-lg" />
@@ -197,7 +178,7 @@ function MainContent() {
       );
     }
   
-    const HubComponent = userRole ? HubComponentMap[userRole] : null;
+    const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
 
     if (HubComponent) {
       return <HubComponent />;
@@ -243,10 +224,11 @@ function MainContent() {
       </div>
       <div className="md:col-span-6 lg:col-span-7 space-y-6">
         {user && <StartPost onCreatePost={handleCreatePost} />}
-        {user && (
+        {user && !profile?.primaryRole && (
            <div className="flex items-center gap-2">
             <hr className="flex-grow"/>
-            <span className="text-xs text-muted-foreground">Sort by: Top <Button variant="ghost" size="icon" className="h-4 w-4 ml-1 p-0"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg></Button></span>
+            <span className="text-xs text-muted-foreground">Or View the Main Feed</span>
+            <hr className="flex-grow"/>
           </div>
         )}
         {renderContent()}
