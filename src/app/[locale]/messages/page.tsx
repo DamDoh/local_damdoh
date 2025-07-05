@@ -19,8 +19,12 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { getProfileByIdFromDB } from '@/lib/db-utils';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { getFirestore, collection, query, where, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
+
 
 const functions = getFunctions(firebaseApp);
+const db = getFirestore(firebaseApp);
+
 
 interface Conversation {
   id: string;
@@ -59,7 +63,6 @@ function MessagingContent() {
     const [recipientProfile, setRecipientProfile] = useState<UserProfile | null>(null);
 
     const getConversationsCallable = useCallback(() => httpsCallable(functions, 'getConversationsForUser')(), [functions]);
-    const getMessagesCallable = useCallback((conversationId: string) => httpsCallable(functions, 'getMessagesForConversation')({ conversationId }), [functions]);
     const sendMessageCallable = useCallback((conversationId: string, content: string) => httpsCallable(functions, 'sendMessage')({ conversationId, content }), [functions]);
     const getOrCreateConversationCallable = useCallback((recipientId: string) => httpsCallable(functions, 'getOrCreateConversation')({ recipientId }), [functions]);
     
@@ -73,29 +76,11 @@ function MessagingContent() {
         scrollToBottom();
     }, [messages]);
 
-    const handleSelectConversation = useCallback(async (conversation: Conversation) => {
-        setRecipientProfile(null);
-        if (selectedConversation?.id === conversation.id) {
-            return;
+    const fetchConversations = useCallback(async () => {
+        if (!user) {
+            setIsLoadingConversations(false);
+            return [];
         }
-        
-        setSelectedConversation(conversation);
-        setIsLoadingMessages(true);
-        setMessages([]);
-
-        try {
-            const result = await getMessagesCallable(conversation.id);
-            const data = result.data as { messages: Message[] };
-            setMessages(data?.messages ?? []);
-        } catch (error) {
-            console.error("Failed to fetch messages", error);
-            toast({ variant: "destructive", title: t('error'), description: t('couldNotLoadMessages') });
-        } finally {
-            setIsLoadingMessages(false);
-        }
-    }, [selectedConversation, toast, t, getMessagesCallable]);
-
-     const fetchConversations = useCallback(async () => {
         setIsLoadingConversations(true);
         try {
             const convResult = await getConversationsCallable();
@@ -109,14 +94,52 @@ function MessagingContent() {
         } finally {
             setIsLoadingConversations(false);
         }
-    }, [getConversationsCallable, toast, t]);
+    }, [getConversationsCallable, user, toast, t]);
+    
+    // Real-time listener for messages of the selected conversation
+    useEffect(() => {
+        if (!selectedConversation) {
+            setMessages([]);
+            return;
+        }
 
+        setIsLoadingMessages(true);
+        const messagesQuery = query(
+            collection(db, 'conversations', selectedConversation.id, 'messages'),
+            orderBy('timestamp', 'asc')
+        );
+
+        const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
+            const fetchedMessages: Message[] = snapshot.docs.map(doc => {
+                const data = doc.data();
+                return {
+                    id: doc.id,
+                    conversationId: selectedConversation.id,
+                    senderId: data.senderId,
+                    content: data.content,
+                    timestamp: (data.timestamp as Timestamp)?.toDate().toISOString() || new Date().toISOString()
+                };
+            });
+            setMessages(fetchedMessages);
+            setIsLoadingMessages(false);
+        }, (error) => {
+            console.error("Error listening to messages:", error);
+            toast({ variant: "destructive", title: "Connection Error", description: "Could not listen for new messages." });
+            setIsLoadingMessages(false);
+        });
+
+        // Cleanup listener when conversation changes or component unmounts
+        return () => unsubscribe();
+
+    }, [selectedConversation, toast]);
+
+    // This useEffect is for INITIAL load and handling deep links
     useEffect(() => {
         if (authLoading || !user) {
             setIsLoadingConversations(false);
             return;
         }
-
+        
         const initializeMessaging = async () => {
             const allConvos = await fetchConversations();
             const recipientId = searchParams.get('with');
@@ -124,17 +147,17 @@ function MessagingContent() {
             if (recipientId) {
                 const existingConvo = allConvos.find((c: Conversation) => c.participant?.id === recipientId);
                 if (existingConvo) {
-                    await handleSelectConversation(existingConvo);
+                    setSelectedConversation(existingConvo);
                 } else {
                     try {
                         const profile = await getProfileByIdFromDB(recipientId);
                         setRecipientProfile(profile);
-                        const result = await getOrCreateConversationCallable({ recipientId });
+                        const result = await getOrCreateConversationCallable(recipientId);
                         const { conversationId } = result.data as { conversationId: string };
                         const newConvos = await fetchConversations();
                         const newCreatedConvo = newConvos.find((c: any) => c.id === conversationId);
                         if (newCreatedConvo) {
-                            await handleSelectConversation(newCreatedConvo);
+                            setSelectedConversation(newCreatedConvo);
                         }
                     } catch (error) {
                         console.error("Error creating new conversation:", error);
@@ -142,40 +165,33 @@ function MessagingContent() {
                     }
                 }
             } else if (allConvos.length > 0 && !selectedConversation) {
-                await handleSelectConversation(allConvos[0]);
+                setSelectedConversation(allConvos[0]);
             }
         };
 
         initializeMessaging();
-    }, [user, authLoading, searchParams, toast, t, fetchConversations, handleSelectConversation, getOrCreateConversationCallable, selectedConversation]);
+    // We only want this to run once on initial load, or if user changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user, authLoading]);
     
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
         const currentConvo = selectedConversation;
         if (!newMessage.trim() || !currentConvo || !user) return;
         
-        const tempId = `temp-${Date.now()}`;
-        const message: Message = {
-            id: tempId,
-            conversationId: currentConvo.id,
-            senderId: user.uid,
-            content: newMessage,
-            timestamp: new Date().toISOString()
-        };
-        
-        const originalMessage = newMessage;
-        setMessages(prev => [...prev, message]);
+        const messageToSend = newMessage;
         setNewMessage("");
         setIsSending(true);
 
         try {
-            await sendMessageCallable(currentConvo.id, originalMessage);
+            await sendMessageCallable(currentConvo.id, messageToSend);
+            // The onSnapshot listener will update the messages automatically.
+            // We just need to refetch the conversation list to update the lastMessage preview.
             fetchConversations();
         } catch (error) {
             console.error("Failed to send message", error);
             toast({ variant: "destructive", title: t('sendFailed'), description: t('couldNotSendMessage') });
-            setMessages(prev => prev.filter(m => m.id !== tempId));
-            setNewMessage(originalMessage);
+            setNewMessage(messageToSend); // Restore message on failure
         } finally {
             setIsSending(false);
         }
@@ -224,7 +240,7 @@ function MessagingContent() {
                                     "p-4 flex gap-3 cursor-pointer hover:bg-accent",
                                     selectedConversation?.id === convo.id && "bg-accent"
                                 )}
-                                onClick={() => handleSelectConversation(convo)}
+                                onClick={() => setSelectedConversation(convo)}
                             >
                                 <Avatar>
                                     <AvatarImage src={convo.participant.avatarUrl} data-ai-hint="profile agriculture" />
