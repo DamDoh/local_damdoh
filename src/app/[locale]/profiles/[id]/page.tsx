@@ -219,7 +219,7 @@ export default function ProfileDetailPage() {
               ) : (
                 <>
                   <Button><LinkIcon className="mr-2 h-4 w-4" /> {t('connect')}</Button>
-                  <Button variant="outline"><MessageSquare className="mr-2 h-4 w-4" /> {t('message')}</Button>
+                  <Button asChild variant="outline"><Link href={`/messages?with=${profile.id}`}><MessageSquare className="mr-2 h-4 w-4" />{t('message')}</Link></Button>
                 </>
               )}
             </div>

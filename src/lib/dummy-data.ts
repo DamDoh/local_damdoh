@@ -1,5 +1,5 @@
 
-import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, FeedItem, DirectMessage, AgriEvent, MobileHomeCategory, MobileDiscoverItem } from './types';
+import type { UserProfile, MarketplaceItem, ForumTopic, ForumPost, FeedItem, AgriEvent, MobileHomeCategory, MobileDiscoverItem } from './types';
 import { STAKEHOLDER_ROLES, LISTING_TYPES, UNIFIED_MARKETPLACE_CATEGORY_IDS, AGRI_EVENT_TYPES, StakeholderRole } from './constants';
 import { Sprout, Tractor, ShoppingBag, Cog, Users, BookOpen, Bot, TrendingUp, Briefcase, Package, Wheat, Truck, Leaf, ShieldAlert, Brain, Award, LandPlot, Wrench, Sparkles, CalendarDays, Search, User, MessageSquare, ShoppingCart as MarketIcon, Home, CircleDollarSign, GraduationCap, DraftingCompass, Warehouse, Apple, Carrot, Drumstick, Milk, Box, TestTube2, ShieldCheck, FlaskConical, Satellite, Sun, UserCheck, GitBranch, Recycle } from "lucide-react";
 
@@ -351,13 +351,6 @@ export const dummyProfileDetailsPageData: { profile: UserProfile, activity: any[
     { id: 'activity4', type: 'New Connection', title: 'Connected with GreenLeaf Organics Cooperative', date: '2024-05-22', link: `/profiles/${dummyUsersData['userB']?.name.toLowerCase().replace(' ','-') || 'userB' }` }, // Changed link
   ]
 };
-
-// --- Messaging Panel Data ---
-export const dummyDirectMessages: DirectMessage[] = [
-  { id: 'msg1', senderName: dummyUsersData['agriLogisticsCo'].name, lastMessage: 'Your grain shipment is confirmed for Tuesday.', timestamp: '10:30 AM', senderAvatarUrl: dummyUsersData['agriLogisticsCo'].avatarUrl, unread: true, dataAiHint: "logistics company" },
-  { id: 'msg2', senderName: dummyUsersData['userA'].name, lastMessage: 'Dr. Chen sent the soil analysis report for your West field.', timestamp: 'Yesterday', senderAvatarUrl: dummyUsersData['userA'].avatarUrl, dataAiHint: "scientist profile" },
-  { id: 'msg3', senderName: dummyUsersData['freshProduceExporter'].name, lastMessage: 'New RFP for organic cashews posted.', timestamp: 'May 12', senderAvatarUrl: dummyUsersData['freshProduceExporter'].avatarUrl, dataAiHint: "trade group" },
-];
 
 // --- Mobile Homepage Data ---
 export const mobileHomeCategories: MobileHomeCategory[] = [
