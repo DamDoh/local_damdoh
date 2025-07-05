@@ -678,6 +678,11 @@ export interface PostReply {
     };
 }
 
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
@@ -692,7 +697,7 @@ export interface FeedItem {
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
-  pollOptions?: { text: string; votes?: number }[];
+  pollOptions?: PollOption[];
 }
 
 export interface DirectMessage {
@@ -793,9 +798,4 @@ export interface PaymentLog {
     currency: string;
     date: string; // ISO string
     notes: string;
-}
-
-export interface PollOption {
-  text: string;
-  votes?: number;
 }
