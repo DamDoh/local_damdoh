@@ -11,7 +11,7 @@ import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle } from 'lucide
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import type { FiDashboardData } from '@/lib/types';
+import type { FiDashboardData, FinancialApplication } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export const FiDashboard = () => {
@@ -98,7 +98,7 @@ export const FiDashboard = () => {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {pendingApplications.map(app => (
+                                    {pendingApplications.map((app: FinancialApplication) => (
                                         <TableRow key={app.id}>
                                             <TableCell className="font-medium">{app.applicantName}</TableCell>
                                             <TableCell><Badge variant="outline">{app.type}</Badge></TableCell>
@@ -106,7 +106,7 @@ export const FiDashboard = () => {
                                             <TableCell>{app.riskScore}</TableCell>
                                             <TableCell className="text-right">
                                                  <Button asChild size="sm">
-                                                    <Link href={app.actionLink}>Review</Link>
+                                                    <Link href={`/fi/applications/${app.id}`}>Review</Link>
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
