@@ -278,5 +278,55 @@
         "description": "Your discussion has been started."
       }
     }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Cultivating Connections, Harvesting Success with {appName}",
+      "subtitle": "The all-in-one platform for the entire agricultural supply chain. Connect with farmers, buyers, and experts to grow your business and build a sustainable future.",
+      "getStartedButton": "Get Started for Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "A Toolbox for Growth",
+      "subtitle": "DamDoh provides everything you need to manage, market, and grow your agricultural business.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "Connect with verified stakeholders. Find farmers, buyers, input suppliers, and logistics partners with our AI-powered suggestion engine."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell products, equipment, and services. Expand your reach beyond local markets and find new opportunities."
+      },
+      "forums": {
+        "title": "Knowledge Forums",
+        "description": "Share your expertise, ask questions, and learn from a community of agricultural professionals in dedicated discussion forums."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Offer your professional services or find skilled labor, from custom harvesting to agronomy consultation."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in Agri-Business",
+      "title": "A Platform for the Entire Ecosystem",
+      "description": "Whether you're planting seeds or delivering the final product, DamDoh is designed to support your role in the supply chain.",
+      "farmers": {
+        "title": "Farmers & Cooperatives",
+        "description": "Manage your farm, track your produce with VTIs, and get direct access to buyers and financial services."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Source high-quality, traceable products directly from producers and ensure supply chain integrity."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your expertise, find new clients, and contribute to a more efficient agricultural sector."
+      }
+    },
+    "cta": {
+      "title": "Ready to Grow with DamDoh?",
+      "subtitle": "Join thousands of agricultural professionals building a more connected and sustainable future.",
+      "button": "Join the Community Today"
+    }
   }
 }

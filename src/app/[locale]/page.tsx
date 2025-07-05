@@ -17,6 +17,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { LandingPage } from '@/components/landing/LandingPage';
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -92,7 +93,7 @@ function PageSkeleton() {
     );
 }
 
-function MainContent() {
+function MainDashboard() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -255,6 +256,19 @@ function MainContent() {
   );
 }
 
+function HomePageContent() {
+    const { user, loading: authLoading } = useAuth();
+  
+    if (authLoading) {
+      return <PageSkeleton />;
+    }
+  
+    if (!user) {
+      return <LandingPage />;
+    }
+  
+    return <MainDashboard />;
+}
 
 export default function RootPage() {
   const router = useRouter();
@@ -272,8 +286,8 @@ export default function RootPage() {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <MainContent />
+    <Suspense fallback={<PageSkeleton />}>
+      <HomePageContent />
     </Suspense>
   );
 }

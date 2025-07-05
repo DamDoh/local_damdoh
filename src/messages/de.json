@@ -68,5 +68,6 @@
     "noResultsTitle": "Keine Dienstleistungen gefunden",
     "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei, um neue Angebote zu sehen.",
     "viewServiceButton": "Dienstleistung ansehen"
-  }
+  },
+  "LandingPage": {}
 }
