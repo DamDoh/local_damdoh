@@ -5,10 +5,10 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, Calendar, Eye, HardHat } from 'lucide-react';
+import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, Calendar, Eye, HardHat, Package, CheckCircle, GitBranch } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -41,6 +41,8 @@ const getEventIcon = (eventType: string) => {
         case 'OBSERVED': return <Eye {...iconProps} />;
         case 'INPUT_APPLIED': return <Droplets {...iconProps} />;
         case 'HARVESTED': return <Weight {...iconProps} />;
+        case 'PACKAGED': return <Package {...iconProps} />;
+        case 'VERIFIED': return <CheckCircle {...iconProps} />;
         default: return <HardHat {...iconProps} />;
     }
 };
