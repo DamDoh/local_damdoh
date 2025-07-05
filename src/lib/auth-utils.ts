@@ -30,22 +30,8 @@ export const useAuth = () => {
   return { ...context, uid: context.user?.uid };
 };
 
-let internalCurrentFirebaseUser: FirebaseUser | null = null;
-onAuthStateChanged(auth, (user) => {
-  internalCurrentFirebaseUser = user;
-});
-
 export function getCurrentUserId(): string | null {
   return auth.currentUser ? auth.currentUser.uid : null;
-}
-
-export async function isAuthenticated(request?: Request): Promise<boolean> {
-  if (request) {
-    console.warn("auth-utils: isAuthenticated() with request param is a placeholder for server-side auth.");
-    // Implement server-side token verification here if needed
-    return false; 
-  }
-  return !!auth.currentUser;
 }
 
 export function isAdmin(userId: string | null): boolean {

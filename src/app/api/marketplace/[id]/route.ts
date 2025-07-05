@@ -13,7 +13,7 @@ import {
   clientErrorResponse, 
   serverErrorResponse 
 } from '@/lib/api-utils';
-import { isAuthenticated, getCurrentUserId } from '@/lib/auth-utils';
+import { isServerAuthenticated } from '@/lib/server-auth-utils';
 
 
 interface RouteParams {
@@ -35,15 +35,10 @@ export async function GET(request: Request, { params }: RouteParams) {
 }
 
 export async function PUT(request: Request, { params }: RouteParams) {
-  if (!await isAuthenticated(request)) {
+  if (!await isServerAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  // Add logic to ensure only the listing owner or an admin can update
-  // const currentUserId = getCurrentUserId();
-  // const item = await getMarketplaceItemByIdFromDB(params.id);
-  // if (item && currentUserId !== item.sellerId && !isAdmin(currentUserId)) {
-  //   return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  // }
+  // TODO: Add logic to ensure only the listing owner or an admin can update
   
   try {
     const body = await request.json();
@@ -68,15 +63,10 @@ export async function PUT(request: Request, { params }: RouteParams) {
 }
 
 export async function DELETE(request: Request, { params }: RouteParams) {
-  if (!await isAuthenticated(request)) {
+  if (!await isServerAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  // Add logic to ensure only the listing owner or an admin can delete
-  // const currentUserId = getCurrentUserId();
-  // const item = await getMarketplaceItemByIdFromDB(params.id);
-  // if (item && currentUserId !== item.sellerId && !isAdmin(currentUserId)) {
-  //   return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  // }
+  // TODO: Add logic to ensure only the listing owner or an admin can delete
 
   try {
     const success = await deleteMarketplaceItemFromDB(params.id);

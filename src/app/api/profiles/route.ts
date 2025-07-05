@@ -11,7 +11,7 @@ import {
   clientErrorResponse, 
   serverErrorResponse 
 } from '@/lib/api-utils';
-import { isAuthenticated } from '@/lib/auth-utils';
+import { isServerAuthenticated } from '@/lib/server-auth-utils';
 
 
 export async function GET(request: Request) {
@@ -25,5 +25,4 @@ export async function GET(request: Request) {
 
 // NOTE: The POST functionality for creating a profile is now handled by the
 // `registerUser` function in `auth-utils.ts`, which calls a secure Cloud Function.
-// This ensures that a user profile document is only created upon successful
-// Firebase Authentication user creation. This POST endpoint is no longer needed.
+// This POST endpoint is no longer needed.

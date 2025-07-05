@@ -14,7 +14,7 @@ import {
   clientErrorResponse, 
   serverErrorResponse 
 } from '@/lib/api-utils';
-import { isAuthenticated, getCurrentUserId } from '@/lib/auth-utils';
+import { isServerAuthenticated } from '@/lib/server-auth-utils';
 
 
 interface RouteParams {
@@ -36,15 +36,11 @@ export async function GET(request: Request, { params }: RouteParams) {
 }
 
 export async function PUT(request: Request, { params }: RouteParams) {
-  if (!await isAuthenticated(request)) {
+  if (!await isServerAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  // Add logic to ensure only the profile owner or an admin can update
-  // const currentUserId = getCurrentUserId();
-  // if (currentUserId !== params.id && !isAdmin(currentUserId)) {
-  //   return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  // }
-
+  // TODO: Add logic to ensure only the profile owner or an admin can update
+  
   try {
     const body = await request.json();
     const partialProfileSchema = StakeholderProfileSchema.partial().omit({ id: true, createdAt: true, updatedAt: true });
@@ -68,14 +64,10 @@ export async function PUT(request: Request, { params }: RouteParams) {
 }
 
 export async function DELETE(request: Request, { params }: RouteParams) {
-   if (!await isAuthenticated(request)) {
+   if (!await isServerAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  // Add logic to ensure only the profile owner or an admin can delete
-  // const currentUserId = getCurrentUserId();
-  // if (currentUserId !== params.id && !isAdmin(currentUserId)) {
-  //   return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  // }
+  // TODO: Add logic to ensure only the profile owner or an admin can delete
 
   try {
     const success = await deleteProfileFromDB(params.id);
