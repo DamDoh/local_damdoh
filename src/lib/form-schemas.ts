@@ -107,7 +107,7 @@ export type CreateCropValues = z.infer<typeof createCropSchema>;
 
 export const createHarvestSchema = z.object({
     harvestDate: z.date({ required_error: "A harvest date is required." }),
-    yield_kg: z.coerce.number({ invalid_type_error: "Yield must be a number." }).min(0, "Yield cannot be negative."),
+    yield_kg: z.coerce.number({ required_error: "Yield is required.", invalid_type_error: "Yield must be a number." }).min(0, "Yield cannot be negative."),
     quality_grade: z.string().max(50, "Quality grade is too long.").optional(),
     notes: z.string().max(500, "Notes are too long.").optional(),
 });
