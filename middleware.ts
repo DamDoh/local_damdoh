@@ -1,9 +1,7 @@
 
 import createMiddleware from 'next-intl/middleware';
+import { locales } from './src/i18n-config';
 
-// Define locales directly within the middleware to ensure it's self-contained
-// and has no dependencies on other project files, which is crucial for the Edge runtime.
-const locales = ['en', 'fr', 'de', 'km'];
 const defaultLocale = 'en';
  
 export default createMiddleware({
