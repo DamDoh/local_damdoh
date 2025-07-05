@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, FormEvent, useCallback } from 'react';
@@ -185,3 +186,5 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     </Dialog>
   );
 }
+
+    
