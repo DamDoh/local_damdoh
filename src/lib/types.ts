@@ -794,14 +794,3 @@ export interface PollOption {
   text: string;
   votes?: number;
 }
-
-
-// Moved from ai/flows/farming-assistant-flow.ts to consolidate types
-export interface FarmingAssistantOutput {
-  summary: string;
-  detailedPoints?: {
-    title: string;
-    content: string;
-  }[];
-  suggestedQueries?: string[];
-}
