@@ -156,13 +156,18 @@ export default function FarmDetailPage() {
                 <div className="space-y-3">
                     {crops.map((crop) => (
                         <Card key={crop.id} className="bg-muted/30">
-                            <CardHeader className="p-4">
-                               <div className="flex justify-between items-start">
-                                    <div>
+                            <CardHeader className="p-4 flex flex-row justify-between items-start">
+                               <div>
+                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`} className="hover:underline">
                                         <CardTitle className="text-lg">{crop.cropType}</CardTitle>
-                                        <CardDescription>Planted: {format(new Date(crop.plantingDate), 'PPP')} | Stage: {crop.currentStage || 'N/A'}</CardDescription>
-                                    </div>
-                               </div>
+                                    </Link>
+                                    <CardDescription>Planted: {format(new Date(crop.plantingDate), 'PPP')} | Stage: {crop.currentStage || 'N/A'}</CardDescription>
+                                </div>
+                                 <Button asChild variant="outline" size="sm">
+                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
+                                        View Journey
+                                    </Link>
+                                </Button>
                             </CardHeader>
                              <CardContent className="p-4 pt-0 flex flex-wrap gap-2">
                                 <Button asChild variant="default" size="sm">
