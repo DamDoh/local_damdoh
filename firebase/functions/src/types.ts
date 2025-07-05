@@ -227,14 +227,7 @@ export interface LogisticsDashboardData {
 }
 
 export interface FiDashboardData {
-    pendingApplications: {
-        id: string;
-        applicantName: string;
-        type: string;
-        amount: number;
-        riskScore: number;
-        actionLink: string;
-    }[];
+    pendingApplications: FinancialApplication[];
     portfolioAtRisk: {
         count: number;
         value: number;
