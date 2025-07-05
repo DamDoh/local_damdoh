@@ -55,7 +55,10 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
-  const isActive = pathname.startsWith(href);
+  const pathWithoutLocale = pathname.split('/').slice(2).join('/');
+  const baseHref = href.substring(1); // remove leading '/'
+  const isActive = (baseHref === '' && pathWithoutLocale === '') || (baseHref !== '' && pathWithoutLocale.startsWith(baseHref));
+
   return (
     <Link
       href={href}
@@ -73,7 +76,10 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, cl
 };
 
 const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ href, icon: Icon, label, pathname, onClick, isSheetLink }) => {
-  const isActive = pathname.startsWith(href);
+  const pathWithoutLocale = pathname.split('/').slice(2).join('/');
+  const baseHref = href.substring(1); // remove leading '/'
+  const isActive = (baseHref === '' && pathWithoutLocale === '') || (baseHref !== '' && pathWithoutLocale.startsWith(baseHref));
+
   return (
     <Link
       href={href}
@@ -175,12 +181,10 @@ export function AppHeader() {
 
   const getSectionTitle = () => {
     const pathSegments = pathname.split('/').filter(Boolean);
-    // Remove locale if present
     if (pathSegments.length > 0 && (locales as readonly string[]).includes(pathSegments[0])) {
       pathSegments.shift();
     }
     const path = pathSegments[0] || '';
-
     if (!path) return t('home');
     const item = desktopNavItems.find(item => item.href.includes(path));
     return item ? t(item.label as any) : path.charAt(0).toUpperCase() + path.slice(1);
@@ -219,12 +223,10 @@ export function AppHeader() {
               <NavLink key={item.href} {...item} label={t(item.label as any)} pathname={pathname} />
             ))}
             {user && (
-              <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
-            )}
-            {user && (
               <>
-                  <NavLink href="/messages" icon={MessageSquare} label={t('messages')} pathname={pathname} />
-                  <NavLink href="/wallet" icon={WalletIcon} label={t('wallet')} pathname={pathname} />
+                <NavLink href="/notifications" icon={Bell} label={t('notifications')} pathname={pathname} />
+                <NavLink href="/messages" icon={MessageSquare} label={t('messages')} pathname={pathname} />
+                <NavLink href="/wallet" icon={WalletIcon} label={t('wallet')} pathname={pathname} />
               </>
             )}
             <div className="pl-2 border-l border-white/20 ml-1 flex items-center h-full">
