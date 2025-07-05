@@ -9,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageSquare, Shuffle, MapPin, LinkIcon, UserCog, Users, Frown } from "lucide-react";
+import { Filter, Search, UserPlus, MessageSquare, Shuffle, MapPin, LinkIcon, UserCog, Users, Frown, Loader2 } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,6 +17,11 @@ import { getAllProfilesFromDB } from "@/lib/db-utils";
 import { useTranslations } from "next-intl";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
+import { useAuth } from "@/lib/auth-utils";
+import { useToast } from "@/hooks/use-toast";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { app as firebaseApp } from "@/lib/firebase/client";
+
 
 function ProfileCardSkeleton() {
   return (
@@ -48,8 +53,13 @@ export default function NetworkPage() {
   const [roleFilter, setRoleFilter] = useState("all");
   const [interestFilter, setInterestFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
+  const [isConnecting, setIsConnecting] = useState<string | null>(null);
 
   const { profile: currentUserProfile, loading: profileLoading } = useUserProfile();
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const functions = getFunctions(firebaseApp);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), [functions]);
   
   const interests = ['all', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
 
@@ -69,12 +79,27 @@ export default function NetworkPage() {
     fetchProfiles();
   }, []);
 
+  const handleConnect = async (recipientId: string) => {
+    if (!user) {
+        toast({ title: "Please sign in to connect.", variant: "destructive" });
+        return;
+    }
+    setIsConnecting(recipientId);
+    try {
+        await sendConnectionRequestCallable({ recipientId });
+        toast({ title: "Connection Request Sent!", description: "Your request has been sent to the user."});
+    } catch (error: any) {
+         toast({ title: "Could Not Send Request", description: error.message, variant: "destructive" });
+    } finally {
+        setIsConnecting(null);
+    }
+  };
 
   const filteredConnections = useMemo(() => {
     if (!Array.isArray(profiles)) return [];
 
     return profiles.filter(profile => {
-      if (!profile) return false;
+      if (!profile || profile.id === user?.uid) return false;
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
 
@@ -92,7 +117,7 @@ export default function NetworkPage() {
 
       return (nameMatch || summaryMatch) && roleMatch && interestMatch && locationMatch;
     });
-  }, [searchTerm, roleFilter, interestFilter, locationFilter, profiles]);
+  }, [searchTerm, roleFilter, interestFilter, locationFilter, profiles, user]);
 
   const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
 
@@ -197,8 +222,13 @@ export default function NetworkPage() {
                     <p className="text-sm text-muted-foreground line-clamp-3">{profile.profileSummary}</p>
                     </CardContent>
                     <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
-                    <Button className="w-full sm:flex-1"><LinkIcon className="mr-2 h-4 w-4" />{t('connect')}</Button>
-                    <Button variant="outline" className="w-full sm:flex-1"><MessageSquare className="mr-2 h-4 w-4" />{t('message')}</Button>
+                        <Button className="w-full sm:flex-1" onClick={() => handleConnect(profile.id)} disabled={isConnecting === profile.id}>
+                            {isConnecting === profile.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <LinkIcon className="mr-2 h-4 w-4" />}
+                            {t('connect')}
+                        </Button>
+                        <Button variant="outline" className="w-full sm:flex-1" asChild>
+                            <Link href={`/profiles/${profile.id}`}><User className="mr-2 h-4 w-4" />Profile</Link>
+                        </Button>
                     </CardFooter>
                 </Card>
                 )) : (
