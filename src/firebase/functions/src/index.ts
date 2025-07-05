@@ -23,7 +23,6 @@ export * from "./insurance";
 export * from "./sustainability";
 export * from "./notifications";
 export * from "./types";
-export * from "./ai-services";
 export * from "./dashboard_data";
 export * from "./search";
 export * from "./offline_sync";
@@ -34,4 +33,4 @@ export * from "./agri-events";
 export * from "./universal-id";
 export * from "./agro-tourism";
 export * from "./network";
-
+export * from "./labor";
