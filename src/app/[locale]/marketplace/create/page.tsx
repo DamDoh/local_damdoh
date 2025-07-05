@@ -20,6 +20,8 @@ import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, getListingTypeFormOptions } from '
 import { useAuth } from '@/lib/auth-utils';
 import { Switch } from '@/components/ui/switch';
 import { suggestMarketPrice } from '@/ai/flows/suggest-market-price-flow';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
 
 
 export default function CreateListingPage() {
@@ -34,6 +36,7 @@ export default function CreateListingPage() {
     const [isSuggestingPrice, setIsSuggestingPrice] = useState(false);
     const [suggestedPrice, setSuggestedPrice] = useState<string | null>(null);
     
+    const functions = getFunctions(firebaseApp);
     const createListingCallable = httpsCallable(functions, 'createMarketplaceListing');
 
     const form = useForm<CreateMarketplaceItemValues>({
