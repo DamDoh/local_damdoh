@@ -26,12 +26,17 @@ import type { AgriEvent, UserProfile } from "@/lib/types";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { QrScanner } from '@/components/QrScanner';
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useAuth } from "@/lib/auth-utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import dynamic from 'next/dynamic';
+
+const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
+    ssr: false,
+    loading: () => <div className="flex justify-center items-center h-48"><Loader2 className="h-8 w-8 animate-spin"/></div>
+});
 
 // Duplicating these types here because they are specific to this management page and might evolve.
 // In a larger app, these could be in a more shared but specific types file.

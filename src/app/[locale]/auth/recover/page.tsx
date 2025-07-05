@@ -13,7 +13,13 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
-import { QrScanner } from '@/components/QrScanner';
+import dynamic from 'next/dynamic';
+
+const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
+    ssr: false,
+    loading: () => <div className="flex justify-center items-center h-48"><Loader2 className="h-8 w-8 animate-spin"/></div>
+});
+
 
 export default function RecoverPage() {
   const t = useTranslations('Auth.recoverPage');
