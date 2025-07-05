@@ -68,5 +68,4 @@ export const QrScanner = ({ onScanSuccess, onScanFailure, onClose }: QrScannerPr
     </div>
   );
 };
-
     
