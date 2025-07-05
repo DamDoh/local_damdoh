@@ -10,7 +10,7 @@ import QRCode from 'qrcode.react';
 
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
-import { getProfileByIdFromDB } from "@/lib/server-actions";
+import { getProfileByIdFromDB } from "@/lib/db-utils";
 import { APP_NAME } from "@/lib/constants";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
