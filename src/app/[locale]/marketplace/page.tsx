@@ -7,7 +7,7 @@ import Link from "next/link";
 import type { MarketplaceItem } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
@@ -22,10 +22,12 @@ import { getAllMarketplaceItemsFromDB, performSearch } from "@/lib/db-utils";
 import { Brain } from "lucide-react";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
+import { useAuth } from "@/lib/auth-utils";
 
 function MarketplaceContent() {
   const t = useTranslations('marketplacePage');
   const tConstants = useTranslations('constants');
+  const { user } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>('All');
@@ -181,6 +183,11 @@ function MarketplaceContent() {
               <Button asChild variant="secondary">
                   <Link href="/marketplace/create-shop"><Building className="mr-2 h-4 w-4" />{t('createShopButton')}</Link>
               </Button>
+               {user && (
+                <Button asChild variant="secondary" className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Link href="/marketplace/my-orders"><ShoppingCart className="mr-2 h-4 w-4" />My Received Orders</Link>
+                </Button>
+              )}
               <Button asChild>
                 <Link href="/marketplace/create">
                   <PlusCircle className="mr-2 h-4 w-4" />{t('createListingButton')}
