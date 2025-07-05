@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useRef, ChangeEvent } from 'react';
@@ -13,9 +14,9 @@ import { Separator } from "@/components/ui/separator";
 import { Image as ImageIcon, Video, FileText, CalendarDays, BarChart3, PlusCircle, Trash2, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { dummyUsersData } from "@/lib/dummy-data";
 import type { PollOption } from "@/lib/types";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 
 interface CreatePostModalProps {
@@ -35,7 +36,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
   const [showPollCreator, setShowPollCreator] = useState(false);
   const [pollOptions, setPollOptions] = useState<string[]>(["", ""]); // Start with 2 empty options
 
-  const currentUser = dummyUsersData['currentDemoUser'] || { name: "Demo User", avatarUrl: "https://placehold.co/40x40.png" };
+  const { profile } = useUserProfile();
 
   const handleMediaChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -110,11 +111,11 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
           </VisuallyHidden>
           <div className="flex items-center gap-2">
             <Avatar className="h-9 w-9">
-              <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} data-ai-hint="profile person agriculture" />
-              <AvatarFallback>{currentUser.name?.substring(0, 1) ?? 'U'}</AvatarFallback>
+              <AvatarImage src={profile?.avatarUrl} alt={profile?.name} data-ai-hint="profile person agriculture" />
+              <AvatarFallback>{profile?.name?.substring(0, 1) ?? 'U'}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-medium">{currentUser.name}</p>
+              <p className="font-medium">{profile?.name || 'Your Name'}</p>
               <p className="text-xs font-normal text-muted-foreground">Share an update</p>
             </div>
           </div>

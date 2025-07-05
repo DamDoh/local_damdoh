@@ -1,8 +1,9 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
-import type { FeedItem, PostReply } from "@/lib/types";
+import type { FeedItem, PostReply, PollOption } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -24,6 +25,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useAuth } from "@/lib/auth-utils";
+import { Progress } from "@/components/ui/progress";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -34,10 +36,20 @@ interface FeedItemCardProps {
 
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
   const { user } = useAuth();
-  const [isLiked, setIsLiked] = useState(false); // Note: This local state is for immediate UI feedback. Real like status would need to be fetched.
+  const [isLiked, setIsLiked] = useState(false);
   
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
-  const [currentPollOptions, setCurrentPollOptions] = useState(item.pollOptions?.map(opt => ({ ...opt })) || []);
+  const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
+  
+  useEffect(() => {
+      // Deep copy to prevent state mutation issues
+      setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
+  }, [item.pollOptions]);
+
+  const totalVotes = useMemo(() => {
+    return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
+  }, [currentPollOptions]);
+
   
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -55,7 +67,6 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   
   useEffect(() => {
     // Reset state when the item prop changes
-    setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
     setIsLiked(false); 
     setVotedOptionIndex(null);
     setShowCommentInput(false);
@@ -64,15 +75,13 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     setReplies([]);
     setIsLoadingReplies(false);
     setLastVisible(null);
-    setHasMore(true);
+    setHasMoreComments(true);
   }, [item]);
   
 
   const handleLike = () => {
     if (!user) { toast({ title: "Please sign in to like posts.", variant: "destructive" }); return; }
     setIsLiked(prev => !prev);
-    // Optimistic UI update for likes is now handled by the real-time listener on the parent page.
-    // The local `isLiked` state provides instant visual feedback to the user who clicked.
     onLike(item.id);
   };
   
@@ -109,11 +118,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     
     try {
       await onComment(item.id, commentText);
-      // The new comment will appear automatically via the real-time listener in the parent component.
-      // We just need to clear the input here.
       setCommentText("");
-      // Optionally, refetch comments to show the new one immediately if real-time updates are slow
-      // For now, we rely on the parent's real-time subscription.
     } finally {
       setIsSubmittingComment(false);
     }
@@ -172,7 +177,34 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         </div>
       </CardHeader>
       <CardContent className="px-4 pt-0 pb-2">
-        {item.content && <p className="text-sm whitespace-pre-line mb-2">{item.content}</p>}
+        {item.content && <p className="text-sm whitespace-pre-line mb-4">{item.content}</p>}
+        {item.type === 'poll' && currentPollOptions.length > 0 && (
+          <div className="space-y-2">
+            {currentPollOptions.map((option, index) => {
+              const percentage = totalVotes > 0 ? ((option.votes || 0) / totalVotes) * 100 : 0;
+              const isVoted = votedOptionIndex === index;
+              return (
+                <Button 
+                  key={index} 
+                  variant="outline" 
+                  className="w-full justify-start h-auto p-0 overflow-hidden relative"
+                  onClick={() => handlePollVote(index)}
+                  disabled={votedOptionIndex !== null}
+                >
+                  {votedOptionIndex !== null && <div className="absolute left-0 top-0 h-full bg-primary/20" style={{ width: `${percentage}%` }}/>}
+                  <div className="relative z-10 p-2 flex justify-between w-full items-center">
+                    <span className="font-medium">{option.text}</span>
+                    <div className="flex items-center gap-2">
+                      {isVoted && <CheckCircle className="h-4 w-4 text-primary"/>}
+                      {votedOptionIndex !== null && <span className="text-sm font-semibold">{percentage.toFixed(0)}%</span>}
+                    </div>
+                  </div>
+                </Button>
+              )
+            })}
+             <p className="text-xs text-muted-foreground text-right">{totalVotes} vote{totalVotes !== 1 && 's'}</p>
+          </div>
+        )}
       </CardContent>
       
       <CardFooter className="p-2 flex flex-col items-stretch">

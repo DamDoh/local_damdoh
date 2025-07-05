@@ -1,4 +1,5 @@
 
+
 // Note: The functions related to knowledge hub and courses have been removed
 // from this file and are now located in `knowledge-hub.ts`.
 // This file should only contain functions related to community and social engagement.
@@ -77,7 +78,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         likesCount: 0,
         commentsCount: 0,
-        pollOptions: pollOptions ? pollOptions.map((opt: string) => ({ text: opt, votes: 0 })) : null,
+        pollOptions: pollOptions ? pollOptions.map((opt: { text: string }) => ({ text: opt.text, votes: 0 })) : null,
     });
     
     return { success: true, postId: newPostRef.id };

@@ -759,3 +759,8 @@ export interface Worker {
   totalHoursLogged?: number;
   totalPaid?: number;
 }
+
+export interface PollOption {
+  text: string;
+  votes: number;
+}
