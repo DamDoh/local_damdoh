@@ -35,11 +35,9 @@ export const calculateCarbonFootprint = functions.firestore
   .onWrite(async (change, context) => {
     const document = change.after.exists ? change.after.data() : null;
     const eventId = context.params.eventId;
-
+    
+    // Only process new events
     if (!document || change.before.exists) {
-      console.log(
-        `Ignoring update or delete on traceability_events/${eventId}.`,
-      );
       return null;
     }
 
