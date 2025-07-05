@@ -9,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Filter, Search, UserPlus, MessageSquare, Shuffle, MapPin, LinkIcon, UserCog, User, Frown } from "lucide-react";
+import { Filter, Search, UserPlus, MessageSquare, Shuffle, MapPin, LinkIcon, UserCog, Users, Frown } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
