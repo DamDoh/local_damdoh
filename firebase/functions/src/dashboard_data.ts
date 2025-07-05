@@ -26,7 +26,6 @@ import type {
     WasteManagementDashboardData,
     PackagingSupplierDashboardData,
     FinancialApplication,
-    OperationsDashboardData,
     AgriTechInnovatorDashboardData,
 } from "./types";
 
@@ -913,6 +912,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 
