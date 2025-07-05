@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home } from 'lucide-react';
+import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home, Users } from 'lucide-react';
 
 export default function FarmManagementPage() {
   const t = useTranslations('FarmManagement');
@@ -17,6 +17,14 @@ export default function FarmManagementPage() {
       link: "/farm-management/farms",
       icon: <Home className="h-8 w-8 text-primary mb-2" />,
       buttonText: t('myFarms.button'),
+      enabled: true,
+    },
+    {
+      title: "My People",
+      description: "Manage your farm workers, track hours, and handle payroll.",
+      link: "/farm-management/labor",
+      icon: <Users className="h-8 w-8 text-primary mb-2" />,
+      buttonText: "Manage Labor",
       enabled: true,
     },
     {

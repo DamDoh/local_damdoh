@@ -35,6 +35,8 @@ export * from "./universal-id";
 export * from "./agro-tourism";
 export * from "./network";
 export * from "./ai-services";
+export * from "./labor";
+
 
 
 
