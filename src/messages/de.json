@@ -31,7 +31,7 @@
     "communityGuidelinesLabel": "Community-Richtlinien",
     "industryNewsLabel": "Branchennachrichten",
     "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
+    "talentExchangeLabel": "Bolsa de talentos",
     "legalTitle": "Rechtliches",
     "privacyPolicyLabel": "Datenschutzrichtlinie",
     "termsOfServiceLabel": "Nutzungsbedingungen",
@@ -276,6 +276,73 @@
         },
         "title": "Beitrag erstellt!",
         "description": "Ihre Diskussion wurde gestartet."
+      }
+    },
+    "topic": {
+      "unknownUser": "Unbekannter Benutzer",
+      "backLink": "Zurück zu den Foren",
+      "buttons": {
+        "createPost": "Beitrag erstellen",
+        "loadingMore": "Wird geladen...",
+        "loadMore": "Mehr laden"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Die Details zu diesem Thema konnten nicht abgerufen werden."
+        },
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Die Beiträge für dieses Thema konnten nicht abgerufen werden."
+        }
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das von Ihnen gesuchte Thema existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der eine Diskussion zu diesem Thema startet.",
+        "button": "Beitrag erstellen"
+      },
+      "postMeta": "Von {author} am {date, date, medium}"
+    },
+    "post": {
+      "unknownUser": "Unbekannter Benutzer",
+      "backLink": "Zurück zu {topicName}",
+      "repliesTitle": "{count, plural, =0 {Keine Antworten} one {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "buttons": {
+        "loadingMore": "Wird geladen...",
+        "loadMore": "Mehr laden"
+      },
+      "reply": {
+        "title": "Ihre Antwort",
+        "placeholder": "Schreiben Sie Ihre Antwort...",
+        "submittingButton": "Wird gepostet...",
+        "submitButton": "Antwort posten",
+        "success": "Antwort gepostet!"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Die Details zu diesem Beitrag konnten nicht abgerufen werden."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Die Diskussion für diesen Beitrag konnte nicht geladen werden."
+        },
+        "submitReply": {
+          "title": "Fehler beim Posten der Antwort",
+          "description": "Ihre Antwort konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+        },
+        "emptyReply": "Bitte schreiben Sie eine Antwort, bevor Sie sie absenden."
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Dieser Beitrag wurde möglicherweise gelöscht oder der Link ist falsch.",
+        "backButton": "Zurück zum Thema"
       }
     }
   },

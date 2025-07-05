@@ -129,31 +129,14 @@ export default function PostPage() {
             const backendReplies = data?.replies || [];
             
             if (backendReplies.length > 0) {
-                const db = getFirestore(firebaseApp);
-                const authorIds = [...new Set(backendReplies.map((r: any) => r.authorRef))].filter(Boolean) as string[]; // FIX: Filter out undefined/null IDs
-                const profiles: Record<string, UserProfile> = {};
-
-                if (authorIds.length > 0) {
-                    const userPromises = authorIds.map(id => getDoc(doc(db, "users", id)));
-                    const userSnaps = await Promise.all(userPromises);
-
-                    userSnaps.forEach(userSnap => {
-                        if (userSnap.exists()) {
-                            profiles[userSnap.id] = userSnap.data() as UserProfile;
-                        } else {
-                            profiles[userSnap.id] = { id: userSnap.id, displayName: t('unknownUser') } as UserProfile;
-                        }
-                    });
-                }
-
                 const enrichedReplies: PostReply[] = backendReplies.map((reply: any) => ({
                     id: reply.id,
                     content: reply.content,
                     timestamp: reply.createdAt ? new Date(reply.createdAt).toISOString() : new Date().toISOString(),
                     author: {
                         id: reply.authorRef,
-                        name: profiles[reply.authorRef]?.displayName || t('unknownUser'),
-                        avatarUrl: profiles[reply.authorRef]?.avatarUrl || ""
+                        name: reply.authorName || 'Unknown User',
+                        avatarUrl: reply.authorAvatarUrl || ""
                     }
                 }));
                 
