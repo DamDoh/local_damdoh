@@ -14,6 +14,7 @@ export const StakeholderProfileSchema = z.object({
   id: z.string(),
   displayName: z.string(),
   email: z.string().email(),
+  universalId: z.string().optional(),
   primaryRole: z.string(),
   secondaryRoles: z.array(z.string()).optional(),
   location: z.string().optional(),
@@ -86,18 +87,10 @@ export const AgriEventSchema = z.object({
   eventDate: z.any(), // Firestore Timestamp
   location: z.string(),
   organizer: z.string().optional(),
-  organizerId: z.string(),
-  listerId: z.string(),
-  websiteLink: z.string().url().optional().nullable(),
-  imageUrl: z.string().url().optional().nullable(),
-  registrationEnabled: z.boolean().default(false),
-  attendeeLimit: z.number().nullable().optional(),
-  registeredAttendeesCount: z.number().default(0),
-  price: z.number().default(0),
-  currency: z.string().default('USD'),
-  dataAiHint: z.string().optional().nullable(),
+  imageUrl: z.string().url().optional(),
   createdAt: z.any(), // Firestore Timestamp
 });
+
 
 export const ForumPostSchema = z.object({
     id: z.string(),

@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2, ArrowRight } from 'lucide-react';
+import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2, ArrowRight, QrCode } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -18,6 +18,11 @@ import { useToast } from '@/hooks/use-toast';
 import { APP_NAME } from '@/lib/constants';
 import { Card, CardContent } from '../ui/card';
 import { performSearch } from '@/lib/db-utils';
+import { QrScanner } from '../QrScanner';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from '@/lib/firebase/client';
+import type { UserProfile } from '@/lib/types';
+import { useRouter } from 'next/navigation';
 
 interface SearchResult {
   id: string;
@@ -63,6 +68,10 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
   const [isLoading, setIsLoading] = useState(false);
   const [aiInterpretation, setAiInterpretation] = useState<SmartSearchInterpretation | null>(null);
   const { toast } = useToast();
+  const router = useRouter();
+
+  const [isScanning, setIsScanning] = useState(false);
+  const getUniversalIdDataCallable = httpsCallable(functions, 'getUniversalIdData');
 
   const handleQuerySubmit = useCallback(async (queryToSubmit: string) => {
     if (!queryToSubmit.trim() || isLoading) return;
@@ -100,6 +109,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
         setSearchResults([]);
         setIsLoading(false);
         setAiInterpretation(null);
+        setIsScanning(false);
       }, 300);
     }
   }, [isOpen, initialQuery, handleQuerySubmit]);
@@ -108,6 +118,37 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     e.preventDefault();
     handleQuerySubmit(currentQuery);
   }
+
+  const handleScanSuccess = async (decodedText: string) => {
+      setIsScanning(false);
+      setIsLoading(true);
+      try {
+        if (!decodedText.startsWith('damdoh:user?id=')) {
+          throw new Error("Invalid DamDoh Universal ID code.");
+        }
+        const scannedUniversalId = decodedText.split('damdoh:user?id=')[1];
+        if (!scannedUniversalId) {
+           throw new Error("QR Code is malformed.");
+        }
+        const result = await getUniversalIdDataCallable({ scannedUniversalId });
+        const profile = result.data as UserProfile;
+        if (profile && profile.uid) {
+            onClose(); // Close the modal
+            router.push(`/profiles/${profile.uid}`); // Navigate to the profile
+        } else {
+            throw new Error("Could not find a user for the scanned ID.");
+        }
+      } catch (error: any) {
+         toast({ title: "Scan Failed", description: error.message, variant: "destructive" });
+      } finally {
+        setIsLoading(false);
+      }
+  };
+
+  const handleScanFailure = (error: string) => {
+      setIsScanning(false);
+      toast({ title: "Scan Error", description: "Could not read the QR code.", variant: "destructive"});
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -129,12 +170,17 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
                   autoFocus
                 />
             </div>
+             <Button type="button" variant="outline" size="lg" onClick={() => setIsScanning(true)} disabled={isLoading}>
+                <QrCode className="h-5 w-5" />
+            </Button>
             <Button type="submit" disabled={isLoading || !currentQuery.trim()} size="lg">
               {isLoading && <Loader2 className="h-5 w-5 mr-2 animate-spin" />}
               Search
             </Button>
           </form>
         </div>
+        
+        {isScanning && <QrScanner onScanSuccess={handleScanSuccess} onScanFailure={handleScanFailure} onClose={() => setIsScanning(false)} />}
 
         <ScrollArea className="flex-grow">
           <div className='p-4 space-y-3'>
@@ -174,7 +220,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
                     </Card>
                   </Link>
                 ))
-            ) : (
+            ) : !isScanning && (
                 <div className='flex flex-col items-center justify-center h-full text-center text-muted-foreground pt-16'>
                     <Search className="h-12 w-12 mb-4"/>
                     <p>Search for anything across the {APP_NAME} platform.</p>
@@ -186,5 +232,3 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     </Dialog>
   );
 }
-
-    
