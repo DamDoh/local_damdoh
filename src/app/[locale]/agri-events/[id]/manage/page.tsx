@@ -17,7 +17,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { createAgriEventCouponSchema, type CreateAgriEventCouponValues } from "@/lib/form-schemas";
+import { createMarketplaceCouponSchema, type CreateMarketplaceCouponValues } from "@/lib/form-schemas";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { useParams } from "next/navigation";
@@ -71,8 +71,8 @@ const CouponCreationForm = ({ onCouponCreated }: { onCouponCreated: () => void }
     const eventId = params.id as string;
     const createCouponCallable = useMemo(() => httpsCallable(functions, 'createEventCoupon'), []);
 
-    const form = useForm<CreateAgriEventCouponValues>({
-        resolver: zodResolver(createAgriEventCouponSchema),
+    const form = useForm<CreateMarketplaceCouponValues>({
+        resolver: zodResolver(createMarketplaceCouponSchema),
         defaultValues: {
             code: "",
             discountType: "percentage",
@@ -80,7 +80,7 @@ const CouponCreationForm = ({ onCouponCreated }: { onCouponCreated: () => void }
         },
     });
 
-    async function onSubmit(values: CreateAgriEventCouponValues) {
+    async function onSubmit(values: CreateMarketplaceCouponValues) {
         try {
             await createCouponCallable({
                 ...values,
