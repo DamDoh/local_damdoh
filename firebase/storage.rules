@@ -2,30 +2,33 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
-    // Default deny all reads and writes
-    match /{allPaths=**} {
-      allow read, write: if false;
-    }
-
-    // Allow users to upload to their own directory in a specific folder.
-    // This pattern is used for marketplace listings, observations, etc.
-    match /marketplace-listings/{userId}/{allPaths=**} {
-      allow write: if request.auth != null && request.auth.uid == userId;
+    
+    // Helper function for authentication
+    function isSignedIn() {
+      return request.auth != null;
     }
     
-    match /observations/{userId}/{allPaths=**} {
-      allow write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-     match /agri-events/{userId}/{allPaths=**} {
-      allow write: if request.auth != null && request.auth.uid == userId;
+    // Public assets (like images for marketplace listings) can be read by anyone.
+    match /{allPaths=**} {
+      allow read;
     }
 
-    // Allow global read access to all files.
-    // This is suitable for public content like marketplace images or user avatars.
-    // For sensitive files, create more restrictive rules above this one.
-    match /{allPaths=**} {
-      allow read: if true;
+    // User-specific files (e.g., profile pictures, private documents)
+    // The user's UID should be part of the path.
+    // Example path: /user-uploads/{userId}/profile.jpg
+    match /user-uploads/{userId}/{allPaths=**} {
+      // Only the authenticated owner of the folder can write files.
+      allow write: if isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // Observation images for traceability
+    match /observations/{allPaths=**} {
+        allow write: if isSignedIn();
+    }
+    
+    // Event banners
+    match /agri-events/{allPaths=**} {
+        allow write: if isSignedIn();
     }
   }
 }

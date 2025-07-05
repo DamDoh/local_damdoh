@@ -1,2 +1,1 @@
-// This file is obsolete and has been removed.
-// The active page is now located at /src/app/[locale]/page.tsx
+// This file is part of an obsolete directory structure and has been removed to resolve build conflicts.

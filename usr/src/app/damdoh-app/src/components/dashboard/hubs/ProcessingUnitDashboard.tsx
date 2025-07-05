@@ -1,3 +1,1 @@
-// This file is obsolete.
-// Its content has been moved to /src/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard.tsx
-// This file can be deleted in a future cleanup step.
+// This file is part of an obsolete directory structure and has been removed to resolve build conflicts.
