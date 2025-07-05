@@ -87,8 +87,8 @@ export function DashboardLeftSidebar() {
           <Link href="/pinboard" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <Bookmark className="h-4 w-4" /> My Pin Board
           </Link>
-          <Link href="/forums" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Users className="h-4 w-4" /> Agricultural Forums
+          <Link href="/groups" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
+            <Users className="h-4 w-4" /> Community Groups
           </Link>
           <Link href="/industry-news" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
             <Newspaper className="h-4 w-4" /> Industry News & Reports
