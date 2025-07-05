@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, TrendingUp, Lightbulb } from 'lucide-react';
+import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, TrendingUp, Lightbulb, Edit } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -174,10 +174,19 @@ export default function FarmDetailPage() {
       </Link>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold">{farm.name}</h1>
-        <div className="flex items-center text-muted-foreground mt-2">
-          <MapPin className="mr-2 h-5 w-5" />
-          <span>{farm.location} - Registered on {farm.createdAt ? format(new Date(farm.createdAt), 'PPP') : 'N/A'}</span>
+        <div className="flex justify-between items-start">
+            <div>
+                <h1 className="text-4xl font-bold">{farm.name}</h1>
+                <div className="flex items-center text-muted-foreground mt-2">
+                    <MapPin className="mr-2 h-5 w-5" />
+                    <span>{farm.location} - Registered on {farm.createdAt ? format(new Date(farm.createdAt), 'PPP') : 'N/A'}</span>
+                </div>
+            </div>
+            <Button asChild variant="outline">
+                <Link href={`/farm-management/farms/${farmId}/edit`}>
+                    <Edit className="mr-2 h-4 w-4" /> Edit Farm
+                </Link>
+            </Button>
         </div>
       </div>
       

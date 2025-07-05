@@ -134,6 +134,64 @@ export const getFarm = functions.https.onCall(async (data, context) => {
 });
 
 /**
+ * Updates an existing farm document in Firestore for an authenticated user.
+ * @param {any} data The data for updating the farm. Must include farmId.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, farmId: string}>} A promise that resolves with the updated farm ID.
+ */
+export const updateFarm = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated to update a farm.",
+    );
+  }
+
+  const { farmId, name, location, size, farmType, irrigationMethods, description } = data;
+  if (!farmId || !name || !location || !size || !farmType) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Farm ID, name, location, size, and farm type are required.",
+    );
+  }
+
+  const farmRef = db.collection("farms").doc(farmId);
+
+  try {
+    // Security Check: Verify owner
+    const farmDoc = await farmRef.get();
+    if (!farmDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Farm not found.");
+    }
+    if (farmDoc.data()?.ownerId !== context.auth.uid) {
+        throw new functions.https.HttpsError("permission-denied", "You do not have permission to update this farm.");
+    }
+
+    await farmRef.update({
+      name,
+      location,
+      size,
+      farmType,
+      irrigationMethods: irrigationMethods || "",
+      description: description || "",
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, farmId: farmRef.id };
+  } catch (error: any) {
+    console.error(`Error updating farm ${farmId}:`, error);
+    if (error instanceof functions.https.HttpsError) {
+        throw error;
+    }
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to update farm in the database.",
+      { originalError: error.message },
+    );
+  }
+});
+
+/**
  * Creates a new crop document associated with a farm.
  * After creating the crop, it also logs a 'PLANTED' traceability event.
  * @param {any} data The data for the new crop.
