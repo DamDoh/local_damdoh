@@ -105,16 +105,6 @@ export const createCropSchema = z.object({
 });
 export type CreateCropValues = z.infer<typeof createCropSchema>;
 
-export const createObservationSchema = z.object({
-  observationType: z.string().min(3, "Observation type is required."),
-  observationDate: z.date({
-    required_error: "An observation date is required.",
-  }),
-  details: z.string().min(10, "Details must be at least 10 characters.").max(1000, "Details cannot exceed 1000 characters."),
-  imageFile: imageFileSchema.optional(),
-});
-export type CreateObservationValues = z.infer<typeof createObservationSchema>;
-
 export const createHarvestSchema = z.object({
     harvestDate: z.date({ required_error: "A harvest date is required." }),
     yield_kg: z.coerce.number({ invalid_type_error: "Yield must be a number." }).min(0, "Yield cannot be negative."),
@@ -131,6 +121,16 @@ export const createInputApplicationSchema = z.object({
   method: z.string().max(100, "Method description is too long.").optional(),
 });
 export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
+
+export const createObservationSchema = z.object({
+  observationType: z.string().min(3, "Observation type is required."),
+  observationDate: z.date({
+    required_error: "An observation date is required.",
+  }),
+  details: z.string().min(10, "Details must be at least 10 characters.").max(1000, "Details cannot exceed 1000 characters."),
+  imageFile: imageFileSchema.optional(),
+});
+export type CreateObservationValues = z.infer<typeof createObservationSchema>;
 
 export const editProfileSchema = z.object({
   displayName: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
