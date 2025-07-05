@@ -12,4 +12,5 @@ import '@/ai/flows/market-insights-flow.ts';
 import '@/ai/flows/query-interpreter-flow.ts';
 import '@/ai/flows/marketplace-recommendations.ts';
 import '@/ai/tools/fgw-knf-knowledge-tool';
+import '@/ai/tools/stakeholder-info-tool';
 import '@/ai/flows/generate-forum-post-draft.ts';

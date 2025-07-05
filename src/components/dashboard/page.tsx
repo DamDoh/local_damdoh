@@ -9,14 +9,14 @@ import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import { useHomepagePreference } from "@/hooks/useHomepagePreference";
+import { useHomepagePreference } from "@/hooks/useHomepageRedirect";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -98,13 +98,14 @@ function MainContent() {
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth();
   
-  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), []);
   const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
   const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
   useEffect(() => {
     if (authLoading) return;
+
+    let unsubscribeFeed: () => void = () => {};
 
     const fetchUserRoleAndFeed = async () => {
       setIsLoadingRole(true);
@@ -126,31 +127,35 @@ function MainContent() {
         setIsLoadingRole(false);
       }
 
-      try {
-        const result = await getFeed({});
-        setFeedItems((result.data as any).posts || []);
-      } catch (error) {
-        console.error("Error fetching feed:", error);
-        toast({
-          title: "Could not load feed",
-          description: "There was an error fetching the latest posts.",
-          variant: "destructive"
-        });
-      } finally {
-        setIsLoadingFeed(false);
-      }
+      // Set up real-time listener for the feed
+      const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+      unsubscribeFeed = onSnapshot(q, (snapshot) => {
+          const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as FeedItem));
+          setFeedItems(posts);
+          setIsLoadingFeed(false);
+      }, (error) => {
+          console.error("Error fetching real-time feed:", error);
+          toast({
+              title: "Could not load feed",
+              description: "There was an error fetching the latest posts.",
+              variant: "destructive"
+          });
+          setIsLoadingFeed(false);
+      });
     };
+
     fetchUserRoleAndFeed();
-  }, [user, authLoading, getFeed, toast]);
+
+    // Cleanup listener on component unmount
+    return () => unsubscribeFeed();
+  }, [user, authLoading, toast]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
     try {
       await createPostCallable({ content, pollOptions: pollData });
       toast({ title: "Post Created!", description: "Your post is now live." });
-      // Refresh feed
-      const result = await getFeed({});
-      setFeedItems((result.data as any).posts || []);
+      // Feed will update automatically via onSnapshot
     } catch (error) {
       console.error("Error creating post:", error);
       toast({ title: "Failed to create post", variant: "destructive" });

@@ -25,4 +25,5 @@ Key stakeholders in the DamDoh ecosystem include:
 *   **Waste Management & Compost Facility:** Manages agricultural waste and promotes circularity.
 *   **Crowdfunder (Impact Investor, Individual):** Provides alternative financing for projects.
 *   **Insurance Provider:** Offers agricultural insurance products to mitigate risk.
+*   **Packaging Supplier:** Provides packaging materials for produce and processed goods.
 `;
