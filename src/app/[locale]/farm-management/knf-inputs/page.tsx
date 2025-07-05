@@ -290,7 +290,7 @@ export default function KNFInputAssistantPage() {
                                 <p><strong className="font-medium">Ingredients:</strong> {batch.ingredients}</p>
                             </CardContent>
                             <CardFooter className="justify-end gap-2">
-                                <Button variant="secondary" size="sm" disabled={updatingBatchId === batch.id}><Package className="h-4 w-4 mr-2"/>Log Usage</Button>
+                                <Button variant="secondary" size="sm" disabled={updatingBatchId === batch.id} onClick={() => toast({ title: "Coming Soon!", description: "The ability to log usage against a crop is coming next."})}><Package className="h-4 w-4 mr-2"/>Log Usage</Button>
                                 <Button variant="outline" size="sm" onClick={() => handleUpdateStatus(batch.id, 'Archived')} disabled={updatingBatchId === batch.id}>
                                     {updatingBatchId === batch.id && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                                     <Archive className="h-4 w-4 mr-2"/>Archive

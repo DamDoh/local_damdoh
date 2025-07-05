@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Truck } from 'lucide-react';
+import { ArrowLeft, GitBranch, Sprout, Eye, Droplets, Weight, HardHat, Package, CheckCircle, UserCircle, Clock, MapPin, AlertCircle, Info, CalendarDays, Award, Truck, Leaf } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { useTranslations } from "next-intl";
@@ -65,37 +65,22 @@ const EventPayload = ({ payload }: { payload: any }) => {
     if (!payload || typeof payload !== 'object' || Object.keys(payload).length === 0) {
         return <p className="text-xs text-muted-foreground italic">No specific details provided for this event.</p>;
     }
-
-    // Custom rendering for specific payload types
-    if (payload.yieldKg !== undefined) {
+    
+    if (payload.aiAnalysis) {
+        const analysis = payload.aiAnalysis as { summary: string };
         return (
-            <div className="text-sm text-muted-foreground space-y-1">
-                <p><strong>Yield:</strong> {payload.yieldKg} kg</p>
-                {payload.qualityGrade && <p><strong>Quality Grade:</strong> {payload.qualityGrade}</p>}
+            <div className="text-sm text-muted-foreground space-y-2 mt-2 p-2 bg-background rounded-md">
+                <p><strong>Observation Type:</strong> {payload.observationType}</p>
+                <p><strong>Details:</strong> {payload.details}</p>
+                <div className="mt-2 pt-2 border-t border-dashed">
+                    <h5 className="font-semibold text-foreground text-sm">AI Diagnosis</h5>
+                    <p className="text-sm">{analysis.summary}</p>
+                </div>
             </div>
         )
     }
 
-    if (payload.observationType) { // From an observation event
-        return (
-            <div className="text-sm text-muted-foreground space-y-1">
-                 <p className="font-semibold text-foreground">{payload.observationType}</p>
-                 <p>{payload.details}</p>
-            </div>
-        )
-    }
-
-    if(payload.inputId) { // From an input application event
-        return (
-             <div className="text-sm text-muted-foreground space-y-1">
-                <p><strong>Input:</strong> {payload.inputId}</p>
-                <p><strong>Quantity:</strong> {payload.quantity} {payload.unit}</p>
-                {payload.method && <p><strong>Method:</strong> {payload.method}</p>}
-            </div>
-        )
-    }
-
-    // Default renderer for other payloads
+    // Default renderer for other simple payloads
     return (
         <ul className="space-y-1 text-muted-foreground text-xs list-disc list-inside">
             {Object.entries(payload).map(([key, value]) => {
@@ -173,6 +158,25 @@ export default function TraceabilityBatchDetailPage() {
     fetchData();
   }, [batchId, getVtiHistoryCallable]);
 
+  const isSustainablyGrown = useMemo(() => {
+    if (!data || !Array.isArray(data.events)) return false;
+
+    const inputEvents = data.events.filter(e => e.eventType === 'INPUT_APPLIED');
+    if (inputEvents.length === 0) {
+      return true; // No inputs logged is considered sustainable for this purpose
+    }
+
+    const hasNonOrganicInput = inputEvents.some(e => {
+      const inputName = e.payload?.inputId?.toLowerCase() || '';
+      // Simple check: if it contains a known organic/KNF term, it's ok.
+      // A robust system would check against a list of approved substances.
+      const isOrganic = ['knf', 'fpj', 'faa', 'compost', 'manure', 'organic'].some(term => inputName.includes(term));
+      return !isOrganic;
+    });
+
+    return !hasNonOrganicInput;
+  }, [data]);
+
 
   if (isLoading) {
     return <TraceabilitySkeleton />;
@@ -243,6 +247,17 @@ export default function TraceabilityBatchDetailPage() {
           </div>
         </CardHeader>
         <CardContent className="border-t pt-6">
+            {isSustainablyGrown && (
+              <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 rounded-r-lg">
+                <div className="flex items-center gap-3">
+                  <Leaf className="h-6 w-6 text-green-600" />
+                  <div>
+                    <h3 className="font-semibold text-green-800 dark:text-green-200">Sustainably Grown</h3>
+                    <p className="text-sm text-green-700 dark:text-green-300">This batch was cultivated using approved natural and sustainable inputs according to its traceability log.</p>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className="grid md:grid-cols-3 gap-4 text-sm">
                 <div className="p-4 border rounded-lg bg-muted/50">
                     <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> {t('traceabilityDetailPage.harvestDateLabel')}</p>

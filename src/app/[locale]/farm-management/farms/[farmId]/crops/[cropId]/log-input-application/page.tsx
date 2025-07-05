@@ -19,14 +19,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createInputApplicationSchema, type CreateInputApplicationValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, Loader2, Droplets, Text, Hash, List } from "lucide-react";
+import { ArrowLeft, Save, CalendarIcon, Loader2, Droplets, Text, Hash, List, FlaskConical } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import type { KnfBatch } from "@/lib/types";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function LogInputApplicationPage() {
   const router = useRouter();
@@ -39,6 +41,9 @@ export default function LogInputApplicationPage() {
   const functions = getFunctions(firebaseApp);
   const handleInputApplicationEvent = httpsCallable(functions, 'handleInputApplicationEvent');
 
+  const [knfBatches, setKnfBatches] = useState<KnfBatch[]>([]);
+  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'getUserKnfBatches'), [functions]);
+
   const form = useForm<CreateInputApplicationValues>({
     resolver: zodResolver(createInputApplicationSchema),
     defaultValues: {
@@ -50,6 +55,20 @@ export default function LogInputApplicationPage() {
     },
   });
 
+  useEffect(() => {
+    if (!user) return;
+    const fetchKnfBatches = async () => {
+      try {
+        const result = await getUserKnfBatchesCallable();
+        const allBatches = (result.data as KnfBatch[]) || [];
+        setKnfBatches(allBatches.filter(b => b.status === 'Ready'));
+      } catch (error) {
+        console.error("Error fetching KNF batches:", error);
+      }
+    };
+    fetchKnfBatches();
+  }, [user, getUserKnfBatchesCallable]);
+
   async function onSubmit(data: CreateInputApplicationValues) {
     if (!user) {
       toast({
@@ -60,25 +79,13 @@ export default function LogInputApplicationPage() {
       return;
     }
 
-    // Offline check
-    if (typeof window !== 'undefined' && !window.navigator.onLine) {
-      toast({
-        title: "You are offline",
-        description: "This input application has been queued and will be synced when you're back online. (This is a simulation)",
-        variant: "default",
-      });
-      // In a real app, this data would be saved to a local queue (e.g., IndexedDB)
-      router.push(`/farm-management/farms/${farmId}`);
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
       const payload = {
         farmFieldId: cropId,
         inputId: data.inputId,
-        applicationDate: data.applicationDate,
+        applicationDate: data.applicationDate.toISOString(),
         quantity: data.quantity,
         unit: data.unit,
         method: data.method,
@@ -128,14 +135,39 @@ export default function LogInputApplicationPage() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               
+              {knfBatches.length > 0 && (
+                 <FormField
+                    control={form.control}
+                    name="inputId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2"><FlaskConical className="h-4 w-4 text-muted-foreground" />Use a Ready KNF Batch</FormLabel>
+                        <Select onValueChange={(value) => field.onChange(value)} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a KNF input from your inventory..." />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {knfBatches.map(batch => (
+                              <SelectItem key={batch.id} value={`${batch.typeName} (Batch: ${batch.id.substring(0,5)})`}>{batch.typeName}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+              )}
+
               <FormField
                 control={form.control}
                 name="inputId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Input Name / Type</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Or, Enter Input Name Manually</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., NPK 10-20-10 Fertilizer, FPJ, Compost" {...field} />
+                      <Input placeholder="e.g., NPK 10-20-10 Fertilizer, Compost" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
