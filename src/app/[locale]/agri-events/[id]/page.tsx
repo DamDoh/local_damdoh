@@ -326,5 +326,4 @@ export default function AgriEventDetailPage() {
     </div>
   )
 }
-
     
