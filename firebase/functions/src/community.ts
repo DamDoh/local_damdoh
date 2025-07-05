@@ -20,45 +20,6 @@ const checkAuth = (context: functions.https.CallableContext) => {
   return context.auth.uid;
 };
 
-
-export const getFeed = functions.https.onCall(async (data, context) => {
-    // A real-world implementation would involve complex algorithmic sorting.
-    // For now, we'll fetch the most recent posts from the 'posts' collection.
-    try {
-        const postsSnapshot = await db.collection('posts')
-            .orderBy('createdAt', 'desc')
-            .limit(20) // Limit to the 20 most recent posts
-            .get();
-        
-        const posts = postsSnapshot.docs.map(doc => {
-            const postData = doc.data();
-            return {
-                id: doc.id,
-                type: postData.pollOptions ? 'poll' : 'forum_post', // Simple logic to differentiate post types
-                timestamp: (postData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
-                userId: postData.userId,
-                userName: postData.userName,
-                userAvatar: postData.userAvatar,
-                userHeadline: postData.userHeadline,
-                content: postData.content,
-                likesCount: postData.likesCount || 0,
-                commentsCount: postData.commentsCount || 0,
-                pollOptions: postData.pollOptions || null,
-                link: `/posts/${doc.id}`, 
-                postImage: null, 
-                dataAiHint: null, 
-            };
-        });
-        
-        return { posts };
-
-    } catch (error) {
-        console.error("Error fetching feed posts:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch feed data.");
-    }
-});
-
-
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { content, pollOptions } = data; // pollOptions is an array of strings

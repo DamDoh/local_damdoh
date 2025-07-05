@@ -1,34 +1,30 @@
+
 rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
     
-    // Helper function for authentication
-    function isSignedIn() {
-      return request.auth != null;
-    }
-    
-    // Public assets (like images for marketplace listings) can be read by anyone.
-    match /{allPaths=**} {
+    // Allow anyone to read public images (e.g., marketplace listings, event banners)
+    match /public/{allPaths=**} {
       allow read;
     }
 
-    // User-specific files (e.g., profile pictures, private documents)
-    // The user's UID should be part of the path.
-    // Example path: /user-uploads/{userId}/profile.jpg
-    match /user-uploads/{userId}/{allPaths=**} {
-      // Only the authenticated owner of the folder can write files.
-      allow write: if isSignedIn() && request.auth.uid == userId;
+    // Allow authenticated users to read and write to their own private folder.
+    // This is useful for things like profile pictures, or private documents.
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
     
-    // Observation images for traceability
+    // Allow authenticated users to upload to shared folders like observations,
+    // but not read everything in them to protect privacy.
     match /observations/{allPaths=**} {
-        allow write: if isSignedIn();
+        allow read: if request.auth != null; // Allow read for displaying images
+        allow write: if request.auth != null;
     }
-    
-    // Event banners
-    match /agri-events/{allPaths=**} {
-        allow write: if isSignedIn();
+
+    match /agri-events/{userId}/{allPaths=**} {
+       allow read; // Event images are public
+       allow write: if request.auth != null && request.auth.uid == userId;
     }
   }
 }

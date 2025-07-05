@@ -13,6 +13,8 @@ import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
+import { TrustScoreWidget } from './TrustScoreWidget';
+
 
 const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean }) => (
     <Card>
@@ -78,7 +80,7 @@ export const FarmerDashboard = () => {
         );
     }
     
-    const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary, alerts = [] } = dashboardData;
+    const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary, alerts = [], certifications = [] } = dashboardData;
 
     return (
         <div className="space-y-6">
@@ -111,6 +113,10 @@ export const FarmerDashboard = () => {
                 <StatCard title="KNF Batches" value={(knfBatches || []).length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
                 <StatCard title="Net Financials" value={financialSummary?.netFlow || 0} icon={<DollarSign className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/financials" actionLabel="View Financials" isCurrency={true}/>
              </div>
+             <TrustScoreWidget
+                reputationScore={850} // Using a mock score for now
+                certifications={certifications}
+            />
               <Card>
                 <CardHeader>
                     <CardTitle className="text-base flex items-center justify-between">

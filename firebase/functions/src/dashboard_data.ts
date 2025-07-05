@@ -121,7 +121,7 @@ export const getFarmerDashboardData = functions.https.onCall(
                     status: batchData.status,
                     nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
                 };
-        });
+            });
 
         let totalIncome = 0;
         let totalExpense = 0;
@@ -139,6 +139,11 @@ export const getFarmerDashboardData = functions.https.onCall(
             totalExpense,
             netFlow: totalIncome - totalExpense,
         };
+        
+        const certifications = [
+            { id: 'cert1', name: 'GlobalG.A.P.', issuingBody: 'SGS' },
+            { id: 'cert2', name: 'Organic Certified', issuingBody: 'ECOCERT' },
+        ];
 
         return {
             farmCount: farmsSnapshot.size,
@@ -147,6 +152,7 @@ export const getFarmerDashboardData = functions.https.onCall(
             knfBatches: activeKnfBatches,
             financialSummary: financialSummary,
             alerts: alerts,
+            certifications: certifications,
         };
 
     } catch (error) {
@@ -922,7 +928,7 @@ export const getWasteManagementDashboardData = functions.https.onCall(
 );
 
 export const getOperationsDashboardData = functions.https.onCall(
-  (data, context): OperationsDashboardData => {
+  (data, context): any => { // Type OperationsDashboardData is not defined, using any
     checkAuth(context);
     // In a real app, this data would be pulled from system monitoring tools and data analysis queries.
     return {
@@ -968,6 +974,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 
