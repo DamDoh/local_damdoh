@@ -40,20 +40,65 @@
     "appStoreAlt": "Télécharger dans l'App Store",
     "copyright": "© {year} {appName}. Tous droits réservés."
   },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Recherche",
+    "forums": "Forums",
+    "profile": "Profil"
+  },
   "marketplacePage": {
+    "title": "Marché Mondial",
+    "description": "Découvrez des produits agricoles, des équipements et des services du monde entier.",
+    "createListingButton": "Créer une annonce",
+    "createShopButton": "Créer une boutique",
+    "pinButton": "Épingler comme page d'accueil",
+    "unpinButton": "Désépingler la page d'accueil",
+    "searchPlaceholder": "Rechercher par produit ou service...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "typePlaceholder": "Filtrer par type...",
+    "allTypes": "Tous les types",
     "recommendedForYou": "Recommandé pour vous",
-    "discoverMore": "Découvrir plus"
+    "discoverMore": "Découvrir plus",
+    "noItemsFound": "Aucun article trouvé",
+    "noItemsHint": "Essayez d'ajuster votre recherche ou vos filtres.",
+    "viewDetails": "Voir les détails"
   },
   "Marketplace": {
       "create": {
+          "backLink": "Retour au Marché",
+          "title": "Créer une nouvelle annonce",
+          "description": "Partagez un produit ou un service avec le réseau DamDoh.",
           "form": {
+              "nameLabel": "Nom de l'annonce",
+              "namePlaceholder": "Ex: Avocats Hass Bio, Service de location de tracteur",
+              "typeLabel": "Type d'annonce",
+              "typePlaceholder": "Sélectionnez un type d'annonce",
+              "descriptionLabel": "Description",
+              "descriptionPlaceholder": "Fournissez une description détaillée de votre produit ou service.",
+              "locationLabel": "Lieu",
+              "locationPlaceholder": "Ex: Nairobi, Kenya ou Californie, États-Unis",
+              "categoryLabel": "Catégorie",
+              "categoryPlaceholder": "Sélectionnez la catégorie la plus pertinente",
+              "priceLabel": "Prix",
+              "pricePlaceholder": "Ex: 25.50",
+              "unitLabel": "Unité",
+              "unitPlaceholder": "Ex: par kg, par heure",
+              "imageUrlLabel": "URL de l'image (Optionnel)",
+              "sustainableLabel": "Produit/Service Durable",
+              "sustainableDescription": "Cet article ou service utilise ou promeut des pratiques durables.",
               "compensationLabel": "Rémunération / Tarif",
               "compensationPlaceholder": "Ex: 50 €/h, par projet",
               "experienceLabel": "Niveau d'expérience",
               "experiencePlaceholder": "Ex: 5+ ans, Professionnel certifié",
               "skillsLabel": "Compétences requises",
               "skillsPlaceholder": "Énumérez les compétences clés pour ce service.",
-              "skillsDescription": "Séparez les compétences par une virgule."
+              "skillsDescription": "Séparez les compétences par une virgule.",
+              "submittingButton": "Envoi en cours...",
+              "submitButton": "Créer l'annonce"
           }
       }
   },
@@ -69,7 +114,221 @@
     "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles annonces.",
     "viewServiceButton": "Voir le Service"
   },
-  "LandingPage": {},
+  "ProfilePage": {
+    "editProfile": "Modifier le profil",
+    "connect": "Connecter",
+    "message": "Message",
+    "summaryTitle": "Résumé",
+    "aboutTitle": "À propos",
+    "experienceTitle": "Expérience",
+    "emailTitle": "E-mail",
+    "websiteTitle": "Site web",
+    "interestsTitle": "Domaines d'intérêt",
+    "needsTitle": "Recherche / Offre",
+    "detailsTitle": "Détails",
+    "roleSpecificInfo": "Informations spécifiques au rôle pour cet acteur.",
+    "tempDisplayNotice": "Note : Ceci est un affichage temporaire des données brutes du profil. Une mise en page plus conviviale sera bientôt mise en œuvre.",
+    "recentActivityTitle": "Activité récente",
+    "recentActivityDescription": "Un résumé des actions récentes de cet utilisateur sur {appName}.",
+    "comingSoon": "Cette fonctionnalité arrive bientôt !",
+    "notFoundTitle": "Profil non trouvé",
+    "notFoundDescription": "Le profil que vous recherchez n'existe pas ou a été supprimé.",
+    "backToNetwork": "Retour au réseau",
+    "noRecentActivity": "Aucune activité récente à afficher.",
+    "showUniversalIdButton": "Afficher mon ID universel",
+    "universalIdModalTitle": "Mon ID universel",
+    "universalIdModalDescription": "Présentez ce code QR à des agents ou partenaires autorisés pour partager en toute sécurité les informations de votre profil public."
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Activité récente de toute la plateforme DamDoh.",
+    "noNotifications": "Vous n'avez aucune nouvelle notification.",
+    "defaultActorName": "Quelqu'un",
+    "likedYourPost": "a aimé votre publication.",
+    "commentedOnYourPost": "a commenté votre publication.",
+    "viewedYourProfile": "a consulté votre profil.",
+    "sentConnectionRequest": "vous a envoyé une demande de connexion.",
+    "placedNewOrder": "a passé une nouvelle commande pour l'un de vos articles."
+  },
+  "AgriEvents": {
+    "attendees": {
+      "title": "Participants à l'événement",
+      "description": "Affichez et gérez tous les participants inscrits à cet événement.",
+      "downloadCsv": "Télécharger CSV",
+      "noAttendees": "Aucun participant n'est encore inscrit à cet événement.",
+      "nameHeader": "Nom",
+      "emailHeader": "E-mail",
+      "registeredOnHeader": "Inscrit le",
+      "statusHeader": "Statut",
+      "statusCheckedIn": "Enregistré",
+      "statusRegistered": "Inscrit"
+    }
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Récupération de compte",
+      "description": "Récupérez l'accès à votre compte en utilisant votre réseau de confiance.",
+      "howItWorksTitle": "Comment ça marche",
+      "step1": "Entrez votre numéro de téléphone pour commencer.",
+      "step2": "Montrez le code QR généré à un ami de confiance sur DamDoh.",
+      "step3": "Votre ami scanne le code pour confirmer votre identité, restaurant votre accès.",
+      "startButton": "Commencer la récupération",
+      "scanTitle": "Demandez à un ami de scanner",
+      "scanDescription": "Demandez à une connexion DamDoh de confiance de scanner ce code QR temporaire avec la fonction 'Aider un ami'.",
+      "scanNote": "Ce code est valide pendant 10 minutes.",
+      "startOverButton": "Recommencer"
+    }
+  },
+  "editProfilePage": {
+    "title": "Modifier le profil de {name}",
+    "description": "Mettez à jour vos informations publiques. Vos modifications seront visibles par les autres utilisateurs de la plateforme.",
+    "profileTab": "Profil",
+    "detailsTab": "Détails & Intérêts",
+    "contactTab": "Contact",
+    "locationLabel": "Lieu principal",
+    "phoneLabel": "Numéro de téléphone public",
+    "websiteLabel": "Site web public",
+    "savingButton": "Enregistrement...",
+    "cancelButton": "Annuler"
+  },
+  "networkPage": {
+    "title": "Découvrez votre réseau",
+    "description": "Trouvez et connectez-vous avec des acteurs de toute la chaîne d'approvisionnement agricole.",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "searchPlaceholder": "Rechercher par nom, rôle ou résumé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les rôles",
+    "interestPlaceholder": "Filtrer par intérêt...",
+    "allInterests": "Tous les intérêts",
+    "noStakeholdersFound": "Aucun acteur trouvé",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard.",
+    "connect": "Connecter",
+    "message": "Message"
+  },
+  "Blog": {
+    "backLink": "Retour au blog",
+    "errors": {
+      "title": "Erreur",
+      "load": "Impossible de charger l'article de blog. Veuillez réessayer plus tard."
+    },
+    "notFound": {
+      "title": "Article non trouvé",
+      "description": "L'article de blog que vous recherchez n'existe pas.",
+      "backButton": "Retour au blog"
+    }
+  },
+  "searchPage": {
+    "title": "Rechercher sur DamDoh",
+    "description": "Trouvez exactement ce que vous cherchez sur l'ensemble de notre plateforme.",
+    "placeholder": "Rechercher des personnes, des produits, des services...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches populaires",
+    "popularSearch1": "Engrais organique",
+    "popularSearch2": "Logistique au Kenya",
+    "popularSearch3": "Acheteurs de café Europe",
+    "popularSearch4": "Services d'analyse de sol",
+    "popularSearch5": "Tracteur à louer"
+  },
+  "Forums": {
+    "createPost": {
+      "backLink": "Retour au sujet",
+      "aiHelper": {
+        "title": "Assistant de publication IA",
+        "description": "Vous ne savez pas par où commencer ? Donnez une idée à l'IA et elle générera un brouillon pour vous.",
+        "promptLabel": "Votre idée ou question",
+        "promptPlaceholder": "Ex: Quelles sont les meilleures méthodes naturelles pour contrôler les pucerons sur le chou frisé ?",
+        "generatingButton": "Génération...",
+        "generateButton": "Générer un brouillon avec l'IA"
+      },
+      "title": "Démarrer une nouvelle discussion",
+      "description": "Partagez vos connaissances ou posez une question à la communauté.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Un titre clair et engageant pour votre message",
+        "contentLabel": "Votre contenu",
+        "contentPlaceholder": "Développez votre question ou idée ici...",
+        "submittingButton": "Publication...",
+        "submitButton": "Publier le message"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Idée requise",
+          "description": "Veuillez saisir une idée pour que l'IA puisse générer un brouillon."
+        },
+        "aiDraft": {
+          "title": "Échec de la rédaction IA",
+          "description": "Une erreur s'est produite lors de la génération du brouillon. Veuillez réessayer."
+        },
+        "incomplete": {
+          "title": "Message incomplet",
+          "description": "Veuillez fournir un titre et un contenu pour votre message."
+        },
+        "general": {
+          "title": "Erreur",
+          "description": "Impossible de créer le message. Veuillez réessayer."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon généré !",
+          "description": "Votre message a été rédigé par l'IA. N'hésitez pas à le modifier avant de le soumettre."
+        },
+        "title": "Message créé !",
+        "description": "Votre discussion a été lancée."
+      }
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Cultiver les connexions, récolter le succès avec {appName}",
+      "subtitle": "La plateforme tout-en-un pour l'ensemble de la chaîne d'approvisionnement agricole. Connectez-vous avec les agriculteurs, les acheteurs et les experts pour développer votre entreprise et construire un avenir durable.",
+      "getStartedButton": "Commencer gratuitement",
+      "learnMoreButton": "En savoir plus"
+    },
+    "features": {
+      "title": "Une boîte à outils pour la croissance",
+      "subtitle": "DamDoh fournit tout ce dont vous avez besoin pour gérer, commercialiser et développer votre entreprise agricole.",
+      "networking": {
+        "title": "Réseautage intelligent",
+        "description": "Connectez-vous avec des acteurs vérifiés. Trouvez des agriculteurs, des acheteurs, des fournisseurs d'intrants et des partenaires logistiques grâce à notre moteur de suggestion alimenté par l'IA."
+      },
+      "marketplace": {
+        "title": "Marché mondial",
+        "description": "Achetez et vendez des produits, des équipements et des services. Élargissez votre portée au-delà des marchés locaux et trouvez de nouvelles opportunités."
+      },
+      "forums": {
+        "title": "Forums de connaissances",
+        "description": "Partagez votre expertise, posez des questions et apprenez d'une communauté de professionnels de l'agriculture dans des forums de discussion dédiés."
+      },
+      "talent": {
+        "title": "Bourse de talents",
+        "description": "Proposez vos services professionnels ou trouvez de la main-d'œuvre qualifiée, de la récolte sur mesure à la consultation en agronomie."
+      }
+    },
+    "forWho": {
+      "badge": "Pour tous les acteurs de l'agro-industrie",
+      "title": "Une plateforme pour l'ensemble de l'écosystème",
+      "description": "Que vous plantiez des graines ou livriez le produit final, DamDoh est conçu pour soutenir votre rôle dans la chaîne d'approvisionnement.",
+      "farmers": {
+        "title": "Agriculteurs & Coopératives",
+        "description": "Gérez votre ferme, suivez vos produits avec les VTI et accédez directement aux acheteurs et aux services financiers."
+      },
+      "buyers": {
+        "title": "Acheteurs & Transformateurs",
+        "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et assurez l'intégrité de la chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Experts & Fournisseurs de services",
+        "description": "Proposez votre expertise, trouvez de nouveaux clients et contribuez à un secteur agricole plus efficace."
+      }
+    },
+    "cta": {
+      "title": "Prêt à grandir avec DamDoh ?",
+      "subtitle": "Rejoignez des milliers de professionnels de l'agriculture qui construisent un avenir plus connecté et durable.",
+      "button": "Rejoignez la communauté aujourd'hui"
+    }
+  },
   "FarmManagement": {
     "title": "Hub de Gestion Agricole",
     "description": "Votre centre de commande pour toutes les opérations agricoles. Suivez les cultures, gérez les intrants, consultez les finances et accédez aux guides.",
@@ -95,3 +354,5 @@
     }
   }
 }
+
+    
