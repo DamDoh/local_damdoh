@@ -188,7 +188,6 @@ export const handleHarvestEvent = functions.https.onCall(
             farmFieldId: farmFieldId, // explicitly add farmFieldId to metadata
           },
         },
-        context,
       );
 
       const newVtiId = generateVTIResult.vtiId;
@@ -200,10 +199,9 @@ export const handleHarvestEvent = functions.https.onCall(
           eventType: "HARVESTED",
           actorRef: actorVtiId,
           geoLocation: geoLocation || null,
-          payload: {yieldKg, qualityGrade, farmFieldId, cropType},
+          payload: {yieldKg, qualityGrade},
           farmFieldId: farmFieldId, // Keep for cross-reference
         },
-        context,
       );
 
       return {
@@ -313,9 +311,8 @@ export const handleInputApplicationEvent = functions.https.onCall(
         inputId,
         quantity,
         unit,
-        applicationDate,
+        applicationDate: new Date(applicationDate).toISOString(),
         method: method || null,
-        farmFieldId,
       };
 
       await _internalLogTraceEvent(
@@ -326,7 +323,6 @@ export const handleInputApplicationEvent = functions.https.onCall(
           payload: eventPayload,
           farmFieldId: farmFieldId,
         },
-        context,
       );
 
       return {

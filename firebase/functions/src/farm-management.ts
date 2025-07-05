@@ -255,8 +255,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
     // Synergy: Log a PLANTED traceability event for this new crop
     const eventPayload = {
       cropType: cropType,
-      plantingDate: plantingDateTimestamp,
-      farmFieldId: newCropRef.id,
+      plantingDate: plantingDateTimestamp.toDate().toISOString(),
       notes: "Initial crop creation",
     };
 
@@ -270,7 +269,6 @@ export const createCrop = functions.https.onCall(async (data, context) => {
         payload: eventPayload,
         farmFieldId: newCropRef.id,
       },
-      context,
     );
 
     return {success: true, cropId: newCropRef.id};
@@ -573,9 +571,9 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
       typeName: typeName,
       ingredients: ingredients,
       startDate: admin.firestore.Timestamp.fromDate(startDateObj),
+      nextStepDate: admin.firestore.Timestamp.fromDate(nextStepDate),
       status: "Fermenting",
       nextStep: nextStep,
-      nextStepDate: admin.firestore.Timestamp.fromDate(nextStepDate),
     };
 
     await newBatchRef.set({
