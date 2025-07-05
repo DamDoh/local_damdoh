@@ -1,10 +1,11 @@
+
 // src/app/api/marketplace/route.ts
 import { NextResponse } from 'next/server';
 import type { MarketplaceItem } from '@/lib/types';
 import { MarketplaceItemSchema } from '@/lib/schemas';
 import { 
   getAllMarketplaceItemsFromDB,
-} from '@/lib/db-utils';
+} from '@/lib/server-actions';
 import { 
   successResponse, 
   serverErrorResponse 

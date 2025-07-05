@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Users, LucideIcon } from "lucide-react"; 
+import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Users } from "lucide-react"; 
 import Link from "next/link";
 import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
 import type { MarketplaceItem } from "@/lib/types";
-import { TalentCard } from "@/components/marketplace/TalentCard";
+import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useToast } from "@/hooks/use-toast";
-import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
+import { AGRICULTURAL_CATEGORIES } from "@/lib/category-data";
 
 function TalentPageSkeleton() {
     return (
@@ -158,8 +158,8 @@ export default function TalentExchangePage() {
                     </div>
 
                     {filteredServices.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredServices.map(item => <TalentCard key={item.id} item={item} />)}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                            {filteredServices.map(item => <ItemCard key={item.id} item={item} />)}
                         </div>
                     ) : (
                         <div className="text-center py-16 border-2 border-dashed rounded-lg">

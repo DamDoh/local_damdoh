@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import type { MarketplaceItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { Briefcase, DollarSign } from "lucide-react";
 
 interface ItemCardProps {
     item: MarketplaceItem;
@@ -16,14 +17,15 @@ interface ItemCardProps {
 
 export function ItemCard({ item, reason, className }: ItemCardProps) {
     const t = useTranslations('marketplacePage');
+    const isService = item.listingType === 'Service';
 
     return (
-        <Card className={cn("flex flex-col h-full w-52 snap-start", className)}>
+        <Card className={cn("flex flex-col h-full w-full max-w-sm hover:shadow-lg transition-shadow duration-200", className)}>
              <CardHeader className="p-0 relative">
                 <Badge 
                     className={cn(
                         "absolute top-2 left-2 z-10",
-                        item.listingType === 'Service' ? "bg-blue-600" : "bg-green-600"
+                        isService ? "bg-blue-600" : "bg-green-600"
                     )}
                 >
                     {item.listingType}
@@ -34,30 +36,39 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                         alt={item.name}
                         width={300}
                         height={200}
-                        className="w-full h-32 object-cover rounded-t-lg hover:opacity-90 transition-opacity"
+                        className="w-full h-40 object-cover rounded-t-lg hover:opacity-90 transition-opacity"
                         data-ai-hint="marketplace item"
                     />
                 </Link>
             </CardHeader>
             <CardContent className="flex-grow p-3 space-y-1">
                 <Link href={`/marketplace/${item.id}`} className="hover:text-primary">
-                    <CardTitle className="text-sm font-semibold line-clamp-2 leading-tight h-8">{item.name}</CardTitle>
+                    <CardTitle className="text-sm font-semibold line-clamp-2 leading-tight h-10">{item.name}</CardTitle>
                 </Link>
                 <CardDescription className="text-xs text-muted-foreground">{item.location}</CardDescription>
-                {/* Safely handle optional price */}
-                {typeof item.price === 'number' ? (
-                    <p className="text-md font-bold pt-1">
-                        ${item.price.toFixed(2)} 
-                        {item.perUnit && <span className="text-xs font-normal text-muted-foreground"> / {item.perUnit}</span>}
-                    </p>
-                ) : (
-                    <p className="text-sm font-semibold pt-1 text-muted-foreground">Contact for price</p>
-                )}
-                {reason && <p className="text-xs text-blue-500 pt-1 italic">"{reason}"</p>}
+                
+                <div className="text-md font-bold pt-1 flex items-center gap-1.5">
+                    {isService ? <Briefcase className="h-4 w-4" /> : <DollarSign className="h-4 w-4" />}
+                    {isService ? (
+                        <span>{item.compensation || "Contact for rates"}</span>
+                    ) : (
+                        <span>
+                            {typeof item.price === 'number' ? (
+                                <>
+                                    ${item.price.toFixed(2)} 
+                                    {item.perUnit && <span className="text-xs font-normal text-muted-foreground"> / {item.perUnit}</span>}
+                                </>
+                            ) : (
+                                "Contact for price"
+                            )}
+                        </span>
+                    )}
+                </div>
+                 {reason && <p className="text-xs text-blue-600 pt-1 italic">"{reason}"</p>}
             </CardContent>
             <CardFooter className="p-2 pt-0">
                 <Button asChild size="sm" className="w-full">
-                    <Link href={`/marketplace/${item.id}`}>{t('viewDetails')}</Link>
+                    <Link href={`/marketplace/${item.id}`}>{isService ? t('viewServiceButton', {defaultValue: "View Service"}) : t('viewDetails')}</Link>
                 </Button>
             </CardFooter>
         </Card>
