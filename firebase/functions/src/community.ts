@@ -43,8 +43,7 @@ export const getFeed = functions.https.onCall(async (data, context) => {
                 likesCount: postData.likesCount || 0,
                 commentsCount: postData.commentsCount || 0,
                 pollOptions: postData.pollOptions || null,
-                // These are placeholders as we don't store them on this post model yet
-                link: `/posts/${doc.id}`, // A conceptual link
+                link: `/posts/${doc.id}`, 
                 postImage: null, 
                 dataAiHint: null, 
             };
@@ -72,9 +71,9 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
     await newPostRef.set({
         content,
         userId: uid,
-        userName: userProfile.displayName, // Denormalized data
-        userAvatar: userProfile.avatarUrl || null, // Denormalized data
-        userHeadline: userProfile.profileSummary || '', // Denormalized data
+        userName: userProfile.displayName, 
+        userAvatar: userProfile.avatarUrl || null,
+        userHeadline: userProfile.profileSummary || '',
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         likesCount: 0,
         commentsCount: 0,
@@ -95,12 +94,10 @@ export const likePost = functions.https.onCall(async (data, context) => {
         const likeDoc = await transaction.get(likeRef);
         
         if (likeDoc.exists) {
-            // User is unliking the post
             transaction.delete(likeRef);
             transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(-1) });
             return { success: true, action: 'unliked' };
         } else {
-            // User is liking the post
             transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
             transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(1) });
             return { success: true, action: 'liked' };
@@ -141,30 +138,36 @@ export const addComment = functions.https.onCall(async (data, context) => {
     return { success: true, commentId: commentRef.id };
 });
 
-// For fetching comments on feed items, which might be different from forum replies
 export const getCommentsForPost = functions.https.onCall(async (data, context) => {
-    const { postId } = data;
+    const { postId, lastVisible } = data;
     if (!postId) {
         throw new functions.https.HttpsError("invalid-argument", "Post ID is required.");
     }
     
-    const commentsSnapshot = await db.collection(`posts/${postId}/comments`).orderBy('createdAt', 'asc').get();
+    const COMMENTS_PER_PAGE = 5;
+    let query = db.collection(`posts/${postId}/comments`).orderBy('createdAt', 'asc').limit(COMMENTS_PER_PAGE);
 
-    if (commentsSnapshot.empty) {
-        return { comments: [] };
+    if (lastVisible) {
+        const lastDocSnapshot = await db.collection(`posts/${postId}/comments`).doc(lastVisible).get();
+        if(lastDocSnapshot.exists) {
+            query = query.startAfter(lastDocSnapshot);
+        }
     }
 
-    // Get unique author IDs to fetch profiles efficiently
+    const commentsSnapshot = await query.get();
+
+    if (commentsSnapshot.empty) {
+        return { comments: [], lastVisible: null };
+    }
+
     const authorIds = [...new Set(commentsSnapshot.docs.map(doc => doc.data().userId).filter(Boolean))];
     const profiles: Record<string, any> = {};
 
     if (authorIds.length > 0) {
-        // Fetch profiles in batches of 30, which is the 'in' query limit
-        const profileChunks = [];
+        const profileChunks: string[][] = [];
         for (let i = 0; i < authorIds.length; i += 30) {
             profileChunks.push(authorIds.slice(i, i + 30));
         }
-
         for (const chunk of profileChunks) {
             const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
             profileDocs.forEach(doc => {
@@ -190,6 +193,10 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
             timestamp: (commentData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
+    
+    const newLastVisible = comments.length > 0 ? comments[comments.length - 1].id : null;
 
-    return { comments };
+    return { comments, lastVisible: newLastVisible };
 });
+
+    

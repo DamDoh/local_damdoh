@@ -13,10 +13,10 @@ import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { app as firebaseApp, db } from '@/lib/firebase/client'; // Import db
+import { collection, query, orderBy, onSnapshot, doc, getDoc, limit } from "firebase/firestore"; // Import onSnapshot
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { LandingPage } from '@/components/landing/LandingPage';
 
 // Hub Components
@@ -46,7 +46,6 @@ import { OperationsDashboard } from '@/components/dashboard/hubs/OperationsDashb
 import { AgriTechInnovatorDashboard } from '@/components/dashboard/hubs/AgriTechInnovatorDashboard';
 
 const functions = getFunctions(firebaseApp);
-const db = getFirestore(firebaseApp);
 
 const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Agricultural Cooperative': CooperativeDashboard,
@@ -102,59 +101,74 @@ function MainDashboard() {
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth();
   
-  const getFeed = useMemo(() => httpsCallable(functions, 'getFeed'), []);
   const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
   const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
   const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
 
+  // Use real-time listener for the feed
   useEffect(() => {
-    if (authLoading) return;
-
-    const fetchUserRoleAndFeed = async () => {
-      setIsLoadingRole(true);
-      setIsLoadingFeed(true);
-
-      if (user) {
-        try {
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDoc = await getDoc(userDocRef);
-          setUserRole(userDoc.data()?.primaryRole || 'general'); 
-        } catch (error) {
-          console.error("Error fetching user role:", error);
-          setUserRole('general'); 
-        } finally {
-            setIsLoadingRole(false);
+    setIsLoadingFeed(true);
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(20));
+    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+        const items: FeedItem[] = [];
+        for (const postDoc of querySnapshot.docs) {
+            const postData = postDoc.data();
+            items.push({
+                id: postDoc.id,
+                type: postData.pollOptions ? 'poll' : 'forum_post',
+                timestamp: postData.createdAt?.toDate?.().toISOString() || new Date().toISOString(),
+                userId: postData.userId,
+                userName: postData.userName,
+                userAvatar: postData.userAvatar,
+                userHeadline: postData.userHeadline,
+                content: postData.content,
+                likesCount: postData.likesCount || 0,
+                commentsCount: postData.commentsCount || 0,
+                pollOptions: postData.pollOptions || null,
+                link: `/posts/${postDoc.id}`, 
+                postImage: null, 
+                dataAiHint: null, 
+            });
         }
-      } else {
-        setUserRole(null);
-        setIsLoadingRole(false);
-      }
-
-      try {
-        const result = await getFeed({});
-        setFeedItems((result.data as any).posts || []);
-      } catch (error) {
-        console.error("Error fetching feed:", error);
+        setFeedItems(items);
+        setIsLoadingFeed(false);
+    }, (error) => {
+        console.error("Error fetching real-time feed:", error);
         toast({
           title: "Could not load feed",
           description: "There was an error fetching the latest posts.",
           variant: "destructive"
         });
-      } finally {
         setIsLoadingFeed(false);
-      }
-    };
-    fetchUserRoleAndFeed();
-  }, [user, authLoading, getFeed, toast]);
+    });
+
+    return () => unsubscribe(); // Cleanup listener on unmount
+  }, [toast]);
+
+
+  // Fetch user role
+  useEffect(() => {
+    if (authLoading) return;
+    setIsLoadingRole(true);
+    if (user) {
+        getDoc(doc(db, 'users', user.uid))
+            .then(userDoc => setUserRole(userDoc.data()?.primaryRole || 'general'))
+            .catch(error => {
+                console.error("Error fetching user role:", error);
+                setUserRole('general');
+            })
+            .finally(() => setIsLoadingRole(false));
+    } else {
+        setUserRole(null);
+        setIsLoadingRole(false);
+    }
+  }, [user, authLoading]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
     try {
       await createPostCallable({ content, pollOptions: pollData });
       toast({ title: "Post Created!", description: "Your post is now live." });
-      // Refresh feed
-      const result = await getFeed({});
-      setFeedItems((result.data as any).posts || []);
     } catch (error) {
       console.error("Error creating post:", error);
       toast({ title: "Failed to create post", variant: "destructive" });
@@ -181,8 +195,10 @@ function MainDashboard() {
   };
 
   const handleDeletePost = (postId: string) => {
+    // In a real app, you would call a cloud function to delete the post and its subcollections.
+    // For this simulation, we'll just filter it out from the local state.
     setFeedItems(prevItems => prevItems.filter(item => item.id !== postId));
-     toast({ title: "Post Deleted (Simulated)" });
+    toast({ title: "Post Deleted (Simulated)" });
   };
 
   const renderContent = () => {
@@ -201,7 +217,6 @@ function MainDashboard() {
       return <HubComponent />;
     }
 
-    // Default to feed for guests or users with unhandled roles
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">
@@ -211,7 +226,7 @@ function MainDashboard() {
       );
     }
     
-    return feedItems && feedItems.length > 0 ? (
+    return feedItems.length > 0 ? (
       feedItems.map(item => (
         <FeedItemCard 
           key={item.id} 
@@ -291,3 +306,5 @@ export default function RootPage() {
     </Suspense>
   );
 }
+
+    

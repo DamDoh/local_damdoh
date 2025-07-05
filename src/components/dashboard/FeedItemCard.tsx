@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import type { FeedItem, PostReply } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useAuth } from "@/lib/auth-utils";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -32,10 +33,9 @@ interface FeedItemCardProps {
 }
 
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [currentLikes, setCurrentLikes] = useState(item.likesCount || 0);
-  const [currentComments, setCurrentComments] = useState(item.commentsCount || 0);
-
+  const { user } = useAuth();
+  const [isLiked, setIsLiked] = useState(false); // Note: This local state is for immediate UI feedback. Real like status would need to be fetched.
+  
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState(item.pollOptions?.map(opt => ({ ...opt })) || []);
   
@@ -45,6 +45,8 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
 
   const [replies, setReplies] = useState<PostReply[]>([]);
   const [isLoadingReplies, setIsLoadingReplies] = useState(false);
+  const [lastVisible, setLastVisible] = useState<any>(null);
+  const [hasMoreComments, setHasMoreComments] = useState(true);
 
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
@@ -52,90 +54,83 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const { profile: currentUserProfile } = useUserProfile();
   
   useEffect(() => {
+    // Reset state when the item prop changes
     setCurrentPollOptions(item.pollOptions?.map(opt => ({ ...opt })) || []);
-    setCurrentLikes(item.likesCount || 0);
-    setCurrentComments(item.commentsCount || 0);
-    setIsLiked(false);
+    setIsLiked(false); 
     setVotedOptionIndex(null);
     setShowCommentInput(false);
     setCommentText("");
     setIsSubmittingComment(false);
     setReplies([]);
     setIsLoadingReplies(false);
+    setLastVisible(null);
+    setHasMore(true);
   }, [item]);
+  
 
   const handleLike = () => {
-    setIsLiked(prev => !prev); 
-    setCurrentLikes(prev => isLiked ? prev - 1 : prev + 1);
+    if (!user) { toast({ title: "Please sign in to like posts.", variant: "destructive" }); return; }
+    setIsLiked(prev => !prev);
+    // Optimistic UI update for likes is now handled by the real-time listener on the parent page.
+    // The local `isLiked` state provides instant visual feedback to the user who clicked.
     onLike(item.id);
   };
+  
+  const fetchComments = useCallback(async (isInitialLoad = false) => {
+    if (!hasMoreComments && !isInitialLoad) return;
+    setIsLoadingReplies(true);
+    try {
+      const result = await getCommentsForPost({ postId: item.id, lastVisible: isInitialLoad ? null : lastVisible });
+      const data = (result.data as { replies: PostReply[], lastVisible?: any }) || { replies: [], lastVisible: null };
+      setReplies(prev => isInitialLoad ? data.replies : [...prev, ...data.replies]);
+      setLastVisible(data.lastVisible || null);
+      setHasMoreComments(!!data.lastVisible);
+    } catch (error) {
+      console.error("Failed to fetch comments:", error);
+      toast({ title: "Could not load comments.", variant: "destructive" });
+    } finally {
+      setIsLoadingReplies(false);
+    }
+  }, [item.id, lastVisible, hasMoreComments, getCommentsForPost, toast]);
+
 
   const handleCommentButtonClick = async () => {
     const willBeVisible = !showCommentInput;
     setShowCommentInput(willBeVisible);
 
     if (willBeVisible && replies.length === 0) {
-        setIsLoadingReplies(true);
-        try {
-            const result = await getCommentsForPost({ postId: item.id });
-            const commentsData = (result.data as { comments: PostReply[] })?.comments || [];
-            setReplies(commentsData);
-        } catch (error) {
-            console.error("Failed to fetch comments:", error);
-            toast({ title: "Could not load comments.", variant: "destructive" });
-        } finally {
-            setIsLoadingReplies(false);
-        }
+      fetchComments(true); // Initial fetch
     }
   };
   
   const handlePostComment = async () => {
-    if (!commentText.trim()) return;
+    if (!commentText.trim() || !user) return;
     setIsSubmittingComment(true);
     
     try {
       await onComment(item.id, commentText);
-      
-      const newComment: PostReply = {
-        id: `temp-${Date.now()}`,
-        content: commentText,
-        author: { 
-            id: currentUserProfile?.id || 'currentUser', 
-            name: currentUserProfile?.displayName || 'You', 
-            avatarUrl: currentUserProfile?.avatarUrl || 'https://placehold.co/40x40.png' 
-        },
-        timestamp: new Date().toISOString()
-      };
-      setReplies(prev => [...prev, newComment]);
-      setCurrentComments(prev => prev + 1);
+      // The new comment will appear automatically via the real-time listener in the parent component.
+      // We just need to clear the input here.
       setCommentText("");
+      // Optionally, refetch comments to show the new one immediately if real-time updates are slow
+      // For now, we rely on the parent's real-time subscription.
     } finally {
       setIsSubmittingComment(false);
     }
   };
 
-  const handleRepost = () => {
-    toast({ title: "Repost action triggered (placeholder)." });
-  };
-
-  const handleSend = () => {
-    toast({ title: "Send action triggered (placeholder)." });
-  };
-
+  const handleRepost = () => toast({ title: "Repost action triggered (placeholder)." });
+  const handleSend = () => toast({ title: "Send action triggered (placeholder)." });
   const handlePollVote = (optionIndex: number) => {
     if (votedOptionIndex === null && currentPollOptions.length > 0) {
-      const newPollOptions = currentPollOptions.map((opt, idx) => {
-        if (idx === optionIndex) {
-          return { ...opt, votes: (opt.votes || 0) + 1 };
-        }
-        return opt;
-      });
+      // In a real app, this would call a cloud function to register the vote.
+      const newPollOptions = currentPollOptions.map((opt, idx) => ({ ...opt, votes: (opt.votes || 0) + (idx === optionIndex ? 1 : 0) }));
       setCurrentPollOptions(newPollOptions);
       setVotedOptionIndex(optionIndex);
     }
   };
   
-  const isPostAuthor = item.userId === 'currentDemoUser';
+  const isPostAuthor = item.userId === user?.uid;
 
   return (
     <Card className="overflow-hidden">
@@ -178,42 +173,13 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       </CardHeader>
       <CardContent className="px-4 pt-0 pb-2">
         {item.content && <p className="text-sm whitespace-pre-line mb-2">{item.content}</p>}
-
-        {item.postImage && (
-          <div className="my-2 rounded-md overflow-hidden border">
-            <Image src={item.postImage} alt="Post image" width={600} height={350} className="w-full object-cover" data-ai-hint={item.dataAiHint || "agriculture content"} />
-          </div>
-        )}
-
-        {currentPollOptions && currentPollOptions.length > 0 && (
-          <div className="my-3 p-3 border rounded-md bg-muted/30">
-            <div className="space-y-2">
-              {currentPollOptions.map((option, index) => (
-                <Button
-                  key={index}
-                  variant={votedOptionIndex === index ? "default" : "outline"}
-                  className="w-full justify-between text-left h-auto py-2"
-                  onClick={() => handlePollVote(index)}
-                  disabled={votedOptionIndex !== null && votedOptionIndex !== index}
-                >
-                  <span className="flex-1 whitespace-normal break-words">{option.text}</span>
-                  {votedOptionIndex !== null && (
-                    <span className="text-xs ml-2">{option.votes} vote{option.votes === 1 ? '' : 's'}</span>
-                  )}
-                  {votedOptionIndex === index && <CheckCircle className="ml-2 h-4 w-4 text-primary-foreground" />}
-                </Button>
-              ))}
-            </div>
-          </div>
-        )}
-
-         <div className="flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
-            <span>{currentLikes} Like{currentLikes === 1 ? '' : 's'}</span>
-            <span>{currentComments} Comment{currentComments === 1 ? '' : 's'}</span>
-        </div>
       </CardContent>
       
       <CardFooter className="p-2 flex flex-col items-stretch">
+        <div className="px-2 flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
+            <span>{item.likesCount} Like{item.likesCount === 1 ? '' : 's'}</span>
+            <span>{item.commentsCount} Comment{item.commentsCount === 1 ? '' : 's'}</span>
+        </div>
         <div className="flex justify-around border-t pt-1">
           <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
             <ThumbsUp className="mr-2 h-5 w-5" /> Like
@@ -224,17 +190,12 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
           <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleRepost}>
             <Share2 className="mr-2 h-5 w-5" /> Repost
           </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleSend}>
-            <Send className="mr-2 h-5 w-5" /> Send
-          </Button>
         </div>
         
         {showCommentInput && (
           <div className="mt-3 px-2 space-y-2 border-t pt-3 w-full">
              <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
-                {isLoadingReplies ? (
-                    <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">Loading comments...</span></div>
-                ) : replies.length > 0 ? (
+                {replies.length > 0 ? (
                     replies.map(reply => (
                         <div key={reply.id} className="flex items-start gap-2">
                             <Avatar className="h-7 w-7">
@@ -247,8 +208,12 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                             </div>
                         </div>
                     ))
-                ) : (
+                ) : !isLoadingReplies && (
                     <p className="text-xs text-center text-muted-foreground py-2">No comments yet. Be the first to reply!</p>
+                )}
+                {isLoadingReplies && <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">Loading comments...</span></div>}
+                {hasMoreComments && !isLoadingReplies && (
+                    <Button variant="link" size="sm" className="w-full" onClick={() => fetchComments()}>Load More Comments</Button>
                 )}
             </div>
              <div className="flex items-start gap-2 pt-2">
@@ -279,3 +244,5 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     </Card>
   );
 }
+
+    
