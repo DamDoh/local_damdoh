@@ -108,8 +108,8 @@
     "listServiceButton": "Lister un Service",
     "searchPlaceholder": "Rechercher par compétence, service ou professionnel...",
     "locationPlaceholder": "Filtrer par lieu...",
-    "rolePlaceholder": "Filtrer par rôle...",
-    "allRoles": "Tous les rôles",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Tous les services",
     "noResultsTitle": "Aucun service trouvé",
     "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles annonces.",
     "viewServiceButton": "Voir le Service"
@@ -354,5 +354,3 @@
     }
   }
 }
-
-    

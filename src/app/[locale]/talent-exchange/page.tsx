@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Frown, Users } from "lucide-react"; 
+import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Users, LucideIcon } from "lucide-react"; 
 import Link from "next/link";
 import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
 import type { MarketplaceItem } from "@/lib/types";
 import { TalentCard } from "@/components/marketplace/TalentCard";
 import { useToast } from "@/hooks/use-toast";
-import { STAKEHOLDER_ROLES } from "@/lib/constants";
+import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 
 function TalentPageSkeleton() {
     return (
@@ -46,10 +46,12 @@ export default function TalentExchangePage() {
     const t = useTranslations('talentExchangePage');
     const [searchTerm, setSearchTerm] = useState("");
     const [locationFilter, setLocationFilter] = useState("");
-    const [roleFilter, setRoleFilter] = useState("all");
+    const [categoryFilter, setCategoryFilter] = useState("all");
     const [items, setItems] = useState<MarketplaceItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const { toast } = useToast();
+
+    const serviceCategories = useMemo(() => AGRICULTURAL_CATEGORIES.filter(cat => cat.parent === 'services'), []);
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -91,11 +93,11 @@ export default function TalentExchangePage() {
             const descriptionMatch = (item.description || '').toLowerCase().includes(searchLower);
             const skillsMatch = skillsArray.join(' ').toLowerCase().includes(searchLower);
             const locationMatch = locationFilter === "" || (item.location || '').toLowerCase().includes(locationLower);
-            const roleMatch = roleFilter === 'all' || (item.category && item.category.toLowerCase().includes(roleFilter.toLowerCase()));
+            const categoryMatch = categoryFilter === 'all' || item.category === categoryFilter;
 
-            return (nameMatch || descriptionMatch || skillsMatch) && locationMatch && roleMatch;
+            return (nameMatch || descriptionMatch || skillsMatch) && locationMatch && categoryMatch;
         });
-    }, [searchTerm, locationFilter, roleFilter, items]);
+    }, [searchTerm, locationFilter, categoryFilter, items]);
 
 
     if (isLoading) {
@@ -137,14 +139,19 @@ export default function TalentExchangePage() {
                                 value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}
                             />
                         </div>
-                        <Select value={roleFilter} onValueChange={setRoleFilter}>
-                            <SelectTrigger id="role-filter-talent" className="h-10">
-                                <SelectValue placeholder={t('rolePlaceholder')} />
+                        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                            <SelectTrigger id="category-filter-talent" className="h-10">
+                                <SelectValue placeholder={t('categoryPlaceholder')} />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="all">{t('allRoles')}</SelectItem>
-                                {STAKEHOLDER_ROLES.map(role => (
-                                    <SelectItem key={role} value={role}>{role}</SelectItem>
+                                <SelectItem value="all">{t('allCategories')}</SelectItem>
+                                {serviceCategories.map(cat => (
+                                    <SelectItem key={cat.id} value={cat.id}>
+                                        <div className="flex items-center gap-2">
+                                            {cat.icon && <cat.icon className="h-4 w-4 text-muted-foreground" />}
+                                            <span>{cat.name}</span>
+                                        </div>
+                                    </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>

@@ -108,8 +108,8 @@
     "listServiceButton": "List a Service",
     "searchPlaceholder": "Search by skill, service, or professional...",
     "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter by role...",
-    "allRoles": "All Roles",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Services",
     "noResultsTitle": "No Services Found",
     "noResultsDescription": "Try adjusting your search filters or check back later for new listings.",
     "viewServiceButton": "View Service"

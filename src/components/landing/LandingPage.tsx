@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Leaf, Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle } from "lucide-react";
+import { Leaf, Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { APP_NAME } from "@/lib/constants";
 
@@ -29,7 +29,7 @@ export function LandingPage() {
       description: t('features.forums.description')
     },
     {
-      icon: <Leaf className="h-8 w-8 text-primary" />,
+      icon: <Briefcase className="h-8 w-8 text-primary" />,
       title: t('features.talent.title'),
       description: t('features.talent.description')
     }

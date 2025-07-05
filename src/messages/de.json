@@ -108,8 +108,8 @@
     "listServiceButton": "Dienstleistung anbieten",
     "searchPlaceholder": "Suche nach Fähigkeit, Service oder Fachkraft...",
     "locationPlaceholder": "Nach Standort filtern...",
-    "rolePlaceholder": "Nach Rolle filtern...",
-    "allRoles": "Alle Rollen",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Dienstleistungen",
     "noResultsTitle": "Keine Dienstleistungen gefunden",
     "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei, um neue Angebote zu sehen.",
     "viewServiceButton": "Dienstleistung ansehen"
@@ -354,5 +354,3 @@
     }
   }
 }
-
-    

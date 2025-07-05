@@ -108,8 +108,8 @@
       "listServiceButton": "ចុះបញ្ជីសេវាកម្ម",
       "searchPlaceholder": "ស្វែងរកតាមជំនាញ សេវាកម្ម ឬអ្នកជំនាញ...",
       "locationPlaceholder": "ត្រងតាមទីតាំង...",
-      "rolePlaceholder": "ត្រងតាមតួនាទី...",
-      "allRoles": "គ្រប់តួនាទី",
+      "categoryPlaceholder": "ត្រងតាមប្រភេទ...",
+      "allCategories": "គ្រប់សេវាកម្ម",
       "noResultsTitle": "រកមិនឃើញសេវាកម្មទេ",
       "noResultsDescription": "ព្យាយាមកែតម្រូវតម្រងស្វែងរករបស់អ្នក ឬពិនិត្យមើលពេលក្រោយសម្រាប់ការចុះបញ្ជីថ្មី។",
       "viewServiceButton": "មើលសេវាកម្ម"
@@ -354,5 +354,3 @@
     }
   }
 }
-
-    
