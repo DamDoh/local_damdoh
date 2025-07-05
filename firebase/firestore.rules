@@ -1,152 +1,179 @@
 
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
+    
+    // Helper functions for common security checks
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
 
-    // Users can read their own profile, but only write through cloud functions.
-    // Public profiles are readable by any authenticated user.
+    // USER PROFILES: Users can read public profiles, but only write to their own.
     match /users/{userId} {
-      allow read: if request.auth != null;
-      allow update: if request.auth.uid == userId; // For specific client-side updates like FCM token
-      // Create is handled by registerUser cloud function.
-      // Most updates handled by upsertStakeholderProfile cloud function.
-    }
-
-    // Farms can only be read/written by their owner.
-    match /farms/{farmId} {
-      allow read, write: if request.auth.uid == resource.data.ownerId;
-    }
-
-    // Crops can only be read/written by their owner.
-    match /crops/{cropId} {
-      allow read, write: if request.auth.uid == resource.data.ownerId;
+      allow read: if true;
+      allow write: if isOwner(userId);
+      
+      // Subcollections like workers, payments, etc., should be private
+      match /{subcollection}/{docId} {
+        allow read, write: if isOwner(userId);
+      }
     }
     
-    // KNF Batches can only be read/written by their owner.
-    match /knf_batches/{batchId} {
-      allow read, write: if request.auth.uid == resource.data.userId;
-    }
-    
-    // Marketplace items are public to read. Only owner can write.
+    // MARKETPLACE: Listings are public, but only owners can create/edit/delete.
     match /marketplaceItems/{itemId} {
       allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if request.auth.uid == resource.data.sellerId;
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && resource.data.sellerId == request.auth.uid;
+      
+      // Bookings and Staff subcollections need specific rules
+      match /bookings/{bookingId} {
+        allow read: if isAuthenticated() && (bookingId == request.auth.uid || resource.parent.data.sellerId == request.auth.uid);
+        allow create: if isAuthenticated() && bookingId == request.auth.uid;
+        allow update: if isAuthenticated() && resource.parent.data.sellerId == request.auth.uid;
+      }
+      match /staff/{staffId} {
+         allow read: if true;
+         allow write: if isAuthenticated() && resource.parent.data.sellerId == request.auth.uid;
+      }
     }
     
-    // Marketplace orders can be read by buyer or seller. Only written by buyer on create.
+    // MARKETPLACE ORDERS: Only buyer and seller can access an order
     match /marketplace_orders/{orderId} {
-      allow create: if request.auth.uid == request.resource.data.buyerId;
-      allow read, update: if request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId;
-    }
-
-    // Forum topics are public to read, but only authenticated users can create.
-    match /forums/{topicId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      allow update: if request.auth.uid == resource.data.creatorId; // Only creator can edit topic
-        
-        // Posts can be read by anyone, created by auth users.
-        match /posts/{postId} {
-            allow read: if true;
-            allow create, update, delete: if request.auth != null;
-            
-            // Likes are private.
-            match /likes/{likeId} {
-              allow read, write: if request.auth.uid == likeId;
-            }
-
-            // Replies have same logic.
-            match /replies/{replyId} {
-                allow read: if true;
-                allow create: if request.auth != null;
-            }
-        }
+        allow read, write: if isAuthenticated() && (request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId);
+        allow create: if isAuthenticated();
     }
     
-    // Group rules: Public groups readable, private groups members only.
+    // KNOWLEDGE & EVENTS: Publicly readable content
+    match /knowledge_base/{docId} {
+      allow read: if true;
+      allow write: if false; // Only from backend
+    }
+    match /knowledge_articles/{docId} {
+      allow read: if true;
+      allow write: if false; // Only from backend
+    }
+    match /agri_events/{eventId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && request.auth.uid == resource.data.organizerId;
+      
+      match /attendees/{attendeeId} {
+        allow read: if isAuthenticated() && (attendeeId == request.auth.uid || resource.parent.data.organizerId == request.auth.uid);
+        allow create: if isAuthenticated() && attendeeId == request.auth.uid;
+        allow update, delete: if isAuthenticated() && resource.parent.data.organizerId == request.auth.uid;
+      }
+       match /coupons/{couponId} {
+        allow read, write: if isAuthenticated() && resource.parent.data.organizerId == request.auth.uid;
+      }
+      match /staff/{staffId} {
+         allow read, write: if isAuthenticated() && resource.parent.data.organizerId == request.auth.uid;
+      }
+    }
+    
+    // SOCIAL & COMMUNITY
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+
+      match /likes/{userId} {
+        allow read: if true;
+        allow write: if isOwner(userId);
+      }
+       match /comments/{commentId} {
+        allow read: if true;
+        allow create: if isAuthenticated();
+      }
+    }
+    
+    // GROUPS & FORUMS
     match /groups/{groupId} {
-        allow read: if resource.data.isPublic == true || get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).exists;
-        allow create: if request.auth != null;
+        allow read: if resource.data.isPublic == true || (isAuthenticated() && request.auth.uid in resource.data.participantIds);
+        allow create: if isAuthenticated();
+        // More granular updates should be handled by cloud functions
+        allow update: if isAuthenticated() && request.auth.uid == resource.data.ownerId;
         
         match /members/{memberId} {
             allow read: if true;
-            allow create: if request.auth.uid == memberId; // Can only add self
-            allow delete: if request.auth.uid == memberId; // Can only remove self
+            // Membership changes handled by cloud functions
+            allow write: if false;
         }
+        match /posts/{postId} {
+            allow read: if isAuthenticated() && get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data != null;
+            allow create: if isAuthenticated() && get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data != null;
+            allow update, delete: if isAuthenticated() && resource.data.authorRef == request.auth.uid;
+            
+             match /replies/{replyId} {
+                allow read: if isAuthenticated() && get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data != null;
+                allow create: if isAuthenticated() && get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data != null;
+            }
+        }
+    }
+    
+    match /forums/{topicId} {
+        allow read: if true;
+        allow create: if isAuthenticated();
         
         match /posts/{postId} {
-            allow read, create: if get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).exists;
-            
-            match /replies/{replyId} {
-                 allow read, create: if get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).exists;
+            allow read: if true;
+            allow create: if isAuthenticated();
+             allow update, delete: if isAuthenticated() && resource.data.authorRef == request.auth.uid;
+
+             match /replies/{replyId} {
+                allow read: if true;
+                allow create: if isAuthenticated();
             }
         }
     }
 
-    // Agri-Events are public to read. Creation and registration handled by functions.
-    match /agri_events/{eventId} {
-      allow read: if true;
-      match /attendees/{attendeeId} {
-        allow read: if request.auth.uid == attendeeId || request.auth.uid == get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId;
-      }
-      match /coupons/{couponId} {
-        allow read: if request.auth.uid == get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId;
-      }
-       match /staff/{staffId} {
-        allow read: if request.auth.uid == get(/databases/$(database)/documents/agri_events/$(eventId)).data.organizerId;
-      }
-    }
-    
-    // VTI is public to read.
-    match /vti_registry/{vtiId} {
-        allow read: if true;
-    }
-
-    // Traceability events are public to read.
-    match /traceability_events/{eventId} {
-        allow read: if true;
-    }
-    
-    // Knowledge articles are public to read.
-    match /knowledge_base/{docId} {
-      allow read: if true;
-      allow write: if request.auth.token.admin == true; // Only admins write
-    }
-
-    match /knowledge_articles/{articleId} {
-        allow read: if true;
-        allow write: if request.auth.token.admin == true;
-    }
-    
-    // Notifications are private to the user.
+    // PRIVATE DATA: Notifications, Conversations
     match /notifications/{notificationId} {
-        allow read, update: if request.auth.uid == resource.data.userId;
+        allow read, write: if isOwner(resource.data.userId);
     }
     
-    // Connection requests can only be read by recipient, created by requester. Recipient can update status.
-    match /connection_requests/{requestId} {
-        allow create: if request.auth != null && request.auth.uid == request.resource.data.requesterId;
-        allow read, update, delete: if request.auth.uid == resource.data.recipientId || request.auth.uid == resource.data.requesterId;
-    }
-    
-    // Profile views can be created by any auth user. Cannot be read/updated/deleted by client.
-    match /profile_views/{viewId} {
-        allow create: if request.auth != null && request.auth.uid == request.resource.data.viewerId;
-        allow read, update, delete: if false;
-    }
+    match /conversations/{conversationId} {
+        allow read, write: if isAuthenticated() && request.auth.uid in resource.data.participantIds;
 
-    // Recovery sessions can be created by anyone, but can only be updated by authenticated users (the 'friend').
-    match /recovery_sessions/{sessionId} {
-        allow create: if true;
-        allow read: if true; // The client needs to poll this
-        allow update: if request.auth != null; // Friend confirming must be logged in.
+        match /messages/{messageId} {
+            allow read, write: if isAuthenticated() && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participantIds;
+        }
     }
     
-    // Only authenticated users can access the search index.
-    match /search_index/{indexId} {
-        allow read: if request.auth != null;
-        allow write: if false; // Only cloud functions can write
+    // INTERNAL LOGS & SESSIONS
+    match /profile_views/{viewId} {
+        allow read: if false;
+        allow write: if isAuthenticated();
+    }
+     match /recovery_sessions/{sessionId} {
+        allow read, write: if false; // Only backend access
+    }
+    match /search_index/{docId} {
+        allow read: if isAuthenticated();
+        allow write: if false; // Backend only
+    }
+    
+    // FARMS and subcollections: Only owner can access
+     match /farms/{farmId} {
+        allow read, write: if isAuthenticated() && request.auth.uid == resource.data.ownerId;
+        
+        match /crops/{cropId} {
+            allow read, write: if isAuthenticated() && request.auth.uid == get(/databases/$(database)/documents/farms/$(farmId)).data.ownerId;
+        }
+    }
+    
+    // KNF batches: Only owner can access
+    match /knf_batches/{batchId} {
+        allow read, write: if isOwner(resource.data.userId);
+    }
+    
+    // FINANCIALS: Only owner can access
+    match /financial_transactions/{transactionId} {
+       allow read, write: if isOwner(resource.data.userRef.id);
     }
   }
 }

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Home, ArrowLeft, LayoutGrid, Sprout, ShoppingBasket, Recycle, Fish, Bug, Sun, Users, Edit2, BarChart2, Bird, Info, Droplets, ShieldCheck, Heart } from "lucide-react";
+import { Home, ArrowLeft, LayoutGrid, Sprout, ShoppingBasket, Recycle, Fish, Bird, ShieldCheck, Heart } from "lucide-react";
 
 interface FarmZone {
   id: string;
@@ -16,7 +16,7 @@ interface FarmZone {
   imageAlt: string;
   dataAiHint: string;
   description: string[];
-  details?: string[];
+  details?: { title: string; content: string[] }[];
   subSections?: { title: string; content: string[] }[];
 }
 
@@ -35,10 +35,10 @@ const farmZones: FarmZone[] = [
       "Paths are designed for easy access, making daily tasks manageable for all family members."
     ],
     details: [
-      "Prioritize Family Needs: Before planting anything, think about what your family eats most and what nutrients they need. This farm is for you first!",
-      "Perimeter Fencing: Essential for security against pests and wandering animals. Consider live fencing (e.g., with nitrogen-fixing shrubs or fruit bushes) to maximize land use.",
-      "Sun Orientation: Observe the sun's path. Place sun-loving plants (like tomatoes, peppers, maize) in the sunniest spots. Shade-tolerant plants (like some leafy greens, herbs) can go in partially shaded areas, perhaps near taller fruit trees.",
-      "Water Flow & Conservation: Design for efficient water use. Think about how rainwater can be harvested and directed to beds or ponds. Plan for simple irrigation methods like watering cans or basic drip systems if water is scarce."
+        { title: "Prioritize Family Needs", content: ["Before planting anything, think about what your family eats most and what nutrients they need. This farm is for you first!"] },
+        { title: "Perimeter Fencing", content: ["Essential for security against pests and wandering animals. Consider live fencing (e.g., with nitrogen-fixing shrubs or fruit bushes) to maximize land use."] },
+        { title: "Sun Orientation", content: ["Observe the sun's path. Place sun-loving plants (like tomatoes, peppers, maize) in the sunniest spots. Shade-tolerant plants (like some leafy greens, herbs) can go in partially shaded areas, perhaps near taller fruit trees."] },
+        { title: "Water Flow & Conservation", content: ["Design for efficient water use. Think about how rainwater can be harvested and directed to beds or ponds. Plan for simple irrigation methods like watering cans or basic drip systems if water is scarce."] }
     ]
   },
   {
@@ -54,12 +54,12 @@ const farmZones: FarmZone[] = [
       "Practice bio-intensive methods: plant closely, practice succession planting (sowing small batches of seeds every few weeks), and intercrop (plant compatible crops together) to get the most out of this space."
     ],
     details: [
-      "Start with Easy Crops: If you're new to this, begin with easy-to-grow, high-yielding crops like leafy greens (spinach, kale, local amaranth), radishes, beans, and local varieties of tomatoes or peppers. This builds confidence!",
-      "Diverse Diet: Aim for a mix: leafy greens for vitamins, root crops (carrots, beets) for energy, fruiting vegetables (tomatoes, peppers, eggplants, okra, beans, cucumbers) for variety, and herbs for flavor and health.",
-      "Rich Soil is Key: Feed your soil regularly with well-made compost. Healthy soil means healthy plants that resist pests and diseases, and provide more nutritious food.",
-      "Mulch Generously: Cover the soil in your beds with organic mulch (straw, dry grass clippings, leaves). This keeps water in, stops weeds, and keeps the soil cool.",
-      "Grow Upwards: Use trellises or stakes for climbing plants like beans, cucumbers, and some tomatoes. This saves valuable bed space.",
-      "Continuous Harvest: Plan your planting so you have something to harvest for your family every week, rather than everything ripening at once."
+      { title: "Start with Easy Crops", content: ["If you're new to this, begin with easy-to-grow, high-yielding crops like leafy greens (spinach, kale, local amaranth), radishes, beans, and local varieties of tomatoes or peppers. This builds confidence!"] },
+      { title: "Diverse Diet", content: ["Aim for a mix: leafy greens for vitamins, root crops (carrots, beets) for energy, fruiting vegetables (tomatoes, peppers, eggplants, okra, beans, cucumbers) for variety, and herbs for flavor and health."] },
+      { title: "Rich Soil is Key", content: ["Feed your soil regularly with well-made compost. Healthy soil means healthy plants that resist pests and diseases, and provide more nutritious food."] },
+      { title: "Mulch Generously", content: ["Cover the soil in your beds with organic mulch (straw, dry grass clippings, leaves). This keeps water in, stops weeds, and keeps the soil cool."] },
+      { title: "Grow Upwards", content: ["Use trellises or stakes for climbing plants like beans, cucumbers, and some tomatoes. This saves valuable bed space."] },
+      { title: "Continuous Harvest", content: ["Plan your planting so you have something to harvest for your family every week, rather than everything ripening at once."] }
     ]
   },
   {
@@ -75,10 +75,10 @@ const farmZones: FarmZone[] = [
       "These trees offer a continuous supply of fruits at different times of the year, adding essential vitamins and sweetness to your family's diet."
     ],
     details: [
-      "Choose Wisely: Select dwarf or semi-dwarf varieties if available, as they are easier to manage in a small space. Prioritize trees that are well-suited to your local climate and soil.",
-      "Nutritional Powerhouses: Moringa is a superfood! Its leaves and pods are packed with nutrients. Papayas and bananas provide quick fruit yields. Guavas, mulberries, mangoes, and limes offer a range of vitamins.",
-      "Care and Pruning: Learn basic pruning techniques to keep trees healthy and productive. Ensure they get enough water, especially when young.",
-      "Surplus Management: If your trees produce more fruit than your family can eat fresh, consider simple preservation methods like drying, making jams, or juicing."
+      { title: "Choose Wisely", content: ["Select dwarf or semi-dwarf varieties if available, as they are easier to manage in a small space. Prioritize trees that are well-suited to your local climate and soil."] },
+      { title: "Nutritional Powerhouses", content: ["Moringa is a superfood! Its leaves and pods are packed with nutrients. Papayas and bananas provide quick fruit yields. Guavas, mulberries, mangoes, and limes offer a range of vitamins."] },
+      { title: "Care and Pruning", content: ["Learn basic pruning techniques to keep trees healthy and productive. Ensure they get enough water, especially when young."] },
+      { title: "Surplus Management", content: ["If your trees produce more fruit than your family can eat fresh, consider simple preservation methods like drying, making jams, or juicing."] }
     ]
   },
   {
@@ -95,11 +95,11 @@ const farmZones: FarmZone[] = [
       "Small 1m x 3m vegetable beds between ponds can grow aquatic/semi-aquatic plants (like water spinach) or benefit from the pond's microclimate."
     ],
     details: [
-      "Start Small & Simple: If new to aquaculture, start with one pond and a hardy fish species. Learn as you go.",
-      "Water Quality is Vital: Ensure clean water. Pond water rich in fish waste is excellent for irrigating your vegetable beds – a perfect example of nutrient cycling!",
-      "Supplemental Feeding: Fish can be fed with farm-grown supplements (e.g., Azolla from the water reservoir, duckweed, tender moringa leaves, leftover vegetable scraps) to reduce reliance on commercial feed.",
-      "Snail Management: If rearing snails, ensure they are well-contained to prevent them from becoming pests to your vegetable crops. They can be a good source of protein for both family and poultry.",
-      "Integration Benefit: The nutrient-rich water from fish ponds can significantly boost your vegetable production when used for irrigation."
+      { title: "Start Small & Simple", content: ["If new to aquaculture, start with one pond and a hardy fish species. Learn as you go."] },
+      { title: "Water Quality is Vital", content: ["Ensure clean water. Pond water rich in fish waste is excellent for irrigating your vegetable beds – a perfect example of nutrient cycling!"] },
+      { title: "Supplemental Feeding", content: ["Fish can be fed with farm-grown supplements (e.g., Azolla from the water reservoir, duckweed, tender moringa leaves, leftover vegetable scraps) to reduce reliance on commercial feed."] },
+      { title: "Snail Management", content: ["If rearing snails, ensure they are well-contained to prevent them from becoming pests to your vegetable crops. They can be a good source of protein for both family and poultry."] },
+      { title: "Integration Benefit", content: ["The nutrient-rich water from fish ponds can significantly boost your vegetable production when used for irrigation."] }
     ]
   },
   {
@@ -115,10 +115,10 @@ const farmZones: FarmZone[] = [
       "Mushroom Area (4m x 3m): Growing edible mushrooms (like oyster mushrooms) on agricultural waste (straw, sawdust) provides a unique, nutritious food source."
     ],
     details: [
-      "Chicken Management: Consider a simple, secure coop that protects chickens from predators and weather. Allow them some space to forage if possible (controlled free-range). Feed can be supplemented with kitchen scraps and farm greens.",
-      "Manure Gold: Chicken manure is very rich. Always compost it before adding it directly to garden beds to avoid burning plants.",
-      "Mushroom Cultivation: This requires learning specific techniques for substrate preparation and maintaining the right humidity and temperature. Start with an easy-to-grow variety like oyster mushrooms.",
-      "Waste to Value: Spent mushroom substrate (the material left after harvesting mushrooms) is an excellent soil conditioner for your vegetable beds."
+      { title: "Chicken Management", content: ["Consider a simple, secure coop that protects chickens from predators and weather. Allow them some space to forage if possible (controlled free-range). Feed can be supplemented with kitchen scraps and farm greens."] },
+      { title: "Manure Gold", content: ["Chicken manure is very rich. Always compost it before adding it directly to garden beds to avoid burning plants."] },
+      { title: "Mushroom Cultivation", content: ["This requires learning specific techniques for substrate preparation and maintaining the right humidity and temperature. Start with an easy-to-grow variety like oyster mushrooms."] },
+      { title: "Waste to Value", content: ["Spent mushroom substrate (the material left after harvesting mushrooms) is an excellent soil conditioner for your vegetable beds."] }
     ]
   },
   {
@@ -134,10 +134,10 @@ const farmZones: FarmZone[] = [
       "Water Reservoir / Azolla Pond (approx. 4m x 4m total): Vital for water storage, especially during dry seasons. Can also grow Azolla, a fast-growing fern that is excellent, protein-rich feed for chickens and fish, and a great green manure for your soil."
     ],
     details: [
-      "Composting is Key: Make composting a priority. Refer to the 'Compost FGW' guide for detailed methods. A continuous supply of good compost means less need for buying fertilizers.",
-      "Water Harvesting: Collect rainwater from any available rooftops (like the chicken coop) and direct it into your reservoir. Every drop counts!",
-      "Efficient Irrigation: Use water wisely. Simple methods like watering cans for targeted watering or basic drip irrigation (if feasible) can make a big difference.",
-      "Azolla Benefits: Azolla is easy to grow on the water surface. It fixes nitrogen, and when added to compost or directly to soil, it enriches it. It's also a great supplemental feed."
+      { title: "Composting is Key", content: ["Make composting a priority. Refer to the 'Compost FGW' guide for detailed methods. A continuous supply of good compost means less need for buying fertilizers."] },
+      { title: "Water Harvesting", content: ["Collect rainwater from any available rooftops (like the chicken coop) and direct it into your reservoir. Every drop counts!"] },
+      { title: "Efficient Irrigation", content: ["Use water wisely. Simple methods like watering cans for targeted watering or basic drip irrigation (if feasible) can make a big difference."] },
+      { title: "Azolla Benefits", content: ["Azolla is easy to grow on the water surface. It fixes nitrogen, and when added to compost or directly to soil, it enriches it. It's also a great supplemental feed."] }
     ]
   },
   {
@@ -151,30 +151,12 @@ const farmZones: FarmZone[] = [
       "This farm model is built on principles that work with nature to create a thriving, self-reliant system. The goal is to regenerate your land while feeding your family."
     ],
     subSections: [
-      {
-        title: "Feed the Soil, Not Just the Plants:",
-        content: ["Focus on building healthy, living soil through regular compost application and mulching. Healthy soil grows healthy, nutrient-dense plants that are more resistant to pests and diseases, and provide more nutritious food."]
-      },
-      {
-        title: "Nutrient Cycling (Closing Loops):",
-        content: ["Animal manure and fish waste fertilize crops.", "Crop residues, weeds, and kitchen scraps are composted to create rich soil amendments.", "Azolla from the pond can supplement animal feed and add nitrogen to the soil. Aim to recycle all organic matter within the farm."]
-      },
-      {
-        title: "Maximize Space & Time:",
-        content: ["Use intensive planting techniques (close spacing) in raised beds.", "Grow vertically with trellises for climbing plants.", "Practice succession planting to ensure continuous harvests.", "Intercrop compatible plants to make the most of sunlight and soil resources."]
-      },
-      {
-        title: "Water Wisely:",
-        content: ["Harvest and store rainwater.", "Use mulch heavily on all garden beds to reduce water evaporation.", "Apply water directly to the plant roots where it's needed most."]
-      },
-      {
-        title: "Embrace Biodiversity:",
-        content: ["Grow a diverse range of crops, fruit trees, and even raise different types of small livestock. This creates a more resilient farm that can better withstand pests, diseases, and weather changes. It also provides a more balanced diet for your family."]
-      },
-      {
-        title: "Natural Pest & Disease Management:",
-        content: ["Healthy soil and diverse plantings are your first line of defense. Encourage beneficial insects by planting flowers. Use natural pest control methods (like KNF inputs or companion planting) if needed, avoiding harmful chemical pesticides."]
-      }
+      { title: "Feed the Soil, Not Just the Plants", content: ["Focus on building healthy, living soil through regular compost application and mulching. Healthy soil grows healthy, nutrient-dense plants that are more resistant to pests and diseases, and provide more nutritious food."] },
+      { title: "Nutrient Cycling (Closing Loops)", content: ["Animal manure and fish waste fertilize crops.", "Crop residues, weeds, and kitchen scraps are composted to create rich soil amendments.", "Azolla from the pond can supplement animal feed and add nitrogen to the soil. Aim to recycle all organic matter within the farm."] },
+      { title: "Maximize Space & Time", content: ["Use intensive planting techniques (close spacing) in raised beds.", "Grow vertically with trellises for climbing plants.", "Practice succession planting to ensure continuous harvests.", "Intercrop compatible plants to make the most of sunlight and soil resources."] },
+      { title: "Water Wisely", content: ["Harvest and store rainwater.", "Use mulch heavily on all garden beds to reduce water evaporation.", "Apply water directly to the plant roots where it's needed most."] },
+      { title: "Embrace Biodiversity", content: ["Grow a diverse range of crops, fruit trees, and even raise different types of small livestock. This creates a more resilient farm that can better withstand pests, diseases, and weather changes. It also provides a more balanced diet for your family."] },
+      { title: "Natural Pest & Disease Management", content: ["Healthy soil and diverse plantings are your first line of defense. Encourage beneficial insects by planting flowers. Use natural pest control methods (like KNF inputs or companion planting) if needed, avoiding harmful chemical pesticides."] }
     ]
   },
   {
@@ -189,16 +171,27 @@ const farmZones: FarmZone[] = [
       "Imagine harvesting fresh, chemical-free vegetables daily for your family's meals. Picking ripe fruits from your own trees. Enjoying fresh eggs and fish. This model makes it possible!"
     ],
     details: [
-      "Balanced Diet: This farm is designed to provide a variety of foods – carbohydrates from root crops and some grains (if intercropped), proteins from poultry, fish, and legumes, and essential vitamins and minerals from diverse fruits and vegetables.",
-      "Food Security: Reduce reliance on buying food, which can be expensive and uncertain. Growing your own gives you control over your family's food supply.",
-      "Improved Nutrition & Health: Freshly harvested food is more nutritious. Knowing how your food is grown (without harmful chemicals) brings peace of mind.",
-      "Involve the Family: This farm can be a family project. Working together to grow food teaches valuable skills, promotes teamwork, and connects everyone to the land and where their food comes from.",
-      "Planning for Continuous Supply: Careful planning of what to plant and when is key. Stagger your plantings to ensure you have a continuous harvest rather than everything becoming ready at once.",
-      "Record Keeping: Simple notes on what you planted, when, and how much you harvested can help you improve your farm management each season.",
-      "Surplus as a Bonus: Once your family's food needs are met, any surplus can be sold locally, bartered with neighbors, or preserved for later use. This can provide a small additional income or help acquire things you don't produce."
+      { title: "Balanced Diet", content: ["This farm is designed to provide a variety of foods – carbohydrates from root crops and some grains (if intercropped), proteins from poultry, fish, and legumes, and essential vitamins and minerals from diverse fruits and vegetables."] },
+      { title: "Food Security", content: ["Reduce reliance on buying food, which can be expensive and uncertain. Growing your own gives you control over your family's food supply."] },
+      { title: "Improved Nutrition & Health", content: ["Freshly harvested food is more nutritious. Knowing how your food is grown (without harmful chemicals) brings peace of mind."] },
+      { title: "Involve the Family", content: ["This farm can be a family project. Working together to grow food teaches valuable skills, promotes teamwork, and connects everyone to the land and where their food comes from."] },
+      { title: "Planning for Continuous Supply", content: ["Careful planning of what to plant and when is key. Stagger your plantings to ensure you have a continuous harvest rather than everything becoming ready at once."] },
+      { title: "Record Keeping", content: ["Simple notes on what you planted, when, and how much you harvested can help you improve your farm management each season."] },
+      { title: "Surplus as a Bonus", content: ["Once your family's food needs are met, any surplus can be sold locally, bartered with neighbors, or preserved for later use. This can provide a small additional income or help acquire things you don't produce."] }
     ]
   }
 ];
+
+const DetailCard = ({ title, content }: { title: string, content: string[] }) => (
+    <Card className="bg-background/50">
+        <CardHeader className="p-3">
+            <CardTitle className="text-sm">{title}</CardTitle>
+        </CardHeader>
+        <CardContent className="p-3 pt-0 text-xs text-muted-foreground">
+            {content.map((text, i) => <p key={i}>{text}</p>)}
+        </CardContent>
+    </Card>
+);
 
 export default function FamilyFarmPage() {
   return (
@@ -246,8 +239,8 @@ export default function FamilyFarmPage() {
                     {zone.title}
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="pt-1 pb-3 space-y-3 text-muted-foreground">
-                  <div className="grid md:grid-cols-3 gap-4 items-start">
+                <AccordionContent className="pt-1 pb-3 space-y-4 text-muted-foreground">
+                  <div className="grid md:grid-cols-3 gap-6 items-start">
                     <div className="md:col-span-1 relative aspect-video md:aspect-square rounded-md overflow-hidden my-2">
                        <Image src={zone.imageSrc} alt={zone.imageAlt} fill={true} style={{objectFit:"cover"}} data-ai-hint={zone.dataAiHint}/>
                     </div>
@@ -258,25 +251,23 @@ export default function FamilyFarmPage() {
                     </div>
                   </div>
                   {zone.details && zone.details.length > 0 && (
-                    <div className="mt-3 pl-3 border-l-2 border-primary/30 space-y-1.5">
-                      <h4 className="font-semibold text-foreground/90 text-md mb-1">Key Considerations & Practical Tips:</h4>
-                      <ul className="list-disc list-inside text-sm space-y-1">
+                    <div className="mt-4">
+                      <h4 className="font-semibold text-foreground/90 text-md mb-2">Key Considerations & Practical Tips:</h4>
+                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {zone.details.map((detail, index) => (
-                          <li key={index}>{detail}</li>
+                          <DetailCard key={index} title={detail.title} content={detail.content} />
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   )}
                   {zone.subSections && zone.subSections.length > 0 && (
-                     <div className="mt-4 space-y-3">
-                        {zone.subSections.map((sub, idx) => (
-                           <div key={idx} className="pl-3 border-l-2 border-accent/50">
-                              <h4 className="font-semibold text-foreground/90 text-md mb-1">{sub.title}</h4>
-                              <ul className="list-disc list-inside text-sm space-y-0.5">
-                                 {sub.content.map((item, itemIdx) => <li key={itemIdx}>{item}</li>)}
-                              </ul>
-                           </div>
-                        ))}
+                     <div className="mt-4">
+                        <h4 className="font-semibold text-foreground/90 text-md mb-2">Key Principles:</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {zone.subSections.map((sub, idx) => (
+                               <DetailCard key={idx} title={sub.title} content={sub.content} />
+                            ))}
+                        </div>
                      </div>
                   )}
                 </AccordionContent>
@@ -286,7 +277,7 @@ export default function FamilyFarmPage() {
 
           <Card className="bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-700 mt-6">
             <CardHeader>
-                <CardTitle className="text-xl text-green-700 dark:text-green-300 flex items-center gap-2"><Info className="h-5 w-5"/>Conclusion: Your Path to Family Food Security</CardTitle>
+                <CardTitle className="text-xl text-green-700 dark:text-green-300 flex items-center gap-2"><Home className="h-5 w-5"/>Conclusion: Your Path to Family Food Security</CardTitle>
             </CardHeader>
             <CardContent className="text-green-600 dark:text-green-400 space-y-2 text-sm">
                 <p>
