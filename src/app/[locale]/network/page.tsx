@@ -204,7 +204,7 @@ export default function NetworkPage() {
                 )) : (
                     <div className="col-span-full text-center py-16">
                         <Frown className="mx-auto h-12 w-12 text-muted-foreground/50" />
-                        <p className="mt-4 text-lg text-muted-foreground">{t('noStakeholdersFound')}</p>
+                        <p className="text-lg text-muted-foreground">{t('noStakeholdersFound')}</p>
                         <p className="text-sm text-muted-foreground">{t('noStakeholdersHint')}</p>
                     </div>
                 )
