@@ -789,3 +789,10 @@ export interface PaymentLog {
     date: string; // ISO string
     notes: string;
 }
+
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
+    
