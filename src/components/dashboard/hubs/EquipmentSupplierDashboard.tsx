@@ -114,7 +114,7 @@ export const EquipmentSupplierDashboard = () => {
                          <Button asChild className="w-full">
                            <Link href="/marketplace/create?category=heavy-machinery-sale">List New Equipment</Link>
                          </Button>
-                    </CardFooter>
+                     </CardFooter>
                 </Card>
                 
                 <Card className="col-span-1 md:col-span-3">
@@ -157,3 +157,5 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
+
+    
