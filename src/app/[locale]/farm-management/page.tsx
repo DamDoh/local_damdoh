@@ -20,7 +20,7 @@ export default function FarmManagementPage() {
       enabled: true,
     },
     {
-      title: "My People",
+      title: "My People (Labor)",
       description: "Manage your farm workers, track hours, and handle payroll.",
       link: "/farm-management/labor",
       icon: <Users className="h-8 w-8 text-primary mb-2" />,

@@ -21,7 +21,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageSquare, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, Calendar as CalendarIcon, QrCode, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageSquare, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, Calendar as CalendarIcon, QrCode, CheckCircle, XCircle, GitBranch } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
@@ -257,6 +257,16 @@ function ItemPageContent() {
                                 data-ai-hint="marketplace item"
                             />
                         </div>
+                         {item.relatedTraceabilityId && (
+                             <CardFooter className="p-3 bg-blue-50 dark:bg-blue-900/30">
+                                <Button asChild variant="secondary" className="w-full">
+                                    <Link href={`/traceability/batches/${item.relatedTraceabilityId}`}>
+                                        <GitBranch className="mr-2 h-4 w-4"/>
+                                        View Traceability Report
+                                    </Link>
+                                </Button>
+                            </CardFooter>
+                        )}
                     </Card>
                 </div>
                 

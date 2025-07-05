@@ -27,6 +27,7 @@ import type {
     PackagingSupplierDashboardData,
     FinancialApplication,
     AgriTechInnovatorDashboardData,
+    FarmerDashboardAlert,
 } from "./types";
 
 const db = admin.firestore();
@@ -51,8 +52,8 @@ export const getFarmerDashboardData = functions.https.onCall(
     const farmerId = checkAuth(context);
     try {
         const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
-        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('plantingDate', 'desc').limit(5).get();
-        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
+        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('plantingDate', 'desc').get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).orderBy('createdAt', 'desc').get();
         const financialsPromise = db.collection('financial_transactions').where('userRef', '==', db.collection('users').doc(farmerId)).get();
 
 
@@ -62,10 +63,42 @@ export const getFarmerDashboardData = functions.https.onCall(
             knfBatchesPromise,
             financialsPromise,
         ]);
+        
+        // --- Alerts Logic ---
+        const alerts: FarmerDashboardAlert[] = [];
+        const now = new Date();
+        const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        knfBatchesSnapshot.docs.forEach(doc => {
+            const batch = doc.data();
+            if (batch.status === 'Fermenting' && batch.nextStepDate.toDate() <= now) {
+                alerts.push({
+                    id: `knf-${doc.id}`,
+                    icon: 'FlaskConical',
+                    type: 'info',
+                    message: `Your ${batch.typeName} batch is ready for its next step.`,
+                    link: '/farm-management/knf-inputs'
+                });
+            }
+        });
+
+        cropsSnapshot.docs.forEach(doc => {
+            const crop = doc.data();
+            if (crop.harvestDate && crop.harvestDate.toDate() <= sevenDaysFromNow && crop.harvestDate.toDate() >= now) {
+                 alerts.push({
+                    id: `crop-${doc.id}`,
+                    icon: 'Sprout',
+                    type: 'warning',
+                    message: `Your ${crop.cropType} crop is due for harvest soon.`,
+                    link: `/farm-management/farms/${crop.farmId}`
+                });
+            }
+        });
+
 
         const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
 
-        const recentCrops = cropsSnapshot.docs.map(doc => {
+        const recentCrops = cropsSnapshot.docs.slice(0, 5).map(doc => {
             const cropData = doc.data();
             return {
                 id: doc.id,
@@ -77,15 +110,18 @@ export const getFarmerDashboardData = functions.https.onCall(
             };
         });
 
-        const activeKnfBatches = knfBatchesSnapshot.docs.map(doc => {
-            const batchData = doc.data();
-            return {
-                id: doc.id,
-                typeName: batchData.typeName,
-                status: batchData.status,
-                nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-            };
-        });
+        const activeKnfBatches = knfBatchesSnapshot.docs
+            .filter(doc => ['Fermenting', 'Ready'].includes(doc.data().status))
+            .slice(0, 5)
+            .map(doc => {
+                const batchData = doc.data();
+                return {
+                    id: doc.id,
+                    typeName: batchData.typeName,
+                    status: batchData.status,
+                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                };
+            });
 
         let totalIncome = 0;
         let totalExpense = 0;
@@ -104,14 +140,13 @@ export const getFarmerDashboardData = functions.https.onCall(
             netFlow: totalIncome - totalExpense,
         };
 
-        const allCropsSnapshot = await db.collection('crops').where('ownerId', '==', farmerId).get();
-
         return {
             farmCount: farmsSnapshot.size,
-            cropCount: allCropsSnapshot.size,
+            cropCount: cropsSnapshot.size,
             recentCrops: recentCrops, 
             knfBatches: activeKnfBatches,
             financialSummary: financialSummary,
+            alerts: alerts,
         };
 
     } catch (error) {
@@ -933,6 +968,8 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
+
 
 
 
