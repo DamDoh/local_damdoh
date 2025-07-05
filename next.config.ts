@@ -25,15 +25,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack(config) {
-    // Required for farmhash-modern to work
-    config.module.rules.push({
-      test: /\.wasm$/,
-      type: 'asset/resource',
-    });
-    
-    return config;
-  },
 };
 
 export default nextConfig;
