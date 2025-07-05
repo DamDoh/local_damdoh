@@ -335,6 +335,107 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
     }
 });
 
+export const getCrop = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+
+    const { cropId } = data;
+    if (!cropId) {
+        throw new functions.https.HttpsError("invalid-argument", "A cropId must be provided.");
+    }
+
+    try {
+        const cropDoc = await db.collection('crops').doc(cropId).get();
+        if (!cropDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Crop not found.");
+        }
+
+        const cropData = cropDoc.data()!;
+        if (cropData.ownerId !== context.auth.uid) {
+            throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this crop.");
+        }
+        
+        return {
+            id: cropDoc.id,
+            ...cropData,
+            plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
+            harvestDate: cropData.harvestDate?.toDate ? cropData.harvestDate.toDate().toISOString() : null,
+            createdAt: cropData.createdAt?.toDate ? cropData.createdAt.toDate().toISOString() : null,
+        };
+
+    } catch(error) {
+        console.error("Error fetching crop:", error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "Failed to fetch crop details.");
+    }
+});
+
+export const updateCrop = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {
+    cropId,
+    cropType,
+    plantingDate,
+    harvestDate,
+    expectedYield,
+    currentStage,
+    notes,
+  } = data;
+  if (!cropId || !cropType || !plantingDate) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Crop ID, crop type, and planting date are required.",
+    );
+  }
+  
+  const cropRef = db.collection("crops").doc(cropId);
+
+  try {
+    const cropDoc = await cropRef.get();
+    if (!cropDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Crop not found.");
+    }
+    if (cropDoc.data()?.ownerId !== context.auth.uid) {
+      throw new functions.https.HttpsError("permission-denied", "You do not have permission to update this crop.");
+    }
+
+    const updatePayload = {
+      cropType,
+      plantingDate: admin.firestore.Timestamp.fromDate(new Date(plantingDate)),
+      harvestDate: harvestDate ? admin.firestore.Timestamp.fromDate(new Date(harvestDate)) : null,
+      expectedYield: expectedYield || "",
+      currentStage: currentStage || null,
+      notes: notes || "",
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+
+    await cropRef.update(updatePayload);
+    
+    return { success: true, cropId: cropRef.id };
+
+  } catch(error: any) {
+    console.error(`Error updating crop ${cropId}:`, error);
+    if (error instanceof functions.https.HttpsError) {
+        throw error;
+    }
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to update crop.",
+      { originalError: error.message },
+    );
+  }
+});
+
+
 /**
  * Cloud Function to analyze a farmer's data and provide profitability insights.
  * This enhanced version conceptually uses detailed financial and activity data.

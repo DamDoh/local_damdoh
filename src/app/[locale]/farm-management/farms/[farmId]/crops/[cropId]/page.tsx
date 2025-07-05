@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, Calendar, Eye, HardHat, Package, CheckCircle, GitBranch } from 'lucide-react';
+import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, Calendar, Eye, HardHat, Package, CheckCircle, GitBranch, Edit } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -100,7 +100,14 @@ export default function CropDetailPage() {
     const docSnap = await getDoc(cropRef);
     if(docSnap.exists()){
       const data = docSnap.data();
-      setCrop({ id: docSnap.id, ...data } as CropDetails);
+      setCrop({ 
+          id: docSnap.id, 
+          cropType: data.cropType,
+          plantingDate: data.plantingDate.toDate().toISOString(),
+          harvestDate: data.harvestDate?.toDate().toISOString(),
+          currentStage: data.currentStage,
+          notes: data.notes
+      });
     } else {
       toast({ variant: 'destructive', title: 'Crop not found.' });
     }
@@ -143,6 +150,11 @@ export default function CropDetailPage() {
                     <CardDescription>Planted on {format(new Date(crop.plantingDate), 'PPP')}</CardDescription>
                 </div>
                  <div className="flex gap-2">
+                     <Button asChild variant="outline" size="sm">
+                       <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/edit`}>
+                        <Edit className="mr-2 h-4 w-4"/>Edit Crop
+                      </Link>
+                    </Button>
                     <Button asChild variant="outline" size="sm">
                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-input-application`}>
                         <Droplets className="mr-2 h-4 w-4"/>Log Input
