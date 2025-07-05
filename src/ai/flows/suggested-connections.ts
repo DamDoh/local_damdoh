@@ -25,7 +25,7 @@ const ConnectionSuggestionSchema = z.object({
   name: z.string().describe("The name of the suggested user."),
   role: z.string().describe("The primary role of the suggested user."),
   avatarUrl: z.string().optional().describe("The URL of the user's avatar image."),
-  reason: z.string().describe("A brief, personalized reason why this user is a good connection suggestion. (e.g., 'Shares your interest in organic coffee farming.')"),
+  reason: z.string().describe("A brief, personalized reason why this user is a good connection. (e.g., 'Shares your interest in organic coffee farming.')"),
 });
 
 // Output schema for the entire flow
