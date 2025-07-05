@@ -26,6 +26,7 @@ import type {
     WasteManagementDashboardData,
     PackagingSupplierDashboardData,
     FinancialApplication,
+    AgriTechInnovatorDashboardData,
 } from "./types";
 
 const db = admin.firestore();
@@ -52,11 +53,14 @@ export const getFarmerDashboardData = functions.https.onCall(
         const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
         const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('plantingDate', 'desc').limit(5).get();
         const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).where('status', 'in', ['Fermenting', 'Ready']).limit(5).get();
+        const financialsPromise = db.collection('financial_transactions').where('userRef', '==', db.collection('users').doc(farmerId)).get();
 
-        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot] = await Promise.all([
+
+        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot, financialsSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
             knfBatchesPromise,
+            financialsPromise,
         ]);
 
         const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
@@ -83,6 +87,23 @@ export const getFarmerDashboardData = functions.https.onCall(
             };
         });
 
+        let totalIncome = 0;
+        let totalExpense = 0;
+        financialsSnapshot.forEach(doc => {
+            const tx = doc.data();
+            if (tx.type === 'income') {
+                totalIncome += tx.amount;
+            } else if (tx.type === 'expense') {
+                totalExpense += tx.amount;
+            }
+        });
+        
+        const financialSummary = {
+            totalIncome,
+            totalExpense,
+            netFlow: totalIncome - totalExpense,
+        };
+
         const allCropsSnapshot = await db.collection('crops').where('ownerId', '==', farmerId).get();
 
         return {
@@ -90,6 +111,7 @@ export const getFarmerDashboardData = functions.https.onCall(
             cropCount: allCropsSnapshot.size,
             recentCrops: recentCrops, 
             knfBatches: activeKnfBatches,
+            financialSummary: financialSummary,
         };
 
     } catch (error) {
@@ -281,16 +303,64 @@ export const getCooperativeDashboardData = functions.https.onCall(
 );
 
 export const getBuyerDashboardData = functions.https.onCall(
-  (data, context): BuyerDashboardData => {
+  async (data, context): Promise<BuyerDashboardData> => {
     checkAuth(context);
-    return {
-        supplyChainRisk: { region: 'East Africa', level: 'Medium', factor: 'Drought conditions affecting yields', action: { label: 'Diversify Sourcing', link: '/network?role=Farmer&region=WestAfrica' }},
-        sourcingRecommendations: [
-            { id: 'rec1', name: 'Green Valley Farms', product: 'Organic Avocados', reliability: 92, vtiVerified: true },
-            { id: 'rec2', name: 'Kenya Coffee Co-op', product: 'AA Coffee Beans', reliability: 88, vtiVerified: true },
-        ],
-        marketPriceIntelligence: { product: 'Coffee Beans', trend: 'up', forecast: 'Prices expected to rise 5% next month due to weather.', action: { label: 'Secure Forward Contracts', link: '/marketplace?category=coffee' }}
-    };
+    
+    try {
+        // --- Sourcing Recommendations ---
+        // Fetch a few highly-rated, verified product listings.
+        const recommendationsSnapshot = await db.collection('marketplaceItems')
+            .where('listingType', '==', 'Product')
+            .where('isSustainable', '==', true) // Example filter for "good" products
+            .orderBy('createdAt', 'desc')
+            .limit(5)
+            .get();
+        
+        const sellerIds = [...new Set(recommendationsSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerProfiles: Record<string, string> = {};
+        if (sellerIds.length > 0) {
+            const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
+            sellersSnapshot.forEach(doc => {
+                sellerProfiles[doc.id] = doc.data().displayName || 'Unknown Seller';
+            });
+        }
+
+        const sourcingRecommendations = recommendationsSnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                name: sellerProfiles[item.sellerId] || 'Verified Supplier',
+                product: item.name,
+                reliability: 85 + Math.floor(Math.random() * 15), // Mock reliability
+                vtiVerified: !!item.relatedTraceabilityId,
+            };
+        });
+
+        // --- Mock Data for other sections ---
+        // These sections would require more complex AI/data analysis in a real app.
+        const supplyChainRisk = { 
+            region: 'East Africa', 
+            level: 'Medium', 
+            factor: 'Drought conditions affecting coffee bean yields.', 
+            action: { label: 'Diversify Sourcing', link: '/network?role=Farmer&region=WestAfrica' }
+        };
+        const marketPriceIntelligence = { 
+            product: 'Coffee Beans', 
+            trend: 'up' as 'up' | 'down' | 'stable', 
+            forecast: 'Prices expected to rise 5% next month due to weather.', 
+            action: { label: 'Secure Forward Contracts', link: '/marketplace?category=fresh-produce-fruits' } // updated link to match a category
+        };
+
+        return {
+            supplyChainRisk,
+            sourcingRecommendations,
+            marketPriceIntelligence
+        };
+
+    } catch (error) {
+        console.error("Error fetching buyer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for buyer.");
+    }
   }
 );
 
@@ -313,34 +383,137 @@ export const getRegulatorDashboardData = functions.https.onCall(
 
 
 export const getLogisticsDashboardData = functions.https.onCall(
-  (data, context): LogisticsDashboardData => {
+  async (data, context): Promise<LogisticsDashboardData> => {
     checkAuth(context);
-    return {
-        activeShipments: [
-            { id: 'ship1', to: 'Mombasa Port', status: 'On Time', eta: new Date(Date.now() + 86400000 * 1).toISOString(), vtiLink: '#' },
-            { id: 'ship2', to: 'Nairobi Central', status: 'Delayed', eta: new Date(Date.now() + 86400000 * 2).toISOString(), vtiLink: '#' }
-        ],
-        incomingJobs: [
-            { id: 'job1', from: 'Eldoret Farms', to: 'Kampala', product: 'Maize (30 tons)', requirements: 'Standard Transport', actionLink: '#' }
-        ],
-        performanceMetrics: { onTimePercentage: 97, fuelEfficiency: '12km/L', actionLink: '#' }
-    };
+    
+    try {
+        // --- Active Shipments ---
+        // Simulating active shipments by fetching recently shipped orders.
+        const shipmentsSnapshot = await db.collection('marketplace_orders')
+            .where('status', '==', 'shipped')
+            .orderBy('updatedAt', 'desc')
+            .limit(5)
+            .get();
+
+        const activeShipments = shipmentsSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                // In a real app, 'to' would be on the order. We'll use buyer's location as a placeholder.
+                to: order.buyerLocation || 'Unknown Destination', 
+                status: 'In Transit', // Assume 'shipped' means 'in transit'
+                eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(), // Mock ETA
+                vtiLink: `/traceability/batches/${order.itemId}` // conceptual link
+            };
+        });
+
+        // --- Incoming Jobs ---
+        // Simulating jobs by fetching confirmed orders that might need logistics.
+        const jobsSnapshot = await db.collection('marketplace_orders')
+            .where('status', '==', 'confirmed')
+            .orderBy('createdAt', 'desc')
+            .limit(5)
+            .get();
+            
+        const sellerIds = [...new Set(jobsSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerProfiles: Record<string, any> = {};
+        if (sellerIds.length > 0) {
+            const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
+            sellersSnapshot.forEach(doc => {
+                sellerProfiles[doc.id] = { location: doc.data().location || 'Unknown Origin' };
+            });
+        }
+
+        const incomingJobs = jobsSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
+                to: order.buyerLocation || 'Unknown Destination',
+                product: `${order.listingName} (${order.quantity} units)`,
+                requirements: 'Standard Transport', // Placeholder
+                actionLink: `/marketplace/my-orders/${order.id}` // conceptual link
+            };
+        });
+
+        // --- Performance Metrics (remains mocked) ---
+        const performanceMetrics = { 
+            onTimePercentage: 97, 
+            fuelEfficiency: '12km/L', 
+            actionLink: '#' 
+        };
+
+        return {
+            activeShipments,
+            incomingJobs,
+            performanceMetrics,
+        };
+    } catch (error) {
+        console.error("Error fetching logistics dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for logistics.");
+    }
   }
 );
 
 
 export const getFieldAgentDashboardData = functions.https.onCall(
-  (data, context): FieldAgentDashboardData => {
-    checkAuth(context);
-    return {
-        assignedFarmers: [
-            { id: 'farmer1', name: 'John Doe', lastVisit: new Date(Date.now() - 86400000 * 3).toISOString(), issues: 2, actionLink: '#' },
-            { id: 'farmer2', name: 'Jane Smith', lastVisit: new Date(Date.now() - 86400000 * 5).toISOString(), issues: 0, actionLink: '#' }
-        ],
-        portfolioHealth: { overallScore: 85, alerts: ['Pest alert in North region'], actionLink: '#' },
-        pendingReports: 3,
-        dataVerificationTasks: { count: 8, description: 'Verify harvest logs for maize', actionLink: '#' }
-    };
+  async (data, context): Promise<FieldAgentDashboardData> => {
+    const agentId = checkAuth(context);
+    
+    try {
+        const agentDoc = await db.collection('users').doc(agentId).get();
+        if (!agentDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Agent profile not found.');
+        }
+        
+        const agentData = agentDoc.data();
+        // Assuming assigned farmers are stored in profileData.assignedFarmers
+        const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
+        
+        let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
+
+        if (assignedFarmerIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // For a production app, this would need chunking if an agent has > 30 farmers.
+            const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
+            
+            assignedFarmers = farmersSnapshot.docs.map(doc => {
+                const farmerData = doc.data();
+                // Mocking lastVisit and issues for now
+                return {
+                    id: doc.id,
+                    name: farmerData.displayName || 'Unknown Farmer',
+                    lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
+                    issues: Math.floor(Math.random() * 3), // Random number of issues
+                    actionLink: `/profiles/${doc.id}`
+                };
+            });
+        }
+        
+        // Keep other parts mocked for this iteration
+        const portfolioHealth = {
+            overallScore: 85,
+            alerts: ['Pest alert in North region'],
+            actionLink: '#'
+        };
+        const pendingReports = 3;
+        const dataVerificationTasks = {
+            count: 8,
+            description: 'Verify harvest logs for maize',
+            actionLink: '#'
+        };
+
+        return {
+            assignedFarmers,
+            portfolioHealth,
+            pendingReports,
+            dataVerificationTasks
+        };
+        
+    } catch (error) {
+        console.error("Error fetching field agent dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for field agent.");
+    }
   }
 );
 
@@ -516,37 +689,87 @@ export const getResearcherDashboardData = functions.https.onCall(
 
 
 export const getAgronomistDashboardData = functions.https.onCall(
-  (data, context): AgronomistDashboardData => {
-    checkAuth(context);
-    return {
-        assignedFarmersOverview: [
+  async (data, context): Promise<AgronomistDashboardData> => {
+    const userId = checkAuth(context);
+    try {
+        // Fetch knowledge hub contributions made by this user
+        const articlesSnapshot = await db.collection('knowledge_articles')
+            .where('authorId', '==', userId)
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
+
+        const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
+            const article = doc.data();
+            return {
+                id: doc.id,
+                title: article.title_en || article.title_km || "Untitled Article",
+                status: 'Published' as const,
+            };
+        });
+
+        // Mock data for other sections
+        const assignedFarmersOverview = [
             { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
-        ],
-        pendingConsultationRequests: [
+        ];
+        const pendingConsultationRequests = [
             { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
-        ],
-        knowledgeHubContributions: [
-            { id: 'kb1', title: 'Identifying Fall Armyworm', status: 'Published' }
-        ]
-    };
+        ];
+
+        return {
+            assignedFarmersOverview,
+            pendingConsultationRequests,
+            knowledgeHubContributions,
+        };
+    } catch (error) {
+        console.error("Error fetching agronomist dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
 
 export const getAgroTourismDashboardData = functions.https.onCall(
-  (data, context): AgroTourismDashboardData => {
-    checkAuth(context);
-    return {
-        upcomingBookings: [
+  async (data, context): Promise<AgroTourismDashboardData> => {
+    const operatorId = checkAuth(context);
+    try {
+        // --- Fetch Live Data for Listed Experiences ---
+        const experiencesSnapshot = await db.collection('marketplaceItems')
+            .where('sellerId', '==', operatorId)
+            .where('category', '==', 'agri-tourism-services')
+            .orderBy('createdAt', 'desc')
+            .get();
+
+        const listedExperiences = experiencesSnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                title: item.name,
+                location: item.location,
+                status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
+                bookingsCount: item.bookingsCount || 0, // A field we can increment
+                actionLink: `/marketplace/${doc.id}/manage-service`
+            };
+        });
+
+        // --- Keep Mock Data for other sections for now ---
+        const upcomingBookings = [
             { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
-        ],
-        listedExperiences: [
-            { id: 'exp1', title: 'Organic Farm Stay', location: 'Limuru', status: 'Published', bookingsCount: 12, actionLink: '#' }
-        ],
-        guestReviews: [
+        ];
+        const guestReviews = [
             { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
-        ]
-    };
+        ];
+
+        return {
+            listedExperiences,
+            upcomingBookings,
+            guestReviews,
+        };
+
+    } catch (error) {
+        console.error("Error fetching Agro-Tourism dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
@@ -662,7 +885,62 @@ export const getWasteManagementDashboardData = functions.https.onCall(
     };
   }
 );
+
+export const getOperationsDashboardData = functions.https.onCall(
+  (data, context): OperationsDashboardData => {
+    checkAuth(context);
+    // In a real app, this data would be pulled from system monitoring tools and data analysis queries.
+    return {
+      vtiGenerationRate: {
+        rate: 150,
+        unit: 'VTIs/hour',
+        trend: 5,
+      },
+      dataPipelineStatus: {
+        status: 'Operational',
+        lastChecked: new Date().toISOString(),
+      },
+      flaggedEvents: [
+        { id: 'flag1', type: 'Unusual Time Lag', description: 'Harvest to Transport delay > 48h for perishable goods.', vtiLink: '#' },
+        { id: 'flag2', type: 'Anomalous Geolocation', description: 'Processing event logged 500km from previous event location.', vtiLink: '#' },
+      ],
+    };
+  }
+);
+
+export const getAgriTechInnovatorDashboardData = functions.https.onCall(
+  (data, context): AgriTechInnovatorDashboardData => {
+    checkAuth(context);
+    // In a real app, this data would be pulled from a secure datastore.
+    return {
+      apiKeys: [
+        { id: 'key1', key: 'sk_test_..._xyz1', status: 'Active', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 30).toISOString() },
+        { id: 'key2', key: 'sk_prod_..._abc2', status: 'Active', environment: 'Production', createdAt: new Date(Date.now() - 86400000 * 90).toISOString() },
+        { id: 'key3', key: 'sk_test_..._pqr3', status: 'Revoked', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 120).toISOString() },
+      ],
+      sandboxStatus: {
+        status: 'Operational',
+        lastReset: new Date(Date.now() - 86400000 * 3).toISOString(),
+      },
+      integrationProjects: [
+        { id: 'proj1', title: 'Real-time Cold Chain Monitoring with CoolTech', status: 'Live', partner: 'CoolTech Solutions', actionLink: '#' },
+        { id: 'proj2', title: 'Drone-based Crop Scouting API Integration', status: 'In Development', partner: 'SkyAgroScout', actionLink: '#' },
+      ],
+    };
+  }
+);
     
 
 
     
+
+
+
+
+
+
+
+
+
+
+

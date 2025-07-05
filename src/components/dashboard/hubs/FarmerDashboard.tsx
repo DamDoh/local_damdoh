@@ -6,21 +6,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle } from 'lucide-react';
+import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 
-const StatCard = ({ title, value, icon, actionLink, actionLabel }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string }) => (
+const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean }) => (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         {icon}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-2xl font-bold">
+            {isCurrency && '$'}{value.toLocaleString(undefined, { minimumFractionDigits: isCurrency ? 2 : 0, maximumFractionDigits: isCurrency ? 2 : 0 })}
+            {unit && <span className="text-sm text-muted-foreground ml-1">{unit}</span>}
+        </div>
       </CardContent>
       <CardFooter>
         <Button asChild variant="outline" size="sm" className="w-full">
@@ -64,14 +67,15 @@ export const FarmerDashboard = () => {
         );
     }
     
-    const { farmCount, cropCount, recentCrops = [], knfBatches = [] } = dashboardData;
+    const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary } = dashboardData;
 
     return (
         <div className="space-y-6">
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Farms"/>
-                <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management" actionLabel="Manage Crops"/>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+                <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Farms"/>
+                <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Crops"/>
                 <StatCard title="KNF Batches" value={(knfBatches || []).length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
+                <StatCard title="Net Financials" value={financialSummary?.netFlow || 0} icon={<DollarSign className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/financials" actionLabel="View Financials" isCurrency={true}/>
              </div>
               <Card>
                 <CardHeader>
@@ -119,7 +123,8 @@ export const FarmerDashboard = () => {
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Skeleton className="h-36 rounded-lg" />
             <Skeleton className="h-36 rounded-lg" />
             <Skeleton className="h-36 rounded-lg" />
             <Skeleton className="h-36 rounded-lg" />

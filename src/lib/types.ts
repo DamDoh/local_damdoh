@@ -137,6 +137,7 @@ export interface FarmerDashboardData {
     status: string;
     nextStepDate: string | null;
   }[];
+  financialSummary?: FinancialSummary;
 }
 
 export interface CooperativeDashboardData {
