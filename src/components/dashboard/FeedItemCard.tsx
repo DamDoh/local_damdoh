@@ -162,7 +162,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       <CardHeader className="p-4">
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10">
-            <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile agriculture person" />
+            <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile person agriculture" />
             <AvatarFallback>{item.userName?.substring(0, 1) ?? 'U'}</AvatarFallback>
           </Avatar>
           <div className="flex-1">
@@ -251,7 +251,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                     replies.map(reply => (
                         <div key={reply.id} className="flex items-start gap-2">
                             <Avatar className="h-7 w-7">
-                                <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} data-ai-hint="profile person"/>
+                                <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} data-ai-hint="profile person agriculture" />
                                 <AvatarFallback>{reply.author.name.substring(0,1)}</AvatarFallback>
                             </Avatar>
                             <div className="flex-1 bg-muted rounded-md p-2 text-sm">
@@ -270,7 +270,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
             </div>
              <div className="flex items-start gap-2 pt-2">
                 <Avatar className="h-7 w-7">
-                    <AvatarImage src={currentUserProfile?.avatarUrl || "https://placehold.co/40x40.png"} alt={"Current User"} data-ai-hint="profile person agriculture"/>
+                    <AvatarImage src={currentUserProfile?.avatarUrl || "https://placehold.co/40x40.png"} alt={"Current User"} data-ai-hint="profile agriculture"/>
                     <AvatarFallback>{currentUserProfile?.displayName?.substring(0, 1) || 'U'}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -297,4 +297,3 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   );
 }
 
-    

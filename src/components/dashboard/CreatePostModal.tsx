@@ -121,7 +121,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
           </VisuallyHidden>
           <div className="flex items-center gap-2">
             <Avatar className="h-9 w-9">
-              <AvatarImage src={profile?.avatarUrl} alt={profile?.displayName} data-ai-hint="profile person agriculture" />
+              <AvatarImage src={profile?.avatarUrl} alt={profile?.displayName} data-ai-hint="profile person" />
               <AvatarFallback>{profile?.displayName?.substring(0, 1) ?? 'U'}</AvatarFallback>
             </Avatar>
             <div>
@@ -142,7 +142,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
 
             {mediaPreview && (
               <div className="relative group">
-                <Image src={mediaPreview} alt="Media preview" width={550} height={300} className="rounded-md object-contain max-h-[300px] w-full" data-ai-hint="post content image" />
+                <Image src={mediaPreview} alt="Media preview" width={550} height={300} className="rounded-md object-contain max-h-[300px] w-full" data-ai-hint="post image" />
                 <Button
                   variant="destructive"
                   size="icon"
