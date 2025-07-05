@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -145,11 +146,6 @@ export interface FarmerDashboardData {
   }[];
   financialSummary?: FinancialSummary;
   alerts?: FarmerDashboardAlert[];
-  certifications?: {
-    id: string;
-    name: string;
-    issuingBody: string;
-  }[];
 }
 
 export interface CooperativeDashboardData {

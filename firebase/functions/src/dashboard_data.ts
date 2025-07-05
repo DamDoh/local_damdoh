@@ -140,10 +140,6 @@ export const getFarmerDashboardData = functions.https.onCall(
             netFlow: totalIncome - totalExpense,
         };
         
-        const certifications = [
-            { id: 'cert1', name: 'GlobalG.A.P.', issuingBody: 'SGS' },
-            { id: 'cert2', name: 'Organic Certified', issuingBody: 'ECOCERT' },
-        ];
 
         return {
             farmCount: farmsSnapshot.size,
@@ -152,7 +148,6 @@ export const getFarmerDashboardData = functions.https.onCall(
             knfBatches: activeKnfBatches,
             financialSummary: financialSummary,
             alerts: alerts,
-            certifications: certifications,
         };
 
     } catch (error) {
@@ -974,6 +969,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
     
+
 
 
 
