@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, Calendar, Eye, HardHat, Package, CheckCircle, GitBranch, Edit } from 'lucide-react';
+import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, Calendar, Eye, HardHat, Package, CheckCircle, GitBranch, Edit, Truck } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,6 +43,7 @@ const getEventIcon = (eventType: string) => {
         case 'HARVESTED': return <Weight {...iconProps} />;
         case 'PACKAGED': return <Package {...iconProps} />;
         case 'VERIFIED': return <CheckCircle {...iconProps} />;
+        case 'TRANSPORTED': return <Truck {...iconProps} />;
         default: return <HardHat {...iconProps} />;
     }
 };
@@ -150,25 +151,36 @@ export default function CropDetailPage() {
                     <CardDescription>Planted on {format(new Date(crop.plantingDate), 'PPP')}</CardDescription>
                 </div>
                  <div className="flex gap-2">
-                     <Button asChild variant="outline" size="sm">
+                     <Button asChild variant="secondary" size="sm">
                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/edit`}>
-                        <Edit className="mr-2 h-4 w-4"/>Edit Crop
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="sm">
-                       <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-input-application`}>
-                        <Droplets className="mr-2 h-4 w-4"/>Log Input
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="sm">
-                       <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-observation`}>
-                        <NotebookPen className="mr-2 h-4 w-4"/>Log Observation
+                        <Edit className="mr-2 h-4 w-4"/>Edit Details
                       </Link>
                     </Button>
                  </div>
             </div>
         </CardHeader>
         <CardContent>
+            <div className="mb-6 bg-muted/50 p-4 rounded-lg border">
+                <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
+                 <div className="flex flex-wrap gap-2">
+                    <Button asChild variant="outline" size="sm">
+                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-input-application`}>
+                        <Droplets className="mr-2 h-4 w-4"/>Log Input Application
+                        </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="sm">
+                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-observation`}>
+                        <NotebookPen className="mr-2 h-4 w-4"/>Log Observation
+                        </Link>
+                    </Button>
+                     <Button asChild variant="default" size="sm">
+                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
+                            <Weight className="mr-2 h-4 w-4" />Log Harvest
+                        </Link>
+                    </Button>
+                </div>
+            </div>
+
             <h3 className="text-lg font-semibold mb-4">Crop Journey</h3>
             <div className="relative pl-6">
                 <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>

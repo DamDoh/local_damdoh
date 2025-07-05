@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, TrendingUp, Lightbulb, Edit } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -207,36 +207,21 @@ export default function FarmDetailPage() {
                             <div className="space-y-3">
                                 {crops.map((crop) => (
                                     <Card key={crop.id} className="bg-muted/30">
-                                        <CardHeader className="p-4 flex flex-row justify-between items-start">
-                                            <div>
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`} className="hover:underline">
-                                                    <CardTitle className="text-lg">{crop.cropType}</CardTitle>
-                                                </Link>
-                                                <CardDescription>Planted: {format(new Date(crop.plantingDate), 'PPP')} | Stage: {crop.currentStage || 'N/A'}</CardDescription>
+                                        <CardHeader className="p-4">
+                                            <div className="flex justify-between items-start">
+                                                <div>
+                                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`} className="hover:underline">
+                                                        <CardTitle className="text-lg">{crop.cropType}</CardTitle>
+                                                    </Link>
+                                                    <CardDescription>Planted: {format(new Date(crop.plantingDate), 'PPP')} | Stage: {crop.currentStage || 'N/A'}</CardDescription>
+                                                </div>
+                                                <Button asChild variant="outline" size="sm">
+                                                    <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
+                                                        View Journey
+                                                    </Link>
+                                                </Button>
                                             </div>
-                                            <Button asChild variant="outline" size="sm">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
-                                                    View Journey
-                                                </Link>
-                                            </Button>
                                         </CardHeader>
-                                        <CardContent className="p-4 pt-0 flex flex-wrap gap-2">
-                                            <Button asChild variant="default" size="sm">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
-                                                    <Weight className="mr-2 h-4 w-4" />Log Harvest
-                                                </Link>
-                                            </Button>
-                                            <Button asChild variant="outline" size="sm">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-input-application`}>
-                                                    <Droplets className="mr-2 h-4 w-4" />Log Input
-                                                </Link>
-                                            </Button>
-                                            <Button asChild variant="outline" size="sm">
-                                                <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}/log-observation`}>
-                                                    <NotebookPen className="mr-2 h-4 w-4" />Log Observation
-                                                </Link>
-                                            </Button>
-                                        </CardContent>
                                     </Card>
                                 ))}
                             </div>
