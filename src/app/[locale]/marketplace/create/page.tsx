@@ -9,8 +9,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star } from "lucide-react";
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 import { useForm } from "react-hook-form";
@@ -21,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, getListingTypeFormOptions } from '@/lib/constants';
 import { useAuth } from '@/lib/auth-utils';
 import { Switch } from '@/components/ui/switch';
+import { suggestMarketPrice } from '@/ai/flows/suggest-market-price-flow';
 
 
 export default function CreateListingPage() {
@@ -35,9 +34,7 @@ export default function CreateListingPage() {
     const [isSuggestingPrice, setIsSuggestingPrice] = useState(false);
     const [suggestedPrice, setSuggestedPrice] = useState<string | null>(null);
     
-    const functions = getFunctions(firebaseApp);
-    const createListingCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceListing'), [functions]);
-    const suggestPriceCallable = useMemo(() => httpsCallable(functions, 'suggestMarketPrice'), [functions]);
+    const createListingCallable = httpsCallable(functions, 'createMarketplaceListing');
 
     const form = useForm<CreateMarketplaceItemValues>({
       resolver: zodResolver(createMarketplaceItemSchema),
@@ -86,8 +83,8 @@ export default function CreateListingPage() {
       setIsSuggestingPrice(true);
       setSuggestedPrice(null);
       try {
-        const result = await suggestPriceCallable({ productName: name, description, category, location });
-        const price = (result.data as { price: number }).price;
+        const result = await suggestMarketPrice({ productName: name, description, category, location });
+        const price = result.price;
         setSuggestedPrice(price.toFixed(2));
       } catch (error: any) {
         console.error("Error suggesting price:", error);
