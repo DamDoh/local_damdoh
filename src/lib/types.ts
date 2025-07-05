@@ -610,6 +610,12 @@ export interface FinancialApplication {
   actionLink: string;
 }
 
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
+
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -674,7 +680,7 @@ export interface FeedItem {
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
-  pollOptions?: { text: string; votes?: number }[];
+  pollOptions?: PollOption[];
 }
 
 export interface DirectMessage {
