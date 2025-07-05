@@ -1,3 +1,4 @@
+
 // Use type safe message keys with `next-intl`
 // This file provides TypeScript with a clear structure for your translation files,
 // preventing type-checking errors that can crash the application.
