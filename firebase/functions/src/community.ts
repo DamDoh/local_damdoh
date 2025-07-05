@@ -160,5 +160,3 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
 
     return { comments, lastVisible: newLastVisible };
 });
-
-    
