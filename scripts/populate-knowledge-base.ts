@@ -5,7 +5,7 @@
 // 2. You will need to install ts-node: `npm install -g ts-node`
 // 3. From your project root, run: `ts-node ./scripts/populate-knowledge-base.ts`
 
-import { initializeApp, cert, getApps, getApp } from 'firebase-admin/app';
+import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
