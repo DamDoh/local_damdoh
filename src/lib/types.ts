@@ -805,5 +805,3 @@ export interface FarmingAssistantOutput {
   }[];
   suggestedQueries?: string[];
 }
-
-    

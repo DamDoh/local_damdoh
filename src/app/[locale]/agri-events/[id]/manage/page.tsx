@@ -380,8 +380,23 @@ const AttendeesTab = ({ eventId }: { eventId: string }) => {
     }, [eventId, getAttendeesCallable, toast]);
 
     const handleDownloadCsv = () => {
-        // Placeholder functionality
-        toast({ title: "Feature Coming Soon", description: "CSV export for attendee list will be available in a future update." });
+        if (attendees.length === 0) {
+            toast({ title: "No attendees to export." });
+            return;
+        }
+
+        const headers = ["displayName", "email", "registeredAt", "checkedIn"];
+        const csvContent = "data:text/csv;charset=utf-8," 
+            + headers.join(",") + "\n" 
+            + attendees.map(e => headers.map(header => `"${e[header as keyof EventAttendee]}"`).join(",")).join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `event_attendees_${eventId}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     return (
@@ -500,5 +515,3 @@ export default function ManageEventPage() {
         </div>
     );
 }
-
-    
