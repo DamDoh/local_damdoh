@@ -103,6 +103,13 @@ export interface Notification {
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
+export interface FarmerDashboardAlert {
+    id: string;
+    icon: 'FlaskConical' | 'Sprout';
+    type: 'info' | 'warning';
+    message: string;
+    link: string;
+}
 
 export interface FinancialTransaction {
     id: string;
@@ -138,6 +145,7 @@ export interface FarmerDashboardData {
     nextStepDate: string | null;
   }[];
   financialSummary?: FinancialSummary;
+  alerts?: FarmerDashboardAlert[];
 }
 
 export interface CooperativeDashboardData {
@@ -759,4 +767,25 @@ export interface Worker {
   payRateUnit?: string;
   totalHoursLogged?: number;
   totalPaid?: number;
+}
+
+export interface WorkLog {
+    id: string;
+    hours: number;
+    date: string; // ISO string
+    taskDescription: string;
+    isPaid: boolean;
+}
+
+export interface PaymentLog {
+    id: string;
+    amount: number;
+    currency: string;
+    date: string; // ISO string
+    notes: string;
+}
+
+export interface PollOption {
+  text: string;
+  votes?: number;
 }
