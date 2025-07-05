@@ -78,7 +78,7 @@ All critical operations are handled by secure, server-side Cloud Functions.
 ### 2.3. Client-Side Implementation
 
 -   **QR Code Generation**: The app uses a client-side library (`qrcode.react`) to generate the QR code.
--   **QR Code Content**: The QR code **only** contains the `universalId`. It is structured as a deep link for potential future use, e.g., `damdoh://user?id=a-unique-non-sensitive-uuid-v4`.
+-   **QR Code Content**: The QR code **only** contains the `universalId`. It is structured as a deep link for potential future use, e.g., `damdoh:user?id=a-unique-non-sensitive-uuid-v4`.
 -   **QR Code Display**: The user's QR code is accessible within their profile, displayed in a modal/dialog to be scanned by others.
 
 ### 2.4. Social Account Recovery (Phase 2)
@@ -113,4 +113,4 @@ A critical feature for users without stable email or phone access is the ability
 -   **Authenticated Endpoints**: All Cloud Functions are protected, requiring authenticated users to invoke them.
 -   **Role-Based Access Control (RBAC)**: The authorization logic is centralized within the Cloud Functions (`getUniversalIdData`, `lookupUserByPhone`), making the security model easier to manage and audit.
 
-This foundational phase establishes a secure and scalable system ready for the subsequent implementation of account recovery, agent workflows, and payment integrations.
+This foundational phase establishes a secure and scalable system ready for the subsequent implementation of agent workflows and payment integrations.

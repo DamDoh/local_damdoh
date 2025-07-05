@@ -159,8 +159,8 @@ export default function ProfileDetailPage() {
   const isCurrentUserProfile = authUser?.uid === profile.id;
   const qrCodeValue = profile.universalId ? `damdoh:user?id=${profile.universalId}` : 'error';
   
-  const areasOfInterest = profile.stakeholderProfile?.areasOfInterest;
-  const needs = profile.stakeholderProfile?.needs;
+  const areasOfInterest = (profile as any)?.areasOfInterest;
+  const needs = (profile as any)?.needs;
 
   return (
     <div className="space-y-6">
@@ -175,7 +175,7 @@ export default function ProfileDetailPage() {
             data-ai-hint={profile.primaryRole ? `${profile.primaryRole.toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-              <AvatarImage src={profile.photoURL} alt={profile.displayName} data-ai-hint="profile business food" />
+              <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile business food" />
               <AvatarFallback className="text-4xl">{profile.displayName.substring(0,1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
@@ -241,12 +241,12 @@ export default function ProfileDetailPage() {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {(profile.stakeholderProfile as any)?.yearsOfExperience !== undefined && (
+            {(profile as any).stakeholderProfile?.yearsOfExperience !== undefined && (
               <div className="flex items-start gap-3">
                 <Briefcase className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">{t('experienceTitle')}</h4>
-                  <p className="text-muted-foreground">{(profile.stakeholderProfile as any).yearsOfExperience} years</p>
+                  <p className="text-muted-foreground">{(profile as any).stakeholderProfile.yearsOfExperience} years</p>
                 </div>
               </div>
             )}
@@ -290,7 +290,7 @@ export default function ProfileDetailPage() {
         </CardContent>
       </Card>
       
-      {profile.stakeholderProfile && Object.keys(profile.stakeholderProfile).length > 0 && (
+      {(profile as any).stakeholderProfile && Object.keys((profile as any).stakeholderProfile).length > 0 && (
         <Card>
             <CardHeader>
                 <CardTitle>{profile.primaryRole} {t('detailsTitle')}</CardTitle>
@@ -298,7 +298,7 @@ export default function ProfileDetailPage() {
             </CardHeader>
             <CardContent>
                 <pre className="p-4 bg-muted rounded-md text-xs whitespace-pre-wrap">
-                    {JSON.stringify(profile.stakeholderProfile, null, 2)}
+                    {JSON.stringify((profile as any).stakeholderProfile, null, 2)}
                 </pre>
                 <p className="text-xs text-muted-foreground mt-2">{t('tempDisplayNotice')}</p>
             </CardContent>
