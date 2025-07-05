@@ -15,8 +15,8 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProfilesFromDB } from "@/lib/db-utils";
 import { useTranslations } from "next-intl";
-import { useUserProfile } from "@/hooks/useUserProfile";
-import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
+import { useUserProfile } from '@/hooks/useUserProfile';
+import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 
 function ProfileCardSkeleton() {
   return (
