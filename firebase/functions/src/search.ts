@@ -104,7 +104,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
     }
-    const { mainKeywords, identifiedLocation, suggestedFilters } = data;
+    const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit } = data;
     
     if (!Array.isArray(mainKeywords)) {
         throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
@@ -113,6 +113,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
+        // --- Keyword Filtering ---
         const validKeywords = mainKeywords.filter((k): k is string => typeof k === 'string' && k.trim() !== '');
         if (validKeywords.length > 0) {
             const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
@@ -121,6 +122,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             }
         }
         
+        // --- Tag-based Filtering ---
         const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category');
         if (categoryFilter?.value) {
             query = query.where('tags', 'array-contains', categoryFilter.value);
@@ -131,11 +133,37 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             query = query.where('listingType', '==', listingTypeFilter.value);
         }
 
+        // --- Location Filtering ---
         if (identifiedLocation) {
             query = query.where("location", "==", identifiedLocation);
         }
 
-        const snapshot = await query.orderBy("updatedAt", "desc").limit(20).get();
+        // --- Unit Filtering ---
+        if (perUnit) {
+            query = query.where("perUnit", "==", perUnit);
+        }
+        
+        // --- Price Filtering ---
+        // Note: Firestore requires the first orderBy to be on the field used for inequality filters.
+        let hasInequalityFilter = false;
+        if (typeof minPrice === 'number') {
+            query = query.where('price', '>=', minPrice);
+            hasInequalityFilter = true;
+        }
+         if (typeof maxPrice === 'number') {
+            query = query.where('price', '<=', maxPrice);
+            hasInequalityFilter = true;
+        }
+        
+        if (hasInequalityFilter) {
+            query = query.orderBy('price', 'asc');
+        } else {
+            // Default sort order if no price filter is applied
+            query = query.orderBy("updatedAt", "desc");
+        }
+
+
+        const snapshot = await query.limit(20).get();
         
         const results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 

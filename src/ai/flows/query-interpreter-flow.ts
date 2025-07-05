@@ -29,6 +29,9 @@ const SmartSearchInterpretationSchema = z.object({
   identifiedIntent: z.string().optional().describe("The inferred user intent (e.g., 'buy', 'sell', 'rent', 'find service', 'job search', 'information', 'advice')."),
   suggestedFilters: z.array(SuggestedFilterSchema).optional().describe("An array of potential filters that could be applied based on the query interpretation. Helps narrow down search results."),
   interpretationNotes: z.string().optional().describe("A brief explanation of how the AI understood the query, or suggestions for how the user might refine their search for better results. This could include identified scope like 'local', 'regional', 'continental', or 'global' if discernible."),
+  minPrice: z.number().optional().describe("The minimum price if specified by the user (e.g., from 'over $50')."),
+  maxPrice: z.number().optional().describe("The maximum price if specified by the user (e.g., from 'under $100')."),
+  perUnit: z.string().optional().describe("The unit for the price if specified (e.g., '/kg', '/ton').")
 });
 export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
 
@@ -48,23 +51,24 @@ User's Raw Query: "{{{rawQuery}}}"
 Based on this query, please provide:
 1.  **originalQuery**: Reiterate the user's original raw query.
 2.  **mainKeywords**: Identify the primary items, products, services, or concepts the user is searching for. Extract these as an array of strings. (e.g., ["organic mangoes", "tractor repair"], ["coffee beans"]).
-3.  **identifiedLocation**: If a specific location (city, region, country, continent) is mentioned or strongly implied, state it. If multiple locations are mentioned, identify the most relevant or primary one. If no location is clear, omit this field or provide a general scope like "Global".
-4.  **identifiedIntent**: Infer the user's likely intent from the query. Examples: 'buy', 'sell', 'rent', 'find service', 'job search', 'information', 'advice'. If unclear, omit.
-5.  **suggestedFilters**: Based on the query and intent, suggest potential filters an e-commerce platform might use. For example:
-    *   If "buy fresh tomatoes Nairobi" is queried, suggest: \`[{ type: 'listingType', value: 'Product' }, { type: 'category', value: 'fresh-produce-vegetables' }, { type: 'location', value: 'Nairobi' }, { type: 'intent', value: 'buy' }]\`.
-    *   If "agronomy consultant Kenya" is queried, suggest: \`[{ type: 'listingType', value: 'Service' }, { type: 'category', value: 'consultancy-advisory' }, {type: 'location', value: 'Kenya' }]\`.
-    *   Other filter types could be 'locationScope' with values like 'Local', 'Regional', 'Continental', 'Global'.
-6.  **interpretationNotes**: Provide a brief (1-2 sentences) explanation of your interpretation. For example, "User seems to be looking to buy X in Y location. They might also be interested in Z." Or, "Query is broad; suggesting to filter by category or location for more specific results." If you detect a geographical scope (local, regional, continental, global), mention it here.
+3.  **identifiedLocation**: If a specific location (city, region, country, continent) is mentioned or strongly implied, state it. If no location is clear, omit this field.
+4.  **identifiedIntent**: Infer the user's likely intent (e.g., 'buy', 'sell', 'rent', 'find service'). If unclear, omit.
+5.  **price constraints**: If the user mentions a price (e.g., 'under $50', 'over $1000', 'between $20 and $40', 'costs 300'), extract the minimum and maximum price into the 'minPrice' and 'maxPrice' fields. Extract only the numbers.
+6.  **unit constraints**: If a pricing unit is mentioned (e.g., '/kg', '/ton', per hour), extract it into the 'perUnit' field.
+7.  **suggestedFilters**: Based on the query and intent, suggest potential filters an e-commerce platform might use. For example:
+    *   "buy fresh tomatoes Nairobi under $2/kg" -> filters: \`[{ type: 'listingType', value: 'Product' }, { type: 'category', value: 'fresh-produce-vegetables' }]\`, minPrice: 0, maxPrice: 2, perUnit: "/kg".
+    *   "agronomy consultant Kenya" -> filters: \`[{ type: 'listingType', value: 'Service' }, { type: 'category', value: 'consultancy-advisory' }]\`.
+8.  **interpretationNotes**: Briefly explain your interpretation.
 
-Example for query "used tractors for sale in East Africa":
-- originalQuery: "used tractors for sale in East Africa"
+Example for query "used tractors for sale in East Africa between $5000 and $10000":
+- originalQuery: "used tractors for sale in East Africa between $5000 and $10000"
 - mainKeywords: ["used tractors"]
 - identifiedLocation: "East Africa"
 - identifiedIntent: "buy"
-- suggestedFilters: [{type: "listingType", value: "Product"}, {type: "category", value: "heavy-machinery-sale"}, {type: "locationScope", value: "Regional"}]
-- interpretationNotes: "User is looking to buy second-hand tractors specifically within the East African region."
-
-Strive to understand intent (buying, selling, information) and geographical scope if possible.
+- minPrice: 5000
+- maxPrice: 10000
+- suggestedFilters: [{type: "listingType", value: "Product"}, {type: "category", value: "heavy-machinery-sale"}]
+- interpretationNotes: "User is looking to buy second-hand tractors in East Africa within a specific price range."
 `,
 });
 
@@ -84,7 +88,10 @@ const queryInterpreterFlow = ai.defineFlow(
         identifiedLocation: output?.identifiedLocation,
         identifiedIntent: output?.identifiedIntent,
         suggestedFilters: output?.suggestedFilters ?? [],
-        interpretationNotes: output?.interpretationNotes
+        interpretationNotes: output?.interpretationNotes,
+        minPrice: output?.minPrice,
+        maxPrice: output?.maxPrice,
+        perUnit: output?.perUnit,
     };
   }
 );
