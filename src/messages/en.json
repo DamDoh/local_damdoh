@@ -328,5 +328,29 @@
       "subtitle": "Join thousands of agricultural professionals building a more connected and sustainable future.",
       "button": "Join the Community Today"
     }
+  },
+  "FarmManagement": {
+    "title": "Farm Management Hub",
+    "description": "Your central command center for all farming operations. Track crops, manage inputs, view financials, and access educational guides.",
+    "myFarms": {
+      "title": "My Farms & Crops",
+      "description": "Oversee all your farms, plots, and active crop cycles. Track progress from planting to harvest.",
+      "button": "Manage Farms"
+    },
+    "knf": {
+      "title": "KNF Input Assistant",
+      "description": "Create and track your Korean Natural Farming inputs like FPJ and FAA with guided recipes and reminders.",
+      "button": "Manage KNF Inputs"
+    },
+    "financials": {
+      "title": "Money Matters",
+      "description": "A simple way to track your farm's income and expenses to understand profitability.",
+      "button": "View Financials"
+    },
+    "assetManagement": {
+      "title": "Asset Management",
+      "description": "Keep a record of your farm equipment, tools, and other valuable assets. (Coming Soon)",
+      "button": "Manage Assets"
+    }
   }
 }

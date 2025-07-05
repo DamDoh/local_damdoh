@@ -69,5 +69,29 @@
     "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles annonces.",
     "viewServiceButton": "Voir le Service"
   },
-  "LandingPage": {}
+  "LandingPage": {},
+  "FarmManagement": {
+    "title": "Hub de Gestion Agricole",
+    "description": "Votre centre de commande pour toutes les opérations agricoles. Suivez les cultures, gérez les intrants, consultez les finances et accédez aux guides.",
+    "myFarms": {
+      "title": "Mes Fermes & Cultures",
+      "description": "Supervisez toutes vos fermes, parcelles et cycles de culture actifs. Suivez les progrès de la plantation à la récolte.",
+      "button": "Gérer les Fermes"
+    },
+    "knf": {
+      "title": "Assistant Intrants KNF",
+      "description": "Créez et suivez vos intrants d'Agriculture Naturelle Coréenne (KNF) comme le FPJ et le FAA avec des recettes guidées.",
+      "button": "Gérer les Intrants KNF"
+    },
+    "financials": {
+      "title": "Les Chiffres",
+      "description": "Un moyen simple de suivre les revenus et les dépenses de votre ferme pour comprendre la rentabilité.",
+      "button": "Voir les Finances"
+    },
+    "assetManagement": {
+      "title": "Gestion des Actifs",
+      "description": "Gardez une trace de votre équipement agricole, de vos outils et d'autres actifs de valeur. (Bientôt disponible)",
+      "button": "Gérer les Actifs"
+    }
+  }
 }

@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home, Users } from 'lucide-react';
+import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home, Users, BookOpen, Heart } from 'lucide-react';
 
 export default function FarmManagementPage() {
   const t = useTranslations('FarmManagement');
@@ -33,6 +33,14 @@ export default function FarmManagementPage() {
       link: "/farm-management/knf-inputs",
       icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
       buttonText: t('knf.button'),
+      enabled: true,
+    },
+     {
+      title: "Farming God's Way Guide",
+      description: "Learn the core principles of FGW: no-till, 100% mulch, and high standards for a thriving, resilient farm.",
+      link: "/farm-management/fgw-guide",
+      icon: <Heart className="h-8 w-8 text-primary mb-2" />,
+      buttonText: "View FGW Guide",
       enabled: true,
     },
     {
