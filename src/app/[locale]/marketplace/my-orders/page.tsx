@@ -15,25 +15,26 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import type { MarketplaceOrder } from '@/lib/types';
 
-interface Order {
-    id: string;
-    listingName: string;
-    quantity: number;
-    totalPrice: number;
-    currency: string;
-    status: 'new' | 'confirmed' | 'shipped' | 'completed' | 'cancelled';
-    createdAt: string;
-    buyerProfile: {
-        displayName: string;
-        avatarUrl?: string;
-    };
+function OrderPageSkeleton() {
+    return (
+        <div className="space-y-6">
+            <Skeleton className="h-6 w-40" />
+            <Card>
+                <CardHeader><Skeleton className="h-8 w-1/3"/></CardHeader>
+                <CardContent>
+                    <Skeleton className="h-64 w-full" />
+                </CardContent>
+            </Card>
+        </div>
+    );
 }
 
 export default function MyOrdersPage() {
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
-    const [orders, setOrders] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<MarketplaceOrder[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
@@ -60,7 +61,7 @@ export default function MyOrdersPage() {
         }
     }, [user, authLoading, fetchOrders]);
 
-    const handleStatusUpdate = async (orderId: string, newStatus: Order['status']) => {
+    const handleStatusUpdate = async (orderId: string, newStatus: MarketplaceOrder['status']) => {
         try {
             await updateOrderStatusCallable({ orderId, newStatus });
             toast({ title: "Success", description: `Order status updated to ${newStatus}.` });
@@ -159,15 +160,3 @@ export default function MyOrdersPage() {
         </div>
     );
 }
-
-const OrderPageSkeleton = () => (
-    <div className="space-y-6">
-        <Skeleton className="h-6 w-40" />
-        <Card>
-            <CardHeader><Skeleton className="h-8 w-1/3"/></CardHeader>
-            <CardContent>
-                <Skeleton className="h-64 w-full" />
-            </CardContent>
-        </Card>
-    </div>
-);
