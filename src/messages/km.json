@@ -852,9 +852,6 @@
       "noAttendees": "មិនទាន់មានអ្នកចូលរួមចុះឈ្មោះទេ។"
     }
   },
-  "common": {
-    "error": "កំហុស"
-  },
   "ProfilePage": {
     "editProfile": "កែសម្រួលប្រវត្តិរូប",
     "showUniversalIdButton": "បង្ហាញអត្តសញ្ញាណប័ណ្ណសកល",
@@ -1213,5 +1210,80 @@
     "popularSearch3": "វេទិកានិរន្តរភាព",
     "popularSearch4": "ទីប្រឹក្សាកសិកម្ម",
     "popularSearch5": "ឡូជីស្ទីកនាំចេញ"
+  },
+  "DashboardLeftSidebar": {
+    "myProfileLink": "ប្រវត្តិរូបអ្នកពាក់ព័ន្ធ DamDoh របស់ខ្ញុំ",
+    "profileViewers": "អ្នកមើលប្រវត្តិរូប",
+    "postEngagements": "ការចូលរួមក្នុងការបង្ហោះ",
+    "proCta": "សាកល្បង DamDoh Pro",
+    "proDescription": "ដោះសោការវិភាគ និងឧបករណ៍ខ្សែសង្វាក់ផ្គត់ផ្គង់ពិសេស",
+    "recent": "ថ្មីៗ",
+    "pinboard": "ក្ដារពិនរបស់ខ្ញុំ",
+    "groups": "ក្រុមសហគមន៍",
+    "news": "ព័ត៌មាន និងរបាយការណ៍ឧស្សាហកម្ម",
+    "events": "ព្រឹត្តិការណ៍កសិ-ពាណិជ្ជកម្ម",
+    "network": "បណ្តាញខ្សែសង្វាក់ផ្គត់ផ្គង់របស់ខ្ញុំ"
+  },
+  "StartPost": {
+    "placeholder": "ចែករំលែកបច្ចុប្បន្នភាពកសិកម្ម ការយល់ដឹងពីទីផ្សារ ឬសួរសំណួរ...",
+    "photoVideo": "រូបថត / វីដេអូ",
+    "event": "ព្រឹត្តិការណ៍កសិកម្ម",
+    "poll": "បង្កើតការស្ទង់មតិ",
+    "document": "ចែករំលែកឯកសារ (គំរូ)"
+  },
+  "CreatePostModal": {
+    "title": "បង្កើតការបង្ហោះថ្មី",
+    "description": "សរសេរ និងចែករំលែកបច្ចុប្បន្នភាពជាមួយសហគមន៍។ អ្នកអាចបន្ថែមអត្ថបទ ប្រព័ន្ធផ្សព្វផ្សាយ ឬបង្កើតការស្ទង់មតិ។",
+    "profileShare": "ចែករំលែកបច្ចុប្បន្នភាព",
+    "placeholder": "តើអ្នកចង់ចែករំលែកការយល់ដឹង ឬព័ត៌មានកសិកម្មអ្វីខ្លះ?",
+    "pollOptionsLabel": "ជម្រើសការស្ទង់មតិ",
+    "pollOptionPlaceholder": "ជម្រើស {number}",
+    "addOption": "បន្ថែមជម្រើស",
+    "removeOption": "លុបជម្រើស",
+    "pollNote": "អតិបរមា {max} ជម្រើស។ ជម្រើសនីមួយៗអតិបរមា 80 តួអក្សរ។",
+    "postButton": "បង្ហោះ",
+    "pollOptionsError": "ការស្ទង់មតិតម្រូវឱ្យមានជម្រើសយ៉ាងតិច 2 ។",
+    "emptyPostError": "សូមបន្ថែមខ្លឹមសារ រូបភាព ឬការស្ទង់មតិដែលមានសុពលភាពទៅការបង្ហោះរបស់អ្នក។"
+  },
+  "FarmerDashboard": {
+    "alertsTitle": "ការជូនដំណឹងកសិដ្ឋាន និងជំហានបន្ទាប់",
+    "viewButton": "មើល",
+    "recentCropsTitle": "ដំណាំថ្មីៗ",
+    "addCropButton": "បន្ថែមដំណាំ",
+    "noCrops": "មិនទាន់មានដំណាំបន្ថែមទេ។",
+    "knfBatchesTitle": "បាច់ KNF សកម្ម",
+    "addKnfButton": "បន្ថែមបាច់",
+    "noKnfBatches": "មិនទាន់មានបាច់ KNF ចាប់ផ្តើមទេ។",
+    "stats": {
+      "farms": "កសិដ្ឋានរបស់ខ្ញុំ",
+      "crops": "ដំណាំសកម្ម",
+      "knf": "បាច់ KNF",
+      "financials": "ហិរញ្ញវត្ថុសរុប"
+    },
+    "actions": {
+      "manageFarms": "គ្រប់គ្រងកសិដ្ឋាន",
+      "manageCrops": "គ្រប់គ្រងដំណាំ",
+      "manageInputs": "គ្រប់គ្រងធាតុចូល",
+      "viewFinancials": "មើលហិរញ្ញវត្ថុ"
+    }
+  },
+  "FeedItemCard": {
+    "like": "ចូលចិត្ត",
+    "comment": "មតិយោបល់",
+    "repost": "បង្ហោះឡើងវិញ",
+    "repostActionToast": "សកម្មភាពបង្ហោះឡើងវិញត្រូវបានកេះ (គំរូ)។",
+    "editPost": "កែសម្រួលការបង្ហោះ",
+    "deletePost": "លុបការបង្ហោះ",
+    "deletePostSuccess": "បានលុបការបង្ហោះ (បានក្លែងធ្វើ)",
+    "comments": "មតិយោបល់ {count}",
+    "likes": "ការចូលចិត្ត {count}",
+    "loadMoreComments": "ផ្ទុកមតិយោបល់បន្ថែម",
+    "loadingComments": "កំពុងផ្ទុកមតិយោបល់...",
+    "noComments": "មិនទាន់មានមតិយោបល់ទេ។ សូមក្លាយជាអ្នកដំបូងដែលឆ្លើយតប!",
+    "writeCommentPlaceholder": "សរសេរមតិយោបល់...",
+    "postCommentButton": "បង្ហោះ",
+    "voteCount": "{count, plural, one {{count} សំឡេង} other {{count} សំឡេង}}",
+    "signInToVote": "សូមចូលគណនីដើម្បីបោះឆ្នោត។",
+    "signInToLike": "សូមចូលគណនីដើម្បីចូលចិត្តការបង្ហោះ។"
   }
 }

@@ -847,9 +847,6 @@
       "noAttendees": "Noch keine Teilnehmer registriert."
     }
   },
-  "common": {
-    "error": "Fehler"
-  },
   "ProfilePage": {
     "editProfile": "Profil bearbeiten",
     "showUniversalIdButton": "Universal ID anzeigen",
@@ -1208,5 +1205,80 @@
     "popularSearch3": "Nachhaltigkeitsforum",
     "popularSearch4": "Agronomischer Berater",
     "popularSearch5": "Exportlogistik"
+  },
+  "DashboardLeftSidebar": {
+    "myProfileLink": "Mein DamDoh Stakeholder-Profil",
+    "profileViewers": "Profil-Besucher",
+    "postEngagements": "Beitrags-Interaktionen",
+    "proCta": "DamDoh Pro testen",
+    "proDescription": "Premium-Analysen und -Tools für die Lieferkette freischalten",
+    "recent": "Neueste",
+    "pinboard": "Mein Pinboard",
+    "groups": "Community-Gruppen",
+    "news": "Branchennachrichten & Berichte",
+    "events": "Agri-Business-Veranstaltungen",
+    "network": "Mein Lieferketten-Netzwerk"
+  },
+  "StartPost": {
+    "placeholder": "Teilen Sie ein landwirtschaftliches Update, eine Markteinsicht oder stellen Sie eine Frage...",
+    "photoVideo": "Foto / Video",
+    "event": "Agri-Veranstaltung",
+    "poll": "Umfrage erstellen",
+    "document": "Dokument teilen (Platzhalter)"
+  },
+  "CreatePostModal": {
+    "title": "Neuen Beitrag erstellen",
+    "description": "Verfassen und teilen Sie ein Update mit der Community. Sie können Text, Medien oder eine Umfrage hinzufügen.",
+    "profileShare": "Update teilen",
+    "placeholder": "Welche landwirtschaftlichen Einblicke oder Nachrichten möchten Sie teilen?",
+    "pollOptionsLabel": "Umfrageoptionen",
+    "pollOptionPlaceholder": "Option {number}",
+    "addOption": "Option hinzufügen",
+    "removeOption": "Option entfernen",
+    "pollNote": "Max. {max} Optionen. Jede Option max. 80 Zeichen.",
+    "postButton": "Posten",
+    "pollOptionsError": "Eine Umfrage erfordert mindestens 2 Optionen.",
+    "emptyPostError": "Bitte fügen Sie Ihrem Beitrag etwas Inhalt, ein Bild oder eine gültige Umfrage hinzu."
+  },
+  "FarmerDashboard": {
+    "alertsTitle": "Farm-Alarme & Nächste Schritte",
+    "viewButton": "Ansehen",
+    "recentCropsTitle": "Neueste Kulturen",
+    "addCropButton": "Kultur hinzufügen",
+    "noCrops": "Noch keine Kulturen hinzugefügt.",
+    "knfBatchesTitle": "Aktive KNF-Chargen",
+    "addKnfButton": "Charge hinzufügen",
+    "noKnfBatches": "Noch keine KNF-Chargen gestartet.",
+    "stats": {
+      "farms": "Meine Farmen",
+      "crops": "Aktive Kulturen",
+      "knf": "KNF-Chargen",
+      "financials": "Nettofinanzen"
+    },
+    "actions": {
+      "manageFarms": "Farmen verwalten",
+      "manageCrops": "Kulturen verwalten",
+      "manageInputs": "Inputs verwalten",
+      "viewFinancials": "Finanzen ansehen"
+    }
+  },
+  "FeedItemCard": {
+    "like": "Gefällt mir",
+    "comment": "Kommentar",
+    "repost": "Reposten",
+    "repostActionToast": "Repost-Aktion ausgelöst (Platzhalter).",
+    "editPost": "Beitrag bearbeiten",
+    "deletePost": "Beitrag löschen",
+    "deletePostSuccess": "Beitrag gelöscht (simuliert)",
+    "comments": "Kommentar{count, plural, one {} other {e}}",
+    "likes": "Gefällt mir{count, plural, one {} other {}}",
+    "loadMoreComments": "Weitere Kommentare laden",
+    "loadingComments": "Kommentare werden geladen...",
+    "noComments": "Noch keine Kommentare. Seien Sie der Erste, der antwortet!",
+    "writeCommentPlaceholder": "Schreiben Sie einen Kommentar...",
+    "postCommentButton": "Posten",
+    "voteCount": "{count, plural, one {{count} Stimme} other {{count} Stimmen}}",
+    "signInToVote": "Bitte melden Sie sich an, um abzustimmen.",
+    "signInToLike": "Bitte melden Sie sich an, um Beiträge zu liken."
   }
 }

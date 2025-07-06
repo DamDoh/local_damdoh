@@ -847,9 +847,6 @@
       "noAttendees": "Aún no se han registrado asistentes."
     }
   },
-  "common": {
-    "error": "Error"
-  },
   "ProfilePage": {
     "editProfile": "Editar Perfil",
     "showUniversalIdButton": "Mostrar ID Universal",
@@ -1208,5 +1205,80 @@
     "popularSearch3": "Foro de Sostenibilidad",
     "popularSearch4": "Consultor Agronómico",
     "popularSearch5": "Logística de Exportación"
+  },
+  "DashboardLeftSidebar": {
+    "myProfileLink": "Mi Perfil de Interesado de DamDoh",
+    "profileViewers": "Visitantes del perfil",
+    "postEngagements": "Interacciones en publicaciones",
+    "proCta": "Prueba DamDoh Pro",
+    "proDescription": "Desbloquea análisis y herramientas premium para la cadena de suministro",
+    "recent": "Reciente",
+    "pinboard": "Mi Tablero",
+    "groups": "Grupos Comunitarios",
+    "news": "Noticias e Informes de la Industria",
+    "events": "Eventos de Agro-negocios",
+    "network": "Mi Red de Suministro"
+  },
+  "StartPost": {
+    "placeholder": "Comparte una actualización agrícola, una perspectiva de mercado o haz una pregunta...",
+    "photoVideo": "Foto / Video",
+    "event": "Evento Agrícola",
+    "poll": "Crear Encuesta",
+    "document": "Compartir Documento (Marcador de posición)"
+  },
+  "CreatePostModal": {
+    "title": "Crear una nueva publicación",
+    "description": "Redacta y comparte una actualización con la comunidad. Puedes añadir texto, medios o crear una encuesta.",
+    "profileShare": "Compartir una actualización",
+    "placeholder": "¿Qué perspectivas o noticias agrícolas quieres compartir?",
+    "pollOptionsLabel": "Opciones de la Encuesta",
+    "pollOptionPlaceholder": "Opción {number}",
+    "addOption": "Añadir Opción",
+    "removeOption": "Eliminar Opción",
+    "pollNote": "Máximo {max} opciones. Cada opción máx. 80 caracteres.",
+    "postButton": "Publicar",
+    "pollOptionsError": "Una encuesta requiere al menos 2 opciones.",
+    "emptyPostError": "Por favor, añade contenido, una imagen o una encuesta válida a tu publicación."
+  },
+  "FarmerDashboard": {
+    "alertsTitle": "Alertas de la Granja y Próximos Pasos",
+    "viewButton": "Ver",
+    "recentCropsTitle": "Cultivos Recientes",
+    "addCropButton": "Añadir Cultivo",
+    "noCrops": "Aún no se han añadido cultivos.",
+    "knfBatchesTitle": "Lotes Activos de KNF",
+    "addKnfButton": "Añadir Lote",
+    "noKnfBatches": "Aún no se han iniciado lotes de KNF.",
+    "stats": {
+      "farms": "Mis Granjas",
+      "crops": "Cultivos Activos",
+      "knf": "Lotes KNF",
+      "financials": "Finanzas Netas"
+    },
+    "actions": {
+      "manageFarms": "Gestionar Granjas",
+      "manageCrops": "Gestionar Cultivos",
+      "manageInputs": "Gestionar Insumos",
+      "viewFinancials": "Ver Finanzas"
+    }
+  },
+  "FeedItemCard": {
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Republicar",
+    "repostActionToast": "Acción de republicar activada (marcador de posición).",
+    "editPost": "Editar Publicación",
+    "deletePost": "Eliminar Publicación",
+    "deletePostSuccess": "Publicación Eliminada (Simulado)",
+    "comments": "Comentario{count, plural, one {} other {s}}",
+    "likes": "Me gusta{count, plural, one {} other {}}",
+    "loadMoreComments": "Cargar más comentarios",
+    "loadingComments": "Cargando comentarios...",
+    "noComments": "Aún no hay comentarios. ¡Sé el primero en responder!",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "postCommentButton": "Publicar",
+    "voteCount": "{count, plural, one {{count} voto} other {{count} votos}}",
+    "signInToVote": "Por favor, inicie sesión para votar.",
+    "signInToLike": "Por favor, inicie sesión para dar me gusta a las publicaciones."
   }
 }

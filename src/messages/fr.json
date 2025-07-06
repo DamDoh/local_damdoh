@@ -852,9 +852,6 @@
       "noAttendees": "Aucun participant n'est encore inscrit."
     }
   },
-  "common": {
-    "error": "Erreur"
-  },
   "ProfilePage": {
     "editProfile": "Modifier le profil",
     "showUniversalIdButton": "Afficher l'ID universel",
@@ -968,7 +965,7 @@
         "title": "Ingénieur Backend Senior (Logistique)",
         "location": "Télétravail / Nairobi, Kenya",
         "type": "Temps plein",
-        "description": "Concevoir et construire les services backend qui alimentent nos outils de logistique et d'optimisation de la chaîne d'approvisionnement."
+        "description": "Concevoir et construire les services de backend qui alimentent nos outils de logistique et d'optimisation de la chaîne d'approvisionnement."
       },
       "job2": {
         "title": "Chef de Produit, Outils pour Agriculteurs",
@@ -1213,5 +1210,80 @@
     "popularSearch3": "Forum sur la durabilité",
     "popularSearch4": "Consultant en agronomie",
     "popularSearch5": "Logistique d'exportation"
+  },
+  "DashboardLeftSidebar": {
+    "myProfileLink": "Mon Profil d'Intervenant DamDoh",
+    "profileViewers": "Visiteurs du profil",
+    "postEngagements": "Engagements sur les publications",
+    "proCta": "Essayer DamDoh Pro",
+    "proDescription": "Débloquez des analyses et des outils premium pour la chaîne d'approvisionnement",
+    "recent": "Récent",
+    "pinboard": "Mon Tableau d'Épingles",
+    "groups": "Groupes Communautaires",
+    "news": "Actualités & Rapports du Secteur",
+    "events": "Événements Agri-Business",
+    "network": "Mon Réseau de la Chaîne d'Approvisionnement"
+  },
+  "StartPost": {
+    "placeholder": "Partagez une mise à jour agricole, une perspective de marché ou posez une question...",
+    "photoVideo": "Photo / Vidéo",
+    "event": "Événement Agri",
+    "poll": "Créer un Sondage",
+    "document": "Partager un Document (Placeholder)"
+  },
+  "CreatePostModal": {
+    "title": "Créer une nouvelle publication",
+    "description": "Composez et partagez une mise à jour avec la communauté. Vous pouvez ajouter du texte, des médias ou créer un sondage.",
+    "profileShare": "Partager une mise à jour",
+    "placeholder": "Quelles perspectives agricoles ou actualités souhaitez-vous partager ?",
+    "pollOptionsLabel": "Options du Sondage",
+    "pollOptionPlaceholder": "Option {number}",
+    "addOption": "Ajouter une Option",
+    "removeOption": "Supprimer une Option",
+    "pollNote": "Max {max} options. Chaque option max 80 caractères.",
+    "postButton": "Publier",
+    "pollOptionsError": "Un sondage nécessite au moins 2 options.",
+    "emptyPostError": "Veuillez ajouter du contenu, une image ou un sondage valide à votre publication."
+  },
+  "FarmerDashboard": {
+    "alertsTitle": "Alertes de la Ferme & Prochaines Étapes",
+    "viewButton": "Voir",
+    "recentCropsTitle": "Cultures Récentes",
+    "addCropButton": "Ajouter une Culture",
+    "noCrops": "Aucune culture ajoutée pour le moment.",
+    "knfBatchesTitle": "Lots KNF Actifs",
+    "addKnfButton": "Ajouter un Lot",
+    "noKnfBatches": "Aucun lot KNF démarré pour le moment.",
+    "stats": {
+      "farms": "Mes Fermes",
+      "crops": "Cultures Actives",
+      "knf": "Lots KNF",
+      "financials": "Finances Nettes"
+    },
+    "actions": {
+      "manageFarms": "Gérer les Fermes",
+      "manageCrops": "Gérer les Cultures",
+      "manageInputs": "Gérer les Intrants",
+      "viewFinancials": "Voir les Finances"
+    }
+  },
+  "FeedItemCard": {
+    "like": "J'aime",
+    "comment": "Commenter",
+    "repost": "Republier",
+    "repostActionToast": "Action de republication déclenchée (placeholder).",
+    "editPost": "Modifier la Publication",
+    "deletePost": "Supprimer la Publication",
+    "deletePostSuccess": "Publication Supprimée (Simulé)",
+    "comments": "Commentaire{count, plural, one {} other {s}}",
+    "likes": "J'aime{count, plural, one {} other {}}",
+    "loadMoreComments": "Charger plus de commentaires",
+    "loadingComments": "Chargement des commentaires...",
+    "noComments": "Aucun commentaire pour le moment. Soyez le premier à répondre !",
+    "writeCommentPlaceholder": "Écrivez un commentaire...",
+    "postCommentButton": "Publier",
+    "voteCount": "{count, plural, one {{count} vote} other {{count} votes}}",
+    "signInToVote": "Veuillez vous connecter pour voter.",
+    "signInToLike": "Veuillez vous connecter pour aimer les publications."
   }
 }
