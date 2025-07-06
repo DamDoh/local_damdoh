@@ -14,7 +14,6 @@ export const StakeholderProfileSchema = z.object({
   id: z.string(),
   displayName: z.string(),
   email: z.string().email(),
-  universalId: z.string().optional(),
   primaryRole: z.string(),
   secondaryRoles: z.array(z.string()).optional(),
   location: z.string().optional(),
@@ -29,7 +28,7 @@ export const StakeholderProfileSchema = z.object({
     website: z.string().url().optional(),
   }).optional(),
   connections: z.array(z.string()).optional(), // Array of user IDs
-  profileData: z.any().optional(), // For role-specific data
+  stakeholderProfile: z.any().optional(), // For role-specific data
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
 });

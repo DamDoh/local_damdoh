@@ -613,15 +613,20 @@ export interface OperationsDashboardData {
 
 export interface FinancialApplication {
   id: string;
+  applicantId: string;
   applicantName: string;
+  fiId: string;
   type: string;
   amount: number;
   currency: string;
   status: string;
-  riskScore: number;
+  riskScore?: number;
+  purpose: string;
   submittedAt: string | null;
-  actionLink: string;
+  actionLink?: string;
+  applicantProfile?: UserProfile;
 }
+
 
 export type KnfBatch = {
     id: string;
@@ -673,6 +678,11 @@ export interface PostReply {
     };
 }
 
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
@@ -687,17 +697,27 @@ export interface FeedItem {
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
-  pollOptions?: { text: string; votes?: number }[];
+  pollOptions?: PollOption[];
 }
 
-export interface DirectMessage {
+export interface Conversation {
   id: string;
-  senderName: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
   lastMessage: string;
-  timestamp: string;
-  senderAvatarUrl?: string;
-  unread: boolean;
-  dataAiHint?: string;
+  lastMessageTimestamp: string;
+  unreadCount: number;
+}
+
+export interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string; // ISO string
 }
 
 export interface MobileHomeCategory {
@@ -788,9 +808,4 @@ export interface PaymentLog {
     currency: string;
     date: string; // ISO string
     notes: string;
-}
-
-export interface PollOption {
-  text: string;
-  votes?: number;
 }
