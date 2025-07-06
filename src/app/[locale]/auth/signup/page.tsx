@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -56,8 +55,7 @@ export default function SignUpPage() {
   async function onSubmit(data: SignUpValues) {
     setIsLoading(true);
     setAuthError(null);
-    form.clearErrors(); // Clear previous manual errors
-
+    
     try {
       await registerUser(data.name, data.email, data.password, data.role as StakeholderRole);
       toast({
@@ -67,44 +65,28 @@ export default function SignUpPage() {
       });
       router.push("/auth/signin"); 
     } catch (error: any) {
+      let errorMessage = "An unexpected error occurred. Please try again.";
       if (error.code) {
         switch (error.code) {
           case "auth/email-already-in-use":
-            form.setError("email", { 
-                type: "manual", 
-                message: "This email address is already registered. Try signing in." 
-            });
+            errorMessage = "This email address is already in use. Please try signing in.";
             break;
           case "auth/invalid-email":
-            form.setError("email", {
-                type: "manual",
-                message: "The email address is not valid."
-            });
+            errorMessage = "The email address you entered is not valid.";
             break;
           case "auth/weak-password":
-            form.setError("password", {
-                type: "manual",
-                message: "The password is too weak. Please choose a stronger password."
-            });
+            errorMessage = "The password is too weak. Please choose a stronger password (at least 6 characters).";
             break;
           default:
-            const defaultMessage = `Registration failed: ${error.message}`;
-            setAuthError(defaultMessage);
-            toast({
-                title: "Sign Up Failed",
-                description: defaultMessage,
-                variant: "destructive",
-            });
+            errorMessage = `Registration failed: ${error.message}`;
         }
-      } else {
-        const genericMessage = "An unexpected error occurred. Please try again.";
-        setAuthError(genericMessage);
-        toast({
-            title: "Sign Up Failed",
-            description: genericMessage,
-            variant: "destructive",
-        });
       }
+      setAuthError(errorMessage);
+      toast({
+        title: "Sign Up Failed",
+        description: errorMessage,
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
