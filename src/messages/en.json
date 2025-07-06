@@ -114,7 +114,7 @@
     "noResultsTitle": "No Services Found",
     "noResultsDescription": "Try adjusting your search filters or check back later for new listings."
   },
-  "LandingPage": {
+    "LandingPage": {
     "hero": {
       "title": "Cultivating Connections, Harvesting Success with {appName}",
       "subtitle": "The global platform connecting every link in the agricultural supply chain. From farm to fork, we foster growth, transparency, and opportunity.",
@@ -408,6 +408,32 @@
       "description": "Track your machinery, equipment, and other valuable farm assets. (Coming Soon)",
       "button": "Manage Assets"
     }
+  },
+  "traceabilityPage": {
+    "title": "VTI Traceability Hub",
+    "description": "Trace your agricultural products from farm to fork.",
+    "inputPlaceholder": "Enter a Verifiable Traceability ID (VTI) to begin.",
+    "trackButton": "Track Batch",
+    "vtiDescription": "A VTI is a unique identifier assigned to a batch of products.",
+    "recentTitle": "Recently Tracked",
+    "recentDescription": "Your recently viewed batches will appear here.",
+    "detailPage": {
+        "backLink": "Back to Traceability Hub",
+        "traceableProduct": "Traceable Product",
+        "batchIdLabel": "Batch ID",
+        "producerLabel": "Produced by",
+        "sustainablyGrownTitle": "Sustainably Grown",
+        "sustainablyGrownDescription": "This batch was cultivated using approved natural and sustainable inputs according to its traceability log.",
+        "harvestDateLabel": "Harvest Date",
+        "yieldLabel": "Initial Yield",
+        "qualityLabel": "Initial Quality",
+        "journeyTitle": "Product Journey",
+        "journeyDescription": "A detailed log of events for this batch from farm to fork.",
+        "noEventDetails": "No specific details provided for this event.",
+        "geoLocationLabel": "Geolocation",
+        "noEventsFound": "No traceability events found.",
+        "notFoundTitle": "Batch Not Found",
+        "notFoundDescription": "The batch you are looking for does not exist or the link is incorrect."
+    }
   }
 }
-

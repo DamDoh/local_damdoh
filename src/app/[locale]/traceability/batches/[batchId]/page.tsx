@@ -61,9 +61,9 @@ const getEventIcon = (eventType: string) => {
     }
 };
 
-const EventPayload = ({ payload }: { payload: any }) => {
+const EventPayload = ({ payload, t }: { payload: any, t: any }) => {
     if (!payload || typeof payload !== 'object' || Object.keys(payload).length === 0) {
-        return <p className="text-xs text-muted-foreground italic">No specific details provided for this event.</p>;
+        return <p className="text-xs text-muted-foreground italic">{t('detailPage.noEventDetails')}</p>;
     }
     
     if (payload.aiAnalysis) {
@@ -123,7 +123,8 @@ const TraceabilitySkeleton = () => (
 );
 
 export default function TraceabilityBatchDetailPage() {
-  const t = useTranslations();
+  const t = useTranslations('traceabilityPage');
+  const tCommon = useTranslations('common');
   const params = useParams();
   const batchId = params.batchId as string;
   
@@ -186,10 +187,10 @@ export default function TraceabilityBatchDetailPage() {
     return (
         <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>{t('common.error')}</AlertTitle>
+            <AlertTitle>{tCommon('error')}</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
             <Button asChild variant="secondary" className="mt-4">
-                <Link href="/traceability"><ArrowLeft className="mr-2 h-4 w-4" />{t('traceabilityDetailPage.backLink')}</Link>
+                <Link href="/traceability"><ArrowLeft className="mr-2 h-4 w-4" />{t('detailPage.backLink')}</Link>
             </Button>
         </Alert>
     );
@@ -199,8 +200,8 @@ export default function TraceabilityBatchDetailPage() {
      return (
         <Alert>
             <Info className="h-4 w-4" />
-            <AlertTitle>{t('traceabilityDetailPage.notFoundTitle')}</AlertTitle>
-            <AlertDescription>{t('traceabilityDetailPage.notFoundDescription')}</AlertDescription>
+            <AlertTitle>{t('detailPage.notFoundTitle')}</AlertTitle>
+            <AlertDescription>{t('detailPage.notFoundDescription')}</AlertDescription>
         </Alert>
      );
   }
@@ -216,7 +217,7 @@ export default function TraceabilityBatchDetailPage() {
     <div className="space-y-6 max-w-4xl mx-auto">
       <Button asChild variant="outline" className="mb-4">
         <Link href="/traceability">
-          <ArrowLeft className="mr-2 h-4 w-4" /> {t('traceabilityDetailPage.backLink')}
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('detailPage.backLink')}
         </Link>
       </Button>
 
@@ -226,9 +227,9 @@ export default function TraceabilityBatchDetailPage() {
             <div className="flex items-start gap-3">
               <GitBranch className="h-10 w-10 text-primary mt-1" />
               <div>
-                <CardTitle className="text-2xl">{vti.metadata?.cropType || t('traceabilityDetailPage.traceableProduct')}</CardTitle>
+                <CardTitle className="text-2xl">{vti.metadata?.cropType || t('detailPage.traceableProduct')}</CardTitle>
                 <CardDescription>
-                  {t('traceabilityDetailPage.batchIdLabel')}: <span className="font-mono bg-muted p-1 rounded-sm text-xs">{vti.id}</span>
+                  {t('detailPage.batchIdLabel')}: <span className="font-mono bg-muted p-1 rounded-sm text-xs">{vti.id}</span>
                 </CardDescription>
               </div>
             </div>
@@ -239,7 +240,7 @@ export default function TraceabilityBatchDetailPage() {
                     <AvatarFallback>{producer.name.substring(0,1)}</AvatarFallback>
                 </Avatar>
                 <div>
-                    <p className="text-xs text-muted-foreground">{t('traceabilityDetailPage.producerLabel')}</p>
+                    <p className="text-xs text-muted-foreground">{t('detailPage.producerLabel')}</p>
                     <p className="font-semibold text-sm">{producer.name}</p>
                 </div>
               </div>
@@ -252,23 +253,23 @@ export default function TraceabilityBatchDetailPage() {
                 <div className="flex items-center gap-3">
                   <Leaf className="h-6 w-6 text-green-600" />
                   <div>
-                    <h3 className="font-semibold text-green-800 dark:text-green-200">Sustainably Grown</h3>
-                    <p className="text-sm text-green-700 dark:text-green-300">This batch was cultivated using approved natural and sustainable inputs according to its traceability log.</p>
+                    <h3 className="font-semibold text-green-800 dark:text-green-200">{t('detailPage.sustainablyGrownTitle')}</h3>
+                    <p className="text-sm text-green-700 dark:text-green-300">{t('detailPage.sustainablyGrownDescription')}</p>
                   </div>
                 </div>
               </div>
             )}
             <div className="grid md:grid-cols-3 gap-4 text-sm">
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> {t('traceabilityDetailPage.harvestDateLabel')}</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><CalendarDays className="h-4 w-4"/> {t('detailPage.harvestDateLabel')}</p>
                     <p className="font-semibold text-lg">{harvestEvent ? format(new Date(harvestEvent.timestamp), 'PPP') : 'N/A'}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Weight className="h-4 w-4"/> {t('traceabilityDetailPage.yieldLabel')}</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Weight className="h-4 w-4"/> {t('detailPage.yieldLabel')}</p>
                     <p className="font-semibold text-lg">{vti.metadata?.initialYieldKg ? `${vti.metadata.initialYieldKg} kg` : 'N/A'}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
-                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> {t('traceabilityDetailPage.qualityLabel')}</p>
+                    <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> {t('detailPage.qualityLabel')}</p>
                     <p className="font-semibold text-lg">{vti.metadata?.initialQualityGrade || 'Not Specified'}</p>
                 </div>
             </div>
@@ -277,8 +278,8 @@ export default function TraceabilityBatchDetailPage() {
       
       <Card>
         <CardHeader>
-            <CardTitle>{t('traceabilityDetailPage.journeyTitle')}</CardTitle>
-            <CardDescription>{t('traceabilityDetailPage.journeyDescription')}</CardDescription>
+            <CardTitle>{t('detailPage.journeyTitle')}</CardTitle>
+            <CardDescription>{t('detailPage.journeyDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
             {events.length > 0 ? (
@@ -311,10 +312,10 @@ export default function TraceabilityBatchDetailPage() {
                                             </div>
                                         </CardHeader>
                                         <CardContent className="p-4 pt-0 text-sm">
-                                            <EventPayload payload={event.payload} />
+                                            <EventPayload payload={event.payload} t={t} />
                                             {event.geoLocation && (
                                                 <div className="text-xs text-muted-foreground flex items-center gap-1 pt-2 mt-2 border-t border-dashed">
-                                                    <MapPin className="h-3 w-3"/>{t('traceabilityDetailPage.geoLocationLabel')}: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}
+                                                    <MapPin className="h-3 w-3"/>{t('detailPage.geoLocationLabel')}: {event.geoLocation.lat.toFixed(4)}, {event.geoLocation.lng.toFixed(4)}
                                                 </div>
                                             )}
                                         </CardContent>
@@ -325,7 +326,7 @@ export default function TraceabilityBatchDetailPage() {
                     })}
                 </div>
             ) : (
-                 <div className="text-center py-10 text-muted-foreground">No traceability events found.</div>
+                 <div className="text-center py-10 text-muted-foreground">{t('detailPage.noEventsFound')}</div>
             )}
         </CardContent>
       </Card>

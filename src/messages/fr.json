@@ -408,6 +408,32 @@
       "description": "Suivez vos machines, équipements et autres actifs de valeur de la ferme. (Bientôt disponible)",
       "button": "Gérer les Actifs"
     }
+  },
+  "traceabilityPage": {
+    "title": "Hub de Traçabilité VTI",
+    "description": "Suivez vos produits agricoles de la ferme à la fourchette.",
+    "inputPlaceholder": "Entrez un ID de Traçabilité Vérifiable (VTI) pour commencer.",
+    "trackButton": "Suivre le Lot",
+    "vtiDescription": "Un VTI est un identifiant unique attribué à un lot de produits.",
+    "recentTitle": "Récemment Suivis",
+    "recentDescription": "Vos lots récemment consultés apparaîtront ici.",
+    "detailPage": {
+        "backLink": "Retour au Hub de Traçabilité",
+        "traceableProduct": "Produit Traçable",
+        "batchIdLabel": "ID du Lot",
+        "producerLabel": "Produit par",
+        "sustainablyGrownTitle": "Cultivé de manière durable",
+        "sustainablyGrownDescription": "Ce lot a été cultivé en utilisant des intrants naturels et durables approuvés selon son journal de traçabilité.",
+        "harvestDateLabel": "Date de Récolte",
+        "yieldLabel": "Rendement Initial",
+        "qualityLabel": "Qualité Initiale",
+        "journeyTitle": "Parcours du Produit",
+        "journeyDescription": "Un journal détaillé des événements pour ce lot, de la ferme à la fourchette.",
+        "noEventDetails": "Aucun détail spécifique fourni pour cet événement.",
+        "geoLocationLabel": "Géolocalisation",
+        "noEventsFound": "Aucun événement de traçabilité trouvé.",
+        "notFoundTitle": "Lot non trouvé",
+        "notFoundDescription": "Le lot que vous recherchez n'existe pas ou le lien est incorrect."
+    }
   }
 }
-

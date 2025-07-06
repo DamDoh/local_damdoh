@@ -408,6 +408,32 @@
       "description": "Realice un seguimiento de su maquinaria, equipo y otros activos valiosos de la granja. (Próximamente)",
       "button": "Gestionar Activos"
     }
+  },
+  "traceabilityPage": {
+    "title": "Centro de Trazabilidad VTI",
+    "description": "Rastrea tus productos agrícolas desde la granja hasta la mesa.",
+    "inputPlaceholder": "Introduce una ID de Trazabilidad Verificable (VTI) para comenzar.",
+    "trackButton": "Rastrear Lote",
+    "vtiDescription": "Un VTI es un identificador único asignado a un lote de productos.",
+    "recentTitle": "Rastreados Recientemente",
+    "recentDescription": "Tus lotes vistos recientemente aparecerán aquí.",
+    "detailPage": {
+        "backLink": "Volver al Centro de Trazabilidad",
+        "traceableProduct": "Producto Trazable",
+        "batchIdLabel": "ID del Lote",
+        "producerLabel": "Producido por",
+        "sustainablyGrownTitle": "Cultivado Sosteniblemente",
+        "sustainablyGrownDescription": "Este lote fue cultivado utilizando insumos naturales y sostenibles aprobados según su registro de trazabilidad.",
+        "harvestDateLabel": "Fecha de Cosecha",
+        "yieldLabel": "Rendimiento Inicial",
+        "qualityLabel": "Calidad Inicial",
+        "journeyTitle": "Recorrido del Producto",
+        "journeyDescription": "Un registro detallado de los eventos para este lote desde la granja hasta la mesa.",
+        "noEventDetails": "No se proporcionaron detalles específicos para este evento.",
+        "geoLocationLabel": "Geolocalización",
+        "noEventsFound": "No se encontraron eventos de trazabilidad.",
+        "notFoundTitle": "Lote no encontrado",
+        "notFoundDescription": "El lote que buscas no existe o el enlace es incorrecto."
+    }
   }
 }
-

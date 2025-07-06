@@ -408,6 +408,32 @@
       "description": "Verfolgen Sie Ihre Maschinen, Geräte und andere wertvolle landwirtschaftliche Vermögenswerte. (Kommt bald)",
       "button": "Vermögen verwalten"
     }
+  },
+  "traceabilityPage": {
+    "title": "VTI-Rückverfolgbarkeits-Hub",
+    "description": "Verfolgen Sie Ihre landwirtschaftlichen Produkte vom Hof bis auf den Tisch.",
+    "inputPlaceholder": "Geben Sie eine Verifiable Traceability ID (VTI) ein, um zu beginnen.",
+    "trackButton": "Charge verfolgen",
+    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die einer Produktcharge zugewiesen wird.",
+    "recentTitle": "Kürzlich verfolgt",
+    "recentDescription": "Ihre kürzlich angesehenen Chargen werden hier angezeigt.",
+    "detailPage": {
+        "backLink": "Zurück zum Rückverfolgbarkeits-Hub",
+        "traceableProduct": "Rückverfolgbares Produkt",
+        "batchIdLabel": "Chargen-ID",
+        "producerLabel": "Produziert von",
+        "sustainablyGrownTitle": "Nachhaltig angebaut",
+        "sustainablyGrownDescription": "Diese Charge wurde laut Rückverfolgungsprotokoll mit zugelassenen natürlichen und nachhaltigen Betriebsmitteln angebaut.",
+        "harvestDateLabel": "Erntedatum",
+        "yieldLabel": "Anfänglicher Ertrag",
+        "qualityLabel": "Anfängliche Qualität",
+        "journeyTitle": "Produktweg",
+        "journeyDescription": "Ein detailliertes Protokoll der Ereignisse für diese Charge vom Hof bis auf den Tisch.",
+        "noEventDetails": "Für dieses Ereignis wurden keine spezifischen Details angegeben.",
+        "geoLocationLabel": "Geolokalisierung",
+        "noEventsFound": "Keine Rückverfolgungsereignisse gefunden.",
+        "notFoundTitle": "Charge nicht gefunden",
+        "notFoundDescription": "Die gesuchte Charge existiert nicht oder der Link ist falsch."
+    }
   }
 }
-
