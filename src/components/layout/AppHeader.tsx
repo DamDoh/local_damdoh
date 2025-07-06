@@ -36,6 +36,8 @@ import {
   SheetHeader,
   SheetClose,
   SheetTrigger,
+  SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
@@ -44,6 +46,7 @@ import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { locales } from '@/i18n-config';
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface NavLinkProps {
   href: string;
@@ -260,6 +263,12 @@ export function AppHeader() {
             </SheetTrigger>
             <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
               <SheetHeader className="p-4 border-b flex flex-row justify-between items-center">
+                  <VisuallyHidden>
+                    <SheetTitle>Main Navigation</SheetTitle>
+                    <SheetDescription>
+                      Sidebar navigation for mobile view, containing main links and user actions.
+                    </SheetDescription>
+                  </VisuallyHidden>
                   <Logo iconSize={28} textSize="text-xl" className="text-primary" />
                   <SheetClose asChild>
                     <Button variant="ghost" size="icon" className="h-7 w-7"><X className="h-4 w-4"/></Button>
