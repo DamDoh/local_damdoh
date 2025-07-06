@@ -700,14 +700,24 @@ export interface FeedItem {
   pollOptions?: PollOption[];
 }
 
-export interface DirectMessage {
+export interface Conversation {
   id: string;
-  senderName: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
   lastMessage: string;
-  timestamp: string;
-  senderAvatarUrl?: string;
-  unread: boolean;
-  dataAiHint?: string;
+  lastMessageTimestamp: string;
+  unreadCount: number;
+}
+
+export interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string; // ISO string
 }
 
 export interface MobileHomeCategory {
