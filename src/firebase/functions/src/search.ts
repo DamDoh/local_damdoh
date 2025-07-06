@@ -124,7 +124,9 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         
         // --- Tag-based Filtering ---
         const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category');
-        if (categoryFilter?.value) {
+        // Firestore limitation: Cannot have `array-contains-any` and another `array-contains` in the same query.
+        // So, if keywords are present, we filter category in memory.
+        if (categoryFilter?.value && !hasKeywords) {
             query = query.where('tags', 'array-contains', categoryFilter.value);
         }
         
@@ -143,7 +145,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             query = query.where("perUnit", "==", perUnit);
         }
         
-        // --- Price Filtering Logic Change ---
+        // --- Price Filtering Logic ---
         // Firestore limitation: Cannot have `array-contains-any` and a range filter (`<`, `>`, etc.) on different fields.
         // So, if keywords are present, we filter price in memory. Otherwise, we can do it in the query.
         if (!hasKeywords) {
@@ -169,12 +171,17 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         }
 
 
-        const snapshot = await query.limit(50).get(); // Fetch a slightly larger batch for potential in-memory filtering
+        const snapshot = await query.limit(50).get();
         
         let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // --- In-Memory Filtering for Price if keywords were used ---
+        // --- In-Memory Filtering for when keywords are present ---
         if (hasKeywords) {
+            // Filter by category
+            if (categoryFilter?.value) {
+                results = results.filter(r => r.tags && Array.isArray(r.tags) && r.tags.includes(categoryFilter.value));
+            }
+            // Filter by price
             if (typeof minPrice === 'number') {
                 results = results.filter(r => r.price != null && r.price >= minPrice);
             }
