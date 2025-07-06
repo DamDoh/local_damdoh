@@ -322,5 +322,18 @@
         "livestockinsurance": "Livestock Insurance",
         "propertyinsurance": "Farm Property Insurance"
     }
+  },
+  "networkPage": {
+    "title": "Stakeholder Network",
+    "description": "Discover and connect with stakeholders across the agricultural value chain.",
+    "refreshSuggestions": "Refresh Suggestions",
+    "searchPlaceholder": "Search by name, role, or interest...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "interestPlaceholder": "Filter by interest...",
+    "connect": "Connect",
+    "noStakeholdersFound": "No Stakeholders Found",
+    "noStakeholdersHint": "Try adjusting your filters or check back later for new members."
   }
 }

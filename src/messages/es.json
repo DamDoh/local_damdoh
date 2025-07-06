@@ -322,5 +322,18 @@
         "livestockinsurance": "Seguro de Ganado",
         "propertyinsurance": "Seguro de Propiedad Agrícola"
     }
+  },
+  "networkPage": {
+    "title": "Red de Interesados",
+    "description": "Descubra y conéctese con interesados a lo largo de la cadena de valor agrícola.",
+    "refreshSuggestions": "Actualizar Sugerencias",
+    "searchPlaceholder": "Buscar por nombre, rol o interés...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "rolePlaceholder": "Filtrar por rol...",
+    "allRoles": "Todos los Roles",
+    "interestPlaceholder": "Filtrar por interés...",
+    "connect": "Conectar",
+    "noStakeholdersFound": "No se encontraron interesados",
+    "noStakeholdersHint": "Intente ajustar sus filtros o vuelva más tarde para ver nuevos miembros."
   }
 }

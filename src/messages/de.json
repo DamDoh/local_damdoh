@@ -322,5 +322,18 @@
         "livestockinsurance": "Tierversicherung",
         "propertyinsurance": "Hofversicherung"
     }
+  },
+  "networkPage": {
+    "title": "Stakeholder-Netzwerk",
+    "description": "Entdecken und vernetzen Sie sich mit Stakeholdern entlang der gesamten landwirtschaftlichen Wertschöpfungskette.",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "searchPlaceholder": "Suche nach Name, Rolle oder Interesse...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "interestPlaceholder": "Nach Interesse filtern...",
+    "connect": "Verbinden",
+    "noStakeholdersFound": "Keine Stakeholder gefunden",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Filter anzupassen, oder schauen Sie später wieder für neue Mitglieder vorbei."
   }
 }

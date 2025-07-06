@@ -322,5 +322,18 @@
         "livestockinsurance": "Assurance bétail",
         "propertyinsurance": "Assurance des biens agricoles"
     }
+  },
+  "networkPage": {
+    "title": "Réseau des Acteurs",
+    "description": "Découvrez et connectez-vous avec les acteurs de toute la chaîne de valeur agricole.",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "searchPlaceholder": "Rechercher par nom, rôle ou intérêt...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les rôles",
+    "interestPlaceholder": "Filtrer par intérêt...",
+    "connect": "Connecter",
+    "noStakeholdersFound": "Aucun acteur trouvé",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres ou revenez plus tard pour de nouveaux membres."
   }
 }
