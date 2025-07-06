@@ -163,9 +163,6 @@ export const performSearch = functions.https.onCall(async (data, context) => {
 
     } catch (error) {
         console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
-        if (error instanceof functions.https.HttpsError) throw error;
-        // Check for specific Firestore errors if possible, though 'internal' is generic.
-        // It might be a FAILED_PRECONDITION (missing index) error masked as 'internal'.
         if ((error as any).code === 'FAILED_PRECONDITION') {
              throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
         }
