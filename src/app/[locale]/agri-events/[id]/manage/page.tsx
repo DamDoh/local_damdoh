@@ -38,8 +38,6 @@ const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod
     loading: () => <div className="flex justify-center items-center h-48"><Loader2 className="h-8 w-8 animate-spin"/></div>
 });
 
-// Duplicating these types here because they are specific to this management page and might evolve.
-// In a larger app, these could be in a more shared but specific types file.
 interface EventCoupon {
   id: string;
   code: string;

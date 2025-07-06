@@ -1,16 +1,21 @@
 
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { HelpCircle, Search, BookOpen, ListChecks } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function HelpCenterPage() {
+  const t = useTranslations('helpCenterPage');
+
   const faqCategories = [
-    { name: "Getting Started", icon: <BookOpen className="h-5 w-5 text-primary" />, description: "Learn the basics of using DamDoh.", link: "#getting-started" },
-    { name: "Marketplace Guide", icon: <ListChecks className="h-5 w-5 text-primary" />, description: "How to buy, sell, and list products/services.", link: "#marketplace-guide" },
-    { name: "Account Management", icon: <HelpCircle className="h-5 w-5 text-primary" />, description: "Manage your profile and settings.", link: "#account-management" },
-    { name: "Troubleshooting", icon: <HelpCircle className="h-5 w-5 text-primary" />, description: "Common issues and how to resolve them.", link: "#troubleshooting" },
+    { name: t('gettingStarted.title'), icon: <BookOpen className="h-5 w-5 text-primary" />, description: t('gettingStarted.description'), link: "#getting-started" },
+    { name: t('marketplaceGuide.title'), icon: <ListChecks className="h-5 w-5 text-primary" />, description: t('marketplaceGuide.description'), link: "#marketplace-guide" },
+    { name: t('accountManagement.title'), icon: <HelpCircle className="h-5 w-5 text-primary" />, description: t('accountManagement.description'), link: "#account-management" },
+    { name: t('troubleshooting.title'), icon: <HelpCircle className="h-5 w-5 text-primary" />, description: t('troubleshooting.description'), link: "#troubleshooting" },
   ];
 
   return (
@@ -19,23 +24,23 @@ export default function HelpCenterPage() {
         <CardHeader className="text-center">
           <div className="inline-flex items-center justify-center gap-2 mb-2">
             <HelpCircle className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">DamDoh Help Center</CardTitle>
+            <CardTitle className="text-4xl">{t('title')}</CardTitle>
           </div>
           <CardDescription className="text-lg">
-            Find answers to your questions, tutorials, and guides to get the most out of DamDoh.
+            {t('subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-10">
           <section className="text-center">
-            <h2 className="text-2xl font-semibold text-foreground mb-3">How can we help you today?</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3">{t('howCanWeHelp')}</h2>
             <div className="relative max-w-xl mx-auto">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input placeholder="Search our knowledge base (e.g., 'how to list product', 'change password')" className="pl-10 h-12 text-md" />
+              <Input placeholder={t('searchPlaceholder')} className="pl-10 h-12 text-md" />
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4 text-center">Browse Topics</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4 text-center">{t('browseTopics')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {faqCategories.map((category) => (
                 <Link href={category.link} key={category.name} className="block hover:no-underline">
@@ -54,22 +59,22 @@ export default function HelpCenterPage() {
           </section>
           
           <section className="text-center">
-             <h2 className="text-2xl font-semibold text-foreground mb-3">Still Need Help?</h2>
+             <h2 className="text-2xl font-semibold text-foreground mb-3">{t('stillNeedHelp.title')}</h2>
              <p className="text-muted-foreground mb-4">
-                If you can't find what you're looking for, our support team is ready to assist you.
+                {t('stillNeedHelp.description')}
              </p>
              <Button asChild>
-                <Link href="/contact">Contact Support</Link>
+                <Link href="/contact">{t('stillNeedHelp.button')}</Link>
              </Button>
           </section>
 
           <section id="getting-started" className="pt-6">
-             <h3 className="text-xl font-semibold text-foreground mb-3">Getting Started (Placeholder)</h3>
-             <p className="text-muted-foreground">This section will cover creating your account, setting up your profile, and navigating the DamDoh platform for the first time. Tutorials and step-by-step guides will be available here.</p>
+             <h3 className="text-xl font-semibold text-foreground mb-3">{t('gettingStarted.title')}</h3>
+             <p className="text-muted-foreground">{t('gettingStarted.placeholder')}</p>
           </section>
            <section id="marketplace-guide" className="pt-6">
-             <h3 className="text-xl font-semibold text-foreground mb-3">Marketplace Guide (Placeholder)</h3>
-             <p className="text-muted-foreground">Learn how to create listings for products and services, search the marketplace, connect with buyers/sellers, and manage your transactions. Tips for effective listings and safe trading will be included.</p>
+             <h3 className="text-xl font-semibold text-foreground mb-3">{t('marketplaceGuide.title')}</h3>
+             <p className="text-muted-foreground">{t('marketplaceGuide.placeholder')}</p>
           </section>
         </CardContent>
       </Card>

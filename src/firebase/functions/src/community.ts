@@ -123,7 +123,7 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     const commentsSnapshot = await query.get();
 
     if (commentsSnapshot.empty) {
-        return { comments: [], lastVisible: null };
+        return { replies: [], lastVisible: null };
     }
 
     const authorIds = [...new Set(commentsSnapshot.docs.map(doc => doc.data().userId).filter(Boolean))];
@@ -162,7 +162,7 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     
     const newLastVisible = comments.length > 0 ? comments[comments.length - 1].id : null;
 
-    return { comments, lastVisible: newLastVisible };
+    return { replies: comments, lastVisible: newLastVisible };
 });
 
 

@@ -4,12 +4,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import QRCode from 'qrcode.react';
+import { useTranslations } from 'next-intl';
 
 import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import type { AgriEvent } from '@/lib/types';
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -21,14 +21,13 @@ import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useTranslations } from 'next-intl';
 
 interface AgriEventWithAttendees extends AgriEvent {
   isRegistered?: boolean;
 }
 
 function EventDetailSkeleton() {
-    const t = useTranslations('AgriEvents.detail');
+  const t = useTranslations('AgriEvents.detail');
   return (
     <div className="space-y-6">
       <Skeleton className="h-8 w-48" />

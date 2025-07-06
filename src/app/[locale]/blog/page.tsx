@@ -12,6 +12,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
+import { useTranslations } from 'next-intl';
 
 interface BlogPost {
   id: string;
@@ -51,6 +52,7 @@ function PostCardSkeleton() {
 }
 
 export default function BlogPage() {
+  const t = useTranslations('blogPage');
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
@@ -69,13 +71,13 @@ export default function BlogPage() {
         }
       } catch (error) {
         console.error("Error fetching blog posts:", error);
-        toast({ title: "Error", description: "Could not load blog posts.", variant: "destructive" });
+        toast({ title: t('error.title'), description: t('error.description'), variant: "destructive" });
       } finally {
         setIsLoading(false);
       }
     };
     fetchPosts();
-  }, [toast]);
+  }, [toast, t]);
 
   return (
     <div className="space-y-8">
@@ -83,10 +85,10 @@ export default function BlogPage() {
         <CardHeader className="text-center">
            <div className="inline-flex items-center justify-center gap-2 mb-2">
             <Rss className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">DamDoh Agri-Insights Blog</CardTitle>
+            <CardTitle className="text-4xl">{t('title')}</CardTitle>
           </div>
           <CardDescription className="text-lg">
-            News, insights, success stories, and expert advice from the DamDoh community and agricultural experts.
+            {t('description')}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -120,7 +122,7 @@ export default function BlogPage() {
                   <Link href={`/blog/${post.id}`}>{post.title_en}</Link>
                 </CardTitle>
                 <CardDescription className="text-xs">
-                  By {post.author} on {new Date(post.createdAt).toLocaleDateString()}
+                  {t('meta', { author: post.author, date: new Date(post.createdAt).toLocaleDateString() })}
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
@@ -134,7 +136,7 @@ export default function BlogPage() {
               </CardContent>
               <CardContent className="pt-2">
                 <Button asChild variant="outline" className="w-full">
-                  <Link href={`/blog/${post.id}`}>Read More</Link>
+                  <Link href={`/blog/${post.id}`}>{t('readMore')}</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -145,9 +147,9 @@ export default function BlogPage() {
           <CardContent>
             <div className="min-h-[300px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
               <Feather className="h-16 w-16 text-muted-foreground/50 mb-4" />
-              <h3 className="text-xl font-semibold text-muted-foreground mb-2">Blog Posts Coming Soon!</h3>
+              <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('noPosts.title')}</h3>
               <p className="text-muted-foreground max-w-md">
-                Our team and community experts are busy preparing insightful articles. Check back soon!
+                {t('noPosts.description')}
               </p>
             </div>
           </CardContent>

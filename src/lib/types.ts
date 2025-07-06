@@ -8,6 +8,8 @@ import type {
     ForumPostSchema,
     AgriEventSchema
 } from './schemas';
+import type { LucideIcon } from 'lucide-react';
+
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -690,7 +692,7 @@ export interface PollOption {
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
-  timestamp: string;
+  timestamp: any;
   userId: string;
   userName: string;
   userAvatar?: string;
@@ -727,7 +729,7 @@ export interface Message {
 export interface MobileHomeCategory {
     id: string;
     name: string;
-    icon: React.ElementType;
+    icon: LucideIcon;
     href: string;
     dataAiHint?: string;
 }

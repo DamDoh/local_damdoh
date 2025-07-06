@@ -10,11 +10,10 @@ import type { SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flo
 
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
     try {
-      const response = await fetch(`/api/profiles/${id}`);
-      if (!response.ok) {
-        return null;
-      }
-      return await response.json();
+      if (!id) return null;
+      const getProfileCallable = httpsCallable(functions, 'getProfileByIdFromDB');
+      const response = await getProfileCallable({id});
+      return response.data as UserProfile | null;
     } catch (error) {
       console.error(`Error fetching profile ${id} from API:`, error);
       return null;
@@ -24,11 +23,9 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 
 export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
    try {
-    const response = await fetch(`/api/profiles`);
-    if (!response.ok) {
-      return [];
-    }
-    return await response.json();
+    const getAllProfilesCallable = httpsCallable(functions, 'getAllProfilesFromDB');
+    const response = await getAllProfilesCallable();
+    return response.data as UserProfile[];
   } catch (error) {
     console.error(`Error fetching all profiles from API:`, error);
     return [];
@@ -38,11 +35,9 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 
 export async function getAllMarketplaceItemsFromDB(): Promise<any[]> {
    try {
-    const response = await fetch(`/api/marketplace`);
-    if (!response.ok) {
-      return [];
-    }
-    return await response.json();
+    const getAllItemsCallable = httpsCallable(functions, 'getAllMarketplaceItemsFromDB');
+    const response = await getAllItemsCallable();
+    return response.data as any[];
   } catch (error) {
     console.error(`Error fetching all marketplace items from API:`, error);
     return [];

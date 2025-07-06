@@ -1,25 +1,25 @@
 
 "use client";
 
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Tag, Filter, Search, Frown } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Search as SearchIconLucide, Frown } from "lucide-react";
 import type { AgriEvent } from "@/lib/types";
 import { getAgriEventFilterOptions, type AgriEventTypeConstant } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { useHomepagePreference } from "@/hooks/useHomepagePreference";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
-import { useTranslations } from "next-intl";
 
 const getEventTypeIcon = (eventType: AgriEvent['eventType']) => {
   const iconProps = { className: "h-4 w-4 mr-1.5 text-primary" };
@@ -54,7 +54,7 @@ const EventCardSkeleton = () => (
 
 
 export default function AgriEventsPage() {
-  const t = useTranslations('agriEventsPage');
+  const t = useTranslations('AgriEvents.page');
   const tConstants = useTranslations('constants.agriEventTypes');
   const [searchTerm, setSearchTerm] = useState("");
   const [eventTypeFilter, setEventTypeFilter] = useState<AgriEventTypeConstant | 'All'>("All");
@@ -73,7 +73,6 @@ export default function AgriEventsPage() {
         setIsLoading(true);
         try {
             const result = await getAgriEventsCallable();
-            // Use nullish coalescing operator for safety
             const fetchedEvents = (result.data as any)?.events ?? [];
             setEvents(fetchedEvents);
         } catch(error) {
@@ -116,7 +115,7 @@ export default function AgriEventsPage() {
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: t('agriEventsPinned'),
+        title: t('homepagePinned'),
         description: t('agriEventsIsHomepage'),
       });
     }
@@ -153,7 +152,7 @@ export default function AgriEventsPage() {
           <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
             <div className="relative lg:col-span-2">
               <Label htmlFor="search-events" className="sr-only">{t('searchEvents')}</Label>
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
                 id="search-events"
                 placeholder={t('searchPlaceholder')}

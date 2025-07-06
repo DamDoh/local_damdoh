@@ -119,7 +119,7 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
     }
 
     const repliesSnapshot = await query.get();
-
+    
     const authorIds = [...new Set(repliesSnapshot.docs.map(doc => doc.data().authorRef).filter(Boolean))];
     const profiles: Record<string, any> = {};
 
@@ -144,10 +144,13 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
         const authorProfile = profiles[data.authorRef] || { displayName: 'Unknown User', avatarUrl: null };
         return {
             id: doc.id,
-            ...data,
-            authorName: authorProfile.displayName,
-            authorAvatarUrl: authorProfile.avatarUrl,
-            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            content: data.content,
+            author: {
+              id: data.authorRef,
+              name: authorProfile.displayName,
+              avatarUrl: authorProfile.avatarUrl,
+            },
+            timestamp: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
     
@@ -165,21 +168,12 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
 
     const replyRef = db.collection(`forums/${topicId}/posts/${postId}/replies`).doc();
     const postRef = db.collection(`forums/${topicId}/posts`).doc(postId);
-    const userProfileDoc = await db.collection('users').doc(uid).get();
-    
-    if (!userProfileDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
-    }
-    const userProfile = userProfileDoc.data() as UserProfile;
-
 
     const batch = db.batch();
 
     batch.set(replyRef, {
         content,
         authorRef: uid,
-        authorName: userProfile.displayName,
-        authorAvatarUrl: userProfile.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
