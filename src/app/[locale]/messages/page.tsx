@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Search, MessageSquare, Loader2, ArrowLeft } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from '@/lib/utils';
-import type { UserProfile } from '@/lib/types';
+import type { UserProfile, Conversation, Message } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -25,26 +25,6 @@ import { getFirestore, collection, query, where, orderBy, onSnapshot, Timestamp 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-
-interface Conversation {
-  id: string;
-  participant: {
-    id: string;
-    name: string;
-    avatarUrl?: string;
-  };
-  lastMessage: string;
-  lastMessageTimestamp: string;
-  unreadCount: number;
-}
-
-interface Message {
-  id: string;
-  conversationId: string;
-  senderId: string;
-  content: string;
-  timestamp: string;
-}
 
 function MessagingContent() {
     const t = useTranslations('messagingPage');
