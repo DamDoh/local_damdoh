@@ -118,13 +118,13 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
         const hasKeywords = searchTerms.length > 0;
 
-        // Apply ONLY the most selective filter to the initial query to avoid complex index requirements.
+        // Apply ONLY the keyword filter to the initial query to avoid complex index requirements.
         if (hasKeywords) {
             query = query.where("searchable_terms", "array-contains-any", searchTerms);
         }
         
-        // Always order by a standard field. We'll do further sorting in memory if needed.
-        query = query.orderBy("updatedAt", "desc").limit(100); // Fetch a larger set to filter in memory
+        // Fetch a larger set to filter and sort in memory.
+        query = query.limit(100); 
 
         const snapshot = await query.get();
         
@@ -156,6 +156,13 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             return true;
         });
         
+        // --- In-Memory Sorting ---
+        filteredResults.sort((a, b) => {
+            const dateA = (a.updatedAt as admin.firestore.Timestamp)?.toDate() || new Date(0);
+            const dateB = (b.updatedAt as admin.firestore.Timestamp)?.toDate() || new Date(0);
+            return dateB.getTime() - dateA.getTime();
+        });
+
         // Limit the final results to be sent to the client
         const finalResults = filteredResults.slice(0, 20);
 
