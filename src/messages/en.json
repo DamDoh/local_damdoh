@@ -335,5 +335,79 @@
     "connect": "Connect",
     "noStakeholdersFound": "No Stakeholders Found",
     "noStakeholdersHint": "Try adjusting your filters or check back later for new members."
+  },
+  "FarmManagement": {
+    "title": "Farm Management Hub",
+    "description": "Your central command for all on-farm activities, from crop planning and KNF inputs to labor and financial tracking.",
+    "myFarms": {
+      "title": "My Farms",
+      "description": "Manage your registered farms, view their details, and add or track crops and livestock.",
+      "button": "Manage Farms",
+      "backToDashboard": "Back to Farm Management Hub",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "View Farm Details",
+      "noFarmsTitle": "No Farms Registered",
+      "noFarmsDescription": "Get started by registering your first farm or land plot."
+    },
+    "createFarm": {
+      "backToFarms": "Back to My Farms",
+      "title": "Register a New Farm",
+      "description": "Add a new farm or land plot to your profile to begin tracking activities.",
+      "toast": {
+        "successTitle": "Farm Created!",
+        "successDescription": "Your farm '{farmName}' has been successfully registered.",
+        "errorTitle": "Creation Failed"
+      },
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Organics",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Rift Valley, Kenya",
+        "locationDescription": "The general city/region of your farm.",
+        "sizeLabel": "Size / Area",
+        "sizePlaceholder": "e.g., 50 Hectares",
+        "sizeDescription": "Include the unit (e.g., acres, hectares).",
+        "typeLabel": "Type of Farm",
+        "typePlaceholder": "Select the primary type",
+        "types": {
+          "crop": "Crop Farming",
+          "livestock": "Livestock Rearing",
+          "mixed": "Mixed (Crop & Livestock)",
+          "aquaculture": "Aquaculture (Fish Farming)",
+          "other": "Other"
+        },
+        "descriptionLabel": "Short Description (Optional)",
+        "descriptionPlaceholder": "A brief description of your farm's focus or mission.",
+        "irrigationLabel": "Irrigation Methods (Optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, Canal, Rain-fed",
+        "irrigationDescription": "Describe the primary irrigation methods used.",
+        "submitButton": "Save Farm"
+      }
+    },
+    "farmDetail": {
+        "backToFarms": "Back to My Farms",
+        "notFound": {
+            "title": "Farm Not Found",
+            "description": "We couldn't find the farm you're looking for.",
+            "backButton": "Back to My Farms"
+        }
+    },
+    "knf": {
+      "title": "KNF Input Assistant",
+      "description": "Create and track your Korean Natural Farming inputs like FPJ, FAA, and Lactic Acid Bacteria serum.",
+      "button": "Manage KNF Inputs"
+    },
+    "financials": {
+      "title": "Money Matters",
+      "description": "Log your farm's income and expenses to understand profitability and build your financial history.",
+      "button": "View Financials"
+    },
+    "assetManagement": {
+      "title": "Asset Management",
+      "description": "Track your machinery, equipment, and other valuable farm assets. (Coming Soon)",
+      "button": "Manage Assets"
+    }
   }
 }
+

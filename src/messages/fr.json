@@ -114,7 +114,7 @@
     "noResultsTitle": "Aucun service trouvé",
     "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles annonces."
   },
-  "LandingPage": {
+    "LandingPage": {
     "hero": {
       "title": "Cultiver les liens, récolter le succès avec {appName}",
       "subtitle": "La plateforme mondiale qui connecte chaque maillon de la chaîne d'approvisionnement agricole. De la ferme à la fourchette, nous favorisons la croissance, la transparence et les opportunités.",
@@ -335,5 +335,79 @@
     "connect": "Connecter",
     "noStakeholdersFound": "Aucun acteur trouvé",
     "noStakeholdersHint": "Essayez d'ajuster vos filtres ou revenez plus tard pour de nouveaux membres."
+  },
+  "FarmManagement": {
+    "title": "Hub de Gestion de la Ferme",
+    "description": "Votre centre de commande pour toutes les activités de la ferme, de la planification des cultures et des intrants KNF au suivi de la main-d'œuvre et des finances.",
+    "myFarms": {
+      "title": "Mes Fermes",
+      "description": "Gérez vos fermes enregistrées, consultez leurs détails, et ajoutez ou suivez les cultures et le bétail.",
+      "button": "Gérer les Fermes",
+      "backToDashboard": "Retour au Hub de Gestion",
+      "addNewFarmButton": "Ajouter une Nouvelle Ferme",
+      "size": "Taille",
+      "viewFarmButton": "Voir les Détails de la Ferme",
+      "noFarmsTitle": "Aucune Ferme Enregistrée",
+      "noFarmsDescription": "Commencez par enregistrer votre première ferme ou parcelle de terrain."
+    },
+    "createFarm": {
+      "backToFarms": "Retour à Mes Fermes",
+      "title": "Enregistrer une Nouvelle Ferme",
+      "description": "Ajoutez une nouvelle ferme ou parcelle de terrain à votre profil pour commencer à suivre les activités.",
+      "toast": {
+        "successTitle": "Ferme Créée !",
+        "successDescription": "Votre ferme '{farmName}' a été enregistrée avec succès.",
+        "errorTitle": "Échec de la Création"
+      },
+      "form": {
+        "farmNameLabel": "Nom de la Ferme",
+        "farmNamePlaceholder": "Ex: Les Bio de la Vallée Verte",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "Ex: Vallée du Rift, Kenya",
+        "locationDescription": "La ville/région générale de votre ferme.",
+        "sizeLabel": "Taille / Superficie",
+        "sizePlaceholder": "Ex: 50 Hectares",
+        "sizeDescription": "Incluez l'unité (ex: acres, hectares).",
+        "typeLabel": "Type de Ferme",
+        "typePlaceholder": "Sélectionnez le type principal",
+        "types": {
+          "crop": "Culture",
+          "livestock": "Élevage",
+          "mixed": "Mixte (Culture et Élevage)",
+          "aquaculture": "Aquaculture (Pisciculture)",
+          "other": "Autre"
+        },
+        "descriptionLabel": "Courte Description (Optionnel)",
+        "descriptionPlaceholder": "Une brève description de l'orientation ou de la mission de votre ferme.",
+        "irrigationLabel": "Méthodes d'Irrigation (Optionnel)",
+        "irrigationPlaceholder": "Ex: Irrigation au goutte-à-goutte, Canal, Pluviale",
+        "irrigationDescription": "Décrivez les principales méthodes d'irrigation utilisées.",
+        "submitButton": "Enregistrer la Ferme"
+      }
+    },
+    "farmDetail": {
+        "backToFarms": "Retour à Mes Fermes",
+        "notFound": {
+            "title": "Ferme non trouvée",
+            "description": "Nous n'avons pas pu trouver la ferme que vous recherchez.",
+            "backButton": "Retour à Mes Fermes"
+        }
+    },
+    "knf": {
+      "title": "Assistant Intrants KNF",
+      "description": "Créez et suivez vos intrants d'Agriculture Naturelle Coréenne comme le FPJ, le FAA et le sérum de bactéries lactiques.",
+      "button": "Gérer les Intrants KNF"
+    },
+    "financials": {
+      "title": "Question d'Argent",
+      "description": "Enregistrez les revenus et les dépenses de votre ferme pour comprendre la rentabilité et construire votre historique financier.",
+      "button": "Voir les Finances"
+    },
+    "assetManagement": {
+      "title": "Gestion des Actifs",
+      "description": "Suivez vos machines, équipements et autres actifs de valeur de la ferme. (Bientôt disponible)",
+      "button": "Gérer les Actifs"
+    }
   }
 }
+

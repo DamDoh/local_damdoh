@@ -335,5 +335,79 @@
     "connect": "Verbinden",
     "noStakeholdersFound": "Keine Stakeholder gefunden",
     "noStakeholdersHint": "Versuchen Sie, Ihre Filter anzupassen, oder schauen Sie später wieder für neue Mitglieder vorbei."
+  },
+  "FarmManagement": {
+    "title": "Zentrale für Farm-Management",
+    "description": "Ihre zentrale Anlaufstelle für alle Aktivitäten auf dem Hof, von der Anbauplanung und KNF-Inputs bis hin zur Arbeits- und Finanzverfolgung.",
+    "myFarms": {
+      "title": "Meine Farmen",
+      "description": "Verwalten Sie Ihre registrierten Farmen, sehen Sie deren Details ein und fügen Sie Kulturen und Vieh hinzu oder verfolgen Sie diese.",
+      "button": "Farmen verwalten",
+      "backToDashboard": "Zurück zur Farm-Management-Zentrale",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farmdetails anzeigen",
+      "noFarmsTitle": "Keine Farmen registriert",
+      "noFarmsDescription": "Beginnen Sie, indem Sie Ihre erste Farm oder Ihr erstes Grundstück registrieren."
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Neue Farm registrieren",
+      "description": "Fügen Sie Ihrem Profil eine neue Farm oder ein neues Grundstück hinzu, um mit der Verfolgung von Aktivitäten zu beginnen.",
+      "toast": {
+        "successTitle": "Farm erstellt!",
+        "successDescription": "Ihre Farm '{farmName}' wurde erfolgreich registriert.",
+        "errorTitle": "Erstellung fehlgeschlagen"
+      },
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Grüne Tal Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Rift Valley, Kenia",
+        "locationDescription": "Der allgemeine Stadt-/Regionsstandort Ihrer Farm.",
+        "sizeLabel": "Größe / Fläche",
+        "sizePlaceholder": "z.B. 50 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Art der Farm",
+        "typePlaceholder": "Wählen Sie den primären Typ",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Kurzbeschreibung (Optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung des Fokus oder der Mission Ihrer Farm.",
+        "irrigationLabel": "Bewässerungsmethoden (Optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Kanal, Regenwasser",
+        "irrigationDescription": "Beschreiben Sie die primären Bewässerungsmethoden.",
+        "submitButton": "Farm speichern"
+      }
+    },
+    "farmDetail": {
+        "backToFarms": "Zurück zu Meine Farmen",
+        "notFound": {
+            "title": "Farm nicht gefunden",
+            "description": "Wir konnten die gesuchte Farm nicht finden.",
+            "backButton": "Zurück zu Meine Farmen"
+        }
+    },
+    "knf": {
+      "title": "KNF-Input-Assistent",
+      "description": "Erstellen und verfolgen Sie Ihre koreanischen Naturlandwirtschafts-Inputs wie FPJ, FAA und Milchsäurebakterien-Serum.",
+      "button": "KNF-Inputs verwalten"
+    },
+    "financials": {
+      "title": "Finanzen",
+      "description": "Protokollieren Sie die Einnahmen und Ausgaben Ihrer Farm, um die Rentabilität zu verstehen und Ihre Finanzhistorie aufzubauen.",
+      "button": "Finanzen anzeigen"
+    },
+    "assetManagement": {
+      "title": "Vermögensverwaltung",
+      "description": "Verfolgen Sie Ihre Maschinen, Geräte und andere wertvolle landwirtschaftliche Vermögenswerte. (Kommt bald)",
+      "button": "Vermögen verwalten"
+    }
   }
 }
+

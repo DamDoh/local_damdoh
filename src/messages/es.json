@@ -335,5 +335,79 @@
     "connect": "Conectar",
     "noStakeholdersFound": "No se encontraron interesados",
     "noStakeholdersHint": "Intente ajustar sus filtros o vuelva más tarde para ver nuevos miembros."
+  },
+  "FarmManagement": {
+    "title": "Centro de Gestión de la Granja",
+    "description": "Su centro de mando para todas las actividades en la granja, desde la planificación de cultivos e insumos KNF hasta el seguimiento laboral y financiero.",
+    "myFarms": {
+      "title": "Mis Granjas",
+      "description": "Gestione sus granjas registradas, vea sus detalles y agregue o siga cultivos y ganado.",
+      "button": "Gestionar Granjas",
+      "backToDashboard": "Volver al Centro de Gestión",
+      "addNewFarmButton": "Añadir Nueva Granja",
+      "size": "Tamaño",
+      "viewFarmButton": "Ver Detalles de la Granja",
+      "noFarmsTitle": "No hay Granjas Registradas",
+      "noFarmsDescription": "Comience registrando su primera granja o parcela de tierra."
+    },
+    "createFarm": {
+      "backToFarms": "Volver a Mis Granjas",
+      "title": "Registrar una Nueva Granja",
+      "description": "Agregue una nueva granja o parcela de tierra a su perfil para comenzar a seguir las actividades.",
+      "toast": {
+        "successTitle": "¡Granja Creada!",
+        "successDescription": "Su granja '{farmName}' ha sido registrada con éxito.",
+        "errorTitle": "Creación Fallida"
+      },
+      "form": {
+        "farmNameLabel": "Nombre de la Granja",
+        "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ej: Valle del Rift, Kenia",
+        "locationDescription": "La ciudad/región general de su granja.",
+        "sizeLabel": "Tamaño / Área",
+        "sizePlaceholder": "Ej: 50 Hectáreas",
+        "sizeDescription": "Incluya la unidad (ej: acres, hectáreas).",
+        "typeLabel": "Tipo de Granja",
+        "typePlaceholder": "Seleccione el tipo principal",
+        "types": {
+          "crop": "Cultivo",
+          "livestock": "Ganadería",
+          "mixed": "Mixta (Cultivo y Ganadería)",
+          "aquaculture": "Acuicultura (Piscicultura)",
+          "other": "Otro"
+        },
+        "descriptionLabel": "Descripción Corta (Opcional)",
+        "descriptionPlaceholder": "Una breve descripción del enfoque o la misión de su granja.",
+        "irrigationLabel": "Métodos de Riego (Opcional)",
+        "irrigationPlaceholder": "Ej: Riego por goteo, Canal, De secano",
+        "irrigationDescription": "Describa los principales métodos de riego utilizados.",
+        "submitButton": "Guardar Granja"
+      }
+    },
+    "farmDetail": {
+        "backToFarms": "Volver a Mis Granjas",
+        "notFound": {
+            "title": "Granja no encontrada",
+            "description": "No pudimos encontrar la granja que busca.",
+            "backButton": "Volver a Mis Granjas"
+        }
+    },
+    "knf": {
+      "title": "Asistente de Insumos KNF",
+      "description": "Cree y siga sus insumos de Agricultura Natural Coreana como FPJ, FAA y suero de bacterias lácticas.",
+      "button": "Gestionar Insumos KNF"
+    },
+    "financials": {
+      "title": "Asuntos Monetarios",
+      "description": "Registre los ingresos y gastos de su granja para entender la rentabilidad y construir su historial financiero.",
+      "button": "Ver Finanzas"
+    },
+    "assetManagement": {
+      "title": "Gestión de Activos",
+      "description": "Realice un seguimiento de su maquinaria, equipo y otros activos valiosos de la granja. (Próximamente)",
+      "button": "Gestionar Activos"
+    }
   }
 }
+
