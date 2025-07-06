@@ -266,5 +266,52 @@
     "websiteLabel": "Sitio Web (Opcional)",
     "savingButton": "Guardando...",
     "cancelButton": "Cancelar"
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Todos los Tipos",
+      "product": "Producto",
+      "service": "Servicio"
+    },
+    "agriEventTypes": {
+      "All": "Todos los Eventos",
+      "Conference": "Conferencia",
+      "Webinar": "Webinar",
+      "Workshop": "Taller",
+      "TradeShow": "Feria Comercial",
+      "FieldDay": "Día de Campo",
+      "NetworkingEvent": "Evento de Networking",
+      "OnlineCourseLaunch": "Lanzamiento de Curso Online",
+      "PolicyBriefing": "Reunión Informativa sobre Políticas"
+    },
+    "stakeholderRoles": {
+      "Farmer": "Agricultor",
+      "AgriculturalCooperative": "Cooperativa Agrícola",
+      "FieldAgentAgronomistDamDohInternal": "Agente de Campo/Agrónomo (Interno de DamDoh)",
+      "OperationsLogisticsTeamDamDohInternal": "Equipo de Operaciones/Logística (Interno de DamDoh)",
+      "QualityAssuranceTeamDamDohInternal": "Equipo de Garantía de Calidad (Interno de DamDoh)",
+      "ProcessingPackagingUnit": "Unidad de Procesamiento y Embalaje",
+      "BuyerRestaurantSupermarketExporter": "Comprador (Restaurante, Supermercado, Exportador)",
+      "InputSupplierSeedFertilizerPesticide": "Proveedor de Insumos (Semillas, Fertilizantes, Pesticidas)",
+      "EquipmentSupplierSalesofMachineryIoT": "Proveedor de Equipos (Venta de Maquinaria/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Institución Financiera (Microfinanzas/Préstamos)",
+      "GovernmentRegulatorAuditor": "Regulador/Auditor Gubernamental",
+      "CertificationBodyOrganicFairTradeetc": "Organismo de Certificación (Orgánico, Comercio Justo, etc.)",
+      "Consumer": "Consumidor",
+      "ResearcherAcademic": "Investigador/Académico",
+      "LogisticsPartnerThird-PartyTransporter": "Socio Logístico (Transportista Externo)",
+      "StorageWarehouseFacility": "Instalación de Almacenamiento/Almacén",
+      "AgronomyExpertConsultantExternal": "Experto/Consultor en Agronomía (Externo)",
+      "Agro-TourismOperator": "Operador de Agroturismo",
+      "EnergySolutionsProviderSolarBiogas": "Proveedor de Soluciones Energéticas (Solar, Biogás)",
+      "Agro-ExportFacilitatorCustomsBroker": "Facilitador de Agroexportación/Agente de Aduanas",
+      "Agri-TechInnovatorDeveloper": "Innovador/Desarrollador de Agri-Tech",
+      "WasteManagementCompostFacility": "Instalación de Gestión de Residuos y Compostaje",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Inversor de Impacto, Individual)",
+      "InsuranceProvider": "Proveedor de Seguros",
+      "PackagingSupplier": "Proveedor de Embalaje"
+    }
   }
 }
+
+    

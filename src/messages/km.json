@@ -266,5 +266,52 @@
     "websiteLabel": "គេហទំព័រ (ស្រេចចិត្ត)",
     "savingButton": "កំពុងរក្សាទុក...",
     "cancelButton": "បោះបង់"
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "product": "ផលិតផល",
+      "service": "សេវាកម្ម"
+    },
+    "agriEventTypes": {
+      "All": "គ្រប់ព្រឹត្តិការណ៍",
+      "Conference": "សន្និសីទ",
+      "Webinar": "វេប៊ីណា",
+      "Workshop": "សិក្ខាសាលា",
+      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
+      "FieldDay": "ទិវាចុះស្រែ",
+      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
+      "OnlineCourseLaunch": "ការចាប់ផ្តើមវគ្គសិក្សាអនឡាញ",
+      "PolicyBriefing": "ការសង្ខេបគោលនយោបាយ"
+    },
+    "stakeholderRoles": {
+      "Farmer": "កសិករ",
+      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
+      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ/អ្នកជំនាញកសិកម្ម (ផ្ទៃក្នុងដាំដុះ)",
+      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ឡូជីស្ទីក (ផ្ទៃក្នុងដាំដុះ)",
+      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (ផ្ទៃក្នុងដាំដុះ)",
+      "ProcessingPackagingUnit": "หน่วยประมวลผลและบรรจุภัณฑ์",
+      "BuyerRestaurantSupermarketExporter": "អ្នកទិញ (ភោជនីយដ្ឋាន, ផ្សារទំនើប, អ្នកនាំចេញ)",
+      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសំលាប់សត្វល្អិត)",
+      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ (លក់គ្រឿងចក្រ/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/កម្ចី)",
+      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
+      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នវិញ្ញាបនប័ត្រ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
+      "Consumer": "អ្នកប្រើប្រាស់",
+      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
+      "LogisticsPartnerThird-PartyTransporter": "ដៃគូឡូជីស្ទីក (អ្នកដឹកជញ្ជូនភាគីទីបី)",
+      "StorageWarehouseFacility": "កន្លែងស្តុក/ឃ្លាំង",
+      "AgronomyExpertConsultantExternal": "អ្នកជំនាញ/ទីប្រឹក្សាកសិកម្ម (ខាងក្រៅ)",
+      "Agro-TourismOperator": "ប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
+      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชันพลังงาน (พลังงานแสงอาทิตย์, ก๊าซชีวภาพ)",
+      "Agro-ExportFacilitatorCustomsBroker": "អ្នកសម្របសម្រួលការនាំចេញកសិកម្ម/ភ្នាក់ងារគយ",
+      "Agri-TechInnovatorDeveloper": "អ្នកច្នៃប្រឌិត/អ្នកអភិវឌ្ឍន៍បច្ចេកវិទ្យាកសិកម្ម",
+      "WasteManagementCompostFacility": "កន្លែងគ្រប់គ្រងសំរាម និងកំប៉ុស្ត",
+      "CrowdfunderImpactInvestorIndividual": "អ្នកផ្តល់មូលនិធិសហគមន៍ (អ្នកវិនិយោគផលប៉ះពាល់, បុគ្គល)",
+      "InsuranceProvider": "ผู้ให้บริการประกันภัย",
+      "PackagingSupplier": "អ្នកផ្គត់ផ្គង់ការវេចខ្ចប់"
+    }
   }
 }
+
+    

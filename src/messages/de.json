@@ -266,5 +266,52 @@
     "websiteLabel": "Webseite (Optional)",
     "savingButton": "Speichern...",
     "cancelButton": "Abbrechen"
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Alle Typen",
+      "product": "Produkt",
+      "service": "Dienstleistung"
+    },
+    "agriEventTypes": {
+      "All": "Alle Veranstaltungen",
+      "Conference": "Konferenz",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Messe",
+      "FieldDay": "Feldtag",
+      "NetworkingEvent": "Netzwerktreffen",
+      "OnlineCourseLaunch": "Online-Kurs-Start",
+      "PolicyBriefing": "Politik-Briefing"
+    },
+    "stakeholderRoles": {
+      "Farmer": "Bauer",
+      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
+      "FieldAgentAgronomistDamDohInternal": "Außendienstmitarbeiter/Agronom (DamDoh Intern)",
+      "OperationsLogisticsTeamDamDohInternal": "Betrieb/Logistik-Team (DamDoh Intern)",
+      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungs-Team (DamDoh Intern)",
+      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
+      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
+      "InputSupplierSeedFertilizerPesticide": "Input-Lieferant (Saatgut, Dünger, Pestizide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
+      "GovernmentRegulatorAuditor": "Regierungsregulierer/Prüfer",
+      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
+      "Consumer": "Verbraucher",
+      "ResearcherAcademic": "Forscher/Akademiker",
+      "LogisticsPartnerThird-PartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
+      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
+      "AgronomyExpertConsultantExternal": "Agronomie-Experte/Berater (Extern)",
+      "Agro-TourismOperator": "Agrotourismus-Betreiber",
+      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogas)",
+      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
+      "Agri-TechInnovatorDeveloper": "Agri-Tech-Innovator/Entwickler",
+      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
+      "InsuranceProvider": "Versicherungsanbieter",
+      "PackagingSupplier": "Verpackungslieferant"
+    }
   }
 }
+
+    
