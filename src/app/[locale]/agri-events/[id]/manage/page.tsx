@@ -458,7 +458,7 @@ export default function ManageEventPage() {
     const [event, setEvent] = useState<AgriEvent | null>(null);
 
     const getEventCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), []);
-    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
+    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), []);
 
     const fetchCoupons = useCallback(async () => {
         setIsLoadingCoupons(true);
