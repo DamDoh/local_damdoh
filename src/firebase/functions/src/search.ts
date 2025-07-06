@@ -113,90 +113,62 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
-        // --- Keyword Filtering ---
+        // --- Keyword Filtering is the primary driver ---
         const validKeywords = mainKeywords.filter((k): k is string => typeof k === 'string' && k.trim() !== '');
         const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
         const hasKeywords = searchTerms.length > 0;
 
+        // Apply ONLY the most selective filter to the initial query to avoid complex index requirements.
         if (hasKeywords) {
             query = query.where("searchable_terms", "array-contains-any", searchTerms);
         }
         
-        // --- Tag-based Filtering ---
-        const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category');
-        // Firestore limitation: Cannot have `array-contains-any` and another `array-contains` in the same query.
-        // So, if keywords are present, we filter category in memory.
-        if (categoryFilter?.value && !hasKeywords) {
-            query = query.where('tags', 'array-contains', categoryFilter.value);
-        }
-        
-        const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType');
-         if (listingTypeFilter?.value) {
-            query = query.where('listingType', '==', listingTypeFilter.value);
-        }
+        // Always order by a standard field. We'll do further sorting in memory if needed.
+        query = query.orderBy("updatedAt", "desc").limit(100); // Fetch a larger set to filter in memory
 
-        // --- Location Filtering ---
-        if (identifiedLocation) {
-            query = query.where("location", "==", identifiedLocation);
-        }
-
-        // --- Unit Filtering ---
-        if (perUnit) {
-            query = query.where("perUnit", "==", perUnit);
-        }
-        
-        // --- Price Filtering Logic ---
-        // Firestore limitation: Cannot have `array-contains-any` and a range filter (`<`, `>`, etc.) on different fields.
-        // So, if keywords are present, we filter price in memory. Otherwise, we can do it in the query.
-        if (!hasKeywords) {
-            let hasInequalityFilter = false;
-            if (typeof minPrice === 'number') {
-                query = query.where('price', '>=', minPrice);
-                hasInequalityFilter = true;
-            }
-            if (typeof maxPrice === 'number') {
-                query = query.where('price', '<=', maxPrice);
-                hasInequalityFilter = true;
-            }
-
-            if (hasInequalityFilter) {
-                query = query.orderBy('price', 'asc');
-            } else {
-                query = query.orderBy("updatedAt", "desc");
-            }
-        } else {
-             // If we have keywords, we can't order by price due to the Firestore limitation.
-             // We will sort by relevance (default) or another field like updatedAt.
-             query = query.orderBy("updatedAt", "desc");
-        }
-
-
-        const snapshot = await query.limit(50).get();
+        const snapshot = await query.get();
         
         let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // --- In-Memory Filtering for when keywords are present ---
-        if (hasKeywords) {
-            // Filter by category
-            if (categoryFilter?.value) {
-                results = results.filter(r => r.tags && Array.isArray(r.tags) && r.tags.includes(categoryFilter.value));
+        // --- In-Memory Filtering for all other criteria ---
+        const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
+        const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+
+        const filteredResults = results.filter(r => {
+            if (categoryFilter && (!r.tags || !Array.isArray(r.tags) || !r.tags.includes(categoryFilter))) {
+                return false;
             }
-            // Filter by price
-            if (typeof minPrice === 'number') {
-                results = results.filter(r => r.price != null && r.price >= minPrice);
+            if (listingTypeFilter && r.listingType !== listingTypeFilter) {
+                return false;
             }
-            if (typeof maxPrice === 'number') {
-                results = results.filter(r => r.price != null && r.price <= maxPrice);
+            if (identifiedLocation && r.location !== identifiedLocation) {
+                return false;
             }
-        }
+            if (perUnit && r.perUnit !== perUnit) {
+                return false;
+            }
+            if (typeof minPrice === 'number' && (r.price == null || r.price < minPrice)) {
+                return false;
+            }
+            if (typeof maxPrice === 'number' && (r.price == null || r.price > maxPrice)) {
+                return false;
+            }
+            return true;
+        });
         
         // Limit the final results to be sent to the client
-        const finalResults = results.slice(0, 20);
+        const finalResults = filteredResults.slice(0, 20);
 
         return { results: finalResults };
 
     } catch (error) {
         console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
-        throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        // Check for specific Firestore errors if possible, though 'internal' is generic.
+        // It might be a FAILED_PRECONDITION (missing index) error masked as 'internal'.
+        if ((error as any).code === 'FAILED_PRECONDITION') {
+             throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
+        }
+        throw new functions.https.HttpsError("internal", "An error occurred while performing the search.", error);
     }
 });
