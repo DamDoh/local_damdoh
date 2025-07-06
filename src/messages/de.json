@@ -113,5 +113,55 @@
     "allCategories": "Alle Dienstleistungen",
     "noResultsTitle": "Keine Dienstleistungen gefunden",
     "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei, um neue Angebote zu sehen."
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Verbindungen schaffen, Erfolg ernten mit {appName}",
+      "subtitle": "Die globale Plattform, die jedes Glied der landwirtschaftlichen Lieferkette verbindet. Vom Feld bis auf den Tisch fördern wir Wachstum, Transparenz und Chancen.",
+      "getStartedButton": "Jetzt loslegen",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Eine Plattform, unendliche Möglichkeiten",
+      "subtitle": "DamDoh bietet die Werkzeuge, die Sie benötigen, um in der modernen Agrarlandschaft erfolgreich zu sein.",
+      "networking": {
+        "title": "Intelligentes Networking",
+        "description": "Vernetzen Sie sich mit Landwirten, Käufern, Lieferanten und Experten mithilfe unserer KI-gestützten Empfehlungs-Engine."
+      },
+      "marketplace": {
+        "title": "Globaler Marktplatz",
+        "description": "Kaufen und verkaufen Sie Produkte, von frischem Obst und Gemüse bis hin zu schweren Maschinen, in einer sicheren und vertrauenswürdigen Umgebung."
+      },
+      "forums": {
+        "title": "Wissensaustausch",
+        "description": "Treten Sie Community-Foren bei, um bewährte Verfahren zu diskutieren, Herausforderungen zu lösen und von Ihren Kollegen zu lernen."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Bieten Sie Ihre Fähigkeiten an oder finden Sie das richtige Talent für Ihre landwirtschaftlichen Betriebe, von Hilfskräften bis zu Agronomen."
+      }
+    },
+    "forWho": {
+      "badge": "Für alle im Agrargeschäft",
+      "title": "Ein Knotenpunkt für das gesamte Ökosystem",
+      "description": "DamDoh wurde entwickelt, um jeden Akteur in der landwirtschaftlichen Wertschöpfungskette zu stärken und eine vernetztere und effizientere Branche zu schaffen.",
+      "farmers": {
+        "title": "Landwirte & Erzeuger",
+        "description": "Erschließen Sie neue Märkte, erzielen Sie faire Preise und vernetzen Sie sich mit Lieferanten und Experten, um Ihre Erträge und Nachhaltigkeit zu verbessern."
+      },
+      "buyers": {
+        "title": "Käufer & Verarbeiter",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Erzeugern und Genossenschaften aus aller Welt."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihr Fachwissen an, finden Sie neue Kunden und tragen Sie zu einer sachkundigeren und qualifizierteren Agrargemeinschaft bei."
+      }
+    },
+    "cta": {
+      "title": "Bereit, Ihr Geschäft auszubauen?",
+      "subtitle": "Schließen Sie sich Tausenden von Agrarfachleuten an, die mit DamDoh eine nachhaltigere und wohlhabendere Zukunft aufbauen.",
+      "button": "Kostenlos registrieren"
+    }
   }
 }
