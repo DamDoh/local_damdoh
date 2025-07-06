@@ -241,7 +241,6 @@
       "marketplaceHistoryLabel": "Compartir historial del Mercado con Instituciones Financieras",
       "marketplaceHistoryDescription": "Permite que las IF vean tu historial de transacciones para obtener mejores ofertas de préstamos.",
       "traceabilityDataLabel": "Compartir datos de Trazabilidad con Investigadores",
-      "marketplaceHistoryDescription": "Permite el uso de datos de trazabilidad anonimizados en investigación académica.",
       "financialApplicationDataLabel": "Compartir datos de Solicitud para Coincidencia de IA",
       "financialApplicationDataDescription": "Permite a la IA analizar tus necesidades financieras para emparejarte con oportunidades.",
       "saveConsentButton": "Guardar Consentimientos"

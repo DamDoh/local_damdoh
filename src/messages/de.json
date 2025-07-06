@@ -241,7 +241,6 @@
       "marketplaceHistoryLabel": "Marktplatzverlauf mit Finanzinstituten teilen",
       "marketplaceHistoryDescription": "Ermöglichen Sie FIs, Ihren Transaktionsverlauf zu sehen, um bessere Kreditangebote zu erhalten.",
       "traceabilityDataLabel": "Rückverfolgbarkeitsdaten mit Forschern teilen",
-      "traceabilityDataDescription": "Erlauben Sie die Verwendung anonymisierter Rückverfolgbarkeitsdaten in der akademischen Forschung.",
       "financialApplicationDataLabel": "Antragsdaten für KI-Matching teilen",
       "financialApplicationDataDescription": "Erlauben Sie der KI, Ihre finanziellen Bedürfnisse zu analysieren, um Sie mit Möglichkeiten abzugleichen.",
       "saveConsentButton": "Zustimmungseinstellungen speichern"
@@ -316,11 +315,6 @@
       "credit": "Kreditlinie",
       "grant": "Zuschuss",
       "savings": "Sparkonto"
-    },
-    "insuranceServiceTypes": {
-      "cropinsurance": "Ernteversicherung",
-      "livestockinsurance": "Tierversicherung",
-      "propertyinsurance": "Hofversicherung"
     }
   },
   "networkPage": {

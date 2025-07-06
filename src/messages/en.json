@@ -241,7 +241,6 @@
       "marketplaceHistoryLabel": "Share Marketplace history with Financial Institutions",
       "marketplaceHistoryDescription": "Allow FIs to see your transaction history to get better loan offers.",
       "traceabilityDataLabel": "Share Traceability data with Researchers",
-      "marketplaceHistoryDescription": "Allow anonymized traceability data to be used in academic research.",
       "financialApplicationDataLabel": "Share Application data for AI Matching",
       "financialApplicationDataDescription": "Allow AI to analyze your financial needs to match you with opportunities.",
       "saveConsentButton": "Save Consent Settings"
