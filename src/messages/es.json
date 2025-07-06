@@ -605,6 +605,7 @@
     "creatingAccountButton": "Creando cuenta...",
     "signUpButton": "Crear Cuenta",
     "alreadyHaveAccountPrompt": "¿Ya tiene una cuenta?",
+    "signInLink": "Iniciar Sesión",
     "forgotPasswordResetPrompt": "Recupere el acceso a su cuenta de {appName}.",
     "forgotPasswordTitle": "Contraseña Olvidada",
     "forgotPasswordDescription": "Ingrese su correo electrónico y le enviaremos un enlace para restablecer su contraseña.",

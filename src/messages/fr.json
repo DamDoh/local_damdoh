@@ -605,6 +605,7 @@
     "creatingAccountButton": "Création du compte...",
     "signUpButton": "Créer un compte",
     "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "signInLink": "Connexion",
     "forgotPasswordResetPrompt": "Récupérez l'accès à votre compte {appName}.",
     "forgotPasswordTitle": "Mot de passe oublié",
     "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",

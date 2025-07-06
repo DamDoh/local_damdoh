@@ -114,7 +114,7 @@
     "noResultsTitle": "Keine Dienstleistungen gefunden",
     "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei, um neue Angebote zu sehen."
   },
-  "LandingPage": {
+    "LandingPage": {
     "hero": {
       "title": "Verbindungen schaffen, Erfolg ernten mit {appName}",
       "subtitle": "Die globale Plattform, die jedes Glied der landwirtschaftlichen Lieferkette verbindet. Vom Feld bis auf den Tisch fördern wir Wachstum, Transparenz und Chancen.",
@@ -605,6 +605,7 @@
     "creatingAccountButton": "Konto wird erstellt...",
     "signUpButton": "Konto erstellen",
     "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
+    "signInLink": "Anmelden",
     "forgotPasswordResetPrompt": "Erhalten Sie wieder Zugriff auf Ihr {appName}-Konto.",
     "forgotPasswordTitle": "Passwort vergessen",
     "forgotPasswordDescription": "Geben Sie Ihre E-Mail ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
