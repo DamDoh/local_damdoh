@@ -69,39 +69,39 @@
     "viewServiceButton": "View Service"
   },
   "Marketplace": {
-      "create": {
-          "backLink": "Back to Marketplace",
-          "title": "Create a New Listing",
-          "description": "Share a product or service with the DamDoh network.",
-          "form": {
-              "nameLabel": "Listing Name",
-              "namePlaceholder": "e.g., Organic Hass Avocados, Tractor Rental Service",
-              "typeLabel": "Listing Type",
-              "typePlaceholder": "Select a listing type",
-              "descriptionLabel": "Description",
-              "descriptionPlaceholder": "Provide a detailed description of your product or service.",
-              "locationLabel": "Location",
-              "locationPlaceholder": "e.g., Nairobi, Kenya or California, USA",
-              "categoryLabel": "Category",
-              "categoryPlaceholder": "Select the most relevant category",
-              "priceLabel": "Price",
-              "pricePlaceholder": "e.g., 25.50",
-              "unitLabel": "Unit",
-              "unitPlaceholder": "e.g., per kg, per hour",
-              "imageUrlLabel": "Image URL (Optional)",
-              "sustainableLabel": "Sustainable Product/Service",
-              "sustainableDescription": "This item or service utilizes or promotes sustainable practices.",
-              "compensationLabel": "Compensation / Rate",
-              "compensationPlaceholder": "e.g., $50/hr, Project-based, KES 5,000/day",
-              "experienceLabel": "Experience Level",
-              "experiencePlaceholder": "e.g., 5+ years, Certified Professional",
-              "skillsLabel": "Skills Required",
-              "skillsPlaceholder": "List the key skills or qualifications for this service.",
-              "skillsDescription": "Separate skills with a comma.",
-              "submittingButton": "Submitting...",
-              "submitButton": "Create Listing"
-          }
+    "create": {
+      "backLink": "Back to Marketplace",
+      "title": "Create a New Listing",
+      "description": "Share a product or service with the DamDoh network.",
+      "form": {
+        "nameLabel": "Listing Name",
+        "namePlaceholder": "e.g., Organic Hass Avocados, Tractor Rental Service",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select a listing type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Provide a detailed description of your product or service.",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nairobi, Kenya or California, USA",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select the most relevant category",
+        "priceLabel": "Price",
+        "pricePlaceholder": "e.g., 25.50",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g., per kg, per hour",
+        "imageUrlLabel": "Image URL (Optional)",
+        "sustainableLabel": "Sustainable Product/Service",
+        "sustainableDescription": "This item or service utilizes or promotes sustainable practices.",
+        "compensationLabel": "Compensation / Rate",
+        "compensationPlaceholder": "e.g., $50/hr, Project-based, KES 5,000/day",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., 5+ years, Certified Professional",
+        "skillsLabel": "Skills Required",
+        "skillsPlaceholder": "List the key skills or qualifications for this service.",
+        "skillsDescription": "Separate skills with a comma.",
+        "submittingButton": "Submitting...",
+        "submitButton": "Create Listing"
       }
+    }
   },
   "talentExchangePage": {
     "title": "Talent Exchange",
@@ -114,7 +114,7 @@
     "noResultsTitle": "No Services Found",
     "noResultsDescription": "Try adjusting your search filters or check back later for new listings."
   },
-    "LandingPage": {
+  "LandingPage": {
     "hero": {
       "title": "Cultivating Connections, Harvesting Success with {appName}",
       "subtitle": "The global platform connecting every link in the agricultural supply chain. From farm to fork, we foster growth, transparency, and opportunity.",
@@ -241,7 +241,7 @@
       "marketplaceHistoryLabel": "Share Marketplace history with Financial Institutions",
       "marketplaceHistoryDescription": "Allow FIs to see your transaction history to get better loan offers.",
       "traceabilityDataLabel": "Share Traceability data with Researchers",
-      "traceabilityDataDescription": "Allow anonymized traceability data to be used in academic research.",
+      "marketplaceHistoryDescription": "Allow anonymized traceability data to be used in academic research.",
       "financialApplicationDataLabel": "Share Application data for AI Matching",
       "financialApplicationDataDescription": "Allow AI to analyze your financial needs to match you with opportunities.",
       "saveConsentButton": "Save Consent Settings"
@@ -312,15 +312,15 @@
       "PackagingSupplier": "Packaging Supplier"
     },
     "financialServiceTypes": {
-        "loan": "Loan",
-        "credit": "Credit Line",
-        "grant": "Grant",
-        "savings": "Savings Account"
+      "loan": "Loan",
+      "credit": "Credit Line",
+      "grant": "Grant",
+      "savings": "Savings Account"
     },
     "insuranceServiceTypes": {
-        "cropinsurance": "Crop Insurance",
-        "livestockinsurance": "Livestock Insurance",
-        "propertyinsurance": "Farm Property Insurance"
+      "cropinsurance": "Crop Insurance",
+      "livestockinsurance": "Livestock Insurance",
+      "propertyinsurance": "Farm Property Insurance"
     }
   },
   "networkPage": {
@@ -386,12 +386,12 @@
       }
     },
     "farmDetail": {
-        "backToFarms": "Back to My Farms",
-        "notFound": {
-            "title": "Farm Not Found",
-            "description": "We couldn't find the farm you're looking for.",
-            "backButton": "Back to My Farms"
-        }
+      "backToFarms": "Back to My Farms",
+      "notFound": {
+        "title": "Farm Not Found",
+        "description": "We couldn't find the farm you're looking for.",
+        "backButton": "Back to My Farms"
+      }
     },
     "knf": {
       "title": "KNF Input Assistant",
@@ -418,22 +418,22 @@
     "recentTitle": "Recently Tracked",
     "recentDescription": "Your recently viewed batches will appear here.",
     "detailPage": {
-        "backLink": "Back to Traceability Hub",
-        "traceableProduct": "Traceable Product",
-        "batchIdLabel": "Batch ID",
-        "producerLabel": "Produced by",
-        "sustainablyGrownTitle": "Sustainably Grown",
-        "sustainablyGrownDescription": "This batch was cultivated using approved natural and sustainable inputs according to its traceability log.",
-        "harvestDateLabel": "Harvest Date",
-        "yieldLabel": "Initial Yield",
-        "qualityLabel": "Initial Quality",
-        "journeyTitle": "Product Journey",
-        "journeyDescription": "A detailed log of events for this batch from farm to fork.",
-        "noEventDetails": "No specific details provided for this event.",
-        "geoLocationLabel": "Geolocation",
-        "noEventsFound": "No traceability events found.",
-        "notFoundTitle": "Batch Not Found",
-        "notFoundDescription": "The batch you are looking for does not exist or the link is incorrect."
+      "backLink": "Back to Traceability Hub",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Produced by",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "This batch was cultivated using approved natural and sustainable inputs according to its traceability log.",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Initial Yield",
+      "qualityLabel": "Initial Quality",
+      "journeyTitle": "Product Journey",
+      "journeyDescription": "A detailed log of events for this batch from farm to fork.",
+      "noEventDetails": "No specific details provided for this event.",
+      "geoLocationLabel": "Geolocation",
+      "noEventsFound": "No traceability events found.",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "The batch you are looking for does not exist or the link is incorrect."
     }
   },
   "Forums": {
@@ -591,6 +591,7 @@
     "signInButton": "Sign In",
     "noAccountPrompt": "Don't have an account?",
     "signUpLink": "Sign up",
+    "signInLink": "Sign In",
     "recoverWithUniversalIdPrompt": "Or recover account with Universal ID",
     "signUpWelcome": "Join the {appName} Network",
     "signUpTitle": "Create Your Account",
@@ -605,7 +606,6 @@
     "creatingAccountButton": "Creating Account...",
     "signUpButton": "Create Account",
     "alreadyHaveAccountPrompt": "Already have an account?",
-    "signInLink": "Sign In",
     "forgotPasswordResetPrompt": "Regain access to your {appName} account.",
     "forgotPasswordTitle": "Forgot Password",
     "forgotPasswordDescription": "Enter your email and we'll send you a link to reset your password.",
@@ -659,7 +659,7 @@
     "typeMessagePlaceholder": "Type a message...",
     "selectConversation": "Select a conversation to start messaging"
   },
-   "notificationsPage": {
+  "notificationsPage": {
     "title": "Notifications",
     "description": "Here is a list of your recent notifications from across the platform.",
     "noNotifications": "You have no new notifications.",
@@ -668,5 +668,549 @@
     "viewedYourProfile": "viewed your profile.",
     "placedNewOrder": "placed an order for one of your listings.",
     "sentConnectionRequest": "wants to connect with you."
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Agri-Business Events & Webinars",
+      "description": "Discover conferences, workshops, and networking opportunities in the agricultural industry.",
+      "createNewEvent": "Create New Event",
+      "pinAsHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin Homepage",
+      "searchEvents": "Search Events",
+      "searchPlaceholder": "Search by title, location, or topic...",
+      "filterPlaceholder": "Filter by event type",
+      "errorLoadingEvents": "Error Loading Events",
+      "couldNotFetchEvents": "Could not retrieve your events. Please try again later.",
+      "homepagePinned": "Homepage Pinned!",
+      "agriEventsIsHomepage": "The Events page is now your default homepage.",
+      "homepageUnpinned": "Homepage Unpinned!",
+      "dashboardIsHomepage": "Your Dashboard is now your default homepage.",
+      "organizedBy": "Organized by {organizer}",
+      "viewDetails": "View Details",
+      "noEventsFound": "No Events Found",
+      "noEventsHint": "There are no events matching your criteria right now. <a>Why not create one?</a>"
+    },
+    "detail": {
+      "backLink": "Back to all events",
+      "organizedBy": "Organized by {organizer}",
+      "attendees": "{count} registered out of {limit}",
+      "unlimited": "unlimited",
+      "buttons": {
+        "manage": "Manage Event",
+        "share": "Share",
+        "close": "Close",
+        "viewTicket": "View Your Ticket",
+        "registerAndPay": "Register & Pay (${price} {currency})",
+        "registerFree": "Register for Free",
+        "full": "Event is Full",
+        "visitWebsite": "Visit Event Website"
+      },
+      "share": {
+        "title": "Share Event",
+        "description": "Share this event with your network using the link below.",
+        "link": "Link",
+        "copy": "Copy",
+        "toastTitle": "Link Copied!",
+        "toastDescription": "The event link has been copied to your clipboard."
+      },
+      "ticket": {
+        "title": "Your Digital Ticket",
+        "scan": "Have this code scanned at the event entrance to check in."
+      },
+      "registration": {
+        "notAvailable": "Registration for this event is not currently available.",
+        "successTitle": "Successfully Registered!",
+        "successDescription": "You are registered for this event. We look forward to seeing you there!",
+        "failTitle": "Registration Failed",
+        "discountApplied": "Discount of {amount} {currency} applied.",
+        "finalPrice": "Final price: {price} {currency}."
+      },
+      "coupon": {
+        "toastTitle": "Coupon Applied!",
+        "toastDescription": "The coupon code '{couponCode}' has been applied. The discount will be reflected at checkout.",
+        "label": "Coupon Code (Optional)",
+        "placeholder": "Enter a coupon code",
+        "note": "Discount will be applied in the final step."
+      },
+      "errors": {
+        "loadTitle": "Load Failed",
+        "loadDescription": "The details for this event could not be loaded.",
+        "signInTitle": "Sign In Required",
+        "signInDescription": "You must be signed in to register for an event."
+      },
+      "notFound": {
+        "title": "Event Not Found",
+        "description": "The event you are looking for may not exist or has been moved.",
+        "backButton": "Back to Events"
+      }
+    },
+    "create": {
+      "backButton": "Back to Events",
+      "formTitle": "Create a New Agri-Business Event",
+      "formDescription": "Fill in the details to promote your conference, webinar, or meetup.",
+      "authErrorTitle": "Not Authenticated",
+      "authErrorDescription": "You must be logged in to create an event.",
+      "uploadingTitle": "Uploading Image...",
+      "uploadingDescription": "Please wait while your image is saved.",
+      "uploadCompleteTitle": "Upload Complete!",
+      "successTitle": "Event Created!",
+      "successDescription": "Your event '{title}' has been successfully created and is now live.",
+      "failTitle": "Creation Failed",
+      "failDescription": "An unexpected error occurred.",
+      "successCardTitle": "Event '{title}' Created!",
+      "successCardDescription": "Your event is now visible on the platform. What would you like to do next?",
+      "manageButton": "Manage Event",
+      "shareButton": "Share Event Link",
+      "linkCopiedTitle": "Link Copied!",
+      "linkCopiedDescription": "The event link has been copied to your clipboard.",
+      "createAnotherButton": "Create Another Event",
+      "viewAllButton": "View All Events",
+      "submittingButton": "Creating...",
+      "submitButton": "Create Event",
+      "form": {
+        "titleLabel": "Event Title",
+        "titlePlaceholder": "e.g., Sustainable Agriculture Conference 2024",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "A detailed description of your event, including speakers, topics, etc.",
+        "dateLabel": "Event Date",
+        "datePlaceholder": "Pick a date",
+        "timeLabel": "Event Time (Optional)",
+        "timePlaceholder": "e.g., 09:00",
+        "timeDescription": "Specify the start time in your local timezone.",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nairobi, Kenya or Online",
+        "locationDescription": "Enter 'Online' for virtual events.",
+        "typeLabel": "Event Type",
+        "typePlaceholder": "Select the event type",
+        "organizerLabel": "Organizer (Optional)",
+        "organizerPlaceholder": "e.g., DamDoh Inc, Agri-Innovate Foundation",
+        "websiteLabel": "Website Link (Optional)",
+        "enableRegLabel": "Enable Registration",
+        "enableRegDescription": "Allow users to register directly on DamDoh.",
+        "attendeeLimitLabel": "Attendee Limit (Optional)",
+        "attendeeLimitDescription": "Leave blank for unlimited attendees.",
+        "priceLabel": "Price (USD)",
+        "priceDescription": "Leave blank for free.",
+        "currencyLabel": "Currency",
+        "currencyDescription": "3-letter code",
+        "imageUrlLabel": "Cover Image URL (Optional)",
+        "imageUrlDescription": "OR upload an image below.",
+        "imageUploadLabel": "Upload Image",
+        "imageUploadDescription": "Upload an image for your event. This will override the URL above. Max 5MB."
+      }
+    },
+    "manage": {
+      "title": "Manage Event",
+      "tabs": {
+        "checkin": "Check-in",
+        "staff": "Staff",
+        "dashboard": "Dashboard",
+        "attendees": "Attendees",
+        "promotions": "Promotions"
+      }
+    },
+    "promotions": {
+      "create": {
+        "title": "Create New Coupon",
+        "description": "Create discount codes to encourage registration for your event.",
+        "form": {
+          "code": "Coupon Code",
+          "codePlaceholder": "SUMMER24",
+          "usageLimit": "Usage Limit",
+          "usageLimitPlaceholder": "100",
+          "discountType": "Discount Type",
+          "discountTypePlaceholder": "Select type",
+          "percentage": "Percentage",
+          "fixed": "Fixed Amount",
+          "discountValue": "Discount Value",
+          "expiryDate": "Expiry Date",
+          "pickDate": "Pick a date",
+          "submitButton": "Create Coupon"
+        }
+      },
+      "list": {
+        "title": "Active Coupons",
+        "description": "Manage and share your existing coupons.",
+        "expires": "Expires",
+        "usage": "Usage",
+        "share": "Share",
+        "toastTitle": "Link Copied!",
+        "toastDescription": "A shareable link with the coupon '{link}' has been copied.",
+        "noCoupons": "You have not created any coupons for this event yet."
+      }
+    },
+    "attendees": {
+      "title": "Attendee List",
+      "description": "See everyone who has registered for your event.",
+      "downloadCsv": "Download CSV",
+      "nameHeader": "Name",
+      "emailHeader": "Email",
+      "registeredOnHeader": "Registered On",
+      "statusHeader": "Status",
+      "statusCheckedIn": "Checked-in",
+      "statusRegistered": "Registered",
+      "noAttendees": "No attendees have registered yet."
+    }
+  },
+  "common": {
+    "error": "Error"
+  },
+  "ProfilePage": {
+    "editProfile": "Edit Profile",
+    "showUniversalIdButton": "Show Universal ID",
+    "universalIdModalTitle": "Your DamDoh Universal ID",
+    "universalIdModalDescription": "Use this QR code for quick check-in at events or for easy networking.",
+    "connect": "Connect",
+    "message": "Message",
+    "summaryTitle": "Summary",
+    "aboutTitle": "About",
+    "experienceTitle": "Experience",
+    "emailTitle": "Email",
+    "websiteTitle": "Website",
+    "interestsTitle": "Areas of Interest",
+    "needsTitle": "Key Needs / Offerings",
+    "detailsTitle": "Details",
+    "roleSpecificInfo": "Role-Specific Information",
+    "tempDisplayNotice": "This is a temporary display of raw data for demonstration.",
+    "recentActivityTitle": "Recent Activity",
+    "recentActivityDescription": "A look at this user's recent actions on {appName}.",
+    "noRecentActivity": "No recent activity to display.",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "The requested profile could not be found.",
+    "backToNetwork": "Back to Network"
+  },
+  "blogPage": {
+    "title": "DamDoh Blog & Insights",
+    "description": "Stay updated with the latest news, insights, and success stories from the DamDoh community.",
+    "error": {
+      "title": "Error",
+      "description": "Could not load articles. Please try again later."
+    },
+    "noPosts": {
+      "title": "No Posts Yet!",
+      "description": "Check back soon for insights into the agricultural industry, success stories, and more."
+    },
+    "readMore": "Read More",
+    "meta": "By {author} on {date}"
+  },
+  "Blog": {
+    "backLink": "Back to Blog",
+    "notFound": {
+      "title": "Post Not Found",
+      "description": "The post you are looking for does not exist or has been moved.",
+      "backButton": "Back to Blog"
+    },
+    "errors": {
+      "title": "Error",
+      "load": "Could not load the blog post. Please try again later."
+    }
+  },
+  "about": {
+    "title": "About DamDoh",
+    "subtitle": "Our Mission, Vision, and the Values that drive us.",
+    "mission": {
+      "title": "Our Mission",
+      "content": "Our mission is to empower the global agricultural industry by creating a transparent, efficient, and sustainable supply chain. We connect farmers, buyers, service providers, and other stakeholders to foster growth, reduce waste, and ensure food security for all."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "We envision a world where every farmer, regardless of size or location, has access to the tools, knowledge, and markets they need to thrive. We aim to be the operating system for global agriculture, fostering trust, collaboration, and prosperity for all participants."
+    },
+    "values": {
+      "title": "Our Values",
+      "sustainability": {
+        "title": "Sustainability",
+        "content": "We are committed to practices that protect the planet and ensure the long-term viability of agriculture."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "content": "We believe agriculture's biggest challenges can be solved through cooperation and shared knowledge."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "content": "We leverage technology to solve real-world problems, drive efficiency, and create new opportunities."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "content": "We operate with honesty and transparency, building trust in every aspect of our platform."
+      },
+      "empowerment": {
+        "title": "Empowerment",
+        "content": "We provide the tools and information users need to make informed decisions and grow their businesses."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "intro": "DamDoh is led by a diverse team of technologists, agronomists, and business professionals with a shared passion for agriculture.",
+      "member1Name": "Dr. Elara Vance",
+      "member1Role": "CEO & Founder",
+      "member1Bio": "Agricultural economist with a vision to use technology to solve global food challenges."
+    },
+    "careers": {
+      "title": "Careers at DamDoh",
+      "subtitle": "Join us in shaping the future of agriculture.",
+      "whyWorkWithUs": {
+        "title": "Why Work With Us?",
+        "intro": "Joining DamDoh means being part of a mission-driven organization making a real impact on the world. We offer:",
+        "point1": "A collaborative and innovative work environment.",
+        "point2": "Opportunities to work on challenging problems with global impact.",
+        "point3": "A commitment to professional growth and development.",
+        "point4": "Competitive compensation and benefits.",
+        "point5": "A culture that values diversity, inclusion, and work-life balance."
+      },
+      "currentOpenings": {
+        "title": "Current Openings"
+      },
+      "openings": {
+        "job1": {
+          "title": "Senior Backend Engineer (Logistics)",
+          "location": "Remote / Nairobi, Kenya",
+          "type": "Full-Time",
+          "description": "Design and build the backend services that power our logistics and supply chain optimization tools."
+        },
+        "job2": {
+          "title": "Product Manager, Farmer Tools",
+          "location": "Remote / Ames, IA, USA",
+          "type": "Full-Time",
+          "description": "Lead the development of our farm management suite, ensuring it is intuitive and impactful for farmers globally."
+        },
+        "job3": {
+          "title": "Community Manager (Francophone)",
+          "location": "Remote / West Africa",
+          "type": "Full-Time",
+          "description": "Engage with and support our growing community of French-speaking users across West Africa."
+        }
+      },
+      "applyNowButton": "Apply Now",
+      "noOpenings": {
+        "title": "No Open Roles",
+        "content1": "We don't have any open positions at the moment, but we're always interested in hearing from talented individuals. Send your resume to {emailLink}."
+      }
+    },
+    "communityGuidelines": {
+      "title": "Community Guidelines",
+      "subtitle": "Our commitment to a safe, trusted, and professional community.",
+      "intro": "Welcome to the DamDoh community! To ensure this remains a productive and respectful space for everyone, we ask that you follow these guidelines:",
+      "respectful": {
+        "title": "Be Respectful",
+        "description": "Treat all members with respect and professionalism. Personal attacks, harassment, or hate speech will not be tolerated."
+      },
+      "authentic": {
+        "title": "Be Authentic",
+        "description": "Represent yourself and your business honestly. Do not use fake profiles or provide misleading information."
+      },
+      "relevant": {
+        "title": "Stay On-Topic",
+        "description": "Keep discussions and posts relevant to agriculture, food supply chains, and related topics. Spam or self-promotion outside of the marketplace is not permitted."
+      },
+      "fairTrade": {
+        "title": "Transact Fairly",
+        "description": "Conduct business with integrity. Honor agreements, accurately represent products, and communicate clearly and honestly."
+      },
+      "sustainable": {
+        "title": "Promote Sustainability",
+        "description": "We encourage discussions and practices that promote environmental, social, and economic sustainability in agriculture."
+      },
+      "reporting": {
+        "title": "Reporting Violations",
+        "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}."
+      },
+      "conclusion": "Thank you for being part of a trusted and professional global agricultural community."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We'd love to hear from you! Here's how you can reach us.",
+      "emailUs": {
+        "title": "Email Us",
+        "general": "General Inquiries",
+        "support": "Support",
+        "partnerships": "Partnerships"
+      },
+      "callUs": {
+        "title": "Call Us",
+        "hours": "Monday - Friday, 9am - 5pm (EAT)",
+        "phone": "+254 700 000 000"
+      },
+      "ourOffice": {
+        "title": "Our Office",
+        "org": "DamDoh Global HQ",
+        "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+      },
+      "sendMessage": {
+        "title": "Send a Message",
+        "nameLabel": "Your Name",
+        "namePlaceholder": "Jane Doe",
+        "emailLabel": "Your Email",
+        "emailPlaceholder": "jane.doe@example.com",
+        "subjectLabel": "Subject",
+        "subjectPlaceholder": "Subject of your message",
+        "messageLabel": "Message",
+        "messagePlaceholder": "Type your message here...",
+        "buttonText": "Send Message",
+        "note": "This is a placeholder form. Please use the email addresses for real inquiries."
+      }
+    },
+    "helpCenterPage": {
+      "title": "Help Center",
+      "subtitle": "Find answers to your questions",
+      "howCanWeHelp": "How can we help you?",
+      "searchPlaceholder": "Search for topics, keywords, or questions...",
+      "browseTopics": "Browse Topics",
+      "gettingStarted": {
+        "title": "Getting Started",
+        "description": "Learn how to set up your account, create your profile, and start navigating the platform.",
+        "placeholder": "Getting Started guides will appear here."
+      },
+      "marketplaceGuide": {
+        "title": "Marketplace Guide",
+        "description": "Detailed instructions on creating listings, buying items, and handling transactions securely.",
+        "placeholder": "Marketplace guides will appear here."
+      },
+      "accountManagement": {
+        "title": "Account Management",
+        "description": "Find help with password resets, notification settings, and privacy options.",
+        "placeholder": "Account Management guides will appear here."
+      },
+      "troubleshooting": {
+        "title": "Troubleshooting",
+        "description": "Solutions for common issues and troubleshooting tips.",
+        "placeholder": "Troubleshooting articles will appear here."
+      },
+      "stillNeedHelp": {
+        "title": "Still need help?",
+        "description": "Our support team is ready to assist you with any questions.",
+        "button": "Contact Support"
+      }
+    },
+    "industryNewsPage": {
+      "title": "Industry News & Trends",
+      "description": "Stay informed on the latest in agricultural technology, market prices, and global supply chains.",
+      "searchPlaceholder": "Search news articles...",
+      "categoryPlaceholder": "Select Category",
+      "allCategories": "All Categories",
+      "sourceLabel": "Source",
+      "publishedLabel": "Published",
+      "categoryLabel": "Category",
+      "readButton": "Read Full Article",
+      "news1": {
+        "title": "Global Coffee Prices Hit 18-Month High Amid Supply Chain Concerns",
+        "excerpt": "Logistical bottlenecks in South America and adverse weather in Southeast Asia have pushed coffee futures to their highest levels since early 2022."
+      },
+      "news2": {
+        "title": "EU Introduces New Sustainable Packaging Regulations for Imported Foods",
+        "excerpt": "Starting January 2025, all agricultural imports into the European Union will need to meet new, stricter standards for recyclable and compostable packaging."
+      },
+      "news3": {
+        "title": "Study Shows Regenerative Agriculture Increases Soil Water Retention by up to 25%",
+        "excerpt": "A long-term study by the Global Agriculture Institute reveals that no-till and cover cropping practices significantly improve the soil's ability to retain water, increasing drought resilience."
+      },
+      "noNews": {
+        "title": "No News Articles",
+        "description": "No news articles are available at the moment. Please check back later."
+      }
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: October 29, 2023",
+      "introduction": "Welcome to DamDoh. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information.",
+      "whatInfoWeCollect": {
+        "heading": "What information do we collect?",
+        "content": "We collect information you provide to us directly, such as when you create an account, and information that is automatically collected, such as usage data and cookies."
+      },
+      "howWeUseInfo": {
+        "heading": "How do we use your information?",
+        "content": "We use your information to provide, operate, and improve our services, to communicate with you, to process transactions, and to secure our platform."
+      },
+      "willInfoBeShared": {
+        "heading": "Will your information be shared with anyone?",
+        "content": "We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations."
+      },
+      "cookiesAndTracking": {
+        "heading": "Do we use cookies and other tracking technologies?",
+        "content": "We may use cookies and similar tracking technologies to access or store information to enhance and personalize your website experience."
+      },
+      "howLongWeKeepInfo": {
+        "heading": "How long do we keep your information?",
+        "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy policy unless otherwise required or permitted by law."
+      },
+      "howWeKeepInfoSafe": {
+        "heading": "How do we keep your information safe?",
+        "content": "We have implemented a variety of organizational and technical security measures designed to protect the security of any personal information we process."
+      },
+      "minors": {
+        "heading": "Do we collect information from minors?",
+        "content": "We do not knowingly collect data from or market to children under 18 years of age."
+      },
+      "privacyRights": {
+        "heading": "What are your privacy rights?",
+        "content": "In some regions, you may have certain rights under applicable data protection laws. These may include the right to access and control your personal information."
+      },
+      "controlsForDoNotTrack": {
+        "heading": "Controls for do-not-track features",
+        "content": "Most web browsers and some mobile operating systems include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
+      },
+      "updatesToNotice": {
+        "heading": "Do we make updates to this notice?",
+        "content": "We may update this privacy policy from time to time. The updated version will be indicated by a revised 'Revised' date and the updated version will be effective as soon as it is accessible."
+      }
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: October 29, 2023",
+      "introduction": "Welcome to DamDoh! These Terms of Service govern your use of our website and services.",
+      "agreementToTerms": {
+        "heading": "1. Agreement to Terms",
+        "content": "By using our services, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the services."
+      },
+      "intellectualProperty": {
+        "heading": "2. Intellectual Property Rights",
+        "content": "Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site are owned or controlled by us or licensed to us."
+      },
+      "userRepresentations": {
+        "heading": "3. User Representations",
+        "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you have the legal capacity and you agree to comply with these Terms of Use."
+      },
+      "prohibitedActivities": {
+        "heading": "4. Prohibited Activities",
+        "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
+      },
+      "platformManagement": {
+        "heading": "5. Platform Management",
+        "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use."
+      },
+      "termAndTermination": {
+        "heading": "6. Term and Termination",
+        "content": "These Terms of Use shall remain in full force and effect while you use the Site. WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE."
+      },
+      "modificationsAndInterruptions": {
+        "heading": "7. Modifications and Interruptions",
+        "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We cannot guarantee the Site will be available at all times."
+      },
+      "governingLaw": {
+        "heading": "8. Governing Law",
+        "content": "These Terms shall be governed by and defined following the laws of Kenya, without regard to its conflict of law principles."
+      },
+      "disputeResolution": {
+        "heading": "9. Dispute Resolution",
+        "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the courts located in Nairobi, Kenya."
+      },
+      "contactUs": {
+        "heading": "10. Contact Us",
+        "content": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
+      },
+      "conclusion": "Please {contactLink} if you have any questions."
+    },
+    "searchPage": {
+      "title": "Universal Search",
+      "description": "Find anything across the DamDoh platform.",
+      "placeholder": "Search for people, products, forums...",
+      "searchButton": "Search",
+      "popularSearches": "Popular Searches",
+      "popularSearch1": "Organic coffee",
+      "popularSearch2": "Tractor rental in Kenya",
+      "popularSearch3": "Sustainability forum",
+      "popularSearch4": "Agronomy consultant",
+      "popularSearch5": "Export logistics"
+    }
   }
 }
