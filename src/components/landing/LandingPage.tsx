@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Leaf, Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { APP_NAME } from "@/lib/constants";
+import { Badge } from "@/components/ui/badge";
 
 export function LandingPage() {
   const t = useTranslations('LandingPage');
