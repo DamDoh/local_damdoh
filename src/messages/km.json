@@ -310,8 +310,17 @@
       "CrowdfunderImpactInvestorIndividual": "អ្នកផ្តល់មូលនិធិសហគមន៍ (អ្នកវិនិយោគផលប៉ះពាល់, បុគ្គល)",
       "InsuranceProvider": "ผู้ให้บริการประกันภัย",
       "PackagingSupplier": "អ្នកផ្គត់ផ្គង់ការវេចខ្ចប់"
+    },
+    "financialServiceTypes": {
+        "loan": "កម្ចី",
+        "credit": "ឥណទាន",
+        "grant": "ជំនួយឥតសំណង",
+        "savings": "គណនីសន្សំ"
+    },
+    "insuranceServiceTypes": {
+        "cropinsurance": "ធានារ៉ាប់រងដំណាំ",
+        "livestockinsurance": "ធានារ៉ាប់រងបសុសត្វ",
+        "propertyinsurance": "ធានារ៉ាប់រងទ្រព្យសម្បត្តិកសិដ្ឋាន"
     }
   }
 }
-
-    

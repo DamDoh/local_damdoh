@@ -4,29 +4,29 @@ import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_T
 export const getStakeholderRoles = (t: any) =>
   STAKEHOLDER_ROLES.map(role => ({
     value: role,
-    label: t(role.replace(/[\s/()]+/g, '')) // Create a key like 'FieldAgentAgronomistDamDohInternal'
+    label: t('stakeholderRoles.' + role.replace(/[\s/()]+/g, ''))
   }));
   
 export const getListingTypes = (t: any) =>
   LISTING_TYPES.map(type => ({
     value: type,
-    label: t(type.toLowerCase())
+    label: t('listingTypes.' + type.toLowerCase())
   }));
   
 export const getAgriEventTypes = (t: any) =>
   AGRI_EVENT_TYPES.map(type => ({
     value: type,
-    label: t(type.replace(/\s/g, ''))
+    label: t('agriEventTypes.' + type.replace(/\s/g, ''))
   }));
 
 export const getFinancialServiceTypes = (t: any) =>
   FINANCIAL_SERVICE_TYPES.map(type => ({
     value: type,
-    label: t(type.replace(/_/g, ''))
+    label: t('financialServiceTypes.' + type.replace(/_/g, ''))
   }));
 
 export const getInsuranceServiceTypes = (t: any) =>
   INSURANCE_SERVICE_TYPES.map(type => ({
     value: type,
-    label: t(type.replace(/_/g, ''))
+    label: t('insuranceServiceTypes.' + type.replace(/_/g, ''))
   }));

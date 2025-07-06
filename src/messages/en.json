@@ -310,8 +310,17 @@
       "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Individual)",
       "InsuranceProvider": "Insurance Provider",
       "PackagingSupplier": "Packaging Supplier"
+    },
+    "financialServiceTypes": {
+        "loan": "Loan",
+        "credit": "Credit Line",
+        "grant": "Grant",
+        "savings": "Savings Account"
+    },
+    "insuranceServiceTypes": {
+        "cropinsurance": "Crop Insurance",
+        "livestockinsurance": "Livestock Insurance",
+        "propertyinsurance": "Farm Property Insurance"
     }
   }
 }
-
-    
