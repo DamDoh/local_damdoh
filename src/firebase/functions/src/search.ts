@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -114,11 +115,11 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         
         // --- Keyword Filtering ---
         const validKeywords = mainKeywords.filter((k): k is string => typeof k === 'string' && k.trim() !== '');
-        if (validKeywords.length > 0) {
-            const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
-            if (searchTerms.length > 0) {
-                 query = query.where("searchable_terms", "array-contains-any", searchTerms);
-            }
+        const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
+        const hasKeywords = searchTerms.length > 0;
+
+        if (hasKeywords) {
+            query = query.where("searchable_terms", "array-contains-any", searchTerms);
         }
         
         // --- Tag-based Filtering ---
@@ -142,31 +143,50 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             query = query.where("perUnit", "==", perUnit);
         }
         
-        // --- Price Filtering ---
-        // Note: Firestore requires the first orderBy to be on the field used for inequality filters.
-        let hasInequalityFilter = false;
-        if (typeof minPrice === 'number') {
-            query = query.where('price', '>=', minPrice);
-            hasInequalityFilter = true;
-        }
-         if (typeof maxPrice === 'number') {
-            query = query.where('price', '<=', maxPrice);
-            hasInequalityFilter = true;
-        }
-        
-        if (hasInequalityFilter) {
-            query = query.orderBy('price', 'asc');
+        // --- Price Filtering Logic Change ---
+        // Firestore limitation: Cannot have `array-contains-any` and a range filter (`<`, `>`, etc.) on different fields.
+        // So, if keywords are present, we filter price in memory. Otherwise, we can do it in the query.
+        if (!hasKeywords) {
+            let hasInequalityFilter = false;
+            if (typeof minPrice === 'number') {
+                query = query.where('price', '>=', minPrice);
+                hasInequalityFilter = true;
+            }
+            if (typeof maxPrice === 'number') {
+                query = query.where('price', '<=', maxPrice);
+                hasInequalityFilter = true;
+            }
+
+            if (hasInequalityFilter) {
+                query = query.orderBy('price', 'asc');
+            } else {
+                query = query.orderBy("updatedAt", "desc");
+            }
         } else {
-            // Default sort order if no price filter is applied
-            query = query.orderBy("updatedAt", "desc");
+             // If we have keywords, we can't order by price due to the Firestore limitation.
+             // We will sort by relevance (default) or another field like updatedAt.
+             query = query.orderBy("updatedAt", "desc");
         }
 
 
-        const snapshot = await query.limit(20).get();
+        const snapshot = await query.limit(50).get(); // Fetch a slightly larger batch for potential in-memory filtering
         
-        const results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        return { results };
+        // --- In-Memory Filtering for Price if keywords were used ---
+        if (hasKeywords) {
+            if (typeof minPrice === 'number') {
+                results = results.filter(r => r.price != null && r.price >= minPrice);
+            }
+            if (typeof maxPrice === 'number') {
+                results = results.filter(r => r.price != null && r.price <= maxPrice);
+            }
+        }
+        
+        // Limit the final results to be sent to the client
+        const finalResults = results.slice(0, 20);
+
+        return { results: finalResults };
 
     } catch (error) {
         console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
