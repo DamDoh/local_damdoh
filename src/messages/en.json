@@ -632,5 +632,16 @@
       "scanNote": "This code is valid for 10 minutes.",
       "startOverButton": "Start Over"
     }
+  },
+  "walletPage": {
+    "title": "DamDoh Wallet & Financial Hub",
+    "description": "Securely manage your funds, review transactions, and access financial services.",
+    "underDevelopmentTitle": "Feature Under Development",
+    "underDevelopmentDescription": "We are building a secure and powerful financial hub to manage all your platform transactions.",
+    "feature1": "Secure Digital Wallet",
+    "feature2": "Seamless Peer-to-Peer Payments",
+    "feature3": "Access to Loans & Credit",
+    "feature4": "Detailed Transaction History",
+    "stayTuned": "Stay tuned for updates!"
   }
 }

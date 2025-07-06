@@ -632,5 +632,16 @@
       "scanNote": "Ce code est valide pendant 10 minutes.",
       "startOverButton": "Recommencer"
     }
+  },
+  "walletPage": {
+    "title": "Portefeuille et Hub Financier DamDoh",
+    "description": "Gérez vos fonds en toute sécurité, consultez les transactions et accédez aux services financiers.",
+    "underDevelopmentTitle": "Fonctionnalité en cours de développement",
+    "underDevelopmentDescription": "Nous construisons un hub financier sécurisé et puissant pour gérer toutes les transactions de votre plateforme.",
+    "feature1": "Portefeuille numérique sécurisé",
+    "feature2": "Paiements de pair à pair fluides",
+    "feature3": "Accès aux prêts et crédits",
+    "feature4": "Historique détaillé des transactions",
+    "stayTuned": "Restez à l'écoute des mises à jour !"
   }
 }

@@ -632,5 +632,16 @@
       "scanNote": "Este código es válido por 10 minutos.",
       "startOverButton": "Empezar de Nuevo"
     }
+  },
+  "walletPage": {
+    "title": "Cartera y Centro Financiero DamDoh",
+    "description": "Gestione de forma segura sus fondos, revise transacciones y acceda a servicios financieros.",
+    "underDevelopmentTitle": "Característica en Desarrollo",
+    "underDevelopmentDescription": "Estamos construyendo un centro financiero seguro y potente para gestionar todas las transacciones de su plataforma.",
+    "feature1": "Cartera Digital Segura",
+    "feature2": "Pagos Peer-to-Peer sin Interrupciones",
+    "feature3": "Acceso a Préstamos y Crédito",
+    "feature4": "Historial de Transacciones Detallado",
+    "stayTuned": "¡Esté atento a las actualizaciones!"
   }
 }
