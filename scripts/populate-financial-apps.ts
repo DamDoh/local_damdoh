@@ -43,7 +43,7 @@ const APPLICATIONS_DATA = [
       id: 'app3',
       applicantId: 'sunnyAcresFarm',
       applicantName: 'Sunny Acres Farm',
-      fiId: 'anotherFi',
+      fiId: 'agriBankKenya',
       type: 'Loan',
       amount: 2500,
       currency: 'USD',

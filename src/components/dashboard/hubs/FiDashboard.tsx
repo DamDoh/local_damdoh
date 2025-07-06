@@ -72,7 +72,7 @@ export const FiDashboard = () => {
                         <p className="text-xs text-muted-foreground">${(portfolioAtRisk?.value || 0).toLocaleString()} value</p>
                     </CardContent>
                     <CardFooter>
-                        <Button asChild variant="destructive" size="sm" className="w-full">
+                         <Button asChild variant="destructive" size="sm" className="w-full">
                             <Link href={portfolioAtRisk?.actionLink || '#'}>Review Risk</Link>
                         </Button>
                     </CardFooter>
