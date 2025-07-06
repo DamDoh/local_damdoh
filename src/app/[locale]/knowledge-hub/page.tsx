@@ -125,5 +125,3 @@ const KnowledgeHubPage = () => {
     </div>
   );
 };
-
-export default KnowledgeHubPage;
