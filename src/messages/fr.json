@@ -658,5 +658,15 @@
     "noMessages": "Sélectionnez une conversation pour commencer à discuter.",
     "typeMessagePlaceholder": "Tapez un message...",
     "selectConversation": "Sélectionnez une conversation pour commencer à discuter"
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Voici une liste de vos notifications récentes sur toute la plateforme.",
+    "noNotifications": "Vous n'avez aucune nouvelle notification.",
+    "likedYourPost": "a aimé votre publication.",
+    "commentedOnYourPost": "a commenté votre publication.",
+    "viewedYourProfile": "a consulté votre profil.",
+    "placedNewOrder": "a passé une commande pour l'une de vos annonces.",
+    "sentConnectionRequest": "souhaite se connecter avec vous."
   }
 }

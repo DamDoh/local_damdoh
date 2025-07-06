@@ -658,5 +658,15 @@
     "noMessages": "Wählen Sie eine Konversation aus, um mit dem Chatten zu beginnen.",
     "typeMessagePlaceholder": "Nachricht eingeben...",
     "selectConversation": "Wählen Sie eine Konversation aus, um mit dem Chatten zu beginnen"
+  },
+  "notificationsPage": {
+    "title": "Benachrichtigungen",
+    "description": "Hier ist eine Liste Ihrer letzten Benachrichtigungen von der gesamten Plattform.",
+    "noNotifications": "Sie haben keine neuen Benachrichtigungen.",
+    "likedYourPost": "hat Ihren Beitrag geliked.",
+    "commentedOnYourPost": "hat Ihren Beitrag kommentiert.",
+    "viewedYourProfile": "hat Ihr Profil angesehen.",
+    "placedNewOrder": "hat eine Bestellung für eines Ihrer Angebote aufgegeben.",
+    "sentConnectionRequest": "möchte sich mit Ihnen vernetzen."
   }
 }

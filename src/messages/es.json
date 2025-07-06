@@ -658,5 +658,15 @@
     "noMessages": "Seleccione una conversación para empezar a enviar mensajes.",
     "typeMessagePlaceholder": "Escriba un mensaje...",
     "selectConversation": "Seleccione una conversación para empezar a enviar mensajes"
+  },
+  "notificationsPage": {
+    "title": "Notificaciones",
+    "description": "Aquí hay una lista de sus notificaciones recientes de toda la plataforma.",
+    "noNotifications": "No tiene notificaciones nuevas.",
+    "likedYourPost": "le ha gustado tu publicación.",
+    "commentedOnYourPost": "ha comentado en tu publicación.",
+    "viewedYourProfile": "ha visto tu perfil.",
+    "placedNewOrder": "ha realizado un pedido de uno de tus anuncios.",
+    "sentConnectionRequest": "quiere conectar contigo."
   }
 }
