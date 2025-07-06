@@ -241,6 +241,7 @@
       "marketplaceHistoryLabel": "Share Marketplace history with Financial Institutions",
       "marketplaceHistoryDescription": "Allow FIs to see your transaction history to get better loan offers.",
       "traceabilityDataLabel": "Share Traceability data with Researchers",
+      "traceabilityDataDescription": "Allow anonymized traceability data to be used in academic research.",
       "financialApplicationDataLabel": "Share Application data for AI Matching",
       "financialApplicationDataDescription": "Allow AI to analyze your financial needs to match you with opportunities.",
       "saveConsentButton": "Save Consent Settings"
@@ -943,273 +944,274 @@
       "intro": "DamDoh is led by a diverse team of technologists, agronomists, and business professionals with a shared passion for agriculture.",
       "member1Name": "Dr. Elara Vance",
       "member1Role": "CEO & Founder",
-      "member1Bio": "Agricultural economist with a vision to use technology to solve global food challenges."
-    },
-    "careers": {
-      "title": "Careers at DamDoh",
-      "subtitle": "Join us in shaping the future of agriculture.",
-      "whyWorkWithUs": {
-        "title": "Why Work With Us?",
-        "intro": "Joining DamDoh means being part of a mission-driven organization making a real impact on the world. We offer:",
-        "point1": "A collaborative and innovative work environment.",
-        "point2": "Opportunities to work on challenging problems with global impact.",
-        "point3": "A commitment to professional growth and development.",
-        "point4": "Competitive compensation and benefits.",
-        "point5": "A culture that values diversity, inclusion, and work-life balance."
-      },
-      "currentOpenings": {
-        "title": "Current Openings"
-      },
-      "openings": {
-        "job1": {
-          "title": "Senior Backend Engineer (Logistics)",
-          "location": "Remote / Nairobi, Kenya",
-          "type": "Full-Time",
-          "description": "Design and build the backend services that power our logistics and supply chain optimization tools."
-        },
-        "job2": {
-          "title": "Product Manager, Farmer Tools",
-          "location": "Remote / Ames, IA, USA",
-          "type": "Full-Time",
-          "description": "Lead the development of our farm management suite, ensuring it is intuitive and impactful for farmers globally."
-        },
-        "job3": {
-          "title": "Community Manager (Francophone)",
-          "location": "Remote / West Africa",
-          "type": "Full-Time",
-          "description": "Engage with and support our growing community of French-speaking users across West Africa."
-        }
-      },
-      "applyNowButton": "Apply Now",
-      "noOpenings": {
-        "title": "No Open Roles",
-        "content1": "We don't have any open positions at the moment, but we're always interested in hearing from talented individuals. Send your resume to {emailLink}."
-      }
-    },
-    "communityGuidelines": {
-      "title": "Community Guidelines",
-      "subtitle": "Our commitment to a safe, trusted, and professional community.",
-      "intro": "Welcome to the DamDoh community! To ensure this remains a productive and respectful space for everyone, we ask that you follow these guidelines:",
-      "respectful": {
-        "title": "Be Respectful",
-        "description": "Treat all members with respect and professionalism. Personal attacks, harassment, or hate speech will not be tolerated."
-      },
-      "authentic": {
-        "title": "Be Authentic",
-        "description": "Represent yourself and your business honestly. Do not use fake profiles or provide misleading information."
-      },
-      "relevant": {
-        "title": "Stay On-Topic",
-        "description": "Keep discussions and posts relevant to agriculture, food supply chains, and related topics. Spam or self-promotion outside of the marketplace is not permitted."
-      },
-      "fairTrade": {
-        "title": "Transact Fairly",
-        "description": "Conduct business with integrity. Honor agreements, accurately represent products, and communicate clearly and honestly."
-      },
-      "sustainable": {
-        "title": "Promote Sustainability",
-        "description": "We encourage discussions and practices that promote environmental, social, and economic sustainability in agriculture."
-      },
-      "reporting": {
-        "title": "Reporting Violations",
-        "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}."
-      },
-      "conclusion": "Thank you for being part of a trusted and professional global agricultural community."
-    },
-    "contact": {
-      "title": "Contact Us",
-      "subtitle": "We'd love to hear from you! Here's how you can reach us.",
-      "emailUs": {
-        "title": "Email Us",
-        "general": "General Inquiries",
-        "support": "Support",
-        "partnerships": "Partnerships"
-      },
-      "callUs": {
-        "title": "Call Us",
-        "hours": "Monday - Friday, 9am - 5pm (EAT)",
-        "phone": "+254 700 000 000"
-      },
-      "ourOffice": {
-        "title": "Our Office",
-        "org": "DamDoh Global HQ",
-        "address": "123 Agri-Tech Ave, Nairobi, Kenya"
-      },
-      "sendMessage": {
-        "title": "Send a Message",
-        "nameLabel": "Your Name",
-        "namePlaceholder": "Jane Doe",
-        "emailLabel": "Your Email",
-        "emailPlaceholder": "jane.doe@example.com",
-        "subjectLabel": "Subject",
-        "subjectPlaceholder": "Subject of your message",
-        "messageLabel": "Message",
-        "messagePlaceholder": "Type your message here...",
-        "buttonText": "Send Message",
-        "note": "This is a placeholder form. Please use the email addresses for real inquiries."
-      }
-    },
-    "helpCenterPage": {
-      "title": "Help Center",
-      "subtitle": "Find answers to your questions",
-      "howCanWeHelp": "How can we help you?",
-      "searchPlaceholder": "Search for topics, keywords, or questions...",
-      "browseTopics": "Browse Topics",
-      "gettingStarted": {
-        "title": "Getting Started",
-        "description": "Learn how to set up your account, create your profile, and start navigating the platform.",
-        "placeholder": "Getting Started guides will appear here."
-      },
-      "marketplaceGuide": {
-        "title": "Marketplace Guide",
-        "description": "Detailed instructions on creating listings, buying items, and handling transactions securely.",
-        "placeholder": "Marketplace guides will appear here."
-      },
-      "accountManagement": {
-        "title": "Account Management",
-        "description": "Find help with password resets, notification settings, and privacy options.",
-        "placeholder": "Account Management guides will appear here."
-      },
-      "troubleshooting": {
-        "title": "Troubleshooting",
-        "description": "Solutions for common issues and troubleshooting tips.",
-        "placeholder": "Troubleshooting articles will appear here."
-      },
-      "stillNeedHelp": {
-        "title": "Still need help?",
-        "description": "Our support team is ready to assist you with any questions.",
-        "button": "Contact Support"
-      }
-    },
-    "industryNewsPage": {
-      "title": "Industry News & Trends",
-      "description": "Stay informed on the latest in agricultural technology, market prices, and global supply chains.",
-      "searchPlaceholder": "Search news articles...",
-      "categoryPlaceholder": "Select Category",
-      "allCategories": "All Categories",
-      "sourceLabel": "Source",
-      "publishedLabel": "Published",
-      "categoryLabel": "Category",
-      "readButton": "Read Full Article",
-      "news1": {
-        "title": "Global Coffee Prices Hit 18-Month High Amid Supply Chain Concerns",
-        "excerpt": "Logistical bottlenecks in South America and adverse weather in Southeast Asia have pushed coffee futures to their highest levels since early 2022."
-      },
-      "news2": {
-        "title": "EU Introduces New Sustainable Packaging Regulations for Imported Foods",
-        "excerpt": "Starting January 2025, all agricultural imports into the European Union will need to meet new, stricter standards for recyclable and compostable packaging."
-      },
-      "news3": {
-        "title": "Study Shows Regenerative Agriculture Increases Soil Water Retention by up to 25%",
-        "excerpt": "A long-term study by the Global Agriculture Institute reveals that no-till and cover cropping practices significantly improve the soil's ability to retain water, increasing drought resilience."
-      },
-      "noNews": {
-        "title": "No News Articles",
-        "description": "No news articles are available at the moment. Please check back later."
-      }
-    },
-    "privacyPolicy": {
-      "title": "Privacy Policy",
-      "lastUpdated": "Last updated: October 29, 2023",
-      "introduction": "Welcome to DamDoh. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information.",
-      "whatInfoWeCollect": {
-        "heading": "What information do we collect?",
-        "content": "We collect information you provide to us directly, such as when you create an account, and information that is automatically collected, such as usage data and cookies."
-      },
-      "howWeUseInfo": {
-        "heading": "How do we use your information?",
-        "content": "We use your information to provide, operate, and improve our services, to communicate with you, to process transactions, and to secure our platform."
-      },
-      "willInfoBeShared": {
-        "heading": "Will your information be shared with anyone?",
-        "content": "We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations."
-      },
-      "cookiesAndTracking": {
-        "heading": "Do we use cookies and other tracking technologies?",
-        "content": "We may use cookies and similar tracking technologies to access or store information to enhance and personalize your website experience."
-      },
-      "howLongWeKeepInfo": {
-        "heading": "How long do we keep your information?",
-        "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy policy unless otherwise required or permitted by law."
-      },
-      "howWeKeepInfoSafe": {
-        "heading": "How do we keep your information safe?",
-        "content": "We have implemented a variety of organizational and technical security measures designed to protect the security of any personal information we process."
-      },
-      "minors": {
-        "heading": "Do we collect information from minors?",
-        "content": "We do not knowingly collect data from or market to children under 18 years of age."
-      },
-      "privacyRights": {
-        "heading": "What are your privacy rights?",
-        "content": "In some regions, you may have certain rights under applicable data protection laws. These may include the right to access and control your personal information."
-      },
-      "controlsForDoNotTrack": {
-        "heading": "Controls for do-not-track features",
-        "content": "Most web browsers and some mobile operating systems include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
-      },
-      "updatesToNotice": {
-        "heading": "Do we make updates to this notice?",
-        "content": "We may update this privacy policy from time to time. The updated version will be indicated by a revised 'Revised' date and the updated version will be effective as soon as it is accessible."
-      }
-    },
-    "termsOfService": {
-      "title": "Terms of Service",
-      "lastUpdated": "Last updated: October 29, 2023",
-      "introduction": "Welcome to DamDoh! These Terms of Service govern your use of our website and services.",
-      "agreementToTerms": {
-        "heading": "1. Agreement to Terms",
-        "content": "By using our services, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the services."
-      },
-      "intellectualProperty": {
-        "heading": "2. Intellectual Property Rights",
-        "content": "Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site are owned or controlled by us or licensed to us."
-      },
-      "userRepresentations": {
-        "heading": "3. User Representations",
-        "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you have the legal capacity and you agree to comply with these Terms of Use."
-      },
-      "prohibitedActivities": {
-        "heading": "4. Prohibited Activities",
-        "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
-      },
-      "platformManagement": {
-        "heading": "5. Platform Management",
-        "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use."
-      },
-      "termAndTermination": {
-        "heading": "6. Term and Termination",
-        "content": "These Terms of Use shall remain in full force and effect while you use the Site. WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE."
-      },
-      "modificationsAndInterruptions": {
-        "heading": "7. Modifications and Interruptions",
-        "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We cannot guarantee the Site will be available at all times."
-      },
-      "governingLaw": {
-        "heading": "8. Governing Law",
-        "content": "These Terms shall be governed by and defined following the laws of Kenya, without regard to its conflict of law principles."
-      },
-      "disputeResolution": {
-        "heading": "9. Dispute Resolution",
-        "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the courts located in Nairobi, Kenya."
-      },
-      "contactUs": {
-        "heading": "10. Contact Us",
-        "content": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
-      },
-      "conclusion": "Please {contactLink} if you have any questions."
-    },
-    "searchPage": {
-      "title": "Universal Search",
-      "description": "Find anything across the DamDoh platform.",
-      "placeholder": "Search for people, products, forums...",
-      "searchButton": "Search",
-      "popularSearches": "Popular Searches",
-      "popularSearch1": "Organic coffee",
-      "popularSearch2": "Tractor rental in Kenya",
-      "popularSearch3": "Sustainability forum",
-      "popularSearch4": "Agronomy consultant",
-      "popularSearch5": "Export logistics"
+      "member1Bio": "Agricultural economist with a vision to use technology to solve global food challenges.",
+      "note": "Team member information is illustrative."
     }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join us in shaping the future of agriculture.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "Joining DamDoh means being part of a mission-driven organization making a real impact on the world. We offer:",
+      "point1": "A collaborative and innovative work environment.",
+      "point2": "Opportunities to work on challenging problems with global impact.",
+      "point3": "A commitment to professional growth and development.",
+      "point4": "Competitive compensation and benefits.",
+      "point5": "A culture that values diversity, inclusion, and work-life balance."
+    },
+    "currentOpenings": {
+      "title": "Current Openings"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend Engineer (Logistics)",
+        "location": "Remote / Nairobi, Kenya",
+        "type": "Full-Time",
+        "description": "Design and build the backend services that power our logistics and supply chain optimization tools."
+      },
+      "job2": {
+        "title": "Product Manager, Farmer Tools",
+        "location": "Remote / Ames, IA, USA",
+        "type": "Full-Time",
+        "description": "Lead the development of our farm management suite, ensuring it is intuitive and impactful for farmers globally."
+      },
+      "job3": {
+        "title": "Community Manager (Francophone)",
+        "location": "Remote / West Africa",
+        "type": "Full-Time",
+        "description": "Engage with and support our growing community of French-speaking users across West Africa."
+      }
+    },
+    "applyNowButton": "Apply Now",
+    "noOpenings": {
+      "title": "No Open Roles",
+      "content1": "We don't have any open positions at the moment, but we're always interested in hearing from talented individuals. Send your resume to {emailLink}."
+    }
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Our commitment to a safe, trusted, and professional community.",
+    "intro": "Welcome to the DamDoh community! To ensure this remains a productive and respectful space for everyone, we ask that you follow these guidelines:",
+    "respectful": {
+      "title": "Be Respectful",
+      "description": "Treat all members with respect and professionalism. Personal attacks, harassment, or hate speech will not be tolerated."
+    },
+    "authentic": {
+      "title": "Be Authentic",
+      "description": "Represent yourself and your business honestly. Do not use fake profiles or provide misleading information."
+    },
+    "relevant": {
+      "title": "Stay On-Topic",
+      "description": "Keep discussions and posts relevant to agriculture, food supply chains, and related topics. Spam or self-promotion outside of the marketplace is not permitted."
+    },
+    "fairTrade": {
+      "title": "Transact Fairly",
+      "description": "Conduct business with integrity. Honor agreements, accurately represent products, and communicate clearly and honestly."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "We encourage discussions and practices that promote environmental, social, and economic sustainability in agriculture."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}."
+    },
+    "conclusion": "Thank you for being part of a trusted and professional global agricultural community."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you! Here's how you can reach us.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Monday - Friday, 9am - 5pm (EAT)",
+      "phone": "+254 700 000 000"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Global HQ",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Send a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Subject of your message",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "This is a placeholder form. Please use the email addresses for real inquiries."
+    }
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Find answers to your questions",
+    "howCanWeHelp": "How can we help you?",
+    "searchPlaceholder": "Search for topics, keywords, or questions...",
+    "browseTopics": "Browse Topics",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Learn how to set up your account, create your profile, and start navigating the platform.",
+      "placeholder": "Getting Started guides will appear here."
+    },
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "Detailed instructions on creating listings, buying items, and handling transactions securely.",
+      "placeholder": "Marketplace guides will appear here."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Find help with password resets, notification settings, and privacy options.",
+      "placeholder": "Account Management guides will appear here."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Solutions for common issues and troubleshooting tips.",
+      "placeholder": "Troubleshooting articles will appear here."
+    },
+    "stillNeedHelp": {
+      "title": "Still need help?",
+      "description": "Our support team is ready to assist you with any questions.",
+      "button": "Contact Support"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Industry News & Trends",
+    "description": "Stay informed on the latest in agricultural technology, market prices, and global supply chains.",
+    "searchPlaceholder": "Search news articles...",
+    "categoryPlaceholder": "Select Category",
+    "allCategories": "All Categories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "readButton": "Read Full Article",
+    "news1": {
+      "title": "Global Coffee Prices Hit 18-Month High Amid Supply Chain Concerns",
+      "excerpt": "Logistical bottlenecks in South America and adverse weather in Southeast Asia have pushed coffee futures to their highest levels since early 2022."
+    },
+    "news2": {
+      "title": "EU Introduces New Sustainable Packaging Regulations for Imported Foods",
+      "excerpt": "Starting January 2025, all agricultural imports into the European Union will need to meet new, stricter standards for recyclable and compostable packaging."
+    },
+    "news3": {
+      "title": "Study Shows Regenerative Agriculture Increases Soil Water Retention by up to 25%",
+      "excerpt": "A long-term study by the Global Agriculture Institute reveals that no-till and cover cropping practices significantly improve the soil's ability to retain water, increasing drought resilience."
+    },
+    "noNews": {
+      "title": "No News Articles",
+      "description": "No news articles are available at the moment. Please check back later."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "Welcome to DamDoh. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information.",
+    "whatInfoWeCollect": {
+      "heading": "What information do we collect?",
+      "content": "We collect information you provide to us directly, such as when you create an account, and information that is automatically collected, such as usage data and cookies."
+    },
+    "howWeUseInfo": {
+      "heading": "How do we use your information?",
+      "content": "We use your information to provide, operate, and improve our services, to communicate with you, to process transactions, and to secure our platform."
+    },
+    "willInfoBeShared": {
+      "heading": "Will your information be shared with anyone?",
+      "content": "We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations."
+    },
+    "cookiesAndTracking": {
+      "heading": "Do we use cookies and other tracking technologies?",
+      "content": "We may use cookies and similar tracking technologies to access or store information to enhance and personalize your website experience."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "How long do we keep your information?",
+      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy policy unless otherwise required or permitted by law."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "How do we keep your information safe?",
+      "content": "We have implemented a variety of organizational and technical security measures designed to protect the security of any personal information we process."
+    },
+    "minors": {
+      "heading": "Do we collect information from minors?",
+      "content": "We do not knowingly collect data from or market to children under 18 years of age."
+    },
+    "privacyRights": {
+      "heading": "What are your privacy rights?",
+      "content": "In some regions, you may have certain rights under applicable data protection laws. These may include the right to access and control your personal information."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "Controls for do-not-track features",
+      "content": "Most web browsers and some mobile operating systems include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
+    },
+    "updatesToNotice": {
+      "heading": "Do we make updates to this notice?",
+      "content": "We may update this privacy policy from time to time. The updated version will be indicated by a revised 'Revised' date and the updated version will be effective as soon as it is accessible."
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "Welcome to DamDoh! These Terms of Service govern your use of our website and services.",
+    "agreementToTerms": {
+      "heading": "1. Agreement to Terms",
+      "content": "By using our services, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the services."
+    },
+    "intellectualProperty": {
+      "heading": "2. Intellectual Property Rights",
+      "content": "Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site are owned or controlled by us or licensed to us."
+    },
+    "userRepresentations": {
+      "heading": "3. User Representations",
+      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you have the legal capacity and you agree to comply with these Terms of Use."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Prohibited Activities",
+      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
+    },
+    "platformManagement": {
+      "heading": "5. Platform Management",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use."
+    },
+    "termAndTermination": {
+      "heading": "6. Term and Termination",
+      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications and Interruptions",
+      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We cannot guarantee the Site will be available at all times."
+    },
+    "governingLaw": {
+      "heading": "8. Governing Law",
+      "content": "These Terms shall be governed by and defined following the laws of Kenya, without regard to its conflict of law principles."
+    },
+    "disputeResolution": {
+      "heading": "9. Dispute Resolution",
+      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the courts located in Nairobi, Kenya."
+    },
+    "contactUs": {
+      "heading": "10. Contact Us",
+      "content": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
+    },
+    "conclusion": "Please {contactLink} if you have any questions."
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search for people, products, forums...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic coffee",
+    "popularSearch2": "Tractor rental in Kenya",
+    "popularSearch3": "Sustainability forum",
+    "popularSearch4": "Agronomy consultant",
+    "popularSearch5": "Export logistics"
   }
 }
