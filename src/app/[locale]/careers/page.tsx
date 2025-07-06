@@ -8,29 +8,29 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 export default function CareersPage() {
-  const { t } = useTranslations('common');
+  const t = useTranslations('careers');
 
   const dummyOpenings = [
     {
       id: "job1",
-      title: t('careers.openings.job1.title'),
-      location: t('careers.openings.job1.location'),
-      type: t('careers.openings.job1.type'),
-      description: t('careers.openings.job1.description'),
+      title: t('openings.job1.title'),
+      location: t('openings.job1.location'),
+      type: t('openings.job1.type'),
+      description: t('openings.job1.description'),
     },
     {
       id: "job2",
-      title: t('careers.openings.job2.title'),
-      location: t('careers.openings.job2.location'),
-      type: t('careers.openings.job2.type'),
-      description: t('careers.openings.job2.description'),
+      title: t('openings.job2.title'),
+      location: t('openings.job2.location'),
+      type: t('openings.job2.type'),
+      description: t('openings.job2.description'),
     },
     {
       id: "job3",
-      title: t('careers.openings.job3.title'),
-      location: t('careers.openings.job3.location'),
-      type: t('careers.openings.job3.type'),
-      description: t('careers.openings.job3.description'),
+      title: t('openings.job3.title'),
+      location: t('openings.job3.location'),
+      type: t('openings.job3.type'),
+      description: t('openings.job3.description'),
     }
   ];
 
@@ -42,29 +42,29 @@ export default function CareersPage() {
         <CardHeader className="text-center">
           <div className="inline-flex items-center justify-center gap-2 mb-2">
             <Briefcase className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">{t('careers.title')}</CardTitle>
+            <CardTitle className="text-4xl">{t('title')}</CardTitle>
           </div>
           <CardDescription className="text-lg">
-            {t('careers.subtitle')}
+            {t('subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 text-muted-foreground">
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Sparkles className="h-6 w-6 text-primary"/>{t('careers.whyWorkWithUs.title')}</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Sparkles className="h-6 w-6 text-primary"/>{t('whyWorkWithUs.title')}</h2>
             <p>
-              {t('careers.whyWorkWithUs.intro')}
+              {t('whyWorkWithUs.intro')}
             </p>
             <ul className="list-disc list-inside space-y-1 pl-5 mt-3">
-              <li>{t('careers.whyWorkWithUs.point1')}</li>
-              <li>{t('careers.whyWorkWithUs.point2')}</li>
-              <li>{t('careers.whyWorkWithUs.point3')}</li>
-              <li>{t('careers.whyWorkWithUs.point4')}</li>
-              <li>{t('careers.whyWorkWithUs.point5')}</li>
+              <li>{t('whyWorkWithUs.point1')}</li>
+              <li>{t('whyWorkWithUs.point2')}</li>
+              <li>{t('whyWorkWithUs.point3')}</li>
+              <li>{t('whyWorkWithUs.point4')}</li>
+              <li>{t('whyWorkWithUs.point5')}</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Users className="h-6 w-6 text-primary"/>{t('careers.currentOpenings.title')}</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Users className="h-6 w-6 text-primary"/>{t('currentOpenings.title')}</h2>
             {showOpenings && dummyOpenings.length > 0 ? (
               <div className="space-y-4">
                 {dummyOpenings.map(job => (
@@ -80,7 +80,7 @@ export default function CareersPage() {
                       <p className="text-sm text-muted-foreground">{job.description}</p>
                     </CardContent>
                     <CardContent className="pt-2">
-                      <Button>{t('careers.applyNowButton')}</Button>
+                      <Button>{t('applyNowButton')}</Button>
                     </CardContent>
                   </Card>
                 ))}
@@ -88,9 +88,11 @@ export default function CareersPage() {
             ) : (
               <div className="min-h-[200px] flex flex-col items-center justify-center text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-8">
                 <Briefcase className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
-                <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('careers.noOpenings.title')}</h3>
+                <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('noOpenings.title')}</h3>
                 <p className="text-muted-foreground max-w-md">
-                  {t('careers.noOpenings.content1')} <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">{t('careers.noOpenings.email')}</a>.
+                  {t.rich('noOpenings.content1', {
+                    emailLink: (chunks) => <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">{chunks}</a>
+                  })}
                 </p>
               </div>
             )}

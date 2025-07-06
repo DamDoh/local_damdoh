@@ -4,6 +4,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from 'next/link';
 
 export default function TermsOfServicePage() {
   const t = useTranslations('termsOfService');
@@ -40,7 +41,7 @@ export default function TermsOfServicePage() {
             </div>
           ))}
           {t.rich('conclusion', {
-            contactLink: (chunks) => <a href="/contact">{chunks}</a>
+            contactLink: (chunks) => <Link href="/contact" className="text-primary hover:underline">{chunks}</Link>
           })}
         </CardContent>
       </Card>

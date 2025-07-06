@@ -16,6 +16,7 @@
     "signUp": "Registrarse",
     "myProfile": "Mi Perfil",
     "settings": "Configuración",
+    "helpCenter": "Centro de Ayuda",
     "logOut": "Cerrar Sesión"
   },
   "AppFooter": {
@@ -50,10 +51,24 @@
     "profile": "Perfil"
   },
   "marketplacePage": {
+    "title": "Mercado Global",
+    "description": "Descubre productos agrícolas, equipos y servicios de todo el mundo.",
+    "createListingButton": "Crear Anuncio",
+    "createShopButton": "Crear Tienda",
+    "pinButton": "Fijar como Página de Inicio",
+    "unpinButton": "Desfijar Página de Inicio",
+    "searchPlaceholder": "Buscar por producto o servicio...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "typePlaceholder": "Filtrar por tipo...",
+    "allTypes": "Todos los Tipos",
     "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre más"
+    "discoverMore": "Descubre más",
+    "noItemsFound": "No se encontraron artículos",
+    "noItemsHint": "Intenta ajustar tu búsqueda o filtros.",
+    "viewDetails": "Ver Detalles",
+    "viewServiceButton": "Ver Servicio"
   },
-   "Marketplace": {
+  "Marketplace": {
       "create": {
           "backLink": "Volver al Mercado",
           "title": "Crear un Nuevo Anuncio",
@@ -97,10 +112,8 @@
       "categoryPlaceholder": "Filtrar por categoría...",
       "allCategories": "Todos los servicios",
       "noResultsTitle": "No se encontraron servicios",
-      "noResultsDescription": "Intenta ajustar tus filtros de búsqueda o vuelve a consultar más tarde para ver nuevos anuncios.",
-      "viewServiceButton": "Ver Servicio"
+      "noResultsDescription": "Intenta ajustar tus filtros de búsqueda o vuelve a consultar más tarde para ver nuevos anuncios."
   },
-  "LandingPage": {},
   "Forums": {
     "createPost": {
       "backLink": "Volver al Tema",
@@ -149,5 +162,250 @@
         "description": "Tu discusión ha sido iniciada."
       }
     }
+  },
+  "LandingPage": {},
+  "about": {
+    "title": "Sobre DamDoh",
+    "subtitle": "Conectando la cadena de suministro agrícola del mundo para un futuro sostenible.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "content": "Empoderar a cada actor en el ecosistema agrícola con las herramientas digitales, la red y los conocimientos necesarios para prosperar de manera sostenible y alimentar al mundo de forma responsable."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "content": "Visualizamos una cadena de suministro agrícola conectada globalmente que sea transparente, equitativa, eficiente y regenerativa, asegurando la seguridad alimentaria y la prosperidad para todos."
+    },
+    "values": {
+      "title": "Nuestros Valores Fundamentales",
+      "sustainability": {
+        "title": "Sostenibilidad",
+        "content": "Defendemos prácticas que nutren el planeta y garantizan la viabilidad a largo plazo."
+      },
+      "collaboration": {
+        "title": "Colaboración",
+        "content": "Creemos en el poder de la conexión y la comunidad para resolver desafíos complejos."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "content": "Aprovechamos la tecnología para crear soluciones prácticas e inteligentes para problemas del mundo real."
+      },
+      "integrity": {
+        "title": "Integridad",
+        "content": "Nos comprometemos a construir confianza a través de la transparencia y la conducta ética."
+      },
+      "empowerment": {
+        "title": "Empoderamiento",
+        "content": "Proporcionamos herramientas y conocimientos para ayudar a nuestros usuarios a tener éxito en sus propios términos."
+      }
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "intro": "DamDoh está impulsado por un equipo diverso de tecnólogos, agrónomos y expertos en la cadena de suministro apasionados por transformar la agricultura.",
+      "member1Name": "Dra. Alima Bello",
+      "member1Role": "Fundadora y CEO",
+      "member1Bio": "Economista agrícola con 20 años de experiencia en cadenas de suministro globales.",
+      "member2Name": "Raj Patel",
+      "member2Role": "Director de Tecnología",
+      "member2Bio": "Lidera el desarrollo de nuestras tecnologías de IA y plataforma.",
+      "member3Name": "Sokhom Chea",
+      "member3Role": "Jefe de Operaciones de Campo",
+      "member3Bio": "Gestiona nuestra red de agentes de campo y programas de alcance a agricultores.",
+      "note": "Nota: Este es un equipo representativo con fines ilustrativos."
+    }
+  },
+  "careers": {
+    "title": "Únete a Nuestro Equipo",
+    "subtitle": "Ayúdanos a revolucionar la cadena de suministro agrícola.",
+    "whyWorkWithUs": {
+      "title": "¿Por Qué Trabajar con Nosotros?",
+      "intro": "En DamDoh, serás parte de un equipo impulsado por una misión y dedicado a tener un impacto tangible en los sistemas alimentarios globales. Valoramos:",
+      "point1": "Trabajo Significativo: Resuelve desafíos del mundo real que afectan a millones de personas.",
+      "point2": "Innovación: Trabaja con tecnología de punta como IA e IoT.",
+      "point3": "Impacto Global: Contribuye a una plataforma con un alcance verdaderamente global.",
+      "point4": "Cultura Colaborativa: Únete a un equipo de expertos diverso y solidario.",
+      "point5": "Oportunidades de Crecimiento: Desarrolla tus habilidades a medida que hacemos crecer nuestra plataforma."
+    },
+    "currentOpenings": {
+      "title": "Vacantes Actuales"
+    },
+    "noOpenings": {
+      "title": "No Hay Vacantes Actuales",
+      "content1": "Siempre estamos buscando personas apasionadas y talentosas. Si crees que puedes contribuir a nuestra misión, por favor envía tu currículum a <emailLink>careers@damdoh.org</emailLink>."
+    },
+    "applyNowButton": "Aplica ya",
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Full-Stack Senior (Next.js/Firebase)",
+        "location": "Remoto / Global",
+        "type": "Tiempo completo",
+        "description": "Buscamos un desarrollador full-stack experimentado para ayudar a construir y escalar las características principales de nuestra plataforma."
+      },
+      "job2": {
+        "title": "Agrónomo Principal - África Oriental",
+        "location": "Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Gestiona nuestra red de agentes de campo y brinda apoyo agronómico experto a nuestras comunidades agrícolas en África Oriental."
+      },
+      "job3": {
+        "title": "Gerente de Producto - Mercado y Comercio Electrónico",
+        "location": "Remoto / Global",
+        "type": "Tiempo completo",
+        "description": "Impulsa la estrategia y el desarrollo de nuestras características de mercado global y bolsa de talentos."
+      }
+    }
+  },
+  "communityGuidelines": {
+    "title": "Normas de la Comunidad de DamDoh",
+    "subtitle": "Nuestro compromiso de fomentar un entorno seguro, respetuoso y productivo para todos los actores agrícolas.",
+    "intro": "¡Bienvenido a DamDoh! Al unirte a nuestra plataforma, aceptas cumplir con estas pautas para garantizar una experiencia positiva para todos. Las violaciones pueden resultar en la eliminación de contenido, la suspensión de la cuenta u otras acciones que se consideren necesarias.",
+    "respectful": {
+      "title": "Sé Respetuoso y Constructivo",
+      "description": "Trata a todos los miembros de la comunidad de DamDoh con respeto. Participa en discusiones constructivas, comparte conocimientos de manera positiva y evita ataques personales, acoso o discursos de odio."
+    },
+    "authentic": {
+      "title": "Mantén la Autenticidad y la Transparencia",
+      "description": "Representa a ti mismo y a tu negocio con honestidad. No te hagas pasar por otros ni proporciones información engañosa en tu perfil, anuncios o comunicaciones. Indica claramente tu papel en la cadena de suministro."
+    },
+    "relevant": {
+      "title": "Mantén las Discusiones Relevantes",
+      "description": "Cuando participes en foros o grupos, asegúrate de que tus contribuciones sean relevantes para el tema. Evita el spam, la publicidad no solicitada o el contenido fuera de tema. Concéntrate en asuntos de la cadena de suministro agrícola."
+    },
+    "fairTrade": {
+      "title": "Fomenta el Comercio Justo y Ético",
+      "description": "Realiza transacciones comerciales con integridad. Cumple con los compromisos, proporciona descripciones precisas de productos/servicios y participa en precios justos. DamDoh promueve prácticas comerciales éticas."
+    },
+    "sustainable": {
+      "title": "Promueve Prácticas Sostenibles",
+      "description": "Fomentamos las discusiones y el intercambio de conocimientos relacionados con la agricultura sostenible y regenerativa. Apoya iniciativas que mejoren la salud del suelo, la biodiversidad y la seguridad alimentaria."
+    },
+    "reporting": {
+      "title": "Reportar Violaciones",
+      "content": "Si encuentras contenido o comportamiento que viole estas pautas, por favor repórtalo a nuestro equipo de moderación a través de las herramientas de reporte de la plataforma o contactando a <emailLink>support@damdoh.org</emailLink>."
+    },
+    "conclusion": "¡Gracias por ayudarnos a construir una comunidad próspera y confiable de la cadena de suministro agrícola en DamDoh!"
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Nos encantaría saber de ti. Comunícate con cualquier pregunta, comentario o consulta de asociación.",
+    "emailUs": {
+      "title": "Envíanos un Correo Electrónico",
+      "general": "Consultas Generales",
+      "support": "Soporte de la Plataforma",
+      "partnerships": "Asociaciones"
+    },
+    "callUs": {
+      "title": "Llámanos",
+      "hours": "Lunes a Viernes, 9am - 5pm EAT",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Nuestra Oficina",
+      "org": "DamDoh Global Inc.",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Envíanos un Mensaje",
+      "nameLabel": "Tu Nombre",
+      "namePlaceholder": "Ingresa tu nombre completo",
+      "emailLabel": "Tu Correo Electrónico",
+      "emailPlaceholder": "tú@ejemplo.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "El motivo de tu mensaje",
+      "messageLabel": "Tu Mensaje",
+      "messagePlaceholder": "Escribe tu mensaje aquí...",
+      "buttonText": "Enviar Mensaje",
+      "note": "Nota: Este es un marcador de posición visual. El envío del formulario no está activo."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: 30 de octubre de 2023",
+    "introduction": "Este aviso de privacidad para DamDoh ('nosotros', 'nos' o 'nuestro'), describe cómo y por qué podríamos recopilar, almacenar, usar y/o compartir ('procesar') su información cuando utiliza nuestros servicios ('Servicios'), como cuando visita nuestro sitio web o nuestra aplicación móvil. Leer este aviso de privacidad le ayudará a comprender sus derechos y opciones de privacidad.",
+    "whatInfoWeCollect": {
+      "heading": "1. ¿QUÉ INFORMACIÓN RECOPILAMOS?",
+      "content": "Recopilamos información personal que usted nos proporciona voluntariamente cuando se registra en los Servicios, expresa interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participa en actividades en los Servicios, o de otra manera cuando nos contacta. Esto incluye datos de perfil, contenido generado por el usuario y datos de transacciones."
+    },
+    "howWeUseInfo": {
+      "heading": "2. ¿CÓMO PROCESAMOS SU INFORMACIÓN?",
+      "content": "Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento."
+    },
+    "willInfoBeShared": {
+      "heading": "3. ¿CUÁNDO Y CON QUIÉN COMPARTIMOS SU INFORMACIÓN PERSONAL?",
+      "content": "Podemos compartir información en situaciones específicas descritas en esta sección y/o con los siguientes terceros. Es posible que necesitemos compartir su información personal con otros usuarios en la plataforma para establecer contactos y realizar transacciones, con socios comerciales, afiliados y durante transferencias comerciales."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. ¿UTILIZAMOS COOKIES Y OTRAS TECNOLOGÍAS DE SEGUIMIENTO?",
+      "content": "Podemos utilizar cookies y tecnologías de seguimiento similares para acceder o almacenar información. La información específica sobre cómo usamos dichas tecnologías y cómo puede rechazar ciertas cookies se establece en nuestro Aviso de Cookies."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?",
+      "content": "Conservamos su información durante el tiempo que sea necesario para cumplir con los propósitos descritos en este aviso de privacidad, a menos que la ley exija lo contrario."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?",
+      "content": "Hemos implementado una serie de medidas de seguridad técnicas y organizativas diseñadas para proteger la seguridad de cualquier información personal que procesemos. Sin embargo, a pesar de nuestras salvaguardas y esfuerzos para asegurar su información, ninguna transmisión electrónica por Internet o tecnología de almacenamiento de información puede garantizarse como 100% segura."
+    },
+    "minors": {
+      "heading": "7. ¿RECOPILAMOS INFORMACIÓN DE MENORES?",
+      "content": "No solicitamos datos ni comercializamos a niños menores de 18 años a sabiendas. Al usar los Servicios, usted declara que tiene al menos 18 años o que es el padre o tutor de dicho menor y da su consentimiento para el uso de los Servicios por parte de dicho menor dependiente."
+    },
+    "privacyRights": {
+      "heading": "8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?",
+      "content": "En algunas regiones (como el EEE, el Reino Unido y Canadá), usted tiene derechos que le permiten un mayor acceso y control sobre su información personal. Puede revisar, cambiar o cancelar su cuenta en cualquier momento."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO",
+      "content": "La mayoría de los navegadores web y algunos sistemas operativos y aplicaciones móviles incluyen una función o configuración de No Rastrear ('DNT') que puede activar para señalar su preferencia de privacidad de no tener datos sobre sus actividades de navegación en línea monitoreados y recopilados. En esta etapa, no se ha finalizado ningún estándar tecnológico uniforme para reconocer e implementar señales DNT. Como tal, actualmente no respondemos a las señales DNT del navegador ni a ningún otro mecanismo que comunique automáticamente su elección de no ser rastreado en línea."
+    },
+    "updatesToNotice": {
+      "heading": "10. ¿HACEMOS ACTUALIZACIONES A ESTE AVISO?",
+      "content": "Podemos actualizar este aviso de privacidad de vez en cuando. La versión actualizada se indicará con una fecha de 'Revisión' actualizada y la versión actualizada será efectiva tan pronto como sea accesible."
+    }
+  },
+  "termsOfService": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización: 30 de octubre de 2023",
+    "introduction": "Bienvenido a DamDoh. Estos Términos de Servicio ('Términos') rigen su uso del sitio web y la aplicación móvil de DamDoh (la 'Plataforma'). Al acceder o utilizar nuestra Plataforma, usted acepta estar sujeto a estos Términos.",
+    "agreementToTerms": {
+      "heading": "1. Acuerdo de los Términos",
+      "content": "Al usar nuestra Plataforma, usted acepta estos Términos. Si no está de acuerdo, no use la Plataforma."
+    },
+    "intellectualProperty": {
+      "heading": "2. Derechos de Propiedad Intelectual",
+      "content": "La Plataforma y su contenido, características y funcionalidad originales son y seguirán siendo propiedad exclusiva de DamDoh y sus licenciantes. Nuestras marcas comerciales y nuestra imagen comercial no pueden ser utilizadas en conexión con ningún producto o servicio sin el consentimiento previo por escrito de DamDoh."
+    },
+    "userRepresentations": {
+      "heading": "3. Representaciones del Usuario",
+      "content": "Al usar la Plataforma, usted representa y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la precisión de dicha información; (3) tiene la capacidad legal y acepta cumplir con estos Términos."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Actividades Prohibidas",
+      "content": "No puede acceder ni usar la Plataforma para ningún otro propósito que no sea para el que ponemos la Plataforma a disposición. Las actividades prohibidas incluyen, entre otras: fraude, spam, infracción de derechos de autor y acoso a otros usuarios."
+    },
+    "platformManagement": {
+      "heading": "5. Gestión de la Plataforma",
+      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear la Plataforma en busca de violaciones de estos Términos; (2) tomar las medidas legales apropiadas contra cualquiera que, a nuestro exclusivo criterio, viole la ley o estos Términos; (3) a nuestro exclusivo criterio y sin limitación, rechazar, restringir el acceso, limitar la disponibilidad o deshabilitar cualquiera de sus Contribuciones o cualquier parte de las mismas."
+    },
+    "termAndTermination": {
+      "heading": "6. Plazo y Terminación",
+      "content": "Estos Términos permanecerán en pleno vigor y efecto mientras use la Plataforma. SIN LIMITAR NINGUNA OTRA DISPOSICIÓN DE ESTOS TÉRMINOS, NOS RESERVAMOS EL DERECHO DE, A NUESTRO EXCLUSIVO CRITERIO Y SIN PREVIO AVISO O RESPONSABILIDAD, NEGAR EL ACCESO Y USO DE LA PLATAFORMA A CUALQUIER PERSONA POR CUALQUIER MOTIVO."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modificaciones e Interrupciones",
+      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido de la Plataforma en cualquier momento o por cualquier motivo a nuestro exclusivo criterio sin previo aviso. También nos reservamos el derecho de modificar o descontinuar toda o parte de la Plataforma sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante ningún tercero por ninguna modificación, cambio de precio, suspensión o interrupción de la Plataforma."
+    },
+    "governingLaw": {
+      "heading": "8. Ley Aplicable",
+      "content": "Estos Términos y su uso de la Plataforma se rigen e interpretan de acuerdo con las leyes de la jurisdicción donde DamDoh está registrada, sin tener en cuenta sus principios de conflicto de leyes."
+    },
+    "disputeResolution": {
+      "heading": "9. Resolución de Disputas",
+      "content": "Para agilizar la resolución y controlar el costo de cualquier disputa, usted acepta intentar negociar primero cualquier Disputa (excepto aquellas Disputas expresamente previstas a continuación) de manera informal durante al menos treinta (30) días antes de iniciar un arbitraje. Dichas negociaciones informales comienzan con una notificación por escrito de una persona a la otra."
+    },
+    "contactUs": {
+      "heading": "10. Contáctenos",
+      "content": "Para resolver una queja sobre la Plataforma o para recibir más información sobre el uso de la Plataforma, contáctenos."
+    },
+    "conclusion": "Puede contactarnos a través de nuestra <contactLink>página de contacto</contactLink>."
   }
 }

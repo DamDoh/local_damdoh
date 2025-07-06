@@ -1,33 +1,38 @@
 
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, ShieldCheck, MessageCircle, ThumbsUp, Handshake, Leaf } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function CommunityGuidelinesPage() {
+  const t = useTranslations('communityGuidelines');
+  
   const guidelines = [
     { 
       icon: <ThumbsUp className="h-6 w-6 text-primary"/>, 
-      title: "Be Respectful and Constructive", 
-      description: "Treat all members of the DamDoh community with respect. Engage in constructive discussions, share knowledge positively, and avoid personal attacks, harassment, or hate speech." 
+      title: t('respectful.title'), 
+      description: t('respectful.description') 
     },
     { 
       icon: <ShieldCheck className="h-6 w-6 text-primary"/>, 
-      title: "Maintain Authenticity and Transparency", 
-      description: "Represent yourself and your business honestly. Do not impersonate others or provide misleading information in your profile, listings, or communications. Clearly state your role in the supply chain." 
+      title: t('authentic.title'), 
+      description: t('authentic.description')
     },
     { 
       icon: <MessageCircle className="h-6 w-6 text-primary"/>, 
-      title: "Keep Discussions Relevant", 
-      description: "When participating in forums or groups, ensure your contributions are relevant to the topic. Avoid spamming, unsolicited advertising, or off-topic content. Focus on agricultural supply chain matters." 
+      title: t('relevant.title'), 
+      description: t('relevant.description') 
     },
     { 
       icon: <Handshake className="h-6 w-6 text-primary"/>, 
-      title: "Foster Fair and Ethical Trade", 
-      description: "Conduct business dealings with integrity. Honor commitments, provide accurate product/service descriptions, and engage in fair pricing. DamDoh promotes ethical trade practices." 
+      title: t('fairTrade.title'), 
+      description: t('fairTrade.description')
     },
     { 
       icon: <Leaf className="h-6 w-6 text-primary"/>, 
-      title: "Promote Sustainable Practices", 
-      description: "We encourage discussions and sharing of knowledge related to sustainable and regenerative agriculture. Support initiatives that improve soil health, biodiversity, and food security." 
+      title: t('sustainable.title'), 
+      description: t('sustainable.description')
     },
   ];
 
@@ -37,15 +42,15 @@ export default function CommunityGuidelinesPage() {
         <CardHeader className="text-center">
           <div className="inline-flex items-center justify-center gap-2 mb-2">
             <Users className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">DamDoh Community Guidelines</CardTitle>
+            <CardTitle className="text-4xl">{t('title')}</CardTitle>
           </div>
           <CardDescription className="text-lg">
-            Our commitment to fostering a safe, respectful, and productive environment for all agricultural stakeholders.
+            {t('subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-8 text-muted-foreground">
           <p className="text-center">
-            Welcome to DamDoh! By joining our platform, you agree to abide by these guidelines to ensure a positive experience for everyone. Violations may result in content removal, account suspension, or other actions deemed necessary.
+            {t('intro')}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -61,12 +66,14 @@ export default function CommunityGuidelinesPage() {
           </div>
 
           <section className="pt-4 text-center">
-            <h3 className="text-xl font-semibold text-foreground mb-2">Reporting Violations</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-2">{t('reporting.title')}</h3>
             <p className="mb-3">
-              If you encounter content or behavior that violates these guidelines, please report it to our moderation team through the platform's reporting tools or by contacting <a href="mailto:support@damdoh.org" className="text-primary hover:underline">support@damdoh.org</a>.
+              {t.rich('reporting.content', {
+                emailLink: (chunks) => <a href="mailto:support@damdoh.org" className="text-primary hover:underline">{chunks}</a>
+              })}
             </p>
             <p>
-              Thank you for helping us build a thriving and trustworthy agricultural supply chain community on DamDoh!
+              {t('conclusion')}
             </p>
           </section>
         </CardContent>
