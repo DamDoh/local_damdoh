@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -31,6 +32,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { generateProfileSummary } from '@/ai/flows/profile-summary-generator';
 
 
 function EditProfileSkeleton() {
@@ -68,6 +70,7 @@ export default function EditProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
 
   const profileIdParam = params.id as string;
 
@@ -146,6 +149,45 @@ export default function EditProfilePage() {
       setIsLoadingData(false);
     }
   }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
+  
+  const handleGenerateSummary = async () => {
+    const isValid = await form.trigger(['role', 'location', 'areasOfInterest', 'needs']);
+    if (!isValid) {
+        toast({
+            title: "Missing Information",
+            description: "Please fill in your Role, Location, Interests, and Needs to generate a summary.",
+            variant: "destructive",
+        });
+        return;
+    }
+    
+    setIsGeneratingSummary(true);
+    try {
+        const { role, location, areasOfInterest, needs } = form.getValues();
+        const result = await generateProfileSummary({
+            stakeholderType: role,
+            location: location,
+            areasOfInterest: areasOfInterest,
+            needs: needs,
+        });
+        if (result.summary) {
+            form.setValue('profileSummary', result.summary, { shouldValidate: true });
+            toast({
+                title: "Summary Generated!",
+                description: "AI has drafted a summary for you. Feel free to edit it further.",
+            });
+        }
+    } catch (error: any) {
+        console.error("Error generating profile summary:", error);
+        toast({
+            title: "Generation Failed",
+            description: "The AI could not generate a summary at this time.",
+            variant: "destructive",
+        });
+    } finally {
+        setIsGeneratingSummary(false);
+    }
+  };
 
   async function onSubmit(data: EditProfileValues) {
     if (!profile?.id) {
@@ -226,7 +268,7 @@ export default function EditProfilePage() {
                         <div className="space-y-6">
                             <FormField control={form.control} name="displayName" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><User className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.nameLabel')}</FormLabel> <FormControl> <Input placeholder="Your Name or Company Name" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
                             <FormField control={form.control} name="role" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.roleLabel')}</FormLabel> <Select onValueChange={field.onChange} value={field.value}> <FormControl> <SelectTrigger> <SelectValue placeholder={t('stakeholderProfile.rolePlaceholder')} /> </SelectTrigger> </FormControl> <SelectContent> {STAKEHOLDER_ROLES.map((roleOption) => ( <SelectItem key={roleOption} value={roleOption}> {roleOption} </SelectItem> ))} </SelectContent> </Select> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="profileSummary" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.summaryLabel')}</FormLabel> <FormControl> <Input placeholder={t('stakeholderProfile.summaryPlaceholder')} {...field} /> </FormControl> <FormDescription>Max 250 characters.</FormDescription> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="profileSummary" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center justify-between"> <span className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.summaryLabel')}</span> <Button type="button" variant="outline" size="sm" onClick={handleGenerateSummary} disabled={isGeneratingSummary}> {isGeneratingSummary ? <Loader2 className="h-4 w-4 animate-spin"/> : <Sparkles className="h-4 w-4" />} <span className="ml-2 hidden sm:inline">Generate with AI</span> </Button> </FormLabel> <FormControl> <Input placeholder={t('stakeholderProfile.summaryPlaceholder')} {...field} /> </FormControl> <FormDescription>Max 250 characters.</FormDescription> <FormMessage /> </FormItem> )} />
                             <FormField control={form.control} name="bio" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.bioLabel')}</FormLabel> <FormControl> <Textarea placeholder={t('stakeholderProfile.bioPlaceholder')} className="min-h-[120px]" {...field} /> </FormControl> <FormDescription>Max 2000 characters.</FormDescription> <FormMessage /> </FormItem> )} />
                         </div>
                     </TabsContent>

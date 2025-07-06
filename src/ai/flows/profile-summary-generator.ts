@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -13,16 +14,15 @@ import {z} from 'genkit';
 
 const ProfileSummaryInputSchema = z.object({
   stakeholderType: z.string().describe('The type of stakeholder (e.g., Farmer, Input Supplier).'),
-  yearsOfExperience: z.number().describe('The number of years of experience in the agricultural sector.'),
-  location: z.string().describe('The location of the stakeholder.'),
-  areasOfInterest: z.string().describe('Specific areas of interest within the agricultural supply chain.'),
-  needs: z.string().describe('The needs of the stakeholder (e.g., finding buyers, suppliers, collaborators).'),
+  yearsOfExperience: z.number().optional().describe('The number of years of experience in the agricultural sector.'),
+  location: z.string().optional().describe('The location of the stakeholder.'),
+  areasOfInterest: z.string().optional().describe('Specific areas of interest within the agricultural supply chain, comma-separated.'),
+  needs: z.string().optional().describe('The needs of the stakeholder (e.g., finding buyers, suppliers, collaborators), comma-separated.'),
 });
 export type ProfileSummaryInput = z.infer<typeof ProfileSummaryInputSchema>;
 
 const ProfileSummaryOutputSchema = z.object({
-  summary: z.string().describe('A short summary of the stakeholder profile.'),
-  progress: z.string().describe('A message indicating the progress of the profile summary generation.'),
+  summary: z.string().describe('A short, professional, first-person summary for the stakeholder profile (e.g., "I am an experienced farmer...").'),
 });
 export type ProfileSummaryOutput = z.infer<typeof ProfileSummaryOutputSchema>;
 
@@ -34,17 +34,25 @@ const profileSummaryPrompt = ai.definePrompt({
   name: 'profileSummaryPrompt',
   input: {schema: ProfileSummaryInputSchema},
   output: {schema: ProfileSummaryOutputSchema},
-  prompt: `You are an AI assistant designed to create short, engaging profile summaries for agricultural stakeholders.
+  prompt: `You are an expert career coach who writes compelling professional summaries for online profiles on an agricultural platform called DamDoh.
 
-  Based on the information provided, generate a concise summary (under 100 words) that highlights the stakeholder's expertise, interests, and needs.
+  Based on the information provided, generate a concise, professional, first-person summary (1-2 sentences, under 250 characters). The summary should sound authentic and highlight the stakeholder's role, key interests, and goals.
 
-  Stakeholder Type: {{{stakeholderType}}}
-  Years of Experience: {{{yearsOfExperience}}}
-  Location: {{{location}}}
-  Areas of Interest: {{{areasOfInterest}}}
-  Needs: {{{needs}}}
+  Stakeholder Information:
+  - Role: {{{stakeholderType}}}
+  {{#if location}}- Location: {{{location}}}{{/if}}
+  {{#if yearsOfExperience}}- Years of Experience: {{{yearsOfExperience}}}{{/if}}
+  {{#if areasOfInterest}}- Main Interests: {{{areasOfInterest}}}{{/if}}
+  {{#if needs}}- Key Needs/Goals: {{{needs}}}{{/if}}
 
-  Summary:`,
+  Write the summary from a first-person perspective (e.g., "I am a..."). Make it engaging and professional.
+  
+  Example for a Farmer in Kenya:
+  "I am a passionate organic farmer from Kenya with a focus on sustainable coffee production, currently seeking to connect with fair trade buyers and logistics partners."
+  
+  Example for a Buyer in Europe:
+  "As a European-based commodity buyer, I am focused on sourcing high-quality, traceable grains and am looking for reliable producer cooperatives in East Africa."
+  `,
 });
 
 const generateProfileSummaryFlow = ai.defineFlow(
@@ -56,8 +64,7 @@ const generateProfileSummaryFlow = ai.defineFlow(
   async input => {
     const {output} = await profileSummaryPrompt(input);
     return {
-      ...output!,
-      progress: 'Generated a one-sentence summary of the profile.',
+      summary: output!.summary,
     };
   }
 );
