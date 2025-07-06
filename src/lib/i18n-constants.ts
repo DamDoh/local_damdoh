@@ -4,7 +4,7 @@ import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_T
 export const getStakeholderRoles = (t: any) =>
   STAKEHOLDER_ROLES.map(role => ({
     value: role,
-    label: t('stakeholderRoles.' + role.replace(/[\s/()&,]+/g, ''))
+    label: t('stakeholderRoles.' + role.replace(/[\s/()&,.]+/g, ''))
   }));
   
 export const getListingTypes = (t: any) =>
