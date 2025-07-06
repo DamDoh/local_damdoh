@@ -643,5 +643,20 @@
     "feature3": "Accès aux prêts et crédits",
     "feature4": "Historique détaillé des transactions",
     "stayTuned": "Restez à l'écoute des mises à jour !"
+  },
+  "messagingPage": {
+    "error": "Erreur",
+    "couldNotLoadConversations": "Impossible de charger vos conversations.",
+    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
+    "sendFailed": "Envoi échoué",
+    "couldNotSendMessage": "Votre message n'a pas pu être envoyé. Veuillez réessayer.",
+    "signInToView": "Veuillez vous connecter pour voir vos messages.",
+    "signIn": "Connexion",
+    "title": "Messages",
+    "searchPlaceholder": "Rechercher des conversations...",
+    "noConversations": "Vous n'avez pas encore de conversations.",
+    "noMessages": "Sélectionnez une conversation pour commencer à discuter.",
+    "typeMessagePlaceholder": "Tapez un message...",
+    "selectConversation": "Sélectionnez une conversation pour commencer à discuter"
   }
 }

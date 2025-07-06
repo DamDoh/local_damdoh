@@ -643,5 +643,20 @@
     "feature3": "Zugang zu Krediten & Darlehen",
     "feature4": "Detaillierte Transaktionshistorie",
     "stayTuned": "Bleiben Sie dran für Updates!"
+  },
+  "messagingPage": {
+    "error": "Fehler",
+    "couldNotLoadConversations": "Ihre Konversationen konnten nicht geladen werden.",
+    "couldNotStartConversation": "Eine neue Konversation konnte nicht gestartet werden.",
+    "sendFailed": "Senden fehlgeschlagen",
+    "couldNotSendMessage": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "signInToView": "Bitte melden Sie sich an, um Ihre Nachrichten anzuzeigen.",
+    "signIn": "Anmelden",
+    "title": "Nachrichten",
+    "searchPlaceholder": "Konversationen suchen...",
+    "noConversations": "Sie haben noch keine Konversationen.",
+    "noMessages": "Wählen Sie eine Konversation aus, um mit dem Chatten zu beginnen.",
+    "typeMessagePlaceholder": "Nachricht eingeben...",
+    "selectConversation": "Wählen Sie eine Konversation aus, um mit dem Chatten zu beginnen"
   }
 }

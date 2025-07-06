@@ -643,5 +643,20 @@
     "feature3": "Access to Loans & Credit",
     "feature4": "Detailed Transaction History",
     "stayTuned": "Stay tuned for updates!"
+  },
+  "messagingPage": {
+    "error": "Error",
+    "couldNotLoadConversations": "Could not load your conversations.",
+    "couldNotStartConversation": "Could not start a new conversation.",
+    "sendFailed": "Send Failed",
+    "couldNotSendMessage": "Could not send your message. Please try again.",
+    "signInToView": "Please sign in to view your messages.",
+    "signIn": "Sign In",
+    "title": "Messages",
+    "searchPlaceholder": "Search conversations...",
+    "noConversations": "You have no conversations yet.",
+    "noMessages": "Select a conversation to start messaging.",
+    "typeMessagePlaceholder": "Type a message...",
+    "selectConversation": "Select a conversation to start messaging"
   }
 }
