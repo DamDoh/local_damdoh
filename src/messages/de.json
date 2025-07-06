@@ -367,7 +367,7 @@
         "locationDescription": "Der allgemeine Stadt-/Regionsstandort Ihrer Farm.",
         "sizeLabel": "Größe / Fläche",
         "sizePlaceholder": "z.B. 50 Hektar",
-        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. acres, hectares).",
         "typeLabel": "Art der Farm",
         "typePlaceholder": "Wählen Sie den primären Typ",
         "types": {
@@ -434,6 +434,149 @@
         "noEventsFound": "Keine Rückverfolgungsereignisse gefunden.",
         "notFoundTitle": "Charge nicht gefunden",
         "notFoundDescription": "Die gesuchte Charge existiert nicht oder der Link ist falsch."
+    }
+  },
+  "Forums": {
+    "title": "Gemeinschaftsforen",
+    "description": "Vernetzen, teilen und lernen Sie mit Gleichgesinnten aus dem gesamten landwirtschaftlichen Ökosystem.",
+    "searchPlaceholder": "Alle Themen durchsuchen...",
+    "lastActivity": "Letzte Aktivität {time}",
+    "notFound": {
+      "title": "Keine Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie einen anderen Suchbegriff.",
+      "beTheFirst": "Seien Sie der Erste, der eine neue Diskussion startet!"
+    },
+    "pinning": {
+      "pinnedTitle": "Foren angeheftet!",
+      "pinnedDescription": "Die Foren sind jetzt Ihre Standard-Startseite.",
+      "unpinnedTitle": "Startseite gelöst!",
+      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
+    },
+    "buttons": {
+      "createTopic": "Neues Thema erstellen",
+      "pinHomepage": "Als Startseite festlegen",
+      "unpinHomepage": "Startseite lösen",
+      "joinDiscussion": "Diskussion beitreten"
+    },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Beim Abrufen der Community-Foren ist ein Problem aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    "topic": {
+      "backLink": "Zurück zu {topicName}",
+      "unknownUser": "Unbekannter Benutzer",
+      "repliesTitle": "{count, plural, =0 {Keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "postMeta": "Von {author} am {date}",
+      "buttons": {
+        "loadingMore": "Wird geladen...",
+        "loadMore": "Weitere Antworten laden"
+      },
+      "reply": {
+        "title": "Ihre Antwort",
+        "placeholder": "Schreiben Sie Ihre Antwort...",
+        "submittingButton": "Wird gepostet...",
+        "submitButton": "Antwort posten",
+        "success": "Antwort gepostet!"
+      },
+      "errors": {
+        "emptyReply": "Bitte schreiben Sie eine Antwort vor dem Absenden.",
+        "submitReply": {
+          "title": "Fehler beim Posten der Antwort",
+          "description": "Ihre Antwort konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Die Diskussion für diesen Beitrag konnte nicht geladen werden."
+        },
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Die Beitragsdetails konnten nicht geladen werden."
+        }
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden.",
+        "description": "Dieser Beitrag wurde möglicherweise gelöscht oder der Link ist falsch.",
+        "backButton": "Zurück zu den Foren"
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zum Thema",
+      "title": "Neue Diskussion starten",
+      "description": "Teilen Sie Ihre Gedanken, stellen Sie Fragen oder starten Sie ein Gespräch mit anderen Community-Mitgliedern.",
+      "aiHelper": {
+        "title": "KI-Beitragshelfer",
+        "description": "Benötigen Sie Hilfe beim Einstieg? Geben Sie unserer KI eine Anregung, und sie wird den Beitrag für Sie entwerfen.",
+        "promptLabel": "Worum geht es in Ihrem Beitrag?",
+        "promptPlaceholder": "z.B. eine Frage zur besten Bewässerung für Tomaten oder meine Erfolge mit Zwischenfrüchten teilen",
+        "generatingButton": "Wird generiert...",
+        "generateButton": "Entwurf mit KI generieren"
+      },
+      "form": {
+        "titleLabel": "Beitragstitel",
+        "titlePlaceholder": "Ein klarer und ansprechender Titel",
+        "contentLabel": "Ihre Nachricht",
+        "contentPlaceholder": "Teilen Sie Details, stellen Sie Fragen oder geben Sie Kontext für Ihre Diskussion...",
+        "submittingButton": "Wird gepostet...",
+        "submitButton": "Diskussion posten"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Anregung erforderlich",
+          "description": "Bitte geben Sie eine Anregung für die KI an, um einen Entwurf zu generieren."
+        },
+        "aiDraft": {
+          "title": "Entwurfsgenerierung fehlgeschlagen",
+          "description": "Die KI konnte derzeit keinen Entwurf generieren. Bitte versuchen Sie es erneut oder schreiben Sie den Beitrag manuell."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+        },
+        "general": {
+          "title": "Fehler beim Erstellen des Beitrags",
+          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Entwurf generiert!",
+          "description": "Die KI hat einen Titel und Inhalt für Sie entworfen. Fühlen Sie sich frei, ihn vor dem Posten zu bearbeiten."
+        },
+        "title": "Beitrag erstellt!",
+        "description": "Ihre Diskussion wurde im Thema gestartet."
+      }
+    },
+    "create": {
+      "backLink": "Zurück zu den Foren",
+      "title": "Neues Thema erstellen",
+      "description": "Starten Sie ein neues übergeordnetes Diskussionsthema für die Community.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "z.B. Nachhaltige Landwirtschaftspraktiken",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Eine kurze Beschreibung, worum es in diesem Thema geht.",
+        "submittingButton": "Wird erstellt...",
+        "submitButton": "Thema erstellen"
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um ein neues Thema zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständiges Formular",
+          "description": "Bitte füllen Sie den Themennamen und die Beschreibung aus."
+        },
+        "general": {
+          "title": "Fehler beim Erstellen des Themas",
+          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+        }
+      },
+      "success": {
+        "title": "Thema erstellt!",
+        "description": "Ihr neues Thema ist jetzt zur Diskussion freigegeben."
+      }
     }
   }
 }

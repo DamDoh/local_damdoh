@@ -435,5 +435,148 @@
         "notFoundTitle": "Lote no encontrado",
         "notFoundDescription": "El lote que buscas no existe o el enlace es incorrecto."
     }
+  },
+  "Forums": {
+    "title": "Foros Comunitarios",
+    "description": "Conéctese, comparta y aprenda con sus pares de todo el ecosistema agrícola.",
+    "searchPlaceholder": "Buscar todos los temas...",
+    "lastActivity": "Última actividad {time}",
+    "notFound": {
+      "title": "No se encontraron temas",
+      "tryDifferentSearch": "Intente con un término de búsqueda diferente.",
+      "beTheFirst": "¡Sea el primero en iniciar una nueva discusión!"
+    },
+    "pinning": {
+      "pinnedTitle": "¡Foros fijados!",
+      "pinnedDescription": "Los foros son ahora su página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "El panel de control es ahora su página de inicio predeterminada."
+    },
+    "buttons": {
+      "createTopic": "Crear Nuevo Tema",
+      "pinHomepage": "Fijar como Página de Inicio",
+      "unpinHomepage": "Desfijar Página de Inicio",
+      "joinDiscussion": "Unirse a la Discusión"
+    },
+    "errors": {
+      "loadTitle": "Error al Cargar Temas",
+      "loadDescription": "Hubo un problema al obtener los foros de la comunidad. Por favor, inténtelo de nuevo."
+    },
+    "topic": {
+      "backLink": "Volver a {topicName}",
+      "unknownUser": "Usuario Desconocido",
+      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
+      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
+      "postMeta": "Por {author} el {date}",
+      "buttons": {
+        "loadingMore": "Cargando...",
+        "loadMore": "Cargar Más Respuestas"
+      },
+      "reply": {
+        "title": "Tu Respuesta",
+        "placeholder": "Escribe tu respuesta...",
+        "submittingButton": "Publicando...",
+        "submitButton": "Publicar Respuesta",
+        "success": "¡Respuesta publicada!"
+      },
+      "errors": {
+        "emptyReply": "Por favor, escribe una respuesta antes de enviar.",
+        "submitReply": {
+          "title": "Error al publicar la respuesta",
+          "description": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "No se pudo cargar la discusión para esta publicación."
+        },
+        "loadPost": {
+          "title": "Error al cargar la publicación",
+          "description": "No se pudieron cargar los detalles de la publicación."
+        }
+      },
+      "notFound": {
+        "title": "Publicación no encontrada.",
+        "description": "Esta publicación puede haber sido eliminada o el enlace es incorrecto.",
+        "backButton": "Volver a los Foros"
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Tema",
+      "title": "Iniciar una Nueva Discusión",
+      "description": "Comparta sus pensamientos, haga preguntas o inicie una conversación con otros miembros de la comunidad.",
+      "aiHelper": {
+        "title": "Asistente de Publicaciones de IA",
+        "description": "¿Necesita ayuda para empezar? Dele una indicación a nuestra IA y redactará la publicación por usted.",
+        "promptLabel": "¿De qué trata su publicación?",
+        "promptPlaceholder": "Ej: una pregunta sobre el mejor riego para tomates, o compartir mi éxito con los cultivos de cobertura",
+        "generatingButton": "Generando...",
+        "generateButton": "Generar Borrador con IA"
+      },
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Un título claro y atractivo",
+        "contentLabel": "Su Mensaje",
+        "contentPlaceholder": "Comparta detalles, haga preguntas o proporcione contexto para su discusión...",
+        "submittingButton": "Publicando...",
+        "submitButton": "Publicar Discusión"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Se requiere una indicación",
+          "description": "Por favor, proporcione una indicación a la IA para generar un borrador."
+        },
+        "aiDraft": {
+          "title": "Falló la generación del borrador",
+          "description": "La IA no pudo generar un borrador en este momento. Por favor, inténtelo de nuevo o escriba la publicación manualmente."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporcione tanto un título como contenido para su publicación."
+        },
+        "general": {
+          "title": "Error al Crear la Publicación",
+          "description": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador Generado!",
+          "description": "La IA ha redactado un título y contenido para usted. Siéntase libre de editarlo antes de publicar."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Su discusión ha sido iniciada en el tema."
+      }
+    },
+    "create": {
+      "backLink": "Volver a los Foros",
+      "title": "Crear un Nuevo Tema",
+      "description": "Inicie un nuevo tema de discusión de alto nivel para la comunidad.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Ej: Prácticas de Agricultura Sostenible",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Una breve descripción de qué trata este tema.",
+        "submittingButton": "Creando...",
+        "submitButton": "Crear Tema"
+      },
+      "errors": {
+        "auth": {
+          "title": "Se Requiere Autenticación",
+          "description": "Debe iniciar sesión para crear un nuevo tema."
+        },
+        "incomplete": {
+          "title": "Formulario Incompleto",
+          "description": "Por favor, complete el nombre y la descripción del tema."
+        },
+        "general": {
+          "title": "Error al Crear el Tema",
+          "description": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo."
+        }
+      },
+      "success": {
+        "title": "¡Tema Creado!",
+        "description": "Su nuevo tema ya está disponible para discusión."
+      }
+    }
   }
 }

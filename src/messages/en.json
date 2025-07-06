@@ -435,5 +435,148 @@
         "notFoundTitle": "Batch Not Found",
         "notFoundDescription": "The batch you are looking for does not exist or the link is incorrect."
     }
+  },
+  "Forums": {
+    "title": "Community Forums",
+    "description": "Connect, share, and learn with peers from across the agricultural ecosystem.",
+    "searchPlaceholder": "Search all topics...",
+    "lastActivity": "Last activity {time}",
+    "notFound": {
+      "title": "No Topics Found",
+      "tryDifferentSearch": "Try a different search term.",
+      "beTheFirst": "Be the first one to start a new discussion!"
+    },
+    "pinning": {
+      "pinnedTitle": "Forums Pinned!",
+      "pinnedDescription": "The Forums are now your default homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "The Dashboard is now your default homepage."
+    },
+    "buttons": {
+      "createTopic": "Create New Topic",
+      "pinHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin Homepage",
+      "joinDiscussion": "Join Discussion"
+    },
+    "errors": {
+      "loadTitle": "Error Loading Topics",
+      "loadDescription": "There was a problem fetching the community forums. Please try again."
+    },
+    "topic": {
+      "backLink": "Back to {topicName}",
+      "unknownUser": "Unknown User",
+      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "postMeta": "By {author} on {date}",
+      "buttons": {
+        "loadingMore": "Loading...",
+        "loadMore": "Load More Replies"
+      },
+      "reply": {
+        "title": "Your Reply",
+        "placeholder": "Write your reply...",
+        "submittingButton": "Posting...",
+        "submitButton": "Post Reply",
+        "success": "Reply posted!"
+      },
+      "errors": {
+        "emptyReply": "Please write a reply before submitting.",
+        "submitReply": {
+          "title": "Error posting reply",
+          "description": "Could not submit your reply. Please try again."
+        },
+        "loadReplies": {
+          "title": "Error loading replies",
+          "description": "Could not load the discussion for this post."
+        },
+        "loadPost": {
+          "title": "Error loading post",
+          "description": "Could not load the post details."
+        }
+      },
+      "notFound": {
+        "title": "Post not found.",
+        "description": "This post may have been deleted or the link is incorrect.",
+        "backButton": "Back to Forums"
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Topic",
+      "title": "Start a New Discussion",
+      "description": "Share your thoughts, ask questions, or start a conversation with other community members.",
+      "aiHelper": {
+        "title": "AI Post Helper",
+        "description": "Need a hand getting started? Give our AI a prompt, and it will draft the post for you.",
+        "promptLabel": "What is your post about?",
+        "promptPlaceholder": "e.g., a question about the best irrigation for tomatoes, or sharing my success with cover crops",
+        "generatingButton": "Generating...",
+        "generateButton": "Generate Draft with AI"
+      },
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "A clear and engaging title",
+        "contentLabel": "Your Message",
+        "contentPlaceholder": "Share details, ask questions, or provide context for your discussion...",
+        "submittingButton": "Posting...",
+        "submitButton": "Post Discussion"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Prompt Required",
+          "description": "Please provide a prompt for the AI to generate a draft."
+        },
+        "aiDraft": {
+          "title": "Draft Generation Failed",
+          "description": "The AI could not generate a draft at this time. Please try again or write the post manually."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "general": {
+          "title": "Error Creating Post",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Draft Generated!",
+          "description": "The AI has drafted a title and content for you. Feel free to edit it before posting."
+        },
+        "title": "Post Created!",
+        "description": "Your discussion has been started in the topic."
+      }
+    },
+    "create": {
+      "backLink": "Back to Forums",
+      "title": "Create a New Topic",
+      "description": "Start a new high-level discussion topic for the community.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "e.g., Sustainable Farming Practices",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "A brief description of what this topic is about.",
+        "submittingButton": "Creating...",
+        "submitButton": "Create Topic"
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be logged in to create a new topic."
+        },
+        "incomplete": {
+          "title": "Incomplete Form",
+          "description": "Please fill out the topic name and description."
+        },
+        "general": {
+          "title": "Error Creating Topic",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      },
+      "success": {
+        "title": "Topic Created!",
+        "description": "Your new topic is now live for discussion."
+      }
+    }
   }
 }

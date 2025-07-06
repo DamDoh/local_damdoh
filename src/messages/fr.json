@@ -435,5 +435,148 @@
         "notFoundTitle": "Lot non trouvé",
         "notFoundDescription": "Le lot que vous recherchez n'existe pas ou le lien est incorrect."
     }
+  },
+  "Forums": {
+    "title": "Forums communautaires",
+    "description": "Connectez-vous, partagez et apprenez avec des pairs de tout l'écosystème agricole.",
+    "searchPlaceholder": "Rechercher tous les sujets...",
+    "lastActivity": "Dernière activité {time}",
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à lancer une nouvelle discussion !"
+    },
+    "pinning": {
+      "pinnedTitle": "Forums épinglés !",
+      "pinnedDescription": "Les forums sont maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Page d'accueil désépinglée !",
+      "unpinnedDescription": "Le tableau de bord est maintenant votre page d'accueil par défaut."
+    },
+    "buttons": {
+      "createTopic": "Créer un nouveau sujet",
+      "pinHomepage": "Épingler comme page d'accueil",
+      "unpinHomepage": "Désépingler la page d'accueil",
+      "joinDiscussion": "Rejoindre la discussion"
+    },
+    "errors": {
+      "loadTitle": "Erreur de chargement des sujets",
+      "loadDescription": "Un problème est survenu lors de la récupération des forums communautaires. Veuillez réessayer."
+    },
+    "topic": {
+      "backLink": "Retour à {topicName}",
+      "unknownUser": "Utilisateur inconnu",
+      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
+      "noReplies": "Pas encore de réponses. Soyez le premier à répondre !",
+      "postMeta": "Par {author} le {date}",
+      "buttons": {
+        "loadingMore": "Chargement...",
+        "loadMore": "Charger plus de réponses"
+      },
+      "reply": {
+        "title": "Votre réponse",
+        "placeholder": "Écrivez votre réponse...",
+        "submittingButton": "Envoi en cours...",
+        "submitButton": "Publier la réponse",
+        "success": "Réponse publiée !"
+      },
+      "errors": {
+        "emptyReply": "Veuillez écrire une réponse avant de soumettre.",
+        "submitReply": {
+          "title": "Erreur lors de la publication de la réponse",
+          "description": "Impossible de soumettre votre réponse. Veuillez réessayer."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Impossible de charger la discussion pour ce message."
+        },
+        "loadPost": {
+          "title": "Erreur de chargement du message",
+          "description": "Impossible de charger les détails du message."
+        }
+      },
+      "notFound": {
+        "title": "Message non trouvé.",
+        "description": "Ce message a peut-être été supprimé ou le lien est incorrect.",
+        "backButton": "Retour aux forums"
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au sujet",
+      "title": "Lancer une nouvelle discussion",
+      "description": "Partagez vos pensées, posez des questions ou lancez une conversation avec d'autres membres de la communauté.",
+      "aiHelper": {
+        "title": "Assistant de publication IA",
+        "description": "Besoin d'un coup de main pour commencer ? Donnez une instruction à notre IA et elle rédigera le message pour vous.",
+        "promptLabel": "De quoi parle votre message ?",
+        "promptPlaceholder": "ex: une question sur la meilleure irrigation pour les tomates, ou partager mon succès avec les cultures de couverture",
+        "generatingButton": "Génération en cours...",
+        "generateButton": "Générer un brouillon avec l'IA"
+      },
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Un titre clair et engageant",
+        "contentLabel": "Votre message",
+        "contentPlaceholder": "Partagez des détails, posez des questions ou fournissez un contexte pour votre discussion...",
+        "submittingButton": "Publication en cours...",
+        "submitButton": "Publier la discussion"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Instruction requise",
+          "description": "Veuillez fournir une instruction à l'IA pour générer un brouillon."
+        },
+        "aiDraft": {
+          "title": "Échec de la génération du brouillon",
+          "description": "L'IA n'a pas pu générer de brouillon pour le moment. Veuillez réessayer ou rédiger le message manuellement."
+        },
+        "incomplete": {
+          "title": "Message incomplet",
+          "description": "Veuillez fournir un titre et un contenu pour votre message."
+        },
+        "general": {
+          "title": "Erreur lors de la création du message",
+          "description": "Une erreur inattendue est survenue. Veuillez réessayer."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon généré !",
+          "description": "L'IA a rédigé un titre et un contenu pour vous. N'hésitez pas à le modifier avant de le publier."
+        },
+        "title": "Message créé !",
+        "description": "Votre discussion a été lancée dans le sujet."
+      }
+    },
+    "create": {
+      "backLink": "Retour aux forums",
+      "title": "Créer un nouveau sujet",
+      "description": "Lancez un nouveau sujet de discussion de haut niveau pour la communauté.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Ex: Pratiques agricoles durables",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Une brève description de ce dont traite ce sujet.",
+        "submittingButton": "Création en cours...",
+        "submitButton": "Créer le sujet"
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être connecté pour créer un nouveau sujet."
+        },
+        "incomplete": {
+          "title": "Formulaire incomplet",
+          "description": "Veuillez remplir le nom et la description du sujet."
+        },
+        "general": {
+          "title": "Erreur lors de la création du sujet",
+          "description": "Une erreur inattendue est survenue. Veuillez réessayer."
+        }
+      },
+      "success": {
+        "title": "Sujet créé !",
+        "description": "Votre nouveau sujet est maintenant en ligne pour la discussion."
+      }
+    }
   }
 }
