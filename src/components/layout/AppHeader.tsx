@@ -34,7 +34,6 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetClose,
   SheetTrigger,
   SheetTitle,
   SheetDescription,
@@ -262,17 +261,11 @@ export function AppHeader() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
-              <SheetHeader className="p-4 border-b flex flex-row justify-between items-center">
-                  <VisuallyHidden>
-                    <SheetTitle>Main Navigation</SheetTitle>
-                    <SheetDescription>
-                      Sidebar navigation for mobile view, containing main links and user actions.
-                    </SheetDescription>
-                  </VisuallyHidden>
-                  <Logo iconSize={28} textSize="text-xl" className="text-primary" />
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon" className="h-7 w-7"><X className="h-4 w-4"/></Button>
-                  </SheetClose>
+              <SheetHeader className="p-4 border-b">
+                <SheetTitle className="text-left">Main Menu</SheetTitle>
+                <SheetDescription className="text-left text-xs">
+                  Navigate to different sections of the application.
+                </SheetDescription>
               </SheetHeader>
               <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
                 {user && (
