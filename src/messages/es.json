@@ -114,7 +114,7 @@
     "noResultsTitle": "No se encontraron servicios",
     "noResultsDescription": "Intenta ajustar tus filtros de búsqueda o vuelve a consultar más tarde para ver nuevos anuncios."
   },
-  "LandingPage": {
+    "LandingPage": {
     "hero": {
       "title": "Cultivando Conexiones, Cosechando Éxito con {appName}",
       "subtitle": "La plataforma global que conecta cada eslabón de la cadena de suministro agrícola. Del campo a la mesa, fomentamos el crecimiento, la transparencia y las oportunidades.",
@@ -163,5 +163,108 @@
       "subtitle": "Únase a miles de profesionales agrícolas que están construyendo un futuro más sostenible y próspero con DamDoh.",
       "button": "Registrarse gratis"
     }
+  },
+  "settingsPage": {
+    "title": "Configuración",
+    "description": "Gestiona tu perfil, cuenta, notificaciones y ajustes de privacidad.",
+    "profileTab": "Perfil",
+    "accountTab": "Cuenta",
+    "notificationsTab": "Notificaciones",
+    "privacyTab": "Privacidad",
+    "appearanceTab": "Apariencia",
+    "stakeholderProfile": {
+      "title": "Perfil de Interesado",
+      "description": "Esta información ayuda a otros a entender tu rol y necesidades dentro del ecosistema de DamDoh.",
+      "nameLabel": "Nombre de Usuario",
+      "roleLabel": "Rol Principal",
+      "rolePlaceholder": "Selecciona tu rol principal",
+      "summaryLabel": "Resumen del Perfil / Titular",
+      "summaryPlaceholder": "Un resumen corto de una frase sobre quién eres y qué haces.",
+      "bioLabel": "Acerca de / Biografía",
+      "bioPlaceholder": "Cuenta a la comunidad más sobre ti, tu negocio y tus objetivos.",
+      "interestsLabel": "Áreas de Interés",
+      "interestsPlaceholder": "Ej: Café Sostenible, Agrofinanzas, Logística",
+      "needsLabel": "Necesidades / Ofertas Clave",
+      "needsPlaceholder": "Ej: Buscando Compradores, Ofreciendo Consultoría",
+      "commaSeparated": "Separa múltiples valores con una coma.",
+      "emailLabel": "Email de la Cuenta",
+      "emailDescription": "El email de tu cuenta no puede ser cambiado.",
+      "saveButton": "Guardar Cambios del Perfil"
+    },
+    "account": {
+      "title": "Seguridad de la Cuenta",
+      "description": "Gestiona tu contraseña y el estado de tu cuenta.",
+      "currentPasswordLabel": "Contraseña Actual",
+      "newPasswordLabel": "Nueva Contraseña",
+      "confirmPasswordLabel": "Confirmar Nueva Contraseña",
+      "changePasswordButton": "Cambiar Contraseña",
+      "deactivateButton": "Desactivar Cuenta"
+    },
+    "notifications": {
+      "title": "Configuración de Notificaciones",
+      "description": "Elige cómo quieres ser notificado sobre la actividad en DamDoh.",
+      "emailDigestLabel": "Resumen por Email",
+      "emailDigestDescription": "Recibe un resumen semanal de la actividad importante.",
+      "connectionRequestsLabel": "Solicitudes de Conexión",
+      "connectionRequestsDescription": "Notificarme cuando alguien quiera conectar.",
+      "forumMentionsLabel": "Menciones en Foros",
+      "forumMentionsDescription": "Notificarme cuando alguien me mencione en un foro.",
+      "marketplaceActivityLabel": "Actividad del Mercado",
+      "marketplaceActivityDescription": "Notificarme sobre pedidos y consultas.",
+      "talentExchangeLabel": "Actualizaciones de la Bolsa de Talentos",
+      "talentExchangeDescription": "Notificarme sobre nuevas ofertas de trabajo o solicitudes.",
+      "saveButton": "Guardar Configuración de Notificaciones"
+    },
+    "privacy": {
+      "title": "Privacidad y Visibilidad",
+      "description": "Controla quién puede ver tu información y cómo se utiliza en la plataforma.",
+      "profileVisibilityLabel": "Visibilidad del Perfil",
+      "profileVisibilityDescription": "Quién puede ver tu página de perfil detallada.",
+      "profileVisibilityAll": "Todos",
+      "profileVisibilityConnections": "Solo Conexiones",
+      "profileVisibilityPrivate": "Privado (Solo yo)",
+      "connectionRequestsLabel": "¿Quién puede enviarte solicitudes de conexión?",
+      "connectionRequestsDescription": "Controla quién puede enviarte solicitudes de conexión.",
+      "connectionRequestsAll": "Todos",
+      "connectionRequestsConnectionsOfConnections": "Conexiones de Conexiones",
+      "contactInfoVisibilityLabel": "Visibilidad de la Información de Contacto",
+      "contactInfoVisibilityDescription": "Quién puede ver tu información de contacto directa (email/teléfono).",
+      "contactInfoVisibilityAll": "Todos",
+      "contactInfoVisibilityConnections": "Solo Conexiones",
+      "activityStatusLabel": "Mostrar mi estado de actividad",
+      "activityStatusDescription": "Permite que otros vean cuándo estás activo en DamDoh.",
+      "searchIndexingLabel": "Perfil en motores de búsqueda",
+      "searchIndexingDescription": "Permite que motores de búsqueda como Google indexen tu perfil.",
+      "saveButton": "Guardar Configuración de Privacidad",
+      "dataConsentTitle": "Compartir Datos y Consentimiento",
+      "dataConsentDescription": "Para proporcionar una experiencia 'super app' fluida, DamDoh puede usar tus datos de un módulo para mejorar otro. Controla estas conexiones aquí.",
+      "marketplaceHistoryLabel": "Compartir historial del Mercado con Instituciones Financieras",
+      "marketplaceHistoryDescription": "Permite que las IF vean tu historial de transacciones para obtener mejores ofertas de préstamos.",
+      "traceabilityDataLabel": "Compartir datos de Trazabilidad con Investigadores",
+      "traceabilityDataDescription": "Permite el uso de datos de trazabilidad anonimizados en investigación académica.",
+      "financialApplicationDataLabel": "Compartir datos de Solicitud para Coincidencia de IA",
+      "financialApplicationDataDescription": "Permite a la IA analizar tus necesidades financieras para emparejarte con oportunidades.",
+      "saveConsentButton": "Guardar Consentimientos"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "description": "Personaliza la apariencia de la aplicación.",
+      "themeLabel": "Tema",
+      "themeDescription": "Selecciona el tema para el panel de control.",
+      "languageLabel": "Idioma",
+      "languageDescription": "Selecciona tu idioma preferido."
+    }
+  },
+  "editProfilePage": {
+    "title": "Editar Perfil de {name}",
+    "description": "Mantén tu información profesional actualizada.",
+    "profileTab": "Perfil",
+    "detailsTab": "Detalles",
+    "contactTab": "Contacto",
+    "locationLabel": "Ubicación",
+    "phoneLabel": "Número de Teléfono (Opcional)",
+    "websiteLabel": "Sitio Web (Opcional)",
+    "savingButton": "Guardando...",
+    "cancelButton": "Cancelar"
   }
 }
