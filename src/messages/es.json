@@ -1,188 +1,118 @@
 
 {
-  "AppHeader": {
-    "home": "Inicio",
-    "network": "Red",
-    "farmMgmt": "Gestión Agrícola",
-    "marketplace": "Mercado",
-    "talentExchange": "Talento",
-    "traceability": "Trazabilidad",
-    "forums": "Foros",
-    "notifications": "Notificaciones",
-    "messages": "Mensajes",
-    "wallet": "Billetera",
-    "searchPlaceholder": "Buscar personas, productos, servicios...",
-    "signIn": "Iniciar Sesión",
-    "signUp": "Registrarse",
-    "myProfile": "Mi Perfil",
-    "settings": "Configuración",
-    "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar Sesión"
-  },
-  "AppFooter": {
-    "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre Nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de Ayuda",
-    "communityGuidelinesLabel": "Directrices de la Comunidad",
-    "industryNewsLabel": "Noticias de la Industria",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Intercambio de Talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de Privacidad",
-    "termsOfServiceLabel": "Términos de Servicio",
-    "copyright": "© {year} DamDoh. Todos los Derechos Reservados."
-  },
-  "about": {
-    "title": "Sobre Nosotros",
-    "subtitle": "Conectando la agricultura global, un enlace a la vez.",
-    "mission": {
-      "title": "Nuestra Misión",
-      "content": "Nuestra misión es empoderar a cada actor en la cadena de suministro agrícola con las herramientas, conexiones y conocimientos necesarios para prosperar en un mercado global sostenible y equitativo."
-    },
-    "vision": {
-      "title": "Nuestra Visión",
-      "content": "Visualizamos un mundo donde la cadena de suministro agrícola sea transparente, eficiente y justa, garantizando la seguridad alimentaria y la prosperidad para todas las comunidades."
-    },
-    "values": {
-      "title": "Nuestros Valores",
-      "sustainability": {
-        "title": "Sostenibilidad",
-        "content": "Promover prácticas que nutran el planeta para las generaciones futuras."
+  "Forums": {
+    "topic": {
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "buttons": {
+        "createPost": "Agregar Respuesta",
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
       },
-      "collaboration": {
-        "title": "Colaboración",
-        "content": "Creer que el progreso real proviene de trabajar juntos a través de fronteras y roles."
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en responder a este tema.",
+        "button": "Agregar Respuesta"
       },
-      "innovation": {
-        "title": "Innovación",
-        "content": "Aprovechar la tecnología para resolver desafíos agrícolas del mundo real."
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema que estás buscando no existe.",
+        "backButton": "Volver a Foros"
       },
-      "integrity": {
-        "title": "Integridad",
-        "content": "Comprometidos con la transparencia, la confianza y el comercio justo en todas las interacciones."
-      },
-      "empowerment": {
-        "title": "Empoderamiento",
-        "content": "Proporcionar a los usuarios las herramientas y los datos para tomar decisiones informadas y hacer crecer sus negocios."
+      "errors": {
+        "loadPosts": {
+          "title": "Error al cargar publicaciones",
+          "description": "Ocurrió un error al cargar las publicaciones para este tema."
+        },
+        "loadTopic": {
+          "title": "Error al cargar tema",
+          "description": "Ocurrió un error al cargar los detalles del tema."
+        }
       }
     },
-    "team": {
-      "title": "Nuestro Equipo",
-      "intro": "Somos un equipo diverso de tecnólogos, agrónomos y expertos en la cadena de suministro apasionados por revolucionar la agricultura.",
-      "member1Name": "Dra. Alima Bello",
-      "member1Role": "Fundadora y CEO",
-      "member1Bio": "Economista agrícola con 20 años de experiencia en desarrollo internacional y cadenas de valor sostenibles.",
-      "member2Name": "Chen Wei",
-      "member2Role": "Director de Tecnología",
-      "member2Bio": "Arquitecto de software especializado en plataformas escalables, IA y tecnología blockchain para la trazabilidad.",
-      "member3Name": "Maria Rodriguez",
-      "member3Role": "Jefa de Comunidad Global",
-      "member3Bio": "Experta en participación comunitaria que garantiza que las voces de nuestros usuarios impulsen la plataforma.",
-      "note": "(Nota: El equipo anterior es representativo y con fines de demostración)."
-    }
-  },
-  "careers": {
-    "title": "Únase a Nuestro Equipo",
-    "subtitle": "Sea parte de la revolución de la tecnología agrícola.",
-    "whyWorkWithUs": {
-      "title": "Por Qué Trabajar con Nosotros",
-      "intro": "En DamDoh, no solo estamos construyendo una plataforma; estamos cultivando un futuro sostenible. Ofrecemos:",
-      "point1": "Trabajo con propósito que impacta directamente en las comunidades globales.",
-      "point2": "Un entorno de aprendizaje continuo y crecimiento profesional.",
-      "point3": "Un equipo diverso, inclusivo y colaborativo.",
-      "point4": "Compensación competitiva y beneficios flexibles.",
-      "point5": "La oportunidad de trabajar en la vanguardia de la tecnología y la agricultura."
-    },
-    "currentOpenings": {
-      "title": "Ofertas Actuales"
-    },
-    "openings": {
-      "job1": {
-        "title": "Ingeniero de Software Senior (Backend)",
-        "location": "Remoto",
-        "type": "Tiempo completo",
-        "description": "Buscamos un desarrollador de backend experimentado para ayudar a escalar nuestros microservicios y construir nuevas características para la plataforma."
+    "createPost": {
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
       },
-      "job2": {
-        "title": "Gerente de Producto - Mercado",
-        "location": "Nairobi, Kenia",
-        "type": "Tiempo completo",
-        "description": "Impulse la estrategia y el desarrollo de nuestro mercado global, asegurando que satisfaga las necesidades de compradores y vendedores."
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
       },
-      "job3": {
-        "title": "Gerente de Éxito del Cliente",
-        "location": "Remoto (Zona horaria de América Latina)",
-        "type": "Tiempo completo",
-        "description": "Sea la voz de nuestros usuarios en América Latina, brindando apoyo, recopilando comentarios y asegurando su éxito en la plataforma."
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Falta indicación de IA",
+          "description": "Por favor, proporciona una indicación para el asistente de IA."
+        },
+        "aiDraft": {
+          "title": "Error del borrador de IA",
+          "description": "No se pudo generar el borrador de IA."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear la publicación."
+        }
       }
     },
-    "applyNowButton": "Aplicar ahora",
-    "noOpenings": {
-      "title": "Actualmente no hay ofertas de trabajo",
-      "content1": "Siempre estamos buscando personas talentosas. Si cree que encajaría bien, envíenos su currículum a <emailLink>careers@damdoh.org</emailLink>."
-    }
-  },
-  "communityGuidelines": {
-    "title": "Directrices de la Comunidad",
-    "subtitle": "Nuestros principios para una comunidad próspera y respetuosa.",
-    "intro": "Para mantener un entorno seguro, confiable y profesional para todos los miembros, requerimos que todos se adhieran a las siguientes directrices.",
-    "respectful": {
-      "title": "Sea Respetuoso y Constructivo",
-      "description": "Participe en discusiones con respeto. Se eliminarán los ataques personales, el acoso y los comentarios despectivos."
-    },
-    "authentic": {
-      "title": "Sea Auténtico",
-      "description": "Preséntese a sí mismo y a su negocio honestamente. No se haga pasar por otros ni proporcione información falsa."
-    },
-    "relevant": {
-      "title": "Manténgase en el Tema",
-      "description": "Publique contenido que sea relevante para la agricultura, las cadenas de suministro, la tecnología agrícola y temas relacionados. El spam y las promociones no solicitadas no están permitidos."
-    },
-    "fairTrade": {
-      "title": "Comercio Justo",
-      "description": "Todas las transacciones y negociaciones realizadas en la plataforma deben llevarse a cabo de buena fe. Las prácticas fraudulentas o engañosas resultarán en la eliminación de la plataforma."
-    },
-    "sustainable": {
-      "title": "Apoye la Sostenibilidad",
-      "description": "Fomente y participe en discusiones y prácticas que apoyen la agricultura sostenible y la gestión ambiental."
-    },
-    "reporting": {
-      "title": "Denuncia de Violaciones",
-      "content": "Si ve contenido que viola estas directrices, por favor denúncielo a nuestro equipo de moderación en <emailLink>support@damdoh.org</emailLink>.",
-      "conclusion": "Gracias por ayudarnos a hacer de DamDoh una comunidad valiosa y confiable para todos."
-    }
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "farmer": "Agricultor",
-      "trader": "Comerciante",
-      "agro_innovator": "Innovador Agrícola",
-      "researcher": "Investigador",
-      "service_provider": "Proveedor de servicios",
-      "consumer": "Consumidor"
-    }
-  },
-  "feedback": {
-    "reviewsTitle": "Reseñas",
-    "addReviewButton": "Añadir una Reseña",
-    "noReviews": "Aún no hay reseñas. ¡Sé el primero en opinar sobre este artículo!",
-    "ratingLabel": "Calificación",
-    "reviewContentLabel": "Tu Reseña",
-    "reviewContentPlaceholder": "Escribe tu reseña aquí...",
-    "submitReviewButton": "Enviar Reseña",
-    "submittingReviewButton": "Enviando...",
-    "toast": {
-      "successTitle": "¡Reseña Enviada!",
-      "successDescription": "Tu reseña ha sido añadida."
-    },
-    "errors": {
-      "submitFailTitle": "Envío Fallido",
-      "submitFailDescription": "No se pudo enviar tu reseña. Por favor, inténtalo de nuevo."
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "buttons": {
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
+      },
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
     }
   },
   "Marketplace": {
@@ -279,7 +209,7 @@
           },
           "failed": {
             "title": "Error de sugerencia de precio",
-            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manualmente."
+            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manually."
           }
         },
         "authentication": {
@@ -675,120 +605,97 @@
       "button": "Iniciar sesión"
     }
   },
-  "Forums": {
-    "topic": {
-      "unknownUser": "Usuario Desconocido",
-      "postMeta": "por {{author}} el {{date}}",
-      "buttons": {
-        "createPost": "Agregar Respuesta",
-        "loadMore": "Cargar Más",
-        "loadingMore": "Cargando Más..."
-      },
-      "noPosts": {
-        "title": "Aún no hay publicaciones",
-        "description": "Sé el primero en responder a este tema.",
-        "button": "Agregar Respuesta"
-      },
-      "notFound": {
-        "title": "Tema no encontrado",
-        "description": "El tema que estás buscando no existe.",
-        "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error al cargar publicaciones",
-          "description": "Ocurrió un error al cargar las publicaciones para este tema."
-        },
-        "loadTopic": {
-          "title": "Error al cargar tema",
-          "description": "Ocurrió un error al cargar los detalles del tema."
-        }
-      }
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Agricultor",
+      "AgriculturalCooperative": "Cooperativa Agrícola",
+      "FieldAgentAgronomist(DamDohInternal)": "Agente de Campo/Agrónomo (Interno de DamDoh)",
+      "OperationsLogisticsTeam(DamDohInternal)": "Equipo de Operaciones/Logística (Interno de DamDoh)",
+      "QualityAssuranceTeam(DamDohInternal)": "Equipo de Garantía de Calidad (Interno de DamDoh)",
+      "Processing&PackagingUnit": "Unidad de Procesamiento y Empaque",
+      "Buyer(Restaurant,Supermarket,Exporter)": "Comprador (Restaurante, Supermercado, Exportador)",
+      "InputSupplier(Seed,Fertilizer,Pesticide)": "Proveedor de Insumos (Semillas, Fertilizantes, Pesticidas)",
+      "EquipmentSupplier(SalesofMachineryIoT)": "Proveedor de Equipos (Venta de Maquinaria/IoT)",
+      "FinancialInstitution(Micro-financeLoans)": "Institución Financiera (Microfinanzas/Préstamos)",
+      "GovernmentRegulatorAuditor": "Regulador/Auditor Gubernamental",
+      "CertificationBody(Organic,FairTradeetc.)": "Organismo de Certificación (Orgánico, Comercio Justo, etc.)",
+      "Consumer": "Consumidor",
+      "ResearcherAcademic": "Investigador/Académico",
+      "LogisticsPartner(Third-PartyTransporter)": "Socio Logístico (Transportista Externo)",
+      "StorageWarehouseFacility": "Instalación de Almacenamiento/Bodega",
+      "AgronomyExpertConsultant(External)": "Experto/Consultor en Agronomía (Externo)",
+      "Agro-TourismOperator": "Operador de Agroturismo",
+      "EnergySolutionsProvider(Solar,Biogas)": "Proveedor de Soluciones Energéticas (Solar, Biogás)",
+      "Agro-ExportFacilitatorCustomsBroker": "Facilitador de Agroexportación/Agente de Aduanas",
+      "Agri-TechInnovatorDeveloper": "Innovador/Desarrollador de Agri-Tech",
+      "WasteManagement&CompostFacility": "Instalación de Gestión de Residuos y Compostaje",
+      "Crowdfunder(ImpactInvestor,Individual)": "Financiador Colectivo (Inversionista de Impacto, Individual)",
+      "InsuranceProvider": "Proveedor de Seguros",
+      "PackagingSupplier": "Proveedor de Empaques"
     },
-    "createPost": {
-      "aiHelper": {
-        "title": "Asistente de IA",
-        "description": "Genera un borrador de publicación basado en una indicación.",
-        "promptLabel": "Indicación de IA",
-        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
-        "generateButton": "Generar Borrador",
-        "generatingButton": "Generando..."
-      },
-      "title": "Crear Nueva Publicación",
-      "description": "Agrega una nueva publicación a este tema.",
-      "form": {
-        "titleLabel": "Título de la publicación",
-        "titlePlaceholder": "Introduce el título de tu publicación",
-        "contentLabel": "Contenido de la publicación",
-        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
-        "submitButton": "Crear Publicación",
-        "submittingButton": "Enviando..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "¡Borrador de IA Generado!",
-          "description": "Se ha generado un borrador para ti."
-        },
-        "title": "¡Publicación Creada!",
-        "description": "Tu publicación ha sido creada con éxito."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Falta indicación de IA",
-          "description": "Por favor, proporciona una indicación para el asistente de IA."
-        },
-        "aiDraft": {
-          "title": "Error del borrador de IA",
-          "description": "No se pudo generar el borrador de IA."
-        },
-        "incomplete": {
-          "title": "Campos incompletos",
-          "description": "Por favor, completa todos los campos requeridos."
-        },
-        "general": {
-          "title": "Error",
-          "description": "Ocurrió un error al crear la publicación."
-        }
-      }
+    "listingTypes": {
+      "All": "Todos los Tipos",
+      "Product": "Producto",
+      "Service": "Servicio"
     },
-    "postView": {
-      "backLink": "Volver a {{topicName}}",
-      "unknownUser": "Usuario Desconocido",
-      "postMeta": "por {{author}} el {{date}}",
-      "repliesTitle": "Respuestas ({{count}})",
-      "noReplies": "Aún no hay respuestas.",
-      "buttons": {
-        "loadMore": "Cargar Más",
-        "loadingMore": "Cargando Más..."
-      },
-      "reply": {
-        "title": "Agregar una Respuesta",
-        "placeholder": "Escribe tu respuesta aquí...",
-        "submitButton": "Agregar Respuesta",
-        "submittingButton": "Enviando...",
-        "success": "¡Respuesta agregada!"
-      },
-      "notFound": {
-        "title": "Publicación no encontrada",
-        "description": "La publicación que estás buscando no existe.",
-        "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error al cargar publicación",
-          "description": "Ocurrió un error al cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error al cargar respuestas",
-          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
-        },
-        "emptyReply": "La respuesta no puede estar vacía.",
-        "submitReply": {
-          "title": "Error al enviar respuesta",
-          "description": "Ocurrió un error al enviar tu respuesta."
-        }
-      }
+    "agriEventTypes": {
+      "All": "Todos los Tipos",
+      "Conference": "Conferencia",
+      "Webinar": "Seminario Web",
+      "Workshop": "Taller",
+      "TradeShow": "Feria Comercial",
+      "FieldDay": "Día de Campo",
+      "NetworkingEvent": "Evento de Networking",
+      "OnlineCourseLaunch": "Lanzamiento de Curso en Línea",
+      "PolicyBriefing": "Informe de Políticas"
     }
+  },
+  "AgronomistDashboard": {
+    "title": "Centro de Agrónomos y Consultores",
+    "stats": {
+      "assignedFarmers": "Agricultores Asignados",
+      "farmersWithAlerts": "Agricultores con Alertas",
+      "pendingConsultations": "Consultas Pendientes",
+      "knowledgeContributions": "Contribuciones de Conocimiento"
+    },
+    "consultations": {
+      "title": "Solicitudes de Consulta Pendientes",
+      "description": "Agricultores que buscan su experiencia.",
+      "table": {
+        "farmer": "Nombre del Agricultor",
+        "issue": "Resumen del Problema",
+        "action": "Acción"
+      },
+      "viewButton": "Ver",
+      "noRequests": "No hay solicitudes de consulta pendientes."
+    },
+    "portfolio": {
+      "title": "Portafolio de Agricultores Asignados",
+      "description": "Resumen de los agricultores en su portafolio.",
+      "table": {
+        "farmer": "Nombre del Agricultor",
+        "location": "Ubicación",
+        "alerts": "Alertas",
+        "action": "Acción"
+      },
+      "alertsLabel": "alertas",
+      "profileButton": "Perfil",
+      "noFarmers": "Aún no hay agricultores asignados."
+    },
+    "contributions": {
+      "statusTitle": "Estado de la Contribución",
+      "title": "Sus Contribuciones",
+      "noData": "No hay datos de contribución para mostrar.",
+      "noContributions": "Aún no hay contribuciones a la Base de Conocimientos."
+    },
+    "chart": {
+      "count": "Cantidad",
+      "published": "Publicado",
+      "pending": "Pendiente de Revisión",
+      "draft": "Borrador"
+    },
+    "noData": "No hay datos del panel de control disponibles."
   }
 }
 
+    
