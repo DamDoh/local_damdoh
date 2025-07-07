@@ -1,123 +1,237 @@
 
 {
-  "about": {
-    "title": "À Propos de Nous",
-    "subtitle": "Connecter l'agriculture mondiale, un maillon à la fois.",
-    "mission": {
-      "title": "Notre Mission",
-      "content": "Notre mission est de doter chaque acteur de la chaîne d'approvisionnement agricole des outils, des connexions et des connaissances nécessaires pour prospérer sur un marché mondial durable et équitable."
-    },
-    "vision": {
-      "title": "Notre Vision",
-      "content": "Nous envisageons un monde où la chaîne d'approvisionnement agricole est transparente, efficace et juste, garantissant la sécurité alimentaire et la prospérité pour toutes les communautés."
-    },
-    "values": {
-      "title": "Nos Valeurs",
-      "sustainability": {
-        "title": "Durabilité",
-        "content": "Promouvoir des pratiques qui nourrissent la planète pour les générations futures."
-      },
-      "collaboration": {
-        "title": "Collaboration",
-        "content": "Croire que le vrai progrès vient du travail en commun au-delà des frontières et des rôles."
-      },
-      "innovation": {
-        "title": "Innovation",
-        "content": "Tirer parti de la technologie pour résoudre les défis agricoles du monde réel."
-      },
-      "integrity": {
-        "title": "Intégrité",
-        "content": "Engagés pour la transparence, la confiance et le commerce équitable dans toutes les interactions."
-      },
-      "empowerment": {
-        "title": "Autonomisation",
-        "content": "Fournir aux utilisateurs les outils et les données pour prendre des décisions éclairées et développer leurs entreprises."
-      }
-    },
-    "team": {
-      "title": "Notre Équipe",
-      "intro": "Nous sommes une équipe diversifiée de technologues, d'agronomes et d'experts de la chaîne d'approvisionnement passionnés par la révolution de l'agriculture.",
-      "member1Name": "Dr. Alima Bello",
-      "member1Role": "Fondatrice et PDG",
-      "member1Bio": "Économiste agricole avec 20 ans d'expérience dans le développement international et les chaînes de valeur durables.",
-      "member2Name": "Chen Wei",
-      "member2Role": "Directeur de la Technologie",
-      "member2Bio": "Architecte logiciel spécialisé dans les plateformes évolutives, l'IA et la technologie blockchain pour la traçabilité.",
-      "member3Name": "Maria Rodriguez",
-      "member3Role": "Responsable de la Communauté Mondiale",
-      "member3Bio": "Experte en engagement communautaire qui s'assure que les voix de nos utilisateurs animent la plateforme.",
-      "note": "(Remarque : L'équipe ci-dessus est représentative et à des fins de démonstration)."
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher des personnes, produits, services...",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'aide",
+    "logOut": "Se déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
+  },
+  "AppFooter": {
+    "tagline": "La plateforme mondiale de la chaîne d'approvisionnement agricole.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Directives de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "getMobileApp": "Obtenez l'application DamDoh",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store",
+    "copyright": "© {year} DamDoh. Tous droits réservés."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Recherche",
+    "forums": "Forums",
+    "profile": "Profil"
+  },
+  "Auth": {
+    "signInWelcome": "Ravi de vous revoir sur DamDoh",
+    "signInTitle": "Connectez-vous à votre compte",
+    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "vous@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion en cours...",
+    "signInButton": "Se connecter",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "signUpLink": "S'inscrire",
+    "signInLink": "Se connecter",
+    "recoverWithUniversalIdPrompt": "Ou récupérer le compte avec l'ID universel",
+    "signUpWelcome": "Rejoignez le réseau DamDoh",
+    "signUpTitle": "Créez votre compte",
+    "signUpDescription": "Commencez votre voyage dans l'écosystème agricole numérique.",
+    "nameLabel": "Nom complet ou nom de l'entreprise",
+    "namePlaceholder": "ex: Jeanne Dupont ou Fermes de la Vallée Verte",
+    "roleLabel": "Votre rôle principal",
+    "rolePlaceholder": "Sélectionnez votre rôle principal dans la chaîne d'approvisionnement",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirmez le mot de passe",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "Créer un compte",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "forgotPasswordResetPrompt": "Récupérez l'accès à votre compte DamDoh.",
+    "forgotPasswordTitle": "Mot de passe oublié",
+    "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "sendingEmailButton": "Envoi de l'e-mail...",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte DamDoh.",
+    "resetPasswordTitle": "Réinitialisez votre mot de passe",
+    "resetPasswordDescription": "Choisissez un nouveau mot de passe fort pour votre compte.",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
+    "resettingPasswordButton": "Réinitialisation...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "recoverPage": {
+      "title": "Récupération de compte",
+      "description": "Récupérez votre compte en utilisant la vérification sociale d'un ami de confiance sur DamDoh.",
+      "howItWorksTitle": "Comment ça marche",
+      "step1": "Entrez le numéro de téléphone du compte que vous souhaitez récupérer.",
+      "step2": "Montrez le code QR temporaire sur votre écran à un ami de confiance qui est également un utilisateur de DamDoh.",
+      "step3": "Votre ami scanne le code pour confirmer votre identité, vous donnant accès sur ce nouvel appareil.",
+      "startButton": "Démarrer la récupération",
+      "scanTitle": "Faites scanner un ami",
+      "scanDescription": "Laissez une connexion DamDoh de confiance scanner ce code QR temporaire pour vérifier votre identité.",
+      "scanNote": "Ce code est valide pendant 10 minutes.",
+      "startOverButton": "Recommencer"
     }
   },
-  "careers": {
-    "title": "Rejoignez Notre Équipe",
-    "subtitle": "Faites partie de la révolution agrotechnologique.",
-    "whyWorkWithUs": {
-      "title": "Pourquoi Travailler avec Nous",
-      "intro": "Chez DamDoh, nous ne construisons pas seulement une plateforme ; nous cultivons un avenir durable. Nous offrons :",
-      "point1": "Un travail porteur de sens qui a un impact direct sur les communautés mondiales.",
-      "point2": "Un environnement d'apprentissage continu et de croissance professionnelle.",
-      "point3": "Une équipe diversifiée, inclusive et collaborative.",
-      "point4": "Une rémunération compétitive et des avantages flexibles.",
-      "point5": "L'opportunité de travailler à la pointe de la technologie et de l'agriculture."
+  "LandingPage": {
+    "hero": {
+      "title": "Connecter. Transiger. Grandir. L'avantage {appName}.",
+      "subtitle": "La plateforme mondiale qui autonomise chaque acteur de la chaîne d'approvisionnement agricole, des agriculteurs et coopératives aux fournisseurs de logistique et acheteurs mondiaux.",
+      "getStartedButton": "Commencer maintenant",
+      "learnMoreButton": "En savoir plus"
     },
-    "currentOpenings": {
-      "title": "Offres Actuelles"
-    },
-    "openings": {
-      "job1": {
-        "title": "Ingénieur Logiciel Senior (Backend)",
-        "location": "À distance",
-        "type": "Temps plein",
-        "description": "Nous recherchons un développeur backend expérimenté pour nous aider à faire évoluer nos microservices et à construire de nouvelles fonctionnalités pour la plateforme."
+    "features": {
+      "title": "Conçu pour l'ensemble de l'écosystème",
+      "subtitle": "DamDoh fournit des outils et des connexions sur mesure pour chaque étape de la chaîne de valeur agricole.",
+      "networking": {
+        "title": "Réseautage intelligent",
+        "description": "Connectez-vous avec les bons partenaires, des fournisseurs locaux aux acheteurs internationaux, en fonction de vos besoins spécifiques et de votre rôle."
       },
-      "job2": {
-        "title": "Chef de Produit - Marché",
-        "location": "Nairobi, Kenya",
-        "type": "Temps plein",
-        "description": "Diriger la stratégie et le développement de notre marché mondial, en veillant à ce qu'il réponde aux besoins des acheteurs et des vendeurs."
+      "marketplace": {
+        "title": "Marché mondial",
+        "description": "Achetez et vendez des produits, des équipements et des services en toute sécurité sur un marché mondial transparent."
       },
-      "job3": {
-        "title": "Responsable de la Réussite Client",
-        "location": "À distance (Fuseau horaire de l'Amérique Latine)",
-        "type": "Temps plein",
-        "description": "Soyez la voix de nos utilisateurs en Amérique Latine, en fournissant un soutien, en recueillant des commentaires et en assurant leur succès sur la plateforme."
+      "forums": {
+        "title": "Partage de connaissances",
+        "description": "Rejoignez des forums thématiques pour partager des idées, poser des questions et apprendre des experts du monde entier."
+      },
+      "talent": {
+        "title": "Bourse de talents",
+        "description": "Trouvez des professionnels qualifiés ou offrez votre expertise pour des projets agricoles à court ou long terme."
       }
     },
-    "applyNowButton": "Postuler maintenant",
-    "noOpenings": {
-      "title": "Aucune offre d'emploi pour le moment",
-      "content1": "Nous sommes toujours à la recherche de personnes talentueuses. Si vous pensez que vous seriez un bon candidat, envoyez-nous votre CV à <emailLink>careers@damdoh.org</emailLink>."
+    "forWho": {
+      "badge": "Qui en bénéficie ?",
+      "title": "Une plateforme pour chaque acteur",
+      "description": "Que vous soyez sur le terrain ou au bureau, DamDoh a les outils dont vous avez besoin pour réussir.",
+      "farmers": {
+        "title": "Agriculteurs et coopératives",
+        "description": "Gérez votre exploitation, suivez les produits de la semence à la vente et accédez à des marchés plus larges."
+      },
+      "buyers": {
+        "title": "Acheteurs et transformateurs",
+        "description": "Trouvez des produits fiables et traçables directement à la source et gérez efficacement votre chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Fournisseurs de services et experts",
+        "description": "Offrez vos services, de l'agronomie et de la logistique à la finance, à un public agricole ciblé."
+      }
+    },
+    "cta": {
+      "title": "Prêt à transformer votre façon de travailler ?",
+      "subtitle": "Rejoignez des milliers de professionnels de l'agriculture qui renforcent la confiance, la transparence et la croissance dans la chaîne d'approvisionnement mondiale.",
+      "button": "Rejoignez la communauté DamDoh dès aujourd'hui"
     }
   },
-  "communityGuidelines": {
-    "title": "Directives de la Communauté",
-    "subtitle": "Nos principes pour une communauté florissante et respectueuse.",
-    "intro": "Pour maintenir un environnement sûr, digne de confiance et professionnel pour tous les membres, nous demandons à chacun de respecter les directives suivantes.",
-    "respectful": {
-      "title": "Soyez Respectueux et Constructif",
-      "description": "Engagez-vous dans des discussions avec respect. Les attaques personnelles, le harcèlement et les commentaires dénigrants seront supprimés."
+  "DashboardRightSidebar": {
+    "networkTitle": "Développez votre réseau",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "ad": "Publicité",
+    "adTitle": "Gardez une longueur d'avance avec les tendances du marché DamDoh !",
+    "adDescription": "Obtenez des informations exclusives sur les prix des matières premières et la dynamique de la chaîne d'approvisionnement.",
+    "adButton": "Explorer les tendances DamDoh Pro",
+    "follow": "Suivre",
+    "following": "Suivi",
+    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
+    "loadError": "Impossible de charger les suggestions. Veuillez réessayer.",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment.",
+    "infoTooltip": "Ces suggestions sont alimentées par l'IA en fonction de votre rôle, de vos intérêts et de votre activité sur la plateforme."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centre de gestion agricole",
+      "description": "Votre lieu central pour toutes les opérations agricoles. Gérez vos fermes, cultures, intrants et finances, le tout en un seul endroit.",
+      "myFarms": {
+        "title": "Mes fermes",
+        "description": "Visualisez, modifiez ou ajoutez vos propriétés agricoles.",
+        "button": "Gérer les fermes"
+      },
+      "labor": {
+        "title": "Gestion de la main-d'œuvre",
+        "description": "Suivez les heures de travail, les paiements et les tâches des travailleurs.",
+        "button": "Gérer la main-d'œuvre"
+      },
+      "knf": {
+        "title": "Intrants KNF",
+        "description": "Créez et gérez vos lots d'agriculture naturelle coréenne.",
+        "button": "Gérer les intrants"
+      },
+      "fgw": {
+        "title": "Guide de l'agriculture selon Dieu",
+        "description": "Explorez les principes et pratiques de l'ASG.",
+        "button": "Voir le guide ASG"
+      },
+      "financials": {
+        "title": "Finances de la ferme",
+        "description": "Suivez les revenus et les dépenses pour comprendre la rentabilité.",
+        "button": "Gérer les finances"
+      },
+      "seedStarting": {
+        "title": "Guide de démarrage des semences",
+        "description": "Apprenez à démarrer les semences à l'intérieur avec succès.",
+        "button": "Voir le guide"
+      },
+      "familyFarm": {
+        "title": "Modèle de ferme familiale intégrée",
+        "description": "Découvrez un modèle durable pour les petites exploitations.",
+        "button": "Voir le modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des actifs",
+        "description": "Gérez vos équipements, bâtiments et autres actifs. (Bientôt disponible)",
+        "button": "Gérer les actifs"
+      }
     },
-    "authentic": {
-      "title": "Soyez Authentique",
-      "description": "Représentez-vous et votre entreprise honnêtement. Ne vous faites pas passer pour d'autres et ne fournissez pas de fausses informations."
-    },
-    "relevant": {
-      "title": "Restez dans le Sujet",
-      "description": "Publiez du contenu pertinent pour l'agriculture, les chaînes d'approvisionnement, l'agrotechnologie et les sujets connexes. Le spam et les promotions non sollicitées ne sont pas autorisés."
-    },
-    "fairTrade": {
-      "title": "Commerce Équitable",
-      "description": "Toutes les transactions et négociations menées sur la plateforme doivent être effectuées de bonne foi. Les pratiques frauduleuses ou trompeuses entraîneront la suppression de la plateforme."
-    },
-    "sustainable": {
-      "title": "Soutenez la Durabilité",
-      "description": "Encouragez et participez à des discussions et des pratiques qui soutiennent l'agriculture durable et la gérance de l'environnement."
-    },
-    "reporting": {
-      "title": "Signaler les Violations",
-      "content": "Si vous voyez du contenu qui enfreint ces directives, veuillez le signaler à notre équipe de modération à <emailLink>support@damdoh.org</emailLink>.",
-      "conclusion": "Merci de nous aider à faire de DamDoh une communauté précieuse et digne de confiance pour tous."
+    "myFarms": {
+      "backToDashboard": "Retour au hub de la ferme",
+      "title": "Mes fermes",
+      "addNewFarmButton": "Ajouter une nouvelle ferme",
+      "size": "Taille",
+      "viewFarmButton": "Voir la ferme",
+      "noFarmsTitle": "Aucune ferme trouvée",
+      "noFarmsDescription": "Ajoutez votre première ferme pour commencer à gérer vos opérations agricoles.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour voir vos fermes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur de chargement des fermes",
+        "errorDescription": "Une erreur s'est produite lors du chargement de vos fermes. Veuillez réessayer."
+      }
     }
   },
   "Marketplace": {
@@ -133,9 +247,171 @@
     "typePlaceholder": "Filtrer par type...",
     "recommendedForYou": "Recommandé pour vous",
     "discoverMore": "Découvrir plus",
+    "viewServiceButton": "Voir le service",
+    "viewDetails": "Voir les détails",
     "noItemsFound": {
       "title": "Aucun article trouvé.",
       "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
+    },
+    "pinning": {
+      "pinnedTitle": "Marché épinglé !",
+      "pinnedDescription": "Le marché est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Page d'accueil détachée !",
+      "unpinnedDescription": "Le tableau de bord est maintenant votre page d'accueil par défaut."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Impossible de récupérer les recommandations IA"
+      },
+      "search": {
+        "title": "Erreur de recherche",
+        "description": "Impossible de récupérer les articles du marché."
+      },
+      "loadItem": {
+        "title": "Erreur de chargement de l'article",
+        "description": "Une erreur s'est produite lors du chargement des détails de l'article du marché."
+      },
+      "unexpected": "Une erreur inattendue s'est produite."
+    },
+    "createListing": {
+      "backLink": "Retour au marché",
+      "title": "Créer une nouvelle annonce",
+      "description": "Lister un produit ou un service sur le marché.",
+      "form": {
+        "nameLabel": "Nom de l'article/service",
+        "namePlaceholder": "Entrez le nom de votre annonce",
+        "typeLabel": "Type d'annonce",
+        "typePlaceholder": "Sélectionnez le type d'annonce",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre annonce",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "Entrez l'emplacement",
+        "relatedVtiLabel": "VTI / ID de lot associé (Facultatif)",
+        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
+        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Sélectionnez une catégorie",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "ex: par heure, taux fixe",
+        "experienceLabel": "Niveau d'expérience",
+        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
+        "skillsLabel": "Compétences requises",
+        "skillsPlaceholder": "Liste des compétences nécessaires pour le service",
+        "skillsDescription": "Séparez les compétences par des virgules.",
+        "priceLabel": "Prix",
+        "pricePlaceholder": "Entrez le prix",
+        "unitLabel": "Unité",
+        "unitPlaceholder": "ex: kg, pièce, heure",
+        "imageUrlLabel": "URL de l'image (Facultatif)",
+        "sustainableLabel": "Pratique durable",
+        "sustainableDescription": "Indique si cette annonce implique des pratiques durables.",
+        "submitButton": "Créer l'annonce",
+        "submittingButton": "Création en cours..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggérer un prix avec l'IA",
+        "generatingButton": "Génération en cours...",
+        "suggestionLabel": "Suggestion IA:",
+        "usePriceButton": "Utiliser ce prix"
+      },
+      "success": {
+        "title": "Succès !",
+        "description": "Votre annonce a été créée."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Informations manquantes",
+            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
+          },
+          "failed": {
+            "title": "Suggestion de prix échouée",
+            "description": "Impossible d'obtenir une suggestion de prix IA. Veuillez réessayer ou entrer un prix manuellement."
+          }
+        },
+        "authentication": {
+          "title": "Erreur d'authentification",
+          "description": "Vous devez être connecté pour créer une annonce."
+        },
+        "creation": {
+          "title": "Échec de la création",
+          "description": "Impossible de créer l'annonce. Veuillez réessayer."
+        }
+      }
+    },
+    "itemView": {
+      "backLink": "Retour au marché",
+      "unknownUser": "Utilisateur inconnu",
+      "traceabilityButton": "Lien Commercial / Lot",
+      "skillsLabel": "Compétences requises",
+      "experienceLabel": "Niveau d'expérience",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contacter pour les tarifs",
+      "booking": {
+        "perNight": "nuit",
+        "checkIn": "Arrivée",
+        "checkOut": "Départ",
+        "addDate": "Ajouter une date",
+        "guests": "Invités",
+        "reserveButton": "Réserver",
+        "reservingButton": "Réservation en cours...",
+        "notCharged": "Vous ne serez pas encore facturé",
+        "nights": "nuits",
+        "serviceFee": "Frais de service",
+        "total": "Total",
+        "successTitle": "Réservation réussie !",
+        "successDescription": "Votre réservation est confirmée.",
+        "failTitle": "Échec de la réservation",
+        "dateError": "Veuillez sélectionner des dates d'arrivée et de départ valides.",
+        "authTitle": "Authentification requise",
+        "authDescription": "Vous devez être connecté pour réserver un service.",
+        "bookedTitle": "Réservé !",
+        "bookedDescription": "Votre réservation est confirmée. Présentez le code QR ci-dessous à votre arrivée.",
+        "ticketButton": "Afficher le ticket",
+        "modalTitle": "Ticket de réservation",
+        "modalDescription": "Présentez ce code QR à {{itemName}} pour l'enregistrement.",
+        "modalScan": "Scannez ce code pour vous enregistrer"
+      },
+      "coupon": {
+        "label": "Code promo",
+        "placeholder": "Entrez le code promo",
+        "applyButton": "Appliquer",
+        "successTitle": "Code promo appliqué !",
+        "successDescription": "Réduction appliquée : {{type}}",
+        "failTitle": "Code promo invalide",
+        "failDescription": "Le code promo est invalide ou non applicable.",
+        "appliedText": "Code promo appliqué : {{code}}"
+      },
+      "aboutSeller": "À propos du vendeur",
+      "viewShopfront": "Voir la boutique",
+      "editListing": "Modifier l'annonce",
+      "manageService": "Gérer le service",
+      "buyNowButton": "Acheter maintenant",
+      "contactForService": "Contacter pour le service",
+      "contactSeller": "Contacter le vendeur",
+      "order": {
+        "title": "Commander {{itemName}}",
+        "description": "Entrez la quantité que vous souhaitez commander et toute note.",
+        "quantityLabel": "Quantité",
+        "notesLabel": "Notes (Facultatif)",
+        "notesPlaceholder": "Ajoutez des instructions ou des demandes spécifiques...",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer la commande",
+        "placingButton": "Commande en cours...",
+        "successTitle": "Commande passée !",
+        "successDescription": "Votre commande a été passée avec succès.",
+        "failTitle": "Échec de la commande",
+        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
+        "quantityErrorTitle": "Erreur de quantité",
+        "quantityErrorDescription": "Veuillez entrer une quantité valide (au moins 1).",
+        "authTitle": "Authentification requise",
+        "authDescription": "Vous devez être connecté pour passer une commande."
+      },
+      "notFound": {
+        "title": "Article introuvable",
+        "description": "L'article du marché que vous recherchez n'existe pas.",
+        "backButton": "Retour au Marché"
+      }
     },
     "myOrders": {
       "backLink": "Retour au marché",
@@ -183,7 +459,12 @@
       "editShopButton": "Modifier la boutique",
       "contactButton": "Contacter le vendeur",
       "listingsTitle": "Annonces de {{shopName}}",
-      "noListings": "Aucune annonce trouvée pour cette boutique."
+      "noListings": "Aucune annonce trouvée pour cette boutique.",
+      "errors": {
+        "notFound": "Boutique introuvable",
+        "loadError": "Impossible de charger les détails de la boutique.",
+        "title": "Erreur"
+      }
     },
     "createShop": {
       "backLink": "Retour au marché",
@@ -261,163 +542,23 @@
           "submitButton": "Enregistrer les modifications",
           "submittingButton": "Enregistrement en cours..."
         },
-        "toast": {
+         "toast": {
           "updateSuccessTitle": "Paramètres enregistrés !",
           "updateSuccessDescription": "Paramètres du service mis à jour avec succès.",
           "updateFailTitle": "Échec de l'enregistrement",
           "updateFailDescription": "Impossible d'enregistrer les paramètres du service."
         }
       },
-      "errors": {
+       "errors": {
         "loadErrorTitle": "Erreur de chargement du service",
         "loadErrorDescription": "Impossible de charger les détails du service pour la gestion.",
         "notFoundTitle": "Service introuvable",
         "notFoundDescription": "Le service que vous essayez de gérer n'existe pas."
       },
-      "authRequired": {
+       "authRequired": {
         "title": "Authentification requise",
         "description": "Vous devez être connecté pour gérer ce service.",
         "button": "Se connecter"
-      }
-    },
-    "itemView": {
-      "backLink": "Retour au marché",
-      "unknownUser": "Utilisateur inconnu",
-      "traceabilityButton": "Lien Commercial / Lot",
-      "skillsLabel": "Compétences requises",
-      "experienceLabel": "Niveau d'expérience",
-      "compensationLabel": "Compensation",
-      "contactForRates": "Contacter pour les tarifs",
-      "booking": {
-        "perNight": "nuit",
-        "checkIn": "Arrivée",
-        "checkOut": "Départ",
-        "addDate": "Ajouter une date",
-        "guests": "Invités",
-        "reserveButton": "Réserver",
-        "reservingButton": "Réservation en cours...",
-        "notCharged": "Vous ne serez pas encore facturé",
-        "nights": "nuits",
-        "serviceFee": "Frais de service",
-        "total": "Total",
-        "successTitle": "Réservation réussie !",
-        "successDescription": "Votre réservation est confirmée.",
-        "failTitle": "Échec de la réservation",
-        "dateError": "Veuillez sélectionner des dates d'arrivée et de départ valides.",
-        "authTitle": "Authentification requise",
-        "authDescription": "Vous devez être connecté pour réserver un service.",
-        "bookedTitle": "Réservé !",
-        "bookedDescription": "Votre réservation est confirmée. Présentez le code QR ci-dessous à votre arrivée.",
-        "ticketButton": "Afficher le ticket",
-        "modalTitle": "Ticket de réservation",
-        "modalDescription": "Présentez ce code QR à {{itemName}} pour l'enregistrement.",
-        "modalScan": "Scannez ce code pour vous enregistrer"
-      },
-      "coupon": {
-        "label": "Code promo",
-        "placeholder": "Entrez le code promo",
-        "applyButton": "Appliquer",
-        "successTitle": "Code promo appliqué !",
-        "successDescription": "Réduction appliquée : {{type}}",
-        "failTitle": "Code promo invalide",
-        "failDescription": "Le code promo est invalide ou non applicable.",
-        "appliedText": "Code promo appliqué : {{code}}"
-      },
-      "aboutSeller": "À propos du vendeur",
-      "viewShopfront": "Voir la boutique",
-      "editListing": "Modifier l'annonce",
-      "manageService": "Gérer le service",
-      "buyNowButton": "Acheter maintenant",
-      "contactForService": "Contacter pour le service",
-      "contactSeller": "Contacter le vendeur",
-      "order": {
-        "title": "Commander {{itemName}}",
-        "description": "Entrez la quantité que vous souhaitez commander et toute note.",
-        "quantityLabel": "Quantité",
-        "notesLabel": "Notes (Facultatif)",
-        "notesPlaceholder": "Ajoutez des instructions ou des demandes spécifiques...",
-        "cancelButton": "Annuler",
-        "confirmButton": "Confirmer la commande",
-        "placingButton": "Commande en cours...",
-        "successTitle": "Commande passée !",
-        "successDescription": "Votre commande a été passée avec succès.",
-        "failTitle": "Échec de la commande",
-        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
-        "quantityErrorTitle": "Erreur de quantité",
-        "quantityErrorDescription": "Veuillez entrer une quantité valide (au moins 1).",
-        "authTitle": "Authentification requise",
-        "authDescription": "Vous devez être connecté pour passer une commande."
-      },
-      "notFound": {
-        "title": "Article introuvable",
-        "description": "L'article du marché que vous recherchez n'existe pas.",
-        "backButton": "Retour au Marché"
-      }
-    },
-    "createListing": {
-      "backLink": "Retour au marché",
-      "title": "Créer une nouvelle annonce",
-      "description": "Lister un produit ou un service sur le marché.",
-      "form": {
-        "nameLabel": "Nom de l'article/service",
-        "namePlaceholder": "Entrez le nom de votre annonce",
-        "typeLabel": "Type d'annonce",
-        "typePlaceholder": "Sélectionnez le type d'annonce",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre annonce",
-        "locationLabel": "Emplacement",
-        "locationPlaceholder": "Entrez l'emplacement",
-        "relatedVtiLabel": "VTI / ID de lot associé (Facultatif)",
-        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
-        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
-        "categoryLabel": "Catégorie",
-        "categoryPlaceholder": "Sélectionnez une catégorie",
-        "compensationLabel": "Compensation",
-        "compensationPlaceholder": "ex: par heure, taux fixe",
-        "experienceLabel": "Niveau d'expérience",
-        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
-        "skillsLabel": "Compétences requises",
-        "skillsPlaceholder": "Liste des compétences nécessaires pour le service",
-        "skillsDescription": "Séparez les compétences par des virgules.",
-        "priceLabel": "Prix",
-        "pricePlaceholder": "Entrez le prix",
-        "unitLabel": "Unité",
-        "unitPlaceholder": "ex: kg, pièce, heure",
-        "imageUrlLabel": "URL de l'image (Facultatif)",
-        "sustainableLabel": "Pratique durable",
-        "sustainableDescription": "Indique si cette annonce implique des pratiques durables.",
-        "submitButton": "Créer l'annonce",
-        "submittingButton": "Création en cours..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Suggérer un prix avec l'IA",
-        "generatingButton": "Génération en cours...",
-        "suggestionLabel": "Suggestion IA:",
-        "usePriceButton": "Utiliser ce prix"
-      },
-      "success": {
-        "title": "Succès !",
-        "description": "Votre annonce a été créée."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Informations manquantes",
-            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
-          },
-          "failed": {
-            "title": "Suggestion de prix échouée",
-            "description": "Impossible d'obtenir une suggestion de prix IA. Veuillez réessayer ou entrer un prix manuellement."
-          }
-        },
-        "authentication": {
-          "title": "Erreur d'authentification",
-          "description": "Vous devez être connecté pour créer une annonce."
-        },
-        "creation": {
-          "title": "Échec de la création",
-          "description": "Impossible de créer l'annonce. Veuillez réessayer."
-        }
       }
     }
   },
@@ -429,10 +570,10 @@
     "buttons": {
       "createTopic": "Créer un sujet",
       "joinDiscussion": "Rejoindre la discussion",
-      "loadMore": "Charger plus",
-      "loadingMore": "Chargement...",
       "pinHomepage": "Épingler à l'accueil",
-      "unpinHomepage": "Détacher de l'accueil"
+      "unpinHomepage": "Détacher de l'accueil",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement..."
     },
     "notFound": {
       "title": "Aucun sujet trouvé",
@@ -459,6 +600,23 @@
       "general": {
         "title": "Erreur",
         "description": "Une erreur s'est produite lors de la création du sujet."
+      }
+    },
+    "create": {
+      "backLink": "Retour aux sujets",
+      "title": "Créer un nouveau sujet",
+      "description": "Démarrer une nouvelle discussion dans le forum.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "success": {
+        "title": "Sujet créé avec succès",
+        "description": "Votre nouveau sujet a été créé."
       }
     },
     "topic": {
@@ -564,23 +722,6 @@
           "description": "Une erreur s'est produite lors de la création du message."
         }
       }
-    },
-    "create": {
-      "backLink": "Retour aux sujets",
-      "title": "Créer un nouveau sujet",
-      "description": "Démarrer une nouvelle discussion dans le forum.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "Entrez le nom de votre sujet",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
-        "submitButton": "Créer le sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "success": {
-        "title": "Sujet créé avec succès",
-        "description": "Votre nouveau sujet a été créé."
-      }
     }
   },
   "constants": {
@@ -596,5 +737,3 @@
   "Homepage": {}
 }
 
-
-    
