@@ -1,5 +1,26 @@
 
 {
+  "FiApplicationListPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Application Management",
+    "description": "View and manage all received financial applications.",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Date Submitted",
+      "status": "Status",
+      "action": "Action"
+    },
+    "reviewButton": "Review",
+    "noApplications": "No applications found for this status."
+  },
   "FiApplicationPage": {
     "backLink": "Back to Dashboard",
     "title": "Review Financial Application",
@@ -47,7 +68,8 @@
     "value": "value",
     "reviewRiskButton": "Review Risk",
     "readMore": "Read more",
-    "noUpdates": "No market updates available."
+    "noUpdates": "No market updates available.",
+    "viewAllButton": "View All Applications"
   },
   "FiProductsPage": {
     "backLink": "Back to Dashboard",
@@ -96,3 +118,4 @@
 }
 
     
+

@@ -1,5 +1,27 @@
 
+
 {
+  "FiApplicationListPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Antragsverwaltung",
+    "description": "Alle erhaltenen Finanzierungsanträge anzeigen und verwalten.",
+    "tabs": {
+      "all": "Alle",
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt"
+    },
+    "table": {
+      "applicant": "Antragsteller",
+      "type": "Typ",
+      "amount": "Betrag",
+      "date": "Eingereicht am",
+      "status": "Status",
+      "action": "Aktion"
+    },
+    "reviewButton": "Überprüfen",
+    "noApplications": "Keine Anträge für diesen Status gefunden."
+  },
   "FiApplicationPage": {
     "backLink": "Zurück zum Dashboard",
     "title": "Finanzierungsantrag prüfen",
@@ -47,10 +69,11 @@
     "value": "Wert",
     "reviewRiskButton": "Risiko überprüfen",
     "readMore": "Mehr lesen",
-    "noUpdates": "Keine Markt-Updates verfügbar."
+    "noUpdates": "Keine Markt-Updates verfügbar.",
+    "viewAllButton": "Alle Anträge anzeigen"
   },
   "FiProductsPage": {
-    "backLink": "Zurück zum Dashboard",
+    "backLink": "Zurück zu den Produkten",
     "title": "Finanzprodukte verwalten",
     "description": "Erstellen und sehen Sie Ihre angebotenen Kredite und Zuschüsse.",
     "createButton": "Neues Produkt erstellen",

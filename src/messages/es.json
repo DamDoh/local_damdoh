@@ -1,5 +1,26 @@
 
 {
+  "FiApplicationListPage": {
+    "backLink": "Volver al Panel",
+    "title": "Gestión de Solicitudes",
+    "description": "Ver y gestionar todas las solicitudes financieras recibidas.",
+    "tabs": {
+      "all": "Todas",
+      "pending": "Pendientes",
+      "approved": "Aprobadas",
+      "rejected": "Rechazadas"
+    },
+    "table": {
+      "applicant": "Solicitante",
+      "type": "Tipo",
+      "amount": "Monto",
+      "date": "Fecha de Envío",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "reviewButton": "Revisar",
+    "noApplications": "No se encontraron solicitudes para este estado."
+  },
   "FiApplicationPage": {
     "backLink": "Volver al Panel de Control",
     "title": "Revisar Solicitud Financiera",
@@ -47,7 +68,8 @@
     "value": "valor",
     "reviewRiskButton": "Revisar Riesgo",
     "readMore": "Leer más",
-    "noUpdates": "No hay actualizaciones del mercado disponibles."
+    "noUpdates": "No hay actualizaciones del mercado disponibles.",
+    "viewAllButton": "Ver Todas las Solicitudes"
   },
   "FiProductsPage": {
     "backLink": "Volver al Panel de Control",

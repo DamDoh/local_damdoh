@@ -724,7 +724,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
         allTransactions.push({
           id: doc.id,
           ...tx,
-          timestamp: tx.timestamp?.toDate ? tx.timestamp.toDate().toISOString() : null,
+          timestamp: (tx.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
         });
       });
 
@@ -787,8 +787,8 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
             applicantProfile = {
                 id: profileDoc.id,
                 ...data,
-                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
             };
         }
     }
@@ -796,7 +796,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     const serializedAppData = {
         ...appData,
         id: appDoc.id,
-        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate ? (appData.submittedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
     };
 
     return { application: serializedAppData, applicant: applicantProfile };
@@ -858,4 +858,79 @@ export const submitFinancialApplication = functions.https.onCall(async (data, co
     return { success: true, applicationId: applicationRef.id };
 });
 
+export const createFinancialProduct = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context); // Reuse the auth check for FIs
+    const { name, type, description, interestRate, maxAmount, targetRoles } = data;
+
+    if (!name || !type || !description) {
+        throw new functions.https.HttpsError("invalid-argument", "Name, type, and description are required.");
+    }
+
+    const productRef = db.collection("financial_products").doc();
+    await productRef.set({
+        fiId,
+        name,
+        type,
+        description,
+        interestRate: type === 'Loan' ? interestRate : null,
+        maxAmount: maxAmount || null,
+        targetRoles: targetRoles || [],
+        status: 'Active',
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, productId: productRef.id };
+});
+
+export const getFinancialProducts = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+
+    const productsSnapshot = await db.collection("financial_products")
+        .where("fiId", "==", fiId)
+        .orderBy("createdAt", "desc")
+        .get();
+
+    const products = productsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        }
+    });
+    
+    return { products };
+});
+
+export const getFiApplications = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+    const { status } = data; // Optional status filter: 'All', 'Pending', 'Approved', etc.
+
+    let query: admin.firestore.Query = db.collection('financial_applications').where('fiId', '==', fiId);
+
+    if (status && status !== 'All') {
+        if (status === 'Pending') {
+            // "Pending" in UI might mean "Pending" or "Under Review" in DB
+            query = query.where('status', 'in', ['Pending', 'Under Review']);
+        } else {
+            query = query.where('status', '==', status);
+        }
+    }
+
+    const snapshot = await query.orderBy('submittedAt', 'desc').get();
+
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            id: doc.id,
+            ...appData,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            updatedAt: (appData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
+});
     

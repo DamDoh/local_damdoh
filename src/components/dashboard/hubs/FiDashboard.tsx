@@ -146,6 +146,11 @@ export const FiDashboard = () => {
                             <p className="text-sm text-muted-foreground text-center py-4">{t('noApplications')}</p>
                        )}
                     </CardContent>
+                     <CardFooter>
+                        <Button asChild variant="outline" className="w-full">
+                            <Link href="/fi/applications">{t('viewAllButton')}</Link>
+                        </Button>
+                    </CardFooter>
                 </Card>
             </div>
         </div>

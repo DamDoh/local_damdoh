@@ -1,5 +1,26 @@
 
 {
+  "FiApplicationListPage": {
+    "backLink": "Retour au tableau de bord",
+    "title": "Gestion des demandes",
+    "description": "Affichez et gérez toutes les demandes de financement reçues.",
+    "tabs": {
+      "all": "Toutes",
+      "pending": "En attente",
+      "approved": "Approuvées",
+      "rejected": "Rejetées"
+    },
+    "table": {
+      "applicant": "Demandeur",
+      "type": "Type",
+      "amount": "Montant",
+      "date": "Date de soumission",
+      "status": "Statut",
+      "action": "Action"
+    },
+    "reviewButton": "Examiner",
+    "noApplications": "Aucune demande trouvée pour ce statut."
+  },
   "FiApplicationPage": {
     "backLink": "Retour au tableau de bord",
     "title": "Examiner la demande de financement",
@@ -47,7 +68,8 @@
     "value": "valeur",
     "reviewRiskButton": "Examiner le risque",
     "readMore": "Lire la suite",
-    "noUpdates": "Aucune mise à jour du marché disponible."
+    "noUpdates": "Aucune mise à jour du marché disponible.",
+    "viewAllButton": "Voir toutes les demandes"
   },
   "FiProductsPage": {
     "backLink": "Retour au tableau de bord",
