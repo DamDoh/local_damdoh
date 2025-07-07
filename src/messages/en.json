@@ -1,283 +1,50 @@
 
 {
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search for people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme"
-  },
-  "AppFooter": {
-    "tagline": "The Global Agricultural Supply Chain Platform.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "getMobileApp": "Get the DamDoh App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store",
-    "copyright": "© {year} DamDoh. All Rights Reserved."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Change Language"
-  },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "Auth": {
-    "signInWelcome": "Welcome back to DamDoh",
-    "signInTitle": "Sign In to Your Account",
-    "signInDescription": "Enter your credentials to access your dashboard.",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing In...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign up",
-    "signInLink": "Sign in",
-    "recoverWithUniversalIdPrompt": "Or Recover Account with Universal ID",
-    "signUpWelcome": "Join the DamDoh Network",
-    "signUpTitle": "Create Your Account",
-    "signUpDescription": "Start your journey in the digital agricultural ecosystem.",
-    "nameLabel": "Full Name or Company Name",
-    "namePlaceholder": "e.g., Jane Doe or Green Valley Farms",
-    "roleLabel": "Your Primary Role",
-    "rolePlaceholder": "Select your main role in the supply chain",
-    "passwordPlaceholder": "••••••••",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creating Account...",
-    "signUpButton": "Create Account",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "forgotPasswordResetPrompt": "Regain access to your DamDoh account.",
-    "forgotPasswordTitle": "Forgot Password",
-    "forgotPasswordDescription": "Enter your email and we'll send you a link to reset your password.",
-    "sendingEmailButton": "Sending Email...",
-    "sendResetLinkButton": "Send Reset Link",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordPrompt": "Set a new password for your DamDoh account.",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Choose a new, strong password for your account.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "Enter your new password",
-    "resettingPasswordButton": "Resetting...",
-    "resetPasswordButton": "Reset Password",
-    "recoverPage": {
-      "title": "Account Recovery",
-      "description": "Recover your account using social verification from a trusted friend on DamDoh.",
-      "howItWorksTitle": "How It Works",
-      "step1": "Enter the phone number of the account you want to recover.",
-      "step2": "Show the temporary QR code on your screen to a trusted friend who is also a DamDoh user.",
-      "step3": "Your friend scans the code to confirm your identity, granting you access on this new device.",
-      "startButton": "Start Recovery",
-      "scanTitle": "Have a Friend Scan",
-      "scanDescription": "Let a trusted DamDoh connection scan this temporary QR code to verify your identity.",
-      "scanNote": "This code is valid for 10 minutes.",
-      "startOverButton": "Start Over"
+  "FiApplicationPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Review Financial Application",
+    "applicationTitle": "Application",
+    "submittedOn": "Submitted on",
+    "amountRequested": "Amount Requested",
+    "purpose": "Purpose of Funding",
+    "applicantDetails": "Applicant Details",
+    "profileNotFound": "Applicant profile not found.",
+    "viewProfileButton": "View Full Profile",
+    "riskAssessment": "AI Risk Assessment",
+    "creditScore": "Credit Score",
+    "notFound": "Application not found.",
+    "approveButton": "Approve",
+    "rejectButton": "Reject",
+    "requestInfoButton": "Request More Info",
+    "toast": {
+      "errorTitle": "Error",
+      "updateSuccessTitle": "Status Updated",
+      "updateSuccessDescription": "Application has been marked as {status}.",
+      "updateFailTitle": "Update Failed"
     }
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Connect. Transact. Grow. The {appName} Advantage.",
-      "subtitle": "The global platform empowering every stakeholder in the agricultural supply chain, from farmers and co-ops to logistics providers and global buyers.",
-      "getStartedButton": "Get Started Now",
-      "learnMoreButton": "Learn More"
+  "FiDashboard": {
+    "title": "Financial Institution Hub",
+    "pendingApplicationsTitle": "Pending Applications",
+    "pendingApplicationsDescription": "Applications requiring your review",
+    "portfolioAtRiskTitle": "Portfolio at Risk",
+    "recentUpdates": "recent updates",
+    "marketUpdatesTitle": "Market Updates",
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "riskScore": "Risk Score",
+      "action": "Action"
     },
-    "features": {
-      "title": "Engineered for the Entire Ecosystem",
-      "subtitle": "DamDoh provides tailored tools and connections for every stage of the agricultural value chain.",
-      "networking": {
-        "title": "Intelligent Networking",
-        "description": "Connect with the right partners, from local suppliers to international buyers, based on your specific needs and your role."
-      },
-      "marketplace": {
-        "title": "Global Marketplace",
-        "description": "Buy and sell products, equipment, and services securely in a transparent, global marketplace."
-      },
-      "forums": {
-        "title": "Knowledge Sharing",
-        "description": "Join topic-specific forums to share insights, ask questions, and learn from experts around the world."
-      },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Find skilled professionals or offer your expertise for short-term or long-term agricultural projects."
-      }
-    },
-    "forWho": {
-      "badge": "Who Benefits?",
-      "title": "A Platform for Every Player",
-      "description": "Whether you're in the field or the office, DamDoh has the tools you need to succeed.",
-      "farmers": {
-        "title": "Farmers & Co-ops",
-        "description": "Manage your farm, track produce from seed to sale, and access broader markets."
-      },
-      "buyers": {
-        "title": "Buyers & Processors",
-        "description": "Find reliable, traceable products directly from the source and manage your supply chain efficiently."
-      },
-      "experts": {
-        "title": "Service Providers & Experts",
-        "description": "Offer your services, from agronomy and logistics to finance, to a targeted agricultural audience."
-      }
-    },
-    "cta": {
-      "title": "Ready to Transform How You Work?",
-      "subtitle": "Join thousands of agricultural professionals building trust, transparency, and growth in the global supply chain.",
-      "button": "Join the DamDoh Community Today"
-    }
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Grow Your Network",
-    "refreshSuggestions": "Refresh Suggestions",
-    "ad": "Ad",
-    "adTitle": "Stay ahead with DamDoh Market Trends!",
-    "adDescription": "Get exclusive insights on commodity prices and supply chain dynamics.",
-    "adButton": "Explore DamDoh Pro Trends",
-    "follow": "Follow",
-    "following": "Following",
-    "signInPrompt": "Sign in to get personalized suggestions.",
-    "loadError": "Failed to load suggestions. Please try again.",
-    "noSuggestions": "No new suggestions at the moment.",
-    "infoTooltip": "These suggestions are AI-powered based on your role, interests, and activity on the platform."
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central place for all farming operations. Manage your farms, crops, inputs, and financials, all in one place.",
-      "myFarms": {
-        "title": "My Farms",
-        "description": "View, edit, or add your farm properties.",
-        "button": "Manage Farms"
-      },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Keep track of worker hours, payments, and tasks.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF Inputs",
-        "description": "Create and manage your Korean Natural Farming batches.",
-        "button": "Manage Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way Guide",
-        "description": "Explore principles and practices of FGW.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Farm Financials",
-        "description": "Track income and expenses to understand profitability.",
-        "button": "Manage Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "Learn how to start seeds indoors successfully.",
-        "button": "View Guide"
-      },
-      "familyFarm": {
-        "title": "Integrated Family Farm Model",
-        "description": "Discover a sustainable model for small-scale farms.",
-        "button": "View Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Manage your equipment, buildings, and other assets. (Coming Soon)",
-        "button": "Manage Assets"
-      }
-    },
-    "myFarms": {
-      "backToDashboard": "Back to Farm Hub",
-      "title": "My Farms",
-      "addNewFarmButton": "Add New Farm",
-      "size": "Size",
-      "viewFarmButton": "View Farm",
-      "noFarmsTitle": "No Farms Found",
-      "noFarmsDescription": "Add your first farm to start managing your agricultural operations.",
-      "auth": {
-        "title": "Please Sign In",
-        "description": "You must be signed in to view your farms.",
-        "button": "Sign In"
-      },
-      "toast": {
-        "errorTitle": "Error Loading Farms",
-        "errorDescription": "An error occurred while loading your farms. Please try again."
-      }
-    }
-  },
-  "AgronomistDashboard": {
-    "title": "Agronomist & Consultant Hub",
-    "stats": {
-      "assignedFarmers": "Assigned Farmers",
-      "farmersWithAlerts": "Farmers with Alerts",
-      "pendingConsultations": "Pending Consultations",
-      "knowledgeContributions": "Knowledge Contributions"
-    },
-    "consultations": {
-      "title": "Pending Consultation Requests",
-      "description": "Farmers seeking your expertise.",
-      "table": {
-        "farmer": "Farmer Name",
-        "issue": "Issue Summary",
-        "action": "Action"
-      },
-      "viewButton": "View",
-      "noRequests": "No pending consultation requests."
-    },
-    "portfolio": {
-      "title": "Assigned Farmer Portfolio",
-      "description": "Overview of farmers in your portfolio.",
-      "table": {
-        "farmer": "Farmer Name",
-        "location": "Location",
-        "alerts": "Alerts",
-        "action": "Action"
-      },
-      "alertsLabel": "alerts",
-      "profileButton": "Profile",
-      "noFarmers": "No farmers assigned yet."
-    },
-    "contributions": {
-      "statusTitle": "Contribution Status",
-      "title": "Your Contributions",
-      "noData": "No contribution data to display.",
-      "noContributions": "No contributions to the Knowledge Base yet."
-    },
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "noData": "No dashboard data available."
+    "reviewButton": "Review",
+    "noApplications": "No pending applications for review.",
+    "accounts": "accounts",
+    "value": "value",
+    "reviewRiskButton": "Review Risk",
+    "readMore": "Read more",
+    "noUpdates": "No market updates available."
   }
 }
+
+    

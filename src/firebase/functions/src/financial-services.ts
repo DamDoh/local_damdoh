@@ -857,3 +857,5 @@ export const submitFinancialApplication = functions.https.onCall(async (data, co
 
     return { success: true, applicationId: applicationRef.id };
 });
+
+    

@@ -14,6 +14,19 @@ import type { FiDashboardData, FinancialApplication } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useTranslations } from 'next-intl';
 
+const StatCard = ({ title, value, description, icon }: { title: string, value: string | number, description: string, icon: React.ReactNode }) => (
+  <Card>
+    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <CardTitle className="text-sm font-medium">{title}</CardTitle>
+      {icon}
+    </CardHeader>
+    <CardContent>
+      <div className="text-2xl font-bold">{value}</div>
+      <p className="text-xs text-muted-foreground">{description}</p>
+    </CardContent>
+  </Card>
+);
+
 export const FiDashboard = () => {
     const t = useTranslations('FiDashboard');
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
@@ -63,36 +76,33 @@ export const FiDashboard = () => {
             <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <Card className="flex flex-col">
-                    <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">{t('riskTitle')}</CardTitle>
-                        <AlertTriangle className="h-4 w-4 text-destructive" />
-                    </CardHeader>
-                    <CardContent className={`flex-grow ${portfolioAtRisk?.count > 0 ? 'text-destructive' : ''}`}>
-                        <div className={`text-3xl font-bold ${portfolioAtRisk?.count > 0 ? 'text-destructive' : ''}`}>
-                            {portfolioAtRisk?.count || 0} {t('accounts')}
-                        </div>
-                        <p className="text-sm text-muted-foreground">${(portfolioAtRisk?.value || 0).toLocaleString()} {t('value')}</p>
-                    </CardContent>
-                    <CardFooter>
-                         <Button asChild variant="destructive" size="sm" className="w-full">
-                            <Link href={portfolioAtRisk?.actionLink || '#'}>{t('reviewRiskButton')}</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
-
-                <Card className="col-span-1 md:col-span-2 flex flex-col">
-                     <CardHeader className="pb-2">
+                <StatCard 
+                    title={t('pendingApplicationsTitle')} 
+                    value={pendingApplications?.length || 0}
+                    description={t('pendingApplicationsDescription')}
+                    icon={<UserCheck className="h-4 w-4 text-muted-foreground" />}
+                />
+                <StatCard 
+                    title={t('portfolioAtRiskTitle')}
+                    value={portfolioAtRisk?.count || 0}
+                    description={`${(portfolioAtRisk?.value || 0).toLocaleString()} USD at risk`}
+                    icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />}
+                />
+                 <StatCard 
+                    title={t('marketUpdatesTitle')}
+                    value={marketUpdates?.length || 0}
+                    description={t('recentUpdates')}
+                    icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+                />
+                
+                <Card className="col-span-1 md:col-span-3">
+                     <CardHeader className="pb-4">
                         <CardTitle className="text-base flex items-center gap-2">
                            <UserCheck className="h-4 w-4" />
                            {t('pendingApplicationsTitle')}
-                           <Badge variant="secondary" className="ml-2 text-sm">
-                               {pendingApplications?.length || 0} {t('total')}
-
-                        </Badge>
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex-grow space-y-2">
+                    <CardContent>
                        {(pendingApplications || []).length > 0 ? (
                             <Table>
                                 <TableHeader>
@@ -125,28 +135,6 @@ export const FiDashboard = () => {
                        )}
                     </CardContent>
                 </Card>
-                
-                <Card className="col-span-1 md:col-span-3">
-                     <CardHeader>
-                        <CardTitle className="text-base flex items-center gap-2">
-                           <Landmark className="h-4 w-4" />
-                           {t('marketUpdatesTitle')}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        {(marketUpdates || []).length > 0 ? (
-                            (marketUpdates || []).map(update => (
-                                <div key={update.id} className="text-sm p-3 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
-                                    <p>{update.content}</p>
-                                    <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">{t('readMore')}</Link>
-                                </div>
-                            ))
-                        ) : (
-                            <p className="text-sm text-muted-foreground text-center py-4">{t('noUpdates')}</p>
-                        )}
-                    </CardContent>
-                </Card>
-
             </div>
         </div>
     );
@@ -156,9 +144,12 @@ const DashboardSkeleton = () => (
     <div>
         <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-40 rounded-lg" />
-            <Skeleton className="h-40 rounded-lg md:col-span-2" />
-            <Skeleton className="h-48 rounded-lg md:col-span-3" />
+            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-64 rounded-lg md:col-span-3" />
         </div>
     </div>
 );
+
+    

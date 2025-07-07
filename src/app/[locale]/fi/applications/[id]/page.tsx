@@ -17,11 +17,14 @@ import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useTranslations } from 'next-intl';
 
 function ApplicationDetailSkeleton() {
+    const t = useTranslations('FiApplicationPage');
     return (
         <div className="space-y-6">
             <Skeleton className="h-6 w-40" />
+            <Skeleton className="h-8 w-1/2 mb-4" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-6">
                     <Skeleton className="h-48 w-full" />
@@ -37,6 +40,7 @@ function ApplicationDetailSkeleton() {
 
 
 export default function FinancialApplicationDetailPage() {
+    const t = useTranslations('FiApplicationPage');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const params = useParams();
@@ -61,12 +65,12 @@ export default function FinancialApplicationDetailPage() {
             setApplication(data.application);
             setApplicant(data.applicant);
         } catch (error: any) {
-             toast({ variant: 'destructive', title: 'Error', description: error.message });
+             toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
              router.push('/');
         } finally {
             setIsLoading(false);
         }
-    }, [applicationId, user, getApplicationDetailsCallable, toast, router]);
+    }, [applicationId, user, getApplicationDetailsCallable, toast, router, t]);
 
     useEffect(() => {
         if (!authLoading && user) {
@@ -80,10 +84,10 @@ export default function FinancialApplicationDetailPage() {
         setIsUpdating(true);
         try {
             await updateStatusCallable({ applicationId, status });
-            toast({ title: 'Status Updated', description: `Application has been marked as ${status}.` });
+            toast({ title: t('toast.updateSuccessTitle'), description: t('toast.updateSuccessDescription', { status: status }) });
             fetchDetails(); // Refetch data to show new status
         } catch (error: any) {
-             toast({ variant: 'destructive', title: 'Update Failed', description: error.message });
+             toast({ variant: 'destructive', title: t('toast.updateFailTitle'), description: error.message });
         } finally {
             setIsUpdating(false);
         }
@@ -103,46 +107,46 @@ export default function FinancialApplicationDetailPage() {
     if (isLoading || authLoading) return <ApplicationDetailSkeleton />;
     
     if (!application) {
-        return <p>Application not found.</p>;
+        return <p>{t('notFound')}</p>;
     }
     
     return (
         <div className="space-y-6">
             <Link href="/" className="inline-flex items-center text-sm text-primary hover:underline">
-                <ArrowLeft className="mr-1 h-4 w-4" /> Back to Dashboard
+                <ArrowLeft className="mr-1 h-4 w-4" /> {t('backLink')}
             </Link>
             
-             <h1 className="text-3xl font-bold">Review Financial Application</h1>
+             <h1 className="text-3xl font-bold">{t('title')}</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
                 <div className="md:col-span-2 space-y-6">
                     <Card>
                         <CardHeader>
                             <CardTitle className="flex justify-between items-start">
-                                <span>{application.type} Application</span>
+                                <span>{application.type} {t('applicationTitle')}</span>
                                 <Badge variant={getStatusBadgeVariant(application.status)}>{application.status}</Badge>
                             </CardTitle>
-                             <CardDescription>Submitted on {application.submittedAt ? format(new Date(application.submittedAt), 'PPP') : 'N/A'}</CardDescription>
+                             <CardDescription>{t('submittedOn')} {application.submittedAt ? format(new Date(application.submittedAt), 'PPP') : 'N/A'}</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="flex justify-between items-baseline">
-                                <span className="text-sm text-muted-foreground">Amount Requested</span>
+                                <span className="text-sm text-muted-foreground">{t('amountRequested')}</span>
                                 <span className="text-2xl font-bold">{application.currency} {application.amount.toLocaleString()}</span>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-sm mb-1">Purpose of Funding</h4>
+                                <h4 className="font-semibold text-sm mb-1">{t('purpose')}</h4>
                                 <p className="text-sm text-muted-foreground p-3 bg-muted/50 rounded-md border">{application.purpose}</p>
                             </div>
                         </CardContent>
                          <CardFooter className="flex-wrap gap-2">
                             <Button onClick={() => handleStatusUpdate('Approved')} disabled={isUpdating || application.status === 'Approved'}>
-                                {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<CheckCircle className="mr-2 h-4 w-4"/> Approve
+                                {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<CheckCircle className="mr-2 h-4 w-4"/>{t('approveButton')}
                             </Button>
                              <Button onClick={() => handleStatusUpdate('Rejected')} disabled={isUpdating || application.status === 'Rejected'} variant="destructive">
-                                {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<XCircle className="mr-2 h-4 w-4"/> Reject
+                                {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<XCircle className="mr-2 h-4 w-4"/>{t('rejectButton')}
                             </Button>
                              <Button onClick={() => handleStatusUpdate('More Info Required')} disabled={isUpdating} variant="outline">
-                                {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<MessageSquare className="mr-2 h-4 w-4"/> Request More Info
+                                {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<MessageSquare className="mr-2 h-4 w-4"/>{t('requestInfoButton')}
                             </Button>
                          </CardFooter>
                     </Card>
@@ -150,7 +154,7 @@ export default function FinancialApplicationDetailPage() {
                  <div className="md:col-span-1 space-y-6">
                      <Card>
                         <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2"><User className="h-4 w-4"/>Applicant Details</CardTitle>
+                            <CardTitle className="text-base flex items-center gap-2"><User className="h-4 w-4"/>{t('applicantDetails')}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             {applicant ? (
@@ -169,17 +173,17 @@ export default function FinancialApplicationDetailPage() {
                                         </div>
                                     </div>
                                     <p className="text-sm text-muted-foreground">{applicant.location}</p>
-                                    <Button asChild size="sm" variant="secondary" className="w-full"><Link href={`/profiles/${applicant.id}`}>View Full Profile</Link></Button>
+                                    <Button asChild size="sm" variant="secondary" className="w-full"><Link href={`/profiles/${applicant.id}`}>{t('viewProfileButton')}</Link></Button>
                                 </>
-                            ) : <p className="text-sm text-muted-foreground">Applicant profile not found.</p>}
+                            ) : <p className="text-sm text-muted-foreground">{t('profileNotFound')}</p>}
                         </CardContent>
                     </Card>
                      <Card>
                         <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2"><Info className="h-4 w-4"/>AI Risk Assessment</CardTitle>
+                            <CardTitle className="text-base flex items-center gap-2"><Info className="h-4 w-4"/>{t('riskAssessment')}</CardTitle>
                         </CardHeader>
                         <CardContent className="text-center">
-                            <p className="text-xs text-muted-foreground">Credit Score</p>
+                            <p className="text-xs text-muted-foreground">{t('creditScore')}</p>
                             <p className="text-4xl font-bold text-primary">{application.riskScore || 'N/A'}</p>
                         </CardContent>
                     </Card>
@@ -188,3 +192,5 @@ export default function FinancialApplicationDetailPage() {
         </div>
     );
 }
+
+    

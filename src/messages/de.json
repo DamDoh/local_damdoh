@@ -1,283 +1,50 @@
 
 {
-  "AppHeader": {
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Verw.",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talente",
-    "traceability": "Rückverfolgbarkeit",
-    "forums": "Foren",
-    "notifications": "Benachrichtigungen",
-    "messages": "Nachrichten",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Suche nach Personen, Produkten, Dienstleistungen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Modus wechseln",
-    "switchToDarkAria": "Zum dunklen Modus wechseln"
-  },
-  "AppFooter": {
-    "tagline": "Die globale Plattform für die landwirtschaftliche Lieferkette.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "getMobileApp": "Holen Sie sich die DamDoh-App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen",
-    "copyright": "© {year} DamDoh. Alle Rechte vorbehalten."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache ändern"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "Auth": {
-    "signInWelcome": "Willkommen zurück bei DamDoh",
-    "signInTitle": "In Ihr Konto einloggen",
-    "signInDescription": "Geben Sie Ihre Anmeldeinformationen ein, um auf Ihr Dashboard zuzugreifen.",
-    "emailLabel": "E-Mail",
-    "emailPlaceholder": "sie@beispiel.com",
-    "passwordLabel": "Passwort",
-    "forgotPasswordLink": "Passwort vergessen?",
-    "signingInButton": "Anmelden...",
-    "signInButton": "Anmelden",
-    "noAccountPrompt": "Haben Sie noch kein Konto?",
-    "signUpLink": "Registrieren",
-    "signInLink": "Anmelden",
-    "recoverWithUniversalIdPrompt": "Oder Konto mit Universal-ID wiederherstellen",
-    "signUpWelcome": "Treten Sie dem DamDoh-Netzwerk bei",
-    "signUpTitle": "Erstellen Sie Ihr Konto",
-    "signUpDescription": "Beginnen Sie Ihre Reise im digitalen landwirtschaftlichen Ökosystem.",
-    "nameLabel": "Vollständiger Name oder Firmenname",
-    "namePlaceholder": "z.B. Johanna Doe oder Green Valley Farms",
-    "roleLabel": "Ihre Hauptrolle",
-    "rolePlaceholder": "Wählen Sie Ihre Hauptrolle in der Lieferkette",
-    "passwordPlaceholder": "••••••••",
-    "confirmPasswordLabel": "Passwort bestätigen",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Konto wird erstellt...",
-    "signUpButton": "Konto erstellen",
-    "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
-    "forgotPasswordResetPrompt": "Erhalten Sie wieder Zugang zu Ihrem DamDoh-Konto.",
-    "forgotPasswordTitle": "Passwort vergessen",
-    "forgotPasswordDescription": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
-    "sendingEmailButton": "E-Mail wird gesendet...",
-    "sendResetLinkButton": "Link zum Zurücksetzen senden",
-    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
-    "resetPasswordPrompt": "Legen Sie ein neues Passwort für Ihr DamDoh-Konto fest.",
-    "resetPasswordTitle": "Passwort zurücksetzen",
-    "resetPasswordDescription": "Wählen Sie ein neues, sicheres Passwort für Ihr Konto.",
-    "newPasswordLabel": "Neues Passwort",
-    "newPasswordPlaceholder": "Geben Sie Ihr neues Passwort ein",
-    "resettingPasswordButton": "Zurücksetzen...",
-    "resetPasswordButton": "Passwort zurücksetzen",
-    "recoverPage": {
-      "title": "Kontowiederherstellung",
-      "description": "Stellen Sie Ihr Konto durch soziale Verifizierung von einem vertrauenswürdigen Freund auf DamDoh wieder her.",
-      "howItWorksTitle": "So funktioniert's",
-      "step1": "Geben Sie die Telefonnummer des Kontos ein, das Sie wiederherstellen möchten.",
-      "step2": "Zeigen Sie den temporären QR-Code auf Ihrem Bildschirm einem vertrauenswürdigen Freund, der ebenfalls ein DamDoh-Benutzer ist.",
-      "step3": "Ihr Freund scannt den Code, um Ihre Identität zu bestätigen und Ihnen den Zugriff auf diesem neuen Gerät zu gewähren.",
-      "startButton": "Wiederherstellung starten",
-      "scanTitle": "Lassen Sie einen Freund scannen",
-      "scanDescription": "Lassen Sie eine vertrauenswürdige DamDoh-Verbindung diesen temporären QR-Code scannen, um Ihre Identität zu überprüfen.",
-      "scanNote": "Dieser Code ist 10 Minuten lang gültig.",
-      "startOverButton": "Von vorne beginnen"
+  "FiApplicationPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Finanzierungsantrag prüfen",
+    "applicationTitle": "Antrag",
+    "submittedOn": "Eingereicht am",
+    "amountRequested": "Beantragter Betrag",
+    "purpose": "Zweck der Finanzierung",
+    "applicantDetails": "Antragstellerdetails",
+    "profileNotFound": "Antragstellerprofil nicht gefunden.",
+    "viewProfileButton": "Vollständiges Profil anzeigen",
+    "riskAssessment": "KI-Risikobewertung",
+    "creditScore": "Kredit-Score",
+    "notFound": "Antrag nicht gefunden.",
+    "approveButton": "Genehmigen",
+    "rejectButton": "Ablehnen",
+    "requestInfoButton": "Weitere Informationen anfordern",
+    "toast": {
+      "errorTitle": "Fehler",
+      "updateSuccessTitle": "Status aktualisiert",
+      "updateSuccessDescription": "Der Antrag wurde als {status} markiert.",
+      "updateFailTitle": "Aktualisierung fehlgeschlagen"
     }
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Verbinden. Handeln. Wachsen. Der {appName}-Vorteil.",
-      "subtitle": "Die globale Plattform, die jeden Akteur in der landwirtschaftlichen Lieferkette stärkt, von Landwirten und Genossenschaften bis hin zu Logistikanbietern und globalen Käufern.",
-      "getStartedButton": "Jetzt starten",
-      "learnMoreButton": "Mehr erfahren"
+  "FiDashboard": {
+    "title": "Finanzinstitut-Hub",
+    "pendingApplicationsTitle": "Ausstehende Anträge",
+    "pendingApplicationsDescription": "Anträge, die Ihre Überprüfung erfordern",
+    "portfolioAtRiskTitle": "Portfolio mit Risiko",
+    "recentUpdates": "kürzliche Updates",
+    "marketUpdatesTitle": "Markt-Updates",
+    "table": {
+      "applicant": "Antragsteller",
+      "type": "Typ",
+      "amount": "Betrag",
+      "riskScore": "Risiko-Score",
+      "action": "Aktion"
     },
-    "features": {
-      "title": "Entwickelt für das gesamte Ökosystem",
-      "subtitle": "DamDoh bietet maßgeschneiderte Werkzeuge und Verbindungen für jede Stufe der landwirtschaftlichen Wertschöpfungskette.",
-      "networking": {
-        "title": "Intelligentes Networking",
-        "description": "Verbinden Sie sich mit den richtigen Partnern, von lokalen Lieferanten bis hin zu internationalen Käufern, basierend auf Ihren spezifischen Bedürfnissen und Ihrer Rolle."
-      },
-      "marketplace": {
-        "title": "Globaler Marktplatz",
-        "description": "Kaufen und verkaufen Sie Produkte, Ausrüstung und Dienstleistungen sicher auf einem transparenten globalen Marktplatz."
-      },
-      "forums": {
-        "title": "Wissensaustausch",
-        "description": "Treten Sie themenspezifischen Foren bei, um Einblicke auszutauschen, Fragen zu stellen und von Experten aus der ganzen Welt zu lernen."
-      },
-      "talent": {
-        "title": "Talentbörse",
-        "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre Expertise für kurz- oder langfristige landwirtschaftliche Projekte an."
-      }
-    },
-    "forWho": {
-      "badge": "Wer profitiert?",
-      "title": "Eine Plattform für jeden Akteur",
-      "description": "Ob Sie auf dem Feld oder im Büro sind, DamDoh hat die Werkzeuge, die Sie zum Erfolg benötigen.",
-      "farmers": {
-        "title": "Landwirte & Genossenschaften",
-        "description": "Verwalten Sie Ihren Hof, verfolgen Sie Produkte vom Samen bis zum Verkauf und greifen Sie auf breitere Märkte zu."
-      },
-      "buyers": {
-        "title": "Käufer & Verarbeiter",
-        "description": "Finden Sie zuverlässige, rückverfolgbare Produkte direkt von der Quelle und verwalten Sie Ihre Lieferkette effizient."
-      },
-      "experts": {
-        "title": "Dienstleister & Experten",
-        "description": "Bieten Sie Ihre Dienstleistungen, von Agronomie und Logistik bis hin zu Finanzen, einem gezielten landwirtschaftlichen Publikum an."
-      }
-    },
-    "cta": {
-      "title": "Bereit, Ihre Arbeitsweise zu verändern?",
-      "subtitle": "Schließen Sie sich Tausenden von landwirtschaftlichen Fachleuten an, die Vertrauen, Transparenz und Wachstum in der globalen Lieferkette aufbauen.",
-      "button": "Treten Sie noch heute der DamDoh-Community bei"
-    }
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Erweitern Sie Ihr Netzwerk",
-    "refreshSuggestions": "Vorschläge aktualisieren",
-    "ad": "Anzeige",
-    "adTitle": "Bleiben Sie mit DamDoh Markttrends immer einen Schritt voraus!",
-    "adDescription": "Erhalten Sie exklusive Einblicke in Rohstoffpreise und Lieferkettendynamiken.",
-    "adButton": "DamDoh Pro Trends entdecken",
-    "follow": "Folgen",
-    "following": "Gefolgt",
-    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
-    "loadError": "Vorschläge konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
-    "noSuggestions": "Im Moment keine neuen Vorschläge.",
-    "infoTooltip": "Diese Vorschläge werden von der KI basierend auf Ihrer Rolle, Ihren Interessen und Ihrer Aktivität auf der Plattform erstellt."
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm-Management-Zentrale",
-      "description": "Zentraler Ort für alle Ihre landwirtschaftlichen Aktivitäten. Verwalten Sie Ihre Farmen, Kulturen, Betriebsmittel und Finanzen, alles an einem Ort.",
-      "myFarms": {
-        "title": "Meine Farmen",
-        "description": "Zeigen Sie Ihre Farmen an, bearbeiten Sie sie oder fügen Sie neue hinzu.",
-        "button": "Farmen verwalten"
-      },
-      "labor": {
-        "title": "Arbeitsmanagement",
-        "description": "Verfolgen Sie Arbeitsstunden, Zahlungen und Aufgaben.",
-        "button": "Arbeit verwalten"
-      },
-      "knf": {
-        "title": "KNF-Betriebsmittel",
-        "description": "Erstellen und verwalten Sie Ihre Korean Natural Farming-Batches.",
-        "button": "Betriebsmittel verwalten"
-      },
-      "fgw": {
-        "title": "Farming God's Way-Leitfaden",
-        "description": "Erkunden Sie Prinzipien und Praktiken von FGW.",
-        "button": "FGW-Leitfaden anzeigen"
-      },
-      "financials": {
-        "title": "Landwirtschaftliche Finanzen",
-        "description": "Verfolgen Sie Einnahmen und Ausgaben, um die Rentabilität zu verstehen.",
-        "button": "Finanzen verwalten"
-      },
-      "seedStarting": {
-        "title": "Leitfaden zum Start von Saatgut",
-        "description": "Erfahren Sie, wie Sie Samen erfolgreich drinnen starten können.",
-        "button": "Leitfaden anzeigen"
-      },
-      "familyFarm": {
-        "title": "Modell der integrierten Familienfarm",
-        "description": "Entdecken Sie ein nachhaltiges Modell für kleine Farmen.",
-        "button": "Modell anzeigen"
-      },
-      "assetManagement": {
-        "title": "Vermögensverwaltung",
-        "description": "Verwalten Sie Ihre Ausrüstung, Gebäude und andere Vermögenswerte. (Demnächst verfügbar)",
-        "button": "Vermögen verwalten"
-      }
-    },
-    "myFarms": {
-      "backToDashboard": "Zurück zum Farm Hub",
-      "title": "Meine Farmen",
-      "addNewFarmButton": "Neue Farm hinzufügen",
-      "size": "Größe",
-      "viewFarmButton": "Farm anzeigen",
-      "noFarmsTitle": "Keine Farmen gefunden",
-      "noFarmsDescription": "Fügen Sie Ihre erste Farm hinzu, um Ihre landwirtschaftlichen Aktivitäten zu verwalten.",
-      "auth": {
-        "title": "Bitte Anmelden",
-        "description": "Sie müssen angemeldet sein, um Ihre Farmen anzuzeigen.",
-        "button": "Anmelden"
-      },
-      "toast": {
-        "errorTitle": "Fehler beim Laden der Farmen",
-        "errorDescription": "Beim Laden Ihrer Farmen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
-      }
-    }
-  },
-  "AgronomistDashboard": {
-    "title": "Agronom & Berater-Hub",
-    "stats": {
-      "assignedFarmers": "Zugewiesene Landwirte",
-      "farmersWithAlerts": "Landwirte mit Warnungen",
-      "pendingConsultations": "Ausstehende Beratungen",
-      "knowledgeContributions": "Wissensbeiträge"
-    },
-    "consultations": {
-      "title": "Ausstehende Beratungsanfragen",
-      "description": "Landwirte, die Ihr Fachwissen suchen.",
-      "table": {
-        "farmer": "Name des Landwirts",
-        "issue": "Problemzusammenfassung",
-        "action": "Aktion"
-      },
-      "viewButton": "Ansehen",
-      "noRequests": "Keine ausstehenden Beratungsanfragen."
-    },
-    "portfolio": {
-      "title": "Portfolio zugewiesener Landwirte",
-      "description": "Übersicht der Landwirte in Ihrem Portfolio.",
-      "table": {
-        "farmer": "Name des Landwirts",
-        "location": "Standort",
-        "alerts": "Warnungen",
-        "action": "Aktion"
-      },
-      "alertsLabel": "Warnungen",
-      "profileButton": "Profil",
-      "noFarmers": "Noch keine Landwirte zugewiesen."
-    },
-    "contributions": {
-      "statusTitle": "Beitragsstatus",
-      "title": "Ihre Beiträge",
-      "noData": "Keine Beitragsdaten zur Anzeige.",
-      "noContributions": "Noch keine Beiträge zur Wissensdatenbank."
-    },
-    "chart": {
-      "count": "Anzahl",
-      "published": "Veröffentlicht",
-      "pending": "Ausstehende Überprüfung",
-      "draft": "Entwurf"
-    },
-    "noData": "Keine Dashboard-Daten verfügbar."
+    "reviewButton": "Überprüfen",
+    "noApplications": "Keine ausstehenden Anträge zur Überprüfung.",
+    "accounts": "Konten",
+    "value": "Wert",
+    "reviewRiskButton": "Risiko überprüfen",
+    "readMore": "Mehr lesen",
+    "noUpdates": "Keine Markt-Updates verfügbar."
   }
 }
+
+    
