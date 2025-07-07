@@ -11,7 +11,8 @@ import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
-import { usePathname, useRouter, useSearchParams } from "@/navigation";
+import { usePathname, useRouter } from "@/navigation";
+import { useSearchParams } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
