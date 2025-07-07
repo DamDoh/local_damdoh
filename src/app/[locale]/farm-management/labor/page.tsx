@@ -209,7 +209,7 @@ export default function LaborManagementPage() {
                         </div>
                          <div><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
-                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('logHours')}</Button>
+                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className=\"mr-2 h-4 w-4 animate-spin\"/>}<Clock className=\"mr-2 h-4 w-4\"/>{t('logHours')}</Button>
                 </DialogContent>
             </Dialog>
 
@@ -232,7 +232,7 @@ export default function LaborManagementPage() {
                             </div>
                         </div>
                     </div>
-                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('logPayment')}</Button>
+                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/><Clock className="mr-2 h-4 w-4"/>}{!isSubmitting && <DollarSign className="mr-2 h-4 w-4" />}{t('logPayment')}</Button>
                 </DialogContent>
             </Dialog>
         </div>

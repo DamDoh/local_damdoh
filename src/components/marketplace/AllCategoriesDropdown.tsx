@@ -18,8 +18,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LayoutGrid, LucideIcon } from "lucide-react";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "@/navigation";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export function AllCategoriesDropdown() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export function AllCategoriesDropdown() {
   const searchParams = useSearchParams();
   const currentCategoryId = searchParams.get("category");
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations('Marketplace.categories');
 
   const handleCategorySelect = (categoryId: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -50,7 +52,7 @@ export function AllCategoriesDropdown() {
         <Button variant="outline" className="h-10 min-w-[180px] justify-between">
           <div className="flex items-center gap-2">
             <LayoutGrid className="h-4 w-4" />
-            <span>All Categories</span>
+            <span>{t('allCategories')}</span>
           </div>
           <ChevronDown className="h-4 w-4 opacity-50" />
         </Button>
@@ -60,7 +62,7 @@ export function AllCategoriesDropdown() {
           onSelect={() => handleCategorySelect(null)}
           className={cn(!currentCategoryId && "bg-accent")}
         >
-          View All Items
+          {t('viewAllItems')}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         {AGRICULTURAL_CATEGORIES
@@ -84,7 +86,7 @@ export function AllCategoriesDropdown() {
                         className={cn(currentCategoryId === topLevelCat.id && "bg-accent", "flex items-center gap-2")}
                       >
                         {topLevelCat.icon && <topLevelCat.icon className="h-4 w-4 text-muted-foreground" />}
-                        View All {topLevelCat.name}
+                        {t('viewAllCategory', { categoryName: topLevelCat.name })}
                       </DropdownMenuItem>
                       <DropdownMenuSeparator/>
                       {children.map((subCat) => {
@@ -105,7 +107,7 @@ export function AllCategoriesDropdown() {
                                     className={cn(currentCategoryId === subCat.id && "bg-accent", "flex items-center gap-2")}
                                   >
                                     {subCat.icon && <subCat.icon className="h-4 w-4 text-muted-foreground" />}
-                                    View All {subCat.name}
+                                    {t('viewAllCategory', { categoryName: subCat.name })}
                                   </DropdownMenuItem>
                                   <DropdownMenuSeparator/>
                                   {grandChildren.map(grandChild => (
@@ -157,4 +159,3 @@ export function AllCategoriesDropdown() {
     </DropdownMenu>
   );
 }
-

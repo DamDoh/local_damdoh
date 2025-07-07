@@ -136,7 +136,7 @@ export default function CreateCropPage() {
                 name="cropType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />{t('cropTypeLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground mr-1" />{t('cropTypeLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('cropTypePlaceholder')} {...field} />
                     </FormControl>
@@ -152,7 +152,7 @@ export default function CreateCropPage() {
                   name="plantingDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('plantingDateLabel')}</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground mr-1" />{t('plantingDateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>

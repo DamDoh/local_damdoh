@@ -3,12 +3,11 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star } from "lucide-react";
-import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, Link } from '@/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 import { useForm } from "react-hook-form";
@@ -103,10 +102,12 @@ export default function CreateListingPage() {
 
     const handleSubmit = async (data: CreateMarketplaceItemValues) => {
         if (!user) {
-          toast({ variant: "destructive", title: "Authentication Error", description: "You must be logged in to create a listing." });
+          toast({ variant: "destructive", 
           title: t('errors.authentication.title'),
           description: t('errors.authentication.description'),
-        }
+        });
+        return;
+      }
 
         setIsSubmitting(true);
         try {
@@ -214,12 +215,12 @@ export default function CreateListingPage() {
                               control={form.control}
                               name="relatedTraceabilityId"
                               render={({ field }) => (
-                                <FormItem className=\"flex flex-col sm:flex-row sm:items-center sm:justify-between rounded-lg border p-4\">
-                                  <FormLabel className=\"sm:w-1/3\">{t('form.relatedVtiLabel')}</FormLabel>
+                                <FormItem>
+                                  <FormLabel>{t('form.relatedVtiLabel')}</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="Enter the VTI if this listing is for a specific batch" {...field} />
+                                    <Input placeholder={t('form.relatedVtiPlaceholder')} {...field} />
                                   </FormControl>
-                                  <FormDescription>Linking a VTI increases buyer trust.</FormDescription>
+                                  <FormDescription>{t('form.relatedVtiDescription')}</FormDescription>
                                   <FormMessage />
                                 </FormItem>
                               )}
@@ -321,12 +322,12 @@ export default function CreateListingPage() {
                                     <div className="mt-2 flex flex-col items-start gap-2">
                                         <Button type="button" variant="outline" size="sm" onClick={handleSuggestPrice} disabled={isSuggestingPrice}>
                                         {isSuggestingPrice ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Sparkles className="mr-2 h-4 w-4"/>}
-                                        Suggest Price with AI
+                                        {isSuggestingPrice ? t('aiPriceSuggestion.generatingButton') : t('aiPriceSuggestion.button')}
                                         </Button>
                                         {suggestedPrice && (
                                         <div className="p-2 bg-primary/10 text-primary-foreground/90 rounded-md text-sm flex items-center gap-2">
-                                            <span>AI Suggestion: <strong>${suggestedPrice}</strong></span>
-                                            <Button type="button" size="sm" className="h-auto px-2 py-1 text-xs" onClick={() => {form.setValue('price', parseFloat(suggestedPrice)); setSuggestedPrice(null);}}>Use this price</Button>
+                                            <span>{t('aiPriceSuggestion.suggestionLabel')} <strong>${suggestedPrice}</strong></span>
+                                            <Button type="button" size="sm" className="h-auto px-2 py-1 text-xs" onClick={() => {form.setValue('price', parseFloat(suggestedPrice)); setSuggestedPrice(null);}}>{t('aiPriceSuggestion.usePriceButton')}</Button>
                                         </div>
                                         )}
                                     </div>

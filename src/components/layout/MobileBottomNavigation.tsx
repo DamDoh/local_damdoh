@@ -31,7 +31,6 @@ export function MobileBottomNavigation() {
       {navItems.map((item) => {
         const pathWithoutLocale = pathname.startsWith('/en') || pathname.startsWith('/es') || pathname.startsWith('/de') || pathname.startsWith('/km') ? pathname.substring(3) : pathname;
         const isActive = item.href === "/" ? pathWithoutLocale === "/" : pathWithoutLocale.startsWith(item.href);
-
         return (
           <Link
             key={item.label}

@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
-import { useParams, notFound, useSearchParams, useRouter } from 'next/navigation';
+import { useParams, notFound, useSearchParams } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
@@ -12,6 +12,7 @@ import QRCode from 'qrcode.react';
 import { addDays, differenceInCalendarDays } from 'date-fns';
 import type { DateRange } from "react-day-picker";
 import { useTranslations } from 'next-intl';
+import { useRouter, Link } from '@/navigation';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -20,7 +21,6 @@ import { Badge } from "@/components/ui/badge";
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
 import Image from "next/image";
 import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageSquare, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, Calendar as CalendarIcon, QrCode, CheckCircle, XCircle, GitBranch } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -123,7 +123,7 @@ function ItemPageContent() {
 
             } catch (err: any) {
                 console.error("Error fetching item details:", err);
-                setError(err.message || t('errors.loadError'));
+                setError(err.message || t('errors.loadItem.description'));
             } finally {
                 setIsLoading(false);
             }
@@ -151,7 +151,7 @@ function ItemPageContent() {
                 toast({ variant: 'destructive', title: t('coupon.failTitle'), description: data.message || t('coupon.failDescription') });
             }
         } catch (error: any) {
-            toast({ variant: 'destructive', title: t('errors.title'), description: error.message || t('errors.unexpected') });
+            toast({ variant: 'destructive', title: t('errors.unexpected'), description: error.message || '' });
         } finally {
             setIsApplyingCoupon(false);
         }
@@ -485,7 +485,7 @@ function ItemPageContent() {
                     <Button variant="outline" onClick={() => setIsOrderDialogOpen(false)}>{t('order.cancelButton')}</Button>
                     <Button onClick={handlePlaceOrder} disabled={isPlacingOrder}>
                         {isPlacingOrder && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                        {t('order.confirmButton')} 
+                        {isPlacingOrder ? t('order.placingButton') : t('order.confirmButton')}
                     </Button>
                 </DialogFooter>
             </DialogContent>
