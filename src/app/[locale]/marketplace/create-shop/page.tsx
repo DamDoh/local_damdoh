@@ -4,7 +4,6 @@
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm, zodResolver } from "@hookform/resolvers/zod";
@@ -19,12 +18,14 @@ import { STAKEHOLDER_ROLES } from '@/lib/constants';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
+import { useTranslations } from 'next-intl';
 
 /**
  * Frontend component for stakeholders to create their Digital Shopfront.
  * This UI calls the `createShop` backend function.
  */
 export default function CreateShopPage() {
+  const t = useTranslations('Marketplace.createShop');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
@@ -43,7 +44,7 @@ export default function CreateShopPage() {
 
   const handleSubmit = async (data: CreateShopValues) => {
     if (!user) {
-        toast({ title: "Not Authenticated", description: "You must be logged in to create a shop.", variant: "destructive"});
+        toast({ title: t('authErrorTitle'), description: t('authErrorDescription'), variant: "destructive"});
         return;
     }
     setIsSubmitting(true);
@@ -51,19 +52,18 @@ export default function CreateShopPage() {
       await createShopCallable(data);
 
       toast({
-        title: "Shopfront Created!",
-        description: `Your Digital Shopfront "${data.name}" has been successfully created.`,
+        title: t('toast.successTitle'),
+        description: t('toast.successDescription', { shopName: data.name }),
       });
 
-      // Redirect to a relevant page, e.g., the user's main profile or a new shop management page
       router.push('/profiles/me');
 
     } catch (error: any) {
       console.error("Error creating shopfront:", error);
       toast({
         variant: "destructive",
-        title: "Creation Failed",
-        description: error.message || "An unexpected error occurred. Please try again.",
+        title: t('toast.failTitle'),
+        description: error.message || t('toast.failDescription'),
       });
     } finally {
       setIsSubmitting(false);
@@ -73,15 +73,15 @@ export default function CreateShopPage() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-4">
       <Button asChild variant="outline">
-          <Link href="/marketplace"><ArrowLeft className="h-4 w-4 mr-2" />Back to Marketplace</Link>
+          <Link href="/marketplace"><ArrowLeft className="h-4 w-4 mr-2" />{t('backLink')}</Link>
       </Button>
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
             <Building className="h-6 w-6 text-primary"/>
-            <CardTitle className="text-2xl">Create Your Digital Shopfront</CardTitle>
+            <CardTitle className="text-2xl">{t('title')}</CardTitle>
           </div>
-          <CardDescription>Establish your presence on the DamDoh Marketplace. This will be your public page to showcase products or services.</CardDescription>
+          <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -91,9 +91,9 @@ export default function CreateShopPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Shop / Service Name</FormLabel>
+                    <FormLabel>{t('form.nameLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Sokhom's Fresh Organics" {...field} />
+                      <Input placeholder={t('form.namePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -105,11 +105,11 @@ export default function CreateShopPage() {
                   name="stakeholderType"
                   render={({ field }) => (
                       <FormItem>
-                          <FormLabel>Primary Business Type</FormLabel>
+                          <FormLabel>{t('form.typeLabel')}</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                   <SelectTrigger>
-                                      <SelectValue placeholder="Select the main category of your business" />
+                                      <SelectValue placeholder={t('form.typePlaceholder')} />
                                   </SelectTrigger>
                               </FormControl>
                               <SelectContent>
@@ -128,9 +128,9 @@ export default function CreateShopPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Shop / Service Description</FormLabel>
+                    <FormLabel>{t('form.descriptionLabel')}</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Tell everyone what makes your products or services special." className="min-h-[120px]" {...field} />
+                      <Textarea placeholder={t('form.descriptionPlaceholder')} className="min-h-[120px]" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,10 +140,10 @@ export default function CreateShopPage() {
               <Button type="submit" className="w-full !mt-8" size="lg" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin"/>Creating...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin"/>{t('submittingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" />Create My Shopfront</>
+                    <><Save className="mr-2 h-4 w-4" />{t('submitButton')}</>
                 )}
               </Button>
             </form>

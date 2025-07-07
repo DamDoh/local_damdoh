@@ -50,25 +50,147 @@
     "forums": "Forums",
     "profile": "Profil"
   },
-  "marketplacePage": {
-    "title": "Marché Mondial",
-    "description": "Découvrez des produits agricoles, des équipements et des services du monde entier.",
-    "createListingButton": "Créer une annonce",
-    "createShopButton": "Créer une boutique",
-    "pinButton": "Épingler comme page d'accueil",
-    "unpinButton": "Désépingler la page d'accueil",
-    "searchPlaceholder": "Rechercher par produit ou service...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "typePlaceholder": "Filtrer par type...",
-    "allTypes": "Tous les types",
-    "recommendedForYou": "Recommandé pour vous",
-    "discoverMore": "Découvrir plus",
-    "noItemsFound": "Aucun article trouvé",
-    "noItemsHint": "Essayez d'ajuster votre recherche ou vos filtres.",
-    "viewDetails": "Voir les détails",
-    "viewServiceButton": "Voir le Service"
-  },
   "Marketplace": {
+    "createShop": {
+      "backLink": "Retour au Marché",
+      "title": "Créez Votre Vitrine Numérique",
+      "description": "Établissez votre présence sur le Marché DamDoh. Ce sera votre page publique pour présenter vos produits ou services.",
+      "authErrorTitle": "Non Authentifié",
+      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
+      "toast": {
+        "successTitle": "Vitrine Créée !",
+        "successDescription": "Votre vitrine numérique \"{shopName}\" a été créée avec succès.",
+        "failTitle": "Échec de la Création",
+        "failDescription": "Une erreur inattendue est survenue. Veuillez réessayer."
+      },
+      "form": {
+        "nameLabel": "Nom de la Boutique / du Service",
+        "namePlaceholder": "Ex: Les Produits Bio de Sokhom",
+        "typeLabel": "Type d'Entreprise Principal",
+        "typePlaceholder": "Sélectionnez la catégorie principale de votre entreprise",
+        "descriptionLabel": "Description de la Boutique / du Service",
+        "descriptionPlaceholder": "Dites à tout le monde ce qui rend vos produits ou services spéciaux."
+      },
+      "submittingButton": "Création en cours...",
+      "submitButton": "Créer Ma Vitrine"
+    },
+    "myOrders": {
+      "backLink": "Retour au Marché",
+      "title": "Mes Commandes Reçues",
+      "description": "Visualisez et gérez toutes les commandes pour les produits que vous avez listés.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour gérer vos commandes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Impossible de récupérer vos commandes.",
+        "successTitle": "Succès",
+        "updateSuccess": "Statut de la commande mis à jour à {status}.",
+        "failTitle": "Mise à Jour Échouée"
+      },
+      "table": {
+        "date": "Date de la Commande",
+        "buyer": "Acheteur",
+        "product": "Produit",
+        "total": "Total",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "noOrders": "Vous n'avez encore reçu aucune commande.",
+      "actions": {
+        "confirm": "Marquer comme Confirmé",
+        "ship": "Marquer comme Expédié",
+        "complete": "Marquer comme Terminé",
+        "cancel": "Annuler la Commande"
+      }
+    },
+    "shopPage": {
+      "backLink": "Retour au Marché",
+      "errorTitle": "Erreur",
+      "errorNotFound": "Boutique non trouvée.",
+      "errorLoad": "Impossible de charger la boutique.",
+      "ownedBy": "Propriété de",
+      "loadingOwner": "Chargement...",
+      "contactButton": "Contacter le Vendeur",
+      "editShopButton": "Modifier la Boutique",
+      "listingsTitle": "Annonces de {shopName}",
+      "noListings": "Cette boutique n'a pas encore d'annonces publiques."
+    },
+    "detail": {
+      "backLink": "Retour au Marché",
+      "traceabilityButton": "Voir le Rapport de Traçabilité",
+      "skillsLabel": "Compétences Requises",
+      "experienceLabel": "Niveau d'Expérience",
+      "compensationLabel": "Rémunération",
+      "contactForRates": "Contacter pour les tarifs",
+      "aboutSeller": "À propos du Vendeur",
+      "viewShopfront": "Voir la Vitrine",
+      "editListing": "Modifier l'Annonce",
+      "manageService": "Gérer le Service",
+      "buyNowButton": "Acheter Maintenant",
+      "contactForService": "Contacter pour le Service",
+      "contactSeller": "Contacter le Vendeur",
+      "errors": {
+        "title": "Erreur",
+        "notFound": "Article du marché non trouvé.",
+        "loadError": "Impossible de charger les détails de l'article.",
+        "unexpected": "Une erreur inattendue est survenue."
+      },
+      "coupon": {
+        "label": "Avez-vous un code promo ?",
+        "placeholder": "Entrez le code",
+        "applyButton": "Appliquer",
+        "appliedText": "Coupon appliqué avec succès : {code}",
+        "successTitle": "Coupon Appliqué !",
+        "successDescription": "Une réduction de {type, select, fixed {${discount}} other {{discount}%}} a été appliquée.",
+        "failTitle": "Coupon Invalide",
+        "failDescription": "Le code promo n'a pas pu être appliqué."
+      },
+      "booking": {
+        "authTitle": "Authentification Requise",
+        "authDescription": "Veuillez vous connecter pour réserver ce service.",
+        "failTitle": "Échec de la Réservation",
+        "dateError": "Veuillez sélectionner une date d'arrivée et de départ.",
+        "successTitle": "Succès !",
+        "successDescription": "Vous avez réservé ce service avec succès. Consultez votre profil pour plus de détails.",
+        "bookedTitle": "Réservé avec Succès !",
+        "bookedDescription": "Vous pouvez voir votre billet ci-dessous.",
+        "ticketButton": "Voir Votre Billet",
+        "modalTitle": "Votre Billet Numérique",
+        "modalDescription": "Pour {itemName}",
+        "modalScan": "Présentez ce code à l'opérateur pour l'enregistrement.",
+        "perNight": "nuit",
+        "checkIn": "ARRIVÉE",
+        "checkOut": "DÉPART",
+        "addDate": "Ajouter une date",
+        "guests": "INVITÉS",
+        "reservingButton": "Réservation en cours...",
+        "reserveButton": "Réserver",
+        "notCharged": "Vous ne serez pas facturé pour l'instant",
+        "nights": "nuits",
+        "serviceFee": "Frais de service",
+        "total": "Total"
+      },
+      "order": {
+        "authTitle": "Authentification Requise",
+        "authDescription": "Veuillez vous connecter pour passer une commande.",
+        "quantityErrorTitle": "Quantité Invalide",
+        "quantityErrorDescription": "Veuillez entrer une quantité valide.",
+        "successTitle": "Commande Passée !",
+        "successDescription": "Votre commande a été envoyée au vendeur.",
+        "failTitle": "Échec de la Commande",
+        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
+        "title": "Passer Commande pour : {itemName}",
+        "description": "Confirmez votre quantité et ajoutez des notes pour le vendeur.",
+        "quantityLabel": "Quantité",
+        "notesLabel": "Notes pour le Vendeur (Optionnel)",
+        "notesPlaceholder": "Ex: instructions de livraison spécifiques, exigences de qualité...",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer la Commande"
+      }
+    },
     "create": {
       "backLink": "Retour au Marché",
       "title": "Créer une nouvelle annonce",
@@ -337,13 +459,53 @@
     "noStakeholdersHint": "Essayez d'ajuster vos filtres ou revenez plus tard pour de nouveaux membres."
   },
   "FarmManagement": {
-    "title": "Hub de Gestion de la Ferme",
-    "description": "Votre centre de commande pour toutes les activités de la ferme, de la planification des cultures et des intrants KNF au suivi de la main-d'œuvre et des finances.",
+    "hub": {
+      "title": "Hub de Gestion de la Ferme",
+      "description": "Votre centre de commande pour toutes les activités de la ferme, de la planification des cultures et des intrants KNF au suivi de la main-d'œuvre et des finances.",
+      "myFarms": {
+        "title": "Mes Fermes",
+        "description": "Gérez vos fermes enregistrées, consultez leurs détails, et ajoutez ou suivez les cultures et le bétail.",
+        "button": "Gérer les Fermes"
+      },
+      "labor": {
+        "title": "Main-d'œuvre & Équipe",
+        "description": "Gérez vos ouvriers agricoles, enregistrez leurs heures et suivez les paiements.",
+        "button": "Gérer la Main-d'œuvre"
+      },
+      "knf": {
+        "title": "Assistant Intrants KNF",
+        "description": "Créez et suivez vos intrants d'Agriculture Naturelle Coréenne comme le FPJ, le FAA et le sérum de bactéries lactiques.",
+        "button": "Gérer les Intrants KNF"
+      },
+      "fgw": {
+        "title": "Guide de l'Agriculture selon Dieu (FGW)",
+        "description": "Apprenez les principes de FGW pour une agriculture durable à haut rendement avec un minimum d'intrants.",
+        "button": "Voir le Guide FGW"
+      },
+      "financials": {
+        "title": "Question d'Argent",
+        "description": "Enregistrez les revenus et les dépenses de votre ferme pour comprendre la rentabilité et construire votre historique financier.",
+        "button": "Voir les Finances"
+      },
+      "seedStarting": {
+        "title": "Calculateur de Démarrage de Semis",
+        "description": "Planifiez votre calendrier de plantation en calculant le bon moment pour démarrer les semis à l'intérieur pour une transplantation réussie.",
+        "button": "Planifier la Plantation"
+      },
+      "familyFarm": {
+        "title": "Modèle de Ferme Familiale",
+        "description": "Explorez le modèle de ferme familiale intégrée de 200m² pour une vie durable et autosuffisante.",
+        "button": "Explorer le Modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des Actifs",
+        "description": "Suivez vos machines, équipements et autres actifs de valeur de la ferme. (Bientôt disponible)",
+        "button": "Gérer les Actifs"
+      }
+    },
     "myFarms": {
-      "title": "Mes Fermes",
-      "description": "Gérez vos fermes enregistrées, consultez leurs détails, et ajoutez ou suivez les cultures et le bétail.",
-      "button": "Gérer les Fermes",
       "backToDashboard": "Retour au Hub de Gestion",
+      "title": "Mes Fermes",
       "addNewFarmButton": "Ajouter une Nouvelle Ferme",
       "size": "Taille",
       "viewFarmButton": "Voir les Détails de la Ferme",
@@ -393,1257 +555,429 @@
         "backButton": "Retour à Mes Fermes"
       }
     },
-    "knf": {
+    "knfInputsPage": {
+      "backLink": "Retour à la Gestion de la Ferme",
       "title": "Assistant Intrants KNF",
-      "description": "Créez et suivez vos intrants d'Agriculture Naturelle Coréenne comme le FPJ, le FAA et le sérum de bactéries lactiques.",
-      "button": "Gérer les Intrants KNF"
-    },
-    "financials": {
-      "title": "Question d'Argent",
-      "description": "Enregistrez les revenus et les dépenses de votre ferme pour comprendre la rentabilité et construire votre historique financier.",
-      "button": "Voir les Finances"
-    },
-    "assetManagement": {
-      "title": "Gestion des Actifs",
-      "description": "Suivez vos machines, équipements et autres actifs de valeur de la ferme. (Bientôt disponible)",
-      "button": "Gérer les Actifs"
-    }
-  },
-  "traceabilityPage": {
-    "title": "Hub de Traçabilité VTI",
-    "description": "Suivez vos produits agricoles de la ferme à la fourchette.",
-    "inputPlaceholder": "Entrez un ID de Traçabilité Vérifiable (VTI) pour commencer.",
-    "trackButton": "Suivre le Lot",
-    "vtiDescription": "Un VTI est un identifiant unique attribué à un lot de produits.",
-    "recentTitle": "Récemment Suivis",
-    "recentDescription": "Vos lots récemment consultés apparaîtront ici.",
-    "detailPage": {
-      "backLink": "Retour au Hub de Traçabilité",
-      "traceableProduct": "Produit Traçable",
-      "batchIdLabel": "ID du Lot",
-      "producerLabel": "Produit par",
-      "sustainablyGrownTitle": "Cultivé de manière durable",
-      "sustainablyGrownDescription": "Ce lot a été cultivé en utilisant des intrants naturels et durables approuvés selon son journal de traçabilité.",
-      "harvestDateLabel": "Date de Récolte",
-      "yieldLabel": "Rendement Initial",
-      "qualityLabel": "Qualité Initiale",
-      "journeyTitle": "Parcours du Produit",
-      "journeyDescription": "Un journal détaillé des événements pour ce lot, de la ferme à la fourchette.",
-      "noEventDetails": "Aucun détail spécifique fourni pour cet événement.",
-      "geoLocationLabel": "Géolocalisation",
-      "noEventsFound": "Aucun événement de traçabilité trouvé.",
-      "notFoundTitle": "Lot non trouvé",
-      "notFoundDescription": "Le lot que vous recherchez n'existe pas ou le lien est incorrect."
-    }
-  },
-  "Forums": {
-    "title": "Forums communautaires",
-    "description": "Connectez-vous, partagez et apprenez avec des pairs de tout l'écosystème agricole.",
-    "searchPlaceholder": "Rechercher tous les sujets...",
-    "lastActivity": "Dernière activité {time}",
-    "notFound": {
-      "title": "Aucun sujet trouvé",
-      "tryDifferentSearch": "Essayez un autre terme de recherche.",
-      "beTheFirst": "Soyez le premier à lancer une nouvelle discussion !"
-    },
-    "pinning": {
-      "pinnedTitle": "Forums épinglés !",
-      "pinnedDescription": "Les forums sont maintenant votre page d'accueil par défaut.",
-      "unpinnedTitle": "Page d'accueil désépinglée !",
-      "unpinnedDescription": "Le tableau de bord est maintenant votre page d'accueil par défaut."
-    },
-    "buttons": {
-      "createTopic": "Créer un nouveau sujet",
-      "pinHomepage": "Épingler comme page d'accueil",
-      "unpinHomepage": "Désépingler la page d'accueil",
-      "joinDiscussion": "Rejoindre la discussion"
-    },
-    "errors": {
-      "loadTitle": "Erreur de chargement des sujets",
-      "loadDescription": "Un problème est survenu lors de la récupération des forums communautaires. Veuillez réessayer."
-    },
-    "topic": {
-      "backLink": "Retour à {topicName}",
-      "unknownUser": "Utilisateur inconnu",
-      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
-      "noReplies": "Pas encore de réponses. Soyez le premier à répondre !",
-      "postMeta": "Par {author} le {date}",
-      "buttons": {
-        "loadingMore": "Chargement...",
-        "loadMore": "Charger plus de réponses"
-      },
-      "reply": {
-        "title": "Votre réponse",
-        "placeholder": "Écrivez votre réponse...",
-        "submittingButton": "Envoi en cours...",
-        "submitButton": "Publier la réponse",
-        "success": "Réponse publiée !"
-      },
-      "errors": {
-        "emptyReply": "Veuillez écrire une réponse avant de soumettre.",
-        "submitReply": {
-          "title": "Erreur lors de la publication de la réponse",
-          "description": "Impossible de soumettre votre réponse. Veuillez réessayer."
-        },
-        "loadReplies": {
-          "title": "Erreur de chargement des réponses",
-          "description": "Impossible de charger la discussion pour ce message."
-        },
-        "loadPost": {
-          "title": "Erreur de chargement du message",
-          "description": "Impossible de charger les détails du message."
-        }
-      },
-      "notFound": {
-        "title": "Message non trouvé.",
-        "description": "Ce message a peut-être été supprimé ou le lien est incorrect.",
-        "backButton": "Retour aux forums"
-      }
-    },
-    "createPost": {
-      "backLink": "Retour au sujet",
-      "title": "Lancer une nouvelle discussion",
-      "description": "Partagez vos pensées, posez des questions ou lancez une conversation avec d'autres membres de la communauté.",
-      "aiHelper": {
-        "title": "Assistant de publication IA",
-        "description": "Besoin d'un coup de main pour commencer ? Donnez une instruction à notre IA et elle rédigera le message pour vous.",
-        "promptLabel": "De quoi parle votre message ?",
-        "promptPlaceholder": "ex: une question sur la meilleure irrigation pour les tomates, ou partager mon succès avec les cultures de couverture",
-        "generatingButton": "Génération en cours...",
-        "generateButton": "Générer un brouillon avec l'IA"
-      },
+      "description": "Créez et gérez vos préparations d'Agriculture Naturelle Coréenne.",
+      "guidesTitle": "Guides de Recettes",
+      "ingredients": "Ingrédients",
+      "steps": "Étapes",
+      "usage": "Utilisation",
+      "fermentingBatchesTitle": "Lots en Fermentation",
+      "noFermentingBatches": "Vous n'avez aucun lot en fermentation actuellement.",
+      "readyBatchesTitle": "Lots Prêts",
+      "noReadyBatches": "Vous n'avez aucun lot prêt à l'emploi.",
+      "startNewBatch": "Démarrer un Nouveau Lot",
+      "createNewBatchTitle": "Créer un Nouveau Lot KNF",
       "form": {
-        "titleLabel": "Titre du message",
-        "titlePlaceholder": "Un titre clair et engageant",
-        "contentLabel": "Votre message",
-        "contentPlaceholder": "Partagez des détails, posez des questions ou fournissez un contexte pour votre discussion...",
-        "submittingButton": "Publication en cours...",
-        "submitButton": "Publier la discussion"
+        "typeLabel": "Type d'Intrant KNF",
+        "typePlaceholder": "Sélectionnez un intrant à créer...",
+        "ingredientsLabel": "Ingrédients Clés",
+        "startDateLabel": "Date de Début",
+        "startingButton": "Démarrage en cours...",
+        "startButton": "Démarrer le Lot"
       },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Instruction requise",
-          "description": "Veuillez fournir une instruction à l'IA pour générer un brouillon."
+      "cancel": "Annuler",
+      "toasts": {
+        "loadErrorTitle": "Erreur de Chargement des Lots",
+        "loadErrorDescription": "Impossible de récupérer vos lots existants.",
+        "validationError": "Veuillez remplir tous les champs pour démarrer un lot.",
+        "batchStartedTitle": "Lot Démarré !",
+        "batchStartedDescription": "Votre lot KNF est maintenant en fermentation. Revenez à la date d'échéance.",
+        "batchStartFailed": "Échec du Démarrage du Lot",
+        "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+        "batchUpdatedTitle": "Lot Mis à Jour",
+        "batchUpdatedDescription": "Le statut de votre lot a été mis à jour à {status}.",
+        "updateFailed": "Mise à Jour Échouée",
+        "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
+      },
+      "started": "Démarré",
+      "nextStepOn": "Prochaine étape le",
+      "markReady": "Marquer comme Prêt",
+      "readySince": "Prêt depuis",
+      "logUsage": "Enregistrer l'Utilisation",
+      "archive": "Archiver",
+      "knfOptions": [
+        {
+          "value": "fpj",
+          "label": "Jus de Plantes Fermentées (FPJ)",
+          "placeholder": "Ex: Pointes de patate douce, Tiges de bananier"
         },
-        "aiDraft": {
-          "title": "Échec de la génération du brouillon",
-          "description": "L'IA n'a pas pu générer de brouillon pour le moment. Veuillez réessayer ou rédiger le message manuellement."
+        {
+          "value": "faa",
+          "label": "Acide Aminé de Poisson (FAA)",
+          "placeholder": "Ex: Déchets de poisson, Têtes de tilapia"
         },
-        "incomplete": {
-          "title": "Message incomplet",
-          "description": "Veuillez fournir un titre et un contenu pour votre message."
+        {
+          "value": "wca",
+          "label": "Calcium Soluble dans l'Eau (WCA)",
+          "placeholder": "Ex: Coquilles d'œuf"
         },
-        "general": {
-          "title": "Erreur lors de la création du message",
-          "description": "Une erreur inattendue est survenue. Veuillez réessayer."
+        {
+          "value": "imo",
+          "label": "Micro-organismes Indigènes (IMO)",
+          "placeholder": "Ex: Riz cuit, Terre de forêt"
+        },
+        {
+          "value": "lab",
+          "label": "Sérum de Bactéries Lactiques (LAB)",
+          "placeholder": "Ex: Eau de lavage du riz, Lait"
         }
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Brouillon généré !",
-          "description": "L'IA a rédigé un titre et un contenu pour vous. N'hésitez pas à le modifier avant de le publier."
+      ],
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Jus de Plantes Fermentées (FPJ)",
+          "description": "Un puissant stimulateur de croissance fabriqué à partir des extraits fermentés de plantes à croissance rapide.",
+          "ingredients": [
+            "1 partie de pousses de plantes à croissance rapide (en poids)",
+            "1 partie de sucre brun ou de mélasse (en poids)"
+          ],
+          "steps": [
+            "Récoltez les pousses de plantes avant le lever du soleil.",
+            "Hachez grossièrement le matériel végétal.",
+            "Mélangez soigneusement avec un poids égal de sucre brun.",
+            "Tassez fermement dans un bocal, couvrez avec un tissu respirant.",
+            "Laissez fermenter dans un endroit frais et sombre pendant environ 7 jours."
+          ],
+          "usage": "Diluez de 1:500 à 1:1000 avec de l'eau pour une pulvérisation foliaire ou un arrosage au sol pendant la croissance végétative."
         },
-        "title": "Message créé !",
-        "description": "Votre discussion a été lancée dans le sujet."
-      }
-    },
-    "create": {
-      "backLink": "Retour aux forums",
-      "title": "Créer un nouveau sujet",
-      "description": "Lancez un nouveau sujet de discussion de haut niveau pour la communauté.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "Ex: Pratiques agricoles durables",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Une brève description de ce dont traite ce sujet.",
-        "submittingButton": "Création en cours...",
-        "submitButton": "Créer le sujet"
-      },
-      "errors": {
-        "auth": {
-          "title": "Authentification requise",
-          "description": "Vous devez être connecté pour créer un nouveau sujet."
-        },
-        "incomplete": {
-          "title": "Formulaire incomplet",
-          "description": "Veuillez remplir le nom et la description du sujet."
-        },
-        "general": {
-          "title": "Erreur lors de la création du sujet",
-          "description": "Une erreur inattendue est survenue. Veuillez réessayer."
+        {
+          "id": "faa",
+          "name": "Acide Aminé de Poisson (FAA)",
+          "description": "Un engrais riche en azote fabriqué à partir de parties de poisson fermentées, excellent pour stimuler la croissance et la saveur.",
+          "ingredients": [
+            "1 partie de déchets de poisson (en poids)",
+            "1 partie de sucre brun ou de mélasse (en poids)"
+          ],
+          "steps": [
+            "Superposez les déchets de poisson et le sucre brun dans un bocal.",
+            "Couvrez avec un tissu respirant et conservez dans un endroit frais et sombre.",
+            "Laissez fermenter pendant 3 à 6 mois. Filtrez le liquide.",
+            "Le liquide résultant est une source puissante d'azote."
+          ],
+          "usage": "Diluez 1:1000 avec de l'eau pour un arrosage au sol pendant les phases de croissance active."
         }
-      },
-      "success": {
-        "title": "Sujet créé !",
-        "description": "Votre nouveau sujet est maintenant en ligne pour la discussion."
-      }
-    }
-  },
-  "Auth": {
-    "signInWelcome": "Bienvenue à nouveau sur DamDoh",
-    "signInTitle": "Connectez-vous à votre compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte ?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Connexion",
-    "recoverWithUniversalIdPrompt": "Ou récupérer le compte avec l'ID Universel",
-    "signUpWelcome": "Rejoignez le réseau DamDoh",
-    "signUpTitle": "Créez votre compte",
-    "signUpDescription": "Commencez votre parcours dans l'écosystème agricole numérique.",
-    "nameLabel": "Nom complet ou nom de l'entreprise",
-    "namePlaceholder": "Ex : Jane Doe ou Green Valley Farms",
-    "roleLabel": "Votre rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle principal dans la chaîne d'approvisionnement",
-    "passwordPlaceholder": "••••••••",
-    "confirmPasswordLabel": "Confirmez le mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
-    "forgotPasswordResetPrompt": "Récupérez l'accès à votre compte DamDoh.",
-    "forgotPasswordTitle": "Mot de passe oublié",
-    "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
-    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte DamDoh.",
-    "resetPasswordTitle": "Réinitialisez votre mot de passe",
-    "resetPasswordDescription": "Choisissez un nouveau mot de passe fort pour votre compte.",
-    "newPasswordLabel": "Nouveau mot de passe",
-    "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
-    "resettingPasswordButton": "Réinitialisation en cours...",
-    "resetPasswordButton": "Réinitialiser le mot de passe",
-    "recoverPage": {
-      "title": "Récupération de compte",
-      "description": "Récupérez votre compte en utilisant la vérification sociale d'un ami de confiance sur DamDoh.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Saisissez le numéro de téléphone du compte que vous souhaitez récupérer.",
-      "step2": "Montrez le code QR temporaire sur votre écran à un ami de confiance qui est également un utilisateur DamDoh.",
-      "step3": "Votre ami scanne le code pour confirmer votre identité, vous donnant accès sur ce nouvel appareil.",
-      "startButton": "Démarrer la récupération",
-      "scanTitle": "Demandez à un ami de scanner",
-      "scanDescription": "Faites scanner ce code QR temporaire par une connexion DamDoh de confiance pour vérifier votre identité.",
-      "scanNote": "Ce code est valide pendant 10 minutes.",
-      "startOverButton": "Recommencer"
-    }
-  },
-  "walletPage": {
-    "title": "Portefeuille et Hub Financier DamDoh",
-    "description": "Gérez vos fonds en toute sécurité, consultez les transactions et accédez aux services financiers.",
-    "underDevelopmentTitle": "Fonctionnalité en cours de développement",
-    "underDevelopmentDescription": "Nous construisons un hub financier sécurisé et puissant pour gérer toutes les transactions de votre plateforme.",
-    "feature1": "Portefeuille numérique sécurisé",
-    "feature2": "Paiements de pair à pair fluides",
-    "feature3": "Accès aux prêts et crédits",
-    "feature4": "Historique détaillé des transactions",
-    "stayTuned": "Restez à l'écoute des mises à jour !"
-  },
-  "messagingPage": {
-    "error": "Erreur",
-    "couldNotLoadConversations": "Impossible de charger vos conversations.",
-    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
-    "sendFailed": "Envoi échoué",
-    "couldNotSendMessage": "Votre message n'a pas pu être envoyé. Veuillez réessayer.",
-    "signInToView": "Veuillez vous connecter pour voir vos messages.",
-    "signIn": "Connexion",
-    "title": "Messages",
-    "searchPlaceholder": "Rechercher des conversations...",
-    "noConversations": "Vous n'avez pas encore de conversations.",
-    "noMessages": "Sélectionnez une conversation pour commencer à discuter.",
-    "typeMessagePlaceholder": "Tapez un message...",
-    "selectConversation": "Sélectionnez une conversation pour commencer à discuter"
-  },
-  "notificationsPage": {
-    "title": "Notifications",
-    "description": "Voici une liste de vos notifications récentes sur toute la plateforme.",
-    "noNotifications": "Vous n'avez aucune nouvelle notification.",
-    "likedYourPost": "a aimé votre publication.",
-    "commentedOnYourPost": "a commenté votre publication.",
-    "viewedYourProfile": "a consulté votre profil.",
-    "placedNewOrder": "a passé une commande pour l'une de vos annonces.",
-    "sentConnectionRequest": "souhaite se connecter avec vous."
-  },
-  "AgriEvents": {
-    "page": {
-      "title": "Événements & Web-conférences Agri-Business",
-      "description": "Découvrez des conférences, des ateliers et des opportunités de réseautage dans le secteur agricole.",
-      "createNewEvent": "Créer un Nouvel Événement",
-      "pinAsHomepage": "Épingler comme page d'accueil",
-      "unpinHomepage": "Désépingler la page d'accueil",
-      "searchEvents": "Rechercher des Événements",
-      "searchPlaceholder": "Rechercher par titre, lieu ou sujet...",
-      "filterPlaceholder": "Filtrer par type d'événement",
-      "errorLoadingEvents": "Erreur de Chargement des Événements",
-      "couldNotFetchEvents": "Impossible de récupérer vos événements. Veuillez réessayer plus tard.",
-      "homepagePinned": "Page d'accueil épinglée !",
-      "agriEventsIsHomepage": "La page des Événements est maintenant votre page d'accueil par défaut.",
-      "homepageUnpinned": "Page d'accueil désépinglée !",
-      "dashboardIsHomepage": "Votre Tableau de Bord est maintenant votre page d'accueil par défaut.",
-      "organizedBy": "Organisé par {organizer}",
-      "viewDetails": "Voir les Détails",
-      "noEventsFound": "Aucun Événement Trouvé",
-      "noEventsHint": "Aucun événement ne correspond à vos critères pour le moment. <a>Pourquoi ne pas en créer un ?</a>"
+      ]
     },
-    "detail": {
-      "backLink": "Retour à tous les événements",
-      "organizedBy": "Organisé par {organizer}",
-      "attendees": "{count} participants inscrits sur {limit}",
-      "unlimited": "illimité",
-      "buttons": {
-        "manage": "Gérer l'Événement",
-        "share": "Partager",
-        "close": "Fermer",
-        "viewTicket": "Voir Votre Billet",
-        "registerAndPay": "S'inscrire et Payer (${price} {currency})",
-        "registerFree": "S'inscrire Gratuitement",
-        "full": "L'événement est complet",
-        "visitWebsite": "Visiter le Site Web de l'Événement"
-      },
-      "share": {
-        "title": "Partager l'Événement",
-        "description": "Partagez cet événement avec votre réseau en utilisant le lien ci-dessous.",
-        "link": "Lien",
-        "copy": "Copier",
-        "toastTitle": "Lien copié !",
-        "toastDescription": "Le lien de l'événement a été copié dans votre presse-papiers."
-      },
-      "ticket": {
-        "title": "Votre Billet Numérique",
-        "scan": "Faites scanner ce code à l'entrée de l'événement pour vous enregistrer."
-      },
-      "registration": {
-        "notAvailable": "L'inscription à cet événement n'est pas disponible pour le moment.",
-        "successTitle": "Inscription Réussie !",
-        "successDescription": "Vous êtes inscrit à cet événement. Nous avons hâte de vous y voir !",
-        "failTitle": "Échec de l'Inscription",
-        "discountApplied": "Réduction de {amount} {currency} appliquée.",
-        "finalPrice": "Prix final : {price} {currency}."
-      },
-      "coupon": {
-        "toastTitle": "Coupon Appliqué !",
-        "toastDescription": "Le code promo '{couponCode}' a été appliqué. La réduction sera visible à la caisse.",
-        "label": "Code Promo (optionnel)",
-        "placeholder": "Entrez un code promo",
-        "note": "La réduction sera appliquée à la dernière étape."
-      },
-      "errors": {
-        "loadTitle": "Échec du Chargement",
-        "loadDescription": "Les détails de cet événement n'ont pas pu être chargés.",
-        "signInTitle": "Connexion Requise",
-        "signInDescription": "Vous devez être connecté pour vous inscrire à un événement."
-      },
-      "notFound": {
-        "title": "Événement non trouvé",
-        "description": "L'événement que vous recherchez n'existe peut-être pas ou a été déplacé.",
-        "backButton": "Retour aux Événements"
-      }
-    },
-    "create": {
-      "backButton": "Retour aux Événements",
-      "formTitle": "Créer un Nouvel Événement Agri-Business",
-      "formDescription": "Remplissez les détails pour promouvoir votre conférence, webinaire ou rencontre.",
-      "authErrorTitle": "Non Authentifié",
-      "authErrorDescription": "Vous devez être connecté pour créer un événement.",
-      "uploadingTitle": "Téléchargement de l'image...",
-      "uploadingDescription": "Veuillez patienter pendant l'enregistrement de votre image.",
-      "uploadCompleteTitle": "Téléchargement Terminé !",
-      "successTitle": "Événement Créé !",
-      "successDescription": "Votre événement '{title}' a été créé avec succès et est maintenant en ligne.",
-      "failTitle": "Échec de la Création",
-      "failDescription": "Une erreur inattendue est survenue.",
-      "successCardTitle": "Événement '{title}' Créé !",
-      "successCardDescription": "Votre événement est maintenant visible sur la plateforme. Que souhaitez-vous faire ensuite ?",
-      "manageButton": "Gérer l'Événement",
-      "shareButton": "Partager le Lien de l'Événement",
-      "linkCopiedTitle": "Lien Copié !",
-      "linkCopiedDescription": "Le lien de l'événement a été copié dans votre presse-papiers.",
-      "createAnotherButton": "Créer un Autre Événement",
-      "viewAllButton": "Voir Tous les Événements",
-      "submittingButton": "Création en cours...",
-      "submitButton": "Créer l'Événement",
-      "form": {
-        "titleLabel": "Titre de l'Événement",
-        "titlePlaceholder": "Ex: Conférence sur l'Agriculture Durable 2024",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Une description détaillée de votre événement, incluant les intervenants, les sujets, etc.",
-        "dateLabel": "Date de l'Événement",
-        "datePlaceholder": "Choisir une date",
-        "timeLabel": "Heure de l'Événement (Optionnel)",
-        "timePlaceholder": "Ex: 09:00",
-        "timeDescription": "Spécifiez l'heure de début dans votre fuseau horaire local.",
-        "locationLabel": "Lieu",
-        "locationPlaceholder": "Ex: Nairobi, Kenya ou En ligne",
-        "locationDescription": "Entrez 'En ligne' pour les événements virtuels.",
-        "typeLabel": "Type d'Événement",
-        "typePlaceholder": "Sélectionnez le type d'événement",
-        "organizerLabel": "Organisateur (Optionnel)",
-        "organizerPlaceholder": "Ex: DamDoh Inc, Fondation Agri-Innovate",
-        "websiteLabel": "Lien du Site Web (Optionnel)",
-        "enableRegLabel": "Activer l'Inscription",
-        "enableRegDescription": "Permettre aux utilisateurs de s'inscrire directement sur DamDoh.",
-        "attendeeLimitLabel": "Limite de Participants (Optionnel)",
-        "attendeeLimitDescription": "Laisser vide pour un nombre illimité de participants.",
-        "priceLabel": "Prix (USD)",
-        "priceDescription": "Laisser vide pour gratuit.",
-        "currencyLabel": "Devise",
-        "currencyDescription": "Code à 3 lettres",
-        "imageUrlLabel": "URL de l'Image de Couverture (Optionnel)",
-        "imageUrlDescription": "OU téléchargez une image ci-dessous.",
-        "imageUploadLabel": "Télécharger une Image",
-        "imageUploadDescription": "Téléchargez une image pour votre événement. Cela remplacera l'URL ci-dessus. Max 5MB."
-      }
-    },
-    "manage": {
-      "title": "Gérer l'Événement",
-      "tabs": {
-        "checkin": "Check-in",
-        "staff": "Personnel",
-        "dashboard": "Tableau de bord",
-        "attendees": "Participants",
-        "promotions": "Promotions"
-      }
-    },
-    "promotions": {
-      "create": {
-        "title": "Créer un Nouveau Coupon",
-        "description": "Créez des codes de réduction pour encourager l'inscription à votre événement.",
-        "form": {
-          "code": "Code Promo",
-          "codePlaceholder": "ETE2024",
-          "usageLimit": "Limite d'Utilisation",
-          "usageLimitPlaceholder": "100",
-          "discountType": "Type de Réduction",
-          "discountTypePlaceholder": "Sélectionnez un type",
-          "percentage": "Pourcentage",
-          "fixed": "Montant Fixe",
-          "discountValue": "Valeur de la Réduction",
-          "expiryDate": "Date d'Expiration",
-          "pickDate": "Choisir une date",
-          "submitButton": "Créer le Coupon"
+    "familyFarmPage": {
+      "backLink": "Retour à la Gestion de la Ferme",
+      "title": "Modèle de Ferme Familiale Intégrée de 200m²",
+      "description": "Un système holistique et en circuit fermé pour la sécurité alimentaire et la génération de revenus sur une petite parcelle de terre.",
+      "intro": "Ce modèle, inspiré des principes de durabilité et de permaculture, démontre comment une petite surface de 10m x 20m peut être transformée en un écosystème productif. Il intègre la culture, l'élevage de petits animaux et le recyclage des ressources pour créer une ferme familiale autosuffisante.",
+      "diagramCaption": "Diagramme illustrant l'agencement du modèle de 200m².",
+      "detailsTitle": "Détails Clés",
+      "principlesTitle": "Principes Fondamentaux",
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Agencement et Conception d'Ensemble",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Diagramme de l'agencement de la ferme",
+          "dataAiHint": "farm layout diagram",
+          "description": [
+            "La parcelle de 200m² (10m x 20m) est conçue pour une efficacité et une synergie maximales entre les différents composants. L'agencement privilégie le flux de l'eau, l'exposition au soleil et la facilité d'accès.",
+            "C'est un système en circuit fermé où les déchets d'un composant deviennent une ressource précieuse pour un autre, minimisant les dépendances externes et les coûts."
+          ],
+          "subSections": [
+            {
+              "title": "Intégration",
+              "content": [
+                "Le fumier de poule fertilise les plates-bandes de légumes. L'eau de l'étang est utilisée pour l'irrigation. Les restes de cuisine nourrissent les poules et les vers. Cette intégration réduit les déchets et améliore la productivité."
+              ]
+            },
+            {
+              "title": "Production Intensive",
+              "content": [
+                "Utilise des techniques comme le jardinage vertical, la culture intercalaire et la plantation en succession pour maximiser la production alimentaire dans un espace limité."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vegetable-beds",
+          "title": "Plates-bandes de Légumes et de Cultures",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Plates-bandes de légumes luxuriantes",
+          "dataAiHint": "vegetable garden raised beds",
+          "description": [
+            "Le cœur de la production alimentaire, ces plates-bandes surélevées sont gérées de manière intensive en utilisant des principes biologiques et de l'Agriculture à la Manière de Dieu (FGW). Une gamme diversifiée de légumes, de légumineuses et de tubercules est cultivée toute l'année pour assurer un approvisionnement continu en nourriture nutritive.",
+            "Des techniques comme le paillage (Couverture de Dieu) sont largement utilisées pour conserver l'eau, supprimer les mauvaises herbes et augmenter la fertilité du sol."
+          ],
+          "details": [
+            {
+              "title": "Cultures Cultivées",
+              "content": [
+                "Produits de base comme le maïs, les haricots et les patates douces.",
+                "Légumes à haute valeur ajoutée : tomates, chou frisé, épinards, carottes.",
+                "Herbes et plantes médicinales."
+              ]
+            },
+            {
+              "title": "Gestion de la Fertilité",
+              "content": [
+                "Application régulière de compost du tas de compost et de lombricompost.",
+                "Utilisation d'intrants KNF comme le Jus de Plantes Fermentées (FPJ) pour améliorer la croissance."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "livestock",
+          "title": "Petit Élevage : Poules et Poissons",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Des poules picorant dans un poulailler et un petit étang",
+          "dataAiHint": "farm chickens pond",
+          "description": [
+            "Un petit troupeau de poules (5-10) est élevé pour les œufs et la viande. Leur enclos est conçu pour être mobile ou à litière profonde afin de récolter facilement du fumier riche en nutriments.",
+            "Un petit étang (environ 2m x 3m) est intégré pour élever des poissons comme le tilapia, fournissant une source de protéines. L'étang sert également de réservoir d'eau et d'habitat pour les insectes utiles."
+          ],
+          "details": [
+            {
+              "title": "Système de Poules",
+              "content": [
+                "Fournit des œufs, de la viande et un engrais riche en azote.",
+                "Nourries avec des restes de cuisine et des céréales locales, réduisant les coûts d'alimentation."
+              ]
+            },
+            {
+              "title": "Étang d'Aquaculture",
+              "content": [
+                "Élève des poissons à croissance rapide comme le Tilapia.",
+                "L'eau de l'étang, riche en nutriments, est utilisée pour irriguer les plates-bandes de légumes."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "resource-recycling",
+          "title": "Recyclage des Ressources : Compost et Lombricompost",
+          "icon": "Recycle",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un tas de compost et une vermicompostière",
+          "dataAiHint": "compost bin worms",
+          "description": [
+            "Rien n'est gaspillé dans le modèle de ferme familiale intégrée. Une zone dédiée est utilisée pour composter tous les déchets organiques de la ferme et du ménage.",
+            "Une vermicompostière (ferme à vers) est également maintenue pour produire du lombricompost de haute qualité, un excellent amendement du sol et un engrais naturel."
+          ],
+          "details": [
+            {
+              "title": "Tas de Compost",
+              "content": [
+                "Décompose les résidus de culture, le fumier animal et les restes de cuisine en un compost riche en humus pour améliorer la santé du sol."
+              ]
+            },
+            {
+              "title": "Vermicompostière",
+              "content": [
+                "Les vers de terre transforment efficacement les déchets organiques en lombricompost dense en nutriments et en 'thé de vers' liquide."
+              ]
+            }
+          ]
         }
-      },
-      "list": {
-        "title": "Coupons Actifs",
-        "description": "Gérez et partagez vos coupons existants.",
-        "expires": "Expire le",
-        "usage": "Utilisation",
-        "share": "Partager",
-        "toastTitle": "Lien Copié !",
-        "toastDescription": "Un lien partageable avec le coupon '{link}' a été copié.",
-        "noCoupons": "Vous n'avez pas encore créé de coupons pour cet événement."
+      ],
+      "conclusion": {
+        "title": "Un Modèle de Résilience et de Prospérité",
+        "content": [
+          "La Ferme Familiale Intégrée de 200m² est plus qu'une simple méthode d'agriculture ; c'est un chemin vers l'autosuffisance, une meilleure nutrition et une résilience économique pour les familles de petits exploitants.",
+          "En adoptant ces principes, les familles peuvent réduire considérablement leurs dépenses alimentaires, générer des revenus excédentaires et construire un environnement plus sain pour les générations futures.",
+          "DamDoh s'engage à soutenir les agriculteurs dans l'adoption et l'adaptation de tels modèles durables."
+        ]
       }
     },
-    "attendees": {
-      "title": "Liste des Participants",
-      "description": "Voir tous ceux qui se sont inscrits à votre événement.",
-      "downloadCsv": "Télécharger CSV",
-      "nameHeader": "Nom",
-      "emailHeader": "E-mail",
-      "registeredOnHeader": "Inscrit le",
-      "statusHeader": "Statut",
-      "statusCheckedIn": "Enregistré",
-      "statusRegistered": "Inscrit",
-      "noAttendees": "Aucun participant n'est encore inscrit."
-    }
-  },
-  "ProfilePage": {
-    "editProfile": "Modifier le profil",
-    "showUniversalIdButton": "Afficher l'ID universel",
-    "universalIdModalTitle": "Votre ID universel DamDoh",
-    "universalIdModalDescription": "Utilisez ce code QR pour un enregistrement rapide lors d'événements ou pour un réseautage facile.",
-    "connect": "Connecter",
-    "message": "Message",
-    "summaryTitle": "Résumé",
-    "aboutTitle": "À propos",
-    "experienceTitle": "Expérience",
-    "emailTitle": "E-mail",
-    "websiteTitle": "Site Web",
-    "interestsTitle": "Domaines d'intérêt",
-    "needsTitle": "Besoins clés / Offres",
-    "detailsTitle": "Détails",
-    "roleSpecificInfo": "Informations spécifiques au rôle",
-    "tempDisplayNotice": "Ceci est un affichage temporaire de données brutes à des fins de démonstration.",
-    "recentActivityTitle": "Activité récente",
-    "recentActivityDescription": "Un aperçu des actions récentes de cet utilisateur sur DamDoh.",
-    "noRecentActivity": "Aucune activité récente à afficher.",
-    "notFoundTitle": "Profil non trouvé",
-    "notFoundDescription": "Le profil demandé n'a pas pu être trouvé.",
-    "backToNetwork": "Retour au réseau"
-  },
-  "blogPage": {
-    "title": "Blog & Aperçus de DamDoh",
-    "description": "Restez à jour avec les dernières nouvelles, aperçus et réussites de la communauté DamDoh.",
-    "error": {
-      "title": "Erreur",
-      "description": "Impossible de charger les articles. Veuillez réessayer plus tard."
+    "fgwGuidePage": {
+      "backLink": "Retour à la Gestion de la Ferme",
+      "title": "Guide de l'Agriculture à la Manière de Dieu (FGW)",
+      "description": "Apprenez les principes fondamentaux de cette méthodologie agricole durable, sans labour et à haut rendement.",
+      "intro": "L'Agriculture à la Manière de Dieu est une méthode agricole économe en ressources qui cherche à honorer Dieu en étant de fidèles intendants de la terre. Elle se concentre sur une perturbation minimale du sol, un paillage abondant et des normes élevées pour obtenir d'excellents rendements avec de faibles coûts d'intrants, transformant les moyens de subsistance et restaurant la création.",
+      "howToTitle": "Comment Faire",
+      "whyItWorksTitle": "Pourquoi ça Marche",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "Pas de Labour Mécanique",
+          "icon": "Shield",
+          "summary": "Au lieu de labourer tout le champ, le sol est laissé intact. Des stations de plantation permanentes sont utilisées année après année.",
+          "howTo": [
+            "Marquez des stations de plantation permanentes à l'espacement correct pour votre culture.",
+            "Creusez des trous uniquement à ces stations, pas sur tout le champ.",
+            "Appliquez du compost et de l'engrais directement dans les trous.",
+            "Plantez vos graines ou vos plants dans ces stations préparées."
+          ],
+          "whyItWorks": [
+            "Prévient l'érosion du sol par le vent et l'eau.",
+            "Protège la structure naturelle du sol et l'écosystème (vers, champignons).",
+            "Économise considérablement du travail, du temps et des coûts de carburant liés au labour."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un champ avec des stations de plantation au lieu de sillons labourés",
+          "dataAiHint": "no till farming"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "Couverture de Paillis à 100% (Couverture de Dieu)",
+          "icon": "Leaf",
+          "summary": "Le sol est toujours recouvert d'une épaisse couche de matière organique (paillis), tout comme Dieu recouvre le sol de la forêt de feuilles.",
+          "howTo": [
+            "Rassemblez de la matière organique sèche comme de l'herbe, de la paille ou des tiges de maïs.",
+            "Appliquez une épaisse couverture (au moins 10-15 cm) sur toute la surface du sol entre les stations de plantation.",
+            "Ne brûlez jamais les résidus de culture ; utilisez-les pour la couverture.",
+            "Ajoutez continuellement à la couverture au fur et à mesure de sa décomposition."
+          ],
+          "whyItWorks": [
+            "Réduit considérablement l'évaporation de l'eau, conservant l'humidité.",
+            "Supprime la croissance des mauvaises herbes, réduisant le travail de désherbage.",
+            "Nourrit le sol en se décomposant, augmentant la fertilité.",
+            "Régule la température du sol, protégeant les racines des plantes."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un champ couvert d'une épaisse couche de paillis",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "Pratiquer avec des Normes Élevées",
+          "icon": "CheckCircle",
+          "summary": "Faire tout à temps et avec excellence, de la plantation à la récolte, pour maximiser le potentiel que Dieu a placé dans la terre.",
+          "howTo": [
+            "Plantez à temps au début des pluies.",
+            "Utilisez des espacements et des profondeurs de plantation précis.",
+            "Gérez les ravageurs et les maladies de manière proactive.",
+            "Récoltez au moment optimal pour assurer la qualité et réduire les pertes."
+          ],
+          "whyItWorks": [
+            "Assure que la culture bénéficie pleinement de la saison des pluies.",
+            "Évite le surpeuplement et donne à chaque plante la meilleure chance de prospérer.",
+            "Maximise le rendement et la rentabilité de votre parcelle.",
+            "Honore Dieu en faisant votre travail avec diligence."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un agriculteur plantant soigneusement des graines dans une station bien préparée",
+          "dataAiHint": "farmer planting seeds"
+        }
+      ]
     },
-    "noPosts": {
-      "title": "Aucun message pour le moment !",
-      "description": "Revenez bientôt pour des aperçus de l'industrie agricole, des réussites et plus encore."
+    "seedStartingPage": {
+      "backLink": "Retour à la Gestion de la Ferme",
+      "title": "Guide et Calculateur de Démarrage des Semis",
+      "description": "Planifiez votre calendrier de plantation pour une récolte réussie en commençant les semis au bon moment.",
+      "intro": "Démarrer les semis à l'intérieur donne à vos cultures une longueur d'avance, les protège des ravageurs et des intempéries lorsqu'elles sont les plus vulnérables, et vous permet d'obtenir une récolte plus précoce. Ce guide vous aide à déterminer quand démarrer vos semis en fonction de la date moyenne de la dernière gelée dans votre région.",
+      "sections": [
+        {
+          "id": "why-start-indoors",
+          "title": "Pourquoi Démarrer les Semis à l'Intérieur ?",
+          "icon": "Lightbulb",
+          "intro": "Démarrer les semis à l'intérieur, ou 'repiquer', offre plusieurs avantages clés par rapport à la plantation directe dans le jardin (semis direct).",
+          "points": [
+            {
+              "term": "Saison de Croissance Plus Longue",
+              "def": "Prenez de l'avance sur la saison en ayant des plants matures prêts à être plantés dès que le temps est favorable."
+            },
+            {
+              "term": "Protection",
+              "def": "Les jeunes plants sont protégés des ravageurs, des maladies et des conditions météorologiques imprévisibles pendant leur étape la plus fragile."
+            },
+            {
+              "term": "Meilleure Germination",
+              "def": "Vous pouvez contrôler la température, la lumière et l'humidité pour assurer un taux de germination plus élevé."
+            },
+            {
+              "term": "Contrôle des Mauvaises Herbes",
+              "def": "Planter des plants établis dans un lit préparé facilite la gestion des mauvaises herbes par rapport à l'attente de la germination de petites graines."
+            }
+          ]
+        },
+        {
+          "id": "what-you-need",
+          "title": "Ce dont Vous Aurez Besoin",
+          "icon": "Package",
+          "intro": "Vous n'avez pas besoin d'équipement coûteux pour commencer. Voici les bases :",
+          "points": [
+            {
+              "term": "Contenants",
+              "def": "Des barquettes de semis, des pots de tourbe, des mottes de terre, ou même des contenants recyclés comme des pots de yaourt (avec des trous de drainage)."
+            },
+            {
+              "term": "Terreau de Semis",
+              "def": "Un mélange léger et stérile est meilleur pour la germination qu'un sol de jardin lourd. Vous pouvez acheter un mélange ou le faire vous-même."
+            },
+            {
+              "term": "Lumière",
+              "def": "Une fenêtre ensoleillée orientée au sud est une bonne chose, mais une simple lampe fluorescente d'atelier ou une lampe de culture LED est préférable pour éviter que les plants ne deviennent 'étiolés'."
+            },
+            {
+              "term": "Eau et Chaleur",
+              "def": "Un pulvérisateur pour un arrosage en douceur et un emplacement chaud (ou un tapis chauffant) pour encourager la germination."
+            }
+          ]
+        },
+        {
+          "id": "calculator",
+          "title": "Quand Démarrer Vos Semis",
+          "icon": "Grid",
+          "intro": "La clé de la planification est la 'Date Moyenne de la Dernière Gelée' de votre région. C'est la date moyenne de la dernière gelée légère au printemps. Vous pouvez généralement la trouver en ligne en recherchant votre ville ou votre région.",
+          "steps": [
+            "<strong>Étape 1 : Trouvez Votre Date de Dernière Gelée.</strong> Entrez votre emplacement dans un moteur de recherche (par exemple, 'dernière gelée Paris').",
+            "<strong>Étape 2 : Vérifiez Votre Paquet de Graines.</strong> Recherchez des instructions comme 'Commencer à l'intérieur 6-8 semaines avant la dernière gelée'.",
+            "<strong>Étape 3 : Comptez à Rebours.</strong> À partir de votre date de dernière gelée, comptez à rebours le nombre de semaines recommandé sur un calendrier. C'est votre date cible pour commencer les semis !",
+            "<strong>Exemple :</strong> La dernière gelée est le 15 mai. Le paquet de graines indique 'Commencer 6 semaines avant'. Compter 6 semaines à rebours vous donne une date de début du 3 avril."
+          ]
+        }
+      ]
     },
-    "readMore": "Lire la suite",
-    "meta": "Par {author} le {date}"
-  },
-  "Blog": {
-    "backLink": "Retour au blog",
-    "notFound": {
-      "title": "Message non trouvé",
-      "description": "Le message que vous recherchez n'existe pas ou a été déplacé.",
-      "backButton": "Retour au blog"
-    },
-    "errors": {
-      "title": "Erreur",
-      "load": "Impossible de charger le billet de blog. Veuillez réessayer plus tard."
-    }
-  },
-  "about": {
-    "title": "À propos de DamDoh",
-    "subtitle": "Notre mission, notre vision et les valeurs qui nous animent.",
-    "mission": {
-      "title": "Notre mission",
-      "content": "Notre mission est de renforcer l'industrie agricole mondiale en créant une chaîne d'approvisionnement transparente, efficace et durable. Nous connectons les agriculteurs, les acheteurs, les prestataires de services et les autres parties prenantes pour favoriser la croissance, réduire les déchets et assurer la sécurité alimentaire pour tous."
-    },
-    "vision": {
-      "title": "Notre vision",
-      "content": "Nous envisageons un monde où chaque agriculteur, quelle que soit sa taille ou son emplacement, a accès aux outils, aux connaissances et aux marchés dont il a besoin pour prospérer. Nous visons à être le système d'exploitation de l'agriculture mondiale, favorisant la confiance, la collaboration et la prospérité pour tous les participants."
-    },
-    "values": {
-      "title": "Nos valeurs",
-      "sustainability": {
-        "title": "Durabilité",
-        "content": "Nous nous engageons à des pratiques qui protègent la planète et assurent la viabilité à long terme de l'agriculture."
+    "laborPage": {
+      "title": "Gestion de la Main-d'Œuvre",
+      "description": "Suivez vos ouvriers agricoles, enregistrez leurs heures et gérez les paiements en un seul endroit.",
+      "loading": "Chargement...",
+      "signInPrompt": {
+        "title": "Veuillez vous connecter",
+        "button": "Se connecter"
       },
-      "collaboration": {
-        "title": "Collaboration",
-        "content": "Nous croyons que les plus grands défis de l'agriculture peuvent être résolus par la coopération et le partage des connaissances."
-      },
-      "innovation": {
-        "title": "Innovation",
-        "content": "Nous tirons parti de la technologie pour résoudre des problèmes concrets, améliorer l'efficacité et créer de nouvelles opportunités."
-      },
-      "integrity": {
-        "title": "Intégrité",
-        "content": "Nous opérons avec honnêteté et transparence, en instaurant la confiance dans tous les aspects de notre plateforme."
-      },
-      "empowerment": {
-        "title": "Autonomisation",
-        "content": "Nous fournissons aux utilisateurs les outils et les informations dont ils ont besoin pour prendre des décisions éclairées et développer leurs entreprises."
+      "backLink": "Retour au Hub de Gestion de la Ferme",
+      "addWorker": "Ajouter un Nouvel Ouvrier",
+      "workerName": "Nom de l'Ouvrier",
+      "saveWorker": "Enregistrer l'Ouvrier",
+      "logHoursFor": "Enregistrer les Heures pour",
+      "logPaymentFor": "Enregistrer le Paiement pour",
+      "hoursWorked": "Heures Travaillées",
+      "date": "Date",
+      "pickDate": "Choisir une date",
+      "taskDescription": "Description de la Tâche (Optionnel)",
+      "amountPaid": "Montant Payé (USD)",
+      "logHours": "Enregistrer les Heures",
+      "logPayment": "Enregistrer le Paiement",
+      "noWorkers": "Aucun ouvrier n'a encore été ajouté. Cliquez sur 'Ajouter un Nouvel Ouvrier' pour commencer.",
+      "hoursLogged": "Total des Heures Enregistrées",
+      "totalPaid": "Total Payé",
+      "viewDetails": "Voir Détails & Historique",
+      "toasts": {
+        "errorTitle": "Erreur",
+        "fetchWorkersError": "Impossible de récupérer votre liste d'ouvriers.",
+        "nameRequired": "Le nom de l'ouvrier est requis.",
+        "workerAdded": "Ouvrier ajouté avec succès !",
+        "hoursLogged": "Heures enregistrées avec succès !",
+        "paymentLoggedTitle": "Paiement Enregistré !",
+        "paymentLoggedDescription": "Le paiement a été enregistré et une transaction de dépense a été créée dans vos finances."
       }
     },
-    "team": {
-      "title": "Notre équipe",
-      "intro": "DamDoh est dirigé par une équipe diversifiée de technologues, d'agronomes et de professionnels des affaires partageant une passion commune pour l'agriculture.",
-      "member1Name": "Dr. Elara Vance",
-      "member1Role": "PDG et fondatrice",
-      "member1Bio": "Économiste agricole avec une vision d'utiliser la technologie pour résoudre les défis alimentaires mondiaux.",
-      "member2Name": "Kofi Anan",
-      "member2Role": "CTO",
-      "member2Bio": "Softwarearchitekt, der skalierbare Plattformen für aufstrebende Märkte entwickelt.",
-      "member3Name": "Maria Sol",
-      "member3Role": "Leiterin der Community",
-      "member3Bio": "Setzt sich für Kleinbauern ein und baut starke, unterstützende Gemeinschaften auf.",
-      "note": "Les informations sur les membres de l'équipe sont illustratives."
-    }
-  },
-  "careers": {
-    "title": "Carrières chez DamDoh",
-    "subtitle": "Rejoignez-nous pour façonner l'avenir de l'agriculture.",
-    "whyWorkWithUs": {
-      "title": "Pourquoi travailler avec nous ?",
-      "intro": "Rejoindre DamDoh, c'est faire partie d'une organisation axée sur une mission qui a un impact réel sur le monde. Nous offrons :",
-      "point1": "Un environnement de travail collaboratif et innovant.",
-      "point2": "Des opportunités de travailler sur des problèmes stimulants à impact mondial.",
-      "point3": "Un engagement envers la croissance et le développement professionnels.",
-      "point4": "Une rémunération et des avantages sociaux compétitifs.",
-      "point5": "Une culture qui valorise la diversité, l'inclusion et l'équilibre travail-vie personnelle."
-    },
-    "currentOpenings": {
-      "title": "Postes à pourvoir"
-    },
-    "openings": {
-      "job1": {
-        "title": "Ingénieur Backend Senior (Logistique)",
-        "location": "Télétravail / Nairobi, Kenya",
-        "type": "Temps plein",
-        "description": "Concevoir et construire les services de backend qui alimentent nos outils de logistique et d'optimisation de la chaîne d'approvisionnement."
+    "workerDetailPage": {
+      "backLink": "Retour à la Gestion de la Main-d'Œuvre",
+      "notFoundTitle": "Ouvrier non trouvé",
+      "notFoundDescription": "Le profil de l'ouvrier que vous recherchez n'a pas pu être trouvé.",
+      "goBackButton": "Retour",
+      "workLogsTitle": "Journaux de Travail",
+      "paymentHistoryTitle": "Historique des Paiements",
+      "table": {
+        "date": "Date",
+        "hours": "Heures",
+        "task": "Tâche",
+        "amount": "Montant"
       },
-      "job2": {
-        "title": "Chef de Produit, Outils pour Agriculteurs",
-        "location": "Télétravail / Ames, IA, États-Unis",
-        "type": "Temps plein",
-        "description": "Diriger le développement de notre suite de gestion agricole, en veillant à ce qu'elle soit intuitive et percutante pour les agriculteurs du monde entier."
-      },
-      "job3": {
-        "title": "Responsable de Communauté (Francophone)",
-        "location": "Télétravail / Afrique de l'Ouest",
-        "type": "Temps plein",
-        "description": "Engagez-vous et soutenez notre communauté croissante d'utilisateurs francophones à travers l'Afrique de l'Ouest."
-      }
-    },
-    "applyNowButton": "Postuler maintenant",
-    "noOpenings": {
-      "title": "Aucun poste vacant",
-      "content1": "Nous n'avons actuellement aucun poste vacant, mais nous sommes toujours intéressés à entendre des personnes talentueuses. Envoyez votre CV à {emailLink}."
+      "noWorkLogs": "Aucune heure de travail enregistrée pour le moment.",
+      "noPayments": "Aucun paiement enregistré pour le moment."
     }
-  },
-  "communityGuidelines": {
-    "title": "Règles de la communauté",
-    "subtitle": "Notre engagement envers une communauté sûre, digne de confiance et professionnelle.",
-    "intro": "Bienvenue dans la communauté DamDoh ! Pour garantir que cet espace reste productif et respectueux pour tous, nous vous demandons de suivre ces directives :",
-    "respectful": {
-      "title": "Soyez respectueux",
-      "description": "Traitez tous les membres avec respect et professionnalisme. Les attaques personnelles, le harcèlement ou les discours haineux ne seront pas tolérés."
-    },
-    "authentic": {
-      "title": "Soyez authentique",
-      "description": "Représentez-vous et votre entreprise honnêtement. N'utilisez pas de faux profils et ne fournissez pas d'informations trompeuses."
-    },
-    "relevant": {
-      "title": "Restez pertinent",
-      "description": "Gardez les discussions et les publications pertinentes pour l'agriculture, les chaînes d'approvisionnement alimentaire et les sujets connexes. Le spam ou l'autopromotion en dehors du marché ne sont pas autorisés."
-    },
-    "fairTrade": {
-      "title": "Commercez équitablement",
-      "description": "Menez vos affaires avec intégrité. Respectez les accords, représentez les produits avec précision et communiquez de manière claire et honnête."
-    },
-    "sustainable": {
-      "title": "Promouvez la durabilité",
-      "description": "Nous encourageons les discussions et les pratiques qui favorisent la durabilité environnementale, sociale et économique dans l'agriculture."
-    },
-    "reporting": {
-      "title": "Signaler les violations",
-      "content": "Si vous rencontrez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe d'assistance à {emailLink}."
-    },
-    "conclusion": "Merci de faire partie d'une communauté agricole mondiale digne de confiance et professionnelle."
-  },
-  "contact": {
-    "title": "Contactez-nous",
-    "subtitle": "Nous serions ravis de vous entendre ! Voici comment vous pouvez nous joindre.",
-    "emailUs": {
-      "title": "Envoyez-nous un e-mail",
-      "general": "Demandes générales",
-      "support": "Soutien",
-      "partnerships": "Partenariats"
-    },
-    "callUs": {
-      "title": "Appelez-nous",
-      "hours": "Lundi - Vendredi, 9h - 17h (EAT)",
-      "phone": "+254 700 000 000"
-    },
-    "ourOffice": {
-      "title": "Notre bureau",
-      "org": "Siège social mondial de DamDoh",
-      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
-    },
-    "sendMessage": {
-      "title": "Envoyer un message",
-      "nameLabel": "Votre nom",
-      "namePlaceholder": "Jane Doe",
-      "emailLabel": "Votre e-mail",
-      "emailPlaceholder": "jane.doe@example.com",
-      "subjectLabel": "Sujet",
-      "subjectPlaceholder": "Sujet de votre message",
-      "messageLabel": "Message",
-      "messagePlaceholder": "Tapez votre message ici...",
-      "buttonText": "Envoyer le message",
-      "note": "Ceci est un formulaire de démonstration. Veuillez utiliser les adresses e-mail pour les demandes réelles."
-    }
-  },
-  "helpCenterPage": {
-    "title": "Centre d'aide",
-    "subtitle": "Trouvez les réponses à vos questions",
-    "howCanWeHelp": "Comment pouvons-nous vous aider ?",
-    "searchPlaceholder": "Rechercher des sujets, des mots-clés ou des questions...",
-    "browseTopics": "Parcourir les sujets",
-    "gettingStarted": {
-      "title": "Mise en route",
-      "description": "Apprenez à configurer votre compte, à créer votre profil et à commencer à naviguer sur la plateforme.",
-      "placeholder": "Les guides de mise en route apparaîtront ici."
-    },
-    "marketplaceGuide": {
-      "title": "Guide du marché",
-      "description": "Instructions détaillées sur la création d'annonces, l'achat d'articles et la gestion sécurisée des transactions.",
-      "placeholder": "Les guides du marché apparaîtront ici."
-    },
-    "accountManagement": {
-      "title": "Gestion de compte",
-      "description": "Trouvez de l'aide pour la réinitialisation des mots de passe, les paramètres de notification et les options de confidentialité.",
-      "placeholder": "Les guides de gestion de compte apparaîtront ici."
-    },
-    "troubleshooting": {
-      "title": "Dépannage",
-      "description": "Solutions aux problèmes courants et conseils de dépannage.",
-      "placeholder": "Les articles de dépannage apparaîtront ici."
-    },
-    "stillNeedHelp": {
-      "title": "Besoin d'aide ?",
-      "description": "Notre équipe d'assistance est prête à vous aider pour toute question.",
-      "button": "Contacter le support"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Actualités et tendances du secteur",
-    "description": "Restez informé des dernières avancées en matière de technologie agricole, des prix du marché et des chaînes d'approvisionnement mondiales.",
-    "searchPlaceholder": "Rechercher des articles d'actualité...",
-    "categoryPlaceholder": "Sélectionner une catégorie",
-    "allCategories": "Toutes les catégories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Publié",
-    "categoryLabel": "Catégorie",
-    "readButton": "Lire l'article complet",
-    "news1": {
-      "title": "Les prix mondiaux du café atteignent un sommet de 18 mois en raison des problèmes de la chaîne d'approvisionnement",
-      "excerpt": "Les goulots d'étranglement logistiques en Amérique du Sud et les conditions météorologiques défavorables en Asie du Sud-Est ont poussé les contrats à terme sur le café à leurs plus hauts niveaux depuis début 2022."
-    },
-    "news2": {
-      "title": "L'UE introduit de nouvelles réglementations sur les emballages durables pour les denrées alimentaires importées",
-      "excerpt": "À partir de janvier 2025, toutes les importations agricoles dans l'Union européenne devront respecter de nouvelles normes plus strictes en matière d'emballages recyclables et compostables."
-    },
-    "news3": {
-      "title": "Une étude montre que l'agriculture régénérative augmente la rétention d'eau des sols jusqu'à 25%",
-      "excerpt": "Une étude à long terme de l'Institut mondial de l'agriculture révèle que les pratiques de non-labour et de cultures de couverture améliorent considérablement la capacité du sol à retenir l'eau, augmentant ainsi la résilience à la sécheresse."
-    },
-    "noNews": {
-      "title": "Aucun article d'actualité",
-      "description": "Aucun article d'actualité n'est disponible pour le moment. Veuillez revenir plus tard."
-    }
-  },
-  "privacyPolicy": {
-    "title": "Politique de confidentialité",
-    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
-    "introduction": "Bienvenue sur DamDoh. Nous nous engageons à protéger votre vie privée. Cette politique de confidentialité explique comment nous collectons, utilisons, divulguons et protégeons vos informations.",
-    "whatInfoWeCollect": {
-      "heading": "Quelles informations collectons-nous ?",
-      "content": "Nous collectons les informations que vous nous fournissez directement, comme lorsque vous créez un compte, et les informations qui sont collectées automatiquement, comme les données d'utilisation et les cookies."
-    },
-    "howWeUseInfo": {
-      "heading": "Comment utilisons-nous vos informations ?",
-      "content": "Nous utilisons vos informations pour fournir, exploiter et améliorer nos services, pour communiquer avec vous, pour traiter les transactions et pour sécuriser notre plateforme."
-    },
-    "willInfoBeShared": {
-      "heading": "Vos informations seront-elles partagées avec quelqu'un ?",
-      "content": "Nous ne partageons les informations qu'avec votre consentement, pour nous conformer aux lois, pour vous fournir des services, pour protéger vos droits ou pour remplir des obligations commerciales."
-    },
-    "cookiesAndTracking": {
-      "heading": "Utilisons-nous des cookies et d'autres technologies de suivi ?",
-      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires pour accéder ou stocker des informations afin d'améliorer et de personnaliser votre expérience sur le site Web."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "Combien de temps conservons-nous vos informations ?",
-      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cette politique de confidentialité, sauf si une période de conservation plus longue est requise ou autorisée par la loi."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "Comment protégeons-nous vos informations ?",
-      "content": "Nous avons mis en œuvre diverses mesures de sécurité organisationnelles et techniques conçues pour protéger la sécurité de toute information personnelle que nous traitons."
-    },
-    "minors": {
-      "heading": "Collectons-nous des informations auprès de mineurs ?",
-      "content": "Nous ne collectons pas sciemment de données auprès d'enfants de moins de 18 ans et ne leur faisons pas de marketing."
-    },
-    "privacyRights": {
-      "heading": "Quels sont vos droits en matière de confidentialité ?",
-      "content": "Dans certaines régions, vous pouvez avoir certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit d'accéder et de contrôler vos informations personnelles."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "Contrôles pour les fonctionnalités Do-Not-Track",
-      "content": "La plupart des navigateurs Web et certains systèmes d'exploitation mobiles incluent une fonctionnalité ou un paramètre Do-Not-Track (« DNT ») que vous pouvez activer pour signaler votre préférence en matière de confidentialité de ne pas faire surveiller et collecter de données sur vos activités de navigation en ligne."
-    },
-    "updatesToNotice": {
-      "heading": "Mettons-nous à jour cet avis ?",
-      "content": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. La version mise à jour sera indiquée par une date de « Révision » mise à jour et la version mise à jour sera effective dès qu'elle sera accessible."
-    }
-  },
-  "termsOfService": {
-    "title": "Conditions d'utilisation",
-    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
-    "introduction": "Bienvenue sur DamDoh ! Ces conditions d'utilisation régissent votre utilisation de notre site Web et de nos services.",
-    "agreementToTerms": {
-      "heading": "1. Acceptation des conditions",
-      "content": "En utilisant nos services, vous acceptez d'être lié par ces conditions. Si vous n'acceptez pas ces conditions, n'utilisez pas les services."
-    },
-    "intellectualProperty": {
-      "heading": "2. Droits de propriété intellectuelle",
-      "content": "Sauf indication contraire, le Site est notre propriété exclusive et tout le code source, les bases de données, les fonctionnalités, les logiciels, les conceptions de sites Web, l'audio, la vidéo, le texte, les photographies et les graphiques sur le Site nous appartiennent ou sont sous notre contrôle ou sous licence."
-    },
-    "userRepresentations": {
-      "heading": "3. Déclarations de l'utilisateur",
-      "content": "En utilisant le Site, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront véridiques, exactes, à jour et complètes ; (2) vous avez la capacité juridique et vous acceptez de vous conformer à ces conditions d'utilisation."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Activités interdites",
-      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous le mettons à votre disposition. Le Site ne peut être utilisé dans le cadre d'activités commerciales, sauf celles qui sont spécifiquement approuvées par nous."
-    },
-    "platformManagement": {
-      "heading": "5. Gestion de la plateforme",
-      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces conditions d'utilisation ; (2) prendre les mesures légales appropriées contre toute personne qui, à notre seule discrétion, enfreint la loi ou ces conditions d'utilisation."
-    },
-    "termAndTermination": {
-      "heading": "6. Durée et résiliation",
-      "content": "Ces conditions d'utilisation resteront en vigueur tant que vous utiliserez le Site. NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DU SITE."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modifications et interruptions",
-      "content": "Nous nous réservons le droit de changer, de modifier ou de supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous ne pouvons garantir que le Site sera disponible à tout moment."
-    },
-    "governingLaw": {
-      "heading": "8. Droit applicable",
-      "content": "Ces conditions sont régies et interprétées conformément aux lois du Kenya, sans égard à ses principes de conflit de lois."
-    },
-    "disputeResolution": {
-      "heading": "9. Résolution des litiges",
-      "content": "Toute action en justice de quelque nature que ce soit intentée par vous ou par nous sera engagée ou poursuivie devant les tribunaux de Nairobi, au Kenya."
-    },
-    "contactUs": {
-      "heading": "10. Nous contacter",
-      "content": "Pour résoudre une réclamation concernant le Site ou pour recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
-    },
-    "conclusion": "Veuillez nous {contactLink} si vous avez des questions."
-  },
-  "searchPage": {
-    "title": "Recherche universelle",
-    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
-    "placeholder": "Rechercher des personnes, des produits, des forums...",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches populaires",
-    "popularSearch1": "Café biologique",
-    "popularSearch2": "Location de tracteur au Kenya",
-    "popularSearch3": "Forum sur la durabilité",
-    "popularSearch4": "Consultant en agronomie",
-    "popularSearch5": "Logistique d'exportation"
-  },
-  "DashboardLeftSidebar": {
-    "myProfileLink": "Mon Profil d'Intervenant DamDoh",
-    "profileViewers": "Visiteurs du profil",
-    "postEngagements": "Engagements sur les publications",
-    "proCta": "Essayer DamDoh Pro",
-    "proDescription": "Débloquez des analyses et des outils premium pour la chaîne d'approvisionnement",
-    "recent": "Récent",
-    "pinboard": "Mon Tableau d'Épingles",
-    "groups": "Groupes Communautaires",
-    "news": "Actualités & Rapports du Secteur",
-    "events": "Événements Agri-Business",
-    "network": "Mon Réseau de la Chaîne d'Approvisionnement"
-  },
-  "StartPost": {
-    "placeholder": "Partagez une mise à jour agricole, une perspective de marché ou posez une question...",
-    "photoVideo": "Photo / Vidéo",
-    "event": "Événement Agri",
-    "poll": "Créer un Sondage",
-    "document": "Partager un Document (Placeholder)"
-  },
-  "CreatePostModal": {
-    "title": "Créer une nouvelle publication",
-    "description": "Composez et partagez une mise à jour avec la communauté. Vous pouvez ajouter du texte, des médias ou créer un sondage.",
-    "profileShare": "Partager une mise à jour",
-    "placeholder": "Quelles perspectives agricoles ou actualités souhaitez-vous partager ?",
-    "pollOptionsLabel": "Options du Sondage",
-    "pollOptionPlaceholder": "Option {number}",
-    "addOption": "Ajouter une Option",
-    "removeOption": "Supprimer une Option",
-    "pollNote": "Max {max} options. Chaque option max 80 caractères.",
-    "postButton": "Publier",
-    "pollOptionsError": "Un sondage nécessite au moins 2 options.",
-    "emptyPostError": "Veuillez ajouter du contenu, une image ou un sondage valide à votre publication."
-  },
-  "FarmerDashboard": {
-    "alertsTitle": "Alertes de la Ferme & Prochaines Étapes",
-    "viewButton": "Voir",
-    "recentCropsTitle": "Cultures Récentes",
-    "addCropButton": "Ajouter une Culture",
-    "noCrops": "Aucune culture ajoutée pour le moment.",
-    "knfBatchesTitle": "Lots KNF Actifs",
-    "addKnfButton": "Ajouter un Lot",
-    "noKnfBatches": "Aucun lot KNF démarré pour le moment.",
-    "stats": {
-      "farms": "Mes Fermes",
-      "crops": "Cultures Actives",
-      "knf": "Lots KNF",
-      "financials": "Finances Nettes"
-    },
-    "actions": {
-      "manageFarms": "Gérer les Fermes",
-      "manageCrops": "Gérer les Cultures",
-      "manageInputs": "Gérer les Intrants",
-      "viewFinancials": "Voir les Finances"
-    }
-  },
-  "FeedItemCard": {
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "repostActionToast": "Action de republication déclenchée (placeholder).",
-    "editPost": "Modifier la Publication",
-    "deletePost": "Supprimer la Publication",
-    "deletePostSuccess": "Publication Supprimée (Simulé)",
-    "comments": "Commentaire{count, plural, one {} other {s}}",
-    "likes": "J'aime{count, plural, one {} other {}}",
-    "loadMoreComments": "Charger plus de commentaires",
-    "loadingComments": "Chargement des commentaires...",
-    "noComments": "Aucun commentaire pour le moment. Soyez le premier à répondre !",
-    "writeCommentPlaceholder": "Écrivez un commentaire...",
-    "postCommentButton": "Publier",
-    "voteCount": "{count, plural, one {{count} vote} other {{count} votes}}",
-    "signInToVote": "Veuillez vous connecter pour voter.",
-    "signInToLike": "Veuillez vous connecter pour aimer les publications."
-  },
-  "common": {
-    "error": "Erreur"
-  },
-  "CooperativeDashboard": {
-    "title": "Hub de la Coopérative Agricole",
-    "membersTitle": "Membres Totaux",
-    "membersDescription": "{count} agriculteurs dans votre coopérative",
-    "landAreaTitle": "Superficie Totale",
-    "landAreaDescription": "Hectares en culture",
-    "pendingApplicationsTitle": "Demandes en Attente",
-    "pendingApplicationsDescription": "nouveaux agriculteurs à examiner",
-    "produceTitle": "Produits Agrégés Prêts pour le Marché",
-    "produceDescription": "Inventaire collectif de vos membres disponible à la vente.",
-    "table": {
-      "product": "Produit",
-      "quantity": "Quantité (tonnes)",
-      "quality": "Qualité",
-      "readyBy": "Prêt pour",
-      "action": "Action"
-    },
-    "noProduce": "Aucun produit agrégé disponible.",
-    "createListingButton": "Créer une Annonce",
-    "aggregateButton": "Agréger un Nouveau Lot de Produits"
-  },
-  "BuyerDashboard": {
-    "title": "Centre de Commande de l'Acheteur",
-    "riskTitle": "Risque de la Chaîne d'Approvisionnement",
-    "priceTitle": "Intelligence des Prix",
-    "sourcingTitle": "Recommandations d'Approvisionnement IA",
-    "reliabilityScore": "Score de Fiabilité",
-    "findSuppliersButton": "Trouver Plus de Fournisseurs",
-    "diversifySourcing": "Diversifier l'Approvisionnement",
-    "secureContracts": "Sécuriser les Contrats à Terme"
-  },
-  "FiDashboard": {
-    "title": "Portail des Institutions Financières",
-    "riskTitle": "Portefeuille à Risque",
-    "accounts": "Comptes",
-    "value": "valeur",
-    "reviewRiskButton": "Examiner le Risque",
-    "pendingApplicationsTitle": "Demandes en Attente",
-    "table": {
-      "applicant": "Candidat",
-      "type": "Type",
-      "amount": "Montant",
-      "riskScore": "Score de Risque",
-      "action": "Action"
-    },
-    "reviewButton": "Examiner",
-    "noApplications": "Aucune demande en attente.",
-    "marketUpdatesTitle": "Mises à Jour du Marché et des Politiques",
-    "readMore": "Lire la suite",
-    "noUpdates": "Aucune nouvelle mise à jour."
-  },
-  "LogisticsDashboard": {
-    "title": "Hub de Coordination Logistique",
-    "performanceTitle": "Indicateurs de Performance",
-    "onTimeDelivery": "Taux de Livraison à Temps",
-    "viewReportButton": "Voir le Rapport Complet",
-    "activeShipmentsTitle": "Expéditions Actives",
-    "trackButton": "Suivre",
-    "noActiveShipments": "Aucune expédition active.",
-    "incomingJobsTitle": "Tâches Entrantes",
-    "acceptJobButton": "Accepter la Tâche",
-    "noIncomingJobs": "Aucune tâche entrante."
-  },
-  "FieldAgentDashboard": {
-    "title": "Tableau de bord de l'agent de terrain",
-    "portfolioHealthTitle": "Santé du portefeuille",
-    "activeAlerts": "alertes actives",
-    "pendingReportsTitle": "Rapports en attente",
-    "reportsToFile": "rapports à classer",
-    "dataVerificationTitle": "Tâches de vérification des données",
-    "tasksPending": "tâches en attente",
-    "assignedFarmersTitle": "Agriculteurs assignés",
-    "farmersInPortfolio": "agriculteurs en portefeuille",
-    "portfolioTitle": "Portefeuille d'agriculteurs",
-    "lastVisit": "Dernière visite",
-    "issues": "problèmes",
-    "viewFarmerButton": "Voir l'agriculteur",
-    "noFarmersAssigned": "Aucun agriculteur assigné pour le moment."
-  },
-  "InputSupplierDashboard": {
-    "title": "Tableau de bord du fournisseur d'intrants",
-    "ordersTitle": "Commandes actives",
-    "totalValue": "valeur totale",
-    "manageOrdersButton": "Gérer les commandes",
-    "forecastTitle": "Prévisions de la demande",
-    "in": "en",
-    "noForecast": "Aucune donnée de prévision de la demande disponible.",
-    "performanceTitle": "Performance des produits et avis",
-    "rating": "Évaluation",
-    "viewReviewsButton": "Voir les avis",
-    "noFeedback": "Aucun commentaire sur le produit reçu pour le moment.",
-    "promotionsTitle": "Réductions et promotions",
-    "promotionsDescription": "Créez et gérez des coupons pour stimuler les ventes.",
-    "manageCouponsButton": "Gérer les coupons"
-  },
-  "RegulatorDashboard": {
-    "title": "Portail de réglementation et de conformité",
-    "pendingCertificationsTitle": "Certifications en attente",
-    "reviewsOutstanding": "examens en suspens",
-    "reviewAllButton": "Tout examiner",
-    "riskAlertsTitle": "Alertes de risque de conformité",
-    "investigateButton": "Enquêter",
-    "noComplianceAlerts": "Aucune nouvelle alerte de conformité.",
-    "anomaliesTitle": "Anomalies de la chaîne d'approvisionnement",
-    "trackVtiButton": "Suivre VTI",
-    "noAnomalies": "Aucune anomalie détectée."
-  },
-  "ProcessingUnitDashboard": {
-    "title": "Tableau de bord de l'unité de traitement",
-    "yieldTitle": "Optimisation du rendement",
-    "potential": "Potentiel",
-    "wasteTitle": "Réduction des déchets",
-    "packagingInventoryTitle": "Inventaire des emballages",
-    "inStock": "En stock",
-    "reorderLevel": "Niveau de réapprovisionnement",
-    "noPackagingData": "Aucune donnée d'emballage.",
-    "sourcePackagingButton": "S'approvisionner en emballages",
-    "rawMaterialTitle": "Inventaire des matières premières",
-    "table": {
-      "product": "Produit",
-      "quality": "Qualité",
-      "quantity": "Quantité (tonnes)",
-      "supplier": "Fournisseur",
-      "deliveryDate": "Date de livraison",
-      "status": "Statut",
-      "action": "Action"
-    },
-    "noInventoryData": "Aucune donnée d'inventaire disponible.",
-    "packagingOrdersTitle": "Commandes d'emballages",
-    "viewButton": "Voir",
-    "noPackagingOrders": "Aucune commande d'emballage en attente."
-  },
-  "WarehouseDashboard": {
-    "title": "Hub de gestion d'entrepôt",
-    "utilizationTitle": "Utilisation du stockage",
-    "inventoryTitle": "Niveaux d'inventaire",
-    "itemsNeedingAttention": "articles nécessitant une attention particulière",
-    "alertsTitle": "Alertes prédictives",
-    "investigateButton": "Enquêter",
-    "noAlerts": "Aucune alerte active."
-  },
-  "QaDashboard": {
-    "title": "Portail d'assurance qualité",
-    "inspectionsTitle": "Inspections en attente",
-    "inspectionsDescription": "Lots nécessitant votre évaluation de la qualité.",
-    "table": {
-      "batchId": "ID du lot",
-      "product": "Produit",
-      "seller": "Vendeur",
-      "dueDate": "Date d'échéance",
-      "action": "Action",
-      "result": "Résultat",
-      "reason": "Raison",
-      "inspectedAt": "Inspecté le"
-    },
-    "performInspectionButton": "Effectuer l'inspection",
-    "noPendingInspections": "Aucune inspection en attente.",
-    "resultsTitle": "Résultats récents (avec problèmes)",
-    "resultsDescription": "Inspections nécessitant un suivi.",
-    "noRecentIssues": "Aucun problème récent trouvé.",
-    "metricsTitle": "Métriques de qualité",
-    "metricsDescription": "Résumé des performances globales.",
-    "passRate": "Taux de réussite",
-    "averageScore": "Score moyen",
-    "noMetrics": "Aucune métrique disponible."
-  },
-  "AgriTechDashboard": {
-    "title": "Hub des innovateurs et développeurs Agri-Tech",
-    "sandboxTitle": "Environnement de test (Sandbox)",
-    "statusLabel": "Statut",
-    "lastResetLabel": "Dernière réinitialisation",
-    "accessDocsButton": "Accéder à la documentation",
-    "integrationsTitle": "Projets d'intégration",
-    "activeProjects": "projets actifs",
-    "integrationsDescription": "Collaborer pour améliorer l'écosystème.",
-    "proposeIntegrationButton": "Proposer une nouvelle intégration",
-    "apiKeysTitle": "Gestion des clés API",
-    "apiKeysDescription": "Gérez vos clés API pour les environnements de test et de production.",
-    "table": {
-      "key": "Clé",
-      "status": "Statut",
-      "environment": "Environnement",
-      "created": "Créé",
-      "actions": "Actions"
-    },
-    "noApiKeys": "Aucune clé API générée pour le moment.",
-    "generateNewKeyButton": "Générer une nouvelle clé",
-    "apiKeyCopied": "Clé API copiée"
-  },
-  "CertificationBodyDashboard": {
-    "title": "Portail de l'organisme de certification",
-    "auditsTitle": "Audits en attente",
-    "auditsDescription": "Audits nécessitant votre attention.",
-    "table": {
-      "farmName": "Nom de la ferme",
-      "standard": "Norme",
-      "dueDate": "Date d'échéance",
-      "action": "Action",
-      "name": "Nom",
-      "type": "Type",
-      "status": "Statut"
-    },
-    "scheduleAuditButton": "Planifier l'audit",
-    "noPendingAudits": "Aucun audit en attente.",
-    "entitiesTitle": "Entités certifiées",
-    "entitiesDescription": "Aperçu de vos agriculteurs et transformateurs certifiés.",
-    "viewDetailsButton": "Voir les détails",
-    "noCertifiedEntities": "Aucune entité certifiée trouvée.",
-    "monitoringTitle": "Suivi de l'adhésion aux normes",
-    "monitoringDescription": "Suivi des taux d'adhésion aux différentes normes.",
-    "alerts": "alertes",
-    "noMonitoringData": "Aucune donnée de suivi des normes disponible."
-  },
-  "CrowdfunderDashboard": {
-    "title": "Hub d'investissement d'impact et de financement participatif",
-    "totalInvested": "Total investi",
-    "numberOfInvestments": "Nombre d'investissements",
-    "estimatedReturns": "Rendements estimés",
-    "opportunitiesTitle": "Opportunités d'investissement suggérées",
-    "opportunitiesDescription": "Projets alignés sur vos objectifs d'impact.",
-    "viewButton": "Voir",
-    "raisedOf": "récoltés sur",
-    "goal": "objectif",
-    "noOpportunities": "Aucune opportunité suggérée pour le moment.",
-    "transactionsTitle": "Transactions récentes",
-    "transactionsDescription": "Vos dernières activités d'investissement.",
-    "table": {
-      "project": "Projet",
-      "amount": "Montant"
-    },
-    "investment": "Investissement",
-    "payout": "Paiement",
-    "on": "le",
-    "noTransactions": "Aucune transaction récente."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Hub des fournisseurs de solutions énergétiques",
-    "leadsTitle": "Pistes de projets",
-    "leadsCount": "{count} projets potentiels",
-    "newLeadsDescription": "nouvelles pistes nécessitent une attention particulière",
-    "projectsTitle": "Projets actifs et terminés",
-    "activeProjectsCount": "{count} projets actifs au total",
-    "projectsCompleted": "projets terminés",
-    "impactTitle": "Métriques d'impact",
-    "impactDescription": "Impact agrégé de vos solutions.",
-    "carbonReduction": "Réduction totale de carbone de {count} installations",
-    "leadsTableTitle": "Pistes de projets",
-    "leadsTableDescription": "Opportunités potentielles pour les installations de solutions énergétiques.",
-    "table": {
-      "entity": "Entité",
-      "location": "Lieu",
-      "energyNeed": "Besoin énergétique",
-      "status": "Statut",
-      "action": "Action"
-    },
-    "viewLeadButton": "Voir la piste",
-    "noLeads": "Aucune nouvelle piste de projet."
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Tableau de bord du fournisseur d'équipement",
-    "ordersTitle": "Commandes de location et de vente",
-    "totalOrders": "Commandes totales",
-    "ordersDescription": "Sur toutes les annonces d'équipement",
-    "listedEquipmentTitle": "Votre équipement listé",
-    "table": {
-      "name": "Nom",
-      "type": "Type",
-      "status": "Statut",
-      "action": "Action"
-    },
-    "manageButton": "Gérer",
-    "noEquipment": "Aucun équipement listé.",
-    "listEquipmentButton": "Lister un nouvel équipement",
-    "maintenanceTitle": "Demandes de maintenance en attente",
-    "viewRequestButton": "Voir la demande",
-    "noMaintenance": "Aucune demande de maintenance en attente."
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Portail du fournisseur d'assurance",
-    "claimsTitle": "Réclamations en attente",
-    "claimsDescription": "Réclamations nécessitant votre examen et votre traitement.",
-    "table": {
-      "policyHolder": "Titulaire de la police",
-      "policyType": "Type de police",
-      "claimDate": "Date de la réclamation",
-      "status": "Statut",
-      "action": "Action",
-      "alert": "Alerte",
-      "severity": "Gravité"
-    },
-    "reviewClaimButton": "Examiner la réclamation",
-    "noPendingClaims": "Aucune réclamation en attente.",
-    "riskAlertsTitle": "Alertes d'évaluation des risques",
-    "riskAlertsDescription": "Alertes basées sur les données de la ferme et de la chaîne d'approvisionnement.",
-    "investigateButton": "Enquêter",
-    "noRiskAlerts": "Aucune nouvelle alerte de risque.",
-    "activePoliciesTitle": "Polices actives",
-    "activePoliciesDescription": "Aperçu des polices d'assurance actives.",
-    "coverage": "Couverture",
-    "expires": "Expire",
-    "noActivePolicies": "Aucune police active."
-  },
-  "OperationsDashboard": {
-    "title": "Hub des opérations de la plateforme",
-    "vtiRateTitle": "Taux de génération de VTI",
-    "pipelineStatusTitle": "État du pipeline de données",
-    "lastCheck": "Dernière vérification",
-    "flaggedEventsTitle": "Événements signalés à examiner",
-    "viewVtiButton": "Voir VTI",
-    "noFlaggedEvents": "Aucun événement signalé pour examen."
-  },
-  "ResearcherDashboard": {
-    "title": "Hub de recherche et d'analyse",
-    "datasetsTitle": "Ensembles de données disponibles",
-    "datasetsDescription": "Ensembles de données anonymisées disponibles pour la recherche et l'analyse.",
-    "table": {
-      "name": "Nom",
-      "dataType": "Type de données",
-      "accessLevel": "Niveau d'accès",
-      "action": "Action",
-      "title": "Titre",
-      "progress": "Progression",
-      "collaborators": "Collaborateurs",
-      "status": "Statut"
-    },
-    "requestAccessButton": "Demander l'accès",
-    "noDatasets": "Aucun ensemble de données disponible pour le moment.",
-    "projectsTitle": "Projets de recherche en cours",
-    "projectsDescription": "Vos projets de recherche actifs et leur progression.",
-    "viewProjectButton": "Voir le projet",
-    "noProjects": "Aucun projet de recherche en cours.",
-    "contributionsTitle": "Contributions au hub de connaissances",
-    "contributionsDescription": "Vos contributions à la base de connaissances de DamDoh.",
-    "viewButton": "Voir",
-    "noContributions": "Aucune contribution à la base de connaissances pour le moment."
-  },
-  "WasteManagementDashboard": {
-    "title": "Hub de gestion des déchets et de compostage",
-    "wasteStreamsTitle": "Flux de déchets organiques entrants",
-    "from": "De",
-    "acceptButton": "Accepter",
-    "noWasteStreams": "Aucun flux de déchets entrant.",
-    "compostBatchesTitle": "État des lots de compost",
-    "batch": "Lot",
-    "estReady": "Prêt est.",
-    "noCompostBatches": "Aucun lot de compost actif.",
-    "inventoryTitle": "Inventaire des produits finis",
-    "inStock": "En stock",
-    "noFinishedProducts": "Aucun produit fini.",
-    "sellButton": "Vendre sur le marché"
   }
 }

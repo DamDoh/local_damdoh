@@ -15,7 +15,8 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import Image from "next/image";
 import { ItemCard } from '@/components/marketplace/ItemCard';
-import { Building, ArrowLeft, MessageCircle, Edit } from 'lucide-react';
+import { Building, ArrowLeft, MessageSquare, Edit } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 function ShopPageSkeleton() {
     return (
@@ -48,6 +49,7 @@ function ShopPageSkeleton() {
 }
 
 export default function ShopFrontPage() {
+    const t = useTranslations('Marketplace.shopPage');
     const params = useParams();
     const shopId = params.shopId as string;
     const { user } = useAuth();
@@ -73,11 +75,10 @@ export default function ShopFrontPage() {
                 const shopData = shopResult.data as Shop | null;
 
                 if (!shopData) {
-                    throw new Error("Shop not found.");
+                    throw new Error(t('errorNotFound'));
                 }
                 setShop(shopData);
 
-                // Fetch owner and listings in parallel
                 const [ownerProfile, listingsResult] = await Promise.all([
                     getProfileByIdFromDB(shopData.ownerId),
                     getListingsBySeller({ sellerId: shopData.ownerId })
@@ -88,14 +89,14 @@ export default function ShopFrontPage() {
 
             } catch (err: any) {
                 console.error("Error fetching shop data:", err);
-                setError(err.message || "Could not load the shop.");
+                setError(err.message || t('errorLoad'));
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchShopData();
-    }, [shopId, getShopDetails, getListingsBySeller]);
+    }, [shopId, getShopDetails, getListingsBySeller, t]);
 
     if (isLoading) {
         return <ShopPageSkeleton />;
@@ -104,10 +105,10 @@ export default function ShopFrontPage() {
     if (error) {
         return (
             <Card className="text-center p-8">
-                <CardTitle className="text-destructive">Error</CardTitle>
+                <CardTitle className="text-destructive">{t('errorTitle')}</CardTitle>
                 <CardDescription>{error}</CardDescription>
                 <Button asChild variant="outline" className="mt-4">
-                    <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link>
+                    <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link>
                 </Button>
             </Card>
         );
@@ -122,7 +123,7 @@ export default function ShopFrontPage() {
     return (
         <div className="space-y-8">
             <Link href="/marketplace" className="inline-flex items-center text-sm text-primary hover:underline">
-                <ArrowLeft className="mr-1 h-4 w-4"/> Back to Marketplace
+                <ArrowLeft className="mr-1 h-4 w-4"/> {t('backLink')}
             </Link>
 
             <Card className="overflow-hidden">
@@ -144,16 +145,16 @@ export default function ShopFrontPage() {
                             </div>
                             <div>
                                 <CardTitle className="text-2xl md:text-3xl">{shop.name}</CardTitle>
-                                <CardDescription>Owned by <Link href={`/profiles/${shop.ownerId}`} className="text-primary hover:underline">{owner?.displayName || 'Loading...'}</Link></CardDescription>
+                                <CardDescription>{t('ownedBy')} <Link href={`/profiles/${shop.ownerId}`} className="text-primary hover:underline">{owner?.displayName || t('loadingOwner')}</Link></CardDescription>
                             </div>
                         </div>
                          <div className="flex gap-2 w-full sm:w-auto">
                             {isOwner ? (
-                                <Button className="w-full sm:w-auto"><Edit className="mr-2 h-4 w-4" />Edit Shop</Button>
+                                <Button className="w-full sm:w-auto"><Edit className="mr-2 h-4 w-4" />{t('editShopButton')}</Button>
                             ) : (
                                 <Button asChild className="w-full sm:w-auto">
                                     <Link href={`/messages?with=${shop.ownerId}`}>
-                                        <MessageCircle className="mr-2 h-4 w-4" /> Contact Seller
+                                        <MessageCircle className="mr-2 h-4 w-4" /> {t('contactButton')}
                                     </Link>
                                 </Button>
                             )}
@@ -166,7 +167,7 @@ export default function ShopFrontPage() {
             </Card>
 
             <div>
-                <h2 className="text-2xl font-semibold mb-4">Listings from {shop.name} ({items.length})</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('listingsTitle', { shopName: shop.name })} ({items.length})</h2>
                 {items.length > 0 ? (
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                         {items.map(item => (
@@ -175,7 +176,7 @@ export default function ShopFrontPage() {
                     </div>
                 ) : (
                     <Card className="text-center p-12">
-                         <CardDescription>This shop has no public listings yet.</CardDescription>
+                         <CardDescription>{t('noListings')}</CardDescription>
                     </Card>
                 )}
             </div>

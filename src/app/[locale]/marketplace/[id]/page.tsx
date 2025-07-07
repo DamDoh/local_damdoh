@@ -11,6 +11,7 @@ import { getProfileByIdFromDB } from '@/lib/db-utils';
 import QRCode from 'qrcode.react';
 import { addDays, differenceInCalendarDays } from 'date-fns';
 import type { DateRange } from "react-day-picker";
+import { useTranslations } from 'next-intl';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -57,6 +58,7 @@ function ItemPageSkeleton() {
 }
 
 function ItemPageContent() {
+    const t = useTranslations('Marketplace.detail');
     const params = useParams();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -75,16 +77,13 @@ function ItemPageContent() {
     const [isBooking, setIsBooking] = useState(false);
     const [isBooked, setIsBooked] = useState(false);
     
-    // State for Agro-Tourism Booking Widget
     const [date, setDate] = useState<DateRange | undefined>();
     const [guests, setGuests] = useState(1);
     
-    // State for the order dialog
     const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
     const [orderQuantity, setOrderQuantity] = useState(1);
     const [orderNotes, setOrderNotes] = useState("");
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
-
 
     const functions = getFunctions(firebaseApp);
     const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
@@ -111,7 +110,7 @@ function ItemPageContent() {
                 const itemResult = await getMarketplaceItemById({ itemId });
                 const itemData = itemResult.data as MarketplaceItem | null;
 
-                if (!itemData) throw new Error("Marketplace item not found.");
+                if (!itemData) throw new Error(t('errors.notFound'));
                 setItem(itemData);
 
                 const sellerProfile = await getProfileByIdFromDB(itemData.sellerId);
@@ -124,14 +123,14 @@ function ItemPageContent() {
 
             } catch (err: any) {
                 console.error("Error fetching item details:", err);
-                setError(err.message || "Could not load the item details.");
+                setError(err.message || t('errors.loadError'));
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchData();
-    }, [itemId, getMarketplaceItemById, getShopDetailsCallable]);
+    }, [itemId, getMarketplaceItemById, getShopDetailsCallable, t]);
     
     const handleApplyCoupon = async () => {
         if (!couponCode.trim() || !item) return;
@@ -147,12 +146,12 @@ function ItemPageContent() {
                     type: data.discountType,
                     discount: data.discountValue
                 });
-                toast({ title: "Coupon Applied!", description: `Discount of ${data.discountType === 'fixed' ? `$${data.discountValue}` : `${data.discountValue}%`} has been applied.` });
+                toast({ title: t('coupon.successTitle'), description: t('coupon.successDescription', { type: data.discountType === 'fixed' ? `$${data.discountValue}` : `${data.discountValue}%` }) });
             } else {
-                toast({ variant: 'destructive', title: "Invalid Coupon", description: data.message || "The coupon code could not be applied." });
+                toast({ variant: 'destructive', title: t('coupon.failTitle'), description: data.message || t('coupon.failDescription') });
             }
         } catch (error: any) {
-            toast({ variant: 'destructive', title: 'Error', description: error.message || "An unexpected error occurred." });
+            toast({ variant: 'destructive', title: t('errors.title'), description: error.message || t('errors.unexpected') });
         } finally {
             setIsApplyingCoupon(false);
         }
@@ -160,12 +159,12 @@ function ItemPageContent() {
     
     const handleBooking = async () => {
         if (!user) {
-            toast({ variant: 'destructive', title: "Authentication Required", description: "Please sign in to book this service." });
+            toast({ variant: 'destructive', title: t('booking.authTitle'), description: t('booking.authDescription') });
             router.push('/auth/signin');
             return;
         }
         if (!date?.from || !date?.to) {
-            toast({ variant: 'destructive', title: "Booking Failed", description: "Please select a check-in and check-out date." });
+            toast({ variant: 'destructive', title: t('booking.failTitle'), description: t('booking.dateError') });
             return;
         }
         setIsBooking(true);
@@ -178,10 +177,10 @@ function ItemPageContent() {
                 currency: item?.currency
             };
             await bookAgroTourismServiceCallable({ itemId: item?.id, bookingDetails });
-            toast({ title: "Success!", description: "You have successfully booked this service. Check your profile for details." });
+            toast({ title: t('booking.successTitle'), description: t('booking.successDescription') });
             setIsBooked(true);
         } catch (error: any) {
-            toast({ variant: 'destructive', title: "Booking Failed", description: error.message || "An unexpected error occurred." });
+            toast({ variant: 'destructive', title: t('booking.failTitle'), description: error.message || t('errors.unexpected') });
         } finally {
             setIsBooking(false);
         }
@@ -189,21 +188,21 @@ function ItemPageContent() {
 
     const handlePlaceOrder = async () => {
         if (!user) {
-             toast({ variant: 'destructive', title: "Authentication Required", description: "Please sign in to place an order." });
+             toast({ variant: 'destructive', title: t('order.authTitle'), description: t('order.authDescription') });
              router.push('/auth/signin');
              return;
         }
         if (orderQuantity <= 0) {
-            toast({ variant: 'destructive', title: "Invalid Quantity", description: "Please enter a valid quantity." });
+            toast({ variant: 'destructive', title: t('order.quantityErrorTitle'), description: t('order.quantityErrorDescription') });
             return;
         }
         setIsPlacingOrder(true);
         try {
             await createMarketplaceOrderCallable({ itemId: item?.id, quantity: orderQuantity, buyerNotes: orderNotes });
-            toast({ title: "Order Placed!", description: "Your order has been sent to the seller." });
+            toast({ title: t('order.successTitle'), description: t('order.successDescription') });
             setIsOrderDialogOpen(false);
         } catch (error: any) {
-            toast({ variant: 'destructive', title: "Order Failed", description: error.message || "Could not place the order. Please try again." });
+            toast({ variant: 'destructive', title: t('order.failTitle'), description: error.message || t('order.failDescription') });
         } finally {
             setIsPlacingOrder(false);
         }
@@ -223,11 +222,11 @@ function ItemPageContent() {
 
     const numberOfNights = date?.from && date?.to ? differenceInCalendarDays(date.to, date.from) : 0;
     const baseBookingPrice = (item?.price || 0) * numberOfNights;
-    const serviceFee = baseBookingPrice * 0.1; // Example 10% service fee
+    const serviceFee = baseBookingPrice * 0.1;
     const totalBookingPrice = baseBookingPrice + serviceFee;
 
     if (isLoading) return <ItemPageSkeleton />;
-    if (error) return <div className="text-center py-10"><p className="text-destructive">{error}</p><Button variant="outline" asChild className="mt-4"><Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />Back to Marketplace</Link></Button></div>;
+    if (error) return <div className="text-center py-10"><p className="text-destructive">{error}</p><Button variant="outline" asChild className="mt-4"><Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link></Button></div>;
     if (!item) return notFound();
 
     const isOwner = user?.uid === item.sellerId;
@@ -240,7 +239,7 @@ function ItemPageContent() {
       <>
         <div className="max-w-4xl mx-auto space-y-6">
              <Link href="/marketplace" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-                <ArrowLeft className="mr-1 h-4 w-4"/> Back to Marketplace
+                <ArrowLeft className="mr-1 h-4 w-4"/> {t('backLink')}
             </Link>
 
             <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start">
@@ -262,7 +261,7 @@ function ItemPageContent() {
                                 <Button asChild variant="secondary" className="w-full">
                                     <Link href={`/traceability/batches/${item.relatedTraceabilityId}`}>
                                         <GitBranch className="mr-2 h-4 w-4"/>
-                                        View Traceability Report
+                                        {t('traceabilityButton')}
                                     </Link>
                                 </Button>
                             </CardFooter>
@@ -286,7 +285,7 @@ function ItemPageContent() {
                             <Separator />
                              {skills.length > 0 && (
                                 <div>
-                                    <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-primary" />Skills Required</h3>
+                                    <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-primary" />{t('skillsLabel')}</h3>
                                     <div className="flex flex-wrap gap-2">
                                         {skills.map((skill, index) => <Badge key={index} variant="outline">{skill.trim()}</Badge>)}
                                     </div>
@@ -294,13 +293,13 @@ function ItemPageContent() {
                              )}
                               {item.experienceLevel && (
                                 <div>
-                                    <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><Star className="h-4 w-4 text-primary" />Experience Level</h3>
+                                    <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><Star className="h-4 w-4 text-primary" />{t('experienceLabel')}</h3>
                                     <p className="text-sm text-muted-foreground">{item.experienceLevel}</p>
                                 </div>
                              )}
                             <div>
-                                <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><DollarSign className="h-4 w-4 text-primary" />Compensation</h3>
-                                <p className="text-sm text-muted-foreground">{item.compensation || 'Contact for rates'}</p>
+                                <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><DollarSign className="h-4 w-4 text-primary" />{t('compensationLabel')}</h3>
+                                <p className="text-sm text-muted-foreground">{item.compensation || t('contactForRates')}</p>
                             </div>
                             <Separator />
                         </div>
@@ -309,22 +308,22 @@ function ItemPageContent() {
                             {isBooked ? (
                                 <CardContent className="pt-6 text-center">
                                     <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-2" />
-                                    <p className="font-semibold">Successfully Booked!</p>
-                                    <p className="text-sm text-muted-foreground mb-4">You can view your ticket below.</p>
+                                    <p className="font-semibold">{t('booking.bookedTitle')}</p>
+                                    <p className="text-sm text-muted-foreground mb-4">{t('booking.bookedDescription')}</p>
                                     <Dialog>
                                         <DialogTrigger asChild>
-                                            <Button className="w-full" variant="secondary"><QrCode className="mr-2 h-4 w-4" />View Your Ticket</Button>
+                                            <Button className="w-full" variant="secondary"><QrCode className="mr-2 h-4 w-4" />{t('booking.ticketButton')}</Button>
                                         </DialogTrigger>
                                         <DialogContent className="sm:max-w-xs">
                                             <DialogHeader>
-                                                <DialogTitle className="text-center">Your Digital Ticket</DialogTitle>
-                                                <DialogDescription className="text-center">For {item.name}</DialogDescription>
+                                                <DialogTitle className="text-center">{t('booking.modalTitle')}</DialogTitle>
+                                                <DialogDescription className="text-center">{t('booking.modalDescription', { itemName: item.name })}</DialogDescription>
                                             </DialogHeader>
                                             <div className="p-4 flex flex-col items-center justify-center gap-4">
                                                 <div className="p-4 bg-white rounded-lg border">
                                                     <QRCode value={serviceQrCodeValue} size={200} />
                                                 </div>
-                                                <p className="text-sm text-center text-muted-foreground">Present this code to the operator for check-in.</p>
+                                                <p className="text-sm text-center text-muted-foreground">{t('booking.modalScan')}</p>
                                             </div>
                                         </DialogContent>
                                     </Dialog>
@@ -333,18 +332,18 @@ function ItemPageContent() {
                                 <CardContent className="pt-6 space-y-4">
                                     <div className="flex items-baseline gap-2">
                                         <p className="text-2xl font-bold">${item.price?.toFixed(2)}</p>
-                                        <p className="text-sm text-muted-foreground">/ night</p>
+                                        <p className="text-sm text-muted-foreground">/ {t('booking.perNight')}</p>
                                     </div>
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <div className="grid grid-cols-2 border rounded-lg cursor-pointer">
                                                 <div className="p-2 border-r">
-                                                    <Label className="text-xs font-semibold">CHECK-IN</Label>
-                                                    <p>{date?.from ? format(date.from, "LLL dd, y") : "Add date"}</p>
+                                                    <Label className="text-xs font-semibold">{t('booking.checkIn')}</Label>
+                                                    <p>{date?.from ? format(date.from, "LLL dd, y") : t('booking.addDate')}</p>
                                                 </div>
                                                 <div className="p-2">
-                                                    <Label className="text-xs font-semibold">CHECK-OUT</Label>
-                                                    <p>{date?.to ? format(date.to, "LLL dd, y") : "Add date"}</p>
+                                                    <Label className="text-xs font-semibold">{t('booking.checkOut')}</Label>
+                                                    <p>{date?.to ? format(date.to, "LLL dd, y") : t('booking.addDate')}</p>
                                                 </div>
                                             </div>
                                         </PopoverTrigger>
@@ -361,20 +360,20 @@ function ItemPageContent() {
                                         </PopoverContent>
                                     </Popover>
                                     <div>
-                                        <Label htmlFor="guests" className="text-xs font-semibold">GUESTS</Label>
+                                        <Label htmlFor="guests" className="text-xs font-semibold">{t('booking.guests')}</Label>
                                         <Input id="guests" type="number" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value, 10) || 1)} />
                                     </div>
                                     <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking || !date?.from || !date?.to}>
                                         {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
-                                        {isBooking ? 'Reserving...' : 'Reserve'}
+                                        {isBooking ? t('booking.reservingButton') : t('booking.reserveButton')}
                                     </Button>
                                     {numberOfNights > 0 && (
                                         <div className="text-sm space-y-1">
-                                            <p className="text-center text-muted-foreground">You won't be charged yet</p>
-                                            <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} nights</span><span>${baseBookingPrice.toFixed(2)}</span></div>
-                                            <div className="flex justify-between"><span>Service fee</span><span>${serviceFee.toFixed(2)}</span></div>
+                                            <p className="text-center text-muted-foreground">{t('booking.notCharged')}</p>
+                                            <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} {t('booking.nights')}</span><span>${baseBookingPrice.toFixed(2)}</span></div>
+                                            <div className="flex justify-between"><span>{t('booking.serviceFee')}</span><span>${serviceFee.toFixed(2)}</span></div>
                                             <Separator className="my-1"/>
-                                            <div className="flex justify-between font-bold"><span>Total</span><span>${totalBookingPrice.toFixed(2)}</span></div>
+                                            <div className="flex justify-between font-bold"><span>{t('booking.total')}</span><span>${totalBookingPrice.toFixed(2)}</span></div>
                                         </div>
                                     )}
                                 </CardContent>
@@ -389,15 +388,15 @@ function ItemPageContent() {
                                 <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
                             </p>
                             <div className="mt-4 p-4 border rounded-lg bg-muted/30">
-                                <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />Have a coupon code?</Label>
+                                <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />{t('coupon.label')}</Label>
                                 <div className="flex gap-2 mt-2">
-                                    <Input id="coupon-code" placeholder="Enter code" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isApplyingCoupon || !!appliedCoupon} />
+                                    <Input id="coupon-code" placeholder={t('coupon.placeholder')} value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isApplyingCoupon || !!appliedCoupon} />
                                     <Button onClick={handleApplyCoupon} disabled={!couponCode || isApplyingCoupon || !!appliedCoupon}>
                                         {isApplyingCoupon && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        Apply
+                                        {t('coupon.applyButton')}
                                     </Button>
                                 </div>
-                                {appliedCoupon && <p className="text-xs text-green-600 mt-1">Successfully applied coupon: {appliedCoupon.code}</p>}
+                                {appliedCoupon && <p className="text-xs text-green-600 mt-1">{t('coupon.appliedText', { code: appliedCoupon.code })}</p>}
                             </div>
                          </div>
                     )}
@@ -405,7 +404,7 @@ function ItemPageContent() {
                      {seller && (
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-lg">About the Seller</CardTitle>
+                                <CardTitle className="text-lg">{t('aboutSeller')}</CardTitle>
                             </CardHeader>
                             <CardContent className="flex items-center gap-4">
                                <Avatar className="h-14 w-14">
@@ -417,7 +416,7 @@ function ItemPageContent() {
                                     <p className="text-sm text-muted-foreground">{seller.primaryRole}</p>
                                     {shop && (
                                         <Link href={`/marketplace/shops/${shop.id}`} className="text-xs text-primary hover:underline flex items-center gap-1">
-                                            <Building className="h-3 w-3" /> View Shopfront
+                                            <Building className="h-3 w-3" /> {t('viewShopfront')}
                                         </Link>
                                     )}
                                 </div>
@@ -428,26 +427,26 @@ function ItemPageContent() {
                     <div className="flex flex-col sm:flex-row gap-2">
                          {isOwner ? (
                              <>
-                                <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />Edit Listing</Button>
+                                <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Button>
                                 {isAgroTourismService && (
                                     <Button asChild size="lg" variant="secondary" className="w-full">
-                                        <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />Manage Service</Link>
+                                        <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />{t('manageService')}</Link>
                                     </Button>
                                 )}
                             </>
                         ) : isAgroTourismService ? null 
                         : isProduct ? (
                             <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
-                                <ShoppingCart className="mr-2 h-4 w-4" />Buy Now
+                                <ShoppingCart className="mr-2 h-4 w-4" />{t('buyNowButton')}
                             </Button>
                         ) : (
                              <Button asChild size="lg" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />Contact for Service</Link>
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactForService')}</Link>
                             </Button>
                         )}
                         {!isOwner && !isProduct && !isAgroTourismService && (
                             <Button asChild size="lg" variant="outline" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />Contact Seller</Link>
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactSeller')}</Link>
                             </Button>
                         )}
                     </div>
@@ -458,12 +457,12 @@ function ItemPageContent() {
         <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Place Order for: {item.name}</DialogTitle>
-                    <DialogDescription>Confirm your quantity and add any notes for the seller.</DialogDescription>
+                    <DialogTitle>{t('order.title', { itemName: item.name })}</DialogTitle>
+                    <DialogDescription>{t('order.description')}</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                     <div className="space-y-2">
-                        <Label htmlFor="quantity">Quantity</Label>
+                        <Label htmlFor="quantity">{t('order.quantityLabel')}</Label>
                         <Input
                             id="quantity"
                             type="number"
@@ -473,20 +472,20 @@ function ItemPageContent() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="notes">Notes for Seller (Optional)</Label>
+                        <Label htmlFor="notes">{t('order.notesLabel')}</Label>
                         <Textarea
                             id="notes"
-                            placeholder="e.g., specific delivery instructions, quality requirements..."
+                            placeholder={t('order.notesPlaceholder')}
                             value={orderNotes}
                             onChange={(e) => setOrderNotes(e.target.value)}
                         />
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button variant="outline" onClick={() => setIsOrderDialogOpen(false)}>Cancel</Button>
+                    <Button variant="outline" onClick={() => setIsOrderDialogOpen(false)}>{t('order.cancelButton')}</Button>
                     <Button onClick={handlePlaceOrder} disabled={isPlacingOrder}>
                         {isPlacingOrder && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                        Confirm Order
+                        {t('order.confirmButton')}
                     </Button>
                 </DialogFooter>
             </DialogContent>
@@ -502,4 +501,3 @@ export default function MarketplaceItemPageWrapper() {
     </Suspense>
   );
 }
-    
