@@ -4,7 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/lib/auth-utils';
 import type { UserProfile } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/db-utils';
+import { getProfileByIdFromDB } from '@/lib/server-actions';
 
 export function useUserProfile() {
   const { user: authUser, loading: authLoading } = useAuth();

@@ -182,6 +182,27 @@
       }
     }
   },
+  "AppHeader": {
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "ការគ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូបលុយ",
+    "searchPlaceholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម...",
+    "signIn": "ចូលគណនី",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "logOut": "ចេញពីគណនី",
+    "switchToLightAria": "ប្ដូរទៅរូបរាងភ្លឺ",
+ "switchToDarkAria": "ប្ដូរទៅរូបរាងងងឹត"
+  },
   "Marketplace": {
     "itemView": {
  "backLink": "ត្រឡប់ទៅផ្សារ",

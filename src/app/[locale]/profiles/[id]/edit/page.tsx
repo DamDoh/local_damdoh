@@ -20,7 +20,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { getProfileByIdFromDB } from "@/lib/db-utils";
+import { getProfileByIdFromDB } from "@/lib/server-actions";
 import type { UserProfile } from "@/lib/types";
 import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Info } from "lucide-react";
 import React from "react"; 
