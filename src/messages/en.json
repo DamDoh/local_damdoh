@@ -222,7 +222,16 @@
   "networkPage": {
     "title": "Grow Your Network",
     "description": "Connect with farmers, buyers, experts, and organizations to expand your reach.",
-    "refreshSuggestions": "Refresh Suggestions",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI-Powered Suggestions",
+    "aiSuggestionsDescription": "Based on your profile, here are some people you might want to connect with.",
+    "noSuggestions": "No new suggestions at the moment.",
+    "loadError": "Failed to load suggestions. Please try again.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Find anyone on the platform using our advanced search filters.",
     "searchPlaceholder": "Search by name or keyword...",
     "locationPlaceholder": "Filter by location...",
     "rolePlaceholder": "Filter by role",
@@ -231,8 +240,10 @@
     "allInterests": "All Interests",
     "noStakeholdersFound": "No stakeholders found matching your criteria.",
     "noStakeholdersHint": "Try adjusting your search filters or browse all stakeholders.",
-    "connect": "Connect",
-    "profile": "Profile"
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data."
+    }
   },
   "myNetworkPage": {
     "backLink": "Back to Network Discovery",
@@ -720,5 +731,203 @@
         "errorDescription": "An error occurred while loading your farms. Please try again."
       }
     }
-  }
+  },
+  "Forums": {
+    "title": "Forum Topics",
+    "description": "Browse and create discussion topics",
+    "lastActivity": "Last activity {{time}}",
+    "searchPlaceholder": "Search topics...",
+    "buttons": {
+      "createTopic": "Create Topic",
+      "joinDiscussion": "Join Discussion",
+      "pinHomepage": "Pin to Homepage",
+      "unpinHomepage": "Unpin from Homepage"
+    },
+    "notFound": {
+      "title": "No topics found",
+      "tryDifferentSearch": "Try a different search term.",
+      "beTheFirst": "Be the first one to create a topic."
+    },
+    "pinning": {
+      "pinnedTitle": "Homepage Pinned!",
+      "pinnedDescription": "This forum is now displayed as your homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "This forum will no longer be displayed as your homepage."
+    },
+    "errors": {
+      "loadTitle": "Error Loading Topics",
+      "loadDescription": "An error occurred while loading the forum topics.",
+      "auth": {
+        "title": "Not Authenticated",
+        "description": "You must be logged in to create a topic."
+      },
+      "incomplete": {
+        "title": "Incomplete Fields",
+        "description": "Please fill in all required fields."
+      },
+      "general": {
+        "title": "Error",
+        "description": "An error occurred while creating the topic."
+      }
+    },
+    "create": {
+      "backLink": "Back to topics",
+      "title": "Create New Topic",
+      "description": "Start a new discussion in the forum.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "Enter the name of your topic",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Briefly describe your topic",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
+      },
+      "success": {
+        "title": "Topic Created Successfully",
+        "description": "Your new topic has been created."
+      }
+    },
+    "postView": {
+      "backLink": "Back to {{topicName}}",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "repliesTitle": "Replies ({{count}})",
+      "noReplies": "No replies yet.",
+      "buttons": {
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "reply": {
+        "title": "Add a Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Add Reply",
+        "submittingButton": "Submitting...",
+        "success": "Reply added!"
+      },
+      "notFound": {
+        "title": "Post not found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPost": { "title": "Error loading post", "description": "An error occurred while loading the post details." },
+        "loadReplies": { "title": "Error loading replies", "description": "An error occurred while loading replies for this post." },
+        "emptyReply": "Reply cannot be empty.",
+        "submitReply": { "title": "Error submitting reply", "description": "An error occurred while submitting your reply." }
+      }
+    },
+    "topic": {
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "buttons": {
+        "createPost": "Add Reply",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "noPosts": {
+        "title": "No posts yet",
+        "description": "Be the first to reply to this topic.",
+        "button": "Add Reply"
+      },
+      "notFound": {
+        "title": "Topic not found",
+        "description": "The topic you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPosts": { "title": "Error loading posts", "description": "An error occurred while loading posts for this topic." },
+        "loadTopic": { "title": "Error loading topic", "description": "An error occurred while loading the topic details." }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter the title of your post",
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Write your post content here...",
+        "submitButton": "Create Post",
+        "submittingButton": "Submitting..."
+      },
+      "success": {
+        "aiDraft": { "title": "AI Draft Generated!", "description": "A draft has been generated for you." },
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
+        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
+        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
+        "general": { "title": "Error", "description": "An error occurred while creating the post." }
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+        "Farmer": "Farmer",
+        "AgriculturalCooperative": "Agricultural Cooperative",
+        "FieldAgentAgronomistDamDohInternal": "Field Agent/Agronomist (DamDoh Internal)",
+        "OperationsLogisticsTeamDamDohInternal": "Operations/Logistics Team (DamDoh Internal)",
+        "QualityAssuranceTeamDamDohInternal": "Quality Assurance Team (DamDoh Internal)",
+        "ProcessingPackagingUnit": "Processing & Packaging Unit",
+        "BuyerRestaurantSupermarketExporter": "Buyer (Restaurant, Supermarket, Exporter)",
+        "InputSupplierSeedFertilizerPesticide": "Input Supplier (Seed, Fertilizer, Pesticide)",
+        "EquipmentSupplierSalesofMachineryIoT": "Equipment Supplier (Sales of Machinery/IoT)",
+        "FinancialInstitutionMicrofinanceLoans": "Financial Institution (Micro-finance/Loans)",
+        "GovernmentRegulatorAuditor": "Government Regulator/Auditor",
+        "CertificationBodyOrganicFairTradeetc": "Certification Body (Organic, Fair Trade etc.)",
+        "Consumer": "Consumer",
+        "ResearcherAcademic": "Researcher/Academic",
+        "LogisticsPartnerThirdPartyTransporter": "Logistics Partner (Third-Party Transporter)",
+        "StorageWarehouseFacility": "Storage/Warehouse Facility",
+        "AgronomyExpertConsultantExternal": "Agronomy Expert/Consultant (External)",
+        "AgroTourismOperator": "Agro-Tourism Operator",
+        "EnergySolutionsProviderSolarBiogas": "Energy Solutions Provider (Solar, Biogas)",
+        "AgroExportFacilitatorCustomsBroker": "Agro-Export Facilitator/Customs Broker",
+        "AgriTechInnovatorDeveloper": "Agri-Tech Innovator/Developer",
+        "WasteManagementCompostFacility": "Waste Management & Compost Facility",
+        "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Individual)",
+        "InsuranceProvider": "Insurance Provider",
+        "PackagingSupplier": "Packaging Supplier"
+    },
+    "listingTypes": {
+        "All": "All Types",
+        "Product": "Product",
+        "Service": "Service"
+    },
+    "agriEventTypes": {
+        "All": "All Events",
+        "Conference": "Conference",
+        "Webinar": "Webinar",
+        "Workshop": "Workshop",
+        "TradeShow": "Trade Show",
+        "FieldDay": "Field Day",
+        "NetworkingEvent": "Networking Event",
+        "OnlineCourseLaunch": "Online Course Launch",
+        "PolicyBriefing": "Policy Briefing"
+    },
+    "financialServiceTypes": {
+        "loan": "Loan",
+        "credit": "Credit",
+        "grant": "Grant",
+        "savings": "Savings"
+    },
+    "insuranceServiceTypes": {
+        "crop_insurance": "Crop Insurance",
+        "livestock_insurance": "Livestock Insurance",
+        "property_insurance": "Property Insurance"
+    }
+  },
+  "Homepage": {}
 }
+
+    

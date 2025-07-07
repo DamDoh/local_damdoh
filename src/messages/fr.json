@@ -119,5 +119,482 @@
       "content": "Si vous voyez du contenu qui enfreint ces directives, veuillez le signaler à notre équipe de modération à <emailLink>support@damdoh.org</emailLink>.",
       "conclusion": "Merci de nous aider à faire de DamDoh une communauté précieuse et digne de confiance pour tous."
     }
-  }
+  },
+  "Marketplace": {
+    "title": "Marché",
+    "description": "Parcourir et découvrir des produits et services.",
+    "createShopButton": "Créer une boutique",
+    "createListingButton": "Créer une annonce",
+    "myOrdersButton": "Mes commandes reçues",
+    "pinButton": "Épingler à la page d'accueil",
+    "unpinButton": "Détacher de la page d'accueil",
+    "searchPlaceholder": "Rechercher sur le marché...",
+    "locationPlaceholder": "Filtrer par emplacement...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus",
+    "noItemsFound": {
+      "title": "Aucun article trouvé.",
+      "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
+    },
+    "myOrders": {
+      "backLink": "Retour au marché",
+      "title": "Mes commandes reçues",
+      "description": "Afficher et gérer les commandes reçues des acheteurs.",
+      "auth": {
+        "title": "Authentification requise",
+        "description": "Vous devez être connecté pour afficher vos commandes.",
+        "button": "Se connecter"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Acheteur",
+        "product": "Produit",
+        "total": "Total",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirmer",
+        "ship": "Expédier",
+        "complete": "Terminer",
+        "cancel": "Annuler"
+      },
+      "status": {
+        "new": "Nouveau",
+        "confirmed": "Confirmé",
+        "shipped": "Expédié",
+        "completed": "Terminé",
+        "cancelled": "Annulé"
+      },
+      "noOrders": "Aucune commande trouvée.",
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Échec de la récupération des commandes.",
+        "successTitle": "Succès !",
+        "updateSuccess": "Statut de la commande mis à jour vers {{status}}",
+        "failTitle": "Erreur"
+      }
+    },
+    "shopView": {
+      "backLink": "Retour au marché",
+      "ownedBy": "Appartient à",
+      "loadingOwner": "Chargement...",
+      "editShopButton": "Modifier la boutique",
+      "contactButton": "Contacter le vendeur",
+      "listingsTitle": "Annonces de {{shopName}}",
+      "noListings": "Aucune annonce trouvée pour cette boutique."
+    },
+    "createShop": {
+      "backLink": "Retour au marché",
+      "title": "Créer votre boutique numérique",
+      "description": "Configurez votre boutique pour lister des articles et des services.",
+      "form": {
+        "nameLabel": "Nom de la boutique",
+        "namePlaceholder": "Entrez le nom de votre boutique",
+        "typeLabel": "Type de partie prenante",
+        "typePlaceholder": "Sélectionnez votre type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre boutique et ce que vous proposez"
+      },
+      "submitButton": "Créer la boutique",
+      "submittingButton": "Création en cours...",
+      "authErrorTitle": "Erreur d'authentification",
+      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
+      "toast": {
+        "successTitle": "Boutique créée !",
+        "successDescription": "Votre boutique \"{{shopName}}\" a été créée.",
+        "failTitle": "Échec de la création",
+        "failDescription": "Impossible de créer la boutique. Veuillez réessayer."
+      }
+    },
+    "manageService": {
+      "backLink": "Retour à {{itemName}}",
+      "title": "Gérer le service : {{itemName}}",
+      "description": "Gérer les réservations et les paramètres de ce service.",
+      "tabs": {
+        "bookings": "Réservations",
+        "settings": "Paramètres"
+      },
+      "bookingsTab": {
+        "title": "Réservations du service",
+        "description": "Afficher et gérer les réservations pour ce service.",
+        "table": {
+          "date": "Date",
+          "guest": "Invité",
+          "dates": "Dates",
+          "total": "Total",
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "status": {
+          "pending": "En attente",
+          "confirmed": "Confirmé",
+          "cancelled": "Annulé",
+          "completed": "Terminé"
+        },
+        "actions": {
+          "confirm": "Confirmer la réservation",
+          "cancel": "Annuler la réservation",
+          "viewDetails": "Voir les détails"
+        },
+        "noBookings": "Aucune réservation pour l'instant.",
+        "toast": {
+          "fetchErrorTitle": "Erreur de chargement des réservations",
+          "fetchErrorDescription": "Impossible de récupérer les réservations pour ce service.",
+          "updateSuccessTitle": "Réservation mise à jour !",
+          "updateSuccessDescription": "Statut de la réservation mis à jour vers {{status}}.",
+          "updateFailTitle": "Mise à jour échouée",
+          "updateFailDescription": "Impossible de mettre à jour le statut de la réservation."
+        }
+      },
+      "settingsTab": {
+        "title": "Paramètres du service",
+        "description": "Mettre à jour les détails et la disponibilité de ce service.",
+        "form": {
+          "priceLabel": "Prix par nuit",
+          "pricePlaceholder": "Entrez le prix",
+          "currencyLabel": "Devise",
+          "currencyPlaceholder": "Sélectionner la devise",
+          "availabilityLabel": "Dates de disponibilité",
+          "availabilityDescription": "Sélectionnez les dates auxquelles ce service est disponible.",
+          "submitButton": "Enregistrer les modifications",
+          "submittingButton": "Enregistrement en cours..."
+        },
+        "toast": {
+          "updateSuccessTitle": "Paramètres enregistrés !",
+          "updateSuccessDescription": "Paramètres du service mis à jour avec succès.",
+          "updateFailTitle": "Échec de l'enregistrement",
+          "updateFailDescription": "Impossible d'enregistrer les paramètres du service."
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "Erreur de chargement du service",
+        "loadErrorDescription": "Impossible de charger les détails du service pour la gestion.",
+        "notFoundTitle": "Service introuvable",
+        "notFoundDescription": "Le service que vous essayez de gérer n'existe pas."
+      },
+      "authRequired": {
+        "title": "Authentification requise",
+        "description": "Vous devez être connecté pour gérer ce service.",
+        "button": "Se connecter"
+      }
+    },
+    "itemView": {
+      "backLink": "Retour au marché",
+      "unknownUser": "Utilisateur inconnu",
+      "traceabilityButton": "Lien Commercial / Lot",
+      "skillsLabel": "Compétences requises",
+      "experienceLabel": "Niveau d'expérience",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contacter pour les tarifs",
+      "booking": {
+        "perNight": "nuit",
+        "checkIn": "Arrivée",
+        "checkOut": "Départ",
+        "addDate": "Ajouter une date",
+        "guests": "Invités",
+        "reserveButton": "Réserver",
+        "reservingButton": "Réservation en cours...",
+        "notCharged": "Vous ne serez pas encore facturé",
+        "nights": "nuits",
+        "serviceFee": "Frais de service",
+        "total": "Total",
+        "successTitle": "Réservation réussie !",
+        "successDescription": "Votre réservation est confirmée.",
+        "failTitle": "Échec de la réservation",
+        "dateError": "Veuillez sélectionner des dates d'arrivée et de départ valides.",
+        "authTitle": "Authentification requise",
+        "authDescription": "Vous devez être connecté pour réserver un service.",
+        "bookedTitle": "Réservé !",
+        "bookedDescription": "Votre réservation est confirmée. Présentez le code QR ci-dessous à votre arrivée.",
+        "ticketButton": "Afficher le ticket",
+        "modalTitle": "Ticket de réservation",
+        "modalDescription": "Présentez ce code QR à {{itemName}} pour l'enregistrement.",
+        "modalScan": "Scannez ce code pour vous enregistrer"
+      },
+      "coupon": {
+        "label": "Code promo",
+        "placeholder": "Entrez le code promo",
+        "applyButton": "Appliquer",
+        "successTitle": "Code promo appliqué !",
+        "successDescription": "Réduction appliquée : {{type}}",
+        "failTitle": "Code promo invalide",
+        "failDescription": "Le code promo est invalide ou non applicable.",
+        "appliedText": "Code promo appliqué : {{code}}"
+      },
+      "aboutSeller": "À propos du vendeur",
+      "viewShopfront": "Voir la boutique",
+      "editListing": "Modifier l'annonce",
+      "manageService": "Gérer le service",
+      "buyNowButton": "Acheter maintenant",
+      "contactForService": "Contacter pour le service",
+      "contactSeller": "Contacter le vendeur",
+      "order": {
+        "title": "Commander {{itemName}}",
+        "description": "Entrez la quantité que vous souhaitez commander et toute note.",
+        "quantityLabel": "Quantité",
+        "notesLabel": "Notes (Facultatif)",
+        "notesPlaceholder": "Ajoutez des instructions ou des demandes spécifiques...",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer la commande",
+        "placingButton": "Commande en cours...",
+        "successTitle": "Commande passée !",
+        "successDescription": "Votre commande a été passée avec succès.",
+        "failTitle": "Échec de la commande",
+        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
+        "quantityErrorTitle": "Erreur de quantité",
+        "quantityErrorDescription": "Veuillez entrer une quantité valide (au moins 1).",
+        "authTitle": "Authentification requise",
+        "authDescription": "Vous devez être connecté pour passer une commande."
+      },
+      "notFound": {
+        "title": "Article introuvable",
+        "description": "L'article du marché que vous recherchez n'existe pas.",
+        "backButton": "Retour au Marché"
+      }
+    },
+    "createListing": {
+      "backLink": "Retour au marché",
+      "title": "Créer une nouvelle annonce",
+      "description": "Lister un produit ou un service sur le marché.",
+      "form": {
+        "nameLabel": "Nom de l'article/service",
+        "namePlaceholder": "Entrez le nom de votre annonce",
+        "typeLabel": "Type d'annonce",
+        "typePlaceholder": "Sélectionnez le type d'annonce",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre annonce",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "Entrez l'emplacement",
+        "relatedVtiLabel": "VTI / ID de lot associé (Facultatif)",
+        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
+        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Sélectionnez une catégorie",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "ex: par heure, taux fixe",
+        "experienceLabel": "Niveau d'expérience",
+        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
+        "skillsLabel": "Compétences requises",
+        "skillsPlaceholder": "Liste des compétences nécessaires pour le service",
+        "skillsDescription": "Séparez les compétences par des virgules.",
+        "priceLabel": "Prix",
+        "pricePlaceholder": "Entrez le prix",
+        "unitLabel": "Unité",
+        "unitPlaceholder": "ex: kg, pièce, heure",
+        "imageUrlLabel": "URL de l'image (Facultatif)",
+        "sustainableLabel": "Pratique durable",
+        "sustainableDescription": "Indique si cette annonce implique des pratiques durables.",
+        "submitButton": "Créer l'annonce",
+        "submittingButton": "Création en cours..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggérer un prix avec l'IA",
+        "generatingButton": "Génération en cours...",
+        "suggestionLabel": "Suggestion IA:",
+        "usePriceButton": "Utiliser ce prix"
+      },
+      "success": {
+        "title": "Succès !",
+        "description": "Votre annonce a été créée."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Informations manquantes",
+            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
+          },
+          "failed": {
+            "title": "Suggestion de prix échouée",
+            "description": "Impossible d'obtenir une suggestion de prix IA. Veuillez réessayer ou entrer un prix manuellement."
+          }
+        },
+        "authentication": {
+          "title": "Erreur d'authentification",
+          "description": "Vous devez être connecté pour créer une annonce."
+        },
+        "creation": {
+          "title": "Échec de la création",
+          "description": "Impossible de créer l'annonce. Veuillez réessayer."
+        }
+      }
+    }
+  },
+  "Forums": {
+    "title": "Sujets du forum",
+    "description": "Parcourir et créer des sujets de discussion",
+    "lastActivity": "Dernière activité il y a {{time}}",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "joinDiscussion": "Rejoindre la discussion",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement...",
+      "pinHomepage": "Épingler à l'accueil",
+      "unpinHomepage": "Détacher de l'accueil"
+    },
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
+    },
+    "pinning": {
+      "pinnedTitle": "Accueil épinglé !",
+      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
+      "unpinnedTitle": "Accueil détaché !",
+      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    },
+    "errors": {
+      "loadTitle": "Erreur de chargement des sujets",
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
+      },
+      "incomplete": {
+        "title": "Champs incomplets",
+        "description": "Veuillez remplir tous les champs obligatoires."
+      },
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur s'est produite lors de la création du sujet."
+      }
+    },
+    "topic": {
+      "unknownUser": "Utilisateur inconnu",
+      "postMeta": "par {{author}} le {{date}}",
+      "noPosts": {
+        "title": "Aucun message pour l'instant",
+        "description": "Soyez le premier à répondre à ce sujet.",
+        "button": "Ajouter une réponse"
+      },
+      "notFound": {
+        "title": "Sujet introuvable",
+        "description": "Le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des messages",
+          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
+        },
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {{topicName}}",
+      "unknownUser": "Utilisateur inconnu",
+      "postMeta": "par {{author}} le {{date}}",
+      "repliesTitle": "Réponses ({{count}})",
+      "noReplies": "Aucune réponse pour l'instant.",
+      "reply": {
+        "title": "Ajouter une réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Ajouter une réponse",
+        "submittingButton": "Envoi en cours...",
+        "success": "Réponse ajoutée !"
+      },
+      "notFound": {
+        "title": "Message introuvable",
+        "description": "Le message que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement du message",
+          "description": "Une erreur s'est produite lors du chargement des détails du message."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
+        },
+        "emptyReply": "La réponse ne peut pas être vide.",
+        "submitReply": {
+          "title": "Erreur d'envoi de la réponse",
+          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Assistant IA",
+        "description": "Générer un brouillon de message basé sur une invite.",
+        "promptLabel": "Invite IA",
+        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
+        "generateButton": "Générer le brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "title": "Créer un nouveau message",
+      "description": "Ajouter un nouveau message à ce sujet.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Entrez le titre de votre message",
+        "contentLabel": "Contenu du message",
+        "contentPlaceholder": "Écrivez votre message ici...",
+        "submitButton": "Créer le message",
+        "submittingButton": "Envoi en cours..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon IA généré !",
+          "description": "Un brouillon a été généré pour vous."
+        },
+        "title": "Message créé !",
+        "description": "Votre message a été créé avec succès."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Invite IA manquante",
+          "description": "Veuillez fournir une invite pour l'assistant IA."
+        },
+        "aiDraft": {
+          "title": "Erreur de brouillon IA",
+          "description": "Échec de la génération du brouillon IA."
+        },
+        "incomplete": {
+          "title": "Champs incomplets",
+          "description": "Veuillez remplir tous les champs obligatoires."
+        },
+        "general": {
+          "title": "Erreur",
+          "description": "Une erreur s'est produite lors de la création du message."
+        }
+      }
+    },
+    "create": {
+      "backLink": "Retour aux sujets",
+      "title": "Créer un nouveau sujet",
+      "description": "Démarrer une nouvelle discussion dans le forum.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "success": {
+        "title": "Sujet créé avec succès",
+        "description": "Votre nouveau sujet a été créé."
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "farmer": "Agriculteur",
+      "trader": "Commerçant",
+      "agro_innovator": "Innovateur agricole",
+      "researcher": "Chercheur",
+      "service_provider": "Prestataire de services",
+      "consumer": "Consommateur"
+    }
+  },
+  "Homepage": {}
 }
+
+
+    
