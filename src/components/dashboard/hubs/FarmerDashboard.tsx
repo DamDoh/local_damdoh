@@ -32,26 +32,49 @@ const DashboardSkeleton = () => (
     </div>
 );
 
+interface StatCardProps {
+  title: string;
+  value: number;
+  icon: React.ReactNode;
+  actionLink: string;
+  actionLabel: string;
+  unit?: string;
+  isCurrency?: boolean;
+  actionIcon?: React.ReactNode;
+  actionButtonVariant?: ButtonProps["variant"];
+}
 
-const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false, actionIcon, valueClassName, actionButtonVariant = "outline" }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean, actionIcon?: React.ReactNode, valueClassName?: string, actionButtonVariant?: ButtonProps["variant"] }) => (
-    <Card className="flex flex-col justify-between">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        {icon}
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <div className="text-2xl font-bold">
-            {isCurrency && '$'}{value.toLocaleString(undefined, { minimumFractionDigits: isCurrency ? 2 : 0, maximumFractionDigits: isCurrency ? 2 : 0 })}
-            {unit && <span className="text-sm text-muted-foreground ml-1">{unit}</span>}
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button asChild variant={actionButtonVariant} size="sm" className="w-full">
-            <Link href={actionLink} className="flex items-center justify-center">{actionIcon}{actionLabel}</Link>
-        </Button>
-      </CardFooter>
-    </Card>
-);
+const StatCard: React.FC<StatCardProps> = ({ 
+    title, 
+    value, 
+    icon, 
+    actionLink, 
+    actionLabel, 
+    unit, 
+    isCurrency = false, 
+    actionIcon, 
+    actionButtonVariant = "outline" 
+}) => {
+    return (
+        <Card className="flex flex-col justify-between">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                {icon}
+            </CardHeader>
+            <CardContent className="flex-grow">
+                <div className="text-2xl font-bold">
+                    {isCurrency && '$'}{value.toLocaleString(undefined, { minimumFractionDigits: isCurrency ? 2 : 0, maximumFractionDigits: isCurrency ? 2 : 0 })}
+                    {unit && <span className="text-sm text-muted-foreground ml-1">{unit}</span>}
+                </div>
+            </CardContent>
+            <CardFooter>
+                <Button asChild variant={actionButtonVariant} size="sm" className="w-full">
+                    <Link href={actionLink} className="flex items-center justify-center">{actionIcon}{actionLabel}</Link>
+                </Button>
+            </CardFooter>
+        </Card>
+    );
+};
 
 const AlertIcon = ({ icon }: { icon: 'FlaskConical' | 'Sprout' }) => {
     const iconMap = {
