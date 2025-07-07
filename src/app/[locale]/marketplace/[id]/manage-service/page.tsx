@@ -1,9 +1,8 @@
-
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Loader2, ScanLine, UserCheck, AlertCircle, Users, UserPlus, Trash2, Search, ArrowLeft } from "lucide-react";
+import { Loader2, ScanLine, UserCheck, AlertCircle, Users, UserPlus, Trash2, Search, ArrowLeft, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { httpsCallable } from "firebase/functions";
@@ -20,6 +19,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { useTranslations } from "next-intl";
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
@@ -43,6 +43,7 @@ interface StaffMember {
 // --- Check-in Tab ---
 
 const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) => {
+    const t = useTranslations('AgriEvents.manage.checkin'); // Re-use event translations
     const [isScanning, setIsScanning] = useState(false);
     const [checkInResult, setCheckInResult] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -57,19 +58,19 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
 
         try {
             if (!decodedText.startsWith('damdoh:checkin')) {
-                throw new Error("Invalid QR Code: Not a DamDoh check-in code.");
+                throw new Error(t('error.invalidCode'));
             }
 
             const urlParams = new URLSearchParams(decodedText.split('?')[1]);
-            const scannedItemId = urlParams.get('itemId');
+            const scannedItemId = urlParams.get('itemId') || urlParams.get('eventId');
             const attendeeUid = urlParams.get('userId');
 
             if (scannedItemId !== itemId) {
-                throw new Error("This ticket is for a different service.");
+                throw new Error(t('error.wrongEvent'));
             }
             
             if (!attendeeUid) {
-                throw new Error("Invalid QR Code: No User ID found.");
+                throw new Error(t('error.noUserId'));
             }
             
             const result = await checkInCallable({ itemId, attendeeUid });
@@ -77,14 +78,14 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
             
             if (data.success) {
                 setCheckInResult({ type: 'success', message: data.message });
-                toast({ title: "Check-in Successful", description: data.message });
+                toast({ title: t('toast.success.title'), description: data.message });
             } else {
-                 throw new Error(data.message || "Check-in failed for an unknown reason.");
+                 throw new Error(data.message || t('error.failUnknown'));
             }
         } catch (error: any) {
              const message = error.message;
             setCheckInResult({ type: 'error', message: message });
-            toast({ variant: "destructive", title: "Check-in Failed", description: message });
+            toast({ variant: "destructive", title: t('toast.fail.title'), description: message });
         } finally {
             setIsProcessing(false);
         }
@@ -92,7 +93,7 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
     
     const handleScanFailure = (error: string) => {
         setIsScanning(false);
-        toast({ variant: "destructive", title: "Scan Failed", description: "Could not read the QR code. Please try again." });
+        toast({ variant: "destructive", title: t('toast.scanFail.title'), description: t('toast.scanFail.description') });
     };
 
     return (
@@ -100,21 +101,21 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
         {isScanning && ( <QrScanner onScanSuccess={handleScanSuccess} onScanFailure={handleScanFailure} onClose={() => setIsScanning(false)} /> )}
         <Card>
             <CardHeader>
-                <CardTitle>Guest Check-in</CardTitle>
-                <CardDescription>Scan a guest's service ticket QR code to verify their booking and check them in for '{itemName}'.</CardDescription>
+                <CardTitle>{t('title')}</CardTitle>
+                <CardDescription>{t('description')}</CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-4">
                 <Button size="lg" onClick={() => setIsScanning(true)} disabled={isProcessing}>
                     <ScanLine className="mr-2 h-6 w-6" />
-                    Scan Guest's Ticket
+                    {t('scanButton')}
                 </Button>
 
-                {isProcessing && <div className="flex justify-center items-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /> Verifying...</div>}
+                {isProcessing && <div className="flex justify-center items-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /> {t('verifying')}</div>}
                 
                 {checkInResult && (
                     <Alert variant={checkInResult.type === 'error' ? 'destructive' : 'default'} className="text-left">
                         {checkInResult.type === 'success' ? <UserCheck className="h-4 w-4" /> : <AlertCircle className="h-4 w-4" />}
-                        <AlertTitle>{checkInResult.type === 'success' ? "Success" : "Error"}</AlertTitle>
+                        <AlertTitle>{checkInResult.type === 'success' ? t('success') : t('errorTitle')}</AlertTitle>
                         <AlertDescription>{checkInResult.message}</AlertDescription>
                     </Alert>
                 )}
@@ -127,6 +128,7 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
 // --- Staff Management Tab ---
 
 const StaffManagementTab = ({ itemId }: { itemId: string }) => {
+    const t = useTranslations('AgriEvents.manage.staff'); // Re-use event translations
     const { toast } = useToast();
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState<UserProfile[]>([]);
@@ -145,11 +147,11 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
             const result = await getStaffCallable({ itemId });
             setCurrentStaff((result.data as any)?.staff || []);
         } catch (error: any) {
-            toast({ variant: 'destructive', title: "Error", description: "Could not fetch service staff." });
+            toast({ variant: 'destructive', title: t('toast.error'), description: t('toast.fetchStaffError') });
         } finally {
             setIsLoadingStaff(false);
         }
-    }, [itemId, getStaffCallable, toast]);
+    }, [itemId, getStaffCallable, toast, t]);
     
     useEffect(() => {
         if (itemId) fetchStaff();
@@ -158,7 +160,7 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.length < 3) {
-            toast({ title: "Please enter at least 3 characters to search." });
+            toast({ title: t('toast.searchLengthError') });
             return;
         }
         setIsSearching(true);
@@ -166,7 +168,7 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
             const result = await searchUsersCallable({ query: searchQuery });
             setSearchResults((result.data as any)?.users || []);
         } catch (error: any) {
-            toast({ variant: 'destructive', title: "Search failed", description: error.message });
+            toast({ variant: 'destructive', title: t('toast.searchFailed'), description: error.message });
         } finally {
             setIsSearching(false);
         }
@@ -180,33 +182,33 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
                 staffDisplayName: staffMember.displayName,
                 staffAvatarUrl: staffMember.avatarUrl
             });
-            toast({ title: "Success", description: `${staffMember.displayName} added as staff.`});
+            toast({ title: t('toast.success'), description: t('toast.addSuccess', { name: staffMember.displayName })});
             fetchStaff(); // Refresh the list
             setSearchResults([]); // Clear search results
             setSearchQuery('');
         } catch (error: any) {
-             toast({ variant: 'destructive', title: "Failed to add staff", description: error.message });
+             toast({ variant: 'destructive', title: t('toast.addFailed'), description: error.message });
         }
     };
     
     const handleRemoveStaff = async (staffMember: StaffMember) => {
         try {
             await removeStaffCallable({ itemId, staffUserId: staffMember.id });
-            toast({ title: "Success", description: `${staffMember.displayName} removed from staff.`});
+            toast({ title: t('toast.success'), description: t('toast.removeSuccess', { name: staffMember.displayName })});
             fetchStaff();
         } catch(error: any) {
-             toast({ variant: 'destructive', title: "Failed to remove staff", description: error.message });
+             toast({ variant: 'destructive', title: t('toast.removeFailed'), description: error.message });
         }
     };
 
     return (
         <Card>
-            <CardHeader><CardTitle>Manage Service Staff</CardTitle><CardDescription>Add or remove staff who can help you check-in guests.</CardDescription></CardHeader>
+            <CardHeader><CardTitle>{t('title')}</CardTitle><CardDescription>{t('description')}</CardDescription></CardHeader>
             <CardContent className="space-y-6">
                 <div>
-                    <h3 className="text-lg font-medium mb-2">Add New Staff</h3>
+                    <h3 className="text-lg font-medium mb-2">{t('addTitle')}</h3>
                     <form onSubmit={handleSearch} className="flex gap-2">
-                        <Input placeholder="Search user by name or email..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+                        <Input placeholder={t('searchPlaceholder')} value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
                         <Button type="submit" disabled={isSearching}>{isSearching ? <Loader2 className="h-4 w-4 animate-spin"/> : <Search className="h-4 w-4"/>}</Button>
                     </form>
                     <div className="mt-2 space-y-2">
@@ -216,13 +218,13 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
                                     <Avatar className="h-8 w-8"><AvatarImage src={res.avatarUrl} /><AvatarFallback>{res.displayName?.substring(0,1)}</AvatarFallback></Avatar>
                                     <div><p className="text-sm font-medium">{res.displayName}</p><p className="text-xs text-muted-foreground">{res.email}</p></div>
                                 </div>
-                                <Button size="sm" onClick={() => handleAddStaff(res)}><UserPlus className="h-4 w-4 mr-2"/>Add</Button>
+                                <Button size="sm" onClick={() => handleAddStaff(res)}><UserPlus className="h-4 w-4 mr-2"/>{t('addButton')}</Button>
                             </div>
                         ))}
                     </div>
                 </div>
                  <div>
-                    <h3 className="text-lg font-medium mb-2">Current Staff ({currentStaff.length})</h3>
+                    <h3 className="text-lg font-medium mb-2">{t('currentTitle')} ({currentStaff.length})</h3>
                     {isLoadingStaff ? <Skeleton className="h-24 w-full" /> : 
                      currentStaff.length > 0 ? (
                         <div className="space-y-2">
@@ -232,11 +234,11 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
                                         <Avatar className="h-8 w-8"><AvatarImage src={staff.avatarUrl} /><AvatarFallback>{staff.displayName?.substring(0,1)}</AvatarFallback></Avatar>
                                         <p className="text-sm font-medium">{staff.displayName}</p>
                                     </div>
-                                    <Button size="sm" variant="destructive" onClick={() => handleRemoveStaff(staff)}><Trash2 className="h-4 w-4 mr-2"/>Remove</Button>
+                                    <Button size="sm" variant="destructive" onClick={() => handleRemoveStaff(staff)}><Trash2 className="h-4 w-4 mr-2"/>{t('removeButton')}</Button>
                                 </div>
                              ))}
                         </div>
-                     ) : <p className="text-sm text-muted-foreground text-center py-4">No staff members added.</p>
+                     ) : <p className="text-sm text-muted-foreground text-center py-4">{t('noStaff')}</p>
                     }
                 </div>
             </CardContent>
@@ -246,6 +248,7 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
 
 // Bookings List Tab
 const BookingsTab = ({ itemId }: { itemId: string }) => {
+    const t = useTranslations('Marketplace.manageService.bookingsTab');
     const { toast } = useToast();
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -260,27 +263,56 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
                 const result = await getBookingsCallable({ itemId });
                 setBookings((result.data as any)?.bookings || []);
             } catch (error) {
-                toast({ variant: "destructive", title: "Error", description: "Could not fetch bookings." });
+                toast({ variant: "destructive", title: t('error'), description: t('fetchError') });
             } finally {
                 setIsLoading(false);
             }
         };
         fetchBookings();
-    }, [itemId, getBookingsCallable, toast]);
+    }, [itemId, getBookingsCallable, toast, t]);
+    
+     const handleDownloadCsv = () => {
+        if (bookings.length === 0) {
+            toast({ title: t('toast.noBookings') });
+            return;
+        }
+
+        const headers = ["displayName", "bookedAt", "checkedIn", "checkedInAt"];
+        const csvContent = "data:text/csv;charset=utf-8," 
+            + headers.join(",") + "\n" 
+            + bookings.map(e => headers.map(header => `"${e[header as keyof Booking]}"`).join(",")).join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `service_bookings_${itemId}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     return (
         <Card>
-            <CardHeader><CardTitle>Guest Bookings</CardTitle><CardDescription>A list of all guests who have booked this service.</CardDescription></CardHeader>
+             <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                    <CardTitle>{t('title')} ({bookings.length})</CardTitle>
+                    <CardDescription>{t('description')}</CardDescription>
+                </div>
+                <Button onClick={handleDownloadCsv} variant="outline" size="sm">
+                    <Download className="mr-2 h-4 w-4" />
+                    {t('downloadCsv')}
+                </Button>
+            </CardHeader>
             <CardContent>
                 {isLoading ? <Skeleton className="h-40 w-full" /> :
                 bookings.length > 0 ? (
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Guest</TableHead>
-                                <TableHead>Booked On</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead>Checked-in At</TableHead>
+                                <TableHead>{t('table.guest')}</TableHead>
+                                <TableHead>{t('table.bookedOn')}</TableHead>
+                                <TableHead>{t('table.status')}</TableHead>
+                                <TableHead>{t('table.checkedInAt')}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -290,7 +322,7 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
                                     <TableCell>{new Date(booking.bookedAt).toLocaleDateString()}</TableCell>
                                     <TableCell>
                                         <Badge variant={booking.checkedIn ? "default" : "secondary"}>
-                                            {booking.checkedIn ? "Checked-in" : "Booked"}
+                                            {booking.checkedIn ? t('status.checkedIn') : t('status.booked')}
                                         </Badge>
                                     </TableCell>
                                     <TableCell>{booking.checkedInAt ? new Date(booking.checkedInAt).toLocaleString() : 'N/A'}</TableCell>
@@ -299,7 +331,7 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
                         </TableBody>
                     </Table>
                 ) : (
-                    <p className="text-sm text-center text-muted-foreground py-8">No bookings found for this service yet.</p>
+                    <p className="text-sm text-center text-muted-foreground py-8">{t('noBookings')}</p>
                 )}
             </CardContent>
         </Card>
@@ -309,6 +341,7 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
 
 // --- Main Page Component ---
 export default function ManageAgroTourismServicePage() {
+    const t = useTranslations('Marketplace.manageService');
     const params = useParams();
     const router = useRouter();
     const itemId = params.id as string;
@@ -318,7 +351,7 @@ export default function ManageAgroTourismServicePage() {
     const itemName = "Agro-Tourism Service"; 
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>{t('loading')}</div>;
     }
     
     if (!user) {
@@ -329,15 +362,15 @@ export default function ManageAgroTourismServicePage() {
     return (
         <div className="container mx-auto p-4 md:p-8">
              <Button asChild variant="outline" className="mb-4">
-                <Link href={`/marketplace/${itemId}`}><ArrowLeft className="mr-2 h-4 w-4" />Back to Service Page</Link>
+                <Link href={`/marketplace/${itemId}`}><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link>
             </Button>
-            <h1 className="text-3xl font-bold mb-2">Manage Service</h1>
+            <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
             <p className="text-muted-foreground mb-6">{itemName}</p>
             <Tabs defaultValue="check-in" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="check-in">Check-in</TabsTrigger>
-                    <TabsTrigger value="bookings">Bookings</TabsTrigger>
-                    <TabsTrigger value="staff">Staff</TabsTrigger>
+                    <TabsTrigger value="check-in">{t('tabs.checkin')}</TabsTrigger>
+                    <TabsTrigger value="bookings">{t('tabs.bookings')}</TabsTrigger>
+                    <TabsTrigger value="staff">{t('tabs.staff')}</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="check-in" className="mt-4">

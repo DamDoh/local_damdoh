@@ -1023,7 +1023,7 @@
     "detailsTab": "Details",
     "contactTab": "Kontakt",
     "nameLabel": "Name",
-    "namePlaceholder": "Ihr vollständiger Name oder Firmenname",
+    "namePlaceholder": "Ihr vollständiger Name oder der Name Ihres Unternehmens",
     "roleLabel": "Hauptrolle",
     "rolePlaceholder": "Wählen Sie Ihre Rolle",
     "summaryLabel": "Profilübersicht",
@@ -1289,7 +1289,7 @@
       }
     },
     "farmDetail": {
-      "backToFarms": "Zurück zu den Farmen",
+      "backToFarms": "Zurück zu meinen Farmen",
       "editFarmButton": "Farm bearbeiten",
       "registeredOn": "Registriert am {date}",
       "crops": {
@@ -1317,149 +1317,275 @@
         "loadErrorTitle": "Fehler beim Laden der Farmdaten",
         "insightsErrorTitle": "Farmeinsichten konnten nicht geladen werden."
       }
-    }
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Landwirt",
-      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
-      "FieldAgentAgronomistDamDohInternal": "Außendienstmitarbeiter/Agronom (DamDoh Intern)",
-      "OperationsLogisticsTeamDamDohInternal": "Betriebs-/Logistikteam (DamDoh Intern)",
-      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungsteam (DamDoh Intern)",
-      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
-      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
-      "InputSupplierSeedFertilizerPesticide": "Lieferant von Betriebsmitteln (Saatgut, Dünger, Pestizide)",
-      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
-      "FinancialInstitutionMicro-financeLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
-      "GovernmentRegulatorAuditor": "Regierungsregulierer/Prüfer",
-      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
-      "Consumer": "Verbraucher",
-      "ResearcherAcademic": "Forscher/Akademiker",
-      "LogisticsPartnerThird-PartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
-      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
-      "AgronomyExpertConsultantExternal": "Agronom/Berater (Extern)",
-      "Agro-TourismOperator": "Agro-Tourismus-Betreiber",
-      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogas)",
-      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
-      "Agri-TechInnovatorDeveloper": "Agri-Tech-Innovator/Entwickler",
-      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
-      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
-      "InsuranceProvider": "Versicherungsanbieter",
-      "PackagingSupplier": "Verpackungslieferant"
     },
-    "listingTypes": {
-      "All": "Alle Typen",
-      "Product": "Produkt",
-      "Service": "Dienstleistung"
-    },
-    "agriEventTypes": {
-      "All": "Alle Typen",
-      "Conference": "Konferenz",
-      "Webinar": "Webinar",
-      "Workshop": "Workshop",
-      "TradeShow": "Messe",
-      "FieldDay": "Feldtag",
-      "NetworkingEvent": "Networking-Veranstaltung",
-      "OnlineCourseLaunch": "Online-Kurs-Start",
-      "PolicyBriefing": "Politik-Briefing"
-    }
-  },
-  "marketplacePage": {
-    "title": "Marktplatz",
-    "description": "Entdecken Sie Produkte, Dienstleistungen und Möglichkeiten aus der gesamten landwirtschaftlichen Lieferkette.",
-    "createShopButton": "Digitalen Shop erstellen",
-    "createListingButton": "Neues Angebot erstellen",
-    "unpinButton": "Von Startseite lösen",
-    "pinButton": "Als Startseite anheften",
-    "searchPlaceholder": "Produkte oder Dienstleistungen suchen...",
-    "locationPlaceholder": "Nach Ort filtern...",
-    "typePlaceholder": "Angebotstyp",
-    "recommendedForYou": "Für Sie empfohlen",
-    "discoverMore": "Mehr entdecken",
-    "viewServiceButton": "Dienstleistung ansehen",
-    "viewDetails": "Details ansehen",
-    "noItemsFound": "Keine Angebote gefunden",
-    "noItemsHint": "Versuchen Sie, Ihre Suche anzupassen, oder seien Sie der Erste, der in Ihrer Region ein Angebot erstellt!",
-    "toast": {
-      "unpinned": {
-        "title": "Startseite gelöst!",
-        "description": "Das Dashboard ist jetzt Ihre Standard-Startseite."
+    "cropDetailPage": {
+      "loading": "Laden...",
+      "notFound": "Kultur nicht gefunden",
+      "backLink": "Zurück zu den Farmdetails",
+      "plantedOn": "Gepflanzt am {date}",
+      "editButton": "Kultur bearbeiten",
+      "quickActionsTitle": "Schnellaktionen",
+      "logInputButton": "Betriebsmittel protokollieren",
+      "logObservationButton": "Beobachtung protokollieren",
+      "logHarvestButton": "Ernte protokollieren",
+      "journeyTitle": "Reise der Kultur",
+      "noActivities": "Für diese Kultur wurden noch keine Aktivitäten protokolliert.",
+      "eventPayload": {
+        "noDetails": "Keine Details protokolliert.",
+        "observationType": "Beobachtungstyp",
+        "details": "Details",
+        "aiDiagnosis": "KI-Diagnose"
       },
-      "pinned": {
-        "title": "Marktplatz angeheftet!",
-        "description": "Der Marktplatz ist jetzt Ihre Standard-Startseite."
+      "toast": {
+        "notFound": "Kultur nicht gefunden.",
+        "loadError": "Fehler beim Laden der Kulturhistorie"
       }
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre Expertise für landwirtschaftliche Projekte an.",
-    "listServiceButton": "Dienstleistung anbieten",
-    "searchPlaceholder": "Nach Fähigkeiten oder Rollen suchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "categoryPlaceholder": "Dienstleistungskategorie",
-    "allCategories": "Alle Kategorien",
-    "noResultsTitle": "Keine Ergebnisse gefunden",
-    "noResultsDescription": "Es wurden keine Dienstleistungen oder Jobangebote gefunden, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche zu erweitern.",
-    "toast": {
-      "error": {
-        "title": "Fehler",
-        "description": "Marktplatzartikel konnten nicht geladen werden."
+    },
+    "createCrop": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Neue Kultur anlegen",
+      "description": "Fügen Sie eine neue Kultur oder einen neuen Viehbestand zu dieser Farm hinzu.",
+      "cropTypeLabel": "Kulturart",
+      "cropTypePlaceholder": "z.B. Mais, Tomaten, Rinder",
+      "cropTypeDescription": "Geben Sie den Namen der Kultur oder des Viehbestands an.",
+      "plantingDateLabel": "Pflanzdatum",
+      "harvestDateLabel": "Erwartetes Erntedatum (optional)",
+      "datePlaceholder": "Datum auswählen",
+      "yieldLabel": "Erwarteter Ertrag (optional)",
+      "yieldPlaceholder": "z.B. 10 Tonnen",
+      "stageLabel": "Aktuelle Phase",
+      "stagePlaceholder": "Wählen Sie eine Phase",
+      "stages": {
+        "Planting": "Pflanzung",
+        "Vegetative": "Vegetativ",
+        "Flowering": "Blüte",
+        "Fruiting": "Fruchtbildung",
+        "Harvesting": "Ernte",
+        "Post-Harvest": "Nach der Ernte"
+      },
+      "notesLabel": "Notizen (optional)",
+      "notesPlaceholder": "Zusätzliche Details wie Sorte, Dichte usw.",
+      "saveButton": "Kultur speichern",
+      "savingButton": "Speichern...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um Kulturen zu erstellen.",
+        "successTitle": "Kultur erstellt",
+        "successDescription": "{cropType} wurde erfolgreich hinzugefügt.",
+        "failTitle": "Fehler beim Erstellen der Kultur",
+        "failDescription": "Ein unerwarteter Fehler ist aufgetreten."
       }
-    }
-  },
-  "traceabilityPage": {
-    "title": "Rückverfolgbarkeit von Produkten",
-    "description": "Verfolgen Sie die Reise Ihrer Lebensmittel vom Bauernhof bis zum Tisch für vollständige Transparenz.",
-    "inputPlaceholder": "Geben Sie eine Chargen- oder VTI-Nummer ein...",
-    "trackButton": "Verfolgen",
-    "vtiDescription": "Die VTI (Verifiable Traceability ID) ist ein eindeutiger Code, der jeder Charge zugeordnet ist.",
-    "recentTitle": "Kürzlich verfolgte Chargen",
-    "recentDescription": "Ihre kürzlich verfolgten Artikel werden hier zur schnellen Referenz angezeigt.",
-    "detailPage": {
-      "invalidIdError": "Ungültige Chargen-ID bereitgestellt.",
-      "loadError": "Daten konnten nicht geladen werden.",
-      "notFoundTitle": "Charge nicht gefunden",
-      "notFoundDescription": "Keine Rückverfolgungsdaten für die angegebene ID gefunden.",
-      "backLink": "Zurück zur Suche",
-      "traceableProduct": "Rückverfolgbares Produkt",
-      "batchIdLabel": "Chargen-ID",
-      "producerLabel": "Produzent",
-      "sustainablyGrownTitle": "Nachhaltig angebaut",
-      "sustainablyGrownDescription": "Unsere Daten deuten darauf hin, dass bei dieser Charge nachhaltige Anbaumethoden angewendet wurden.",
+    },
+    "editCrop": {
+      "backLink": "Zurück zur Kultur",
+      "title": "Kultur bearbeiten",
+      "description": "Aktualisieren Sie die Details für diese Kultur oder diesen Viehbestand.",
+      "savingButton": "Speichern...",
+      "saveButton": "Änderungen speichern",
+      "toast": {
+        "notFound": "Kultur nicht gefunden",
+        "loadError": "Fehler beim Laden der Kulturdetails.",
+        "loadFail": "Fehler beim Laden der Kulturdaten: {message}",
+        "error": "Fehler",
+        "success": "Erfolg",
+        "description": "{cropType} wurde erfolgreich aktualisiert.",
+        "fail": "Aktualisierung fehlgeschlagen"
+      }
+    },
+    "logHarvest": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Ernte für {cropType} protokollieren",
+      "description": "Protokollieren Sie die Details der Ernte, um einen neuen rückverfolgbaren Chargen-ID (VTI) zu erstellen.",
+      "offlineToast": {
+        "title": "Offline-Modus",
+        "description": "Ihre Ernte wurde lokal gespeichert und wird synchronisiert, wenn Sie wieder online sind."
+      },
       "harvestDateLabel": "Erntedatum",
-      "yieldLabel": "Ertrag",
-      "qualityLabel": "Qualität",
-      "notSpecified": "Nicht angegeben",
-      "journeyTitle": "Reise des Produkts",
-      "journeyDescription": "Ein chronologischer Bericht über die Ereignisse in der Lieferkette für diese Charge.",
-      "noEventDetails": "Keine Details protokolliert.",
-      "observationType": "Beobachtungstyp",
-      "details": "Details",
-      "aiDiagnosis": "KI-Diagnose",
-      "geoLocationLabel": "Geo-Standort",
-      "noEventsFound": "Für diese Charge wurden noch keine Ereignisse protokolliert."
+      "yieldLabel": "Ertrag (kg)",
+      "yieldPlaceholder": "Geben Sie den Gesamtertrag in Kilogramm ein",
+      "qualityLabel": "Qualitätsgrad (optional)",
+      "qualityPlaceholder": "z.B. Klasse A, Premium",
+      "notesLabel": "Notizen (optional)",
+      "notesPlaceholder": "Besondere Anmerkungen zu dieser Ernte...",
+      "saveButton": "Ernte protokollieren und VTI erstellen",
+      "savingButton": "Wird gespeichert...",
+      "success": {
+        "title": "Ernte protokolliert!",
+        "description": "Ein neuer VTI '{vtiId}' für Ihre {cropType}-Ernte wurde erstellt.",
+        "successCardTitle": "Ernte erfolgreich protokolliert",
+        "successCardDescription": "Eine neue rückverfolgbare Charge (VTI: {vtiId}) wurde für Ihre {cropType} erstellt. Was möchten Sie als Nächstes tun?",
+        "viewReportButton": "Rückverfolgungsbericht anzeigen",
+        "sellButton": "Diese Charge auf dem Marktplatz verkaufen",
+        "logAnotherButton": "Weitere Ernte protokollieren",
+        "backToFarmButton": "Zurück zur Farm"
+      },
+      "fail": {
+        "title": "Ernteprotokollierung fehlgeschlagen"
+      }
+    },
+    "logInput": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Anwendung von Betriebsmitteln protokollieren",
+      "description": "Zeichnen Sie die Anwendung von Düngemitteln, Pestiziden oder anderen Betriebsmitteln auf dieser Parzelle auf.",
+      "useKNFLabel": "Selbstgemachten KNF-Input verwenden (optional)",
+      "useKNFPlaceholder": "Wählen Sie eine fertige Charge",
+      "manualInputLabel": "Oder geben Sie den Namen des Betriebsmittels manuell ein",
+      "manualInputPlaceholder": "z.B. NPK-Dünger, Neemöl",
+      "dateLabel": "Anwendungsdatum",
+      "quantityLabel": "Menge",
+      "quantityPlaceholder": "z.B. 2.5",
+      "unitLabel": "Einheit",
+      "unitPlaceholder": "z.B. kg, L, Säcke",
+      "methodLabel": "Anwendungsmethode (optional)",
+      "methodPlaceholder": "z.B. Blattspray, Bodendüngung",
+      "saveButton": "Anwendung protokollieren",
+      "savingButton": "Wird gespeichert...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um Betriebsmittel zu protokollieren.",
+        "success": "Erfolg!",
+        "description": "Die Anwendung von Betriebsmitteln wurde für diese Kultur protokolliert.",
+        "fail": "Protokollierung fehlgeschlagen"
+      }
+    },
+    "logObservation": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Beobachtung protokollieren",
+      "description": "Zeichnen Sie alle Beobachtungen auf, wie Schädlingsbefall, Krankheitsanzeichen oder den allgemeinen Zustand der Pflanzen.",
+      "typeLabel": "Art der Beobachtung",
+      "typePlaceholder": "Wählen Sie eine Art",
+      "types": {
+        "pest_sighting": "Schädlingssichtung",
+        "disease_symptoms": "Krankheitssymptome",
+        "plant_health": "Pflanzengesundheit",
+        "soil_condition": "Bodenzustand",
+        "weather_effect": "Wettereffekt",
+        "other": "Andere"
+      },
+      "dateLabel": "Beobachtungsdatum",
+      "detailsLabel": "Details & Notizen",
+      "detailsPlaceholder": "Beschreiben Sie, was Sie beobachtet haben...",
+      "uploadLabel": "Foto hochladen (optional)",
+      "uploadDescription": "Das Hochladen eines Bildes ermöglicht eine KI-Diagnose und -Empfehlung.",
+      "saveButton": "Beobachtung speichern",
+      "processingButton": "Wird verarbeitet...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um Beobachtungen zu protokollieren.",
+        "aiAnalyzing": "KI analysiert Bild...",
+        "aiDescription": "Dies kann einen Moment dauern. Die Ergebnisse werden in das Ereignisprotokoll aufgenommen.",
+        "aiComplete": "KI-Analyse abgeschlossen!",
+        "aiCompleteDescription": "Die Diagnose wurde Ihrer Beobachtung beigefügt.",
+        "aiFailTitle": "KI-Analyse fehlgeschlagen",
+        "aiFailDescription": "Das Bild konnte nicht analysiert werden, aber Ihre Beobachtung wird trotzdem gespeichert.",
+        "uploading": "Bild wird hochgeladen",
+        "uploadingDescription": "Bitte warten Sie, während Ihre Datei hochgeladen wird.",
+        "uploadComplete": "Upload abgeschlossen",
+        "success": "Beobachtung protokolliert!",
+        "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
+        "fail": "Protokollierung fehlgeschlagen"
+      }
     }
   },
-  "blogPage": {
-    "title": "Blog",
-    "description": "Einblicke, Geschichten und Wissen aus der DamDoh-Community.",
-    "error": {
-      "title": "Fehler beim Laden",
-      "description": "Blogbeiträge konnten nicht geladen werden."
+  "Marketplace": {
+    "promotions": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Marktplatz-Aktionen",
+      "description": "Erstellen und verwalten Sie Rabattgutscheine für Ihre Produkte und Dienstleistungen, um mehr Käufer anzulocken.",
+      "signInPrompt": "Bitte melden Sie sich an, um Aktionen zu verwalten.",
+      "create": {
+        "title": "Neuen Gutschein erstellen",
+        "form": {
+          "code": "Gutscheincode",
+          "codePlaceholder": "z.B. ERNTE2024",
+          "discountType": "Rabattart",
+          "discountTypePlaceholder": "Typ auswählen",
+          "percentage": "Prozentsatz (%)",
+          "fixed": "Fester Betrag",
+          "discountValue": "Rabattwert",
+          "usageLimit": "Nutzungslimit (optional)",
+          "usageLimitPlaceholder": "z.B. 100",
+          "expiryDate": "Ablaufdatum (optional)",
+          "pickDate": "Datum auswählen",
+          "submitButton": "Gutschein erstellen"
+        }
+      },
+      "list": {
+        "title": "Meine Gutscheine",
+        "usage": "Verwendung",
+        "expires": "Läuft ab",
+        "never": "Nie",
+        "share": "Teilen",
+        "noCoupons": "Noch keine Gutscheine erstellt.",
+        "shareModal": {
+          "title": "Gutschein teilen",
+          "description": "Teilen Sie diesen Code oder Link mit Ihren Kunden.",
+          "link": "Link",
+          "copy": "Kopieren",
+          "close": "Schließen"
+        }
+      },
+      "toast": {
+        "error": "Fehler",
+        "success": "Erfolg",
+        "fetchError": "Ihre vorhandenen Gutscheine konnten nicht abgerufen werden.",
+        "createSuccess": "Gutschein '{code}' erfolgreich erstellt.",
+        "createFail": "Erstellung fehlgeschlagen",
+        "createError": "Der Gutschein konnte nicht erstellt werden.",
+        "linkCopied": "Link kopiert!",
+        "shareDescription": "Ein teilbarer Link mit dem Gutschein '{code}' wurde kopiert."
+      }
     },
-    "meta": "{author} • {date}",
-    "readMore": "Weiterlesen",
-    "noPosts": {
-      "title": "Keine Blogbeiträge gefunden",
-      "description": "Schauen Sie bald wieder vorbei für die neuesten Artikel und Einblicke."
-    },
-    "backLink": "Zurück zum Blog",
-    "notFound": {
-      "title": "Beitrag nicht gefunden",
-      "description": "Der von Ihnen gesuchte Artikel konnte nicht gefunden werden.",
-      "backButton": "Zurück zum Blog"
+    "manageService": {
+      "backLink": "Zurück zur Serviceseite",
+      "title": "Service verwalten",
+      "loading": "Wird geladen...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Buchungen",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Gästebuchungen",
+        "description": "Eine Liste aller Gäste, die diesen Service gebucht haben.",
+        "downloadCsv": "CSV herunterladen",
+        "table": {
+          "guest": "Gast",
+          "bookedOn": "Gebucht am",
+          "status": "Status",
+          "checkedInAt": "Eingecheckt um"
+        },
+        "status": {
+          "checkedIn": "Eingecheckt",
+          "booked": "Gebucht"
+        },
+        "noBookings": "Noch keine Buchungen für diesen Service gefunden.",
+        "error": "Fehler",
+        "fetchError": "Buchungen konnten nicht abgerufen werden.",
+        "toast": {
+          "noBookings": "Keine Buchungen zum Exportieren."
+        }
+      }
+    }
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code muss mindestens 4 Zeichen lang sein.",
+        "max": "Code darf 20 Zeichen nicht überschreiten.",
+        "regex": "Code darf nur Buchstaben und Zahlen enthalten."
+      },
+      "discountType": {
+        "required": "Bitte wählen Sie eine Rabattart."
+      },
+      "discountValue": {
+        "invalid": "Rabattwert muss eine Zahl sein.",
+        "positive": "Rabattwert muss eine positive Zahl sein.",
+        "percentageMax": "Prozentualer Rabatt darf 100 nicht überschreiten."
+      },
+      "usageLimit": {
+        "positive": "Nutzungslimit muss eine positive ganze Zahl sein."
+      }
     }
   }
 }
-

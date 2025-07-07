@@ -205,19 +205,24 @@ export const createShopSchema = z.object({
 });
 export type CreateShopValues = z.infer<typeof createShopSchema>;
 
-export const createMarketplaceCouponSchema = z.object({
-  code: z.string().min(4, "Code must be at least 4 characters.").max(20, "Code cannot exceed 20 characters.").regex(/^[a-zA-Z0-9]+$/, "Code can only contain letters and numbers."),
-  discountType: z.enum(['percentage', 'fixed'], { required_error: "Please select a discount type." }),
-  discountValue: z.coerce.number().positive("Discount value must be a positive number."),
+// Internationalized schema using a factory function
+export const getCreateMarketplaceCouponSchema = (t: (key: string) => string) => z.object({
+  code: z.string()
+      .min(4, t('code.min'))
+      .max(20, t('code.max'))
+      .regex(/^[a-zA-Z0-9]+$/, t('code.regex')),
+  discountType: z.enum(['percentage', 'fixed'], { required_error: t('discountType.required') }),
+  discountValue: z.coerce.number({invalid_type_error: t('discountValue.invalid')}).positive(t('discountValue.positive')),
   expiresAt: z.date().optional(),
-  usageLimit: z.coerce.number().int().positive("Usage limit must be a positive integer.").optional(),
+  usageLimit: z.coerce.number().int().positive(t('usageLimit.positive')).optional(),
 }).refine(data => {
     if (data.discountType === 'percentage' && data.discountValue > 100) {
         return false;
     }
     return true;
 }, {
-    message: "Percentage discount cannot exceed 100.",
+    message: t('discountValue.percentageMax'),
     path: ["discountValue"],
 });
-export type CreateMarketplaceCouponValues = z.infer<typeof createMarketplaceCouponSchema>;
+
+export type CreateMarketplaceCouponValues = z.infer<ReturnType<typeof getCreateMarketplaceCouponSchema>>;
