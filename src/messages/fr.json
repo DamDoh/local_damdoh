@@ -656,5 +656,69 @@
       "subtitle": "Rejoignez des milliers de professionnels de l'agriculture qui renforcent la confiance, la transparence et la croissance dans la chaîne d'approvisionnement mondiale.",
       "button": "Rejoignez la communauté DamDoh aujourd'hui"
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centre de Gestion de Ferme",
+      "description": "Votre lieu central pour toutes les opérations agricoles. Gérez vos fermes, cultures, intrants et finances, le tout au même endroit.",
+      "myFarms": {
+        "title": "Mes Fermes",
+        "description": "Visualisez, modifiez ou ajoutez vos propriétés agricoles.",
+        "button": "Gérer les Fermes"
+      },
+      "labor": {
+        "title": "Gestion de la Main-d'œuvre",
+        "description": "Suivez les heures de travail, les paiements et les tâches des ouvriers.",
+        "button": "Gérer la Main-d'œuvre"
+      },
+      "knf": {
+        "title": "Intrants KNF",
+        "description": "Créez et gérez vos lots d'Agriculture Naturelle Coréenne.",
+        "button": "Gérer les Intrants"
+      },
+      "fgw": {
+        "title": "Guide de l'Agriculture selon Dieu",
+        "description": "Explorez les principes et pratiques de l'Agriculture selon Dieu (FGW).",
+        "button": "Voir le Guide FGW"
+      },
+      "financials": {
+        "title": "Finances de la Ferme",
+        "description": "Suivez les revenus et les dépenses pour comprendre la rentabilité.",
+        "button": "Gérer les Finances"
+      },
+      "seedStarting": {
+        "title": "Guide de Démarrage des Semis",
+        "description": "Apprenez à démarrer les semis à l'intérieur avec succès.",
+        "button": "Voir le Guide"
+      },
+      "familyFarm": {
+        "title": "Modèle de Ferme Familiale Intégrée",
+        "description": "Découvrez un modèle durable pour les petites exploitations.",
+        "button": "Voir le Modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des Actifs",
+        "description": "Gérez votre équipement, vos bâtiments et autres actifs. (Bientôt disponible)",
+        "button": "Gérer les Actifs"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Retour au Hub de la Ferme",
+      "title": "Mes Fermes",
+      "addNewFarmButton": "Ajouter une Nouvelle Ferme",
+      "size": "Taille",
+      "viewFarmButton": "Voir la Ferme",
+      "noFarmsTitle": "Aucune Ferme Trouvée",
+      "noFarmsDescription": "Ajoutez votre première ferme pour commencer à gérer vos opérations agricoles.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour voir vos fermes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur de Chargement des Fermes",
+        "errorDescription": "Une erreur est survenue lors du chargement de vos fermes. Veuillez réessayer."
+      }
+    }
   }
 }

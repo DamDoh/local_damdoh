@@ -656,5 +656,69 @@
       "subtitle": "Schließen Sie sich Tausenden von landwirtschaftlichen Fachleuten an, die Vertrauen, Transparenz und Wachstum in der globalen Lieferkette aufbauen.",
       "button": "Treten Sie noch heute der DamDoh-Community bei"
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Zentrale",
+      "description": "Zentraler Ort für alle Ihre landwirtschaftlichen Aktivitäten. Verwalten Sie Ihre Farmen, Kulturen, Betriebsmittel und Finanzen, alles an einem Ort.",
+      "myFarms": {
+        "title": "Meine Farmen",
+        "description": "Zeigen Sie Ihre Farmen an, bearbeiten Sie sie oder fügen Sie neue hinzu.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitsmanagement",
+        "description": "Verfolgen Sie Arbeitsstunden, Zahlungen und Aufgaben.",
+        "button": "Arbeit verwalten"
+      },
+      "knf": {
+        "title": "KNF-Betriebsmittel",
+        "description": "Erstellen und verwalten Sie Ihre Korean Natural Farming-Batches.",
+        "button": "Betriebsmittel verwalten"
+      },
+      "fgw": {
+        "title": "Farming God's Way-Leitfaden",
+        "description": "Erkunden Sie Prinzipien und Praktiken von FGW.",
+        "button": "FGW-Leitfaden anzeigen"
+      },
+      "financials": {
+        "title": "Landwirtschaftliche Finanzen",
+        "description": "Verfolgen Sie Einnahmen und Ausgaben, um die Rentabilität zu verstehen.",
+        "button": "Finanzen verwalten"
+      },
+      "seedStarting": {
+        "title": "Leitfaden zum Start von Saatgut",
+        "description": "Erfahren Sie, wie Sie Samen erfolgreich drinnen starten können.",
+        "button": "Leitfaden anzeigen"
+      },
+      "familyFarm": {
+        "title": "Modell der integrierten Familienfarm",
+        "description": "Entdecken Sie ein nachhaltiges Modell für kleine Farmen.",
+        "button": "Modell anzeigen"
+      },
+      "assetManagement": {
+        "title": "Vermögensverwaltung",
+        "description": "Verwalten Sie Ihre Ausrüstung, Gebäude und andere Vermögenswerte. (Demnächst verfügbar)",
+        "button": "Vermögen verwalten"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zur Farm-Zentrale",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farm anzeigen",
+      "noFarmsTitle": "Keine Farmen gefunden",
+      "noFarmsDescription": "Fügen Sie Ihre erste Farm hinzu, um mit der Verwaltung Ihrer landwirtschaftlichen Aktivitäten zu beginnen.",
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler beim Laden der Farmen",
+        "errorDescription": "Beim Laden Ihrer Farmen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    }
   }
 }

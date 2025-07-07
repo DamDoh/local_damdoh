@@ -656,5 +656,69 @@
       "subtitle": "Únete a miles de profesionales agrícolas que construyen confianza, transparencia y crecimiento en la cadena de suministro global.",
       "button": "Únete a la Comunidad DamDoh Hoy"
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión de Fincas",
+      "description": "Tu lugar central para todas las operaciones agrícolas. Gestiona tus fincas, cultivos, insumos y finanzas, todo en un solo lugar.",
+      "myFarms": {
+        "title": "Mis Fincas",
+        "description": "Ver, editar o agregar tus propiedades agrícolas.",
+        "button": "Gestionar Fincas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Realiza un seguimiento de las horas de los trabajadores, los pagos y las tareas.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Insumos KNF",
+        "description": "Crea y gestiona tus lotes de Agricultura Natural Coreana.",
+        "button": "Gestionar Insumos"
+      },
+      "fgw": {
+        "title": "Guía de Farming God's Way",
+        "description": "Explora los principios y prácticas de FGW.",
+        "button": "Ver Guía FGW"
+      },
+      "financials": {
+        "title": "Finanzas de la Finca",
+        "description": "Realiza un seguimiento de los ingresos y gastos para comprender la rentabilidad.",
+        "button": "Gestionar Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Inicio de Semillas",
+        "description": "Aprende a iniciar semillas en interiores con éxito.",
+        "button": "Ver Guía"
+      },
+      "familyFarm": {
+        "title": "Modelo de Granja Familiar Integrada",
+        "description": "Descubre un modelo sostenible para granjas a pequeña escala.",
+        "button": "Ver Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Gestiona tu equipo, edificios y otros activos. (Próximamente)",
+        "button": "Gestionar Activos"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Volver al Centro de Fincas",
+      "title": "Mis Fincas",
+      "addNewFarmButton": "Añadir Nueva Finca",
+      "size": "Tamaño",
+      "viewFarmButton": "Ver Finca",
+      "noFarmsTitle": "No se Encontraron Fincas",
+      "noFarmsDescription": "Añade tu primera finca para comenzar a gestionar tus operaciones agrícolas.",
+      "auth": {
+        "title": "Por Favor, Inicia Sesión",
+        "description": "Debes iniciar sesión para ver tus fincas.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error al Cargar Fincas",
+        "errorDescription": "Ocurrió un error al cargar tus fincas. Por favor, inténtalo de nuevo."
+      }
+    }
   }
 }

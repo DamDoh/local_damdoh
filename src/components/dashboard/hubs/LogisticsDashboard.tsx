@@ -10,6 +10,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Truck, Clock, Briefcase, BarChart, ExternalLink, GitBranch } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import type { LogisticsDashboardData } from '@/lib/types'; // Import the type
 import { useTranslations } from 'next-intl';
@@ -74,6 +75,7 @@ export const LogisticsDashboard = () => {
                     </CardContent>
                     <CardFooter>
                          <Button asChild variant="outline" size="sm" className="w-full">
+                            {/* @ts-ignore */}
                             <Link href={performanceMetrics?.actionLink || '#'}>{t('viewReportButton')}</Link>
                         </Button>
                     </CardFooter>
@@ -92,7 +94,7 @@ export const LogisticsDashboard = () => {
                                <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <p className="font-medium">To: {shipment.to}</p>
-                                       <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'}>{shipment.status}</Badge>
+                                       <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'} className="mt-1">{shipment.status}</Badge>
                                    </div>
                                    <Button asChild variant="ghost" size="sm" disabled={shipment.vtiLink === '#'}>
                                        <Link href={shipment.vtiLink}>

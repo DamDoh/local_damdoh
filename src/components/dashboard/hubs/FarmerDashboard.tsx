@@ -1,35 +1,34 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { app as firebaseApp } from '@/lib/firebase/client'; // Import the firebase app
 import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign, AlertCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button, ButtonProps } from '@/components/ui/button';
 import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 
 
-const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false, actionIcon }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean, actionIcon?: React.ReactNode }) => (
-    <Card>
+const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false, actionIcon, valueClassName, actionButtonVariant = "outline" }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean, actionIcon?: React.ReactNode, valueClassName?: string, actionButtonVariant?: ButtonProps["variant"] }) => (
+    <Card className="flex flex-col justify-between">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         {icon}
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-grow">
         <div className="text-2xl font-bold">
             {isCurrency && '$'}{value.toLocaleString(undefined, { minimumFractionDigits: isCurrency ? 2 : 0, maximumFractionDigits: isCurrency ? 2 : 0 })}
             {unit && <span className="text-sm text-muted-foreground ml-1">{unit}</span>}
         </div>
       </CardContent>
       <CardFooter>
-        <Button asChild variant="outline" size="sm" className="w-full">
-            <Link href={actionLink}>{actionIcon}{actionLabel}</Link>
+        <Button asChild variant={actionButtonVariant} size="sm" className="w-full">
+            <Link href={actionLink} className="flex items-center justify-center">{actionIcon}{actionLabel}</Link>
         </Button>
       </CardFooter>
     </Card>
@@ -117,8 +116,7 @@ export const FarmerDashboard = () => {
                     <CardTitle className="text-base flex items-center justify-between">
                         <span>Recent Crops</span>
                         <Button asChild variant="secondary" size="sm"><Link href="/farm-management/create-farm"><PlusCircle className="h-4 w-4 mr-2"/>Add Crop</Link></Button>
-                    </CardTitle>
-                </CardHeader>
+                    </CardHeader>
                 <CardContent className="space-y-2">
                     {(recentCrops || []).length > 0 ? (recentCrops || []).map(crop => (
                         <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
@@ -137,8 +135,7 @@ export const FarmerDashboard = () => {
                     <CardTitle className="text-base flex items-center justify-between">
                         <span>Active KNF Batches</span>
                          <Button asChild variant="secondary" size="sm"><Link href="/farm-management/knf-inputs"><PlusCircle className="h-4 w-4 mr-2"/>Add Batch</Link></Button>
-                    </CardTitle>
-                </CardHeader>
+                    </CardHeader>
                 <CardContent className="space-y-2">
                     {(knfBatches || []).length > 0 ? (knfBatches || []).map(batch => (
                          <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">

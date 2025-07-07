@@ -207,7 +207,7 @@
       "repliesTitle": "Replies ({replyCount})",
       "noReplies": "No replies yet. Be the first to respond!",
       "loadingMoreButton": "Loading...",
-      "loadMoreComments": "Load More Replies",
+      "loadMoreButton": "Load More Replies",
       "yourReplyTitle": "Your Reply",
       "replyPlaceholder": "Write your reply...",
       "replySubmittingButton": "Posting...",
@@ -656,6 +656,69 @@
       "subtitle": "Join thousands of agricultural professionals building trust, transparency, and growth in the global supply chain.",
       "button": "Join the DamDoh Community Today"
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central place for all farming operations. Manage your farms, crops, inputs, and financials, all in one place.",
+      "myFarms": {
+        "title": "My Farms",
+        "description": "View, edit, or add your farm properties.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Keep track of worker hours, payments, and tasks.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF Inputs",
+        "description": "Create and manage your Korean Natural Farming batches.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way Guide",
+        "description": "Explore principles and practices of FGW.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Farm Financials",
+        "description": "Track income and expenses to understand profitability.",
+        "button": "Manage Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn how to start seeds indoors successfully.",
+        "button": "View Guide"
+      },
+      "familyFarm": {
+        "title": "Integrated Family Farm Model",
+        "description": "Discover a sustainable model for small-scale farms.",
+        "button": "View Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Manage your equipment, buildings, and other assets. (Coming Soon)",
+        "button": "Manage Assets"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Back to Farm Hub",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "View Farm",
+      "noFarmsTitle": "No Farms Found",
+      "noFarmsDescription": "Add your first farm to start managing your agricultural operations.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You must be signed in to view your farms.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error Loading Farms",
+        "errorDescription": "An error occurred while loading your farms. Please try again."
+      }
+    }
   }
 }
-

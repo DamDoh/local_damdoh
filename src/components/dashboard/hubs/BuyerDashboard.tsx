@@ -68,7 +68,7 @@ export const BuyerDashboard = () => {
                         <ShieldAlert className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold text-orange-600">{supplyChainRisk.level}</div>
+                        <div className="text-3xl font-bold">{supplyChainRisk.level}</div>
                         <p className="text-xs text-muted-foreground">{supplyChainRisk.factor} in {supplyChainRisk.region}</p>
                     </CardContent>
                     <CardFooter>
@@ -120,7 +120,11 @@ export const BuyerDashboard = () => {
                                     </div>
                                     <div className="text-xs mt-2">
                                         {t('reliabilityScore')}: <span className="font-bold">{rec.reliability}%</span>
+                                        <div className="h-1 bg-gray-200 w-full mt-1 rounded-full">
+                                            <div className={`h-1 rounded-full ${rec.reliability > 80 ? 'bg-green-500' : rec.reliability > 60 ? 'bg-yellow-500' : 'bg-red-500'}`} style={{ width: `${rec.reliability}%` }}></div>
+                                        </div>
                                     </div>
+
                                 </div>
                             ))
                         ) : (

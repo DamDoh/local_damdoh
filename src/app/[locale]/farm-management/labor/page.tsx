@@ -151,7 +151,7 @@ export default function LaborManagementPage() {
                             <DialogTrigger asChild><Button><PlusCircle className="mr-2 h-4 w-4"/>{t('addWorker')}</Button></DialogTrigger>
                             <DialogContent>
                                 <DialogHeader><DialogTitle>{t('addWorker')}</DialogTitle></DialogHeader>
-                                <div className="space-y-4 py-4">
+                                <div className="space-y-4 py-4"><div className="flex items-center gap-2"><Users className="h-4 w-4 text-muted-foreground" />
                                     <Label htmlFor="worker-name">{t('workerName')}</Label>
                                     <Input id="worker-name" value={newWorkerName} onChange={e => setNewWorkerName(e.target.value)} />
                                 </div>
@@ -193,7 +193,7 @@ export default function LaborManagementPage() {
                 <DialogContent>
                     <DialogHeader><DialogTitle>{t('logHoursFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                      <div className="space-y-4 py-4">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-4"><div className="flex items-center gap-2"><Clock className="h-4 w-4 text-muted-foreground" />
                             <div><Label htmlFor="hours">{t('hoursWorked')}</Label><Input id="hours" type="number" value={hours} onChange={e => setHours(e.target.value)} /></div>
                             <div>
                                 <Label htmlFor="date">{t('date')}</Label>
@@ -207,7 +207,7 @@ export default function LaborManagementPage() {
                                 </Popover>
                             </div>
                         </div>
-                         <div><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
+                         <div className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" /><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
                     <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className=\"mr-2 h-4 w-4 animate-spin\"/>}<Clock className=\"mr-2 h-4 w-4\"/>{t('logHours')}</Button>
                 </DialogContent>
@@ -217,7 +217,7 @@ export default function LaborManagementPage() {
                 <DialogContent>
                     <DialogHeader><DialogTitle>{t('logPaymentFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                     <div className="space-y-4 py-4">
-                         <div className="grid grid-cols-2 gap-4">
+                         <div className=\"grid grid-cols-2 gap-4\"><div className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />
                             <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
                              <div>
                                 <Label htmlFor="payment-date">{t('date')}</Label>

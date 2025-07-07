@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import type { CooperativeDashboardData } from '@/lib/types';
+import { BarChart } from "lucide-react";
 import { useTranslations } from 'next-intl';
 
 export const CooperativeDashboard = () => {
