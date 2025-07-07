@@ -126,5 +126,30 @@
     "trackButton": "Rastrear VTI",
     "noIncomingJobs": "No hay trabajos entrantes disponibles.",
     "acceptJobButton": "Aceptar Trabajo"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Centro de Procesamiento y Embalaje",
+    "yieldTitle": "Optimización del Rendimiento",
+    "potential": "Potencial",
+    "wasteTitle": "Reducción de Residuos",
+    "packagingInventoryTitle": "Inventario de Embalaje",
+    "inStock": "En Stock",
+    "reorderLevel": "Reordenar en",
+    "noPackagingData": "No hay datos de inventario de embalaje disponibles.",
+    "sourcePackagingButton": "Adquirir Materiales de Embalaje",
+    "rawMaterialTitle": "Inventario de Materia Prima",
+    "table": {
+      "product": "Producto",
+      "quality": "Calidad",
+      "quantity": "Cantidad (Toneladas)",
+      "supplier": "Proveedor",
+      "deliveryDate": "Fecha de Entrega",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "noInventoryData": "No hay datos de inventario de materia prima disponibles.",
+    "packagingOrdersTitle": "Pedidos de Embalaje",
+    "viewButton": "Ver",
+    "noPackagingOrders": "No hay pedidos de embalaje pendientes."
   }
 }

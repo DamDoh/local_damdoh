@@ -126,5 +126,30 @@
     "trackButton": "Track VTI",
     "noIncomingJobs": "No incoming jobs available.",
     "acceptJobButton": "Accept Job"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Processing & Packaging Hub",
+    "yieldTitle": "Yield Optimization",
+    "potential": "Potential",
+    "wasteTitle": "Waste Reduction",
+    "packagingInventoryTitle": "Packaging Inventory",
+    "inStock": "In Stock",
+    "reorderLevel": "Reorder at",
+    "noPackagingData": "No packaging inventory data available.",
+    "sourcePackagingButton": "Source Packaging Materials",
+    "rawMaterialTitle": "Raw Material Inventory",
+    "table": {
+      "product": "Product",
+      "quality": "Quality",
+      "quantity": "Quantity (Tons)",
+      "supplier": "Supplier",
+      "deliveryDate": "Delivery Date",
+      "status": "Status",
+      "action": "Action"
+    },
+    "noInventoryData": "No raw material inventory data available.",
+    "packagingOrdersTitle": "Packaging Orders",
+    "viewButton": "View",
+    "noPackagingOrders": "No outstanding packaging orders."
   }
 }

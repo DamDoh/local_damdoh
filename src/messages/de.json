@@ -126,5 +126,30 @@
     "trackButton": "VTI verfolgen",
     "noIncomingJobs": "Keine eingehenden Aufträge verfügbar.",
     "acceptJobButton": "Auftrag annehmen"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Verarbeitungs- & Verpackungs-Hub",
+    "yieldTitle": "Ertragsoptimierung",
+    "potential": "Potenzial",
+    "wasteTitle": "Abfallreduzierung",
+    "packagingInventoryTitle": "Verpackungsinventar",
+    "inStock": "Auf Lager",
+    "reorderLevel": "Nachbestellen bei",
+    "noPackagingData": "Keine Verpackungsinventardaten verfügbar.",
+    "sourcePackagingButton": "Verpackungsmaterialien beschaffen",
+    "rawMaterialTitle": "Rohstoffinventar",
+    "table": {
+      "product": "Produkt",
+      "quality": "Qualität",
+      "quantity": "Menge (Tonnen)",
+      "supplier": "Lieferant",
+      "deliveryDate": "Lieferdatum",
+      "status": "Status",
+      "action": "Aktion"
+    },
+    "noInventoryData": "Keine Rohstoffinventardaten verfügbar.",
+    "packagingOrdersTitle": "Verpackungsbestellungen",
+    "viewButton": "Ansehen",
+    "noPackagingOrders": "Keine ausstehenden Verpackungsbestellungen."
   }
 }

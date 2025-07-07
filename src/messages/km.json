@@ -126,5 +126,30 @@
     "trackButton": "តាមដាន VTI",
     "noIncomingJobs": "គ្មានការងារចូលទេ។",
     "acceptJobButton": "ទទួលយកការងារ"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "មជ្ឈមណ្ឌលកែច្នៃ និងវេចខ្ចប់",
+    "yieldTitle": "ការបង្កើនប្រសិទ្ធភាពទិន្នផល",
+    "potential": "សក្តានុពល",
+    "wasteTitle": "ការកាត់បន្ថយសំណល់",
+    "packagingInventoryTitle": "បញ្ជីសារពើភ័ណ្ឌវេចខ្ចប់",
+    "inStock": "ក្នុងស្តុក",
+    "reorderLevel": "បញ្ជាទិញឡើងវិញនៅ",
+    "noPackagingData": "គ្មានទិន្នន័យបញ្ជីសារពើភ័ណ្ឌវេចខ្ចប់ទេ។",
+    "sourcePackagingButton": "ស្វែងរកសម្ភារៈវេចខ្ចប់",
+    "rawMaterialTitle": "បញ្ជីសារពើភ័ណ្ឌវត្ថុធាតុដើម",
+    "table": {
+      "product": "ផលិតផល",
+      "quality": "គុណភាព",
+      "quantity": "បរិមាណ (តោន)",
+      "supplier": "អ្នកផ្គត់ផ្គង់",
+      "deliveryDate": "កាលបរិច្ឆេទដឹកជញ្ជូន",
+      "status": "ស្ថានភាព",
+      "action": "សកម្មភាព"
+    },
+    "noInventoryData": "គ្មានទិន្នន័យបញ្ជីសារពើភ័ណ្ឌវត្ថុធាតុដើមទេ។",
+    "packagingOrdersTitle": "ការបញ្ជាទិញវេចខ្ចប់",
+    "viewButton": "មើល",
+    "noPackagingOrders": "គ្មានការបញ្ជាទិញវេចខ្ចប់ដែលកំពុងរង់ចាំទេ។"
   }
 }
