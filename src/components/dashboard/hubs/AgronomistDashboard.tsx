@@ -11,10 +11,24 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Users, FileText, MessageSquare } from 'lucide-react';
+import { Users, FileText, MessageSquare, AlertTriangle } from 'lucide-react';
 import type { AgronomistDashboardData } from '@/lib/types';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { ChartContainer, ChartTooltip, ChartLegend, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 
 const functions = getFunctions(firebaseApp);
+
+const StatCard = ({ title, value, icon }: { title: string, value: string | number, icon: React.ReactNode }) => (
+    <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">{title}</CardTitle>
+            {icon}
+        </CardHeader>
+        <CardContent>
+            <div className="text-2xl font-bold">{value}</div>
+        </CardContent>
+    </Card>
+);
 
 export const AgronomistDashboard = () => {
   const [dashboardData, setDashboardData] = useState<AgronomistDashboardData | null>(null);
@@ -41,6 +55,32 @@ export const AgronomistDashboard = () => {
     fetchData();
   }, [getAgronomistDashboardDataCallable]);
 
+  const {
+    pendingConsultationRequests = [],
+    assignedFarmersOverview = [],
+    knowledgeHubContributions = [],
+  } = dashboardData || {};
+  
+  const farmersWithAlerts = useMemo(() => 
+    (assignedFarmersOverview || []).filter(f => f.alerts > 0).length,
+  [assignedFarmersOverview]);
+  
+  const contributionStatusCounts = useMemo(() => {
+    const counts: { [key: string]: number } = {};
+    (knowledgeHubContributions || []).forEach(contribution => {
+        counts[contribution.status] = (counts[contribution.status] || 0) + 1;
+    });
+    return Object.keys(counts).map(name => ({ name, count: counts[name] }));
+  }, [knowledgeHubContributions]);
+
+  const chartConfig = {
+      count: { label: "Count" },
+      Published: { label: "Published", color: "hsl(var(--chart-1))" },
+      "Pending Review": { label: "Pending Review", color: "hsl(var(--chart-2))" },
+      Draft: { label: "Draft", color: "hsl(var(--chart-5))" },
+  } satisfies ChartConfig;
+
+
   if (isLoading) {
     return <DashboardSkeleton />;
   }
@@ -65,12 +105,6 @@ export const AgronomistDashboard = () => {
       );
   }
 
-  const {
-    pendingConsultationRequests,
-    assignedFarmersOverview,
-    knowledgeHubContributions,
-  } = dashboardData;
-
   const getStatusBadgeVariant = (status: string) => {
     switch (status.toLowerCase()) {
         case 'draft': return 'secondary';
@@ -78,40 +112,44 @@ export const AgronomistDashboard = () => {
         case 'published': return 'default';
         default: return 'outline';
     }
-};
+  };
 
 
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">Agronomist & Consultant Hub</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         {/* Pending Consultation Requests */}
-         <Card className="md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <StatCard title="Assigned Farmers" value={assignedFarmersOverview.length} icon={<Users className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title="Farmers with Alerts" value={farmersWithAlerts} icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title="Pending Consultations" value={pendingConsultationRequests.length} icon={<MessageSquare className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title="Knowledge Contributions" value={knowledgeHubContributions.length} icon={<FileText className="h-4 w-4 text-muted-foreground" />} />
+        </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+         <Card>
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><MessageSquare className="h-4 w-4"/> Pending Consultation Requests</CardTitle>
              <CardDescription>Farmers seeking your expertise.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(pendingConsultationRequests || []).length > 0 ? (
+             {pendingConsultationRequests.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
                      <TableHead>Farmer Name</TableHead>
                      <TableHead>Issue Summary</TableHead>
-                     <TableHead>Request Date</TableHead>
                      <TableHead>Action</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {(pendingConsultationRequests || []).map((request: any) => (
+                   {pendingConsultationRequests.map((request) => (
                      <TableRow key={request.id}>
                        <TableCell className="font-medium">{request.farmerName}</TableCell>
                        <TableCell>{request.issueSummary}</TableCell>
-                       <TableCell>{new Date(request.requestDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href="#">View Request</Link>
+                           <Link href="#">View</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -124,34 +162,31 @@ export const AgronomistDashboard = () => {
            </CardContent>
          </Card>
 
-         {/* Assigned Farmers Overview */}
-         <Card className="md:col-span-2">
+         <Card>
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><Users className="h-4 w-4 text-green-500"/> Assigned Farmers</CardTitle>
              <CardDescription>Overview of farmers in your portfolio.</CardDescription>
            </CardHeader>
            <CardContent>
-             {(assignedFarmersOverview || []).length > 0 ? (
+             {assignedFarmersOverview.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
                      <TableHead>Farmer Name</TableHead>
                      <TableHead>Location</TableHead>
-                     <TableHead>Last Consultation</TableHead>
                      <TableHead>Alerts</TableHead>
                      <TableHead>Action</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {(assignedFarmersOverview || []).map((farmer: any) => (
+                   {assignedFarmersOverview.map((farmer) => (
                      <TableRow key={farmer.id}>
                        <TableCell className="font-medium">{farmer.name}</TableCell>
                        <TableCell>{farmer.farmLocation}</TableCell>
-                       <TableCell>{new Date(farmer.lastConsultation).toLocaleDateString()}</TableCell>
                        <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href="#">View Profile</Link>
+                           <Link href="#">Profile</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -163,17 +198,51 @@ export const AgronomistDashboard = () => {
              )}
            </CardContent>
          </Card>
-
-          {/* Knowledge Base Contributions */}
-         <Card className="md:col-span-2">
+         
+         <Card>
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Knowledge Hub Contributions</CardTitle>
-                <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Contribution Status</CardTitle>
             </CardHeader>
             <CardContent>
-                {(knowledgeHubContributions || []).length > 0 ? (
+                {contributionStatusCounts.length > 0 ? (
+                    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+                        <BarChart data={contributionStatusCounts} layout="vertical" margin={{ left: 10 }}>
+                            <CartesianGrid horizontal={false} />
+                            <YAxis
+                                dataKey="name"
+                                type="category"
+                                tickLine={false}
+                                tickMargin={10}
+                                axisLine={false}
+                                tickFormatter={(value) => value}
+                                className="text-xs"
+                            />
+                            <XAxis dataKey="count" type="number" hide />
+                             <ChartTooltip
+                                cursor={false}
+                                content={<ChartTooltipContent indicator="line" />}
+                            />
+                            <Bar dataKey="count" layout="vertical" radius={4}>
+                                {contributionStatusCounts.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color || "hsl(var(--primary))"} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                    </ChartContainer>
+                ) : (
+                    <p className="text-sm text-muted-foreground text-center py-4">No contribution data to display.</p>
+                )}
+            </CardContent>
+        </Card>
+
+         <Card>
+            <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Your Contributions</CardTitle>
+            </CardHeader>
+            <CardContent>
+                {knowledgeHubContributions.length > 0 ? (
                     <div className="space-y-3">
-                        {(knowledgeHubContributions || []).map((contribution: any) => (
+                        {knowledgeHubContributions.map((contribution) => (
                             <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
                                 <Link href={`/blog/${contribution.id}`} className="font-medium hover:underline">{contribution.title}</Link>
                                 <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>

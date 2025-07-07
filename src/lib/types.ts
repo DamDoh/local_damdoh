@@ -7,7 +7,7 @@ import type {
     MarketplaceOrderSchema,
     ForumPostSchema,
     AgriEventSchema
-} from '@/firebase/functions/src/schemas';
+} from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
 
@@ -458,7 +458,7 @@ export interface AgronomistDashboardData {
   knowledgeHubContributions: {
     id: string;
     title: string;
-    status: 'Published' | 'Pending Review';
+    status: 'Published' | 'Pending Review' | 'Draft';
   }[];
 }
 

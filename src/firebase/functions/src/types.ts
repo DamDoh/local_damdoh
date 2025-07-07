@@ -452,7 +452,7 @@ export interface AgronomistDashboardData {
   knowledgeHubContributions: {
     id: string;
     title: string;
-    status: 'Published' | 'Pending Review';
+    status: 'Published' | 'Pending Review' | 'Draft';
   }[];
 }
 
@@ -686,7 +686,7 @@ export interface PollOption {
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
-  timestamp: any; // Firestore Timestamp
+  timestamp: string;
   userId: string;
   userName: string;
   userAvatar?: string;
@@ -723,7 +723,7 @@ export interface Message {
 export interface MobileHomeCategory {
     id: string;
     name: string;
-    icon: React.ElementType;
+    icon: LucideIcon;
     href: string;
     dataAiHint?: string;
 }
