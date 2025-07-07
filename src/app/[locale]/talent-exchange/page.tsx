@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Users } from "lucide-react"; 
 import Link from "next/link";
-import { getAllMarketplaceItemsFromDB } from "@/lib/db-utils";
+import { getAllMarketplaceItemsFromDB } from "@/lib/server-actions";
 import type { MarketplaceItem } from "@/lib/types";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useToast } from "@/hooks/use-toast";
