@@ -16,6 +16,7 @@ const MarketInsightInputSchema = z.object({
   category: z.string().describe('The category of the product (e.g., Agricultural Produce, Inputs & Supplies, Machinery & Business Services).'),
   location: z.string().optional().describe('The geographical location relevant to the product (e.g., for market demand, export/import considerations).'),
   description: z.string().optional().describe('A brief description of the product.'),
+  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
 export type MarketInsightInput = z.infer<typeof MarketInsightInputSchema>;
 
@@ -38,6 +39,8 @@ const marketInsightsPrompt = ai.definePrompt({
   output: {schema: MarketInsightOutputSchema},
   prompt: `You are an AI Agricultural Market Analyst for the DamDoh platform.
 Your role is to provide conceptual market insights for agricultural products. You DO NOT have access to real-time market data. Your insights should be plausible and illustrative, based on general agricultural knowledge.
+
+**CRITICAL: You MUST generate the response in the specified language: '{{{language}}}'.**
 
 Product Name: {{{productName}}}
 Category: {{{category}}}
@@ -64,7 +67,7 @@ const marketInsightsFlow = ai.defineFlow(
     outputSchema: MarketInsightOutputSchema,
   },
   async (input) => {
-    const {output} = await marketInsightsPrompt(input);
+    const {output} = await marketInsightsPrompt({ ...input, language: input.language || 'en' });
     return {
         productName: input.productName, // Ensure product name from input is used
         estimatedPriceRange: output!.estimatedPriceRange,

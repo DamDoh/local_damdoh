@@ -16,6 +16,7 @@ import { adminDb } from '@/lib/firebase/admin';
 const GenerateForumPostDraftInputSchema = z.object({
   topicId: z.string().describe('The ID of the forum topic where the post will be created.'),
   prompt: z.string().describe("The user's initial idea, question, or prompt for the post."),
+  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
 export type GenerateForumPostDraftInput = z.infer<typeof GenerateForumPostDraftInputSchema>;
 
@@ -31,10 +32,12 @@ export async function generateForumPostDraft(input: GenerateForumPostDraftInput)
 
 const generateForumPostDraftPrompt = ai.definePrompt({
   name: 'generateForumPostDraftPrompt',
-  input: { schema: z.object({ topicName: z.string(), topicDescription: z.string(), userPrompt: z.string() }) },
+  input: { schema: z.object({ topicName: z.string(), topicDescription: z.string(), userPrompt: z.string(), language: z.string().optional() }) },
   output: { schema: GenerateForumPostDraftOutputSchema },
   prompt: `You are an expert community manager and content creator for DamDoh, an agricultural platform.
 Your task is to help a user draft a high-quality forum post based on their prompt.
+
+**CRITICAL: You MUST generate the response (both title and content) in the specified language: '{{{language}}}'.**
 
 The post will be in the following forum topic:
 - Topic Name: "{{{topicName}}}"
@@ -55,7 +58,7 @@ const generateForumPostDraftFlow = ai.defineFlow(
     inputSchema: GenerateForumPostDraftInputSchema,
     outputSchema: GenerateForumPostDraftOutputSchema,
   },
-  async ({ topicId, prompt }) => {
+  async ({ topicId, prompt, language }) => {
     // Fetch topic details to provide more context to the AI
     const topicDoc = await adminDb.collection('forums').doc(topicId).get();
     if (!topicDoc.exists) {
@@ -67,6 +70,7 @@ const generateForumPostDraftFlow = ai.defineFlow(
       topicName: topicData.name,
       topicDescription: topicData.description,
       userPrompt: prompt,
+      language: language || 'en',
     });
     
     return output!;

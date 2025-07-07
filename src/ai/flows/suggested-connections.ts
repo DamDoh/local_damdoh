@@ -16,6 +16,7 @@ const db = getFirestore();
 const SuggestedConnectionsInputSchema = z.object({
   userId: z.string().describe('The ID of the user for whom to generate suggestions.'),
   count: z.number().optional().default(5).describe('The number of suggestions to generate.'),
+  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
 export type SuggestedConnectionsInput = z.infer<typeof SuggestedConnectionsInputSchema>;
 
@@ -55,11 +56,13 @@ async function getPotentialCandidates(currentUserId: string): Promise<UserProfil
 // Define the AI prompt
 const connectionSuggesterPrompt = ai.definePrompt({
   name: 'connectionSuggesterPrompt',
-  input: { schema: z.object({ userProfile: z.any(), candidates: z.any(), count: z.number() }) },
+  input: { schema: z.object({ userProfile: z.any(), candidates: z.any(), count: z.number(), language: z.string().optional() }) },
   output: { schema: SuggestedConnectionsOutputSchema },
   prompt: `
     You are an expert networking assistant for an agricultural platform called DamDoh.
     Your task is to analyze a user's profile and suggest other relevant users to connect with from a provided list of candidates.
+
+    **CRITICAL: You MUST generate the 'reason' text for each suggestion in the specified language: '{{{language}}}'.**
 
     The user's profile is:
     - Name: {{{userProfile.displayName}}}
@@ -107,6 +110,7 @@ export const suggestConnections = ai.defineFlow(
       userProfile,
       candidates,
       count: input.count || 5,
+      language: input.language || 'en',
     });
     
     // Ensure the output is always in the correct format, even if the AI fails.

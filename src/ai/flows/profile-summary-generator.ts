@@ -18,6 +18,7 @@ const ProfileSummaryInputSchema = z.object({
   location: z.string().optional().describe('The location of the stakeholder.'),
   areasOfInterest: z.string().optional().describe('Specific areas of interest within the agricultural supply chain, comma-separated.'),
   needs: z.string().optional().describe('The needs of the stakeholder (e.g., finding buyers, suppliers, collaborators), comma-separated.'),
+  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
 export type ProfileSummaryInput = z.infer<typeof ProfileSummaryInputSchema>;
 
@@ -37,6 +38,8 @@ const profileSummaryPrompt = ai.definePrompt({
   prompt: `You are an expert career coach who writes compelling professional summaries for online profiles on an agricultural platform called DamDoh.
 
   Based on the information provided, generate a concise, professional, first-person summary (1-2 sentences, under 250 characters). The summary should sound authentic and highlight the stakeholder's role, key interests, and goals.
+
+  **CRITICAL: You MUST generate the summary in the specified language: '{{{language}}}'.**
 
   Stakeholder Information:
   - Role: {{{stakeholderType}}}
@@ -62,7 +65,7 @@ const generateProfileSummaryFlow = ai.defineFlow(
     outputSchema: ProfileSummaryOutputSchema,
   },
   async input => {
-    const {output} = await profileSummaryPrompt(input);
+    const {output} = await profileSummaryPrompt({ ...input, language: input.language || 'en' });
     return {
       summary: output!.summary,
     };
