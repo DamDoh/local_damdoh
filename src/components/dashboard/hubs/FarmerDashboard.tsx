@@ -13,7 +13,7 @@ import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 
-// --- Helper Component Definitions (moved outside the main component) ---
+// --- HELPER COMPONENTS ---
 
 function DashboardSkeleton() {
     return (
@@ -77,8 +77,7 @@ function AlertIcon({ icon }: { icon: 'FlaskConical' | 'Sprout' }) {
     };
     const IconComponent = iconMap[icon];
     return <IconComponent className="h-5 w-5" />;
-};
-
+}
 
 // --- Main Dashboard Component ---
 
