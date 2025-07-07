@@ -238,11 +238,11 @@ export function AppHeader() {
               ) : user ? (
                 <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
               ) : (
-                <div className="flex items-center gap-1">
-                  <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5">
+                <div className="flex items-center space-x-1">
+                  <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5 flex items-center">
                     <Link href="/auth/signin"><LogIn className="mr-1.5 h-3.5 w-3.5"/>{t('signIn')}</Link>
                   </Button>
-                  <Button variant="outline" asChild className="text-white bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5">
+                  <Button variant="outline" asChild className="text-white bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5 flex items-center">
                     <Link href="/auth/signup"><UserPlus className="mr-1.5 h-3.5 w-3.5"/>{t('signUp')}</Link>
                   </Button>
                 </div>

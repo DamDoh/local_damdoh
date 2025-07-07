@@ -209,6 +209,7 @@ export default function AgriEventsPage() {
                   <CardContent className="flex-grow space-y-2 text-sm">
                     <p className="text-muted-foreground line-clamp-3 h-16">{event.description}</p>
                     <div className="flex items-center text-muted-foreground">
+
                       <CalendarDays className="h-4 w-4 mr-2" />
                       {new Date(event.eventDate).toLocaleDateString()} {event.eventTime && `at ${event.eventTime}`}
                     </div>
@@ -226,6 +227,7 @@ export default function AgriEventsPage() {
                   <CardFooter>
                     <Button asChild className="w-full" variant="outline">
                       <Link href={`/agri-events/${event.id}`}>
+                        <CalendarDays className="mr-2 h-4 w-4" />
                         {t('viewDetails')}
                       </Link>
                     </Button>

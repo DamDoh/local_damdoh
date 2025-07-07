@@ -16,54 +16,61 @@ export default function FarmManagementPage() {
       description: t('myFarms.description'),
       link: "/farm-management/farms",
       icon: <Home className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <Home className="mr-2 h-4 w-4" />,
       buttonText: t('myFarms.button'),
       enabled: true,
     },
     {
       title: t('labor.title'),
       description: t('labor.description'),
-      link: "/farm-management/labor",
+      link: "/farm-management/labor", // Assuming a labor management page exists
       icon: <Users className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <Users className="mr-2 h-4 w-4" />,
       buttonText: t('labor.button'),
       enabled: true,
     },
     {
       title: t('knf.title'),
       description: t('knf.description'),
-      link: "/farm-management/knf-inputs",
+      link: "/farm-management/knf-inputs", // Assuming a KNF inputs page exists
       icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <FlaskConical className="mr-2 h-4 w-4" />,
       buttonText: t('knf.button'),
       enabled: true,
     },
      {
       title: t('fgw.title'),
       description: t('fgw.description'),
-      link: "/farm-management/fgw-guide",
+      link: "/farm-management/fgw-guide", // Assuming an FGW guide page exists
       icon: <Heart className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <Heart className="mr-2 h-4 w-4" />,
       buttonText: t('fgw.button'),
       enabled: true,
     },
     {
       title: t('financials.title'),
       description: t('financials.description'),
-      link: "/farm-management/financials",
+      link: "/farm-management/financials", // Assuming a financials page exists
       icon: <DollarSign className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <DollarSign className="mr-2 h-4 w-4" />,
       buttonText: t('financials.button'),
       enabled: true,
     },
      {
       title: t('seedStarting.title'),
       description: t('seedStarting.description'),
-      link: "/farm-management/seed-starting",
+      link: "/farm-management/seed-starting", // Assuming a seed starting page exists
       icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <Sprout className="mr-2 h-4 w-4" />,
       buttonText: t('seedStarting.button'),
       enabled: true,
     },
     {
       title: t('familyFarm.title'),
       description: t('familyFarm.description'),
-      link: "/farm-management/family-farm",
+      link: "/farm-management/family-farm", // Assuming a family farm page exists
       icon: <Leaf className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <Leaf className="mr-2 h-4 w-4" />,
       buttonText: t('familyFarm.button'),
       enabled: true,
     },
@@ -71,6 +78,7 @@ export default function FarmManagementPage() {
       title: t('assetManagement.title'),
       description: t('assetManagement.description'),
       link: "#",
+      buttonIcon: <Tractor className="mr-2 h-4 w-4" />,
       icon: <Tractor className="h-8 w-8 text-primary mb-2" />,
       buttonText: t('assetManagement.button'),
       enabled: false,
@@ -96,7 +104,10 @@ export default function FarmManagementPage() {
                 </CardContent>
                 <div className="p-6 pt-0">
                      <Button asChild className="w-full" disabled={!item.enabled}>
-                        <Link href={item.link}>{item.buttonText}</Link>
+                        <Link href={item.link}>
+                           {item.buttonIcon}
+                           {item.buttonText}
+                        </Link>
                     </Button>
                 </div>
             </Card>

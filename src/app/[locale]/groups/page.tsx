@@ -102,7 +102,7 @@ export default function GroupsPage() {
                                 <Link key={group.id} href={`/groups/${group.id}`}>
                                     <div className="p-4 border rounded-lg hover:bg-accent transition-colors">
                                         <h3 className="font-semibold text-lg flex items-center gap-2">
-                                            {group.isPublic ? <Users className="h-5 w-5 text-primary" /> : <Lock className="h-5 w-5 text-primary" />}
+ {group.isPublic ? <Users className="h-5 w-5 text-primary shrink-0" /> : <Lock className="h-5 w-5 text-primary shrink-0" />}
                                             {group.name}
                                         </h3>
                                         <p className="text-sm text-muted-foreground mt-1 mb-2">{group.description}</p>

@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import type { MarketplaceItem } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import type { MarketplaceItem, ServiceItem } from "@/lib/types";
+import { cn, withIcon } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { Briefcase, DollarSign } from "lucide-react";
 
@@ -68,7 +68,9 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
             </CardContent>
             <CardFooter className="p-2 pt-0">
                 <Button asChild size="sm" className="w-full">
-                    <Link href={`/marketplace/${item.id}`}>{isService ? t('viewServiceButton', {defaultValue: "View Service"}) : t('viewDetails')}</Link>
+                    <Link href={`/marketplace/${item.id}`} className="flex items-center justify-center gap-2">
+                        {isService ? t('viewServiceButton', {defaultValue: "View Service"}) : t('viewDetails')}
+                    </Link>
                 </Button>
             </CardFooter>
         </Card>

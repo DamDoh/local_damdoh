@@ -55,7 +55,7 @@ export default function SettingsPage() {
             <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">Your profile is your identity on DamDoh. A complete and detailed profile helps build trust and attracts the right connections and opportunities.</p>
                 <Button asChild>
-                    <Link href="/profiles/me/edit">
+                    <Link href="/profiles/me/edit" className="flex items-center">
                          <Edit className="mr-2 h-4 w-4" /> Go to Profile Editor
                     </Link>
                 </Button>
@@ -81,9 +81,9 @@ export default function SettingsPage() {
                  <div className="space-y-1">
                   <Label htmlFor="confirm-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />{t('account.confirmPasswordLabel')}</Label>
                   <Input id="confirm-password" type="password" />
-                </div>
-              <Button><Save className="mr-2 h-4 w-4" />{t('account.changePasswordButton')}</Button>
-              <Separator />
+ </div>
+ <Button className="flex items-center"><Save className="mr-2 h-4 w-4" />{t('account.changePasswordButton')}</Button>
+ <Separator />
               <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
             </CardContent>
           </Card>
@@ -132,7 +132,7 @@ export default function SettingsPage() {
                 <Switch id="talent-exchange-notifications" defaultChecked/>
               </div>
               <Button><Save className="mr-2 h-4 w-4" />{t('notifications.saveButton')}</Button>
-            </CardContent>
+ </CardContent>
           </Card>
         </TabsContent>
 
@@ -207,7 +207,7 @@ export default function SettingsPage() {
                 </div>
                 <Switch id="search-engine-indexing" defaultChecked />
               </div>
-              <Button><Save className="mr-2 h-4 w-4" />{t('privacy.saveButton')}</Button>
+ <Button className="flex items-center"><Save className="mr-2 h-4 w-4" />{t('privacy.saveButton')}</Button>
               
               {/* Super App Vision Note: This section is key for trust. It allows users to control how their data is used across different modules. */}
               <Separator className="my-8" /> 
@@ -239,7 +239,7 @@ export default function SettingsPage() {
                     <Switch id="consent-financial-ai" defaultChecked /> 
                  </div>
               </div>
-              <Button><Save className="mr-2 h-4 w-4" />{t('privacy.saveConsentButton')}</Button>
+ <Button className="flex items-center"><Save className="mr-2 h-4 w-4" />{t('privacy.saveConsentButton')}</Button>
 
             </CardContent>
           </Card>

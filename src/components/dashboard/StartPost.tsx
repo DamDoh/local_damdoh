@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Image as ImageIcon, CalendarDays, BarChart3 } from "lucide-react";
+import { Image as ImageIcon, CalendarDays, BarChart3, Plus } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { CreatePostModal } from './CreatePostModal';
 import { Skeleton } from '../ui/skeleton';
@@ -51,6 +51,7 @@ export function StartPost({ onCreatePost }: StartPostProps) {
               role="button"
               tabIndex={0}
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleOpenModal()}
+
             >
              Share an agricultural update, market insight, or ask a question...
             </div>

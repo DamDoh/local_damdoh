@@ -147,7 +147,9 @@ export default function ForumsPage() {
                         <span>{t('lastActivity', { time: formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true }) })}</span>
                     </div>
                     <Button asChild className="w-full mt-2">
-                        <Link href={`/forums/${topic.id}`}>{t('buttons.joinDiscussion')}</Link>
+                        <Link href={`/forums/${topic.id}`}>
+                            <MessageSquare className="mr-2 h-4 w-4" />{t('buttons.joinDiscussion')}
+                        </Link>
                     </Button>
                 </CardFooter>
               </Card>

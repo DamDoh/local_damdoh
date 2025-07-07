@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 
 
-const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean }) => (
+const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false, actionIcon }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean, actionIcon?: React.ReactNode }) => (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
@@ -29,7 +29,7 @@ const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrenc
       </CardContent>
       <CardFooter>
         <Button asChild variant="outline" size="sm" className="w-full">
-            <Link href={actionLink}>{actionLabel}</Link>
+            <Link href={actionLink}>{actionIcon}{actionLabel}</Link>
         </Button>
       </CardFooter>
     </Card>
@@ -107,10 +107,10 @@ export const FarmerDashboard = () => {
                 </Card>
              )}
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
-                <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Farms"/>
-                <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Crops"/>
-                <StatCard title="KNF Batches" value={(knfBatches || []).length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" />
-                <StatCard title="Net Financials" value={financialSummary?.netFlow || 0} icon={<DollarSign className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/financials" actionLabel="View Financials" isCurrency={true}/>
+                <StatCard title="My Farms" value={farmCount || 0} icon={<Home className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Farms" actionIcon={<Home className="mr-2 h-4 w-4" />} />
+                <StatCard title="Active Crops" value={cropCount || 0} icon={<Sprout className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/farms" actionLabel="Manage Crops" actionIcon={<Sprout className="mr-2 h-4 w-4" />} />
+                <StatCard title="KNF Batches" value={(knfBatches || []).length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" actionIcon={<FlaskConical className="mr-2 h-4 w-4" />} />
+                <StatCard title="Net Financials" value={financialSummary?.netFlow || 0} icon={<DollarSign className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/financials" actionLabel="View Financials" isCurrency={true} actionIcon={<DollarSign className="mr-2 h-4 w-4" />}/>
              </div>
               <Card>
                 <CardHeader>
