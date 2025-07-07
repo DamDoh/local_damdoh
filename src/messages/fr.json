@@ -106,507 +106,6 @@
       "startOverButton": "Recommencer"
     }
   },
-  "GroupsPage": {
-    "title": "Groupes Communautaires",
-    "description": "Rejoignez des groupes basés sur vos intérêts pour vous connecter avec des personnes partageant les mêmes idées.",
-    "createGroupButton": "Créer un Groupe",
-    "searchPlaceholder": "Rechercher des groupes...",
-    "notFound": "Aucun groupe trouvé.",
-    "toast": {
-      "joinSuccess": "Vous avez rejoint le groupe avec succès !",
-      "joinError": "Échec de la tentative de rejoindre le groupe",
-      "leaveSuccess": "Vous avez quitté le groupe.",
-      "leaveError": "Échec de la tentative de quitter le groupe",
-      "loginToJoin": "Veuillez vous connecter pour rejoindre un groupe."
-    },
-    "detail": {
-      "backLink": "Retour à tous les groupes",
-      "discussionsTitle": "Discussions",
-      "startDiscussionButton": "Démarrer une Discussion",
-      "noDiscussions": "Aucune discussion pour le moment",
-      "beTheFirst": "Soyez le premier à lancer une conversation dans ce groupe !",
-      "actionsTitle": "Actions du Groupe",
-      "loginToJoinButton": "Se connecter pour rejoindre",
-      "leavingButton": "Départ en cours...",
-      "leaveButton": "Quitter le Groupe",
-      "joiningButton": "Adhésion...",
-      "joinButton": "Rejoindre le Groupe",
-      "requestJoinButton": "Demander à rejoindre",
-      "membersTitle": "Membres ({memberCount})"
-    },
-    "create": {
-      "backLink": "Retour aux Groupes",
-      "title": "Créer un Nouveau Groupe",
-      "description": "Rassemblez des personnes autour d'un intérêt commun.",
-      "form": {
-        "nameLabel": "Nom du Groupe",
-        "namePlaceholder": "Ex: Agriculteurs Bio du Kenya",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Une brève description du sujet de ce groupe.",
-        "publicLabel": "Groupe Public (tout le monde peut voir et rejoindre)",
-        "submittingButton": "Création en cours...",
-        "submitButton": "Créer le Groupe"
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentification Requise",
-          "description": "Vous devez être connecté pour créer un groupe."
-        },
-        "incomplete": {
-          "title": "Formulaire Incomplet",
-          "description": "Veuillez renseigner le nom et la description du groupe."
-        },
-        "success": {
-          "title": "Groupe Créé !",
-          "description": "Votre groupe a été créé avec succès."
-        },
-        "error": {
-          "title": "Erreur lors de la Création du Groupe",
-          "description": "Une erreur est survenue lors de la création du groupe. Veuillez réessayer."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Retour au Groupe",
-      "title": "Démarrer une Nouvelle Discussion",
-      "description": "Partagez vos pensées, posez des questions ou lancez une conversation avec d'autres membres du groupe.",
-      "form": {
-        "titleLabel": "Titre de la Publication",
-        "titlePlaceholder": "Un titre clair et engageant",
-        "contentLabel": "Votre Message",
-        "contentPlaceholder": "Partagez des détails, posez des questions, ou donnez du contexte à votre discussion...",
-        "submittingButton": "Publication en cours...",
-        "submitButton": "Publier la Discussion"
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentification Requise",
-          "description": "Vous devez être connecté et membre du groupe pour créer une publication."
-        },
-        "incomplete": {
-          "title": "Publication Incomplète",
-          "description": "Veuillez fournir un titre et un contenu pour votre publication."
-        },
-        "success": {
-          "title": "Publication Créée !",
-          "description": "Votre discussion a été lancée dans le groupe."
-        },
-        "error": {
-          "title": "Erreur lors de la Création de la Publication",
-          "description": "Une erreur inattendue est survenue."
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "Retour à {groupName}",
-      "notFound": {
-        "title": "Publication non trouvée.",
-        "description": "Cette publication a peut-être été supprimée ou le lien est incorrect.",
-        "backButton": "Retour au Groupe"
-      },
-      "repliesTitle": "Réponses ({replyCount})",
-      "noReplies": "Aucune réponse pour le moment. Soyez le premier à répondre !",
-      "loadingMoreButton": "Chargement...",
-      "loadMoreButton": "Charger Plus de Réponses",
-      "yourReplyTitle": "Votre Réponse",
-      "replyPlaceholder": "Écrivez votre réponse...",
-      "replySubmittingButton": "Publication en cours...",
-      "replySubmitButton": "Publier la Réponse",
-      "toast": {
-        "emptyReply": "Veuillez écrire une réponse avant de l'envoyer.",
-        "replySuccess": "Réponse publiée !",
-        "replyError": "Impossible de soumettre votre réponse. Veuillez réessayer."
-      }
-    }
-  },
-  "networkPage": {
-    "title": "Développez votre réseau",
-    "description": "Connectez-vous avec des agriculteurs, des acheteurs, des experts et des organisations pour étendre votre portée.",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "searchPlaceholder": "Rechercher par nom ou mot-clé...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "rolePlaceholder": "Filtrer par rôle",
-    "allRoles": "Tous les rôles",
-    "interestPlaceholder": "Filtrer par intérêt",
-    "allInterests": "Tous les intérêts",
-    "noStakeholdersFound": "Aucun acteur trouvé correspondant à vos critères.",
-    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche ou parcourez tous les acteurs.",
-    "connect": "Connecter",
-    "profile": "Profil"
-  },
-  "myNetworkPage": {
-    "backLink": "Retour à la découverte du réseau",
-    "myConnectionsTab": "Mes connexions ({count})",
-    "pendingRequestsTab": "Demandes en attente",
-    "connectionsTitle": "Mes connexions",
-    "connectionsDescription": "Les personnes et organisations de votre réseau professionnel.",
-    "noConnections": "Vous n'avez pas encore établi de connexions.",
-    "requestsTitle": "Demandes en attente",
-    "requestsDescription": "Personnes qui souhaitent se connecter avec vous.",
-    "sentTimeAgo": "Envoyé {timeAgo}",
-    "noRequests": "Vous n'avez aucune demande de connexion en attente."
-  },
-  "agentToolsPage": {
-    "backLink": "Retour au réseau",
-    "title": "Boîte à outils de l'agent",
-    "description": "Recherchez des utilisateurs en toute sécurité pour fournir une assistance ou effectuer des actions autorisées.",
-    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
-    "findButton": "Trouver",
-    "resultsTitle": "Résultat",
-    "resultsPlaceholder": "Les résultats de la recherche apparaîtront ici.",
-    "accessDeniedTitle": "Accès refusé",
-    "accessDeniedDescription": "Vous ne disposez pas des autorisations requises pour accéder à cette page.",
-    "phoneRequiredError": "Veuillez entrer un numéro de téléphone."
-  },
-  "ProfilePage": {
-    "notFoundTitle": "Profil non trouvé",
-    "notFoundDescription": "Le profil demandé n'a pas pu être trouvé.",
-    "backToNetwork": "Retour au réseau",
-    "editProfile": "Modifier le profil",
-    "showUniversalIdButton": "Afficher l'ID universel",
-    "connect": "Connecter",
-    "message": "Message",
-    "summaryTitle": "Résumé",
-    "aboutTitle": "À propos de {displayName}",
-    "experienceTitle": "Expérience",
-    "emailTitle": "E-mail",
-    "websiteTitle": "Site Web",
-    "interestsTitle": "Domaines d'intérêt",
-    "needsTitle": "Besoins et offres",
-    "detailsTitle": "Détails",
-    "roleSpecificInfo": "Des informations spécifiques au rôle seront affichées ici dans un format plus structuré.",
-    "tempDisplayNotice": "(Ceci est un affichage temporaire de données brutes à des fins de développement).",
-    "recentActivityTitle": "Activité récente",
-    "recentActivityDescription": "Dernières actions et contributions sur la plateforme {appName}.",
-    "noRecentActivity": "Aucune activité récente à afficher.",
-    "universalIdModalTitle": "Votre ID universel",
-    "universalIdModalDescription": "Partagez ce code QR avec d'autres personnes en personne pour partager votre profil public en toute sécurité."
-  },
-  "messagingPage": {
-    "title": "Messages",
-    "searchPlaceholder": "Chercher ou démarrer une nouvelle conversation",
-    "noConversations": "Aucune conversation pour le moment.",
-    "selectConversation": "Sélectionnez une conversation pour commencer à discuter",
-    "typeMessagePlaceholder": "Écrire un message...",
-    "send": "Envoyer",
-    "error": "Erreur",
-    "couldNotLoadConversations": "Impossible de charger les conversations.",
-    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
-    "sendFailed": "Envoi échoué",
-    "couldNotSendMessage": "Votre message n'a pas pu être envoyé.",
-    "signInToView": "Veuillez vous connecter pour voir vos messages.",
-    "signIn": "Se connecter"
-  },
-  "notificationsPage": {
-    "title": "Notifications",
-    "description": "Votre activité récente et les mises à jour de la communauté.",
-    "noNotifications": "Aucune nouvelle notification.",
-    "likedYourPost": "{name} a aimé votre publication",
-    "commentedOnYourPost": "{name} a commenté votre publication",
-    "viewedYourProfile": "{name} a consulté votre profil",
-    "placedNewOrder": "{name} a passé une nouvelle commande pour votre annonce",
-    "sentConnectionRequest": "{name} souhaite se connecter avec vous"
-  },
-  "FeedItemCard": {
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "noComments": "Aucun commentaire pour l'instant. Soyez le premier à répondre !",
-    "loadingComments": "Chargement des commentaires...",
-    "loadMoreComments": "Charger plus de commentaires",
-    "writeCommentPlaceholder": "Écrire un commentaire...",
-    "postButton": "Publier",
-    "signInToLikeToast": "Veuillez vous connecter pour aimer les publications.",
-    "loadCommentsErrorToast": "Impossible de charger les commentaires.",
-    "voteSuccessToast": "Vote compté !",
-    "voteErrorToast": "Échec de l'enregistrement du vote",
-    "signInToVoteToast": "Veuillez vous connecter pour voter."
-  },
-  "CreatePostModal": {
-    "title": "Créer une nouvelle publication",
-    "description": "Rédigez et partagez une mise à jour avec la communauté. Vous pouvez ajouter du texte, des médias ou créer un sondage.",
-    "yourName": "Votre nom",
-    "shareUpdate": "Partager une mise à jour",
-    "placeholder": "Quelles informations ou nouvelles agricoles souhaitez-vous partager ?",
-    "selectedFile": "Fichier sélectionné :",
-    "pollOptionsLabel": "Options du sondage",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Ajouter une option",
-    "pollNote": "Max {maxOptions} options. Chaque option 80 caractères max.",
-    "addMediaButton": "Ajouter Photo/Vidéo",
-    "createEventButton": "Créer un événement Agri",
-    "shareDocumentButton": "Partager un document",
-    "createPollButton": "Créer un sondage",
-    "postButton": "Publier",
-    "pollOptionsError": "Un sondage nécessite au moins 2 options.",
-    "emptyPostError": "Veuillez ajouter du contenu, une image ou un sondage valide à votre publication."
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Développez votre réseau",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "ad": "Publicité",
-    "adTitle": "Gardez une longueur d'avance avec les tendances du marché DamDoh !",
-    "adDescription": "Obtenez des informations exclusives sur les prix des produits de base et la dynamique de la chaîne d'approvisionnement.",
-    "adButton": "Explorer les tendances DamDoh Pro",
-    "follow": "Suivre",
-    "following": "Abonné",
-    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
-    "loadError": "Impossible de charger les suggestions. Veuillez réessayer.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment.",
-    "infoTooltip": "Ces suggestions sont alimentées par l'IA en fonction de votre rôle, de vos intérêts et de votre activité sur la plateforme."
-  },
-  "AgriEvents": {
-    "page": {
-      "title": "Événements Agricoles à Venir",
-      "description": "Découvrez des ateliers, des conférences et des webinaires dans le monde agricole.",
-      "createNewEvent": "Créer un Nouvel Événement",
-      "unpinHomepage": "Détacher de l'accueil",
-      "pinAsHomepage": "Épingler en page d'accueil",
-      "searchEvents": "Rechercher des événements...",
-      "searchPlaceholder": "Rechercher par titre, lieu ou sujet...",
-      "filterPlaceholder": "Filtrer par type d'événement",
-      "organizedBy": "Organisé par {organizer}",
-      "viewDetails": "Voir les Détails",
-      "noEventsFound": "Aucun Événement Trouvé",
-      "noEventsHint": "Aucun événement ne correspond actuellement à vos critères. Pourquoi ne pas en {link} ?",
-      "errorLoadingEvents": "Erreur de Chargement des Événements",
-      "couldNotFetchEvents": "Impossible de récupérer la liste des événements. Veuillez réessayer plus tard.",
-      "toast": {
-        "pinned": {
-          "title": "Page d'accueil épinglée !",
-          "description": "La page des événements agricoles est maintenant votre page d'accueil par défaut."
-        },
-        "unpinned": {
-          "title": "Page d'accueil détachée !",
-          "description": "Le tableau de bord est maintenant votre page d'accueil par défaut."
-        }
-      }
-    },
-    "create": {
-      "backButton": "Retour à tous les événements",
-      "formTitle": "Créer un Nouvel Événement Agricole",
-      "formDescription": "Remplissez les détails ci-dessous pour lister votre événement sur la plateforme.",
-      "authErrorTitle": "Non Authentifié",
-      "authErrorDescription": "Vous devez être connecté pour créer un événement.",
-      "uploadingTitle": "Téléchargement de l'Image...",
-      "uploadingDescription": "Veuillez patienter pendant le téléchargement de l'image de votre événement.",
-      "uploadCompleteTitle": "Téléchargement de l'Image Terminé !",
-      "successTitle": "Événement Créé !",
-      "successDescription": "Votre événement '{title}' a été listé avec succès.",
-      "failTitle": "Échec de la Création de l'Événement",
-      "failDescription": "Une erreur inattendue est survenue. Veuillez réessayer.",
-      "successCardTitle": "Votre événement '{title}' est en ligne !",
-      "successCardDescription": "Il est maintenant visible par toute la communauté DamDoh. Que souhaitez-vous faire ensuite ?",
-      "manageButton": "Gérer l'Événement",
-      "shareButton": "Copier le Lien Partageable",
-      "createAnotherButton": "Créer un Autre Événement",
-      "viewAllButton": "Voir Tous les Événements",
-      "linkCopiedTitle": "Lien Copié !",
-      "linkCopiedDescription": "Le lien de l'événement a été copié dans votre presse-papiers.",
-      "submittingButton": "Soumission en cours...",
-      "submitButton": "Créer l'Événement",
-      "form": {
-        "titleLabel": "Titre de l'Événement",
-        "titlePlaceholder": "Ex: Conférence Annuelle sur l'Agriculture Durable",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Fournissez une description détaillée de votre événement, y compris les intervenants, les sujets et le programme.",
-        "dateLabel": "Date de l'Événement",
-        "datePlaceholder": "Choisissez une date",
-        "timeLabel": "Heure de l'Événement (Facultatif)",
-        "timePlaceholder": "Ex: 09:00",
-        "timeDescription": "Votre fuseau horaire local",
-        "locationLabel": "Lieu",
-        "locationPlaceholder": "Ex: Nairobi, Kenya ou En ligne",
-        "locationDescription": "Entrez un lieu physique ou spécifiez 'En ligne' pour les événements virtuels.",
-        "typeLabel": "Type d'Événement",
-        "typePlaceholder": "Sélectionnez un type d'événement",
-        "organizerLabel": "Nom de l'Organisateur (Facultatif)",
-        "organizerPlaceholder": "Ex: Agri-Innovation Global",
-        "websiteLabel": "Site Web de l'Événement (Facultatif)",
-        "enableRegLabel": "Activer l'Inscription",
-        "enableRegDescription": "Permettre aux utilisateurs de s'inscrire à cet événement directement via DamDoh.",
-        "attendeeLimitLabel": "Limite de Participants (Facultatif)",
-        "attendeeLimitDescription": "Laisser vide pour aucune limite.",
-        "priceLabel": "Prix (par billet)",
-        "priceDescription": "Laisser à 0 pour un événement gratuit.",
-        "currencyLabel": "Devise",
-        "currencyDescription": "Ex: USD, KES",
-        "imageUrlLabel": "URL de l'Image (Facultatif)",
-        "imageUrlDescription": "Lien vers une image promotionnelle ou une bannière pour votre événement.",
-        "imageUploadLabel": "Ou Télécharger une Image",
-        "imageUploadDescription": "Max 5Mo. Format d'image recommandé 16:9."
-      }
-    },
-    "detail": {
-      "backLink": "Retour à tous les événements",
-      "organizedBy": "Organisé par {organizer}",
-      "attendees": "{count} participants / {limit}",
-      "unlimited": "illimité",
-      "buttons": {
-        "manage": "Gérer",
-        "share": "Partager",
-        "close": "Fermer",
-        "viewTicket": "Voir Votre Billet",
-        "full": "L'événement est Complet",
-        "registering": "Inscription en cours...",
-        "registerAndPay": "S'inscrire & Payer {price} {currency}",
-        "registerFree": "S'inscrire Gratuitement",
-        "visitWebsite": "Visiter le Site Web de l'Événement"
-      },
-      "share": {
-        "title": "Partager l'Événement",
-        "description": "Partagez cet événement avec votre réseau.",
-        "link": "Lien",
-        "copy": "Copier"
-      },
-      "registration": {
-        "notAvailable": "L'inscription à cet événement n'est pas disponible via DamDoh.",
-        "successTitle": "Inscription Réussie !",
-        "successDescription": "Vous êtes maintenant inscrit à l'événement.",
-        "discountApplied": "Un coupon pour une réduction de {amount} {currency} a été appliqué.",
-        "finalPrice": "Votre prix final est de {price} {currency}.",
-        "failTitle": "Échec de l'Inscription"
-      },
-      "coupon": {
-        "toastTitle": "Coupon Appliqué !",
-        "toastDescription": "Le code de coupon '{couponCode}' a été ajouté à votre inscription.",
-        "label": "Vous avez un code de coupon ?",
-        "placeholder": "Entrez le code ici",
-        "note": "La réduction sera appliquée à la dernière étape."
-      },
-      "ticket": {
-        "title": "Votre Billet pour l'Événement",
-        "for": "Pour {eventTitle}",
-        "scan": "Présentez ce code QR à l'événement pour l'enregistrement."
-      },
-      "notFound": {
-        "title": "Événement Non Trouvé",
-        "description": "L'événement que vous recherchez n'existe pas ou a été supprimé.",
-        "backButton": "Retour aux Événements"
-      },
-      "errors": {
-        "loadTitle": "Erreur de Chargement de l'Événement",
-        "loadDescription": "Impossible de récupérer les détails de l'événement. Veuillez réessayer.",
-        "signInTitle": "Veuillez Vous Connecter",
-        "signInDescription": "Vous devez être connecté pour vous inscrire à un événement."
-      }
-    },
-    "manage": {
-      "title": "Gérer l'Événement",
-      "toast": {
-        "errorCoupons": {
-          "title": "Erreur",
-          "description": "Impossible de récupérer les coupons existants."
-        }
-      },
-      "tabs": {
-        "checkin": "Enregistrement",
-        "staff": "Personnel",
-        "dashboard": "Tableau de bord",
-        "attendees": "Participants",
-        "promotions": "Promotions"
-      },
-      "checkin": {
-        "title": "Enregistrement des Participants",
-        "description": "Scannez le code QR unique du billet d'un participant pour l'enregistrer à l'événement.",
-        "scanButton": "Scanner le Billet du Participant",
-        "verifying": "Vérification...",
-        "success": "Succès",
-        "errorTitle": "Erreur",
-        "error": {
-          "invalidCode": "Code QR invalide : Ce n'est pas un code d'enregistrement DamDoh.",
-          "wrongEvent": "Ce billet est pour un autre événement.",
-          "noUserId": "Code QR invalide : Aucun ID d'utilisateur trouvé.",
-          "unknown": "Une erreur inconnue est survenue lors de l'enregistrement.",
-          "failUnknown": "L'enregistrement a échoué pour une raison inconnue."
-        },
-        "toast": {
-          "success": { "title": "Enregistrement Réussi" },
-          "fail": { "title": "Échec de l'Enregistrement" },
-          "scanFail": {
-            "title": "Échec du Scan",
-            "description": "Impossible de lire le code QR. Veuillez réessayer."
-          }
-        }
-      },
-      "staff": {
-        "title": "Gérer le Personnel de l'Événement",
-        "description": "Ajoutez ou supprimez du personnel qui peut vous aider à enregistrer les participants.",
-        "addTitle": "Ajouter du Nouveau Personnel",
-        "searchPlaceholder": "Rechercher un utilisateur par nom ou email...",
-        "addButton": "Ajouter",
-        "currentTitle": "Personnel Actuel",
-        "removeButton": "Supprimer",
-        "noStaff": "Aucun membre du personnel ajouté.",
-        "toast": {
-          "error": "Erreur",
-          "success": "Succès",
-          "fetchStaffError": "Impossible de récupérer le personnel de l'événement.",
-          "searchLengthError": "Veuillez entrer au moins 3 caractères pour rechercher.",
-          "searchFailed": "Recherche échouée",
-          "addSuccess": "{name} a été ajouté au personnel.",
-          "addFailed": "Échec de l'ajout du personnel",
-          "removeSuccess": "{name} a été retiré du personnel.",
-          "removeFailed": "Échec de la suppression du personnel"
-        }
-      },
-      "attendees": {
-        "title": "Participants de l'Événement",
-        "description": "Voir la liste de tous les participants inscrits à votre événement.",
-        "downloadCsv": "Télécharger CSV",
-        "nameHeader": "Nom",
-        "emailHeader": "Email",
-        "registeredOnHeader": "Inscrit le",
-        "statusHeader": "Statut",
-        "statusCheckedIn": "Enregistré",
-        "statusRegistered": "Inscrit",
-        "noAttendees": "Personne ne s'est encore inscrit à cet événement.",
-        "error": "Impossible de récupérer les participants de l'événement.",
-        "toast": { "noAttendees": "Aucun participant à exporter." }
-      },
-      "promotions": {
-        "create": {
-          "title": "Créer un Nouveau Coupon",
-          "description": "Générez des codes de réduction pour promouvoir votre événement.",
-          "toast": {
-            "successTitle": "Coupon Créé !",
-            "successDescription": "Le coupon '{code}' est maintenant actif.",
-            "failTitle": "Création Échouée"
-          },
-          "form": {
-            "code": "Code de Coupon",
-            "codePlaceholder": "Ex: EARLYBIRD20",
-            "usageLimit": "Limite d'Utilisation (Facultatif)",
-            "usageLimitPlaceholder": "Ex: 100",
-            "discountType": "Type de Réduction",
-            "discountTypePlaceholder": "Sélectionnez un type",
-            "percentage": "Pourcentage (%)",
-            "fixed": "Montant Fixe",
-            "discountValue": "Valeur de la Réduction",
-            "expiryDate": "Date d'Expiration (Facultatif)",
-            "pickDate": "Choisissez une date",
-            "submitButton": "Créer le Coupon"
-          }
-        },
-        "list": {
-          "title": "Coupons Existants",
-          "description": "Voyez et gérez vos coupons actifs et passés.",
-          "toastTitle": "Lien Copié !",
-          "toastDescription": "Un lien partageable avec le coupon a été copié : {link}",
-          "expires": "Expire",
-          "usage": "Utilisation",
-          "share": "Partager",
-          "noCoupons": "Aucun coupon créé pour le moment.",
-          "shareModal": {
-            "title": "Partager le Coupon",
-            "description": "Partagez ce code ou ce lien avec les participants potentiels.",
-            "copy": "Copier",
-            "close": "Fermer"
-          }
-        }
-      }
-    }
-  },
   "LandingPage": {
     "hero": {
       "title": "Connectez. Transigez. Croissez. L'avantage {appName}.",
@@ -657,68 +156,166 @@
       "button": "Rejoignez la communauté DamDoh aujourd'hui"
     }
   },
-  "farmManagement": {
-    "hub": {
-      "title": "Centre de Gestion de Ferme",
-      "description": "Votre lieu central pour toutes les opérations agricoles. Gérez vos fermes, cultures, intrants et finances, le tout au même endroit.",
-      "myFarms": {
-        "title": "Mes Fermes",
-        "description": "Visualisez, modifiez ou ajoutez vos propriétés agricoles.",
-        "button": "Gérer les Fermes"
+  "Forums": {
+    "title": "Sujets du forum",
+    "description": "Parcourir et créer des sujets de discussion",
+    "lastActivity": "Dernière activité il y a {{time}}",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "joinDiscussion": "Rejoindre la discussion",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement en cours...",
+      "pinHomepage": "Épingler à l'accueil",
+      "unpinHomepage": "Détacher de l'accueil"
+    },
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez une autre recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
+    },
+    "pinning": {
+      "pinnedTitle": "Accueil épinglé !",
+      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
+      "unpinnedTitle": "Accueil détaché !",
+      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    },
+    "errors": {
+      "loadTitle": "Erreur lors du chargement des sujets",
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
       },
-      "labor": {
-        "title": "Gestion de la Main-d'œuvre",
-        "description": "Suivez les heures de travail, les paiements et les tâches des ouvriers.",
-        "button": "Gérer la Main-d'œuvre"
+      "incomplete": {
+        "title": "Champs incomplets",
+        "description": "Veuillez remplir tous les champs obligatoires."
       },
-      "knf": {
-        "title": "Intrants KNF",
-        "description": "Créez et gérez vos lots d'Agriculture Naturelle Coréenne.",
-        "button": "Gérer les Intrants"
-      },
-      "fgw": {
-        "title": "Guide de l'Agriculture selon Dieu",
-        "description": "Explorez les principes et pratiques de l'Agriculture selon Dieu (FGW).",
-        "button": "Voir le Guide FGW"
-      },
-      "financials": {
-        "title": "Finances de la Ferme",
-        "description": "Suivez les revenus et les dépenses pour comprendre la rentabilité.",
-        "button": "Gérer les Finances"
-      },
-      "seedStarting": {
-        "title": "Guide de Démarrage des Semis",
-        "description": "Apprenez à démarrer les semis à l'intérieur avec succès.",
-        "button": "Voir le Guide"
-      },
-      "familyFarm": {
-        "title": "Modèle de Ferme Familiale Intégrée",
-        "description": "Découvrez un modèle durable pour les petites exploitations.",
-        "button": "Voir le Modèle"
-      },
-      "assetManagement": {
-        "title": "Gestion des Actifs",
-        "description": "Gérez votre équipement, vos bâtiments et autres actifs. (Bientôt disponible)",
-        "button": "Gérer les Actifs"
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur s'est produite lors de la création du sujet."
       }
     },
-    "myFarms": {
-      "backToDashboard": "Retour au Hub de la Ferme",
-      "title": "Mes Fermes",
-      "addNewFarmButton": "Ajouter une Nouvelle Ferme",
-      "size": "Taille",
-      "viewFarmButton": "Voir la Ferme",
-      "noFarmsTitle": "Aucune Ferme Trouvée",
-      "noFarmsDescription": "Ajoutez votre première ferme pour commencer à gérer vos opérations agricoles.",
-      "auth": {
-        "title": "Veuillez vous connecter",
-        "description": "Vous devez être connecté pour voir vos fermes.",
-        "button": "Se connecter"
+    "create": {
+      "backLink": "Retour aux sujets",
+      "title": "Créer un nouveau sujet",
+      "description": "Démarrer une nouvelle discussion sur le forum.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
       },
-      "toast": {
-        "errorTitle": "Erreur de Chargement des Fermes",
-        "errorDescription": "Une erreur est survenue lors du chargement de vos fermes. Veuillez réessayer."
+      "success": {
+        "title": "Sujet créé avec succès",
+        "description": "Votre nouveau sujet a été créé."
+      }
+    },
+    "topic": {
+      "unknownUser": "Utilisateur inconnu",
+      "postMeta": "par {{author}} le {{date}}",
+      "noPosts": {
+        "title": "Aucun message pour l'instant",
+        "description": "Soyez le premier à répondre à ce sujet.",
+        "button": "Ajouter une réponse"
+      },
+      "notFound": {
+        "title": "Sujet introuvable",
+        "description": "Le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des messages",
+          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
+        },
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Assistant IA",
+        "description": "Générer un brouillon de message basé sur une invite.",
+        "promptLabel": "Invite IA",
+        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
+        "generateButton": "Générer le brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "title": "Créer un nouveau message",
+      "description": "Ajouter un nouveau message à ce sujet.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Entrez le titre de votre message",
+        "contentLabel": "Contenu du message",
+        "contentPlaceholder": "Écrivez le contenu de votre message ici...",
+        "submitButton": "Créer le message",
+        "submittingButton": "Envoi en cours..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon IA généré !",
+          "description": "Un brouillon a été généré pour vous."
+        },
+        "title": "Message créé !",
+        "description": "Votre message a été créé avec succès."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Invite IA manquante",
+          "description": "Veuillez fournir une invite pour l'assistant IA."
+        },
+        "aiDraft": {
+          "title": "Erreur de brouillon IA",
+          "description": "Échec de la génération du brouillon IA."
+        },
+        "incomplete": {
+          "title": "Champs incomplets",
+          "description": "Veuillez remplir tous les champs obligatoires."
+        },
+        "general": {
+          "title": "Erreur",
+          "description": "Une erreur s'est produite lors de la création du message."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {{topicName}}",
+      "postMeta": "par {{author}} le {{date}}",
+      "repliesTitle": "Réponses ({count})",
+      "noReplies": "Aucune réponse pour l'instant.",
+      "reply": {
+        "title": "Ajouter une réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Ajouter une réponse",
+        "submittingButton": "Envoi en cours...",
+        "success": "Réponse ajoutée !"
+      },
+      "notFound": {
+        "title": "Message introuvable",
+        "description": "Le message que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement du message",
+          "description": "Une erreur s'est produite lors du chargement des détails du message."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
+        },
+        "emptyReply": "La réponse ne peut pas être vide.",
+        "submitReply": {
+          "title": "Erreur d'envoi de la réponse",
+          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
+        }
       }
     }
   }
 }
+

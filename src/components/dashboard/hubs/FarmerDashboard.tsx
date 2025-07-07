@@ -2,8 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign, AlertCircle, ArrowUp, ArrowDown } from 'lucide-react';
@@ -12,23 +11,19 @@ import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
+import { Skeleton } from '@/components/ui/skeleton';
 
-// --- HELPER COMPONENTS (DEFINED OUTSIDE THE MAIN COMPONENT) ---
+// Helper Components defined *outside* the main component
 
 function DashboardSkeleton() {
     return (
         <div className="space-y-6">
             <Skeleton className="h-9 w-64 mb-6" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Skeleton className="h-32 rounded-lg" />
-                <Skeleton className="h-32 rounded-lg" />
-                <Skeleton className="h-32 rounded-lg" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Skeleton className="h-36 rounded-lg" />
-                <Skeleton className="h-36 rounded-lg" />
-                <Skeleton className="h-36 rounded-lg" />
-                <Skeleton className="h-36 rounded-lg" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+                <Skeleton className="h-28" />
+                <Skeleton className="h-28" />
+                <Skeleton className="h-28" />
+                <Skeleton className="h-28" />
             </div>
             <Skeleton className="h-48 rounded-lg" />
             <Skeleton className="h-48 rounded-lg" />
@@ -79,8 +74,8 @@ function AlertIcon({ icon }: { icon: 'FlaskConical' | 'Sprout' }) {
     return <IconComponent className="h-5 w-5" />;
 }
 
-// --- Main Dashboard Component ---
 
+// Main Dashboard Component
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);

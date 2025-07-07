@@ -106,507 +106,6 @@
       "startOverButton": "Empezar de Nuevo"
     }
   },
-  "GroupsPage": {
-    "title": "Grupos de la Comunidad",
-    "description": "Únete a grupos basados en tus intereses para conectar con personas afines.",
-    "createGroupButton": "Crear Grupo",
-    "searchPlaceholder": "Buscar grupos...",
-    "notFound": "No se encontraron grupos.",
-    "toast": {
-      "joinSuccess": "¡Te has unido al grupo con éxito!",
-      "joinError": "Error al unirse al grupo",
-      "leaveSuccess": "Has abandonado el grupo.",
-      "leaveError": "Error al abandonar el grupo",
-      "loginToJoin": "Por favor, inicia sesión para unirte a un grupo."
-    },
-    "detail": {
-      "backLink": "Volver a todos los grupos",
-      "discussionsTitle": "Discusiones",
-      "startDiscussionButton": "Iniciar una Discusión",
-      "noDiscussions": "Aún no hay discusiones",
-      "beTheFirst": "¡Sé el primero en iniciar una conversación en este grupo!",
-      "actionsTitle": "Acciones del Grupo",
-      "loginToJoinButton": "Iniciar sesión para unirse",
-      "leavingButton": "Saliendo...",
-      "leaveButton": "Abandonar Grupo",
-      "joiningButton": "Uniéndose...",
-      "joinButton": "Unirse al Grupo",
-      "requestJoinButton": "Solicitar Unirse",
-      "membersTitle": "Miembros ({memberCount})"
-    },
-    "create": {
-      "backLink": "Volver a los Grupos",
-      "title": "Crear un Nuevo Grupo",
-      "description": "Reúne a personas en torno a un interés común.",
-      "form": {
-        "nameLabel": "Nombre del Grupo",
-        "namePlaceholder": "Ej: Agricultores Orgánicos de Kenia",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Una breve descripción sobre qué trata este grupo.",
-        "publicLabel": "Grupo Público (cualquiera puede verlo y unirse)",
-        "submittingButton": "Creando...",
-        "submitButton": "Crear Grupo"
-      },
-      "toast": {
-        "auth": {
-          "title": "Se Requiere Autenticación",
-          "description": "Debes iniciar sesión para crear un grupo."
-        },
-        "incomplete": {
-          "title": "Formulario Incompleto",
-          "description": "Por favor, completa el nombre y la descripción del grupo."
-        },
-        "success": {
-          "title": "¡Grupo Creado!",
-          "description": "Tu grupo ha sido creado con éxito."
-        },
-        "error": {
-          "title": "Error al Crear el Grupo",
-          "description": "Ocurrió un error al crear el grupo. Por favor, inténtalo de nuevo."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Volver al Grupo",
-      "title": "Iniciar una Nueva Discusión",
-      "description": "Comparte tus pensamientos, haz preguntas o inicia una conversación con otros miembros del grupo.",
-      "form": {
-        "titleLabel": "Título de la Publicación",
-        "titlePlaceholder": "Un título claro y atractivo",
-        "contentLabel": "Tu Mensaje",
-        "contentPlaceholder": "Comparte detalles, haz preguntas, o proporciona contexto para tu discusión...",
-        "submittingButton": "Publicando...",
-        "submitButton": "Publicar Discusión"
-      },
-      "toast": {
-        "auth": {
-          "title": "Se Requiere Autenticación",
-          "description": "Debes iniciar sesión y ser miembro del grupo para crear una publicación."
-        },
-        "incomplete": {
-          "title": "Publicación Incompleta",
-          "description": "Por favor, proporciona un título y contenido para tu publicación."
-        },
-        "success": {
-          "title": "¡Publicación Creada!",
-          "description": "Tu discusión ha sido iniciada en el grupo."
-        },
-        "error": {
-          "title": "Error al Crear la Publicación",
-          "description": "Ocurrió un error inesperado."
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "Volver a {groupName}",
-      "notFound": {
-        "title": "Publicación no encontrada.",
-        "description": "Esta publicación puede haber sido eliminada o el enlace es incorrecto.",
-        "backButton": "Volver al Grupo"
-      },
-      "repliesTitle": "Respuestas ({replyCount})",
-      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
-      "loadingMoreButton": "Cargando...",
-      "loadMoreButton": "Cargar Más Respuestas",
-      "yourReplyTitle": "Tu Respuesta",
-      "replyPlaceholder": "Escribe tu respuesta...",
-      "replySubmittingButton": "Publicando...",
-      "replySubmitButton": "Publicar Respuesta",
-      "toast": {
-        "emptyReply": "Por favor, escribe una respuesta antes de enviar.",
-        "replySuccess": "¡Respuesta publicada!",
-        "replyError": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
-      }
-    }
-  },
-  "networkPage": {
-    "title": "Expande tu Red",
-    "description": "Conéctate con agricultores, compradores, expertos y organizaciones para ampliar tu alcance.",
-    "refreshSuggestions": "Actualizar Sugerencias",
-    "searchPlaceholder": "Buscar por nombre o palabra clave...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "rolePlaceholder": "Filtrar por rol",
-    "allRoles": "Todos los roles",
-    "interestPlaceholder": "Filtrar por interés",
-    "allInterests": "Todos los intereses",
-    "noStakeholdersFound": "No se encontraron partes interesadas que coincidan con tus criterios.",
-    "noStakeholdersHint": "Intenta ajustar tus filtros de búsqueda o explora todas las partes interesadas.",
-    "connect": "Conectar",
-    "profile": "Perfil"
-  },
-  "myNetworkPage": {
-    "backLink": "Volver a Descubrir Red",
-    "myConnectionsTab": "Mis Conexiones ({count})",
-    "pendingRequestsTab": "Solicitudes Pendientes",
-    "connectionsTitle": "Mis Conexiones",
-    "connectionsDescription": "Las personas y organizaciones en tu red profesional.",
-    "noConnections": "Aún no has hecho ninguna conexión.",
-    "requestsTitle": "Solicitudes Pendientes",
-    "requestsDescription": "Personas que quieren conectar contigo.",
-    "sentTimeAgo": "Enviado {timeAgo}",
-    "noRequests": "No tienes solicitudes de conexión pendientes."
-  },
-  "agentToolsPage": {
-    "backLink": "Volver a la Red",
-    "title": "Herramientas de Agente",
-    "description": "Busca usuarios de forma segura para proporcionar asistencia o realizar acciones autorizadas.",
-    "findUserLabel": "Buscar Usuario por Número de Teléfono",
-    "findButton": "Buscar",
-    "resultsTitle": "Resultado",
-    "resultsPlaceholder": "Los resultados de la búsqueda aparecerán aquí.",
-    "accessDeniedTitle": "Acceso Denegado",
-    "accessDeniedDescription": "No tienes los permisos necesarios para acceder a esta página.",
-    "phoneRequiredError": "Por favor, introduce un número de teléfono."
-  },
-  "ProfilePage": {
-    "notFoundTitle": "Perfil no Encontrado",
-    "notFoundDescription": "No se pudo encontrar el perfil solicitado.",
-    "backToNetwork": "Volver a la Red",
-    "editProfile": "Editar Perfil",
-    "showUniversalIdButton": "Mostrar ID Universal",
-    "connect": "Conectar",
-    "message": "Mensaje",
-    "summaryTitle": "Resumen",
-    "aboutTitle": "Acerca de {displayName}",
-    "experienceTitle": "Experiencia",
-    "emailTitle": "Correo Electrónico",
-    "websiteTitle": "Sitio Web",
-    "interestsTitle": "Áreas de Interés",
-    "needsTitle": "Necesidades y Ofertas",
-    "detailsTitle": "Detalles",
-    "roleSpecificInfo": "La información específica del rol se mostrará aquí en un formato más estructurado.",
-    "tempDisplayNotice": "(Esta es una visualización temporal de datos brutos para fines de desarrollo).",
-    "recentActivityTitle": "Actividad Reciente",
-    "recentActivityDescription": "Últimas acciones y contribuciones en la plataforma {appName}.",
-    "noRecentActivity": "No hay actividad reciente para mostrar.",
-    "universalIdModalTitle": "Tu ID Universal",
-    "universalIdModalDescription": "Comparte este código QR con otros en persona para compartir de forma segura tu perfil público."
-  },
-  "messagingPage": {
-    "title": "Mensajes",
-    "searchPlaceholder": "Buscar o iniciar una nueva conversación",
-    "noConversations": "Aún no hay conversaciones.",
-    "selectConversation": "Selecciona una conversación para empezar a chatear",
-    "typeMessagePlaceholder": "Escribe un mensaje...",
-    "send": "Enviar",
-    "error": "Error",
-    "couldNotLoadConversations": "No se pudieron cargar las conversaciones.",
-    "couldNotStartConversation": "No se pudo iniciar una nueva conversación.",
-    "sendFailed": "Envío fallido",
-    "couldNotSendMessage": "No se pudo enviar tu mensaje.",
-    "signInToView": "Por favor, inicia sesión para ver tus mensajes.",
-    "signIn": "Iniciar Sesión"
-  },
-  "notificationsPage": {
-    "title": "Notificaciones",
-    "description": "Tu actividad reciente y actualizaciones de la comunidad.",
-    "noNotifications": "No hay notificaciones nuevas.",
-    "likedYourPost": "A {name} le ha gustado tu publicación",
-    "commentedOnYourPost": "{name} ha comentado tu publicación",
-    "viewedYourProfile": "{name} ha visto tu perfil",
-    "placedNewOrder": "{name} ha realizado un nuevo pedido para tu anuncio",
-    "sentConnectionRequest": "{name} quiere conectar contigo"
-  },
-  "FeedItemCard": {
-    "like": "Me gusta",
-    "comment": "Comentar",
-    "repost": "Republicar",
-    "noComments": "Aún no hay comentarios. ¡Sé el primero en responder!",
-    "loadingComments": "Cargando comentarios...",
-    "loadMoreComments": "Cargar más comentarios",
-    "writeCommentPlaceholder": "Escribe un comentario...",
-    "postButton": "Publicar",
-    "signInToLikeToast": "Por favor, inicia sesión para dar 'me gusta' a las publicaciones.",
-    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
-    "voteSuccessToast": "¡Voto contado!",
-    "voteErrorToast": "No se pudo registrar el voto",
-    "signInToVoteToast": "Por favor, inicia sesión para votar."
-  },
-  "CreatePostModal": {
-    "title": "Crear una nueva publicación",
-    "description": "Redacta y comparte una actualización con la comunidad. Puedes añadir texto, medios o crear una encuesta.",
-    "yourName": "Tu nombre",
-    "shareUpdate": "Compartir una actualización",
-    "placeholder": "¿Qué ideas o noticias agrícolas quieres compartir?",
-    "selectedFile": "Archivo seleccionado:",
-    "pollOptionsLabel": "Opciones de la encuesta",
-    "pollOptionPlaceholder": "Opción {index}",
-    "addOptionButton": "Añadir opción",
-    "pollNote": "Máx. {maxOptions} opciones. Cada opción máx. 80 caracteres.",
-    "addMediaButton": "Añadir foto/vídeo",
-    "createEventButton": "Crear evento Agri",
-    "shareDocumentButton": "Compartir documento",
-    "createPollButton": "Crear encuesta",
-    "postButton": "Publicar",
-    "pollOptionsError": "La encuesta requiere al menos 2 opciones.",
-    "emptyPostError": "Por favor, añade algo de contenido, una imagen o una encuesta válida a tu publicación."
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Expande tu Red",
-    "refreshSuggestions": "Actualizar Sugerencias",
-    "ad": "Anuncio",
-    "adTitle": "¡Mantente a la vanguardia con las Tendencias de Mercado de DamDoh!",
-    "adDescription": "Obtén información exclusiva sobre precios de productos básicos y dinámicas de la cadena de suministro.",
-    "adButton": "Explorar Tendencias de DamDoh Pro",
-    "follow": "Seguir",
-    "following": "Siguiendo",
-    "signInPrompt": "Inicia sesión para obtener sugerencias personalizadas.",
-    "loadError": "No se pudieron cargar las sugerencias. Por favor, inténtalo de nuevo.",
-    "noSuggestions": "No hay nuevas sugerencias por el momento.",
-    "infoTooltip": "Estas sugerencias son impulsadas por IA en función de tu rol, intereses y actividad en la plataforma."
-  },
-  "AgriEvents": {
-    "page": {
-      "title": "Próximos Eventos Agrícolas",
-      "description": "Descubre talleres, conferencias y seminarios web en el mundo agrícola.",
-      "createNewEvent": "Crear Nuevo Evento",
-      "unpinHomepage": "Desfijar de la página de inicio",
-      "pinAsHomepage": "Fijar como página de inicio",
-      "searchEvents": "Buscar eventos...",
-      "searchPlaceholder": "Buscar por título, ubicación o tema...",
-      "filterPlaceholder": "Filtrar por tipo de evento",
-      "organizedBy": "Organizado por {organizer}",
-      "viewDetails": "Ver Detalles",
-      "noEventsFound": "No se Encontraron Eventos",
-      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no {link}?",
-      "errorLoadingEvents": "Error al Cargar Eventos",
-      "couldNotFetchEvents": "No se pudo obtener la lista de eventos. Por favor, inténtalo de nuevo más tarde.",
-      "toast": {
-        "pinned": {
-          "title": "¡Página de inicio fijada!",
-          "description": "La página de Eventos Agrícolas es ahora tu página de inicio predeterminada."
-        },
-        "unpinned": {
-          "title": "¡Página de inicio desfijada!",
-          "description": "El Panel de Control es ahora tu página de inicio predeterminada."
-        }
-      }
-    },
-    "create": {
-      "backButton": "Volver a Todos los Eventos",
-      "formTitle": "Crear Nuevo Evento Agrícola",
-      "formDescription": "Completa los detalles a continuación para listar tu evento en la plataforma.",
-      "authErrorTitle": "No Autenticado",
-      "authErrorDescription": "Debes iniciar sesión para crear un evento.",
-      "uploadingTitle": "Subiendo Imagen...",
-      "uploadingDescription": "Por favor, espera mientras se sube la imagen de tu evento.",
-      "uploadCompleteTitle": "¡Carga de Imagen Completa!",
-      "successTitle": "¡Evento Creado!",
-      "successDescription": "Tu evento '{title}' ha sido listado con éxito.",
-      "failTitle": "Creación de Evento Fallida",
-      "failDescription": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo.",
-      "successCardTitle": "¡Tu evento '{title}' está en vivo!",
-      "successCardDescription": "Ahora es visible para toda la comunidad de DamDoh. ¿Qué te gustaría hacer a continuación?",
-      "manageButton": "Gestionar Evento",
-      "shareButton": "Copiar Enlace para Compartir",
-      "createAnotherButton": "Crear Otro Evento",
-      "viewAllButton": "Ver Todos los Eventos",
-      "linkCopiedTitle": "¡Enlace Copiado!",
-      "linkCopiedDescription": "El enlace del evento ha sido copiado a tu portapapeles.",
-      "submittingButton": "Enviando...",
-      "submitButton": "Crear Evento",
-      "form": {
-        "titleLabel": "Título del Evento",
-        "titlePlaceholder": "Ej: Conferencia Anual de Agricultura Sostenible",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Proporciona una descripción detallada de tu evento, incluyendo ponentes, temas y programa.",
-        "dateLabel": "Fecha del Evento",
-        "datePlaceholder": "Elige una fecha",
-        "timeLabel": "Hora del Evento (Opcional)",
-        "timePlaceholder": "Ej: 09:00",
-        "timeDescription": "Tu zona horaria local",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "Ej: Nairobi, Kenia o En línea",
-        "locationDescription": "Introduce una ubicación física o especifica 'En línea' para eventos virtuales.",
-        "typeLabel": "Tipo de Evento",
-        "typePlaceholder": "Selecciona un tipo de evento",
-        "organizerLabel": "Nombre del Organizador (Opcional)",
-        "organizerPlaceholder": "Ej: Agri-Innovation Global",
-        "websiteLabel": "Sitio Web del Evento (Opcional)",
-        "enableRegLabel": "Habilitar Registro",
-        "enableRegDescription": "Permitir a los usuarios registrarse a este evento directamente a través de DamDoh.",
-        "attendeeLimitLabel": "Límite de Asistentes (Opcional)",
-        "attendeeLimitDescription": "Dejar en blanco para no tener límite.",
-        "priceLabel": "Precio (por entrada)",
-        "priceDescription": "Dejar en 0 para un evento gratuito.",
-        "currencyLabel": "Moneda",
-        "currencyDescription": "Ej: USD, KES",
-        "imageUrlLabel": "URL de la Imagen (Opcional)",
-        "imageUrlDescription": "Enlace a una imagen promocional o banner para tu evento.",
-        "imageUploadLabel": "O Subir una Imagen",
-        "imageUploadDescription": "Máximo 5MB. Relación de aspecto recomendada 16:9."
-      }
-    },
-    "detail": {
-      "backLink": "Volver a Todos los Eventos",
-      "organizedBy": "Organizado por {organizer}",
-      "attendees": "{count} asistentes / {limit}",
-      "unlimited": "ilimitado",
-      "buttons": {
-        "manage": "Gestionar",
-        "share": "Compartir",
-        "close": "Cerrar",
-        "viewTicket": "Ver Tu Entrada",
-        "full": "Evento Lleno",
-        "registering": "Registrando...",
-        "registerAndPay": "Registrarse y Pagar {price} {currency}",
-        "registerFree": "Registrarse Gratis",
-        "visitWebsite": "Visitar Sitio Web del Evento"
-      },
-      "share": {
-        "title": "Compartir Evento",
-        "description": "Comparte este evento con tu red.",
-        "link": "Enlace",
-        "copy": "Copiar"
-      },
-      "registration": {
-        "notAvailable": "El registro para este evento no está disponible a través de DamDoh.",
-        "successTitle": "¡Registro Exitoso!",
-        "successDescription": "Ahora estás registrado para el evento.",
-        "discountApplied": "Se aplicó un cupón por un descuento de {amount} {currency}.",
-        "finalPrice": "Tu precio final es {price} {currency}.",
-        "failTitle": "Registro Fallido"
-      },
-      "coupon": {
-        "toastTitle": "¡Cupón Aplicado!",
-        "toastDescription": "El código de cupón '{couponCode}' ha sido añadido a tu registro.",
-        "label": "¿Tienes un código de cupón?",
-        "placeholder": "Introduce el código aquí",
-        "note": "El descuento se aplicará en el último paso."
-      },
-      "ticket": {
-        "title": "Tu Entrada al Evento",
-        "for": "Para {eventTitle}",
-        "scan": "Presenta este código QR en el evento para el check-in."
-      },
-      "notFound": {
-        "title": "Evento no Encontrado",
-        "description": "El evento que buscas no existe o ha sido eliminado.",
-        "backButton": "Volver a Eventos"
-      },
-      "errors": {
-        "loadTitle": "Error al Cargar el Evento",
-        "loadDescription": "No se pudieron obtener los detalles del evento. Por favor, inténtalo de nuevo.",
-        "signInTitle": "Por Favor, Inicia Sesión",
-        "signInDescription": "Debes iniciar sesión para registrarte en un evento."
-      }
-    },
-    "manage": {
-      "title": "Gestionar Evento",
-      "toast": {
-        "errorCoupons": {
-          "title": "Error",
-          "description": "No se pudieron obtener los cupones existentes."
-        }
-      },
-      "tabs": {
-        "checkin": "Check-in",
-        "staff": "Personal",
-        "dashboard": "Panel",
-        "attendees": "Asistentes",
-        "promotions": "Promociones"
-      },
-      "checkin": {
-        "title": "Check-in de Asistentes",
-        "description": "Escanea el código QR único de la entrada de un asistente para registrar su entrada al evento.",
-        "scanButton": "Escanear Entrada de Asistente",
-        "verifying": "Verificando...",
-        "success": "Éxito",
-        "errorTitle": "Error",
-        "error": {
-          "invalidCode": "Código QR no válido: No es un código de check-in de DamDoh.",
-          "wrongEvent": "Esta entrada es para un evento diferente.",
-          "noUserId": "Código QR no válido: No se encontró ID de usuario.",
-          "unknown": "Ocurrió un error desconocido durante el check-in.",
-          "failUnknown": "El check-in falló por una razón desconocida."
-        },
-        "toast": {
-          "success": { "title": "Check-in Exitoso" },
-          "fail": { "title": "Check-in Fallido" },
-          "scanFail": {
-            "title": "Escaneo Fallido",
-            "description": "No se pudo leer el código QR. Por favor, inténtalo de nuevo."
-          }
-        }
-      },
-      "staff": {
-        "title": "Gestionar Personal del Evento",
-        "description": "Añade o elimina personal que pueda ayudarte a registrar la entrada de los asistentes.",
-        "addTitle": "Añadir Nuevo Personal",
-        "searchPlaceholder": "Buscar usuario por nombre o email...",
-        "addButton": "Añadir",
-        "currentTitle": "Personal Actual",
-        "removeButton": "Eliminar",
-        "noStaff": "No se ha añadido personal.",
-        "toast": {
-          "error": "Error",
-          "success": "Éxito",
-          "fetchStaffError": "No se pudo obtener el personal del evento.",
-          "searchLengthError": "Por favor, introduce al menos 3 caracteres para buscar.",
-          "searchFailed": "Búsqueda fallida",
-          "addSuccess": "{name} añadido como personal.",
-          "addFailed": "No se pudo añadir al personal",
-          "removeSuccess": "{name} eliminado del personal.",
-          "removeFailed": "No se pudo eliminar al personal"
-        }
-      },
-      "attendees": {
-        "title": "Asistentes del Evento",
-        "description": "Ver la lista de todos los asistentes registrados para tu evento.",
-        "downloadCsv": "Descargar CSV",
-        "nameHeader": "Nombre",
-        "emailHeader": "Email",
-        "registeredOnHeader": "Registrado el",
-        "statusHeader": "Estado",
-        "statusCheckedIn": "Registrado",
-        "statusRegistered": "Inscrito",
-        "noAttendees": "Nadie se ha registrado para este evento todavía.",
-        "error": "No se pudieron obtener los asistentes del evento.",
-        "toast": { "noAttendees": "No hay asistentes para exportar." }
-      },
-      "promotions": {
-        "create": {
-          "title": "Crear Nuevo Cupón",
-          "description": "Genera códigos de descuento para promocionar tu evento.",
-          "toast": {
-            "successTitle": "¡Cupón Creado!",
-            "successDescription": "El cupón '{code}' está ahora activo.",
-            "failTitle": "Creación Fallida"
-          },
-          "form": {
-            "code": "Código del Cupón",
-            "codePlaceholder": "Ej: PRIMAVERA20",
-            "usageLimit": "Límite de Uso (Opcional)",
-            "usageLimitPlaceholder": "Ej: 100",
-            "discountType": "Tipo de Descuento",
-            "discountTypePlaceholder": "Selecciona un tipo",
-            "percentage": "Porcentaje (%)",
-            "fixed": "Cantidad Fija",
-            "discountValue": "Valor del Descuento",
-            "expiryDate": "Fecha de Vencimiento (Opcional)",
-            "pickDate": "Elige una fecha",
-            "submitButton": "Crear Cupón"
-          }
-        },
-        "list": {
-          "title": "Cupones Existentes",
-          "description": "Ve y gestiona tus cupones activos y pasados.",
-          "toastTitle": "¡Enlace Copiado!",
-          "toastDescription": "Se ha copiado un enlace para compartir con el cupón: {link}",
-          "expires": "Vence",
-          "usage": "Uso",
-          "share": "Compartir",
-          "noCoupons": "Aún no se han creado cupones.",
-          "shareModal": {
-            "title": "Compartir Cupón",
-            "description": "Comparte este código o enlace con posibles asistentes.",
-            "copy": "Copiar",
-            "close": "Cerrar"
-          }
-        }
-      }
-    }
-  },
   "LandingPage": {
     "hero": {
       "title": "Conecta. Transacciona. Crece. La Ventaja {appName}.",
@@ -657,68 +156,542 @@
       "button": "Únete a la Comunidad DamDoh Hoy"
     }
   },
-  "farmManagement": {
-    "hub": {
-      "title": "Centro de Gestión de Fincas",
-      "description": "Tu lugar central para todas las operaciones agrícolas. Gestiona tus fincas, cultivos, insumos y finanzas, todo en un solo lugar.",
-      "myFarms": {
-        "title": "Mis Fincas",
-        "description": "Ver, editar o agregar tus propiedades agrícolas.",
-        "button": "Gestionar Fincas"
+  "Forums": {
+    "title": "Temas del Foro",
+    "description": "Explorar y crear temas de discusión",
+    "lastActivity": "Última actividad hace {{time}}",
+    "searchPlaceholder": "Buscar temas...",
+    "buttons": {
+      "createTopic": "Crear Tema",
+      "joinDiscussion": "Unirse a la Discusión",
+      "pinHomepage": "Fijar como Página de Inicio",
+      "unpinHomepage": "Desfijar de la Página de Inicio",
+      "loadMore": "Cargar más",
+      "loadingMore": "Cargando más..."
+    },
+    "notFound": {
+      "title": "No se encontraron temas",
+      "tryDifferentSearch": "Intente con un término de búsqueda diferente.",
+      "beTheFirst": "Sé el primero en crear un tema."
+    },
+    "pinning": {
+      "pinnedTitle": "¡Página de inicio fijada!",
+      "pinnedDescription": "Este foro ahora se muestra como tu página de inicio.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "Este foro ya no se muestra como tu página de inicio."
+    },
+    "errors": {
+      "loadTitle": "Error al cargar los temas",
+      "loadDescription": "Ocurrió un error al cargar los temas del foro.",
+      "auth": {
+        "title": "No autenticado",
+        "description": "Debes iniciar sesión para crear un tema."
       },
-      "labor": {
-        "title": "Gestión de Mano de Obra",
-        "description": "Realiza un seguimiento de las horas de los trabajadores, los pagos y las tareas.",
-        "button": "Gestionar Mano de Obra"
+      "incomplete": {
+        "title": "Campos incompletos",
+        "description": "Por favor, complete todos los campos obligatorios."
       },
-      "knf": {
-        "title": "Insumos KNF",
-        "description": "Crea y gestiona tus lotes de Agricultura Natural Coreana.",
-        "button": "Gestionar Insumos"
-      },
-      "fgw": {
-        "title": "Guía de Farming God's Way",
-        "description": "Explora los principios y prácticas de FGW.",
-        "button": "Ver Guía FGW"
-      },
-      "financials": {
-        "title": "Finanzas de la Finca",
-        "description": "Realiza un seguimiento de los ingresos y gastos para comprender la rentabilidad.",
-        "button": "Gestionar Finanzas"
-      },
-      "seedStarting": {
-        "title": "Guía de Inicio de Semillas",
-        "description": "Aprende a iniciar semillas en interiores con éxito.",
-        "button": "Ver Guía"
-      },
-      "familyFarm": {
-        "title": "Modelo de Granja Familiar Integrada",
-        "description": "Descubre un modelo sostenible para granjas a pequeña escala.",
-        "button": "Ver Modelo"
-      },
-      "assetManagement": {
-        "title": "Gestión de Activos",
-        "description": "Gestiona tu equipo, edificios y otros activos. (Próximamente)",
-        "button": "Gestionar Activos"
+      "general": {
+        "title": "Error",
+        "description": "Ocurrió un error al crear el tema."
       }
     },
-    "myFarms": {
-      "backToDashboard": "Volver al Centro de Fincas",
-      "title": "Mis Fincas",
-      "addNewFarmButton": "Añadir Nueva Finca",
-      "size": "Tamaño",
-      "viewFarmButton": "Ver Finca",
-      "noFarmsTitle": "No se Encontraron Fincas",
-      "noFarmsDescription": "Añade tu primera finca para comenzar a gestionar tus operaciones agrícolas.",
-      "auth": {
-        "title": "Por Favor, Inicia Sesión",
-        "description": "Debes iniciar sesión para ver tus fincas.",
-        "button": "Iniciar Sesión"
+    "create": {
+      "backLink": "Volver a los Temas",
+      "title": "Crear un Nuevo Tema",
+      "description": "Iniciar una nueva discusión en el foro.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Ingrese el nombre de su tema",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describa brevemente su tema",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "success": {
+        "title": "¡Tema Creado Exitosamente!",
+        "description": "Su nuevo tema ha sido creado."
+      }
+    },
+    "topic": {
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en responder a este tema.",
+        "button": "Agregar Respuesta"
+      },
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error al cargar publicaciones",
+          "description": "Ocurrió un error al cargar las publicaciones para este tema."
+        },
+        "loadTopic": {
+          "title": "Error al cargar tema",
+          "description": "Ocurrió un error al cargar los detalles del tema."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Falta indicación de IA",
+          "description": "Por favor, proporciona una indicación para el asistente de IA."
+        },
+        "aiDraft": {
+          "title": "Error del borrador de IA",
+          "description": "No se pudo generar el borrador de IA."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear la publicación."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "postMeta": "por {{author}} el {{date}}",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
+    }
+  },
+  "Marketplace": {
+    "title": "Mercado",
+    "myOrdersButton": "Mis Pedidos Recibidos",
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubre Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos.",
+      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
+    },
+    "filtersAndSorting": {
+      "categoryLabel": "Categoría",
+      "categoryPlaceholder": "Todas las Categorías",
+      "sortByLabel": "Ordenar por",
+      "sortByPlaceholder": "Seleccionar una opción",
+      "priceAscending": "Precio: de menor a mayor",
+      "priceDescending": "Precio: de mayor a menor",
+      "dateNewest": "Fecha: más recientes primero",
+      "dateOldest": "Fecha: más antiguos primero",
+      "nameAscending": "Nombre: A-Z",
+      "nameDescending": "Nombre: Z-A"
+    },
+    "feedback": {
+      "reviewsTitle": "Reseñas",
+      "addReviewButton": "Añadir una Reseña",
+      "noReviews": "Aún no hay reseñas. ¡Sé el primero en opinar sobre este artículo!",
+      "ratingLabel": "Calificación",
+      "reviewContentLabel": "Tu Reseña",
+      "reviewContentPlaceholder": "Escribe tu reseña aquí...",
+      "submitReviewButton": "Enviar Reseña",
+      "submittingReviewButton": "Enviando...",
+      "toast": {
+        "successTitle": "¡Reseña Enviada!",
+        "successDescription": "Tu reseña ha sido añadida."
+      },
+      "errors": {
+        "submitFailTitle": "Envío Fallido",
+        "submitFailDescription": "No se pudo enviar tu reseña. Por favor, inténtalo de nuevo."
+      }
+    },
+    "itemView": {
+      "backLink": "Volver al mercado",
+      "unknownUser": "Usuario Desconocido",
+      "traceabilityButton": "Enlace de Comercio / Lote",
+      "skillsLabel": "Habilidades requeridas",
+      "experienceLabel": "Nivel de experiencia",
+      "compensationLabel": "Compensación",
+      "contactForRates": "Contactar para tarifas",
+      "booking": {
+        "perNight": "noche",
+        "checkIn": "Llegada",
+        "checkOut": "Salida",
+        "addDate": "Agregar fecha",
+        "guests": "Huéspedes",
+        "reserveButton": "Reservar",
+        "reservingButton": "Reservando...",
+        "notCharged": "Aún no se le cobrará",
+        "nights": "noches",
+        "serviceFee": "Tarifa de servicio",
+        "total": "Total",
+        "successTitle": "¡Reserva exitosa!",
+        "successDescription": "Su reserva está confirmada.",
+        "failTitle": "Reserva fallida",
+        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
+        "bookedTitle": "¡Reservado!",
+        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
+        "ticketButton": "Mostrar ticket",
+        "modalTitle": "Ticket de reserva",
+        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
+        "modalScan": "Escanee este código para registrarse"
+      },
+      "coupon": {
+        "label": "Código de cupón",
+        "placeholder": "Introduce el código de cupón",
+        "applyButton": "Aplicar",
+        "successTitle": "¡Cupón aplicado!",
+        "successDescription": "Descuento aplicado: {{type}}",
+        "failTitle": "Cupón inválido",
+        "failDescription": "El código de cupón es inválido o no aplicable.",
+        "appliedText": "Cupón aplicado: {{code}}"
+      },
+      "aboutSeller": "Sobre el vendedor",
+      "viewShopfront": "Ver escaparate",
+      "editListing": "Editar publicación",
+      "manageService": "Gestionar servicio",
+      "buyNowButton": "Comprar ahora",
+      "contactForService": "Contactar para servicio",
+      "contactSeller": "Contactar vendedor",
+      "order": {
+        "title": "Pedir {{itemName}}",
+        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
+        "quantityLabel": "Cantidad",
+        "notesLabel": "Notas (Opcional)",
+        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Confirmar pedido",
+        "placingButton": "Realizando pedido...",
+        "successTitle": "¡Pedido realizado!",
+        "successDescription": "Tu pedido ha sido realizado con éxito.",
+        "failTitle": "Pedido fallido",
+        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
+        "quantityErrorTitle": "Error de cantidad",
+        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
+      },
+      "notFound": {
+        "title": "Artículo no encontrado",
+        "description": "El artículo del mercado que estás buscando no existe.",
+        "backButton": "Volver a Mercado"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Error al cargar artículo",
+          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
+        },
+        "unexpected": "Ocurrió un error inesperado."
+      }
+    },
+    "createShop": {
+      "backLink": "Volver al mercado",
+      "title": "Crear tu escaparate digital",
+      "description": "Configura tu tienda para listar artículos y servicios.",
+      "form": {
+        "nameLabel": "Nombre de la tienda",
+        "namePlaceholder": "Introduce el nombre de tu tienda",
+        "typeLabel": "Tipo de actor",
+        "typePlaceholder": "Selecciona tu tipo",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu tienda y lo que ofreces"
+      },
+      "submitButton": "Crear tienda",
+      "submittingButton": "Creando...",
+      "authErrorTitle": "Error de autenticación",
+      "authErrorDescription": "Debes haber iniciado sesión para crear una tienda.",
+      "toast": {
+        "successTitle": "¡Escaparate creado!",
+        "successDescription": "Tu escaparate \"{{shopName}}\" ha sido creado.",
+        "failTitle": "Creación fallida",
+        "failDescription": "No se pudo crear la tienda. Por favor, inténtalo de nuevo."
+      }
+    },
+    "manageService": {
+      "backLink": "Volver a {{itemName}}",
+      "title": "Gestionar servicio: {{itemName}}",
+      "description": "Gestionar reservas y configuración para este servicio.",
+      "tabs": {
+        "bookings": "Reservas",
+        "settings": "Configuración"
+      },
+      "bookingsTab": {
+        "title": "Reservas del servicio",
+        "description": "Ver y gestionar las reservas para este servicio.",
+        "table": {
+          "date": "Fecha",
+          "guest": "Huésped",
+          "dates": "Fechas",
+          "total": "Total",
+          "status": "Estado",
+          "actions": "Acciones"
+        },
+        "status": {
+          "pending": "Pendiente",
+          "confirmed": "Confirmado",
+          "cancelled": "Cancelado",
+          "completed": "Completado"
+        },
+        "actions": {
+          "confirm": "Confirmar reserva",
+          "cancel": "Cancelar reserva",
+          "viewDetails": "Ver detalles"
+        },
+        "noBookings": "Aún no hay reservas.",
+        "toast": {
+          "fetchErrorTitle": "Error al cargar reservas",
+          "fetchErrorDescription": "No se pudieron obtener las reservas para este servicio.",
+          "updateSuccessTitle": "¡Reserva actualizada!",
+          "updateSuccessDescription": "Estado de la reserva actualizado a {{status}}.",
+          "updateFailTitle": "Actualización fallida",
+          "updateFailDescription": "No se pudo actualizar el estado de la reserva."
+        }
+      },
+      "settingsTab": {
+        "title": "Configuración del servicio",
+        "description": "Actualizar detalles y disponibilidad para este servicio.",
+        "form": {
+          "priceLabel": "Precio por noche",
+          "pricePlaceholder": "Introduce el precio",
+          "currencyLabel": "Moneda",
+          "currencyPlaceholder": "Seleccionar moneda",
+          "availabilityLabel": "Fechas de disponibilidad",
+          "availabilityDescription": "Seleccione las fechas en las que este servicio está disponible.",
+          "submitButton": "Guardar cambios",
+          "submittingButton": "Guardando..."
+        },
+        "toast": {
+          "updateSuccessTitle": "¡Configuración guardada!",
+          "updateSuccessDescription": "Configuración del servicio actualizada con éxito.",
+          "updateFailTitle": "Error al guardar",
+          "updateFailDescription": "No se pudo guardar la configuración del servicio."
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "Error al cargar servicio",
+        "loadErrorDescription": "No se pudieron cargar los detalles del servicio para su gestión.",
+        "notFoundTitle": "Servicio no encontrado",
+        "notFoundDescription": "El servicio que intenta gestionar no existe."
+      },
+      "authRequired": {
+        "title": "Autenticación requerida",
+        "description": "Debe haber iniciado sesión para gestionar este servicio.",
+        "button": "Iniciar sesión"
+      }
+    }
+  },
+  "Profile": {
+    "backLink": "Volver",
+    "loading": "Cargando perfil...",
+    "notFound": {
+      "title": "Perfil no encontrado",
+      "description": "El perfil de usuario que estás buscando no existe."
+    },
+    "tabs": {
+      "overview": "Resumen",
+      "listings": "Publicaciones del mercado",
+      "orders": "Mis pedidos"
+    },
+    "overviewTab": {
+      "contactButton": "Contactar",
+      "aboutSectionTitle": "Acerca de",
+      "rolesLabel": "Roles",
+      "locationLabel": "Ubicación",
+      "bioLabel": "Biografía",
+      "joinedLabel": "Se unió",
+      "loadingText": "Cargando resumen...",
+      "noBio": "Aún no se ha proporcionado una biografía."
+    },
+    "listingsTab": {
+      "title": "Publicaciones del mercado",
+      "description": "Artículos y servicios listados por este usuario.",
+      "noListings": "Este usuario no tiene publicaciones activas.",
+      "loading": "Cargando publicaciones..."
+    },
+    "ordersTab": {
+      "title": "Mis pedidos",
+      "description": "Tus pedidos realizados en el mercado.",
+      "table": {
+        "orderDate": "Fecha del pedido",
+        "seller": "Vendedor",
+        "item": "Artículo",
+        "quantity": "Cantidad",
+        "total": "Total",
+        "status": "Estado"
+      },
+      "noOrders": "Aún no has realizado ningún pedido.",
+      "loading": "Cargando pedidos...",
+      "errors": {
+        "fetchErrorTitle": "Error al cargar pedidos",
+        "fetchErrorDescription": "No se pudieron obtener tus pedidos realizados."
+      }
+    },
+    "errors": {
+      "loadErrorTitle": "Error al cargar perfil",
+      "loadErrorDescription": "No se pudo cargar el perfil del usuario."
+    },
+    "actions": {
+      "editProfile": "Editar perfil"
+    }
+  },
+  "Settings": {
+    "backLink": "Volver",
+    "title": "Configuración",
+    "description": "Gestiona la configuración de tu cuenta y perfil.",
+    "tabs": {
+      "profile": "Perfil",
+      "account": "Cuenta",
+      "notifications": "Notificaciones",
+      "language": "Idioma"
+    },
+    "profileTab": {
+      "title": "Configuración del perfil",
+      "description": "Actualiza la información de tu perfil público.",
+      "form": {
+        "displayNameLabel": "Nombre a mostrar",
+        "displayNamePlaceholder": "Introduce tu nombre a mostrar",
+        "bioLabel": "Biografía",
+        "bioPlaceholder": "Cuéntanos sobre ti...",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Introduce tu ubicación",
+        "avatarLabel": "Avatar",
+        "avatarDescription": "Sube una foto de perfil.",
+        "currentAvatar": "Avatar actual",
+        "changeAvatarButton": "Cambiar Avatar",
+        "uploadingAvatar": "Subiendo...",
+        "saveButton": "Guardar perfil",
+        "savingButton": "Guardando..."
       },
       "toast": {
-        "errorTitle": "Error al Cargar Fincas",
-        "errorDescription": "Ocurrió un error al cargar tus fincas. Por favor, inténtalo de nuevo."
+        "updateSuccessTitle": "¡Perfil actualizado!",
+        "updateSuccessDescription": "Tu perfil ha sido actualizado correctamente."
+      },
+      "errors": {
+        "updateFailTitle": "Actualización fallida",
+        "updateFailDescription": "No se pudo actualizar tu perfil. Inténtalo de nuevo."
       }
+    },
+    "accountTab": {
+      "title": "Configuración de la cuenta",
+      "description": "Gestiona la autenticación y seguridad de tu cuenta.",
+      "changePasswordSectionTitle": "Cambiar contraseña",
+      "changePasswordDescription": "Actualiza la contraseña de tu cuenta.",
+      "form": {
+        "currentPasswordLabel": "Contraseña actual",
+        "currentPasswordPlaceholder": "Introduce tu contraseña actual",
+        "newPasswordLabel": "Nueva contraseña",
+        "newPasswordPlaceholder": "Introduce tu nueva contraseña",
+        "confirmPasswordLabel": "Confirmar nueva contraseña",
+        "confirmPasswordPlaceholder": "Confirma tu nueva contraseña",
+        "updatePasswordButton": "Actualizar contraseña",
+        "updatingPasswordButton": "Actualizando..."
+      },
+      "toast": {
+        "passwordUpdateSuccessTitle": "¡Contraseña actualizada!",
+        "passwordUpdateSuccessDescription": "Tu contraseña ha sido actualizada correctamente."
+      },
+      "errors": {
+        "passwordUpdateFailTitle": "Error al actualizar contraseña",
+        "passwordUpdateFailDescription": "No se pudo actualizar tu contraseña. Por favor, comprueba tu contraseña actual e inténtalo de nuevo."
+      }
+    },
+    "notificationsTab": {
+      "title": "Configuración de notificaciones",
+      "description": "Gestiona tus preferencias de notificación por correo electrónico y push.",
+      "emailNotificationsLabel": "Notificaciones por correo electrónico",
+      "emailNotificationsDescription": "Recibir notificaciones por correo electrónico.",
+      "pushNotificationsLabel": "Notificaciones push",
+      "pushNotificationsDescription": "Recibir notificaciones en tu dispositivo.",
+      "saveButton": "Guardar preferencias",
+      "savingButton": "Guardando...",
+      "toast": {
+        "updateSuccessTitle": "¡Preferencias guardadas!",
+        "updateSuccessDescription": "Tus preferencias de notificación han sido guardadas."
+      },
+      "errors": {
+        "updateFailTitle": "Error al guardar",
+        "updateFailDescription": "No se pudieron guardar tus preferencias de notificación."
+      }
+    },
+    "languageTab": {
+      "title": "Configuración de idioma",
+      "description": "Elige tu idioma preferido.",
+      "languageLabel": "Idioma",
+      "languagePlaceholder": "Selecciona un idioma",
+      "saveButton": "Guardar idioma",
+      "savingButton": "Guardando...",
+      "toast": {
+        "updateSuccessTitle": "¡Idioma guardado!",
+        "updateSuccessDescription": "Tu preferencia de idioma ha sido guardada."
+      },
+      "errors": {
+        "updateFailTitle": "Error al guardar",
+        "updateFailDescription": "No se pudo guardar tu preferencia de idioma."
+      }
+    },
+    "loading": "Cargando configuración...",
+    "errors": {
+      "loadErrorTitle": "Error al cargar configuración",
+      "loadErrorDescription": "No se pudo cargar tu configuración."
+    },
+    "authenticationRequired": {
+      "title": "Autenticación requerida",
+      "description": "Debes haber iniciado sesión para ver tu configuración.",
+      "button": "Iniciar sesión"
     }
   }
 }
+
