@@ -8,7 +8,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { FileText, Ship, Globe, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { Badge } from '@/components/ui/badge';
 import type { AgroExportDashboardData } from '@/lib/types';
 

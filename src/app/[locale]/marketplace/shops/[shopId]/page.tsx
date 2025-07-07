@@ -49,7 +49,7 @@ function ShopPageSkeleton() {
 }
 
 export default function ShopFrontPage() {
-    const t = useTranslations('Marketplace.shopPage');
+    const t = useTranslations('Marketplace.shopView');
     const params = useParams();
     const shopId = params.shopId as string;
     const { user } = useAuth();
@@ -75,7 +75,7 @@ export default function ShopFrontPage() {
                 const shopData = shopResult.data as Shop | null;
 
                 if (!shopData) {
-                    throw new Error(t('errorNotFound'));
+                    throw new Error(t('errors.notFound'));
                 }
                 setShop(shopData);
 
@@ -89,7 +89,7 @@ export default function ShopFrontPage() {
 
             } catch (err: any) {
                 console.error("Error fetching shop data:", err);
-                setError(err.message || t('errorLoad'));
+                setError(err.message || t('errors.loadError'));
             } finally {
                 setIsLoading(false);
             }

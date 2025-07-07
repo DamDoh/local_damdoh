@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/navigation';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { FeedItem } from "@/lib/types";

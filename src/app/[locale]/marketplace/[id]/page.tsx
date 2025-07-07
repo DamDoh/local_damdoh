@@ -58,7 +58,7 @@ function ItemPageSkeleton() {
 }
 
 function ItemPageContent() {
-    const t = useTranslations('Marketplace.detail');
+    const t = useTranslations('Marketplace.itemView');
     const params = useParams();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -110,7 +110,7 @@ function ItemPageContent() {
                 const itemResult = await getMarketplaceItemById({ itemId });
                 const itemData = itemResult.data as MarketplaceItem | null;
 
-                if (!itemData) throw new Error(t('errors.notFound'));
+                if (!itemData) throw new Error(t('notFound.description'));
                 setItem(itemData);
 
                 const sellerProfile = await getProfileByIdFromDB(itemData.sellerId);
@@ -405,7 +405,7 @@ function ItemPageContent() {
                         <Card>
                             <CardHeader>
                                 <CardTitle className="text-lg">{t('aboutSeller')}</CardTitle>
-                            </CardHeader>
+                            </CardHeader> 
                             <CardContent className="flex items-center gap-4">
                                <Avatar className="h-14 w-14">
                                     <AvatarImage src={seller.avatarUrl} alt={seller.displayName} data-ai-hint="seller profile person" />
@@ -458,7 +458,7 @@ function ItemPageContent() {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{t('order.title', { itemName: item.name })}</DialogTitle>
-                    <DialogDescription>{t('order.description')}</DialogDescription>
+                    <DialogDescription>{t('order.description')}</DialogDescription> 
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                     <div className="space-y-2">
@@ -474,7 +474,7 @@ function ItemPageContent() {
                     <div className="space-y-2">
                         <Label htmlFor="notes">{t('order.notesLabel')}</Label>
                         <Textarea
-                            id="notes"
+                            id="notes" 
                             placeholder={t('order.notesPlaceholder')}
                             value={orderNotes}
                             onChange={(e) => setOrderNotes(e.target.value)}
@@ -485,7 +485,7 @@ function ItemPageContent() {
                     <Button variant="outline" onClick={() => setIsOrderDialogOpen(false)}>{t('order.cancelButton')}</Button>
                     <Button onClick={handlePlaceOrder} disabled={isPlacingOrder}>
                         {isPlacingOrder && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                        {t('order.confirmButton')}
+                        {t('order.confirmButton')} 
                     </Button>
                 </DialogFooter>
             </DialogContent>

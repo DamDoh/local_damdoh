@@ -183,7 +183,208 @@
     }
   },
   "Marketplace": {
-    "myOrdersButton": "ការបញ្ជាទិញដែលខ្ញុំបានទទួល",
+    "itemView": {
+ "backLink": "ត្រឡប់ទៅផ្សារ",
+ "unknownUser": "អ្នកប្រើមិនស្គាល់",
+ "traceabilityButton": "តំណពាណិជ្ជកម្ម / បាច់",
+ "skillsLabel": "ជំនាញដែលត្រូវការ",
+ "experienceLabel": "កម្រិតបទពិសោធន៍",
+ "compensationLabel": "សំណង",
+ "contactForRates": "ទាក់ទងសម្រាប់អត្រា",
+ "booking": {
+ "perNight": "យប់",
+ "checkIn": "ចូល",
+ "checkOut": "ចេញ",
+ "addDate": "បន្ថែមថ្ងៃ",
+ "guests": "ភ្ញៀវ",
+ "reserveButton": "កក់",
+ "reservingButton": "កំពុងកក់...",
+ "notCharged": "អ្នកនឹងមិនត្រូវបានគិតថ្លៃនៅឡើយទេ",
+ "nights": "យប់",
+ "serviceFee": "ថ្លៃសេវា",
+ "total": "សរុប",
+ "successTitle": "កក់បានជោគជ័យ!",
+ "successDescription": "ការកក់របស់អ្នកត្រូវបានបញ្ជាក់ហើយ។",
+ "failTitle": "កក់បរាជ័យ",
+ "dateError": "សូមជ្រើសរើសថ្ងៃចូលនិងចេញដែលត្រឹមត្រូវ។",
+ "authTitle": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+ "authDescription": "អ្នកត្រូវតែចូលដើម្បីកក់សេវាកម្ម។",
+ "bookedTitle": "បានកក់!",
+ "bookedDescription": "ការកក់របស់អ្នកត្រូវបានបញ្ជាក់ហើយ។ សូមបង្ហាញលេខកូដ QR ខាងក្រោមនៅពេលមកដល់។",
+ "ticketButton": "បង្ហាញសំបុត្រ",
+ "modalTitle": "សំបុត្រកក់",
+ "modalDescription": "បង្ហាញលេខកូដ QR នេះនៅ {{itemName}} សម្រាប់ការចូល។",
+ "modalScan": "ស្កេនលេខកូដនេះដើម្បីចូល"
+      },
+ "coupon": {
+ "label": "លេខកូដប័ណ្ណ",
+ "placeholder": "បញ្ចូលលេខកូដប័ណ្ណ",
+ "applyButton": "អនុវត្ត",
+ "successTitle": "បានអនុវត្តប័ណ្ណ!",
+ "successDescription": "បានអនុវត្តការបញ្ចុះតម្លៃ: {{type}}",
+ "failTitle": "ប័ណ្ណមិនត្រឹមត្រូវ",
+ "failDescription": "លេខកូដប័ណ្ណមិនត្រឹមត្រូវឬមិនអាចអនុវត្តបាន។",
+ "appliedText": "បានអនុវត្តប័ណ្ណ: {{code}}"
+      },
+ "aboutSeller": "អំពីអ្នកលក់",
+ "viewShopfront": "មើលមុខហាង",
+ "editListing": "កែសម្រួលបញ្ជី",
+ "manageService": "គ្រប់គ្រងសេវាកម្ម",
+ "buyNowButton": "ទិញឥឡូវនេះ",
+ "contactForService": "ទាក់ទងសម្រាប់សេវាកម្ម",
+ "contactSeller": "ទាក់ទងអ្នកលក់",
+ "order": {
+ "title": "បញ្ជាទិញ {{itemName}}",
+ "description": "បញ្ចូលចំនួនដែលអ្នកចង់បញ្ជាទិញនិងកំណត់ត្រាណាមួយ។",
+ "quantityLabel": "ចំនួន",
+ "notesLabel": "កំណត់ត្រា (ស្រេចចិត្ត)",
+ "notesPlaceholder": "បន្ថែមការណែនាំឬសំណើជាក់លាក់ណាមួយ...",
+ "cancelButton": "បោះបង់",
+ "confirmButton": "បញ្ជាក់ការបញ្ជាទិញ",
+ "placingButton": "កំពុងដាក់ការបញ្ជាទិញ...",
+ "successTitle": "បានដាក់ការបញ្ជាទិញ!",
+ "successDescription": "ការបញ្ជាទិញរបស់អ្នកត្រូវបានដាក់ដោយជោគជ័យហើយ។",
+ "failTitle": "ដាក់ការបញ្ជាទិញបរាជ័យ",
+ "failDescription": "មិនអាចដាក់ការបញ្ជាទិញបានទេ។ សូមព្យាយាមម្តងទៀត។",
+ "quantityErrorTitle": "កំហុសចំនួន",
+ "quantityErrorDescription": "សូមបញ្ចូលចំនួនត្រឹមត្រូវ (យ៉ាងហោចណាត 1)។",
+ "authTitle": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+ "authDescription": "អ្នកត្រូវតែចូលដើម្បីដាក់ការបញ្ជាទិញ។"
+      },
+ "notFound": {
+ "title": "រកមិនឃើញធាតុ",
+ "description": "ធាតុផ្សារដែលអ្នកកំពុងរកមិនមានទេ។",
+ "backButton": "ត្រឡប់ទៅផ្សារ"
+      },
+ "errors": {
+ "loadItem": {
+ "title": "កំហុសក្នុងការផ្ទុកធាតុ",
+ "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃធាតុផ្សារ។"
+        },
+ "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។"
+      }
+    },
+    "createShop": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "title": "បង្កើតមុខហាងឌីជីថលរបស់អ្នក",
+      "description": "រៀបចំហាងរបស់អ្នកដើម្បីដាក់បញ្ជីធាតុនិងសេវាកម្ម។",
+      "form": {
+        "nameLabel": "ឈ្មោះហាង",
+        "namePlaceholder": "បញ្ចូលឈ្មោះហាងរបស់អ្នក",
+        "typeLabel": "ប្រភេទអ្នកពាក់ព័ន្ធ",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទរបស់អ្នក",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាហាងរបស់អ្នកនិងអ្វីដែលអ្នកផ្តល់ជូន"
+      },
+      "submitButton": "បង្កើតហាង",
+      "submittingButton": "កំពុងបង្កើត...",
+      "authErrorTitle": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
+      "authErrorDescription": "អ្នកត្រូវតែចូលដើម្បីបង្កើតហាង។",
+      "toast": {
+        "successTitle": "បានបង្កើតមុខហាង!",
+        "successDescription": "មុខហាងរបស់អ្នក \"{{shopName}}\" ត្រូវបានបង្កើតហើយ។",
+        "failTitle": "ការបង្កើតបរាជ័យ",
+        "failDescription": "មិនអាចបង្កើតហាងបានទេ។ សូមព្យាយាមម្តងទៀត។"
+      }
+    }
+  },
+  "Marketplace": {
+    "itemView": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "unknownUser": "អ្នកប្រើមិនស្គាល់",
+      "traceabilityButton": "តំណពាណិជ្ជកម្ម / បាច់",
+      "skillsLabel": "ជំនាញដែលត្រូវការ",
+      "experienceLabel": "កម្រិតបទពិសោធន៍",
+      "compensationLabel": "សំណង",
+      "contactForRates": "ទាក់ទងសម្រាប់អត្រា",
+      "booking": {
+        "perNight": "យប់",
+        "checkIn": "ចូល",
+        "checkOut": "ចេញ",
+        "addDate": "បន្ថែមថ្ងៃ",
+        "guests": "ភ្ញៀវ",
+        "reserveButton": "កក់",
+        "reservingButton": "កំពុងកក់...",
+        "notCharged": "អ្នកនឹងមិនត្រូវបានគិតថ្លៃនៅឡើយទេ",
+        "nights": "យប់",
+        "serviceFee": "ថ្លៃសេវា",
+        "total": "សរុប",
+        "successTitle": "កក់បានជោគជ័យ!",
+        "successDescription": "ការកក់របស់អ្នកត្រូវបានបញ្ជាក់ហើយ។",
+        "failTitle": "កក់បរាជ័យ",
+        "dateError": "សូមជ្រើសរើសថ្ងៃចូលនិងចេញដែលត្រឹមត្រូវ។",
+        "authTitle": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "authDescription": "អ្នកត្រូវតែចូលដើម្បីកក់សេវាកម្ម។",
+        "bookedTitle": "បានកក់!",
+        "bookedDescription": "ការកក់របស់អ្នកត្រូវបានបញ្ជាក់ហើយ។ សូមបង្ហាញលេខកូដ QR ខាងក្រោមនៅពេលមកដល់។",
+        "ticketButton": "បង្ហាញសំបុត្រ",
+        "modalTitle": "សំបុត្រកក់",
+        "modalDescription": "បង្ហាញលេខកូដ QR នេះនៅ {{itemName}} សម្រាប់ការចូល។",
+        "modalScan": "ស្កេនលេខកូដនេះដើម្បីចូល"
+      },
+      "coupon": {
+        "label": "លេខកូដប័ណ្ណ",
+        "placeholder": "បញ្ចូលលេខកូដប័ណ្ណ",
+        "applyButton": "អនុវត្ត",
+        "successTitle": "បានអនុវត្តប័ណ្ណ!",
+        "successDescription": "បានអនុវត្តការបញ្ចុះតម្លៃ: {{type}}",
+        "failTitle": "ប័ណ្ណមិនត្រឹមត្រូវ",
+        "failDescription": "លេខកូដប័ណ្ណមិនត្រឹមត្រូវឬមិនអាចអនុវត្តបាន។",
+        "appliedText": "បានអនុវត្តប័ណ្ណ: {{code}}"
+      },
+      "aboutSeller": "អំពីអ្នកលក់",
+      "viewShopfront": "មើលមុខហាង",
+      "editListing": "កែសម្រួលបញ្ជី",
+      "manageService": "គ្រប់គ្រងសេវាកម្ម",
+      "buyNowButton": "ទិញឥឡូវនេះ",
+      "contactForService": "ទាក់ទងសម្រាប់សេវាកម្ម",
+      "contactSeller": "ទាក់ទងអ្នកលក់",
+      "order": {
+        "title": "បញ្ជាទិញ {{itemName}}",
+        "description": "បញ្ចូលចំនួនដែលអ្នកចង់បញ្ជាទិញនិងកំណត់ត្រាណាមួយ។",
+        "quantityLabel": "ចំនួន",
+        "notesLabel": "កំណត់ត្រា (ស្រេចចិត្ត)",
+        "notesPlaceholder": "បន្ថែមការណែនាំឬសំណើជាក់លាក់ណាមួយ...",
+        "cancelButton": "បោះបង់",
+        "confirmButton": "បញ្ជាក់ការបញ្ជាទិញ",
+        "placingButton": "កំពុងដាក់ការបញ្ជាទិញ...",
+        "successTitle": "បានដាក់ការបញ្ជាទិញ!",
+        "successDescription": "ការបញ្ជាទិញរបស់អ្នកត្រូវបានដាក់ដោយជោគជ័យហើយ។",
+        "failTitle": "ដាក់ការបញ្ជាទិញបរាជ័យ",
+        "failDescription": "មិនអាចដាក់ការបញ្ជាទិញបានទេ។ សូមព្យាយាមម្តងទៀត។",
+        "quantityErrorTitle": "កំហុសចំនួន",
+        "quantityErrorDescription": "សូមបញ្ចូលចំនួនត្រឹមត្រូវ (យ៉ាងហោចណាត 1)។",
+        "authTitle": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "authDescription": "អ្នកត្រូវតែចូលដើម្បីដាក់ការបញ្ជាទិញ។"
+      },
+      "notFound": {
+        "title": "រកមិនឃើញធាតុ",
+        "description": "ធាតុផ្សារដែលអ្នកកំពុងរកមិនមានទេ។",
+        "backButton": "ត្រឡប់ទៅផ្សារ"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "កំហុសក្នុងការផ្ទុកធាតុ",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃធាតុផ្សារ។"
+        },
+        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។"
+      }
+    },
+    "filtersAndSorting": {
+      "categoryLabel": "TRANSLATE_ME",
+      "priceAscending": "TRANSLATE_ME",
+      "priceDescending": "TRANSLATE_ME"
+      // Add other filter and sort keys as needed
+    },
+    "feedback": {
+      "reviewsTitle": "TRANSLATE_ME",
+      "addReviewButton": "TRANSLATE_ME",
+      "ratingLabel": "TRANSLATE_ME",
+      "noReviews": "TRANSLATE_ME",
+      "reviewForm": {
+        "placeholder": "TRANSLATE_ME"
+      }
+    },
     "recommendedForYou": "បានណែនាំសម្រាប់អ្នក",
     "discoverMore": "ស្វែងយល់បន្ថែម",
     "noItemsFound": {
@@ -275,3 +476,215 @@
   }
 }
 
+{
+  "Marketplace": {
+    "createShop": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "title": "បង្កើតមុខហាងឌីជីថលរបស់អ្នក",
+      "description": "រៀបចំហាងរបស់អ្នកដើម្បីដាក់បញ្ជីធាតុនិងសេវាកម្ម។",
+      "form": {
+        "nameLabel": "ឈ្មោះហាង",
+        "namePlaceholder": "បញ្ចូលឈ្មោះហាងរបស់អ្នក",
+        "typeLabel": "ប្រភេទអ្នកពាក់ព័ន្ធ",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទរបស់អ្នក",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាហាងរបស់អ្នកនិងអ្វីដែលអ្នកផ្តល់ជូន"
+      },
+      "submitButton": "បង្កើតហាង",
+      "submittingButton": "កំពុងបង្កើត...",
+      "authErrorTitle": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
+      "authErrorDescription": "អ្នកត្រូវតែចូលដើម្បីបង្កើតហាង។",
+      "toast": {
+        "successTitle": "បានបង្កើតមុខហាង!",
+        "successDescription": "មុខហាងរបស់អ្នក \"{{shopName}}\" ត្រូវបានបង្កើតហើយ។",
+        "failTitle": "ការបង្កើតបរាជ័យ",
+        "failDescription": "មិនអាចបង្កើតហាងបានទេ។ សូមព្យាយាមម្តងទៀត។"
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "farmer": "កសិករ",
+      "trader": "ពាណិជ្ជករ",
+      "agro_innovator": "អ្នកច្នៃប្រឌិតកសិកម្ម",
+      "researcher": "អ្នកស្រាវជ្រាវ",
+      "service_provider": "អ្នកផ្តល់សេវា",
+      "consumer": "អ្នកប្រើប្រាស់"
+      // Add other roles from STAKEHOLDER_ROLES array
+    }
+  }
+}
+{
+  "Profile": {
+    "backLink": "ត្រឡប់",
+    "loading": "កំពុងផ្ទុកប្រវត្តិរូប...",
+    "notFound": {
+      "title": "រកមិនឃើញប្រវត្តិរូប",
+      "description": "ប្រវត្តិរូបអ្នកប្រើប្រាស់ដែលអ្នកកំពុងរកមិនមានទេ។"
+    },
+    "tabs": {
+      "overview": "ទិដ្ឋភាពទូទៅ",
+      "listings": "បញ្ជីផ្សារ",
+      "orders": "ការបញ្ជាទិញរបស់ខ្ញុំ"
+      // Add other relevant tabs here
+    },
+    "overviewTab": {
+      "contactButton": "ទាក់ទង",
+      "aboutSectionTitle": "អំពី",
+      "rolesLabel": "តួនាទី",
+      "locationLabel": "ទីតាំង",
+      "bioLabel": "ជីវប្រវត្តិ",
+      "joinedLabel": "បានចូលរួម",
+      "loadingText": "កំពុងផ្ទុកទិដ្ឋភាពទូទៅ...",
+      "noBio": "មិនទាន់មានជីវប្រវត្តិនៅឡើយទេ។"
+       // Add other overview specific keys
+    },
+    "listingsTab": {
+      "title": "បញ្ជីផ្សារ",
+      "description": "ធាតុនិងសេវាកម្មដែលបានចុះបញ្ជីដោយអ្នកប្រើប្រាស់នេះ។",
+      "noListings": "អ្នកប្រើប្រាស់នេះមិនមានបញ្ជីសកម្មទេ។",
+      "loading": "កំពុងផ្ទុកបញ្ជី..."
+      // Reuse Marketplace item card translations from Marketplace.itemView
+    },
+    "ordersTab": {
+      "title": "ការបញ្ជាទិញរបស់ខ្ញុំ",
+      "description": "ការបញ្ជាទិញផ្សារដែលអ្នកបានដាក់។",
+      "table": {
+        "orderDate": "កាលបរិច្ឆេទបញ្ជាទិញ",
+        "seller": "អ្នកលក់",
+        "item": "ធាតុ",
+        "quantity": "ចំនួន",
+        "total": "សរុប",
+        "status": "ស្ថានភាព"
+        // Reuse Marketplace order status translations from Marketplace.myOrders
+      },
+      "noOrders": "អ្នកមិនទាន់បានដាក់ការបញ្ជាទិញនៅឡើយទេ។",
+      "loading": "កំពុងផ្ទុកការបញ្ជាទិញ...",
+      "errors": {
+        "fetchErrorTitle": "កំហុសក្នុងការផ្ទុកការបញ្ជាទិញ",
+        "fetchErrorDescription": "មិនអាចទាញយកការបញ្ជាទិញដែលអ្នកបានដាក់បានទេ។"
+      }
+       // Reuse Marketplace order status translations from Marketplace.myOrders
+    },
+    "errors": {
+      "loadErrorTitle": "កំហុសក្នុងការផ្ទុកប្រវត្តិរូប",
+      "loadErrorDescription": "មិនអាចផ្ទុកប្រវត្តិរូបអ្នកប្រើប្រាស់បានទេ។"
+    },
+     "actions": {
+      "editProfile": "កែសម្រួលប្រវត្តិរូប"
+    }
+     // Reuse other general keys like 'unknownUser' if needed
+  }
+}
+{
+  "Settings": {
+    "backLink": "ត្រឡប់",
+    "title": "ការកំណត់",
+    "description": "គ្រប់គ្រងការកំណត់គណនីនិងប្រវត្តិរូបរបស់អ្នក។",
+    "tabs": {
+      "profile": "ប្រវត្តិរូប",
+      "account": "គណនី",
+      "notifications": "ការជូនដំណឹង",
+      "language": "ភាសា"
+      // Add other relevant tabs here
+    },
+    "profileTab": {
+      "title": "ការកំណត់ប្រវត្តិរូប",
+      "description": "ធ្វើបច្ចុប្បន្នភាពព័ត៌មានប្រវត្តិរូបសាធារណៈរបស់អ្នក។",
+      "form": {
+        "displayNameLabel": "ឈ្មោះបង្ហាញ",
+        "displayNamePlaceholder": "បញ្ចូលឈ្មោះបង្ហាញរបស់អ្នក",
+        "bioLabel": "ជីវប្រវត្តិ",
+        "bioPlaceholder": "ប្រាប់យើងអំពីខ្លួនអ្នក...",
+        "locationLabel": "ទីតាំង",
+        "locationPlaceholder": "បញ្ចូលទីតាំងរបស់អ្នក",
+        "avatarLabel": "រូបតំណាង",
+        "avatarDescription": "ផ្ទុករូបភាពប្រវត្តិរូប។",
+        "currentAvatar": "រូបតំណាងបច្ចុប្បន្ន",
+        "changeAvatarButton": "ប្តូររូបតំណាង",
+        "uploadingAvatar": "កំពុងផ្ទុកឡើង...",
+        "saveButton": "រក្សាទុកប្រវត្តិរូប",
+        "savingButton": "កំពុងរក្សាទុក..."
+      },
+      "toast": {
+        "updateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូប!",
+        "updateSuccessDescription": "ប្រវត្តិរូបរបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យហើយ។"
+      },
+      "errors": {
+        "updateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពបរាជ័យ",
+        "updateFailDescription": "មិនអាចធ្វើបច្ចុប្បនភាពប្រវត្តិរូបរបស់អ្នកបានទេ។ សូមព្យាយាមម្តងទៀត។"
+      }
+    },
+    "accountTab": {
+      "title": "ការកំណត់គណនី",
+      "description": "គ្រប់គ្រងការផ្ទៀងផ្ទាត់និងសុវត្ថិភាពគណនីរបស់អ្នក។",
+      "changePasswordSectionTitle": "ប្តូរលេខសម្ងាត់",
+      "changePasswordDescription": "ធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់គណនីរបស់អ្នក។",
+      "form": {
+        "currentPasswordLabel": "លេខសម្ងាត់បច្ចុប្បន្ន",
+        "currentPasswordPlaceholder": "បញ្ចូលលេខសម្ងាត់បច្ចុប្បន្នរបស់អ្នក",
+        "newPasswordLabel": "លេខសម្ងាត់ថ្មី",
+        "newPasswordPlaceholder": "បញ្ចូលលេខសម្ងាត់ថ្មីរបស់អ្នក",
+        "confirmPasswordLabel": "បញ្ជាក់លេខសម្ងាត់ថ្មី",
+        "confirmPasswordPlaceholder": "បញ្ជាក់លេខសម្ងាត់ថ្មីរបស់អ្នក",
+        "updatePasswordButton": "ធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់",
+        "updatingPasswordButton": "កំពុងធ្វើបច្ចុប្បន្នភាព..."
+      },
+      "toast": {
+        "passwordUpdateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់!",
+        "passwordUpdateSuccessDescription": "លេខសម្ងាត់របស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យហើយ។"
+      },
+      "errors": {
+         "passwordUpdateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់បរាជ័យ",
+        "passwordUpdateFailDescription": "មិនអាចធ្វើបច្ចុប្បនភាពលេខសម្ងាត់របស់អ្នកបានទេ។ សូមពិនិត្យមើលលេខសម្ងាត់បច្ចុប្បន្នរបស់អ្នកហើយព្យាយាមម្តងទៀត។"
+      }
+       // Add other account related keys (email, etc.)
+    },
+    "notificationsTab": {
+      "title": "ការកំណត់ការជូនដំណឹង",
+      "description": "គ្រប់គ្រងចំណង់ចំណូលចិត្តការជូនដំណឹងតាមអ៊ីមែលនិង push របស់អ្នក។",
+      "emailNotificationsLabel": "ការជូនដំណឹងតាមអ៊ីមែល",
+      "emailNotificationsDescription": "ទទួលការជូនដំណឹងតាមអ៊ីមែល។",
+      "pushNotificationsLabel": "ការជូនដំណឹង push",
+      "pushNotificationsDescription": "ទទួលការជូនដំណឹងនៅលើឧបករណ៍របស់អ្នក។",
+       "saveButton": "រក្សាទុកចំណង់ចំណូលចិត្ត",
+      "savingButton": "កំពុងរក្សាទុក...",
+       "toast": {
+        "updateSuccessTitle": "បានរក្សាទុកចំណង់ចំណូលចិត្ត!",
+        "updateSuccessDescription": "ចំណង់ចំណូលចិត្តការជូនដំណឹងរបស់អ្នកត្រូវបានរក្សាទុកហើយ។"
+      },
+      "errors": {
+        "updateFailTitle": "ការរក្សាទុកបរាជ័យ",
+        "updateFailDescription": "មិនអាចរក្សាទុកចំណង់ចំណូលចិត្តការជូនដំណឹងរបស់អ្នកបានទេ។"
+      }
+       // Add keys for specific notification types
+    },
+     "languageTab": {
+      "title": "ការកំណត់ភាសា",
+      "description": "ជ្រើសរើសភាសាដែលអ្នកចូលចិត្ត។",
+      "languageLabel": "ភាសា",
+      "languagePlaceholder": "ជ្រើសរើសភាសា",
+       "saveButton": "រក្សាទុកភាសា",
+      "savingButton": "កំពុងរក្សាទុក...",
+       "toast": {
+        "updateSuccessTitle": "បានរក្សាទុកភាសា!",
+        "updateSuccessDescription": "ចំណង់ចំណូលចិត្តភាសារបស់អ្នកត្រូវបានរក្សាទុកហើយ។"
+      },
+      "errors": {
+        "updateFailTitle": "ការរក្សាទុកបរាជ័យ",
+        "updateFailDescription": "មិនអាចរក្សាទុកចំណង់ចំណូលចិត្តភាសារបស់អ្នកបានទេ។"
+      }
+    },
+    "loading": "កំពុងផ្ទុកការកំណត់...",
+     "errors": {
+      "loadErrorTitle": "កំហុសក្នុងការផ្ទុកការកំណត់",
+      "loadErrorDescription": "មិនអាចផ្ទុកការកំណត់របស់អ្នកបានទេ។"
+     },
+     "authenticationRequired": {
+        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "description": "អ្នកត្រូវតែចូលដើម្បីមើលការកំណត់របស់អ្នក។",
+        "button": "ចូល"
+      }
+    }
+  }
+}
