@@ -1,697 +1,123 @@
 
 {
-  "AppHeader": {
-    "home": "Inicio",
-    "network": "Red",
-    "farmMgmt": "Gest. Finca",
-    "marketplace": "Mercado",
-    "talentExchange": "Talento",
-    "traceability": "Trazabilidad",
-    "forums": "Foros",
-    "notifications": "Notificaciones",
-    "messages": "Mensajes",
-    "wallet": "Billetera",
-    "searchPlaceholder": "Buscar personas, productos, servicios...",
-    "signIn": "Iniciar Sesión",
-    "signUp": "Registrarse",
-    "myProfile": "Mi Perfil",
-    "settings": "Ajustes",
-    "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar Sesión",
-    "switchToLightAria": "Cambiar a tema claro",
-    "switchToDarkAria": "Cambiar a tema oscuro"
-  },
-  "AppFooter": {
-    "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre Nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de Ayuda",
-    "communityGuidelinesLabel": "Normas de la Comunidad",
-    "industryNewsLabel": "Noticias del Sector",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de Talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de Privacidad",
-    "termsOfServiceLabel": "Términos de Servicio",
-    "getMobileApp": "Obtén la App de DamDoh",
-    "googlePlayAlt": "Obtenlo en Google Play",
-    "appStoreAlt": "Descárgalo en la App Store",
-    "copyright": "© {year} DamDoh. Todos los Derechos Reservados."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Cambiar Idioma"
-  },
-  "MobileBottomNav": {
-    "home": "Inicio",
-    "market": "Mercado",
-    "search": "Buscar",
-    "forums": "Foros",
-    "profile": "Perfil"
-  },
-  "Auth": {
-    "signInWelcome": "Bienvenido de nuevo a DamDoh",
-    "signInTitle": "Inicia Sesión en Tu Cuenta",
-    "signInDescription": "Ingresa tus credenciales para acceder a tu panel de control.",
-    "emailLabel": "Correo Electrónico",
-    "emailPlaceholder": "tu@ejemplo.com",
-    "passwordLabel": "Contraseña",
-    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
-    "signingInButton": "Iniciando sesión...",
-    "signInButton": "Iniciar Sesión",
-    "noAccountPrompt": "¿No tienes una cuenta?",
-    "signUpLink": "Regístrate",
-    "signInLink": "Iniciar sesión",
-    "recoverWithUniversalIdPrompt": "O Recuperar Cuenta con ID Universal",
-    "signUpWelcome": "Únete a la Red DamDoh",
-    "signUpTitle": "Crea Tu Cuenta",
-    "signUpDescription": "Comienza tu viaje en el ecosistema agrícola digital.",
-    "nameLabel": "Nombre Completo o Nombre de la Empresa",
-    "namePlaceholder": "Ej: Juana Pérez o Granjas del Valle Verde",
-    "roleLabel": "Tu Rol Principal",
-    "rolePlaceholder": "Selecciona tu rol principal en la cadena de suministro",
-    "passwordPlaceholder": "••••••••",
-    "confirmPasswordLabel": "Confirmar Contraseña",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creando cuenta...",
-    "signUpButton": "Crear Cuenta",
-    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
-    "forgotPasswordResetPrompt": "Recupera el acceso a tu cuenta de DamDoh.",
-    "forgotPasswordTitle": "Contraseña Olvidada",
-    "forgotPasswordDescription": "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
-    "sendingEmailButton": "Enviando correo...",
-    "sendResetLinkButton": "Enviar Enlace de Restablecimiento",
-    "rememberPasswordPrompt": "¿Recuerdas tu contraseña?",
-    "resetPasswordPrompt": "Establece una nueva contraseña para tu cuenta de DamDoh.",
-    "resetPasswordTitle": "Restablecer Contraseña",
-    "resetPasswordDescription": "Elige una contraseña nueva y segura para tu cuenta.",
-    "newPasswordLabel": "Nueva Contraseña",
-    "newPasswordPlaceholder": "Ingresa tu nueva contraseña",
-    "resettingPasswordButton": "Restableciendo...",
-    "resetPasswordButton": "Restablecer Contraseña",
-    "recoverPage": {
-      "title": "Recuperación de Cuenta",
-      "description": "Recupera tu cuenta usando la verificación social de un amigo de confianza en DamDoh.",
-      "howItWorksTitle": "Cómo Funciona",
-      "step1": "Ingresa el número de teléfono de la cuenta que deseas recuperar.",
-      "step2": "Muestra el código QR temporal en tu pantalla a un amigo de confianza que también sea usuario de DamDoh.",
-      "step3": "Tu amigo escanea el código para confirmar tu identidad, otorgándote acceso en este nuevo dispositivo.",
-      "startButton": "Iniciar Recuperación",
-      "scanTitle": "Pide a un Amigo que Escanee",
-      "scanDescription": "Deja que una conexión de confianza de DamDoh escanee este código QR temporal para verificar tu identidad.",
-      "scanNote": "Este código es válido por 10 minutos.",
-      "startOverButton": "Empezar de Nuevo"
+  "about": {
+    "title": "Sobre Nosotros",
+    "subtitle": "Conectando la agricultura global, un enlace a la vez.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "content": "Nuestra misión es empoderar a cada actor en la cadena de suministro agrícola con las herramientas, conexiones y conocimientos necesarios para prosperar en un mercado global sostenible y equitativo."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "content": "Visualizamos un mundo donde la cadena de suministro agrícola sea transparente, eficiente y justa, garantizando la seguridad alimentaria y la prosperidad para todas las comunidades."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "sustainability": {
+        "title": "Sostenibilidad",
+        "content": "Promover prácticas que nutran el planeta para las generaciones futuras."
+      },
+      "collaboration": {
+        "title": "Colaboración",
+        "content": "Creer que el progreso real proviene de trabajar juntos a través de fronteras y roles."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "content": "Aprovechar la tecnología para resolver desafíos agrícolas del mundo real."
+      },
+      "integrity": {
+        "title": "Integridad",
+        "content": "Comprometidos con la transparencia, la confianza y el comercio justo en todas las interacciones."
+      },
+      "empowerment": {
+        "title": "Empoderamiento",
+        "content": "Proporcionar a los usuarios las herramientas y los datos para tomar decisiones informadas y hacer crecer sus negocios."
+      }
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "intro": "Somos un equipo diverso de tecnólogos, agrónomos y expertos en la cadena de suministro apasionados por revolucionar la agricultura.",
+      "member1Name": "Dra. Alima Bello",
+      "member1Role": "Fundadora y CEO",
+      "member1Bio": "Economista agrícola con 20 años de experiencia en desarrollo internacional y cadenas de valor sostenibles.",
+      "member2Name": "Chen Wei",
+      "member2Role": "Director de Tecnología",
+      "member2Bio": "Arquitecto de software especializado en plataformas escalables, IA y tecnología blockchain para la trazabilidad.",
+      "member3Name": "Maria Rodriguez",
+      "member3Role": "Jefa de Comunidad Global",
+      "member3Bio": "Experta en participación comunitaria que garantiza que las voces de nuestros usuarios impulsen la plataforma.",
+      "note": "(Nota: El equipo anterior es representativo y con fines de demostración)."
     }
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Conecta. Transacciona. Crece. La Ventaja {appName}.",
-      "subtitle": "La plataforma global que empodera a cada actor en la cadena de suministro agrícola, desde agricultores y cooperativas hasta proveedores de logística y compradores globales.",
-      "getStartedButton": "Comienza Ahora",
-      "learnMoreButton": "Aprende Más"
+  "careers": {
+    "title": "Únase a Nuestro Equipo",
+    "subtitle": "Sea parte de la revolución de la tecnología agrícola.",
+    "whyWorkWithUs": {
+      "title": "Por Qué Trabajar con Nosotros",
+      "intro": "En DamDoh, no solo estamos construyendo una plataforma; estamos cultivando un futuro sostenible. Ofrecemos:",
+      "point1": "Trabajo con propósito que impacta directamente en las comunidades globales.",
+      "point2": "Un entorno de aprendizaje continuo y crecimiento profesional.",
+      "point3": "Un equipo diverso, inclusivo y colaborativo.",
+      "point4": "Compensación competitiva y beneficios flexibles.",
+      "point5": "La oportunidad de trabajar en la vanguardia de la tecnología y la agricultura."
     },
-    "features": {
-      "title": "Diseñado para todo el ecosistema",
-      "subtitle": "DamDoh ofrece herramientas y conexiones a medida para cada etapa de la cadena de valor agrícola.",
-      "networking": {
-        "title": "Networking Inteligente",
-        "description": "Conéctate con los socios adecuados, desde proveedores locales hasta compradores internacionales, según tus necesidades y rol específicos."
+    "currentOpenings": {
+      "title": "Ofertas Actuales"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero de Software Senior (Backend)",
+        "location": "Remoto",
+        "type": "Tiempo completo",
+        "description": "Buscamos un desarrollador de backend experimentado para ayudar a escalar nuestros microservicios y construir nuevas características para la plataforma."
       },
-      "marketplace": {
-        "title": "Mercado Global",
-        "description": "Compra y vende productos, equipos y servicios de forma segura en un mercado global transparente."
+      "job2": {
+        "title": "Gerente de Producto - Mercado",
+        "location": "Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Impulse la estrategia y el desarrollo de nuestro mercado global, asegurando que satisfaga las necesidades de compradores y vendedores."
       },
-      "forums": {
-        "title": "Intercambio de Conocimiento",
-        "description": "Únete a foros temáticos para compartir ideas, hacer preguntas y aprender de expertos de todo el mundo."
-      },
-      "talent": {
-        "title": "Bolsa de Talentos",
-        "description": "Encuentra profesionales cualificados u ofrece tu experiencia para proyectos agrícolas a corto o largo plazo."
+      "job3": {
+        "title": "Gerente de Éxito del Cliente",
+        "location": "Remoto (Zona horaria de América Latina)",
+        "type": "Tiempo completo",
+        "description": "Sea la voz de nuestros usuarios en América Latina, brindando apoyo, recopilando comentarios y asegurando su éxito en la plataforma."
       }
     },
-    "forWho": {
-      "badge": "¿Quién se beneficia?",
-      "title": "Una Plataforma para Cada Actor",
-      "description": "Ya sea que estés en el campo o en la oficina, DamDoh tiene las herramientas que necesitas para triunfar.",
-      "farmers": {
-        "title": "Agricultores y Cooperativas",
-        "description": "Gestiona tu granja, rastrea los productos desde la siembra hasta la venta y accede a mercados más amplios."
-      },
-      "buyers": {
-        "title": "Compradores y Procesadores",
-        "description": "Encuentra productos fiables y trazables directamente desde la fuente y gestiona tu cadena de suministro de manera eficiente."
-      },
-      "experts": {
-        "title": "Proveedores de Servicios y Expertos",
-        "description": "Ofrece tus servicios, desde agronomía y logística hasta finanzas, a una audiencia agrícola específica."
-      }
-    },
-    "cta": {
-      "title": "¿Listo para transformar tu forma de trabajar?",
-      "subtitle": "Únete a miles de profesionales agrícolas que construyen confianza, transparencia y crecimiento en la cadena de suministro global.",
-      "button": "Únete a la Comunidad DamDoh Hoy"
+    "applyNowButton": "Aplicar ahora",
+    "noOpenings": {
+      "title": "Actualmente no hay ofertas de trabajo",
+      "content1": "Siempre estamos buscando personas talentosas. Si cree que encajaría bien, envíenos su currículum a <emailLink>careers@damdoh.org</emailLink>."
     }
   },
-  "Forums": {
-    "title": "Temas del Foro",
-    "description": "Explorar y crear temas de discusión",
-    "lastActivity": "Última actividad hace {{time}}",
-    "searchPlaceholder": "Buscar temas...",
-    "buttons": {
-      "createTopic": "Crear Tema",
-      "joinDiscussion": "Unirse a la Discusión",
-      "pinHomepage": "Fijar como Página de Inicio",
-      "unpinHomepage": "Desfijar de la Página de Inicio",
-      "loadMore": "Cargar más",
-      "loadingMore": "Cargando más..."
+  "communityGuidelines": {
+    "title": "Directrices de la Comunidad",
+    "subtitle": "Nuestros principios para una comunidad próspera y respetuosa.",
+    "intro": "Para mantener un entorno seguro, confiable y profesional para todos los miembros, requerimos que todos se adhieran a las siguientes directrices.",
+    "respectful": {
+      "title": "Sea Respetuoso y Constructivo",
+      "description": "Participe en discusiones con respeto. Se eliminarán los ataques personales, el acoso y los comentarios despectivos."
     },
-    "notFound": {
-      "title": "No se encontraron temas",
-      "tryDifferentSearch": "Intente con un término de búsqueda diferente.",
-      "beTheFirst": "Sé el primero en crear un tema."
+    "authentic": {
+      "title": "Sea Auténtico",
+      "description": "Preséntese a sí mismo y a su negocio honestamente. No se haga pasar por otros ni proporcione información falsa."
     },
-    "pinning": {
-      "pinnedTitle": "¡Página de inicio fijada!",
-      "pinnedDescription": "Este foro ahora se muestra como tu página de inicio.",
-      "unpinnedTitle": "¡Página de inicio desfijada!",
-      "unpinnedDescription": "Este foro ya no se muestra como tu página de inicio."
+    "relevant": {
+      "title": "Manténgase en el Tema",
+      "description": "Publique contenido que sea relevante para la agricultura, las cadenas de suministro, la tecnología agrícola y temas relacionados. El spam y las promociones no solicitadas no están permitidos."
     },
-    "errors": {
-      "loadTitle": "Error al cargar los temas",
-      "loadDescription": "Ocurrió un error al cargar los temas del foro.",
-      "auth": {
-        "title": "No autenticado",
-        "description": "Debes iniciar sesión para crear un tema."
-      },
-      "incomplete": {
-        "title": "Campos incompletos",
-        "description": "Por favor, complete todos los campos obligatorios."
-      },
-      "general": {
-        "title": "Error",
-        "description": "Ocurrió un error al crear el tema."
-      }
+    "fairTrade": {
+      "title": "Comercio Justo",
+      "description": "Todas las transacciones y negociaciones realizadas en la plataforma deben llevarse a cabo de buena fe. Las prácticas fraudulentas o engañosas resultarán en la eliminación de la plataforma."
     },
-    "create": {
-      "backLink": "Volver a los Temas",
-      "title": "Crear un Nuevo Tema",
-      "description": "Iniciar una nueva discusión en el foro.",
-      "form": {
-        "nameLabel": "Nombre del Tema",
-        "namePlaceholder": "Ingrese el nombre de su tema",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describa brevemente su tema",
-        "submitButton": "Crear Tema",
-        "submittingButton": "Creando..."
-      },
-      "success": {
-        "title": "¡Tema Creado Exitosamente!",
-        "description": "Su nuevo tema ha sido creado."
-      }
+    "sustainable": {
+      "title": "Apoye la Sostenibilidad",
+      "description": "Fomente y participe en discusiones y prácticas que apoyen la agricultura sostenible y la gestión ambiental."
     },
-    "topic": {
-      "unknownUser": "Usuario Desconocido",
-      "postMeta": "por {{author}} el {{date}}",
-      "noPosts": {
-        "title": "Aún no hay publicaciones",
-        "description": "Sé el primero en responder a este tema.",
-        "button": "Agregar Respuesta"
-      },
-      "notFound": {
-        "title": "Tema no encontrado",
-        "description": "El tema que estás buscando no existe.",
-        "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error al cargar publicaciones",
-          "description": "Ocurrió un error al cargar las publicaciones para este tema."
-        },
-        "loadTopic": {
-          "title": "Error al cargar tema",
-          "description": "Ocurrió un error al cargar los detalles del tema."
-        }
-      }
-    },
-    "createPost": {
-      "aiHelper": {
-        "title": "Asistente de IA",
-        "description": "Genera un borrador de publicación basado en una indicación.",
-        "promptLabel": "Indicación de IA",
-        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
-        "generateButton": "Generar Borrador",
-        "generatingButton": "Generando..."
-      },
-      "title": "Crear Nueva Publicación",
-      "description": "Agrega una nueva publicación a este tema.",
-      "form": {
-        "titleLabel": "Título de la publicación",
-        "titlePlaceholder": "Introduce el título de tu publicación",
-        "contentLabel": "Contenido de la publicación",
-        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
-        "submitButton": "Crear Publicación",
-        "submittingButton": "Enviando..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "¡Borrador de IA Generado!",
-          "description": "Se ha generado un borrador para ti."
-        },
-        "title": "¡Publicación Creada!",
-        "description": "Tu publicación ha sido creada con éxito."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Falta indicación de IA",
-          "description": "Por favor, proporciona una indicación para el asistente de IA."
-        },
-        "aiDraft": {
-          "title": "Error del borrador de IA",
-          "description": "No se pudo generar el borrador de IA."
-        },
-        "incomplete": {
-          "title": "Campos incompletos",
-          "description": "Por favor, completa todos los campos requeridos."
-        },
-        "general": {
-          "title": "Error",
-          "description": "Ocurrió un error al crear la publicación."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Volver a {{topicName}}",
-      "postMeta": "por {{author}} el {{date}}",
-      "repliesTitle": "Respuestas ({{count}})",
-      "noReplies": "Aún no hay respuestas.",
-      "reply": {
-        "title": "Agregar una Respuesta",
-        "placeholder": "Escribe tu respuesta aquí...",
-        "submitButton": "Agregar Respuesta",
-        "submittingButton": "Enviando...",
-        "success": "¡Respuesta agregada!"
-      },
-      "notFound": {
-        "title": "Publicación no encontrada",
-        "description": "La publicación que estás buscando no existe.",
-        "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error al cargar publicación",
-          "description": "Ocurrió un error al cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error al cargar respuestas",
-          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
-        },
-        "emptyReply": "La respuesta no puede estar vacía.",
-        "submitReply": {
-          "title": "Error al enviar respuesta",
-          "description": "Ocurrió un error al enviar tu respuesta."
-        }
-      }
-    }
-  },
-  "Marketplace": {
-    "title": "Mercado",
-    "myOrdersButton": "Mis Pedidos Recibidos",
-    "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre Más",
-    "noItemsFound": {
-      "title": "No se encontraron artículos.",
-      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
-    },
-    "filtersAndSorting": {
-      "categoryLabel": "Categoría",
-      "categoryPlaceholder": "Todas las Categorías",
-      "sortByLabel": "Ordenar por",
-      "sortByPlaceholder": "Seleccionar una opción",
-      "priceAscending": "Precio: de menor a mayor",
-      "priceDescending": "Precio: de mayor a menor",
-      "dateNewest": "Fecha: más recientes primero",
-      "dateOldest": "Fecha: más antiguos primero",
-      "nameAscending": "Nombre: A-Z",
-      "nameDescending": "Nombre: Z-A"
-    },
-    "feedback": {
-      "reviewsTitle": "Reseñas",
-      "addReviewButton": "Añadir una Reseña",
-      "noReviews": "Aún no hay reseñas. ¡Sé el primero en opinar sobre este artículo!",
-      "ratingLabel": "Calificación",
-      "reviewContentLabel": "Tu Reseña",
-      "reviewContentPlaceholder": "Escribe tu reseña aquí...",
-      "submitReviewButton": "Enviar Reseña",
-      "submittingReviewButton": "Enviando...",
-      "toast": {
-        "successTitle": "¡Reseña Enviada!",
-        "successDescription": "Tu reseña ha sido añadida."
-      },
-      "errors": {
-        "submitFailTitle": "Envío Fallido",
-        "submitFailDescription": "No se pudo enviar tu reseña. Por favor, inténtalo de nuevo."
-      }
-    },
-    "itemView": {
-      "backLink": "Volver al mercado",
-      "unknownUser": "Usuario Desconocido",
-      "traceabilityButton": "Enlace de Comercio / Lote",
-      "skillsLabel": "Habilidades requeridas",
-      "experienceLabel": "Nivel de experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "booking": {
-        "perNight": "noche",
-        "checkIn": "Llegada",
-        "checkOut": "Salida",
-        "addDate": "Agregar fecha",
-        "guests": "Huéspedes",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "notCharged": "Aún no se le cobrará",
-        "nights": "noches",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total",
-        "successTitle": "¡Reserva exitosa!",
-        "successDescription": "Su reserva está confirmada.",
-        "failTitle": "Reserva fallida",
-        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
-        "bookedTitle": "¡Reservado!",
-        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
-        "ticketButton": "Mostrar ticket",
-        "modalTitle": "Ticket de reserva",
-        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
-        "modalScan": "Escanee este código para registrarse"
-      },
-      "coupon": {
-        "label": "Código de cupón",
-        "placeholder": "Introduce el código de cupón",
-        "applyButton": "Aplicar",
-        "successTitle": "¡Cupón aplicado!",
-        "successDescription": "Descuento aplicado: {{type}}",
-        "failTitle": "Cupón inválido",
-        "failDescription": "El código de cupón es inválido o no aplicable.",
-        "appliedText": "Cupón aplicado: {{code}}"
-      },
-      "aboutSeller": "Sobre el vendedor",
-      "viewShopfront": "Ver escaparate",
-      "editListing": "Editar publicación",
-      "manageService": "Gestionar servicio",
-      "buyNowButton": "Comprar ahora",
-      "contactForService": "Contactar para servicio",
-      "contactSeller": "Contactar vendedor",
-      "order": {
-        "title": "Pedir {{itemName}}",
-        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas (Opcional)",
-        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
-        "cancelButton": "Cancelar",
-        "confirmButton": "Confirmar pedido",
-        "placingButton": "Realizando pedido...",
-        "successTitle": "¡Pedido realizado!",
-        "successDescription": "Tu pedido ha sido realizado con éxito.",
-        "failTitle": "Pedido fallido",
-        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
-        "quantityErrorTitle": "Error de cantidad",
-        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
-      },
-      "notFound": {
-        "title": "Artículo no encontrado",
-        "description": "El artículo del mercado que estás buscando no existe.",
-        "backButton": "Volver a Mercado"
-      },
-      "errors": {
-        "loadItem": {
-          "title": "Error al cargar artículo",
-          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
-        },
-        "unexpected": "Ocurrió un error inesperado."
-      }
-    },
-    "createShop": {
-      "backLink": "Volver al mercado",
-      "title": "Crear tu escaparate digital",
-      "description": "Configura tu tienda para listar artículos y servicios.",
-      "form": {
-        "nameLabel": "Nombre de la tienda",
-        "namePlaceholder": "Introduce el nombre de tu tienda",
-        "typeLabel": "Tipo de actor",
-        "typePlaceholder": "Selecciona tu tipo",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describe tu tienda y lo que ofreces"
-      },
-      "submitButton": "Crear tienda",
-      "submittingButton": "Creando...",
-      "authErrorTitle": "Error de autenticación",
-      "authErrorDescription": "Debes haber iniciado sesión para crear una tienda.",
-      "toast": {
-        "successTitle": "¡Escaparate creado!",
-        "successDescription": "Tu escaparate \"{{shopName}}\" ha sido creado.",
-        "failTitle": "Creación fallida",
-        "failDescription": "No se pudo crear la tienda. Por favor, inténtalo de nuevo."
-      }
-    },
-    "manageService": {
-      "backLink": "Volver a {{itemName}}",
-      "title": "Gestionar servicio: {{itemName}}",
-      "description": "Gestionar reservas y configuración para este servicio.",
-      "tabs": {
-        "bookings": "Reservas",
-        "settings": "Configuración"
-      },
-      "bookingsTab": {
-        "title": "Reservas del servicio",
-        "description": "Ver y gestionar las reservas para este servicio.",
-        "table": {
-          "date": "Fecha",
-          "guest": "Huésped",
-          "dates": "Fechas",
-          "total": "Total",
-          "status": "Estado",
-          "actions": "Acciones"
-        },
-        "status": {
-          "pending": "Pendiente",
-          "confirmed": "Confirmado",
-          "cancelled": "Cancelado",
-          "completed": "Completado"
-        },
-        "actions": {
-          "confirm": "Confirmar reserva",
-          "cancel": "Cancelar reserva",
-          "viewDetails": "Ver detalles"
-        },
-        "noBookings": "Aún no hay reservas.",
-        "toast": {
-          "fetchErrorTitle": "Error al cargar reservas",
-          "fetchErrorDescription": "No se pudieron obtener las reservas para este servicio.",
-          "updateSuccessTitle": "¡Reserva actualizada!",
-          "updateSuccessDescription": "Estado de la reserva actualizado a {{status}}.",
-          "updateFailTitle": "Actualización fallida",
-          "updateFailDescription": "No se pudo actualizar el estado de la reserva."
-        }
-      },
-      "settingsTab": {
-        "title": "Configuración del servicio",
-        "description": "Actualizar detalles y disponibilidad para este servicio.",
-        "form": {
-          "priceLabel": "Precio por noche",
-          "pricePlaceholder": "Introduce el precio",
-          "currencyLabel": "Moneda",
-          "currencyPlaceholder": "Seleccionar moneda",
-          "availabilityLabel": "Fechas de disponibilidad",
-          "availabilityDescription": "Seleccione las fechas en las que este servicio está disponible.",
-          "submitButton": "Guardar cambios",
-          "submittingButton": "Guardando..."
-        },
-        "toast": {
-          "updateSuccessTitle": "¡Configuración guardada!",
-          "updateSuccessDescription": "Configuración del servicio actualizada con éxito.",
-          "updateFailTitle": "Error al guardar",
-          "updateFailDescription": "No se pudo guardar la configuración del servicio."
-        }
-      },
-      "errors": {
-        "loadErrorTitle": "Error al cargar servicio",
-        "loadErrorDescription": "No se pudieron cargar los detalles del servicio para su gestión.",
-        "notFoundTitle": "Servicio no encontrado",
-        "notFoundDescription": "El servicio que intenta gestionar no existe."
-      },
-      "authRequired": {
-        "title": "Autenticación requerida",
-        "description": "Debe haber iniciado sesión para gestionar este servicio.",
-        "button": "Iniciar sesión"
-      }
-    }
-  },
-  "Profile": {
-    "backLink": "Volver",
-    "loading": "Cargando perfil...",
-    "notFound": {
-      "title": "Perfil no encontrado",
-      "description": "El perfil de usuario que estás buscando no existe."
-    },
-    "tabs": {
-      "overview": "Resumen",
-      "listings": "Publicaciones del mercado",
-      "orders": "Mis pedidos"
-    },
-    "overviewTab": {
-      "contactButton": "Contactar",
-      "aboutSectionTitle": "Acerca de",
-      "rolesLabel": "Roles",
-      "locationLabel": "Ubicación",
-      "bioLabel": "Biografía",
-      "joinedLabel": "Se unió",
-      "loadingText": "Cargando resumen...",
-      "noBio": "Aún no se ha proporcionado una biografía."
-    },
-    "listingsTab": {
-      "title": "Publicaciones del mercado",
-      "description": "Artículos y servicios listados por este usuario.",
-      "noListings": "Este usuario no tiene publicaciones activas.",
-      "loading": "Cargando publicaciones..."
-    },
-    "ordersTab": {
-      "title": "Mis pedidos",
-      "description": "Tus pedidos realizados en el mercado.",
-      "table": {
-        "orderDate": "Fecha del pedido",
-        "seller": "Vendedor",
-        "item": "Artículo",
-        "quantity": "Cantidad",
-        "total": "Total",
-        "status": "Estado"
-      },
-      "noOrders": "Aún no has realizado ningún pedido.",
-      "loading": "Cargando pedidos...",
-      "errors": {
-        "fetchErrorTitle": "Error al cargar pedidos",
-        "fetchErrorDescription": "No se pudieron obtener tus pedidos realizados."
-      }
-    },
-    "errors": {
-      "loadErrorTitle": "Error al cargar perfil",
-      "loadErrorDescription": "No se pudo cargar el perfil del usuario."
-    },
-    "actions": {
-      "editProfile": "Editar perfil"
-    }
-  },
-  "Settings": {
-    "backLink": "Volver",
-    "title": "Configuración",
-    "description": "Gestiona la configuración de tu cuenta y perfil.",
-    "tabs": {
-      "profile": "Perfil",
-      "account": "Cuenta",
-      "notifications": "Notificaciones",
-      "language": "Idioma"
-    },
-    "profileTab": {
-      "title": "Configuración del perfil",
-      "description": "Actualiza la información de tu perfil público.",
-      "form": {
-        "displayNameLabel": "Nombre a mostrar",
-        "displayNamePlaceholder": "Introduce tu nombre a mostrar",
-        "bioLabel": "Biografía",
-        "bioPlaceholder": "Cuéntanos sobre ti...",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "Introduce tu ubicación",
-        "avatarLabel": "Avatar",
-        "avatarDescription": "Sube una foto de perfil.",
-        "currentAvatar": "Avatar actual",
-        "changeAvatarButton": "Cambiar Avatar",
-        "uploadingAvatar": "Subiendo...",
-        "saveButton": "Guardar perfil",
-        "savingButton": "Guardando..."
-      },
-      "toast": {
-        "updateSuccessTitle": "¡Perfil actualizado!",
-        "updateSuccessDescription": "Tu perfil ha sido actualizado correctamente."
-      },
-      "errors": {
-        "updateFailTitle": "Actualización fallida",
-        "updateFailDescription": "No se pudo actualizar tu perfil. Inténtalo de nuevo."
-      }
-    },
-    "accountTab": {
-      "title": "Configuración de la cuenta",
-      "description": "Gestiona la autenticación y seguridad de tu cuenta.",
-      "changePasswordSectionTitle": "Cambiar contraseña",
-      "changePasswordDescription": "Actualiza la contraseña de tu cuenta.",
-      "form": {
-        "currentPasswordLabel": "Contraseña actual",
-        "currentPasswordPlaceholder": "Introduce tu contraseña actual",
-        "newPasswordLabel": "Nueva contraseña",
-        "newPasswordPlaceholder": "Introduce tu nueva contraseña",
-        "confirmPasswordLabel": "Confirmar nueva contraseña",
-        "confirmPasswordPlaceholder": "Confirma tu nueva contraseña",
-        "updatePasswordButton": "Actualizar contraseña",
-        "updatingPasswordButton": "Actualizando..."
-      },
-      "toast": {
-        "passwordUpdateSuccessTitle": "¡Contraseña actualizada!",
-        "passwordUpdateSuccessDescription": "Tu contraseña ha sido actualizada correctamente."
-      },
-      "errors": {
-        "passwordUpdateFailTitle": "Error al actualizar contraseña",
-        "passwordUpdateFailDescription": "No se pudo actualizar tu contraseña. Por favor, comprueba tu contraseña actual e inténtalo de nuevo."
-      }
-    },
-    "notificationsTab": {
-      "title": "Configuración de notificaciones",
-      "description": "Gestiona tus preferencias de notificación por correo electrónico y push.",
-      "emailNotificationsLabel": "Notificaciones por correo electrónico",
-      "emailNotificationsDescription": "Recibir notificaciones por correo electrónico.",
-      "pushNotificationsLabel": "Notificaciones push",
-      "pushNotificationsDescription": "Recibir notificaciones en tu dispositivo.",
-      "saveButton": "Guardar preferencias",
-      "savingButton": "Guardando...",
-      "toast": {
-        "updateSuccessTitle": "¡Preferencias guardadas!",
-        "updateSuccessDescription": "Tus preferencias de notificación han sido guardadas."
-      },
-      "errors": {
-        "updateFailTitle": "Error al guardar",
-        "updateFailDescription": "No se pudieron guardar tus preferencias de notificación."
-      }
-    },
-    "languageTab": {
-      "title": "Configuración de idioma",
-      "description": "Elige tu idioma preferido.",
-      "languageLabel": "Idioma",
-      "languagePlaceholder": "Selecciona un idioma",
-      "saveButton": "Guardar idioma",
-      "savingButton": "Guardando...",
-      "toast": {
-        "updateSuccessTitle": "¡Idioma guardado!",
-        "updateSuccessDescription": "Tu preferencia de idioma ha sido guardada."
-      },
-      "errors": {
-        "updateFailTitle": "Error al guardar",
-        "updateFailDescription": "No se pudo guardar tu preferencia de idioma."
-      }
-    },
-    "loading": "Cargando configuración...",
-    "errors": {
-      "loadErrorTitle": "Error al cargar configuración",
-      "loadErrorDescription": "No se pudo cargar tu configuración."
-    },
-    "authenticationRequired": {
-      "title": "Autenticación requerida",
-      "description": "Debes haber iniciado sesión para ver tu configuración.",
-      "button": "Iniciar sesión"
+    "reporting": {
+      "title": "Denuncia de Violaciones",
+      "content": "Si ve contenido que viola estas directrices, por favor denúncielo a nuestro equipo de moderación en <emailLink>support@damdoh.org</emailLink>.",
+      "conclusion": "Gracias por ayudarnos a hacer de DamDoh una comunidad valiosa y confiable para todos."
     }
   }
 }
-

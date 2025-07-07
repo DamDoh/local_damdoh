@@ -1,321 +1,123 @@
 
 {
-  "AppHeader": {
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion Ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "searchPlaceholder": "Rechercher des personnes, produits, services...",
-    "signIn": "Connexion",
-    "signUp": "Inscription",
-    "myProfile": "Mon Profil",
-    "settings": "Paramètres",
-    "helpCenter": "Centre d'aide",
-    "logOut": "Déconnexion",
-    "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre"
-  },
-  "AppFooter": {
-    "tagline": "La plateforme mondiale de la chaîne d'approvisionnement agricole.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "getMobileApp": "Obtenez l'application DamDoh",
-    "googlePlayAlt": "Disponible sur Google Play",
-    "appStoreAlt": "Télécharger dans l'App Store",
-    "copyright": "© {year} DamDoh. Tous droits réservés."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
-  },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Recherche",
-    "forums": "Forums",
-    "profile": "Profil"
-  },
-  "Auth": {
-    "signInWelcome": "Bienvenue à nouveau sur DamDoh",
-    "signInTitle": "Connectez-vous à Votre Compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte ?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Se connecter",
-    "recoverWithUniversalIdPrompt": "Ou Récupérer le Compte avec l'ID Universel",
-    "signUpWelcome": "Rejoignez le réseau DamDoh",
-    "signUpTitle": "Créez Votre Compte",
-    "signUpDescription": "Commencez votre voyage dans l'écosystème agricole numérique.",
-    "nameLabel": "Nom Complet ou Nom de l'Entreprise",
-    "namePlaceholder": "Ex: Jeanne Dupont ou Fermes de la Vallée Verte",
-    "roleLabel": "Votre Rôle Principal",
-    "rolePlaceholder": "Sélectionnez votre rôle principal dans la chaîne d'approvisionnement",
-    "passwordPlaceholder": "••••••••",
-    "confirmPasswordLabel": "Confirmer le Mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un Compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
-    "forgotPasswordResetPrompt": "Récupérez l'accès à votre compte DamDoh.",
-    "forgotPasswordTitle": "Mot de passe Oublié",
-    "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "sendResetLinkButton": "Envoyer le Lien de Réinitialisation",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
-    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte DamDoh.",
-    "resetPasswordTitle": "Réinitialiser Votre Mot de Passe",
-    "resetPasswordDescription": "Choisissez un nouveau mot de passe fort pour votre compte.",
-    "newPasswordLabel": "Nouveau Mot de passe",
-    "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
-    "resettingPasswordButton": "Réinitialisation en cours...",
-    "resetPasswordButton": "Réinitialiser le Mot de passe",
-    "recoverPage": {
-      "title": "Récupération de Compte",
-      "description": "Récupérez votre compte en utilisant la vérification sociale d'un ami de confiance sur DamDoh.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Entrez le numéro de téléphone du compte que vous souhaitez récupérer.",
-      "step2": "Montrez le code QR temporaire sur votre écran à un ami de confiance qui est également un utilisateur de DamDoh.",
-      "step3": "Votre ami scanne le code pour confirmer votre identité, vous donnant ainsi accès sur ce nouvel appareil.",
-      "startButton": "Démarrer la Récupération",
-      "scanTitle": "Faites Scanner par un Ami",
-      "scanDescription": "Laissez une connexion de confiance DamDoh scanner ce code QR temporaire pour vérifier votre identité.",
-      "scanNote": "Ce code est valide pendant 10 minutes.",
-      "startOverButton": "Recommencer"
+  "about": {
+    "title": "À Propos de Nous",
+    "subtitle": "Connecter l'agriculture mondiale, un maillon à la fois.",
+    "mission": {
+      "title": "Notre Mission",
+      "content": "Notre mission est de doter chaque acteur de la chaîne d'approvisionnement agricole des outils, des connexions et des connaissances nécessaires pour prospérer sur un marché mondial durable et équitable."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "content": "Nous envisageons un monde où la chaîne d'approvisionnement agricole est transparente, efficace et juste, garantissant la sécurité alimentaire et la prospérité pour toutes les communautés."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "sustainability": {
+        "title": "Durabilité",
+        "content": "Promouvoir des pratiques qui nourrissent la planète pour les générations futures."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "content": "Croire que le vrai progrès vient du travail en commun au-delà des frontières et des rôles."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "content": "Tirer parti de la technologie pour résoudre les défis agricoles du monde réel."
+      },
+      "integrity": {
+        "title": "Intégrité",
+        "content": "Engagés pour la transparence, la confiance et le commerce équitable dans toutes les interactions."
+      },
+      "empowerment": {
+        "title": "Autonomisation",
+        "content": "Fournir aux utilisateurs les outils et les données pour prendre des décisions éclairées et développer leurs entreprises."
+      }
+    },
+    "team": {
+      "title": "Notre Équipe",
+      "intro": "Nous sommes une équipe diversifiée de technologues, d'agronomes et d'experts de la chaîne d'approvisionnement passionnés par la révolution de l'agriculture.",
+      "member1Name": "Dr. Alima Bello",
+      "member1Role": "Fondatrice et PDG",
+      "member1Bio": "Économiste agricole avec 20 ans d'expérience dans le développement international et les chaînes de valeur durables.",
+      "member2Name": "Chen Wei",
+      "member2Role": "Directeur de la Technologie",
+      "member2Bio": "Architecte logiciel spécialisé dans les plateformes évolutives, l'IA et la technologie blockchain pour la traçabilité.",
+      "member3Name": "Maria Rodriguez",
+      "member3Role": "Responsable de la Communauté Mondiale",
+      "member3Bio": "Experte en engagement communautaire qui s'assure que les voix de nos utilisateurs animent la plateforme.",
+      "note": "(Remarque : L'équipe ci-dessus est représentative et à des fins de démonstration)."
     }
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Connectez. Transigez. Croissez. L'avantage {appName}.",
-      "subtitle": "La plateforme mondiale qui autonomise chaque acteur de la chaîne d'approvisionnement agricole, des agriculteurs et coopératives aux fournisseurs de logistique et acheteurs mondiaux.",
-      "getStartedButton": "Commencer maintenant",
-      "learnMoreButton": "En savoir plus"
+  "careers": {
+    "title": "Rejoignez Notre Équipe",
+    "subtitle": "Faites partie de la révolution agrotechnologique.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi Travailler avec Nous",
+      "intro": "Chez DamDoh, nous ne construisons pas seulement une plateforme ; nous cultivons un avenir durable. Nous offrons :",
+      "point1": "Un travail porteur de sens qui a un impact direct sur les communautés mondiales.",
+      "point2": "Un environnement d'apprentissage continu et de croissance professionnelle.",
+      "point3": "Une équipe diversifiée, inclusive et collaborative.",
+      "point4": "Une rémunération compétitive et des avantages flexibles.",
+      "point5": "L'opportunité de travailler à la pointe de la technologie et de l'agriculture."
     },
-    "features": {
-      "title": "Conçu pour l'ensemble de l'écosystème",
-      "subtitle": "DamDoh fournit des outils et des connexions sur mesure pour chaque étape de la chaîne de valeur agricole.",
-      "networking": {
-        "title": "Réseautage intelligent",
-        "description": "Connectez-vous avec les bons partenaires, des fournisseurs locaux aux acheteurs internationaux, en fonction de vos besoins et de votre rôle spécifiques."
+    "currentOpenings": {
+      "title": "Offres Actuelles"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur Logiciel Senior (Backend)",
+        "location": "À distance",
+        "type": "Temps plein",
+        "description": "Nous recherchons un développeur backend expérimenté pour nous aider à faire évoluer nos microservices et à construire de nouvelles fonctionnalités pour la plateforme."
       },
-      "marketplace": {
-        "title": "Marché mondial",
-        "description": "Achetez et vendez des produits, des équipements et des services en toute sécurité sur un marché mondial transparent."
+      "job2": {
+        "title": "Chef de Produit - Marché",
+        "location": "Nairobi, Kenya",
+        "type": "Temps plein",
+        "description": "Diriger la stratégie et le développement de notre marché mondial, en veillant à ce qu'il réponde aux besoins des acheteurs et des vendeurs."
       },
-      "forums": {
-        "title": "Partage de connaissances",
-        "description": "Rejoignez des forums thématiques pour partager des idées, poser des questions et apprendre des experts du monde entier."
-      },
-      "talent": {
-        "title": "Bourse de talents",
-        "description": "Trouvez des professionnels qualifiés ou offrez votre expertise pour des projets agricoles à court ou long terme."
+      "job3": {
+        "title": "Responsable de la Réussite Client",
+        "location": "À distance (Fuseau horaire de l'Amérique Latine)",
+        "type": "Temps plein",
+        "description": "Soyez la voix de nos utilisateurs en Amérique Latine, en fournissant un soutien, en recueillant des commentaires et en assurant leur succès sur la plateforme."
       }
     },
-    "forWho": {
-      "badge": "Qui en bénéficie ?",
-      "title": "Une plateforme pour chaque acteur",
-      "description": "Que vous soyez sur le terrain ou au bureau, DamDoh a les outils dont vous avez besoin pour réussir.",
-      "farmers": {
-        "title": "Agriculteurs et coopératives",
-        "description": "Gérez votre ferme, suivez les produits de la semence à la vente et accédez à des marchés plus larges."
-      },
-      "buyers": {
-        "title": "Acheteurs et transformateurs",
-        "description": "Trouvez des produits fiables et traçables directement à la source et gérez efficacement votre chaîne d'approvisionnement."
-      },
-      "experts": {
-        "title": "Fournisseurs de services et experts",
-        "description": "Offrez vos services, de l'agronomie à la logistique en passant par la finance, à un public agricole ciblé."
-      }
-    },
-    "cta": {
-      "title": "Prêt à transformer votre façon de travailler ?",
-      "subtitle": "Rejoignez des milliers de professionnels de l'agriculture qui renforcent la confiance, la transparence et la croissance dans la chaîne d'approvisionnement mondiale.",
-      "button": "Rejoignez la communauté DamDoh aujourd'hui"
+    "applyNowButton": "Postuler maintenant",
+    "noOpenings": {
+      "title": "Aucune offre d'emploi pour le moment",
+      "content1": "Nous sommes toujours à la recherche de personnes talentueuses. Si vous pensez que vous seriez un bon candidat, envoyez-nous votre CV à <emailLink>careers@damdoh.org</emailLink>."
     }
   },
-  "Forums": {
-    "title": "Sujets du forum",
-    "description": "Parcourir et créer des sujets de discussion",
-    "lastActivity": "Dernière activité il y a {{time}}",
-    "searchPlaceholder": "Rechercher des sujets...",
-    "buttons": {
-      "createTopic": "Créer un sujet",
-      "joinDiscussion": "Rejoindre la discussion",
-      "loadMore": "Charger plus",
-      "loadingMore": "Chargement en cours...",
-      "pinHomepage": "Épingler à l'accueil",
-      "unpinHomepage": "Détacher de l'accueil"
+  "communityGuidelines": {
+    "title": "Directives de la Communauté",
+    "subtitle": "Nos principes pour une communauté florissante et respectueuse.",
+    "intro": "Pour maintenir un environnement sûr, digne de confiance et professionnel pour tous les membres, nous demandons à chacun de respecter les directives suivantes.",
+    "respectful": {
+      "title": "Soyez Respectueux et Constructif",
+      "description": "Engagez-vous dans des discussions avec respect. Les attaques personnelles, le harcèlement et les commentaires dénigrants seront supprimés."
     },
-    "notFound": {
-      "title": "Aucun sujet trouvé",
-      "tryDifferentSearch": "Essayez une autre recherche.",
-      "beTheFirst": "Soyez le premier à créer un sujet."
+    "authentic": {
+      "title": "Soyez Authentique",
+      "description": "Représentez-vous et votre entreprise honnêtement. Ne vous faites pas passer pour d'autres et ne fournissez pas de fausses informations."
     },
-    "pinning": {
-      "pinnedTitle": "Accueil épinglé !",
-      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
-      "unpinnedTitle": "Accueil détaché !",
-      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    "relevant": {
+      "title": "Restez dans le Sujet",
+      "description": "Publiez du contenu pertinent pour l'agriculture, les chaînes d'approvisionnement, l'agrotechnologie et les sujets connexes. Le spam et les promotions non sollicitées ne sont pas autorisés."
     },
-    "errors": {
-      "loadTitle": "Erreur lors du chargement des sujets",
-      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
-      "auth": {
-        "title": "Non authentifié",
-        "description": "Vous devez être connecté pour créer un sujet."
-      },
-      "incomplete": {
-        "title": "Champs incomplets",
-        "description": "Veuillez remplir tous les champs obligatoires."
-      },
-      "general": {
-        "title": "Erreur",
-        "description": "Une erreur s'est produite lors de la création du sujet."
-      }
+    "fairTrade": {
+      "title": "Commerce Équitable",
+      "description": "Toutes les transactions et négociations menées sur la plateforme doivent être effectuées de bonne foi. Les pratiques frauduleuses ou trompeuses entraîneront la suppression de la plateforme."
     },
-    "create": {
-      "backLink": "Retour aux sujets",
-      "title": "Créer un nouveau sujet",
-      "description": "Démarrer une nouvelle discussion sur le forum.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "Entrez le nom de votre sujet",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
-        "submitButton": "Créer le sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "success": {
-        "title": "Sujet créé avec succès",
-        "description": "Votre nouveau sujet a été créé."
-      }
+    "sustainable": {
+      "title": "Soutenez la Durabilité",
+      "description": "Encouragez et participez à des discussions et des pratiques qui soutiennent l'agriculture durable et la gérance de l'environnement."
     },
-    "topic": {
-      "unknownUser": "Utilisateur inconnu",
-      "postMeta": "par {{author}} le {{date}}",
-      "noPosts": {
-        "title": "Aucun message pour l'instant",
-        "description": "Soyez le premier à répondre à ce sujet.",
-        "button": "Ajouter une réponse"
-      },
-      "notFound": {
-        "title": "Sujet introuvable",
-        "description": "Le sujet que vous recherchez n'existe pas.",
-        "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Erreur de chargement des messages",
-          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
-        },
-        "loadTopic": {
-          "title": "Erreur de chargement du sujet",
-          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
-        }
-      }
-    },
-    "createPost": {
-      "aiHelper": {
-        "title": "Assistant IA",
-        "description": "Générer un brouillon de message basé sur une invite.",
-        "promptLabel": "Invite IA",
-        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
-        "generateButton": "Générer le brouillon",
-        "generatingButton": "Génération en cours..."
-      },
-      "title": "Créer un nouveau message",
-      "description": "Ajouter un nouveau message à ce sujet.",
-      "form": {
-        "titleLabel": "Titre du message",
-        "titlePlaceholder": "Entrez le titre de votre message",
-        "contentLabel": "Contenu du message",
-        "contentPlaceholder": "Écrivez le contenu de votre message ici...",
-        "submitButton": "Créer le message",
-        "submittingButton": "Envoi en cours..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Brouillon IA généré !",
-          "description": "Un brouillon a été généré pour vous."
-        },
-        "title": "Message créé !",
-        "description": "Votre message a été créé avec succès."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Invite IA manquante",
-          "description": "Veuillez fournir une invite pour l'assistant IA."
-        },
-        "aiDraft": {
-          "title": "Erreur de brouillon IA",
-          "description": "Échec de la génération du brouillon IA."
-        },
-        "incomplete": {
-          "title": "Champs incomplets",
-          "description": "Veuillez remplir tous les champs obligatoires."
-        },
-        "general": {
-          "title": "Erreur",
-          "description": "Une erreur s'est produite lors de la création du message."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Retour à {{topicName}}",
-      "postMeta": "par {{author}} le {{date}}",
-      "repliesTitle": "Réponses ({count})",
-      "noReplies": "Aucune réponse pour l'instant.",
-      "reply": {
-        "title": "Ajouter une réponse",
-        "placeholder": "Écrivez votre réponse ici...",
-        "submitButton": "Ajouter une réponse",
-        "submittingButton": "Envoi en cours...",
-        "success": "Réponse ajoutée !"
-      },
-      "notFound": {
-        "title": "Message introuvable",
-        "description": "Le message que vous recherchez n'existe pas.",
-        "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Erreur de chargement du message",
-          "description": "Une erreur s'est produite lors du chargement des détails du message."
-        },
-        "loadReplies": {
-          "title": "Erreur de chargement des réponses",
-          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
-        },
-        "emptyReply": "La réponse ne peut pas être vide.",
-        "submitReply": {
-          "title": "Erreur d'envoi de la réponse",
-          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
-        }
-      }
+    "reporting": {
+      "title": "Signaler les Violations",
+      "content": "Si vous voyez du contenu qui enfreint ces directives, veuillez le signaler à notre équipe de modération à <emailLink>support@damdoh.org</emailLink>.",
+      "conclusion": "Merci de nous aider à faire de DamDoh une communauté précieuse et digne de confiance pour tous."
     }
   }
 }
-

@@ -13,8 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Helper Components defined *outside* the main component
-
+// Standalone Helper Component 1: DashboardSkeleton
 function DashboardSkeleton() {
     return (
         <div className="space-y-6">
@@ -31,6 +30,7 @@ function DashboardSkeleton() {
     );
 }
 
+// Standalone Helper Component 2: StatCard
 interface StatCardProps {
   title: string;
   value: number;
@@ -65,6 +65,7 @@ function StatCard({ title, value, icon, actionLink, actionLabel, unit, isCurrenc
   );
 }
 
+// Standalone Helper Component 3: AlertIcon
 function AlertIcon({ icon }: { icon: 'FlaskConical' | 'Sprout' }) {
     const iconMap = {
         FlaskConical: FlaskConical,
@@ -74,9 +75,8 @@ function AlertIcon({ icon }: { icon: 'FlaskConical' | 'Sprout' }) {
     return <IconComponent className="h-5 w-5" />;
 }
 
-
 // Main Dashboard Component
-export const FarmerDashboard = () => {
+export function FarmerDashboard() {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -203,4 +203,5 @@ export const FarmerDashboard = () => {
             </Card>
         </div>
     );
-};
+}
+
