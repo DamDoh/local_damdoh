@@ -207,7 +207,7 @@
       "repliesTitle": "Replies ({replyCount})",
       "noReplies": "No replies yet. Be the first to respond!",
       "loadingMoreButton": "Loading...",
-      "loadMoreButton": "Load More Replies",
+      "loadMoreComments": "Load More Replies",
       "yourReplyTitle": "Your Reply",
       "replyPlaceholder": "Write your reply...",
       "replySubmittingButton": "Posting...",
@@ -367,7 +367,8 @@
       "filterPlaceholder": "Filter by event type",
       "organizedBy": "Organized by {organizer}",
       "viewDetails": "View Details",
-      "noEventsFound": "No Events Found",      "noEventsHint": "There are currently no events matching your criteria. Why not <link>create one</link>?",
+      "noEventsFound": "No Events Found",
+      "noEventsHint": "There are currently no events matching your criteria. Why not <link>create one</link>?",
       "errorLoadingEvents": "Error Loading Events",
       "couldNotFetchEvents": "Could not fetch the list of events. Please try again later.",
       "toast": {
@@ -605,5 +606,56 @@
         }
       }
     }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Connect. Transact. Grow. The {appName} Advantage.",
+      "subtitle": "The global platform empowering every stakeholder in the agricultural supply chain, from farmers and co-ops to logistics providers and global buyers.",
+      "getStartedButton": "Get Started Now",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "Engineered for the Entire Ecosystem",
+      "subtitle": "DamDoh provides tailored tools and connections for every stage of the agricultural value chain.",
+      "networking": {
+        "title": "Intelligent Networking",
+        "description": "Connect with the right partners, from local suppliers to international buyers, based on your specific needs and role."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell products, equipment, and services securely in a transparent, global marketplace."
+      },
+      "forums": {
+        "title": "Knowledge Sharing",
+        "description": "Join topic-specific forums to share insights, ask questions, and learn from experts around the world."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Find skilled professionals or offer your expertise for short-term or long-term agricultural projects."
+      }
+    },
+    "forWho": {
+      "badge": "Who Benefits?",
+      "title": "A Platform for Every Player",
+      "description": "Whether you're in the field or the office, DamDoh has the tools you need to succeed.",
+      "farmers": {
+        "title": "Farmers & Co-ops",
+        "description": "Manage your farm, track produce from seed to sale, and access broader markets."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Find reliable, traceable products directly from the source and manage your supply chain efficiently."
+      },
+      "experts": {
+        "title": "Service Providers & Experts",
+        "description": "Offer your services, from agronomy and logistics to finance, to a targeted agricultural audience."
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform How You Work?",
+      "subtitle": "Join thousands of agricultural professionals building trust, transparency, and growth in the global supply chain.",
+      "button": "Join the DamDoh Community Today"
+    }
   }
 }
+
