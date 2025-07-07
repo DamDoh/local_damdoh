@@ -217,7 +217,7 @@
       }
     }
   },
-   "networkPage": {
+  "networkPage": {
     "title": "ពង្រីកបណ្តាញរបស់អ្នក",
     "description": "ភ្ជាប់ទំនាក់ទំនងជាមួយកសិករ អ្នកទិញ អ្នកជំនាញ និងអង្គការនានា ដើម្បីពង្រីកវិសាលភាពរបស់អ្នក។",
     "refreshSuggestions": "ធ្វើបច្ចុប្បន្នភាពការណែនាំ",
@@ -279,5 +279,78 @@
     "noRecentActivity": "មិនមានសកម្មភាពថ្មីៗដើម្បីបង្ហាញទេ។",
     "universalIdModalTitle": "ID សកលរបស់អ្នក",
     "universalIdModalDescription": "ចែករំលែក QR code នេះជាមួយអ្នកដទៃដោយផ្ទាល់ ដើម្បីចែករំលែកប្រវត្តិរូបសាធារណៈរបស់អ្នកដោយសុវត្ថិភាព។"
+  },
+  "messagingPage": {
+    "title": "សារ",
+    "searchPlaceholder": "ស្វែងរក ឬចាប់ផ្តើមការសន្ទនាថ្មី",
+    "noConversations": "មិនទាន់មានការសន្ទនានៅឡើយទេ។",
+    "selectConversation": "ជ្រើសរើសការសន្ទនាដើម្បីចាប់ផ្តើមជជែក",
+    "typeMessagePlaceholder": "សរសេរសារ...",
+    "send": "ផ្ញើ",
+    "error": "កំហុស",
+    "couldNotLoadConversations": "មិនអាចផ្ទុកការសន្ទនាបានទេ។",
+    "couldNotStartConversation": "មិនអាចចាប់ផ្តើមការសន្ទនាថ្មីបានទេ។",
+    "sendFailed": "ការផ្ញើបានបរាជ័យ",
+    "couldNotSendMessage": "មិនអាចផ្ញើសាររបស់អ្នកបានទេ។",
+    "signInToView": "សូមចូលគណនីដើម្បីមើលសាររបស់អ្នក។",
+    "signIn": "ចូលគណនី"
+  },
+  "notificationsPage": {
+    "title": "ការជូនដំណឹង",
+    "description": "សកម្មភាពថ្មីៗ និងបច្ចុប្បន្នភាពរបស់អ្នកពីសហគមន៍។",
+    "noNotifications": "គ្មានការជូនដំណឹងថ្មីទេ។",
+    "likedYourPost": "{name} បានចូលចិត្តការបង្ហោះរបស់អ្នក",
+    "commentedOnYourPost": "{name} បានបញ្ចេញមតិលើការបង្ហោះរបស់អ្នក",
+    "viewedYourProfile": "{name} បានមើលប្រវត្តិរូបរបស់អ្នក",
+    "placedNewOrder": "{name} បានធ្វើការបញ្ជាទិញថ្មីសម្រាប់ការចុះបញ្ជីរបស់អ្នក",
+    "sentConnectionRequest": "{name} ចង់ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នក"
+  },
+  "FeedItemCard": {
+    "like": "ចូលចិត្ត",
+    "comment": "មតិយោបល់",
+    "repost": "បង្ហោះឡើងវិញ",
+    "noComments": "មិនទាន់មានមតិយោបល់ទេ។ សូមធ្វើជាអ្នកដំបូងដែលឆ្លើយតប!",
+    "loadingComments": "កំពុងផ្ទុកមតិយោបល់...",
+    "loadMoreComments": "ផ្ទុកមតិយោបល់បន្ថែម",
+    "writeCommentPlaceholder": "សរសេរមតិយោបល់...",
+    "postButton": "បង្ហោះ",
+    "signInToLikeToast": "សូមចូលគណនីដើម្បីចូលចិត្តការបង្ហោះ។",
+    "loadCommentsErrorToast": "មិនអាចផ្ទុកមតិយោបល់បានទេ។",
+    "voteSuccessToast": "បានរាប់សន្លឹកឆ្នោត!",
+    "voteErrorToast": "ការចុះឈ្មោះសន្លឹកឆ្នោតបានបរាជ័យ",
+    "signInToVoteToast": "សូមចូលគណនីដើម្បីបោះឆ្នោត។"
+  },
+  "CreatePostModal": {
+    "title": "បង្កើតការបង្ហោះថ្មី",
+    "description": "សរសេរ និងចែករំលែកព័ត៌មានថ្មីៗជាមួយសហគមន៍។ អ្នកអាចបន្ថែមអត្ថបទ, មេឌៀ, ឬបង្កើតការស្ទង់មតិ។",
+    "yourName": "ឈ្មោះ​របស់​អ្នក",
+    "shareUpdate": "ចែករំលែកព័ត៌មានថ្មីៗ",
+    "placeholder": "តើអ្នកចង់ចែករំលែកការយល់ដឹង ឬព័ត៌មានកសិកម្មអ្វីខ្លះ?",
+    "selectedFile": "ឯកសារដែលបានជ្រើសរើស៖",
+    "pollOptionsLabel": "ជម្រើសនៃការស្ទង់មតិ",
+    "pollOptionPlaceholder": "ជម្រើសទី {index}",
+    "addOptionButton": "បន្ថែមជម្រើស",
+    "pollNote": "អតិបរមា {maxOptions} ជម្រើស។ ជម្រើសនីមួយៗអតិបរមា ៨០ តួអក្សរ។",
+    "addMediaButton": "បន្ថែមរូបថត/វីដេអូ",
+    "createEventButton": "បង្កើតព្រឹត្តិការណ៍កសិកម្ម",
+    "shareDocumentButton": "ចែករំលែកឯកសារ",
+    "createPollButton": "បង្កើតការស្ទង់មតិ",
+    "postButton": "បង្ហោះ",
+    "pollOptionsError": "ការស្ទង់មតិតម្រូវឱ្យមានយ៉ាងហោចណាស់ ២ ជម្រើស។",
+    "emptyPostError": "សូមបន្ថែមខ្លឹមសារ, រូបភាព, ឬការស្ទង់មតិដែលត្រឹមត្រូវទៅក្នុងប្រកាសរបស់អ្នក។"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "ពង្រីកបណ្តាញរបស់អ្នក",
+    "refreshSuggestions": "ធ្វើបច្ចុប្បន្នភាពការណែនាំ",
+    "ad": "ការផ្សាយពាណិជ្ជកម្ម",
+    "adTitle": "នាំមុខគេជាមួយនិន្នាការទីផ្សាររបស់ DamDoh!",
+    "adDescription": "ទទួលបានការយល់ដឹងផ្តាច់មុខអំពីតម្លៃទំនិញ និងសក្ដានុពលនៃខ្សែសង្វាក់ផ្គត់ផ្គង់។",
+    "adButton": "ស្វែងយល់ពីនិន្នាការ DamDoh Pro",
+    "follow": "តាមដាន",
+    "following": "កំពុងតាមដាន",
+    "signInPrompt": "ចូលគណនីដើម្បីទទួលបានការណែនាំផ្ទាល់ខ្លួន។",
+    "loadError": "មិនអាចផ្ទុកការណែនាំបានទេ។ សូម​ព្យាយាម​ម្តង​ទៀត។",
+    "noSuggestions": "មិនមានការណែនាំថ្មីនៅពេលនេះទេ។",
+    "infoTooltip": "ការណែនាំទាំងនេះត្រូវបានដំណើរការដោយ AI ដោយផ្អែកលើតួនាទី ចំណាប់អារម្មណ៍ និងសកម្មភាពរបស់អ្នកនៅលើវេទិកា។"
   }
 }

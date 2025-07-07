@@ -7,10 +7,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Trash2, Share2, Send, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,10 +20,10 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2 } from 'lucide-react';
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useAuth } from "@/lib/auth-utils";
+import { useTranslations } from "next-intl";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -39,6 +35,7 @@ interface FeedItemCardProps {
 const functions = getFunctions(firebaseApp);
 
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
+  const t = useTranslations('FeedItemCard');
   const { user } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
   
@@ -85,7 +82,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   
 
   const handleLike = () => {
-    if (!user) { toast({ title: "Please sign in to like posts.", variant: "destructive" }); return; }
+    if (!user) { toast({ title: t('signInToLikeToast'), variant: "destructive" }); return; }
     setIsLiked(prev => !prev);
     onLike(item.id);
   };
@@ -101,11 +98,11 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       setHasMoreComments(!!data.lastVisible);
     } catch (error) {
       console.error("Failed to fetch comments:", error);
-      toast({ title: "Could not load comments.", variant: "destructive" });
+      toast({ title: t('loadCommentsErrorToast'), variant: "destructive" });
     } finally {
       setIsLoadingReplies(false);
     }
-  }, [item.id, lastVisible, hasMoreComments, getCommentsForPost, toast]);
+  }, [item.id, lastVisible, hasMoreComments, getCommentsForPost, toast, t]);
 
 
   const handleCommentButtonClick = async () => {
@@ -133,7 +130,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   
   const handlePollVote = async (optionIndex: number) => {
     if (votedOptionIndex !== null || !user) {
-        if (!user) toast({ title: "Please sign in to vote.", variant: "destructive" });
+        if (!user) toast({ title: t('signInToVoteToast'), variant: "destructive" });
         return;
     }
     
@@ -147,9 +144,9 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
 
     try {
         await voteOnPollCallable({ postId: item.id, optionIndex });
-        toast({ title: "Vote counted!" });
+        toast({ title: t('voteSuccessToast') });
     } catch (error: any) {
-        toast({ title: "Failed to register vote", description: error.message, variant: "destructive" });
+        toast({ title: t('voteErrorToast'), description: error.message, variant: "destructive" });
         // Revert UI on error
         const revertedPollOptions = [...currentPollOptions];
         revertedPollOptions[optionIndex].votes = (revertedPollOptions[optionIndex].votes || 1) - 1;
@@ -237,13 +234,13 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         </div>
         <div className="flex justify-around border-t pt-1">
           <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
-            <ThumbsUp className="mr-2 h-5 w-5" /> Like
+            <ThumbsUp className="mr-2 h-5 w-5" /> {t('like')}
           </Button>
           <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleCommentButtonClick}>
-            <MessageSquare className="mr-2 h-5 w-5" /> Comment
+            <MessageSquare className="mr-2 h-5 w-5" /> {t('comment')}
           </Button>
           <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleRepost}>
-            <Share2 className="mr-2 h-5 w-5" /> Repost
+            <Share2 className="mr-2 h-5 w-5" /> {t('repost')}
           </Button>
         </div>
         
@@ -264,11 +261,11 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                         </div>
                     ))
                 ) : !isLoadingReplies && (
-                    <p className="text-xs text-center text-muted-foreground py-2">No comments yet. Be the first to reply!</p>
+                    <p className="text-xs text-center text-muted-foreground py-2">{t('noComments')}</p>
                 )}
-                {isLoadingReplies && <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">Loading comments...</span></div>}
+                {isLoadingReplies && <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">{t('loadingComments')}</span></div>}
                 {hasMoreComments && !isLoadingReplies && (
-                    <Button variant="link" size="sm" className="w-full" onClick={() => fetchComments()}>Load More Comments</Button>
+                    <Button variant="link" size="sm" className="w-full" onClick={() => fetchComments()}>{t('loadMoreComments')}</Button>
                 )}
             </div>
              <div className="flex items-start gap-2 pt-2">
@@ -278,7 +275,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                 </Avatar>
                 <div className="flex-1">
                   <Textarea
-                    placeholder="Write a comment..."
+                    placeholder={t('writeCommentPlaceholder')}
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                     className="min-h-[40px] text-sm"
@@ -288,7 +285,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                    <div className="flex justify-end gap-2 mt-2">
                       <Button size="sm" onClick={handlePostComment} disabled={!commentText.trim() || isSubmittingComment}>
                         {isSubmittingComment && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                        Post
+                        {t('postButton')}
                       </Button>
                     </div>
                 </div>

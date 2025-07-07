@@ -82,15 +82,13 @@ const getNotificationLink = (notification: Notification): string => {
 };
 
 const getNotificationText = (notification: Notification, actorName: string, t: any) => {
-    const name = <span className="font-semibold">{actorName}</span>;
+    const nameSpan = <span className="font-semibold">{actorName}</span>;
     switch (notification.type) {
-        case 'like': return <>{name} {t('likedYourPost')}</>;
-        case 'comment': return <>{name} {t('commentedOnYourPost')}</>;
-        case 'profile_view': return <>{name} {t('viewedYourProfile')}</>;
-        case 'new_order': return <>{name} {t('placedNewOrder')}</>;
-        case 'new_connection_request': return <>{name} {t('sentConnectionRequest')}</>;
-        case 'event_reminder':
-        case 'service_reminder':
+        case 'like': return t('likedYourPost', { name: nameSpan });
+        case 'comment': return t('commentedOnYourPost', { name: nameSpan });
+        case 'profile_view': return t('viewedYourProfile', { name: nameSpan });
+        case 'new_order': return t('placedNewOrder', { name: nameSpan });
+        case 'new_connection_request': return t('sentConnectionRequest', { name: nameSpan });
         default: return <>{notification.body_en}</>; // Fallback to the body from the backend
     }
 };

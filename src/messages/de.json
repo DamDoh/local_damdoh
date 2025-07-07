@@ -203,7 +203,7 @@
         "backButton": "Zurück zur Gruppe"
       },
       "repliesTitle": "Antworten ({replyCount})",
-      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "noReplies": "Noch keine Antworten. Sei der Erste, der antwortet!",
       "loadingMoreButton": "Wird geladen...",
       "loadMoreButton": "Weitere Antworten laden",
       "yourReplyTitle": "Ihre Antwort",
@@ -217,7 +217,7 @@
       }
     }
   },
-   "networkPage": {
+  "networkPage": {
     "title": "Erweitern Sie Ihr Netzwerk",
     "description": "Vernetzen Sie sich mit Landwirten, Käufern, Experten und Organisationen, um Ihre Reichweite zu vergrößern.",
     "refreshSuggestions": "Vorschläge aktualisieren",
@@ -279,5 +279,78 @@
     "noRecentActivity": "Keine kürzlichen Aktivitäten zum Anzeigen.",
     "universalIdModalTitle": "Ihre Universal-ID",
     "universalIdModalDescription": "Teilen Sie diesen QR-Code persönlich mit anderen, um Ihr öffentliches Profil sicher zu teilen."
+  },
+  "messagingPage": {
+    "title": "Nachrichten",
+    "searchPlaceholder": "Suchen oder neue Konversation starten",
+    "noConversations": "Noch keine Konversationen.",
+    "selectConversation": "Wählen Sie eine Konversation aus, um zu chatten",
+    "typeMessagePlaceholder": "Nachricht schreiben...",
+    "send": "Senden",
+    "error": "Fehler",
+    "couldNotLoadConversations": "Konversationen konnten nicht geladen werden.",
+    "couldNotStartConversation": "Neue Konversation konnte nicht gestartet werden.",
+    "sendFailed": "Senden fehlgeschlagen",
+    "couldNotSendMessage": "Ihre Nachricht konnte nicht gesendet werden.",
+    "signInToView": "Bitte melden Sie sich an, um Ihre Nachrichten anzuzeigen.",
+    "signIn": "Anmelden"
+  },
+  "notificationsPage": {
+    "title": "Benachrichtigungen",
+    "description": "Ihre letzten Aktivitäten und Neuigkeiten aus der Community.",
+    "noNotifications": "Keine neuen Benachrichtigungen.",
+    "likedYourPost": "{name} hat Ihren Beitrag mit 'Gefällt mir' markiert",
+    "commentedOnYourPost": "{name} hat Ihren Beitrag kommentiert",
+    "viewedYourProfile": "{name} hat Ihr Profil angesehen",
+    "placedNewOrder": "{name} hat eine neue Bestellung für Ihr Angebot aufgegeben",
+    "sentConnectionRequest": "{name} möchte sich mit Ihnen vernetzen"
+  },
+  "FeedItemCard": {
+    "like": "Gefällt mir",
+    "comment": "Kommentieren",
+    "repost": "Erneut posten",
+    "noComments": "Noch keine Kommentare. Sei der Erste, der antwortet!",
+    "loadingComments": "Lade Kommentare...",
+    "loadMoreComments": "Weitere Kommentare laden",
+    "writeCommentPlaceholder": "Einen Kommentar schreiben...",
+    "postButton": "Posten",
+    "signInToLikeToast": "Bitte melden Sie sich an, um Beiträge zu liken.",
+    "loadCommentsErrorToast": "Kommentare konnten nicht geladen werden.",
+    "voteSuccessToast": "Stimme gezählt!",
+    "voteErrorToast": "Stimme konnte nicht registriert werden",
+    "signInToVoteToast": "Bitte melden Sie sich an, um abzustimmen."
+  },
+  "CreatePostModal": {
+    "title": "Neuen Beitrag erstellen",
+    "description": "Verfassen und teilen Sie ein Update mit der Community. Sie können Text, Medien hinzufügen oder eine Umfrage erstellen.",
+    "yourName": "Ihr Name",
+    "shareUpdate": "Update teilen",
+    "placeholder": "Welche landwirtschaftlichen Erkenntnisse oder Neuigkeiten möchten Sie teilen?",
+    "selectedFile": "Ausgewählte Datei:",
+    "pollOptionsLabel": "Umfrageoptionen",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Option hinzufügen",
+    "pollNote": "Max. {maxOptions} Optionen. Jede Option max. 80 Zeichen.",
+    "addMediaButton": "Foto/Video hinzufügen",
+    "createEventButton": "Agri-Event erstellen",
+    "shareDocumentButton": "Dokument teilen",
+    "createPollButton": "Umfrage erstellen",
+    "postButton": "Posten",
+    "pollOptionsError": "Eine Umfrage benötigt mindestens 2 Optionen.",
+    "emptyPostError": "Bitte fügen Sie Ihrem Beitrag etwas Inhalt, ein Bild oder eine gültige Umfrage hinzu."
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Erweitern Sie Ihr Netzwerk",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "ad": "Anzeige",
+    "adTitle": "Bleiben Sie mit DamDoh Markttrends immer einen Schritt voraus!",
+    "adDescription": "Erhalten Sie exklusive Einblicke in Rohstoffpreise und Lieferkettendynamiken.",
+    "adButton": "DamDoh Pro Trends entdecken",
+    "follow": "Folgen",
+    "following": "Gefolgt",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
+    "loadError": "Vorschläge konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "noSuggestions": "Im Moment keine neuen Vorschläge.",
+    "infoTooltip": "Diese Vorschläge werden von der KI basierend auf Ihrer Rolle, Ihren Interessen und Ihrer Aktivität auf der Plattform erstellt."
   }
 }

@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
 import type { StakeholderRole } from "@/lib/constants";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useTranslations } from "next-intl";
 
 
 interface AISuggestion {
@@ -24,6 +25,7 @@ interface AISuggestion {
 }
 
 export function DashboardRightSidebar() {
+  const t = useTranslations('DashboardRightSidebar');
   const [followedSuggestions, setFollowedSuggestions] = useState<Set<string>>(new Set());
   const [aiSuggestions, setAiSuggestions] = useState<AISuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
@@ -59,12 +61,12 @@ export function DashboardRightSidebar() {
       }
     } catch (error) {
       console.error("Error fetching AI suggestions:", error);
-      setSuggestionError("Failed to load suggestions. Please try again.");
+      setSuggestionError(t('loadError'));
       setAiSuggestions([]);
     } finally {
       setIsLoadingSuggestions(false);
     }
-  }, [profile]);
+  }, [profile, t]);
 
   useEffect(() => {
     // Only fetch suggestions if we are not loading profile and user exists
@@ -102,7 +104,7 @@ export function DashboardRightSidebar() {
     }
     
     if (!user) {
-        return <p className="text-sm text-muted-foreground text-center py-4">Sign in to get personalized suggestions.</p>;
+        return <p className="text-sm text-muted-foreground text-center py-4">{t('signInPrompt')}</p>;
     }
     
     if (isLoadingSuggestions) {
@@ -129,7 +131,7 @@ export function DashboardRightSidebar() {
     }
 
     if (aiSuggestions.length === 0) {
-      return <p className="text-sm text-muted-foreground text-center py-4">No new suggestions at the moment.</p>;
+      return <p className="text-sm text-muted-foreground text-center py-4">{t('noSuggestions')}</p>;
     }
 
     return aiSuggestions.map(sug => (
@@ -154,10 +156,10 @@ export function DashboardRightSidebar() {
             disabled={followedSuggestions.has(sug.id)}
           >
             {followedSuggestions.has(sug.id) ? (
-              "Following"
+              t('following')
             ) : (
               <>
-                <Plus className="mr-1 h-3 w-3" /> Follow
+                <Plus className="mr-1 h-3 w-3" /> {t('follow')}
               </>
             )}
           </Button>
@@ -171,12 +173,12 @@ export function DashboardRightSidebar() {
     <div className="space-y-4 sticky top-20">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <CardTitle className="text-md font-semibold">Grow Your Network</CardTitle>
+          <CardTitle className="text-md font-semibold">{t('networkTitle')}</CardTitle>
           <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={fetchSuggestions} className="h-7 w-7" title="Refresh Suggestions" disabled={isLoadingSuggestions}>
+            <Button variant="ghost" size="icon" onClick={fetchSuggestions} className="h-7 w-7" title={t('refreshSuggestions')} disabled={isLoadingSuggestions}>
               <RefreshCw className={`h-4 w-4 ${isLoadingSuggestions ? 'animate-spin' : ''}`} />
             </Button>
-            <Info className="h-4 w-4 text-muted-foreground cursor-pointer ml-1" />
+            <Info className="h-4 w-4 text-muted-foreground cursor-pointer ml-1" title={t('infoTooltip')} />
           </div>
         </CardHeader>
         <CardContent>
@@ -196,9 +198,9 @@ export function DashboardRightSidebar() {
       <Card className="overflow-hidden">
         <CardContent className="p-0">
           <div className="p-2 text-right">
-            <span className="text-xs text-muted-foreground">Ad <MoreHorizontalIcon className="inline h-3 w-3" /></span>
+            <span className="text-xs text-muted-foreground">{t('ad')} <MoreHorizontalIcon className="inline h-3 w-3" /></span>
           </div>
-          <p className="text-xs text-muted-foreground text-center px-4">Stay ahead with DamDoh Market Trends!</p>
+          <p className="text-xs text-muted-foreground text-center px-4">{t('adTitle')}</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
             <Avatar className="h-12 w-12">
                 <AvatarImage src="https://placehold.co/50x50.png" alt="DamDoh Market Trends Ad" data-ai-hint="market chart agriculture"/>
@@ -206,10 +208,10 @@ export function DashboardRightSidebar() {
             </Avatar>
              <TrendingUp className="h-10 w-10 text-primary" />
           </div>
-          <p className="text-sm font-semibold text-center px-4 my-1">Get exclusive insights on commodity prices and supply chain dynamics.</p>
+          <p className="text-sm font-semibold text-center px-4 my-1">{t('adDescription')}</p>
           <div className="px-4 py-3">
             <Button variant="outline" className="w-full" asChild>
-              <Link href="/industry-news">Explore DamDoh Pro Trends</Link>
+              <Link href="/industry-news">{t('adButton')}</Link>
             </Button>
           </div>
         </CardContent>

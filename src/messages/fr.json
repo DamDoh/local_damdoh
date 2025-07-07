@@ -217,7 +217,7 @@
       }
     }
   },
-   "networkPage": {
+  "networkPage": {
     "title": "Développez votre réseau",
     "description": "Connectez-vous avec des agriculteurs, des acheteurs, des experts et des organisations pour étendre votre portée.",
     "refreshSuggestions": "Actualiser les suggestions",
@@ -279,5 +279,78 @@
     "noRecentActivity": "Aucune activité récente à afficher.",
     "universalIdModalTitle": "Votre ID universel",
     "universalIdModalDescription": "Partagez ce code QR avec d'autres personnes en personne pour partager votre profil public en toute sécurité."
+  },
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Chercher ou démarrer une nouvelle conversation",
+    "noConversations": "Aucune conversation pour le moment.",
+    "selectConversation": "Sélectionnez une conversation pour commencer à discuter",
+    "typeMessagePlaceholder": "Écrire un message...",
+    "send": "Envoyer",
+    "error": "Erreur",
+    "couldNotLoadConversations": "Impossible de charger les conversations.",
+    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
+    "sendFailed": "Envoi échoué",
+    "couldNotSendMessage": "Votre message n'a pas pu être envoyé.",
+    "signInToView": "Veuillez vous connecter pour voir vos messages.",
+    "signIn": "Se connecter"
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Votre activité récente et les mises à jour de la communauté.",
+    "noNotifications": "Aucune nouvelle notification.",
+    "likedYourPost": "{name} a aimé votre publication",
+    "commentedOnYourPost": "{name} a commenté votre publication",
+    "viewedYourProfile": "{name} a consulté votre profil",
+    "placedNewOrder": "{name} a passé une nouvelle commande pour votre annonce",
+    "sentConnectionRequest": "{name} souhaite se connecter avec vous"
+  },
+  "FeedItemCard": {
+    "like": "J'aime",
+    "comment": "Commenter",
+    "repost": "Republier",
+    "noComments": "Aucun commentaire pour l'instant. Soyez le premier à répondre !",
+    "loadingComments": "Chargement des commentaires...",
+    "loadMoreComments": "Charger plus de commentaires",
+    "writeCommentPlaceholder": "Écrire un commentaire...",
+    "postButton": "Publier",
+    "signInToLikeToast": "Veuillez vous connecter pour aimer les publications.",
+    "loadCommentsErrorToast": "Impossible de charger les commentaires.",
+    "voteSuccessToast": "Vote compté !",
+    "voteErrorToast": "Échec de l'enregistrement du vote",
+    "signInToVoteToast": "Veuillez vous connecter pour voter."
+  },
+  "CreatePostModal": {
+    "title": "Créer une nouvelle publication",
+    "description": "Rédigez et partagez une mise à jour avec la communauté. Vous pouvez ajouter du texte, des médias ou créer un sondage.",
+    "yourName": "Votre nom",
+    "shareUpdate": "Partager une mise à jour",
+    "placeholder": "Quelles informations ou nouvelles agricoles souhaitez-vous partager ?",
+    "selectedFile": "Fichier sélectionné :",
+    "pollOptionsLabel": "Options du sondage",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Ajouter une option",
+    "pollNote": "Max {maxOptions} options. Chaque option 80 caractères max.",
+    "addMediaButton": "Ajouter Photo/Vidéo",
+    "createEventButton": "Créer un événement Agri",
+    "shareDocumentButton": "Partager un document",
+    "createPollButton": "Créer un sondage",
+    "postButton": "Publier",
+    "pollOptionsError": "Un sondage nécessite au moins 2 options.",
+    "emptyPostError": "Veuillez ajouter du contenu, une image ou un sondage valide à votre publication."
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Développez votre réseau",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "ad": "Publicité",
+    "adTitle": "Gardez une longueur d'avance avec les tendances du marché DamDoh !",
+    "adDescription": "Obtenez des informations exclusives sur les prix des produits de base et la dynamique de la chaîne d'approvisionnement.",
+    "adButton": "Explorer les tendances DamDoh Pro",
+    "follow": "Suivre",
+    "following": "Abonné",
+    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
+    "loadError": "Impossible de charger les suggestions. Veuillez réessayer.",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment.",
+    "infoTooltip": "Ces suggestions sont alimentées par l'IA en fonction de votre rôle, de vos intérêts et de votre activité sur la plateforme."
   }
 }
