@@ -368,9 +368,7 @@
       "organizedBy": "Organisiert von {organizer}",
       "viewDetails": "Details anzeigen",
       "noEventsFound": "Keine Veranstaltungen gefunden",
-      "noEventsHint": {
-        "link": "eine erstellen"
-      },
+      "noEventsHint": "Es gibt derzeit keine Veranstaltungen, die Ihren Kriterien entsprechen. Warum nicht <link>eine erstellen</link>?",
       "errorLoadingEvents": "Fehler beim Laden von Veranstaltungen",
       "couldNotFetchEvents": "Die Liste der Veranstaltungen konnte nicht geladen werden. Bitte versuchen Sie es später erneut.",
       "toast": {
@@ -1320,5 +1318,148 @@
         "insightsErrorTitle": "Farmeinsichten konnten nicht geladen werden."
       }
     }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Landwirt",
+      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
+      "FieldAgentAgronomistDamDohInternal": "Außendienstmitarbeiter/Agronom (DamDoh Intern)",
+      "OperationsLogisticsTeamDamDohInternal": "Betriebs-/Logistikteam (DamDoh Intern)",
+      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungsteam (DamDoh Intern)",
+      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
+      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
+      "InputSupplierSeedFertilizerPesticide": "Lieferant von Betriebsmitteln (Saatgut, Dünger, Pestizide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
+      "GovernmentRegulatorAuditor": "Regierungsregulierer/Prüfer",
+      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
+      "Consumer": "Verbraucher",
+      "ResearcherAcademic": "Forscher/Akademiker",
+      "LogisticsPartnerThird-PartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
+      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
+      "AgronomyExpertConsultantExternal": "Agronom/Berater (Extern)",
+      "Agro-TourismOperator": "Agro-Tourismus-Betreiber",
+      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogas)",
+      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
+      "Agri-TechInnovatorDeveloper": "Agri-Tech-Innovator/Entwickler",
+      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
+      "InsuranceProvider": "Versicherungsanbieter",
+      "PackagingSupplier": "Verpackungslieferant"
+    },
+    "listingTypes": {
+      "All": "Alle Typen",
+      "Product": "Produkt",
+      "Service": "Dienstleistung"
+    },
+    "agriEventTypes": {
+      "All": "Alle Typen",
+      "Conference": "Konferenz",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Messe",
+      "FieldDay": "Feldtag",
+      "NetworkingEvent": "Networking-Veranstaltung",
+      "OnlineCourseLaunch": "Online-Kurs-Start",
+      "PolicyBriefing": "Politik-Briefing"
+    }
+  },
+  "marketplacePage": {
+    "title": "Marktplatz",
+    "description": "Entdecken Sie Produkte, Dienstleistungen und Möglichkeiten aus der gesamten landwirtschaftlichen Lieferkette.",
+    "createShopButton": "Digitalen Shop erstellen",
+    "createListingButton": "Neues Angebot erstellen",
+    "unpinButton": "Von Startseite lösen",
+    "pinButton": "Als Startseite anheften",
+    "searchPlaceholder": "Produkte oder Dienstleistungen suchen...",
+    "locationPlaceholder": "Nach Ort filtern...",
+    "typePlaceholder": "Angebotstyp",
+    "recommendedForYou": "Für Sie empfohlen",
+    "discoverMore": "Mehr entdecken",
+    "viewServiceButton": "Dienstleistung ansehen",
+    "viewDetails": "Details ansehen",
+    "noItemsFound": "Keine Angebote gefunden",
+    "noItemsHint": "Versuchen Sie, Ihre Suche anzupassen, oder seien Sie der Erste, der in Ihrer Region ein Angebot erstellt!",
+    "toast": {
+      "unpinned": {
+        "title": "Startseite gelöst!",
+        "description": "Das Dashboard ist jetzt Ihre Standard-Startseite."
+      },
+      "pinned": {
+        "title": "Marktplatz angeheftet!",
+        "description": "Der Marktplatz ist jetzt Ihre Standard-Startseite."
+      }
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre Expertise für landwirtschaftliche Projekte an.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Nach Fähigkeiten oder Rollen suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Dienstleistungskategorie",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Ergebnisse gefunden",
+    "noResultsDescription": "Es wurden keine Dienstleistungen oder Jobangebote gefunden, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche zu erweitern.",
+    "toast": {
+      "error": {
+        "title": "Fehler",
+        "description": "Marktplatzartikel konnten nicht geladen werden."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Rückverfolgbarkeit von Produkten",
+    "description": "Verfolgen Sie die Reise Ihrer Lebensmittel vom Bauernhof bis zum Tisch für vollständige Transparenz.",
+    "inputPlaceholder": "Geben Sie eine Chargen- oder VTI-Nummer ein...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Die VTI (Verifiable Traceability ID) ist ein eindeutiger Code, der jeder Charge zugeordnet ist.",
+    "recentTitle": "Kürzlich verfolgte Chargen",
+    "recentDescription": "Ihre kürzlich verfolgten Artikel werden hier zur schnellen Referenz angezeigt.",
+    "detailPage": {
+      "invalidIdError": "Ungültige Chargen-ID bereitgestellt.",
+      "loadError": "Daten konnten nicht geladen werden.",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Keine Rückverfolgungsdaten für die angegebene ID gefunden.",
+      "backLink": "Zurück zur Suche",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Produzent",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Unsere Daten deuten darauf hin, dass bei dieser Charge nachhaltige Anbaumethoden angewendet wurden.",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Ertrag",
+      "qualityLabel": "Qualität",
+      "notSpecified": "Nicht angegeben",
+      "journeyTitle": "Reise des Produkts",
+      "journeyDescription": "Ein chronologischer Bericht über die Ereignisse in der Lieferkette für diese Charge.",
+      "noEventDetails": "Keine Details protokolliert.",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-Diagnose",
+      "geoLocationLabel": "Geo-Standort",
+      "noEventsFound": "Für diese Charge wurden noch keine Ereignisse protokolliert."
+    }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "description": "Einblicke, Geschichten und Wissen aus der DamDoh-Community.",
+    "error": {
+      "title": "Fehler beim Laden",
+      "description": "Blogbeiträge konnten nicht geladen werden."
+    },
+    "meta": "{author} • {date}",
+    "readMore": "Weiterlesen",
+    "noPosts": {
+      "title": "Keine Blogbeiträge gefunden",
+      "description": "Schauen Sie bald wieder vorbei für die neuesten Artikel und Einblicke."
+    },
+    "backLink": "Zurück zum Blog",
+    "notFound": {
+      "title": "Beitrag nicht gefunden",
+      "description": "Der von Ihnen gesuchte Artikel konnte nicht gefunden werden.",
+      "backButton": "Zurück zum Blog"
+    }
   }
 }
+
