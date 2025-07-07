@@ -1,21 +1,17 @@
-
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Add this new rule for the knowledge base
-    // Note: for this rule to be effective, the general wildcard rule below should be
-    // made more restrictive. For this prototype, we are leaving it as is.
-    match /knowledge_base/{docId} {
-      // Allow any authenticated user to read the knowledge base.
-      allow read: if request.auth != null;
-      // Only allow users with an 'admin' or 'curator' custom claim to write.
-      allow write: if request.auth.token.admin == true || request.auth.token.curator == true;
-    }
-
-    // Allow read/write access on all documents to any user signed in to the application
+    // WARNING: These rules are permissive and are intended for initial development.
+    // They should be refined with more specific security logic before production.
     match /{document=**} {
-      allow read, write: if request.auth != null;
+      // Allow public read access to all documents.
+      // This is useful for public content like marketplace listings, forums, and user profiles.
+      allow read: if true;
+
+      // Allow write access (create, update, delete) only for authenticated users.
+      // In production, you should restrict this further to ensure users can only
+      // write to their own documents (e.g., `if request.auth.uid == resource.data.userId`).
+      allow write: if request.auth != null;
     }
   }
 }
