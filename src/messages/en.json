@@ -114,8 +114,17 @@
       "successDescription": "{name} has been successfully created and is now active.",
       "errorTitle": "Creation Failed"
     }
+  },
+  "LogisticsDashboard": {
+    "title": "Logistics Hub",
+    "performanceTitle": "Performance Overview",
+    "onTimeDelivery": "On-time delivery rate",
+    "viewReportButton": "View Full Report",
+    "activeShipmentsTitle": "Active Shipments",
+    "incomingJobsTitle": "Incoming Jobs",
+    "noActiveShipments": "No active shipments.",
+    "trackButton": "Track VTI",
+    "noIncomingJobs": "No incoming jobs available.",
+    "acceptJobButton": "Accept Job"
   }
 }
-
-    
-

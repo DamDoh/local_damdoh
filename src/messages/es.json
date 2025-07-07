@@ -114,5 +114,17 @@
       "successDescription": "{name} ha sido creado exitosamente y ahora está activo.",
       "errorTitle": "Creación Fallida"
     }
+  },
+  "LogisticsDashboard": {
+    "title": "Centro de Logística",
+    "performanceTitle": "Resumen de Rendimiento",
+    "onTimeDelivery": "Tasa de entrega a tiempo",
+    "viewReportButton": "Ver Informe Completo",
+    "activeShipmentsTitle": "Envíos Activos",
+    "incomingJobsTitle": "Trabajos Entrantes",
+    "noActiveShipments": "No hay envíos activos.",
+    "trackButton": "Rastrear VTI",
+    "noIncomingJobs": "No hay trabajos entrantes disponibles.",
+    "acceptJobButton": "Aceptar Trabajo"
   }
 }

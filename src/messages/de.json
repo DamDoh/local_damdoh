@@ -1,5 +1,4 @@
 
-
 {
   "FiApplicationListPage": {
     "backLink": "Zurück zum Dashboard",
@@ -73,7 +72,7 @@
     "viewAllButton": "Alle Anträge anzeigen"
   },
   "FiProductsPage": {
-    "backLink": "Zurück zu den Produkten",
+    "backLink": "Zurück zum Dashboard",
     "title": "Finanzprodukte verwalten",
     "description": "Erstellen und sehen Sie Ihre angebotenen Kredite und Zuschüsse.",
     "createButton": "Neues Produkt erstellen",
@@ -115,5 +114,17 @@
       "successDescription": "{name} wurde erfolgreich erstellt und ist jetzt aktiv.",
       "errorTitle": "Erstellung fehlgeschlagen"
     }
+  },
+  "LogisticsDashboard": {
+    "title": "Logistik-Hub",
+    "performanceTitle": "Leistungsübersicht",
+    "onTimeDelivery": "Pünktliche Lieferrate",
+    "viewReportButton": "Vollständigen Bericht anzeigen",
+    "activeShipmentsTitle": "Aktive Sendungen",
+    "incomingJobsTitle": "Eingehende Aufträge",
+    "noActiveShipments": "Keine aktiven Sendungen.",
+    "trackButton": "VTI verfolgen",
+    "noIncomingJobs": "Keine eingehenden Aufträge verfügbar.",
+    "acceptJobButton": "Auftrag annehmen"
   }
 }

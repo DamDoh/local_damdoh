@@ -114,5 +114,17 @@
       "successDescription": "{name} a été créé avec succès et est maintenant actif.",
       "errorTitle": "Échec de la création"
     }
+  },
+  "LogisticsDashboard": {
+    "title": "Hub Logistique",
+    "performanceTitle": "Aperçu des performances",
+    "onTimeDelivery": "Taux de livraison à temps",
+    "viewReportButton": "Voir le rapport complet",
+    "activeShipmentsTitle": "Expéditions Actives",
+    "incomingJobsTitle": "Tâches à Venir",
+    "noActiveShipments": "Aucune expédition active.",
+    "trackButton": "Suivre VTI",
+    "noIncomingJobs": "Aucune tâche à venir disponible.",
+    "acceptJobButton": "Accepter la Tâche"
   }
 }

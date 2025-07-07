@@ -114,5 +114,17 @@
       "successDescription": "{name} ត្រូវបានបង្កើតដោយជោគជ័យ និងសកម្មឥឡូវនេះ។",
       "errorTitle": "ការបង្កើតបានបរាជ័យ"
     }
+  },
+  "LogisticsDashboard": {
+    "title": "មជ្ឈមណ្ឌលឡូជីស្ទិក",
+    "performanceTitle": "ទិដ្ឋភាពទូទៅនៃដំណើរការ",
+    "onTimeDelivery": "អត្រាដឹកជញ្ជូនទាន់ពេល",
+    "viewReportButton": "មើលរបាយការណ៍ពេញលេញ",
+    "activeShipmentsTitle": "ការដឹកជញ្ជូនសកម្ម",
+    "incomingJobsTitle": "ការងារចូល",
+    "noActiveShipments": "គ្មានការដឹកជញ្ជូនសកម្មទេ។",
+    "trackButton": "តាមដាន VTI",
+    "noIncomingJobs": "គ្មានការងារចូលទេ។",
+    "acceptJobButton": "ទទួលយកការងារ"
   }
 }
