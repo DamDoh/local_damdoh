@@ -226,3 +226,12 @@ export const getCreateMarketplaceCouponSchema = (t: (key: string) => string) => 
 });
 
 export type CreateMarketplaceCouponValues = z.infer<ReturnType<typeof getCreateMarketplaceCouponSchema>>;
+
+export const financialApplicationSchema = z.object({
+  fiId: z.string().min(1, "Please select a Financial Institution."),
+  type: z.enum(['Loan', 'Grant'], { required_error: "Please select an application type." }),
+  amount: z.coerce.number().positive("Amount must be a positive number."),
+  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
+  purpose: z.string().min(20, "Please provide a detailed purpose for the funding (min 20 characters).").max(1000, "Purpose is too long."),
+});
+export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;

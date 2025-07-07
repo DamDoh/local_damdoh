@@ -34,3 +34,6 @@ export * from "./universal-id";
 export * from "./agro-tourism";
 export * from "./network";
 export * from "./labor";
+
+// Note: ai-services.ts is deprecated and its functions are migrated.
+// It is no longer exported.

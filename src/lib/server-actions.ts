@@ -1,7 +1,7 @@
 
 "use server";
 
-import { collection, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
 import { adminDb } from './firebase/admin';
 import type { UserProfile, MarketplaceItem } from '@/lib/types';
 import { httpsCallable } from "firebase/functions";
@@ -26,8 +26,8 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
       return { 
         id: docSnap.id, 
         ...data,
-        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+        createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+        updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
     });
     return profileList;
@@ -47,8 +47,8 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
       return { 
         id: profileSnap.id, 
         ...data,
-        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+        createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+        updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
     }
     return null;
@@ -73,8 +73,8 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
       return { 
         id: docSnap.id, 
         ...data,
-        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
+        createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+        updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
       } as MarketplaceItem;
     });
     return itemList;
@@ -98,4 +98,20 @@ export async function performSearch(interpretation: SmartSearchInterpretation): 
         console.error("[Action] Error calling performSearch cloud function:", error);
         throw error;
     }
+}
+
+// --- Financials Actions ---
+export async function getFinancialInstitutions(): Promise<UserProfile[]> {
+  try {
+    const fiCol = query(collection(adminDb, 'users'), where('primaryRole', '==', 'Financial Institution (Micro-finance/Loans)'));
+    const fiSnapshot = await getDocs(fiCol);
+    if (fiSnapshot.empty) {
+      console.log("No financial institutions found.");
+      return [];
+    }
+    return fiSnapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() } as UserProfile));
+  } catch (error) {
+    console.error("Error fetching FIs from Firestore: ", error);
+    return [];
+  }
 }

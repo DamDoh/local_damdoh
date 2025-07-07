@@ -5,6 +5,13 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 // --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
 
 /**
@@ -816,4 +823,37 @@ export const updateFinancialApplicationStatus = functions.https.onCall(async (da
     });
 
     return { success: true, message: `Application status updated to ${status}.` };
+});
+
+
+export const submitFinancialApplication = functions.https.onCall(async (data, context) => {
+    const applicantId = checkAuth(context);
+    const { fiId, type, amount, currency, purpose } = data;
+
+    // Basic validation
+    if (!fiId || !type || !amount || !purpose) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required application fields.");
+    }
+    
+    const applicantDoc = await db.collection("users").doc(applicantId).get();
+    if (!applicantDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Applicant profile not found.");
+    }
+    const applicantName = applicantDoc.data()?.displayName || "Unknown Applicant";
+
+    const applicationRef = db.collection("financial_applications").doc();
+    await applicationRef.set({
+        applicantId: applicantId,
+        applicantName: applicantName,
+        fiId: fiId,
+        type: type,
+        amount: Number(amount),
+        currency: currency || "USD",
+        status: "Pending", // Initial status
+        purpose: purpose,
+        submittedAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, applicationId: applicationRef.id };
 });

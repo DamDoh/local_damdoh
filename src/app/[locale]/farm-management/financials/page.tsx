@@ -5,7 +5,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowUpCircle, ArrowDownCircle, Banknote, DollarSign, PlusCircle } from 'lucide-react';
+import { ArrowUpCircle, ArrowDownCircle, Banknote, DollarSign, PlusCircle, FilePlus } from 'lucide-react';
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -103,9 +103,17 @@ export default function FinancialDashboardPage() {
             </h1>
             <p className="text-muted-foreground">{t('description')}</p>
         </div>
-        <Button asChild>
-            <Link href="/farm-management/financials/log"><PlusCircle className="mr-2 h-4 w-4"/>{t('newTransactionButton')}</Link>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button asChild>
+                <Link href="/farm-management/financials/apply">
+                    <FilePlus className="mr-2 h-4 w-4"/>
+                    {t('applyForFundingButton')}
+                </Link>
+            </Button>
+            <Button asChild variant="outline">
+                <Link href="/farm-management/financials/log"><PlusCircle className="mr-2 h-4 w-4"/>{t('newTransactionButton')}</Link>
+            </Button>
+        </div>
       </div>
       
       <div className="grid gap-4 md:grid-cols-3">
