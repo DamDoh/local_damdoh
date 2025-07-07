@@ -13,7 +13,7 @@ import { PlusCircle, Search, MapPin, Frown } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getAllProfilesFromDB } from "@/lib/db-utils";
+import { getAllProfilesFromDB } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 

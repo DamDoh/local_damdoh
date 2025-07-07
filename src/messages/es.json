@@ -211,6 +211,12 @@
         "crop_insurance": "Seguro de Cosecha",
         "livestock_insurance": "Seguro de Ganado",
         "property_insurance": "Seguro de Propiedad"
-    }
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
   }
 }

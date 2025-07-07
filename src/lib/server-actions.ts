@@ -1,7 +1,7 @@
 
 "use server";
 
-import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { getAdminDb } from './firebase/admin';
 import type { UserProfile, MarketplaceItem } from '@/lib/types';
 import { httpsCallable } from "firebase/functions";
@@ -14,8 +14,9 @@ const MARKETPLACE_COLLECTION = 'marketplaceItems';
 // --- Profile Functions ---
 
 export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return [];
   try {
-    const adminDb = getAdminDb();
     const profilesCol = collection(adminDb, PROFILES_COLLECTION);
     const profileSnapshot = await getDocs(profilesCol);
     if (profileSnapshot.empty) {
@@ -39,9 +40,10 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 }
 
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return null;
   try {
     if (!id) return null;
-    const adminDb = getAdminDb();
     const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
@@ -60,11 +62,36 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
   }
 }
 
+export async function updateProfileInDB(id: string, data: Partial<UserProfile>): Promise<UserProfile | null> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return null;
+  if (!id) return null;
+  const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
+  await updateDoc(profileDocRef, data);
+  const updatedDoc = await getDoc(profileDocRef);
+  if (updatedDoc.exists()) {
+    const data = updatedDoc.data();
+    return { id: updatedDoc.id, ...data } as UserProfile;
+  }
+  return null;
+}
+
+export async function deleteProfileFromDB(id: string): Promise<boolean> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return false;
+  if (!id) return false;
+  const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
+  await deleteDoc(profileDocRef);
+  return true;
+}
+
+
 // --- Marketplace Functions ---
 
 export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return [];
   try {
-    const adminDb = getAdminDb();
     const itemsCol = collection(adminDb, MARKETPLACE_COLLECTION);
     const itemSnapshot = await getDocs(itemsCol);
     if (itemSnapshot.empty) {
@@ -87,6 +114,46 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
   }
 }
 
+export async function getMarketplaceItemByIdFromDB(id: string): Promise<MarketplaceItem | null> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return null;
+  if (!id) return null;
+  const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
+  const itemSnap = await getDoc(itemDocRef);
+  if (itemSnap.exists()) {
+    const data = itemSnap.data();
+    return {
+      id: itemSnap.id,
+      ...data,
+      createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+      updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
+    } as MarketplaceItem;
+  }
+  return null;
+}
+
+export async function updateMarketplaceItemInDB(id: string, data: Partial<MarketplaceItem>): Promise<MarketplaceItem | null> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return null;
+  if (!id) return null;
+  const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
+  await updateDoc(itemDocRef, data);
+  const updatedDoc = await getDoc(itemDocRef);
+  if (updatedDoc.exists()) {
+    const data = updatedDoc.data();
+    return { id: updatedDoc.id, ...data } as MarketplaceItem;
+  }
+  return null;
+}
+
+export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> {
+  const adminDb = getAdminDb();
+  if (!adminDb) return false;
+  if (!id) return false;
+  const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
+  await deleteDoc(itemDocRef);
+  return true;
+}
 
 // --- Universal Search Action ---
 // This function calls a Firebase Cloud Function. It is a server action but defined here
@@ -107,6 +174,7 @@ export async function performSearch(interpretation: SmartSearchInterpretation): 
 export async function getFinancialInstitutions(): Promise<UserProfile[]> {
   try {
     const adminDb = getAdminDb();
+    if (!adminDb) return [];
     const fiCol = query(collection(adminDb, 'users'), where('primaryRole', '==', 'Financial Institution (Micro-finance/Loans)'));
     const fiSnapshot = await getDocs(fiCol);
     if (fiSnapshot.empty) {

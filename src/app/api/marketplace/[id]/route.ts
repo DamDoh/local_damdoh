@@ -6,7 +6,7 @@ import {
   getMarketplaceItemByIdFromDB, 
   updateMarketplaceItemInDB, 
   deleteMarketplaceItemFromDB 
-} from '@/lib/db-utils';
+} from '@/lib/server-actions';
 import { 
   successResponse, 
   notFoundResponse, 

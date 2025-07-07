@@ -7,7 +7,7 @@ import type {
     MarketplaceOrderSchema,
     ForumPostSchema,
     AgriEventSchema
-} from './schemas';
+} from '@/firebase/functions/src/schemas';
 import type { LucideIcon } from 'lucide-react';
 
 

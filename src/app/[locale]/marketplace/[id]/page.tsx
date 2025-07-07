@@ -7,7 +7,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/db-utils';
+import { getProfileByIdFromDB } from '@/lib/server-actions';
 import QRCode from 'qrcode.react';
 import { addDays, differenceInCalendarDays } from 'date-fns';
 import type { DateRange } from "react-day-picker";
