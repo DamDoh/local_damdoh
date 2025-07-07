@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Accueil",
@@ -607,5 +606,410 @@
         }
       }
     }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Connectez-vous. Transigez. Croissez. L'avantage {appName}.",
+      "subtitle": "La plateforme mondiale qui autonomise chaque acteur de la chaîne d'approvisionnement agricole, des agriculteurs et coopératives aux fournisseurs de logistique et acheteurs mondiaux.",
+      "getStartedButton": "Commencer maintenant",
+      "learnMoreButton": "En savoir plus"
+    },
+    "features": {
+      "title": "Conçu pour l'ensemble de l'écosystème",
+      "subtitle": "DamDoh fournit des outils et des connexions sur mesure pour chaque étape de la chaîne de valeur agricole.",
+      "networking": {
+        "title": "Réseautage intelligent",
+        "description": "Connectez-vous avec les bons partenaires, des fournisseurs locaux aux acheteurs internationaux, en fonction de vos besoins et de votre rôle spécifiques."
+      },
+      "marketplace": {
+        "title": "Marché mondial",
+        "description": "Achetez et vendez des produits, des équipements et des services en toute sécurité sur un marché mondial transparent."
+      },
+      "forums": {
+        "title": "Partage de connaissances",
+        "description": "Rejoignez des forums thématiques pour partager des idées, poser des questions et apprendre des experts du monde entier."
+      },
+      "talent": {
+        "title": "Bourse de talents",
+        "description": "Trouvez des professionnels qualifiés ou offrez votre expertise pour des projets agricoles à court ou long terme."
+      }
+    },
+    "forWho": {
+      "badge": "Qui en bénéficie ?",
+      "title": "Une plateforme pour chaque acteur",
+      "description": "Que vous soyez sur le terrain ou au bureau, DamDoh a les outils dont vous avez besoin pour réussir.",
+      "farmers": {
+        "title": "Agriculteurs et coopératives",
+        "description": "Gérez votre ferme, suivez les produits de la semence à la vente et accédez à des marchés plus larges."
+      },
+      "buyers": {
+        "title": "Acheteurs et transformateurs",
+        "description": "Trouvez des produits fiables et traçables directement à la source et gérez efficacement votre chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Fournisseurs de services et experts",
+        "description": "Offrez vos services, de l'agronomie à la logistique en passant par la finance, à un public agricole ciblé."
+      }
+    },
+    "cta": {
+      "title": "Prêt à transformer votre façon de travailler ?",
+      "subtitle": "Rejoignez des milliers de professionnels de l'agriculture qui renforcent la confiance, la transparence et la croissance dans la chaîne d'approvisionnement mondiale.",
+      "button": "Rejoignez la communauté DamDoh aujourd'hui"
+    }
+  },
+  "about": {
+    "title": "À propos de DamDoh",
+    "subtitle": "Favoriser les connexions pour autonomiser l'agriculture mondiale.",
+    "mission": {
+      "title": "Notre mission",
+      "content": "Notre mission est de numériser et de démocratiser la chaîne d'approvisionnement agricole mondiale, en dotant chaque acteur des outils, des connaissances et des connexions nécessaires à une croissance durable et rentable."
+    },
+    "vision": {
+      "title": "Notre vision",
+      "content": "Nous envisageons un monde où chaque acteur agricole, quelle que soit sa taille ou son emplacement, peut participer de manière transparente à un marché mondial transparent, efficace et équitable, conduisant à une plus grande sécurité alimentaire et à une prospérité économique pour tous."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "sustainability": {
+        "title": "Durabilité",
+        "content": "Nous défendons des pratiques qui protègent la planète et garantissent la viabilité à long terme des communautés agricoles."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "content": "Nous croyons que les meilleures solutions émergent lorsque diverses parties prenantes travaillent ensemble pour résoudre des défis communs."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "content": "Nous exploitons la technologie pour résoudre des problèmes concrets, améliorer l'efficacité et créer de nouvelles opportunités dans l'agriculture."
+      },
+      "integrity": {
+        "title": "Intégrité",
+        "content": "Nous valorisons la transparence, la confiance et un comportement éthique dans toutes nos interactions et dans la plateforme que nous construisons."
+      },
+      "empowerment": {
+        "title": "Autonomisation",
+        "content": "Nous nous concentrons sur la fourniture à chaque utilisateur des données, des informations et des connexions dont il a besoin pour prendre des décisions éclairées et développer son activité."
+      }
+    },
+    "team": {
+      "title": "Notre équipe",
+      "intro": "DamDoh est dirigé par une équipe passionnée de technologues, d'agronomes et d'experts en affaires qui se consacrent à la transformation de l'agriculture.",
+      "member1Name": "Dr Elara Vance",
+      "member1Role": "PDG et fondatrice",
+      "member1Bio": "Avec un doctorat en économie agricole et une expérience dans la technologie de la chaîne d'approvisionnement mondiale, Elara est le moteur de la vision de DamDoh.",
+      "member2Name": "Ben Carter",
+      "member2Role": "CTO",
+      "member2Bio": "Un architecte logiciel chevronné passionné par la construction de plateformes évolutives et percutantes.",
+      "member3Name": "Amina Adebayo",
+      "member3Role": "Responsable de la communauté",
+      "member3Bio": "En tant qu'ancienne agronome de terrain, Amina veille à ce que la plateforme DamDoh réponde aux besoins réels des agriculteurs.",
+      "note": "REMARQUE : les membres de l'équipe sont présentés à titre indicatif."
+    }
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez notre équipe et contribuez à façonner l'avenir de l'agriculture.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi travailler avec nous ?",
+      "intro": "Nous sommes une entreprise axée sur une mission, engagée à avoir un impact réel sur l'agriculture mondiale. Nous offrons :",
+      "point1": "Un environnement de travail collaboratif et innovant.",
+      "point2": "Des opportunités de croissance et de développement professionnel.",
+      "point3": "Une rémunération et des avantages sociaux compétitifs.",
+      "point4": "La chance de travailler sur un produit qui améliore la vie de millions de personnes.",
+      "point5": "Des modalités de travail flexibles."
+    },
+    "currentOpenings": {
+      "title": "Offres d'emploi actuelles"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur backend senior (Go/Node.js)",
+        "location": "Télétravail (mondial)",
+        "type": "Temps plein",
+        "description": "Concevoir et mettre en œuvre les microservices de base qui alimentent notre plateforme, en se concentrant sur l'évolutivité et les performances."
+      },
+      "job2": {
+        "title": "Responsable de communauté (Afrique de l'Est)",
+        "location": "Nairobi, Kenya",
+        "type": "Temps plein",
+        "description": "Engagez notre base d'utilisateurs croissante en Afrique de l'Est, en fournissant un soutien et en recueillant des commentaires pour orienter le développement de produits."
+      },
+      "job3": {
+        "title": "Scientifique des données, prévision agricole",
+        "location": "Télétravail (mondial)",
+        "type": "Temps plein",
+        "description": "Développer des modèles d'IA/ML pour prédire les prix du marché, les rendements des cultures et les risques de la chaîne d'approvisionnement."
+      }
+    },
+    "applyNowButton": "Postuler maintenant",
+    "noOpenings": {
+      "title": "Aucune offre d'emploi",
+      "content1": "Nous n'avons actuellement aucune offre d'emploi, mais nous sommes toujours à la recherche de personnes talentueuses. N'hésitez pas à nous envoyer votre CV à {emailLink}."
+    }
+  },
+  "communityGuidelines": {
+    "title": "Règles de la communauté",
+    "subtitle": "Nos engagements communs pour un réseau fiable et professionnel.",
+    "intro": "Bienvenue dans la communauté DamDoh ! Pour garantir que cet espace soit productif et sûr pour tous, nous vous demandons de suivre les directives suivantes :",
+    "respectful": {
+      "title": "Soyez respectueux",
+      "description": "Traitez tous les membres avec professionnalisme et courtoisie. Le harcèlement, les discours de haine et les attaques personnelles ne seront pas tolérés."
+    },
+    "authentic": {
+      "title": "Soyez authentique",
+      "description": "Représentez-vous et votre entreprise avec véracité. N'utilisez pas de faux profils et ne fournissez pas d'informations trompeuses."
+    },
+    "relevant": {
+      "title": "Restez pertinent",
+      "description": "Publiez du contenu pertinent pour la communauté agricole. Le spam, la publicité non sollicitée ou le contenu hors sujet peuvent être supprimés."
+    },
+    "fairTrade": {
+      "title": "Commercez équitablement",
+      "description": "Honorez vos engagements dans toutes les transactions du marché. Toute activité frauduleuse entraînera le retrait immédiat de la plateforme."
+    },
+    "sustainable": {
+      "title": "Promouvoir la durabilité",
+      "description": "Nous encourageons le partage de connaissances et de pratiques qui favorisent une agriculture durable et régénératrice."
+    },
+    "reporting": {
+      "title": "Signaler les violations",
+      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe d'assistance à {emailLink}."
+    },
+    "conclusion": "En respectant ces principes ensemble, nous pouvons construire une communauté précieuse et digne de confiance pour tous."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous serions ravis de vous entendre. Comment pouvons-nous vous aider ?",
+    "emailUs": {
+      "title": "Envoyez-nous un e-mail",
+      "general": "Demandes générales",
+      "support": "Soutien",
+      "partnerships": "Partenariats"
+    },
+    "callUs": {
+      "title": "Appelez-nous",
+      "hours": "Lundi - Vendredi, 9h00 - 17h00 (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Notre bureau",
+      "org": "DamDoh Global",
+      "address": "123 AgriTech Avenue, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Envoyez-nous un message",
+      "nameLabel": "Votre nom",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Votre e-mail",
+      "emailPlaceholder": "vous@exemple.com",
+      "subjectLabel": "Sujet",
+      "subjectPlaceholder": "Sujet de votre message",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tapez votre message ici...",
+      "buttonText": "Envoyer le message",
+      "note": "Ceci est un formulaire de démonstration."
+    }
+  },
+  "helpCenterPage": {
+    "title": "Centre d'aide",
+    "subtitle": "Des réponses et une assistance pour vous aider à tirer le meilleur parti de DamDoh.",
+    "howCanWeHelp": "Comment pouvons-nous vous aider ?",
+    "searchPlaceholder": "Rechercher des articles ou des sujets...",
+    "browseTopics": "Parcourir les sujets",
+    "gettingStarted": {
+      "title": "Premiers pas",
+      "description": "Configuration de votre profil et navigation sur la plateforme.",
+      "placeholder": "Le contenu sur les premiers pas sera bientôt ajouté."
+    },
+    "marketplaceGuide": {
+      "title": "Guide du marché",
+      "description": "Comment acheter, vendre et lister des articles efficacement.",
+      "placeholder": "Le contenu du guide du marché sera bientôt ajouté."
+    },
+    "accountManagement": {
+      "title": "Gestion du compte",
+      "description": "Gérez vos paramètres, votre mot de passe et vos notifications."
+    },
+    "troubleshooting": {
+      "title": "Dépannage",
+      "description": "Trouvez des solutions aux problèmes courants."
+    },
+    "stillNeedHelp": {
+      "title": "Besoin d'aide supplémentaire ?",
+      "description": "Notre équipe d'assistance est là pour vous aider.",
+      "button": "Contacter le support"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Actualités de l'industrie",
+    "description": "Restez à jour avec les dernières nouvelles et tendances de l'agriculture dans le monde.",
+    "searchPlaceholder": "Rechercher des articles de presse...",
+    "categoryPlaceholder": "Choisir une catégorie",
+    "allCategories": "Toutes les catégories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Publié",
+    "categoryLabel": "Catégorie",
+    "readButton": "Lire la suite",
+    "noNews": {
+      "title": "Aucun article d'actualité trouvé",
+      "description": "Revenez bientôt pour les dernières mises à jour."
+    },
+    "news1": {
+      "title": "Les prix des céréales augmentent en raison des perturbations de la chaîne d'approvisionnement",
+      "excerpt": "Les contrats à terme mondiaux sur le blé et le maïs ont augmenté cette semaine, les goulots d'étranglement logistiques et les conditions météorologiques défavorables dans les principales régions de culture affectant les marchés."
+    },
+    "news2": {
+      "title": "Les nouvelles réglementations de l'UE sur les emballages entreront en vigueur en janvier",
+      "excerpt": "Les exportateurs de produits frais vers l'Union européenne devront se conformer aux nouvelles normes de durabilité et d'étiquetage des emballages à compter du 1er janvier."
+    },
+    "news3": {
+      "title": "Une étude montre que l'agriculture régénératrice améliore la santé des sols de 40 %",
+      "excerpt": "Une étude à long terme publiée dans le 'Journal of Soil Science' révèle que les pratiques de non-labour et de cultures de couverture augmentent considérablement la matière organique du sol et la rétention d'eau."
+    }
+  },
+  "knowledgeHub": {
+    "title": "Centre de Connaissances",
+    "description": "Apprenez, partagez et progressez avec des cours, des articles et des aperçus de la communauté.",
+    "courses": {
+      "title": "Cours",
+      "description": "Parcours d'apprentissage structurés par des experts du secteur.",
+      "body": "Approfondissez vos connaissances en pratiques durables, en économie agricole et plus encore. (Bientôt disponible)",
+      "cta": "Parcourir les cours"
+    },
+    "blog": {
+      "title": "Blog et Aperçus",
+      "description": "Lisez des articles et des études de cas de leaders de la communauté.",
+      "body": "Obtenez les dernières perspectives, histoires de réussite et conseils pratiques du réseau DamDoh.",
+      "cta": "Lire le blog"
+    },
+    "featured": {
+      "title": "Contenu en Vedette",
+      "loading": "Chargement du contenu...",
+      "error": "Erreur de chargement du contenu",
+      "noArticles": "Aucun article en vedette disponible."
+    }
+  },
+  "pinboardPage": {
+    "title": "Tableau d'affichage",
+    "description": "Votre collection personnelle d'articles, de profils et d'annonces de marché enregistrés.",
+    "comingSoonTitle": "Bientôt disponible !",
+    "comingSoonDescription": "Le tableau d'affichage sera votre espace personnel pour enregistrer et organiser les informations importantes que vous trouvez sur DamDoh. Vous pourrez épingler les profils que vous souhaitez suivre, les articles à lire plus tard et les produits ou services intéressants.",
+    "stayTuned": "Restez à l'écoute des mises à jour !"
+  },
+  "privacyPolicy": {
+    "title": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Cette politique de confidentialité décrit comment DamDoh recueille, utilise et partage vos informations. (Ceci est un texte de remplacement).",
+    "whatInfoWeCollect": {
+      "heading": "1. QUELLES INFORMATIONS RECUEILLONS-NOUS ?",
+      "content": "Nous recueillons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez sur la Plateforme, exprimez un intérêt pour obtenir des informations sur nous ou nos produits et services, lorsque vous participez à des activités sur la Plateforme ou nous contactez de toute autre manière."
+    },
+    "howWeUseInfo": {
+      "heading": "2. COMMENT UTILISONS-NOUS VOS INFORMATIONS ?",
+      "content": "Nous traitons vos informations à des fins basées sur des intérêts commerciaux légitimes, l'exécution de notre contrat avec vous, le respect de nos obligations légales et/ou votre consentement."
+    },
+    "willInfoBeShared": {
+      "heading": "3. VOS INFORMATIONS SERONT-ELLES PARTAGÉES AVEC QUELQU'UN ?",
+      "content": "Nous ne partageons les informations qu'avec votre consentement, pour nous conformer aux lois, pour vous fournir des services, pour protéger vos droits ou pour remplir des obligations commerciales."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. UTILISONS-NOUS DES COOKIES ET D'AUTRES TECHNOLOGIES DE SUIVI ?",
+      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires pour accéder ou stocker des informations. Des informations spécifiques sur la manière dont nous utilisons ces technologies sont définies dans notre Politique en matière de cookies."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. COMBIEN DE TEMPS CONSERVONS-NOUS VOS INFORMATIONS ?",
+      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cette politique de confidentialité, à moins qu'une période de conservation plus longue ne soit requise ou autorisée par la loi."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. COMMENT PROTÉGEONS-NOUS VOS INFORMATIONS ?",
+      "content": "Nous avons mis en place des mesures de sécurité techniques et organisationnelles appropriées conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons."
+    },
+    "minors": {
+      "heading": "7. RECUEILLONS-NOUS DES INFORMATIONS AUPRÈS DE MINEURS ?",
+      "content": "Nous ne sollicitons pas sciemment de données auprès d'enfants de moins de 18 ans et ne commercialisons pas auprès d'eux. En utilisant la Plateforme, vous déclarez que vous avez au moins 18 ans."
+    },
+    "privacyRights": {
+      "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
+      "content": "Dans certaines régions, comme l'Espace économique européen (EEE) et le Royaume-Uni (RU), vous disposez de droits qui vous permettent un meilleur accès et un meilleur contrôle de vos informations personnelles."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS 'DO-NOT-TRACK'",
+      "content": "La plupart des navigateurs Web et certains systèmes d'exploitation et applications mobiles incluent une fonctionnalité ou un paramètre 'Do-Not-Track' ('DNT') que vous pouvez activer pour signaler votre préférence en matière de confidentialité de ne pas faire surveiller et collecter de données sur vos activités de navigation en ligne."
+    },
+    "updatesToNotice": {
+      "heading": "10. METTONS-NOUS À JOUR CET AVIS ?",
+      "content": "Oui, nous mettrons à jour cet avis si nécessaire pour rester en conformité avec les lois pertinentes."
+    }
+  },
+  "searchPage": {
+    "title": "Rechercher sur DamDoh",
+    "description": "Trouvez exactement ce dont vous avez besoin dans l'ensemble de l'écosystème agricole.",
+    "placeholder": "Que recherchez-vous aujourd'hui ?",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches populaires",
+    "popularSearch1": "Café biologique",
+    "popularSearch2": "Location de tracteur au Kenya",
+    "popularSearch3": "Services d'analyse de sol",
+    "popularSearch4": "Offres d'emploi d'agronome",
+    "popularSearch5": "Logistique d'exportation vers l'Europe"
+  },
+  "termsOfService": {
+    "title": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Bienvenue sur DamDoh. Ces conditions d'utilisation constituent un accord juridiquement contraignant entre vous et DamDoh. (Ceci est un texte de remplacement).",
+    "agreementToTerms": {
+      "heading": "1. ACCEPTATION DES CONDITIONS",
+      "content": "En accédant à la Plateforme, vous acceptez d'être lié par ces Conditions d'utilisation. Si vous n'êtes pas d'accord avec toutes ces Conditions d'utilisation, il vous est expressément interdit d'utiliser la Plateforme et vous devez cesser immédiatement de l'utiliser."
+    },
+    "intellectualProperty": {
+      "heading": "2. PROPRIÉTÉ INTELLECTUELLE",
+      "content": "La Plateforme et son contenu, ses caractéristiques et ses fonctionnalités d'origine sont et resteront la propriété exclusive de DamDoh et de ses concédants de licence."
+    },
+    "userRepresentations": {
+      "heading": "3. DÉCLARATIONS DE L'UTILISATEUR",
+      "content": "En utilisant la Plateforme, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, actuelles et complètes ; (2) vous maintiendrez l'exactitude de ces informations et les mettrez à jour rapidement si nécessaire."
+    },
+    "prohibitedActivities": {
+      "heading": "4. ACTIVITÉS INTERDITES",
+      "content": "Vous ne pouvez pas accéder ou utiliser la Plateforme à d'autres fins que celles pour lesquelles nous la mettons à votre disposition. La Plateforme ne peut être utilisée dans le cadre d'aucune entreprise commerciale, à l'exception de celles qui sont spécifiquement approuvées ou autorisées par nous."
+    },
+    "platformManagement": {
+      "heading": "5. GESTION DE LA PLATEFORME",
+      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller la Plateforme pour déceler toute violation de ces Conditions d'utilisation ; (2) prendre les mesures légales appropriées contre quiconque, à notre seule discrétion, enfreint la loi ou ces Conditions d'utilisation."
+    },
+    "termAndTermination": {
+      "heading": "6. DURÉE ET RÉSILIATION",
+      "content": "Ces Conditions d'utilisation resteront en vigueur et de plein effet tant que vous utiliserez la Plateforme. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DE LA PLATEFORME."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. MODIFICATIONS ET INTERRUPTIONS",
+      "content": "Nous nous réservons le droit de changer, de modifier ou de supprimer le contenu de la Plateforme à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous ne pouvons pas non plus garantir que la Plateforme sera disponible à tout moment."
+    },
+    "governingLaw": {
+      "heading": "8. LOI APPLICABLE",
+      "content": "Ces Conditions seront régies et interprétées conformément aux lois du Kenya, sans égard à ses dispositions relatives aux conflits de lois."
+    },
+    "disputeResolution": {
+      "heading": "9. RÉSOLUTION DES LITIGES",
+      "content": "Pour accélérer la résolution et contrôler le coût de tout litige, controverse ou réclamation lié à ces Conditions d'utilisation (chacun un 'Litige' et collectivement, les 'Litiges'), les Parties conviennent de tenter d'abord de négocier tout Litige (à l'exception des Litiges expressément prévus ci-dessous) de manière informelle pendant au moins trente (30) jours avant d'engager un arbitrage."
+    },
+    "contactUs": {
+      "heading": "10. CONTACTEZ-NOUS",
+      "content": "Pour résoudre une plainte concernant la Plateforme ou pour recevoir de plus amples informations sur l'utilisation de la Plateforme, veuillez nous contacter."
+    },
+    "conclusion": {
+      "contactLink": "Contactez-nous"
+    }
+  },
+  "walletPage": {
+    "title": "Portefeuille DamDoh",
+    "description": "Gérez vos finances, votre crédit et vos transactions en toute sécurité en un seul endroit.",
+    "underDevelopmentTitle": "Prochainement : Une révolution dans la finance agricole",
+    "underDevelopmentDescription": "Le portefeuille DamDoh sera votre centre névralgique pour toutes les activités financières, conçu spécifiquement pour les besoins du secteur agricole. Nous travaillons dur pour vous proposer une suite d'outils puissants, notamment :",
+    "feature1": "Paiements sécurisés de pair à pair",
+    "feature2": "Accès à des produits de prêt et d'assurance sur mesure",
+    "feature3": "Un système de notation de crédit dynamique basé sur votre activité sur la plateforme",
+    "feature4": "Suivi facile des revenus et des dépenses",
+    "stayTuned": "Restez à l'écoute des mises à jour alors que nous construisons cet outil financier transformateur !"
   }
 }
