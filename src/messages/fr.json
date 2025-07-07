@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Accueil",
@@ -102,6 +101,119 @@
       "scanDescription": "Laissez une connexion de confiance DamDoh scanner ce code QR temporaire pour vérifier votre identité.",
       "scanNote": "Ce code est valide pendant 10 minutes.",
       "startOverButton": "Recommencer"
+    }
+  },
+  "GroupsPage": {
+    "title": "Groupes Communautaires",
+    "description": "Rejoignez des groupes basés sur vos intérêts pour vous connecter avec des personnes partageant les mêmes idées.",
+    "createGroupButton": "Créer un Groupe",
+    "searchPlaceholder": "Rechercher des groupes...",
+    "notFound": "Aucun groupe trouvé.",
+    "toast": {
+      "joinSuccess": "Vous avez rejoint le groupe avec succès !",
+      "joinError": "Échec de la tentative de rejoindre le groupe",
+      "leaveSuccess": "Vous avez quitté le groupe.",
+      "leaveError": "Échec de la tentative de quitter le groupe",
+      "loginToJoin": "Veuillez vous connecter pour rejoindre un groupe."
+    },
+    "detail": {
+      "backLink": "Retour à tous les groupes",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Démarrer une Discussion",
+      "noDiscussions": "Aucune discussion pour le moment",
+      "beTheFirst": "Soyez le premier à lancer une conversation dans ce groupe !",
+      "actionsTitle": "Actions du Groupe",
+      "loginToJoinButton": "Se connecter pour rejoindre",
+      "leavingButton": "Départ en cours...",
+      "leaveButton": "Quitter le Groupe",
+      "joiningButton": "Adhésion...",
+      "joinButton": "Rejoindre le Groupe",
+      "requestJoinButton": "Demander à rejoindre",
+      "membersTitle": "Membres ({memberCount})"
+    },
+    "create": {
+      "backLink": "Retour aux Groupes",
+      "title": "Créer un Nouveau Groupe",
+      "description": "Rassemblez des personnes autour d'un intérêt commun.",
+      "form": {
+        "nameLabel": "Nom du Groupe",
+        "namePlaceholder": "Ex: Agriculteurs Bio du Kenya",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Une brève description du sujet de ce groupe.",
+        "publicLabel": "Groupe Public (tout le monde peut voir et rejoindre)",
+        "submittingButton": "Création en cours...",
+        "submitButton": "Créer le Groupe"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification Requise",
+          "description": "Vous devez être connecté pour créer un groupe."
+        },
+        "incomplete": {
+          "title": "Formulaire Incomplet",
+          "description": "Veuillez renseigner le nom et la description du groupe."
+        },
+        "success": {
+          "title": "Groupe Créé !",
+          "description": "Votre groupe a été créé avec succès."
+        },
+        "error": {
+          "title": "Erreur lors de la Création du Groupe",
+          "description": "Une erreur est survenue lors de la création du groupe. Veuillez réessayer."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au Groupe",
+      "title": "Démarrer une Nouvelle Discussion",
+      "description": "Partagez vos pensées, posez des questions ou lancez une conversation avec d'autres membres du groupe.",
+      "form": {
+        "titleLabel": "Titre de la Publication",
+        "titlePlaceholder": "Un titre clair et engageant",
+        "contentLabel": "Votre Message",
+        "contentPlaceholder": "Partagez des détails, posez des questions, ou donnez du contexte à votre discussion...",
+        "submittingButton": "Publication en cours...",
+        "submitButton": "Publier la Discussion"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification Requise",
+          "description": "Vous devez être connecté et membre du groupe pour créer une publication."
+        },
+        "incomplete": {
+          "title": "Publication Incomplète",
+          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+        },
+        "success": {
+          "title": "Publication Créée !",
+          "description": "Votre discussion a été lancée dans le groupe."
+        },
+        "error": {
+          "title": "Erreur lors de la Création de la Publication",
+          "description": "Une erreur inattendue est survenue."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Retour à {groupName}",
+      "notFound": {
+        "title": "Publication non trouvée.",
+        "description": "Cette publication a peut-être été supprimée ou le lien est incorrect.",
+        "backButton": "Retour au Groupe"
+      },
+      "repliesTitle": "Réponses ({replyCount})",
+      "noReplies": "Aucune réponse pour le moment. Soyez le premier à répondre !",
+      "loadingMoreButton": "Chargement...",
+      "loadMoreButton": "Charger Plus de Réponses",
+      "yourReplyTitle": "Votre Réponse",
+      "replyPlaceholder": "Écrivez votre réponse...",
+      "replySubmittingButton": "Publication en cours...",
+      "replySubmitButton": "Publier la Réponse",
+      "toast": {
+        "emptyReply": "Veuillez écrire une réponse avant de l'envoyer.",
+        "replySuccess": "Réponse publiée !",
+        "replyError": "Impossible de soumettre votre réponse. Veuillez réessayer."
+      }
     }
   }
 }

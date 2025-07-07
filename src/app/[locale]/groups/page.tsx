@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -13,8 +14,10 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import type { ForumGroup } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslations } from 'next-intl';
 
 export default function GroupsPage() {
+    const t = useTranslations('GroupsPage');
     const [groups, setGroups] = useState<ForumGroup[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
@@ -61,14 +64,14 @@ export default function GroupsPage() {
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                     <div>
-                        <CardTitle className="text-2xl">Community Groups</CardTitle>
-                        <CardDescription>Join groups based on your interests to connect with like-minded people.</CardDescription>
+                        <CardTitle className="text-2xl">{t('title')}</CardTitle>
+                        <CardDescription>{t('description')}</CardDescription>
                     </div>
                     {user && (
                         <Button asChild>
                             <Link href="/groups/create">
                                 <PlusCircle className="mr-2 h-4 w-4" />
-                                Create Group
+                                {t('createGroupButton')}
                             </Link>
                         </Button>
                     )}
@@ -78,7 +81,7 @@ export default function GroupsPage() {
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                             <Input 
-                                placeholder="Search for groups..." 
+                                placeholder={t('searchPlaceholder')}
                                 className="pl-10"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -104,12 +107,12 @@ export default function GroupsPage() {
                                         </h3>
                                         <p className="text-sm text-muted-foreground mt-1 mb-2">{group.description}</p>
                                         <div className="flex items-center justify-between text-xs text-muted-foreground">
-                                            <span>{group.memberCount || 0} members</span>
+                                            <span>{t('detail.membersTitle', { memberCount: group.memberCount || 0 })}</span>
                                         </div>
                                     </div>
                                 </Link>
                             ))) : (
-                                <div className="text-center py-12 text-muted-foreground border-2 border-dashed rounded-lg">No groups found.</div>
+                                <div className="text-center py-12 text-muted-foreground border-2 border-dashed rounded-lg">{t('notFound')}</div>
                             )}
                         </div>
                     )}

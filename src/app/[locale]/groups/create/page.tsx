@@ -15,8 +15,10 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
+import { useTranslations } from 'next-intl';
 
 export default function CreateGroupPage() {
+    const t = useTranslations('GroupsPage.create');
     const router = useRouter();
     const { user } = useAuth();
     const { toast } = useToast();
@@ -31,15 +33,15 @@ export default function CreateGroupPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!user) {
-             toast({ title: "Please log in to create a group.", variant: "destructive" });
+             toast({ title: t('toast.auth.title'), description: t('toast.auth.description'), variant: "destructive" });
              router.push('/auth/signin');
              return;
         }
 
         if (!name.trim() || !description.trim()) {
             toast({
-                title: "Incomplete Form",
-                description: "Please fill out the group name and description.",
+                title: t('toast.incomplete.title'),
+                description: t('toast.incomplete.description'),
                 variant: "destructive",
             });
             return;
@@ -50,15 +52,15 @@ export default function CreateGroupPage() {
             const result = await createGroupCallable({ name, description, isPublic });
             const groupId = (result.data as { groupId: string }).groupId;
             toast({
-                title: "Group Created!",
-                description: "Your group has been successfully created.",
+                title: t('toast.success.title'),
+                description: t('toast.success.description'),
             });
             router.push(`/groups/${groupId}`);
         } catch (error: any) {
             console.error("Error creating group:", error);
             toast({
-                title: "Error",
-                description: error.message || "An error occurred while creating the group. Please try again.",
+                title: t('toast.error.title'),
+                description: error.message || t('toast.error.description'),
                 variant: "destructive",
             });
         } finally {
@@ -70,20 +72,20 @@ export default function CreateGroupPage() {
         <div className="container mx-auto max-w-3xl py-8">
             <Link href="/groups" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to Groups
+                {t('backLink')}
             </Link>
             <form onSubmit={handleSubmit}>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create a New Group</CardTitle>
-                        <CardDescription>Bring people together around a common interest.</CardDescription>
+                        <CardTitle>{t('title')}</CardTitle>
+                        <CardDescription>{t('description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="group-name">Group Name</Label>
+                            <Label htmlFor="group-name">{t('form.nameLabel')}</Label>
                             <Input 
                                 id="group-name" 
-                                placeholder="e.g., Organic Farmers of Kenya" 
+                                placeholder={t('form.namePlaceholder')} 
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -91,10 +93,10 @@ export default function CreateGroupPage() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="group-description">Description</Label>
+                            <Label htmlFor="group-description">{t('form.descriptionLabel')}</Label>
                             <Textarea 
                                 id="group-description"
-                                placeholder="A brief description of what this group is about."
+                                placeholder={t('form.descriptionPlaceholder')}
                                 className="min-h-[100px]"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
@@ -109,13 +111,13 @@ export default function CreateGroupPage() {
                                 onCheckedChange={setIsPublic}
                                 disabled={isSubmitting}
                             />
-                            <Label htmlFor="is-public">Public Group (anyone can see and join)</Label>
+                            <Label htmlFor="is-public">{t('form.publicLabel')}</Label>
                         </div>
                     </CardContent>
                     <CardFooter>
                         <Button type="submit" disabled={isSubmitting}>
                             {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                            {isSubmitting ? "Creating..." : "Create Group"}
+                            {isSubmitting ? t('form.submittingButton') : t('form.submitButton')}
                         </Button>
                     </CardFooter>
                 </Card>

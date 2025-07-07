@@ -15,12 +15,14 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
+import { useTranslations } from 'next-intl';
 
 export default function CreateGroupPostPage() {
     const params = useParams();
     const router = useRouter();
     const { toast } = useToast();
     const { user } = useAuth();
+    const t = useTranslations('GroupsPage.createPost');
     const groupId = params.groupId as string;
 
     const [title, setTitle] = useState("");
@@ -34,8 +36,8 @@ export default function CreateGroupPostPage() {
         e.preventDefault();
         if (!user) {
             toast({
-                title: "Authentication Required",
-                description: "You must be logged in and a member of the group to create a post.",
+                title: t('toast.auth.title'),
+                description: t('toast.auth.description'),
                 variant: "destructive"
             });
             return;
@@ -43,8 +45,8 @@ export default function CreateGroupPostPage() {
 
         if (!title.trim() || !content.trim()) {
             toast({
-                title: "Incomplete Post",
-                description: "Please provide both a title and content for your post.",
+                title: t('toast.incomplete.title'),
+                description: t('toast.incomplete.description'),
                 variant: "destructive",
             });
             return;
@@ -55,16 +57,16 @@ export default function CreateGroupPostPage() {
             await createGroupPostCallable({ groupId, title, content });
             
             toast({
-                title: "Post Created!",
-                description: "Your discussion has been started in the group.",
+                title: t('toast.success.title'),
+                description: t('toast.success.description'),
             });
             
             router.push(`/groups/${groupId}`);
         } catch (error: any) {
             console.error("Error creating post:", error);
             toast({
-                title: "Error Creating Post",
-                description: error.message || "An unexpected error occurred.",
+                title: t('toast.error.title'),
+                description: error.message || t('toast.error.description'),
                 variant: "destructive",
             });
         } finally {
@@ -76,20 +78,20 @@ export default function CreateGroupPostPage() {
         <div className="container mx-auto max-w-3xl py-8">
             <Link href={`/groups/${groupId}`} className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to Group
+                {t('backLink')}
             </Link>
             <form onSubmit={handleSubmit}>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Start a New Discussion</CardTitle>
-                        <CardDescription>Share your thoughts, ask questions, or start a conversation with other group members.</CardDescription>
+                        <CardTitle>{t('title')}</CardTitle>
+                        <CardDescription>{t('description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="post-title">Post Title</Label>
+                            <Label htmlFor="post-title">{t('form.titleLabel')}</Label>
                             <Input 
                                 id="post-title" 
-                                placeholder="A clear and engaging title"
+                                placeholder={t('form.titlePlaceholder')}
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
@@ -97,10 +99,10 @@ export default function CreateGroupPostPage() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="post-content">Your Message</Label>
+                            <Label htmlFor="post-content">{t('form.contentLabel')}</Label>
                             <Textarea 
                                 id="post-content"
-                                placeholder="Share details, ask questions, or provide context for your discussion..."
+                                placeholder={t('form.contentPlaceholder')}
                                 className="min-h-[200px]"
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
@@ -114,12 +116,12 @@ export default function CreateGroupPostPage() {
                            {isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Posting...
+                                    {t('form.submittingButton')}
                                 </>
                             ) : (
                                 <>
                                     <Save className="mr-2 h-4 w-4" />
-                                    Post Discussion
+                                    {t('form.submitButton')}
                                 </>
                             )}
                         </Button>

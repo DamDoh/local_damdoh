@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Home",
@@ -102,6 +101,119 @@
       "scanDescription": "Let a trusted DamDoh connection scan this temporary QR code to verify your identity.",
       "scanNote": "This code is valid for 10 minutes.",
       "startOverButton": "Start Over"
+    }
+  },
+  "GroupsPage": {
+    "title": "Community Groups",
+    "description": "Join groups based on your interests to connect with like-minded people.",
+    "createGroupButton": "Create Group",
+    "searchPlaceholder": "Search for groups...",
+    "notFound": "No groups found.",
+    "toast": {
+      "joinSuccess": "Successfully joined the group!",
+      "joinError": "Failed to join group",
+      "leaveSuccess": "You have left the group.",
+      "leaveError": "Failed to leave group",
+      "loginToJoin": "Please log in to join a group."
+    },
+    "detail": {
+      "backLink": "Back to all groups",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Start a Discussion",
+      "noDiscussions": "No discussions yet",
+      "beTheFirst": "Be the first to start a conversation in this group!",
+      "actionsTitle": "Group Actions",
+      "loginToJoinButton": "Log in to Join",
+      "leavingButton": "Leaving...",
+      "leaveButton": "Leave Group",
+      "joiningButton": "Joining...",
+      "joinButton": "Join Group",
+      "requestJoinButton": "Request to Join",
+      "membersTitle": "Members ({memberCount})"
+    },
+    "create": {
+      "backLink": "Back to Groups",
+      "title": "Create a New Group",
+      "description": "Bring people together around a common interest.",
+      "form": {
+        "nameLabel": "Group Name",
+        "namePlaceholder": "e.g., Organic Farmers of Kenya",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "A brief description of what this group is about.",
+        "publicLabel": "Public Group (anyone can see and join)",
+        "submittingButton": "Creating...",
+        "submitButton": "Create Group"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be logged in to create a group."
+        },
+        "incomplete": {
+          "title": "Incomplete Form",
+          "description": "Please fill out the group name and description."
+        },
+        "success": {
+          "title": "Group Created!",
+          "description": "Your group has been successfully created."
+        },
+        "error": {
+          "title": "Error Creating Group",
+          "description": "An error occurred while creating the group. Please try again."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Group",
+      "title": "Start a New Discussion",
+      "description": "Share your thoughts, ask questions, or start a conversation with other group members.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "A clear and engaging title",
+        "contentLabel": "Your Message",
+        "contentPlaceholder": "Share details, ask questions, or provide context for your discussion...",
+        "submittingButton": "Posting...",
+        "submitButton": "Post Discussion"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be logged in and a member of the group to create a post."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "success": {
+          "title": "Post Created!",
+          "description": "Your discussion has been started in the group."
+        },
+        "error": {
+          "title": "Error Creating Post",
+          "description": "An unexpected error occurred."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Back to {groupName}",
+      "notFound": {
+        "title": "Post not found.",
+        "description": "This post may have been deleted or the link is incorrect.",
+        "backButton": "Back to Group"
+      },
+      "repliesTitle": "Replies ({replyCount})",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "loadingMoreButton": "Loading...",
+      "loadMoreButton": "Load More Replies",
+      "yourReplyTitle": "Your Reply",
+      "replyPlaceholder": "Write your reply...",
+      "replySubmittingButton": "Posting...",
+      "replySubmitButton": "Post Reply",
+      "toast": {
+        "emptyReply": "Please write a reply before submitting.",
+        "replySuccess": "Reply posted!",
+        "replyError": "Could not submit your reply. Please try again."
+      }
     }
   }
 }

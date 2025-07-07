@@ -11,12 +11,13 @@ import { ArrowLeft, Loader2, Send } from "lucide-react";
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { UserProfile, PostReply } from '@/lib/types';
+import type { PostReply } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
+import { useTranslations } from 'next-intl';
 
 interface GroupPost {
     id: string;
@@ -103,6 +104,7 @@ export default function GroupPostPage() {
     const params = useParams();
     const { user } = useAuth();
     const { toast } = useToast();
+    const t = useTranslations('GroupsPage.postDetail');
     
     const groupId = params.groupId as string;
     const postId = params.postId as string;
@@ -191,14 +193,14 @@ export default function GroupPostPage() {
     const handleReplySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!newReply.trim() || !user) {
-            toast({ title: "Please write a reply before submitting.", variant: "destructive"});
+            toast({ title: t('toast.emptyReply'), variant: "destructive"});
             return;
         }
         setIsSubmitting(true);
         try {
             await addReplyToPost({ groupId, postId, content: newReply });
             setNewReply("");
-            toast({ title: "Reply posted!" });
+            toast({ title: t('toast.replySuccess') });
             setReplies([]);
             setLastVisible(null);
             setHasMore(true);
@@ -223,10 +225,10 @@ export default function GroupPostPage() {
     if (!post) {
         return (
             <div className="container mx-auto max-w-3xl py-8 text-center">
-                <h3 className="text-lg font-semibold">Post not found.</h3>
-                <p className="text-muted-foreground">This post may have been deleted or the link is incorrect.</p>
+                <h3 className="text-lg font-semibold">{t('notFound.title')}</h3>
+                <p className="text-muted-foreground">{t('notFound.description')}</p>
                 <Button asChild className="mt-4">
-                    <Link href={`/groups/${groupId}`}>Back to Group</Link>
+                    <Link href={`/groups/${groupId}`}>{t('notFound.backButton')}</Link>
                 </Button>
             </div>
         );
@@ -237,7 +239,7 @@ export default function GroupPostPage() {
         <div className="container mx-auto max-w-3xl py-8">
             <Link href={`/groups/${groupId}`} className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to {post.groupName}
+                {t('backLink', { groupName: post.groupName })}
             </Link>
 
             <Card>
@@ -258,7 +260,7 @@ export default function GroupPostPage() {
                 </CardContent>
             </Card>
 
-            <h2 className="text-xl font-semibold mt-8 mb-4">Replies ({post.replyCount || 0})</h2>
+            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: post.replyCount })}</h2>
             <div className="space-y-4">
                 {replies.length > 0 ? (
                     replies.map(reply => (
@@ -280,7 +282,7 @@ export default function GroupPostPage() {
                     ))
                 ) : (
                     <div className="text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-800/20 rounded-lg">
-                        <p>No replies yet. Be the first to respond!</p>
+                        <p>{t('noReplies')}</p>
                     </div>
                 )}
                  {hasMore && (
@@ -293,10 +295,10 @@ export default function GroupPostPage() {
                             {isLoadingMore ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Loading...
+                                    {t('loadingMoreButton')}
                                 </>
                             ) : (
-                                "Load More Replies"
+                                t('loadMoreButton')
                             )}
                         </Button>
                     </div>
@@ -306,20 +308,20 @@ export default function GroupPostPage() {
             {user && (
                  <Card className="mt-8">
                     <CardHeader>
-                        <CardTitle>Your Reply</CardTitle>
+                        <CardTitle>{t('yourReplyTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleReplySubmit}>
                             <div className="grid w-full gap-2">
                                 <Textarea 
-                                    placeholder="Write your reply..."
+                                    placeholder={t('replyPlaceholder')}
                                     value={newReply}
                                     onChange={(e) => setNewReply(e.target.value)}
                                     rows={4}
                                     disabled={isSubmitting}
                                 />
                                 <Button type="submit" className="w-full sm:w-auto" disabled={isSubmitting || !newReply.trim()}>
-                                     {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Posting...</> : <><Send className="mr-2 h-4 w-4"/>Post Reply</>}
+                                     {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t('replySubmittingButton')}</> : <><Send className="mr-2 h-4 w-4"/>{t('replySubmitButton')}</>}
                                 </Button>
                             </div>
                         </form>

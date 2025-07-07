@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Startseite",
@@ -102,6 +101,119 @@
       "scanDescription": "Lassen Sie eine vertrauenswürdige DamDoh-Verbindung diesen temporären QR-Code scannen, um Ihre Identität zu überprüfen.",
       "scanNote": "Dieser Code ist 10 Minuten lang gültig.",
       "startOverButton": "Von vorne beginnen"
+    }
+  },
+  "GroupsPage": {
+    "title": "Community-Gruppen",
+    "description": "Treten Sie Gruppen bei, die Ihren Interessen entsprechen, um sich mit Gleichgesinnten zu vernetzen.",
+    "createGroupButton": "Gruppe erstellen",
+    "searchPlaceholder": "Gruppen suchen...",
+    "notFound": "Keine Gruppen gefunden.",
+    "toast": {
+      "joinSuccess": "Erfolgreich der Gruppe beigetreten!",
+      "joinError": "Beitritt zur Gruppe fehlgeschlagen",
+      "leaveSuccess": "Sie haben die Gruppe verlassen.",
+      "leaveError": "Verlassen der Gruppe fehlgeschlagen",
+      "loginToJoin": "Bitte melden Sie sich an, um einer Gruppe beizutreten."
+    },
+    "detail": {
+      "backLink": "Zurück zu allen Gruppen",
+      "discussionsTitle": "Diskussionen",
+      "startDiscussionButton": "Eine Diskussion starten",
+      "noDiscussions": "Noch keine Diskussionen",
+      "beTheFirst": "Seien Sie der Erste, der ein Gespräch in dieser Gruppe beginnt!",
+      "actionsTitle": "Gruppenaktionen",
+      "loginToJoinButton": "Zum Beitreten anmelden",
+      "leavingButton": "Wird verlassen...",
+      "leaveButton": "Gruppe verlassen",
+      "joiningButton": "Tritt bei...",
+      "joinButton": "Gruppe beitreten",
+      "requestJoinButton": "Beitrittsanfrage senden",
+      "membersTitle": "Mitglieder ({memberCount})"
+    },
+    "create": {
+      "backLink": "Zurück zu den Gruppen",
+      "title": "Eine neue Gruppe erstellen",
+      "description": "Bringen Sie Menschen mit gemeinsamen Interessen zusammen.",
+      "form": {
+        "nameLabel": "Gruppenname",
+        "namePlaceholder": "z.B. Bio-Bauern aus Kenia",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Eine kurze Beschreibung, worum es in dieser Gruppe geht.",
+        "publicLabel": "Öffentliche Gruppe (jeder kann sie sehen und beitreten)",
+        "submittingButton": "Wird erstellt...",
+        "submitButton": "Gruppe erstellen"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um eine Gruppe zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständiges Formular",
+          "description": "Bitte füllen Sie den Gruppennamen und die Beschreibung aus."
+        },
+        "success": {
+          "title": "Gruppe erstellt!",
+          "description": "Ihre Gruppe wurde erfolgreich erstellt."
+        },
+        "error": {
+          "title": "Fehler beim Erstellen der Gruppe",
+          "description": "Beim Erstellen der Gruppe ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zur Gruppe",
+      "title": "Eine neue Diskussion starten",
+      "description": "Teilen Sie Ihre Gedanken, stellen Sie Fragen oder beginnen Sie ein Gespräch mit anderen Gruppenmitgliedern.",
+      "form": {
+        "titleLabel": "Beitragstitel",
+        "titlePlaceholder": "Ein klarer und ansprechender Titel",
+        "contentLabel": "Ihre Nachricht",
+        "contentPlaceholder": "Teilen Sie Details, stellen Sie Fragen oder geben Sie Kontext für Ihre Diskussion...",
+        "submittingButton": "Wird gepostet...",
+        "submitButton": "Diskussion posten"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet und Mitglied der Gruppe sein, um einen Beitrag zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+        },
+        "success": {
+          "title": "Beitrag erstellt!",
+          "description": "Ihre Diskussion wurde in der Gruppe gestartet."
+        },
+        "error": {
+          "title": "Fehler beim Erstellen des Beitrags",
+          "description": "Ein unerwarteter Fehler ist aufgetreten."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Zurück zu {groupName}",
+      "notFound": {
+        "title": "Beitrag nicht gefunden.",
+        "description": "Dieser Beitrag wurde möglicherweise gelöscht oder der Link ist falsch.",
+        "backButton": "Zurück zur Gruppe"
+      },
+      "repliesTitle": "Antworten ({replyCount})",
+      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "loadingMoreButton": "Wird geladen...",
+      "loadMoreButton": "Weitere Antworten laden",
+      "yourReplyTitle": "Ihre Antwort",
+      "replyPlaceholder": "Schreiben Sie Ihre Antwort...",
+      "replySubmittingButton": "Wird gepostet...",
+      "replySubmitButton": "Antwort posten",
+      "toast": {
+        "emptyReply": "Bitte schreiben Sie eine Antwort, bevor Sie sie absenden.",
+        "replySuccess": "Antwort gepostet!",
+        "replyError": "Ihre Antwort konnte nicht übermittelt werden. Bitte versuchen Sie es erneut."
+      }
     }
   }
 }
