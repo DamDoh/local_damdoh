@@ -2,13 +2,13 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign, AlertCircle, ArrowUp, ArrowDown } from 'lucide-react';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import Link from 'next/link';
-import type { FarmerDashboardData } from '@/lib/types';
+import type { FarmerDashboardData, FarmerDashboardAlert } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -66,7 +66,7 @@ function StatCard({ title, value, icon, actionLink, actionLabel, unit, isCurrenc
 }
 
 // Helper Component 3: AlertIcon
-function AlertIcon({ icon }: { icon: 'FlaskConical' | 'Sprout' }) {
+function AlertIcon({ icon }: { icon: FarmerDashboardAlert['icon'] }) {
     const iconMap = {
         FlaskConical: FlaskConical,
         Sprout: Sprout

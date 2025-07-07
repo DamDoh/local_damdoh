@@ -1,11 +1,12 @@
 
-// src/lib/server-actions.ts
 "use server";
 
-import { collection, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, Timestamp, writeBatch } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
 import { adminDb } from './firebase/admin';
 import type { UserProfile, MarketplaceItem } from '@/lib/types';
-import { dummyMarketplaceItems, dummyProfiles } from '@/lib/dummy-data';
+import { httpsCallable } from "firebase/functions";
+import { functions } from './firebase/client';
+import type { SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 
 const PROFILES_COLLECTION = 'users';
 const MARKETPLACE_COLLECTION = 'marketplaceItems';
@@ -17,8 +18,8 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
     const profilesCol = collection(adminDb, PROFILES_COLLECTION);
     const profileSnapshot = await getDocs(profilesCol);
     if (profileSnapshot.empty) {
-        console.warn("No profiles found in Firestore, returning dummy data.");
-        return dummyProfiles;
+      console.warn("No profiles found in Firestore.");
+      return [];
     }
     const profileList = profileSnapshot.docs.map(docSnap => {
       const data = docSnap.data();
@@ -32,7 +33,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
     return profileList;
   } catch (error) {
     console.error("Error fetching all profiles from Firestore: ", error);
-    return dummyProfiles;
+    throw error;
   }
 }
 
@@ -49,42 +50,13 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
         createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
         updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
       } as UserProfile;
-    } else {
-      // Fallback to dummy data if not found in DB
-      console.warn(`Profile with ID ${id} not found in Firestore, attempting to find in dummy data.`);
-      return dummyProfiles.find(p => p.id === id) || null;
     }
+    return null;
   } catch (error) {
     console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
     throw error;
   }
 }
-
-export async function createProfileInDB(profileData: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<UserProfile> {
-  const profileRef = doc(collection(adminDb, PROFILES_COLLECTION));
-  const newProfile = {
-    ...profileData,
-    id: profileRef.id,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  };
-  await setDoc(profileRef, newProfile);
-  return newProfile;
-}
-
-export async function updateProfileInDB(id: string, data: Partial<UserProfile>): Promise<UserProfile | null> {
-  const profileRef = doc(adminDb, PROFILES_COLLECTION, id);
-  const updateData = { ...data, updatedAt: new Date().toISOString() };
-  await updateDoc(profileRef, updateData);
-  return getProfileByIdFromDB(id);
-}
-
-export async function deleteProfileFromDB(id: string): Promise<boolean> {
-  const profileRef = doc(adminDb, PROFILES_COLLECTION, id);
-  await deleteDoc(profileRef);
-  return true;
-}
-
 
 // --- Marketplace Functions ---
 
@@ -93,8 +65,8 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
     const itemsCol = collection(adminDb, MARKETPLACE_COLLECTION);
     const itemSnapshot = await getDocs(itemsCol);
     if (itemSnapshot.empty) {
-        console.warn("No marketplace items found in Firestore, returning dummy data.");
-        return dummyMarketplaceItems;
+      console.warn("No marketplace items found in Firestore.");
+      return [];
     }
     const itemList = itemSnapshot.docs.map(docSnap => {
       const data = docSnap.data();
@@ -108,41 +80,22 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
     return itemList;
   } catch (error) {
     console.error("Error fetching all marketplace items from Firestore: ", error);
-    return dummyMarketplaceItems; 
-  }
-}
-
-export async function getMarketplaceItemByIdFromDB(id: string): Promise<MarketplaceItem | null> {
-  try {
-    if (!id) return null;
-    const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
-    const itemSnap = await getDoc(itemDocRef);
-    if (itemSnap.exists()) {
-      const data = itemSnap.data();
-      return { 
-        id: itemSnap.id, 
-        ...data,
-        createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate().toISOString() : new Date().toISOString(),
-      } as MarketplaceItem;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.error(`Error fetching marketplace item with ID ${id} from Firestore: `, error);
     throw error;
   }
 }
 
-export async function updateMarketplaceItemInDB(id: string, data: Partial<MarketplaceItem>): Promise<MarketplaceItem | null> {
-  const itemRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
-  const updateData = { ...data, updatedAt: new Date().toISOString() };
-  await updateDoc(itemRef, updateData);
-  return getMarketplaceItemByIdFromDB(id);
-}
 
-export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> {
-  const itemRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
-  await deleteDoc(itemRef);
-  return true;
+// --- Universal Search Action ---
+// This function calls a Firebase Cloud Function. It is a server action but defined here
+// as it's initiated from the client-side UniversalSearchModal.
+export async function performSearch(interpretation: SmartSearchInterpretation): Promise<any[]> {
+    const performSearchCallable = httpsCallable(functions, 'performSearch');
+    try {
+        console.log(`[Action] Calling performSearch cloud function with interpretation:`, interpretation);
+        const result = await performSearchCallable(interpretation);
+        return (result.data as any)?.results ?? [];
+    } catch (error) {
+        console.error("[Action] Error calling performSearch cloud function:", error);
+        throw error;
+    }
 }
