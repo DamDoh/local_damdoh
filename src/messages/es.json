@@ -1,5 +1,20 @@
 
 {
+  "InputSupplierDashboard": {
+    "title": "Panel de Proveedor de Insumos",
+    "ordersTitle": "Pedidos Activos y Valor",
+    "totalValue": "valor total",
+    "manageOrdersButton": "Gestionar Todos los Pedidos",
+    "forecastTitle": "Previsión de Demanda Regional",
+    "in": "en",
+    "performanceTitle": "Rendimiento y Reseñas de Productos",
+    "viewReviewsButton": "Ver Todas las Reseñas",
+    "noForecast": "No hay datos de previsión de demanda disponibles en este momento.",
+    "noFeedback": "Aún no hay comentarios sobre productos.",
+    "promotionsTitle": "Cupones y Promociones",
+    "promotionsDescription": "Cree y gestione descuentos para impulsar sus ventas.",
+    "manageCouponsButton": "Gestionar Cupones"
+  },
   "CertificationBodyDashboard": {
     "title": "Centro de Organismos de Certificación",
     "auditsTitle": "Auditorías Pendientes",

@@ -1,5 +1,20 @@
 
 {
+  "InputSupplierDashboard": {
+    "title": "Hub du Fournisseur d'Intrants",
+    "ordersTitle": "Commandes Actives & Valeur",
+    "totalValue": "valeur totale",
+    "manageOrdersButton": "Gérer toutes les commandes",
+    "forecastTitle": "Prévision de la Demande Régionale",
+    "in": "en",
+    "performanceTitle": "Performance & Avis sur les Produits",
+    "viewReviewsButton": "Voir tous les avis",
+    "noForecast": "Aucune donnée de prévision de la demande disponible pour le moment.",
+    "noFeedback": "Aucun retour sur les produits pour le moment.",
+    "promotionsTitle": "Coupons & Promotions",
+    "promotionsDescription": "Créez et gérez des remises pour augmenter vos ventes.",
+    "manageCouponsButton": "Gérer les Coupons"
+  },
   "CertificationBodyDashboard": {
     "title": "Hub des Organismes de Certification",
     "auditsTitle": "Audits en Attente",

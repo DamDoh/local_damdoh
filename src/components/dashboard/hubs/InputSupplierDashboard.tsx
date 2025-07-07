@@ -73,7 +73,7 @@ export const InputSupplierDashboard = () => {
                         <p className="text-sm text-muted-foreground">
                             <span className="font-semibold">${(activeOrders?.value || 0).toLocaleString()}</span> {t('totalValue')}
                         </p>
-                        {/* Placeholder for potential future visualization like a small trend line or breakdown */}
+                         {/* Placeholder for potential future visualization like a small trend line or breakdown */}
                          <div className="h-8 w-full">{/* Chart placeholder */}</div>
                     </CardContent>
                     <CardFooter>
@@ -97,10 +97,6 @@ export const InputSupplierDashboard = () => {
                                     {forecast.trend === 'High' && <ArrowUpRight className="h-4 w-4 text-green-500 mr-2" />}
                                     {forecast.trend === 'Low' && <ArrowDownRight className="h-4 w-4 text-red-500 mr-2" />}
                                     {forecast.trend !== 'High' && forecast.trend !== 'Low' && <TrendingUp className="h-4 w-4 text-muted-foreground mr-2 opacity-50" />}
-
-
-
-
                                    <p className="font-medium">{forecast.product} {t('in')} <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
                                    <p className="text-xs text-muted-foreground">{forecast.reason}</p>
                                </div>

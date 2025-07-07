@@ -1,5 +1,20 @@
 
 {
+  "InputSupplierDashboard": {
+    "title": "Drehscheibe für Input-Lieferanten",
+    "ordersTitle": "Aktive Bestellungen & Wert",
+    "totalValue": "Gesamtwert",
+    "manageOrdersButton": "Alle Bestellungen verwalten",
+    "forecastTitle": "Regionale Nachfrageprognose",
+    "in": "in",
+    "performanceTitle": "Produktleistung & Bewertungen",
+    "viewReviewsButton": "Alle Bewertungen anzeigen",
+    "noForecast": "Zurzeit keine Nachfrageprognosedaten verfügbar.",
+    "noFeedback": "Noch kein Produktfeedback verfügbar.",
+    "promotionsTitle": "Gutscheine & Werbeaktionen",
+    "promotionsDescription": "Erstellen und verwalten Sie Rabatte, um Ihren Umsatz zu steigern.",
+    "manageCouponsButton": "Gutscheine verwalten"
+  },
   "CertificationBodyDashboard": {
     "title": "Zertifizierungsstellen-Hub",
     "auditsTitle": "Ausstehende Audits",
@@ -71,7 +86,7 @@
     "noApplications": "Keine Anträge für diesen Status gefunden."
   },
   "FiApplicationPage": {
-    "backLink": "Zurück zum Dashboard",
+    "backLink": "Zurück zum Panel de Control",
     "title": "Finanzierungsantrag prüfen",
     "applicationTitle": "Antrag",
     "submittedOn": "Eingereicht am",

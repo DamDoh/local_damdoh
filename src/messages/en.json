@@ -1,5 +1,20 @@
 
 {
+  "InputSupplierDashboard": {
+    "title": "Input Supplier Hub",
+    "ordersTitle": "Active Orders & Value",
+    "totalValue": "total value",
+    "manageOrdersButton": "Manage All Orders",
+    "forecastTitle": "Regional Demand Forecast",
+    "in": "in",
+    "performanceTitle": "Product Performance & Reviews",
+    "viewReviewsButton": "View All Reviews",
+    "noForecast": "No demand forecast data available at this time.",
+    "noFeedback": "No product feedback available yet.",
+    "promotionsTitle": "Coupons & Promotions",
+    "promotionsDescription": "Create and manage discounts to boost your sales.",
+    "manageCouponsButton": "Manage Coupons"
+  },
   "CertificationBodyDashboard": {
     "title": "Certification Body Hub",
     "auditsTitle": "Pending Audits",
