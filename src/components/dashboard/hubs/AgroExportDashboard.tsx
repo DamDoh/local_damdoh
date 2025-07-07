@@ -11,8 +11,10 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
 import { Badge } from '@/components/ui/badge';
 import type { AgroExportDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 export const AgroExportDashboard = () => {
+    const t = useTranslations('AgroExportDashboard');
     const [dashboardData, setDashboardData] = useState<AgroExportDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -57,14 +59,14 @@ export const AgroExportDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Agro-Export Facilitator Hub</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card className="col-span-1 md:col-span-2 flex flex-col">
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <FileText className="h-4 w-4" />
-                           Pending Customs Documentation
+                           {t('docsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -72,16 +74,16 @@ export const AgroExportDashboard = () => {
                            (pendingCustomsDocs || []).map(doc => (
                                <div key={doc.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
-                                       <p className="font-medium">To: {doc.destination}</p>
+                                       <p className="font-medium">{t('table.destination')}: {doc.destination}</p>
                                        <p className="text-xs text-muted-foreground">{doc.status}</p>
                                    </div>
                                    <Button asChild variant="secondary" size="sm">
-                                       <Link href={doc.vtiLink}>Prepare Docs</Link>
+                                       <Link href={doc.vtiLink}>{t('prepareDocsButton')}</Link>
                                    </Button>
                                </div>
                            ))
                        ) : (
-                           <p className="text-sm text-muted-foreground text-center py-4">No pending documents.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">{t('noDocs')}</p>
                        )}
                     </CardContent>
                 </Card>
@@ -90,7 +92,7 @@ export const AgroExportDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Globe className="h-4 w-4" />
-                           Tracked Shipments
+                           {t('shipmentsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -102,7 +104,7 @@ export const AgroExportDashboard = () => {
                                </div>
                            ))
                        ) : (
-                           <p className="text-sm text-muted-foreground text-center py-4">No active shipments.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">{t('noShipments')}</p>
                        )}
                     </CardContent>
                 </Card>
@@ -111,7 +113,7 @@ export const AgroExportDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                            <AlertCircle className="h-4 w-4 text-yellow-500" />
-                           Compliance Alerts
+                           {t('alertsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -119,11 +121,11 @@ export const AgroExportDashboard = () => {
                            (complianceAlerts || []).map(alert => (
                                <div key={alert.id} className="text-sm p-3 border rounded-lg bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
                                    <p>{alert.content}</p>
-                                   <Link href={alert.actionLink} className="text-xs text-primary hover:underline mt-1">Learn More</Link>
+                                   <Link href={alert.actionLink} className="text-xs text-primary hover:underline mt-1">{t('readMore')}</Link>
                                </div>
                            ))
                        ) : (
-                           <p className="text-sm text-muted-foreground text-center py-4">No compliance alerts.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">{t('noAlerts')}</p>
                        )}
                     </CardContent>
                 </Card>

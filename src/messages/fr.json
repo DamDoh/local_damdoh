@@ -209,5 +209,23 @@
     "alertsTitle": "Alertes Prédictives",
     "noAlerts": "Aucune alerte prédictive pour le moment.",
     "investigateButton": "Enquêter"
+  },
+  "AgroExportDashboard": {
+    "title": "Hub du Facilitateur d'Agro-Exportation",
+    "docsTitle": "Documentation Douanière en Attente",
+    "shipmentsTitle": "Expéditions Suivies",
+    "alertsTitle": "Alertes de Conformité",
+    "table": {
+        "vti": "Lien VTI",
+        "destination": "Destination",
+        "status": "Statut",
+        "carrier": "Transporteur",
+        "location": "Emplacement"
+    },
+    "prepareDocsButton": "Préparer les Documents",
+    "noDocs": "Aucun document en attente.",
+    "noShipments": "Aucune expédition active.",
+    "noAlerts": "Aucune alerte de conformité.",
+    "readMore": "Lire la suite"
   }
 }

@@ -209,5 +209,23 @@
     "alertsTitle": "Alertas Predictivas",
     "noAlerts": "No hay alertas predictivas en este momento.",
     "investigateButton": "Investigar"
+  },
+  "AgroExportDashboard": {
+    "title": "Centro de Facilitador de Agroexportación",
+    "docsTitle": "Documentación Aduanera Pendiente",
+    "shipmentsTitle": "Envíos Rastreados",
+    "alertsTitle": "Alertas de Cumplimiento",
+    "table": {
+        "vti": "Enlace VTI",
+        "destination": "Destino",
+        "status": "Estado",
+        "carrier": "Transportista",
+        "location": "Ubicación"
+    },
+    "prepareDocsButton": "Preparar Documentos",
+    "noDocs": "No hay documentos pendientes.",
+    "noShipments": "No hay envíos activos.",
+    "noAlerts": "No hay alertas de cumplimiento.",
+    "readMore": "Leer más"
   }
 }
