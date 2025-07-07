@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Accueil",
@@ -368,9 +369,6 @@
       "viewDetails": "Voir les Détails",
       "noEventsFound": "Aucun Événement Trouvé",
       "noEventsHint": "Aucun événement ne correspond actuellement à vos critères. Pourquoi ne pas en {link} ?",
-      "noEventsHint": {
-        "link": "créer un"
-      },
       "errorLoadingEvents": "Erreur de Chargement des Événements",
       "couldNotFetchEvents": "Impossible de récupérer la liste des événements. Veuillez réessayer plus tard.",
       "toast": {
@@ -1013,5 +1011,456 @@
     "feature3": "Un système de notation de crédit dynamique basé sur votre activité sur la plateforme",
     "feature4": "Suivi facile des revenus et des dépenses",
     "stayTuned": "Restez à l'écoute des mises à jour alors que nous construisons cet outil financier transformateur !"
+  },
+  "common": {
+    "error": "Erreur",
+    "loading": "Chargement..."
+  },
+  "editProfilePage": {
+    "title": "Modifier le profil de {name}",
+    "description": "Mettez à jour les informations de votre profil pour les garder à jour.",
+    "profileTab": "Profil",
+    "detailsTab": "Détails",
+    "contactTab": "Contact",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre nom complet ou le nom de votre entreprise",
+    "roleLabel": "Rôle principal",
+    "rolePlaceholder": "Sélectionnez votre rôle",
+    "summaryLabel": "Résumé du profil",
+    "summaryPlaceholder": "Un titre court ou un résumé vous concernant",
+    "summaryDescription": "Une phrase qui apparaît sous votre nom.",
+    "generateWithAI": "Générer avec l'IA",
+    "bioLabel": "Biographie",
+    "bioPlaceholder": "Parlez-en davantage à la communauté sur vous-même, vos compétences et ce que vous recherchez...",
+    "bioDescription": "Une description plus détaillée qui apparaîtra sur votre page de profil.",
+    "locationLabel": "Lieu",
+    "locationPlaceholder": "Ex: Nakuru, Kenya",
+    "interestsLabel": "Domaines d'intérêt",
+    "interestsPlaceholder": "Ex: Agriculture biologique, agrotechnologie, exportation de café",
+    "commaSeparated": "Valeurs séparées par des virgules",
+    "needsLabel": "Besoins / Offres",
+    "needsPlaceholder": "Ex: Recherche d'acheteurs, offre de services logistiques",
+    "emailLabel": "E-mail",
+    "emailDescription": "L'e-mail ne peut pas être modifié.",
+    "phoneLabel": "Téléphone (facultatif)",
+    "websiteLabel": "Site Web (facultatif)",
+    "savingButton": "Enregistrement...",
+    "saveButton": "Enregistrer les modifications",
+    "cancelButton": "Annuler",
+    "toast": {
+      "profileNotFound": "Profil non trouvé.",
+      "fetchError": "Impossible de charger les données du profil.",
+      "notAuthenticatedTitle": "Non authentifié",
+      "notAuthenticatedDescription": "Vous devez être connecté pour modifier un profil.",
+      "unauthorizedTitle": "Non autorisé",
+      "unauthorizedDescription": "Vous n'avez pas la permission de modifier ce profil.",
+      "missingInfoTitle": "Informations manquantes",
+      "missingInfoDescription": "Veuillez remplir votre rôle, votre lieu, vos intérêts et vos besoins pour générer un résumé.",
+      "summaryGeneratedTitle": "Résumé généré !",
+      "summaryGeneratedDescription": "L'IA a créé un nouveau résumé de profil pour vous.",
+      "generationFailedTitle": "Échec de la génération",
+      "generationFailedDescription": "Impossible de générer le résumé. Veuillez réessayer.",
+      "missingIdError": "ID de profil manquant. Impossible de mettre à jour.",
+      "profileUpdatedTitle": "Profil mis à jour !",
+      "profileUpdatedDescription": "Vos informations de profil ont été enregistrées avec succès.",
+      "updateFailedTitle": "Échec de la mise à jour",
+      "updateFailedDescription": "Impossible d'enregistrer vos modifications. Veuillez réessayer."
+    },
+    "notFound": {
+      "title": "Profil non trouvé",
+      "description": "Le profil que vous essayez de modifier n'a pas pu être trouvé.",
+      "backButton": "Retour au tableau de bord"
+    }
+  },
+  "settingsPage": {
+    "title": "Paramètres",
+    "description": "Gérez votre compte, vos notifications et les préférences de la plateforme.",
+    "profileTab": "Profil",
+    "accountTab": "Compte",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Confidentialité",
+    "appearanceTab": "Apparence",
+    "stakeholderProfile": {
+      "title": "Profil de l'acteur",
+      "description": "Voici comment les autres vous voient sur DamDoh."
+    },
+    "account": {
+      "title": "Paramètres du compte",
+      "description": "Changez votre mot de passe ou désactivez votre compte.",
+      "currentPasswordLabel": "Mot de passe actuel",
+      "newPasswordLabel": "Nouveau mot de passe",
+      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+      "changePasswordButton": "Changer le mot de passe",
+      "deactivateButton": "Désactiver le compte"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Gérez la manière dont vous êtes averti de l'activité.",
+      "emailDigestLabel": "Résumé hebdomadaire par e-mail",
+      "emailDigestDescription": "Recevez un résumé hebdomadaire de l'activité.",
+      "connectionRequestsLabel": "Demandes de connexion",
+      "connectionRequestsDescription": "Soyez averti lorsque quelqu'un veut se connecter.",
+      "forumMentionsLabel": "Mentions sur le forum",
+      "forumMentionsDescription": "Soyez averti lorsque quelqu'un vous mentionne dans un message.",
+      "marketplaceActivityLabel": "Activité du marché",
+      "marketplaceActivityDescription": "Recevez des mises à jour sur vos commandes et demandes de renseignements.",
+      "talentExchangeLabel": "Notifications de la bourse de talents",
+      "talentExchangeDescription": "Recevez des notifications sur les opportunités d'emploi pertinentes.",
+      "saveButton": "Enregistrer les préférences"
+    },
+    "privacy": {
+      "title": "Confidentialité et visibilité",
+      "description": "Contrôlez qui peut voir votre profil et votre activité.",
+      "profileVisibilityLabel": "Qui peut voir votre profil",
+      "profileVisibilityDescription": "Gérez qui peut voir votre page de profil détaillée.",
+      "profileVisibilityAll": "Tout le monde",
+      "profileVisibilityConnections": "Connexions uniquement",
+      "profileVisibilityPrivate": "Privé (vous uniquement)",
+      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion",
+      "connectionRequestsDescription": "Contrôlez qui peut vous envoyer des demandes de connexion.",
+      "connectionRequestsAll": "Tout le monde",
+      "connectionRequestsConnectionsOfConnections": "Connexions de connexions",
+      "contactInfoVisibilityLabel": "Qui peut voir vos coordonnées",
+      "contactInfoVisibilityDescription": "Choisissez qui peut voir votre e-mail et votre numéro de téléphone.",
+      "contactInfoVisibilityAll": "Tout le monde",
+      "contactInfoVisibilityConnections": "Connexions uniquement",
+      "activityStatusLabel": "Afficher votre statut d'activité",
+      "activityStatusDescription": "Laissez vos connexions voir quand vous êtes actif sur DamDoh.",
+      "searchIndexingLabel": "Autoriser l'indexation de votre profil par les moteurs de recherche",
+      "searchIndexingDescription": "Autorisez les moteurs de recherche comme Google à afficher votre profil DamDoh.",
+      "saveButton": "Enregistrer les paramètres de confidentialité",
+      "dataConsentTitle": "Gestion du consentement des données",
+      "dataConsentDescription": "Contrôlez la manière dont vos données sont partagées entre les différentes parties de DamDoh.",
+      "marketplaceHistoryLabel": "Partager l'historique du marché avec les institutions financières",
+      "marketplaceHistoryDescription": "Autorisez les prêteurs potentiels à consulter votre historique de transactions pour faciliter l'évaluation du crédit.",
+      "traceabilityDataLabel": "Rendre les données de traçabilité visibles publiquement",
+      "traceabilityDataDescription": "Autorisez les utilisateurs non connectés à consulter les rapports de traçabilité de vos lots répertoriés.",
+      "financialApplicationDataLabel": "Utiliser les données de demande de financement pour la mise en correspondance par l'IA",
+      "financialApplicationDataDescription": "Autorisez notre IA à vous mettre en relation avec des produits financiers pertinents en fonction de vos besoins déclarés.",
+      "saveConsentButton": "Enregistrer les consentements"
+    },
+    "appearance": {
+      "title": "Apparence",
+      "description": "Personnalisez l'apparence de l'application.",
+      "themeLabel": "Thème",
+      "themeDescription": "Choisissez entre un design clair et sombre.",
+      "lightTheme": "Clair",
+      "darkTheme": "Sombre",
+      "switchToLightAria": "Passer au thème clair",
+      "switchToDarkAria": "Passer au thème sombre",
+      "languageLabel": "Langue",
+      "languageDescription": "Choisissez votre langue préférée."
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centre de gestion agricole",
+      "description": "Gérez tous les aspects de vos opérations agricoles, du suivi des cultures à la gestion financière et des ressources.",
+      "myFarms": {
+        "title": "Mes fermes et cultures",
+        "description": "Gérez vos fermes enregistrées, vos parcelles et suivez les cycles de culture.",
+        "button": "Gérer les fermes"
+      },
+      "labor": {
+        "title": "Gestion de la main-d'œuvre",
+        "description": "Gardez une trace des travailleurs, enregistrez les heures et gérez les paiements de votre personnel agricole.",
+        "button": "Gérer les travailleurs"
+      },
+      "knf": {
+        "title": "Assistant KNF",
+        "description": "Créez et suivez vos intrants faits maison de l'agriculture naturelle coréenne (KNF).",
+        "button": "Gérer les intrants KNF"
+      },
+      "fgw": {
+        "title": "Guide Farming God's Way",
+        "description": "Apprenez les principes et les pratiques de l'agriculture selon la voie de Dieu.",
+        "button": "Voir le guide"
+      },
+      "financials": {
+        "title": "Questions d'argent",
+        "description": "Enregistrez les revenus et les dépenses pour suivre la santé financière de votre ferme.",
+        "button": "Gérer les finances"
+      },
+      "seedStarting": {
+        "title": "Guide de démarrage des semis",
+        "description": "Un guide détaillé des meilleures pratiques pour le semis et la transplantation.",
+        "button": "Lire le guide"
+      },
+      "familyFarm": {
+        "title": "Modèle de ferme familiale",
+        "description": "Explorez le modèle de ferme familiale intégrée de 200 m² pour la sécurité alimentaire.",
+        "button": "Voir le modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des actifs",
+        "description": "Suivez vos équipements, machines et autres actifs agricoles.",
+        "button": "Gérer les actifs"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Retour au centre",
+      "title": "Mes fermes",
+      "addNewFarmButton": "Ajouter une nouvelle ferme",
+      "size": "Taille",
+      "viewFarmButton": "Voir la ferme",
+      "noFarmsTitle": "Aucune ferme ajoutée",
+      "noFarmsDescription": "Commencez par enregistrer votre première ferme ou parcelle agricole.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour gérer vos fermes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Impossible de charger les fermes"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Retour aux fermes",
+      "title": "Enregistrer une nouvelle ferme",
+      "description": "Ajoutez un nouveau profil de ferme pour commencer à suivre les cultures, les intrants et les activités.",
+      "form": {
+        "farmNameLabel": "Nom de la ferme",
+        "farmNamePlaceholder": "Ex: Les Bio de la Vallée Verte",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "Ex: Vallée du Rift, Kenya",
+        "locationDescription": "L'emplacement général de votre ferme.",
+        "sizeLabel": "Taille / Superficie",
+        "sizePlaceholder": "Ex: 50 hectares",
+        "sizeDescription": "Incluez l'unité (par ex. acres, hectares).",
+        "typeLabel": "Type de ferme",
+        "typePlaceholder": "Sélectionnez le type principal de votre ferme",
+        "types": {
+          "crop": "Culture",
+          "livestock": "Élevage",
+          "mixed": "Mixte (culture et élevage)",
+          "aquaculture": "Aquaculture (pisciculture)",
+          "other": "Autre"
+        },
+        "descriptionLabel": "Courte description (facultatif)",
+        "descriptionPlaceholder": "Une brève description de l'orientation ou de la mission de votre ferme.",
+        "irrigationLabel": "Méthodes d'irrigation (facultatif)",
+        "irrigationPlaceholder": "Ex: Irrigation goutte à goutte, canal, pluviale",
+        "irrigationDescription": "Décrivez les principales méthodes d'irrigation utilisées.",
+        "submitButton": "Enregistrer la ferme"
+      },
+      "toast": {
+        "authErrorTitle": "Non authentifié",
+        "authErrorDescription": "Vous devez être connecté pour créer une ferme.",
+        "successTitle": "Ferme créée !",
+        "successDescription": "Votre ferme '{farmName}' a été enregistrée avec succès.",
+        "errorTitle": "Erreur lors de la création de la ferme"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Retour aux détails de la ferme",
+      "title": "Modifier les détails de la ferme",
+      "description": "Mettez à jour les informations de votre ferme.",
+      "form": {
+        "farmNameLabel": "Nom de la ferme",
+        "farmNamePlaceholder": "Ex: Les Bio de la Vallée Verte",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "Ex: Vallée du Rift, Kenya",
+        "locationDescription": "L'emplacement général de votre ferme.",
+        "sizeLabel": "Taille / Superficie",
+        "sizePlaceholder": "Ex: 50 hectares",
+        "sizeDescription": "Incluez l'unité (par ex. acres, hectares).",
+        "typeLabel": "Type de ferme",
+        "typePlaceholder": "Sélectionnez le type principal de votre ferme",
+        "types": {
+          "crop": "Culture",
+          "livestock": "Élevage",
+          "mixed": "Mixte (culture et élevage)",
+          "aquaculture": "Aquaculture (pisciculture)",
+          "other": "Autre"
+        },
+        "descriptionLabel": "Courte description (facultatif)",
+        "descriptionPlaceholder": "Une brève description de l'orientation ou de la mission de votre ferme.",
+        "irrigationLabel": "Méthodes d'irrigation (facultatif)",
+        "irrigationPlaceholder": "Ex: Irrigation goutte à goutte, canal, pluviale",
+        "irrigationDescription": "Décrivez les principales méthodes d'irrigation utilisées.",
+        "submitButton": "Enregistrer les modifications"
+      },
+      "toast": {
+        "notFoundTitle": "Ferme non trouvée",
+        "loadError": "Impossible de charger les données de la ferme pour la modification.",
+        "successTitle": "Ferme mise à jour !",
+        "successDescription": "Votre ferme '{farmName}' a été mise à jour avec succès.",
+        "errorTitle": "Échec de la mise à jour"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Retour à mes fermes",
+      "editFarmButton": "Modifier la ferme",
+      "registeredOn": "Enregistré le {date}",
+      "crops": {
+        "title": "Cultures / Élevage",
+        "description": "Toutes les plantations actives et les lots de bétail sur cette ferme.",
+        "addNewButton": "Ajouter nouveau",
+        "plantedLabel": "Planté",
+        "stageLabel": "Étape",
+        "viewJourneyButton": "Voir le parcours",
+        "noCrops": "Aucune culture ou bétail n'a encore été ajouté à cette ferme.",
+        "addFirstButton": "Ajouter la première culture/le premier bétail"
+      },
+      "insights": {
+        "title": "Aperçus de la rentabilité",
+        "description": "Analyse alimentée par l'IA des performances de votre ferme.",
+        "noInsights": "Aucun aperçu disponible pour le moment. Ajoutez plus de données financières pour commencer."
+      },
+      "notFound": {
+        "title": "Ferme non trouvée",
+        "description": "La ferme que vous avez demandée n'a pas pu être trouvée ou vous n'avez pas la permission de la voir.",
+        "backButton": "Retour à mes fermes"
+      },
+      "toast": {
+        "notFoundTitle": "Ferme non trouvée ou permission refusée",
+        "loadErrorTitle": "Erreur lors du chargement des données de la ferme",
+        "insightsErrorTitle": "Impossible de charger les aperçus de la ferme."
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Agriculteur",
+      "AgriculturalCooperative": "Coopérative agricole",
+      "FieldAgentAgronomistDamDohInternal": "Agent de terrain/Agronome (interne à DamDoh)",
+      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (interne à DamDoh)",
+      "QualityAssuranceTeamDamDohInternal": "Équipe d'assurance qualité (interne à DamDoh)",
+      "ProcessingPackagingUnit": "Unité de transformation et d'emballage",
+      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
+      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'intrants (semences, engrais, pesticides)",
+      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'équipements (vente de machines/IdO)",
+      "FinancialInstitutionMicro-financeLoans": "Institution financière (microfinance/prêts)",
+      "GovernmentRegulatorAuditor": "Régulateur/Auditeur gouvernemental",
+      "CertificationBodyOrganicFairTradeetc": "Organisme de certification (bio, commerce équitable, etc.)",
+      "Consumer": "Consommateur",
+      "ResearcherAcademic": "Chercheur/Académique",
+      "LogisticsPartnerThird-PartyTransporter": "Partenaire logistique (transporteur tiers)",
+      "StorageWarehouseFacility": "Installation de stockage/entrepôt",
+      "AgronomyExpertConsultantExternal": "Expert/Consultant en agronomie (externe)",
+      "Agro-TourismOperator": "Opérateur d'agrotourisme",
+      "EnergySolutionsProviderSolarBiogas": "Fournisseur de solutions énergétiques (solaire, biogaz)",
+      "Agro-ExportFacilitatorCustomsBroker": "Facilitateur d'agro-exportation/Courtier en douane",
+      "Agri-TechInnovatorDeveloper": "Innovateur/Développeur en agrotechnologie",
+      "WasteManagementCompostFacility": "Installation de gestion des déchets et de compostage",
+      "CrowdfunderImpactInvestorIndividual": "Investisseur participatif (investisseur d'impact, particulier)",
+      "InsuranceProvider": "Fournisseur d'assurance",
+      "PackagingSupplier": "Fournisseur d'emballages"
+    },
+    "listingTypes": {
+      "All": "Tous les types",
+      "Product": "Produit",
+      "Service": "Service"
+    },
+    "agriEventTypes": {
+      "All": "Tous les types",
+      "Conference": "Conférence",
+      "Webinar": "Webinaire",
+      "Workshop": "Atelier",
+      "TradeShow": "Salon professionnel",
+      "FieldDay": "Journée sur le terrain",
+      "NetworkingEvent": "Événement de réseautage",
+      "OnlineCourseLaunch": "Lancement de cours en ligne",
+      "PolicyBriefing": "Réunion d'information sur les politiques"
+    }
+  },
+  "marketplacePage": {
+    "title": "Marché",
+    "description": "Découvrez des produits, des services et des opportunités de toute la chaîne d'approvisionnement agricole.",
+    "createShopButton": "Créer une boutique numérique",
+    "createListingButton": "Créer une nouvelle annonce",
+    "unpinButton": "Désépingler de l'accueil",
+    "pinButton": "Épingler à l'accueil",
+    "searchPlaceholder": "Rechercher des produits ou des services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "typePlaceholder": "Type d'annonce",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus",
+    "viewServiceButton": "Voir le service",
+    "viewDetails": "Voir les détails",
+    "noItemsFound": "Aucune annonce trouvée",
+    "noItemsHint": "Essayez d'ajuster votre recherche, ou soyez le premier à créer une annonce dans votre région !",
+    "toast": {
+      "unpinned": {
+        "title": "Page d'accueil désépinglée !",
+        "description": "Le tableau de bord est maintenant votre page d'accueil par défaut."
+      },
+      "pinned": {
+        "title": "Marché épinglé !",
+        "description": "Le marché est maintenant votre page d'accueil par défaut."
+      }
+    }
+  },
+  "talentExchangePage": {
+    "title": "Bourse de talents",
+    "description": "Trouvez des professionnels qualifiés ou offrez votre expertise pour des projets agricoles.",
+    "listServiceButton": "Offrir un service",
+    "searchPlaceholder": "Rechercher par compétences ou rôles...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Catégorie de service",
+    "allCategories": "Toutes les catégories",
+    "noResultsTitle": "Aucun résultat trouvé",
+    "noResultsDescription": "Aucun service ou offre d'emploi ne correspond à vos critères. Essayez d'élargir votre recherche.",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de charger les articles du marché."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Traçabilité des produits",
+    "description": "Suivez le parcours de vos aliments de la ferme à la table pour une transparence totale.",
+    "inputPlaceholder": "Entrez un numéro de lot ou de VTI...",
+    "trackButton": "Suivre",
+    "vtiDescription": "Le VTI (Identifiant de traçabilité vérifiable) est un code unique attribué à chaque lot.",
+    "recentTitle": "Lots suivis récemment",
+    "recentDescription": "Vos articles suivis récemment apparaîtront ici pour une référence rapide.",
+    "detailPage": {
+      "invalidIdError": "ID de lot invalide fourni.",
+      "loadError": "Impossible de charger les données.",
+      "notFoundTitle": "Lot non trouvé",
+      "notFoundDescription": "Aucune donnée de traçabilité trouvée pour l'ID fourni.",
+      "backLink": "Retour à la recherche",
+      "traceableProduct": "Produit traçable",
+      "batchIdLabel": "ID du lot",
+      "producerLabel": "Producteur",
+      "sustainablyGrownTitle": "Cultivé de manière durable",
+      "sustainablyGrownDescription": "Nos données indiquent que des pratiques de culture durables ont été utilisées pour ce lot.",
+      "harvestDateLabel": "Date de récolte",
+      "yieldLabel": "Rendement",
+      "qualityLabel": "Qualité",
+      "notSpecified": "Non spécifié",
+      "journeyTitle": "Le parcours du produit",
+      "journeyDescription": "Un enregistrement chronologique des événements de la chaîne d'approvisionnement pour ce lot.",
+      "noEventDetails": "Aucun détail enregistré.",
+      "observationType": "Type d'observation",
+      "details": "Détails",
+      "aiDiagnosis": "Diagnostic de l'IA",
+      "geoLocationLabel": "Géolocalisation",
+      "noEventsFound": "Aucun événement n'a encore été enregistré pour ce lot."
+    }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "description": "Perspectives, histoires et connaissances de la communauté DamDoh.",
+    "error": {
+      "title": "Erreur de chargement",
+      "description": "Impossible de charger les publications du blog."
+    },
+    "meta": "{author} • {date}",
+    "readMore": "Lire la suite",
+    "noPosts": {
+      "title": "Aucune publication de blog trouvée",
+      "description": "Revenez bientôt pour les derniers articles et perspectives."
+    },
+    "backLink": "Retour au blog",
+    "notFound": {
+      "title": "Publication non trouvée",
+      "description": "L'article que vous recherchez n'a pas pu être trouvé.",
+      "backButton": "Retour au blog"
+    }
   }
 }
+
+    
