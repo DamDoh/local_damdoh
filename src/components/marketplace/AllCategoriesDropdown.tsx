@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -14,11 +13,11 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LayoutGrid, LucideIcon } from "lucide-react";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
-import { usePathname, useRouter, useSearchParams } from "@/navigation";
+import { usePathname, useRouter } from "@/navigation";
+import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
