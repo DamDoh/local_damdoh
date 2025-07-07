@@ -11,7 +11,7 @@ import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "@/navigation";
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -155,9 +155,10 @@ function MarketplaceContent() {
     };
 
     fetchFilteredItems();
-  }, [isMounted, searchTerm, currentCategory, listingTypeFilter, locationFilter, toast]);
+  }, [isMounted, searchTerm, currentCategory, listingTypeFilter, locationFilter, toast, t]);
 
   const isCurrentHomepage = homepagePreference === pathname;
+
   const handleSetHomepage = useCallback(() => {
     if (isCurrentHomepage) {
       clearHomepagePreference();
@@ -165,9 +166,9 @@ function MarketplaceContent() {
     } else {
       setHomepagePreference(pathname);
       toast({ title: t('pinning.pinnedTitle'), description: t('pinning.pinnedDescription') });
-    }\n  }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
-  }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
-
+    }
+  }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast, t]);
+  
   if (!isMounted) return <MarketplaceSkeleton />;
   
   return (
@@ -266,8 +267,8 @@ function MarketplaceContent() {
             </div>
           ) : (
             <div className="text-center py-16 col-span-full border-2 border-dashed rounded-lg">
-              <p className="text-lg text-muted-foreground">{t('noItemsFound')}</p>
-              <p className="text-sm text-muted-foreground">{t('noItemsHint')}</p>
+              <p className="text-lg text-muted-foreground">{t('noItemsFound.title')}</p>
+              <p className="text-sm text-muted-foreground">{t('noItemsFound.hint')}</p>
             </div>
           )}
         </CardContent>
