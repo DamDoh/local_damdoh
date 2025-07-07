@@ -692,7 +692,7 @@ export interface PollOption {
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
-  timestamp: any;
+  timestamp: string;
   userId: string;
   userName: string;
   userAvatar?: string;
