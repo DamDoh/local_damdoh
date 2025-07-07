@@ -240,8 +240,8 @@
     "createShopButton": "Créer une boutique",
     "createListingButton": "Créer une annonce",
     "myOrdersButton": "Mes commandes reçues",
-    "pinButton": "Épingler à la page d'accueil",
     "unpinButton": "Détacher de la page d'accueil",
+    "pinButton": "Épingler à la page d'accueil",
     "searchPlaceholder": "Rechercher sur le marché...",
     "locationPlaceholder": "Filtrer par emplacement...",
     "typePlaceholder": "Filtrer par type...",
@@ -844,6 +844,82 @@
     "toast": {
       "errorTitle": "Erreur",
       "loadError": "Impossible de charger les données du réseau. Veuillez réessayer."
+    }
+  },
+  "settingsPage": {
+    "title": "Paramètres",
+    "description": "Gérez les préférences de votre compte et de votre profil.",
+    "profileTab": "Profil",
+    "accountTab": "Compte",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Confidentialité",
+    "appearanceTab": "Apparence",
+    "stakeholderProfile": {
+      "title": "Profil de partie prenante",
+      "description": "Ceci est votre identité principale sur la plateforme. C'est ainsi que les autres vous trouveront et interagiront avec vous."
+    },
+    "account": {
+      "title": "Paramètres du compte",
+      "description": "Gérez votre mot de passe et la sécurité de votre compte.",
+      "currentPasswordLabel": "Mot de passe actuel",
+      "newPasswordLabel": "Nouveau mot de passe",
+      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+      "changePasswordButton": "Changer le mot de passe",
+      "deactivateButton": "Désactiver le compte"
+    },
+    "notifications": {
+      "title": "Paramètres de notification",
+      "description": "Choisissez comment vous recevez les notifications de DamDoh.",
+      "emailDigestLabel": "Résumé par e-mail",
+      "emailDigestDescription": "Recevez un résumé hebdomadaire de votre activité.",
+      "connectionRequestsLabel": "Demandes de connexion",
+      "connectionRequestsDescription": "M'avertir lorsque quelqu'un veut se connecter.",
+      "forumMentionsLabel": "Mentions du forum",
+      "forumMentionsDescription": "M'avertir lorsque quelqu'un me @mentionne dans un forum.",
+      "marketplaceActivityLabel": "Mises à jour du marché",
+      "marketplaceActivityDescription": "Recevez des mises à jour sur vos annonces et commandes.",
+      "talentExchangeLabel": "Alertes de la bourse des talents",
+      "talentExchangeDescription": "M'avertir des nouveaux emplois ou candidats.",
+      "saveButton": "Enregistrer les préférences"
+    },
+    "privacy": {
+      "title": "Confidentialité et visibilité",
+      "description": "Contrôlez qui peut voir vos informations et comment vous apparaissez sur la plateforme.",
+      "profileVisibilityLabel": "Visibilité du profil",
+      "profileVisibilityDescription": "Qui peut voir votre profil complet ?",
+      "profileVisibilityAll": "Tout le monde",
+      "profileVisibilityConnections": "Connexions uniquement",
+      "profileVisibilityPrivate": "Privé",
+      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion ?",
+      "connectionRequestsDescription": "Gérez qui peut demander à rejoindre votre réseau.",
+      "connectionRequestsAll": "Tout le monde",
+      "connectionRequestsConnectionsOfConnections": "Connexions de connexions",
+      "contactInfoVisibilityLabel": "Visibilité des informations de contact",
+      "contactInfoVisibilityDescription": "Qui peut voir votre e-mail et votre numéro de téléphone ?",
+      "contactInfoVisibilityAll": "Tout le monde",
+      "contactInfoVisibilityConnections": "Connexions uniquement",
+      "activityStatusLabel": "Afficher mon statut d'activité",
+      "activityStatusDescription": "Laissez les autres voir quand vous êtes actif sur DamDoh.",
+      "searchIndexingLabel": "Autoriser les moteurs de recherche à indexer mon profil",
+      "searchIndexingDescription": "Laissez les gens trouver votre profil DamDoh via des moteurs de recherche comme Google.",
+      "saveButton": "Enregistrer les paramètres de confidentialité",
+      "dataConsentTitle": "Partage de données et consentement",
+      "dataConsentDescription": "Contrôlez comment vos données sont utilisées pour des fonctionnalités améliorées sur la plateforme.",
+      "marketplaceHistoryLabel": "Partager l'historique du marché avec les partenaires financiers",
+      "marketplaceHistoryDescription": "Nous permet de partager votre historique de transactions pour vous aider à obtenir une pré-approbation pour des prêts ou des subventions.",
+      "traceabilityDataLabel": "Rendre les données de traçabilité publiques",
+      "traceabilityDataDescription": "Permet à toute personne disposant d'un lien de voir le parcours de vos produits liés à VTI.",
+      "financialApplicationDataLabel": "Utiliser les données de demande financière pour la correspondance IA",
+      "financialApplicationDataDescription": "Permettre à l'IA d'analyser vos besoins financiers pour suggérer des partenaires et des opportunités pertinents.",
+      "saveConsentButton": "Enregistrer les paramètres de consentement"
+    },
+    "appearance": {
+      "title": "Apparence",
+      "description": "Personnalisez l'aspect et la convivialité de l'application.",
+      "themeLabel": "Thème",
+      "themeDescription": "Choisissez entre les thèmes clair et sombre.",
+      "languageLabel": "Langue",
+      "languageDescription": "Sélectionnez votre langue préférée pour l'interface."
     }
   }
 }

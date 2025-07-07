@@ -850,5 +850,82 @@
       "errorTitle": "Error",
       "loadError": "Could not load network data. Please try again."
     }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account and profile preferences.",
+    "profileTab": "Profile",
+    "accountTab": "Account",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Privacy",
+    "appearanceTab": "Appearance",
+    "stakeholderProfile": {
+      "title": "Stakeholder Profile",
+      "description": "This is your main identity on the platform. It's how others will find and interact with you."
+    },
+    "account": {
+      "title": "Account Settings",
+      "description": "Manage your password and account security.",
+      "currentPasswordLabel": "Current Password",
+      "newPasswordLabel": "New Password",
+      "confirmPasswordLabel": "Confirm New Password",
+      "changePasswordButton": "Change Password",
+      "deactivateButton": "Deactivate Account"
+    },
+    "notifications": {
+      "title": "Notification Settings",
+      "description": "Choose how you receive notifications from DamDoh.",
+      "emailDigestLabel": "Email Digest",
+      "emailDigestDescription": "Receive a weekly summary of your activity.",
+      "connectionRequestsLabel": "Connection Requests",
+      "connectionRequestsDescription": "Notify me when someone wants to connect.",
+      "forumMentionsLabel": "Forum Mentions",
+      "forumMentionsDescription": "Notify me when someone @mentions me in a forum.",
+      "marketplaceActivityLabel": "Marketplace Updates",
+      "marketplaceActivityDescription": "Receive updates on your listings and orders.",
+      "talentExchangeLabel": "Talent Exchange Alerts",
+      "talentExchangeDescription": "Notify me about new jobs or applicants.",
+      "saveButton": "Save Preferences"
+    },
+    "privacy": {
+      "title": "Privacy & Visibility",
+      "description": "Control who can see your information and how you appear on the platform.",
+      "profileVisibilityLabel": "Profile Visibility",
+      "profileVisibilityDescription": "Who can view your full profile?",
+      "profileVisibilityAll": "Everyone",
+      "profileVisibilityConnections": "Connections Only",
+      "profileVisibilityPrivate": "Private",
+      "connectionRequestsLabel": "Who can send you connection requests?",
+      "connectionRequestsDescription": "Manage who can request to join your network.",
+      "connectionRequestsAll": "Everyone",
+      "connectionRequestsConnectionsOfConnections": "Connections of Connections",
+      "contactInfoVisibilityLabel": "Contact Info Visibility",
+      "contactInfoVisibilityDescription": "Who can see your email and phone number?",
+      "contactInfoVisibilityAll": "Everyone",
+      "contactInfoVisibilityConnections": "Connections Only",
+      "activityStatusLabel": "Show my activity status",
+      "activityStatusDescription": "Let others see when you're active on DamDoh.",
+      "searchIndexingLabel": "Allow search engines to index my profile",
+      "searchIndexingDescription": "Let people find your DamDoh profile through search engines like Google.",
+      "saveButton": "Save Privacy Settings",
+      "dataConsentTitle": "Data Sharing & Consent",
+      "dataConsentDescription": "Control how your data is used for enhanced features across the platform.",
+      "marketplaceHistoryLabel": "Share marketplace history with financial partners",
+      "marketplaceHistoryDescription": "Allows us to share your transaction history to help you get pre-approved for loans or grants.",
+      "traceabilityDataLabel": "Make traceability data public",
+      "traceabilityDataDescription": "Allows anyone with a link to see the journey of your VTI-linked products.",
+      "financialApplicationDataLabel": "Use application data for AI matching",
+      "financialApplicationDataDescription": "Allow AI to analyze your financial needs to suggest relevant partners and opportunities.",
+      "saveConsentButton": "Save Consent Settings"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Customize the look and feel of the app.",
+      "themeLabel": "Theme",
+      "themeDescription": "Choose between light and dark themes.",
+      "languageLabel": "Language",
+      "languageDescription": "Select your preferred language for the interface."
+    }
   }
 }
+

@@ -850,5 +850,81 @@
       "errorTitle": "កំហុស",
       "loadError": "មិនអាចផ្ទុកទិន្នន័យបណ្តាញបានទេ។ សូមព្យាយាមម្តងទៀត។"
     }
+  },
+  "settingsPage": {
+    "title": "ការកំណត់",
+    "description": "គ្រប់គ្រងចំណូលចិត្តគណនី និងប្រវត្តិរូបរបស់អ្នក។",
+    "profileTab": "ប្រវត្តិរូប",
+    "accountTab": "គណនី",
+    "notificationsTab": "ការជូនដំណឹង",
+    "privacyTab": "ឯកជនភាព",
+    "appearanceTab": "រូបរាង",
+    "stakeholderProfile": {
+      "title": "ប្រវត្តិរូបភាគីពាក់ព័ន្ធ",
+      "description": "នេះជាអត្តសញ្ញាណចម្បងរបស់អ្នកនៅលើវេទិកា។ វាជាវិធីដែលអ្នកដទៃនឹងស្វែងរក និងប្រាស្រ័យទាក់ទងជាមួយអ្នក។"
+    },
+    "account": {
+      "title": "ការកំណត់គណនី",
+      "description": "គ្រប់គ្រងពាក្យសម្ងាត់ និងសុវត្ថិភាពគណនីរបស់អ្នក។",
+      "currentPasswordLabel": "ពាក្យសម្ងាត់បច្ចុប្បន្ន",
+      "newPasswordLabel": "ពាក្យសម្ងាត់ថ្មី",
+      "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់ថ្មី",
+      "changePasswordButton": "ប្តូរពាក្យសម្ងាត់",
+      "deactivateButton": "បិទគណនី"
+    },
+    "notifications": {
+      "title": "ការកំណត់ការជូនដំណឹង",
+      "description": "ជ្រើសរើសរបៀបដែលអ្នកទទួលបានការជូនដំណឹងពី DamDoh។",
+      "emailDigestLabel": "សេចក្តីសង្ខេបតាមអ៊ីមែល",
+      "emailDigestDescription": "ទទួលបានសេចក្តីសង្ខេបប្រចាំសប្តាហ៍នៃសកម្មភាពរបស់អ្នក។",
+      "connectionRequestsLabel": "សំណើទំនាក់ទំនង",
+      "connectionRequestsDescription": "ជូនដំណឹងខ្ញុំនៅពេលមាននរណាម្នាក់ចង់ភ្ជាប់ទំនាក់ទំនង។",
+      "forumMentionsLabel": "ការលើកឡើងក្នុងវេទិកា",
+      "forumMentionsDescription": "ជូនដំណឹងខ្ញុំនៅពេលមាននរណាម្នាក់ @mention ខ្ញុំនៅក្នុងវេទិកា។",
+      "marketplaceActivityLabel": "បច្ចុប្បន្នភាពទីផ្សារ",
+      "marketplaceActivityDescription": "ទទួលបានបច្ចុប្បន្នភាពលើបញ្ជី និងការបញ្ជាទិញរបស់អ្នក។",
+      "talentExchangeLabel": "ការជូនដំណឹងពីផ្សារអ្នកជំនាញ",
+      "talentExchangeDescription": "ជូនដំណឹងខ្ញុំអំពីការងារថ្មីៗ ឬអ្នកដាក់ពាក្យ។",
+      "saveButton": "រក្សាទុកចំណូលចិត្ត"
+    },
+    "privacy": {
+      "title": "ឯកជនភាព និងការមើលឃើញ",
+      "description": "គ្រប់គ្រងអ្នកដែលអាចមើលព័ត៌មានរបស់អ្នក និងរបៀបដែលអ្នកបង្ហាញខ្លួននៅលើវេទិកា។",
+      "profileVisibilityLabel": "ការមើលឃើញប្រវត្តិរូប",
+      "profileVisibilityDescription": "តើអ្នកណាអាចមើលប្រវត្តិរូបពេញលេញរបស់អ្នក?",
+      "profileVisibilityAll": "មនុស្សគ្រប់គ្នា",
+      "profileVisibilityConnections": "តែទំនាក់ទំនងប៉ុណ្ណោះ",
+      "profileVisibilityPrivate": "ឯកជន",
+      "connectionRequestsLabel": "តើអ្នកណាអាចផ្ញើសំណើទំនាក់ទំនងមកអ្នក?",
+      "connectionRequestsDescription": "គ្រប់គ្រងអ្នកដែលអាចស្នើសុំចូលរួមបណ្តាញរបស់អ្នក។",
+      "connectionRequestsAll": "មនុស្សគ្រប់គ្នា",
+      "connectionRequestsConnectionsOfConnections": "ទំនាក់ទំនងនៃទំនាក់ទំនង",
+      "contactInfoVisibilityLabel": "ការមើលឃើញព័ត៌មានទំនាក់ទំនង",
+      "contactInfoVisibilityDescription": "តើអ្នកណាអាចមើលអ៊ីមែល និងលេខទូរស័ព្ទរបស់អ្នក?",
+      "contactInfoVisibilityAll": "មនុស្សគ្រប់គ្នា",
+      "contactInfoVisibilityConnections": "តែទំនាក់ទំនងប៉ុណ្ណោះ",
+      "activityStatusLabel": "បង្ហាញស្ថានភាពសកម្មភាពរបស់ខ្ញុំ",
+      "activityStatusDescription": "អនុញ្ញាតឱ្យអ្នកដទៃមើលឃើញនៅពេលអ្នកសកម្មនៅលើ DamDoh។",
+      "searchIndexingLabel": "អនុញ្ញាតឱ្យម៉ាស៊ីនស្វែងរកធ្វើលិបិក្រមប្រវត្តិរូបរបស់ខ្ញុំ",
+      "searchIndexingDescription": "អនុញ្ញាតឱ្យមនុស្សស្វែងរកប្រវត្តិរូប DamDoh របស់អ្នកតាមរយៈម៉ាស៊ីនស្វែងរកដូចជា Google។",
+      "saveButton": "រក្សាទុកការកំណត់ឯកជនភាព",
+      "dataConsentTitle": "ការចែករំលែកទិន្នន័យ និងការយល់ព្រម",
+      "dataConsentDescription": "គ្រប់គ្រងរបៀបដែលទិន្នន័យរបស់អ្នកត្រូវបានប្រើសម្រាប់លក្ខណៈពិសេសដែលប្រសើរឡើងនៅទូទាំងវេទិកា។",
+      "marketplaceHistoryLabel": "ចែករំលែកប្រវត្តិទីផ្សារជាមួយដៃគូហិរញ្ញវត្ថុ",
+      "marketplaceHistoryDescription": "អនុញ្ញាតឱ្យយើងចែករំលែកប្រវត្តិប្រតិបត្តិការរបស់អ្នក ដើម្បីជួយអ្នកឱ្យទទួលបានការយល់ព្រមជាមុនសម្រាប់កម្ចី ឬជំនួយឥតសំណង។",
+      "traceabilityDataLabel": "ធ្វើឱ្យទិន្នន័យតាមដានជាសាធារណៈ",
+      "traceabilityDataDescription": "អនុញ្ញាតឱ្យនរណាម្នាក់ដែលមានតំណភ្ជាប់មើលឃើញដំណើរនៃផលិតផលដែលភ្ជាប់ VTI របស់អ្នក។",
+      "financialApplicationDataLabel": "ប្រើទិន្នន័យកម្មវិធីហិរញ្ញវត្ថុសម្រាប់ការផ្គូផ្គង AI",
+      "financialApplicationDataDescription": "អនុញ្ញាតឱ្យ AI វិភាគតម្រូវការហិរញ្ញវត្ថុរបស់អ្នក ដើម្បីណែនាំដៃគូ និងឱកាសដែលពាក់ព័ន្ធ។",
+      "saveConsentButton": "រក្សាទុកការកំណត់ការយល់ព្រម"
+    },
+    "appearance": {
+      "title": "រូបរាង",
+      "description": "ប្ដូរតាមបំណងនូវរូបរាង និងអារម្មណ៍របស់កម្មវិធី។",
+      "themeLabel": "ផ្ទៃ",
+      "themeDescription": "ជ្រើសរើសរវាងផ្ទៃពន្លឺ និងងងឹត។",
+      "languageLabel": "ភាសា",
+      "languageDescription": "ជ្រើសរើសភាសាដែលអ្នកពេញចិត្តសម្រាប់ចំណុចប្រទាក់។"
+    }
   }
 }

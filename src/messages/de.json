@@ -850,5 +850,81 @@
       "errorTitle": "Fehler",
       "loadError": "Netzwerkdaten konnten nicht geladen werden. Bitte versuchen Sie es erneut."
     }
+  },
+  "settingsPage": {
+    "title": "Einstellungen",
+    "description": "Verwalten Sie Ihre Konto- und Profileinstellungen.",
+    "profileTab": "Profil",
+    "accountTab": "Konto",
+    "notificationsTab": "Benachrichtigungen",
+    "privacyTab": "Datenschutz",
+    "appearanceTab": "Erscheinungsbild",
+    "stakeholderProfile": {
+      "title": "Stakeholder-Profil",
+      "description": "Dies ist Ihre Hauptidentität auf der Plattform. So finden und interagieren andere mit Ihnen."
+    },
+    "account": {
+      "title": "Kontoeinstellungen",
+      "description": "Verwalten Sie Ihr Passwort und die Sicherheit Ihres Kontos.",
+      "currentPasswordLabel": "Aktuelles Passwort",
+      "newPasswordLabel": "Neues Passwort",
+      "confirmPasswordLabel": "Neues Passwort bestätigen",
+      "changePasswordButton": "Passwort ändern",
+      "deactivateButton": "Konto deaktivieren"
+    },
+    "notifications": {
+      "title": "Benachrichtigungseinstellungen",
+      "description": "Wählen Sie, wie Sie Benachrichtigungen von DamDoh erhalten möchten.",
+      "emailDigestLabel": "E-Mail-Zusammenfassung",
+      "emailDigestDescription": "Erhalten Sie eine wöchentliche Zusammenfassung Ihrer Aktivitäten.",
+      "connectionRequestsLabel": "Verbindungsanfragen",
+      "connectionRequestsDescription": "Benachrichtigen, wenn jemand sich mit mir verbinden möchte.",
+      "forumMentionsLabel": "Forum-Erwähnungen",
+      "forumMentionsDescription": "Benachrichtigen, wenn mich jemand in einem Forum @erwähnt.",
+      "marketplaceActivityLabel": "Marktplatz-Aktivitäten",
+      "marketplaceActivityDescription": "Erhalten Sie Updates zu Ihren Angeboten und Bestellungen.",
+      "talentExchangeLabel": "Talentbörsen-Benachrichtigungen",
+      "talentExchangeDescription": "Benachrichtigen über neue Jobs oder Bewerber.",
+      "saveButton": "Einstellungen speichern"
+    },
+    "privacy": {
+      "title": "Datenschutz & Sichtbarkeit",
+      "description": "Kontrollieren Sie, wer Ihre Informationen sehen kann und wie Sie auf der Plattform erscheinen.",
+      "profileVisibilityLabel": "Profil-Sichtbarkeit",
+      "profileVisibilityDescription": "Wer kann Ihr vollständiges Profil sehen?",
+      "profileVisibilityAll": "Jeder",
+      "profileVisibilityConnections": "Nur Verbindungen",
+      "profileVisibilityPrivate": "Privat",
+      "connectionRequestsLabel": "Wer kann Ihnen Verbindungsanfragen senden?",
+      "connectionRequestsDescription": "Verwalten Sie, wer eine Anfrage zum Beitritt zu Ihrem Netzwerk stellen kann.",
+      "connectionRequestsAll": "Jeder",
+      "connectionRequestsConnectionsOfConnections": "Verbindungen von Verbindungen",
+      "contactInfoVisibilityLabel": "Sichtbarkeit der Kontaktinformationen",
+      "contactInfoVisibilityDescription": "Wer kann Ihre E-Mail und Telefonnummer sehen?",
+      "contactInfoVisibilityAll": "Jeder",
+      "contactInfoVisibilityConnections": "Nur Verbindungen",
+      "activityStatusLabel": "Meinen Aktivitätsstatus anzeigen",
+      "activityStatusDescription": "Lassen Sie andere sehen, wann Sie auf DamDoh aktiv sind.",
+      "searchIndexingLabel": "Suchmaschinen erlauben, mein Profil zu indizieren",
+      "searchIndexingDescription": "Lassen Sie Leute Ihr DamDoh-Profil über Suchmaschinen wie Google finden.",
+      "saveButton": "Datenschutzeinstellungen speichern",
+      "dataConsentTitle": "Datenfreigabe & Zustimmung",
+      "dataConsentDescription": "Kontrollieren Sie, wie Ihre Daten für erweiterte Funktionen auf der Plattform verwendet werden.",
+      "marketplaceHistoryLabel": "Marktplatz-Verlauf mit Finanzpartnern teilen",
+      "marketplaceHistoryDescription": "Ermöglicht uns, Ihren Transaktionsverlauf zu teilen, um Ihnen bei der Vorabgenehmigung von Krediten oder Zuschüssen zu helfen.",
+      "traceabilityDataLabel": "Rückverfolgbarkeitsdaten öffentlich machen",
+      "traceabilityDataDescription": "Ermöglicht jedem mit einem Link, die Reise Ihrer VTI-verknüpften Produkte zu sehen.",
+      "financialApplicationDataLabel": "Antragsdaten für KI-Matching verwenden",
+      "financialApplicationDataDescription": "Erlauben Sie der KI, Ihre finanziellen Bedürfnisse zu analysieren, um relevante Partner und Möglichkeiten vorzuschlagen.",
+      "saveConsentButton": "Zustimmungseinstellungen speichern"
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "description": "Passen Sie das Aussehen und die Handhabung der App an.",
+      "themeLabel": "Thema",
+      "themeDescription": "Wählen Sie zwischen hellen und dunklen Themen.",
+      "languageLabel": "Sprache",
+      "languageDescription": "Wählen Sie Ihre bevorzugte Sprache für die Benutzeroberfläche."
+    }
   }
 }
