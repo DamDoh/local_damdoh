@@ -13,7 +13,8 @@ import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Helper Component 1: DashboardSkeleton
+// --- HELPER COMPONENTS (defined at the top level with `function` keyword) ---
+
 function DashboardSkeleton() {
     return (
         <div className="space-y-6">
@@ -30,7 +31,6 @@ function DashboardSkeleton() {
     );
 }
 
-// Helper Component 2: StatCard
 interface StatCardProps {
   title: string;
   value: number;
@@ -44,28 +44,27 @@ interface StatCardProps {
 }
 
 function StatCard({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false, actionIcon, actionButtonVariant = "outline" }: StatCardProps) {
-  return (
-    <Card className="flex flex-col justify-between">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        {icon}
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <div className="text-2xl font-bold">
-            {isCurrency && '$'}{value.toLocaleString(undefined, { minimumFractionDigits: isCurrency ? 2 : 0, maximumFractionDigits: isCurrency ? 2 : 0 })}
-            {unit && <span className="text-sm text-muted-foreground ml-1">{unit}</span>}
-        </div>
-      </CardContent>
-      <CardFooter>
-          <Button asChild variant={actionButtonVariant} size="sm" className="w-full">
-              <Link href={actionLink} className="flex items-center justify-center">{actionIcon}{actionLabel}</Link>
-          </Button>
-      </CardFooter>
-    </Card>
-  );
+    return (
+        <Card className="flex flex-col justify-between">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                {icon}
+            </CardHeader>
+            <CardContent className="flex-grow">
+                <div className="text-2xl font-bold">
+                    {isCurrency && '$'}{value.toLocaleString(undefined, { minimumFractionDigits: isCurrency ? 2 : 0, maximumFractionDigits: isCurrency ? 2 : 0 })}
+                    {unit && <span className="text-sm text-muted-foreground ml-1">{unit}</span>}
+                </div>
+            </CardContent>
+            <CardFooter>
+                <Button asChild variant={actionButtonVariant} size="sm" className="w-full">
+                    <Link href={actionLink} className="flex items-center justify-center">{actionIcon}{actionLabel}</Link>
+                </Button>
+            </CardFooter>
+        </Card>
+    );
 }
 
-// Helper Component 3: AlertIcon
 function AlertIcon({ icon }: { icon: FarmerDashboardAlert['icon'] }) {
     const iconMap = {
         FlaskConical: FlaskConical,
@@ -75,7 +74,9 @@ function AlertIcon({ icon }: { icon: FarmerDashboardAlert['icon'] }) {
     return <IconComponent className="h-5 w-5" />;
 }
 
-// Main Dashboard Component
+
+// --- MAIN COMPONENT ---
+
 export function FarmerDashboard() {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -113,7 +114,7 @@ export function FarmerDashboard() {
     const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary, alerts = [] } = dashboardData;
 
     return (
-        <div className="space-y-6">
+         <div className="space-y-6">
              {alerts.length > 0 && (
                 <Card className="border-primary/50 bg-primary/10">
                     <CardHeader>

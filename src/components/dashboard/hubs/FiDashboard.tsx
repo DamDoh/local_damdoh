@@ -8,7 +8,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle } from 'lucide-react';
-import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartPie, ChartPieSlice } from "@/components/ui/chart"
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -57,18 +56,7 @@ export const FiDashboard = () => {
             </div>
         );
     }
-
-    // Aggregate data for pie chart
-    const applicationTypeData = useMemo(() => {
-        const { pendingApplications } = dashboardData || {};
-        if (!pendingApplications) return [];
-        const counts = pendingApplications.reduce((acc, app) => {
-            acc[app.type] = (acc[app.type] || 0) + 1;
-            return acc;
-        }, {} as Record<string, number>);
-        return Object.keys(counts).map(type => ({ name: type, value: counts[type] }));
-    }, [pendingApplications]);
-
+    
     const { pendingApplications, portfolioAtRisk, marketUpdates } = dashboardData;
 
     return (
@@ -102,6 +90,7 @@ export const FiDashboard = () => {
                            <Badge variant="secondary" className="ml-2 text-sm">
                                {pendingApplications?.length || 0} {t('total')}
 
+                        </Badge>
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -134,27 +123,6 @@ export const FiDashboard = () => {
                             </Table>
                        ) : (
                             <p className="text-sm text-muted-foreground text-center py-4">{t('noApplications')}</p>
-                       )}
-                       {applicationTypeData.length > 0 && (
-                           <div className="mt-4">
-                                <h4 className="text-sm font-medium mb-2">{t('applicationsByType')}</h4>
-                                <ChartContainer config={{}} className="min-h-[150px] w-full">
-                                    <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />}/>
-                                    <ChartPie>
-                                        {applicationTypeData.map((item, index) => (
-                                            <ChartPieSlice
-                                                key={item.name}
-                                                value={item.value}
-                                                label={`${item.name}: ${item.value}`}
-                                                style={{
-                                                    fill: `hsl(var(--chart-${index + 1}))`,
-                                                }}
-                                                className="stroke-background"
-                                            />
-                                        ))}
-                                    </ChartPie>
-                                </ChartContainer>
-                           </div>
                        )}
                     </CardContent>
                 </Card>

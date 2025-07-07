@@ -686,7 +686,7 @@ export interface PollOption {
 export interface FeedItem {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
-  timestamp: string;
+  timestamp: any; // Firestore Timestamp
   userId: string;
   userName: string;
   userAvatar?: string;
@@ -809,3 +809,10 @@ export interface PaymentLog {
     date: string; // ISO string
     notes: string;
 }
+
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    skillsRequired: string[];
+    compensation: string;
+    experienceLevel: string;
+};

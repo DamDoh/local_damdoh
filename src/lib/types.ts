@@ -815,3 +815,10 @@ export interface PaymentLog {
     date: string; // ISO string
     notes: string;
 }
+
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    skillsRequired: string[];
+    compensation: string;
+    experienceLevel: string;
+};
