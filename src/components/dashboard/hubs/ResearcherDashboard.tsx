@@ -8,13 +8,17 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; // Ensure Button is imported
 import Link from 'next/link';
 import { FlaskConical, Database, Lightbulb } from 'lucide-react';
+import { ChartContainer, ChartLegend, ChartTooltip } from "@/components/ui/chart";
 import type { ResearcherDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
+
+// Import necessary chart components (assuming they exist in your project)
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 export const ResearcherDashboard = () => {
   const t = useTranslations('ResearcherDashboard');
@@ -68,6 +72,30 @@ export const ResearcherDashboard = () => {
 
   const { availableDatasets, ongoingProjects, knowledgeHubContributions } = dashboardData;
 
+        // Prepare data for Datasets Type Chart
+  const datasetDataTypeCounts = useMemo(() => {
+    const counts: { [key: string]: number } = {};
+    (availableDatasets || []).forEach(dataset => {
+      counts[dataset.dataType] = (counts[dataset.dataType] || 0) + 1;
+    });
+          return Object.keys(counts).map(key => ({ dataType: key, count: counts[key] }));
+  }, [availableDatasets]);
+
+   const datasetChartData = [
+       ...datasetDataTypeCounts,
+       ...datasetAccessLevelCounts.map(item => ({ name: `${item.name} Access`, count: item.count }))
+   ];
+
+  // Prepare data for Contributions Chart
+  const contributionStatusCounts = useMemo(() => {
+    const counts: { [key: string]: number } = {};
+    (knowledgeHubContributions || []).forEach(contribution => {
+      counts[contribution.status] = (counts[contribution.status] || 0) + 1;
+    });
+    return Object.keys(counts).map(key => ({ name: key, count: counts[key] }));
+  }, [knowledgeHubContributions]);
+
+
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
           case 'draft': return 'secondary';
@@ -82,7 +110,7 @@ export const ResearcherDashboard = () => {
       <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         {/* Available Datasets */}
+         {/* Available Datasets Table */}
          <Card className="md:col-span-2">
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/>{t('datasetsTitle')}</CardTitle>
@@ -120,6 +148,29 @@ export const ResearcherDashboard = () => {
            </CardContent>
          </Card>
 
+        {/* Available Datasets Chart */}
+         <Card className="md:col-span-2">
+           <CardHeader>
+             <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/>{t('datasetsByTypeTitle')}</CardTitle>
+             <CardDescription>{t('datasetsByTypeDescription')}</CardDescription>
+           </CardHeader>
+           <CardContent className="flex justify-center">
+             {(datasetDataTypeCounts || []).length > 0 ? (
+                 <ChartContainer config={{}} className="min-h-[200px] w-full">
+                     <BarChart accessibilityLayer data={datasetDataTypeCounts}>
+                         <CartesianGrid vertical={false} />
+                         <XAxis dataKey="dataType" tickLine={false} tickMargin={10} axisLine={false} />
+                         <YAxis tickLine={false} tickMargin={10} axisLine={false} />
+                         <ChartTooltip cursor={false} content={<ChartTooltip />} />
+                         <ChartLegend content={<ChartLegend />} />
+                         <Bar dataKey="count" fill="var(--color-primary)" radius={4} />
+                     </BarChart>
+                 </ChartContainer>
+             ) : (
+                <p className="text-sm text-muted-foreground text-center py-4">{t('noDatasetsForChart')}</p>
+             )}
+           </CardContent>
+         </Card>
          {/* Ongoing Projects */}
          <Card className="md:col-span-2">
            <CardHeader>
@@ -143,10 +194,7 @@ export const ResearcherDashboard = () => {
                        <TableCell className="font-medium">{project.title}</TableCell>
                        <TableCell>
                          <div className="flex items-center gap-2">
-                            <div className="w-20 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                                <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${project.progress}%` }}></div>
-                            </div>
-                            <span className="text-xs">{project.progress}%</span>
+                             <Progress value={project.progress} className="w-[60%]" />
                          </div>
                         </TableCell>
                        <TableCell>{(project.collaborators || []).join(', ')}</TableCell>

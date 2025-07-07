@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Link from 'next/link';
+import Link from "next/link";
 import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import type { CertificationBodyDashboardData } from '@/lib/types';
@@ -84,7 +84,7 @@ export const CertificationBodyDashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Pending Audits */}
-         <Card className="md:col-span-2">
+         <Card>
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/>{t('auditsTitle')}</CardTitle>
              <CardDescription>{t('auditsDescription')}</CardDescription>
@@ -122,7 +122,44 @@ export const CertificationBodyDashboard = () => {
          </Card>
 
          {/* Certified Entities */}
-         <Card className="md:col-span-2">
+         <Card>
+           <CardHeader>
+ <CardTitle className="text-base flex items-center gap-2">
+ <Award className="h-4 w-4 text-yellow-500" />
+ {t("entitiesTitle")}
+ </CardTitle>
+ <CardDescription>{t("entitiesDescription")}</CardDescription>
+ </CardHeader>
+ <CardContent>
+ {certifiedEntities && certifiedEntities.length > 0 ? (
+ <ChartContainer
+ config={{
+ active: { color: "hsl(var(--chart-1))" },
+ "pending renewal": { color: "hsl(var(--chart-2))" },
+ expired: { color: "hsl(var(--chart-3))" },
+ }}
+ className="mx-auto aspect-square h-[200px]"
+ >
+ <ChartComponent
+ data={Object.entries(
+ certifiedEntities.reduce((acc, entity) => {
+ acc[entity.certificationStatus] = (acc[entity.certificationStatus] || 0) + 1;
+ return acc;
+ }, {} as Record<string, number>)
+ ).map(([status, count]) => ({ status, count }))}
+ >
+ <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+ </ChartComponent>
+ </ChartContainer>
+ ) : (
+ <p className="text-sm text-muted-foreground text-center py-4">
+ {t("noCertifiedEntities")}
+ </p>
+ )}
+ </CardContent>
+ </Card>
+ {/* Certified Entities - Table View (Optional, could be a separate tab or detail view) */}
+ {/* <Card className="md:col-span-2">
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><Award className="h-4 w-4 text-yellow-500"/>{t('entitiesTitle')}</CardTitle>
              <CardDescription>{t('entitiesDescription')}</CardDescription>
