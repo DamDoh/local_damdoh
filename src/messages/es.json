@@ -1,5 +1,29 @@
 
 {
+  "CertificationBodyDashboard": {
+    "title": "Centro de Organismos de Certificación",
+    "auditsTitle": "Auditorías Pendientes",
+    "auditsDescription": "Auditorías programadas para fincas e instalaciones.",
+    "table": {
+      "farmName": "Nombre de la Finca",
+      "standard": "Estándar",
+      "dueDate": "Fecha de Vencimiento",
+      "action": "Acción",
+      "name": "Nombre",
+      "type": "Tipo",
+      "status": "Estado"
+    },
+    "reviewAuditButton": "Revisar y Programar",
+    "noPendingAudits": "No hay auditorías pendientes.",
+    "entitiesTitle": "Resumen de Entidades Certificadas",
+    "entitiesDescription": "Un resumen de las entidades que ha certificado.",
+    "noCertifiedEntities": "No se encontraron entidades certificadas.",
+    "monitoringTitle": "Monitoreo de Estándares",
+    "monitoringDescription": "Tasas de cumplimiento y alertas para estándares clave.",
+    "alerts": "alertas",
+    "viewDetailsButton": "Ver Detalles",
+    "noMonitoringData": "No hay datos de monitoreo de estándares disponibles."
+  },
   "QaDashboard": {
     "title": "Centro de Garantía de Calidad",
     "inspectionsTitle": "Inspecciones Pendientes",

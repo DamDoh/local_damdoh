@@ -1,5 +1,29 @@
 
 {
+  "CertificationBodyDashboard": {
+    "title": "Hub des Organismes de Certification",
+    "auditsTitle": "Audits en Attente",
+    "auditsDescription": "Audits planifiés pour les fermes et les installations.",
+    "table": {
+      "farmName": "Nom de la Ferme",
+      "standard": "Norme",
+      "dueDate": "Date Limite",
+      "action": "Action",
+      "name": "Nom",
+      "type": "Type",
+      "status": "Statut"
+    },
+    "reviewAuditButton": "Examiner et Planifier",
+    "noPendingAudits": "Aucun audit en attente.",
+    "entitiesTitle": "Aperçu des Entités Certifiées",
+    "entitiesDescription": "Un résumé des entités que vous avez certifiées.",
+    "noCertifiedEntities": "Aucune entité certifiée trouvée.",
+    "monitoringTitle": "Surveillance des Normes",
+    "monitoringDescription": "Taux de conformité et alertes pour les normes clés.",
+    "alerts": "alertes",
+    "viewDetailsButton": "Voir les Détails",
+    "noMonitoringData": "Aucune donnée de surveillance des normes disponible."
+  },
   "QaDashboard": {
     "title": "Centre d'Assurance Qualité",
     "inspectionsTitle": "Inspections en Attente",

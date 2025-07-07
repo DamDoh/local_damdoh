@@ -11,9 +11,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
-import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import type { CertificationBodyDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
+import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
+
 
 const functions = getFunctions(firebaseApp);
 
@@ -77,6 +79,22 @@ export const CertificationBodyDashboard = () => {
           default: return 'outline';
       }
   };
+  
+    const chartData = useMemo(() => {
+        const counts = (certifiedEntities || []).reduce((acc, entity) => {
+            acc[entity.certificationStatus] = (acc[entity.certificationStatus] || 0) + 1;
+            return acc;
+        }, {} as Record<string, number>);
+        return Object.entries(counts).map(([name, value]) => ({ name, value }));
+    }, [certifiedEntities]);
+
+
+    const chartConfig = {
+        Active: { label: "Active", color: "hsl(var(--chart-1))" },
+        "Pending Renewal": { label: "Pending", color: "hsl(var(--chart-2))" },
+        Expired: { label: "Expired", color: "hsl(var(--chart-3))" },
+    };
+
 
   return (
     <div className="space-y-6">
@@ -84,7 +102,7 @@ export const CertificationBodyDashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Pending Audits */}
-         <Card>
+         <Card className="md:col-span-2">
            <CardHeader>
              <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/>{t('auditsTitle')}</CardTitle>
              <CardDescription>{t('auditsDescription')}</CardDescription>
@@ -108,7 +126,7 @@ export const CertificationBodyDashboard = () => {
                        <TableCell>{new Date(audit.dueDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={audit.actionLink}>{t('scheduleAuditButton')}</Link>
+                           <Link href={audit.actionLink}>{t('reviewAuditButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -123,81 +141,39 @@ export const CertificationBodyDashboard = () => {
 
          {/* Certified Entities */}
          <Card>
-           <CardHeader>
- <CardTitle className="text-base flex items-center gap-2">
- <Award className="h-4 w-4 text-yellow-500" />
- {t("entitiesTitle")}
- </CardTitle>
- <CardDescription>{t("entitiesDescription")}</CardDescription>
- </CardHeader>
- <CardContent>
- {certifiedEntities && certifiedEntities.length > 0 ? (
- <ChartContainer
- config={{
- active: { color: "hsl(var(--chart-1))" },
- "pending renewal": { color: "hsl(var(--chart-2))" },
- expired: { color: "hsl(var(--chart-3))" },
- }}
- className="mx-auto aspect-square h-[200px]"
- >
- <ChartComponent
- data={Object.entries(
- certifiedEntities.reduce((acc, entity) => {
- acc[entity.certificationStatus] = (acc[entity.certificationStatus] || 0) + 1;
- return acc;
- }, {} as Record<string, number>)
- ).map(([status, count]) => ({ status, count }))}
- >
- <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
- </ChartComponent>
- </ChartContainer>
- ) : (
- <p className="text-sm text-muted-foreground text-center py-4">
- {t("noCertifiedEntities")}
- </p>
- )}
- </CardContent>
- </Card>
- {/* Certified Entities - Table View (Optional, could be a separate tab or detail view) */}
- {/* <Card className="md:col-span-2">
-           <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Award className="h-4 w-4 text-yellow-500"/>{t('entitiesTitle')}</CardTitle>
-             <CardDescription>{t('entitiesDescription')}</CardDescription>
-           </CardHeader>
-           <CardContent>
-             {(certifiedEntities || []).length > 0 ? (
-               <Table>
-                 <TableHeader>
-                   <TableRow>
-                     <TableHead>{t('table.name')}</TableHead>
-                     <TableHead>{t('table.type')}</TableHead>
-                     <TableHead>{t('table.status')}</TableHead>
-                     <TableHead>{t('table.action')}</TableHead>
-                   </TableRow>
-                 </TableHeader>
-                 <TableBody>
-                   {(certifiedEntities || []).map((entity) => (
-                     <TableRow key={entity.id}>
-                       <TableCell className="font-medium">{entity.name}</TableCell>
-                       <TableCell>{entity.type}</TableCell>
-                       <TableCell><Badge variant={getStatusBadgeVariant(entity.certificationStatus)}>{entity.certificationStatus}</Badge></TableCell>
-                       <TableCell>
-                         <Button asChild variant="outline" size="sm">
-                           <Link href={entity.actionLink}>{t('viewDetailsButton')}</Link>
-                         </Button>
-                       </TableCell>
-                     </TableRow>
-                   ))}
-                 </TableBody>
-               </Table>
-             ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">{t('noCertifiedEntities')}</p>
-             )}
-           </CardContent>
-         </Card>
+            <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                <Award className="h-4 w-4 text-yellow-500" />
+                {t("entitiesTitle")}
+                </CardTitle>
+                <CardDescription>{t("entitiesDescription")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {chartData.length > 0 ? (
+                    <ChartContainer
+                        config={chartConfig}
+                        className="mx-auto aspect-square h-[200px]"
+                    >
+                    <RechartsPieChart>
+                        <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+                        <Pie data={chartData} dataKey="value" nameKey="name" innerRadius={60}>
+                             {chartData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color} />
+                            ))}
+                        </Pie>
+                    </RechartsPieChart>
+                    </ChartContainer>
+                ) : (
+                <p className="text-sm text-muted-foreground text-center py-4">
+                    {t("noCertifiedEntities")}
+                </p>
+                )}
+            </CardContent>
+        </Card>
+      
 
           {/* Standards Monitoring */}
-         <Card className="md:col-span-2">
+         <Card className="md:col-span-1">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/>{t('monitoringTitle')}</CardTitle>
                 <CardDescription>{t('monitoringDescription')}</CardDescription>
@@ -238,8 +214,10 @@ export const CertificationBodyDashboard = () => {
 const DashboardSkeleton = () => (
     <div className="space-y-6">
         <Skeleton className="h-9 w-64 mb-6" />
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Skeleton className="h-48 w-full rounded-lg" />
+            <Skeleton className="h-48 w-full rounded-lg" />
+            <Skeleton className="h-32 w-full rounded-lg md:col-span-2" />
+        </div>
     </div>
 );
