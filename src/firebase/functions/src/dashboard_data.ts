@@ -809,10 +809,11 @@ export const getAgronomistDashboardData = functions.https.onCall(
 
         // Mock data for other sections
         const assignedFarmersOverview = [
-            { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
+            { id: 'farmerJoe', name: 'Joe\'s Family Farm', farmLocation: 'California, USA', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 },
+            { id: 'quinoaCoopPeru', name: 'Quinoa Co-op Peru', farmLocation: 'Andes, Peru', lastConsultation: new Date(Date.now() - 86400000 * 14).toISOString(), alerts: 0 },
         ];
         const pendingConsultationRequests = [
-            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
+            { id: 'req1', farmerId: 'sunnyAcresFarm', farmerName: 'Sunny Acres Farm', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
         ];
 
         return {

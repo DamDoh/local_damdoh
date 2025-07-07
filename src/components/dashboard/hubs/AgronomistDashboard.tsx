@@ -13,8 +13,9 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { Users, FileText, MessageSquare, AlertTriangle } from 'lucide-react';
 import type { AgronomistDashboardData } from '@/lib/types';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
 import { ChartContainer, ChartTooltip, ChartLegend, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
@@ -31,6 +32,7 @@ const StatCard = ({ title, value, icon }: { title: string, value: string | numbe
 );
 
 export const AgronomistDashboard = () => {
+  const t = useTranslations('AgronomistDashboard');
   const [dashboardData, setDashboardData] = useState<AgronomistDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -149,7 +151,7 @@ export const AgronomistDashboard = () => {
                        <TableCell>{request.issueSummary}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href="#">View</Link>
+                           <Link href={`/profiles/${request.farmerId}`}>View</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -186,7 +188,7 @@ export const AgronomistDashboard = () => {
                        <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href="#">Profile</Link>
+                           <Link href={`/profiles/${farmer.id}`}>Profile</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -264,8 +266,15 @@ export const AgronomistDashboard = () => {
 const DashboardSkeleton = () => (
     <div className="space-y-6">
         <Skeleton className="h-9 w-64 mb-6" />
-        <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-28 rounded-lg" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Skeleton className="h-64 w-full rounded-lg" />
+            <Skeleton className="h-64 w-full rounded-lg" />
+        </div>
     </div>
 );

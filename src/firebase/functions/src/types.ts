@@ -445,6 +445,7 @@ export interface AgronomistDashboardData {
   }[];
   pendingConsultationRequests: {
     id: string;
+    farmerId: string;
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
@@ -810,9 +811,3 @@ export interface PaymentLog {
     notes: string;
 }
 
-export type ServiceItem = MarketplaceItem & {
-    listingType: 'Service';
-    skillsRequired: string[];
-    compensation: string;
-    experienceLevel: string;
-};

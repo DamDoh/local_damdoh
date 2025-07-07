@@ -451,6 +451,7 @@ export interface AgronomistDashboardData {
   }[];
   pendingConsultationRequests: {
     id: string;
+    farmerId: string;
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
