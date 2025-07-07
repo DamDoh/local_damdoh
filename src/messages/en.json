@@ -151,5 +151,14 @@
     "packagingOrdersTitle": "Packaging Orders",
     "viewButton": "View",
     "noPackagingOrders": "No outstanding packaging orders."
+  },
+  "WarehouseDashboard": {
+    "title": "Warehouse & Storage Hub",
+    "utilizationTitle": "Storage Utilization",
+    "inventoryTitle": "Inventory Levels",
+    "itemsNeedingAttention": "items need attention",
+    "alertsTitle": "Predictive Alerts",
+    "noAlerts": "No predictive alerts at this time.",
+    "investigateButton": "Investigate"
   }
 }

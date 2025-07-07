@@ -72,7 +72,7 @@
     "viewAllButton": "Alle Anträge anzeigen"
   },
   "FiProductsPage": {
-    "backLink": "Zurück zum Dashboard",
+    "backLink": "Zurück zu den Produkten",
     "title": "Finanzprodukte verwalten",
     "description": "Erstellen und sehen Sie Ihre angebotenen Kredite und Zuschüsse.",
     "createButton": "Neues Produkt erstellen",
@@ -151,5 +151,14 @@
     "packagingOrdersTitle": "Verpackungsbestellungen",
     "viewButton": "Ansehen",
     "noPackagingOrders": "Keine ausstehenden Verpackungsbestellungen."
+  },
+  "WarehouseDashboard": {
+    "title": "Lager- & Lagereinrichtungs-Hub",
+    "utilizationTitle": "Lagerauslastung",
+    "inventoryTitle": "Lagerbestände",
+    "itemsNeedingAttention": "Artikel benötigen Aufmerksamkeit",
+    "alertsTitle": "Vorausschauende Warnungen",
+    "noAlerts": "Derzeit keine vorausschauenden Warnungen.",
+    "investigateButton": "Untersuchen"
   }
 }

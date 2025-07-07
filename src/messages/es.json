@@ -151,5 +151,14 @@
     "packagingOrdersTitle": "Pedidos de Embalaje",
     "viewButton": "Ver",
     "noPackagingOrders": "No hay pedidos de embalaje pendientes."
+  },
+  "WarehouseDashboard": {
+    "title": "Centro de Almacenamiento y Bodega",
+    "utilizationTitle": "Utilización del Almacenamiento",
+    "inventoryTitle": "Niveles de Inventario",
+    "itemsNeedingAttention": "artículos necesitan atención",
+    "alertsTitle": "Alertas Predictivas",
+    "noAlerts": "No hay alertas predictivas en este momento.",
+    "investigateButton": "Investigar"
   }
 }

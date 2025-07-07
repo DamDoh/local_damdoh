@@ -151,5 +151,14 @@
     "packagingOrdersTitle": "ការបញ្ជាទិញវេចខ្ចប់",
     "viewButton": "មើល",
     "noPackagingOrders": "គ្មានការបញ្ជាទិញវេចខ្ចប់ដែលកំពុងរង់ចាំទេ។"
+  },
+  "WarehouseDashboard": {
+    "title": "មជ្ឈមណ្ឌលឃ្លាំង និងស្តុក",
+    "utilizationTitle": "ការប្រើប្រាស់កន្លែងស្តុក",
+    "inventoryTitle": "កម្រិតសារពើភ័ណ្ឌ",
+    "itemsNeedingAttention": "មុខទំនិញត្រូវការការយកចិត្តទុកដាក់",
+    "alertsTitle": "ការជូនដំណឹងព្យាករណ៍",
+    "noAlerts": "មិនមានការជូនដំណឹងព្យាករណ៍នៅពេលនេះទេ។",
+    "investigateButton": "ស៊ើបអង្កេត"
   }
 }

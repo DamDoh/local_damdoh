@@ -151,5 +151,14 @@
     "packagingOrdersTitle": "Commandes d'Emballage",
     "viewButton": "Voir",
     "noPackagingOrders": "Aucune commande d'emballage en attente."
+  },
+  "WarehouseDashboard": {
+    "title": "Hub d'Entrepôt et de Stockage",
+    "utilizationTitle": "Utilisation du Stockage",
+    "inventoryTitle": "Niveaux d'Inventaire",
+    "itemsNeedingAttention": "articles nécessitent une attention",
+    "alertsTitle": "Alertes Prédictives",
+    "noAlerts": "Aucune alerte prédictive pour le moment.",
+    "investigateButton": "Enquêter"
   }
 }
