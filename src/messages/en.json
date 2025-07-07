@@ -479,7 +479,7 @@
       },
       "fgw": {
         "title": "Farming God's Way Guide",
-        "description": "Learn the principles of FGW for high-yield, sustainable farming with minimal inputs.",
+        "description": "Learn the principles of FGW for high-yield, no-till, sustainable farming with minimal inputs.",
         "button": "View FGW Guide"
       },
       "financials": {
@@ -977,10 +977,7 @@
         "amount": "Amount"
       },
       "noWorkLogs": "No work hours logged yet.",
-      "noPayments": "No payments recorded yet.",
-      "toasts": {
-        "errorTitle": "Error"
-      }
+      "noPayments": "No payments recorded yet."
     }
   },
   "traceabilityPage": {

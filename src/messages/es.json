@@ -664,7 +664,7 @@
       "backLink": "Volver a la Gestión de la Granja",
       "title": "Modelo de Granja Familiar Integrada de 200m²",
       "description": "Un sistema holístico y de circuito cerrado para la seguridad alimentaria y la generación de ingresos en una pequeña parcela de tierra.",
-      "intro": "Este modelo, inspirado en principios sostenibles y de permacultura, demuestra cómo un área pequeña de 10m x 20m puede transformarse en un ecosistema productivo. Integra el cultivo de plantas, la cría de animales pequeños y el reciclaje de recursos para crear una granja familiar autosuficiente.",
+      "intro": "Este modelo, inspirado en principios sostenibles y de permacultura, demuestra cómo un área pequeña de 10m x 20m puede ser transformada en un ecosistema productivo. Integra el cultivo de plantas, la cría de animales pequeños y el reciclaje de recursos para crear una granja familiar autosuficiente.",
       "diagramCaption": "Diagrama que ilustra la disposición del modelo de 200m².",
       "detailsTitle": "Detalles Clave",
       "principlesTitle": "Principios Subyacentes",
@@ -761,7 +761,7 @@
           "dataAiHint": "compost bin worms",
           "description": [
             "Nada se desperdicia en el modelo de granja familiar integrada. Se utiliza un área dedicada para compostar todos los desechos orgánicos de la granja y del hogar.",
-            "También se mantiene un contenedor de vermicompost (granja de lombrices) para producir humus de lombriz de alta calidad, un excelente mejorador del suelo y fertilizante natural."
+            "También se mantiene un contenedor de vermicompost (granja de lombrices) para producir humus de lombriz de alta calidad, un excelente mejorador del suelo y un fertilizante natural."
           ],
           "details": [
             {
@@ -978,6 +978,149 @@
       },
       "noWorkLogs": "Aún no se han registrado horas de trabajo.",
       "noPayments": "Aún no se han registrado pagos."
+    }
+  },
+  "Forums": {
+    "title": "Foros Comunitarios",
+    "description": "Conéctate, comparte y aprende con colegas de todo el ecosistema agrícola.",
+    "searchPlaceholder": "Buscar todos los temas...",
+    "lastActivity": "Última actividad hace {time}",
+    "notFound": {
+      "title": "No se encontraron temas",
+      "tryDifferentSearch": "Intenta con otro término de búsqueda.",
+      "beTheFirst": "¡Sé el primero en iniciar una nueva discusión!"
+    },
+    "pinning": {
+      "pinnedTitle": "¡Foros fijados!",
+      "pinnedDescription": "Los foros son ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "El Panel de Control es ahora tu página de inicio predeterminada."
+    },
+    "buttons": {
+      "createTopic": "Crear Nuevo Tema",
+      "pinHomepage": "Fijar como Página de Inicio",
+      "unpinHomepage": "Desfijar de la Página de Inicio",
+      "joinDiscussion": "Unirse a la Discusión"
+    },
+    "errors": {
+      "loadTitle": "Error al Cargar los Temas",
+      "loadDescription": "Hubo un problema al obtener los foros de la comunidad. Por favor, inténtalo de nuevo."
+    },
+    "topic": {
+      "backLink": "Volver a {topicName}",
+      "unknownUser": "Usuario Desconocido",
+      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
+      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
+      "postMeta": "Por {author} el {date}",
+      "buttons": {
+        "loadingMore": "Cargando...",
+        "loadMore": "Cargar Más Respuestas"
+      },
+      "reply": {
+        "title": "Tu Respuesta",
+        "placeholder": "Escribe tu respuesta...",
+        "submittingButton": "Publicando...",
+        "submitButton": "Publicar Respuesta",
+        "success": "¡Respuesta publicada!"
+      },
+      "errors": {
+        "emptyReply": "Por favor, escribe una respuesta antes de enviar.",
+        "submitReply": {
+          "title": "Error al Publicar la Respuesta",
+          "description": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
+        },
+        "loadReplies": {
+          "title": "Error al Cargar las Respuestas",
+          "description": "No se pudo cargar la discusión para esta publicación."
+        },
+        "loadPost": {
+          "title": "Error al Cargar la Publicación",
+          "description": "No se pudieron cargar los detalles de la publicación."
+        }
+      },
+      "notFound": {
+        "title": "Publicación no encontrada.",
+        "description": "Esta publicación puede haber sido eliminada o el enlace es incorrecto.",
+        "backButton": "Volver a los Foros"
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Tema",
+      "title": "Iniciar una Nueva Discusión",
+      "description": "Comparte tus pensamientos, haz preguntas o inicia una conversación con otros miembros de la comunidad.",
+      "aiHelper": {
+        "title": "Asistente de Publicaciones con IA",
+        "description": "¿Necesitas ayuda para empezar? Dale a nuestra IA una indicación y redactará la publicación por ti.",
+        "promptLabel": "¿De qué trata tu publicación?",
+        "promptPlaceholder": "Ej: una pregunta sobre el mejor riego para tomates, o compartir mi éxito con los cultivos de cobertura",
+        "generatingButton": "Generando...",
+        "generateButton": "Generar Borrador con IA"
+      },
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Un título claro y atractivo",
+        "contentLabel": "Tu Mensaje",
+        "contentPlaceholder": "Comparte detalles, haz preguntas o proporciona contexto para tu discusión...",
+        "submittingButton": "Publicando...",
+        "submitButton": "Publicar Discusión"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Se Requiere una Indicación",
+          "description": "Por favor, proporciona una indicación para que la IA genere un borrador."
+        },
+        "aiDraft": {
+          "title": "Falló la Generación del Borrador",
+          "description": "La IA no pudo generar un borrador en este momento. Por favor, inténtalo de nuevo o escribe la publicación manualmente."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporciona un título y contenido para tu publicación."
+        },
+        "general": {
+          "title": "Error al Crear la Publicación",
+          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador Generado!",
+          "description": "La IA ha redactado un título y contenido para ti. Siéntete libre de editarlo antes de publicar."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu discusión ha sido iniciada en el tema."
+      }
+    },
+    "create": {
+      "backLink": "Volver a los Foros",
+      "title": "Crear un Nuevo Tema",
+      "description": "Inicia un nuevo tema de discusión de alto nivel para la comunidad.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Ej: Prácticas Agrícolas Sostenibles",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Una breve descripción de qué trata este tema.",
+        "submittingButton": "Creando...",
+        "submitButton": "Crear Tema"
+      },
+      "errors": {
+        "auth": {
+          "title": "Se Requiere Autenticación",
+          "description": "Debes iniciar sesión para crear un nuevo tema."
+        },
+        "incomplete": {
+          "title": "Formulario Incompleto",
+          "description": "Por favor, completa el nombre y la descripción del tema."
+        },
+        "general": {
+          "title": "Error al Crear el Tema",
+          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+        }
+      },
+      "success": {
+        "title": "¡Tema Creado!",
+        "description": "Tu nuevo tema ya está disponible para discusión."
+      }
     }
   }
 }
