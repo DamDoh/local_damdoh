@@ -278,7 +278,7 @@ export default function AgriEventDetailPage() {
                     <DialogHeader>
                         <DialogTitle className="text-center">{t('ticket.title')}</DialogTitle>
                          <DialogDescription className="text-center">
-                            For {event.title}
+                            {t('ticket.for', { eventTitle: event.title })}
                         </DialogDescription>
                     </DialogHeader>
                     <div className="p-4 flex flex-col items-center justify-center gap-4">

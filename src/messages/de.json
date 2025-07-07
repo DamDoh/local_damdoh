@@ -352,5 +352,258 @@
     "loadError": "Vorschläge konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
     "noSuggestions": "Im Moment keine neuen Vorschläge.",
     "infoTooltip": "Diese Vorschläge werden von der KI basierend auf Ihrer Rolle, Ihren Interessen und Ihrer Aktivität auf der Plattform erstellt."
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Anstehende Agrarveranstaltungen",
+      "description": "Entdecken Sie Workshops, Konferenzen und Webinare in der Welt der Landwirtschaft.",
+      "createNewEvent": "Neue Veranstaltung erstellen",
+      "unpinHomepage": "Von der Startseite lösen",
+      "pinAsHomepage": "Als Startseite anheften",
+      "searchEvents": "Veranstaltungen suchen...",
+      "searchPlaceholder": "Nach Titel, Ort oder Thema suchen...",
+      "filterPlaceholder": "Nach Veranstaltungstyp filtern",
+      "organizedBy": "Organisiert von {organizer}",
+      "viewDetails": "Details anzeigen",
+      "noEventsFound": "Keine Veranstaltungen gefunden",
+      "noEventsHint": "Derzeit gibt es keine Veranstaltungen, die Ihren Kriterien entsprechen. Warum nicht {link}?",
+      "noEventsHint.link": "eine erstellen",
+      "errorLoadingEvents": "Fehler beim Laden von Veranstaltungen",
+      "couldNotFetchEvents": "Die Liste der Veranstaltungen konnte nicht geladen werden. Bitte versuchen Sie es später erneut.",
+      "toast": {
+        "pinned": {
+          "title": "Startseite angeheftet!",
+          "description": "Die Seite für Agrarveranstaltungen ist jetzt Ihre Standard-Startseite."
+        },
+        "unpinned": {
+          "title": "Startseite losgelöst!",
+          "description": "Das Dashboard ist jetzt Ihre Standard-Startseite."
+        }
+      }
+    },
+    "create": {
+      "backButton": "Zurück zu allen Veranstaltungen",
+      "formTitle": "Neue Agrarveranstaltung erstellen",
+      "formDescription": "Füllen Sie die folgenden Details aus, um Ihre Veranstaltung auf der Plattform aufzulisten.",
+      "authErrorTitle": "Nicht authentifiziert",
+      "authErrorDescription": "Sie müssen angemeldet sein, um eine Veranstaltung zu erstellen.",
+      "uploadingTitle": "Bild wird hochgeladen...",
+      "uploadingDescription": "Bitte warten Sie, während Ihr Veranstaltungsbild hochgeladen wird.",
+      "uploadCompleteTitle": "Bild-Upload abgeschlossen!",
+      "successTitle": "Veranstaltung erstellt!",
+      "successDescription": "Ihre Veranstaltung '{title}' wurde erfolgreich gelistet.",
+      "failTitle": "Erstellung der Veranstaltung fehlgeschlagen",
+      "failDescription": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "successCardTitle": "Ihre Veranstaltung '{title}' ist live!",
+      "successCardDescription": "Sie ist jetzt für die gesamte DamDoh-Community sichtbar. Was möchten Sie als Nächstes tun?",
+      "manageButton": "Veranstaltung verwalten",
+      "shareButton": "Teilbaren Link kopieren",
+      "createAnotherButton": "Weitere Veranstaltung erstellen",
+      "viewAllButton": "Alle Veranstaltungen anzeigen",
+      "linkCopiedTitle": "Link kopiert!",
+      "linkCopiedDescription": "Der Veranstaltungslink wurde in Ihre Zwischenablage kopiert.",
+      "submittingButton": "Wird übermittelt...",
+      "submitButton": "Veranstaltung erstellen",
+      "form": {
+        "titleLabel": "Veranstaltungstitel",
+        "titlePlaceholder": "z.B. Jährliche Konferenz für nachhaltige Landwirtschaft",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Geben Sie eine detaillierte Beschreibung Ihrer Veranstaltung an, einschließlich Redner, Themen und Zeitplan.",
+        "dateLabel": "Veranstaltungsdatum",
+        "datePlaceholder": "Datum auswählen",
+        "timeLabel": "Veranstaltungszeit (Optional)",
+        "timePlaceholder": "z.B. 09:00",
+        "timeDescription": "Ihre lokale Zeitzone",
+        "locationLabel": "Ort",
+        "locationPlaceholder": "z.B. Nairobi, Kenia oder Online",
+        "locationDescription": "Geben Sie einen physischen Ort ein oder geben Sie 'Online' für virtuelle Veranstaltungen an.",
+        "typeLabel": "Veranstaltungstyp",
+        "typePlaceholder": "Veranstaltungstyp auswählen",
+        "organizerLabel": "Name des Organisators (Optional)",
+        "organizerPlaceholder": "z.B. Agri-Innovation Global",
+        "websiteLabel": "Veranstaltungswebsite (Optional)",
+        "enableRegLabel": "Anmeldung aktivieren",
+        "enableRegDescription": "Erlauben Sie Benutzern, sich direkt über DamDoh für diese Veranstaltung anzumelden.",
+        "attendeeLimitLabel": "Teilnehmerlimit (Optional)",
+        "attendeeLimitDescription": "Für unbegrenzt leer lassen.",
+        "priceLabel": "Preis (pro Ticket)",
+        "priceDescription": "Für eine kostenlose Veranstaltung 0 lassen.",
+        "currencyLabel": "Währung",
+        "currencyDescription": "z.B. USD, KES",
+        "imageUrlLabel": "Bild-URL (Optional)",
+        "imageUrlDescription": "Link zu einem Werbebild oder Banner für Ihre Veranstaltung.",
+        "imageUploadLabel": "Oder ein Bild hochladen",
+        "imageUploadDescription": "Max 5MB. Empfohlenes Seitenverhältnis 16:9."
+      }
+    },
+    "detail": {
+      "backLink": "Zurück zu allen Veranstaltungen",
+      "organizedBy": "Organisiert von {organizer}",
+      "attendees": "{count} Teilnehmer / {limit}",
+      "unlimited": "unbegrenzt",
+      "buttons": {
+        "manage": "Verwalten",
+        "share": "Teilen",
+        "close": "Schließen",
+        "viewTicket": "Ihr Ticket anzeigen",
+        "full": "Veranstaltung ist voll",
+        "registering": "Wird registriert...",
+        "registerAndPay": "Registrieren & {price} {currency} zahlen",
+        "registerFree": "Kostenlos registrieren",
+        "visitWebsite": "Veranstaltungswebsite besuchen"
+      },
+      "share": {
+        "title": "Veranstaltung teilen",
+        "description": "Teilen Sie diese Veranstaltung mit Ihrem Netzwerk.",
+        "link": "Link",
+        "copy": "Kopieren"
+      },
+      "registration": {
+        "notAvailable": "Die Registrierung für diese Veranstaltung ist über DamDoh nicht verfügbar.",
+        "successTitle": "Registrierung erfolgreich!",
+        "successDescription": "Sie sind jetzt für die Veranstaltung registriert.",
+        "discountApplied": "Ein Gutschein für einen Rabatt von {amount} {currency} wurde angewendet.",
+        "finalPrice": "Ihr Endpreis beträgt {price} {currency}.",
+        "failTitle": "Registrierung fehlgeschlagen"
+      },
+      "coupon": {
+        "toastTitle": "Gutschein angewendet!",
+        "toastDescription": "Der Gutscheincode '{couponCode}' wurde Ihrer Registrierung hinzugefügt.",
+        "label": "Haben Sie einen Gutscheincode?",
+        "placeholder": "Code hier eingeben",
+        "note": "Der Rabatt wird im letzten Schritt angewendet."
+      },
+      "ticket": {
+        "title": "Ihr Veranstaltungsticket",
+        "for": "Für {eventTitle}",
+        "scan": "Zeigen Sie diesen QR-Code bei der Veranstaltung zum Einchecken vor."
+      },
+      "notFound": {
+        "title": "Veranstaltung nicht gefunden",
+        "description": "Die von Ihnen gesuchte Veranstaltung existiert nicht oder wurde entfernt.",
+        "backButton": "Zurück zu den Veranstaltungen"
+      },
+      "errors": {
+        "loadTitle": "Fehler beim Laden der Veranstaltung",
+        "loadDescription": "Die Veranstaltungsdetails konnten nicht abgerufen werden. Bitte versuchen Sie es erneut.",
+        "signInTitle": "Bitte anmelden",
+        "signInDescription": "Sie müssen angemeldet sein, um sich für eine Veranstaltung zu registrieren."
+      }
+    },
+    "manage": {
+      "title": "Veranstaltung verwalten",
+      "toast": {
+        "errorCoupons": {
+          "title": "Fehler",
+          "description": "Vorhandene Gutscheine konnten nicht abgerufen werden."
+        }
+      },
+      "tabs": {
+        "checkin": "Check-in",
+        "staff": "Personal",
+        "dashboard": "Dashboard",
+        "attendees": "Teilnehmer",
+        "promotions": "Aktionen"
+      },
+      "checkin": {
+        "title": "Teilnehmer-Check-in",
+        "description": "Scannen Sie den einzigartigen QR-Code des Veranstaltungstickets eines Teilnehmers, um ihn für die Veranstaltung einzuchecken.",
+        "scanButton": "Teilnehmer-Ticket scannen",
+        "verifying": "Überprüfen...",
+        "success": "Erfolg",
+        "errorTitle": "Fehler",
+        "error": {
+          "invalidCode": "Ungültiger QR-Code: Kein DamDoh Check-in Code.",
+          "wrongEvent": "Dieses Ticket ist für eine andere Veranstaltung.",
+          "noUserId": "Ungültiger QR-Code: Keine Benutzer-ID gefunden.",
+          "unknown": "Beim Check-in ist ein unbekannter Fehler aufgetreten.",
+          "failUnknown": "Check-in aus unbekanntem Grund fehlgeschlagen."
+        },
+        "toast": {
+          "success": { "title": "Check-in erfolgreich" },
+          "fail": { "title": "Check-in fehlgeschlagen" },
+          "scanFail": {
+            "title": "Scan fehlgeschlagen",
+            "description": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut."
+          }
+        }
+      },
+      "staff": {
+        "title": "Veranstaltungspersonal verwalten",
+        "description": "Fügen Sie Personal hinzu oder entfernen Sie es, das Ihnen beim Einchecken der Teilnehmer helfen kann.",
+        "addTitle": "Neues Personal hinzufügen",
+        "searchPlaceholder": "Benutzer nach Name oder E-Mail suchen...",
+        "addButton": "Hinzufügen",
+        "currentTitle": "Aktuelles Personal",
+        "removeButton": "Entfernen",
+        "noStaff": "Keine Personalmitglieder hinzugefügt.",
+        "toast": {
+          "error": "Fehler",
+          "success": "Erfolg",
+          "fetchStaffError": "Veranstaltungspersonal konnte nicht abgerufen werden.",
+          "searchLengthError": "Bitte geben Sie mindestens 3 Zeichen ein, um zu suchen.",
+          "searchFailed": "Suche fehlgeschlagen",
+          "addSuccess": "{name} als Personal hinzugefügt.",
+          "addFailed": "Personal konnte nicht hinzugefügt werden",
+          "removeSuccess": "{name} aus dem Personal entfernt.",
+          "removeFailed": "Personal konnte nicht entfernt werden"
+        }
+      },
+      "attendees": {
+        "title": "Veranstaltungsteilnehmer",
+        "description": "Zeigen Sie die Liste aller registrierten Teilnehmer für Ihre Veranstaltung an.",
+        "downloadCsv": "CSV herunterladen",
+        "nameHeader": "Name",
+        "emailHeader": "E-Mail",
+        "registeredOnHeader": "Registriert am",
+        "statusHeader": "Status",
+        "statusCheckedIn": "Eingecheckt",
+        "statusRegistered": "Registriert",
+        "noAttendees": "Noch niemand hat sich für diese Veranstaltung registriert.",
+        "error": "Veranstaltungsteilnehmer konnten nicht abgerufen werden.",
+        "toast": { "noAttendees": "Keine Teilnehmer zum Exportieren." }
+      },
+      "promotions": {
+        "create": {
+          "title": "Neuen Gutschein erstellen",
+          "description": "Erstellen Sie Rabattcodes, um Ihre Veranstaltung zu bewerben.",
+          "toast": {
+            "successTitle": "Gutschein erstellt!",
+            "successDescription": "Der Gutschein '{code}' ist jetzt aktiv.",
+            "failTitle": "Erstellung fehlgeschlagen"
+          },
+          "form": {
+            "code": "Gutscheincode",
+            "codePlaceholder": "z.B. EARLYBIRD20",
+            "usageLimit": "Nutzungslimit (Optional)",
+            "usageLimitPlaceholder": "z.B. 100",
+            "discountType": "Rabattart",
+            "discountTypePlaceholder": "Typ auswählen",
+            "percentage": "Prozentsatz (%)",
+            "fixed": "Fester Betrag",
+            "discountValue": "Rabattwert",
+            "expiryDate": "Ablaufdatum (Optional)",
+            "pickDate": "Datum auswählen",
+            "submitButton": "Gutschein erstellen"
+          }
+        },
+        "list": {
+          "title": "Vorhandene Gutscheine",
+          "description": "Sehen und verwalten Sie Ihre aktiven und vergangenen Gutscheine.",
+          "toastTitle": "Link kopiert!",
+          "toastDescription": "Ein teilbarer Link mit dem Gutschein wurde kopiert: {link}",
+          "expires": "Läuft ab",
+          "usage": "Nutzung",
+          "share": "Teilen",
+          "noCoupons": "Noch keine Gutscheine erstellt.",
+          "shareModal": {
+            "title": "Gutschein teilen",
+            "description": "Teilen Sie diesen Code oder Link mit potenziellen Teilnehmern.",
+            "copy": "Kopieren",
+            "close": "Schließen"
+          }
+        }
+      }
+    }
   }
 }

@@ -352,5 +352,258 @@
     "loadError": "Impossible de charger les suggestions. Veuillez réessayer.",
     "noSuggestions": "Aucune nouvelle suggestion pour le moment.",
     "infoTooltip": "Ces suggestions sont alimentées par l'IA en fonction de votre rôle, de vos intérêts et de votre activité sur la plateforme."
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Événements Agricoles à Venir",
+      "description": "Découvrez des ateliers, des conférences et des webinaires dans le monde agricole.",
+      "createNewEvent": "Créer un Nouvel Événement",
+      "unpinHomepage": "Détacher de l'accueil",
+      "pinAsHomepage": "Épingler en page d'accueil",
+      "searchEvents": "Rechercher des événements...",
+      "searchPlaceholder": "Rechercher par titre, lieu ou sujet...",
+      "filterPlaceholder": "Filtrer par type d'événement",
+      "organizedBy": "Organisé par {organizer}",
+      "viewDetails": "Voir les Détails",
+      "noEventsFound": "Aucun Événement Trouvé",
+      "noEventsHint": "Aucun événement ne correspond actuellement à vos critères. Pourquoi ne pas en {link} ?",
+      "noEventsHint.link": "créer un",
+      "errorLoadingEvents": "Erreur de Chargement des Événements",
+      "couldNotFetchEvents": "Impossible de récupérer la liste des événements. Veuillez réessayer plus tard.",
+      "toast": {
+        "pinned": {
+          "title": "Page d'accueil épinglée !",
+          "description": "La page des événements agricoles est maintenant votre page d'accueil par défaut."
+        },
+        "unpinned": {
+          "title": "Page d'accueil détachée !",
+          "description": "Le tableau de bord est maintenant votre page d'accueil par défaut."
+        }
+      }
+    },
+    "create": {
+      "backButton": "Retour à tous les événements",
+      "formTitle": "Créer un Nouvel Événement Agricole",
+      "formDescription": "Remplissez les détails ci-dessous pour lister votre événement sur la plateforme.",
+      "authErrorTitle": "Non Authentifié",
+      "authErrorDescription": "Vous devez être connecté pour créer un événement.",
+      "uploadingTitle": "Téléchargement de l'Image...",
+      "uploadingDescription": "Veuillez patienter pendant le téléchargement de l'image de votre événement.",
+      "uploadCompleteTitle": "Téléchargement de l'Image Terminé !",
+      "successTitle": "Événement Créé !",
+      "successDescription": "Votre événement '{title}' a été listé avec succès.",
+      "failTitle": "Échec de la Création de l'Événement",
+      "failDescription": "Une erreur inattendue est survenue. Veuillez réessayer.",
+      "successCardTitle": "Votre événement '{title}' est en ligne !",
+      "successCardDescription": "Il est maintenant visible par toute la communauté DamDoh. Que souhaitez-vous faire ensuite ?",
+      "manageButton": "Gérer l'Événement",
+      "shareButton": "Copier le Lien Partageable",
+      "createAnotherButton": "Créer un Autre Événement",
+      "viewAllButton": "Voir Tous les Événements",
+      "linkCopiedTitle": "Lien Copié !",
+      "linkCopiedDescription": "Le lien de l'événement a été copié dans votre presse-papiers.",
+      "submittingButton": "Soumission en cours...",
+      "submitButton": "Créer l'Événement",
+      "form": {
+        "titleLabel": "Titre de l'Événement",
+        "titlePlaceholder": "Ex: Conférence Annuelle sur l'Agriculture Durable",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Fournissez une description détaillée de votre événement, y compris les intervenants, les sujets et le programme.",
+        "dateLabel": "Date de l'Événement",
+        "datePlaceholder": "Choisissez une date",
+        "timeLabel": "Heure de l'Événement (Facultatif)",
+        "timePlaceholder": "Ex: 09:00",
+        "timeDescription": "Votre fuseau horaire local",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "Ex: Nairobi, Kenya ou En ligne",
+        "locationDescription": "Entrez un lieu physique ou spécifiez 'En ligne' pour les événements virtuels.",
+        "typeLabel": "Type d'Événement",
+        "typePlaceholder": "Sélectionnez un type d'événement",
+        "organizerLabel": "Nom de l'Organisateur (Facultatif)",
+        "organizerPlaceholder": "Ex: Agri-Innovation Global",
+        "websiteLabel": "Site Web de l'Événement (Facultatif)",
+        "enableRegLabel": "Activer l'Inscription",
+        "enableRegDescription": "Permettre aux utilisateurs de s'inscrire à cet événement directement via DamDoh.",
+        "attendeeLimitLabel": "Limite de Participants (Facultatif)",
+        "attendeeLimitDescription": "Laisser vide pour aucune limite.",
+        "priceLabel": "Prix (par billet)",
+        "priceDescription": "Laisser à 0 pour un événement gratuit.",
+        "currencyLabel": "Devise",
+        "currencyDescription": "Ex: USD, KES",
+        "imageUrlLabel": "URL de l'Image (Facultatif)",
+        "imageUrlDescription": "Lien vers une image promotionnelle ou une bannière pour votre événement.",
+        "imageUploadLabel": "Ou Télécharger une Image",
+        "imageUploadDescription": "Max 5Mo. Format d'image recommandé 16:9."
+      }
+    },
+    "detail": {
+      "backLink": "Retour à tous les événements",
+      "organizedBy": "Organisé par {organizer}",
+      "attendees": "{count} participants / {limit}",
+      "unlimited": "illimité",
+      "buttons": {
+        "manage": "Gérer",
+        "share": "Partager",
+        "close": "Fermer",
+        "viewTicket": "Voir Votre Billet",
+        "full": "L'événement est Complet",
+        "registering": "Inscription en cours...",
+        "registerAndPay": "S'inscrire & Payer {price} {currency}",
+        "registerFree": "S'inscrire Gratuitement",
+        "visitWebsite": "Visiter le Site Web de l'Événement"
+      },
+      "share": {
+        "title": "Partager l'Événement",
+        "description": "Partagez cet événement avec votre réseau.",
+        "link": "Lien",
+        "copy": "Copier"
+      },
+      "registration": {
+        "notAvailable": "L'inscription à cet événement n'est pas disponible via DamDoh.",
+        "successTitle": "Inscription Réussie !",
+        "successDescription": "Vous êtes maintenant inscrit à l'événement.",
+        "discountApplied": "Un coupon pour une réduction de {amount} {currency} a été appliqué.",
+        "finalPrice": "Votre prix final est de {price} {currency}.",
+        "failTitle": "Échec de l'Inscription"
+      },
+      "coupon": {
+        "toastTitle": "Coupon Appliqué !",
+        "toastDescription": "Le code de coupon '{couponCode}' a été ajouté à votre inscription.",
+        "label": "Vous avez un code de coupon ?",
+        "placeholder": "Entrez le code ici",
+        "note": "La réduction sera appliquée à la dernière étape."
+      },
+      "ticket": {
+        "title": "Votre Billet pour l'Événement",
+        "for": "Pour {eventTitle}",
+        "scan": "Présentez ce code QR à l'événement pour l'enregistrement."
+      },
+      "notFound": {
+        "title": "Événement Non Trouvé",
+        "description": "L'événement que vous recherchez n'existe pas ou a été supprimé.",
+        "backButton": "Retour aux Événements"
+      },
+      "errors": {
+        "loadTitle": "Erreur de Chargement de l'Événement",
+        "loadDescription": "Impossible de récupérer les détails de l'événement. Veuillez réessayer.",
+        "signInTitle": "Veuillez Vous Connecter",
+        "signInDescription": "Vous devez être connecté pour vous inscrire à un événement."
+      }
+    },
+    "manage": {
+      "title": "Gérer l'Événement",
+      "toast": {
+        "errorCoupons": {
+          "title": "Erreur",
+          "description": "Impossible de récupérer les coupons existants."
+        }
+      },
+      "tabs": {
+        "checkin": "Enregistrement",
+        "staff": "Personnel",
+        "dashboard": "Tableau de bord",
+        "attendees": "Participants",
+        "promotions": "Promotions"
+      },
+      "checkin": {
+        "title": "Enregistrement des Participants",
+        "description": "Scannez le code QR unique du billet d'un participant pour l'enregistrer à l'événement.",
+        "scanButton": "Scanner le Billet du Participant",
+        "verifying": "Vérification...",
+        "success": "Succès",
+        "errorTitle": "Erreur",
+        "error": {
+          "invalidCode": "Code QR invalide : Ce n'est pas un code d'enregistrement DamDoh.",
+          "wrongEvent": "Ce billet est pour un autre événement.",
+          "noUserId": "Code QR invalide : Aucun ID d'utilisateur trouvé.",
+          "unknown": "Une erreur inconnue est survenue lors de l'enregistrement.",
+          "failUnknown": "L'enregistrement a échoué pour une raison inconnue."
+        },
+        "toast": {
+          "success": { "title": "Enregistrement Réussi" },
+          "fail": { "title": "Échec de l'Enregistrement" },
+          "scanFail": {
+            "title": "Échec du Scan",
+            "description": "Impossible de lire le code QR. Veuillez réessayer."
+          }
+        }
+      },
+      "staff": {
+        "title": "Gérer le Personnel de l'Événement",
+        "description": "Ajoutez ou supprimez du personnel qui peut vous aider à enregistrer les participants.",
+        "addTitle": "Ajouter du Nouveau Personnel",
+        "searchPlaceholder": "Rechercher un utilisateur par nom ou email...",
+        "addButton": "Ajouter",
+        "currentTitle": "Personnel Actuel",
+        "removeButton": "Supprimer",
+        "noStaff": "Aucun membre du personnel ajouté.",
+        "toast": {
+          "error": "Erreur",
+          "success": "Succès",
+          "fetchStaffError": "Impossible de récupérer le personnel de l'événement.",
+          "searchLengthError": "Veuillez entrer au moins 3 caractères pour rechercher.",
+          "searchFailed": "Recherche échouée",
+          "addSuccess": "{name} a été ajouté au personnel.",
+          "addFailed": "Échec de l'ajout du personnel",
+          "removeSuccess": "{name} a été retiré du personnel.",
+          "removeFailed": "Échec de la suppression du personnel"
+        }
+      },
+      "attendees": {
+        "title": "Participants de l'Événement",
+        "description": "Voir la liste de tous les participants inscrits à votre événement.",
+        "downloadCsv": "Télécharger CSV",
+        "nameHeader": "Nom",
+        "emailHeader": "Email",
+        "registeredOnHeader": "Inscrit le",
+        "statusHeader": "Statut",
+        "statusCheckedIn": "Enregistré",
+        "statusRegistered": "Inscrit",
+        "noAttendees": "Personne ne s'est encore inscrit à cet événement.",
+        "error": "Impossible de récupérer les participants de l'événement.",
+        "toast": { "noAttendees": "Aucun participant à exporter." }
+      },
+      "promotions": {
+        "create": {
+          "title": "Créer un Nouveau Coupon",
+          "description": "Générez des codes de réduction pour promouvoir votre événement.",
+          "toast": {
+            "successTitle": "Coupon Créé !",
+            "successDescription": "Le coupon '{code}' est maintenant actif.",
+            "failTitle": "Création Échouée"
+          },
+          "form": {
+            "code": "Code de Coupon",
+            "codePlaceholder": "Ex: EARLYBIRD20",
+            "usageLimit": "Limite d'Utilisation (Facultatif)",
+            "usageLimitPlaceholder": "Ex: 100",
+            "discountType": "Type de Réduction",
+            "discountTypePlaceholder": "Sélectionnez un type",
+            "percentage": "Pourcentage (%)",
+            "fixed": "Montant Fixe",
+            "discountValue": "Valeur de la Réduction",
+            "expiryDate": "Date d'Expiration (Facultatif)",
+            "pickDate": "Choisissez une date",
+            "submitButton": "Créer le Coupon"
+          }
+        },
+        "list": {
+          "title": "Coupons Existants",
+          "description": "Voyez et gérez vos coupons actifs et passés.",
+          "toastTitle": "Lien Copié !",
+          "toastDescription": "Un lien partageable avec le coupon a été copié : {link}",
+          "expires": "Expire",
+          "usage": "Utilisation",
+          "share": "Partager",
+          "noCoupons": "Aucun coupon créé pour le moment.",
+          "shareModal": {
+            "title": "Partager le Coupon",
+            "description": "Partagez ce code ou ce lien avec les participants potentiels.",
+            "copy": "Copier",
+            "close": "Fermer"
+          }
+        }
+      }
+    }
   }
 }

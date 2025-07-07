@@ -109,14 +109,14 @@ export default function AgriEventsPage() {
     if (isCurrentHomepage) {
       clearHomepagePreference();
       toast({
-        title: t('homepageUnpinned'),
-        description: t('dashboardIsHomepage'),
+        title: t('toast.unpinned.title'),
+        description: t('toast.unpinned.description'),
       });
     } else {
       setHomepagePreference(pathname);
       toast({
-        title: t('homepagePinned'),
-        description: t('agriEventsIsHomepage'),
+        title: t('toast.pinned.title'),
+        description: t('toast.pinned.description'),
       });
     }
   };
