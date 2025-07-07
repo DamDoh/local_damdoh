@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { AGRICULTURAL_CATEGORIES } from "@/lib/category-data";
 
 function TalentPageSkeleton() {
+    const t = useTranslations('talentExchangePage');
     return (
         <div className="space-y-6">
             <Card>
@@ -63,8 +64,8 @@ export default function TalentExchangePage() {
                 console.error("Failed to fetch marketplace items:", error);
                 toast({
                     variant: "destructive",
-                    title: "Error",
-                    description: "Could not fetch available talent and services.",
+                    title: t('toast.error.title'),
+                    description: t('toast.error.description'),
                 });
                 setItems([]);
             } finally {
@@ -72,7 +73,7 @@ export default function TalentExchangePage() {
             }
         };
         fetchItems();
-    }, [toast]);
+    }, [toast, t]);
 
     const filteredServices = useMemo(() => {
         if (!Array.isArray(items)) return [];

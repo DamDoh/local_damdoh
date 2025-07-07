@@ -17,7 +17,9 @@
     "myProfile": "Mon Profil",
     "settings": "Paramètres",
     "helpCenter": "Centre d'aide",
-    "logOut": "Déconnexion"
+    "logOut": "Déconnexion",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
   },
   "AppFooter": {
     "tagline": "La plateforme mondiale de la chaîne d'approvisionnement agricole.",

@@ -36,7 +36,6 @@ import { generateProfileSummary } from '@/ai/flows/profile-summary-generator';
 
 
 function EditProfileSkeleton() {
-    const t = useTranslations('common');
     return (
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
@@ -57,8 +56,8 @@ function EditProfileSkeleton() {
 }
 
 export default function EditProfilePage() {
-  const t = useTranslations('settingsPage');
   const tEdit = useTranslations('editProfilePage');
+  const tCommon = useTranslations('common');
   const router = useRouter();
   const params = useParams();
 
@@ -111,16 +110,16 @@ export default function EditProfilePage() {
           profileData: userProfile.profileData || {},
         });
       } else {
-        toast({ variant: "destructive", title: "Error", description: "Profile not found." });
+        toast({ variant: "destructive", title: tCommon('error'), description: tEdit('toast.profileNotFound') });
         router.push("/profiles");
       }
     } catch (error) {
       console.error("Error fetching profile:", error);
-      toast({ variant: "destructive", title: "Error", description: "There was a problem fetching the profile data." });
+      toast({ variant: "destructive", title: tCommon('error'), description: tEdit('toast.fetchError') });
     } finally {
       setIsLoadingData(false);
     }
-  }, [form, router, toast]);
+  }, [form, router, toast, tCommon, tEdit]);
 
   useEffect(() => {
     if (authLoading) return;
@@ -130,13 +129,13 @@ export default function EditProfilePage() {
       if (authUser) {
         idToFetch = authUser.uid;
       } else {
-        toast({ variant: "destructive", title: "Not Authenticated", description: "You must be logged in to edit your profile." });
+        toast({ variant: "destructive", title: tEdit('toast.notAuthenticatedTitle'), description: tEdit('toast.notAuthenticatedDescription') });
         router.push("/auth/signin");
         return;
       }
     } else {
       if (!authUser || authUser.uid !== profileIdParam) {
-        toast({ variant: "destructive", title: "Unauthorized", description: "You do not have permission to edit this profile."});
+        toast({ variant: "destructive", title: tEdit('toast.unauthorizedTitle'), description: tEdit('toast.unauthorizedDescription') });
         router.push(`/profiles/${profileIdParam}`);
         return;
       }
@@ -148,14 +147,14 @@ export default function EditProfilePage() {
     } else if (!authLoading) {
       setIsLoadingData(false);
     }
-  }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData]);
+  }, [profileIdParam, authUser, authLoading, router, toast, fetchProfileData, tEdit]);
   
   const handleGenerateSummary = async () => {
     const isValid = await form.trigger(['role', 'location', 'areasOfInterest', 'needs']);
     if (!isValid) {
         toast({
-            title: "Missing Information",
-            description: "Please fill in your Role, Location, Interests, and Needs to generate a summary.",
+            title: tEdit('toast.missingInfoTitle'),
+            description: tEdit('toast.missingInfoDescription'),
             variant: "destructive",
         });
         return;
@@ -173,15 +172,15 @@ export default function EditProfilePage() {
         if (result.summary) {
             form.setValue('profileSummary', result.summary, { shouldValidate: true });
             toast({
-                title: "Summary Generated!",
-                description: "AI has drafted a summary for you. Feel free to edit it further.",
+                title: tEdit('toast.summaryGeneratedTitle'),
+                description: tEdit('toast.summaryGeneratedDescription'),
             });
         }
     } catch (error: any) {
         console.error("Error generating profile summary:", error);
         toast({
-            title: "Generation Failed",
-            description: "The AI could not generate a summary at this time.",
+            title: tEdit('toast.generationFailedTitle'),
+            description: tEdit('toast.generationFailedDescription'),
             variant: "destructive",
         });
     } finally {
@@ -191,7 +190,7 @@ export default function EditProfilePage() {
 
   async function onSubmit(data: EditProfileValues) {
     if (!profile?.id) {
-      toast({ variant: "destructive", title: "Error", description: "Profile ID is missing. Cannot save changes." });
+      toast({ variant: "destructive", title: tCommon('error'), description: tEdit('toast.missingIdError') });
       return;
     }
     setIsSubmitting(true);
@@ -212,8 +211,8 @@ export default function EditProfilePage() {
       await upsertStakeholderProfile(payload);
       
       toast({
-        title: "Profile Updated!",
-        description: "Your changes have been saved successfully.",
+        title: tEdit('toast.profileUpdatedTitle'),
+        description: tEdit('toast.profileUpdatedDescription'),
       });
       router.push(`/profiles/me`);
       router.refresh(); 
@@ -221,8 +220,8 @@ export default function EditProfilePage() {
       console.error("Error updating profile:", error);
       toast({
         variant: "destructive",
-        title: "Update Failed",
-        description: error.message || "An unexpected error occurred while saving.",
+        title: tEdit('toast.updateFailedTitle'),
+        description: error.message || tEdit('toast.updateFailedDescription'),
       });
     } finally {
       setIsSubmitting(false);
@@ -237,11 +236,11 @@ export default function EditProfilePage() {
     return (
         <Card className="max-w-3xl mx-auto">
             <CardHeader>
-            <CardTitle>Profile Not Found</CardTitle>
-            <CardDescription>Could not find the requested profile.</CardDescription>
+            <CardTitle>{tEdit('notFound.title')}</CardTitle>
+            <CardDescription>{tEdit('notFound.description')}</CardDescription>
             </CardHeader>
             <CardContent>
-                <Button variant="outline" asChild><Link href="/"><ArrowLeft className="h-4 w-4 mr-2" />Back to Home</Link></Button>
+                <Button variant="outline" asChild><Link href="/"><ArrowLeft className="h-4 w-4 mr-2" />{tEdit('notFound.backButton')}</Link></Button>
             </CardContent>
         </Card>
     );
@@ -266,24 +265,24 @@ export default function EditProfilePage() {
 
                     <TabsContent value="profile" className="mt-6">
                         <div className="space-y-6">
-                            <FormField control={form.control} name="displayName" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><User className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.nameLabel')}</FormLabel> <FormControl> <Input placeholder="Your Name or Company Name" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="role" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.roleLabel')}</FormLabel> <Select onValueChange={field.onChange} value={field.value}> <FormControl> <SelectTrigger> <SelectValue placeholder={t('stakeholderProfile.rolePlaceholder')} /> </SelectTrigger> </FormControl> <SelectContent> {STAKEHOLDER_ROLES.map((roleOption) => ( <SelectItem key={roleOption} value={roleOption}> {roleOption} </SelectItem> ))} </SelectContent> </Select> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="profileSummary" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center justify-between"> <span className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.summaryLabel')}</span> <Button type="button" variant="outline" size="sm" onClick={handleGenerateSummary} disabled={isGeneratingSummary}> {isGeneratingSummary ? <Loader2 className="h-4 w-4 animate-spin"/> : <Sparkles className="h-4 w-4" />} <span className="ml-2 hidden sm:inline">Generate with AI</span> </Button> </FormLabel> <FormControl> <Input placeholder={t('stakeholderProfile.summaryPlaceholder')} {...field} /> </FormControl> <FormDescription>Max 250 characters.</FormDescription> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="bio" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.bioLabel')}</FormLabel> <FormControl> <Textarea placeholder={t('stakeholderProfile.bioPlaceholder')} className="min-h-[120px]" {...field} /> </FormControl> <FormDescription>Max 2000 characters.</FormDescription> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="displayName" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><User className="h-4 w-4 text-muted-foreground" />{tEdit('nameLabel')}</FormLabel> <FormControl> <Input placeholder={tEdit('namePlaceholder')} {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="role" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Briefcase className="h-4 w-4 text-muted-foreground" />{tEdit('roleLabel')}</FormLabel> <Select onValueChange={field.onChange} value={field.value}> <FormControl> <SelectTrigger> <SelectValue placeholder={tEdit('rolePlaceholder')} /> </SelectTrigger> </FormControl> <SelectContent> {STAKEHOLDER_ROLES.map((roleOption) => ( <SelectItem key={roleOption} value={roleOption}> {roleOption} </SelectItem> ))} </SelectContent> </Select> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="profileSummary" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center justify-between"> <span className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{tEdit('summaryLabel')}</span> <Button type="button" variant="outline" size="sm" onClick={handleGenerateSummary} disabled={isGeneratingSummary}> {isGeneratingSummary ? <Loader2 className="h-4 w-4 animate-spin"/> : <Sparkles className="h-4 w-4" />} <span className="ml-2 hidden sm:inline">{tEdit('generateWithAI')}</span> </Button> </FormLabel> <FormControl> <Input placeholder={tEdit('summaryPlaceholder')} {...field} /> </FormControl> <FormDescription>{tEdit('summaryDescription')}</FormDescription> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="bio" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{tEdit('bioLabel')}</FormLabel> <FormControl> <Textarea placeholder={tEdit('bioPlaceholder')} className="min-h-[120px]" {...field} /> </FormControl> <FormDescription>{tEdit('bioDescription')}</FormDescription> <FormMessage /> </FormItem> )} />
                         </div>
                     </TabsContent>
 
                     <TabsContent value="details" className="mt-6">
                          <div className="space-y-6">
-                            <FormField control={form.control} name="location" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{tEdit('locationLabel')}</FormLabel> <FormControl> <Input placeholder="e.g., Nairobi, Kenya or Central Valley, CA" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="areasOfInterest" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Sparkles className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.interestsLabel')}</FormLabel> <FormControl> <Input placeholder={t('stakeholderProfile.interestsPlaceholder')} {...field} /> </FormControl> <FormDescription>{t('stakeholderProfile.commaSeparated')}</FormDescription> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="needs" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.needsLabel')}</FormLabel> <FormControl> <Input placeholder={t('stakeholderProfile.needsPlaceholder')} {...field} /> </FormControl> <FormDescription>{t('stakeholderProfile.commaSeparated')}</FormDescription> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="location" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{tEdit('locationLabel')}</FormLabel> <FormControl> <Input placeholder={tEdit('locationPlaceholder')} {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="areasOfInterest" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Sparkles className="h-4 w-4 text-muted-foreground" />{tEdit('interestsLabel')}</FormLabel> <FormControl> <Input placeholder={tEdit('interestsPlaceholder')} {...field} /> </FormControl> <FormDescription>{tEdit('commaSeparated')}</FormDescription> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="needs" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-muted-foreground" />{tEdit('needsLabel')}</FormLabel> <FormControl> <Input placeholder={tEdit('needsPlaceholder')} {...field} /> </FormControl> <FormDescription>{tEdit('commaSeparated')}</FormDescription> <FormMessage /> </FormItem> )} />
                         </div>
                     </TabsContent>
 
                     <TabsContent value="contact" className="mt-6">
                         <div className="space-y-6">
-                            <FormField control={form.control} name="email" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Mail className="h-4 w-4 text-muted-foreground" />{t('stakeholderProfile.emailLabel')}</FormLabel> <FormControl> <Input type="email" placeholder="you@example.com" {...field} disabled /> </FormControl> <FormDescription>{t('stakeholderProfile.emailDescription')}</FormDescription> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="email" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Mail className="h-4 w-4 text-muted-foreground" />{tEdit('emailLabel')}</FormLabel> <FormControl> <Input type="email" placeholder="you@example.com" {...field} disabled /> </FormControl> <FormDescription>{tEdit('emailDescription')}</FormDescription> <FormMessage /> </FormItem> )} />
                             <FormField control={form.control} name="contactInfoPhone" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground" />{tEdit('phoneLabel')}</FormLabel> <FormControl> <Input placeholder="+1234567890" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
                             <FormField control={form.control} name="contactInfoWebsite" render={({ field }) => ( <FormItem> <FormLabel className="flex items-center gap-2"><Globe className="h-4 w-4 text-muted-foreground" />{tEdit('websiteLabel')}</FormLabel> <FormControl> <Input type="url" placeholder="https://yourwebsite.com" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
                         </div>
@@ -298,7 +297,7 @@ export default function EditProfilePage() {
                     </>
                   ) : (
                     <>
-                      <Save className="mr-2 h-4 w-4" /> {t('stakeholderProfile.saveButton')}
+                      <Save className="mr-2 h-4 w-4" /> {tEdit('saveButton')}
                     </>
                   )}
                 </Button>

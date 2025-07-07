@@ -17,7 +17,9 @@
     "myProfile": "គណនីខ្ញុំ",
     "settings": "ការកំណត់",
     "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
-    "logOut": "ចាកចេញ"
+    "logOut": "ចាកចេញ",
+    "switchToLightAria": "ប្តូរទៅธีมสว่าง",
+    "switchToDarkAria": "ប្តូរទៅธีมมืด"
   },
   "AppFooter": {
     "tagline": "វេទិកាសកលសម្រាប់ខ្សែចង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",

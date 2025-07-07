@@ -4,8 +4,10 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 
 export function ThemeToggle() {
+  const t = useTranslations('settingsPage.appearance');
   const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
@@ -45,11 +47,11 @@ export function ThemeToggle() {
       <div key="placeholder" className="flex gap-1" aria-hidden="true" style={{height: '36px'}}> {/* h-9 equivalent */}
         <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 opacity-50">
           <Sun className="h-5 w-5" />
-          <span>Light</span>
+          <span>{t('lightTheme')}</span>
         </div>
         <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 opacity-50">
           <Moon className="h-5 w-5" />
-          <span>Dark</span>
+          <span>{t('darkTheme')}</span>
         </div>
       </div>
     );
@@ -60,20 +62,20 @@ export function ThemeToggle() {
       <Button 
         variant={currentTheme === 'light' ? 'secondary' : 'ghost'} 
         onClick={() => handleSetTheme('light')} 
-        aria-label="Switch to light theme"
+        aria-label={t('switchToLightAria')}
         className="h-9"
       >
         <Sun className="h-5 w-5" />
-        <span>Light</span>
+        <span>{t('lightTheme')}</span>
       </Button>
       <Button 
         variant={currentTheme === 'dark' ? 'secondary' : 'ghost'} 
         onClick={() => handleSetTheme('dark')} 
-        aria-label="Switch to dark theme"
+        aria-label={t('switchToDarkAria')}
         className="h-9"
       >
         <Moon className="h-5 w-5" />
-        <span>Dark</span>
+        <span>{t('darkTheme')}</span>
       </Button>
     </div>
   );

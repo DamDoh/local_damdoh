@@ -4,8 +4,10 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 
 export function HeaderThemeToggle() {
+  const t = useTranslations('AppHeader');
   const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
@@ -55,7 +57,7 @@ export function HeaderThemeToggle() {
       <Button 
         variant={currentTheme === 'light' ? 'secondary' : 'ghost'} 
         onClick={() => handleSetTheme('light')} 
-        aria-label="Switch to light theme"
+        aria-label={t('switchToLightAria')}
         className="h-7 w-7 p-0 rounded-full"
       >
         <Sun className="h-4 w-4" />
@@ -63,7 +65,7 @@ export function HeaderThemeToggle() {
       <Button 
         variant={currentTheme === 'dark' ? 'secondary' : 'ghost'} 
         onClick={() => handleSetTheme('dark')} 
-        aria-label="Switch to dark theme"
+        aria-label={t('switchToDarkAria')}
         className="h-7 w-7 p-0 rounded-full"
       >
         <Moon className="h-4 w-4" />

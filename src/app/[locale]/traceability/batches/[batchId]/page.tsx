@@ -70,10 +70,10 @@ const EventPayload = ({ payload, t }: { payload: any, t: any }) => {
         const analysis = payload.aiAnalysis as { summary: string };
         return (
             <div className="text-sm text-muted-foreground space-y-2 mt-2 p-2 bg-background rounded-md">
-                <p><strong>Observation Type:</strong> {payload.observationType}</p>
-                <p><strong>Details:</strong> {payload.details}</p>
+                <p><strong>{t('detailPage.observationType')}:</strong> {payload.observationType}</p>
+                <p><strong>{t('detailPage.details')}:</strong> {payload.details}</p>
                 <div className="mt-2 pt-2 border-t border-dashed">
-                    <h5 className="font-semibold text-foreground text-sm">AI Diagnosis</h5>
+                    <h5 className="font-semibold text-foreground text-sm">{t('detailPage.aiDiagnosis')}</h5>
                     <p className="text-sm">{analysis.summary}</p>
                 </div>
             </div>
@@ -137,7 +137,7 @@ export default function TraceabilityBatchDetailPage() {
 
   useEffect(() => {
     if (!batchId) {
-        setError("Invalid Batch ID.");
+        setError(t('detailPage.invalidIdError'));
         setIsLoading(false);
         return;
     };
@@ -150,14 +150,14 @@ export default function TraceabilityBatchDetailPage() {
         setData(result.data as TraceabilityData);
       } catch (err: any) {
         console.error("Error fetching traceability data:", err);
-        setError(err.message || "Could not load traceability history for this batch.");
+        setError(err.message || t('detailPage.loadError'));
       } finally {
         setIsLoading(false);
       }
     };
     
     fetchData();
-  }, [batchId, getVtiHistoryCallable]);
+  }, [batchId, getVtiHistoryCallable, t]);
 
   const isSustainablyGrown = useMemo(() => {
     if (!data || !Array.isArray(data.events)) return false;
@@ -270,7 +270,7 @@ export default function TraceabilityBatchDetailPage() {
                 </div>
                 <div className="p-4 border rounded-lg bg-muted/50">
                     <p className="text-muted-foreground text-xs flex items-center gap-1.5"><Award className="h-4 w-4"/> {t('detailPage.qualityLabel')}</p>
-                    <p className="font-semibold text-lg">{vti.metadata?.initialQualityGrade || 'Not Specified'}</p>
+                    <p className="font-semibold text-lg">{vti.metadata?.initialQualityGrade || t('detailPage.notSpecified')}</p>
                 </div>
             </div>
         </CardContent>

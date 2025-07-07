@@ -17,7 +17,9 @@
     "myProfile": "Mi Perfil",
     "settings": "Configuración",
     "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar Sesión"
+    "logOut": "Cerrar Sesión",
+    "switchToLightAria": "Cambiar a tema claro",
+    "switchToDarkAria": "Cambiar a tema oscuro"
   },
   "AppFooter": {
     "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
@@ -332,7 +334,7 @@
     "addOptionButton": "Añadir opción",
     "pollNote": "Máx. {maxOptions} opciones. Cada opción máx. 80 caracteres.",
     "addMediaButton": "Añadir foto/vídeo",
-    "createEventButton": "Crear evento agrícola",
+    "createEventButton": "Crear evento Agri",
     "shareDocumentButton": "Compartir documento",
     "createPollButton": "Crear encuesta",
     "postButton": "Publicar",

@@ -17,7 +17,9 @@
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
     "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden"
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
   },
   "AppFooter": {
     "tagline": "Die globale Plattform für die landwirtschaftliche Lieferkette.",

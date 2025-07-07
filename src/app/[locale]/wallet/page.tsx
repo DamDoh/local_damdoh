@@ -1,5 +1,8 @@
+
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wallet as WalletIcon, Landmark, TrendingUp, Info } from "lucide-react";
+import { Wallet as WalletIcon, Landmark, Info } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function WalletPage() {
