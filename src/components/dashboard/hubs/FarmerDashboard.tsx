@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
 
+// Helper components defined as standalone functions at the top level
 function DashboardSkeleton() {
     return (
         <div className="space-y-6">
@@ -38,6 +39,7 @@ function AlertIcon({ icon }: { icon: FarmerDashboardAlert['icon'] }) {
     return <IconComponent className="h-5 w-5" />;
 }
 
+// Main Dashboard Component
 export function FarmerDashboard() {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -75,146 +77,147 @@ export function FarmerDashboard() {
     const { farmCount, cropCount, recentCrops = [], knfBatches = [], financialSummary, alerts = [] } = dashboardData;
 
     return (
-         <div className="space-y-6">
-             {alerts.length > 0 && (
-                <Card className="border-primary/50 bg-primary/10">
-                    <CardHeader>
-                        <CardTitle className="text-base flex items-center gap-2">
-                           <AlertCircle className="h-5 w-5 text-primary"/>
-                           Farm Alerts & Next Steps
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        {alerts.map(alert => (
-                           <div key={alert.id} className="flex justify-between items-center text-sm p-3 bg-background rounded-lg border">
-                                <div className="flex items-center gap-3">
-                                   <AlertIcon icon={alert.icon} />
-                                    <span>{alert.message}</span>
-                                </div>
-                               <Button asChild variant="secondary" size="sm">
-                                   <Link href={alert.link}>View</Link>
-                               </Button>
-                           </div>
-                        ))}
-                    </CardContent>
-                </Card>
-             )}
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
-                <Card key="farms" className="flex flex-col justify-between">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">My Farms</CardTitle>
-                        <Home className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{(farmCount || 0).toLocaleString()}</div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/farm-management/farms" className="flex items-center justify-center"><Home className="mr-2 h-4 w-4" />Manage Farms</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
-                <Card key="crops" className="flex flex-col justify-between">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Active Crops</CardTitle>
-                        <Sprout className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{(cropCount || 0).toLocaleString()}</div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/farm-management/farms" className="flex items-center justify-center"><Sprout className="mr-2 h-4 w-4" />Manage Crops</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
-                <Card key="knf" className="flex flex-col justify-between">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">KNF Batches</CardTitle>
-                        <FlaskConical className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{(knfBatches || []).length.toLocaleString()}</div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/farm-management/knf-inputs" className="flex items-center justify-center"><FlaskConical className="mr-2 h-4 w-4" />Manage Inputs</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
-                <Card key="financials" className="flex flex-col justify-between">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Net Financials</CardTitle>
-                        <DollarSign className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">${(financialSummary?.netFlow || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/farm-management/financials" className="flex items-center justify-center"><DollarSign className="mr-2 h-4 w-4" />View Financials</Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
-             </div>
-             {financialSummary && (
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="text-base flex items-center gap-2">
-                            Financial Overview
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div className="flex items-center justify-between">
-                                <span className="text-muted-foreground flex items-center gap-1"><ArrowUp className="h-4 w-4 text-green-500" /> Total Income:</span>
-                                <span className="font-bold text-green-600">${financialSummary.totalIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+        <div className="space-y-6">
+            {alerts.length > 0 && (
+            <Card className="border-primary/50 bg-primary/10">
+                <CardHeader>
+                    <CardTitle className="text-base flex items-center gap-2">
+                        <AlertCircle className="h-5 w-5 text-primary"/>
+                        Farm Alerts & Next Steps
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                    {alerts.map(alert => (
+                        <div key={alert.id} className="flex justify-between items-center text-sm p-3 bg-background rounded-lg border">
+                            <div className="flex items-center gap-3">
+                                <AlertIcon icon={alert.icon} />
+                                <span>{alert.message}</span>
                             </div>
-                            <div className="flex items-center justify-between">
-                                 <span className="text-muted-foreground flex items-center gap-1"><ArrowDown className="h-4 w-4 text-red-500" /> Total Expense:</span>
-                                <span className="font-bold text-red-600">${financialSummary.totalExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                            </div>
+                            <Button asChild variant="secondary" size="sm">
+                                <Link href={alert.link}>View</Link>
+                            </Button>
                         </div>
-                    </CardContent>
-                </Card>
+                    ))}
+                </CardContent>
+            </Card>
             )}
-              <Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+            <Card key="farms" className="flex flex-col justify-between">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">My Farms</CardTitle>
+                    <Home className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <div className="text-2xl font-bold">{(farmCount || 0).toLocaleString()}</div>
+                </CardContent>
+                <CardFooter>
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link href="/farm-management/farms" className="flex items-center justify-center"><Home className="mr-2 h-4 w-4" />Manage Farms</Link>
+                    </Button>
+                </CardFooter>
+            </Card>
+            <Card key="crops" className="flex flex-col justify-between">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Active Crops</CardTitle>
+                    <Sprout className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <div className="text-2xl font-bold">{(cropCount || 0).toLocaleString()}</div>
+                </CardContent>
+                <CardFooter>
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link href="/farm-management/farms" className="flex items-center justify-center"><Sprout className="mr-2 h-4 w-4" />Manage Crops</Link>
+                    </Button>
+                </CardFooter>
+            </Card>
+            <Card key="knf" className="flex flex-col justify-between">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">KNF Batches</CardTitle>
+                    <FlaskConical className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <div className="text-2xl font-bold">{(knfBatches || []).length.toLocaleString()}</div>
+                </CardContent>
+                <CardFooter>
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link href="/farm-management/knf-inputs" className="flex items-center justify-center"><FlaskConical className="mr-2 h-4 w-4" />Manage Inputs</Link>
+                    </Button>
+                </CardFooter>
+            </Card>
+            <Card key="financials" className="flex flex-col justify-between">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Net Financials</CardTitle>
+                    <DollarSign className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <div className="text-2xl font-bold">${(financialSummary?.netFlow || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                </CardContent>
+                <CardFooter>
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link href="/farm-management/financials" className="flex items-center justify-center"><DollarSign className="mr-2 h-4 w-4" />View Financials</Link>
+                    </Button>
+                </CardFooter>
+            </Card>
+            </div>
+            {financialSummary && (
+            <Card>
                 <CardHeader>
-                    <CardTitle className="text-base flex items-center justify-between">
-                        <span>Recent Crops</span>
-                        <Button asChild variant="secondary" size="sm"><Link href="/farm-management/create-farm"><PlusCircle className="h-4 w-4 mr-2"/>Add Crop</Link></Button>
-                    </CardHeader>
-                <CardContent className="space-y-2">
-                    {(recentCrops || []).length > 0 ? (recentCrops || []).map(crop => (
-                        <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
-                            <div>
-                                <p className="font-medium text-sm">{crop.name} <span className="text-xs text-muted-foreground">on {crop.farmName}</span></p>
-                                {crop.plantingDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>}
-                            </div>
-                            <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${crop.farmId}`}>View</Link></Button>
+                    <CardTitle className="text-base flex items-center gap-2">
+                        Financial Overview
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="flex items-center justify-between">
+                            <span className="text-muted-foreground flex items-center gap-1"><ArrowUp className="h-4 w-4 text-green-500" /> Total Income:</span>
+                            <span className="font-bold text-green-600">${financialSummary.totalIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                         </div>
-                    )) : <p className="text-sm text-center text-muted-foreground py-4">No crops added yet.</p>}
+                        <div className="flex items-center justify-between">
+                                <span className="text-muted-foreground flex items-center gap-1"><ArrowDown className="h-4 w-4 text-red-500" /> Total Expense:</span>
+                            <span className="font-bold text-red-600">${financialSummary.totalExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        </div>
+                    </div>
                 </CardContent>
             </Card>
-
-             <Card>
-                <CardHeader>
-                    <CardTitle className="text-base flex items-center justify-between">
-                        <span>Active KNF Batches</span>
-                         <Button asChild variant="secondary" size="sm"><Link href="/farm-management/knf-inputs"><PlusCircle className="h-4 w-4 mr-2"/>Add Batch</Link></Button>
-                    </CardHeader>
-                <CardContent className="space-y-2">
-                    {(knfBatches || []).length > 0 ? (knfBatches || []).map(batch => (
-                         <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">
-                            <div>
-                                <p className="font-medium text-sm">{batch.typeName}</p>
-                                {batch.nextStepDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" />Next step {formatDistanceToNow(new Date(batch.nextStepDate), { addSuffix: true })}</p>}
-                            </div>
-                            <Badge variant={batch.status === 'Ready' ? 'default' : 'secondary'}>{batch.status}</Badge>
+        )}
+            <Card>
+            <CardHeader>
+                <CardTitle className="text-base flex items-center justify-between">
+                    <span>Recent Crops</span>
+                    <Button asChild variant="secondary" size="sm"><Link href="/farm-management/create-farm"><PlusCircle className="h-4 w-4 mr-2"/>Add Crop</Link></Button>
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+                {(recentCrops || []).length > 0 ? (recentCrops || []).map(crop => (
+                    <div key={crop.id} className="p-2 border rounded-md flex justify-between items-center">
+                        <div>
+                            <p className="font-medium text-sm">{crop.name} <span className="text-xs text-muted-foreground">on {crop.farmName}</span></p>
+                            {crop.plantingDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><CalendarDays className="h-3 w-3" /> Planted on {format(new Date(crop.plantingDate), "PPP")}</p>}
                         </div>
-                    )) : <p className="text-sm text-center text-muted-foreground py-4">No KNF batches started.</p>}
-                </CardContent>
-            </Card>
+                        <Button size="sm" variant="outline" asChild><Link href={`/farm-management/farms/${crop.farmId}`}>View</Link></Button>
+                    </div>
+                )) : <p className="text-sm text-center text-muted-foreground py-4">No crops added yet.</p>}
+            </CardContent>
+        </Card>
+            <Card>
+            <CardHeader>
+                <CardTitle className="text-base flex items-center justify-between">
+                    <span>Active KNF Batches</span>
+                        <Button asChild variant="secondary" size="sm"><Link href="/farm-management/knf-inputs"><PlusCircle className="h-4 w-4 mr-2"/>Add Batch</Link></Button>
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+                {(knfBatches || []).length > 0 ? (knfBatches || []).map(batch => (
+                        <div key={batch.id} className="p-2 border rounded-md flex justify-between items-center">
+                        <div>
+                            <p className="font-medium text-sm">{batch.typeName}</p>
+                            {batch.nextStepDate && <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" />Next step {formatDistanceToNow(new Date(batch.nextStepDate), { addSuffix: true })}</p>}
+                        </div>
+                        <Badge variant={batch.status === 'Ready' ? 'default' : 'secondary'}>{batch.status}</Badge>
+                    </div>
+                )) : <p className="text-sm text-center text-muted-foreground py-4">No KNF batches started.</p>}
+            </CardContent>
+        </Card>
         </div>
     );
 }
