@@ -367,8 +367,7 @@
       "organizedBy": "Organizado por {organizer}",
       "viewDetails": "Ver Detalles",
       "noEventsFound": "No se Encontraron Eventos",
-      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no {link}?",
-      "noEventsHint.link": "creas uno",
+      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no <link>creas uno</link>?",
       "errorLoadingEvents": "Error al Cargar Eventos",
       "couldNotFetchEvents": "No se pudo obtener la lista de eventos. Por favor, inténtalo de nuevo más tarde.",
       "toast": {

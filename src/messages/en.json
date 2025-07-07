@@ -367,9 +367,7 @@
       "filterPlaceholder": "Filter by event type",
       "organizedBy": "Organized by {organizer}",
       "viewDetails": "View Details",
-      "noEventsFound": "No Events Found",
-      "noEventsHint": "There are currently no events matching your criteria. Why not {link}?",
-      "noEventsHint.link": "create one",
+      "noEventsFound": "No Events Found",      "noEventsHint": "There are currently no events matching your criteria. Why not <link>create one</link>?",
       "errorLoadingEvents": "Error Loading Events",
       "couldNotFetchEvents": "Could not fetch the list of events. Please try again later.",
       "toast": {

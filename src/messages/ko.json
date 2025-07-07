@@ -1,1 +1,9 @@
-{}
+{
+  "AgriEvents": {
+    "page": {
+      "noEventsHint": {
+        "link": "create one"
+      }
+    }
+  }
+}

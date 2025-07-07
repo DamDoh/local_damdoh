@@ -239,7 +239,7 @@ export default function AgriEventsPage() {
               <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('noEventsFound')}</h3>
               <p className="text-muted-foreground max-w-md">
                 {t.rich('noEventsHint', {
-                    link: (chunks) => <Link href="/agri-events/create" className="text-primary hover:underline">{chunks}</Link>
+                  link: (chunks) => <Link href="/agri-events/create" className="text-primary hover:underline">{chunks}</Link>
                 })}
               </p>
             </div>

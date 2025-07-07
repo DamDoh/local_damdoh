@@ -367,8 +367,9 @@
       "organizedBy": "Organisiert von {organizer}",
       "viewDetails": "Details anzeigen",
       "noEventsFound": "Keine Veranstaltungen gefunden",
-      "noEventsHint": "Derzeit gibt es keine Veranstaltungen, die Ihren Kriterien entsprechen. Warum nicht {link}?",
-      "noEventsHint.link": "eine erstellen",
+      "noEventsHint": {
+        "link": "eine erstellen"
+      },
       "errorLoadingEvents": "Fehler beim Laden von Veranstaltungen",
       "couldNotFetchEvents": "Die Liste der Veranstaltungen konnte nicht geladen werden. Bitte versuchen Sie es später erneut.",
       "toast": {

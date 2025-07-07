@@ -368,7 +368,9 @@
       "viewDetails": "Voir les Détails",
       "noEventsFound": "Aucun Événement Trouvé",
       "noEventsHint": "Aucun événement ne correspond actuellement à vos critères. Pourquoi ne pas en {link} ?",
-      "noEventsHint.link": "créer un",
+      "noEventsHint": {
+        "link": "créer un"
+      },
       "errorLoadingEvents": "Erreur de Chargement des Événements",
       "couldNotFetchEvents": "Impossible de récupérer la liste des événements. Veuillez réessayer plus tard.",
       "toast": {
