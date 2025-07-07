@@ -10,7 +10,7 @@ export const getStakeholderRoles = (t: any) =>
 export const getListingTypes = (t: any) =>
   LISTING_TYPES.map(type => ({
     value: type,
-    label: t('listingTypes.' + type.toLowerCase())
+    label: t('listingTypes.' + type)
   }));
   
 export const getAgriEventTypes = (t: any) =>
@@ -22,11 +22,11 @@ export const getAgriEventTypes = (t: any) =>
 export const getFinancialServiceTypes = (t: any) =>
   FINANCIAL_SERVICE_TYPES.map(type => ({
     value: type,
-    label: t('financialServiceTypes.' + type.replace(/_/g, ''))
+    label: t('financialServiceTypes.' + type)
   }));
 
 export const getInsuranceServiceTypes = (t: any) =>
   INSURANCE_SERVICE_TYPES.map(type => ({
     value: type,
-    label: t('insuranceServiceTypes.' + type.replace(/_/g, ''))
+    label: t('insuranceServiceTypes.' + type)
   }));
