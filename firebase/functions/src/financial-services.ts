@@ -5,6 +5,13 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 // --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
 
 /**
@@ -717,7 +724,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
         allTransactions.push({
           id: doc.id,
           ...tx,
-          timestamp: tx.timestamp?.toDate ? tx.timestamp.toDate().toISOString() : null,
+          timestamp: (tx.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
         });
       });
 
@@ -780,8 +787,8 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
             applicantProfile = {
                 id: profileDoc.id,
                 ...data,
-                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
             };
         }
     }
@@ -789,7 +796,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     const serializedAppData = {
         ...appData,
         id: appDoc.id,
-        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate ? (appData.submittedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
     };
 
     return { application: serializedAppData, applicant: applicantProfile };
@@ -817,3 +824,83 @@ export const updateFinancialApplicationStatus = functions.https.onCall(async (da
 
     return { success: true, message: `Application status updated to ${status}.` };
 });
+
+
+export const submitFinancialApplication = functions.https.onCall(async (data, context) => {
+    const applicantId = checkAuth(context);
+    const { fiId, type, amount, currency, purpose } = data;
+
+    // Basic validation
+    if (!fiId || !type || !amount || !purpose) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required application fields.");
+    }
+    
+    const applicantDoc = await db.collection("users").doc(applicantId).get();
+    if (!applicantDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Applicant profile not found.");
+    }
+    const applicantName = applicantDoc.data()?.displayName || "Unknown Applicant";
+
+    const applicationRef = db.collection("financial_applications").doc();
+    await applicationRef.set({
+        applicantId: applicantId,
+        applicantName: applicantName,
+        fiId: fiId,
+        type: type,
+        amount: Number(amount),
+        currency: currency || "USD",
+        status: "Pending", // Initial status
+        purpose: purpose,
+        submittedAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, applicationId: applicationRef.id };
+});
+
+export const createFinancialProduct = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context); // Reuse the auth check for FIs
+    const { name, type, description, interestRate, maxAmount, targetRoles } = data;
+
+    if (!name || !type || !description) {
+        throw new functions.https.HttpsError("invalid-argument", "Name, type, and description are required.");
+    }
+
+    const productRef = db.collection("financial_products").doc();
+    await productRef.set({
+        fiId,
+        name,
+        type,
+        description,
+        interestRate: type === 'Loan' ? interestRate : null,
+        maxAmount: maxAmount || null,
+        targetRoles: targetRoles || [],
+        status: 'Active',
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, productId: productRef.id };
+});
+
+export const getFinancialProducts = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+
+    const productsSnapshot = await db.collection("financial_products")
+        .where("fiId", "==", fiId)
+        .orderBy("createdAt", "desc")
+        .get();
+
+    const products = productsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        }
+    });
+    
+    return { products };
+});
+    

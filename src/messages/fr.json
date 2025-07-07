@@ -28,8 +28,12 @@
     "pendingApplicationsTitle": "Demandes en attente",
     "pendingApplicationsDescription": "Demandes nécessitant votre examen",
     "portfolioAtRiskTitle": "Portefeuille à risque",
+    "portfolioAtRiskDescription": "{count} comptes signalés",
     "recentUpdates": "mises à jour récentes",
     "marketUpdatesTitle": "Mises à jour du marché",
+    "manageProductsTitle": "Produits Financiers",
+    "manageProductsDescription": "Vos prêts et subventions actifs",
+    "manageProductsButton": "Gérer les produits",
     "table": {
       "applicant": "Demandeur",
       "type": "Type",
@@ -44,7 +48,49 @@
     "reviewRiskButton": "Examiner le risque",
     "readMore": "Lire la suite",
     "noUpdates": "Aucune mise à jour du marché disponible."
+  },
+  "FiProductsPage": {
+    "backLink": "Retour au tableau de bord",
+    "title": "Gérer les produits financiers",
+    "description": "Créez et consultez vos prêts et subventions proposés.",
+    "createButton": "Créer un nouveau produit",
+    "noProducts": "Aucun produit financier n'a encore été créé.",
+    "table": {
+      "productName": "Nom du produit",
+      "type": "Type",
+      "status": "Statut",
+      "interestRate": "Taux d'intérêt",
+      "maxAmount": "Montant maximum"
+    },
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Retour aux produits",
+    "title": "Créer un nouveau produit financier",
+    "description": "Définissez un nouveau prêt ou une nouvelle subvention à offrir aux parties prenantes.",
+    "form": {
+      "nameLabel": "Nom du produit",
+      "namePlaceholder": "Ex: Prêt de semences pour petits exploitants",
+      "typeLabel": "Type de produit",
+      "loan": "Prêt",
+      "grant": "Subvention",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Décrivez le produit, son objectif et les critères d'éligibilité.",
+      "interestRateLabel": "Taux d'intérêt (%)",
+      "interestRatePlaceholder": "Ex: 8.5",
+      "maxAmountLabel": "Montant maximum (USD)",
+      "maxAmountPlaceholder": "Ex: 5000",
+      "targetRolesLabel": "Parties prenantes cibles",
+      "targetRolesDescription": "Sélectionnez les rôles des parties prenantes pour lesquels ce produit est disponible.",
+      "submitButton": "Créer le produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté pour créer un produit.",
+      "successTitle": "Produit créé !",
+      "successDescription": "{name} a été créé avec succès et est maintenant actif.",
+      "errorTitle": "Échec de la création"
+    }
   }
 }
-
-    

@@ -823,3 +823,16 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
+
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}

@@ -28,8 +28,12 @@
     "pendingApplicationsTitle": "ពាក្យស្នើសុំកំពុងរង់ចាំ",
     "pendingApplicationsDescription": "ពាក្យស្នើសុំដែលទាមទារការពិនិត្យរបស់អ្នក",
     "portfolioAtRiskTitle": "ផលប័ត្រដែលមានហានិភ័យ",
+    "portfolioAtRiskDescription": "{count} គណនីត្រូវបានសម្គាល់",
     "recentUpdates": "បច្ចុប្បន្នភាពថ្មីៗ",
     "marketUpdatesTitle": "បច្ចុប្បន្នភាពទីផ្សារ",
+    "manageProductsTitle": "ផលិតផលហិរញ្ញវត្ថុ",
+    "manageProductsDescription": "កម្ចី និងជំនួយសកម្មរបស់អ្នក",
+    "manageProductsButton": "គ្រប់គ្រងផលិតផល",
     "table": {
       "applicant": "អ្នកដាក់ពាក្យ",
       "type": "ប្រភេទ",
@@ -44,7 +48,49 @@
     "reviewRiskButton": "ពិនិត្យហានិភ័យ",
     "readMore": "អាន​បន្ថែម",
     "noUpdates": "មិនមានបច្ចុប្បន្នភាពទីផ្សារទេ។"
+  },
+  "FiProductsPage": {
+    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
+    "title": "គ្រប់គ្រងផលិតផលហិរញ្ញវត្ថុ",
+    "description": "បង្កើត និងមើលកម្ចី និងជំនួយដែលអ្នកផ្តល់ជូន។",
+    "createButton": "បង្កើតផលិតផលថ្មី",
+    "noProducts": "មិនទាន់មានផលិតផលហិរញ្ញវត្ថុត្រូវបានបង្កើតនៅឡើយទេ។",
+    "table": {
+      "productName": "ឈ្មោះ​ផលិតផល",
+      "type": "ប្រភេទ",
+      "status": "ស្ថានភាព",
+      "interestRate": "អត្រា​ការ​ប្រាក់",
+      "maxAmount": "ចំនួនទឹកប្រាក់អតិបរមា"
+    },
+    "toast": {
+      "errorTitle": "កំហុស"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "ត្រឡប់ទៅផលិតផល",
+    "title": "បង្កើតផលិតផលហិរញ្ញវត្ថុថ្មី",
+    "description": "កំណត់កម្ចី ឬជំនួយថ្មីដើម្បីផ្តល់ជូនដល់អ្នកពាក់ព័ន្ធ។",
+    "form": {
+      "nameLabel": "ឈ្មោះផលិតផល",
+      "namePlaceholder": "ឧ: កម្ចីគ្រាប់ពូជសម្រាប់កសិករខ្នាតតូច",
+      "typeLabel": "ប្រភេទ​ផលិតផល",
+      "loan": "កម្ចី",
+      "grant": "ជំនួយ",
+      "descriptionLabel": "ការពិពណ៌នា",
+      "descriptionPlaceholder": "ពិពណ៌នាផលិតផល គោលបំណង និងលក្ខណៈវិនិច្ឆ័យ។",
+      "interestRateLabel": "អត្រា​ការ​ប្រាក់ (%)",
+      "interestRatePlaceholder": "ឧ: 8.5",
+      "maxAmountLabel": "ចំនួនអតិបរមា (USD)",
+      "maxAmountPlaceholder": "ឧ: 5000",
+      "targetRolesLabel": "អ្នកពាក់ព័ន្ធគោលដៅ",
+      "targetRolesDescription": "ជ្រើសរើសតួនាទីអ្នកពាក់ព័ន្ធដែលផលិតផលនេះអាចប្រើបាន។",
+      "submitButton": "បង្កើតផលិតផល"
+    },
+    "toast": {
+      "notAuthenticated": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតផលិតផល។",
+      "successTitle": "បានបង្កើតផលិតផល!",
+      "successDescription": "{name} ត្រូវបានបង្កើតដោយជោគជ័យ និងសកម្មឥឡូវនេះ។",
+      "errorTitle": "ការបង្កើតបានបរាជ័យ"
+    }
   }
 }
-
-    

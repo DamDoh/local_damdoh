@@ -28,8 +28,12 @@
     "pendingApplicationsTitle": "Ausstehende Anträge",
     "pendingApplicationsDescription": "Anträge, die Ihre Überprüfung erfordern",
     "portfolioAtRiskTitle": "Portfolio mit Risiko",
+    "portfolioAtRiskDescription": "{count} Konten markiert",
     "recentUpdates": "kürzliche Updates",
     "marketUpdatesTitle": "Markt-Updates",
+    "manageProductsTitle": "Finanzprodukte",
+    "manageProductsDescription": "Ihre aktiven Kredite & Zuschüsse",
+    "manageProductsButton": "Produkte verwalten",
     "table": {
       "applicant": "Antragsteller",
       "type": "Typ",
@@ -44,7 +48,49 @@
     "reviewRiskButton": "Risiko überprüfen",
     "readMore": "Mehr lesen",
     "noUpdates": "Keine Markt-Updates verfügbar."
+  },
+  "FiProductsPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Finanzprodukte verwalten",
+    "description": "Erstellen und sehen Sie Ihre angebotenen Kredite und Zuschüsse.",
+    "createButton": "Neues Produkt erstellen",
+    "noProducts": "Es wurden noch keine Finanzprodukte erstellt.",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "interestRate": "Zinssatz",
+      "maxAmount": "Höchstbetrag"
+    },
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Zurück zu den Produkten",
+    "title": "Neues Finanzprodukt erstellen",
+    "description": "Definieren Sie einen neuen Kredit oder Zuschuss, um ihn den Stakeholdern anzubieten.",
+    "form": {
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Kleinbauern-Saatgutkredit",
+      "typeLabel": "Produkttyp",
+      "loan": "Kredit",
+      "grant": "Zuschuss",
+      "descriptionLabel": "Beschreibung",
+      "descriptionPlaceholder": "Beschreiben Sie das Produkt, seinen Zweck und die Förderkriterien.",
+      "interestRateLabel": "Zinssatz (%)",
+      "interestRatePlaceholder": "z.B. 8.5",
+      "maxAmountLabel": "Höchstbetrag (USD)",
+      "maxAmountPlaceholder": "z.B. 5000",
+      "targetRolesLabel": "Zielgruppen",
+      "targetRolesDescription": "Wählen Sie aus, für welche Stakeholder-Rollen dieses Produkt verfügbar ist.",
+      "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen angemeldet sein, um ein Produkt zu erstellen.",
+      "successTitle": "Produkt erstellt!",
+      "successDescription": "{name} wurde erfolgreich erstellt und ist jetzt aktiv.",
+      "errorTitle": "Erstellung fehlgeschlagen"
+    }
   }
 }
-
-    

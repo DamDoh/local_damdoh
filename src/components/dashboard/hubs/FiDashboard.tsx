@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -6,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle } from 'lucide-react';
+import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle, FileSpreadsheet } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -14,16 +15,23 @@ import type { FiDashboardData, FinancialApplication } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useTranslations } from 'next-intl';
 
-const StatCard = ({ title, value, description, icon }: { title: string, value: string | number, description: string, icon: React.ReactNode }) => (
-  <Card>
+const StatCard = ({ title, value, description, icon, ctaLink, ctaText }: { title: string, value: string | number, description: string, icon: React.ReactNode, ctaLink?: string, ctaText?: string }) => (
+  <Card className="flex flex-col">
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-sm font-medium">{title}</CardTitle>
       {icon}
     </CardHeader>
-    <CardContent>
+    <CardContent className="flex-grow">
       <div className="text-2xl font-bold">{value}</div>
       <p className="text-xs text-muted-foreground">{description}</p>
     </CardContent>
+    {ctaLink && ctaText && (
+        <CardFooter>
+            <Button asChild variant="secondary" size="sm" className="w-full">
+                <Link href={ctaLink}>{ctaText}</Link>
+            </Button>
+        </CardFooter>
+    )}
   </Card>
 );
 
@@ -84,15 +92,19 @@ export const FiDashboard = () => {
                 />
                 <StatCard 
                     title={t('portfolioAtRiskTitle')}
-                    value={portfolioAtRisk?.count || 0}
-                    description={`${(portfolioAtRisk?.value || 0).toLocaleString()} USD at risk`}
+                    value={`${(portfolioAtRisk?.value || 0).toLocaleString()} USD`}
+                    description={t('portfolioAtRiskDescription', { count: portfolioAtRisk?.count || 0 })}
                     icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />}
+                    ctaLink={portfolioAtRisk?.actionLink || '#'}
+                    ctaText={t('reviewRiskButton')}
                 />
-                 <StatCard 
-                    title={t('marketUpdatesTitle')}
-                    value={marketUpdates?.length || 0}
-                    description={t('recentUpdates')}
-                    icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+                <StatCard 
+                    title={t('manageProductsTitle')}
+                    value={(dashboardData as any).activeProductsCount || 0}
+                    description={t('manageProductsDescription')}
+                    icon={<FileSpreadsheet className="h-4 w-4 text-muted-foreground" />}
+                    ctaLink="/fi/products"
+                    ctaText={t('manageProductsButton')}
                 />
                 
                 <Card className="col-span-1 md:col-span-3">
@@ -151,5 +163,3 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
-
-    

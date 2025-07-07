@@ -28,8 +28,12 @@
     "pendingApplicationsTitle": "Pending Applications",
     "pendingApplicationsDescription": "Applications requiring your review",
     "portfolioAtRiskTitle": "Portfolio at Risk",
+    "portfolioAtRiskDescription": "{count} accounts flagged",
     "recentUpdates": "recent updates",
     "marketUpdatesTitle": "Market Updates",
+    "manageProductsTitle": "Financial Products",
+    "manageProductsDescription": "Your active loans & grants",
+    "manageProductsButton": "Manage Products",
     "table": {
       "applicant": "Applicant",
       "type": "Type",
@@ -44,6 +48,50 @@
     "reviewRiskButton": "Review Risk",
     "readMore": "Read more",
     "noUpdates": "No market updates available."
+  },
+  "FiProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Manage Financial Products",
+    "description": "Create and view your offered loans and grants.",
+    "createButton": "Create New Product",
+    "noProducts": "No financial products have been created yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "interestRate": "Interest Rate",
+      "maxAmount": "Max Amount"
+    },
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Financial Product",
+    "description": "Define a new loan or grant to offer to stakeholders.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Smallholder Seed Loan",
+      "typeLabel": "Product Type",
+      "loan": "Loan",
+      "grant": "Grant",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
+      "interestRateLabel": "Interest Rate (%)",
+      "interestRatePlaceholder": "e.g., 8.5",
+      "maxAmountLabel": "Max Amount (USD)",
+      "maxAmountPlaceholder": "e.g., 5000",
+      "targetRolesLabel": "Target Stakeholders",
+      "targetRolesDescription": "Select which stakeholder roles this product is available to.",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in to create a product.",
+      "successTitle": "Product Created!",
+      "successDescription": "{name} has been successfully created and is now active.",
+      "errorTitle": "Creation Failed"
+    }
   }
 }
 
