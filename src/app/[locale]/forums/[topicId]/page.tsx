@@ -91,7 +91,7 @@ export default function TopicPage() {
                       id: post.authorRef,
                       name: authorProfiles[post.authorRef]?.displayName || t('unknownUser'),
                       avatarUrl: authorProfiles[post.authorRef]?.avatarUrl || ""
-                  }
+                  },
               }));
               
               setPosts(prev => isInitialLoad ? newPosts : [...prev, ...newPosts]);
@@ -169,7 +169,7 @@ export default function TopicPage() {
             <Link href="/forums" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 {t('backLink')}
-            </Link>
+ </Link>
             <Card>
                 <CardHeader>
                     <CardTitle className="text-2xl">{topic.name}</CardTitle>

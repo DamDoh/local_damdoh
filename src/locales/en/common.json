@@ -1,2 +1,167 @@
 
-{}
+ {
+  "Forums": {
+    "topic": {
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "buttons": {
+        "createPost": "Add Reply",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "noPosts": {
+        "title": "No posts yet",
+        "description": "Be the first to reply to this topic.",
+        "button": "Add Reply"
+      },
+       "notFound": {
+        "title": "Topic not found",
+        "description": "The topic you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error loading posts",
+          "description": "An error occurred while loading posts for this topic."
+        },
+         "loadTopic": {
+          "title": "Error loading topic",
+          "description": "An error occurred while loading the topic details."
+        }
+      }
+    }
+  },
+  "Forums": {
+    "aiHelper": {
+      "title": "AI Helper",
+      "description": "Generate a post draft based on a prompt.",
+      "promptLabel": "AI Prompt",
+      "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+      "generateButton": "Generate Draft",
+      "generatingButton": "Generating..."
+    },
+    "title": "Create New Post",
+    "description": "Add a new post to this topic.",
+    "form": {
+      "titleLabel": "Post Title",
+      "titlePlaceholder": "Enter the title of your post",
+      "contentLabel": "Post Content",
+      "contentPlaceholder": "Write your post content here...",
+      "submitButton": "Create Post",
+      "submittingButton": "Submitting..."
+    },
+    "success": {
+      "aiDraft": {
+        "title": "AI Draft Generated!",
+        "description": "A draft has been generated for you."
+      },
+      "title": "Post Created!",
+      "description": "Your post has been successfully created."
+    },
+    "errors": {
+      "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
+      "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
+      "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
+      "general": { "title": "Error", "description": "An error occurred while creating the post." }
+    }
+  }
+  },
+  "Marketplace": { 
+    "createListing": {
+      "backLink": "Back to marketplace",
+      "title": "Create New Listing",
+      "description": "List a product or service in the marketplace.",
+      "form": {
+        "nameLabel": "Item/Service Name",
+        "namePlaceholder": "Enter the name of your listing",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select listing type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your listing",
+        "locationLabel": "Location",
+        "locationPlaceholder": "Enter location",
+        "relatedVtiLabel": "Related VTI / Batch ID (Optional)",
+        "relatedVtiPlaceholder": "Enter the VTI if this listing is for a specific batch",
+        "relatedVtiDescription": "Linking a VTI increases buyer trust.",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select a category",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "e.g., per hour, fixed rate",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., Entry, Intermediate, Expert",
+        "skillsLabel": "Skills Required",
+        "skillsPlaceholder": "List skills needed for the service",
+        "skillsDescription": "Separate skills with commas.",
+        "priceLabel": "Price",
+        "pricePlaceholder": "Enter price",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g., kg, piece, hour",
+        "imageUrlLabel": "Image URL (Optional)",
+        "sustainableLabel": "Sustainable Practice",
+        "sustainableDescription": "Indicate if this listing involves sustainable practices.",
+        "submitButton": "Create Listing",
+        "submittingButton": "Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggest Price with AI",
+        "generatingButton": "Generating...",
+        "suggestionLabel": "AI Suggestion:",
+        "usePriceButton": "Use this price"
+      },
+      "success": {
+        "title": "Success!",
+        "description": "Your listing has been created."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Missing Information",
+            "description": "Please enter a name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "Price Suggestion Failed",
+            "description": "Could not get an AI price suggestion. Please try again or enter a price manually."
+          }
+        },
+        "authentication": {
+          "title": "Authentication Error",
+          "description": "You must be logged in to create a listing."
+        },
+        "creation": {
+          "title": "Creation Failed",
+          "description": "Could not create the listing. Please try again."
+        }
+      }
+    },
+    "title": "Marketplace",
+    "description": "Browse and discover products and services.",
+    "createShopButton": "Create Shop",
+    "createListingButton": "Create Listing",
+    "myOrdersButton": "My Received Orders",
+    "pinButton": "Pin Homepage",
+    "unpinButton": "Unpin Homepage",
+    "searchPlaceholder": "Search marketplace...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended for you",
+    "discoverMore": "Discover More",
+    "noItemsFound": {
+      "title": "No items found.",
+      "hint": "Try adjusting your filters or search terms."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Could not fetch AI recommendations"
+      },
+      "search": {
+        "title": "Search Error",
+        "description": "Could not fetch marketplace items."
+      }
+    },
+     "pinning": {
+        "pinnedTitle": "Marketplace Pinned!",
+        "pinnedDescription": "The Marketplace is now your default homepage.",
+        "unpinnedTitle": "Homepage Unpinned!",
+        "unpinnedDescription": "The Dashboard is now your default homepage."
+      }
+  }}

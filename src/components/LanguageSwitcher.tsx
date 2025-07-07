@@ -2,7 +2,7 @@
 "use client";
 
 import { useMemo } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from "@/components/ui/button";
 import {
@@ -28,13 +28,8 @@ export function LanguageSwitcher() {
   }, []);
 
   const changeLocale = (newLocale: string) => {
-    // Correctly reconstruct the path by removing the old locale
-    const pathSegments = pathname.split('/').filter(Boolean);
-    if (pathSegments.length > 0 && (locales as readonly string[]).includes(pathSegments[0])) {
-      pathSegments.shift(); // Remove the old locale
-    }
-    const newPath = `/${newLocale}/${pathSegments.join('/')}`;
-    router.replace(newPath);
+    // next-intl's Link/useRouter automatically handle the locale prefix.
+    router.replace(pathname, {locale: newLocale});
   };
 
   return (

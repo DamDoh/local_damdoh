@@ -1,0 +1,282 @@
+{
+  "Forums": {
+    "title": "Forum-Themen",
+    "description": "Durchsuchen und erstellen Sie Diskussionsthemen",
+    "lastActivity": "Letzte Aktivität vor {{time}}",
+    "searchPlaceholder": "Themen durchsuchen...",
+    "buttons": {
+      "createTopic": "Thema erstellen",
+      "joinDiscussion": "Diskussion beitreten",
+      "pinHomepage": "Als Startseite anheften",
+      "unpinHomepage": "Von Startseite lösen"
+    },
+    "notFound": {
+      "title": "Keine Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
+      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
+    },
+    "pinning": {
+      "pinnedTitle": "Startseite angeheftet!",
+      "pinnedDescription": "Dieses Forum wird jetzt als Ihre Startseite angezeigt.",
+      "unpinnedTitle": "Startseite gelöst!",
+      "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
+    },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
+      "auth": {
+        "title": "Nicht authentifiziert",
+        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+      },
+      "incomplete": {
+        "title": "Unvollständige Felder",
+        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+      },
+      "general": {
+        "title": "Fehler",
+        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "KI-Helfer",
+        "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
+        "promptLabel": "KI-Eingabeaufforderung",
+        "promptPlaceholder": "Geben Sie eine kurze Beschreibung des zu generierenden Beitrags ein...",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "title": "Neuen Beitrag erstellen",
+      "description": "Fügen Sie diesem Thema einen neuen Beitrag hinzu.",
+      "form": {
+        "titleLabel": "Titel des Beitrags",
+        "titlePlaceholder": "Geben Sie den Titel Ihres Beitrags ein",
+        "contentLabel": "Inhalt des Beitrags",
+        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags...",
+        "submitButton": "Beitrag erstellen",
+        "submittingButton": "Wird gesendet..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "KI-Entwurf generiert!",
+          "description": "Ein Entwurf wurde für Sie generiert."
+        },
+        "title": "Beitrag erstellt!",
+        "description": "Ihr Beitrag wurde erfolgreich erstellt."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "KI-Eingabeaufforderung fehlt",
+          "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
+        },
+         "aiDraft": {
+          "title": "KI-Entwurfsfehler",
+          "description": "Fehler beim Generieren des KI-Entwurfs."
+        },
+        "incomplete": {
+          "title": "Unvollständige Felder",
+          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        },
+        "general": {
+          "title": "Fehler",
+          "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Zurück zu {{topicName}}",
+      "unknownUser": "Unbekannter Benutzer",
+      "postMeta": "von {{author}} am {{date}}",
+      "repliesTitle": "Antworten ({{count}})",
+      "noReplies": "Noch keine Antworten.",
+      "buttons": {
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "reply": {
+        "title": "Eine Antwort hinzufügen",
+        "placeholder": "Schreiben Sie hier Ihre Antwort...",
+        "submitButton": "Antwort hinzufügen",
+        "submittingButton": "Wird gesendet...",
+        "success": "Antwort hinzugefügt!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
+        },
+        "emptyReply": "Antwort darf nicht leer sein.",
+        "submitReply": {
+          "title": "Fehler beim Senden der Antwort",
+          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "createListing": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Neues Angebot erstellen",
+      "description": "Listen Sie ein Produkt oder eine Dienstleistung auf dem Marktplatz auf.",
+      "form": {
+        "nameLabel": "Name des Artikels/der Dienstleistung",
+        "namePlaceholder": "Geben Sie den Namen Ihres Angebots ein",
+        "typeLabel": "Angebotstyp",
+        "typePlaceholder": "Wählen Sie den Angebotstyp",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Angebot",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "Standort eingeben",
+        "relatedVtiLabel": "Zugehörige VTI / Chargen-ID (Optional)",
+        "relatedVtiPlaceholder": "Geben Sie die VTI ein, wenn dieses Angebot für eine bestimmte Charge gilt",
+        "relatedVtiDescription": "Die Verknüpfung einer VTI erhöht das Vertrauen des Käufers.",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "Kategorie auswählen",
+        "compensationLabel": "Vergütung",
+        "compensationPlaceholder": "z.B. pro Stunde, fester Satz",
+        "experienceLabel": "Erfahrungslevel",
+        "experiencePlaceholder": "z.B. Anfänger, Fortgeschrittener, Experte",
+        "skillsLabel": "Benötigte Fähigkeiten",
+        "skillsPlaceholder": "Liste der für die Dienstleistung benötigten Fähigkeiten",
+        "skillsDescription": "Trennen Sie Fähigkeiten durch Kommas.",
+        "priceLabel": "Preis",
+        "pricePlaceholder": "Preis eingeben",
+        "unitLabel": "Einheit",
+        "unitPlaceholder": "z.B. kg, Stück, Stunde",
+        "imageUrlLabel": "Bild-URL (Optional)",
+        "sustainableLabel": "Nachhaltige Praxis",
+        "sustainableDescription": "Geben Sie an, ob dieses Angebot nachhaltige Praktiken beinhaltet.",
+        "submitButton": "Angebot erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Preis mit KI vorschlagen",
+        "generatingButton": "Wird generiert...",
+        "suggestionLabel": "KI-Vorschlag:",
+        "usePriceButton": "Diesen Preis verwenden"
+      },
+      "success": {
+        "title": "Erfolg!",
+        "description": "Ihr Angebot wurde erstellt."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Fehlende Informationen",
+            "description": "Bitte geben Sie einen Namen und eine Beschreibung ein, bevor Sie einen Preis vorschlagen."
+          },
+          "failed": {
+            "title": "Preisvorschlag fehlgeschlagen",
+            "description": "KI-Preisvorschlag konnte nicht abgerufen werden. Bitte versuchen Sie es erneut oder geben Sie einen Preis manuell ein."
+          }
+        },
+        "authentication": {
+          "title": "Authentifizierungsfehler",
+          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
+        },
+        "creation": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Das Angebot konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "topic": {
+      "unknownUser": "Unbekannter Benutzer",
+      "postMeta": "von {{author}} am {{date}}",
+      "buttons": {
+        "createPost": "Antwort hinzufügen",
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der auf dieses Thema antwortet.",
+        "button": "Antwort hinzufügen"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Thema existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+        },
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "create": {
+      "backLink": "Zurück zu den Themen",
+      "title": "Neues Thema erstellen",
+      "description": "Starten Sie eine neue Diskussion im Forum.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "Geben Sie den Namen Ihres Themas ein",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Thema kurz",
+        "submitButton": "Thema erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "success": {
+        "title": "Thema erfolgreich erstellt",
+        "description": "Ihr neues Thema wurde erstellt."
+      },
+      "errors": {
+        "auth": {
+          "title": "Nicht authentifiziert",
+          "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständige Felder",
+          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        },
+        "general": {
+          "title": "Fehler",
+          "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+        }
+      }
+    }
+  },
+  "Marketplace": {
+    "myOrdersButton": "Meine erhaltenen Bestellungen",
+    "recommendedForYou": "Empfohlen für Sie",
+    "discoverMore": "Mehr entdecken",
+    "noItemsFound": {
+      "title": "Keine Artikel gefunden.",
+      "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
+      },
+      "search": {
+        "title": "Suchfehler",
+        "description": "Marktplatzartikel konnten nicht abgerufen werden."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Marktplatz angeheftet!",
+      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
+      "unpinnedTitle": "Startseite gelöst!",
+      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
+    },
+    "title": "Marktplatz",
+    "description": "Durchsuchen und entdecken Sie Produkte und Dienstleistungen.",
+    "createShopButton": "Shop erstellen",
+    "createListingButton": "Angebot erstellen",
+    "searchPlaceholder": "Marktplatz durchsuchen..."
+  },
+  "Homepage": {
+  }
+}

@@ -28,7 +28,7 @@ export default function CreateListingPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
-    const t = useTranslations('Marketplace.create');
+    const t = useTranslations('Marketplace.createListing');
     const tConstants = useTranslations('constants');
     const { user } = useAuth();
 
@@ -78,8 +78,8 @@ export default function CreateListingPage() {
       if (!name || !description) {
         toast({
           variant: "destructive",
-          title: "Missing Information",
-          description: "Please enter a name and description before suggesting a price.",
+          title: t('errors.priceSuggestion.missingInfo.title'),
+          description: t('errors.priceSuggestion.missingInfo.description'),
         });
         return;
       }
@@ -93,8 +93,8 @@ export default function CreateListingPage() {
         console.error("Error suggesting price:", error);
         toast({
           variant: "destructive",
-          title: "Price Suggestion Failed",
-          description: "Could not get an AI price suggestion. Please try again or enter a price manually.",
+          title: t('errors.priceSuggestion.failed.title'),
+          description: t('errors.priceSuggestion.failed.description'),
         });
       } finally {
         setIsSuggestingPrice(false);
@@ -104,21 +104,22 @@ export default function CreateListingPage() {
     const handleSubmit = async (data: CreateMarketplaceItemValues) => {
         if (!user) {
           toast({ variant: "destructive", title: "Authentication Error", description: "You must be logged in to create a listing." });
-          return;
+          title: t('errors.authentication.title'),
+          description: t('errors.authentication.description'),
         }
 
         setIsSubmitting(true);
         try {
             const payload = { ...data };
             await createListingCallable(payload);
-            toast({ title: "Success!", description: "Your listing has been created." });
+            toast({ title: t('success.title'), description: t('success.description') });
             router.push('/marketplace');
         } catch (error: any) {
             console.error("Error creating listing:", error);
             toast({
                 variant: "destructive",
-                title: "Creation Failed",
-                description: error.message || "Could not create the listing. Please try again.",
+                title: t('errors.creation.title'),
+                description: error.message || t('errors.creation.description'),
             });
         } finally {
             setIsSubmitting(false);
@@ -213,8 +214,8 @@ export default function CreateListingPage() {
                               control={form.control}
                               name="relatedTraceabilityId"
                               render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Related VTI / Batch ID (Optional)</FormLabel>
+                                <FormItem className=\"flex flex-col sm:flex-row sm:items-center sm:justify-between rounded-lg border p-4\">
+                                  <FormLabel className=\"sm:w-1/3\">{t('form.relatedVtiLabel')}</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Enter the VTI if this listing is for a specific batch" {...field} />
                                   </FormControl>

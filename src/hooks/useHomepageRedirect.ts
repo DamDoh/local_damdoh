@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/navigation';
 import { useHomepagePreference } from './useHomepagePreference';
 
 export function useHomepageRedirect() {
@@ -15,10 +15,10 @@ export function useHomepageRedirect() {
             return;
         }
 
-        const pathWithoutLocale = pathname.substring(3); // Assumes /en, /fr etc.
-        const effectivePath = pathWithoutLocale || '/';
-
-        // Redirect from root to preference if it exists and is not the root itself
+        // The pathname from the locale-aware hook already strips the locale
+        const effectivePath = pathname || '/';
+        
+        // Redirect from root ('/') to the preference if it exists and is not the root itself.
         if (homepagePreference && homepagePreference !== '/' && effectivePath === '/') {
             router.replace(homepagePreference);
         }

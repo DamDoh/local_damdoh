@@ -25,7 +25,7 @@ import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/auth-utils";
 
 function MarketplaceContent() {
-  const t = useTranslations('marketplacePage');
+  const t = useTranslations('Marketplace');
   const tConstants = useTranslations('constants');
   const { user } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
@@ -146,7 +146,7 @@ function MarketplaceContent() {
         toast({
           variant: "destructive",
           title: "Search Error",
-          description: "Could not fetch marketplace items.",
+          description: t('errors.search.description'),
         });
         setDisplayedItems([]);
       } finally {
@@ -161,11 +161,11 @@ function MarketplaceContent() {
   const handleSetHomepage = useCallback(() => {
     if (isCurrentHomepage) {
       clearHomepagePreference();
-      toast({ title: "Homepage Unpinned!", description: "The Dashboard is now your default homepage." });
+      toast({ title: t('pinning.unpinnedTitle'), description: t('pinning.unpinnedDescription') });
     } else {
       setHomepagePreference(pathname);
-      toast({ title: "Marketplace Pinned!", description: "The Marketplace is now your default homepage." });
-    }
+      toast({ title: t('pinning.pinnedTitle'), description: t('pinning.pinnedDescription') });
+    }\n  }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
   }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast]);
 
   if (!isMounted) return <MarketplaceSkeleton />;

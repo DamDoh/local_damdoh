@@ -1,5 +1,5 @@
 
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Image from 'next/image';
 import { APP_NAME } from '@/lib/constants';
 import { Logo } from '@/components/Logo';

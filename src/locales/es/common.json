@@ -1,2 +1,212 @@
+{
+  "Forums": {
+    "topic": {
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "buttons": {
+        "createPost": "Agregar Respuesta",
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
+      },
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en responder a este tema.",
+        "button": "Agregar Respuesta"
+      },
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error al cargar publicaciones",
+          "description": "Ocurrió un error al cargar las publicaciones para este tema."
+        },
+        "loadTopic": {
+          "title": "Error al cargar tema",
+          "description": "Ocurrió un error al cargar los detalles del tema."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Falta indicación de IA",
+          "description": "Por favor, proporciona una indicación para el asistente de IA."
+        },
+        "aiDraft": {
+          "title": "Error del borrador de IA",
+          "description": "No se pudo generar el borrador de IA."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear la publicación."
+        }
+      }
+    }
+  },
+  "Forums": {
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "buttons": {
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
+      },
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
+    }
+  },
+  "Marketplace": {
+    "myOrdersButton": "Mis Pedidos Recibidos",
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubre Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos.",
+      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "No se pudieron obtener recomendaciones de IA"
+      },
+      "search": {
+        "title": "Error de búsqueda",
+        "description": "No se pudieron obtener los artículos del mercado."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "¡Mercado fijado!",
+      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
+    }
+  },
+  "Marketplace": {
+    "createListing": {
+      "backLink": "Volver al mercado",
+      "title": "Crear Nueva Publicación",
+      "description": "Lista un producto o servicio en el mercado.",
+      "form": {
+        "nameLabel": "Nombre del artículo/servicio",
+        "namePlaceholder": "Introduce el nombre de tu publicación",
+        "typeLabel": "Tipo de publicación",
+        "typePlaceholder": "Selecciona el tipo de publicación",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu publicación",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Introduce la ubicación",
+        "relatedVtiLabel": "VTI / ID de lote relacionado (Opcional)",
+        "relatedVtiPlaceholder": "Introduce el VTI si esta publicación es para un lote específico",
+        "relatedVtiDescription": "Vincular un VTI aumenta la confianza del comprador.",
+        "categoryLabel": "Categoría",
+        "categoryPlaceholder": "Selecciona una categoría",
+        "compensationLabel": "Compensación",
+        "compensationPlaceholder": "ej: por hora, tarifa fija",
+        "experienceLabel": "Nivel de experiencia",
+        "experiencePlaceholder": "ej: Principiante, Intermedio, Experto",
+        "skillsLabel": "Habilidades requeridas",
+        "skillsPlaceholder": "Lista las habilidades necesarias para el servicio",
+        "skillsDescription": "Separa las habilidades con comas.",
+        "priceLabel": "Precio",
+        "pricePlaceholder": "Introduce el precio",
+        "unitLabel": "Unidad",
+        "unitPlaceholder": "ej: kg, pieza, hora",
+        "imageUrlLabel": "URL de la imagen (Opcional)",
+        "sustainableLabel": "Práctica sostenible",
+        "sustainableDescription": "Indica si esta publicación involucra prácticas sostenibles.",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Creando..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Sugerir precio con IA",
+        "generatingButton": "Generando...",
+        "suggestionLabel": "Sugerencia de IA:",
+        "usePriceButton": "Usar este precio"
+      },
+      "success": {
+        "title": "¡Éxito!",
+        "description": "Tu publicación ha sido creada."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Información Faltante",
+            "description": "Por favor, introduce un nombre y una descripción antes de sugerir un precio."
+          },
+          "failed": {
+            "title": "Error de sugerencia de precio",
+            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manualmente."
+          }
+        },
+        "authentication": {
+          "title": "Error de autenticación",
+          "description": "Debes haber iniciado sesión para crear una publicación."
+        },
+        "creation": {
+          "title": "Error de creación",
+          "description": "No se pudo crear la publicación. Por favor, inténtalo de nuevo."
+        }
+      }
+    }
+  }
+}
 
-{}

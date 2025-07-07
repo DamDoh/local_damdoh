@@ -1,9 +1,10 @@
+
 "use client"; 
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 export default function TermsOfServicePage() {
   const t = useTranslations('termsOfService');
@@ -36,6 +37,7 @@ export default function TermsOfServicePage() {
           {sections.map((sectionKey, index) => (
             <div key={index} className="mt-6">
               <h2 className="text-xl font-semibold">{t(`${sectionKey}.heading`)}</h2>
+              {/* Assuming content is a single paragraph. For multiple, we'd need another structure. */}
               <p className="mt-2 text-muted-foreground">{t.raw(`${sectionKey}.content`)}</p>
             </div>
           ))}

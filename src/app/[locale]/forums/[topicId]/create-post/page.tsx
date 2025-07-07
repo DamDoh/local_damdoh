@@ -15,6 +15,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 import { generateForumPostDraft } from '@/ai/flows/generate-forum-post-draft';
+import { useTranslations as useTranslationsGeneral } from 'next-intl';
 
 export default function CreatePostPage() {
     const params = useParams();
@@ -22,6 +23,7 @@ export default function CreatePostPage() {
     const { toast } = useToast();
     const t = useTranslations('Forums.createPost');
     const topicId = params.topicId as string;
+    const tGeneral = useTranslationsGeneral('Forums');
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -99,7 +101,7 @@ export default function CreatePostPage() {
         <div className="container mx-auto max-w-3xl py-8">
             <Link href={`/forums/${topicId}`} className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                {t('backLink')}
+                {tGeneral('backLink')}
             </Link>
 
             <Card className="mb-6 bg-primary-foreground/40 border-primary/30">
