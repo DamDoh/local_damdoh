@@ -12,10 +12,12 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { Shield, FileText, AlertTriangle } from 'lucide-react';
 import type { InsuranceProviderDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const InsuranceProviderDashboard = () => {
+  const t = useTranslations('InsuranceProviderDashboard');
   const [dashboardData, setDashboardData] = useState<InsuranceProviderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -89,25 +91,25 @@ export const InsuranceProviderDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Insurance Provider Portal</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Pending Claims */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/> Pending Claims</CardTitle>
-             <CardDescription>Claims requiring your review and processing.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/>{t('claimsTitle')}</CardTitle>
+             <CardDescription>{t('claimsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(pendingClaims || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Policy Holder</TableHead>
-                     <TableHead>Policy Type</TableHead>
-                     <TableHead>Claim Date</TableHead>
-                     <TableHead>Status</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.policyHolder')}</TableHead>
+                     <TableHead>{t('table.policyType')}</TableHead>
+                     <TableHead>{t('table.claimDate')}</TableHead>
+                     <TableHead>{t('table.status')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -119,7 +121,7 @@ export const InsuranceProviderDashboard = () => {
                        <TableCell><Badge variant={getStatusBadgeVariant(claim.status)}>{claim.status}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={claim.actionLink}>Review Claim</Link>
+                           <Link href={claim.actionLink}>{t('reviewClaimButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -127,7 +129,7 @@ export const InsuranceProviderDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No pending claims.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noPendingClaims')}</p>
              )}
            </CardContent>
          </Card>
@@ -135,18 +137,18 @@ export const InsuranceProviderDashboard = () => {
          {/* Risk Assessment Alerts */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/> Risk Assessment Alerts</CardTitle>
-             <CardDescription>Alerts based on farm and supply chain data.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/>{t('riskAlertsTitle')}</CardTitle>
+             <CardDescription>{t('riskAlertsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(riskAssessmentAlerts || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Policy Holder</TableHead>
-                     <TableHead>Alert</TableHead>
-                     <TableHead>Severity</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.policyHolder')}</TableHead>
+                     <TableHead>{t('table.alert')}</TableHead>
+                     <TableHead>{t('table.severity')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -157,7 +159,7 @@ export const InsuranceProviderDashboard = () => {
                        <TableCell><Badge variant={getSeverityBadgeVariant(alert.severity)}>{alert.severity}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={alert.actionLink}>Investigate</Link>
+                           <Link href={alert.actionLink}>{t('investigateButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -165,7 +167,7 @@ export const InsuranceProviderDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No new risk assessment alerts.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noRiskAlerts')}</p>
              )}
            </CardContent>
          </Card>
@@ -173,8 +175,8 @@ export const InsuranceProviderDashboard = () => {
           {/* Active Policies */}
          <Card className="md:col-span-2">
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><Shield className="h-4 w-4 text-blue-500"/> Active Policies</CardTitle>
-                <CardDescription>Overview of active insurance policies.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><Shield className="h-4 w-4 text-blue-500"/>{t('activePoliciesTitle')}</CardTitle>
+                <CardDescription>{t('activePoliciesDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
                 {(activePolicies || []).length > 0 ? (
@@ -182,13 +184,13 @@ export const InsuranceProviderDashboard = () => {
                         {(activePolicies || []).map((policy) => (
                             <div key={policy.id} className="text-sm p-3 border rounded-lg">
                                 <p className="font-medium">{policy.policyHolderName} ({policy.policyType})</p>
-                                <p className="text-xs text-muted-foreground">Coverage: ${policy.coverageAmount.toLocaleString()}</p>
-                                <p className="text-xs text-muted-foreground">Expires: {new Date(policy.expiryDate).toLocaleDateString()}</p>
+                                <p className="text-xs text-muted-foreground">{t('coverage')}: ${policy.coverageAmount.toLocaleString()}</p>
+                                <p className="text-xs text-muted-foreground">{t('expires')}: {new Date(policy.expiryDate).toLocaleDateString()}</p>
                             </div>
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">No active policies.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">{t('noActivePolicies')}</p>
                 )}
             </CardContent>
          </Card>

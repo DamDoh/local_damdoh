@@ -13,10 +13,12 @@ import Link from 'next/link';
 import { Briefcase, BarChart, TrendingUp, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
 import type { CrowdfunderDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const CrowdfunderDashboard = () => {
+  const t = useTranslations('CrowdfunderDashboard');
   const [dashboardData, setDashboardData] = useState<CrowdfunderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,20 +71,20 @@ export const CrowdfunderDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Impact Investment & Crowdfunding Hub</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard title="Total Invested" value={portfolioOverview?.totalInvested || 0} icon={<Briefcase />} />
-        <StatCard title="Number of Investments" value={portfolioOverview?.numberOfInvestments || 0} icon={<BarChart />} isCurrency={false} />
-        <StatCard title="Estimated Returns" value={portfolioOverview?.estimatedReturns || 0} icon={<TrendingUp />} />
+        <StatCard title={t('totalInvested')} value={portfolioOverview?.totalInvested || 0} icon={<Briefcase />} />
+        <StatCard title={t('numberOfInvestments')} value={portfolioOverview?.numberOfInvestments || 0} icon={<BarChart />} isCurrency={false} />
+        <StatCard title={t('estimatedReturns')} value={portfolioOverview?.estimatedReturns || 0} icon={<TrendingUp />} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Suggested Opportunities */}
         <Card className="lg:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base">Suggested Investment Opportunities</CardTitle>
-             <CardDescription>Projects aligned with your impact goals.</CardDescription>
+             <CardTitle className="text-base">{t('opportunitiesTitle')}</CardTitle>
+             <CardDescription>{t('opportunitiesDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(suggestedOpportunities || []).length > 0 ? (
@@ -97,19 +99,19 @@ export const CrowdfunderDashboard = () => {
                             <Badge variant="secondary">{opp.category}</Badge>
                          </div>
                          <Button asChild variant="secondary" size="sm">
-                           <Link href={opp.actionLink}>View</Link>
+                           <Link href={opp.actionLink}>{t('viewButton')}</Link>
                          </Button>
                        </div>
                        <Progress value={progress} className="w-full mt-2" />
                        <p className="text-xs text-muted-foreground mt-1">
-                         ${opp.amountRaised.toLocaleString()} raised of ${opp.fundingGoal.toLocaleString()} goal
+                         ${opp.amountRaised.toLocaleString()} {t('raisedOf')} ${opp.fundingGoal.toLocaleString()} {t('goal')}
                        </p>
                      </div>
                    )
                  })}
                </div>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No suggested opportunities at the moment.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noOpportunities')}</p>
              )}
            </CardContent>
          </Card>
@@ -117,16 +119,16 @@ export const CrowdfunderDashboard = () => {
          {/* Recent Transactions */}
          <Card>
            <CardHeader>
-             <CardTitle className="text-base">Recent Transactions</CardTitle>
-             <CardDescription>Your latest investment activities.</CardDescription>
+             <CardTitle className="text-base">{t('transactionsTitle')}</CardTitle>
+             <CardDescription>{t('transactionsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(recentTransactions || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Project</TableHead>
-                     <TableHead className="text-right">Amount</TableHead>
+                     <TableHead>{t('table.project')}</TableHead>
+                     <TableHead className="text-right">{t('table.amount')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -136,7 +138,7 @@ export const CrowdfunderDashboard = () => {
                          <div className="font-medium">{tx.projectName}</div>
                          <div className="text-xs text-muted-foreground flex items-center gap-1">
                             {tx.type === 'Investment' ? <ArrowUpCircle className="h-3 w-3 text-red-500"/> : <ArrowDownCircle className="h-3 w-3 text-green-500"/>}
-                            {tx.type} on {new Date(tx.date).toLocaleDateString()}
+                            {t(tx.type.toLowerCase() as 'investment' | 'payout')} {t('on')} {new Date(tx.date).toLocaleDateString()}
                          </div>
                        </TableCell>
                        <TableCell className={`text-right font-semibold ${tx.type === 'Investment' ? 'text-red-600' : 'text-green-600'}`}>
@@ -147,7 +149,7 @@ export const CrowdfunderDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No recent transactions.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noTransactions')}</p>
              )}
            </CardContent>
          </Card>

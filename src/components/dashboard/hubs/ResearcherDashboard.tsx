@@ -12,10 +12,12 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { FlaskConical, Database, Lightbulb } from 'lucide-react';
 import type { ResearcherDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const ResearcherDashboard = () => {
+  const t = useTranslations('ResearcherDashboard');
   const [dashboardData, setDashboardData] = useState<ResearcherDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -77,24 +79,24 @@ export const ResearcherDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Research & Analytics Hub</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Available Datasets */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/> Available Datasets</CardTitle>
-             <CardDescription>Anonymized datasets available for research and analysis.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/>{t('datasetsTitle')}</CardTitle>
+             <CardDescription>{t('datasetsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(availableDatasets || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Name</TableHead>
-                     <TableHead>Data Type</TableHead>
-                     <TableHead>Access Level</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.name')}</TableHead>
+                     <TableHead>{t('table.dataType')}</TableHead>
+                     <TableHead>{t('table.accessLevel')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -105,7 +107,7 @@ export const ResearcherDashboard = () => {
                        <TableCell><Badge variant="secondary">{dataset.accessLevel}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={dataset.actionLink}>Request Access</Link>
+                           <Link href={dataset.actionLink}>{t('requestAccessButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -113,7 +115,7 @@ export const ResearcherDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No datasets available yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noDatasets')}</p>
              )}
            </CardContent>
          </Card>
@@ -121,18 +123,18 @@ export const ResearcherDashboard = () => {
          {/* Ongoing Projects */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><FlaskConical className="h-4 w-4 text-blue-500"/> Ongoing Research Projects</CardTitle>
-             <CardDescription>Your active research projects and their progress.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><FlaskConical className="h-4 w-4 text-blue-500"/>{t('projectsTitle')}</CardTitle>
+             <CardDescription>{t('projectsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(ongoingProjects || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Title</TableHead>
-                     <TableHead>Progress</TableHead>
-                     <TableHead>Collaborators</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.title')}</TableHead>
+                     <TableHead>{t('table.progress')}</TableHead>
+                     <TableHead>{t('table.collaborators')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -150,7 +152,7 @@ export const ResearcherDashboard = () => {
                        <TableCell>{(project.collaborators || []).join(', ')}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={project.actionLink}>View Project</Link>
+                           <Link href={project.actionLink}>{t('viewProjectButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -158,7 +160,7 @@ export const ResearcherDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No ongoing research projects.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noProjects')}</p>
              )}
            </CardContent>
          </Card>
@@ -166,17 +168,17 @@ export const ResearcherDashboard = () => {
           {/* Knowledge Hub Contributions */}
          <Card className="md:col-span-2">
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><Lightbulb className="h-4 w-4 text-yellow-500"/> Knowledge Hub Contributions</CardTitle>
-                <CardDescription>Your contributions to the DamDoh Knowledge Base.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><Lightbulb className="h-4 w-4 text-yellow-500"/>{t('contributionsTitle')}</CardTitle>
+                <CardDescription>{t('contributionsDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
                 {(knowledgeHubContributions || []).length > 0 ? (
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Title</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
+                        <TableHead>{t('table.title')}</TableHead>
+                        <TableHead>{t('table.status')}</TableHead>
+                        <TableHead className="text-right">{t('table.action')}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -190,7 +192,7 @@ export const ResearcherDashboard = () => {
                           </TableCell>
                           <TableCell className="text-right">
                             <Button asChild variant="outline" size="sm">
-                              <Link href={`/blog/${contribution.id}`}>View</Link>
+                              <Link href={`/blog/${contribution.id}`}>{t('viewButton')}</Link>
                             </Button>
                           </TableCell>
                         </TableRow>
@@ -198,7 +200,7 @@ export const ResearcherDashboard = () => {
                     </TableBody>
                   </Table>
                 ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">No contributions to the Knowledge Base yet.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">{t('noContributions')}</p>
                 )}
             </CardContent>
          </Card>

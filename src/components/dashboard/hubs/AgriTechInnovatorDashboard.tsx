@@ -14,16 +14,18 @@ import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye } from 'lucide-react';
 import type { AgriTechInnovatorDashboardData } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { format, formatDistanceToNow } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 const ApiKeyRow = ({ apiKey }: { apiKey: AgriTechInnovatorDashboardData['apiKeys'][0] }) => {
+    const t = useTranslations('AgriTechDashboard');
     const [isVisible, setIsVisible] = useState(false);
     const { toast } = useToast();
 
     const handleCopy = () => {
         navigator.clipboard.writeText(apiKey.key);
-        toast({ title: "API Key Copied" });
+        toast({ title: t('apiKeyCopied') });
     };
 
     return (
@@ -48,6 +50,7 @@ const ApiKeyRow = ({ apiKey }: { apiKey: AgriTechInnovatorDashboardData['apiKeys
 
 
 export const AgriTechInnovatorDashboard = () => {
+  const t = useTranslations('AgriTechDashboard');
   const [dashboardData, setDashboardData] = useState<AgriTechInnovatorDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -109,49 +112,49 @@ export const AgriTechInnovatorDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Agri-Tech Innovator & Developer Hub</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2"><Server className="h-4 w-4"/> Sandbox Environment</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2"><Server className="h-4 w-4"/>{t('sandboxTitle')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-lg font-bold">Status: <span className={getStatusColor(sandboxStatus.status)}>{sandboxStatus.status}</span></p>
-            <p className="text-xs text-muted-foreground">Last Reset: {formatDistanceToNow(new Date(sandboxStatus.lastReset), { addSuffix: true })}</p>
+            <p className="text-lg font-bold">{t('statusLabel')}: <span className={getStatusColor(sandboxStatus.status)}>{sandboxStatus.status}</span></p>
+            <p className="text-xs text-muted-foreground">{t('lastResetLabel')} {formatDistanceToNow(new Date(sandboxStatus.lastReset), { addSuffix: true })}</p>
           </CardContent>
            <CardFooter>
-                <Button variant="outline" size="sm">Access Documentation</Button>
+                <Button variant="outline" size="sm">{t('accessDocsButton')}</Button>
            </CardFooter>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2"><Rocket className="h-4 w-4"/> Integration Projects</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2"><Rocket className="h-4 w-4"/>{t('integrationsTitle')}</CardTitle>
           </CardHeader>
            <CardContent>
-            <p className="text-lg font-bold">{(integrationProjects || []).length} Active Projects</p>
-            <p className="text-xs text-muted-foreground">Collaborating to enhance the ecosystem.</p>
+            <p className="text-lg font-bold">{(integrationProjects || []).length} {t('activeProjects')}</p>
+            <p className="text-xs text-muted-foreground">{t('integrationsDescription')}</p>
           </CardContent>
            <CardFooter>
-                <Button variant="outline" size="sm">Propose New Integration</Button>
+                <Button variant="outline" size="sm">{t('proposeIntegrationButton')}</Button>
            </CardFooter>
         </Card>
       </div>
 
        <Card>
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Key className="h-4 w-4"/> API Key Management</CardTitle>
-             <CardDescription>Manage your API keys for sandbox and production environments.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><Key className="h-4 w-4"/>{t('apiKeysTitle')}</CardTitle>
+             <CardDescription>{t('apiKeysDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(apiKeys || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Key</TableHead>
-                     <TableHead>Status</TableHead>
-                     <TableHead>Environment</TableHead>
-                     <TableHead>Created</TableHead>
-                     <TableHead className="text-right">Actions</TableHead>
+                     <TableHead>{t('table.key')}</TableHead>
+                     <TableHead>{t('table.status')}</TableHead>
+                     <TableHead>{t('table.environment')}</TableHead>
+                     <TableHead>{t('table.created')}</TableHead>
+                     <TableHead className="text-right">{t('table.actions')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -161,11 +164,11 @@ export const AgriTechInnovatorDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No API keys generated yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noApiKeys')}</p>
              )}
            </CardContent>
             <CardFooter>
-                <Button>Generate New Key</Button>
+                <Button>{t('generateNewKeyButton')}</Button>
             </CardFooter>
          </Card>
 

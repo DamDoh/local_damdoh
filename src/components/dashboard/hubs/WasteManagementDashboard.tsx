@@ -11,10 +11,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { WasteManagementDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const WasteManagementDashboard = () => {
+    const t = useTranslations('WasteManagementDashboard');
     const [dashboardData, setDashboardData] = useState<WasteManagementDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -68,14 +70,14 @@ export const WasteManagementDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Waste Management & Composting Hub</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card className="col-span-1 md:col-span-2 lg:col-span-3">
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Recycle className="h-4 w-4" />
-                           Incoming Organic Waste Streams
+                           {t('wasteStreamsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -84,13 +86,13 @@ export const WasteManagementDashboard = () => {
                                <div key={stream.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
                                        <p className="font-medium">{stream.type} ({stream.quantity})</p>
-                                       <p className="text-xs text-muted-foreground">From: {stream.source}</p>
+                                       <p className="text-xs text-muted-foreground">{t('from')}: {stream.source}</p>
                                    </div>
-                                   <Button variant="ghost" size="sm">Accept</Button>
+                                   <Button variant="ghost" size="sm">{t('acceptButton')}</Button>
                                </div>
                            ))
                         ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No incoming waste streams.</p>
+                           <p className="text-sm text-center text-muted-foreground py-4">{t('noWasteStreams')}</p>
                        )}
                     </CardContent>
                 </Card>
@@ -99,7 +101,7 @@ export const WasteManagementDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                            <Clock className="h-4 w-4" />
-                           Compost Batch Status
+                           {t('compostBatchesTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -107,14 +109,14 @@ export const WasteManagementDashboard = () => {
                             (compostBatches || []).map(batch => (
                                 <div key={batch.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
-                                        <p className="font-medium">Batch #{batch.id}</p>
-                                        <p className="text-xs text-muted-foreground">Est. Ready: {new Date(batch.estimatedCompletion).toLocaleDateString()}</p>
+                                        <p className="font-medium">{t('batch')} #{batch.id}</p>
+                                        <p className="text-xs text-muted-foreground">{t('estReady')}: {new Date(batch.estimatedCompletion).toLocaleDateString()}</p>
                                     </div>
                                     <Badge variant={getStatusBadgeVariant(batch.status)}>{batch.status}</Badge>
                                 </div>
                            ))
-                        ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No active compost batches.</p>
+                       ) : (
+                           <p className="text-sm text-center text-muted-foreground py-4">{t('noCompostBatches')}</p>
                        )}
                     </CardContent>
                 </Card>
@@ -123,7 +125,7 @@ export const WasteManagementDashboard = () => {
                     <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Package className="h-4 w-4" />
-                           Finished Product Inventory
+                           {t('inventoryTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -131,16 +133,16 @@ export const WasteManagementDashboard = () => {
                            (finishedProductInventory || []).map(item => (
                                <div key={item.product} className="text-sm">
                                    <p className="font-medium">{item.product}</p>
-                                   <p className="text-xs text-muted-foreground">In Stock: {item.quantity}</p>
+                                   <p className="text-xs text-muted-foreground">{t('inStock')}: {item.quantity}</p>
                                </div>
                            ))
                        ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No finished products.</p>
+                           <p className="text-sm text-center text-muted-foreground py-4">{t('noFinishedProducts')}</p>
                        )}
                     </CardContent>
                      <CardFooter>
                          <Button asChild className="w-full">
-                           <Link href="/marketplace/create?category=fertilizers-soil"><ShoppingCart className="mr-2 h-4 w-4"/>Sell on Marketplace</Link>
+                           <Link href="/marketplace/create?category=fertilizers-soil"><ShoppingCart className="mr-2 h-4 w-4"/>{t('sellButton')}</Link>
                          </Button>
                      </CardFooter>
                 </Card>

@@ -12,8 +12,10 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { OperationsDashboardData } from '@/lib/types';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 export const OperationsDashboard = () => {
+    const t = useTranslations('OperationsDashboard');
     const [dashboardData, setDashboardData] = useState<OperationsDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -67,12 +69,12 @@ export const OperationsDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Platform Operations Hub</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">VTI Generation Rate</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('vtiRateTitle')}</CardTitle>
                         <Zap className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -83,12 +85,12 @@ export const OperationsDashboard = () => {
                 
                  <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Data Pipeline Status</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('pipelineStatusTitle')}</CardTitle>
                         <Server className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className={`text-2xl font-bold ${getStatusColor(dataPipelineStatus.status)}`}>{dataPipelineStatus.status}</div>
-                        <p className="text-xs text-muted-foreground">Last check: {formatDistanceToNow(new Date(dataPipelineStatus.lastChecked), { addSuffix: true })}</p>
+                        <p className="text-xs text-muted-foreground">{t('lastCheck')} {formatDistanceToNow(new Date(dataPipelineStatus.lastChecked), { addSuffix: true })}</p>
                     </CardContent>
                 </Card>
 
@@ -96,7 +98,7 @@ export const OperationsDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <AlertTriangle className="h-4 w-4 text-destructive" />
-                           Flagged Events Requiring Review
+                           {t('flaggedEventsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -110,13 +112,13 @@ export const OperationsDashboard = () => {
                                    <Button asChild variant="secondary" size="sm">
                                        <Link href={event.vtiLink}>
                                             <GitBranch className="h-3 w-3 mr-1.5" />
-                                            View VTI
+                                            {t('viewVtiButton')}
                                        </Link>
                                    </Button>
                                </div>
                            ))
                        ) : (
-                           <p className="text-sm text-muted-foreground text-center py-4">No events flagged for review.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">{t('noFlaggedEvents')}</p>
                        )}
                     </CardContent>
                 </Card>

@@ -12,10 +12,12 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { Award, FileText, CheckCircle } from 'lucide-react';
 import type { CertificationBodyDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const CertificationBodyDashboard = () => {
+  const t = useTranslations('CertificationBodyDashboard');
   const [dashboardData, setDashboardData] = useState<CertificationBodyDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -77,24 +79,24 @@ export const CertificationBodyDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Certification Body Portal</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Pending Audits */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/> Pending Audits</CardTitle>
-             <CardDescription>Audits requiring your attention.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/>{t('auditsTitle')}</CardTitle>
+             <CardDescription>{t('auditsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(pendingAudits || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Farm Name</TableHead>
-                     <TableHead>Standard</TableHead>
-                     <TableHead>Due Date</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.farmName')}</TableHead>
+                     <TableHead>{t('table.standard')}</TableHead>
+                     <TableHead>{t('table.dueDate')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -105,7 +107,7 @@ export const CertificationBodyDashboard = () => {
                        <TableCell>{new Date(audit.dueDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={audit.actionLink}>Schedule Audit</Link>
+                           <Link href={audit.actionLink}>{t('scheduleAuditButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -113,7 +115,7 @@ export const CertificationBodyDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No pending audits.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noPendingAudits')}</p>
              )}
            </CardContent>
          </Card>
@@ -121,18 +123,18 @@ export const CertificationBodyDashboard = () => {
          {/* Certified Entities */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Award className="h-4 w-4 text-yellow-500"/> Certified Entities</CardTitle>
-             <CardDescription>Overview of your certified farmers and processors.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><Award className="h-4 w-4 text-yellow-500"/>{t('entitiesTitle')}</CardTitle>
+             <CardDescription>{t('entitiesDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(certifiedEntities || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Name</TableHead>
-                     <TableHead>Type</TableHead>
-                     <TableHead>Status</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.name')}</TableHead>
+                     <TableHead>{t('table.type')}</TableHead>
+                     <TableHead>{t('table.status')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -143,7 +145,7 @@ export const CertificationBodyDashboard = () => {
                        <TableCell><Badge variant={getStatusBadgeVariant(entity.certificationStatus)}>{entity.certificationStatus}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={entity.actionLink}>View Details</Link>
+                           <Link href={entity.actionLink}>{t('viewDetailsButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -151,7 +153,7 @@ export const CertificationBodyDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No certified entities found.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noCertifiedEntities')}</p>
              )}
            </CardContent>
          </Card>
@@ -159,8 +161,8 @@ export const CertificationBodyDashboard = () => {
           {/* Standards Monitoring */}
          <Card className="md:col-span-2">
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Standards Adherence Monitoring</CardTitle>
-                <CardDescription>Tracking adherence rates across different standards.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/>{t('monitoringTitle')}</CardTitle>
+                <CardDescription>{t('monitoringDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
                 {(standardsMonitoring || []).length > 0 ? (
@@ -175,16 +177,16 @@ export const CertificationBodyDashboard = () => {
                                     <div className="bg-green-600 h-2 rounded-full" style={{ width: `${monitoring.adherenceRate}%` }}></div>
                                 </div>
                                 {monitoring.alerts > 0 && (
-                                     <p className="text-xs text-destructive mt-1">{monitoring.alerts} alerts</p>
+                                     <p className="text-xs text-destructive mt-1">{monitoring.alerts} {t('alerts')}</p>
                                 )}
                                 <Button asChild variant="link" size="sm" className="px-0 pt-1">
-                                    <Link href={monitoring.actionLink}>View Details</Link>
+                                    <Link href={monitoring.actionLink}>{t('viewDetailsButton')}</Link>
                                 </Button>
                             </div>
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">No standards monitoring data available.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">{t('noMonitoringData')}</p>
                 )}
             </CardContent>
          </Card>

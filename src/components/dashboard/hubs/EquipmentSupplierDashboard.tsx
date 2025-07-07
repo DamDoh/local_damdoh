@@ -12,10 +12,12 @@ import Link from 'next/link';
 import type { EquipmentSupplierDashboardData } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const EquipmentSupplierDashboard = () => {
+    const t = useTranslations('EquipmentSupplierDashboard');
     const [dashboardData, setDashboardData] = useState<EquipmentSupplierDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -59,17 +61,17 @@ export const EquipmentSupplierDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Equipment Supplier Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Rental & Sales Orders</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('ordersTitle')}</CardTitle>
                         <BarChart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{rentalActivity?.totalRentals || 0} Total Orders</div>
-                        <p className="text-xs text-muted-foreground">Across all equipment listings</p>
+                        <div className="text-2xl font-bold">{rentalActivity?.totalRentals || 0} {t('totalOrders')}</div>
+                        <p className="text-xs text-muted-foreground">{t('ordersDescription')}</p>
                     </CardContent>
                 </Card>
 
@@ -77,7 +79,7 @@ export const EquipmentSupplierDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Tractor className="h-4 w-4" />
-                           Your Listed Equipment
+                           {t('listedEquipmentTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow">
@@ -85,10 +87,10 @@ export const EquipmentSupplierDashboard = () => {
                            <Table>
                                <TableHeader>
                                    <TableRow>
-                                       <TableHead>Name</TableHead>
-                                       <TableHead>Type</TableHead>
-                                       <TableHead>Status</TableHead>
-                                       <TableHead className="text-right">Action</TableHead>
+                                       <TableHead>{t('table.name')}</TableHead>
+                                       <TableHead>{t('table.type')}</TableHead>
+                                       <TableHead>{t('table.status')}</TableHead>
+                                       <TableHead className="text-right">{t('table.action')}</TableHead>
                                    </TableRow>
                                </TableHeader>
                                <TableBody>
@@ -99,7 +101,7 @@ export const EquipmentSupplierDashboard = () => {
                                            <TableCell><Badge variant={item.status === 'Available' ? 'default' : 'outline'}>{item.status}</Badge></TableCell>
                                            <TableCell className="text-right">
                                                <Button asChild variant="ghost" size="sm">
-                                                   <Link href={item.actionLink}>Manage</Link>
+                                                   <Link href={item.actionLink}>{t('manageButton')}</Link>
                                                </Button>
                                            </TableCell>
                                        </TableRow>
@@ -107,12 +109,12 @@ export const EquipmentSupplierDashboard = () => {
                                </TableBody>
                            </Table>
                        ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No equipment listed.</p>
+                           <p className="text-sm text-center text-muted-foreground py-4">{t('noEquipment')}</p>
                        )}
                     </CardContent>
                     <CardFooter>
                          <Button asChild className="w-full">
-                           <Link href="/marketplace/create?category=heavy-machinery-sale">List New Equipment</Link>
+                           <Link href="/marketplace/create?category=heavy-machinery-sale">{t('listEquipmentButton')}</Link>
                          </Button>
                      </CardFooter>
                 </Card>
@@ -121,7 +123,7 @@ export const EquipmentSupplierDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                            <Wrench className="h-4 w-4" />
-                           Pending Maintenance Requests
+                           {t('maintenanceTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -133,12 +135,12 @@ export const EquipmentSupplierDashboard = () => {
                                         <p className="text-xs text-destructive">{req.issue}</p>
                                     </div>
                                     <Button asChild size="sm">
-                                        <Link href={req.actionLink}>View Request</Link>
+                                        <Link href={req.actionLink}>{t('viewRequestButton')}</Link>
                                     </Button>
                                 </div>
                            ))
                        ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No pending maintenance requests.</p>
+                           <p className="text-sm text-center text-muted-foreground py-4">{t('noMaintenance')}</p>
                        )}
                     </CardContent>
                 </Card>
