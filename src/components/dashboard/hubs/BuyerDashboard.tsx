@@ -11,8 +11,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { BuyerDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 export const BuyerDashboard = () => {
+    const t = useTranslations('BuyerDashboard');
     const [dashboardData, setDashboardData] = useState<BuyerDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -57,12 +59,12 @@ export const BuyerDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Buyer Command Center</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Supply Chain Risk</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('riskTitle')}</CardTitle>
                         <ShieldAlert className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
@@ -71,14 +73,14 @@ export const BuyerDashboard = () => {
                     </CardContent>
                     <CardFooter>
                          <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href={supplyChainRisk.action.link}>{supplyChainRisk.action.label}</Link>
+                            <Link href={supplyChainRisk.action.link}>{t('diversifySourcing')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
 
                  <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Price Intelligence</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('priceTitle')}</CardTitle>
                         <TrendingUp className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
@@ -90,7 +92,7 @@ export const BuyerDashboard = () => {
                     </CardContent>
                      <CardFooter>
                         <Button asChild size="sm" className="w-full">
-                           <Link href={marketPriceIntelligence.action.link}>{marketPriceIntelligence.action.label}</Link>
+                           <Link href={marketPriceIntelligence.action.link}>{t('secureContracts')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -99,7 +101,7 @@ export const BuyerDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                             <Search className="h-4 w-4" />
-                            AI Sourcing Recommendations
+                            {t('sourcingTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-3">
@@ -117,7 +119,7 @@ export const BuyerDashboard = () => {
                                         </Badge>
                                     </div>
                                     <div className="text-xs mt-2">
-                                        Reliability Score: <span className="font-bold">{rec.reliability}%</span>
+                                        {t('reliabilityScore')}: <span className="font-bold">{rec.reliability}%</span>
                                     </div>
                                 </div>
                             ))
@@ -127,7 +129,7 @@ export const BuyerDashboard = () => {
                     </CardContent>
                      <CardFooter>
                          <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/network">Find More Suppliers</Link>
+                            <Link href="/network">{t('findSuppliersButton')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>

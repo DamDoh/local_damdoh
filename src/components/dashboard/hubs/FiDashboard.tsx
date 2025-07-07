@@ -13,8 +13,10 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { FiDashboardData, FinancialApplication } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useTranslations } from 'next-intl';
 
 export const FiDashboard = () => {
+    const t = useTranslations('FiDashboard');
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -59,21 +61,21 @@ export const FiDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Financial Institution Portal</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Portfolio At Risk</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('riskTitle')}</CardTitle>
                         <AlertTriangle className="h-4 w-4 text-destructive" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{portfolioAtRisk?.count || 0} Accounts</div>
-                        <p className="text-xs text-muted-foreground">${(portfolioAtRisk?.value || 0).toLocaleString()} value</p>
+                        <div className="text-2xl font-bold">{portfolioAtRisk?.count || 0} {t('accounts')}</div>
+                        <p className="text-xs text-muted-foreground">${(portfolioAtRisk?.value || 0).toLocaleString()} {t('value')}</p>
                     </CardContent>
                     <CardFooter>
                          <Button asChild variant="destructive" size="sm" className="w-full">
-                            <Link href={portfolioAtRisk?.actionLink || '#'}>Review Risk</Link>
+                            <Link href={portfolioAtRisk?.actionLink || '#'}>{t('reviewRiskButton')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -82,7 +84,7 @@ export const FiDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <UserCheck className="h-4 w-4" />
-                           Pending Applications
+                           {t('pendingApplicationsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -90,11 +92,11 @@ export const FiDashboard = () => {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead>Applicant</TableHead>
-                                        <TableHead>Type</TableHead>
-                                        <TableHead>Amount</TableHead>
-                                        <TableHead>Risk Score</TableHead>
-                                        <TableHead className="text-right">Action</TableHead>
+                                        <TableHead>{t('table.applicant')}</TableHead>
+                                        <TableHead>{t('table.type')}</TableHead>
+                                        <TableHead>{t('table.amount')}</TableHead>
+                                        <TableHead>{t('table.riskScore')}</TableHead>
+                                        <TableHead className="text-right">{t('table.action')}</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -106,7 +108,7 @@ export const FiDashboard = () => {
                                             <TableCell>{app.riskScore}</TableCell>
                                             <TableCell className="text-right">
                                                  <Button asChild size="sm">
-                                                    <Link href={`/fi/applications/${app.id}`}>Review</Link>
+                                                    <Link href={`/fi/applications/${app.id}`}>{t('reviewButton')}</Link>
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
@@ -114,7 +116,7 @@ export const FiDashboard = () => {
                                 </TableBody>
                             </Table>
                        ) : (
-                            <p className="text-sm text-muted-foreground text-center py-4">No pending applications.</p>
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('noApplications')}</p>
                        )}
                     </CardContent>
                 </Card>
@@ -123,7 +125,7 @@ export const FiDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                            <Landmark className="h-4 w-4" />
-                           Market & Policy Updates
+                           {t('marketUpdatesTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -131,11 +133,11 @@ export const FiDashboard = () => {
                             (marketUpdates || []).map(update => (
                                 <div key={update.id} className="text-sm p-3 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
                                     <p>{update.content}</p>
-                                    <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">Read More</Link>
+                                    <Link href={update.actionLink} className="text-xs text-primary hover:underline mt-1">{t('readMore')}</Link>
                                 </div>
                             ))
                         ) : (
-                            <p className="text-sm text-muted-foreground text-center py-4">No new updates.</p>
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('noUpdates')}</p>
                         )}
                     </CardContent>
                 </Card>

@@ -38,7 +38,7 @@
     "getMobileApp": "Holen Sie sich die DamDoh-App",
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten."
+    "copyright": "© {year} DamDoh. Alle Rechte vorbehalten."
   },
   "LanguageSwitcher": {
     "toggle": "Sprache ändern"
@@ -116,7 +116,7 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "Verbindungen schaffen, Erfolg ernten mit {appName}",
+      "title": "Verbindungen schaffen, Erfolg ernten mit DamDoh",
       "subtitle": "Die globale Plattform, die jedes Glied der landwirtschaftlichen Lieferkette verbindet. Vom Feld bis auf den Tisch fördern wir Wachstum, Transparenz und Chancen.",
       "getStartedButton": "Jetzt loslegen",
       "learnMoreButton": "Mehr erfahren"
@@ -575,7 +575,7 @@
     }
   },
   "Auth": {
-    "signInWelcome": "Willkommen zurück bei {appName}",
+    "signInWelcome": "Willkommen zurück bei DamDoh",
     "signInTitle": "In Ihr Konto einloggen",
     "signInDescription": "Geben Sie Ihre Anmeldedaten ein, um auf Ihr Dashboard zuzugreifen.",
     "emailLabel": "E-Mail",
@@ -588,7 +588,7 @@
     "signUpLink": "Registrieren",
     "signInLink": "Anmelden",
     "recoverWithUniversalIdPrompt": "Oder Konto mit Universal ID wiederherstellen",
-    "signUpWelcome": "Treten Sie dem {appName}-Netzwerk bei",
+    "signUpWelcome": "Treten Sie dem DamDoh-Netzwerk bei",
     "signUpTitle": "Erstellen Sie Ihr Konto",
     "signUpDescription": "Beginnen Sie Ihre Reise im digitalen landwirtschaftlichen Ökosystem.",
     "nameLabel": "Vollständiger Name oder Firmenname",
@@ -601,13 +601,13 @@
     "creatingAccountButton": "Konto wird erstellt...",
     "signUpButton": "Konto erstellen",
     "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
-    "forgotPasswordResetPrompt": "Erhalten Sie wieder Zugriff auf Ihr {appName}-Konto.",
+    "forgotPasswordResetPrompt": "Erhalten Sie wieder Zugriff auf Ihr DamDoh-Konto.",
     "forgotPasswordTitle": "Passwort vergessen",
     "forgotPasswordDescription": "Geben Sie Ihre E-Mail ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
     "sendingEmailButton": "E-Mail wird gesendet...",
     "sendResetLinkButton": "Link zum Zurücksetzen senden",
     "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
-    "resetPasswordPrompt": "Legen Sie ein neues Passwort für Ihr {appName}-Konto fest.",
+    "resetPasswordPrompt": "Legen Sie ein neues Passwort für Ihr DamDoh-Konto fest.",
     "resetPasswordTitle": "Passwort zurücksetzen",
     "resetPasswordDescription": "Wählen Sie ein neues, starkes Passwort für Ihr Konto.",
     "newPasswordLabel": "Neues Passwort",
@@ -865,7 +865,7 @@
     "roleSpecificInfo": "Rollenspezifische Informationen",
     "tempDisplayNotice": "Dies ist eine temporäre Anzeige von Rohdaten zu Demonstrationszwecken.",
     "recentActivityTitle": "Letzte Aktivität",
-    "recentActivityDescription": "Ein Blick auf die jüngsten Aktionen dieses Benutzers auf {appName}.",
+    "recentActivityDescription": "Ein Blick auf die jüngsten Aktionen dieses Benutzers auf DamDoh.",
     "noRecentActivity": "Keine kürzlichen Aktivitäten zum Anzeigen.",
     "notFoundTitle": "Profil nicht gefunden",
     "notFoundDescription": "Das angeforderte Profil konnte nicht gefunden werden.",
@@ -937,6 +937,12 @@
       "member1Name": "Dr. Elara Vance",
       "member1Role": "CEO & Gründerin",
       "member1Bio": "Agrarökonomin mit einer Vision, Technologie zur Lösung globaler Ernährungsprobleme zu nutzen.",
+      "member2Name": "Kofi Anan",
+      "member2Role": "CTO",
+      "member2Bio": "Softwarearchitekt, der skalierbare Plattformen für aufstrebende Märkte entwickelt.",
+      "member3Name": "Maria Sol",
+      "member3Role": "Leiterin der Community",
+      "member3Bio": "Setzt sich für Kleinbauern ein und baut starke, unterstützende Gemeinschaften auf.",
       "note": "Teammitgliederinformationen sind illustrativ."
     }
   },
@@ -1280,5 +1286,71 @@
     "voteCount": "{count, plural, one {{count} Stimme} other {{count} Stimmen}}",
     "signInToVote": "Bitte melden Sie sich an, um abzustimmen.",
     "signInToLike": "Bitte melden Sie sich an, um Beiträge zu liken."
+  },
+  "common": {
+    "error": "Fehler"
+  },
+  "CooperativeDashboard": {
+    "title": "Landwirtschafts-Genossenschaftszentrale",
+    "membersTitle": "Mitglieder insgesamt",
+    "membersDescription": "{count} Landwirte in Ihrer Genossenschaft",
+    "landAreaTitle": "Gesamte Landfläche",
+    "landAreaDescription": "Hektar unter Anbau",
+    "pendingApplicationsTitle": "Ausstehende Anträge",
+    "pendingApplicationsDescription": "neue Landwirte zu überprüfen",
+    "produceTitle": "Aggregierte Produkte für den Markt bereit",
+    "produceDescription": "Sammelinventar Ihrer Mitglieder, das zum Verkauf steht.",
+    "table": {
+      "product": "Produkt",
+      "quantity": "Menge (Tonnen)",
+      "quality": "Qualität",
+      "readyBy": "Bereit bis",
+      "action": "Aktion"
+    },
+    "noProduce": "Keine aggregierten Produkte verfügbar.",
+    "createListingButton": "Angebot erstellen",
+    "aggregateButton": "Neuen Produktchargen aggregieren"
+  },
+  "BuyerDashboard": {
+    "title": "Kommandozentrale für Käufer",
+    "riskTitle": "Lieferkettenrisiko",
+    "priceTitle": "Preisintelligenz",
+    "sourcingTitle": "KI-Beschaffungsempfehlungen",
+    "reliabilityScore": "Zuverlässigkeits-Score",
+    "findSuppliersButton": "Weitere Lieferanten finden",
+    "diversifySourcing": "Beschaffung diversifizieren",
+    "secureContracts": "Terminkontrakte sichern"
+  },
+  "FiDashboard": {
+    "title": "Finanzinstitut-Portal",
+    "riskTitle": "Portfolio in Gefahr",
+    "accounts": "Konten",
+    "value": "Wert",
+    "reviewRiskButton": "Risiko überprüfen",
+    "pendingApplicationsTitle": "Ausstehende Anträge",
+    "table": {
+      "applicant": "Antragsteller",
+      "type": "Typ",
+      "amount": "Betrag",
+      "riskScore": "Risiko-Score",
+      "action": "Aktion"
+    },
+    "reviewButton": "Überprüfen",
+    "noApplications": "Keine ausstehenden Anträge.",
+    "marketUpdatesTitle": "Markt- & Richtlinien-Updates",
+    "readMore": "Mehr lesen",
+    "noUpdates": "Keine neuen Updates."
+  },
+  "LogisticsDashboard": {
+    "title": "Logistik-Koordinationszentrale",
+    "performanceTitle": "Leistungskennzahlen",
+    "onTimeDelivery": "Pünktliche Lieferrate",
+    "viewReportButton": "Vollständigen Bericht anzeigen",
+    "activeShipmentsTitle": "Aktive Sendungen",
+    "trackButton": "Verfolgen",
+    "noActiveShipments": "Keine aktiven Sendungen.",
+    "incomingJobsTitle": "Eingehende Aufträge",
+    "acceptJobButton": "Auftrag annehmen",
+    "noIncomingJobs": "Keine eingehenden Aufträge."
   }
 }
