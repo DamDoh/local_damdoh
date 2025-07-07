@@ -6,11 +6,27 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { getFirestore } from 'firebase-admin/firestore';
+import { getAdminDb } from '@/lib/firebase/admin';
 import type { UserProfile } from '@/lib/types';
 
-// Initialize Firestore
-const db = getFirestore();
+/**
+ * Fetches a batch of potential users to suggest, excluding the current user and those they already follow.
+ * @param currentUserId The ID of the user we are generating suggestions for.
+ * @returns A promise that resolves to an array of UserProfile objects.
+ */
+async function getPotentialCandidates(currentUserId: string): Promise<UserProfile[]> {
+    const db = getAdminDb();
+    // In a real-world scenario, you would exclude users the current user already follows.
+    // This is simplified for this example.
+    const usersSnapshot = await db.collection('users').limit(50).get();
+    const candidates: UserProfile[] = [];
+    usersSnapshot.forEach(doc => {
+        if (doc.id !== currentUserId) {
+            candidates.push({ id: doc.id, ...doc.data() } as UserProfile);
+        }
+    });
+    return candidates;
+}
 
 // Input schema for the flow
 const SuggestedConnectionsInputSchema = z.object({
@@ -35,23 +51,7 @@ const SuggestedConnectionsOutputSchema = z.object({
 });
 export type SuggestedConnectionsOutput = z.infer<typeof SuggestedConnectionsOutputSchema>;
 
-/**
- * Fetches a batch of potential users to suggest, excluding the current user and those they already follow.
- * @param currentUserId The ID of the user we are generating suggestions for.
- * @returns A promise that resolves to an array of UserProfile objects.
- */
-async function getPotentialCandidates(currentUserId: string): Promise<UserProfile[]> {
-    // In a real-world scenario, you would exclude users the current user already follows.
-    // This is simplified for this example.
-    const usersSnapshot = await db.collection('users').limit(50).get();
-    const candidates: UserProfile[] = [];
-    usersSnapshot.forEach(doc => {
-        if (doc.id !== currentUserId) {
-            candidates.push({ id: doc.id, ...doc.data() } as UserProfile);
-        }
-    });
-    return candidates;
-}
+
 
 // Define the AI prompt
 const connectionSuggesterPrompt = ai.definePrompt({
@@ -91,6 +91,7 @@ export const suggestConnections = ai.defineFlow(
     outputSchema: SuggestedConnectionsOutputSchema,
   },
   async (input) => {
+    const db = getAdminDb();
     // 1. Fetch the user's profile
     const userDoc = await db.collection('users').doc(input.userId).get();
     if (!userDoc.exists) {

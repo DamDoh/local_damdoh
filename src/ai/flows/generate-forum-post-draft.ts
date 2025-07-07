@@ -11,7 +11,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { adminDb } from '@/lib/firebase/admin';
+import { getAdminDb } from '@/lib/firebase/admin';
 
 const GenerateForumPostDraftInputSchema = z.object({
   topicId: z.string().describe('The ID of the forum topic where the post will be created.'),
@@ -59,6 +59,7 @@ const generateForumPostDraftFlow = ai.defineFlow(
     outputSchema: GenerateForumPostDraftOutputSchema,
   },
   async ({ topicId, prompt, language }) => {
+    const adminDb = getAdminDb();
     // Fetch topic details to provide more context to the AI
     const topicDoc = await adminDb.collection('forums').doc(topicId).get();
     if (!topicDoc.exists) {

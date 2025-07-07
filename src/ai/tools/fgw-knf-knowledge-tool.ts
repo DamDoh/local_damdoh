@@ -3,7 +3,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { adminDb } from '@/lib/firebase/admin'; // Use the Admin SDK
+import { getAdminDb } from '@/lib/firebase/admin'; 
 
 export const fgwKnfKnowledgeTool = ai.defineTool(
   {
@@ -15,6 +15,7 @@ export const fgwKnfKnowledgeTool = ai.defineTool(
     outputSchema: z.any(), // The LLM will get the raw document data and can formulate a response from it.
   },
   async (input) => {
+    const adminDb = getAdminDb();
     if (!adminDb) {
       console.error('[fgwKnfKnowledgeTool] Firestore Admin DB is not initialized. Check server credentials.');
       return { error: 'The knowledge base is currently unavailable due to a server configuration issue. Please contact support.' };

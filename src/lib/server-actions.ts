@@ -2,7 +2,7 @@
 "use server";
 
 import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
-import { adminDb } from './firebase/admin';
+import { getAdminDb } from './firebase/admin';
 import type { UserProfile, MarketplaceItem } from '@/lib/types';
 import { httpsCallable } from "firebase/functions";
 import { functions } from './firebase/client';
@@ -15,6 +15,7 @@ const MARKETPLACE_COLLECTION = 'marketplaceItems';
 
 export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
   try {
+    const adminDb = getAdminDb();
     const profilesCol = collection(adminDb, PROFILES_COLLECTION);
     const profileSnapshot = await getDocs(profilesCol);
     if (profileSnapshot.empty) {
@@ -40,6 +41,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
   try {
     if (!id) return null;
+    const adminDb = getAdminDb();
     const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
     const profileSnap = await getDoc(profileDocRef);
     if (profileSnap.exists()) {
@@ -62,6 +64,7 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 
 export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
   try {
+    const adminDb = getAdminDb();
     const itemsCol = collection(adminDb, MARKETPLACE_COLLECTION);
     const itemSnapshot = await getDocs(itemsCol);
     if (itemSnapshot.empty) {
@@ -103,6 +106,7 @@ export async function performSearch(interpretation: SmartSearchInterpretation): 
 // --- Financials Actions ---
 export async function getFinancialInstitutions(): Promise<UserProfile[]> {
   try {
+    const adminDb = getAdminDb();
     const fiCol = query(collection(adminDb, 'users'), where('primaryRole', '==', 'Financial Institution (Micro-finance/Loans)'));
     const fiSnapshot = await getDocs(fiCol);
     if (fiSnapshot.empty) {

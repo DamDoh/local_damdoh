@@ -1,6 +1,6 @@
 // src/lib/server-auth-utils.ts
 import { headers } from 'next/headers';
-import { adminAuth } from './firebase/admin';
+import { getAdminAuth } from './firebase/admin';
 
 /**
  * Verifies if a request is authenticated on the server side by checking the
@@ -23,6 +23,7 @@ export async function isServerAuthenticated(): Promise<boolean> {
   }
 
   try {
+    const adminAuth = getAdminAuth();
     // This will throw an error if the token is invalid or expired
     await adminAuth.verifyIdToken(token);
     return true;
