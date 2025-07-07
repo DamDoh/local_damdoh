@@ -1,5 +1,30 @@
 
 {
+  "QaDashboard": {
+    "title": "មជ្ឈមណ្ឌលធានាគុណភាព",
+    "inspectionsTitle": "ការត្រួតពិនិត្យដែលមិនទាន់សម្រេច",
+    "inspectionsDescription": "ការត្រួតពិនិត្យគុណភាពដែលបានគ្រោងទុកសម្រាប់ផលិតផល និងបាច់។",
+    "table": {
+      "batchId": "លេខសម្គាល់បាច់",
+      "product": "ផលិតផល",
+      "seller": "អ្នកលក់",
+      "dueDate": "កាលបរិច្ឆេទកំណត់",
+      "action": "សកម្មភាព",
+      "result": "លទ្ធផល",
+      "reason": "មូលហេតុ",
+      "inspectedAt": "បានត្រួតពិនិត្យនៅ"
+    },
+    "performInspectionButton": "ធ្វើការត្រួតពិនិត្យ",
+    "noPendingInspections": "គ្មានការត្រួតពិនិត្យដែលមិនទាន់សម្រេចទេ។",
+    "resultsTitle": "របាយការណ៍បញ្ហាថ្មីៗ",
+    "resultsDescription": "បញ្ហាគុណភាពដែលបានរាយការណ៍ថ្មីៗនេះ។",
+    "noRecentIssues": "គ្មានបញ្ហាគុណភាពថ្មីៗត្រូវបានរាយការណ៍ទេ។",
+    "metricsTitle": "ម៉ែត្រគុណភាព",
+    "metricsDescription": "ទិដ្ឋភាពទូទៅនៃដំណើរការរួម។",
+    "passRate": "អត្រាឆ្លងកាត់",
+    "averageScore": "ពិន្ទុមធ្យម",
+    "noMetrics": "គ្មានម៉ែត្រគុណភាពទេ។"
+  },
   "FiApplicationListPage": {
     "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
     "title": "ការគ្រប់គ្រងពាក្យស្នើសុំ",

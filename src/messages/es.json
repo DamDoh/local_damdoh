@@ -1,5 +1,30 @@
 
 {
+  "QaDashboard": {
+    "title": "Centro de Garantía de Calidad",
+    "inspectionsTitle": "Inspecciones Pendientes",
+    "inspectionsDescription": "Controles de calidad programados para productos y lotes.",
+    "table": {
+      "batchId": "ID de Lote",
+      "product": "Producto",
+      "seller": "Vendedor",
+      "dueDate": "Fecha de Vencimiento",
+      "action": "Acción",
+      "result": "Resultado",
+      "reason": "Motivo",
+      "inspectedAt": "Inspeccionado en"
+    },
+    "performInspectionButton": "Realizar Inspección",
+    "noPendingInspections": "No hay inspecciones pendientes.",
+    "resultsTitle": "Informes de Problemas Recientes",
+    "resultsDescription": "Problemas de calidad informados recientemente.",
+    "noRecentIssues": "No se han reportado problemas de calidad recientes.",
+    "metricsTitle": "Métricas de Calidad",
+    "metricsDescription": "Resumen del rendimiento general.",
+    "passRate": "Tasa de Aprobación",
+    "averageScore": "Puntuación Promedio",
+    "noMetrics": "No hay métricas de calidad disponibles."
+  },
   "FiApplicationListPage": {
     "backLink": "Volver al Panel",
     "title": "Gestión de Solicitudes",

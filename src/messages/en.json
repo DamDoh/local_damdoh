@@ -1,5 +1,30 @@
 
 {
+  "QaDashboard": {
+    "title": "Quality Assurance Hub",
+    "inspectionsTitle": "Pending Inspections",
+    "inspectionsDescription": "Scheduled quality checks for products and batches.",
+    "table": {
+      "batchId": "Batch ID",
+      "product": "Product",
+      "seller": "Seller",
+      "dueDate": "Due Date",
+      "action": "Action",
+      "result": "Result",
+      "reason": "Reason",
+      "inspectedAt": "Inspected At"
+    },
+    "performInspectionButton": "Perform Inspection",
+    "noPendingInspections": "No pending inspections.",
+    "resultsTitle": "Recent Issue Reports",
+    "resultsDescription": "Recently reported quality issues.",
+    "noRecentIssues": "No recent quality issues reported.",
+    "metricsTitle": "Quality Metrics",
+    "metricsDescription": "Overall performance overview.",
+    "passRate": "Pass Rate",
+    "averageScore": "Average Score",
+    "noMetrics": "No quality metrics available."
+  },
   "FiApplicationListPage": {
     "backLink": "Back to Dashboard",
     "title": "Application Management",

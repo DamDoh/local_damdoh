@@ -1,5 +1,30 @@
 
 {
+  "QaDashboard": {
+    "title": "Qualitätssicherungs-Hub",
+    "inspectionsTitle": "Ausstehende Inspektionen",
+    "inspectionsDescription": "Geplante Qualitätsprüfungen für Produkte und Chargen.",
+    "table": {
+      "batchId": "Chargen-ID",
+      "product": "Produkt",
+      "seller": "Verkäufer",
+      "dueDate": "Fälligkeitsdatum",
+      "action": "Aktion",
+      "result": "Ergebnis",
+      "reason": "Grund",
+      "inspectedAt": "Inspiziert am"
+    },
+    "performInspectionButton": "Inspektion durchführen",
+    "noPendingInspections": "Keine ausstehenden Inspektionen.",
+    "resultsTitle": "Aktuelle Problemberichte",
+    "resultsDescription": "Zuletzt gemeldete Qualitätsprobleme.",
+    "noRecentIssues": "Keine aktuellen Qualitätsprobleme gemeldet.",
+    "metricsTitle": "Qualitätskennzahlen",
+    "metricsDescription": "Gesamtleistungsübersicht.",
+    "passRate": "Bestandene Rate",
+    "averageScore": "Durchschnittliche Punktzahl",
+    "noMetrics": "Keine Qualitätskennzahlen verfügbar."
+  },
   "FiApplicationListPage": {
     "backLink": "Zurück zum Dashboard",
     "title": "Antragsverwaltung",

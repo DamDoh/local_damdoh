@@ -1,5 +1,30 @@
 
 {
+  "QaDashboard": {
+    "title": "Centre d'Assurance Qualité",
+    "inspectionsTitle": "Inspections en Attente",
+    "inspectionsDescription": "Contrôles qualité planifiés pour les produits et les lots.",
+    "table": {
+      "batchId": "ID du Lot",
+      "product": "Produit",
+      "seller": "Vendeur",
+      "dueDate": "Date Limite",
+      "action": "Action",
+      "result": "Résultat",
+      "reason": "Raison",
+      "inspectedAt": "Inspecté le"
+    },
+    "performInspectionButton": "Effectuer l'Inspection",
+    "noPendingInspections": "Aucune inspection en attente.",
+    "resultsTitle": "Rapports de Problèmes Récents",
+    "resultsDescription": "Problèmes de qualité signalés récemment.",
+    "noRecentIssues": "Aucun problème de qualité récent signalé.",
+    "metricsTitle": "Métriques de Qualité",
+    "metricsDescription": "Aperçu global des performances.",
+    "passRate": "Taux de Réussite",
+    "averageScore": "Score Moyen",
+    "noMetrics": "Aucune métrique de qualité disponible."
+  },
   "FiApplicationListPage": {
     "backLink": "Retour au tableau de bord",
     "title": "Gestion des demandes",
