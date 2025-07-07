@@ -29,8 +29,10 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import type { KnfBatch } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 export default function LogInputApplicationPage() {
+  const t = useTranslations('farmManagement.logInput');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -73,8 +75,8 @@ export default function LogInputApplicationPage() {
     if (!user) {
       toast({
         variant: "destructive",
-        title: "Not Authenticated",
-        description: "You must be logged in to log an input application.",
+        title: t('toast.authErrorTitle'),
+        description: t('toast.authErrorDescription'),
       });
       return;
     }
@@ -96,8 +98,8 @@ export default function LogInputApplicationPage() {
       await handleInputApplicationEvent(payload);
 
       toast({
-        title: "Input Application Logged!",
-        description: "The event has been added to the crop's traceability history.",
+        title: t('toast.success'),
+        description: t('toast.description'),
       });
 
       router.push(`/farm-management/farms/${farmId}`);
@@ -105,7 +107,7 @@ export default function LogInputApplicationPage() {
       console.error("Error logging input application:", error);
       toast({
         variant: "destructive",
-        title: "Failed to Log Event",
+        title: t('toast.fail'),
         description: error.message || "An error occurred. Please try again.",
       });
     } finally {
@@ -117,7 +119,7 @@ export default function LogInputApplicationPage() {
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href={`/farm-management/farms/${farmId}`}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farm Details
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
 
@@ -125,10 +127,10 @@ export default function LogInputApplicationPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Droplets className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Log Input Application</CardTitle>
+            <CardTitle className="text-2xl">{t('title')}</CardTitle>
           </div>
           <CardDescription>
-            Record the application of inputs like fertilizers, pesticides, or KNF concoctions to this crop.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -141,11 +143,11 @@ export default function LogInputApplicationPage() {
                     name="inputId"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="flex items-center gap-2"><FlaskConical className="h-4 w-4 text-muted-foreground" />Use a Ready KNF Batch</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><FlaskConical className="h-4 w-4 text-muted-foreground" />{t('useKNFLabel')}</FormLabel>
                         <Select onValueChange={(value) => field.onChange(value)} value={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select a KNF input from your inventory..." />
+                              <SelectValue placeholder={t('useKNFPlaceholder')} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -165,9 +167,9 @@ export default function LogInputApplicationPage() {
                 name="inputId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Or, Enter Input Name Manually</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />{t('manualInputLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., NPK 10-20-10 Fertilizer, Compost" {...field} />
+                      <Input placeholder={t('manualInputPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -179,7 +181,7 @@ export default function LogInputApplicationPage() {
                   name="applicationDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Date of Application</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('dateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -216,9 +218,9 @@ export default function LogInputApplicationPage() {
                     name="quantity"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel className="flex items-center gap-2"><Hash className="h-4 w-4 text-muted-foreground" />Quantity</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><Hash className="h-4 w-4 text-muted-foreground" />{t('quantityLabel')}</FormLabel>
                         <FormControl>
-                        <Input type="number" placeholder="e.g., 50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
+                        <Input type="number" placeholder={t('quantityPlaceholder')} {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -229,9 +231,9 @@ export default function LogInputApplicationPage() {
                     name="unit"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel className="flex items-center gap-2"><List className="h-4 w-4 text-muted-foreground" />Unit</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><List className="h-4 w-4 text-muted-foreground" />{t('unitLabel')}</FormLabel>
                         <FormControl>
-                        <Input placeholder="e.g., kg, Liters, bags" {...field} />
+                        <Input placeholder={t('unitPlaceholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -244,9 +246,9 @@ export default function LogInputApplicationPage() {
                 name="method"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Application Method (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />{t('methodLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Foliar spray, Broadcasting, Drip line" {...field} />
+                      <Input placeholder={t('methodPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -256,10 +258,10 @@ export default function LogInputApplicationPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Log Application</>
+                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 )}
               </Button>
             </form>

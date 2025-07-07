@@ -28,8 +28,10 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import { useTranslations } from "next-intl";
 
 export default function LogHarvestPage() {
+  const t = useTranslations('farmManagement.logHarvest');
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
@@ -65,14 +67,12 @@ export default function LogHarvestPage() {
       return;
     }
 
-    // Offline check
     if (typeof window !== 'undefined' && !window.navigator.onLine) {
       toast({
-        title: "You are offline",
-        description: "This harvest log has been queued and will be synced when you're back online. (This is a simulation)",
+        title: t('offlineToast.title'),
+        description: t('offlineToast.description'),
         variant: "default",
       });
-      // In a real app, this data would be saved to a local queue (e.g., IndexedDB)
       setSubmissionSuccess(true);
       setCreatedVtiId('offline-vti-placeholder');
       return;
@@ -86,8 +86,8 @@ export default function LogHarvestPage() {
         cropType: cropType,
         yieldKg: data.yield_kg,
         qualityGrade: data.quality_grade,
-        actorVtiId: user.uid, // Using user's UID as their VTI for now
-        geoLocation: null, // Geolocation can be added later if needed
+        actorVtiId: user.uid,
+        geoLocation: null,
       };
 
       const result = await handleHarvestEvent(payload);
@@ -95,15 +95,15 @@ export default function LogHarvestPage() {
       setCreatedVtiId(newVtiId);
 
       toast({
-        title: "Harvest Logged & VTI Created!",
-        description: `Your harvest for ${cropType} has been recorded with VTI: ${newVtiId}`,
+        title: t('success.title'),
+        description: t('success.description', {cropType, vtiId: newVtiId}),
       });
       setSubmissionSuccess(true);
     } catch (error: any) {
       console.error("Error logging harvest:", error);
       toast({
         variant: "destructive",
-        title: "Failed to Log Harvest",
+        title: t('fail.title'),
         description: error.message || "An error occurred. Please try again.",
       });
     } finally {
@@ -125,30 +125,30 @@ export default function LogHarvestPage() {
                     <div className="mx-auto bg-green-100 dark:bg-green-900/30 rounded-full h-16 w-16 flex items-center justify-center">
                         <CheckCircle className="h-10 w-10 text-green-600" />
                     </div>
-                    <CardTitle className="text-2xl pt-4">Harvest Logged Successfully!</CardTitle>
+                    <CardTitle className="text-2xl pt-4">{t('success.successCardTitle')}</CardTitle>
                     <CardDescription>
-                       Your new batch of {cropType} is now in the system with VTI: <span className="font-mono bg-muted p-1 rounded-sm">{createdVtiId}</span>. What would you like to do next?
+                       {t('success.successCardDescription', { cropType, vtiId: createdVtiId })}
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
                     <Button size="lg" className="w-full" asChild>
                        <Link href={`/traceability/batches/${createdVtiId}`}>
-                            <GitBranch className="mr-2 h-4 w-4" /> View Traceability Report
+                            <GitBranch className="mr-2 h-4 w-4" /> {t('success.viewReportButton')}
                         </Link>
                     </Button>
                     <Button size="lg" className="w-full" asChild>
                         <Link href={`/marketplace/create?vtiId=${createdVtiId}&productName=${encodeURIComponent(cropType)}`}>
-                            <DollarSign className="mr-2 h-4 w-4" /> Sell this Batch on the Marketplace
+                            <DollarSign className="mr-2 h-4 w-4" /> {t('success.sellButton')}
                         </Link>
                     </Button>
                      <Button size="lg" variant="outline" className="w-full" onClick={handleResetForm}>
-                        <RefreshCw className="mr-2 h-4 w-4" /> Log Another Harvest
+                        <RefreshCw className="mr-2 h-4 w-4" /> {t('success.logAnotherButton')}
                     </Button>
                 </CardContent>
                  <CardFooter>
                     <Button variant="ghost" className="w-full text-muted-foreground" asChild>
                         <Link href={`/farm-management/farms/${farmId}`}>
-                           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farm Details
+                           <ArrowLeft className="mr-2 h-4 w-4" /> {t('success.backToFarmButton')}
                         </Link>
                     </Button>
                  </CardFooter>
@@ -161,7 +161,7 @@ export default function LogHarvestPage() {
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href={`/farm-management/farms/${farmId}`}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farm Details
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
 
@@ -169,10 +169,10 @@ export default function LogHarvestPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Weight className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Log Harvest for {cropType}</CardTitle>
+            <CardTitle className="text-2xl">{t('title', {cropType})}</CardTitle>
           </div>
           <CardDescription>
-            Record the harvest details to create a new traceable batch (VTI) in the system.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -183,7 +183,7 @@ export default function LogHarvestPage() {
                   name="harvestDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Date of Harvest</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('harvestDateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -219,9 +219,9 @@ export default function LogHarvestPage() {
                 name="yield_kg"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Weight className="h-4 w-4 text-muted-foreground" />Total Yield (in kg)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Weight className="h-4 w-4 text-muted-foreground" />{t('yieldLabel')}</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="e.g., 5000" {...field} />
+                      <Input type="number" placeholder={t('yieldPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -233,9 +233,9 @@ export default function LogHarvestPage() {
                 name="quality_grade"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Award className="h-4 w-4 text-muted-foreground" />Quality Grade (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Award className="h-4 w-4 text-muted-foreground" />{t('qualityLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Grade A, Premium, Class 1" {...field} />
+                      <Input placeholder={t('qualityPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -247,10 +247,10 @@ export default function LogHarvestPage() {
                 name="notes"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Harvest Notes (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('notesLabel')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Any relevant notes about the harvest, such as weather conditions, specific observations, or handling methods."
+                        placeholder={t('notesPlaceholder')}
                         className="min-h-[100px]"
                         {...field}
                       />
@@ -263,10 +263,10 @@ export default function LogHarvestPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Log Harvest and Create VTI</>
+                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 )}
               </Button>
             </form>

@@ -36,8 +36,11 @@ import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from "next-intl";
 
 export default function EditCropPage() {
+  const t = useTranslations('farmManagement.createCrop'); // Re-use create translations
+  const tEdit = useTranslations('farmManagement.editCrop');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -75,15 +78,15 @@ export default function EditCropPage() {
                 harvestDate: cropData.harvestDate ? new Date(cropData.harvestDate) : undefined,
             });
         } else {
-             toast({ title: "Crop not found", description: "Could not load crop data for editing.", variant: "destructive" });
+             toast({ title: tEdit('toast.notFound'), description: tEdit('toast.loadError'), variant: "destructive" });
             router.push(`/farm-management/farms/${farmId}`);
         }
     } catch (error: any) {
-        toast({ title: "Error", description: `Failed to load crop data: ${error.message}`, variant: "destructive" });
+        toast({ title: tEdit('toast.error'), description: tEdit('toast.loadFail', {message: error.message}), variant: "destructive" });
     } finally {
         setIsLoading(false);
     }
-  }, [cropId, getCropCallable, form, toast, router, farmId]);
+  }, [cropId, getCropCallable, form, toast, router, farmId, tEdit]);
 
   useEffect(() => {
       if (user) {
@@ -107,8 +110,8 @@ export default function EditCropPage() {
       await updateCropCallable(payload);
 
       toast({
-        title: "Crop Updated Successfully!",
-        description: `Your crop "${data.cropType}" has been updated.`,
+        title: tEdit('toast.success'),
+        description: tEdit('toast.description', {cropType: data.cropType}),
       });
 
       router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
@@ -116,13 +119,19 @@ export default function EditCropPage() {
       console.error("Error updating crop:", error);
       toast({
         variant: "destructive",
-        title: "Failed to Update Crop",
+        title: tEdit('toast.fail'),
         description: error.message || "An error occurred. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
     }
   }
+  
+  const cropStages = Object.keys(t.raw('stages')).map(key => ({
+    value: key,
+    label: t(`stages.${key}`)
+  }));
+
 
   if (isLoading) {
       return (
@@ -144,7 +153,7 @@ export default function EditCropPage() {
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href={`/farm-management/farms/${farmId}/crops/${cropId}`}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Crop Journey
+          <ArrowLeft className="mr-2 h-4 w-4" /> {tEdit('backLink')}
         </Link>
       </Button>
 
@@ -152,10 +161,10 @@ export default function EditCropPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Sprout className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Edit Crop/Livestock Details</CardTitle>
+            <CardTitle className="text-2xl">{tEdit('title')}</CardTitle>
           </div>
           <CardDescription>
-            Update the information for this crop batch.
+            {tEdit('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -166,9 +175,9 @@ export default function EditCropPage() {
                 name="cropType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Crop/Livestock Type</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />{t('cropTypeLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Maize (DKC 90-89), Holstein Cow, Broiler Chicken Batch" {...field} />
+                      <Input placeholder={t('cropTypePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -181,7 +190,7 @@ export default function EditCropPage() {
                   name="plantingDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Planting / Acquisition Date</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('plantingDateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -193,7 +202,7 @@ export default function EditCropPage() {
                               )}
                             >
                               <CalendarIcon className="mr-2 h-4 w-4" />
-                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                              {field.value ? format(field.value, "PPP") : <span>{t('datePlaceholder')}</span>}
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -215,7 +224,7 @@ export default function EditCropPage() {
                   name="harvestDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Expected Harvest Date (Opt.)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('harvestDateLabel')}</FormLabel>
                        <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -227,7 +236,7 @@ export default function EditCropPage() {
                               )}
                             >
                                <CalendarIcon className="mr-2 h-4 w-4" />
-                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                              {field.value ? format(field.value, "PPP") : <span>{t('datePlaceholder')}</span>}
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -250,9 +259,9 @@ export default function EditCropPage() {
                 name="expectedYield"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><BarChart className="h-4 w-4 text-muted-foreground" />Expected Yield (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><BarChart className="h-4 w-4 text-muted-foreground" />{t('yieldLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 5 Tons, 2000 Liters of milk" {...field} />
+                      <Input placeholder={t('yieldPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -264,20 +273,17 @@ export default function EditCropPage() {
                 name="currentStage"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><HardHat className="h-4 w-4 text-muted-foreground" />Current Stage (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><HardHat className="h-4 w-4 text-muted-foreground" />{t('stageLabel')}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select current stage" />
+                          <SelectValue placeholder={t('stagePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Planting">Planting</SelectItem>
-                        <SelectItem value="Vegetative">Vegetative</SelectItem>
-                        <SelectItem value="Flowering">Flowering</SelectItem>
-                        <SelectItem value="Fruiting">Fruiting</SelectItem>
-                        <SelectItem value="Harvesting">Harvesting</SelectItem>
-                        <SelectItem value="Post-Harvest">Post-Harvest</SelectItem>
+                        {cropStages.map(stage => (
+                           <SelectItem key={stage.value} value={stage.value}>{stage.label}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -290,10 +296,10 @@ export default function EditCropPage() {
                 name="notes"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Notes (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('notesLabel')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Any additional notes about this crop, such as plot location, seed source, or initial observations."
+                        placeholder={t('notesPlaceholder')}
                         className="min-h-[100px]"
                         {...field}
                       />
@@ -306,10 +312,10 @@ export default function EditCropPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving Changes...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {tEdit('savingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Save Changes</>
+                    <><Save className="mr-2 h-4 w-4" /> {tEdit('saveButton')}</>
                 )}
               </Button>
             </form>

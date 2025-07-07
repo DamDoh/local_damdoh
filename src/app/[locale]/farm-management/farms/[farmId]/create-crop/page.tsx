@@ -35,8 +35,10 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import { useTranslations } from "next-intl";
 
 export default function CreateCropPage() {
+  const t = useTranslations('farmManagement.createCrop');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -62,8 +64,8 @@ export default function CreateCropPage() {
     if (!user) {
       toast({
         variant: "destructive",
-        title: "Not Authenticated",
-        description: "You must be logged in to add a crop.",
+        title: t('toast.authErrorTitle'),
+        description: t('toast.authErrorDescription'),
       });
       return;
     }
@@ -84,8 +86,8 @@ export default function CreateCropPage() {
       await createCropCallable(payload);
 
       toast({
-        title: "Crop Added Successfully!",
-        description: `Your new crop "${data.cropType}" has been registered.`,
+        title: t('toast.successTitle'),
+        description: t('toast.successDescription', { cropType: data.cropType }),
       });
 
       router.push(`/farm-management/farms/${farmId}`);
@@ -94,19 +96,25 @@ export default function CreateCropPage() {
       console.error("Error creating crop:", error);
       toast({
         variant: "destructive",
-        title: "Failed to Add Crop",
-        description: error.message || "An error occurred. Please try again.",
+        title: t('toast.failTitle'),
+        description: error.message || t('toast.failDescription'),
       });
     } finally {
       setIsSubmitting(false);
     }
   }
 
+  const cropStages = Object.keys(t.raw('stages')).map(key => ({
+    value: key,
+    label: t(`stages.${key}`)
+  }));
+
+
   return (
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href={`/farm-management/farms/${farmId}`}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farm Details
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
 
@@ -114,10 +122,10 @@ export default function CreateCropPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Sprout className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Add New Crop/Livestock</CardTitle>
+            <CardTitle className="text-2xl">{t('title')}</CardTitle>
           </div>
           <CardDescription>
-            Log a new crop, planting, or livestock batch for this farm to begin tracking its progress and activities.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -128,11 +136,11 @@ export default function CreateCropPage() {
                 name="cropType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />Crop/Livestock Type</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="h-4 w-4 text-muted-foreground" />{t('cropTypeLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Maize (DKC 90-89), Holstein Cow, Broiler Chicken Batch" {...field} />
+                      <Input placeholder={t('cropTypePlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>Be specific with the variety if known.</FormDescription>
+                    <FormDescription>{t('cropTypeDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -144,7 +152,7 @@ export default function CreateCropPage() {
                   name="plantingDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Planting / Acquisition Date</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('plantingDateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -156,7 +164,7 @@ export default function CreateCropPage() {
                               )}
                             >
                               <CalendarIcon className="mr-2 h-4 w-4" />
-                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                              {field.value ? format(field.value, "PPP") : <span>{t('datePlaceholder')}</span>}
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -178,7 +186,7 @@ export default function CreateCropPage() {
                   name="harvestDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Expected Harvest Date (Opt.)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('harvestDateLabel')}</FormLabel>
                        <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -190,7 +198,7 @@ export default function CreateCropPage() {
                               )}
                             >
                                <CalendarIcon className="mr-2 h-4 w-4" />
-                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                              {field.value ? format(field.value, "PPP") : <span>{t('datePlaceholder')}</span>}
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -213,9 +221,9 @@ export default function CreateCropPage() {
                 name="expectedYield"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><BarChart className="h-4 w-4 text-muted-foreground" />Expected Yield (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><BarChart className="h-4 w-4 text-muted-foreground" />{t('yieldLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 5 Tons, 2000 Liters of milk" {...field} />
+                      <Input placeholder={t('yieldPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -227,20 +235,17 @@ export default function CreateCropPage() {
                 name="currentStage"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><HardHat className="h-4 w-4 text-muted-foreground" />Current Stage (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><HardHat className="h-4 w-4 text-muted-foreground" />{t('stageLabel')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select current stage" />
+                          <SelectValue placeholder={t('stagePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Planting">Planting</SelectItem>
-                        <SelectItem value="Vegetative">Vegetative</SelectItem>
-                        <SelectItem value="Flowering">Flowering</SelectItem>
-                        <SelectItem value="Fruiting">Fruiting</SelectItem>
-                        <SelectItem value="Harvesting">Harvesting</SelectItem>
-                        <SelectItem value="Post-Harvest">Post-Harvest</SelectItem>
+                        {cropStages.map(stage => (
+                           <SelectItem key={stage.value} value={stage.value}>{stage.label}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -253,10 +258,10 @@ export default function CreateCropPage() {
                 name="notes"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Notes (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('notesLabel')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Any additional notes about this crop, such as plot location, seed source, or initial observations."
+                        placeholder={t('notesPlaceholder')}
                         className="min-h-[100px]"
                         {...field}
                       />
@@ -269,10 +274,10 @@ export default function CreateCropPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Save Crop</>
+                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 )}
               </Button>
             </form>

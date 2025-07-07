@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -31,10 +30,12 @@ import { useState } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
+import { useTranslations } from "next-intl";
 
 const currencies = ["USD", "KES", "NGN", "GHS", "EUR", "UGX", "TZS", "ZMW"];
 
 export default function LogFinancialTransactionPage() {
+  const t = useTranslations('farmManagement.financials.log');
   const router = useRouter();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,8 +58,8 @@ export default function LogFinancialTransactionPage() {
     if (!user) {
       toast({
         variant: "destructive",
-        title: "Not Authenticated",
-        description: "You must be logged in to log a transaction.",
+        title: t('toast.authErrorTitle'),
+        description: t('toast.authErrorDescription'),
       });
       return;
     }
@@ -69,8 +70,8 @@ export default function LogFinancialTransactionPage() {
       await logFinancialTransactionCallable(data);
 
       toast({
-        title: "Transaction Logged!",
-        description: "Your financial record has been saved successfully.",
+        title: t('toast.success'),
+        description: t('toast.description'),
       });
 
       router.push("/farm-management/financials");
@@ -78,7 +79,7 @@ export default function LogFinancialTransactionPage() {
       console.error("Error logging transaction:", error);
       toast({
         variant: "destructive",
-        title: "Failed to Log Transaction",
+        title: t('toast.fail'),
         description: error.message || "An error occurred while saving. Please try again.",
       });
     } finally {
@@ -86,11 +87,16 @@ export default function LogFinancialTransactionPage() {
     }
   }
 
+  const transactionTypes = Object.keys(t.raw('types')).map(key => ({
+    value: key,
+    label: t(`types.${key}`)
+  }));
+
   return (
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href="/farm-management/financials">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Financials
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
 
@@ -98,10 +104,10 @@ export default function LogFinancialTransactionPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <DollarSign className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Log Financial Transaction</CardTitle>
+            <CardTitle className="text-2xl">{t('title')}</CardTitle>
           </div>
           <CardDescription>
-            Keep a simple record of your farm's income and expenses.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -113,16 +119,17 @@ export default function LogFinancialTransactionPage() {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Transaction Type</FormLabel>
+                    <FormLabel>{t('typeLabel')}</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select transaction type" />
+                            <SelectValue placeholder={t('typePlaceholder')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="expense">Expense</SelectItem>
-                          <SelectItem value="income">Income</SelectItem>
+                          {transactionTypes.map(type => (
+                            <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     <FormMessage />
@@ -135,9 +142,9 @@ export default function LogFinancialTransactionPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>{t('descriptionLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Sale of 50kg Maize, Purchase of fertilizer" {...field} />
+                      <Input placeholder={t('descriptionPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -150,9 +157,9 @@ export default function LogFinancialTransactionPage() {
                   name="amount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Amount</FormLabel>
+                      <FormLabel>{t('amountLabel')}</FormLabel>
                       <FormControl>
-                        <Input type="number" step="0.01" placeholder="e.g., 25.50" {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
+                        <Input type="number" step="0.01" placeholder={t('amountPlaceholder')} {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -163,11 +170,11 @@ export default function LogFinancialTransactionPage() {
                   name="currency"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Currency</FormLabel>
+                      <FormLabel>{t('currencyLabel')}</FormLabel>
                        <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select currency" />
+                            <SelectValue placeholder={t('currencyPlaceholder')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -185,11 +192,11 @@ export default function LogFinancialTransactionPage() {
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category (Optional)</FormLabel>
+                    <FormLabel>{t('categoryLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Produce Sales, Input Costs, Labor" {...field} />
+                      <Input placeholder={t('categoryPlaceholder')} {...field} />
                     </FormControl>
-                     <FormDescription>Helps in organizing your finances.</FormDescription>
+                     <FormDescription>{t('categoryDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -198,10 +205,10 @@ export default function LogFinancialTransactionPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Save Transaction</>
+                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 )}
               </Button>
             </form>

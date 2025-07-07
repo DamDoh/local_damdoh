@@ -37,8 +37,10 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { uploadFileAndGetURL } from "@/lib/storage-utils";
 import { askFarmingAssistant, type FarmingAssistantOutput } from "@/ai/flows/farming-assistant-flow";
+import { useTranslations } from "next-intl";
 
 export default function LogObservationPage() {
+  const t = useTranslations('farmManagement.logObservation');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -59,12 +61,17 @@ export default function LogObservationPage() {
     },
   });
 
+  const observationTypes = Object.keys(t.raw('types')).map(key => ({
+    value: key,
+    label: t(`types.${key}`)
+  }));
+
   async function onSubmit(data: CreateObservationValues) {
     if (!user) {
       toast({
         variant: "destructive",
-        title: "Not Authenticated",
-        description: "You must be logged in to log an observation.",
+        title: t('toast.authErrorTitle'),
+        description: t('toast.authErrorDescription'),
       });
       return;
     }
@@ -73,9 +80,8 @@ export default function LogObservationPage() {
     let mediaUrls: string[] = [];
     let aiAnalysisResult: FarmingAssistantOutput | null = null;
 
-    // Step 1: Analyze image with AI if present
     if (data.imageFile) {
-      toast({ title: "Analyzing Image...", description: "Our AI is looking at your photo. Please wait." });
+      toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
       try {
         const getFileDataUri = (file: File): Promise<string> => new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -89,27 +95,24 @@ export default function LogObservationPage() {
         aiAnalysisResult = await askFarmingAssistant({
             query: data.details,
             photoDataUri: photoDataUri,
-            language: 'en' // Or get from i18n context
+            language: 'en'
         });
 
-        toast({ title: "Analysis Complete!", description: "AI diagnosis has been generated." });
+        toast({ title: t('toast.aiComplete'), description: t('toast.aiCompleteDescription') });
       } catch (aiError: any) {
         console.error("Error during AI analysis:", aiError);
-        toast({ variant: "destructive", title: "AI Analysis Failed", description: aiError.message || "Could not analyze the image."});
-        // Don't block the rest of the process if AI fails
+        toast({ variant: "destructive", title: t('toast.aiFailTitle'), description: aiError.message || t('toast.aiFailDescription')});
       }
     }
 
-    // Step 2: Upload image to storage
     try {
       if (data.imageFile) {
-        toast({ title: "Uploading Image...", description: "Please wait while your image is saved." });
+        toast({ title: t('toast.uploading'), description: t('toast.uploadingDescription') });
         const imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
         mediaUrls.push(imageUrl);
-        toast({ title: "Image Upload Complete!", variant: "default" });
+        toast({ title: t('toast.uploadComplete'), variant: "default" });
       }
 
-      // Step 3: Log the event to Firestore
       const payload = {
         farmFieldId: cropId,
         observationType: data.observationType,
@@ -118,14 +121,14 @@ export default function LogObservationPage() {
         mediaUrls: mediaUrls,
         actorVtiId: user.uid,
         geoLocation: null, 
-        aiAnalysis: aiAnalysisResult, // Pass the AI result
+        aiAnalysis: aiAnalysisResult,
       };
 
       await handleObservationEvent(payload);
 
       toast({
-        title: "Observation Logged Successfully!",
-        description: `Your observation has been added to the traceability log.`,
+        title: t('toast.success'),
+        description: t('toast.successDescription'),
       });
 
       router.push(`/farm-management/farms/${farmId}`);
@@ -133,7 +136,7 @@ export default function LogObservationPage() {
       console.error("Error logging observation:", error);
       toast({
         variant: "destructive",
-        title: "Failed to Log Observation",
+        title: t('toast.fail'),
         description: error.message || "An error occurred. Please try again.",
       });
     } finally {
@@ -145,7 +148,7 @@ export default function LogObservationPage() {
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
         <Link href={`/farm-management/farms/${farmId}`}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Farm Details
+          <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
 
@@ -153,10 +156,10 @@ export default function LogObservationPage() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <NotebookPen className="h-7 w-7 text-primary" />
-            <CardTitle className="text-2xl">Log Farm Observation</CardTitle>
+            <CardTitle className="text-2xl">{t('title')}</CardTitle>
           </div>
           <CardDescription>
-            Record a new observation for this crop. Attaching a photo will trigger an AI-powered diagnosis.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -168,20 +171,17 @@ export default function LogObservationPage() {
                 name="observationType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Eye className="h-4 w-4 text-muted-foreground" />Observation Type</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Eye className="h-4 w-4 text-muted-foreground" />{t('typeLabel')}</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select the type of observation" />
+                          <SelectValue placeholder={t('typePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Pest Sighting">Pest Sighting</SelectItem>
-                        <SelectItem value="Disease Symptom">Disease Symptom</SelectItem>
-                        <SelectItem value="Weed Growth">Weed Growth</SelectItem>
-                        <SelectItem value="Crop Health Update">Crop Health Update</SelectItem>
-                        <SelectItem value="Weather Event">Weather Event</SelectItem>
-                        <SelectItem value="Other">Other</SelectItem>
+                        {observationTypes.map(type => (
+                          <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -194,7 +194,7 @@ export default function LogObservationPage() {
                   name="observationDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />Date of Observation</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-muted-foreground" />{t('dateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -230,10 +230,10 @@ export default function LogObservationPage() {
                 name="details"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Details</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('detailsLabel')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Describe what you observed. Be as specific as possible. e.g., 'Saw evidence of stem borers on 10% of maize stalks in the northeast corner.'"
+                        placeholder={t('detailsPlaceholder')}
                         className="min-h-[120px]"
                         {...field}
                       />
@@ -248,7 +248,7 @@ export default function LogObservationPage() {
                   name="imageFile"
                   render={({ field: { onChange, value, ...rest } }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />Upload Photo (for AI Diagnosis)</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />{t('uploadLabel')}</FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-2">
                           <Input 
@@ -266,7 +266,7 @@ export default function LogObservationPage() {
                         </div>
                       </FormControl>
                        <FormDescription>
-                        A photo can help with diagnosis or verification.
+                        {t('uploadDescription')}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -276,10 +276,10 @@ export default function LogObservationPage() {
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('processingButton')}
                     </>
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> Log Observation</>
+                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 )}
               </Button>
             </form>

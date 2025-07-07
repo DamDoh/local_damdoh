@@ -44,7 +44,7 @@ function WorkerDetailPageSkeleton() {
 }
 
 export default function WorkerDetailPage() {
-    const t = useTranslations('farmManagement.workerDetailPage');
+    const t = useTranslations('farmManagement.laborPage.workerDetailPage');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const params = useParams();
@@ -164,4 +164,3 @@ export default function WorkerDetailPage() {
         </div>
     );
 }
-

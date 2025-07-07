@@ -17,6 +17,7 @@ import { Label } from '@/components/ui/label';
 import { format } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar } from "@/components/ui/calendar";
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
@@ -38,19 +39,16 @@ export default function LaborManagementPage() {
     const [workers, setWorkers] = useState<Worker[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     
-    // States for "Add Worker" dialog
     const [isAddWorkerOpen, setIsAddWorkerOpen] = useState(false);
     const [newWorkerName, setNewWorkerName] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // States for "Log Hours" dialog
     const [isLogHoursOpen, setIsLogHoursOpen] = useState(false);
     const [selectedWorker, setSelectedWorker] = useState<Worker | null>(null);
     const [hours, setHours] = useState<string>("");
     const [logDate, setLogDate] = useState<Date | undefined>(new Date());
     const [task, setTask] = useState("");
 
-    // States for "Log Payment" dialog
     const [isLogPaymentOpen, setIsLogPaymentOpen] = useState(false);
     const [paymentAmount, setPaymentAmount] = useState("");
     const [paymentDate, setPaymentDate] = useState<Date | undefined>(new Date());
@@ -68,7 +66,7 @@ export default function LaborManagementPage() {
             const result = await getWorkersCallable();
             setWorkers((result.data as any).workers || []);
         } catch (error) {
-            toast({ variant: "destructive", title: t('toasts.errorTitle'), description: t('toasts.fetchWorkersError') });
+            toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchWorkersError') });
         } finally {
             setIsLoading(false);
         }
@@ -80,18 +78,18 @@ export default function LaborManagementPage() {
 
     const handleAddWorker = async () => {
         if (!newWorkerName.trim()) {
-            toast({ variant: 'destructive', title: t('toasts.nameRequired') });
+            toast({ variant: 'destructive', title: t('toast.nameRequired') });
             return;
         }
         setIsSubmitting(true);
         try {
             await addWorkerCallable({ name: newWorkerName });
-            toast({ title: t('toasts.workerAdded') });
+            toast({ title: t('toast.workerAdded') });
             setNewWorkerName("");
             setIsAddWorkerOpen(false);
             fetchWorkers();
         } catch (error: any) {
-            toast({ variant: "destructive", title: t('toasts.errorTitle'), description: error.message });
+            toast({ variant: "destructive", title: t('toast.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
         }
@@ -102,13 +100,13 @@ export default function LaborManagementPage() {
         setIsSubmitting(true);
         try {
             await logHoursCallable({ workerId: selectedWorker.id, hours, date: logDate.toISOString(), taskDescription: task });
-            toast({ title: t('toasts.hoursLogged') });
+            toast({ title: t('toast.hoursLogged') });
             setIsLogHoursOpen(false);
             setHours("");
             setTask("");
             fetchWorkers();
         } catch (error: any) {
-             toast({ variant: "destructive", title: t('toasts.errorTitle'), description: error.message });
+             toast({ variant: "destructive", title: t('toast.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
         }
@@ -119,12 +117,12 @@ export default function LaborManagementPage() {
         setIsSubmitting(true);
         try {
             await logPaymentCallable({ workerId: selectedWorker.id, amount: paymentAmount, date: paymentDate.toISOString(), currency: 'USD' });
-            toast({ title: t('toasts.paymentLoggedTitle'), description: t('toasts.paymentLoggedDescription') });
+            toast({ title: t('toast.paymentLoggedTitle'), description: t('toast.paymentLoggedDescription') });
             setIsLogPaymentOpen(false);
             setPaymentAmount("");
             fetchWorkers();
         } catch(error: any) {
-             toast({ variant: "destructive", title: t('toasts.errorTitle'), description: error.message });
+             toast({ variant: "destructive", title: t('toast.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
         }
@@ -197,7 +195,17 @@ export default function LaborManagementPage() {
                      <div className="space-y-4 py-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div><Label htmlFor="hours">{t('hoursWorked')}</Label><Input id="hours" type="number" value={hours} onChange={e => setHours(e.target.value)} /></div>
-                            <div><Label htmlFor="date">{t('date')}</Label><Popover><PopoverTrigger asChild><Button variant="outline" className={cn("w-full justify-start text-left font-normal", !logDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{logDate ? format(logDate, "PPP") : <span>{t('pickDate')}</span>}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={logDate} onSelect={setLogDate} initialFocus /></PopoverContent></Popover></div>
+                            <div>
+                                <Label htmlFor="date">{t('date')}</Label>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !logDate && "text-muted-foreground")}>
+                                            <CalendarIcon className="mr-2 h-4 w-4" />{logDate ? format(logDate, "PPP") : <span>{t('pickDate')}</span>}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0"><Calendar mode="single" selected={logDate} onSelect={setLogDate} initialFocus /></PopoverContent>
+                                </Popover>
+                            </div>
                         </div>
                          <div><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
@@ -211,7 +219,17 @@ export default function LaborManagementPage() {
                     <div className="space-y-4 py-4">
                          <div className="grid grid-cols-2 gap-4">
                             <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
-                             <div><Label htmlFor="payment-date">{t('date')}</Label><Popover><PopoverTrigger asChild><Button variant="outline" className={cn("w-full justify-start text-left font-normal", !paymentDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{paymentDate ? format(paymentDate, "PPP") : <span>{t('pickDate')}</span>}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus /></PopoverContent></Popover></div>
+                             <div>
+                                <Label htmlFor="payment-date">{t('date')}</Label>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !paymentDate && "text-muted-foreground")}>
+                                            <CalendarIcon className="mr-2 h-4 w-4" />{paymentDate ? format(paymentDate, "PPP") : <span>{t('pickDate')}</span>}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0"><Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus /></PopoverContent>
+                                </Popover>
+                            </div>
                         </div>
                     </div>
                      <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('logPayment')}</Button>
@@ -220,4 +238,3 @@ export default function LaborManagementPage() {
         </div>
     );
 }
-

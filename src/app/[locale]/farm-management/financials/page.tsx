@@ -13,6 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import type { FinancialSummary, FinancialTransaction } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 
 const functions = getFunctions(firebaseApp);
@@ -30,6 +31,7 @@ const StatCard = ({ title, value, icon, currency = "USD" }: { title: string, val
 );
 
 export default function FinancialDashboardPage() {
+  const t = useTranslations('farmManagement.financials');
   const { user } = useAuth();
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
   const [transactions, setTransactions] = useState<FinancialTransaction[]>([]);
@@ -47,7 +49,6 @@ export default function FinancialDashboardPage() {
             const result = await getFinancialsCallable();
             const data = result.data as { summary: FinancialSummary; transactions: FinancialTransaction[] };
             
-            // Robustly set state, providing empty fallbacks to prevent crashes
             setSummary(data?.summary ?? { totalIncome: 0, totalExpense: 0, netFlow: 0 });
             setTransactions(data?.transactions ?? []);
 
@@ -80,11 +81,11 @@ export default function FinancialDashboardPage() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Please Sign In</CardTitle>
-          <CardDescription>You must be signed in to view your financial dashboard.</CardDescription>
+          <CardTitle>{t('signInPrompt.title')}</CardTitle>
+          <CardDescription>{t('signInPrompt.description')}</CardDescription>
         </CardHeader>
         <CardContent>
-            <Button asChild><Link href="/auth/signin">Sign In</Link></Button>
+            <Button asChild><Link href="/auth/signin">{t('signInPrompt.button')}</Link></Button>
         </CardContent>
       </Card>
     );
@@ -98,34 +99,34 @@ export default function FinancialDashboardPage() {
         <div>
             <h1 className="text-3xl font-bold flex items-center gap-2">
                 <DollarSign className="h-8 w-8 text-primary" />
-                Financials Dashboard
+                {t('title')}
             </h1>
-            <p className="text-muted-foreground">An overview of your farm's financial health.</p>
+            <p className="text-muted-foreground">{t('description')}</p>
         </div>
         <Button asChild>
-            <Link href="/farm-management/financials/log"><PlusCircle className="mr-2 h-4 w-4"/>Log New Transaction</Link>
+            <Link href="/farm-management/financials/log"><PlusCircle className="mr-2 h-4 w-4"/>{t('newTransactionButton')}</Link>
         </Button>
       </div>
       
       <div className="grid gap-4 md:grid-cols-3">
-        <StatCard title="Total Income" value={summary?.totalIncome ?? 0} icon={<ArrowUpCircle className="h-4 w-4 text-green-500" />} />
-        <StatCard title="Total Expense" value={summary?.totalExpense ?? 0} icon={<ArrowDownCircle className="h-4 w-4 text-red-500" />} />
-        <StatCard title="Net Flow" value={netFlow} icon={<Banknote className="h-4 w-4 text-blue-500" />} />
+        <StatCard title={t('totalIncome')} value={summary?.totalIncome ?? 0} icon={<ArrowUpCircle className="h-4 w-4 text-green-500" />} />
+        <StatCard title={t('totalExpense')} value={summary?.totalExpense ?? 0} icon={<ArrowDownCircle className="h-4 w-4 text-red-500" />} />
+        <StatCard title={t('netFlow')} value={netFlow} icon={<Banknote className="h-4 w-4 text-blue-500" />} />
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
-          <CardDescription>Your last 10 financial records.</CardDescription>
+          <CardTitle>{t('recentTransactions')}</CardTitle>
+          <CardDescription>{t('table.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead>{t('table.date')}</TableHead>
+                <TableHead>{t('table.description')}</TableHead>
+                <TableHead>{t('table.category')}</TableHead>
+                <TableHead className="text-right">{t('table.amount')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -142,7 +143,7 @@ export default function FinancialDashboardPage() {
                     ))
                 ) : (
                     <TableRow>
-                        <TableCell colSpan={4} className="text-center h-24">No transactions logged yet.</TableCell>
+                        <TableCell colSpan={4} className="text-center h-24">{t('noTransactions')}</TableCell>
                     </TableRow>
                 )}
             </TableBody>
