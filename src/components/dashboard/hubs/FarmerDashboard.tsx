@@ -5,13 +5,33 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client'; // Import the firebase app
-import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign, AlertCircle } from 'lucide-react';
-import { Button, ButtonProps } from '@/components/ui/button';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { Sprout, Home, FlaskConical, CalendarDays, Clock, PlusCircle, DollarSign, AlertCircle, ArrowUp, ArrowDown } from 'lucide-react';
+import { Button, type ButtonProps } from '@/components/ui/button';
 import Link from 'next/link';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
+
+
+const DashboardSkeleton = () => (
+    <div className="space-y-6">
+        <Skeleton className="h-9 w-64 mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Skeleton className="h-32 rounded-lg" />
+            <Skeleton className="h-32 rounded-lg" />
+            <Skeleton className="h-32 rounded-lg" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
+            <Skeleton className="h-36 rounded-lg" />
+        </div>
+        <Skeleton className="h-48 rounded-lg" />
+        <Skeleton className="h-48 rounded-lg" />
+    </div>
+);
 
 
 const StatCard = ({ title, value, icon, actionLink, actionLabel, unit, isCurrency = false, actionIcon, valueClassName, actionButtonVariant = "outline" }: { title: string, value: number, icon: React.ReactNode, actionLink: string, actionLabel: string, unit?: string, isCurrency?: boolean, actionIcon?: React.ReactNode, valueClassName?: string, actionButtonVariant?: ButtonProps["variant"] }) => (
@@ -111,6 +131,27 @@ export const FarmerDashboard = () => {
                 <StatCard title="KNF Batches" value={(knfBatches || []).length} icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/knf-inputs" actionLabel="Manage Inputs" actionIcon={<FlaskConical className="mr-2 h-4 w-4" />} />
                 <StatCard title="Net Financials" value={financialSummary?.netFlow || 0} icon={<DollarSign className="h-4 w-4 text-muted-foreground" />} actionLink="/farm-management/financials" actionLabel="View Financials" isCurrency={true} actionIcon={<DollarSign className="mr-2 h-4 w-4" />}/>
              </div>
+             {financialSummary && (
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-base flex items-center gap-2">
+                            Financial Overview
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className="flex items-center justify-between">
+                                <span className="text-muted-foreground flex items-center gap-1"><ArrowUp className="h-4 w-4 text-green-500" /> Total Income:</span>
+                                <span className="font-bold text-green-600">${financialSummary.totalIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                 <span className="text-muted-foreground flex items-center gap-1"><ArrowDown className="h-4 w-4 text-red-500" /> Total Expense:</span>
+                                <span className="font-bold text-red-600">${financialSummary.totalExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            )}
               <Card>
                 <CardHeader>
                     <CardTitle className="text-base flex items-center justify-between">
@@ -148,20 +189,6 @@ export const FarmerDashboard = () => {
                     )) : <p className="text-sm text-center text-muted-foreground py-4">No KNF batches started.</p>}
                 </CardContent>
             </Card>
-
         </div>
     );
 };
-
-const DashboardSkeleton = () => (
-    <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Skeleton className="h-36 rounded-lg" />
-            <Skeleton className="h-36 rounded-lg" />
-            <Skeleton className="h-36 rounded-lg" />
-            <Skeleton className="h-36 rounded-lg" />
-        </div>
-        <Skeleton className="h-48 rounded-lg" />
-        <Skeleton className="h-48 rounded-lg" />
-    </div>
-);

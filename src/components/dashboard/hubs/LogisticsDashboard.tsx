@@ -120,8 +120,9 @@ export const LogisticsDashboard = () => {
                     <CardContent className="space-y-2">
                        {(incomingJobs || []).length > 0 ? (
                            (incomingJobs || []).map(job => (
-                                <div key={job.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                                    <div>
+ <div key={job.id} className="flex items-center justify-between text-sm p-2 border rounded-lg">
+                                    <div className="flex items-center gap-3">
+ <Briefcase className="h-4 w-4 text-muted-foreground" />
                                         <p className="font-medium">{job.from} → {job.to}</p>
                                         <p className="text-xs text-muted-foreground">{job.product} ({job.requirements})</p>
                                     </div>

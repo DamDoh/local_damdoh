@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { TrendingUp, PackageCheck, ShoppingCart, Ticket } from 'lucide-react';
+import { TrendingUp, PackageCheck, ShoppingCart, Ticket, ArrowUpRight, ArrowDownRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { InputSupplierDashboardData } from '@/lib/types';
@@ -69,8 +69,12 @@ export const InputSupplierDashboard = () => {
                         <ShoppingCart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <div className="text-2xl font-bold">{activeOrders?.count || 0}</div>
-                        <p className="text-xs text-muted-foreground">${(activeOrders?.value || 0).toLocaleString()} {t('totalValue')}</p>
+                        <div className="text-3xl font-bold mb-1">{activeOrders?.count || 0}</div>
+                        <p className="text-sm text-muted-foreground">
+                            <span className="font-semibold">${(activeOrders?.value || 0).toLocaleString()}</span> {t('totalValue')}
+                        </p>
+                        {/* Placeholder for potential future visualization like a small trend line or breakdown */}
+                         <div className="h-8 w-full">{/* Chart placeholder */}</div>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
@@ -89,7 +93,14 @@ export const InputSupplierDashboard = () => {
                     <CardContent className="flex-grow space-y-2">
                        {(demandForecast || []).length > 0 ? (
                            (demandForecast || []).map(forecast => (
-                               <div key={forecast.id} className="text-sm p-2 bg-background rounded-md border">
+                               <div key={forecast.id} className="flex items-center text-sm p-2 bg-background rounded-md border">
+                                    {forecast.trend === 'High' && <ArrowUpRight className="h-4 w-4 text-green-500 mr-2" />}
+                                    {forecast.trend === 'Low' && <ArrowDownRight className="h-4 w-4 text-red-500 mr-2" />}
+                                    {forecast.trend !== 'High' && forecast.trend !== 'Low' && <TrendingUp className="h-4 w-4 text-muted-foreground mr-2 opacity-50" />}
+
+
+
+
                                    <p className="font-medium">{forecast.product} {t('in')} <span className="font-semibold">{forecast.region}</span>: <span className="text-green-600 font-bold">{forecast.trend}</span></p>
                                    <p className="text-xs text-muted-foreground">{forecast.reason}</p>
                                </div>
@@ -112,7 +123,13 @@ export const InputSupplierDashboard = () => {
                            (productPerformance || []).map(perf => (
                                 <div key={perf.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
                                     <div>
-                                        <p className="font-medium">{perf.productName} <Badge variant="secondary">{t('rating')}: {perf.rating}/5</Badge></p>
+                                        <p className="font-medium flex items-center">
+                                            {perf.productName}
+                                            <span className="ml-2 flex items-center text-yellow-500">
+                                                {[...Array(5)].map((_, i) => (
+                                                    <Star key={i} className={`h-4 w-4 ${i < perf.rating ? 'fill-current' : ''}`} />
+                                                ))}
+                                            </span></p>
                                         <p className="text-xs text-muted-foreground italic">"{perf.feedback}"</p>
                                     </div>
                                     <Button asChild variant="secondary" size="sm">
