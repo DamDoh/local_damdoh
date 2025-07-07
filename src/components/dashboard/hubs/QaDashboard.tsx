@@ -12,10 +12,12 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { CheckCircle, AlertTriangle, FileText } from 'lucide-react';
 import type { QaDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 export const QaDashboard = () => {
+  const t = useTranslations('QaDashboard');
   const [dashboardData, setDashboardData] = useState<QaDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,25 +70,25 @@ export const QaDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Quality Assurance Hub</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Pending Inspections */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/> Pending Inspections</CardTitle>
-             <CardDescription>Inspections requiring your attention.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4"/> {t('inspectionsTitle')}</CardTitle>
+             <CardDescription>{t('inspectionsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(pendingInspections || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Batch ID</TableHead>
-                     <TableHead>Product</TableHead>
-                     <TableHead>Seller</TableHead>
-                     <TableHead>Due Date</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.batchId')}</TableHead>
+                     <TableHead>{t('table.product')}</TableHead>
+                     <TableHead>{t('table.seller')}</TableHead>
+                     <TableHead>{t('table.dueDate')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -98,7 +100,7 @@ export const QaDashboard = () => {
                        <TableCell>{new Date(inspection.dueDate).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={inspection.actionLink}>Perform Inspection</Link>
+                           <Link href={inspection.actionLink}>{t('performInspectionButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -106,7 +108,7 @@ export const QaDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No pending inspections.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noPendingInspections')}</p>
              )}
            </CardContent>
          </Card>
@@ -114,18 +116,18 @@ export const QaDashboard = () => {
          {/* Recent Results */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/> Recent Quality Results</CardTitle>
-             <CardDescription>Recently reported quality and compliance issues.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500"/> {t('resultsTitle')}</CardTitle>
+             <CardDescription>{t('resultsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(recentResults || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Product</TableHead>
-                     <TableHead>Result</TableHead>
-                     <TableHead>Reason</TableHead>
-                     <TableHead>Inspected At</TableHead>
+                     <TableHead>{t('table.product')}</TableHead>
+                     <TableHead>{t('table.result')}</TableHead>
+                     <TableHead>{t('table.reason')}</TableHead>
+                     <TableHead>{t('table.inspectedAt')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -140,7 +142,7 @@ export const QaDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No recent quality issues reported.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noRecentIssues')}</p>
              )}
            </CardContent>
          </Card>
@@ -148,15 +150,15 @@ export const QaDashboard = () => {
           {/* Quality Metrics */}
          <Card className="col-span-1 md:col-span-2">
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Quality Metrics</CardTitle>
-                <CardDescription>Aggregated quality metrics.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/>{t('metricsTitle')}</CardTitle>
+                <CardDescription>{t('metricsDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
                 {qualityMetrics ? (
                     <div className="space-y-3">
                         <div className="text-sm">
                             <div className="flex justify-between items-center">
-                                <p className="font-medium">Overall Pass Rate</p>
+                                <p className="font-medium">{t('passRate')}</p>
                                 <Badge variant="secondary">{qualityMetrics.passRate}%</Badge>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700 mt-1">
@@ -164,11 +166,11 @@ export const QaDashboard = () => {
                             </div>
                         </div>
                         <div className="text-sm">
-                           <p>Average Score: {qualityMetrics.averageScore}</p>
+                           <p>{t('averageScore')}: {qualityMetrics.averageScore}</p>
                         </div>
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">No metrics available.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">{t('noMetrics')}</p>
                 )}
             </CardContent>
          </Card>

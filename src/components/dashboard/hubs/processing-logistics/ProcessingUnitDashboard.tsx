@@ -13,8 +13,10 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { ProcessingUnitDashboardData } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useTranslations } from 'next-intl';
 
 export const ProcessingUnitDashboard = () => {
+    const t = useTranslations('ProcessingUnitDashboard');
     const [dashboardData, setDashboardData] = useState<ProcessingUnitDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -59,24 +61,24 @@ export const ProcessingUnitDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Processing Unit Operations</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">AI Yield Optimization</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('yieldTitle')}</CardTitle>
                         <Sliders className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{yieldOptimization.currentYield}%</div>
-                        <p className="text-xs text-muted-foreground">Potential: {yieldOptimization.potentialYield}%</p>
+                        <p className="text-xs text-muted-foreground">{t('potential')}: {yieldOptimization.potentialYield}%</p>
                         <p className="text-xs mt-2">{yieldOptimization.suggestion}</p>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Waste Reduction Insight</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('wasteTitle')}</CardTitle>
                         <Trash2 className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -89,7 +91,7 @@ export const ProcessingUnitDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                             <Box className="h-4 w-4" />
-                            Packaging Inventory
+                            {t('packagingInventoryTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -97,17 +99,17 @@ export const ProcessingUnitDashboard = () => {
                            (packagingInventory || []).map((item, index) => (
                                <div key={index} className="text-sm p-2 bg-background rounded-md border">
                                    <p className="font-medium">{item.packagingType}</p>
-                                   <p className="text-xs">In Stock: {item.unitsInStock.toLocaleString()}</p>
-                                   <p className="text-xs text-muted-foreground">Reorder Level: {item.reorderLevel.toLocaleString()}</p>
+                                   <p className="text-xs">{t('inStock')}: {item.unitsInStock.toLocaleString()}</p>
+                                   <p className="text-xs text-muted-foreground">{t('reorderLevel')}: {item.reorderLevel.toLocaleString()}</p>
                                </div>
                            ))
                        ) : (
-                           <p className="text-sm text-muted-foreground text-center py-4">No packaging inventory tracked.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">{t('noPackagingData')}</p>
                        )}
                     </CardContent>
                      <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/marketplace?category=packaging-solutions">Source Packaging</Link>
+                            <Link href="/marketplace?category=packaging-solutions">{t('sourcePackagingButton')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -116,16 +118,16 @@ export const ProcessingUnitDashboard = () => {
                     <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                             <Package />
-                            Raw Material Inventory
+                            {t('rawMaterialTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Product</TableHead>
-                                    <TableHead>Quality</TableHead>
-                                    <TableHead className="text-right">Quantity (tons)</TableHead>
+                                    <TableHead>{t('table.product')}</TableHead>
+                                    <TableHead>{t('table.quality')}</TableHead>
+                                    <TableHead className="text-right">{t('table.quantity')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -138,7 +140,7 @@ export const ProcessingUnitDashboard = () => {
                                         </TableRow>
                                     ))
                                 ) : (
-                                    <TableRow><TableCell colSpan={3} className="text-center h-24">No inventory data available.</TableCell></TableRow>
+                                    <TableRow><TableCell colSpan={3} className="text-center h-24">{t('noInventoryData')}</TableCell></TableRow>
                                 )}
                             </TableBody>
                         </Table>
@@ -149,17 +151,17 @@ export const ProcessingUnitDashboard = () => {
                     <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                             <Truck />
-                           Packaging Orders
+                           {t('packagingOrdersTitle')}
                         </CardTitle>
                     </CardHeader>
                      <CardContent>
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Supplier</TableHead>
-                                    <TableHead>Delivery Date</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead className="text-right">Action</TableHead>
+                                    <TableHead>{t('table.supplier')}</TableHead>
+                                    <TableHead>{t('table.deliveryDate')}</TableHead>
+                                    <TableHead>{t('table.status')}</TableHead>
+                                    <TableHead className="text-right">{t('table.action')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -171,13 +173,13 @@ export const ProcessingUnitDashboard = () => {
                                             <TableCell><Badge variant={order.status === 'Pending' ? 'secondary' : 'default'}>{order.status}</Badge></TableCell>
                                             <TableCell className="text-right">
                                                 <Button asChild variant="ghost" size="sm">
-                                                    <Link href={order.actionLink}>View</Link>
+                                                    <Link href={order.actionLink}>{t('viewButton')}</Link>
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
                                     ))
                                 ) : (
-                                     <TableRow><TableCell colSpan={4} className="text-center h-24">No packaging orders found.</TableCell></TableRow>
+                                     <TableRow><TableCell colSpan={4} className="text-center h-24">{t('noPackagingOrders')}</TableCell></TableRow>
                                 )}
                             </TableBody>
                         </Table>

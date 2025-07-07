@@ -11,8 +11,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { RegulatorDashboardData } from "@/lib/types";
+import { useTranslations } from 'next-intl';
 
 export const RegulatorDashboard = () => {
+    const t = useTranslations('RegulatorDashboard');
     const [dashboardData, setDashboardData] = useState<RegulatorDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -69,21 +71,21 @@ export const RegulatorDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Regulatory Oversight Panel</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <Card className="flex flex-col">
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Pending Certifications</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('pendingCertificationsTitle')}</CardTitle>
                         <BadgeCheck className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex-grow">
                         <div className="text-2xl font-bold">{pendingCertifications?.count || 0}</div>
-                        <p className="text-xs text-muted-foreground">reviews outstanding</p>
+                        <p className="text-xs text-muted-foreground">{t('reviewsOutstanding')}</p>
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="secondary" size="sm" className="w-full">
-                            <Link href={pendingCertifications?.actionLink || '#'}>Review All</Link>
+                            <Link href={pendingCertifications?.actionLink || '#'}>{t('reviewAllButton')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -92,7 +94,7 @@ export const RegulatorDashboard = () => {
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <AlertTriangle className="h-4 w-4 text-red-500" />
-                           Compliance Risk Alerts
+                           {t('riskAlertsTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
@@ -104,11 +106,11 @@ export const RegulatorDashboard = () => {
                                    <p className="text-xs text-muted-foreground">{alert.region}</p>
                                </div>
                                 <Button asChild variant="ghost" size="sm">
-                                    <Link href={alert.actionLink}>Investigate</Link>
+                                    <Link href={alert.actionLink}>{t('investigateButton')}</Link>
                                 </Button>
                            </div>
                        ))}
-                       {(complianceRiskAlerts || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">No active compliance alerts.</p>}
+                       {(complianceRiskAlerts || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">{t('noComplianceAlerts')}</p>}
                     </CardContent>
                 </Card>
                 
@@ -116,7 +118,7 @@ export const RegulatorDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                             <Zap className="h-4 w-4 text-amber-500" />
-                            Live Supply Chain Anomalies
+                            {t('anomaliesTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -129,12 +131,12 @@ export const RegulatorDashboard = () => {
                                <Button asChild variant="secondary" size="sm">
                                    <Link href={anomaly.vtiLink}>
                                        <ExternalLink className="h-3 w-3 mr-1.5" />
-                                       Track VTI
+                                       {t('trackVtiButton')}
                                     </Link>
                                </Button>
                            </div>
                        ))}
-                       {(supplyChainAnomalies || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">No anomalies detected.</p>}
+                       {(supplyChainAnomalies || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">{t('noAnomalies')}</p>}
                     </CardContent>
                 </Card>
 
