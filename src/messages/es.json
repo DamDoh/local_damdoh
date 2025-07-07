@@ -1,5 +1,42 @@
 
 {
+  "AppHeader": {
+    "home": "Inicio",
+    "network": "Red",
+    "farmMgmt": "Gestión Agrícola",
+    "marketplace": "Mercado",
+    "talentExchange": "Talento",
+    "traceability": "Trazabilidad",
+    "forums": "Foros",
+    "notifications": "Notificaciones",
+    "messages": "Mensajes",
+    "wallet": "Billetera",
+    "searchPlaceholder": "Buscar personas, productos, servicios...",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "settings": "Configuración",
+    "helpCenter": "Centro de Ayuda",
+    "logOut": "Cerrar Sesión"
+  },
+  "AppFooter": {
+    "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre Nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de Ayuda",
+    "communityGuidelinesLabel": "Directrices de la Comunidad",
+    "industryNewsLabel": "Noticias de la Industria",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Intercambio de Talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de Privacidad",
+    "termsOfServiceLabel": "Términos de Servicio",
+    "copyright": "© {year} DamDoh. Todos los Derechos Reservados."
+  },
   "about": {
     "title": "Sobre Nosotros",
     "subtitle": "Conectando la agricultura global, un enlace a la vez.",

@@ -16,7 +16,7 @@ import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { APP_NAME } from '@/lib/constants';
 import { Card, CardContent } from '../ui/card';
-import { performSearch } from '@/lib/db-utils';
+import { performSearch } from '@/lib/server-actions';
 import { QrScanner } from '../QrScanner';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from '@/lib/firebase/client';
