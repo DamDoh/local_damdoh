@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Home",
@@ -215,5 +216,68 @@
         "replyError": "Could not submit your reply. Please try again."
       }
     }
+  },
+  "networkPage": {
+    "title": "Grow Your Network",
+    "description": "Connect with farmers, buyers, experts, and organizations to expand your reach.",
+    "refreshSuggestions": "Refresh Suggestions",
+    "searchPlaceholder": "Search by name or keyword...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role",
+    "allRoles": "All Roles",
+    "interestPlaceholder": "Filter by interest",
+    "allInterests": "All Interests",
+    "noStakeholdersFound": "No stakeholders found matching your criteria.",
+    "noStakeholdersHint": "Try adjusting your search filters or browse all stakeholders.",
+    "connect": "Connect",
+    "profile": "Profile"
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network Discovery",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "The people and organizations in your professional network.",
+    "noConnections": "You haven't made any connections yet.",
+    "requestsTitle": "Pending Requests",
+    "requestsDescription": "People who want to connect with you.",
+    "sentTimeAgo": "Sent {timeAgo}",
+    "noRequests": "You have no pending connection requests."
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "title": "Agent Toolkit",
+    "description": "Securely look up users to provide assistance or perform authorized actions.",
+    "findUserLabel": "Find User by Phone Number",
+    "findButton": "Find",
+    "resultsTitle": "Result",
+    "resultsPlaceholder": "Search results will appear here.",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to access this page.",
+    "phoneRequiredError": "Please enter a phone number."
+  },
+  "ProfilePage": {
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "Could not find the requested profile.",
+    "backToNetwork": "Back to Network",
+    "editProfile": "Edit Profile",
+    "showUniversalIdButton": "Show Universal ID",
+    "connect": "Connect",
+    "message": "Message",
+    "summaryTitle": "Summary",
+    "aboutTitle": "About {displayName}",
+    "experienceTitle": "Experience",
+    "emailTitle": "Email",
+    "websiteTitle": "Website",
+    "interestsTitle": "Areas of Interest",
+    "needsTitle": "Needs & Offerings",
+    "detailsTitle": "Details",
+    "roleSpecificInfo": "Role-specific information will be displayed here in a more structured format.",
+    "tempDisplayNotice": "(This is a temporary display of raw data for development purposes).",
+    "recentActivityTitle": "Recent Activity",
+    "recentActivityDescription": "Latest actions and contributions on the {appName} platform.",
+    "noRecentActivity": "No recent activity to show.",
+    "universalIdModalTitle": "Your Universal ID",
+    "universalIdModalDescription": "Share this QR code with others in person to securely share your public profile."
   }
 }

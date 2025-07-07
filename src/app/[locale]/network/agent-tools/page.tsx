@@ -18,8 +18,10 @@ import type { UserProfile } from '@/lib/types';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
+import { useTranslations } from 'next-intl';
 
 export default function AgentToolsPage() {
+    const t = useTranslations('agentToolsPage');
     const { user: authUser, loading: authLoading } = useAuth();
     const { profile: agentProfile, loading: profileLoading } = useUserProfile();
     const { toast } = useToast();
@@ -35,7 +37,7 @@ export default function AgentToolsPage() {
     const handleLookup = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!phoneNumber.trim()) {
-            setSearchError("Please enter a phone number.");
+            setSearchError(t('phoneRequiredError'));
             return;
         }
         setIsLoading(true);
@@ -72,12 +74,12 @@ export default function AgentToolsPage() {
         return (
              <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><ShieldAlert className="h-5 w-5 text-destructive" /> Access Denied</CardTitle>
-                    <CardDescription>You do not have the required permissions to access this page.</CardDescription>
+                    <CardTitle className="flex items-center gap-2"><ShieldAlert className="h-5 w-5 text-destructive" />{t('accessDeniedTitle')}</CardTitle>
+                    <CardDescription>{t('accessDeniedDescription')}</CardDescription>
                 </CardHeader>
                  <CardContent>
                      <Button asChild variant="outline">
-                        <Link href="/network"><ArrowLeft className="h-4 w-4 mr-2"/>Back to Network</Link>
+                        <Link href="/network"><ArrowLeft className="h-4 w-4 mr-2"/>{t('backLink')}</Link>
                     </Button>
                 </CardContent>
             </Card>
@@ -87,18 +89,18 @@ export default function AgentToolsPage() {
     return (
         <div className="space-y-6">
             <Link href="/network" className="inline-flex items-center text-sm text-primary hover:underline">
-                <ArrowLeft className="mr-1 h-4 w-4" /> Back to Network
+                <ArrowLeft className="mr-1 h-4 w-4" /> {t('backLink')}
             </Link>
 
             <Card className="max-w-2xl mx-auto">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Agent Toolkit</CardTitle>
-                    <CardDescription>Securely look up users to provide assistance or perform authorized actions.</CardDescription>
+                    <CardTitle className="text-2xl">{t('title')}</CardTitle>
+                    <CardDescription>{t('description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleLookup} className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="phone-lookup" className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground"/>Find User by Phone Number</Label>
+                            <Label htmlFor="phone-lookup" className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground"/>{t('findUserLabel')}</Label>
                             <div className="flex gap-2">
                                 <Input
                                     id="phone-lookup"
@@ -111,14 +113,14 @@ export default function AgentToolsPage() {
                                 />
                                 <Button type="submit" disabled={isLoading || !phoneNumber.trim()}>
                                     {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Search className="mr-2 h-4 w-4" />}
-                                    Find
+                                    {t('findButton')}
                                 </Button>
                             </div>
                         </div>
                     </form>
                     
                     <div className="mt-6">
-                        <h3 className="text-lg font-medium mb-2">Result</h3>
+                        <h3 className="text-lg font-medium mb-2">{t('resultsTitle')}</h3>
                         {isLoading ? (
                             <div className="p-4 border rounded-lg flex items-center gap-4">
                                 <Skeleton className="h-16 w-16 rounded-full" />
@@ -141,7 +143,7 @@ export default function AgentToolsPage() {
                                         <AvatarFallback>{foundUser.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <Link href={`/profiles/${foundUser.uid}`} className="hover:underline">
+                                        <Link href={`/profiles/${foundUser.id}`} className="hover:underline">
                                            <h4 className="font-semibold">{foundUser.displayName}</h4>
                                         </Link>
                                         <div className="text-sm text-muted-foreground flex items-center gap-2">
@@ -154,7 +156,7 @@ export default function AgentToolsPage() {
                             </Card>
                         ) : (
                            <div className="p-4 border-2 border-dashed rounded-lg text-center text-muted-foreground">
-                                <p>Search results will appear here.</p>
+                                <p>{t('resultsPlaceholder')}</p>
                             </div>
                         )}
                     </div>

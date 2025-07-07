@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "ទំព័រដើម",
@@ -215,5 +216,68 @@
         "replyError": "មិនអាចបញ្ជូនការឆ្លើយតបរបស់អ្នកបានទេ។ សូម​ព្យាយាម​ម្តង​ទៀត។"
       }
     }
+  },
+   "networkPage": {
+    "title": "ពង្រីកបណ្តាញរបស់អ្នក",
+    "description": "ភ្ជាប់ទំនាក់ទំនងជាមួយកសិករ អ្នកទិញ អ្នកជំនាញ និងអង្គការនានា ដើម្បីពង្រីកវិសាលភាពរបស់អ្នក។",
+    "refreshSuggestions": "ធ្វើបច្ចុប្បន្នភាពការណែនាំ",
+    "searchPlaceholder": "ស្វែងរកតាមឈ្មោះ ឬពាក្យគន្លឹះ...",
+    "locationPlaceholder": "ត្រងតាមទីតាំង...",
+    "rolePlaceholder": "ត្រងតាមតួនាទី",
+    "allRoles": "គ្រប់តួនាទី",
+    "interestPlaceholder": "ត្រងតាមចំណាប់អារម្មណ៍",
+    "allInterests": "គ្រប់ចំណាប់អារម្មណ៍",
+    "noStakeholdersFound": "រកមិនឃើញភាគីពាក់ព័ន្ធដែលត្រូវនឹងលក្ខណៈវិនិច្ឆ័យរបស់អ្នកទេ។",
+    "noStakeholdersHint": "ព្យាយាមកែសម្រួលតម្រងស្វែងរករបស់អ្នក ឬរកមើលភាគីពាក់ព័ន្ធទាំងអស់។",
+    "connect": "ភ្ជាប់",
+    "profile": "ប្រវត្តិរូប"
+  },
+  "myNetworkPage": {
+    "backLink": "ត្រឡប់ទៅការស្វែងរកបណ្តាញ",
+    "myConnectionsTab": "ការតភ្ជាប់របស់ខ្ញុំ ({count})",
+    "pendingRequestsTab": "សំណើដែលមិនទាន់សម្រេច",
+    "connectionsTitle": "ការតភ្ជាប់របស់ខ្ញុំ",
+    "connectionsDescription": "មនុស្ស និងអង្គការនៅក្នុងបណ្តាញអាជីពរបស់អ្នក។",
+    "noConnections": "អ្នកមិនទាន់បានធ្វើការតភ្ជាប់ណាមួយនៅឡើយទេ។",
+    "requestsTitle": "សំណើដែលមិនទាន់សម្រេច",
+    "requestsDescription": "អ្នកដែលចង់ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នក។",
+    "sentTimeAgo": "បានផ្ញើ {timeAgo}",
+    "noRequests": "អ្នកមិនមានសំណើការតភ្ជាប់ដែលមិនទាន់សម្រេចទេ។"
+  },
+  "agentToolsPage": {
+    "backLink": "ត្រឡប់ទៅបណ្តាញ",
+    "title": "ឧបករណ៍សម្រាប់ភ្នាក់ងារ",
+    "description": "ស្វែងរកអ្នកប្រើប្រាស់ដោយសុវត្ថិភាពដើម្បីផ្តល់ជំនួយ ឬអនុវត្តសកម្មភាពដែលបានអនុញ្ញាត។",
+    "findUserLabel": "ស្វែងរកអ្នកប្រើប្រាស់តាមលេខទូរស័ព្ទ",
+    "findButton": "ស្វែងរក",
+    "resultsTitle": "លទ្ធផល",
+    "resultsPlaceholder": "លទ្ធផលស្វែងរកនឹងបង្ហាញនៅទីនេះ។",
+    "accessDeniedTitle": "ការចូលប្រើត្រូវបានបដិសេធ",
+    "accessDeniedDescription": "អ្នកមិនមានសិទ្ធិចូលប្រើទំព័រនេះទេ។",
+    "phoneRequiredError": "សូមបញ្ចូលលេខទូរស័ព្ទ។"
+  },
+  "ProfilePage": {
+    "notFoundTitle": "រកមិនឃើញប្រវត្តិរូប",
+    "notFoundDescription": "មិនអាចរកឃើញប្រវត្តិរូបដែលបានស្នើសុំទេ។",
+    "backToNetwork": "ត្រឡប់ទៅបណ្តាញវិញ",
+    "editProfile": "កែសម្រួលប្រវត្តិរូប",
+    "showUniversalIdButton": "បង្ហាញ ID សកល",
+    "connect": "ភ្ជាប់",
+    "message": "សារ",
+    "summaryTitle": "សេចក្តីសង្ខេប",
+    "aboutTitle": "អំពី {displayName}",
+    "experienceTitle": "បទពិសោធន៍",
+    "emailTitle": "អ៊ីមែល",
+    "websiteTitle": "គេហទំព័រ",
+    "interestsTitle": "ផ្នែកដែលចាប់អារម្មណ៍",
+    "needsTitle": "តម្រូវការ និងការផ្តល់ជូន",
+    "detailsTitle": "ព័ត៌មានលម្អិត",
+    "roleSpecificInfo": "ព័ត៌មានជាក់លាក់តាមតួនាទីនឹងត្រូវបានបង្ហាញនៅទីនេះក្នុងទម្រង់ដែលមានរចនាសម្ព័ន្ធកាន់តែប្រសើរ។",
+    "tempDisplayNotice": "(នេះគឺជាការបង្ហាញបណ្តោះអាសន្ននៃទិន្នន័យដើមសម្រាប់គោលបំណងអភិវឌ្ឍន៍)។",
+    "recentActivityTitle": "សកម្មភាពថ្មីៗ",
+    "recentActivityDescription": "សកម្មភាព និងការចូលរួមថ្មីៗនៅលើវេទិកា {appName}។",
+    "noRecentActivity": "មិនមានសកម្មភាពថ្មីៗដើម្បីបង្ហាញទេ។",
+    "universalIdModalTitle": "ID សកលរបស់អ្នក",
+    "universalIdModalDescription": "ចែករំលែក QR code នេះជាមួយអ្នកដទៃដោយផ្ទាល់ ដើម្បីចែករំលែកប្រវត្តិរូបសាធារណៈរបស់អ្នកដោយសុវត្ថិភាព។"
   }
 }

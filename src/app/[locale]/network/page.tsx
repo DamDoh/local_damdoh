@@ -95,7 +95,7 @@ export default function NetworkPage() {
     }
   };
 
-  const filteredConnections = useMemo(() => {
+  const filteredProfiles = useMemo(() => {
     if (!Array.isArray(profiles)) return [];
 
     return profiles.filter(profile => {
@@ -203,7 +203,7 @@ export default function NetworkPage() {
             {isLoading ? (
               Array.from({ length: 6 }).map((_, i) => <ProfileCardSkeleton key={i} />)
             ) : (
-                filteredConnections.length > 0 ? filteredConnections.map(profile => (
+                filteredProfiles.length > 0 ? filteredProfiles.map(profile => (
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
@@ -227,7 +227,7 @@ export default function NetworkPage() {
                             {t('connect')}
                         </Button>
                         <Button variant="outline" className="w-full sm:flex-1" asChild>
-                            <Link href={`/profiles/${profile.id}`}><User className="mr-2 h-4 w-4" />Profile</Link>
+                            <Link href={`/profiles/${profile.id}`}><User className="mr-2 h-4 w-4" />{t('profile')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>

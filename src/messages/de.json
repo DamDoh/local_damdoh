@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Startseite",
@@ -215,5 +216,68 @@
         "replyError": "Ihre Antwort konnte nicht übermittelt werden. Bitte versuchen Sie es erneut."
       }
     }
+  },
+   "networkPage": {
+    "title": "Erweitern Sie Ihr Netzwerk",
+    "description": "Vernetzen Sie sich mit Landwirten, Käufern, Experten und Organisationen, um Ihre Reichweite zu vergrößern.",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "searchPlaceholder": "Suche nach Name oder Stichwort...",
+    "locationPlaceholder": "Nach Ort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern",
+    "allRoles": "Alle Rollen",
+    "interestPlaceholder": "Nach Interesse filtern",
+    "allInterests": "Alle Interessen",
+    "noStakeholdersFound": "Keine Stakeholder gefunden, die Ihren Kriterien entsprechen.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter anzupassen oder durchsuchen Sie alle Stakeholder.",
+    "connect": "Verbinden",
+    "profile": "Profil"
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zur Netzwerk-Entdeckung",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Die Personen und Organisationen in Ihrem beruflichen Netzwerk.",
+    "noConnections": "Sie haben noch keine Verbindungen hergestellt.",
+    "requestsTitle": "Ausstehende Anfragen",
+    "requestsDescription": "Personen, die sich mit Ihnen verbinden möchten.",
+    "sentTimeAgo": "Gesendet {timeAgo}",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen."
+  },
+  "agentToolsPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "title": "Agenten-Werkzeuge",
+    "description": "Suchen Sie Benutzer sicher, um Unterstützung zu leisten oder autorisierte Aktionen durchzuführen.",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "findButton": "Suchen",
+    "resultsTitle": "Ergebnis",
+    "resultsPlaceholder": "Suchergebnisse werden hier angezeigt.",
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um auf diese Seite zuzugreifen.",
+    "phoneRequiredError": "Bitte geben Sie eine Telefonnummer ein."
+  },
+  "ProfilePage": {
+    "notFoundTitle": "Profil nicht gefunden",
+    "notFoundDescription": "Das angeforderte Profil konnte nicht gefunden werden.",
+    "backToNetwork": "Zurück zum Netzwerk",
+    "editProfile": "Profil bearbeiten",
+    "showUniversalIdButton": "Universal-ID anzeigen",
+    "connect": "Verbinden",
+    "message": "Nachricht",
+    "summaryTitle": "Zusammenfassung",
+    "aboutTitle": "Über {displayName}",
+    "experienceTitle": "Erfahrung",
+    "emailTitle": "E-Mail",
+    "websiteTitle": "Webseite",
+    "interestsTitle": "Interessensgebiete",
+    "needsTitle": "Bedarf & Angebote",
+    "detailsTitle": "Details",
+    "roleSpecificInfo": "Rollenspezifische Informationen werden hier in einem strukturierteren Format angezeigt.",
+    "tempDisplayNotice": "(Dies ist eine temporäre Anzeige von Rohdaten zu Entwicklungszwecken).",
+    "recentActivityTitle": "Letzte Aktivität",
+    "recentActivityDescription": "Neueste Aktionen und Beiträge auf der DamDoh-Plattform.",
+    "noRecentActivity": "Keine kürzlichen Aktivitäten zum Anzeigen.",
+    "universalIdModalTitle": "Ihre Universal-ID",
+    "universalIdModalDescription": "Teilen Sie diesen QR-Code persönlich mit anderen, um Ihr öffentliches Profil sicher zu teilen."
   }
 }

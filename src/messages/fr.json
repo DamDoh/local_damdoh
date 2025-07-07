@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Accueil",
@@ -215,5 +216,68 @@
         "replyError": "Impossible de soumettre votre réponse. Veuillez réessayer."
       }
     }
+  },
+   "networkPage": {
+    "title": "Développez votre réseau",
+    "description": "Connectez-vous avec des agriculteurs, des acheteurs, des experts et des organisations pour étendre votre portée.",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "searchPlaceholder": "Rechercher par nom ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle",
+    "allRoles": "Tous les rôles",
+    "interestPlaceholder": "Filtrer par intérêt",
+    "allInterests": "Tous les intérêts",
+    "noStakeholdersFound": "Aucun acteur trouvé correspondant à vos critères.",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche ou parcourez tous les acteurs.",
+    "connect": "Connecter",
+    "profile": "Profil"
+  },
+  "myNetworkPage": {
+    "backLink": "Retour à la découverte du réseau",
+    "myConnectionsTab": "Mes connexions ({count})",
+    "pendingRequestsTab": "Demandes en attente",
+    "connectionsTitle": "Mes connexions",
+    "connectionsDescription": "Les personnes et organisations de votre réseau professionnel.",
+    "noConnections": "Vous n'avez pas encore établi de connexions.",
+    "requestsTitle": "Demandes en attente",
+    "requestsDescription": "Personnes qui souhaitent se connecter avec vous.",
+    "sentTimeAgo": "Envoyé {timeAgo}",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente."
+  },
+  "agentToolsPage": {
+    "backLink": "Retour au réseau",
+    "title": "Boîte à outils de l'agent",
+    "description": "Recherchez des utilisateurs en toute sécurité pour fournir une assistance ou effectuer des actions autorisées.",
+    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
+    "findButton": "Trouver",
+    "resultsTitle": "Résultat",
+    "resultsPlaceholder": "Les résultats de la recherche apparaîtront ici.",
+    "accessDeniedTitle": "Accès refusé",
+    "accessDeniedDescription": "Vous ne disposez pas des autorisations requises pour accéder à cette page.",
+    "phoneRequiredError": "Veuillez entrer un numéro de téléphone."
+  },
+  "ProfilePage": {
+    "notFoundTitle": "Profil non trouvé",
+    "notFoundDescription": "Le profil demandé n'a pas pu être trouvé.",
+    "backToNetwork": "Retour au réseau",
+    "editProfile": "Modifier le profil",
+    "showUniversalIdButton": "Afficher l'ID universel",
+    "connect": "Connecter",
+    "message": "Message",
+    "summaryTitle": "Résumé",
+    "aboutTitle": "À propos de {displayName}",
+    "experienceTitle": "Expérience",
+    "emailTitle": "E-mail",
+    "websiteTitle": "Site Web",
+    "interestsTitle": "Domaines d'intérêt",
+    "needsTitle": "Besoins et offres",
+    "detailsTitle": "Détails",
+    "roleSpecificInfo": "Des informations spécifiques au rôle seront affichées ici dans un format plus structuré.",
+    "tempDisplayNotice": "(Ceci est un affichage temporaire de données brutes à des fins de développement).",
+    "recentActivityTitle": "Activité récente",
+    "recentActivityDescription": "Dernières actions et contributions sur la plateforme {appName}.",
+    "noRecentActivity": "Aucune activité récente à afficher.",
+    "universalIdModalTitle": "Votre ID universel",
+    "universalIdModalDescription": "Partagez ce code QR avec d'autres personnes en personne pour partager votre profil public en toute sécurité."
   }
 }

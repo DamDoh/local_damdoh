@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Inicio",
@@ -215,5 +216,68 @@
         "replyError": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
       }
     }
+  },
+  "networkPage": {
+    "title": "Expande tu Red",
+    "description": "Conéctate con agricultores, compradores, expertos y organizaciones para ampliar tu alcance.",
+    "refreshSuggestions": "Actualizar Sugerencias",
+    "searchPlaceholder": "Buscar por nombre o palabra clave...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "rolePlaceholder": "Filtrar por rol",
+    "allRoles": "Todos los roles",
+    "interestPlaceholder": "Filtrar por interés",
+    "allInterests": "Todos los intereses",
+    "noStakeholdersFound": "No se encontraron partes interesadas que coincidan con tus criterios.",
+    "noStakeholdersHint": "Intenta ajustar tus filtros de búsqueda o explora todas las partes interesadas.",
+    "connect": "Conectar",
+    "profile": "Perfil"
+  },
+  "myNetworkPage": {
+    "backLink": "Volver a Descubrir Red",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Las personas y organizaciones en tu red profesional.",
+    "noConnections": "Aún no has hecho ninguna conexión.",
+    "requestsTitle": "Solicitudes Pendientes",
+    "requestsDescription": "Personas que quieren conectar contigo.",
+    "sentTimeAgo": "Enviado {timeAgo}",
+    "noRequests": "No tienes solicitudes de conexión pendientes."
+  },
+  "agentToolsPage": {
+    "backLink": "Volver a la Red",
+    "title": "Herramientas de Agente",
+    "description": "Busca usuarios de forma segura para proporcionar asistencia o realizar acciones autorizadas.",
+    "findUserLabel": "Buscar Usuario por Número de Teléfono",
+    "findButton": "Buscar",
+    "resultsTitle": "Resultado",
+    "resultsPlaceholder": "Los resultados de la búsqueda aparecerán aquí.",
+    "accessDeniedTitle": "Acceso Denegado",
+    "accessDeniedDescription": "No tienes los permisos necesarios para acceder a esta página.",
+    "phoneRequiredError": "Por favor, introduce un número de teléfono."
+  },
+  "ProfilePage": {
+    "notFoundTitle": "Perfil no Encontrado",
+    "notFoundDescription": "No se pudo encontrar el perfil solicitado.",
+    "backToNetwork": "Volver a la Red",
+    "editProfile": "Editar Perfil",
+    "showUniversalIdButton": "Mostrar ID Universal",
+    "connect": "Conectar",
+    "message": "Mensaje",
+    "summaryTitle": "Resumen",
+    "aboutTitle": "Acerca de {displayName}",
+    "experienceTitle": "Experiencia",
+    "emailTitle": "Correo Electrónico",
+    "websiteTitle": "Sitio Web",
+    "interestsTitle": "Áreas de Interés",
+    "needsTitle": "Necesidades y Ofertas",
+    "detailsTitle": "Detalles",
+    "roleSpecificInfo": "La información específica del rol se mostrará aquí en un formato más estructurado.",
+    "tempDisplayNotice": "(Esta es una visualización temporal de datos brutos para fines de desarrollo).",
+    "recentActivityTitle": "Actividad Reciente",
+    "recentActivityDescription": "Últimas acciones y contribuciones en la plataforma {appName}.",
+    "noRecentActivity": "No hay actividad reciente para mostrar.",
+    "universalIdModalTitle": "Tu ID Universal",
+    "universalIdModalDescription": "Comparte este código QR con otros en persona para compartir de forma segura tu perfil público."
   }
 }

@@ -234,7 +234,7 @@ export default function ProfileDetailPage() {
           
           {profile.bio && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />{t('aboutTitle')}</h3>
+              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />{t('aboutTitle', {displayName: profile.displayName})}</h3>
               <p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p>
             </div>
           )}
@@ -249,12 +249,12 @@ export default function ProfileDetailPage() {
                 </div>
               </div>
             )}
-             {profile.contactInfo?.email && (
+             {profile.email && (
               <div className="flex items-start gap-3">
                 <MessageSquare className="h-5 w-5 mt-1 text-primary" />
                 <div>
                   <h4 className="font-semibold">{t('emailTitle')}</h4>
-                  <a href={`mailto:${profile.contactInfo.email}`} className="text-muted-foreground hover:underline">{profile.contactInfo.email}</a>
+                  <a href={`mailto:${profile.email}`} className="text-muted-foreground hover:underline">{profile.email}</a>
                 </div>
               </div>
             )}

@@ -17,8 +17,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatDistanceToNow } from 'date-fns';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from 'next-intl';
 
 export default function MyNetworkPage() {
+    const t = useTranslations('myNetworkPage');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const [requests, setRequests] = useState<ConnectionRequest[]>([]);
@@ -106,22 +108,22 @@ export default function MyNetworkPage() {
         <div className="container mx-auto max-w-4xl py-8">
             <Link href="/network" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back to Network Discovery
+                {t('backLink')}
             </Link>
 
             <Tabs defaultValue="connections" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="connections">My Connections ({connections.length})</TabsTrigger>
+                    <TabsTrigger value="connections">{t('myConnectionsTab', { count: connections.length })}</TabsTrigger>
                     <TabsTrigger value="requests">
-                        Pending Requests 
+                        {t('pendingRequestsTab')}
                         {requests.length > 0 && <Badge className="ml-2">{requests.length}</Badge>}
                     </TabsTrigger>
                 </TabsList>
                 <TabsContent value="connections" className="mt-4">
                     <Card>
                         <CardHeader>
-                            <CardTitle>My Connections</CardTitle>
-                            <CardDescription>The people and organizations in your professional network.</CardDescription>
+                            <CardTitle>{t('connectionsTitle')}</CardTitle>
+                            <CardDescription>{t('connectionsDescription')}</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -146,7 +148,7 @@ export default function MyNetworkPage() {
                                             {isResponding === conn.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <UserMinus className="h-4 w-4"/>}
                                         </Button>
                                     </div>
-                                )) : <p className="text-center text-muted-foreground py-8">You haven't made any connections yet.</p>}
+                                )) : <p className="text-center text-muted-foreground py-8">{t('noConnections')}</p>}
                             </div>
                         </CardContent>
                     </Card>
@@ -154,8 +156,8 @@ export default function MyNetworkPage() {
                 <TabsContent value="requests" className="mt-4">
                      <Card>
                         <CardHeader>
-                            <CardTitle>Pending Requests</CardTitle>
-                            <CardDescription>People who want to connect with you.</CardDescription>
+                            <CardTitle>{t('requestsTitle')}</CardTitle>
+                            <CardDescription>{t('requestsDescription')}</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-3">
@@ -171,7 +173,7 @@ export default function MyNetworkPage() {
                                                     <p className="font-semibold truncate">{req.requester.displayName}</p>
                                                 </Link>
                                                 <p className="text-xs text-muted-foreground truncate">{req.requester.primaryRole}</p>
-                                                <p className="text-xs text-muted-foreground">Sent {formatDistanceToNow(new Date(req.createdAt), { addSuffix: true })}</p>
+                                                <p className="text-xs text-muted-foreground">{t('sentTimeAgo', { timeAgo: formatDistanceToNow(new Date(req.createdAt), { addSuffix: true }) })}</p>
                                             </div>
                                         </div>
                                         <div className="flex gap-2 self-end sm:self-center">
@@ -181,7 +183,7 @@ export default function MyNetworkPage() {
                                             </Button>
                                         </div>
                                     </div>
-                                )) : <p className="text-center text-muted-foreground py-8">You have no pending connection requests.</p>}
+                                )) : <p className="text-center text-muted-foreground py-8">{t('noRequests')}</p>}
                             </div>
                         </CardContent>
                     </Card>
