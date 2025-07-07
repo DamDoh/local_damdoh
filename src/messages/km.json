@@ -253,6 +253,11 @@
       "title": "រកមិនឃើញធាតុទេ។",
       "hint": "ព្យាយាមកែសម្រួលតម្រង ឬពាក្យស្វែងរករបស់អ្នក។"
     },
+    "categories": {
+      "allCategories": "គ្រប់ប្រភេទ",
+      "viewAllItems": "មើលគ្រប់មុខទំនិញ",
+      "viewAllCategory": "មើលទាំងអស់ក្នុង {categoryName}"
+    },
     "pinning": {
       "pinnedTitle": "បានខ្ទាស់ផ្សារ!",
       "pinnedDescription": "ផ្សារឥឡូវនេះគឺជាទំព័រដើមលំនាំដើមរបស់អ្នកហើយ។",
@@ -807,4 +812,3 @@
   },
   "Homepage": {}
 }
-

@@ -118,7 +118,7 @@
       "subtitle": "DamDoh provides tailored tools and connections for every stage of the agricultural value chain.",
       "networking": {
         "title": "Intelligent Networking",
-        "description": "Connect with the right partners, from local suppliers to international buyers, based on your specific needs and role."
+        "description": "Connect with the right partners, from local suppliers to international buyers, based on your specific needs and your role."
       },
       "marketplace": {
         "title": "Global Marketplace",
@@ -252,6 +252,11 @@
     "noItemsFound": {
       "title": "No items found.",
       "hint": "Try adjusting your filters or search terms."
+    },
+    "categories": {
+      "allCategories": "All Categories",
+      "viewAllItems": "View all items",
+      "viewAllCategory": "View all in {categoryName}"
     },
     "pinning": {
       "pinnedTitle": "Marketplace Pinned!",
@@ -807,4 +812,3 @@
   },
   "Homepage": {}
 }
-

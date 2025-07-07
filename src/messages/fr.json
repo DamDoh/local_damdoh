@@ -253,6 +253,11 @@
       "title": "Aucun article trouvé.",
       "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
     },
+    "categories": {
+      "allCategories": "Toutes catégories",
+      "viewAllItems": "Voir tous les articles",
+      "viewAllCategory": "Voir tout dans {categoryName}"
+    },
     "pinning": {
       "pinnedTitle": "Marché épinglé !",
       "pinnedDescription": "Le marché est maintenant votre page d'accueil par défaut.",
@@ -802,4 +807,3 @@
   },
   "Homepage": {}
 }
-

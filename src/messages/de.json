@@ -253,6 +253,11 @@
       "title": "Keine Artikel gefunden.",
       "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
     },
+    "categories": {
+      "allCategories": "Alle Kategorien",
+      "viewAllItems": "Alle Artikel anzeigen",
+      "viewAllCategory": "Alle in {categoryName} anzeigen"
+    },
     "pinning": {
       "pinnedTitle": "Marktplatz angeheftet!",
       "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
@@ -595,16 +600,16 @@
       "loadMore": "Mehr laden",
       "loadingMore": "Lädt mehr..."
     },
-    "notFound": {
-      "title": "Keine Themen gefunden",
-      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
-      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
-    },
     "pinning": {
       "pinnedTitle": "Startseite angeheftet!",
       "pinnedDescription": "Dieses Forum wird jetzt als Ihre Startseite angezeigt.",
       "unpinnedTitle": "Startseite gelöst!",
       "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
+    },
+    "notFound": {
+      "title": "Keine Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
+      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
     },
     "errors": {
       "loadTitle": "Fehler beim Laden der Themen",
@@ -807,4 +812,3 @@
   },
   "Homepage": {}
 }
-
