@@ -3,19 +3,19 @@
   "AppHeader": {
     "home": "Inicio",
     "network": "Red",
-    "farmMgmt": "Granja",
+    "farmMgmt": "Gest. Finca",
     "marketplace": "Mercado",
     "talentExchange": "Talento",
     "traceability": "Trazabilidad",
     "forums": "Foros",
     "notifications": "Notificaciones",
     "messages": "Mensajes",
-    "wallet": "Cartera",
+    "wallet": "Billetera",
     "searchPlaceholder": "Buscar personas, productos, servicios...",
     "signIn": "Iniciar Sesión",
     "signUp": "Registrarse",
     "myProfile": "Mi Perfil",
-    "settings": "Configuración",
+    "settings": "Ajustes",
     "helpCenter": "Centro de Ayuda",
     "logOut": "Cerrar Sesión",
     "switchToLightAria": "Cambiar a tema claro",
@@ -31,9 +31,9 @@
     "resourcesTitle": "Recursos",
     "helpCenterLabel": "Centro de Ayuda",
     "communityGuidelinesLabel": "Normas de la Comunidad",
-    "industryNewsLabel": "Noticias de la Industria",
+    "industryNewsLabel": "Noticias del Sector",
     "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de talentos",
+    "talentExchangeLabel": "Bolsa de Talentos",
     "legalTitle": "Legal",
     "privacyPolicyLabel": "Política de Privacidad",
     "termsOfServiceLabel": "Términos de Servicio",
@@ -368,9 +368,7 @@
       "organizedBy": "Organizado por {organizer}",
       "viewDetails": "Ver Detalles",
       "noEventsFound": "No se Encontraron Eventos",
-      "noEventsHint": {
-        "link": "crear uno"
-      },
+      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no {link}?",
       "errorLoadingEvents": "Error al Cargar Eventos",
       "couldNotFetchEvents": "No se pudo obtener la lista de eventos. Por favor, inténtalo de nuevo más tarde.",
       "toast": {
@@ -767,7 +765,7 @@
     },
     "fairTrade": {
       "title": "Comercia de manera justa",
-      "description": "Cumple con tus compromisos en todas las transacciones del mercado. La actividad fraudulenta resultará en la eliminación inmediata de la plataforma."
+      "description": "Honra tus compromisos en todas las transacciones del mercado. La actividad fraudulenta resultará en la eliminación inmediata de la plataforma."
     },
     "sustainable": {
       "title": "Fomenta la sostenibilidad",
@@ -1004,10 +1002,10 @@
     }
   },
   "walletPage": {
-    "title": "Cartera DamDoh",
+    "title": "Billetera DamDoh",
     "description": "Gestiona tus finanzas, crédito y transacciones de forma segura en un solo lugar.",
     "underDevelopmentTitle": "Próximamente: Una Revolución en las Finanzas Agrícolas",
-    "underDevelopmentDescription": "La Cartera DamDoh será tu centro neurálgico para todas las actividades financieras, diseñada específicamente para las necesidades del sector agrícola. Estamos trabajando arduamente para ofrecerte un conjunto de herramientas potentes, que incluyen:",
+    "underDevelopmentDescription": "La Billetera DamDoh será tu centro neurálgico para todas las actividades financieras, diseñada específicamente para las necesidades del sector agrícola. Estamos trabajando arduamente para ofrecerte un conjunto de herramientas potentes, que incluyen:",
     "feature1": "Pagos seguros entre pares",
     "feature2": "Acceso a productos de préstamos y seguros a medida",
     "feature3": "Un sistema dinámico de calificación crediticia basado en tu actividad en la plataforma",
@@ -1156,15 +1154,15 @@
   },
   "farmManagement": {
     "hub": {
-      "title": "Centro de Gestión de Granjas",
-      "description": "Gestione todos los aspectos de sus operaciones agrícolas, desde el seguimiento de cultivos hasta la gestión de finanzas y recursos.",
+      "title": "Centro de Gestión de Fincas",
+      "description": "Gestione todos los aspectos de sus operaciones agrícolas, desde el seguimiento de cultivos hasta la gestión financiera y de recursos.",
       "myFarms": {
-        "title": "Mis Granjas y Cultivos",
-        "description": "Gestione sus granjas registradas, parcelas y siga los ciclos de los cultivos.",
-        "button": "Gestionar Granjas"
+        "title": "Mis Fincas y Cultivos",
+        "description": "Gestione sus fincas registradas, parcelas y siga los ciclos de los cultivos.",
+        "button": "Gestionar Fincas"
       },
       "labor": {
-        "title": "Gestión de Mano de Obra",
+        "title": "Gestión Laboral",
         "description": "Lleve un registro de los trabajadores, registre las horas y gestione los pagos de su personal agrícola.",
         "button": "Gestionar Trabajadores"
       },
@@ -1179,8 +1177,8 @@
         "button": "Ver Guía"
       },
       "financials": {
-        "title": "Asuntos de Dinero",
-        "description": "Registre ingresos y gastos para seguir la salud financiera de su granja.",
+        "title": "Asuntos Financieros",
+        "description": "Registre ingresos y gastos para seguir la salud financiera de su finca.",
         "button": "Gestionar Finanzas"
       },
       "seedStarting": {
@@ -1201,36 +1199,36 @@
     },
     "myFarms": {
       "backToDashboard": "Volver al Centro",
-      "title": "Mis Granjas",
-      "addNewFarmButton": "Añadir Nueva Granja",
+      "title": "Mis Fincas",
+      "addNewFarmButton": "Añadir Nueva Finca",
       "size": "Tamaño",
-      "viewFarmButton": "Ver Granja",
-      "noFarmsTitle": "No se han añadido granjas",
-      "noFarmsDescription": "Comience por registrar su primera granja o parcela agrícola.",
+      "viewFarmButton": "Ver Finca",
+      "noFarmsTitle": "No se han añadido fincas",
+      "noFarmsDescription": "Comience por registrar su primera finca o parcela agrícola.",
       "auth": {
         "title": "Por favor, inicie sesión",
-        "description": "Debe iniciar sesión para gestionar sus granjas.",
+        "description": "Debe iniciar sesión para gestionar sus fincas.",
         "button": "Iniciar sesión"
       },
       "toast": {
-        "errorTitle": "No se pudieron cargar las granjas"
+        "errorTitle": "No se pudieron cargar las fincas"
       }
     },
     "createFarm": {
-      "backToFarms": "Volver a Granjas",
-      "title": "Registrar una Nueva Granja",
-      "description": "Añada un nuevo perfil de granja para empezar a seguir cultivos, insumos y actividades.",
+      "backToFarms": "Volver a Fincas",
+      "title": "Registrar una Nueva Finca",
+      "description": "Añada un nuevo perfil de finca para empezar a seguir cultivos, insumos y actividades.",
       "form": {
-        "farmNameLabel": "Nombre de la Granja",
+        "farmNameLabel": "Nombre de la Finca",
         "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
         "locationLabel": "Ubicación",
         "locationPlaceholder": "Ej: Valle del Rift, Kenia",
-        "locationDescription": "La ubicación general de su granja.",
+        "locationDescription": "La ubicación general de su finca.",
         "sizeLabel": "Tamaño / Área",
         "sizePlaceholder": "Ej: 50 Hectáreas",
         "sizeDescription": "Incluya la unidad (ej: acres, hectáreas).",
-        "typeLabel": "Tipo de Granja",
-        "typePlaceholder": "Seleccione el tipo principal de su granja",
+        "typeLabel": "Tipo de Finca",
+        "typePlaceholder": "Seleccione el tipo principal de su finca",
         "types": {
           "crop": "Cultivo",
           "livestock": "Ganadería",
@@ -1239,35 +1237,35 @@
           "other": "Otro"
         },
         "descriptionLabel": "Descripción Corta (opcional)",
-        "descriptionPlaceholder": "Una breve descripción del enfoque o misión de su granja.",
+        "descriptionPlaceholder": "Una breve descripción del enfoque o misión de su finca.",
         "irrigationLabel": "Métodos de Riego (opcional)",
         "irrigationPlaceholder": "Ej: Riego por goteo, Canal, De secano",
         "irrigationDescription": "Describa los principales métodos de riego utilizados.",
-        "submitButton": "Guardar Granja"
+        "submitButton": "Guardar Finca"
       },
       "toast": {
         "authErrorTitle": "No autenticado",
-        "authErrorDescription": "Debe iniciar sesión para crear una granja.",
-        "successTitle": "¡Granja Creada!",
-        "successDescription": "Su granja '{farmName}' ha sido registrada con éxito.",
-        "errorTitle": "Error al Crear Granja"
+        "authErrorDescription": "Debe iniciar sesión para crear una finca.",
+        "successTitle": "¡Finca Creada!",
+        "successDescription": "Su finca '{farmName}' ha sido registrada con éxito.",
+        "errorTitle": "Error al Crear Finca"
       }
     },
     "editFarm": {
-      "backToFarm": "Volver a Detalles de la Granja",
-      "title": "Editar Detalles de la Granja",
-      "description": "Actualice la información de su granja.",
+      "backToFarm": "Volver a Detalles de la Finca",
+      "title": "Editar Detalles de la Finca",
+      "description": "Actualice la información de su finca.",
       "form": {
-        "farmNameLabel": "Nombre de la Granja",
+        "farmNameLabel": "Nombre de la Finca",
         "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
         "locationLabel": "Ubicación",
         "locationPlaceholder": "Ej: Valle del Rift, Kenia",
-        "locationDescription": "La ubicación general de su granja.",
+        "locationDescription": "La ubicación general de su finca.",
         "sizeLabel": "Tamaño / Área",
         "sizePlaceholder": "Ej: 50 Hectáreas",
         "sizeDescription": "Incluya la unidad (ej: acres, hectáreas).",
-        "typeLabel": "Tipo de Granja",
-        "typePlaceholder": "Seleccione el tipo principal de su granja",
+        "typeLabel": "Tipo de Finca",
+        "typePlaceholder": "Seleccione el tipo principal de su finca",
         "types": {
           "crop": "Cultivo",
           "livestock": "Ganadería",
@@ -1276,49 +1274,192 @@
           "other": "Otro"
         },
         "descriptionLabel": "Descripción Corta (opcional)",
-        "descriptionPlaceholder": "Una breve descripción del enfoque o misión de su granja.",
+        "descriptionPlaceholder": "Una breve descripción del enfoque o misión de su finca.",
         "irrigationLabel": "Métodos de Riego (opcional)",
         "irrigationPlaceholder": "Ej: Riego por goteo, Canal, De secano",
         "irrigationDescription": "Describa los principales métodos de riego utilizados.",
         "submitButton": "Guardar Cambios"
       },
       "toast": {
-        "notFoundTitle": "Granja no encontrada",
-        "loadError": "No se pudieron cargar los datos de la granja para editar.",
-        "successTitle": "¡Granja Actualizada!",
-        "successDescription": "Su granja '{farmName}' ha sido actualizada con éxito.",
+        "notFoundTitle": "Finca no encontrada",
+        "loadError": "No se pudieron cargar los datos de la finca para editar.",
+        "successTitle": "¡Finca Actualizada!",
+        "successDescription": "Su finca '{farmName}' ha sido actualizada con éxito.",
         "errorTitle": "Actualización Fallida"
       }
     },
     "farmDetail": {
-      "backToFarms": "Volver a Mis Granjas",
-      "editFarmButton": "Editar Granja",
+      "backToFarms": "Volver a Mis Fincas",
+      "editFarmButton": "Editar Finca",
       "registeredOn": "Registrada el {date}",
       "crops": {
         "title": "Cultivos / Ganado",
-        "description": "Todas las siembras activas y lotes de ganado en esta granja.",
+        "description": "Todas las siembras activas y lotes de ganado en esta finca.",
         "addNewButton": "Añadir Nuevo",
         "plantedLabel": "Sembrado",
         "stageLabel": "Etapa",
         "viewJourneyButton": "Ver Recorrido",
-        "noCrops": "Aún no se han añadido cultivos o ganado a esta granja.",
+        "noCrops": "Aún no se han añadido cultivos o ganado a esta finca.",
         "addFirstButton": "Añadir Primer Cultivo/Ganado"
       },
       "insights": {
         "title": "Análisis de Rentabilidad",
-        "description": "Análisis impulsado por IA del rendimiento de su granja.",
+        "description": "Análisis impulsado por IA del rendimiento de su finca.",
         "noInsights": "Aún no hay análisis disponibles. Añada más datos financieros para empezar."
       },
       "notFound": {
-        "title": "Granja no Encontrada",
-        "description": "La granja que solicitó no se pudo encontrar o no tiene permiso para verla.",
-        "backButton": "Volver a Mis Granjas"
+        "title": "Finca no Encontrada",
+        "description": "La finca que solicitó no se pudo encontrar o no tiene permiso para verla.",
+        "backButton": "Volver a Mis Fincas"
       },
       "toast": {
-        "notFoundTitle": "Granja no encontrada o permiso denegado",
-        "loadErrorTitle": "Error al cargar los datos de la granja",
-        "insightsErrorTitle": "No se pudieron cargar los análisis de la granja."
+        "notFoundTitle": "Finca no encontrada o permiso denegado",
+        "loadErrorTitle": "Error al cargar los datos de la finca",
+        "insightsErrorTitle": "No se pudieron cargar los análisis de la finca."
       }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Agricultor(a)",
+      "AgriculturalCooperative": "Cooperativa Agrícola",
+      "FieldAgentAgronomistDamDohInternal": "Agente de Campo/Agrónomo (Interno de DamDoh)",
+      "OperationsLogisticsTeamDamDohInternal": "Equipo de Operaciones/Logística (Interno de DamDoh)",
+      "QualityAssuranceTeamDamDohInternal": "Equipo de Control de Calidad (Interno de DamDoh)",
+      "ProcessingPackagingUnit": "Unidad de Procesamiento y Empaque",
+      "BuyerRestaurantSupermarketExporter": "Comprador (Restaurante, Supermercado, Exportador)",
+      "InputSupplierSeedFertilizerPesticide": "Proveedor de Insumos (Semillas, Fertilizantes, Pesticidas)",
+      "EquipmentSupplierSalesofMachineryIoT": "Proveedor de Equipos (Venta de Maquinaria/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Institución Financiera (Microfinanzas/Préstamos)",
+      "GovernmentRegulatorAuditor": "Regulador/Auditor Gubernamental",
+      "CertificationBodyOrganicFairTradeetc": "Organismo de Certificación (Orgánico, Comercio Justo, etc.)",
+      "Consumer": "Consumidor(a)",
+      "ResearcherAcademic": "Investigador(a)/Académico(a)",
+      "LogisticsPartnerThird-PartyTransporter": "Socio Logístico (Transportista Tercero)",
+      "StorageWarehouseFacility": "Instalación de Almacenamiento/Bodega",
+      "AgronomyExpertConsultantExternal": "Experto/Consultor en Agronomía (Externo)",
+      "Agro-TourismOperator": "Operador de Agroturismo",
+      "EnergySolutionsProviderSolarBiogas": "Proveedor de Soluciones Energéticas (Solar, Biogás)",
+      "Agro-ExportFacilitatorCustomsBroker": "Facilitador de Agroexportación/Agente de Aduanas",
+      "Agri-TechInnovatorDeveloper": "Innovador/Desarrollador de Agri-Tech",
+      "WasteManagementCompostFacility": "Instalación de Gestión de Residuos y Compostaje",
+      "CrowdfunderImpactInvestorIndividual": "Financista Colectivo (Inversionista de Impacto, Individual)",
+      "InsuranceProvider": "Proveedor de Seguros",
+      "PackagingSupplier": "Proveedor de Empaques"
+    },
+    "listingTypes": {
+      "All": "Todos los tipos",
+      "Product": "Producto",
+      "Service": "Servicio"
+    },
+    "agriEventTypes": {
+      "All": "Todos los tipos",
+      "Conference": "Conferencia",
+      "Webinar": "Webinar",
+      "Workshop": "Taller",
+      "TradeShow": "Feria Comercial",
+      "FieldDay": "Día de Campo",
+      "NetworkingEvent": "Evento de Networking",
+      "OnlineCourseLaunch": "Lanzamiento de Curso en Línea",
+      "PolicyBriefing": "Sesión Informativa sobre Políticas"
+    }
+  },
+  "marketplacePage": {
+    "title": "Mercado",
+    "description": "Descubra productos, servicios y oportunidades de toda la cadena de suministro agrícola.",
+    "createShopButton": "Crear Tienda Digital",
+    "createListingButton": "Crear Nuevo Anuncio",
+    "unpinButton": "Desfijar de Inicio",
+    "pinButton": "Fijar como Inicio",
+    "searchPlaceholder": "Buscar productos o servicios...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "typePlaceholder": "Tipo de anuncio",
+    "recommendedForYou": "Recomendado para Ti",
+    "discoverMore": "Descubrir Más",
+    "viewServiceButton": "Ver Servicio",
+    "viewDetails": "Ver Detalles",
+    "noItemsFound": "No se encontraron anuncios",
+    "noItemsHint": "Intenta ajustar tu búsqueda, o sé el primero en crear un anuncio en tu área.",
+    "toast": {
+      "unpinned": {
+        "title": "¡Página de inicio desfijada!",
+        "description": "El Panel de Control es ahora tu página de inicio predeterminada."
+      },
+      "pinned": {
+        "title": "¡Mercado fijado!",
+        "description": "El Mercado es ahora tu página de inicio predeterminada."
+      }
+    }
+  },
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Encuentra profesionales calificados u ofrece tu experiencia para proyectos agrícolas.",
+    "listServiceButton": "Ofrecer un Servicio",
+    "searchPlaceholder": "Buscar por habilidades o roles...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Categoría de servicio",
+    "allCategories": "Todas las categorías",
+    "noResultsTitle": "No se encontraron resultados",
+    "noResultsDescription": "No se encontraron servicios u oportunidades laborales que coincidan con tus criterios. Intenta ampliar tu búsqueda.",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "No se pudieron cargar los artículos del mercado."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Trazabilidad del Producto",
+    "description": "Sigue el viaje de tus alimentos desde la finca hasta la mesa para una total transparencia.",
+    "inputPlaceholder": "Introduce un número de lote o VTI...",
+    "trackButton": "Rastrear",
+    "vtiDescription": "El VTI (ID de Trazabilidad Verificable) es un código único asignado a cada lote.",
+    "recentTitle": "Lotes Rastreados Recientemente",
+    "recentDescription": "Tus artículos rastreados recientemente aparecerán aquí para una referencia rápida.",
+    "detailPage": {
+      "invalidIdError": "Se proporcionó un ID de lote no válido.",
+      "loadError": "No se pudieron cargar los datos.",
+      "notFoundTitle": "Lote no Encontrado",
+      "notFoundDescription": "No se encontraron datos de trazabilidad para el ID proporcionado.",
+      "backLink": "Volver a la Búsqueda",
+      "traceableProduct": "Producto Trazable",
+      "batchIdLabel": "ID del Lote",
+      "producerLabel": "Productor",
+      "sustainablyGrownTitle": "Cultivado de Forma Sostenible",
+      "sustainablyGrownDescription": "Nuestros datos indican que se utilizaron prácticas de cultivo sostenibles para este lote.",
+      "harvestDateLabel": "Fecha de Cosecha",
+      "yieldLabel": "Rendimiento",
+      "qualityLabel": "Calidad",
+      "notSpecified": "No especificado",
+      "journeyTitle": "El Viaje del Producto",
+      "journeyDescription": "Un registro cronológico de los eventos en la cadena de suministro para este lote.",
+      "noEventDetails": "No se registraron detalles.",
+      "observationType": "Tipo de Observación",
+      "details": "Detalles",
+      "aiDiagnosis": "Diagnóstico de IA",
+      "geoLocationLabel": "Geolocalización",
+      "noEventsFound": "Aún no se han registrado eventos para este lote."
+    }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "description": "Perspectivas, historias y conocimiento de la comunidad DamDoh.",
+    "error": {
+      "title": "Error de Carga",
+      "description": "No se pudieron cargar las publicaciones del blog."
+    },
+    "meta": "{author} • {date}",
+    "readMore": "Leer Más",
+    "noPosts": {
+      "title": "No se encontraron publicaciones de blog",
+      "description": "Vuelve pronto para ver los últimos artículos y perspectivas."
+    },
+    "backLink": "Volver al Blog",
+    "notFound": {
+      "title": "Publicación no encontrada",
+      "description": "No se pudo encontrar el artículo que estabas buscando.",
+      "backButton": "Volver al Blog"
     }
   }
 }
+
