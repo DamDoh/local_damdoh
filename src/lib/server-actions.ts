@@ -34,7 +34,7 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
     return profileList;
   } catch (error) {
     console.error("Error fetching all profiles from Firestore: ", error);
-    throw error;
+    return []; // Return empty array on error to prevent client crash
   }
 }
 
@@ -56,7 +56,7 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
     return null;
   } catch (error) {
     console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
-    throw error;
+    return null; // Return null on error to prevent client crash
   }
 }
 
@@ -83,7 +83,7 @@ export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]>
     return itemList;
   } catch (error) {
     console.error("Error fetching all marketplace items from Firestore: ", error);
-    throw error;
+    return []; // Return empty array on error to prevent client crash
   }
 }
 
