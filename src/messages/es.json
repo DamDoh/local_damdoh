@@ -119,5 +119,61 @@
       "content": "Si ve contenido que viola estas directrices, por favor denúncielo a nuestro equipo de moderación en <emailLink>support@damdoh.org</emailLink>.",
       "conclusion": "Gracias por ayudarnos a hacer de DamDoh una comunidad valiosa y confiable para todos."
     }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Agricultor",
+      "AgriculturalCooperative": "Cooperativa Agrícola",
+      "FieldAgentAgronomistDamDohInternal": "Agente de Campo/Agrónomo (DamDoh Interno)",
+      "OperationsLogisticsTeamDamDohInternal": "Equipo de Operaciones/Logística (DamDoh Interno)",
+      "QualityAssuranceTeamDamDohInternal": "Equipo de Garantía de Calidad (DamDoh Interno)",
+      "ProcessingPackagingUnit": "Unidad de Procesamiento y Empaque",
+      "BuyerRestaurantSupermarketExporter": "Comprador (Restaurante, Supermercado, Exportador)",
+      "InputSupplierSeedFertilizerPesticide": "Proveedor de Insumos (Semillas, Fertilizantes, Pesticidas)",
+      "EquipmentSupplierSalesofMachineryIoT": "Proveedor de Equipos (Venta de Maquinaria/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Institución Financiera (Microfinanzas/Préstamos)",
+      "GovernmentRegulatorAuditor": "Regulador/Auditor Gubernamental",
+      "CertificationBodyOrganicFairTradeetc": "Organismo de Certificación (Orgánico, Comercio Justo, etc.)",
+      "Consumer": "Consumidor",
+      "ResearcherAcademic": "Investigador/Académico",
+      "LogisticsPartnerThird-PartyTransporter": "Socio Logístico (Transportista Externo)",
+      "StorageWarehouseFacility": "Instalación de Almacenamiento/Bodega",
+      "AgronomyExpertConsultantExternal": "Experto en Agronomía/Consultor (Externo)",
+      "Agro-TourismOperator": "Operador de Agroturismo",
+      "EnergySolutionsProviderSolarBiogas": "Proveedor de Soluciones Energéticas (Solar, Biogás)",
+      "Agro-ExportFacilitatorCustomsBroker": "Facilitador de Agroexportación/Agente de Aduanas",
+      "Agri-TechInnovatorDeveloper": "Innovador/Desarrollador de Agri-Tech",
+      "WasteManagementCompostFacility": "Instalación de Gestión de Residuos y Compostaje",
+      "CrowdfunderImpactInvestorIndividual": "Financiamiento Colectivo (Inversor de Impacto, Individual)",
+      "InsuranceProvider": "Proveedor de Seguros",
+      "PackagingSupplier": "Proveedor de Empaques"
+    },
+    "listingTypes": {
+      "All": "Todos los Tipos",
+      "Product": "Producto",
+      "Service": "Servicio"
+    },
+    "agriEventTypes": {
+      "All": "Todos los Eventos",
+      "Conference": "Conferencia",
+      "Webinar": "Webinar",
+      "Workshop": "Taller",
+      "TradeShow": "Feria Comercial",
+      "FieldDay": "Día de Campo",
+      "NetworkingEvent": "Evento de Networking",
+      "OnlineCourseLaunch": "Lanzamiento de Curso en Línea",
+      "PolicyBriefing": "Sesión Informativa sobre Políticas"
+    },
+    "financialServiceTypes": {
+        "loan": "Préstamo",
+        "credit": "Crédito",
+        "grant": "Subvención",
+        "savings": "Ahorros"
+    },
+    "insuranceServiceTypes": {
+        "crop_insurance": "Seguro de Cosecha",
+        "livestock_insurance": "Seguro de Ganado",
+        "property_insurance": "Seguro de Propiedad"
+    }
   }
 }

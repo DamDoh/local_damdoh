@@ -494,71 +494,91 @@
       "title": "Gérer le service : {{itemName}}",
       "description": "Gérer les réservations et les paramètres de ce service.",
       "tabs": {
+        "checkin": "Enregistrement",
         "bookings": "Réservations",
+        "staff": "Personnel",
         "settings": "Paramètres"
       },
       "bookingsTab": {
         "title": "Réservations du service",
         "description": "Afficher et gérer les réservations pour ce service.",
         "table": {
-          "date": "Date",
           "guest": "Invité",
-          "dates": "Dates",
-          "total": "Total",
+          "bookedOn": "Réservé le",
           "status": "Statut",
-          "actions": "Actions"
+          "checkedInAt": "Enregistré à"
         },
         "status": {
-          "pending": "En attente",
-          "confirmed": "Confirmé",
-          "cancelled": "Annulé",
-          "completed": "Terminé"
-        },
-        "actions": {
-          "confirm": "Confirmer la réservation",
-          "cancel": "Annuler la réservation",
-          "viewDetails": "Voir les détails"
+          "booked": "Réservé",
+          "checkedIn": "Enregistré"
         },
         "noBookings": "Aucune réservation pour l'instant.",
-        "toast": {
-          "fetchErrorTitle": "Erreur de chargement des réservations",
-          "fetchErrorDescription": "Impossible de récupérer les réservations pour ce service.",
-          "updateSuccessTitle": "Réservation mise à jour !",
-          "updateSuccessDescription": "Statut de la réservation mis à jour vers {{status}}.",
-          "updateFailTitle": "Mise à jour échouée",
-          "updateFailDescription": "Impossible de mettre à jour le statut de la réservation."
-        }
+        "error": "Erreur",
+        "fetchError": "Impossible de récupérer les réservations pour ce service.",
+        "downloadCsv": "Télécharger CSV",
+        "toast": { "noBookings": "Aucune réservation à exporter." }
       },
-      "settingsTab": {
-        "title": "Paramètres du service",
-        "description": "Mettre à jour les détails et la disponibilité de ce service.",
-        "form": {
-          "priceLabel": "Prix par nuit",
-          "pricePlaceholder": "Entrez le prix",
-          "currencyLabel": "Devise",
-          "currencyPlaceholder": "Sélectionner la devise",
-          "availabilityLabel": "Dates de disponibilité",
-          "availabilityDescription": "Sélectionnez les dates auxquelles ce service est disponible.",
-          "submitButton": "Enregistrer les modifications",
-          "submittingButton": "Enregistrement en cours..."
-        },
-         "toast": {
-          "updateSuccessTitle": "Paramètres enregistrés !",
-          "updateSuccessDescription": "Paramètres du service mis à jour avec succès.",
-          "updateFailTitle": "Échec de l'enregistrement",
-          "updateFailDescription": "Impossible d'enregistrer les paramètres du service."
-        }
-      },
-       "errors": {
+      "errors": {
         "loadErrorTitle": "Erreur de chargement du service",
         "loadErrorDescription": "Impossible de charger les détails du service pour la gestion.",
         "notFoundTitle": "Service introuvable",
         "notFoundDescription": "Le service que vous essayez de gérer n'existe pas."
       },
-       "authRequired": {
+      "authRequired": {
         "title": "Authentification requise",
         "description": "Vous devez être connecté pour gérer ce service.",
         "button": "Se connecter"
+      },
+      "loading": "Chargement..."
+    },
+    "promotions": {
+      "backToDashboard": "Retour au tableau de bord",
+      "title": "Promotions & Coupons",
+      "description": "Créez et gérez des réductions pour vos produits ou services.",
+      "signInPrompt": "Veuillez vous connecter pour gérer vos promotions.",
+      "create": {
+        "title": "Créer un nouveau coupon",
+        "form": {
+          "code": "Code promo",
+          "codePlaceholder": "ex: EARLYBIRD20",
+          "usageLimit": "Limite d'utilisation (Facultatif)",
+          "usageLimitPlaceholder": "ex: 100",
+          "discountType": "Type de réduction",
+          "discountTypePlaceholder": "Sélectionnez un type",
+          "percentage": "Pourcentage (%)",
+          "fixed": "Montant fixe",
+          "discountValue": "Valeur de la réduction",
+          "expiryDate": "Date d'expiration (Facultatif)",
+          "pickDate": "Choisissez une date",
+          "submitButton": "Créer le coupon"
+        },
+        "toast": {
+          "successTitle": "Coupon créé !",
+          "successDescription": "Le coupon '{code}' est maintenant actif.",
+          "failTitle": "Échec de la création"
+        }
+      },
+      "list": {
+        "title": "Coupons existants",
+        "usage": "Utilisation",
+        "expires": "Expire le",
+        "never": "Jamais",
+        "share": "Partager",
+        "noCoupons": "Aucun coupon créé pour l'instant.",
+        "toastTitle": "Lien copié !",
+        "toastDescription": "Un lien partageable avec le coupon a été copié : {link}",
+        "shareModal": {
+          "title": "Partager le coupon",
+          "description": "Partagez ce code ou ce lien avec les participants potentiels.",
+          "link": "Lien",
+          "copy": "Copier",
+          "close": "Fermer"
+        }
+      },
+      "toast": {
+        "error": "Erreur",
+        "createError": "Impossible de créer le coupon. Veuillez réessayer.",
+        "fetchError": "Impossible de récupérer vos coupons."
       }
     }
   },
@@ -575,16 +595,16 @@
       "loadMore": "Charger plus",
       "loadingMore": "Chargement..."
     },
-    "notFound": {
-      "title": "Aucun sujet trouvé",
-      "tryDifferentSearch": "Essayez un autre terme de recherche.",
-      "beTheFirst": "Soyez le premier à créer un sujet."
-    },
     "pinning": {
       "pinnedTitle": "Accueil épinglé !",
       "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
       "unpinnedTitle": "Accueil détaché !",
       "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    },
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
     },
     "errors": {
       "loadTitle": "Erreur de chargement des sujets",
@@ -726,12 +746,58 @@
   },
   "constants": {
     "stakeholderRoles": {
-      "farmer": "Agriculteur",
-      "trader": "Commerçant",
-      "agro_innovator": "Innovateur agricole",
-      "researcher": "Chercheur",
-      "service_provider": "Prestataire de services",
-      "consumer": "Consommateur"
+      "Farmer": "Agriculteur",
+      "AgriculturalCooperative": "Coopérative agricole",
+      "FieldAgentAgronomistDamDohInternal": "Agent de terrain/Agronome (DamDoh Interne)",
+      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (DamDoh Interne)",
+      "QualityAssuranceTeamDamDohInternal": "Équipe d'assurance qualité (DamDoh Interne)",
+      "ProcessingPackagingUnit": "Unité de transformation et d'emballage",
+      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
+      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'intrants (semences, engrais, pesticides)",
+      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'équipements (Vente de machines/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Institution financière (Micro-finance/Prêts)",
+      "GovernmentRegulatorAuditor": "Régulateur gouvernemental/Auditeur",
+      "CertificationBodyOrganicFairTradeetc": "Organisme de certification (Bio, Commerce équitable, etc.)",
+      "Consumer": "Consommateur",
+      "ResearcherAcademic": "Chercheur/Académique",
+      "LogisticsPartnerThird-PartyTransporter": "Partenaire logistique (Transporteur tiers)",
+      "StorageWarehouseFacility": "Installation de stockage/Entrepôt",
+      "AgronomyExpertConsultantExternal": "Expert en agronomie/Consultant (Externe)",
+      "Agro-TourismOperator": "Opérateur d'agrotourisme",
+      "EnergySolutionsProviderSolarBiogas": "Fournisseur de solutions énergétiques (Solaire, Biogaz)",
+      "Agro-ExportFacilitatorCustomsBroker": "Facilitateur d'agro-exportation/Courtier en douane",
+      "Agri-TechInnovatorDeveloper": "Innovateur/Développeur Agri-Tech",
+      "WasteManagementCompostFacility": "Installation de gestion des déchets et de compostage",
+      "CrowdfunderImpactInvestorIndividual": "Investisseur participatif (Investisseur d'impact, Particulier)",
+      "InsuranceProvider": "Fournisseur d'assurance",
+      "PackagingSupplier": "Fournisseur d'emballages"
+    },
+    "listingTypes": {
+      "All": "Tous les types",
+      "Product": "Produit",
+      "Service": "Service"
+    },
+    "agriEventTypes": {
+      "All": "Tous les événements",
+      "Conference": "Conférence",
+      "Webinar": "Webinaire",
+      "Workshop": "Atelier",
+      "TradeShow": "Salon professionnel",
+      "FieldDay": "Journée de terrain",
+      "NetworkingEvent": "Événement de réseautage",
+      "OnlineCourseLaunch": "Lancement de cours en ligne",
+      "PolicyBriefing": "Briefing politique"
+    },
+    "financialServiceTypes": {
+        "loan": "Prêt",
+        "credit": "Crédit",
+        "grant": "Subvention",
+        "savings": "Épargne"
+    },
+    "insuranceServiceTypes": {
+        "crop_insurance": "Assurance récolte",
+        "livestock_insurance": "Assurance bétail",
+        "property_insurance": "Assurance biens"
     }
   },
   "Homepage": {}
