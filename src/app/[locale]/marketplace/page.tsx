@@ -19,7 +19,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
-import { getAllMarketplaceItemsFromDB, performSearch } from "@/lib/db-utils";
+import { getAllMarketplaceItemsFromDB, performSearch } from "@/lib/server-actions";
 import { Brain } from "lucide-react";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
