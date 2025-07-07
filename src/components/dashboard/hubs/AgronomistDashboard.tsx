@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -14,7 +13,7 @@ import Link from 'next/link';
 import { Users, FileText, MessageSquare, AlertTriangle } from 'lucide-react';
 import type { AgronomistDashboardData } from '@/lib/types';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
-import { ChartContainer, ChartTooltip, ChartLegend, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
@@ -76,10 +75,10 @@ export const AgronomistDashboard = () => {
   }, [knowledgeHubContributions]);
 
   const chartConfig = {
-      count: { label: "Count" },
-      Published: { label: "Published", color: "hsl(var(--chart-1))" },
-      "Pending Review": { label: "Pending Review", color: "hsl(var(--chart-2))" },
-      Draft: { label: "Draft", color: "hsl(var(--chart-5))" },
+      count: { label: t('chart.count') },
+      Published: { label: t('chart.published'), color: "hsl(var(--chart-1))" },
+      "Pending Review": { label: t('chart.pending'), color: "hsl(var(--chart-2))" },
+      Draft: { label: t('chart.draft'), color: "hsl(var(--chart-5))" },
   } satisfies ChartConfig;
 
 
@@ -101,7 +100,7 @@ export const AgronomistDashboard = () => {
       return (
            <Card>
                 <CardContent className="pt-6 text-center text-muted-foreground">
-                    <p>No dashboard data available.</p>
+                    <p>{t('noData')}</p>
                 </CardContent>
            </Card>
       );
@@ -119,29 +118,29 @@ export const AgronomistDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Agronomist & Consultant Hub</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <StatCard title="Assigned Farmers" value={assignedFarmersOverview.length} icon={<Users className="h-4 w-4 text-muted-foreground" />} />
-            <StatCard title="Farmers with Alerts" value={farmersWithAlerts} icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />} />
-            <StatCard title="Pending Consultations" value={pendingConsultationRequests.length} icon={<MessageSquare className="h-4 w-4 text-muted-foreground" />} />
-            <StatCard title="Knowledge Contributions" value={knowledgeHubContributions.length} icon={<FileText className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title={t('stats.assignedFarmers')} value={assignedFarmersOverview.length} icon={<Users className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title={t('stats.farmersWithAlerts')} value={farmersWithAlerts} icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title={t('stats.pendingConsultations')} value={pendingConsultationRequests.length} icon={<MessageSquare className="h-4 w-4 text-muted-foreground" />} />
+            <StatCard title={t('stats.knowledgeContributions')} value={knowledgeHubContributions.length} icon={<FileText className="h-4 w-4 text-muted-foreground" />} />
         </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
          <Card>
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><MessageSquare className="h-4 w-4"/> Pending Consultation Requests</CardTitle>
-             <CardDescription>Farmers seeking your expertise.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><MessageSquare className="h-4 w-4"/> {t('consultations.title')}</CardTitle>
+             <CardDescription>{t('consultations.description')}</CardDescription>
            </CardHeader>
            <CardContent>
              {pendingConsultationRequests.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Farmer Name</TableHead>
-                     <TableHead>Issue Summary</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('consultations.table.farmer')}</TableHead>
+                     <TableHead>{t('consultations.table.issue')}</TableHead>
+                     <TableHead>{t('consultations.table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -151,7 +150,7 @@ export const AgronomistDashboard = () => {
                        <TableCell>{request.issueSummary}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={`/profiles/${request.farmerId}`}>View</Link>
+                           <Link href={`/profiles/${request.farmerId}`}>{t('consultations.viewButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -159,25 +158,25 @@ export const AgronomistDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No pending consultation requests.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('consultations.noRequests')}</p>
              )}
            </CardContent>
          </Card>
 
          <Card>
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Users className="h-4 w-4 text-green-500"/> Assigned Farmers</CardTitle>
-             <CardDescription>Overview of farmers in your portfolio.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><Users className="h-4 w-4 text-green-500"/> {t('portfolio.title')}</CardTitle>
+             <CardDescription>{t('portfolio.description')}</CardDescription>
            </CardHeader>
            <CardContent>
              {assignedFarmersOverview.length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Farmer Name</TableHead>
-                     <TableHead>Location</TableHead>
-                     <TableHead>Alerts</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('portfolio.table.farmer')}</TableHead>
+                     <TableHead>{t('portfolio.table.location')}</TableHead>
+                     <TableHead>{t('portfolio.table.alerts')}</TableHead>
+                     <TableHead>{t('portfolio.table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -185,10 +184,10 @@ export const AgronomistDashboard = () => {
                      <TableRow key={farmer.id}>
                        <TableCell className="font-medium">{farmer.name}</TableCell>
                        <TableCell>{farmer.farmLocation}</TableCell>
-                       <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts}</Badge></TableCell>
+                       <TableCell><Badge variant={farmer.alerts > 0 ? 'destructive' : 'secondary'}>{farmer.alerts} {t('portfolio.alertsLabel')}</Badge></TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={`/profiles/${farmer.id}`}>Profile</Link>
+                           <Link href={`/profiles/${farmer.id}`}>{t('portfolio.profileButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -196,14 +195,14 @@ export const AgronomistDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No farmers assigned yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('portfolio.noFarmers')}</p>
              )}
            </CardContent>
          </Card>
          
          <Card>
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Contribution Status</CardTitle>
+                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> {t('contributions.statusTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
                 {contributionStatusCounts.length > 0 ? (
@@ -216,7 +215,7 @@ export const AgronomistDashboard = () => {
                                 tickLine={false}
                                 tickMargin={10}
                                 axisLine={false}
-                                tickFormatter={(value) => value}
+                                tickFormatter={(value) => chartConfig[value as keyof typeof chartConfig]?.label || value}
                                 className="text-xs"
                             />
                             <XAxis dataKey="count" type="number" hide />
@@ -232,14 +231,14 @@ export const AgronomistDashboard = () => {
                         </BarChart>
                     </ChartContainer>
                 ) : (
-                    <p className="text-sm text-muted-foreground text-center py-4">No contribution data to display.</p>
+                    <p className="text-sm text-muted-foreground text-center py-4">{t('contributions.noData')}</p>
                 )}
             </CardContent>
         </Card>
 
          <Card>
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> Your Contributions</CardTitle>
+                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> {t('contributions.title')}</CardTitle>
             </CardHeader>
             <CardContent>
                 {knowledgeHubContributions.length > 0 ? (
@@ -252,7 +251,7 @@ export const AgronomistDashboard = () => {
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">No contributions to the Knowledge Base yet.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">{t('contributions.noContributions')}</p>
                 )}
             </CardContent>
          </Card>
