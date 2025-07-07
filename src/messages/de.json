@@ -810,5 +810,28 @@
         "property_insurance": "Sachversicherung"
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Entdecken Sie Ihr Netzwerk",
+    "description": "Finden und vernetzen Sie sich mit Landwirten, Käufern, Lieferanten und Experten entlang der landwirtschaftlichen Lieferkette.",
+    "myNetworkButton": "Mein Netzwerk",
+    "agentToolsButton": "Agentenwerkzeuge",
+    "aiSuggestionsTitle": "KI-Vorschläge",
+    "aiSuggestionsDescription": "Basierend auf Ihrem Profil, hier sind einige Stakeholder, mit denen Sie sich vernetzen möchten könnten.",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "noSuggestions": "Derzeit keine neuen Vorschläge. Vervollständigen Sie Ihr Profil für bessere Empfehlungen.",
+    "browseAllTitle": "Alle Stakeholder durchsuchen",
+    "browseAllDescription": "Verwenden Sie die folgenden Filter, um bestimmte Personen oder Rollen im DamDoh-Ökosystem zu finden.",
+    "searchPlaceholder": "Suche nach Name, Rolle oder Interesse...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Stakeholder gefunden, die Ihren Kriterien entsprechen.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suche oder Filter anzupassen.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden. Bitte versuchen Sie es erneut."
+    }
+  }
 }

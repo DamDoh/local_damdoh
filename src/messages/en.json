@@ -810,5 +810,28 @@
         "property_insurance": "Property Insurance"
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Discover Your Network",
+    "description": "Find and connect with farmers, buyers, suppliers, and experts across the agricultural supply chain.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI Suggestions",
+    "aiSuggestionsDescription": "Based on your profile, here are some stakeholders you might want to connect with.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "noSuggestions": "No new suggestions at this time. Complete your profile for better recommendations.",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Use the filters below to find specific people or roles in the DamDoh ecosystem.",
+    "searchPlaceholder": "Search by name, role, or interest...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No stakeholders found matching your criteria.",
+    "noStakeholdersHint": "Try adjusting your search or filters.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data. Please try again."
+    }
+  }
 }

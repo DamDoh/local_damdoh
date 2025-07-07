@@ -805,5 +805,28 @@
         "property_insurance": "Assurance biens"
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Découvrez votre réseau",
+    "description": "Trouvez et connectez-vous avec des agriculteurs, des acheteurs, des fournisseurs et des experts de toute la chaîne d'approvisionnement agricole.",
+    "myNetworkButton": "Mon réseau",
+    "agentToolsButton": "Outils d'agent",
+    "aiSuggestionsTitle": "Suggestions de l'IA",
+    "aiSuggestionsDescription": "En fonction de votre profil, voici quelques parties prenantes avec lesquelles vous pourriez vouloir vous connecter.",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Complétez votre profil pour de meilleures recommandations.",
+    "browseAllTitle": "Parcourir toutes les parties prenantes",
+    "browseAllDescription": "Utilisez les filtres ci-dessous pour trouver des personnes ou des rôles spécifiques dans l'écosystème DamDoh.",
+    "searchPlaceholder": "Rechercher par nom, rôle ou intérêt...",
+    "locationPlaceholder": "Filtrer par emplacement...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les rôles",
+    "noStakeholdersFound": "Aucune partie prenante ne correspond à vos critères.",
+    "noStakeholdersHint": "Essayez d'ajuster votre recherche ou vos filtres.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau. Veuillez réessayer."
+    }
+  }
 }
