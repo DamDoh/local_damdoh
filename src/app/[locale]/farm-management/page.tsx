@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home, Users, BookOpen, Heart } from 'lucide-react';
 
 export default function FarmManagementPage() {
-  const t = useTranslations('FarmManagement');
+  const t = useTranslations('farmManagement.hub');
 
   const navItems = [
     {
@@ -20,11 +20,11 @@ export default function FarmManagementPage() {
       enabled: true,
     },
     {
-      title: "My People (Labor)",
-      description: "Manage your farm workers, track hours, and handle payroll.",
+      title: t('labor.title'),
+      description: t('labor.description'),
       link: "/farm-management/labor",
       icon: <Users className="h-8 w-8 text-primary mb-2" />,
-      buttonText: "Manage Labor",
+      buttonText: t('labor.button'),
       enabled: true,
     },
     {
@@ -36,11 +36,11 @@ export default function FarmManagementPage() {
       enabled: true,
     },
      {
-      title: "Farming God's Way Guide",
-      description: "Learn the core principles of FGW: no-till, 100% mulch, and high standards for a thriving, resilient farm.",
+      title: t('fgw.title'),
+      description: t('fgw.description'),
       link: "/farm-management/fgw-guide",
       icon: <Heart className="h-8 w-8 text-primary mb-2" />,
-      buttonText: "View FGW Guide",
+      buttonText: t('fgw.button'),
       enabled: true,
     },
     {
@@ -52,19 +52,19 @@ export default function FarmManagementPage() {
       enabled: true,
     },
      {
-      title: "Seed Starting Guide",
-      description: "Learn how to successfully start seeds indoors to get a head start on the growing season.",
+      title: t('seedStarting.title'),
+      description: t('seedStarting.description'),
       link: "/farm-management/seed-starting",
       icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
-      buttonText: "View Guide",
+      buttonText: t('seedStarting.button'),
       enabled: true,
     },
     {
-      title: "Family Farm Model",
-      description: "Explore our 200sqm model for family food self-sustenance using bio-intensive methods.",
+      title: t('familyFarm.title'),
+      description: t('familyFarm.description'),
       link: "/farm-management/family-farm",
       icon: <Leaf className="h-8 w-8 text-primary mb-2" />,
-      buttonText: "Explore Model",
+      buttonText: t('familyFarm.button'),
       enabled: true,
     },
     {
@@ -105,3 +105,4 @@ export default function FarmManagementPage() {
     </div>
   );
 }
+

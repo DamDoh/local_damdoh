@@ -16,6 +16,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import type { Worker, WorkLog, PaymentLog } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 interface WorkerDetails {
     profile: Worker;
@@ -43,6 +44,7 @@ function WorkerDetailPageSkeleton() {
 }
 
 export default function WorkerDetailPage() {
+    const t = useTranslations('farmManagement.workerDetailPage');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const params = useParams();
@@ -64,7 +66,7 @@ export default function WorkerDetailPage() {
                 const result = await getWorkerDetailsCallable({ workerId });
                 setWorkerDetails(result.data as WorkerDetails);
             } catch (error: any) {
-                toast({ variant: 'destructive', title: 'Error', description: error.message });
+                toast({ variant: 'destructive', title: t('toasts.errorTitle'), description: error.message });
                 router.push('/farm-management/labor');
             } finally {
                 setIsLoading(false);
@@ -72,16 +74,16 @@ export default function WorkerDetailPage() {
         };
 
         fetchDetails();
-    }, [user, workerId, getWorkerDetailsCallable, toast, router]);
+    }, [user, workerId, getWorkerDetailsCallable, toast, router, t]);
 
     if (authLoading || isLoading) return <WorkerDetailPageSkeleton />;
     
     if (!workerDetails) {
         return (
              <div className="text-center py-10">
-                <h2 className="text-2xl font-bold">Worker Not Found</h2>
-                <p className="text-muted-foreground">The requested worker could not be found.</p>
-                <Button asChild className="mt-4"><Link href="/farm-management/labor">Go Back</Link></Button>
+                <h2 className="text-2xl font-bold">{t('notFoundTitle')}</h2>
+                <p className="text-muted-foreground">{t('notFoundDescription')}</p>
+                <Button asChild className="mt-4"><Link href="/farm-management/labor">{t('goBackButton')}</Link></Button>
             </div>
         )
     }
@@ -91,7 +93,7 @@ export default function WorkerDetailPage() {
     return (
         <div className="space-y-6">
              <Link href="/farm-management/labor" className="inline-flex items-center text-sm text-primary hover:underline">
-                <ArrowLeft className="mr-1 h-4 w-4" /> Back to Labor Management
+                <ArrowLeft className="mr-1 h-4 w-4" /> {t('backLink')}
             </Link>
 
             <div className="flex items-center gap-4">
@@ -107,16 +109,16 @@ export default function WorkerDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Clock className="h-5 w-5"/> Work Logs</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><Clock className="h-5 w-5"/> {t('workLogsTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                        {workLogs.length > 0 ? (
                            <Table>
                                <TableHeader>
                                    <TableRow>
-                                       <TableHead>Date</TableHead>
-                                       <TableHead>Hours</TableHead>
-                                       <TableHead>Task</TableHead>
+                                       <TableHead>{t('table.date')}</TableHead>
+                                       <TableHead>{t('table.hours')}</TableHead>
+                                       <TableHead>{t('table.task')}</TableHead>
                                    </TableRow>
                                </TableHeader>
                                <TableBody>
@@ -129,21 +131,21 @@ export default function WorkerDetailPage() {
                                    ))}
                                </TableBody>
                            </Table>
-                       ) : <p className="text-sm text-muted-foreground text-center py-4">No work hours logged yet.</p>}
+                       ) : <p className="text-sm text-muted-foreground text-center py-4">{t('noWorkLogs')}</p>}
                     </CardContent>
                 </Card>
 
                  <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><DollarSign className="h-5 w-5"/> Payment History</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><DollarSign className="h-5 w-5"/> {t('paymentHistoryTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                        {payments.length > 0 ? (
                             <Table>
                                <TableHeader>
                                    <TableRow>
-                                       <TableHead>Date</TableHead>
-                                       <TableHead className="text-right">Amount</TableHead>
+                                       <TableHead>{t('table.date')}</TableHead>
+                                       <TableHead className="text-right">{t('table.amount')}</TableHead>
                                    </TableRow>
                                </TableHeader>
                                <TableBody>
@@ -155,10 +157,11 @@ export default function WorkerDetailPage() {
                                    ))}
                                </TableBody>
                            </Table>
-                       ) : <p className="text-sm text-muted-foreground text-center py-4">No payments logged yet.</p>}
+                       ) : <p className="text-sm text-muted-foreground text-center py-4">{t('noPayments')}</p>}
                     </CardContent>
                 </Card>
             </div>
         </div>
     );
 }
+

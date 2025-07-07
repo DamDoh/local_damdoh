@@ -76,8 +76,8 @@ export const getUserFarms = functions.https.onCall(async (data, context) => {
         return { 
             id: doc.id, 
             ...docData,
-            createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
-            updatedAt: docData.updatedAt?.toDate ? docData.updatedAt.toDate().toISOString() : null,
+            createdAt: (docData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            updatedAt: (docData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
         }
     });
     return farms;
@@ -121,8 +121,8 @@ export const getFarm = functions.https.onCall(async (data, context) => {
         return { 
             id: farmDoc.id, 
             ...farmData,
-            createdAt: farmData.createdAt?.toDate ? farmData.createdAt.toDate().toISOString() : null,
-            updatedAt: farmData.updatedAt?.toDate ? farmData.updatedAt.toDate().toISOString() : null,
+            createdAt: (farmData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            updatedAt: (farmData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
         };
     } catch (error) {
         console.error("Error fetching farm:", error);
@@ -321,9 +321,9 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
             return { 
                 id: doc.id, 
                 ...docData,
-                plantingDate: docData.plantingDate?.toDate ? docData.plantingDate.toDate().toISOString() : null,
-                harvestDate: docData.harvestDate?.toDate ? docData.harvestDate.toDate().toISOString() : null,
-                createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
+                plantingDate: (docData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                harvestDate: (docData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                createdAt: (docData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
             };
         });
         return crops;
@@ -357,9 +357,9 @@ export const getCrop = functions.https.onCall(async (data, context) => {
         return {
             id: cropDoc.id,
             ...cropData,
-            plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
-            harvestDate: cropData.harvestDate?.toDate ? cropData.harvestDate.toDate().toISOString() : null,
-            createdAt: cropData.createdAt?.toDate ? cropData.createdAt.toDate().toISOString() : null,
+            plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            harvestDate: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            createdAt: (cropData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
         };
 
     } catch(error) {
@@ -619,9 +619,9 @@ export const getUserKnfBatches = functions.https.onCall(
         return {
           ...docData,
           id: doc.id,
-          startDate: (docData.startDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.startDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
-          nextStepDate: (docData.nextStepDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.nextStepDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
-          createdAt: (docData.createdAt as unknown as admin.firestore.Timestamp)?.toDate ? (docData.createdAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+          startDate: (docData.startDate as unknown as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+          nextStepDate: (docData.nextStepDate as unknown as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+          createdAt: (docData.createdAt as unknown as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
         };
       });
       return batches;

@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Calendar, Clock, Eye } from "lucide-react";
+import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Clock, Eye } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -19,6 +19,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useTranslations } from 'next-intl';
 
 interface Worker {
   id: string;
@@ -31,6 +32,7 @@ interface Worker {
 }
 
 export default function LaborManagementPage() {
+    const t = useTranslations('farmManagement.laborPage');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const [workers, setWorkers] = useState<Worker[]>([]);
@@ -66,11 +68,11 @@ export default function LaborManagementPage() {
             const result = await getWorkersCallable();
             setWorkers((result.data as any).workers || []);
         } catch (error) {
-            toast({ variant: "destructive", title: "Error", description: "Could not fetch workers data." });
+            toast({ variant: "destructive", title: t('toasts.errorTitle'), description: t('toasts.fetchWorkersError') });
         } finally {
             setIsLoading(false);
         }
-    }, [user, getWorkersCallable, toast]);
+    }, [user, getWorkersCallable, toast, t]);
 
     useEffect(() => {
         fetchWorkers();
@@ -78,18 +80,18 @@ export default function LaborManagementPage() {
 
     const handleAddWorker = async () => {
         if (!newWorkerName.trim()) {
-            toast({ variant: 'destructive', title: 'Name is required' });
+            toast({ variant: 'destructive', title: t('toasts.nameRequired') });
             return;
         }
         setIsSubmitting(true);
         try {
             await addWorkerCallable({ name: newWorkerName });
-            toast({ title: "Worker Added!" });
+            toast({ title: t('toasts.workerAdded') });
             setNewWorkerName("");
             setIsAddWorkerOpen(false);
             fetchWorkers();
         } catch (error: any) {
-            toast({ variant: "destructive", title: "Error", description: error.message });
+            toast({ variant: "destructive", title: t('toasts.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
         }
@@ -100,13 +102,13 @@ export default function LaborManagementPage() {
         setIsSubmitting(true);
         try {
             await logHoursCallable({ workerId: selectedWorker.id, hours, date: logDate.toISOString(), taskDescription: task });
-            toast({ title: "Hours Logged!" });
+            toast({ title: t('toasts.hoursLogged') });
             setIsLogHoursOpen(false);
             setHours("");
             setTask("");
-            fetchWorkers(); // Refetch to update totals
+            fetchWorkers();
         } catch (error: any) {
-             toast({ variant: "destructive", title: "Error", description: error.message });
+             toast({ variant: "destructive", title: t('toasts.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
         }
@@ -117,49 +119,49 @@ export default function LaborManagementPage() {
         setIsSubmitting(true);
         try {
             await logPaymentCallable({ workerId: selectedWorker.id, amount: paymentAmount, date: paymentDate.toISOString(), currency: 'USD' });
-            toast({ title: "Payment Logged!", description: "An expense has been automatically added to your financials." });
+            toast({ title: t('toasts.paymentLoggedTitle'), description: t('toasts.paymentLoggedDescription') });
             setIsLogPaymentOpen(false);
             setPaymentAmount("");
-            fetchWorkers(); // Refetch to update totals
+            fetchWorkers();
         } catch(error: any) {
-             toast({ variant: "destructive", title: "Error", description: error.message });
+             toast({ variant: "destructive", title: t('toasts.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
         }
     };
 
-    if (authLoading) return <div>Loading...</div>;
+    if (authLoading) return <div>{t('loading')}</div>;
 
     if (!user) return (
         <Card>
-            <CardHeader><CardTitle>Please Sign In</CardTitle></CardHeader>
-            <CardContent><Button asChild><Link href="/auth/signin">Sign In</Link></Button></CardContent>
+            <CardHeader><CardTitle>{t('signInPrompt.title')}</CardTitle></CardHeader>
+            <CardContent><Button asChild><Link href="/auth/signin">{t('signInPrompt.button')}</Link></Button></CardContent>
         </Card>
     );
 
     return (
         <div className="space-y-6">
             <Link href="/farm-management" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-                <ArrowLeft className="mr-1 h-4 w-4" /> Back to Farm Management Hub
+                <ArrowLeft className="mr-1 h-4 w-4" /> {t('backLink')}
             </Link>
 
             <Card>
                 <CardHeader>
                     <div className="flex justify-between items-center">
-                        <CardTitle className="flex items-center gap-2"><Users className="h-6 w-6"/>My People (Labor Management)</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><Users className="h-6 w-6"/>{t('title')}</CardTitle>
                         <Dialog open={isAddWorkerOpen} onOpenChange={setIsAddWorkerOpen}>
-                            <DialogTrigger asChild><Button><PlusCircle className="mr-2 h-4 w-4"/>Add Worker</Button></DialogTrigger>
+                            <DialogTrigger asChild><Button><PlusCircle className="mr-2 h-4 w-4"/>{t('addWorker')}</Button></DialogTrigger>
                             <DialogContent>
-                                <DialogHeader><DialogTitle>Add New Worker</DialogTitle></DialogHeader>
+                                <DialogHeader><DialogTitle>{t('addWorker')}</DialogTitle></DialogHeader>
                                 <div className="space-y-4 py-4">
-                                    <Label htmlFor="worker-name">Worker's Name</Label>
+                                    <Label htmlFor="worker-name">{t('workerName')}</Label>
                                     <Input id="worker-name" value={newWorkerName} onChange={e => setNewWorkerName(e.target.value)} />
                                 </div>
-                                <Button onClick={handleAddWorker} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}Save Worker</Button>
+                                <Button onClick={handleAddWorker} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('saveWorker')}</Button>
                             </DialogContent>
                         </Dialog>
                     </div>
-                    <CardDescription>Keep track of your farm workers, their hours, and payments.</CardDescription>
+                    <CardDescription>{t('description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     {isLoading ? <Skeleton className="h-40 w-full" /> : 
@@ -172,66 +174,50 @@ export default function LaborManagementPage() {
                                         <CardTitle className="text-lg">{worker.name}</CardTitle>
                                     </CardHeader>
                                     <CardContent className="text-sm space-y-2 flex-grow">
-                                        <p><strong>Hours Logged:</strong> {worker.totalHoursLogged || 0}</p>
-                                        <p><strong>Total Paid:</strong> ${worker.totalPaid || 0}</p>
+                                        <p><strong>{t('hoursLogged')}:</strong> {worker.totalHoursLogged || 0}</p>
+                                        <p><strong>{t('totalPaid')}:</strong> ${worker.totalPaid || 0}</p>
                                     </CardContent>
                                     <CardFooter className="grid grid-cols-2 gap-2">
-                                        <Button variant="outline" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogHoursOpen(true); }}><Clock className="mr-2 h-4 w-4"/>Log Hours</Button>
-                                        <Button variant="secondary" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogPaymentOpen(true); }}><DollarSign className="mr-2 h-4 w-4"/>Log Payment</Button>
+                                        <Button variant="outline" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogHoursOpen(true); }}><Clock className="mr-2 h-4 w-4"/>{t('logHours')}</Button>
+                                        <Button variant="secondary" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogPaymentOpen(true); }}><DollarSign className="mr-2 h-4 w-4"/>{t('logPayment')}</Button>
                                         <Button asChild variant="ghost" className="col-span-2">
-                                            <Link href={`/farm-management/labor/${worker.id}`}><Eye className="mr-2 h-4 w-4"/> View Details</Link>
+                                            <Link href={`/farm-management/labor/${worker.id}`}><Eye className="mr-2 h-4 w-4"/>{t('viewDetails')}</Link>
                                         </Button>
                                     </CardFooter>
                                 </Card>
                             ))}
                         </div>
-                    ) : <p className="text-center text-muted-foreground py-8">No workers added yet.</p>}
+                    ) : <p className="text-center text-muted-foreground py-8">{t('noWorkers')}</p>}
                 </CardContent>
             </Card>
 
-            {/* Log Hours Dialog */}
             <Dialog open={isLogHoursOpen} onOpenChange={setIsLogHoursOpen}>
                 <DialogContent>
-                    <DialogHeader><DialogTitle>Log Hours for {selectedWorker?.name}</DialogTitle></DialogHeader>
+                    <DialogHeader><DialogTitle>{t('logHoursFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                      <div className="space-y-4 py-4">
                         <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label htmlFor="hours">Hours Worked</Label>
-                                <Input id="hours" type="number" value={hours} onChange={e => setHours(e.target.value)} />
-                            </div>
-                            <div>
-                                <Label htmlFor="date">Date</Label>
-                                <Popover><PopoverTrigger asChild><Button variant="outline" className={cn("w-full justify-start text-left font-normal", !logDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{logDate ? format(logDate, "PPP") : <span>Pick a date</span>}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={logDate} onSelect={setLogDate} initialFocus /></PopoverContent></Popover>
-                            </div>
+                            <div><Label htmlFor="hours">{t('hoursWorked')}</Label><Input id="hours" type="number" value={hours} onChange={e => setHours(e.target.value)} /></div>
+                            <div><Label htmlFor="date">{t('date')}</Label><Popover><PopoverTrigger asChild><Button variant="outline" className={cn("w-full justify-start text-left font-normal", !logDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{logDate ? format(logDate, "PPP") : <span>{t('pickDate')}</span>}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={logDate} onSelect={setLogDate} initialFocus /></PopoverContent></Popover></div>
                         </div>
-                         <div>
-                            <Label htmlFor="task">Task Description (Optional)</Label>
-                            <Input id="task" value={task} onChange={e => setTask(e.target.value)} />
-                        </div>
+                         <div><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
-                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}Log Hours</Button>
+                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('logHours')}</Button>
                 </DialogContent>
             </Dialog>
 
-             {/* Log Payment Dialog */}
             <Dialog open={isLogPaymentOpen} onOpenChange={setIsLogPaymentOpen}>
                 <DialogContent>
-                    <DialogHeader><DialogTitle>Log Payment for {selectedWorker?.name}</DialogTitle></DialogHeader>
+                    <DialogHeader><DialogTitle>{t('logPaymentFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                     <div className="space-y-4 py-4">
                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label htmlFor="payment-amount">Amount Paid (USD)</Label>
-                                <Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} />
-                            </div>
-                             <div>
-                                <Label htmlFor="payment-date">Date</Label>
-                                <Popover><PopoverTrigger asChild><Button variant="outline" className={cn("w-full justify-start text-left font-normal", !paymentDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{paymentDate ? format(paymentDate, "PPP") : <span>Pick a date</span>}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus /></PopoverContent></Popover>
-                            </div>
+                            <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
+                             <div><Label htmlFor="payment-date">{t('date')}</Label><Popover><PopoverTrigger asChild><Button variant="outline" className={cn("w-full justify-start text-left font-normal", !paymentDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{paymentDate ? format(paymentDate, "PPP") : <span>{t('pickDate')}</span>}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus /></PopoverContent></Popover></div>
                         </div>
                     </div>
-                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}Log Payment</Button>
+                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('logPayment')}</Button>
                 </DialogContent>
             </Dialog>
         </div>
     );
 }
+
