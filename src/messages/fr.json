@@ -587,6 +587,23 @@
       }
     }
   },
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez des professionnels agricoles qualifiés ou offrez votre expertise pour des projets.",
+    "listServiceButton": "Lister un Service / Publier une Offre",
+    "searchPlaceholder": "Rechercher par compétence, rôle ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "noResultsTitle": "Aucun service ou talent trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles opportunités.",
+    "toast": {
+      "error": {
+        "title": "Erreur de chargement des talents",
+        "description": "Impossible de récupérer la liste des services et des professionnels. Veuillez réessayer plus tard."
+      }
+    }
+  },
   "Forums": {
     "title": "Sujets du forum",
     "description": "Parcourir et créer des sujets de discussion",

@@ -587,6 +587,23 @@
       }
     }
   },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte landwirtschaftliche Fachkräfte oder bieten Sie Ihre Expertise für Projekte an.",
+    "listServiceButton": "Dienstleistung anbieten / Job ausschreiben",
+    "searchPlaceholder": "Suche nach Fähigkeit, Rolle oder Stichwort...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen oder Talente gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei, um neue Möglichkeiten zu finden.",
+    "toast": {
+      "error": {
+        "title": "Fehler beim Laden der Talente",
+        "description": "Die Liste der Dienstleistungen und Fachkräfte konnte nicht abgerufen werden. Bitte versuchen Sie es später erneut."
+      }
+    }
+  },
   "Forums": {
     "title": "Forum-Themen",
     "description": "Durchsuchen und erstellen Sie Diskussionsthemen",

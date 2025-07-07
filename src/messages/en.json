@@ -587,6 +587,23 @@
       }
     }
   },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled agricultural professionals or offer your expertise for projects.",
+    "listServiceButton": "List a Service / Post a Job",
+    "searchPlaceholder": "Search by skill, role, or keyword...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services or Talent Found",
+    "noResultsDescription": "Try adjusting your search filters or check back later for new opportunities.",
+    "toast": {
+      "error": {
+        "title": "Error Loading Talent",
+        "description": "Could not fetch the list of services and professionals. Please try again later."
+      }
+    }
+  },
   "Forums": {
     "title": "Forum Topics",
     "description": "Browse and create discussion topics",
