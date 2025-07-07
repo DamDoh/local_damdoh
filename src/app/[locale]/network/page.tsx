@@ -9,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Brain } from "lucide-react";
+import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Brain, MapPin } from "lucide-react";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -253,7 +253,12 @@ export default function NetworkPage() {
                 <SelectContent>
                   <SelectItem value="all">{t('allRoles')}</SelectItem>
                   {STAKEHOLDER_ROLES.map(role => (
-                    <SelectItem key={role} value={role}>{role}</SelectItem>
+                    <SelectItem key={role} value={role}>
+                      <div className="flex items-center gap-2">
+                        <StakeholderIcon role={role} className="h-4 w-4 text-muted-foreground" />
+                        <span>{role}</span>
+                      </div>
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
