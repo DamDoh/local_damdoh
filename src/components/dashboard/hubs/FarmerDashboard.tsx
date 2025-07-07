@@ -13,7 +13,7 @@ import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 
-// --- HELPER COMPONENTS ---
+// --- HELPER COMPONENTS (DEFINED OUTSIDE THE MAIN COMPONENT) ---
 
 function DashboardSkeleton() {
     return (
