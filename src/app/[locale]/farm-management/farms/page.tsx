@@ -37,7 +37,7 @@ function FarmListSkeleton() {
 }
 
 export default function MyFarmsPage() {
-  const t = useTranslations('FarmManagement.myFarms');
+  const t = useTranslations('farmManagement.myFarms');
   const [farms, setFarms] = useState<Farm[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
@@ -61,7 +61,7 @@ export default function MyFarmsPage() {
         console.error("Failed to fetch farms:", error);
         toast({
             variant: "destructive",
-            title: "Could not load farms",
+            title: t('toast.errorTitle'),
             description: error.message
         });
         setFarms([]); // Ensure farms is an array on error
@@ -71,15 +71,15 @@ export default function MyFarmsPage() {
     };
 
     fetchFarms();
-  }, [user, getUserFarmsCallable, toast]);
+  }, [user, getUserFarmsCallable, toast, t]);
 
   if (!user && !isLoading) {
     return (
       <Card className="text-center py-8">
-        <CardHeader><CardTitle>Please Sign In</CardTitle></CardHeader>
+        <CardHeader><CardTitle>{t('auth.title')}</CardTitle></CardHeader>
         <CardContent>
-          <CardDescription>You need to be logged in to manage your farms.</CardDescription>
-          <Button asChild className="mt-4"><Link href="/auth/signin">Sign In</Link></Button>
+          <CardDescription>{t('auth.description')}</CardDescription>
+          <Button asChild className="mt-4"><Link href="/auth/signin">{t('auth.button')}</Link></Button>
         </CardContent>
       </Card>
     );

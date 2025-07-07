@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Startseite",
@@ -1012,5 +1013,312 @@
     "feature3": "Ein dynamisches Kredit-Scoring-System, das auf Ihren Plattformaktivitäten basiert",
     "feature4": "Einfache Nachverfolgung von Einnahmen und Ausgaben",
     "stayTuned": "Bleiben Sie dran für Updates, während wir dieses transformative Finanzinstrument entwickeln!"
+  },
+  "common": {
+    "error": "Fehler",
+    "loading": "Wird geladen..."
+  },
+  "editProfilePage": {
+    "title": "Profil von {name} bearbeiten",
+    "description": "Aktualisieren Sie Ihre Profilinformationen, um sie auf dem neuesten Stand zu halten.",
+    "profileTab": "Profil",
+    "detailsTab": "Details",
+    "contactTab": "Kontakt",
+    "nameLabel": "Name",
+    "namePlaceholder": "Ihr vollständiger Name oder Firmenname",
+    "roleLabel": "Hauptrolle",
+    "rolePlaceholder": "Wählen Sie Ihre Rolle",
+    "summaryLabel": "Profilübersicht",
+    "summaryPlaceholder": "Ein kurzer Titel oder eine Zusammenfassung über Sie",
+    "summaryDescription": "Ein Einzeiler, der unter Ihrem Namen erscheint.",
+    "generateWithAI": "Mit KI generieren",
+    "bioLabel": "Biografie",
+    "bioPlaceholder": "Erzählen Sie der Community mehr über sich, Ihre Fähigkeiten und was Sie suchen...",
+    "bioDescription": "Eine ausführlichere Beschreibung, die auf Ihrer Profilseite angezeigt wird.",
+    "locationLabel": "Standort",
+    "locationPlaceholder": "z.B. Nakuru, Kenia",
+    "interestsLabel": "Interessengebiete",
+    "interestsPlaceholder": "z.B. Ökologischer Landbau, Agrartechnologie, Kaffeeexport",
+    "commaSeparated": "Kommagetrennte Werte",
+    "needsLabel": "Bedarf / Angebote",
+    "needsPlaceholder": "z.B. Suche Käufer, Biete Logistikdienstleistungen an",
+    "emailLabel": "E-Mail",
+    "emailDescription": "E-Mail kann nicht geändert werden.",
+    "phoneLabel": "Telefon (optional)",
+    "websiteLabel": "Webseite (optional)",
+    "savingButton": "Speichern...",
+    "saveButton": "Änderungen speichern",
+    "cancelButton": "Abbrechen",
+    "toast": {
+      "profileNotFound": "Profil nicht gefunden.",
+      "fetchError": "Profildaten konnten nicht geladen werden.",
+      "notAuthenticatedTitle": "Nicht authentifiziert",
+      "notAuthenticatedDescription": "Sie müssen angemeldet sein, um ein Profil zu bearbeiten.",
+      "unauthorizedTitle": "Nicht autorisiert",
+      "unauthorizedDescription": "Sie haben keine Berechtigung, dieses Profil zu bearbeiten.",
+      "missingInfoTitle": "Fehlende Informationen",
+      "missingInfoDescription": "Bitte füllen Sie Ihre Rolle, Ihren Standort, Ihre Interessen und Bedürfnisse aus, um eine Zusammenfassung zu generieren.",
+      "summaryGeneratedTitle": "Zusammenfassung generiert!",
+      "summaryGeneratedDescription": "KI hat eine neue Profilzusammenfassung für Sie erstellt.",
+      "generationFailedTitle": "Generierung fehlgeschlagen",
+      "generationFailedDescription": "Zusammenfassung konnte nicht generiert werden. Bitte versuchen Sie es erneut.",
+      "missingIdError": "Profil-ID fehlt. Update nicht möglich.",
+      "profileUpdatedTitle": "Profil aktualisiert!",
+      "profileUpdatedDescription": "Ihre Profilinformationen wurden erfolgreich gespeichert.",
+      "updateFailedTitle": "Update fehlgeschlagen",
+      "updateFailedDescription": "Ihre Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut."
+    },
+    "notFound": {
+      "title": "Profil nicht gefunden",
+      "description": "Das Profil, das Sie bearbeiten möchten, konnte nicht gefunden werden.",
+      "backButton": "Zurück zum Dashboard"
+    }
+  },
+  "settingsPage": {
+    "title": "Einstellungen",
+    "description": "Verwalten Sie Ihr Konto, Benachrichtigungen und Plattformeinstellungen.",
+    "profileTab": "Profil",
+    "accountTab": "Konto",
+    "notificationsTab": "Benachrichtigungen",
+    "privacyTab": "Datenschutz",
+    "appearanceTab": "Erscheinungsbild",
+    "stakeholderProfile": {
+      "title": "Stakeholder-Profil",
+      "description": "So sehen andere Sie auf DamDoh."
+    },
+    "account": {
+      "title": "Kontoeinstellungen",
+      "description": "Ändern Sie Ihr Passwort oder deaktivieren Sie Ihr Konto.",
+      "currentPasswordLabel": "Aktuelles Passwort",
+      "newPasswordLabel": "Neues Passwort",
+      "confirmPasswordLabel": "Neues Passwort bestätigen",
+      "changePasswordButton": "Passwort ändern",
+      "deactivateButton": "Konto deaktivieren"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "description": "Verwalten Sie, wie Sie über Aktivitäten benachrichtigt werden.",
+      "emailDigestLabel": "Wöchentliche E-Mail-Zusammenfassung",
+      "emailDigestDescription": "Erhalten Sie eine wöchentliche Zusammenfassung der Aktivitäten.",
+      "connectionRequestsLabel": "Verbindungsanfragen",
+      "connectionRequestsDescription": "Benachrichtigung erhalten, wenn jemand eine Verbindung herstellen möchte.",
+      "forumMentionsLabel": "Erwähnungen im Forum",
+      "forumMentionsDescription": "Benachrichtigung erhalten, wenn Sie in einem Beitrag erwähnt werden.",
+      "marketplaceActivityLabel": "Marktplatz-Aktivität",
+      "marketplaceActivityDescription": "Erhalten Sie Updates zu Ihren Bestellungen und Anfragen.",
+      "talentExchangeLabel": "Benachrichtigungen der Talentbörse",
+      "talentExchangeDescription": "Erhalten Sie Benachrichtigungen über relevante Jobmöglichkeiten.",
+      "saveButton": "Einstellungen speichern"
+    },
+    "privacy": {
+      "title": "Datenschutz & Sichtbarkeit",
+      "description": "Kontrollieren Sie, wer Ihr Profil und Ihre Aktivitäten sehen kann.",
+      "profileVisibilityLabel": "Wer kann Ihr Profil sehen",
+      "profileVisibilityDescription": "Verwalten Sie, wer Ihre detaillierte Profilseite sehen kann.",
+      "profileVisibilityAll": "Jeder",
+      "profileVisibilityConnections": "Nur Verbindungen",
+      "profileVisibilityPrivate": "Privat (nur Sie)",
+      "connectionRequestsLabel": "Wer kann Ihnen Verbindungsanfragen senden",
+      "connectionRequestsDescription": "Kontrollieren Sie, wer Ihnen Verbindungsanfragen senden kann.",
+      "connectionRequestsAll": "Jeder",
+      "connectionRequestsConnectionsOfConnections": "Verbindungen von Verbindungen",
+      "contactInfoVisibilityLabel": "Wer kann Ihre Kontaktdaten sehen",
+      "contactInfoVisibilityDescription": "Wählen Sie, wer Ihre E-Mail und Telefonnummer sehen kann.",
+      "contactInfoVisibilityAll": "Jeder",
+      "contactInfoVisibilityConnections": "Nur Verbindungen",
+      "activityStatusLabel": "Ihren Aktivitätsstatus anzeigen",
+      "activityStatusDescription": "Lassen Sie Ihre Verbindungen sehen, wann Sie auf DamDoh aktiv sind.",
+      "searchIndexingLabel": "Profil in Suchmaschinen anzeigen lassen",
+      "searchIndexingDescription": "Erlauben Sie Suchmaschinen wie Google, Ihr DamDoh-Profil anzuzeigen.",
+      "saveButton": "Datenschutzeinstellungen speichern",
+      "dataConsentTitle": "Einwilligungsverwaltung",
+      "dataConsentDescription": "Kontrollieren Sie, wie Ihre Daten zwischen verschiedenen Teilen von DamDoh geteilt werden.",
+      "marketplaceHistoryLabel": "Marktplatzverlauf mit Finanzinstituten teilen",
+      "marketplaceHistoryDescription": "Ermöglichen Sie potenziellen Kreditgebern, Ihren Transaktionsverlauf zur Unterstützung der Kreditbewertung einzusehen.",
+      "traceabilityDataLabel": "Rückverfolgungsdaten öffentlich machen",
+      "traceabilityDataDescription": "Ermöglichen Sie nicht angemeldeten Benutzern, Rückverfolgungsberichte für Ihre gelisteten Chargen anzuzeigen.",
+      "financialApplicationDataLabel": "Finanzantragsdaten für KI-Matching verwenden",
+      "financialApplicationDataDescription": "Erlauben Sie unserer KI, Sie mit relevanten Finanzprodukten basierend auf Ihren angegebenen Bedürfnissen abzugleichen.",
+      "saveConsentButton": "Einwilligungen speichern"
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "description": "Passen Sie das Aussehen und die Handhabung der Anwendung an.",
+      "themeLabel": "Thema",
+      "themeDescription": "Wählen Sie zwischen einem hellen und einem dunklen Design.",
+      "lightTheme": "Hell",
+      "darkTheme": "Dunkel",
+      "switchToLightAria": "Zum hellen Thema wechseln",
+      "switchToDarkAria": "Zum dunklen Thema wechseln",
+      "languageLabel": "Sprache",
+      "languageDescription": "Wählen Sie Ihre bevorzugte Sprache."
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Zentrale für Farm-Management",
+      "description": "Verwalten Sie alle Aspekte Ihrer landwirtschaftlichen Betriebe, von der Ernteverfolgung bis zur Finanz- und Ressourcenverwaltung.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Verwalten Sie Ihre registrierten Farmen, Parzellen und verfolgen Sie die Erntezyklen.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitsmanagement",
+        "description": "Behalten Sie den Überblick über Arbeiter, protokollieren Sie Stunden und verwalten Sie Zahlungen für Ihr Farmpersonal.",
+        "button": "Arbeiter verwalten"
+      },
+      "knf": {
+        "title": "KNF-Assistent",
+        "description": "Erstellen und verfolgen Sie Ihre selbstgemachten koreanischen Naturlandbau-Inputs (KNF).",
+        "button": "KNF-Inputs verwalten"
+      },
+      "fgw": {
+        "title": "Leitfaden zu Farming God's Way",
+        "description": "Lernen Sie die Prinzipien und Praktiken von Farming God's Way kennen.",
+        "button": "Leitfaden ansehen"
+      },
+      "financials": {
+        "title": "Finanzen im Blick",
+        "description": "Protokollieren Sie Einnahmen und Ausgaben, um die finanzielle Gesundheit Ihrer Farm zu verfolgen.",
+        "button": "Finanzen verwalten"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Aussaat",
+        "description": "Ein detaillierter Leitfaden zu den besten Praktiken für die Aussaat und das Umpflanzen.",
+        "button": "Anleitung lesen"
+      },
+      "familyFarm": {
+        "title": "Modell der Familienfarm",
+        "description": "Entdecken Sie das 200 m² große integrierte Familienfarm-Modell für Ernährungssicherheit.",
+        "button": "Modell ansehen"
+      },
+      "assetManagement": {
+        "title": "Anlagenverwaltung",
+        "description": "Verfolgen Sie Ihre Ausrüstung, Maschinen und andere landwirtschaftliche Anlagen.",
+        "button": "Anlagen verwalten"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zur Zentrale",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farm ansehen",
+      "noFarmsTitle": "Keine Farmen hinzugefügt",
+      "noFarmsDescription": "Beginnen Sie mit der Registrierung Ihrer ersten Farm oder landwirtschaftlichen Parzelle.",
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen zu verwalten.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Farmen konnten nicht geladen werden"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu den Farmen",
+      "title": "Eine neue Farm registrieren",
+      "description": "Fügen Sie ein neues Farmprofil hinzu, um mit der Verfolgung von Kulturen, Betriebsmitteln und Aktivitäten zu beginnen.",
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Rift Valley, Kenia",
+        "locationDescription": "Der allgemeine Standort Ihrer Farm.",
+        "sizeLabel": "Größe / Fläche",
+        "sizePlaceholder": "z.B. 50 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Art der Farm",
+        "typePlaceholder": "Wählen Sie die Hauptart Ihrer Farm",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Kurzbeschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung des Schwerpunkts oder der Mission Ihrer Farm.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Kanal, regenbewässert",
+        "irrigationDescription": "Beschreiben Sie die hauptsächlich verwendeten Bewässerungsmethoden.",
+        "submitButton": "Farm speichern"
+      },
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "Ihre Farm '{farmName}' wurde erfolgreich registriert.",
+        "errorTitle": "Fehler beim Erstellen der Farm"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Zurück zu den Farmdetails",
+      "title": "Farmdetails bearbeiten",
+      "description": "Aktualisieren Sie die Informationen für Ihre Farm.",
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Rift Valley, Kenia",
+        "locationDescription": "Der allgemeine Standort Ihrer Farm.",
+        "sizeLabel": "Größe / Fläche",
+        "sizePlaceholder": "z.B. 50 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Art der Farm",
+        "typePlaceholder": "Wählen Sie die Hauptart Ihrer Farm",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Kurzbeschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung des Schwerpunkts oder der Mission Ihrer Farm.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Kanal, regenbewässert",
+        "irrigationDescription": "Beschreiben Sie die hauptsächlich verwendeten Bewässerungsmethoden.",
+        "submitButton": "Änderungen speichern"
+      },
+      "toast": {
+        "notFoundTitle": "Farm nicht gefunden",
+        "loadError": "Farmdaten konnten zum Bearbeiten nicht geladen werden.",
+        "successTitle": "Farm aktualisiert!",
+        "successDescription": "Ihre Farm '{farmName}' wurde erfolgreich aktualisiert.",
+        "errorTitle": "Update fehlgeschlagen"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Zurück zu den Farmen",
+      "editFarmButton": "Farm bearbeiten",
+      "registeredOn": "Registriert am {date}",
+      "crops": {
+        "title": "Kulturen / Vieh",
+        "description": "Alle aktiven Anpflanzungen und Viehbestände auf dieser Farm.",
+        "addNewButton": "Neu hinzufügen",
+        "plantedLabel": "Gepflanzt",
+        "stageLabel": "Phase",
+        "viewJourneyButton": "Reise ansehen",
+        "noCrops": "Dieser Farm wurden noch keine Kulturen oder Vieh hinzugefügt.",
+        "addFirstButton": "Erste Kultur/Vieh hinzufügen"
+      },
+      "insights": {
+        "title": "Rentabilitätseinblicke",
+        "description": "KI-gestützte Analyse der Leistung Ihrer Farm.",
+        "noInsights": "Noch keine Einblicke verfügbar. Fügen Sie mehr Finanzdaten hinzu, um zu beginnen."
+      },
+      "notFound": {
+        "title": "Farm nicht gefunden",
+        "description": "Die von Ihnen angeforderte Farm konnte nicht gefunden werden oder Sie haben keine Berechtigung, sie anzuzeigen.",
+        "backButton": "Zurück zu Meinen Farmen"
+      },
+      "toast": {
+        "notFoundTitle": "Farm nicht gefunden oder Berechtigung verweigert",
+        "loadErrorTitle": "Fehler beim Laden der Farmdaten",
+        "insightsErrorTitle": "Farmeinsichten konnten nicht geladen werden."
+      }
+    }
   }
 }

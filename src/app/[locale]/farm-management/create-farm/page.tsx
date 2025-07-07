@@ -21,7 +21,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 
 export default function CreateFarmPage() {
-  const t = useTranslations('FarmManagement.createFarm');
+  const t = useTranslations('farmManagement.createFarm');
   const { toast } = useToast();
   const router = useRouter();
   const { user } = useAuth();
@@ -43,7 +43,7 @@ export default function CreateFarmPage() {
 
   const onSubmit = async (values: CreateFarmValues) => {
     if (!user) {
-        toast({ title: "Not Authenticated", description: "You must be logged in to create a farm.", variant: "destructive"});
+        toast({ title: t('toast.authErrorTitle'), description: t('toast.authErrorDescription'), variant: "destructive"});
         return;
     }
     setIsSubmitting(true);

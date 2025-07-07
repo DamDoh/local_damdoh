@@ -22,6 +22,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function EditFarmPage() {
+  const t = useTranslations('farmManagement.editFarm');
   const { toast } = useToast();
   const router = useRouter();
   const params = useParams();
@@ -54,7 +55,7 @@ export default function EditFarmPage() {
         if (farmData) {
             form.reset(farmData);
         } else {
-            toast({ title: "Farm not found", description: "Could not load farm data for editing.", variant: "destructive" });
+            toast({ title: t('toast.notFoundTitle'), description: t('toast.loadError'), variant: "destructive" });
             router.push('/farm-management/farms');
         }
     } catch (error: any) {
@@ -62,7 +63,7 @@ export default function EditFarmPage() {
     } finally {
         setIsLoadingData(false);
     }
-  }, [farmId, getFarmCallable, form, toast, router]);
+  }, [farmId, getFarmCallable, form, toast, router, t]);
 
   useEffect(() => {
     if (user && farmId) {
@@ -78,14 +79,14 @@ export default function EditFarmPage() {
         const payload = { ...values, farmId };
         await updateFarmCallable(payload);
         toast({
-          title: "Farm Updated!",
-          description: `Your farm "${values.name}" has been successfully updated.`,
+          title: t('toast.successTitle'),
+          description: t('toast.successDescription', { farmName: values.name }),
         });
         router.push(`/farm-management/farms/${farmId}`);
     } catch(error: any) {
         console.error("Error updating farm:", error);
         toast({
-          title: "Update Failed",
+          title: t('toast.errorTitle'),
           description: error.message || "An unexpected error occurred.",
           variant: "destructive",
         });
@@ -117,13 +118,13 @@ export default function EditFarmPage() {
   return (
     <div className="container mx-auto p-4 md:p-8">
       <Link href={`/farm-management/farms/${farmId}`} className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-        <ArrowLeft className="mr-1 h-4 w-4"/> Back to Farm Details
+        <ArrowLeft className="mr-1 h-4 w-4"/> {t('backToFarm')}
       </Link>
 
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Edit Farm Details</CardTitle>
-          <CardDescription>Update the information for your farm.</CardDescription>
+          <CardTitle className="text-2xl font-bold">{t('title')}</CardTitle>
+          <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -133,9 +134,9 @@ export default function EditFarmPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Farm Name</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.farmNameLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Green Valley Organics" {...field} />
+                      <Input placeholder={t('form.farmNamePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -147,11 +148,11 @@ export default function EditFarmPage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />Location</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{t('form.locationLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Rift Valley, Kenya" {...field} />
+                      <Input placeholder={t('form.locationPlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>The general location of your farm.</FormDescription>
+                    <FormDescription>{t('form.locationDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -162,11 +163,11 @@ export default function EditFarmPage() {
                 name="size"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Circle className="h-4 w-4 text-muted-foreground" />Size / Area</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Circle className="h-4 w-4 text-muted-foreground" />{t('form.sizeLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 50 Hectares" {...field} />
+                      <Input placeholder={t('form.sizePlaceholder')} {...field} />
                     </FormControl>
-                     <FormDescription>Include the unit (e.g., acres, hectares).</FormDescription>
+                     <FormDescription>{t('form.sizeDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -177,19 +178,19 @@ export default function EditFarmPage() {
                 name="farmType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />Type of Farm</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />{t('form.typeLabel')}</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select the primary type of your farm" />
+                          <SelectValue placeholder={t('form.typePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="crop">Crop Farming</SelectItem>
-                        <SelectItem value="livestock">Livestock Rearing</SelectItem>
-                        <SelectItem value="mixed">Mixed (Crop & Livestock)</SelectItem>
-                        <SelectItem value="aquaculture">Aquaculture (Fish Farming)</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="crop">{t('form.types.crop')}</SelectItem>
+                        <SelectItem value="livestock">{t('form.types.livestock')}</SelectItem>
+                        <SelectItem value="mixed">{t('form.types.mixed')}</SelectItem>
+                        <SelectItem value="aquaculture">{t('form.types.aquaculture')}</SelectItem>
+                        <SelectItem value="other">{t('form.types.other')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -202,9 +203,9 @@ export default function EditFarmPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />Short Description (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.descriptionLabel')}</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="A brief description of your farm's focus or mission." {...field} />
+                      <Textarea placeholder={t('form.descriptionPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -216,11 +217,11 @@ export default function EditFarmPage() {
                 name="irrigationMethods"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />Irrigation Methods (Optional)</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />{t('form.irrigationLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Drip irrigation, Canal, Rain-fed" {...field} />
+                      <Input placeholder={t('form.irrigationPlaceholder')} {...field} />
                     </FormControl>
-                     <FormDescription>Describe the primary irrigation methods used.</FormDescription>
+                     <FormDescription>{t('form.irrigationDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -229,7 +230,7 @@ export default function EditFarmPage() {
               <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 <Save className="mr-2 h-4 w-4" />
-                Save Changes
+                {t('form.submitButton')}
               </Button>
             </form>
           </Form>

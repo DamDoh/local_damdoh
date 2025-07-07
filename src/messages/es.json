@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Inicio",
@@ -206,7 +207,7 @@
       "repliesTitle": "Respuestas ({replyCount})",
       "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
       "loadingMoreButton": "Cargando...",
-      "loadMoreButton": "Cargar Más Respuestas",
+      "loadMoreComments": "Cargar Más Respuestas",
       "yourReplyTitle": "Tu Respuesta",
       "replyPlaceholder": "Escribe tu respuesta...",
       "replySubmittingButton": "Publicando...",
@@ -367,7 +368,9 @@
       "organizedBy": "Organizado por {organizer}",
       "viewDetails": "Ver Detalles",
       "noEventsFound": "No se Encontraron Eventos",
-      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no <link>creas uno</link>?",
+      "noEventsHint": {
+        "link": "crear uno"
+      },
       "errorLoadingEvents": "Error al Cargar Eventos",
       "couldNotFetchEvents": "No se pudo obtener la lista de eventos. Por favor, inténtalo de nuevo más tarde.",
       "toast": {
@@ -1010,5 +1013,312 @@
     "feature3": "Un sistema dinámico de calificación crediticia basado en tu actividad en la plataforma",
     "feature4": "Seguimiento sencillo de ingresos y gastos",
     "stayTuned": "¡Mantente atento a las actualizaciones mientras construimos esta herramienta financiera transformadora!"
+  },
+  "common": {
+    "error": "Error",
+    "loading": "Cargando..."
+  },
+  "editProfilePage": {
+    "title": "Editar perfil de {name}",
+    "description": "Actualice la información de su perfil para mantenerla al día.",
+    "profileTab": "Perfil",
+    "detailsTab": "Detalles",
+    "contactTab": "Contacto",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Su nombre completo o el de su empresa",
+    "roleLabel": "Rol principal",
+    "rolePlaceholder": "Seleccione su rol",
+    "summaryLabel": "Resumen del perfil",
+    "summaryPlaceholder": "Un título breve o un resumen sobre usted",
+    "summaryDescription": "Un resumen de una línea que aparece debajo de su nombre.",
+    "generateWithAI": "Generar con IA",
+    "bioLabel": "Biografía",
+    "bioPlaceholder": "Cuéntele a la comunidad más sobre usted, sus habilidades y lo que busca...",
+    "bioDescription": "Una descripción más detallada que aparecerá en su página de perfil.",
+    "locationLabel": "Ubicación",
+    "locationPlaceholder": "Ej: Nakuru, Kenia",
+    "interestsLabel": "Áreas de interés",
+    "interestsPlaceholder": "Ej: Agricultura orgánica, agrotecnología, exportación de café",
+    "commaSeparated": "Valores separados por comas",
+    "needsLabel": "Necesidades / Ofertas",
+    "needsPlaceholder": "Ej: Buscando compradores, ofreciendo servicios de logística",
+    "emailLabel": "Correo electrónico",
+    "emailDescription": "El correo electrónico no se puede cambiar.",
+    "phoneLabel": "Teléfono (opcional)",
+    "websiteLabel": "Sitio web (opcional)",
+    "savingButton": "Guardando...",
+    "saveButton": "Guardar cambios",
+    "cancelButton": "Cancelar",
+    "toast": {
+      "profileNotFound": "Perfil no encontrado.",
+      "fetchError": "No se pudieron cargar los datos del perfil.",
+      "notAuthenticatedTitle": "No autenticado",
+      "notAuthenticatedDescription": "Debe iniciar sesión para editar un perfil.",
+      "unauthorizedTitle": "No autorizado",
+      "unauthorizedDescription": "No tiene permiso para editar este perfil.",
+      "missingInfoTitle": "Información faltante",
+      "missingInfoDescription": "Complete su rol, ubicación, intereses y necesidades para generar un resumen.",
+      "summaryGeneratedTitle": "¡Resumen generado!",
+      "summaryGeneratedDescription": "La IA ha creado un nuevo resumen de perfil para usted.",
+      "generationFailedTitle": "Generación fallida",
+      "generationFailedDescription": "No se pudo generar el resumen. Vuelva a intentarlo.",
+      "missingIdError": "Falta el ID del perfil. No se puede actualizar.",
+      "profileUpdatedTitle": "¡Perfil actualizado!",
+      "profileUpdatedDescription": "La información de su perfil se ha guardado correctamente.",
+      "updateFailedTitle": "Actualización fallida",
+      "updateFailedDescription": "No se pudieron guardar sus cambios. Vuelva a intentarlo."
+    },
+    "notFound": {
+      "title": "Perfil no encontrado",
+      "description": "No se pudo encontrar el perfil que está tratando de editar.",
+      "backButton": "Volver al panel"
+    }
+  },
+  "settingsPage": {
+    "title": "Configuración",
+    "description": "Administre su cuenta, notificaciones y preferencias de la plataforma.",
+    "profileTab": "Perfil",
+    "accountTab": "Cuenta",
+    "notificationsTab": "Notificaciones",
+    "privacyTab": "Privacidad",
+    "appearanceTab": "Apariencia",
+    "stakeholderProfile": {
+      "title": "Perfil de parte interesada",
+      "description": "Así es como otros lo ven en DamDoh."
+    },
+    "account": {
+      "title": "Configuración de la cuenta",
+      "description": "Cambie su contraseña o desactive su cuenta.",
+      "currentPasswordLabel": "Contraseña actual",
+      "newPasswordLabel": "Nueva contraseña",
+      "confirmPasswordLabel": "Confirmar nueva contraseña",
+      "changePasswordButton": "Cambiar contraseña",
+      "deactivateButton": "Desactivar cuenta"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "description": "Administre cómo se le notifica sobre la actividad.",
+      "emailDigestLabel": "Resumen semanal por correo electrónico",
+      "emailDigestDescription": "Reciba un resumen de la actividad semanal.",
+      "connectionRequestsLabel": "Solicitudes de conexión",
+      "connectionRequestsDescription": "Recibir una notificación cuando alguien quiera conectarse.",
+      "forumMentionsLabel": "Menciones en el foro",
+      "forumMentionsDescription": "Recibir una notificación cuando alguien lo mencione en una publicación.",
+      "marketplaceActivityLabel": "Actividad del mercado",
+      "marketplaceActivityDescription": "Reciba actualizaciones sobre sus pedidos y consultas.",
+      "talentExchangeLabel": "Notificaciones de la bolsa de talentos",
+      "talentExchangeDescription": "Reciba notificaciones sobre oportunidades laborales relevantes.",
+      "saveButton": "Guardar preferencias"
+    },
+    "privacy": {
+      "title": "Privacidad y visibilidad",
+      "description": "Controle quién puede ver su perfil y su actividad.",
+      "profileVisibilityLabel": "Quién puede ver su perfil",
+      "profileVisibilityDescription": "Administre quién puede ver su página de perfil detallada.",
+      "profileVisibilityAll": "Todos",
+      "profileVisibilityConnections": "Solo conexiones",
+      "profileVisibilityPrivate": "Privado (solo usted)",
+      "connectionRequestsLabel": "Quién puede enviarle solicitudes de conexión",
+      "connectionRequestsDescription": "Controle quién puede enviarle solicitudes de conexión.",
+      "connectionRequestsAll": "Todos",
+      "connectionRequestsConnectionsOfConnections": "Conexiones de conexiones",
+      "contactInfoVisibilityLabel": "Quién puede ver su información de contacto",
+      "contactInfoVisibilityDescription": "Elija quién puede ver su correo electrónico y número de teléfono.",
+      "contactInfoVisibilityAll": "Todos",
+      "contactInfoVisibilityConnections": "Solo conexiones",
+      "activityStatusLabel": "Mostrar su estado de actividad",
+      "activityStatusDescription": "Permita que sus conexiones vean cuándo está activo en DamDoh.",
+      "searchIndexingLabel": "Permitir que su perfil aparezca en los motores de búsqueda",
+      "searchIndexingDescription": "Permita que los motores de búsqueda como Google muestren su perfil de DamDoh.",
+      "saveButton": "Guardar configuración de privacidad",
+      "dataConsentTitle": "Administración de consentimiento de datos",
+      "dataConsentDescription": "Controle cómo se comparten sus datos entre diferentes partes de DamDoh.",
+      "marketplaceHistoryLabel": "Compartir el historial del mercado con instituciones financieras",
+      "marketplaceHistoryDescription": "Permita que los posibles prestamistas vean su historial de transacciones para ayudar en la evaluación crediticia.",
+      "traceabilityDataLabel": "Hacer que los datos de trazabilidad sean visibles públicamente",
+      "traceabilityDataDescription": "Permita que los usuarios no registrados vean los informes de trazabilidad de sus lotes listados.",
+      "financialApplicationDataLabel": "Usar datos de la aplicación financiera para la coincidencia de IA",
+      "financialApplicationDataDescription": "Permita que nuestra IA lo empareje con productos financieros relevantes según sus necesidades declaradas.",
+      "saveConsentButton": "Guardar consentimientos"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "description": "Personalice la apariencia de la aplicación.",
+      "themeLabel": "Tema",
+      "themeDescription": "Elija entre un diseño claro y oscuro.",
+      "lightTheme": "Claro",
+      "darkTheme": "Oscuro",
+      "switchToLightAria": "Cambiar a tema claro",
+      "switchToDarkAria": "Cambiar a tema oscuro",
+      "languageLabel": "Idioma",
+      "languageDescription": "Elija su idioma preferido."
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión de Granjas",
+      "description": "Gestione todos los aspectos de sus operaciones agrícolas, desde el seguimiento de cultivos hasta la gestión de finanzas y recursos.",
+      "myFarms": {
+        "title": "Mis Granjas y Cultivos",
+        "description": "Gestione sus granjas registradas, parcelas y siga los ciclos de los cultivos.",
+        "button": "Gestionar Granjas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Lleve un registro de los trabajadores, registre las horas y gestione los pagos de su personal agrícola.",
+        "button": "Gestionar Trabajadores"
+      },
+      "knf": {
+        "title": "Asistente de KNF",
+        "description": "Cree y siga sus insumos caseros de Agricultura Natural Coreana (KNF).",
+        "button": "Gestionar Insumos KNF"
+      },
+      "fgw": {
+        "title": "Guía de Farming God's Way",
+        "description": "Aprenda los principios y prácticas de Farming God's Way.",
+        "button": "Ver Guía"
+      },
+      "financials": {
+        "title": "Asuntos de Dinero",
+        "description": "Registre ingresos y gastos para seguir la salud financiera de su granja.",
+        "button": "Gestionar Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Inicio de Semillas",
+        "description": "Una guía detallada sobre las mejores prácticas para la siembra y el trasplante de semillas.",
+        "button": "Leer Guía"
+      },
+      "familyFarm": {
+        "title": "Modelo de Granja Familiar",
+        "description": "Explore el modelo de granja familiar integrada de 200m² para la seguridad alimentaria.",
+        "button": "Ver Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Lleve un registro de su equipo, maquinaria y otros activos agrícolas.",
+        "button": "Gestionar Activos"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Volver al Centro",
+      "title": "Mis Granjas",
+      "addNewFarmButton": "Añadir Nueva Granja",
+      "size": "Tamaño",
+      "viewFarmButton": "Ver Granja",
+      "noFarmsTitle": "No se han añadido granjas",
+      "noFarmsDescription": "Comience por registrar su primera granja o parcela agrícola.",
+      "auth": {
+        "title": "Por favor, inicie sesión",
+        "description": "Debe iniciar sesión para gestionar sus granjas.",
+        "button": "Iniciar sesión"
+      },
+      "toast": {
+        "errorTitle": "No se pudieron cargar las granjas"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Volver a Granjas",
+      "title": "Registrar una Nueva Granja",
+      "description": "Añada un nuevo perfil de granja para empezar a seguir cultivos, insumos y actividades.",
+      "form": {
+        "farmNameLabel": "Nombre de la Granja",
+        "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ej: Valle del Rift, Kenia",
+        "locationDescription": "La ubicación general de su granja.",
+        "sizeLabel": "Tamaño / Área",
+        "sizePlaceholder": "Ej: 50 Hectáreas",
+        "sizeDescription": "Incluya la unidad (ej: acres, hectáreas).",
+        "typeLabel": "Tipo de Granja",
+        "typePlaceholder": "Seleccione el tipo principal de su granja",
+        "types": {
+          "crop": "Cultivo",
+          "livestock": "Ganadería",
+          "mixed": "Mixta (Cultivo y Ganadería)",
+          "aquaculture": "Acuicultura (Piscicultura)",
+          "other": "Otro"
+        },
+        "descriptionLabel": "Descripción Corta (opcional)",
+        "descriptionPlaceholder": "Una breve descripción del enfoque o misión de su granja.",
+        "irrigationLabel": "Métodos de Riego (opcional)",
+        "irrigationPlaceholder": "Ej: Riego por goteo, Canal, De secano",
+        "irrigationDescription": "Describa los principales métodos de riego utilizados.",
+        "submitButton": "Guardar Granja"
+      },
+      "toast": {
+        "authErrorTitle": "No autenticado",
+        "authErrorDescription": "Debe iniciar sesión para crear una granja.",
+        "successTitle": "¡Granja Creada!",
+        "successDescription": "Su granja '{farmName}' ha sido registrada con éxito.",
+        "errorTitle": "Error al Crear Granja"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Volver a Detalles de la Granja",
+      "title": "Editar Detalles de la Granja",
+      "description": "Actualice la información de su granja.",
+      "form": {
+        "farmNameLabel": "Nombre de la Granja",
+        "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ej: Valle del Rift, Kenia",
+        "locationDescription": "La ubicación general de su granja.",
+        "sizeLabel": "Tamaño / Área",
+        "sizePlaceholder": "Ej: 50 Hectáreas",
+        "sizeDescription": "Incluya la unidad (ej: acres, hectáreas).",
+        "typeLabel": "Tipo de Granja",
+        "typePlaceholder": "Seleccione el tipo principal de su granja",
+        "types": {
+          "crop": "Cultivo",
+          "livestock": "Ganadería",
+          "mixed": "Mixta (Cultivo y Ganadería)",
+          "aquaculture": "Acuicultura (Piscicultura)",
+          "other": "Otro"
+        },
+        "descriptionLabel": "Descripción Corta (opcional)",
+        "descriptionPlaceholder": "Una breve descripción del enfoque o misión de su granja.",
+        "irrigationLabel": "Métodos de Riego (opcional)",
+        "irrigationPlaceholder": "Ej: Riego por goteo, Canal, De secano",
+        "irrigationDescription": "Describa los principales métodos de riego utilizados.",
+        "submitButton": "Guardar Cambios"
+      },
+      "toast": {
+        "notFoundTitle": "Granja no encontrada",
+        "loadError": "No se pudieron cargar los datos de la granja para editar.",
+        "successTitle": "¡Granja Actualizada!",
+        "successDescription": "Su granja '{farmName}' ha sido actualizada con éxito.",
+        "errorTitle": "Actualización Fallida"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Volver a Mis Granjas",
+      "editFarmButton": "Editar Granja",
+      "registeredOn": "Registrada el {date}",
+      "crops": {
+        "title": "Cultivos / Ganado",
+        "description": "Todas las siembras activas y lotes de ganado en esta granja.",
+        "addNewButton": "Añadir Nuevo",
+        "plantedLabel": "Sembrado",
+        "stageLabel": "Etapa",
+        "viewJourneyButton": "Ver Recorrido",
+        "noCrops": "Aún no se han añadido cultivos o ganado a esta granja.",
+        "addFirstButton": "Añadir Primer Cultivo/Ganado"
+      },
+      "insights": {
+        "title": "Análisis de Rentabilidad",
+        "description": "Análisis impulsado por IA del rendimiento de su granja.",
+        "noInsights": "Aún no hay análisis disponibles. Añada más datos financieros para empezar."
+      },
+      "notFound": {
+        "title": "Granja no Encontrada",
+        "description": "La granja que solicitó no se pudo encontrar o no tiene permiso para verla.",
+        "backButton": "Volver a Mis Granjas"
+      },
+      "toast": {
+        "notFoundTitle": "Granja no encontrada o permiso denegado",
+        "loadErrorTitle": "Error al cargar los datos de la granja",
+        "insightsErrorTitle": "No se pudieron cargar los análisis de la granja."
+      }
+    }
   }
 }

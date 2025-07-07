@@ -39,7 +39,7 @@ interface Insight {
 }
 
 function FarmDetailSkeleton() {
-  const t = useTranslations('FarmManagement.farmDetail');
+  const t = useTranslations('farmManagement.farmDetail');
   return (
     <div className="container mx-auto p-4 md:p-8">
       <Skeleton className="h-6 w-40 mb-4" />
@@ -80,7 +80,7 @@ export default function FarmDetailPage() {
   const params = useParams();
   const farmId = params.farmId as string;
   const router = useRouter();
-  const t = useTranslations('FarmManagement.farmDetail');
+  const t = useTranslations('farmManagement.farmDetail');
   const [farm, setFarm] = useState<FarmDetails | null>(null);
   const [crops, setCrops] = useState<Crop[]>([]);
   const [insights, setInsights] = useState<Insight[]>([]);
@@ -104,7 +104,7 @@ export default function FarmDetailPage() {
         if(!farmResult.data){
             toast({
                 variant: "destructive",
-                title: "Farm not found or permission denied",
+                title: t('toast.notFoundTitle'),
             });
             router.push('/farm-management/farms');
             return;
@@ -115,11 +115,11 @@ export default function FarmDetailPage() {
     } catch (error: any) {
          toast({
             variant: "destructive",
-            title: "Error loading farm data",
+            title: t('toast.loadErrorTitle'),
             description: error.message,
         });
     }
-  }, [farmId, getFarmCallable, getFarmCropsCallable, toast, router]);
+  }, [farmId, getFarmCallable, getFarmCropsCallable, toast, router, t]);
 
   const fetchInsights = useCallback(async () => {
       setIsLoadingInsights(true);
@@ -128,11 +128,11 @@ export default function FarmDetailPage() {
         setInsights((result.data as any).insights || []);
       } catch (err: any) {
         console.error("Error fetching insights:", err);
-        toast({ variant: "destructive", title: "Could not load farm insights." });
+        toast({ variant: "destructive", title: t('toast.insightsErrorTitle') });
       } finally {
         setIsLoadingInsights(false);
       }
-  }, [farmId, getProfitabilityInsightsCallable, toast]);
+  }, [farmId, getProfitabilityInsightsCallable, toast, t]);
 
 
   useEffect(() => {
@@ -179,12 +179,12 @@ export default function FarmDetailPage() {
                 <h1 className="text-4xl font-bold">{farm.name}</h1>
                 <div className="flex items-center text-muted-foreground mt-2">
                     <MapPin className="mr-2 h-5 w-5" />
-                    <span>{farm.location} - Registered on {farm.createdAt ? format(new Date(farm.createdAt), 'PPP') : 'N/A'}</span>
+                    <span>{farm.location} - {t('registeredOn', { date: farm.createdAt ? format(new Date(farm.createdAt), 'PPP') : 'N/A' })}</span>
                 </div>
             </div>
             <Button asChild variant="outline">
                 <Link href={`/farm-management/farms/${farmId}/edit`}>
-                    <Edit className="mr-2 h-4 w-4" /> Edit Farm
+                    <Edit className="mr-2 h-4 w-4" /> {t('editFarmButton')}
                 </Link>
             </Button>
         </div>
@@ -195,11 +195,11 @@ export default function FarmDetailPage() {
                 <Card>
                     <CardHeader className="flex flex-row justify-between items-center">
                         <div>
-                            <CardTitle className="flex items-center gap-2"><Sprout className="h-5 w-5"/>Crops / Livestock</CardTitle>
-                            <CardDescription>All active plantings and livestock batches on this farm.</CardDescription>
+                            <CardTitle className="flex items-center gap-2"><Sprout className="h-5 w-5"/>{t('crops.title')}</CardTitle>
+                            <CardDescription>{t('crops.description')}</CardDescription>
                         </div>
                         <Button asChild>
-                            <Link href={`/farm-management/farms/${farmId}/create-crop`}><PlusCircle className="mr-2 h-4 w-4"/>Add New</Link>
+                            <Link href={`/farm-management/farms/${farmId}/create-crop`}><PlusCircle className="mr-2 h-4 w-4"/>{t('crops.addNewButton')}</Link>
                         </Button>
                     </CardHeader>
                     <CardContent>
@@ -213,11 +213,11 @@ export default function FarmDetailPage() {
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`} className="hover:underline">
                                                         <CardTitle className="text-lg">{crop.cropType}</CardTitle>
                                                     </Link>
-                                                    <CardDescription>Planted: {format(new Date(crop.plantingDate), 'PPP')} | Stage: {crop.currentStage || 'N/A'}</CardDescription>
+                                                    <CardDescription>{t('crops.plantedLabel')}: {format(new Date(crop.plantingDate), 'PPP')} | {t('crops.stageLabel')}: {crop.currentStage || 'N/A'}</CardDescription>
                                                 </div>
                                                 <Button asChild variant="outline" size="sm">
                                                     <Link href={`/farm-management/farms/${farmId}/crops/${crop.id}`}>
-                                                        View Journey
+                                                        {t('crops.viewJourneyButton')}
                                                     </Link>
                                                 </Button>
                                             </div>
@@ -227,10 +227,10 @@ export default function FarmDetailPage() {
                             </div>
                         ) : (
                             <div className="text-center py-10 border-2 border-dashed rounded-lg">
-                                <p className="text-muted-foreground">No crops or livestock have been added to this farm yet.</p>
+                                <p className="text-muted-foreground">{t('crops.noCrops')}</p>
                                 <Button asChild className="mt-4">
                                     <Link href={`/farm-management/farms/${farmId}/create-crop`}>
-                                        <PlusCircle className="mr-2 h-4 w-4"/>Add First Crop/Livestock
+                                        <PlusCircle className="mr-2 h-4 w-4"/>{t('crops.addFirstButton')}
                                     </Link>
                                 </Button>
                             </div>
@@ -243,9 +243,9 @@ export default function FarmDetailPage() {
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <TrendingUp className="h-5 w-5" />
-                            Profitability Insights
+                            {t('insights.title')}
                         </CardTitle>
-                        <CardDescription>AI-powered analysis of your farm's performance.</CardDescription>
+                        <CardDescription>{t('insights.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                         {isLoadingInsights ? (
@@ -267,7 +267,7 @@ export default function FarmDetailPage() {
                                 ))}
                             </div>
                         ) : (
-                            <p className="text-sm text-center text-muted-foreground py-4">No insights available yet. Add more financial data to get started.</p>
+                            <p className="text-sm text-center text-muted-foreground py-4">{t('insights.noInsights')}</p>
                         )}
                     </CardContent>
                 </Card>
