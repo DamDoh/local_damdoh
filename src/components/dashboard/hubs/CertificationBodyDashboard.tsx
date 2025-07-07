@@ -10,7 +10,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Award, FileText, CheckCircle } from 'lucide-react';
+import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import type { CertificationBodyDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 

@@ -13,6 +13,8 @@ import type { FarmerDashboardData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { format, formatDistanceToNow } from 'date-fns';
 
+// --- Helper Components defined BEFORE the main dashboard component ---
+
 const DashboardSkeleton = () => (
     <div className="space-y-6">
         <Skeleton className="h-9 w-64 mb-6" />
@@ -85,6 +87,8 @@ const AlertIcon = ({ icon }: { icon: 'FlaskConical' | 'Sprout' }) => {
     return <IconComponent className="h-5 w-5" />;
 };
 
+
+// --- Main Dashboard Component ---
 
 export const FarmerDashboard = () => {
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);

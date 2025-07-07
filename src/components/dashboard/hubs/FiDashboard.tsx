@@ -60,6 +60,7 @@ export const FiDashboard = () => {
 
     // Aggregate data for pie chart
     const applicationTypeData = useMemo(() => {
+        const { pendingApplications } = dashboardData || {};
         if (!pendingApplications) return [];
         const counts = pendingApplications.reduce((acc, app) => {
             acc[app.type] = (acc[app.type] || 0) + 1;
@@ -80,8 +81,10 @@ export const FiDashboard = () => {
                         <CardTitle className="text-sm font-medium">{t('riskTitle')}</CardTitle>
                         <AlertTriangle className="h-4 w-4 text-destructive" />
                     </CardHeader>
-                    <CardContent className="flex-grow">
-                        <div className="text-3xl font-bold text-destructive">{portfolioAtRisk?.count || 0} {t('accounts')}</div>
+                    <CardContent className={`flex-grow ${portfolioAtRisk?.count > 0 ? 'text-destructive' : ''}`}>
+                        <div className={`text-3xl font-bold ${portfolioAtRisk?.count > 0 ? 'text-destructive' : ''}`}>
+                            {portfolioAtRisk?.count || 0} {t('accounts')}
+                        </div>
                         <p className="text-sm text-muted-foreground">${(portfolioAtRisk?.value || 0).toLocaleString()} {t('value')}</p>
                     </CardContent>
                     <CardFooter>
@@ -98,7 +101,6 @@ export const FiDashboard = () => {
                            {t('pendingApplicationsTitle')}
                            <Badge variant="secondary" className="ml-2 text-sm">
                                {pendingApplications?.length || 0} {t('total')}
-                           </Badge>
 
                         </CardTitle>
                     </CardHeader>
@@ -145,7 +147,6 @@ export const FiDashboard = () => {
                                                 value={item.value}
                                                 label={`${item.name}: ${item.value}`}
                                                 style={{
-                                                    // You might need to define a color palette or use a utility function for colors
                                                     fill: `hsl(var(--chart-${index + 1}))`,
                                                 }}
                                                 className="stroke-background"
