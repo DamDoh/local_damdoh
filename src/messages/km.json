@@ -1,5 +1,27 @@
 
 {
+  "AppHeader": {
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "គ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូបលុយ",
+    "searchPlaceholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម...",
+    "signIn": "ចូលគណនី",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "logOut": "ចេញពីគណនី",
+    "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
+    "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត"
+  },
   "aboutPage": {
     "hero": {
       "title": "ផ្តល់អំណាចដល់កសិករ, ស្តារភពផែនដីឡើងវិញ",
@@ -101,6 +123,7 @@
     "signInButton": "ចូលគណនី",
     "noAccountPrompt": "មិនទាន់មានគណនី?",
     "signUpLink": "ចុះឈ្មោះ",
+    "signInLink": "ចូលគណនី",
     "recoverWithUniversalIdPrompt": "ឬស្តារគណនីឡើងវិញជាមួយអត្តសញ្ញាណប័ណ្ណសកល",
     "signUpTitle": "បង្កើតគណនី",
     "signUpDescription": "បញ្ចូលព័ត៌មានរបស់អ្នកដើម្បីចាប់ផ្តើម។",

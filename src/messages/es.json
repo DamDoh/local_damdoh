@@ -1,5 +1,27 @@
 
 {
+  "AppHeader": {
+    "home": "Inicio",
+    "network": "Red",
+    "farmMgmt": "Gestión Finca",
+    "marketplace": "Mercado",
+    "talentExchange": "Talento",
+    "traceability": "Trazabilidad",
+    "forums": "Foros",
+    "sustainability": "Sostenibilidad",
+    "notifications": "Notificaciones",
+    "messages": "Mensajes",
+    "wallet": "Cartera",
+    "searchPlaceholder": "Buscar personas, productos, servicios...",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "settings": "Configuración",
+    "helpCenter": "Centro de Ayuda",
+    "logOut": "Cerrar sesión",
+    "switchToLightAria": "Cambiar a tema claro",
+    "switchToDarkAria": "Cambiar a tema oscuro"
+  },
   "aboutPage": {
     "hero": {
       "title": "Empoderando a los Agricultores, Restaurando el Planeta",
@@ -101,6 +123,7 @@
     "signInButton": "Iniciar sesión",
     "noAccountPrompt": "¿No tienes una cuenta?",
     "signUpLink": "Regístrate",
+    "signInLink": "Iniciar sesión",
     "recoverWithUniversalIdPrompt": "O recuperar cuenta con ID Universal",
     "signUpTitle": "Crear una cuenta",
     "signUpDescription": "Ingresa tu información para comenzar.",

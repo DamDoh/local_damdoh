@@ -1,5 +1,27 @@
 
 {
+  "AppHeader": {
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Mngmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Brieftasche",
+    "searchPlaceholder": "Suche Personen, Produkte, Dienstleistungen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Thema wechseln",
+    "switchToDarkAria": "Zum dunklen Thema wechseln"
+  },
   "aboutPage": {
     "hero": {
       "title": "Bauern stärken, den Planeten wiederherstellen",
@@ -101,6 +123,7 @@
     "signInButton": "Anmelden",
     "noAccountPrompt": "Haben Sie noch kein Konto?",
     "signUpLink": "Registrieren",
+    "signInLink": "Anmelden",
     "recoverWithUniversalIdPrompt": "Oder Konto mit Universal-ID wiederherstellen",
     "signUpTitle": "Konto erstellen",
     "signUpDescription": "Geben Sie Ihre Informationen ein, um zu beginnen.",

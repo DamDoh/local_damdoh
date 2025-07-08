@@ -1,5 +1,27 @@
 
 {
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme"
+  },
   "aboutPage": {
     "hero": {
       "title": "Empowering Farmers, Restoring the Planet",
@@ -28,11 +50,11 @@
       "title": "Our Solution: DamDoh — A Global “Super App” for a Restored Planet",
       "description": "DamDoh is a smart, integrated digital platform designed to empower farmers as stewards of biodiversity and catalysts of climate action:",
       "list": {
-        "education": "Education & Training: Practical courses on regenerative farming, soil health, crop diversity, and business skills.",
-        "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and weather forecasts to provide precise soil and ecosystem analysis.",
-        "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly products.",
-        "logistics": "Supply Chain & Logistics: Transparent, efficient logistics minimize loss and reduce emissions.",
-        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in climate-smart innovations."
+        "education": "Education & Training: Practical, accessible courses on regenerative farming, soil health, crop diversity, and business skills — helping farmers adopt practices that restore biodiversity and capture carbon while increasing incomes.",
+        "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and real-time weather forecasts to provide precise soil and ecosystem analysis, guiding farmers to plant the right crops in the right way, at the right time — regenerating their land and boosting yields sustainably.",
+        "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly, traceable products — earning better prices and reducing waste.",
+        "logistics": "Supply Chain & Logistics: Transparent, efficient logistics minimize loss, reduce emissions, and ensure traceability from farm to fork.",
+        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in biodiversity-enhancing practices and climate-smart innovations."
       }
     },
     "beyondTechnology": {
@@ -101,6 +123,7 @@
     "signInButton": "Sign In",
     "noAccountPrompt": "Don't have an account?",
     "signUpLink": "Sign up",
+    "signInLink": "Sign in",
     "recoverWithUniversalIdPrompt": "Or recover account with Universal ID",
     "signUpTitle": "Create an Account",
     "signUpDescription": "Enter your information to get started.",
