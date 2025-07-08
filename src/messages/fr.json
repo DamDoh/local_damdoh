@@ -1,5 +1,37 @@
 
 {
+  "EnergyProviderDashboard": {
+    "title": "Hub Fournisseur de Solutions Énergétiques",
+    "leadsTitle": "Pistes de Projets",
+    "leadsCount": "{count} nouvelles pistes",
+    "projectsTitle": "Projets Actifs",
+    "activeProjectsCount": "{count} projets actifs",
+    "projectsCompleted": "projets terminés",
+    "impactTitle": "Impact sur la Durabilité",
+    "impactDescription": "Réduction de carbone estimée de vos projets",
+    "carbonReduction": "{count} installations au total",
+    "leadsTableTitle": "Pipeline des Pistes de Projets",
+    "leadsTableDescription": "Projets et clients potentiels à la recherche de solutions énergétiques.",
+    "table": {
+      "entity": "Nom de l'Entité",
+      "location": "Lieu",
+      "energyNeed": "Besoin Énergétique Estimé",
+      "status": "Statut",
+      "action": "Action"
+    },
+    "viewLeadButton": "Voir la Piste",
+    "noLeads": "Aucune piste de projet pour le moment.",
+    "accessDocsButton": "Accéder à la Doc API",
+    "proposeIntegrationButton": "Proposer une Nouvelle Intégration",
+    "statusLabels": {
+      "new": "Nouveau",
+      "contacted": "Contacté",
+      "proposal_sent": "Proposition Envoyée",
+      "closed": "Fermé",
+      "in_progress": "En Cours",
+      "completed": "Terminé"
+    }
+  },
   "InputSupplierDashboard": {
     "title": "Hub du Fournisseur d'Intrants",
     "ordersTitle": "Commandes Actives & Valeur",
@@ -282,4 +314,3 @@
     "sellButton": "Vendre le Produit sur le Marché"
   }
 }
-

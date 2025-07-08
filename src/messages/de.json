@@ -1,5 +1,37 @@
 
 {
+  "EnergyProviderDashboard": {
+    "title": "Hub für Energieversorger",
+    "leadsTitle": "Projekt-Leads",
+    "leadsCount": "{count} neue Leads",
+    "projectsTitle": "Aktive Projekte",
+    "activeProjectsCount": "{count} aktive Projekte",
+    "projectsCompleted": "Projekte abgeschlossen",
+    "impactTitle": "Nachhaltigkeitsauswirkungen",
+    "impactDescription": "Geschätzte CO2-Reduktion durch Ihre Projekte",
+    "carbonReduction": "{count} Gesamtinstallationen",
+    "leadsTableTitle": "Pipeline für Projekt-Leads",
+    "leadsTableDescription": "Potenzielle Projekte und Kunden, die nach Energielösungen suchen.",
+    "table": {
+      "entity": "Name der Entität",
+      "location": "Standort",
+      "energyNeed": "Geschätzter Energiebedarf",
+      "status": "Status",
+      "action": "Aktion"
+    },
+    "viewLeadButton": "Lead anzeigen",
+    "noLeads": "Derzeit keine Projekt-Leads.",
+    "accessDocsButton": "API-Dokumentation aufrufen",
+    "proposeIntegrationButton": "Neue Integration vorschlagen",
+    "statusLabels": {
+      "new": "Neu",
+      "contacted": "Kontaktiert",
+      "proposal_sent": "Angebot gesendet",
+      "closed": "Geschlossen",
+      "in_progress": "In Bearbeitung",
+      "completed": "Abgeschlossen"
+    }
+  },
   "InputSupplierDashboard": {
     "title": "Drehscheibe für Input-Lieferanten",
     "ordersTitle": "Aktive Bestellungen & Wert",
@@ -282,4 +314,3 @@
     "sellButton": "Produkt auf dem Marktplatz anbieten"
   }
 }
-

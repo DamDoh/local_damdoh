@@ -57,13 +57,13 @@ export const EnergyProviderDashboard = () => {
   }
 
   if (!dashboardData) {
-    return (
-      <Card>
-        <CardContent className="pt-6 text-center text-muted-foreground">
-          <p>No dashboard data available.</p>
-        </CardContent>
-      </Card>
-    );
+      return (
+           <Card>
+                <CardContent className="pt-6 text-center text-muted-foreground">
+                    <p>No dashboard data available.</p>
+                </CardContent>
+           </Card>
+      );
   }
   
   const { projectLeads, activeProjects, impactMetrics } = dashboardData;
@@ -144,7 +144,7 @@ export const EnergyProviderDashboard = () => {
                       <TableCell className="font-medium">{lead.entityName}</TableCell>
                       <TableCell>{lead.location}</TableCell>
                       <TableCell>{lead.estimatedEnergyNeed}</TableCell>
-                      <TableCell><Badge variant={getStatusBadgeVariant(lead.status)}>{lead.status}</Badge></TableCell>
+                      <TableCell><Badge variant={getStatusBadgeVariant(lead.status)}>{t(`statusLabels.${lead.status.toLowerCase().replace(' ', '_')}` as any, lead.status)}</Badge></TableCell>
                       <TableCell>
                         <Button asChild variant="outline" size="sm">
                           <Link href={lead.actionLink}>{t('viewLeadButton')}</Link>

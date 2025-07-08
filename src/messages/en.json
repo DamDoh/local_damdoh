@@ -1,5 +1,37 @@
 
 {
+  "EnergyProviderDashboard": {
+    "title": "Energy Solutions Provider Hub",
+    "leadsTitle": "Project Leads",
+    "leadsCount": "{count} new leads",
+    "projectsTitle": "Active Projects",
+    "activeProjectsCount": "{count} active projects",
+    "projectsCompleted": "projects completed",
+    "impactTitle": "Sustainability Impact",
+    "impactDescription": "Estimated carbon reduction from your projects",
+    "carbonReduction": "{count} total installations",
+    "leadsTableTitle": "Project Leads Pipeline",
+    "leadsTableDescription": "Potential projects and clients seeking energy solutions.",
+    "table": {
+      "entity": "Entity Name",
+      "location": "Location",
+      "energyNeed": "Estimated Energy Need",
+      "status": "Status",
+      "action": "Action"
+    },
+    "viewLeadButton": "View Lead",
+    "noLeads": "No project leads at this time.",
+    "accessDocsButton": "Access API Docs",
+    "proposeIntegrationButton": "Propose New Integration",
+    "statusLabels": {
+      "new": "New",
+      "contacted": "Contacted",
+      "proposal_sent": "Proposal Sent",
+      "closed": "Closed",
+      "in_progress": "In Progress",
+      "completed": "Completed"
+    }
+  },
   "InputSupplierDashboard": {
     "title": "Input Supplier Hub",
     "ordersTitle": "Active Orders & Value",
@@ -282,4 +314,5 @@
     "sellButton": "List Product on Marketplace"
   }
 }
+
 

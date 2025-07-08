@@ -1,5 +1,37 @@
 
 {
+  "EnergyProviderDashboard": {
+    "title": "មជ្ឈមណ្ឌលអ្នកផ្តល់ដំណោះស្រាយថាមពល",
+    "leadsTitle": "គម្រោងនាំមុខ",
+    "leadsCount": "{count} គម្រោងនាំមុខថ្មី",
+    "projectsTitle": "គម្រោងសកម្ម",
+    "activeProjectsCount": "{count} គម្រោងសកម្ម",
+    "projectsCompleted": "គម្រោងបានបញ្ចប់",
+    "impactTitle": "ផលប៉ះពាល់និរន្តរភាព",
+    "impactDescription": "ការកាត់បន្ថយកាបូនប៉ាន់ស្មានពីគម្រោងរបស់អ្នក",
+    "carbonReduction": "{count} ការติดตั้งសរុប",
+    "leadsTableTitle": "បំពង់គម្រោងនាំមុខ",
+    "leadsTableDescription": "គម្រោងសក្តានុពល និងអតិថិជនដែលកំពុងស្វែងរកដំណោះស្រាយថាមពល។",
+    "table": {
+      "entity": "ឈ្មោះអង្គភាព",
+      "location": "ទីតាំង",
+      "energyNeed": "តម្រូវការថាមពលប៉ាន់ស្មាន",
+      "status": "ស្ថានភាព",
+      "action": "សកម្មភាព"
+    },
+    "viewLeadButton": "មើលគម្រោងនាំមុខ",
+    "noLeads": "មិនមានគម្រោងនាំមុខនៅពេលនេះទេ។",
+    "accessDocsButton": "ចូលប្រើឯកសារ API",
+    "proposeIntegrationButton": "ស្នើរសុំការរួមបញ្ចូលថ្មី",
+    "statusLabels": {
+      "new": "ថ្មី",
+      "contacted": "បានទាក់ទង",
+      "proposal_sent": "បានផ្ញើសំណើ",
+      "closed": "បានបិទ",
+      "in_progress": "កំពុង​ដំណើរការ",
+      "completed": "បាន​បញ្ចប់"
+    }
+  },
   "InputSupplierDashboard": {
     "title": "ផ្ទាំងគ្រប់គ្រងអ្នកផ្គត់ផ្គង់ធាតុចូល",
     "ordersTitle": "ការបញ្ជាទិញសកម្ម និងតម្លៃ",
@@ -282,4 +314,3 @@
     "sellButton": "ដាក់លក់ផលិតផលនៅលើទីផ្សារ"
   }
 }
-

@@ -1,5 +1,37 @@
 
 {
+  "EnergyProviderDashboard": {
+    "title": "Centro de Proveedores de Soluciones Energéticas",
+    "leadsTitle": "Clientes Potenciales de Proyectos",
+    "leadsCount": "{count} nuevos clientes potenciales",
+    "projectsTitle": "Proyectos Activos",
+    "activeProjectsCount": "{count} proyectos activos",
+    "projectsCompleted": "proyectos completados",
+    "impactTitle": "Impacto de Sostenibilidad",
+    "impactDescription": "Reducción de carbono estimada de sus proyectos",
+    "carbonReduction": "{count} instalaciones totales",
+    "leadsTableTitle": "Embudo de Clientes Potenciales de Proyectos",
+    "leadsTableDescription": "Proyectos y clientes potenciales que buscan soluciones energéticas.",
+    "table": {
+      "entity": "Nombre de la Entidad",
+      "location": "Ubicación",
+      "energyNeed": "Necesidad Energética Estimada",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "viewLeadButton": "Ver Cliente Potencial",
+    "noLeads": "No hay clientes potenciales de proyectos en este momento.",
+    "accessDocsButton": "Acceder a Documentación API",
+    "proposeIntegrationButton": "Proponer Nueva Integración",
+    "statusLabels": {
+      "new": "Nuevo",
+      "contacted": "Contactado",
+      "proposal_sent": "Propuesta Enviada",
+      "closed": "Cerrado",
+      "in_progress": "En Progreso",
+      "completed": "Completado"
+    }
+  },
   "InputSupplierDashboard": {
     "title": "Panel de Proveedor de Insumos",
     "ordersTitle": "Pedidos Activos y Valor",
@@ -282,4 +314,3 @@
     "sellButton": "Listar Producto en el Mercado"
   }
 }
-
