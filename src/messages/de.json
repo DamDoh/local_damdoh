@@ -76,9 +76,18 @@
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
     "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden"
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Thema wechseln",
+    "switchToDarkAria": "Zum dunklen Thema wechseln"
   },
   "LanguageSwitcher": {
     "toggle": "Sprache ändern"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
   }
 }

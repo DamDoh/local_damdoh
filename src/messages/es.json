@@ -80,5 +80,12 @@
   },
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
   }
 }

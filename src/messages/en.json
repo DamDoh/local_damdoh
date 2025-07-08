@@ -80,5 +80,12 @@
   },
   "LanguageSwitcher": {
     "toggle": "Change language"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
   }
 }

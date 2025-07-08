@@ -80,5 +80,12 @@
   },
   "LanguageSwitcher": {
     "toggle": "ផ្លាស់ប្តូរភាសា"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   }
 }
