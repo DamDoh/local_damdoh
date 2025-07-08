@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { UserProfile } from "./types";
+import { getProfileByIdFromDB } from './profiles';
 
 const db = admin.firestore();
 
@@ -65,26 +65,15 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
         return { posts: [], lastVisible: null };
     }
 
-    const authorIds = [...new Set(postsSnapshot.docs.map(doc => doc.data().authorRef).filter(Boolean))];
-    const profiles: Record<string, UserProfile> = {};
-
-    if (authorIds.length > 0) {
-        const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', authorIds).get();
-        profileDocs.forEach(doc => {
-            profiles[doc.id] = doc.data() as UserProfile;
-        });
-    }
-    
     const posts = postsSnapshot.docs.map(doc => {
         const postData = doc.data();
-        const authorProfile = profiles[postData.authorRef];
         return { 
             id: doc.id, 
             ...postData,
-            author: {
+            author: { // Construct the author object from denormalized data
                 id: postData.authorRef,
-                name: authorProfile?.displayName || "Unknown User",
-                avatarUrl: authorProfile?.avatarUrl || null
+                name: postData.authorName || "Unknown User",
+                avatarUrl: postData.authorAvatarUrl || null
             },
             createdAt: (postData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
         }
@@ -101,17 +90,25 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
     if (!topicId || !title || !content) {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, title, and content are required.');
     }
+    
+    const userProfile = await getProfileByIdFromDB(uid);
+    if (!userProfile) {
+        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+    }
 
     const postRef = db.collection(`forums/${topicId}/posts`).doc();
     const topicRef = db.collection('forums').doc(topicId);
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
     const batch = db.batch();
-
+    
+    // Denormalize author info on write
     batch.set(postRef, {
         title,
         content,
         authorRef: uid,
+        authorName: userProfile.displayName,
+        authorAvatarUrl: userProfile.avatarUrl,
         createdAt: timestamp,
         replyCount: 0,
         likes: 0,
@@ -147,26 +144,15 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
         return { replies: [], lastVisible: null };
     }
 
-    const authorIds = [...new Set(repliesSnapshot.docs.map(doc => doc.data().authorRef).filter(Boolean))];
-    const profiles: Record<string, UserProfile> = {};
-
-    if (authorIds.length > 0) {
-        const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', authorIds).get();
-        profileDocs.forEach(doc => {
-            profiles[doc.id] = doc.data() as UserProfile;
-        });
-    }
-
     const replies = repliesSnapshot.docs.map(doc => {
         const data = doc.data();
-        const authorProfile = profiles[data.authorRef];
         return { 
             id: doc.id, 
             content: data.content,
-            author: {
+            author: { // Construct the author object from denormalized data
                 id: data.authorRef,
-                name: authorProfile?.displayName || 'Unknown User',
-                avatarUrl: authorProfile?.avatarUrl || null,
+                name: data.authorName || 'Unknown User',
+                avatarUrl: data.authorAvatarUrl || null,
             },
             createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
         }
@@ -183,15 +169,23 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
     if (!topicId || !postId || !content) {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, post ID, and content are required.');
     }
+    
+    const userProfile = await getProfileByIdFromDB(uid);
+    if (!userProfile) {
+        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+    }
 
     const replyRef = db.collection(`forums/${topicId}/posts/${postId}/replies`).doc();
     const postRef = db.collection(`forums/${topicId}/posts`).doc(postId);
 
     const batch = db.batch();
-
+    
+    // Denormalize author info on write
     batch.set(replyRef, {
         content,
         authorRef: uid,
+        authorName: userProfile.displayName,
+        authorAvatarUrl: userProfile.avatarUrl,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 

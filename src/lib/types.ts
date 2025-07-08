@@ -683,6 +683,10 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
+    // Re-introducing denormalized fields for use in FeedItemCard
+    userId: string;
+    userName: string;
+    userAvatar?: string;
 }
 
 export interface PollOption {

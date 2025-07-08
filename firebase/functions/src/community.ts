@@ -126,6 +126,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const batch = db.batch();
 
+    // Denormalize author data on write for performance
     batch.set(commentRef, {
         content,
         userId: uid,
@@ -161,15 +162,16 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     if (commentsSnapshot.empty) {
         return { replies: [], lastVisible: null };
     }
-
+    
+    // The author data is now denormalized onto the comment, so no extra lookups are needed.
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
         return {
             id: doc.id,
             content: commentData.content,
             userId: commentData.userId,
-            userName: commentData.userName || 'Unknown User',
-            userAvatar: commentData.userAvatar || null,
+            userName: commentData.userName || 'Unknown User', // Fallback
+            userAvatar: commentData.userAvatar || null, // Fallback
             timestamp: (commentData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
