@@ -129,25 +129,25 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
         let idToLookup;
         let type: 'user' | 'batch' | null = null;
         
-        if (decodedText.includes('damdoh:user?id=')) {
-          idToLookup = decodedText.split('damdoh:user?id=')[1];
-          type = 'user';
-        } else if (decodedText.length > 20) { // Assume it's a VTI
-           idToLookup = decodedText;
-           type = 'batch';
+        // This regex is a simple way to differentiate a potential user ID from a VTI
+        const isVti = /^[0-9a-f]{8}-/i.test(decodedText);
+        
+        if (decodedText.includes('/profiles/')) {
+            idToLookup = decodedText.split('/profiles/')[1];
+            type = 'user';
+        } else if (decodedText.includes('/traceability/batches/')) {
+            idToLookup = decodedText.split('/traceability/batches/')[1];
+            type = 'batch';
+        } else if (isVti) {
+            idToLookup = decodedText;
+            type = 'batch';
         } else {
-          throw new Error(t('invalidCodeError'));
+             throw new Error(t('invalidCodeError'));
         }
 
         if (type === 'user') {
-            const result = await getUniversalIdDataCallable({ scannedUniversalId: idToLookup });
-            const profile = result.data as UserProfile;
-            if (profile && profile.uid) {
-                onClose();
-                router.push(`/profiles/${profile.uid}`);
-            } else {
-                 throw new Error(t('userNotFound'));
-            }
+            onClose();
+            router.push(`/profiles/${idToLookup}`);
         } else if (type === 'batch') {
             onClose();
             router.push(`/traceability/batches/${idToLookup}`);
