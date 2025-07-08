@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -66,7 +67,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [hasMoreComments, setHasMoreComments] = useState(true);
 
   const { toast } = useToast();
-  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'getCommentsForPost'), [functions]);
+  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'getCommentsForPost'), []);
   const { profile: currentUserProfile } = useUserProfile();
   
   useEffect(() => {
@@ -252,11 +253,11 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                     replies.map(reply => (
                         <div key={reply.id} className="flex items-start gap-2">
                             <Avatar className="h-7 w-7">
-                                <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} data-ai-hint="profile person agriculture" />
-                                <AvatarFallback>{reply.author.name.substring(0,1)}</AvatarFallback>
+                                <AvatarImage src={reply.userAvatar} alt={reply.userName} data-ai-hint="profile person agriculture" />
+                                <AvatarFallback>{reply.userName.substring(0,1)}</AvatarFallback>
                             </Avatar>
                             <div className="flex-1 bg-muted rounded-md p-2 text-sm">
-                                <span className="font-semibold">{reply.author.name}</span>
+                                <span className="font-semibold">{reply.userName}</span>
                                 <p className="whitespace-pre-line break-words">{reply.content}</p>
                             </div>
                         </div>

@@ -22,7 +22,11 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
-    const { content, pollOptions } = data; // pollOptions is an array of objects with a 'text' property
+    const { content, pollOptions, imageUrl, dataAiHint } = data; // pollOptions is an array of objects with a 'text' property
+
+    if (!content && !imageUrl && !pollOptions) {
+        throw new functions.https.HttpsError('invalid-argument', 'Post must have content, an image, or a poll.');
+    }
 
     if (pollOptions && (!Array.isArray(pollOptions) || pollOptions.length < 2)) {
         throw new functions.https.HttpsError('invalid-argument', 'A poll must have at least two options.');
@@ -36,6 +40,8 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
     const newPostRef = db.collection('posts').doc();
     await newPostRef.set({
         content,
+        imageUrl: imageUrl || null,
+        dataAiHint: dataAiHint || null,
         userId: uid,
         userName: userProfile.displayName, 
         userAvatar: userProfile.avatarUrl || null,
@@ -47,6 +53,36 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
     });
     
     return { success: true, postId: newPostRef.id };
+});
+
+export const deletePost = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { postId } = data;
+
+    if (!postId) {
+        throw new functions.https.HttpsError('invalid-argument', 'Post ID is required.');
+    }
+
+    const postRef = db.collection('posts').doc(postId);
+    const postDoc = await postRef.get();
+
+    if (!postDoc.exists) {
+        throw new functions.https.HttpsError('not-found', 'Post not found.');
+    }
+
+    const postData = postDoc.data()!;
+    if (postData.userId !== uid) {
+        // In a real app, you might want an admin role to be able to delete posts too.
+        throw new functions.https.HttpsError('permission-denied', 'You do not have permission to delete this post.');
+    }
+
+    // Delete the post document
+    await postRef.delete();
+
+    // TODO: In a production app, you would also delete all subcollections (likes, comments)
+    // and any associated media from Cloud Storage. This is a more complex operation.
+
+    return { success: true, message: 'Post deleted successfully.' };
 });
 
 export const likePost = functions.https.onCall(async (data, context) => {
@@ -126,36 +162,14 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         return { replies: [], lastVisible: null };
     }
 
-    const authorIds = [...new Set(commentsSnapshot.docs.map(doc => doc.data().userId).filter(Boolean))];
-    const profiles: Record<string, any> = {};
-
-    if (authorIds.length > 0) {
-        const profileChunks: string[][] = [];
-        for (let i = 0; i < authorIds.length; i += 30) {
-            profileChunks.push(authorIds.slice(i, i + 30));
-        }
-        for (const chunk of profileChunks) {
-            const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
-            profileDocs.forEach(doc => {
-                profiles[doc.id] = {
-                    displayName: doc.data().displayName || 'Unknown User',
-                    avatarUrl: doc.data().avatarUrl || null,
-                };
-            });
-        }
-    }
-
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
-        const authorProfile = profiles[commentData.userId] || { displayName: 'Unknown User', avatarUrl: null };
         return {
             id: doc.id,
             content: commentData.content,
-            author: {
-                id: commentData.userId,
-                name: authorProfile.displayName,
-                avatarUrl: authorProfile.avatarUrl,
-            },
+            userId: commentData.userId,
+            userName: commentData.userName || 'Unknown User',
+            userAvatar: commentData.userAvatar || null,
             timestamp: (commentData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });

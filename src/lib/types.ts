@@ -654,12 +654,12 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
-  timestamp: string; // ISO String
   author: {
     id: string;
     name: string;
     avatarUrl?: string;
   };
+  createdAt: string;
   replyCount: number;
 }
 
@@ -678,11 +678,9 @@ export interface PostReply {
     id: string;
     content: string;
     timestamp: string; // ISO string
-    author: {
-        id: string;
-        name: string;
-        avatarUrl?: string;
-    };
+    userId: string;
+    userName: string;
+    userAvatar?: string;
 }
 
 export interface PollOption {
