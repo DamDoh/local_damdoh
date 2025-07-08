@@ -6,10 +6,12 @@ import type {
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
     ForumPostSchema,
-    AgriEventSchema
+    AgriEventSchema,
+    SmartSearchInterpretationSchema,
+    MarketplaceRecommendationOutputSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
-import type { SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
+
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -817,5 +819,5 @@ export type ServiceItem = MarketplaceItem & {
 };
 
 // AI Related Types
-export type MarketplaceRecommendation = any; // z.infer<typeof MarketplaceRecommendationOutputSchema>
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;

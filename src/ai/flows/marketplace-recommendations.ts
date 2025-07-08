@@ -9,23 +9,10 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import type { MarketplaceItem, UserProfile } from '@/lib/types';
+import { MarketplaceRecommendationInputSchema, MarketplaceRecommendationOutputSchema } from '@/lib/schemas'; // Import from schemas
 import { performSearch, getProfileByIdFromDB } from '@/lib/db-utils';
 
-export const MarketplaceRecommendationInputSchema = z.object({
-  userId: z.string().optional().describe("The ID of the user to generate recommendations for."),
-  count: z.number().optional().default(5).describe('The number of suggestions to generate.'),
-});
 export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommendationInputSchema>;
-
-const RecommendedItemSchema = z.object({
-    item: z.custom<MarketplaceItem>(),
-    reason: z.string().describe("A brief, user-friendly explanation (max 1-2 sentences) of why this item is recommended for this specific user.")
-});
-
-export const MarketplaceRecommendationOutputSchema = z.object({
-  recommendations: z.array(RecommendedItemSchema).describe("A list of suggested marketplace items (products or services) with accompanying reasons."),
-});
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 
 

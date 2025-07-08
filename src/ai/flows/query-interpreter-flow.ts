@@ -11,29 +11,14 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { SmartSearchInterpretationSchema } from '@/lib/schemas'; // Import from schemas.ts
 
 const SearchQueryInputSchema = z.object({
   rawQuery: z.string().describe("The user's raw, unparsed search query."),
 });
 export type SearchQueryInput = z.infer<typeof SearchQueryInputSchema>;
 
-const SuggestedFilterSchema = z.object({
-  type: z.string().describe("The type of filter suggested (e.g., 'category', 'listingType', 'locationScope', 'intent')."),
-  value: z.string().describe("The suggested value for the filter (e.g., 'fresh-produce-fruits', 'Product', 'Region', 'buy').")
-});
-
-export const SmartSearchInterpretationSchema = z.object({
-  originalQuery: z.string().describe("The original query provided by the user."),
-  mainKeywords: z.array(z.string()).describe("The core items, products, or services the user is likely searching for, extracted from the query."),
-  identifiedLocation: z.string().optional().describe("Any specific location (city, region, country, continent) explicitly mentioned or strongly implied by the query. If multiple are mentioned, pick the most prominent or encompassing one."),
-  identifiedIntent: z.string().optional().describe("The inferred user intent (e.g., 'buy', 'sell', 'rent', 'find service', 'job search', 'information', 'advice')."),
-  suggestedFilters: z.array(SuggestedFilterSchema).optional().describe("An array of potential filters that could be applied based on the query interpretation. Helps narrow down search results."),
-  interpretationNotes: z.string().optional().describe("A brief explanation of how the AI understood the query, or suggestions for how the user might refine their search for better results. This could include identified scope like 'local', 'regional', 'continental', or 'global' if discernible."),
-  minPrice: z.number().optional().describe("The minimum price if specified by the user (e.g., from 'over $50')."),
-  maxPrice: z.number().optional().describe("The maximum price if specified by the user (e.g., from 'under $100')."),
-  perUnit: z.string().optional().describe("The unit for the price if specified (e.g., '/kg', '/ton').")
-});
-export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>; // Export the type
 
 export async function interpretSearchQuery(input: SearchQueryInput): Promise<SmartSearchInterpretation> {
   return queryInterpreterFlow(input);
