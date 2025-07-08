@@ -8,17 +8,19 @@ import { mobileHomeCategories, mobileDiscoverItems } from '@/lib/dummy-data';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { useUserProfile } from "@/hooks/useUserProfile";
+import { useUserProfile } from "@/hooks/useUserProfile"; // Assuming this hook provides user profile data including displayName
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from 'next-intl';
 
 export function MobileHomepage() {
   const { profile, loading } = useUserProfile();
+  const t = useTranslations('MobileHomepage');
 
   const welcomeMessage = () => {
     const hours = new Date().getHours();
-    if (hours < 12) return `Good morning, ${profile?.displayName?.split(' ')[0] || ''}!`;
-    if (hours < 18) return `Good afternoon, ${profile?.displayName?.split(' ')[0] || ''}!`;
-    return `Good evening, ${profile?.displayName?.split(' ')[0] || ''}!`;
+    if (hours < 12) return t('welcome.morning', { name: profile?.displayName?.split(' ')[0] || '' });
+    if (hours < 18) return t('welcome.afternoon', { name: profile?.displayName?.split(' ')[0] || '' });
+    return t('welcome.evening', { name: profile?.displayName?.split(' ')[0] || '' });
   };
 
   return (
@@ -52,9 +54,9 @@ export function MobileHomepage() {
       {/* Discover Section */}
       <div className="px-4 space-y-3">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold">Discover</h2>
+          <h2 className="text-xl font-semibold">{t('discoverTitle')}</h2>
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/marketplace">See all <ArrowRight className="h-4 w-4 ml-1"/></Link>
+            <Link href="/marketplace">{t('seeAllButton')} <ArrowRight className="h-4 w-4 ml-1"/></Link>
           </Button>
         </div>
         <ScrollArea>
@@ -77,13 +79,13 @@ export function MobileHomepage() {
 
        {/* Feed Placeholder - links to the full feed */}
        <div className="px-4 space-y-3">
-            <h2 className="text-xl font-semibold">Community Feed</h2>
+            <h2 className="text-xl font-semibold">{t('communityFeedTitle')}</h2>
             <Card className="p-4 text-center">
                 <CardDescription>
-                    Stay up-to-date with the latest from the DamDoh community.
+                    {t('communityFeedDescription')}
                 </CardDescription>
                 <Button asChild className="mt-2">
-                    <Link href="/#feed">Go to Feed</Link>
+                    <Link href="/#feed">{t('goToFeedButton')}</Link>
                 </Button>
             </Card>
        </div>

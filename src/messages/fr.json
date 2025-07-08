@@ -1,88 +1,75 @@
 
 {
-  "settingsPage": {
-    "title": "Paramètres",
-    "description": "Gérez les paramètres de votre compte et de votre profil.",
-    "profileTab": "Profil",
-    "accountTab": "Compte",
-    "notificationsTab": "Notifications",
-    "privacyTab": "Confidentialité",
-    "appearanceTab": "Apparence",
-    "stakeholderProfile": {
-      "title": "Profil de partie prenante",
-      "description": "Votre identité professionnelle sur DamDoh. C'est ainsi que les autres vous voient."
-    },
-    "account": {
-      "title": "Paramètres du compte",
-      "description": "Gérez l'authentification et la sécurité de votre compte.",
-      "currentPasswordLabel": "Mot de passe actuel",
-      "newPasswordLabel": "Nouveau mot de passe",
-      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
-      "changePasswordButton": "Mettre à jour le mot de passe",
-      "deactivateButton": "Désactiver le compte"
-    },
-    "notifications": {
-      "title": "Paramètres des notifications",
-      "description": "Gérez vos préférences de notifications par e-mail et push.",
-      "emailDigestLabel": "Notifications par e-mail",
-      "emailDigestDescription": "Recevoir des notifications par e-mail.",
-      "connectionRequestsLabel": "Demandes de connexion",
-      "connectionRequestsDescription": "M'avertir des nouvelles demandes de connexion.",
-      "forumMentionsLabel": "Mentions et réponses du forum",
-      "forumMentionsDescription": "M'avertir lorsque je suis mentionné ou que mes publications reçoivent une réponse.",
-      "marketplaceActivityLabel": "Activité du marché",
-      "marketplaceActivityDescription": "M'avertir des commandes et des demandes sur mes annonces.",
-      "talentExchangeLabel": "Mises à jour de la bourse de talents",
-      "talentExchangeDescription": "M'avertir des nouvelles offres d'emploi et des candidatures.",
-      "saveButton": "Enregistrer les préférences"
-    },
-    "privacy": {
-      "title": "Confidentialité et visibilité",
-      "description": "Contrôlez qui peut voir vos informations et interagir avec vous.",
-      "profileVisibilityLabel": "Visibilité du profil",
-      "profileVisibilityDescription": "Contrôlez qui peut voir votre profil complet.",
-      "profileVisibilityAll": "Tout le monde",
-      "profileVisibilityConnections": "Connexions uniquement",
-      "profileVisibilityPrivate": "Privé (moi uniquement)",
-      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion ?",
-      "connectionRequestsDescription": "Limitez qui peut vous envoyer des demandes de connexion.",
-      "connectionRequestsAll": "Tout le monde",
-      "connectionRequestsConnectionsOfConnections": "Connexions de connexions",
-      "contactInfoVisibilityLabel": "Qui peut voir vos coordonnées ?",
-      "contactInfoVisibilityDescription": "Contrôlez qui voit votre e-mail et votre numéro de téléphone.",
-      "contactInfoVisibilityAll": "Tout le monde",
-      "contactInfoVisibilityConnections": "Connexions uniquement",
-      "activityStatusLabel": "Afficher mon statut d'activité",
-      "activityStatusDescription": "Faites savoir à vos connexions quand vous êtes actif sur DamDoh.",
-      "searchIndexingLabel": "Autoriser les moteurs de recherche à indexer mon profil",
-      "searchIndexingDescription": "Autorisez votre profil à apparaître dans les résultats de recherche sur Google, etc.",
-      "saveButton": "Enregistrer les paramètres de confidentialité",
-      "dataConsentTitle": "Partage de données et consentement",
-      "dataConsentDescription": "Contrôlez comment vos données sont utilisées dans les services intégrés de DamDoh.",
-      "marketplaceHistoryLabel": "Historique du marché pour les services financiers",
-      "marketplaceHistoryDescription": "Autorisez les institutions financières sur DamDoh à prendre en compte votre historique de transactions sur le marché pour la notation de crédit.",
-      "traceabilityDataLabel": "Données de traçabilité publiques",
-      "traceabilityDataDescription": "Autorisez l'utilisation de vos données de traçabilité anonymisées dans les rapports publics et la recherche.",
-      "financialApplicationDataLabel": "Données de demande financière pour la mise en correspondance par l'IA",
-      "financialApplicationDataDescription": "Autorisez l'utilisation de vos données de demande financière anonymisées par notre IA pour suggérer des services pertinents.",
-      "saveConsentButton": "Enregistrer les consentements"
-    },
-    "appearance": {
-      "title": "Apparence",
-      "description": "Personnalisez l'apparence de l'application.",
-      "themeLabel": "Thème",
-      "themeDescription": "Sélectionnez un thème clair ou sombre pour l'interface.",
-      "lightTheme": "Clair",
-      "darkTheme": "Sombre",
-      "languageLabel": "Langue",
-      "languageDescription": "Choisissez votre langue préférée pour l'application."
-    },
-    "editProfilePage": {
-      "toast": {
-        "notAuthenticatedTitle": "Non authentifié",
-        "notAuthenticatedDescription": "Veuillez vous connecter pour modifier votre profil.",
-        "unauthorizedTitle": "Non autorisé",
-        "unauthorizedDescription": "Vous ne pouvez modifier que votre propre profil."
+  "traceabilityPage": {
+    "title": "Traçabilité des Produits",
+    "description": "Suivez le parcours de vos aliments de la ferme à la fourchette avec un Identifiant de Traçabilité Vibrant (VTI).",
+    "inputPlaceholder": "Entrez l'ID VTI ou de lot...",
+    "trackButton": "Suivre",
+    "vtiDescription": "Un VTI est un identifiant unique attribué à chaque lot de produits, garantissant la transparence tout au long de la chaîne d'approvisionnement.",
+    "recentTitle": "Lots Récemment Vérifiés",
+    "recentDescription": "Explorez certains des derniers parcours de produits sur la plateforme.",
+    "noRecentBatches": "Aucun lot récemment vérifié trouvé.",
+    "producerLabel": "Producteur",
+    "harvestDateLabel": "Date de Récolte",
+    "viewReportButton": "Voir le Rapport Complet",
+    "detailPage": {
+      "backLink": "Retour au Hub de Traçabilité",
+      "invalidIdError": "Aucun ID de lot valide fourni.",
+      "loadError": "Échec du chargement de l'historique de traçabilité pour ce lot.",
+      "notFoundTitle": "Lot non trouvé",
+      "notFoundDescription": "Le rapport de traçabilité pour cet ID n'a pas pu être trouvé.",
+      "traceableProduct": "Produit Traçable",
+      "batchIdLabel": "ID du Lot",
+      "producerLabel": "Producteur",
+      "harvestDateLabel": "Date de Récolte",
+      "yieldLabel": "Rendement Initial",
+      "qualityLabel": "Classe de Qualité",
+      "notSpecified": "Non spécifié",
+      "journeyTitle": "Parcours du Produit",
+      "journeyDescription": "Un enregistrement chronologique des événements pour ce lot.",
+      "noEventDetails": "Aucun détail spécifique pour cet événement.",
+      "noEventsFound": "Aucun événement de traçabilité n'a encore été enregistré pour ce lot.",
+      "sustainablyGrownTitle": "Cultivé de Manière Durable",
+      "sustainablyGrownDescription": "Ce produit a été cultivé en utilisant des pratiques conformes aux principes durables et biologiques, sur la base des intrants enregistrés.",
+      "geoLocationLabel": "Géolocalisation",
+      "observationType": "Type d'Observation",
+      "details": "Détails",
+      "aiDiagnosis": "Diagnostic IA"
+    }
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
+    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Grains de Café Bio Kenya",
+    "popularSearch2": "Location de tracteur",
+    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
+    "popularSearch4": "Partenaire logistique Afrique de l'Est",
+    "popularSearch5": "Réduction des pertes post-récolte",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Rechercher personnes, produits, services, forums...",
+      "searchButton": "Rechercher",
+      "searchError": "Erreur de Recherche",
+      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
+      "scanFailed": "Scan Échoué",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation IA",
+      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
+      "filtersTitle": "Filtres Appliqués",
+      "noResults": "Aucun résultat trouvé.",
+      "tryAgain": "Essayez d'affiner vos termes de recherche.",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "agri_events": "Événements",
+        "knowledge_articles": "Centre de connaissances",
+        "vti_registry": "Rapports de Traçabilité"
       }
     }
   },
@@ -203,6 +190,158 @@
       "trendText": "depuis le mois dernier"
     }
   },
+  "Forums": {
+    "title": "Sujets du forum",
+    "description": "Parcourir et créer des sujets de discussion",
+    "lastActivity": "Dernière activité il y a {{time}}",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "joinDiscussion": "Rejoindre la discussion",
+      "pinHomepage": "Épingler à l'accueil",
+      "unpinHomepage": "Détacher de l'accueil"
+    },
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
+    },
+    "pinning": {
+      "pinnedTitle": "Accueil épinglé !",
+      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
+      "unpinnedTitle": "Accueil détaché !",
+      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    },
+    "errors": {
+      "loadTitle": "Erreur lors du chargement des sujets",
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
+      },
+      "incomplete": {
+        "title": "Champs incomplets",
+        "description": "Veuillez remplir tous les champs obligatoires."
+      },
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur s'est produite lors de la création du sujet."
+      }
+    },
+    "create": {
+      "backLink": "Retour aux sujets",
+      "title": "Créer un nouveau sujet",
+      "description": "Commencer une nouvelle discussion sur le forum.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "success": {
+        "title": "Sujet créé avec succès",
+        "description": "Votre nouveau sujet a été créé."
+      }
+    },
+    "topic": {
+      "backLink": "Retour aux sujets",
+      "postMeta": "par {{author}} le {{date}}",
+      "buttons": {
+        "createPost": "Créer un message",
+        "loadMore": "Charger plus",
+        "loadingMore": "Chargement..."
+      },
+      "noPosts": {
+        "title": "Aucun message pour l'instant",
+        "description": "Soyez le premier à lancer la discussion.",
+        "button": "Créer le premier message"
+      },
+      "notFound": {
+        "title": "Sujet introuvable",
+        "description": "Le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des messages",
+          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
+        },
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {{topicName}}",
+      "unknownUser": "Utilisateur inconnu",
+      "repliesTitle": "Réponses ({{count}})",
+      "noReplies": "Aucune réponse pour l'instant.",
+      "reply": {
+        "title": "Ajouter une réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Ajouter une réponse",
+        "submittingButton": "Envoi en cours...",
+        "success": "Réponse ajoutée !"
+      },
+      "notFound": {
+        "title": "Message introuvable",
+        "description": "Le message que vous recherchez n'existe pas."
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement du message",
+          "description": "Une erreur s'est produite lors du chargement des détails du message."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
+        },
+        "emptyReply": "La réponse ne peut pas être vide.",
+        "submitReply": {
+          "title": "Erreur d'envoi de la réponse",
+          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au sujet",
+      "aiHelper": {
+        "title": "Assistant IA",
+        "description": "Générer un brouillon de message basé sur une invite.",
+        "promptLabel": "Invite IA",
+        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
+        "generateButton": "Générer le brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "title": "Créer un nouveau message",
+      "description": "Ajouter un nouveau message à ce sujet.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Entrez le titre de votre message",
+        "contentLabel": "Contenu du message",
+        "contentPlaceholder": "Écrivez votre message ici...",
+        "submitButton": "Créer le message",
+        "submittingButton": "Envoi en cours..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon IA généré !",
+          "description": "Un brouillon a été généré pour vous."
+        },
+        "title": "Message créé !",
+        "description": "Votre message a été créé avec succès."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "Invite IA manquante", "description": "Veuillez fournir une invite pour l'assistant IA." },
+        "aiDraft": { "title": "Erreur de brouillon IA", "description": "Échec de la génération du brouillon IA." },
+        "incomplete": { "title": "Champs incomplets", "description": "Veuillez remplir tous les champs obligatoires." },
+        "general": { "title": "Erreur", "description": "Une erreur s'est produite lors de la création du message." }
+      }
+    }
+  },
   "constants": {
     "listingTypes": {
       "All": "Tous les Types",
@@ -210,40 +349,109 @@
       "Service": "Service"
     }
   },
-  "searchPage": {
-    "title": "Recherche Universelle",
-    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
-    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches Populaires",
-    "popularSearch1": "Grains de Café Bio Kenya",
-    "popularSearch2": "Location de tracteur",
-    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
-    "popularSearch4": "Partenaire logistique Afrique de l'Est",
-    "popularSearch5": "Réduction des pertes post-récolte",
-    "modal": {
-      "title": "Recherche Universelle",
-      "placeholder": "Rechercher personnes, produits, services, forums...",
-      "searchButton": "Rechercher",
-      "searchError": "Erreur de Recherche",
-      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
-      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
-      "scanFailed": "Scan Échoué",
-      "scanError": "Erreur de Scan",
-      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
-      "interpretationTitle": "Interprétation IA",
-      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
-      "filtersTitle": "Filtres Appliqués",
-      "noResults": "Aucun résultat trouvé.",
-      "tryAgain": "Essayez d'affiner vos termes de recherche.",
-      "results": {
-        "users": "Profils",
-        "marketplaceItems": "Marché",
-        "forums": "Forums",
-        "agri_events": "Événements",
-        "knowledge_articles": "Centre de connaissances",
-        "vti_registry": "Rapports de Traçabilité"
+  "talentExchangePage": {
+    "title": "Bourse de talents",
+    "description": "Trouvez des emplois agricoles, des services et des experts.",
+    "listServiceButton": "Lister un Service / Job",
+    "searchPlaceholder": "Rechercher des emplois ou des services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories de services",
+    "noResultsTitle": "Aucun service trouvé",
+    "noResultsDescription": "Essayez d'ajuster votre recherche ou vos filtres. Ou soyez le premier à lister un service !",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de récupérer les services de la bourse de talents."
+      }
+    }
+  },
+   "settingsPage": {
+    "title": "Paramètres",
+    "description": "Gérez les paramètres de votre compte et de votre profil.",
+    "profileTab": "Profil",
+    "accountTab": "Compte",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Confidentialité",
+    "appearanceTab": "Apparence",
+    "stakeholderProfile": {
+      "title": "Profil de partie prenante",
+      "description": "Votre identité professionnelle sur DamDoh. C'est ainsi que les autres vous voient."
+    },
+    "account": {
+      "title": "Paramètres du compte",
+      "description": "Gérez l'authentification et la sécurité de votre compte.",
+      "currentPasswordLabel": "Mot de passe actuel",
+      "newPasswordLabel": "Nouveau mot de passe",
+      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+      "changePasswordButton": "Mettre à jour le mot de passe",
+      "deactivateButton": "Désactiver le compte"
+    },
+    "notifications": {
+      "title": "Paramètres des notifications",
+      "description": "Gérez vos préférences de notifications par e-mail et push.",
+      "emailDigestLabel": "Notifications par e-mail",
+      "emailDigestDescription": "Recevoir des notifications par e-mail.",
+      "connectionRequestsLabel": "Demandes de connexion",
+      "connectionRequestsDescription": "M'avertir des nouvelles demandes de connexion.",
+      "forumMentionsLabel": "Mentions et réponses du forum",
+      "forumMentionsDescription": "M'avertir lorsque je suis mentionné ou que mes publications reçoivent une réponse.",
+      "marketplaceActivityLabel": "Activité du marché",
+      "marketplaceActivityDescription": "M'avertir des commandes et des demandes sur mes annonces.",
+      "talentExchangeLabel": "Mises à jour de la bourse de talents",
+      "talentExchangeDescription": "M'avertir des nouvelles offres d'emploi et des candidatures.",
+      "saveButton": "Enregistrer les préférences"
+    },
+    "privacy": {
+      "title": "Confidentialité et visibilité",
+      "description": "Contrôlez qui peut voir vos informations et interagir avec vous.",
+      "profileVisibilityLabel": "Visibilité du profil",
+      "profileVisibilityDescription": "Contrôlez qui peut voir votre profil complet.",
+      "profileVisibilityAll": "Tout le monde",
+      "profileVisibilityConnections": "Connexions uniquement",
+      "profileVisibilityPrivate": "Privé (moi uniquement)",
+      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion ?",
+      "connectionRequestsDescription": "Limitez qui peut vous envoyer des demandes de connexion.",
+      "connectionRequestsAll": "Tout le monde",
+      "connectionRequestsConnectionsOfConnections": "Connexions de connexions",
+      "contactInfoVisibilityLabel": "Qui peut voir vos coordonnées ?",
+      "contactInfoVisibilityDescription": "Contrôlez qui voit votre e-mail et votre numéro de téléphone.",
+      "contactInfoVisibilityAll": "Tout le monde",
+      "contactInfoVisibilityConnections": "Connexions uniquement",
+      "activityStatusLabel": "Afficher mon statut d'activité",
+      "activityStatusDescription": "Faites savoir à vos connexions quand vous êtes actif sur DamDoh.",
+      "searchIndexingLabel": "Autoriser les moteurs de recherche à indexer mon profil",
+      "searchIndexingDescription": "Autorisez votre profil à apparaître dans les résultats de recherche sur Google, etc.",
+      "saveButton": "Enregistrer les paramètres de confidentialité",
+      "dataConsentTitle": "Partage de données et consentement",
+      "dataConsentDescription": "Contrôlez comment vos données sont utilisées dans les services intégrés de DamDoh.",
+      "marketplaceHistoryLabel": "Historique du marché pour les services financiers",
+      "marketplaceHistoryDescription": "Autorisez les institutions financières sur DamDoh à prendre en compte votre historique de transactions sur le marché pour la notation de crédit.",
+      "traceabilityDataLabel": "Données de traçabilité publiques",
+      "traceabilityDataDescription": "Autorisez l'utilisation de vos données de traçabilité anonymisées dans les rapports publics et la recherche.",
+      "financialApplicationDataLabel": "Données de demande financière pour la mise en correspondance par l'IA",
+      "financialApplicationDataDescription": "Autorisez l'utilisation de vos données de demande financière anonymisées par notre IA pour suggérer des services pertinents.",
+      "saveConsentButton": "Enregistrer les consentements"
+    },
+    "appearance": {
+      "title": "Apparence",
+      "description": "Personnalisez l'apparence de l'application.",
+      "themeLabel": "Thème",
+      "themeDescription": "Sélectionnez un thème clair ou sombre pour l'interface.",
+      "lightTheme": "Clair",
+      "darkTheme": "Sombre",
+      "languageLabel": "Langue",
+      "languageDescription": "Choisissez votre langue préférée pour l'application."
+    },
+    "editProfilePage": {
+      "toast": {
+        "notAuthenticatedTitle": "Non authentifié",
+        "notAuthenticatedDescription": "Veuillez vous connecter pour modifier votre profil.",
+        "unauthorizedTitle": "Non autorisé",
+        "unauthorizedDescription": "Vous ne pouvez modifier que votre propre profil."
       }
     }
   }
 }
+
+    

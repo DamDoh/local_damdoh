@@ -203,6 +203,158 @@
       "trendText": "desde el mes pasado"
     }
   },
+  "Forums": {
+    "title": "Temas del Foro",
+    "description": "Explora y crea temas de discusión",
+    "lastActivity": "Última actividad hace {{time}}",
+    "searchPlaceholder": "Buscar temas...",
+    "buttons": {
+      "createTopic": "Crear Tema",
+      "joinDiscussion": "Unirse a la Discusión",
+      "pinHomepage": "Fijar como Página de Inicio",
+      "unpinHomepage": "Desfijar de la Página de Inicio"
+    },
+    "notFound": {
+      "title": "No se encontraron temas",
+      "tryDifferentSearch": "Intenta con un término de búsqueda diferente.",
+      "beTheFirst": "Sé el primero en crear un tema."
+    },
+    "pinning": {
+      "pinnedTitle": "¡Página de Inicio Fijada!",
+      "pinnedDescription": "Este foro ahora se muestra como tu página de inicio.",
+      "unpinnedTitle": "¡Página de Inicio Desfijada!",
+      "unpinnedDescription": "Este foro ya no se mostrará como tu página de inicio."
+    },
+    "errors": {
+      "loadTitle": "Error al Cargar Temas",
+      "loadDescription": "Ocurrió un error al cargar los temas del foro.",
+      "auth": {
+        "title": "No Autenticado",
+        "description": "Debes iniciar sesión para crear un tema."
+      },
+      "incomplete": {
+        "title": "Campos Incompletos",
+        "description": "Por favor, completa todos los campos requeridos."
+      },
+      "general": {
+        "title": "Error",
+        "description": "Ocurrió un error al crear el tema."
+      }
+    },
+    "create": {
+      "backLink": "Volver a Temas",
+      "title": "Crear Nuevo Tema",
+      "description": "Inicia una nueva discusión en el foro.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Introduce el nombre de tu tema",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe brevemente tu tema",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "success": {
+        "title": "Tema Creado con Éxito",
+        "description": "Tu nuevo tema ha sido creado."
+      }
+    },
+    "topic": {
+      "backLink": "Volver a Temas",
+      "postMeta": "por {{author}} el {{date}}",
+      "buttons": {
+        "createPost": "Crear Publicación",
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando..."
+      },
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en iniciar la discusión.",
+        "button": "Crear la Primera Publicación"
+      },
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error al cargar publicaciones",
+          "description": "Ocurrió un error al cargar las publicaciones para este tema."
+        },
+        "loadTopic": {
+          "title": "Error al cargar tema",
+          "description": "Ocurrió un error al cargar los detalles del tema."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "unknownUser": "Usuario Desconocido",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe."
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Tema",
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "Falta indicación de IA", "description": "Por favor, proporciona una indicación para el asistente de IA." },
+        "aiDraft": { "title": "Error del borrador de IA", "description": "No se pudo generar el borrador de IA." },
+        "incomplete": { "title": "Campos incompletos", "description": "Por favor, completa todos los campos requeridos." },
+        "general": { "title": "Error", "description": "Ocurrió un error al crear la publicación." }
+      }
+    }
+  },
   "constants": {
     "listingTypes": {
       "All": "Todos los Tipos",
@@ -210,40 +362,23 @@
       "Service": "Servicio"
     }
   },
-  "searchPage": {
-    "title": "Búsqueda Universal",
-    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
-    "placeholder": "Busca personas, productos, servicios, publicaciones de foros...",
-    "searchButton": "Buscar",
-    "popularSearches": "Búsquedas Populares",
-    "popularSearch1": "Granos de Café Orgánico Kenia",
-    "popularSearch2": "Alquiler de Tractor",
-    "popularSearch3": "Semillas de maíz resistentes a la sequía",
-    "popularSearch4": "Socio logístico África Oriental",
-    "popularSearch5": "Reducción de pérdidas poscosecha",
-    "modal": {
-      "title": "Búsqueda Universal",
-      "placeholder": "Buscar personas, productos, servicios, foros...",
-      "searchButton": "Buscar",
-      "searchError": "Error de Búsqueda",
-      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
-      "invalidCodeError": "Código QR no válido escaneado. No parece ser un ID de DamDoh.",
-      "scanFailed": "Escaneo Fallido",
-      "scanError": "Error de Escaneo",
-      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
-      "interpretationTitle": "Interpretación de IA",
-      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
-      "filtersTitle": "Filtros Aplicados",
-      "noResults": "No se encontraron resultados.",
-      "tryAgain": "Intenta refinar tus términos de búsqueda.",
-      "results": {
-        "users": "Perfiles",
-        "marketplaceItems": "Mercado",
-        "forums": "Foros",
-        "agri_events": "Eventos",
-        "knowledge_articles": "Centro de Conocimiento",
-        "vti_registry": "Informes de Trazabilidad"
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Encuentra trabajos agrícolas, servicios y expertos.",
+    "listServiceButton": "Publicar un Servicio / Trabajo",
+    "searchPlaceholder": "Buscar trabajos o servicios...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las Categorías de Servicios",
+    "noResultsTitle": "No se encontraron servicios",
+    "noResultsDescription": "Intenta ajustar tu búsqueda o filtros. ¡O sé el primero en publicar un servicio!",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "No se pudieron obtener los servicios de la bolsa de talentos."
       }
     }
   }
 }
+
+    

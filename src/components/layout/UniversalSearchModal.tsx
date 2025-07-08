@@ -65,7 +65,7 @@ const getLinkForCollection = (result: SearchResult) => {
 }
 
 export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: UniversalSearchModalProps) {
-  const t = useTranslations('searchPage.modal');
+  const t = useTranslations('searchPage');
   const [currentQuery, setCurrentQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -92,8 +92,8 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     } catch (error: any) {
       console.error("Error in universal search:", error);
       toast({
-          title: t('searchError'),
-          description: error.message || t('searchErrorDescription'),
+          title: t('modal.searchError'),
+          description: error.message || t('modal.searchErrorDescription'),
           variant: "destructive",
       });
     } finally {
@@ -131,7 +131,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
         
         // This regex is a simple way to differentiate a potential user ID from a VTI
         const isVti = /^[0-9a-f]{8}-/i.test(decodedText);
-        
+
         if (decodedText.includes('/profiles/')) {
             idToLookup = decodedText.split('/profiles/')[1];
             type = 'user';
@@ -142,7 +142,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             idToLookup = decodedText;
             type = 'batch';
         } else {
-             throw new Error(t('invalidCodeError'));
+             throw new Error(t('modal.invalidCodeError'));
         }
 
         if (type === 'user') {
@@ -153,7 +153,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             router.push(`/traceability/batches/${idToLookup}`);
         }
       } catch (error: any) {
-         toast({ title: t('scanFailed'), description: error.message, variant: "destructive" });
+         toast({ title: t('modal.scanFailed'), description: error.message, variant: "destructive" });
       } finally {
         setIsLoading(false);
       }
@@ -161,7 +161,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
 
   const handleScanFailure = (error: string) => {
       setIsScanning(false);
-      toast({ title: t('scanError'), description: t('scanErrorDescription'), variant: "destructive"});
+      toast({ title: t('modal.scanError'), description: t('modal.scanErrorDescription'), variant: "destructive"});
   };
 
   const groupedResults = searchResults.reduce((acc, result) => {
@@ -177,7 +177,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-3xl h-[80vh] flex flex-col p-0">
         <DialogHeader className='p-4 border-b'>
-          <DialogTitle className='flex items-center gap-2'><Sparkles className="h-5 w-5 text-primary" />{t('title')}</DialogTitle>
+          <DialogTitle className='flex items-center gap-2'><Sparkles className="h-5 w-5 text-primary" />{t('modal.title')}</DialogTitle>
         </DialogHeader>
         
         <div className="p-4 border-b bg-background/80">
@@ -185,7 +185,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             <div className="relative flex-grow">
                 <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                 <Input 
-                  placeholder={t('placeholder')}
+                  placeholder={t('modal.placeholder')}
                   value={currentQuery}
                   onChange={(e) => setCurrentQuery(e.target.value)}
                   className="h-11 text-base pl-10"
@@ -198,7 +198,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             </Button>
             <Button type="submit" disabled={isLoading || !currentQuery.trim()} size="lg" className="h-11">
               {isLoading && <Loader2 className="h-5 w-5 mr-2 animate-spin" />}
-              {t('searchButton')}
+              {t('modal.searchButton')}
             </Button>
           </form>
         </div>
@@ -209,10 +209,10 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
           <div className='p-4 space-y-4'>
              {aiInterpretation && (
                  <div className="p-3 text-xs text-blue-700 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 rounded-md border border-blue-200 dark:border-blue-800">
-                    <p><strong>{t('interpretationTitle')}:</strong> {aiInterpretation.interpretationNotes || t('interpretationNotesDefault')}</p>
+                    <p><strong>{t('modal.interpretationTitle')}:</strong> {aiInterpretation.interpretationNotes || t('modal.interpretationNotesDefault')}</p>
                     {aiInterpretation.suggestedFilters && aiInterpretation.suggestedFilters.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-1">
-                            <strong>{t('filtersTitle')}:</strong>
+                            <strong>{t('modal.filtersTitle')}:</strong>
                             {aiInterpretation.suggestedFilters.map((filter, i) => (
                                 <Badge key={i} variant="secondary" className="bg-white/50">{filter.type}: {filter.value}</Badge>
                             ))}
@@ -233,7 +233,7 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             ) : Object.keys(groupedResults).length > 0 ? (
                 Object.entries(groupedResults).map(([collectionName, results]) => (
                     <div key={collectionName}>
-                        <h3 className="text-sm font-semibold text-muted-foreground mb-2 px-1">{t(`results.${collectionName}` as any, collectionName)}</h3>
+                        <h3 className="text-sm font-semibold text-muted-foreground mb-2 px-1">{t(`modal.results.${collectionName}` as any, collectionName)}</h3>
                         <div className="space-y-2">
                         {results.map(result => (
                           <Link href={getLinkForCollection(result)} key={result.id} onClick={onClose} className="block group">
@@ -255,8 +255,8 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
             ) : !isScanning && currentQuery.trim() && (
                  <div className='flex flex-col items-center justify-center h-full text-center text-muted-foreground pt-16'>
                     <Search className="h-12 w-12 mb-4"/>
-                    <p>{t('noResults')}</p>
-                    <p className="text-xs">{t('tryAgain')}</p>
+                    <p>{t('modal.noResults')}</p>
+                    <p className="text-xs">{t('modal.tryAgain')}</p>
                 </div>
             )}
           </div>
