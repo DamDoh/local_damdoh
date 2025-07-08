@@ -3,15 +3,14 @@
 /**
  * @fileOverview AI flow to provide personalized marketplace item recommendations.
  * - getMarketplaceRecommendations - Function to get recommendations.
- * - MarketplaceRecommendationInput - Input type.
- * - MarketplaceRecommendationOutput - Output type.
+ * - MarketplaceRecommendationInput - Input type for the user profile and candidate items.
+ * - MarketplaceRecommendationOutput - The structured output with recommendations and reasons.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import type { MarketplaceItem } from '@/lib/types';
-import { performSearch } from '@/lib/server-actions';
-import { getProfileByIdFromDB } from '@/lib/server-actions';
+import type { MarketplaceItem, UserProfile } from '@/lib/types';
+import { performSearch, getProfileByIdFromDB } from '@/lib/db-utils';
 
 export const MarketplaceRecommendationInputSchema = z.object({
   userId: z.string().optional().describe("The ID of the user to generate recommendations for."),
@@ -25,7 +24,7 @@ const RecommendedItemSchema = z.object({
 });
 
 export const MarketplaceRecommendationOutputSchema = z.object({
-  recommendations: z.array(RecommendedItemSchema).describe("A list of 3-5 suggested marketplace items (products or services) with accompanying reasons."),
+  recommendations: z.array(RecommendedItemSchema).describe("A list of suggested marketplace items (products or services) with accompanying reasons."),
 });
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 
@@ -62,24 +61,20 @@ Return the results as a JSON object with a 'recommendations' array. Each object 
 export async function getMarketplaceRecommendations(input: MarketplaceRecommendationInput): Promise<MarketplaceRecommendationOutput> {
     const { userId, count = 5 } = input;
     
-    // Fetch a batch of recent and relevant items to feed to the AI.
-    // This is more efficient than fetching all items.
-    const searchPayload = { mainKeywords: [], limit: 50 }; // Broad search for recent items
-    const candidateItems = await performSearch(searchPayload);
-    
-    if (candidateItems.length === 0) {
+    if (!userId) {
         return { recommendations: [] };
     }
     
-    let userProfile = null;
-    if(userId) {
-        userProfile = await getProfileByIdFromDB(userId);
+    const userProfile = await getProfileByIdFromDB(userId);
+    if (!userProfile) {
+        console.log("No user profile found, cannot generate personalized recommendations.");
+        return { recommendations: [] };
     }
     
-    // If no user profile, we can't generate personalized recommendations.
-    // A future enhancement could be to return generic popular items.
-    if (!userProfile) {
-        console.log("No user profile provided, cannot generate personalized recommendations.");
+    const searchPayload = { mainKeywords: [], limit: 50 };
+    const candidateItems = await performSearch(searchPayload);
+    
+    if (candidateItems.length === 0) {
         return { recommendations: [] };
     }
 

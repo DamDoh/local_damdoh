@@ -9,6 +9,7 @@ import type {
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
+import type { SmartSearchInterpretationSchema } from '@/ai/flows/query-interpreter-flow';
 
 
 // =================================================================
@@ -862,10 +863,10 @@ export interface PaymentLog {
 
 export type ServiceItem = MarketplaceItem & {
     listingType: 'Service';
-    skillsRequired: string[];
     compensation: string;
     experienceLevel: string;
 };
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;

@@ -1,17 +1,13 @@
 
 // src/app/api/profiles/route.ts
 import { NextResponse } from 'next/server';
-import type { UserProfile } from '@/lib/types';
-import { StakeholderProfileSchema } from '@/lib/schemas'; // Zod schema for validation
 import { 
   getAllProfilesFromDB,
-} from '@/lib/server-actions';
+} from '@/lib/db-utils';
 import { 
   successResponse, 
-  clientErrorResponse, 
   serverErrorResponse 
 } from '@/lib/api-utils';
-import { isServerAuthenticated } from '@/lib/server-auth-utils';
 
 
 export async function GET(request: Request) {

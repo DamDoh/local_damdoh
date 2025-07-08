@@ -7,7 +7,7 @@ import {
   getProfileByIdFromDB, 
   updateProfileInDB, 
   deleteProfileFromDB 
-} from '@/lib/server-actions';
+} from '@/lib/db-utils';
 import { 
   successResponse, 
   notFoundResponse, 

@@ -11,10 +11,8 @@ import '@/ai/flows/profile-summary-generator.ts';
 import '@/ai/flows/farming-assistant-flow.ts';
 import '@/ai/flows/market-insights-flow.ts';
 import '@/ai/flows/query-interpreter-flow.ts';
-import '@/ai/flows/marketplace-recommendations.ts';
 import '@/ai/tools/stakeholder-info-tool.ts';
 import '@/ai/flows/generate-forum-post-draft.ts';
 import '@/ai/flows/suggest-market-price-flow.ts';
 import '@/ai/tools/fgw-knf-knowledge-tool.ts';
-
-
+import '@/ai/flows/marketplace-recommendations.ts';

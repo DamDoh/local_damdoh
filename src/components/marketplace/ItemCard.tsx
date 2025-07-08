@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import type { MarketplaceItem, ServiceItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { Briefcase, DollarSign } from "lucide-react";
+import { Briefcase, DollarSign, Brain } from "lucide-react";
 
 interface ItemCardProps {
     item: MarketplaceItem;
@@ -68,7 +68,12 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                         </span>
                     )}
                 </div>
-                 {reason && <p className="text-xs text-blue-600 pt-1 italic">"{reason}"</p>}
+                 {reason && (
+                    <div className="text-xs text-blue-700 dark:text-blue-300 pt-1 italic flex items-start gap-1.5">
+                       <Brain className="h-4 w-4 shrink-0 mt-0.5"/>
+                       <span>{reason}</span>
+                    </div>
+                )}
             </CardContent>
             <CardFooter className="p-2 pt-0">
                 <Button asChild size="sm" className="w-full">

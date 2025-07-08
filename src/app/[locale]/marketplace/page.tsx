@@ -17,8 +17,7 @@ import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
-import { getMarketplaceRecommendations, type MarketplaceRecommendationOutput } from "@/ai/flows/marketplace-recommendations";
-import { performSearch } from "@/lib/server-actions";
+import { performSearch, getMarketplaceRecommendationsAction } from "@/lib/server-actions";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/auth-utils";
@@ -35,7 +34,7 @@ function MarketplaceContent() {
   const [displayedItems, setDisplayedItems] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  const [aiRecommendations, setAiRecommendations] = useState<MarketplaceRecommendationOutput['recommendations']>([]);
+  const [aiRecommendations, setAiRecommendations] = useState<Awaited<ReturnType<typeof getMarketplaceRecommendationsAction>>>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(true);
 
   const pathname = usePathname();
@@ -98,28 +97,29 @@ function MarketplaceContent() {
     }
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, toast, t]);
 
+  const fetchAiRecs = useCallback(async () => {
+    if (!user) {
+        setIsLoadingAiRecommendations(false);
+        return;
+    };
+    setIsLoadingAiRecommendations(true);
+    try {
+        const result = await getMarketplaceRecommendationsAction(user.uid);
+        setAiRecommendations(result || []);
+    } catch (error) {
+          console.error("Failed to fetch AI recommendations:", error);
+          // Non-blocking error, so don't show a toast unless debugging
+    } finally {
+        setIsLoadingAiRecommendations(false);
+    }
+  }, [user]);
+
   useEffect(() => {
-      const fetchAiRecs = async () => {
-        if (!user) {
-            setIsLoadingAiRecommendations(false);
-            return;
-        };
-        setIsLoadingAiRecommendations(true);
-        try {
-            const result = await getMarketplaceRecommendations({ userId: user.uid });
-            setAiRecommendations(result.recommendations || []);
-        } catch (error) {
-             console.error("Failed to fetch AI recommendations:", error);
-             // Non-blocking error, so don't show a toast unless debugging
-        } finally {
-            setIsLoadingAiRecommendations(false);
-        }
-      }
       if(isMounted) {
         fetchItems();
         fetchAiRecs();
       }
-  }, [isMounted, fetchItems, user]);
+  }, [isMounted, fetchItems, fetchAiRecs]);
 
   const isCurrentHomepage = homepagePreference === pathname;
 
