@@ -88,6 +88,97 @@
       "errorTitle": "Error"
     }
   },
+   "InsurancePage": {
+    "title": "Seguros Agrícolas",
+    "description": "Proteja su granja y sus activos contra riesgos imprevistos.",
+    "perTerm": "/ plazo",
+    "viewDetailsButton": "Ver Detalles y Aplicar",
+    "noProducts": "No hay productos de seguro disponibles actualmente.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Volver a todos los seguros",
+    "coverageTitle": "Detalles de la Cobertura",
+    "premiumTitle": "Prima",
+    "perTerm": "/ plazo",
+    "providerTitle": "Proporcionado por",
+    "applyButton": "Aplicar para esta Póliza",
+    "notFound": "Producto de seguro no encontrado.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Volver a los detalles del producto",
+    "title": "Aplicar para un Seguro",
+    "description": "Aplique para cobertura para su granja con {{productName}}.",
+    "form": {
+      "farmLabel": "Granja a asegurar",
+      "farmPlaceholder": "Seleccione una granja",
+      "noFarms": "No se encontraron granjas. Por favor, cree una primero.",
+      "coverageValueLabel": "Valor de Cobertura/Activos (USD)",
+      "coverageValuePlaceholder": "Ej: 50000",
+      "coverageValueDescription": "Ingrese el valor total de los activos que desea asegurar.",
+      "submitButton": "Enviar Solicitud"
+    },
+    "success": {
+      "title": "¡Solicitud Enviada!",
+      "description": "Su solicitud de seguro ha sido enviada para revisión.",
+      "backToDashboardButton": "Volver al Panel",
+      "applyForAnotherButton": "Aplicar para otra Póliza"
+    },
+    "toast": {
+      "error": "Error",
+      "successTitle": "¡Solicitud Enviada!",
+      "successDescription": "Su solicitud de seguro ha sido enviada al proveedor."
+    }
+  },
+   "InsuranceProductCreatePage": {
+    "backLink": "Volver a Productos",
+    "title": "Crear Producto de Seguro",
+    "description": "Defina una nueva póliza de seguro para ofrecer en la plataforma.",
+    "form": {
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
+      "typeLabel": "Tipo de Producto",
+      "typePlaceholder": "Seleccione un tipo",
+      "crop": "Cultivo",
+      "livestock": "Ganado",
+      "asset": "Activo",
+      "weather": "Clima",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Describa el producto y sus beneficios.",
+      "coverageLabel": "Detalles de la Cobertura",
+      "coveragePlaceholder": "Detalle qué cubre esta póliza...",
+      "premiumLabel": "Prima (USD)",
+      "premiumPlaceholder": "Ej: 250.00",
+      "currencyLabel": "Moneda",
+      "submitButton": "Crear Producto"
+    },
+    "toast": {
+      "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros.",
+      "successTitle": "¡Producto Creado!",
+      "successDescription": "El producto de seguro '{{name}}' se creó con éxito.",
+      "errorTitle": "Creación Fallida"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Productos de Seguro",
+    "description": "Vea y gestione sus productos de seguro.",
+    "createButton": "Crear Nuevo Producto",
+    "table": {
+      "productName": "Nombre del Producto",
+      "type": "Tipo",
+      "status": "Estado",
+      "premium": "Prima"
+    },
+    "noProducts": "Aún no ha creado ningún producto de seguro.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
   "AppHeader": {
     "home": "Inicio",
     "network": "Red",

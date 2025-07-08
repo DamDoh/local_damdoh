@@ -655,7 +655,24 @@ export interface InsuranceProduct {
   currency: string;
   status: 'Active' | 'Inactive';
   createdAt: string;
+  provider?: {
+    id: string;
+    displayName: string;
+    avatarUrl?: string;
+  }
 }
+
+export interface InsuranceApplication {
+    id: string;
+    applicantId: string;
+    providerId: string;
+    productId: string;
+    farmId: string;
+    coverageValue: number;
+    status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
+    submittedAt: string;
+}
+
 
 export interface ApiKey {
     id: string;
@@ -808,13 +825,7 @@ export interface AgroTourismDashboardData {
 }
 
 export interface AgriTechInnovatorDashboardData {
-  apiKeys: {
-    id: string;
-    key: string;
-    status: 'Active' | 'Revoked';
-    environment: 'Sandbox' | 'Production';
-    createdAt: string; // ISO String
-  }[];
+  apiKeys: ApiKey[];
   sandboxStatus: {
     status: 'Operational' | 'Degraded' | 'Offline';
     lastReset: string; // ISO String

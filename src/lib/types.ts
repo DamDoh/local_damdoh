@@ -661,6 +661,18 @@ export interface InsuranceProduct {
   createdAt: string;
 }
 
+export interface InsuranceApplication {
+    id: string;
+    applicantId: string;
+    providerId: string;
+    productId: string;
+    farmId: string;
+    coverageValue: number;
+    status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
+    submittedAt: string;
+}
+
+
 export interface ApiKey {
     id: string;
     userId: string;

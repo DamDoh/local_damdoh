@@ -88,6 +88,97 @@
       "errorTitle": "កំហុស"
     }
   },
+  "InsurancePage": {
+    "title": "ការធានារ៉ាប់រងកសិកម្ម",
+    "description": "ការពារកសិដ្ឋាននិងទ្រព្យសម្បត្តិរបស់អ្នកប្រឆាំងនឹងហានិភ័យដែលមិនបានមើលឃើញទុកជាមុន។",
+    "perTerm": "/ អាណត្តិ",
+    "viewDetailsButton": "មើលព័ត៌មានលម្អិត & អនុវត្ត",
+    "noProducts": "មិនមានផលិតផលធានារ៉ាប់រងណាមួយដែលអាចប្រើបានទេ។",
+    "toast": {
+      "errorTitle": "កំហុស"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "ត្រលប់ទៅការធានារ៉ាប់រងទាំងអស់",
+    "coverageTitle": "ព័ត៌មានលម្អិតអំពីការធានារ៉ាប់រង",
+    "premiumTitle": "បុព្វលាភ",
+    "perTerm": "/ អាណត្តិ",
+    "providerTitle": "ផ្តល់ដោយ",
+    "applyButton": "ដាក់ពាក្យសុំគោលការណ៍នេះ",
+    "notFound": "រកមិនឃើញផលិតផលធានារ៉ាប់រងទេ។",
+    "toast": {
+      "errorTitle": "កំហុស"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "ត្រលប់ទៅព័ត៌មានលម្អិតផលិតផល",
+    "title": "ដាក់ពាក្យសុំធានារ៉ាប់រង",
+    "description": "ដាក់ពាក្យសុំការធានារ៉ាប់រងសម្រាប់កសិដ្ឋានរបស់អ្នកជាមួយ {{productName}} ។",
+    "form": {
+      "farmLabel": "កសិដ្ឋានដើម្បីធានារ៉ាប់រង",
+      "farmPlaceholder": "ជ្រើសរើសកសិដ្ឋាន",
+      "noFarms": "រកមិនឃើញកសិដ្ឋានទេ។ សូមបង្កើតមួយជាមុនសិន។",
+      "coverageValueLabel": "តម្លៃទ្រព្យសម្បត្តិ/ការធានារ៉ាប់រង (USD)",
+      "coverageValuePlaceholder": "ឧ. 50000",
+      "coverageValueDescription": "បញ្ចូលតម្លៃសរុបនៃទ្រព្យសម្បត្តិដែលអ្នកចង់ធានារ៉ាប់រង។",
+      "submitButton": "បញ្ជូនពាក្យសុំ"
+    },
+    "success": {
+      "title": "បានបញ្ជូនពាក្យសុំ!",
+      "description": "ពាក្យសុំធានារ៉ាប់រងរបស់អ្នកត្រូវបានផ្ញើសម្រាប់ការពិនិត្យ។",
+      "backToDashboardButton": "ត្រលប់ទៅផ្ទាំងគ្រប់គ្រង",
+      "applyForAnotherButton": "ដាក់ពាក្យសុំគោលការណ៍ផ្សេងទៀត"
+    },
+    "toast": {
+      "error": "កំហុស",
+      "successTitle": "បានបញ្ជូនពាក្យសុំ!",
+      "successDescription": "ពាក្យសុំធានារ៉ាប់រងរបស់អ្នកត្រូវបានផ្ញើទៅអ្នកផ្តល់សេវា។"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "ត្រលប់ទៅផលិតផល",
+    "title": "បង្កើតផលិតផលធានារ៉ាប់រង",
+    "description": "កំណត់គោលការណ៍ធានារ៉ាប់រងថ្មីដើម្បីផ្តល់ជូននៅលើវេទិកា។",
+    "form": {
+        "nameLabel": "ឈ្មោះផលិតផល",
+        "namePlaceholder": "ឧ. ការការពារគ្រោះរាំងស្ងួតសម្រាប់ពោត",
+        "typeLabel": "ប្រភេទផលិតផល",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទ",
+        "crop": "ដំណាំ",
+        "livestock": "បសុសត្វ",
+        "asset": "ទ្រព្យសម្បត្តិ",
+        "weather": "អាកាសធាតុ",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាអំពីផលិតផលនិងអត្ថប្រយោជន៍របស់វា។",
+        "coverageLabel": "ព័ត៌មានលម្អិតអំពីការធានារ៉ាប់រង",
+        "coveragePlaceholder": "រាយបញ្ជីអ្វីដែលគោលការណ៍នេះគ្របដណ្តប់...",
+        "premiumLabel": "បុព្វលាភ (USD)",
+        "premiumPlaceholder": "ឧ. 250.00",
+        "currencyLabel": "រូបិយប័ណ្ណ",
+        "submitButton": "បង្កើតផលិតផល"
+    },
+    "toast": {
+      "notAuthenticated": "អ្នកត្រូវតែចូលជាអ្នកផ្តល់សេវាធានារ៉ាប់រង។",
+      "successTitle": "បានបង្កើតផលិតផល!",
+      "successDescription": "ផលិតផលធានារ៉ាប់រង '{{name}}' ត្រូវបានបង្កើតដោយជោគជ័យ។",
+      "errorTitle": "ការបង្កើតបានបរាជ័យ"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "ផលិតផលធានារ៉ាប់រង",
+    "description": "មើលនិងគ្រប់គ្រងផលិតផលធានារ៉ាប់រងរបស់អ្នក។",
+    "createButton": "បង្កើតផលិតផលថ្មី",
+    "table": {
+      "productName": "ឈ្មោះផលិតផល",
+      "type": "ប្រភេទ",
+      "status": "ស្ថានភាព",
+      "premium": "បុព្វលាភ"
+    },
+    "noProducts": "អ្នកមិនទាន់បានបង្កើតផលិតផលធានារ៉ាប់រងណាមួយទេ។",
+    "toast": {
+      "errorTitle": "កំហុស"
+    }
+  },
   "AppHeader": {
     "home": "ទំព័រដើម",
     "network": "បណ្តាញ",

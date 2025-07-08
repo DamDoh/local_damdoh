@@ -30,3 +30,10 @@ export const getInsuranceServiceTypes = (t: any) =>
     value: type,
     label: t('insuranceServiceTypes.' + type)
   }));
+
+export const getInsuranceProductTypes = (t: any) => [
+    { value: 'Crop', label: t('insuranceProductTypes.Crop') },
+    { value: 'Livestock', label: t('insuranceProductTypes.Livestock') },
+    { value: 'Asset', label: t('insuranceProductTypes.Asset') },
+    { value: 'Weather', label: t('insuranceProductTypes.Weather') },
+];
