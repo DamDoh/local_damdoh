@@ -370,6 +370,10 @@
       "unpinnedTitle": "¡Página de Inicio Desfijada!",
       "unpinnedDescription": "Este foro ya no se mostrará como tu página de inicio."
     },
+    "errors": {
+      "loadTitle": "Error al Cargar Temas",
+      "loadDescription": "Ocurrió un error al cargar los temas del foro."
+    },
     "create": {
       "backLink": "Volver a Temas",
       "title": "Crear Nuevo Tema",

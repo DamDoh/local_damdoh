@@ -370,6 +370,10 @@
       "unpinnedTitle": "Homepage Unpinned!",
       "unpinnedDescription": "This forum will no longer show as your homepage."
     },
+    "errors": {
+      "loadTitle": "Error Loading Topics",
+      "loadDescription": "An error occurred while loading the forum topics."
+    },
     "create": {
       "backLink": "Back to Topics",
       "title": "Create New Topic",

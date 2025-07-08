@@ -370,6 +370,10 @@
       "unpinnedTitle": "Startseite gelöst!",
       "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
     },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten."
+    },
     "create": {
       "backLink": "Zurück zu den Themen",
       "title": "Neues Thema erstellen",

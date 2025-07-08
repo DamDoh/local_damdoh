@@ -370,6 +370,10 @@
       "unpinnedTitle": "Accueil détaché !",
       "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
     },
+    "errors": {
+      "loadTitle": "Erreur lors du chargement des sujets",
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum."
+    },
     "create": {
       "backLink": "Retour aux sujets",
       "title": "Créer un nouveau sujet",
