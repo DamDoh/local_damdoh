@@ -1,144 +1,743 @@
 
 {
-  "AppHeader": {
-    "home": "ទំព័រដើម",
-    "network": "បណ្តាញ",
-    "farmMgmt": "គ្រប់គ្រងកសិដ្ឋាន",
-    "marketplace": "ទីផ្សារ",
-    "talentExchange": "ទេពកោសល្យ",
-    "traceability": "ការតាមដាន",
-    "forums": "វេទិកា",
-    "sustainability": "និរន្តរភាព",
-    "notifications": "ការជូនដំណឹង",
-    "messages": "សារ",
-    "wallet": "កាបូបលុយ",
-    "searchPlaceholder": "ស្វែងរកមនុស្ស, ផលិតផល, សេវាកម្ម...",
-    "signIn": "ចូលគណនី",
-    "signUp": "ចុះឈ្មោះ",
-    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
-    "settings": "ការកំណត់",
-    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
-    "logOut": "ចេញពីគណនី",
-    "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
-    "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត"
+  "traceabilityPage": {
+    "title": "ការតាមដានផលិតផល",
+    "description": "តាមដានដំណើររបស់អាហាររបស់អ្នកពីកសិដ្ឋានទៅតុអាហារជាមួយនឹងលេខសម្គាល់ការតាមដានរស់រវើក (VTI)។",
+    "inputPlaceholder": "បញ្ចូល VTI ឬលេខសម្គាល់បាច់...",
+    "trackButton": "តាមដាន",
+    "vtiDescription": "VTI គឺជាលេខសម្គាល់តែមួយគត់ដែលបានផ្តល់ឱ្យបាច់ផលិតផលនីមួយៗ ដោយធានានូវតម្លាភាពនៅទូទាំងខ្សែសង្វាក់ផ្គត់ផ្គង់។",
+    "recentTitle": "បាច់ដែលបានផ្ទៀងផ្ទាត់ថ្មីៗ",
+    "recentDescription": "ស្វែងយល់ពីដំណើរផលិតផលចុងក្រោយបំផុតមួយចំនួននៅលើវេទិកា។",
+    "noRecentBatches": "រកមិនឃើញបាច់ដែលបានផ្ទៀងផ្ទាត់ថ្មីៗទេ។",
+    "producerLabel": "អ្នកផលិត",
+    "harvestDateLabel": "កាលបរិច្ឆេទប្រមូលផល",
+    "viewReportButton": "មើលរបាយការណ៍ពេញលេញ",
+    "detailPage": {
+      "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលតាមដាន",
+      "invalidIdError": "មិនមានលេខសម្គាល់បាច់ត្រឹមត្រូវទេ។",
+      "loadError": "បរាជ័យក្នុងការផ្ទុកប្រវត្តិការតាមដានសម្រាប់បាច់នេះ។",
+      "notFoundTitle": "រកមិនឃើញបាច់",
+      "notFoundDescription": "មិនអាចរកឃើញរបាយការណ៍តាមដានសម្រាប់លេខសម្គាល់នេះទេ។",
+      "traceableProduct": "ផលិតផលដែលអាចតាមដានបាន",
+      "batchIdLabel": "លេខសម្គាល់បាច់",
+      "producerLabel": "អ្នកផលិត",
+      "harvestDateLabel": "កាលបរិច្ឆេទប្រមូលផល",
+      "yieldLabel": "ទិន្នផលដំបូង",
+      "qualityLabel": "កម្រិតគុណភាព",
+      "notSpecified": "មិនបានបញ្ជាក់",
+      "journeyTitle": "ដំណើរផលិតផល",
+      "journeyDescription": "កំណត់ត្រាតាមកាលប្បវត្តិនៃព្រឹត្តិការណ៍សម្រាប់បាច់នេះ។",
+      "noEventDetails": "គ្មានព័ត៌មានលម្អិតជាក់លាក់សម្រាប់ព្រឹត្តិការណ៍នេះទេ។",
+      "noEventsFound": "មិនទាន់មានព្រឹត្តិការណ៍តាមដានណាមួយត្រូវបានកត់ត្រាសម្រាប់បាច់នេះទេ។",
+      "sustainablyGrownTitle": "ដាំដុះដោយនិរន្តរភាព",
+      "sustainablyGrownDescription": "ផលិតផលនេះត្រូវបានដាំដុះដោយប្រើប្រាស់ការអនុវត្តដែលស្របតាមគោលការណ៍និរន្តរភាពនិងសរីរាង្គ ដោយផ្អែកលើធាតុចូលដែលបានកត់ត្រា។",
+      "geoLocationLabel": "ទីតាំងភូមិសាស្ត្រ",
+      "observationType": "ប្រភេទការសង្កេត",
+      "details": "ព័ត៌មានលម្អិត",
+      "aiDiagnosis": "រោគវិនិច្ឆ័យ AI"
+    }
   },
-  "MobileBottomNav": {
-    "home": "ទំព័រដើម",
-    "market": "ទីផ្សារ",
-    "search": "ស្វែងរក",
-    "forums": "វេទិកា",
-    "profile": "ប្រវត្តិរូប"
-  },
-  "AppFooter": {
-    "tagline": "ផ្តល់អំណាចដល់កសិករ, ស្តារប្រព័ន្ធអេកូឡូស៊ី, และចិញ្ចឹមពិភពលោកប្រកបដោយនិរន្តរភាព។",
-    "damdohTitle": "ដាំដុះ",
-    "aboutLabel": "អំពីយើង",
-    "contactLabel": "ទំនាក់ទំនង",
-    "careersLabel": "អាជីព",
-    "blogLabel": "ប្លុក",
-    "resourcesTitle": "ធនធាន",
-    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
-    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
-    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
-    "eventsLabel": "ព្រឹត្តិការណ៍",
-    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-    "legalTitle": "ផ្នែកច្បាប់",
-    "privacyPolicyLabel": "គោលការណ៍ឯកជនភាព",
-    "termsOfServiceLabel": "លក្ខខណ្ឌប្រើប្រាស់",
-    "copyright": "© {year} {appName} ។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
-    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
-    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
-    "appStoreAlt": "ទាញយកនៅលើ App Store"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "កំពុងធ្វើសមកាលកម្មសកម្មភាពដែលមិនទាន់សម្រេចចំនួន {count}...",
-      "onlinePending": "សកម្មភាពដែលមិនទាន់សម្រេចចំនួន {count} ត្រូវធ្វើសមកាលកម្ម។",
-      "onlineSynced": "នៅលើអ៊ីនធឺណិត និងការផ្លាស់ប្តូរទាំងអស់ត្រូវបានធ្វើសមកាលកម្ម។",
-      "offline": "ក្រៅបណ្តាញ។ សកម្មភាពចំនួន {count} ត្រូវបានដាក់ក្នុងជួរ។"
+  "Forums": {
+    "title": "ប្រធានបទវេទិកា",
+    "description": "រកមើលនិងបង្កើតប្រធានបទពិភាក្សា",
+    "lastActivity": "សកម្មភាពចុងក្រោយ: {{time}}",
+    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
+    "buttons": {
+      "createTopic": "បង្កើតប្រធានបទ",
+      "joinDiscussion": "ចូលរួមការពិភាក្សា",
+      "pinHomepage": "ខ្ទាស់ទៅទំព័រដើម",
+      "unpinHomepage": "មិនខ្ទាស់ពីទំព័រដើម"
     },
-    "toast": {
-      "online": {
-        "title": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតវិញហើយ!",
-        "description": "ការផ្លាស់ប្តូរដែលមិនទាន់សម្រេចទាំងអស់នឹងត្រូវបានធ្វើសមកាលកម្មឥឡូវនេះ។"
+    "notFound": {
+      "title": "រកមិនឃើញប្រធានបទ",
+      "tryDifferentSearch": "ព្យាយាមស្វែងរកពាក្យផ្សេង។",
+      "beTheFirst": "ធ្វើជាអ្នកដំបូងដែលបង្កើតប្រធានបទ។"
+    },
+    "pinning": {
+      "pinnedTitle": "បានខ្ទាស់ទំព័រដើម!",
+      "pinnedDescription": "វេទិកានេះត្រូវបានបង្ហាញជាទំព័រដើមរបស់អ្នកហើយ។",
+      "unpinnedTitle": "បានមិនខ្ទាស់ទំព័រដើម!",
+      "unpinnedDescription": "វេទិកានេះលែងត្រូវបានបង្ហាញជាទំព័រដើមរបស់អ្នកទៀតហើយ។"
+    },
+    "errors": {
+      "loadTitle": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
+      "loadDescription": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកប្រធានបទវេទិកា។",
+      "auth": {
+        "title": "មិនបានផ្ទៀងផ្ទាត់",
+        "description": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតប្រធានបទ។"
       },
-      "offline": {
-        "title": "អ្នកកំពុងនៅក្រៅបណ្តាញ",
-        "description": "ការផ្លាស់ប្តូររបស់អ្នកនឹងត្រូវបានរក្សាទុក ហើយធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ។"
+      "incomplete": {
+        "title": "បំពេញមិនពេញលេញ",
+        "description": "សូមបំពេញគ្រប់វាលដែលត្រូវការ។"
       },
-      "syncing": {
-        "title": "កំពុងធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញ",
-        "description": "សកម្មភាពចំនួន {count} កំពុងត្រូវបានផ្ទុកឡើង។"
+      "general": {
+        "title": "កំហុស",
+        "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបង្កើតប្រធានបទ។"
+      }
+    },
+    "create": {
+      "backLink": "ត្រឡប់ទៅប្រធានបទ",
+      "title": "បង្កើតប្រធានបទថ្មី",
+      "description": "ចាប់ផ្តើមការពិភាក្សាថ្មីនៅក្នុងវេទិកា។",
+      "form": {
+        "nameLabel": "ឈ្មោះប្រធានបទ",
+        "namePlaceholder": "បញ្ចូលឈ្មោះប្រធានបទរបស់អ្នក",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាប្រធានបទរបស់អ្នកដោយសង្ខេប",
+        "submitButton": "បង្កើតប្រធានបទ",
+        "submittingButton": "កំពុងបង្កើត..."
       },
-      "synced": {
-        "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
-        "description": "ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកទាំងអស់ត្រូវបានរក្សាទុកនៅលើម៉ាស៊ីនមេ។"
+      "success": {
+        "title": "បង្កើតប្រធានបទបានជោគជ័យ",
+        "description": "ប្រធានបទថ្មីរបស់អ្នកត្រូវបានបង្កើតហើយ។"
+      }
+    },
+    "topic": {
+      "unknownUser": "អ្នកប្រើមិនស្គាល់",
+      "postMeta": "ដោយ {{author}} នៅ {{date}}",
+      "buttons": {
+        "createPost": "បន្ថែមការឆ្លើយតប",
+        "loadMore": "ផ្ទុកបន្ថែម",
+        "loadingMore": "កំពុងផ្ទុក..."
       },
-      "syncFailed": {
-        "title": "ការធ្វើសមកាលកម្មបានបរាជ័យ",
-        "description": "មិនអាចធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញបានទេ។ នឹងព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
+      "noPosts": {
+        "title": "មិនទាន់មានប្រកាស",
+        "description": "ធ្វើជាអ្នកដំបូងដែលឆ្លើយតបប្រធានបទនេះ។",
+        "button": "បន្ថែមការឆ្លើយតប"
       },
-      "queued": {
-        "title": "សកម្មភាពត្រូវបានដាក់ក្នុងជួរ",
-        "description": "ការផ្លាស់ប្តូររបស់អ្នកត្រូវបានរក្សាទុក ហើយនឹងធ្វើសមកាលកម្មនៅពេលមានអ៊ីនធឺណិត។"
+      "notFound": {
+        "title": "រកមិនឃើញប្រធានបទ",
+        "description": "ប្រធានបទដែលអ្នកកំពុងរកមិនមានទេ។",
+        "backButton": "ត្រឡប់ទៅវេទិកា"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "កំហុសក្នុងការផ្ទុកប្រកាស",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកប្រកាសសម្រាប់ប្រធានបទនេះ។"
+        },
+        "loadTopic": {
+          "title": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃប្រធានបទ។"
+        }
+      }
+    },
+    "postView": {
+      "backLink": "ត្រឡប់ទៅ {{topicName}}",
+      "unknownUser": "អ្នកប្រើមិនស្គាល់",
+      "postMeta": "ដោយ {{author}} នៅ {{date}}",
+      "repliesTitle": "ការឆ្លើយតប ({{count}})",
+      "noReplies": "មិនទាន់មានការឆ្លើយតបទេ។",
+      "buttons": {
+        "loadMore": "ផ្ទុកបន្ថែម",
+        "loadingMore": "កំពុងផ្ទុក..."
+      },
+      "reply": {
+        "title": "បន្ថែមការឆ្លើយតប",
+        "placeholder": "សរសេរការឆ្លើយតបរបស់អ្នកនៅទីនេះ...",
+        "submitButton": "បន្ថែមការឆ្លើយតប",
+        "submittingButton": "កំពុងបញ្ជូន...",
+        "success": "បានបន្ថែមការឆ្លើយតប!"
+      },
+      "notFound": {
+        "title": "រកមិនឃើញប្រកាស",
+        "description": "ប្រកាសដែលអ្នកកំពុងរកមិនមានទេ។",
+        "backButton": "ត្រឡប់ទៅវេទិកា"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "កំហុសក្នុងការផ្ទុកប្រកាស",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃប្រកាស។"
+        },
+        "loadReplies": {
+          "title": "កំហុសក្នុងការផ្ទុកការឆ្លើយតប",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកការឆ្លើយតបសម្រាប់ប្រកាសនេះ។"
+        },
+        "emptyReply": "ការឆ្លើយតបមិនអាចទទេបានទេ។",
+        "submitReply": {
+          "title": "កំហុសក្នុងការបញ្ជូនការឆ្លើយតប",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបញ្ជូនការឆ្លើយតបរបស់អ្នក។"
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "ជំនួយការ AI",
+        "description": "បង្កើតសេចក្តីព្រាងប្រកាសដោយផ្អែកលើការណែនាំ។",
+        "promptLabel": "ការណែនាំ AI",
+        "promptPlaceholder": "បញ្ចូលការពិពណ៌នាសង្ខេបនៃប្រកាសដែលអ្នកចង់បង្កើត...",
+        "generateButton": "បង្កើតសេចក្តីព្រាង",
+        "generatingButton": "កំពុងបង្កើត..."
+      },
+      "title": "បង្កើតប្រកាសថ្មី",
+      "description": "បន្ថែមប្រកាសថ្មីទៅប្រធានបទនេះ។",
+      "form": {
+        "titleLabel": "ចំណងជើងប្រកាស",
+        "titlePlaceholder": "បញ្ចូលចំណងជើងប្រកាសរបស់អ្នក",
+        "contentLabel": "ខ្លឹមសារប្រកាស",
+        "contentPlaceholder": "សរសេរខ្លឹមសារប្រកាសរបស់អ្នកនៅទីនេះ...",
+        "submitButton": "បង្កើតប្រកាស",
+        "submittingButton": "កំពុងបញ្ជូន..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "បានបង្កើតសេចក្តីព្រាង AI!",
+          "description": "សេចក្តីព្រាងត្រូវបានបង្កើតសម្រាប់អ្នកហើយ។"
+        },
+        "title": "បានបង្កើតប្រកាស!",
+        "description": "ប្រកាសរបស់អ្នកត្រូវបានបង្កើតដោយជោគជ័យហើយ។"
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "ខ្វះការណែនាំ AI",
+          "description": "សូមផ្តល់ការណែនាំសម្រាប់ជំនួយការ AI ។"
+        },
+        "aiDraft": {
+          "title": "កំហុសសេចក្តីព្រាង AI",
+          "description": "បរាជ័យក្នុងការបង្កើតសេចក្តីព្រាង AI ។"
+        },
+        "incomplete": {
+          "title": "បំពេញមិនពេញលេញ",
+          "description": "សូមបំពេញគ្រប់វាលដែលត្រូវការ។"
+        },
+        "general": {
+          "title": "កំហុស",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបង្កើតប្រកាស។"
+        }
       }
     }
   },
-  "LanguageSwitcher": {
-    "toggle": "ប្តូរភាសា"
+  "Marketplace": {
+    "title": "ទីផ្សារ",
+    "description": "ស្វែងរក និងរកឃើញផលិតផល និងសេវាកម្ម។",
+    "createShopButton": "បង្កើតហាង",
+    "createListingButton": "បង្កើតការផ្សាយ",
+    "myOrdersButton": "ការបញ្ជាទិញដែលបានទទួលរបស់ខ្ញុំ",
+    "pinButton": "ខ្ទាស់ជាទំព័រដើម",
+    "unpinButton": "មិនខ្ទាស់ពីទំព័រដើម",
+    "searchPlaceholder": "ស្វែងរកទីផ្សារ...",
+    "locationPlaceholder": "ត្រងតាមទីតាំង...",
+    "typePlaceholder": "ត្រងតាមប្រភេទ...",
+    "recommendedForYou": "បានណែនាំសម្រាប់អ្នក",
+    "discoverMore": "ស្វែងយល់បន្ថែម",
+    "noItemsFound": {
+      "title": "រកមិនឃើញធាតុទេ។",
+      "hint": "ព្យាយាមកែសម្រួលតម្រង ឬពាក្យស្វែងរករបស់អ្នក។"
+    },
+    "pinning": {
+      "pinnedTitle": "បានខ្ទាស់ទីផ្សារ!",
+      "pinnedDescription": "ទីផ្សារឥឡូវនេះគឺជាទំព័រដើមលំនាំដើមរបស់អ្នកហើយ។",
+      "unpinnedTitle": "បានមិនខ្ទាស់ទំព័រដើម!",
+      "unpinnedDescription": "ផ្ទាំងគ្រប់គ្រងឥឡូវនេះគឺជាទំព័រដើមលំនាំដើមរបស់អ្នកហើយ។"
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
+      },
+      "search": {
+        "title": "Fehler bei der Suche",
+        "description": "មិនអាចចាត់វិធានការផ្សារបានទេ។"
+      }
+    },
+    "createListing": {
+      "backLink": "ត្រឡប់ទៅទីផ្សារ",
+      "title": "Neues Angebot erstellen",
+      "description": "Lister un produit ou un service sur le marché.",
+      "form": {
+        "nameLabel": "ឈ្មោះធាតុ/សេវាកម្ម",
+        "namePlaceholder": "បញ្ចូលឈ្មោះបញ្ជីរបស់អ្នក",
+        "typeLabel": "ប្រភេទបញ្ជី",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទបញ្ជី",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាបញ្ជីរបស់អ្នក",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "Standort eingeben",
+        "relatedVtiLabel": "VTI / Chargen-ID (optional)",
+        "relatedVtiPlaceholder": "Geben Sie die VTI ein, wenn dieses Angebot für eine bestimmte Charge gilt",
+        "relatedVtiDescription": "Die Verknüpfung einer VTI erhöht das Vertrauen des Käufers",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "Catégorie sélectionner",
+        "compensationLabel": "Vergütung",
+        "compensationPlaceholder": "bspw. pro Stunde, fester Satz",
+        "experienceLabel": "Erfahrungsstufe",
+        "experiencePlaceholder": "Bspw. Anfänger, Fortgeschrittener, Experte",
+        "skillsLabel": "Compétences requises",
+        "skillsPlaceholder": "Commatrennte Aufzählung erforderlicher Kompetenzen",
+        "skillsDescription": "Compétences requises",
+        "priceLabel": "Preis",
+        "pricePlaceholder": "Preis eingeben",
+        "unitLabel": "Einheit",
+        "unitPlaceholder": "Kg, Stück, Stunde",
+        "imageUrlLabel": "Bild-URL (Optional)",
+        "sustainableLabel": "Sustainable Praxis",
+        "sustainableDescription": "Geben Sie an, ob dieses Angebot nachhaltige Praktiken beinhaltet",
+        "submitButton": "Angebot erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggérer un prix avec l'IA",
+        "generatingButton": "Erstellung...",
+        "suggestionLabel": "Suggerimento per l'IA",
+        "usePriceButton": "Utiliser le meilleur prix"
+      },
+      "success": {
+        "title": "Hervorragend!",
+        "description": "Ihr Angebot wurde erstellt"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Informationen fehlen",
+            "description": "Bitte geben Sie einen Namen und eine Beschreibung ein, bevor Sie einen Preis vorschlagen"
+          },
+          "failed": {
+            "title": "Preisvorschlag fehlgeschlagen",
+            "description": "KI-Preisvorschlag konnte nicht abgerufen werden. Bitte versuchen Sie es erneut oder geben Sie einen Preis manuell ein."
+          }
+        },
+        "authentication": {
+          "title": "Authentifizierungsfehler",
+          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen"
+        },
+        "creation": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Das Angebot konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "itemView": {
+      "backLink": "Zurück zum Marktplatz",
+      "unknownUser": "Unbekannter Benutzer",
+      "traceabilityButton": "Handels-/Chargen-Link",
+      "skillsLabel": "Benötigte Fähigkeiten",
+      "experienceLabel": "Erfahrungslevel",
+      "compensationLabel": "Vergütung",
+      "contactForRates": "Kontakt für Preise",
+      "booking": {
+        "perNight": "Nacht",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Datum hinzufügen",
+        "guests": "Gäste",
+        "reserveButton": "Buchen",
+        "reservingButton": "Wird gebucht...",
+        "notCharged": "Ihnen wird noch nichts berechnet",
+        "nights": "Nächte",
+        "serviceFee": "Servicegebühr",
+        "total": "Gesamt",
+        "successTitle": "Buchung erfolgreich!",
+        "successDescription": "Ihre Buchung ist bestätigt.",
+        "failTitle": "Buchung fehlgeschlagen",
+        "dateError": "Bitte wählen Sie gültige Check-in- und Check-out-Daten.",
+        "authTitle": "Authentifizierung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um einen Dienst zu buchen.",
+        "bookedTitle": "Gebucht!",
+        "bookedDescription": "Ihre Buchung ist bestätigt. Zeigen Sie den QR-Code unten bei Ihrer Ankunft vor.",
+        "ticketButton": "Ticket anzeigen",
+        "modalTitle": "Buchungsticket",
+        "modalDescription": "Zeigen Sie diesen QR-Code bei {{itemName}} für den Check-in vor.",
+        "modalScan": "Diesen Code zum Einchecken scannen"
+      },
+      "coupon": {
+        "label": "Gutscheincode",
+        "placeholder": "Gutscheincode eingeben",
+        "applyButton": "Anwenden",
+        "successTitle": "Gutschein angewendet!",
+        "successDescription": "Rabatt angewendet: {{type}}",
+        "failTitle": "Gutschein ungültig",
+        "failDescription": "Der Gutscheincode ist ungültig oder nicht anwendbar.",
+        "appliedText": "Gutschein angewendet: {{code}}"
+      },
+      "aboutSeller": "Über den Verkäufer",
+      "viewShopfront": "Schaufenster anzeigen",
+      "editListing": "Angebot bearbeiten",
+      "manageService": "Dienstleistung verwalten",
+      "buyNowButton": "Jetzt kaufen",
+      "contactForService": "Kontakt für Dienstleistung",
+      "contactSeller": "Verkäufer kontaktieren",
+      "order": {
+        "title": "Artikel bestellen: {{itemName}}",
+        "description": "Geben Sie die gewünschte Menge und eventuelle Anmerkungen ein.",
+        "quantityLabel": "Menge",
+        "notesLabel": "Anmerkungen (Optional)",
+        "notesPlaceholder": "Fügen Sie spezifische Anweisungen oder Anfragen hinzu...",
+        "cancelButton": "Abbrechen",
+        "confirmButton": "Bestellung bestätigen",
+        "placingButton": "Bestellung wird aufgegeben...",
+        "successTitle": "Bestellung aufgegeben!",
+        "successDescription": "Ihre Bestellung wurde erfolgreich aufgegeben.",
+        "failTitle": "Bestellung fehlgeschlagen",
+        "failDescription": "Die Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
+        "quantityErrorTitle": "Mengenfehler",
+        "quantityErrorDescription": "Bitte geben Sie eine gültige Menge ein (mindestens 1).",
+        "authTitle": "Authentifizierung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben."
+      },
+      "notFound": {
+        "title": "Artikel nicht gefunden",
+        "description": "Der gesuchte Marktplatzartikel existiert nicht.",
+        "backButton": "Zurück zum Marktplatz"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Fehler beim Laden des Artikels",
+          "description": "Beim Laden der Details des Marktplatzartikels ist ein Fehler aufgetreten."
+        },
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+      }
+    },
+    "myOrders": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Meine erhaltenen Bestellungen",
+      "description": "Anzeigen und Verwalten von Bestellungen, die von Käufern erhalten wurden.",
+      "auth": {
+        "title": "Authentifizierung erforderlich",
+        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "table": {
+        "date": "Datum",
+        "buyer": "Käufer",
+        "product": "Produkt",
+        "total": "Gesamt",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "actions": {
+        "confirm": "Bestätigen",
+        "ship": "Versenden",
+        "complete": "Abschließen",
+        "cancel": "Stornieren"
+      },
+      "status": {
+        "new": "Neu",
+        "confirmed": "Bestätigt",
+        "shipped": "Versandt",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
+      },
+      "noOrders": "Keine Bestellungen gefunden.",
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Bestellungen konnten nicht abgerufen werden.",
+        "successTitle": "Erfolg!",
+        "updateSuccess": "Bestellstatus aktualisiert auf {{status}}",
+        "failTitle": "Fehler"
+      }
+    },
+    "shopView": {
+      "backLink": "Zurück zum Marktplatz",
+      "ownedBy": "Besitzer",
+      "loadingOwner": "Wird geladen...",
+      "editShopButton": "Shop bearbeiten",
+      "contactButton": "Verkäufer kontaktieren",
+      "listingsTitle": "Angebote von {{shopName}}",
+      "noListings": "Keine Angebote für diesen Shop gefunden.",
+      "errors": {
+        "notFound": "Shop nicht gefunden",
+        "loadError": "Shop-Details konnten nicht geladen werden.",
+        "title": "Fehler"
+      }
+    },
+    "createShop": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Erstellen Sie Ihren digitalen Shop",
+      "description": "Richten Sie Ihren Shop ein, um Artikel und Dienstleistungen anzubieten.",
+      "form": {
+        "nameLabel": "Name des Shops",
+        "namePlaceholder": "Geben Sie den Namen Ihres Shops ein",
+        "typeLabel": "Stakeholder-Typ",
+        "typePlaceholder": "Wählen Sie Ihren Typ",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihren Shop und Ihr Angebot"
+      },
+      "submitButton": "Shop erstellen",
+      "submittingButton": "Wird erstellt...",
+      "authErrorTitle": "Authentifizierungsfehler",
+      "authErrorDescription": "Sie müssen angemeldet sein, um einen Shop zu erstellen.",
+      "toast": {
+        "successTitle": "Shop erstellt!",
+        "successDescription": "Ihr Shop \"{{shopName}}\" wurde erstellt.",
+        "failTitle": "Erstellung fehlgeschlagen",
+        "failDescription": "Der Shop konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+      }
+    },
+    "manageService": {
+      "backLink": "Zurück zu {{itemName}}",
+      "title": "Dienstleistung verwalten: {{itemName}}",
+      "description": "Buchungen und Einstellungen für diese Dienstleistung verwalten.",
+      "tabs": {
+        "bookings": "Buchungen",
+        "settings": "Einstellungen"
+      },
+      "bookingsTab": {
+        "title": "Dienstleistungsbuchungen",
+        "description": "Buchungen für diese Dienstleistung anzeigen und verwalten.",
+        "table": {
+          "date": "Datum",
+          "guest": "Gast",
+          "dates": "Daten",
+          "total": "Gesamt",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "status": {
+          "pending": "Ausstehend",
+          "confirmed": "Bestätigt",
+          "cancelled": "Storniert",
+          "completed": "Abgeschlossen"
+        },
+        "actions": {
+          "confirm": "Buchung bestätigen",
+          "cancel": "Buchung stornieren",
+          "viewDetails": "Details anzeigen"
+        },
+        "noBookings": "Noch keine Buchungen.",
+        "toast": {
+          "fetchErrorTitle": "Fehler beim Laden der Buchungen",
+          "fetchErrorDescription": "Buchungen für diese Dienstleistung konnten nicht abgerufen werden.",
+          "updateSuccessTitle": "Buchung aktualisiert!",
+          "updateSuccessDescription": "Buchungsstatus aktualisiert auf {{status}}.",
+          "updateFailTitle": "Update fehlgeschlagen",
+          "updateFailDescription": "Buchungsstatus konnte nicht aktualisiert werden."
+        }
+      },
+      "settingsTab": {
+        "title": "Dienstleistungseinstellungen",
+        "description": "Details und Verfügbarkeit für diese Dienstleistung aktualisieren.",
+        "form": {
+          "priceLabel": "Preis pro Nacht",
+          "pricePlaceholder": "Preis eingeben",
+          "currencyLabel": "Währung",
+          "currencyPlaceholder": "Währung auswählen",
+          "availabilityLabel": "Verfügbarkeitsdaten",
+          "availabilityDescription": "Wählen Sie die Daten aus, an denen diese Dienstleistung verfügbar ist.",
+          "submitButton": "Änderungen speichern",
+          "submittingButton": "Wird gespeichert..."
+        },
+        "toast": {
+          "updateSuccessTitle": "Einstellungen gespeichert!",
+          "updateSuccessDescription": "Dienstleistungseinstellungen erfolgreich aktualisiert.",
+          "updateFailTitle": "Speichern fehlgeschlagen",
+          "updateFailDescription": "Dienstleistungseinstellungen konnten nicht gespeichert werden."
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "Fehler beim Laden der Dienstleistung",
+        "loadErrorDescription": "Details zur Verwaltung der Dienstleistung konnten nicht geladen werden.",
+        "notFoundTitle": "Dienstleistung nicht gefunden",
+        "notFoundDescription": "Die Dienstleistung, die Sie verwalten möchten, existiert nicht."
+      },
+      "authRequired": {
+        "title": "Authentifizierung erforderlich",
+        "description": "Sie müssen angemeldet sein, um diese Dienstleistung zu verwalten.",
+        "button": "Anmelden"
+      }
+    }
   },
-  "Auth": {
-    "signUpWelcome": "ចូលរួមចលនាកសិកម្មសកលជាមួយ {appName}",
-    "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} វិញ",
-    "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកសម្រាប់ {appName} ឡើងវិញ",
-    "resetPasswordPrompt": "កំណត់ពាក្យសម្ងាត់ថ្មីសម្រាប់ {appName}",
-    "signInTitle": "ចូលគណនី",
-    "signInDescription": "បញ្ចូលព័ត៌មានសម្គាល់របស់អ្នកដើម្បីចូលប្រើគណនីរបស់អ្នក។",
-    "emailLabel": "អ៊ីមែល",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "ពាក្យសម្ងាត់",
-    "passwordPlaceholder": "••••••••",
-    "forgotPasswordLink": "ភ្លេចពាក្យសម្ងាត់?",
-    "signingInButton": "កំពុងចូលគណនី...",
-    "signInButton": "ចូលគណនី",
-    "noAccountPrompt": "មិនទាន់មានគណនី?",
-    "signUpLink": "ចុះឈ្មោះ",
-    "signInLink": "ចូលគណនី",
-    "recoverWithUniversalIdPrompt": "ឬស្តារគណនីឡើងវិញជាមួយអត្តសញ្ញាណប័ណ្ណសកល",
-    "signUpTitle": "បង្កើតគណនី",
-    "signUpDescription": "បញ្ចូលព័ត៌មានរបស់អ្នកដើម្បីចាប់ផ្តើម។",
-    "nameLabel": "ឈ្មោះ",
-    "namePlaceholder": "ឈ្មោះពេញរបស់អ្នក",
-    "roleLabel": "តួនាទីរបស់អ្នក",
-    "rolePlaceholder": "ជ្រើសរើសតួនាទីចម្បងរបស់អ្នក",
-    "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់",
-    "confirmPasswordPlaceholder": "បញ្ជាក់ពាក្យសម្ងាត់ថ្មីរបស់អ្នក",
-    "creatingAccountButton": "កំពុងបង្កើតគណនី...",
-    "signUpButton": "បង្កើតគណនី",
-    "alreadyHaveAccountPrompt": "មានគណនីរួចហើយ?",
-    "forgotPasswordTitle": "ភ្លេចពាក្យសម្ងាត់?",
-    "forgotPasswordDescription": "បញ្ចូលអ៊ីមែលរបស់អ្នក ហើយយើងនឹងផ្ញើតំណកំណត់ឡើងវិញឱ្យអ្នក។",
-    "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",
-    "sendResetLinkButton": "ផ្ញើតំណកំណត់ឡើងវិញ",
-    "rememberPasswordPrompt": "ចាំពាក្យសម្ងាត់របស់អ្នកទេ?",
-    "resetPasswordTitle": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញ",
-    "resetPasswordDescription": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នកខាងក្រោម។",
-    "newPasswordLabel": "ពាក្យសម្ងាត់ថ្មី",
-    "newPasswordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នក",
-    "resettingPasswordButton": "កំពុងកំណត់ពាក្យសម្ងាត់ឡើងវិញ...",
-    "resetPasswordButton": "កំណត់ពាក្យសម្ងាត់ឡើងវិញ",
-    "recoverPage": {
-      "title": "ការសង្គ្រោះគណនីសង្គម",
-      "description": "ទទួលបានការចូលប្រើគណនីរបស់អ្នកឡើងវិញដោយសុវត្ថិភាពដោយប្រើបណ្តាញរបស់អ្នក។",
-      "howItWorksTitle": "របៀបដែលវាដំណើរការ",
-      "step1": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្តើមវគ្គសង្គ្រោះ។",
-      "step2": "បង្ហាញលេខកូដ QR បណ្តោះអាសន្នទៅកាន់មិត្តភក្តិ DamDoh ដែលទុកចិត្ត។",
-      "step3": "នៅពេលដែលពួកគេបញ្ជាក់ អ្នកនឹងទទួលបានការចូលប្រើគណនីរបស់អ្នកឡើងវិញ។",
-      "startButton": "ចាប់ផ្តើមការសង្គ្រោះគណនី",
-      "scanTitle": "សុំមិត្តភក្តិឱ្យស្កេន",
-      "scanDescription": "ឱ្យទំនាក់ទំនងដែលទុកចិត្តក្នុងបណ្តាញ DamDoh របស់អ្នកស្កេនលេខកូដ QR បណ្តោះអាសន្ននេះដើម្បីផ្ទៀងផ្ទាត់អត្តសញ្ញាណរបស់អ្នក។",
-      "scanNote": "លេខកូដនេះមានសុពលភាពរយៈពេល 10 នាទី។",
-      "startOverButton": "ចាប់ផ្តើមឡើងវិញ"
+  "ProfilePage": {
+    "backToNetwork": "Zurück zum Netzwerk",
+    "notFoundTitle": "Profil nicht gefunden",
+    "notFoundDescription": "Das angeforderte Benutzerprofil konnte nicht gefunden werden.",
+    "editProfile": "Profil bearbeiten",
+    "connect": "Verbinden",
+    "message": "Nachricht",
+    "summaryTitle": "Zusammenfassung",
+    "aboutTitle": "Über {{displayName}}",
+    "experienceTitle": "Erfahrung",
+    "emailTitle": "E-Mail",
+    "websiteTitle": "Webseite",
+    "interestsTitle": "Interessensgebiete",
+    "needsTitle": "Wichtige Bedürfnisse & Angebote",
+    "detailsTitle": "Details",
+    "roleSpecificInfo": "Rollenspezifische Informationen.",
+    "tempDisplayNotice": "Dies ist ein temporäres Anzeigeformat für zusätzliche Profildaten.",
+    "recentActivityTitle": "Letzte Aktivität",
+    "recentActivityDescription": "Neueste Aktionen und Beiträge auf {appName}.",
+    "noRecentActivity": "Keine aktuellen Aktivitäten zum Anzeigen.",
+    "showUniversalIdButton": "Universal-ID anzeigen",
+    "universalIdModalTitle": "Ihre Universal-ID",
+    "universalIdModalDescription": "Andere Benutzer können diesen QR-Code scannen, um Ihr öffentliches Profil anzuzeigen."
+  },
+  "editProfilePage": {
+    "title": "Bearbeiten Sie Ihr Profil, {name}",
+    "description": "Halten Sie Ihr Profil auf dem neuesten Stand, um die besten Verbindungen zu finden.",
+    "profileTab": "Profil",
+    "detailsTab": "Details",
+    "contactTab": "Kontakt",
+    "nameLabel": "Anzeigename",
+    "namePlaceholder": "Ihr vollständiger Name",
+    "roleLabel": "Ihre Hauptrolle",
+    "rolePlaceholder": "Wählen Sie eine Rolle",
+    "summaryLabel": "Profilzusammenfassung",
+    "summaryPlaceholder": "Eine kurze, professionelle Zusammenfassung über Sie.",
+    "summaryDescription": "Dies wird prominent in Ihrem Profil angezeigt.",
+    "generateWithAI": "Mit KI generieren",
+    "bioLabel": "Über mich",
+    "bioPlaceholder": "Erzählen Sie der Community mehr über sich, Ihre Arbeit und Ihre Ziele.",
+    "bioDescription": "Detailliertere Informationen für Ihr Profil.",
+    "locationLabel": "Standort",
+    "locationPlaceholder": "Stadt, Land",
+    "interestsLabel": "Interessensgebiete",
+    "interestsPlaceholder": "Nachhaltige Landwirtschaft, Kaffee-Export, Agrartechnologie...",
+    "commaSeparated": "Werte durch Komma trennen.",
+    "needsLabel": "Schlüsselbedürfnisse / Angebote",
+    "needsPlaceholder": "Suche nach Käufern, Biete Logistikdienste, Suche Finanzierung...",
+    "emailLabel": "Ihre E-Mail",
+    "emailDescription": "Le courriel ne peut pas être changé.",
+    "phoneLabel": "Numéro de téléphone",
+    "websiteLabel": "Site web",
+    "saveButton": "Enregistrer les modifications",
+    "savingButton": "Enregistrement...",
+    "cancelButton": "Annuler",
+    "toast": {
+      "profileNotFound": "Profil introuvable",
+      "fetchError": "Impossible de charger le profil.",
+      "notAuthenticatedTitle": "Non authentifié",
+      "notAuthenticatedDescription": "Vous devez vous connecter pour modifier votre profil.",
+      "unauthorizedTitle": "Nicht autorisiert",
+      "unauthorizedDescription": "Sie können dieses Profil nicht bearbeiten.",
+      "missingIdError": "L'ID du profil est manquant. Mise à jour impossible.",
+      "profileUpdatedTitle": "Profil mis à jour !",
+      "profileUpdatedDescription": "Vos modifications ont été sauvegardées avec succès.",
+      "updateFailedTitle": "Aktualisierung fehlgeschlagen",
+      "updateFailedDescription": "Ihre Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+      "missingInfoTitle": "Informations manquantes",
+      "missingInfoDescription": "Veuillez indiquer le rôle, les intérêts et les besoins pour générer un résumé.",
+      "summaryGeneratedTitle": "Zusammenfassung generiert",
+      "summaryGeneratedDescription": "Une analyse AI générée a été ajoutée à votre profil.",
+      "generationFailedTitle": "Generierung fehlgeschlagen",
+      "generationFailedDescription": "Die KI-Zusammenfassung konnte nicht generiert werden. Bitte versuchen Sie es später noch einmal."
+    },
+    "notFound": {
+      "title": "Profil nicht gefunden",
+      "description": "Das Profil, das Sie bearbeiten möchten, konnte nicht gefunden werden.",
+      "backButton": "Zurück zum Dashboard"
+    }
+  },
+  "settingsPage": {
+    "title": "Paramètres",
+    "description": "Gérez les paramètres de votre compte et de votre profil.",
+    "profileTab": "Profil",
+    "accountTab": "Compte",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Confidentialité",
+    "appearanceTab": "Apparence",
+    "stakeholderProfile": {
+      "title": "Profil des parties prenantes",
+      "description": "Votre identité professionnelle sur DamDoh. Voici comment les autres vous voient."
+    },
+    "account": {
+      "title": "Paramètres du compte",
+      "description": "Gérez l'authentification et la sécurité de votre compte.",
+      "changePasswordSectionTitle": "Changer le mot de passe",
+      "changePasswordDescription": "Mettez à jour le mot de passe de votre compte.",
+      "currentPasswordLabel": "Mot de passe actuel",
+      "newPasswordLabel": "Nouveau mot de passe",
+      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+      "changePasswordButton": "Aktualisieren Sie das Passwort",
+      "deactivateButton": "Bouton de désactivation du compte"
+    },
+    "notifications": {
+      "title": "Paramètres de notification",
+      "description": "Gérez vos préférences de notification par e-mail et push.",
+      "emailDigestLabel": "Notifications par e-mail",
+      "emailDigestDescription": "Recevez des notifications par e-mail.",
+      "connectionRequestsLabel": "Demandes de connexion",
+      "connectionRequestsDescription": "Avertissez-moi des nouvelles demandes de connexion.",
+      "forumMentionsLabel": "Mentions et réponses du forum",
+      "forumMentionsDescription": "Avertissez-moi lorsque je suis mentionné ou que mes publications sont répondus.",
+      "marketplaceActivityLabel": "Activité du marché",
+      "marketplaceActivityDescription": "Avertissez-moi des commandes et des demandes de renseignements sur mes annonces.",
+      "talentExchangeLabel": "Mises à jour de la bourse des talents",
+      "talentExchangeDescription": "Avertissez-moi des nouvelles offres d'emploi et des candidatures.",
+      "saveButton": "Enregistrer les préférences"
+    },
+    "privacy": {
+      "title": "Confidentialité et visibilité",
+      "description": "Contrôlez qui peut voir vos informations et interagir avec vous.",
+      "profileVisibilityLabel": "Visibilité du profil",
+      "profileVisibilityDescription": "Contrôlez qui peut voir l'ensemble de votre profil.",
+      "profileVisibilityAll": "Tout le monde",
+      "profileVisibilityConnections": "Connexions seulement",
+      "profileVisibilityPrivate": "Privé (moi uniquement)",
+      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion ?",
+      "connectionRequestsDescription": "Limitez qui peut vous envoyer des demandes de connexion.",
+      "connectionRequestsAll": "Tout le monde",
+      "connectionRequestsConnectionsOfConnections": "Les connexions des connexions",
+      "contactInfoVisibilityLabel": "Qui peut voir vos coordonnées ?",
+      "contactInfoVisibilityDescription": "Contrôlez qui voit votre e-mail et votre numéro de téléphone.",
+      "contactInfoVisibilityConnections": "Connexions seulement",
+      "activityStatusLabel": "Afficher mon statut d'activité",
+      "activityStatusDescription": "Laissez vos connexions savoir quand vous êtes actif sur DamDoh.",
+      "searchIndexingLabel": "Autoriser les moteurs de recherche à indexer mon profil",
+      "searchIndexingDescription": "Autorisez votre profil à apparaître dans les résultats de recherche sur Google, etc.",
+      "saveButton": "Speichern Sie die Datenschutzeinstellungen",
+      "dataConsentTitle": "Freigabe von Daten und Einwilligung",
+      "dataConsentDescription": "Kontrollieren Sie, wie Ihre Daten über die integrierten Dienste von DamDoh verwendet werden.",
+      "marketplaceHistoryLabel": "Marché du travail pour les services financiers",
+      "marketplaceHistoryDescription": "Autorisez les institutions financières sur DamDoh à prendre en compte l'historique de vos transactions boursières pour l'évaluation du crédit.",
+      "traceabilityDataLabel": "Traceerbaarheidsgegevens openbaar maken",
+      "traceabilityDataDescription": "Autoriser les données de traçabilité anonymes dans les rapports et recherches publics.",
+      "financialApplicationDataLabel": "Données d'une demande financière pour la prise de contact par KI",
+      "financialApplicationDataDescription": "Laissez notre KI prendre contact avec vous pour vous faire une proposition de services intéressants.",
+      "saveConsentButton": "Speichern Sie die Einwilligungseinstellungen"
+    },
+    "appearance": {
+      "title": "Apparence",
+      "description": "ปรับแต่งรูปลักษณ์และความรู้สึกของแอปพลิเคชัน",
+      "themeLabel": "ផ្ទៃ",
+      "themeDescription": "ជ្រើសរើសផ្ទៃភ្លឺឬងងឹតសម្រាប់ចំណុចប្រទាក់។",
+      "lightTheme": "ភ្លឺ",
+      "darkTheme": "ងងឹត",
+      "languageLabel": "Sprache",
+      "languageDescription": "Wählen Sie Ihre bevorzugte Sprache für die Anwendung aus",
+      "switchToLightAria": "Zum hellen Thema wechseln",
+      "switchToDarkAria": "Zum dunklen Thema wechseln"
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "កសិករ",
+      "AgriculturalCooperative": "សហករណ៍កសិកម្ម",
+      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារស្រែ/អ្នកជំនាញកសិកម្ម (DamDoh ផ្ទៃក្នុង)",
+      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (DamDoh ផ្ទៃក្នុង)",
+      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (DamDoh ផ្ទៃក្នុង)",
+      "ProcessingPackagingUnit": "Prüfstelle",
+      "BuyerRestaurantSupermarketExporter": "Einkäufer (Restaurant, Supermarkt, Exporteur)",
+      "InputSupplierSeedFertilizerPesticide": "Zulieferer (Saatgut, Dünger, Schädlingsbekämpfungsmittel)",
+      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen / IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Finanzinstitut (Mikrofinanzierung / Kredite)",
+      "GovernmentRegulatorAuditor": "staatliche Regulierungsbehörde/Auditor",
+      "CertificationBodyOrganicFairTradeetc": "Kontrollstelle (Bio, Fair Trade usw.)",
+      "Consumer": "Konsument",
+      "ResearcherAcademic": "Forscher / Akademiker",
+      "LogisticsPartnerThird-PartyTransporter": "Logistikpartner (externer Spediteur)",
+      "StorageWarehouseFacility": "สิ่งอำนวยความสะดวกในการจัดเก็บ/คลังสินค้า",
+      "AgronomyExpertConsultantExternal": "Agronomie-Experte / Berater (Extern)",
+      "Agro-TourismOperator": "Agrotourismus-Betreiber",
+      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชันพลังงาน (พลังงานแสงอาทิตย์, ก๊าซชีวภาพ)",
+      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
+      "Agri-TechInnovatorDeveloper": "Agrartechnik-Innovator / Entwickler",
+      "WasteManagementCompostFacility": "สิ่งอำนวยความสะดวกในการจัดการของเสียและการทำปุ๋ยหมัก",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (นักลงทุนเพื่อผลกระทบ, บุคคล)",
+      "InsuranceProvider": "Assuranceprovider",
+      "PackagingSupplier": "PackagingSupplier"
+    },
+    "listingTypes": {
+      "Product": "ផលិតផល",
+      "Service": "សេវាកម្ម",
+      "All": "គ្រប់ប្រភេទ"
+    },
+    "agriEventTypes": {
+      "All": "ព្រឹត្តិការណ៍ទាំងអស់",
+      "Conference": "សន្និសីទ",
+      "Webinar": "វេប៊ីណា",
+      "Workshop": "សិក្ខាសាលា",
+      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
+      "FieldDay": "ទិវាស្រែ",
+      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ"
     }
   }
 }
+
+    
