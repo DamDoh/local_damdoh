@@ -36,7 +36,7 @@ export default function MarketplacePromotionsPage() {
     const [coupons, setCoupons] = useState<MarketplaceCoupon[]>([]);
     const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
     const functions = getFunctions(firebaseApp);
-    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceCoupon'), []);
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceCoupon'), [functions]);
     const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getSellerCoupons'), []);
 
     const createMarketplaceCouponSchema = getCreateMarketplaceCouponSchema(tFormErrors);

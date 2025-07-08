@@ -212,5 +212,145 @@
         }
       }
     }
+  },
+  "Marketplace": {
+    "myOrders": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Meine erhaltenen Bestellungen",
+      "description": "Anzeigen und Verwalten von Bestellungen, die von Käufern erhalten wurden.",
+      "auth": {
+        "title": "Authentifizierung erforderlich",
+        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "table": {
+        "date": "Datum",
+        "buyer": "Käufer",
+        "product": "Produkt",
+        "total": "Gesamt",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "actions": {
+        "confirm": "Bestätigen",
+        "ship": "Versenden",
+        "complete": "Abschließen",
+        "cancel": "Stornieren"
+      },
+      "status": {
+        "new": "Neu",
+        "confirmed": "Bestätigt",
+        "shipped": "Versandt",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
+      },
+      "noOrders": "Keine Bestellungen gefunden.",
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Bestellungen konnten nicht abgerufen werden.",
+        "successTitle": "Erfolg!",
+        "updateSuccess": "Bestellstatus aktualisiert auf {{status}}",
+        "failTitle": "Fehler"
+      }
+    },
+    "shopView": {
+      "backLink": "Zurück zum Marktplatz",
+      "ownedBy": "Besitzer",
+      "loadingOwner": "Wird geladen...",
+      "editShopButton": "Shop bearbeiten",
+      "contactButton": "Verkäufer kontaktieren",
+      "listingsTitle": "Angebote von {{shopName}}",
+      "noListings": "Keine Angebote für diesen Shop gefunden.",
+      "errors": {
+        "notFound": "Shop nicht gefunden",
+        "loadError": "Shopdetails konnten nicht geladen werden.",
+        "title": "Fehler"
+      }
+    },
+    "manageService": {
+      "backLink": "Zurück zu {{itemName}}",
+      "title": "Dienstleistung verwalten",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Buchungen",
+        "staff": "Personal"
+      },
+      "loading": "Wird geladen...",
+      "bookingsTab": {
+        "title": "Dienstleistungsbuchungen ({count})",
+        "description": "Buchungen für diese Dienstleistung anzeigen und verwalten.",
+        "downloadCsv": "CSV herunterladen",
+        "table": {
+          "guest": "Gast",
+          "bookedOn": "Gebucht am",
+          "status": "Status",
+          "checkedInAt": "Eingecheckt am"
+        },
+        "status": {
+          "booked": "Gebucht",
+          "checkedIn": "Eingecheckt"
+        },
+        "noBookings": "Noch keine Buchungen.",
+        "error": "Fehler beim Abrufen der Buchungen.",
+        "toast": {
+          "noBookings": "Keine Buchungen zum Herunterladen."
+        }
+      }
+    },
+    "promotions": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Aktionen & Gutscheine",
+      "description": "Erstellen und verwalten Sie Gutscheine, um Ihre Marktplatzangebote zu bewerben.",
+      "signInPrompt": "Bitte melden Sie sich an, um Ihre Aktionen zu verwalten.",
+      "create": {
+        "title": "Neuen Gutschein erstellen",
+        "form": {
+          "code": "Gutscheincode",
+          "codePlaceholder": "z.B. SOMMER10",
+          "usageLimit": "Nutzungslimit",
+          "usageLimitPlaceholder": "z.B. 100",
+          "discountType": "Rabattart",
+          "discountTypePlaceholder": "Art auswählen",
+          "percentage": "Prozentsatz",
+          "fixed": "Fester Betrag",
+          "discountValue": "Rabattwert",
+          "expiryDate": "Ablaufdatum (Optional)",
+          "pickDate": "Datum auswählen",
+          "submitButton": "Gutschein erstellen"
+        },
+        "toast": {
+          "successTitle": "Gutschein erstellt!",
+          "successDescription": "Gutschein '{{code}}' ist jetzt aktiv.",
+          "failTitle": "Erstellung fehlgeschlagen"
+        }
+      },
+      "list": {
+        "title": "Bestehende Gutscheine",
+        "description": "Hier sind Ihre aktiven und vergangenen Gutscheine.",
+        "usage": "Nutzung",
+        "expires": "Läuft ab",
+        "never": "Nie",
+        "share": "Teilen",
+        "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
+        "toastTitle": "Link kopiert!",
+        "toastDescription": "Ein teilbarer Link für Gutschein '{{link}}' wurde in Ihre Zwischenablage kopiert.",
+        "shareModal": {
+          "title": "Gutschein teilen",
+          "description": "Teilen Sie diesen Link mit Ihren Kunden, um ihnen einen Rabatt zu gewähren.",
+          "link": "Link",
+          "copy": "Kopieren",
+          "close": "Schließen"
+        }
+      },
+      "toast": {
+        "error": "Fehler",
+        "fetchError": "Ihre Gutscheine konnten nicht abgerufen werden.",
+        "createSuccess": "Gutschein '{{code}}' erfolgreich erstellt.",
+        "createFail": "Gutschein konnte nicht erstellt werden.",
+        "createError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "success": "Erfolg",
+        "linkCopied": "Link kopiert"
+      }
+    }
   }
 }

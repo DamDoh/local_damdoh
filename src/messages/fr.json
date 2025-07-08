@@ -212,5 +212,145 @@
         }
       }
     }
+  },
+  "Marketplace": {
+    "myOrders": {
+      "backLink": "Retour au marché",
+      "title": "Mes commandes reçues",
+      "description": "Afficher et gérer les commandes reçues des acheteurs.",
+      "auth": {
+        "title": "Authentification requise",
+        "description": "Vous devez être connecté pour voir vos commandes.",
+        "button": "Se connecter"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Acheteur",
+        "product": "Produit",
+        "total": "Total",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirmer",
+        "ship": "Expédier",
+        "complete": "Terminer",
+        "cancel": "Annuler"
+      },
+      "status": {
+        "new": "Nouveau",
+        "confirmed": "Confirmé",
+        "shipped": "Expédié",
+        "completed": "Terminé",
+        "cancelled": "Annulé"
+      },
+      "noOrders": "Aucune commande trouvée.",
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Échec de la récupération des commandes.",
+        "successTitle": "Succès !",
+        "updateSuccess": "Statut de la commande mis à jour vers {{status}}",
+        "failTitle": "Erreur"
+      }
+    },
+    "shopView": {
+      "backLink": "Retour au marché",
+      "ownedBy": "Propriétaire",
+      "loadingOwner": "Chargement...",
+      "editShopButton": "Modifier la boutique",
+      "contactButton": "Contacter le vendeur",
+      "listingsTitle": "Annonces de {{shopName}}",
+      "noListings": "Aucune annonce trouvée pour cette boutique.",
+      "errors": {
+        "notFound": "Boutique non trouvée",
+        "loadError": "Impossible de charger les détails de la boutique.",
+        "title": "Erreur"
+      }
+    },
+    "manageService": {
+      "backLink": "Retour à {{itemName}}",
+      "title": "Gérer le service",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Réservations",
+        "staff": "Personnel"
+      },
+      "loading": "Chargement...",
+      "bookingsTab": {
+        "title": "Réservations de service ({count})",
+        "description": "Afficher et gérer les réservations pour ce service.",
+        "downloadCsv": "Télécharger CSV",
+        "table": {
+          "guest": "Invité",
+          "bookedOn": "Réservé le",
+          "status": "Statut",
+          "checkedInAt": "Enregistré le"
+        },
+        "status": {
+          "booked": "Réservé",
+          "checkedIn": "Enregistré"
+        },
+        "noBookings": "Aucune réservation pour l'instant.",
+        "error": "Erreur lors de la récupération des réservations.",
+        "toast": {
+          "noBookings": "Aucune réservation à télécharger."
+        }
+      }
+    },
+    "promotions": {
+      "backToDashboard": "Retour au tableau de bord",
+      "title": "Promotions et coupons",
+      "description": "Créez et gérez des coupons pour promouvoir vos annonces sur le marché.",
+      "signInPrompt": "Veuillez vous connecter pour gérer vos promotions.",
+      "create": {
+        "title": "Créer un nouveau coupon",
+        "form": {
+          "code": "Code de coupon",
+          "codePlaceholder": "ex: ETE10",
+          "usageLimit": "Limite d'utilisation",
+          "usageLimitPlaceholder": "ex: 100",
+          "discountType": "Type de réduction",
+          "discountTypePlaceholder": "Sélectionner un type",
+          "percentage": "Pourcentage",
+          "fixed": "Montant fixe",
+          "discountValue": "Valeur de la réduction",
+          "expiryDate": "Date d'expiration (Facultatif)",
+          "pickDate": "Choisir une date",
+          "submitButton": "Créer le coupon"
+        },
+        "toast": {
+          "successTitle": "Coupon créé !",
+          "successDescription": "Le coupon '{{code}}' est maintenant actif.",
+          "failTitle": "Échec de la création"
+        }
+      },
+      "list": {
+        "title": "Coupons existants",
+        "description": "Voici vos coupons actifs et passés.",
+        "usage": "Utilisation",
+        "expires": "Expire le",
+        "never": "Jamais",
+        "share": "Partager",
+        "noCoupons": "Vous n'avez pas encore créé de coupons.",
+        "toastTitle": "Lien copié !",
+        "toastDescription": "Un lien partageable pour le coupon '{{link}}' a été copié dans votre presse-papiers.",
+        "shareModal": {
+          "title": "Partager le coupon",
+          "description": "Partagez ce lien avec vos clients pour leur offrir une réduction.",
+          "link": "Lien",
+          "copy": "Copier",
+          "close": "Fermer"
+        }
+      },
+      "toast": {
+        "error": "Erreur",
+        "fetchError": "Impossible de récupérer vos coupons.",
+        "createSuccess": "Coupon '{{code}}' créé avec succès.",
+        "createFail": "Impossible de créer le coupon.",
+        "createError": "Une erreur inattendue s'est produite.",
+        "success": "Succès",
+        "linkCopied": "Lien copié"
+      }
+    }
   }
 }

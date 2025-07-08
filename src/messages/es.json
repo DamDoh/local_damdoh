@@ -31,7 +31,7 @@
     "pollOptionsLabel": "Opciones de la encuesta",
     "pollOptionPlaceholder": "Opción {{index}}",
     "addOptionButton": "Agregar opción",
-    "pollNote": "Máximo {{maxOptions}} opciones.",
+    "pollNote": "Máximo de {{maxOptions}} opciones.",
     "addMediaButton": "Agregar Foto/Video",
     "createEventButton": "Crear Evento Agrícola",
     "shareDocumentButton": "Compartir Documento",
@@ -210,6 +210,146 @@
           "title": "Error",
           "description": "Ocurrió un error al crear la publicación."
         }
+      }
+    }
+  },
+  "Marketplace": {
+    "myOrders": {
+      "backLink": "Volver al mercado",
+      "title": "Mis Pedidos Recibidos",
+      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
+      "auth": {
+        "title": "Autenticación requerida",
+        "description": "Debe haber iniciado sesión para ver sus pedidos.",
+        "button": "Iniciar sesión"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar",
+        "ship": "Enviar",
+        "complete": "Completar",
+        "cancel": "Cancelar"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "noOrders": "No se encontraron pedidos.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron obtener los pedidos.",
+        "successTitle": "¡Éxito!",
+        "updateSuccess": "Estado del pedido actualizado a {{status}}",
+        "failTitle": "Error"
+      }
+    },
+    "shopView": {
+      "backLink": "Volver al mercado",
+      "ownedBy": "Propiedad de",
+      "loadingOwner": "Cargando...",
+      "editShopButton": "Editar tienda",
+      "contactButton": "Contactar vendedor",
+      "listingsTitle": "Publicaciones de {{shopName}}",
+      "noListings": "No se encontraron publicaciones para esta tienda.",
+      "errors": {
+        "notFound": "Tienda no encontrada",
+        "loadError": "No se pudieron cargar los detalles de la tienda.",
+        "title": "Error"
+      }
+    },
+    "manageService": {
+      "backLink": "Volver a {{itemName}}",
+      "title": "Gestionar servicio",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Reservas",
+        "staff": "Personal"
+      },
+      "loading": "Cargando...",
+      "bookingsTab": {
+        "title": "Reservas del servicio ({count})",
+        "description": "Ver y gestionar las reservas para este servicio.",
+        "downloadCsv": "Descargar CSV",
+        "table": {
+          "guest": "Huésped",
+          "bookedOn": "Reservado el",
+          "status": "Estado",
+          "checkedInAt": "Registrado el"
+        },
+        "status": {
+          "booked": "Reservado",
+          "checkedIn": "Registrado"
+        },
+        "noBookings": "Aún no hay reservas.",
+        "error": "Error al obtener las reservas.",
+        "toast": {
+          "noBookings": "No hay reservas para descargar."
+        }
+      }
+    },
+    "promotions": {
+      "backToDashboard": "Volver al Panel",
+      "title": "Promociones y Cupones",
+      "description": "Cree y gestione cupones para promocionar sus listados en el mercado.",
+      "signInPrompt": "Inicie sesión para gestionar sus promociones.",
+      "create": {
+        "title": "Crear un Nuevo Cupón",
+        "form": {
+          "code": "Código de Cupón",
+          "codePlaceholder": "ej. VERANO10",
+          "usageLimit": "Límite de Uso",
+          "usageLimitPlaceholder": "ej. 100",
+          "discountType": "Tipo de Descuento",
+          "discountTypePlaceholder": "Seleccionar un tipo",
+          "percentage": "Porcentaje",
+          "fixed": "Cantidad Fija",
+          "discountValue": "Valor del Descuento",
+          "expiryDate": "Fecha de Vencimiento (Opcional)",
+          "pickDate": "Seleccionar una fecha",
+          "submitButton": "Crear Cupón"
+        },
+        "toast": {
+          "successTitle": "¡Cupón Creado!",
+          "successDescription": "El cupón '{{code}}' ya está activo.",
+          "failTitle": "Creación Fallida"
+        }
+      },
+      "list": {
+        "title": "Cupones Existentes",
+        "description": "Aquí están sus cupones activos y pasados.",
+        "usage": "Uso",
+        "expires": "Vence",
+        "never": "Nunca",
+        "share": "Compartir",
+        "noCoupons": "Aún no ha creado ningún cupón.",
+        "toastTitle": "¡Enlace Copiado!",
+        "toastDescription": "Se ha copiado a su portapapeles un enlace para compartir el cupón '{{link}}'.",
+        "shareModal": {
+          "title": "Compartir Cupón",
+          "description": "Comparta este enlace con sus clientes para darles un descuento.",
+          "link": "Enlace",
+          "copy": "Copiar",
+          "close": "Cerrar"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "fetchError": "No se pudieron obtener sus cupones.",
+        "createSuccess": "Cupón '{{code}}' creado con éxito.",
+        "createFail": "No se pudo crear el cupón.",
+        "createError": "Ocurrió un error inesperado.",
+        "success": "Éxito",
+        "linkCopied": "Enlace Copiado"
       }
     }
   }

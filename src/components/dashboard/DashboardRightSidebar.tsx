@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle } from "lucide-react";
+import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle, Ticket } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -192,6 +192,18 @@ export function DashboardRightSidebar() {
                 </Link>
             </Button>
           )}
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+            <CardTitle className="text-md font-semibold">{t('promotionsTitle')}</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">{t('promotionsDescription')}</p>
+            <Button asChild variant="outline" className="w-full">
+                <Link href="/marketplace/promotions"><Ticket className="mr-2 h-4 w-4"/>{t('managePromotionsButton')}</Link>
+            </Button>
         </CardContent>
       </Card>
 

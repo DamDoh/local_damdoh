@@ -1,3 +1,4 @@
+
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
@@ -226,22 +227,3 @@ export const getCreateMarketplaceCouponSchema = (t: (key: string) => string) => 
 });
 
 export type CreateMarketplaceCouponValues = z.infer<ReturnType<typeof getCreateMarketplaceCouponSchema>>;
-
-export const financialApplicationSchema = z.object({
-  fiId: z.string().min(1, "Please select a Financial Institution."),
-  type: z.enum(['Loan', 'Grant'], { required_error: "Please select an application type." }),
-  amount: z.coerce.number().positive("Amount must be a positive number."),
-  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
-  purpose: z.string().min(20, "Please provide a detailed purpose for the funding (min 20 characters).").max(1000, "Purpose is too long."),
-});
-export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
-
-export const createFinancialProductSchema = z.object({
-  name: z.string().min(5, "Product name must be at least 5 characters."),
-  type: z.enum(['Loan', 'Grant']),
-  description: z.string().min(20, "Please provide a more detailed description."),
-  interestRate: z.coerce.number().min(0).max(100).optional(),
-  maxAmount: z.coerce.number().positive().optional(),
-  targetRoles: z.array(z.string()).min(1, "Please select at least one target stakeholder role."),
-});
-export type CreateFinancialProductValues = z.infer<typeof createFinancialProductSchema>;
