@@ -317,5 +317,22 @@
         "title": "Keine Daten verfügbar",
         "description": "Wir haben noch keine Nachhaltigkeitsdaten für Ihr Profil. Beginnen Sie mit der Protokollierung von Aktivitäten auf Ihrem Bauernhof."
     }
+  },
+  "RegulatorDashboard": {
+    "title": "Regulierungs-Dashboard",
+    "pendingCertificationsTitle": "Ausstehende Zertifizierungen",
+    "reviewsOutstanding": "Überprüfungen ausstehend",
+    "reviewAllButton": "Alle überprüfen",
+    "riskAlertsTitle": "Konformitätsrisiko-Warnungen",
+    "investigateButton": "Untersuchen",
+    "noComplianceAlerts": "Derzeit keine Konformitätswarnungen.",
+    "anomaliesTitle": "Anomalien in der Lieferkette",
+    "trackVtiButton": "VTI verfolgen",
+    "noAnomalies": "Keine Anomalien in der Lieferkette erkannt.",
+    "table": {
+      "destination": "Ziel",
+      "product": "Produkt",
+      "seller": "Verkäufer"
+    }
   }
 }

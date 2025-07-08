@@ -12,7 +12,11 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { RegulatorDashboardData } from "@/lib/types";
 import { useTranslations } from 'next-intl';
-import { PieChart, BarChart } from 'recharts'; // Assuming recharts for charts
+import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
+import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+
+// Mock Chart component as it is not part of the base project
+const Chart = ({ data, children }: { data: any[], children: React.ReactNode, className: string }) => <div className="w-full h-full bg-muted/50 rounded-lg flex items-center justify-center"><p className="text-xs text-muted-foreground">Chart Placeholder</p></div>;
 
 export const RegulatorDashboard = () => {
     const t = useTranslations('RegulatorDashboard');
@@ -58,22 +62,10 @@ export const RegulatorDashboard = () => {
 
     const { complianceRiskAlerts, pendingCertifications, supplyChainAnomalies } = dashboardData;
 
-    // Prepare data for charts
-    const riskAlertSeverityData = Object.entries((complianceRiskAlerts || []).reduce((acc, alert) => {
-        acc[alert.severity] = (acc[alert.severity] || 0) + 1;
-        return acc;
-    }, {} as Record<string, number>)).map(([name, value]) => ({ name, value }));
-
-    const anomaliesSeverityData = Object.entries((supplyChainAnomalies || []).reduce((acc, anomaly) => {
-        acc[anomaly.level] = (acc[anomaly.level] || 0) + 1;
-        return acc;
-    }, {} as Record<string, number>)).map(([name, value]) => ({ name, value }));
-
     const getSeverityBadge = (severity: string) => {
         switch (severity.toLowerCase()) {
             case 'high':
             case 'critical':
-
                 return 'destructive';
             case 'medium':
                 return 'secondary';
@@ -113,18 +105,6 @@ export const RegulatorDashboard = () => {
                            {t('riskAlertsTitle')}
                         </CardTitle>
                     </CardHeader>
-                     {riskAlertSeverityData.length > 0 && (
-                        <CardContent className="pb-0">
-                            {/* Assuming a simple chart component named 'Chart' is available or using recharts */}
-                           <div className="h-[150px] w-full">
-                                <Chart data={riskAlertSeverityData} className="w-full h-full">
-                                     <PieChart /> {/* Example using recharts */}
-                                 </Chart>
-                           </div>
-                        </CardContent>
-                    )}
-
-
                     <CardContent className="flex-grow space-y-2">
                        {(complianceRiskAlerts || []).map(alert => (
                            <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
@@ -149,16 +129,6 @@ export const RegulatorDashboard = () => {
                             {t('anomaliesTitle')}
                         </CardTitle>
                     </CardHeader>
-                     {anomaliesSeverityData.length > 0 && (
-                        <CardContent className="pb-0">
-                             {/* Assuming a simple chart component named 'Chart' is available or using recharts */}
-                           <div className="h-[150px] w-full">
-                                <Chart data={anomaliesSeverityData} className="w-full h-full">
-                                     <BarChart /> {/* Example using recharts */}
-                                 </Chart>
-                           </div>
-                        </CardContent>
-                     )}
 
                     <CardContent className="space-y-2">
                        {(supplyChainAnomalies || []).map(anomaly => (
@@ -178,7 +148,6 @@ export const RegulatorDashboard = () => {
                        {(supplyChainAnomalies || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">{t('noAnomalies')}</p>}
                     </CardContent>
                 </Card>
-
             </div>
         </div>
     );

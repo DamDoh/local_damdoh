@@ -8,6 +8,9 @@ import type {
     ForumPostSchema,
     AgriEventSchema
 } from './schemas';
+import type { LucideIcon } from 'lucide-react';
+import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
+
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)

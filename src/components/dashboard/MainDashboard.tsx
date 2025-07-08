@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
@@ -103,10 +102,10 @@ function MainContent() {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
   
-  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
-  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
-  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
-  const deletePostCallable = useMemo(() => httpsCallable(functions, 'deletePost'), []);
+  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), [functions]);
+  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
+  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
+  const deletePostCallable = useMemo(() => httpsCallable(functions, 'deletePost'), [functions]);
   
   useEffect(() => {
     let unsubscribeFeed: () => void = () => {};

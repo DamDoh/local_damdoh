@@ -317,5 +317,22 @@
       "title": "No hay Datos Disponibles",
       "description": "Aún no tenemos datos de sostenibilidad para su perfil. Comience registrando actividades en su granja."
     }
+  },
+  "RegulatorDashboard": {
+    "title": "Panel del Regulador",
+    "pendingCertificationsTitle": "Certificaciones Pendientes",
+    "reviewsOutstanding": "Revisiones pendientes",
+    "reviewAllButton": "Revisar todas",
+    "riskAlertsTitle": "Alertas de Riesgo de Cumplimiento",
+    "investigateButton": "Investigar",
+    "noComplianceAlerts": "No hay alertas de cumplimiento en este momento.",
+    "anomaliesTitle": "Anomalías en la Cadena de Suministro",
+    "trackVtiButton": "Rastrear VTI",
+    "noAnomalies": "No se detectaron anomalías en la cadena de suministro.",
+    "table": {
+      "destination": "Destino",
+      "product": "Producto",
+      "seller": "Vendedor"
+    }
   }
 }

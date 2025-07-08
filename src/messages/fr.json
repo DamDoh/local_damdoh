@@ -317,5 +317,22 @@
         "title": "Aucune donnée disponible",
         "description": "Nous n'avons pas encore de données de durabilité pour votre profil. Commencez par enregistrer des activités sur votre exploitation."
     }
+  },
+  "RegulatorDashboard": {
+    "title": "Tableau de Bord du Régulateur",
+    "pendingCertificationsTitle": "Certifications en Attente",
+    "reviewsOutstanding": "Examens en attente",
+    "reviewAllButton": "Tout examiner",
+    "riskAlertsTitle": "Alertes de Risque de Conformité",
+    "investigateButton": "Enquêter",
+    "noComplianceAlerts": "Aucune alerte de conformité pour le moment.",
+    "anomaliesTitle": "Anomalies de la Chaîne d'Approvisionnement",
+    "trackVtiButton": "Suivre VTI",
+    "noAnomalies": "Aucune anomalie de la chaîne d'approvisionnement détectée.",
+    "table": {
+      "destination": "Destination",
+      "product": "Produit",
+      "seller": "Vendeur"
+    }
   }
 }

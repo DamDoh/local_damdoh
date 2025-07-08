@@ -317,5 +317,22 @@
         "title": "No Data Available",
         "description": "We don't have any sustainability data for your profile yet. Start by logging activities on your farm."
     }
+  },
+  "RegulatorDashboard": {
+    "title": "Regulator Dashboard",
+    "pendingCertificationsTitle": "Pending Certifications",
+    "reviewsOutstanding": "Reviews Outstanding",
+    "reviewAllButton": "Review All",
+    "riskAlertsTitle": "Compliance Risk Alerts",
+    "investigateButton": "Investigate",
+    "noComplianceAlerts": "No compliance alerts at this time.",
+    "anomaliesTitle": "Supply Chain Anomalies",
+    "trackVtiButton": "Track VTI",
+    "noAnomalies": "No supply chain anomalies detected.",
+    "table": {
+      "destination": "Destination",
+      "product": "Product",
+      "seller": "Seller"
+    }
   }
 }
