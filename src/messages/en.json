@@ -1,4 +1,3 @@
-
 {
   "traceabilityPage": {
     "title": "Product Traceability",
@@ -211,35 +210,33 @@
       "button": "Join DamDoh Today"
     }
   },
-  "communityGuidelines": {
-    "title": "Community Guidelines",
-    "subtitle": "Fostering a professional, respectful, and collaborative environment.",
-    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all stakeholders in the agricultural supply chain, we ask everyone to adhere to the following guidelines.",
-    "respectful": {
-      "title": "Be Respectful",
-      "description": "Treat all members with professionalism and courtesy. We encourage constructive discussions and debates, but personal attacks, harassment, and hate speech will not be tolerated."
-    },
-    "authentic": {
-      "title": "Be Authentic",
-      "description": "Represent yourself and your business truthfully. Do not impersonate others or provide misleading information about your products, services, or credentials."
-    },
-    "relevant": {
-      "title": "Stay Relevant",
-      "description": "Keep discussions and content relevant to the agricultural industry, supply chains, and the purpose of the specific forum or group you are in. Avoid spam and excessive self-promotion."
-    },
-    "fairTrade": {
-      "title": "Engage in Fair Trade",
-      "description": "Conduct all transactions and negotiations with fairness and integrity. Do not engage in fraudulent activities or attempt to scam other users."
-    },
-    "sustainable": {
-      "title": "Promote Sustainability",
-      "description": "We are a platform dedicated to improving agricultural practices. We encourage sharing and promoting sustainable and regenerative methods."
-    },
-    "reporting": {
-      "title": "Reporting Violations",
-      "content": "If you encounter content or behavior that violates these guidelines, please report it to our support team at {emailLink}.",
-      "emailLinkText": "support@damdoh.org",
-      "conclusion": "By using DamDoh, you agree to these guidelines. Violations may result in content removal, warnings, or account suspension. Thank you for helping us build a trusted community."
+  "networkPage": {
+    "title": "Find Stakeholders",
+    "description": "Search and connect with all stakeholders in the DamDoh ecosystem.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI Suggestions",
+    "aiSuggestionsDescription": "AI-powered recommendations based on your profile.",
+    "refreshSuggestions": "Refresh suggestions",
+    "infoTooltip": "Suggestions are based on your profile's stated interests and needs.",
+    "signInPrompt": "Sign in to get personalized suggestions.",
+    "noSuggestions": "No personalized suggestions available right now.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Filter and find exactly who you're looking for.",
+    "searchPlaceholder": "Search by name or keyword...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No stakeholders found matching your criteria.",
+    "noStakeholdersHint": "Try adjusting your search or filters.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data.",
+      "requestSentTitle": "Connection Request Sent!",
+      "requestSentDescription": "Your request has been sent to the user.",
+      "requestErrorTitle": "Could Not Send Request"
     }
   }
 }

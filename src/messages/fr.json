@@ -1,4 +1,3 @@
-
 {
   "traceabilityPage": {
     "title": "Traçabilité des Produits",
@@ -211,77 +210,33 @@
       "button": "Rejoignez DamDoh Aujourd'hui"
     }
   },
-  "careers": {
-    "title": "Carrières chez DamDoh",
-    "subtitle": "Rejoignez-nous pour façonner l'avenir de la technologie agricole. Faites partie d'une équipe passionnée dédiée à un impact mondial.",
-    "whyWorkWithUs": {
-      "title": "Pourquoi travailler avec nous ?",
-      "intro": "Chez DamDoh, nous résolvons certains des problèmes les plus urgents du monde, de la sécurité alimentaire à la durabilité. Vous pourrez :",
-      "point1": "Travailler sur un produit qui améliore la vie de millions de personnes.",
-      "point2": "Collaborer avec une équipe diversifiée et mondiale.",
-      "point3": "Avoir accès aux dernières technologies en matière d'IA et d'analyse de données.",
-      "point4": "Profiter d'une culture d'apprentissage et de développement professionnel.",
-      "point5": "Bénéficier d'aménagements de travail flexibles et d'une rémunération compétitive."
-    },
-    "currentOpenings": {
-      "title": "Offres d'emploi actuelles"
-    },
-    "openings": {
-      "job1": {
-        "title": "Ingénieur Frontend (React/Next.js)",
-        "location": "Télétravail",
-        "type": "Temps plein",
-        "description": "Nous recherchons un ingénieur frontend expérimenté pour nous aider à construire une interface utilisateur intuitive et performante pour notre plateforme."
-      },
-      "job2": {
-        "title": "Agronome / Agent de terrain - Afrique de l'Est",
-        "location": "Nairobi, Kenya",
-        "type": "Temps plein",
-        "description": "Rejoignez notre équipe sur le terrain pour former les agriculteurs, collecter des données et faciliter l'intégration dans notre écosystème."
-      },
-      "job3": {
-        "title": "Ingénieur IA/ML - Perspectives Agricoles",
-        "location": "Télétravail",
-        "type": "Temps plein",
-        "description": "Développer et mettre en œuvre des modèles d'IA pour les prévisions de récoltes, le diagnostic des maladies et les perspectives du marché."
-      }
-    },
-    "noOpenings": {
-      "title": "Aucune offre d'emploi pour le moment",
-      "content": "Nous n'avons actuellement aucune offre d'emploi, mais nous sommes toujours à la recherche de personnes talentueuses. Envoyez votre CV à {emailLink} et nous vous contacterons si un poste correspondant se libère.",
-      "emailLinkText": "careers@damdoh.org"
-    },
-    "applyNowButton": "Postuler maintenant"
-  },
-  "communityGuidelines": {
-    "title": "Règles de la Communauté",
-    "subtitle": "Favoriser un environnement professionnel, respectueux et collaboratif.",
-    "intro": "Bienvenue dans la communauté DamDoh ! Pour garantir que notre plateforme reste un espace productif et sûr pour tous les acteurs de la chaîne d'approvisionnement agricole, nous demandons à chacun de respecter les directives suivantes.",
-    "respectful": {
-      "title": "Soyez respectueux",
-      "description": "Traitez tous les membres avec professionnalisme et courtoisie. Nous encourageons les discussions et les débats constructifs, mais les attaques personnelles, le harcèlement et les discours de haine ne seront pas tolérés."
-    },
-    "authentic": {
-      "title": "Soyez authentique",
-      "description": "Représentez-vous et votre entreprise de manière véridique. N'usurpez pas l'identité d'autrui et ne fournissez pas d'informations trompeuses sur vos produits, services ou références."
-    },
-    "relevant": {
-      "title": "Restez pertinent",
-      "description": "Gardez les discussions et le contenu pertinents pour l'industrie agricole, les chaînes d'approvisionnement et l'objectif du forum ou du groupe spécifique dans lequel vous vous trouvez. Évitez le spam et l'autopromotion excessive."
-    },
-    "fairTrade": {
-      "title": "Pratiquez le commerce équitable",
-      "description": "Menez toutes les transactions et négociations avec équité et intégrité. Ne vous engagez pas dans des activités frauduleuses et n'essayez pas d'escroquer d'autres utilisateurs."
-    },
-    "sustainable": {
-      "title": "Promouvez la durabilité",
-      "description": "Nous sommes une plateforme dédiée à l'amélioration des pratiques agricoles. Nous encourageons le partage et la promotion des méthodes durables et régénératives."
-    },
-    "reporting": {
-      "title": "Signaler les violations",
-      "content": "Si vous rencontrez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe de support à {emailLink}.",
-      "emailLinkText": "support@damdoh.org",
-      "conclusion": "En utilisant DamDoh, vous acceptez ces directives. Les violations peuvent entraîner la suppression de contenu, des avertissements ou la suspension du compte. Merci de nous aider à construire une communauté de confiance."
+  "networkPage": {
+    "title": "Trouver des Acteurs",
+    "description": "Recherchez et connectez-vous avec tous les acteurs de l'écosystème DamDoh.",
+    "myNetworkButton": "Mon Réseau",
+    "agentToolsButton": "Outils d'Agent",
+    "aiSuggestionsTitle": "Suggestions de l'IA",
+    "aiSuggestionsDescription": "Recommandations basées sur l'IA en fonction de votre profil.",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "infoTooltip": "Les suggestions sont basées sur les intérêts et besoins indiqués dans votre profil.",
+    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
+    "noSuggestions": "Aucune suggestion personnalisée disponible pour le moment.",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "browseAllTitle": "Parcourir tous les Acteurs",
+    "browseAllDescription": "Filtrez et trouvez exactement qui vous recherchez.",
+    "searchPlaceholder": "Rechercher par nom ou mot-clé...",
+    "locationPlaceholder": "Filtrer par emplacement...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les Rôles",
+    "noStakeholdersFound": "Aucun acteur ne correspond à vos critères.",
+    "noStakeholdersHint": "Essayez d'ajuster votre recherche ou vos filtres.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "requestSentTitle": "Demande de connexion envoyée !",
+      "requestSentDescription": "Votre demande a été envoyée à l'utilisateur.",
+      "requestErrorTitle": "Impossible d'envoyer la demande"
     }
   }
 }

@@ -1,4 +1,3 @@
-
 {
   "traceabilityPage": {
     "title": "Produkt-Rückverfolgbarkeit",
@@ -211,77 +210,33 @@
       "button": "Heute DamDoh beitreten"
     }
   },
-  "careers": {
-    "title": "Karriere bei DamDoh",
-    "subtitle": "Gestalten Sie mit uns die Zukunft der Agrartechnologie. Werden Sie Teil eines leidenschaftlichen Teams, das sich der globalen Wirkung verschrieben hat.",
-    "whyWorkWithUs": {
-      "title": "Warum bei uns arbeiten?",
-      "intro": "Bei DamDoh lösen wir einige der dringendsten Probleme der Welt, von der Ernährungssicherheit bis zur Nachhaltigkeit. Sie werden:",
-      "point1": "An einem Produkt arbeiten, das das Leben von Millionen Menschen verbessert.",
-      "point2": "Mit einem vielfältigen, globalen Team zusammenarbeiten.",
-      "point3": "Zugang zu den neuesten Technologien in KI und Datenanalyse haben.",
-      "point4": "Eine Kultur des Lernens und der beruflichen Weiterentwicklung genießen.",
-      "point5": "Flexible Arbeitsregelungen und wettbewerbsfähige Vergütung erhalten."
-    },
-    "currentOpenings": {
-      "title": "Aktuelle Stellenangebote"
-    },
-    "openings": {
-      "job1": {
-        "title": "Frontend-Ingenieur (React/Next.js)",
-        "location": "Remote",
-        "type": "Vollzeit",
-        "description": "Wir suchen einen erfahrenen Frontend-Ingenieur, der uns hilft, eine intuitive und leistungsstarke Benutzeroberfläche für unsere Plattform zu entwickeln."
-      },
-      "job2": {
-        "title": "Agronom/Feldagent - Ostafrika",
-        "location": "Nairobi, Kenia",
-        "type": "Vollzeit",
-        "description": "Schließen Sie sich unserem Team vor Ort an, um Landwirte zu schulen, Daten zu sammeln und das Onboarding in unser Ökosystem zu erleichtern."
-      },
-      "job3": {
-        "title": "KI/ML-Ingenieur - Agrar-Einblicke",
-        "location": "Remote",
-        "type": "Vollzeit",
-        "description": "Entwickeln und implementieren Sie KI-Modelle für Erntevorhersagen, Krankheitsdiagnosen und Markteinblicke."
-      }
-    },
-    "noOpenings": {
-      "title": "Keine offenen Stellen im Moment",
-      "content": "Wir haben derzeit keine offenen Stellen, aber wir sind immer auf der Suche nach talentierten Personen. Senden Sie Ihren Lebenslauf an {emailLink} und wir werden uns bei Ihnen melden, wenn eine passende Stelle frei wird.",
-      "emailLinkText": "careers@damdoh.org"
-    },
-    "applyNowButton": "Jetzt bewerben"
-  },
-  "communityGuidelines": {
-    "title": "Community-Richtlinien",
-    "subtitle": "Förderung eines professionellen, respektvollen und kollaborativen Umfelds.",
-    "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein produktiver und sicherer Ort für alle Akteure der landwirtschaftlichen Lieferkette bleibt, bitten wir alle, die folgenden Richtlinien einzuhalten.",
-    "respectful": {
-      "title": "Seien Sie respektvoll",
-      "description": "Behandeln Sie alle Mitglieder professionell und höflich. Wir fördern konstruktive Diskussionen und Debatten, aber persönliche Angriffe, Belästigung und Hassreden werden nicht toleriert."
-    },
-    "authentic": {
-      "title": "Seien Sie authentisch",
-      "description": "Stellen Sie sich und Ihr Unternehmen wahrheitsgemäß dar. Geben Sie sich nicht als andere aus und machen Sie keine irreführenden Angaben zu Ihren Produkten, Dienstleistungen oder Qualifikationen."
-    },
-    "relevant": {
-      "title": "Bleiben Sie relevant",
-      "description": "Halten Sie Diskussionen und Inhalte relevant für die Agrarindustrie, Lieferketten und den Zweck des jeweiligen Forums oder der Gruppe. Vermeiden Sie Spam und übermäßige Eigenwerbung."
-    },
-    "fairTrade": {
-      "title": "Betreiben Sie fairen Handel",
-      "description": "Führen Sie alle Transaktionen und Verhandlungen fair und integer durch. Beteiligen Sie sich nicht an betrügerischen Aktivitäten oder versuchen Sie, andere Benutzer zu betrügen."
-    },
-    "sustainable": {
-      "title": "Fördern Sie Nachhaltigkeit",
-      "description": "Wir sind eine Plattform, die sich der Verbesserung landwirtschaftlicher Praktiken widmet. Wir ermutigen zum Teilen und Fördern nachhaltiger und regenerativer Methoden."
-    },
-    "reporting": {
-      "title": "Verstöße melden",
-      "content": "Wenn Sie auf Inhalte oder Verhalten stoßen, die gegen diese Richtlinien verstoßen, melden Sie dies bitte unserem Support-Team unter {emailLink}.",
-      "emailLinkText": "support@damdoh.org",
-      "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Verstöße können zur Entfernung von Inhalten, Verwarnungen oder zur Sperrung des Kontos führen. Vielen Dank, dass Sie uns helfen, eine vertrauenswürdige Gemeinschaft aufzubauen."
+  "networkPage": {
+    "title": "Stakeholder finden",
+    "description": "Suchen und vernetzen Sie sich mit allen Stakeholdern im DamDoh-Ökosystem.",
+    "myNetworkButton": "Mein Netzwerk",
+    "agentToolsButton": "Agentenwerkzeuge",
+    "aiSuggestionsTitle": "KI-Vorschläge",
+    "aiSuggestionsDescription": "KI-gestützte Empfehlungen basierend auf Ihrem Profil.",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "Vorschläge basieren auf den in Ihrem Profil angegebenen Interessen und Bedürfnissen.",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
+    "noSuggestions": "Derzeit keine personalisierten Vorschläge verfügbar.",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "browseAllTitle": "Alle Stakeholder durchsuchen",
+    "browseAllDescription": "Filtern und finden Sie genau, wen Sie suchen.",
+    "searchPlaceholder": "Nach Name oder Schlüsselwort suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Stakeholder gefunden, die Ihren Kriterien entsprechen.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suche oder Filter anzupassen.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "requestSentTitle": "Verbindungsanfrage gesendet!",
+      "requestSentDescription": "Ihre Anfrage wurde an den Benutzer gesendet.",
+      "requestErrorTitle": "Anfrage konnte nicht gesendet werden"
     }
   }
 }
