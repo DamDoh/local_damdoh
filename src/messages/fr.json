@@ -131,7 +131,50 @@
       "subtitle": "Rejoignez des milliers d'acteurs qui construisent déjà un système alimentaire plus connecté et durable.",
       "button": "Inscrivez-vous Maintenant"
     }
+  },
+  "InsuranceProductsPage": {
+    "title": "Produits d'Assurance",
+    "description": "Gérez vos produits d'assurance proposés.",
+    "createButton": "Créer un Produit",
+    "noProducts": "Vous n'avez encore créé aucun produit d'assurance.",
+    "table": {
+      "productName": "Nom du Produit",
+      "type": "Type",
+      "status": "Statut",
+      "premium": "Prime"
+    },
+    "toast": {
+      "errorTitle": "Erreur",
+      "fetchError": "Impossible de récupérer les produits d'assurance."
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "title": "Créer un Produit d'Assurance",
+    "description": "Définissez un nouveau produit d'assurance à proposer sur la plateforme.",
+    "backLink": "Retour aux Produits",
+    "form": {
+      "nameLabel": "Nom du Produit",
+      "namePlaceholder": "Ex: Assurance Récolte Multirisque",
+      "typeLabel": "Type de Produit",
+      "typePlaceholder": "Sélectionnez un type",
+      "crop": "Récolte",
+      "livestock": "Bétail",
+      "asset": "Actif",
+      "weather": "Météo/Paramétrique",
+      "descriptionLabel": "Courte Description",
+      "descriptionPlaceholder": "Un bref résumé du produit.",
+      "coverageLabel": "Détails de la Couverture",
+      "coveragePlaceholder": "Décrivez en détail ce que cette assurance couvre, y compris les risques, les limites et les exclusions.",
+      "premiumLabel": "Montant de la Prime",
+      "premiumPlaceholder": "Ex: 50.00",
+      "currencyLabel": "Devise",
+      "submitButton": "Créer le Produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant que Fournisseur d'Assurance pour créer un produit.",
+      "successTitle": "Produit Créé",
+      "successDescription": "Le produit '{{name}}' a été créé avec succès.",
+      "errorTitle": "Échec de la Création"
+    }
   }
 }
-
-    

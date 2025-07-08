@@ -1,34 +1,5 @@
 
 {
-  "myNetworkPage": {
-    "backLink": "Back to Network",
-    "connectionsTitle": "My Connections",
-    "connectionsDescription": "View and manage your established connections.",
-    "requestsTitle": "Pending Requests",
-    "requestsDescription": "Accept or decline incoming connection requests.",
-    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
-    "noRequests": "You have no pending connection requests.",
-    "sentTimeAgo": "Sent {timeAgo}",
-    "myConnectionsTab": "My Connections ({count})",
-    "pendingRequestsTab": "Pending Requests"
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find agricultural experts, specialized labor, and professional services.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search skills or services...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Service Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters to find the talent you need.",
-    "toast": {
-      "error": {
-        "title": "Search Error",
-        "description": "Failed to fetch services. Please try again."
-      }
-    }
-  },
   "AppHeader": {
     "home": "Home",
     "network": "Network",
@@ -50,13 +21,6 @@
     "switchToLightAria": "Switch to light theme",
     "switchToDarkAria": "Switch to dark theme"
   },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
   "AppFooter": {
     "tagline": "Connecting the entire agricultural value chain, from seed to table.",
     "damdohTitle": "DamDoh",
@@ -77,6 +41,13 @@
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store",
     "copyright": "© {year} {appName}. All Rights Reserved."
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
   },
   "LanguageSwitcher": {
     "toggle": "Change language"
@@ -131,7 +102,50 @@
       "subtitle": "Join thousands of stakeholders who are already building a more connected and sustainable food system.",
       "button": "Sign Up Now"
     }
+  },
+  "InsuranceProductsPage": {
+    "title": "Insurance Products",
+    "description": "Manage your offered insurance products.",
+    "createButton": "Create Product",
+    "noProducts": "You have not created any insurance products yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "toast": {
+      "errorTitle": "Error",
+      "fetchError": "Could not fetch insurance products."
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "title": "Create Insurance Product",
+    "description": "Define a new insurance product to offer on the platform.",
+    "backLink": "Back to Products",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop",
+      "livestock": "Livestock",
+      "asset": "Asset",
+      "weather": "Weather/Parametric",
+      "descriptionLabel": "Short Description",
+      "descriptionPlaceholder": "A brief summary of the product.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Describe in detail what this insurance covers, including perils, limits, and exclusions.",
+      "premiumLabel": "Premium Amount",
+      "premiumPlaceholder": "e.g., 50.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in as an Insurance Provider to create a product.",
+      "successTitle": "Product Created",
+      "successDescription": "The product '{{name}}' has been successfully created.",
+      "errorTitle": "Creation Failed"
+    }
   }
 }
-
-    

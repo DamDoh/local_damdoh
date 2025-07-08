@@ -704,6 +704,10 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
+    // Re-introducing denormalized fields for use in FeedItemCard
+    userId: string;
+    userName: string;
+    userAvatar?: string;
 }
 
 export interface PollOption {
@@ -847,5 +851,3 @@ export type ServiceItem = MarketplaceItem & {
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
-
-    

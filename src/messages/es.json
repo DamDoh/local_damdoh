@@ -131,7 +131,50 @@
       "subtitle": "Únete a miles de interesados que ya están construyendo un sistema alimentario más conectado y sostenible.",
       "button": "Regístrate Ahora"
     }
+  },
+  "InsuranceProductsPage": {
+    "title": "Productos de Seguros",
+    "description": "Gestiona tus productos de seguros ofrecidos.",
+    "createButton": "Crear Producto",
+    "noProducts": "Aún no has creado ningún producto de seguro.",
+    "table": {
+      "productName": "Nombre del Producto",
+      "type": "Tipo",
+      "status": "Estado",
+      "premium": "Prima"
+    },
+    "toast": {
+      "errorTitle": "Error",
+      "fetchError": "No se pudieron obtener los productos de seguros."
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "title": "Crear Producto de Seguro",
+    "description": "Define un nuevo producto de seguro para ofrecer en la plataforma.",
+    "backLink": "Volver a Productos",
+    "form": {
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "Ej: Seguro de Cultivos de Riesgo Múltiple",
+      "typeLabel": "Tipo de Producto",
+      "typePlaceholder": "Seleccione un tipo",
+      "crop": "Cultivo",
+      "livestock": "Ganado",
+      "asset": "Activo",
+      "weather": "Climático/Paramétrico",
+      "descriptionLabel": "Descripción Corta",
+      "descriptionPlaceholder": "Un resumen breve del producto.",
+      "coverageLabel": "Detalles de la Cobertura",
+      "coveragePlaceholder": "Describe en detalle qué cubre este seguro, incluyendo riesgos, límites y exclusiones.",
+      "premiumLabel": "Monto de la Prima",
+      "premiumPlaceholder": "Ej: 50.00",
+      "currencyLabel": "Moneda",
+      "submitButton": "Crear Producto"
+    },
+    "toast": {
+      "notAuthenticated": "Debes iniciar sesión como Proveedor de Seguros para crear un producto.",
+      "successTitle": "Producto Creado",
+      "successDescription": "El producto '{{name}}' ha sido creado con éxito.",
+      "errorTitle": "Creación Fallida"
+    }
   }
 }
-
-    

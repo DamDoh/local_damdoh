@@ -131,7 +131,50 @@
       "subtitle": "Schließen Sie sich Tausenden von Beteiligten an, die bereits ein vernetzteres und nachhaltigeres Lebensmittelsystem aufbauen.",
       "button": "Jetzt anmelden"
     }
+  },
+  "InsuranceProductsPage": {
+    "title": "Versicherungsprodukte",
+    "description": "Verwalten Sie Ihre angebotenen Versicherungsprodukte.",
+    "createButton": "Produkt erstellen",
+    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "premium": "Prämie"
+    },
+    "toast": {
+      "errorTitle": "Fehler",
+      "fetchError": "Versicherungsprodukte konnten nicht abgerufen werden."
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "title": "Versicherungsprodukt erstellen",
+    "description": "Definieren Sie ein neues Versicherungsprodukt, das auf der Plattform angeboten werden soll.",
+    "backLink": "Zurück zu den Produkten",
+    "form": {
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Ernteausfallversicherung",
+      "typeLabel": "Produkttyp",
+      "typePlaceholder": "Wählen Sie einen Typ",
+      "crop": "Ernte",
+      "livestock": "Vieh",
+      "asset": "Vermögenswert",
+      "weather": "Wetter/Parametrisch",
+      "descriptionLabel": "Kurze Beschreibung",
+      "descriptionPlaceholder": "Eine kurze Zusammenfassung des Produkts.",
+      "coverageLabel": "Deckungsdetails",
+      "coveragePlaceholder": "Beschreiben Sie detailliert, was diese Versicherung abdeckt, einschließlich Gefahren, Limits und Ausschlüsse.",
+      "premiumLabel": "Prämienbetrag",
+      "premiumPlaceholder": "z.B. 50.00",
+      "currencyLabel": "Währung",
+      "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen als Versicherungsanbieter angemeldet sein, um ein Produkt zu erstellen.",
+      "successTitle": "Produkt erstellt",
+      "successDescription": "Das Produkt '{{name}}' wurde erfolgreich erstellt.",
+      "errorTitle": "Erstellung fehlgeschlagen"
+    }
   }
 }
-
-    
