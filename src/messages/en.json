@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Home",
@@ -324,6 +325,47 @@
       "messagePlaceholder": "Write your message here...",
       "buttonText": "Send Message",
       "note": "We'll get back to you as soon as possible."
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to build a sustainable future for agriculture.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "We're a passionate, mission-driven team dedicated to making a real-world impact. We offer:",
+      "point1": "A collaborative and innovative work environment.",
+      "point2": "Opportunities to work on cutting-edge technology in Agri-Tech.",
+      "point3": "A chance to directly impact the livelihoods of farmers globally.",
+      "point4": "Competitive compensation and benefits.",
+      "point5": "A commitment to professional growth and development."
+    },
+    "currentOpenings": {
+      "title": "Current Openings"
+    },
+    "applyNowButton": "Apply Now",
+    "noOpenings": {
+      "title": "No Current Openings",
+      "content1": "We're always looking for talented individuals. If you're passionate about our mission, feel free to send your resume to <emailLink>careers@damdoh.org</emailLink>."
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Frontend Engineer (Next.js)",
+        "location": "Remote / Global",
+        "type": "Full-time",
+        "description": "Build and maintain our user-facing web applications, ensuring a high-quality, performant, and accessible user experience."
+      },
+      "job2": {
+        "title": "AI/ML Engineer (Genkit)",
+        "location": "Nairobi, Kenya or Remote",
+        "type": "Full-time",
+        "description": "Develop and deploy AI models for crop diagnosis, market analysis, and personalized recommendations using our Genkit-based infrastructure."
+      },
+      "job3": {
+        "title": "Community Manager (East Africa)",
+        "location": "Nairobi, Kenya",
+        "type": "Full-time",
+        "description": "Engage with our user community, foster knowledge sharing, and gather feedback to drive product improvements for the East African region."
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Accueil",
@@ -324,6 +325,47 @@
       "messagePlaceholder": "Écrivez votre message ici...",
       "buttonText": "Envoyer le Message",
       "note": "Nous vous répondrons dès que possible."
+    }
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez notre mission pour construire un avenir durable pour l'agriculture.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi travailler avec nous ?",
+      "intro": "Nous sommes une équipe passionnée, axée sur la mission, dédiée à avoir un impact réel. Nous offrons :",
+      "point1": "Un environnement de travail collaboratif et innovant.",
+      "point2": "Des opportunités de travailler sur des technologies de pointe en Agri-Tech.",
+      "point3": "Une chance d'impacter directement les moyens de subsistance des agriculteurs du monde entier.",
+      "point4": "Une rémunération et des avantages compétitifs.",
+      "point5": "Un engagement envers la croissance et le développement professionnels."
+    },
+    "currentOpenings": {
+      "title": "Offres Actuelles"
+    },
+    "applyNowButton": "Postuler maintenant",
+    "noOpenings": {
+      "title": "Aucune offre actuelle",
+      "content1": "Nous sommes toujours à la recherche de personnes talentueuses. Si notre mission vous passionne, n'hésitez pas à envoyer votre CV à <emailLink>careers@damdoh.org</emailLink>."
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur Frontend Senior (Next.js)",
+        "location": "Télétravail / Monde",
+        "type": "Temps plein",
+        "description": "Construisez et maintenez nos applications web destinées aux utilisateurs, en garantissant une expérience utilisateur de haute qualité, performante et accessible."
+      },
+      "job2": {
+        "title": "Ingénieur IA/ML (Genkit)",
+        "location": "Nairobi, Kenya ou Télétravail",
+        "type": "Temps plein",
+        "description": "Développez et déployez des modèles d'IA pour le diagnostic des cultures, l'analyse de marché et les recommandations personnalisées à l'aide de notre infrastructure basée sur Genkit."
+      },
+      "job3": {
+        "title": "Gestionnaire de Communauté (Afrique de l'Est)",
+        "location": "Nairobi, Kenya",
+        "type": "Temps plein",
+        "description": "Interagissez avec notre communauté d'utilisateurs, favorisez le partage des connaissances et recueillez des commentaires pour améliorer les produits dans la région de l'Afrique de l'Est."
+      }
     }
   }
 }

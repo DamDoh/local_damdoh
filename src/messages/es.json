@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Inicio",
@@ -324,6 +325,47 @@
       "messagePlaceholder": "Escribe tu mensaje aquí...",
       "buttonText": "Enviar Mensaje",
       "note": "Nos pondremos en contacto contigo lo antes posible."
+    }
+  },
+  "careers": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únete a nuestra misión de construir un futuro sostenible para la agricultura.",
+    "whyWorkWithUs": {
+      "title": "¿Por qué trabajar con nosotros?",
+      "intro": "Somos un equipo apasionado y motivado por nuestra misión, dedicado a generar un impacto real en el mundo. Ofrecemos:",
+      "point1": "Un entorno de trabajo colaborativo e innovador.",
+      "point2": "Oportunidades para trabajar en tecnología de punta en Agri-Tech.",
+      "point3": "La oportunidad de impactar directamente en la vida de los agricultores a nivel mundial.",
+      "point4": "Compensación y beneficios competitivos.",
+      "point5": "Un compromiso con el crecimiento y desarrollo profesional."
+    },
+    "currentOpenings": {
+      "title": "Ofertas Actuales"
+    },
+    "applyNowButton": "Postular ahora",
+    "noOpenings": {
+      "title": "No hay ofertas actuales",
+      "content1": "Siempre estamos buscando personas con talento. Si te apasiona nuestra misión, no dudes en enviarnos tu currículum a <emailLink>careers@damdoh.org</emailLink>."
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Frontend Senior (Next.js)",
+        "location": "Remoto / Global",
+        "type": "Tiempo completo",
+        "description": "Construye y mantiene nuestras aplicaciones web orientadas al usuario, garantizando una experiencia de usuario de alta calidad, rendimiento y accesibilidad."
+      },
+      "job2": {
+        "title": "Ingeniero de IA/ML (Genkit)",
+        "location": "Nairobi, Kenia o Remoto",
+        "type": "Tiempo completo",
+        "description": "Desarrolla e implementa modelos de IA para el diagnóstico de cultivos, análisis de mercado y recomendaciones personalizadas utilizando nuestra infraestructura basada en Genkit."
+      },
+      "job3": {
+        "title": "Gerente de Comunidad (África Oriental)",
+        "location": "Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Interactúa con nuestra comunidad de usuarios, fomenta el intercambio de conocimientos y recopila comentarios para impulsar mejoras en el producto para la región de África Oriental."
+      }
     }
   }
 }

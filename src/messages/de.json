@@ -1,3 +1,4 @@
+
 {
   "AppHeader": {
     "home": "Startseite",
@@ -324,6 +325,47 @@
       "messagePlaceholder": "Schreiben Sie Ihre Nachricht hier...",
       "buttonText": "Nachricht senden",
       "note": "Wir werden uns so schnell wie möglich bei Ihnen melden."
+    }
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Werden Sie Teil unserer Mission, eine nachhaltige Zukunft für die Landwirtschaft zu schaffen.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Wir sind ein leidenschaftliches, missionsorientiertes Team, das sich der Erzielung einer realen Wirkung verschrieben hat. Wir bieten:",
+      "point1": "Ein kollaboratives und innovatives Arbeitsumfeld.",
+      "point2": "Möglichkeiten, an Spitzentechnologie in der Agrar-Technik zu arbeiten.",
+      "point3": "Die Chance, das Leben von Landwirten weltweit direkt zu beeinflussen.",
+      "point4": "Wettbewerbsfähige Vergütung und Sozialleistungen.",
+      "point5": "Ein Engagement für berufliches Wachstum und Entwicklung."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote"
+    },
+    "applyNowButton": "Jetzt bewerben",
+    "noOpenings": {
+      "title": "Keine aktuellen Stellenangebote",
+      "content1": "Wir sind immer auf der Suche nach talentierten Personen. Wenn Sie von unserer Mission begeistert sind, senden Sie uns gerne Ihren Lebenslauf an <emailLink>careers@damdoh.org</emailLink>."
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Frontend-Entwickler (Next.js)",
+        "location": "Remote / Weltweit",
+        "type": "Vollzeit",
+        "description": "Entwickeln und pflegen Sie unsere benutzerorientierten Webanwendungen und gewährleisten Sie eine qualitativ hochwertige, performante und zugängliche Benutzererfahrung."
+      },
+      "job2": {
+        "title": "KI/ML-Ingenieur (Genkit)",
+        "location": "Nairobi, Kenia oder Remote",
+        "type": "Vollzeit",
+        "description": "Entwickeln und implementieren Sie KI-Modelle für die Pflanzendiagnose, Marktanalyse und personalisierte Empfehlungen unter Verwendung unserer Genkit-basierten Infrastruktur."
+      },
+      "job3": {
+        "title": "Community Manager (Ostasien)",
+        "location": "Nairobi, Kenia",
+        "type": "Vollzeit",
+        "description": "Interagieren Sie mit unserer Benutzergemeinschaft, fördern Sie den Wissensaustausch und sammeln Sie Feedback, um Produktverbesserungen für die ostafrikanische Region voranzutreiben."
+      }
     }
   }
 }
