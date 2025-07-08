@@ -364,8 +364,7 @@
     },
     "noOpenings": {
       "title": "No Open Positions Currently",
-      "content1": "We are always looking for passionate and talented individuals to join our mission. If you believe you'd be a great fit, feel free to send your resume and a cover letter to {emailLink}.",
-      "content2": "careers@damdoh.org"
+      "content1": "We are always looking for passionate and talented individuals to join our mission. If you believe you'd be a great fit, feel free to send your resume and a cover letter to {emailLink}."
     },
     "applyNowButton": "Apply Now"
   },
@@ -584,74 +583,7 @@
     "adTitle": "DamDoh Market Trends",
     "adDescription": "Get daily insights on pricing and demand trends.",
     "adButton": "Learn More"
-  },
-  "traceabilityPage": {
-    "title": "Product Traceability",
-    "description": "Trace the journey of your food from farm to fork with a Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "Enter VTI or Batch ID...",
-    "trackButton": "Track",
-    "vtiDescription": "A VTI is a unique identifier assigned to each batch of produce, ensuring transparency throughout the supply chain.",
-    "recentTitle": "Recently Verified Batches",
-    "recentDescription": "Explore some of the latest product journeys on the platform.",
-    "noRecentBatches": "No recently verified batches found.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "viewReportButton": "View Full Report",
-    "detailPage": {
-      "backLink": "Back to Traceability Hub",
-      "invalidIdError": "No valid batch ID provided.",
-      "loadError": "Failed to load traceability history for this batch.",
-      "notFoundTitle": "Batch Not Found",
-      "notFoundDescription": "The traceability report for this ID could not be found.",
-      "traceableProduct": "Traceable Product",
-      "batchIdLabel": "Batch ID",
-      "producerLabel": "Producer",
-      "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Initial Yield",
-      "qualityLabel": "Quality Grade",
-      "notSpecified": "Not specified",
-      "journeyTitle": "Product Journey",
-      "journeyDescription": "A chronological record of events for this batch.",
-      "noEventDetails": "No specific details for this event.",
-      "noEventsFound": "No traceability events have been logged for this batch yet.",
-      "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product was grown using practices that align with sustainable and organic principles, based on logged inputs.",
-      "geoLocationLabel": "Geolocation",
-      "observationType": "Observation Type",
-      "details": "Details",
-      "aiDiagnosis": "AI Diagnosis"
-    }
-  },
-  "Forums": {
-    "topic": {
-      "unknownUser": "Unknown User",
-      "postMeta": "by {{author}} on {{date}}",
-      "buttons": {
-        "createPost": "Add Reply",
-        "loadMore": "Load More",
-        "loadingMore": "Loading More..."
-      },
-      "noPosts": {
-        "title": "No posts yet",
-        "description": "Be the first to reply to this topic.",
-        "button": "Add Reply"
-      },
-      "notFound": {
-        "title": "Topic not found",
-        "description": "The topic you are looking for does not exist.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error loading posts",
-          "description": "An error occurred while loading posts for this topic."
-        },
-        "loadTopic": {
-          "title": "Error loading topic",
-          "description": "An error occurred while loading the topic details."
-        }
-      }
-    }
   }
 }
 
+    

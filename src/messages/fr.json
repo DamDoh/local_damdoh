@@ -583,74 +583,7 @@
     "adTitle": "Tendances du Marché DamDoh",
     "adDescription": "Obtenez des informations quotidiennes sur les tendances des prix et de la demande.",
     "adButton": "En savoir plus"
-  },
-  "traceabilityPage": {
-    "title": "Traçabilité des Produits",
-    "description": "Suivez le parcours de vos aliments de la ferme à la fourchette avec un Identifiant de Traçabilité Vibrant (VTI).",
-    "inputPlaceholder": "Entrez l'ID VTI ou de lot...",
-    "trackButton": "Suivre",
-    "vtiDescription": "Un VTI est un identifiant unique attribué à chaque lot de produits, garantissant la transparence tout au long de la chaîne d'approvisionnement.",
-    "recentTitle": "Lots Récemment Vérifiés",
-    "recentDescription": "Explorez certains des derniers parcours de produits sur la plateforme.",
-    "noRecentBatches": "Aucun lot récemment vérifié trouvé.",
-    "producerLabel": "Producteur",
-    "harvestDateLabel": "Date de Récolte",
-    "viewReportButton": "Voir le Rapport Complet",
-    "detailPage": {
-      "backLink": "Retour au Hub de Traçabilité",
-      "invalidIdError": "Aucun ID de lot valide fourni.",
-      "loadError": "Échec du chargement de l'historique de traçabilité pour ce lot.",
-      "notFoundTitle": "Lot non trouvé",
-      "notFoundDescription": "Le rapport de traçabilité pour cet ID n'a pas pu être trouvé.",
-      "traceableProduct": "Produit Traçable",
-      "batchIdLabel": "ID du Lot",
-      "producerLabel": "Producteur",
-      "harvestDateLabel": "Date de Récolte",
-      "yieldLabel": "Rendement Initial",
-      "qualityLabel": "Classe de Qualité",
-      "notSpecified": "Non spécifié",
-      "journeyTitle": "Parcours du Produit",
-      "journeyDescription": "Un enregistrement chronologique des événements pour ce lot.",
-      "noEventDetails": "Aucun détail spécifique pour cet événement.",
-      "noEventsFound": "Aucun événement de traçabilité n'a encore été enregistré pour ce lot.",
-      "sustainablyGrownTitle": "Cultivé de Manière Durable",
-      "sustainablyGrownDescription": "Ce produit a été cultivé en utilisant des pratiques conformes aux principes durables et biologiques, sur la base des intrants enregistrés.",
-      "geoLocationLabel": "Géolocalisation",
-      "observationType": "Type d'Observation",
-      "details": "Détails",
-      "aiDiagnosis": "Diagnostic IA"
-    }
-  },
-  "Forums": {
-    "topic": {
-      "unknownUser": "Utilisateur inconnu",
-      "postMeta": "par {{author}} le {{date}}",
-      "buttons": {
-        "createPost": "Ajouter une réponse",
-        "loadMore": "Charger plus",
-        "loadingMore": "Chargement..."
-      },
-      "noPosts": {
-        "title": "Aucun message pour l'instant",
-        "description": "Soyez le premier à répondre à ce sujet.",
-        "button": "Ajouter une réponse"
-      },
-      "notFound": {
-        "title": "Sujet introuvable",
-        "description": "Le sujet que vous recherchez n'existe pas.",
-        "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Erreur lors du chargement des messages",
-          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
-        },
-        "loadTopic": {
-          "title": "Erreur de chargement du sujet",
-          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
-        }
-      }
-    }
   }
 }
 
+    

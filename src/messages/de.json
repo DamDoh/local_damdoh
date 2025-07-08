@@ -583,74 +583,7 @@
     "adTitle": "DamDoh Markttrends",
     "adDescription": "Erhalten Sie tägliche Einblicke in Preis- und Nachfragetrends.",
     "adButton": "Mehr erfahren"
-  },
-  "traceabilityPage": {
-    "title": "Produkt-Rückverfolgbarkeit",
-    "description": "Verfolgen Sie den Weg Ihrer Lebensmittel vom Bauernhof bis zur Gabel mit einer Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "VTI oder Chargen-ID eingeben...",
-    "trackButton": "Verfolgen",
-    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die jeder Produktcharge zugewiesen wird und Transparenz entlang der Lieferkette gewährleistet.",
-    "recentTitle": "Kürzlich verifizierte Chargen",
-    "recentDescription": "Entdecken Sie einige der neuesten Produktreisen auf der Plattform.",
-    "noRecentBatches": "Keine kürzlich verifizierten Chargen gefunden.",
-    "producerLabel": "Hersteller",
-    "harvestDateLabel": "Erntedatum",
-    "viewReportButton": "Vollständigen Bericht anzeigen",
-    "detailPage": {
-      "backLink": "Zurück zur Rückverfolgbarkeits-Zentrale",
-      "invalidIdError": "Keine gültige Chargen-ID angegeben.",
-      "loadError": "Fehler beim Laden der Rückverfolgbarkeitshistorie für diese Charge.",
-      "notFoundTitle": "Charge nicht gefunden",
-      "notFoundDescription": "Der Rückverfolgbarkeitsbericht für diese ID konnte nicht gefunden werden.",
-      "traceableProduct": "Rückverfolgbares Produkt",
-      "batchIdLabel": "Chargen-ID",
-      "producerLabel": "Hersteller",
-      "harvestDateLabel": "Erntedatum",
-      "yieldLabel": "Anfänglicher Ertrag",
-      "qualityLabel": "Qualitätsgrad",
-      "notSpecified": "Nicht angegeben",
-      "journeyTitle": "Produktreise",
-      "journeyDescription": "Eine chronologische Aufzeichnung der Ereignisse für diese Charge.",
-      "noEventDetails": "Keine spezifischen Details für dieses Ereignis.",
-      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgbarkeitsereignisse protokolliert.",
-      "sustainablyGrownTitle": "Nachhaltig angebaut",
-      "sustainablyGrownDescription": "Dieses Produkt wurde unter Verwendung von Praktiken angebaut, die den Prinzipien der nachhaltigen und biologischen Landwirtschaft entsprechen, basierend auf protokollierten Betriebsmitteln.",
-      "geoLocationLabel": "Geolokalisierung",
-      "observationType": "Beobachtungstyp",
-      "details": "Details",
-      "aiDiagnosis": "KI-Diagnose"
-    }
-  },
-  "Forums": {
-    "topic": {
-      "unknownUser": "Unbekannter Benutzer",
-      "postMeta": "von {{author}} am {{date}}",
-      "buttons": {
-        "createPost": "Antwort hinzufügen",
-        "loadMore": "Mehr laden",
-        "loadingMore": "Lädt mehr..."
-      },
-      "noPosts": {
-        "title": "Noch keine Beiträge",
-        "description": "Seien Sie der Erste, der auf dieses Thema antwortet.",
-        "button": "Antwort hinzufügen"
-      },
-      "notFound": {
-        "title": "Thema nicht gefunden",
-        "description": "Das gesuchte Thema existiert nicht.",
-        "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Fehler beim Laden der Beiträge",
-          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
-        },
-        "loadTopic": {
-          "title": "Fehler beim Laden des Themas",
-          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
-        }
-      }
-    }
   }
 }
 
+    

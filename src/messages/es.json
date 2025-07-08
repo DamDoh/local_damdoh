@@ -583,74 +583,7 @@
     "adTitle": "Tendencias del Mercado de DamDoh",
     "adDescription": "Obtenga información diaria sobre las tendencias de precios y demanda.",
     "adButton": "Aprender más"
-  },
-  "traceabilityPage": {
-    "title": "Trazabilidad de Productos",
-    "description": "Rastrea el viaje de tus alimentos desde la granja hasta la mesa con un ID de Trazabilidad Vibrante (VTI).",
-    "inputPlaceholder": "Introduce el VTI o ID de lote...",
-    "trackButton": "Rastrear",
-    "vtiDescription": "Un VTI es un identificador único asignado a cada lote de productos, asegurando la transparencia en toda la cadena de suministro.",
-    "recentTitle": "Lotes Verificados Recientemente",
-    "recentDescription": "Explora algunos de los viajes de productos más recientes en la plataforma.",
-    "noRecentBatches": "No se encontraron lotes verificados recientemente.",
-    "producerLabel": "Productor",
-    "harvestDateLabel": "Fecha de Cosecha",
-    "viewReportButton": "Ver Informe Completo",
-    "detailPage": {
-      "backLink": "Volver al Centro de Trazabilidad",
-      "invalidIdError": "No se proporcionó un ID de lote válido.",
-      "loadError": "Error al cargar el historial de trazabilidad de este lote.",
-      "notFoundTitle": "Lote no encontrado",
-      "notFoundDescription": "No se pudo encontrar el informe de trazabilidad para este ID.",
-      "traceableProduct": "Producto Trazable",
-      "batchIdLabel": "ID de Lote",
-      "producerLabel": "Productor",
-      "harvestDateLabel": "Fecha de Cosecha",
-      "yieldLabel": "Rendimiento Inicial",
-      "qualityLabel": "Grado de Calidad",
-      "notSpecified": "No especificado",
-      "journeyTitle": "Viaje del Producto",
-      "journeyDescription": "Un registro cronológico de los eventos para este lote.",
-      "noEventDetails": "No hay detalles específicos para este evento.",
-      "noEventsFound": "Aún no se han registrado eventos de trazabilidad para este lote.",
-      "sustainablyGrownTitle": "Cultivado de Forma Sostenible",
-      "sustainablyGrownDescription": "Este producto fue cultivado utilizando prácticas que se alinean con los principios sostenibles y orgánicos, según los insumos registrados.",
-      "geoLocationLabel": "Geolocalización",
-      "observationType": "Tipo de Observación",
-      "details": "Detalles",
-      "aiDiagnosis": "Diagnóstico de IA"
-    }
-  },
-  "Forums": {
-    "topic": {
-      "unknownUser": "Usuario Desconocido",
-      "postMeta": "por {{author}} el {{date}}",
-      "buttons": {
-        "createPost": "Agregar Respuesta",
-        "loadMore": "Cargar Más",
-        "loadingMore": "Cargando Más..."
-      },
-      "noPosts": {
-        "title": "Aún no hay publicaciones",
-        "description": "Sé el primero en responder a este tema.",
-        "button": "Agregar Respuesta"
-      },
-      "notFound": {
-        "title": "Tema no encontrado",
-        "description": "El tema que estás buscando no existe.",
-        "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error al cargar publicaciones",
-          "description": "Ocurrió un error al cargar las publicaciones para este tema."
-        },
-        "loadTopic": {
-          "title": "Error al cargar tema",
-          "description": "Ocurrió un error al cargar los detalles del tema."
-        }
-      }
-    }
   }
 }
 
+    
