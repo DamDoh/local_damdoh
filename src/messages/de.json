@@ -138,5 +138,39 @@
     "search": "Suche",
     "forums": "Foren",
     "profile": "Profil"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Ihre Aktionen werden gespeichert und synchronisiert, wenn Sie wieder eine Verbindung herstellen."
+      },
+      "syncing": {
+        "title": "Offline-Änderungen werden synchronisiert...",
+        "description": "{count, plural, one {# Aktion wird} other {# Aktionen werden}} auf den Server hochgeladen."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen!",
+        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Nicht alle Offline-Änderungen konnten synchronisiert werden. Ein neuer Versuch wird später gestartet."
+      },
+      "queued": {
+        "title": "Aktion in die Warteschlange gestellt",
+        "description": "Diese Aktion wird ausgeführt, sobald Sie online sind."
+      }
+    },
+    "tooltip": {
+      "syncing": "Synchronisiere {count, plural, one {# ausstehende Aktion} other {# ausstehende Aktionen}}...",
+      "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} warten auf Synchronisierung",
+      "onlineSynced": "Online | Alle Änderungen synchronisiert",
+      "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
+    }
   }
 }

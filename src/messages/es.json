@@ -138,5 +138,39 @@
     "search": "Buscar",
     "forums": "Foros",
     "profile": "Perfil"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "¡Estás en línea de nuevo!",
+        "description": "Tu conexión ha sido restablecida."
+      },
+      "offline": {
+        "title": "Actualmente estás desconectado",
+        "description": "Tus acciones se guardarán y sincronizarán cuando te reconectes."
+      },
+      "syncing": {
+        "title": "Sincronizando cambios sin conexión...",
+        "description": "Subiendo {count, plural, one {# acción} other {# acciones}} al servidor."
+      },
+      "synced": {
+        "title": "¡Sincronización completa!",
+        "description": "Todos tus cambios sin conexión han sido guardados."
+      },
+      "syncFailed": {
+        "title": "Sincronización fallida",
+        "description": "No se pudieron sincronizar todos los cambios sin conexión. Se reintentará más tarde."
+      },
+      "queued": {
+        "title": "Acción en cola",
+        "description": "Esta acción se realizará una vez que estés en línea."
+      }
+    },
+    "tooltip": {
+      "syncing": "Sincronizando {count, plural, one {# acción pendiente} other {# acciones pendientes}}...",
+      "onlinePending": "En línea | {count, plural, one {# acción} other {# acciones}} pendientes de sincronización",
+      "onlineSynced": "En línea | Todos los cambios sincronizados",
+      "offline": "Desconectado | {count, plural, one {# acción} other {# acciones}} en cola"
+    }
   }
 }
