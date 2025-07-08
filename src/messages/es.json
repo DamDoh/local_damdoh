@@ -182,6 +182,23 @@
         }
       }
     }
+  },
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Encuentre profesionales y servicios calificados, o publique su propia experiencia.",
+    "listServiceButton": "Ofrecer su Servicio",
+    "searchPlaceholder": "Buscar habilidades o servicios...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las categorías",
+    "noResultsTitle": "No se encontraron servicios",
+    "noResultsDescription": "Intente ajustar sus términos de búsqueda o filtros. ¡Quizás haya una oportunidad para que usted sea el primero en ofrecer este servicio!",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "No se pudieron obtener los servicios. Por favor, inténtelo de nuevo más tarde."
+      }
+    }
   }
 }
     

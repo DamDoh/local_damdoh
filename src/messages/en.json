@@ -182,6 +182,23 @@
         }
       }
     }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled professionals and services, or list your own expertise.",
+    "listServiceButton": "List Your Service",
+    "searchPlaceholder": "Search for skills or services...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search terms or filters. There may be an opportunity for you to be the first to offer this service!",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Could not fetch services. Please try again later."
+      }
+    }
   }
 }
     

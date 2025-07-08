@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,11 +11,11 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Users } from "lucide-react"; 
 import Link from "next/link";
-import { getAllMarketplaceItemsFromDB } from "@/lib/server-actions";
 import type { MarketplaceItem } from "@/lib/types";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useToast } from "@/hooks/use-toast";
 import { AGRICULTURAL_CATEGORIES } from "@/lib/category-data";
+import { performSearch } from "@/lib/server-actions";
 
 function TalentPageSkeleton() {
     const t = useTranslations('talentExchangePage');
@@ -32,7 +32,8 @@ function TalentPageSkeleton() {
                         <Skeleton className="h-10 w-full" />
                         <Skeleton className="h-10 w-full" />
                     </div>
-                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <Skeleton className="h-56 w-full" />
                         <Skeleton className="h-56 w-full" />
                         <Skeleton className="h-56 w-full" />
                         <Skeleton className="h-56 w-full" />
@@ -54,51 +55,53 @@ export default function TalentExchangePage() {
 
     const serviceCategories = useMemo(() => AGRICULTURAL_CATEGORIES.filter(cat => cat.parent === 'services'), []);
 
-    useEffect(() => {
-        const fetchItems = async () => {
-            setIsLoading(true);
-            try {
-                const result = await getAllMarketplaceItemsFromDB();
-                setItems(Array.isArray(result) ? (result as MarketplaceItem[]) : []);
-            } catch (error) {
-                console.error("Failed to fetch marketplace items:", error);
-                toast({
-                    variant: "destructive",
-                    title: t('toast.error.title'),
-                    description: t('toast.error.description'),
-                });
-                setItems([]);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchItems();
-    }, [toast, t]);
+    const fetchServices = useCallback(async () => {
+      setIsLoading(true);
+      const filters: { type: string, value: string }[] = [{ type: 'listingType', value: 'Service' }];
+      if (categoryFilter !== 'all') {
+        filters.push({ type: 'category', value: categoryFilter });
+      }
 
-    const filteredServices = useMemo(() => {
-        if (!Array.isArray(items)) return [];
+      const searchPayload = {
+        mainKeywords: searchTerm.split(' ').filter(Boolean),
+        identifiedLocation: locationFilter,
+        suggestedFilters: filters,
+      };
 
-        return items.filter(item => {
-            if (!item || item.listingType !== 'Service') return false;
-
-            const skillsArray: string[] = Array.isArray(item.skillsRequired)
-                ? item.skillsRequired
-                : (typeof item.skillsRequired === 'string' && item.skillsRequired)
-                    ? item.skillsRequired.split(',').map(s => s.trim())
-                    : [];
-
-            const searchLower = searchTerm.toLowerCase();
-            const locationLower = locationFilter.toLowerCase();
-
-            const nameMatch = (item.name || '').toLowerCase().includes(searchLower);
-            const descriptionMatch = (item.description || '').toLowerCase().includes(searchLower);
-            const skillsMatch = skillsArray.join(' ').toLowerCase().includes(searchLower);
-            const locationMatch = locationFilter === "" || (item.location || '').toLowerCase().includes(locationLower);
-            const categoryMatch = categoryFilter === 'all' || item.category === categoryFilter;
-
-            return (nameMatch || descriptionMatch || skillsMatch) && locationMatch && categoryMatch;
+      try {
+        const results = await performSearch(searchPayload);
+        const mappedItems = results.map((res: any): MarketplaceItem => ({
+            id: res.itemId,
+            name: res.title,
+            description: res.description,
+            imageUrl: res.imageUrl,
+            location: res.location,
+            listingType: res.listingType,
+            compensation: res.compensation,
+            experienceLevel: res.experienceLevel,
+            skillsRequired: res.skillsRequired,
+            category: res.tags?.find((tag: string) => serviceCategories.some(sc => sc.id === tag)) || '',
+            sellerId: 'unknown',
+            createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+            updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
+        }));
+        setItems(mappedItems);
+      } catch (error) {
+        console.error("Failed to fetch services:", error);
+        toast({
+            variant: "destructive",
+            title: t('toast.error.title'),
+            description: t('toast.error.description'),
         });
-    }, [searchTerm, locationFilter, categoryFilter, items]);
+        setItems([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }, [searchTerm, locationFilter, categoryFilter, serviceCategories, toast, t]);
+
+    useEffect(() => {
+        fetchServices();
+    }, [fetchServices]);
 
 
     if (isLoading) {
@@ -158,9 +161,9 @@ export default function TalentExchangePage() {
                         </Select>
                     </div>
 
-                    {filteredServices.length > 0 ? (
+                    {items.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                            {filteredServices.map(item => <ItemCard key={item.id} item={item} />)}
+                            {items.map(item => <ItemCard key={item.id} item={item} />)}
                         </div>
                     ) : (
                         <div className="text-center py-16 border-2 border-dashed rounded-lg">

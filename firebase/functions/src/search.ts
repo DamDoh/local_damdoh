@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -101,9 +100,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
  * @return {Promise<{results: any[]}>} A promise that resolves with search results.
  */
 export const performSearch = functions.https.onCall(async (data, context) => {
-    // Note: No auth check here for now to allow guest browsing.
-    // In a production app, you might want to add rate limiting or other protections.
-    const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit } = data;
+    const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit, limit = 50 } = data;
     
     if (!Array.isArray(mainKeywords)) {
         throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
@@ -112,18 +109,10 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
-        // --- Firestore Query Building ---
-        // This dynamically builds the query based on provided filters.
-        // For this to work, you MUST create composite indexes in Firestore.
-        // Firebase will provide a link in the console logs to create them the first time a query fails.
-        // Example indexes needed:
-        // - (listingType, price, updatedAt)
-        // - (tags, price, updatedAt)
-        // - (location, listingType, price, updatedAt)
-
         const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
         const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
         
+        // Apply structured filters first - this is more efficient
         if (listingTypeFilter) {
             query = query.where('listingType', '==', listingTypeFilter);
         }
@@ -131,55 +120,56 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             query = query.where('tags', 'array-contains', categoryFilter);
         }
         if (identifiedLocation) {
-            query = query.where("location", "==", identifiedLocation);
+            // Use inequality for partial location matching
+            query = query.where("location", ">=", identifiedLocation);
+            query = query.where("location", "<=", identifiedLocation + '\uf8ff');
         }
         if (perUnit) {
             query = query.where("perUnit", "==", perUnit);
         }
 
-        // Price filtering
-        let hasInequalityFilter = false;
-        if (typeof minPrice === 'number') {
+        // Price filtering - requires ordering by price first
+        let hasPriceFilter = false;
+        if (typeof minPrice === 'number' && minPrice > 0) {
             query = query.where('price', '>=', minPrice);
-            hasInequalityFilter = true;
+            hasPriceFilter = true;
         }
-        if (typeof maxPrice === 'number') {
+        if (typeof maxPrice === 'number' && maxPrice > 0) {
             query = query.where('price', '<=', maxPrice);
-            hasInequalityFilter = true;
+            hasPriceFilter = true;
         }
         
-        // --- Keyword Filtering (In-Memory) ---
-        // We do this after the main query to combine keyword search with structured filters.
-        // This is a tradeoff for not using a dedicated search service like Algolia.
-        const searchTerms = mainKeywords
-            .flatMap(k => (k || '').toLowerCase().split(/\s+/))
-            .filter(Boolean);
-
-        if (hasInequalityFilter) {
+        // If we have a price filter, we must order by price.
+        // Otherwise, order by the most recent.
+        if (hasPriceFilter) {
             query = query.orderBy('price', 'asc');
+        } else {
+            query = query.orderBy("updatedAt", "desc");
         }
-        
-        // Always add a default sort order to ensure consistent results.
-        query = query.orderBy("updatedAt", "desc");
 
-        const snapshot = await query.limit(50).get();
+        query = query.limit(limit);
+
+        const snapshot = await query.get();
         
         let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // If there are keywords, perform a secondary filter in memory.
+        // Keyword filtering is now done IN-MEMORY on the reduced, pre-filtered dataset.
+        // This is a necessary trade-off due to Firestore query limitations when combining multiple complex filters.
+        const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
+
         if (searchTerms.length > 0) {
             results = results.filter(r => {
-                const searchableText = r.searchable_terms?.join(' ') || '';
+                const searchableText = (r.searchable_terms || []).join(' ');
                 return searchTerms.some(term => searchableText.includes(term));
             });
         }
         
         return { results };
 
-    } catch (error) {
+    } catch (error: any) {
         console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
-         if ((error as any).code === 'FAILED_PRECONDITION') {
-             throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
+         if (error.code === 'FAILED_PRECONDITION') {
+             throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link. This usually happens when combining multiple filters.");
         }
         throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
     }

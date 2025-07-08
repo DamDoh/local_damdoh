@@ -182,6 +182,23 @@
         }
       }
     }
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte und Dienstleistungen oder bieten Sie Ihre eigene Expertise an.",
+    "listServiceButton": "Ihre Dienstleistung anbieten",
+    "searchPlaceholder": "Nach Fähigkeiten oder Dienstleistungen suchen...",
+    "locationPlaceholder": "Nach Ort filtern...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Passen Sie Ihre Suchbegriffe oder Filter an. Vielleicht gibt es eine Gelegenheit für Sie, als Erster diese Dienstleistung anzubieten!",
+    "toast": {
+      "error": {
+        "title": "Fehler",
+        "description": "Dienstleistungen konnten nicht abgerufen werden. Bitte versuchen Sie es später erneut."
+      }
+    }
   }
 }
     

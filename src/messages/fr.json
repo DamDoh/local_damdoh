@@ -182,6 +182,23 @@
         }
       }
     }
+  },
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez des professionnels et des services qualifiés, ou proposez votre propre expertise.",
+    "listServiceButton": "Proposer Votre Service",
+    "searchPlaceholder": "Rechercher des compétences ou des services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "noResultsTitle": "Aucun Service Trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos termes de recherche ou vos filtres. Il y a peut-être une opportunité pour vous d'être le premier à offrir ce service !",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de récupérer les services. Veuillez réessayer plus tard."
+      }
+    }
   }
 }
     
