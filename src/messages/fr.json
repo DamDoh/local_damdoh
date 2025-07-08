@@ -188,5 +188,8 @@
         "description": "Votre modification a été sauvegardée et sera synchronisée lorsque vous serez en ligne."
       }
     }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
   }
 }

@@ -188,5 +188,8 @@
         "description": "Your change has been saved and will sync when online."
       }
     }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Toggle language"
   }
 }
