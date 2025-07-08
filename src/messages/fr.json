@@ -88,26 +88,26 @@
       "errorTitle": "Erreur"
     }
   },
-  "AppFooter": {
-    "tagline": "Connecter le monde agricole, de la semence à la table.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Nouvelles de l'industrie",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Obtenir sur Google Play",
-    "appStoreAlt": "Télécharger dans l'App Store"
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "notifications": "Alertes",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Aide",
+    "logOut": "Se déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
   },
   "LanguageSwitcher": {
     "toggle": "Changer de langue"
@@ -163,32 +163,121 @@
       "button": "Rejoindre le Réseau DamDoh"
     }
   },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Recherche",
-    "forums": "Forums",
-    "profile": "Profil"
+  "AppFooter": {
+    "tagline": "Connecter le monde agricole, de la semence à la table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Nouvelles de l'industrie",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "copyright": "© {year} {appName}. Tous droits réservés.",
+    "getMobileApp": "Obtenez l'application mobile",
+    "googlePlayAlt": "Obtenir sur Google Play",
+    "appStoreAlt": "Télécharger dans l'App Store"
   },
-  "AppHeader": {
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion Ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "notifications": "Alertes",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "searchPlaceholder": "Rechercher personnes, produits, services...",
-    "signIn": "Se connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon Profil",
-    "settings": "Paramètres",
-    "helpCenter": "Aide",
-    "logOut": "Se déconnecter",
-    "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre"
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez des professionnels agricoles qualifiés ou offrez votre expertise.",
+    "listServiceButton": "Annoncez votre service",
+    "searchPlaceholder": "Rechercher des compétences ou des services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de récupérer les services."
+      }
+    },
+    "noResultsTitle": "Aucun service trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou soyez le premier à lister un service dans cette catégorie."
+  },
+  "myNetworkPage": {
+    "backLink": "Retour au Réseau",
+    "myConnectionsTab": "Mes Connexions ({count})",
+    "pendingRequestsTab": "Demandes en Attente",
+    "connectionsTitle": "Mes Connexions",
+    "connectionsDescription": "Votre réseau de partenaires de confiance sur DamDoh.",
+    "noConnections": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau !",
+    "requestsTitle": "Demandes de Connexion",
+    "requestsDescription": "Acceptez ou refusez les demandes pour développer votre réseau.",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}"
+  },
+  "InsuranceProductsPage": {
+    "title": "Produits d'Assurance",
+    "description": "Affichez et gérez vos offres de produits d'assurance.",
+    "createButton": "Créer un Nouveau Produit",
+    "table": {
+      "productName": "Nom du Produit",
+      "type": "Type",
+      "status": "Statut",
+      "premium": "Prime"
+    },
+    "noProducts": "Vous n'avez encore créé aucun produit d'assurance.",
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Retour aux Produits",
+    "title": "Créer un Produit d'Assurance",
+    "description": "Définissez un nouveau produit d'assurance pour le marché.",
+    "form": {
+      "nameLabel": "Nom du Produit",
+      "namePlaceholder": "Ex: Plan de Protection contre la Sécheresse",
+      "typeLabel": "Type de Produit",
+      "typePlaceholder": "Sélectionnez un type",
+      "crop": "Assurance Récolte",
+      "livestock": "Assurance Bétail",
+      "asset": "Assurance Actifs",
+      "weather": "Assurance Météo",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Décrivez brièvement ce que ce produit couvre.",
+      "coverageLabel": "Détails de la Couverture",
+      "coveragePlaceholder": "Détaillez les risques spécifiques, les limites de couverture et les franchises.",
+      "premiumLabel": "Prime (USD)",
+      "premiumPlaceholder": "Ex: 250.00",
+      "currencyLabel": "Devise",
+      "submitButton": "Créer le Produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant que Fournisseur d'Assurance.",
+      "successTitle": "Produit Créé !",
+      "successDescription": "Le produit '{{name}}' a été créé avec succès.",
+      "errorTitle": "Échec de la Création"
+    }
+  },
+  "AgriTechDashboard": {
+    "title": "Hub Agri-Tech & Développeurs",
+    "sandboxTitle": "Statut du Sandbox",
+    "statusLabel": "Statut",
+    "lastResetLabel": "Dernière réinitialisation",
+    "accessDocsButton": "Accéder à la Doc API",
+    "integrationsTitle": "Projets d'Intégration",
+    "activeProjects": "Projets Actifs",
+    "integrationsDescription": "Affichez et gérez vos projets d'intégration en cours.",
+    "proposeIntegrationButton": "Proposer une Nouvelle Intégration",
+    "apiKeysTitle": "Clés API",
+    "apiKeysDescription": "Gérez vos clés API pour accéder aux services DamDoh.",
+    "noApiKeys": "Aucune clé API trouvée. Générez-en une nouvelle pour commencer.",
+    "generateNewKeyButton": "Générer une Nouvelle Clé API",
+    "table": {
+      "key": "Clé",
+      "status": "Statut",
+      "environment": "Environnement",
+      "created": "Créé le",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "Clé API copiée dans le presse-papiers."
   }
 }

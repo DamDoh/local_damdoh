@@ -8,7 +8,6 @@ import type {
     ForumPostSchema,
     AgriEventSchema
 } from './schemas';
-import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -755,7 +754,7 @@ export interface Message {
 export interface MobileHomeCategory {
     id: string;
     name: string;
-    icon: React.ElementType;
+    icon: LucideIcon;
     href: string;
     dataAiHint?: string;
 }

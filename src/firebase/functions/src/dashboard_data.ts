@@ -758,7 +758,7 @@ export const getResearcherDashboardData = functions.https.onCall(
               return {
                   id: doc.id,
                   title: article.title_en || article.title_km || "Untitled Article",
-                  status: article.status || 'Published',
+                  status: 'Published' as const // Placeholder status
               };
           });
 
@@ -803,17 +803,16 @@ export const getAgronomistDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 title: article.title_en || article.title_km || "Untitled Article",
-                status: article.status || 'Published',
+                status: 'Published' as const,
             };
         });
 
         // Mock data for other sections
         const assignedFarmersOverview = [
-            { id: 'farmerJoe', name: 'Joe\'s Family Farm', farmLocation: 'California, USA', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 },
-            { id: 'quinoaCoopPeru', name: 'Quinoa Co-op Peru', farmLocation: 'Andes, Peru', lastConsultation: new Date(Date.now() - 86400000 * 14).toISOString(), alerts: 0 },
+            { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
         ];
         const pendingConsultationRequests = [
-            { id: 'req1', farmerId: 'sunnyAcresFarm', farmerName: 'Sunny Acres Farm', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
+            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
         ];
 
         return {

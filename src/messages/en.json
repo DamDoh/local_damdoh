@@ -88,26 +88,26 @@
       "errorTitle": "Error"
     }
   },
-  "AppFooter": {
-    "tagline": "Connecting the agricultural world, from seed to table.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the Mobile App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "notifications": "Alerts",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme"
   },
   "LanguageSwitcher": {
     "toggle": "Switch language"
@@ -163,32 +163,121 @@
       "button": "Join the DamDoh Network"
     }
   },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
+  "AppFooter": {
+    "tagline": "Connecting the agricultural world, from seed to table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "notifications": "Alerts",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme"
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled agricultural professionals or offer your expertise.",
+    "listServiceButton": "List Your Service",
+    "searchPlaceholder": "Search for skills or services...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Failed to fetch services."
+      }
+    },
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or be the first to list a service in this category."
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "Your network of trusted partners on DamDoh.",
+    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
+    "requestsTitle": "Connection Requests",
+    "requestsDescription": "Accept or decline requests to grow your network.",
+    "noRequests": "You have no pending connection requests.",
+    "sentTimeAgo": "Sent {timeAgo}"
+  },
+  "InsuranceProductsPage": {
+    "title": "Insurance Products",
+    "description": "View and manage your insurance product offerings.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "noProducts": "You have not created any insurance products yet.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create Insurance Product",
+    "description": "Define a new insurance product for the marketplace.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Drought Protection Plan",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop Insurance",
+      "livestock": "Livestock Insurance",
+      "asset": "Asset Insurance",
+      "weather": "Weather-based Insurance",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Briefly describe what this product covers.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Detail the specific perils, coverage limits, and deductibles.",
+      "premiumLabel": "Premium (USD)",
+      "premiumPlaceholder": "e.g., 250.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in as an Insurance Provider.",
+      "successTitle": "Product Created!",
+      "successDescription": "The product '{{name}}' was created successfully.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+  "AgriTechDashboard": {
+    "title": "Agri-Tech & Developer Hub",
+    "sandboxTitle": "Sandbox Status",
+    "statusLabel": "Status",
+    "lastResetLabel": "Last Reset",
+    "accessDocsButton": "Access API Docs",
+    "integrationsTitle": "Integration Projects",
+    "activeProjects": "Active Projects",
+    "integrationsDescription": "View and manage your ongoing integration projects.",
+    "proposeIntegrationButton": "Propose New Integration",
+    "apiKeysTitle": "API Keys",
+    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
+    "noApiKeys": "No API keys found. Generate a new one to get started.",
+    "generateNewKeyButton": "Generate New API Key",
+    "table": {
+      "key": "Key",
+      "status": "Status",
+      "environment": "Environment",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "API Key copied to clipboard."
   }
 }
