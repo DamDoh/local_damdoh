@@ -220,7 +220,12 @@
     "getMobileApp": "Obtén la aplicación móvil",
     "googlePlayAlt": "Consíguelo en Google Play",
     "appStoreAlt": "Descargar en la App Store"
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
   }
 }
-
-    

@@ -220,7 +220,12 @@
     "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
     "googlePlayAlt": "ទាញយកនៅលើ Google Play",
     "appStoreAlt": "ទាញយកនៅលើ App Store"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   }
 }
-
-    

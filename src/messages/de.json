@@ -220,7 +220,12 @@
     "getMobileApp": "Holen Sie sich die mobile App",
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
+  },
+  "MobileBottomNav": {
+    "home": "Startseite",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
   }
 }
-
-    
