@@ -265,5 +265,21 @@
     "maintenanceTitle": "សំណើរសុំការថែទាំ",
     "viewRequestButton": "មើលសំណើ",
     "noMaintenance": "មិនមានសំណើរសុំការថែទាំនៅពេលនេះទេ។"
+  },
+  "WasteManagementDashboard": {
+    "title": "មជ្ឈមណ្ឌលគ្រប់គ្រងសំណល់ និងជីកំប៉ុស",
+    "wasteStreamsTitle": "ស្ទ្រីមសំណល់ចូល",
+    "from": "ពី",
+    "acceptButton": "ទទួលយក",
+    "noWasteStreams": "គ្មានស្ទ្រីមសំណល់ចូលដើម្បីដំណើរការទេ។",
+    "compostBatchesTitle": "បាច់ជីកំប៉ុសកំពុងដំណើរការ",
+    "batch": "បាច់",
+    "estReady": "ត្រៀមរួចរាល់",
+    "noCompostBatches": "គ្មានបាច់ជីកំប៉ុសសកម្មទេ។",
+    "inventoryTitle": "បញ្ជីផលិតផលសម្រេច",
+    "inStock": "ក្នុងស្តុក",
+    "noFinishedProducts": "គ្មានផលិតផលសម្រេចក្នុងបញ្ជីទេ។",
+    "sellButton": "ដាក់លក់ផលិតផលនៅលើទីផ្សារ"
   }
 }
+

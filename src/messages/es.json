@@ -265,5 +265,21 @@
     "maintenanceTitle": "Solicitudes de Mantenimiento",
     "viewRequestButton": "Ver Solicitud",
     "noMaintenance": "No hay solicitudes de mantenimiento en este momento."
+  },
+  "WasteManagementDashboard": {
+    "title": "Centro de Gestión de Residuos y Compostaje",
+    "wasteStreamsTitle": "Corrientes de Residuos Entrantes",
+    "from": "De",
+    "acceptButton": "Aceptar",
+    "noWasteStreams": "No hay corrientes de residuos entrantes para procesar.",
+    "compostBatchesTitle": "Lotes de Compost en Proceso",
+    "batch": "Lote",
+    "estReady": "Listo aprox.",
+    "noCompostBatches": "No hay lotes de compost activos.",
+    "inventoryTitle": "Inventario de Producto Terminado",
+    "inStock": "En Stock",
+    "noFinishedProducts": "No hay productos terminados en el inventario.",
+    "sellButton": "Listar Producto en el Mercado"
   }
 }
+

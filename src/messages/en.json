@@ -231,11 +231,11 @@
     "shipmentsTitle": "Tracked Shipments",
     "alertsTitle": "Compliance Alerts",
     "table": {
-      "vti": "VTI Link",
-      "destination": "Destination",
-      "status": "Status",
-      "carrier": "Carrier",
-      "location": "Location"
+        "vti": "VTI Link",
+        "destination": "Destination",
+        "status": "Status",
+        "carrier": "Carrier",
+        "location": "Location"
     },
     "prepareDocsButton": "Prepare Docs",
     "noDocs": "No documents pending.",
@@ -265,5 +265,21 @@
     "maintenanceTitle": "Maintenance Requests",
     "viewRequestButton": "View Request",
     "noMaintenance": "No maintenance requests at this time."
+  },
+  "WasteManagementDashboard": {
+    "title": "Waste Management & Composting Hub",
+    "wasteStreamsTitle": "Incoming Waste Streams",
+    "from": "From",
+    "acceptButton": "Accept",
+    "noWasteStreams": "No incoming waste streams to process.",
+    "compostBatchesTitle": "Compost Batches in Progress",
+    "batch": "Batch",
+    "estReady": "Est. Ready",
+    "noCompostBatches": "No active compost batches.",
+    "inventoryTitle": "Finished Product Inventory",
+    "inStock": "In Stock",
+    "noFinishedProducts": "No finished products in inventory.",
+    "sellButton": "List Product on Marketplace"
   }
 }
+

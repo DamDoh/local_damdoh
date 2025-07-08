@@ -265,5 +265,21 @@
     "maintenanceTitle": "Wartungsanfragen",
     "viewRequestButton": "Anfrage anzeigen",
     "noMaintenance": "Derzeit keine Wartungsanfragen."
+  },
+  "WasteManagementDashboard": {
+    "title": "Hub für Abfallwirtschaft & Kompostierung",
+    "wasteStreamsTitle": "Eingehende Abfallströme",
+    "from": "Von",
+    "acceptButton": "Akzeptieren",
+    "noWasteStreams": "Keine eingehenden Abfallströme zu verarbeiten.",
+    "compostBatchesTitle": "Kompostchargen in Bearbeitung",
+    "batch": "Charge",
+    "estReady": "Voraussichtlich fertig",
+    "noCompostBatches": "Keine aktiven Kompostchargen.",
+    "inventoryTitle": "Fertigproduktinventar",
+    "inStock": "Auf Lager",
+    "noFinishedProducts": "Keine Fertigprodukte im Inventar.",
+    "sellButton": "Produkt auf dem Marktplatz anbieten"
   }
 }
+
