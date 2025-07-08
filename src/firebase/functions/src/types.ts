@@ -811,3 +811,22 @@ export interface PaymentLog {
     notes: string;
 }
 
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    skillsRequired: string[];
+    compensation: string;
+    experienceLevel: string;
+};
+
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
