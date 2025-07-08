@@ -635,6 +635,43 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
+
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
+
+export interface ApiKey {
+    id: string;
+    userId: string;
+    key: string;
+    description: string;
+    environment: 'Sandbox' | 'Production';
+    status: 'Active' | 'Revoked';
+    createdAt: string; // ISO string
+}
+
+
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -683,6 +720,10 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
+    // Re-introducing denormalized fields for use in FeedItemCard
+    userId: string;
+    userName: string;
+    userAvatar?: string;
 }
 
 export interface PollOption {
@@ -817,42 +858,6 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
-
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface ApiKey {
-    id: string;
-    userId: string;
-    key: string;
-    description: string;
-    environment: 'Sandbox' | 'Production';
-    status: 'Active' | 'Revoked';
-    createdAt: string; // ISO string
-}
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;

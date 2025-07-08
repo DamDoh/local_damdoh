@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -465,3 +464,4 @@ export const getInsuranceProducts = functions.https.onCall(async (data, context)
     
     return { products };
 });
+
