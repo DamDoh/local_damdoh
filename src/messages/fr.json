@@ -427,6 +427,32 @@
       "description": "Si vous ne trouvez pas ce que vous cherchez, notre équipe d'assistance se fera un plaisir de vous aider.",
       "button": "Contacter le Support"
     }
+  },
+  "industryNewsPage": {
+    "title": "Actualités du Secteur",
+    "description": "Restez informé des dernières tendances, recherches et mises à jour politiques dans le secteur agricole.",
+    "searchPlaceholder": "Rechercher des articles d'actualité...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Publié",
+    "categoryLabel": "Catégorie",
+    "readButton": "Lire la suite",
+    "noNews": {
+      "title": "Aucune actualité trouvée",
+      "description": "Revenez plus tard pour les dernières mises à jour de l'industrie agricole."
+    },
+    "news1": {
+      "title": "Les prix mondiaux des céréales augmentent en raison des perturbations de la chaîne d'approvisionnement",
+      "excerpt": "Un nouveau rapport d'AgriMarket Insights indique une forte augmentation des prix mondiaux des céréales, due à des goulots d'étranglement logistiques et à des changements climatiques."
+    },
+    "news2": {
+      "title": "L'UE met en œuvre des réglementations plus strictes sur les emballages durables",
+      "excerpt": "Les exportateurs de denrées alimentaires vers l'Union européenne doivent désormais se conformer à de nouvelles réglementations plus strictes visant à réduire les déchets plastiques dans les emballages alimentaires."
+    },
+    "news3": {
+      "title": "Percée dans les variétés de maïs résistantes à la sécheresse",
+      "excerpt": "Des chercheurs annoncent une avancée significative dans le développement de nouvelles variétés de maïs qui montrent une résilience remarquable aux conditions de sécheresse, offrant un espoir pour les régions arides."
+    }
   }
 }
-

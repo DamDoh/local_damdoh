@@ -427,6 +427,32 @@
       "description": "If you can't find what you're looking for, our support team is happy to assist.",
       "button": "Contact Support"
     }
+  },
+  "industryNewsPage": {
+    "title": "Industry News",
+    "description": "Stay informed with the latest trends, research, and policy updates in the agricultural sector.",
+    "searchPlaceholder": "Search news articles...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "readButton": "Read More",
+    "noNews": {
+      "title": "No News Found",
+      "description": "Check back later for the latest updates from the agricultural industry."
+    },
+    "news1": {
+      "title": "Global Grain Prices Surge Amidst Supply Chain Disruptions",
+      "excerpt": "A new report from AgriMarket Insights indicates a sharp increase in global grain prices, driven by logistical bottlenecks and changing weather patterns."
+    },
+    "news2": {
+      "title": "EU Implements Stricter Regulations on Sustainable Packaging",
+      "excerpt": "Food exporters to the European Union must now comply with new, stricter regulations aimed at reducing plastic waste in food packaging."
+    },
+    "news3": {
+      "title": "Breakthrough in Drought-Resistant Maize Varieties",
+      "excerpt": "Researchers announce a significant breakthrough in developing new maize varieties that show remarkable resilience to drought conditions, offering hope for arid regions."
+    }
   }
 }
-

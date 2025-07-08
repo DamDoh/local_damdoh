@@ -427,6 +427,32 @@
       "description": "Wenn Sie nicht finden, was Sie suchen, hilft Ihnen unser Support-Team gerne weiter.",
       "button": "Support kontaktieren"
     }
+  },
+  "industryNewsPage": {
+    "title": "Branchennachrichten",
+    "description": "Bleiben Sie informiert mit den neuesten Trends, Forschungsergebnissen und politischen Updates im Agrarsektor.",
+    "searchPlaceholder": "Nachrichtenartikel suchen...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "sourceLabel": "Quelle",
+    "publishedLabel": "Veröffentlicht",
+    "categoryLabel": "Kategorie",
+    "readButton": "Weiterlesen",
+    "noNews": {
+      "title": "Keine Nachrichten gefunden",
+      "description": "Schauen Sie später wieder vorbei für die neuesten Updates aus der Agrarindustrie."
+    },
+    "news1": {
+      "title": "Weltweite Getreidepreise steigen aufgrund von Lieferkettenstörungen",
+      "excerpt": "Ein neuer Bericht von AgriMarket Insights zeigt einen starken Anstieg der weltweiten Getreidepreise, angetrieben durch logistische Engpässe und veränderte Wetterbedingungen."
+    },
+    "news2": {
+      "title": "EU führt strengere Vorschriften für nachhaltige Verpackungen ein",
+      "excerpt": "Lebensmittelexporteure in die Europäische Union müssen nun neue, strengere Vorschriften zur Reduzierung von Plastikmüll in Lebensmittelverpackungen einhalten."
+    },
+    "news3": {
+      "title": "Durchbruch bei trockenresistenten Maissorten",
+      "excerpt": "Forscher verkünden einen bedeutenden Durchbruch bei der Entwicklung neuer Maissorten, die eine bemerkenswerte Widerstandsfähigkeit gegen Dürrebedingungen aufweisen und Hoffnung für aride Regionen bieten."
+    }
   }
 }
-

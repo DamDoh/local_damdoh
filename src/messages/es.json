@@ -427,6 +427,32 @@
       "description": "Si no encuentras lo que buscas, nuestro equipo de soporte estará encantado de ayudarte.",
       "button": "Contactar a Soporte"
     }
+  },
+  "industryNewsPage": {
+    "title": "Noticias del Sector",
+    "description": "Manténgase informado con las últimas tendencias, investigaciones y actualizaciones de políticas en el sector agrícola.",
+    "searchPlaceholder": "Buscar artículos de noticias...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las categorías",
+    "sourceLabel": "Fuente",
+    "publishedLabel": "Publicado",
+    "categoryLabel": "Categoría",
+    "readButton": "Leer más",
+    "noNews": {
+      "title": "No se encontraron noticias",
+      "description": "Vuelva más tarde para conocer las últimas actualizaciones del sector agrícola."
+    },
+    "news1": {
+      "title": "Los precios mundiales de los cereales aumentan en medio de interrupciones en la cadena de suministro",
+      "excerpt": "Un nuevo informe de AgriMarket Insights indica un fuerte aumento en los precios mundiales de los cereales, impulsado por cuellos de botella logísticos y patrones climáticos cambiantes."
+    },
+    "news2": {
+      "title": "La UE implementa regulaciones más estrictas sobre envases sostenibles",
+      "excerpt": "Los exportadores de alimentos a la Unión Europea ahora deben cumplir con nuevas y más estrictas regulaciones destinadas a reducir los residuos plásticos en los envases de alimentos."
+    },
+    "news3": {
+      "title": "Avance en variedades de maíz resistentes a la sequía",
+      "excerpt": "Investigadores anuncian un avance significativo en el desarrollo de nuevas variedades de maíz que muestran una notable resistencia a las condiciones de sequía, ofreciendo esperanza para las regiones áridas."
+    }
   }
 }
-
