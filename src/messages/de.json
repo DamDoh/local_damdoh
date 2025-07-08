@@ -17,7 +17,13 @@
       "location": "Standort",
       "energyNeed": "Geschätzter Energiebedarf",
       "status": "Status",
-      "action": "Aktion"
+      "action": "Aktion",
+      "name": "Name",
+      "dataType": "Datentyp",
+      "accessLevel": "Zugriffsebene",
+      "progress": "Fortschritt",
+      "collaborators": "Mitarbeiter",
+      "title": "Titel"
     },
     "viewLeadButton": "Lead anzeigen",
     "noLeads": "Derzeit keine Projekt-Leads.",
@@ -357,5 +363,40 @@
     "coverage": "Deckungssumme",
     "expires": "Läuft ab",
     "noActivePolicies": "Keine aktiven Policen gefunden."
+  },
+  "ResearcherDashboard": {
+    "title": "Forscher & Akademiker-Hub",
+    "datasetsTitle": "Verfügbare Datensätze",
+    "datasetsDescription": "Anonymisierte Datensätze für Ihre Forschungszwecke.",
+    "table": {
+      "name": "Name",
+      "dataType": "Datentyp",
+      "accessLevel": "Zugriffsebene",
+      "action": "Aktion",
+      "title": "Titel",
+      "progress": "Fortschritt",
+      "collaborators": "Mitarbeiter",
+      "status": "Status"
+    },
+    "requestAccessButton": "Zugang anfordern",
+    "noDatasets": "Derzeit sind keine Datensätze verfügbar.",
+    "projectsTitle": "Laufende Projekte",
+    "projectsDescription": "Ihre aktiven Forschungskooperationen auf der Plattform.",
+    "viewProjectButton": "Projekt ansehen",
+    "noProjects": "Sie haben keine laufenden Projekte.",
+    "contributionsTitle": "Wissens-Hub-Beiträge",
+    "contributionsDescription": "Artikel und Veröffentlichungen, die Sie beigesteuert haben.",
+    "viewButton": "Ansehen",
+    "noContributions": "Sie haben noch keine Beiträge verfasst.",
+    "noData": "Keine Dashboard-Daten verfügbar.",
+    "datasetsByTypeTitle": "Datensätze nach Typ",
+    "datasetsByTypeDescription": "Verteilung der verfügbaren Datensatztypen.",
+    "noDatasetsForChart": "Keine Datensätze für Diagramm verfügbar.",
+    "chart": {
+      "count": "Anzahl",
+      "published": "Veröffentlicht",
+      "pending": "Ausstehend",
+      "draft": "Entwurf"
+    }
   }
 }

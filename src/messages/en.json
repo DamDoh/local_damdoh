@@ -357,5 +357,40 @@
     "coverage": "Coverage",
     "expires": "Expires",
     "noActivePolicies": "No active policies found."
+  },
+  "ResearcherDashboard": {
+    "title": "Researcher & Academic Hub",
+    "datasetsTitle": "Available Datasets",
+    "datasetsDescription": "Anonymized datasets for your research needs.",
+    "table": {
+      "name": "Name",
+      "dataType": "Data Type",
+      "accessLevel": "Access Level",
+      "action": "Action",
+      "title": "Title",
+      "progress": "Progress",
+      "collaborators": "Collaborators",
+      "status": "Status"
+    },
+    "requestAccessButton": "Request Access",
+    "noDatasets": "No datasets are currently available.",
+    "projectsTitle": "Ongoing Projects",
+    "projectsDescription": "Your active research collaborations on the platform.",
+    "viewProjectButton": "View Project",
+    "noProjects": "You have no ongoing projects.",
+    "contributionsTitle": "Knowledge Hub Contributions",
+    "contributionsDescription": "Articles and publications you have contributed.",
+    "viewButton": "View",
+    "noContributions": "You have not authored any contributions yet.",
+    "noData": "No dashboard data available.",
+    "datasetsByTypeTitle": "Datasets by Type",
+    "datasetsByTypeDescription": "Breakdown of available dataset types.",
+    "noDatasetsForChart": "No datasets available for chart.",
+    "chart": {
+      "count": "Count",
+      "published": "Published",
+      "pending": "Pending",
+      "draft": "Draft"
+    }
   }
 }

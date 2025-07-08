@@ -8,17 +8,17 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button"; // Ensure Button is imported
+import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { FlaskConical, Database, Lightbulb } from 'lucide-react';
-import { ChartContainer, ChartLegend, ChartTooltip } from "@/components/ui/chart";
+import { ChartContainer, ChartLegend, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import type { ResearcherDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 
 // Import necessary chart components (assuming they exist in your project)
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell } from 'recharts';
 
 export const ResearcherDashboard = () => {
   const t = useTranslations('ResearcherDashboard');
@@ -46,6 +46,23 @@ export const ResearcherDashboard = () => {
     fetchData();
   }, [getResearcherDashboardDataCallable]);
 
+    const contributionStatusCounts = useMemo(() => {
+        if (!dashboardData?.knowledgeHubContributions) return [];
+        const counts: { [key: string]: number } = {};
+        dashboardData.knowledgeHubContributions.forEach(contribution => {
+            const status = contribution.status || 'Draft';
+            counts[status] = (counts[status] || 0) + 1;
+        });
+        return Object.keys(counts).map(name => ({ name, count: counts[name] }));
+    }, [dashboardData?.knowledgeHubContributions]);
+    
+    const chartConfig = {
+      count: { label: t('chart.count') },
+      Published: { label: t('chart.published'), color: "hsl(var(--chart-1))" },
+      "Pending Review": { label: t('chart.pending'), color: "hsl(var(--chart-2))" },
+      Draft: { label: t('chart.draft'), color: "hsl(var(--chart-5))" },
+  };
+
   if (isLoading) {
     return <DashboardSkeleton />;
   }
@@ -64,37 +81,13 @@ export const ResearcherDashboard = () => {
       return (
            <Card>
                 <CardContent className="pt-6 text-center text-muted-foreground">
-                    <p>No dashboard data available.</p>
+                    <p>{t('noData')}</p>
                 </CardContent>
            </Card>
       );
   }
 
   const { availableDatasets, ongoingProjects, knowledgeHubContributions } = dashboardData;
-
-        // Prepare data for Datasets Type Chart
-  const datasetDataTypeCounts = useMemo(() => {
-    const counts: { [key: string]: number } = {};
-    (availableDatasets || []).forEach(dataset => {
-      counts[dataset.dataType] = (counts[dataset.dataType] || 0) + 1;
-    });
-          return Object.keys(counts).map(key => ({ dataType: key, count: counts[key] }));
-  }, [availableDatasets]);
-
-   const datasetChartData = [
-       ...datasetDataTypeCounts,
-       ...datasetAccessLevelCounts.map(item => ({ name: `${item.name} Access`, count: item.count }))
-   ];
-
-  // Prepare data for Contributions Chart
-  const contributionStatusCounts = useMemo(() => {
-    const counts: { [key: string]: number } = {};
-    (knowledgeHubContributions || []).forEach(contribution => {
-      counts[contribution.status] = (counts[contribution.status] || 0) + 1;
-    });
-    return Object.keys(counts).map(key => ({ name: key, count: counts[key] }));
-  }, [knowledgeHubContributions]);
-
 
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {
@@ -148,29 +141,6 @@ export const ResearcherDashboard = () => {
            </CardContent>
          </Card>
 
-        {/* Available Datasets Chart */}
-         <Card className="md:col-span-2">
-           <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Database className="h-4 w-4"/>{t('datasetsByTypeTitle')}</CardTitle>
-             <CardDescription>{t('datasetsByTypeDescription')}</CardDescription>
-           </CardHeader>
-           <CardContent className="flex justify-center">
-             {(datasetDataTypeCounts || []).length > 0 ? (
-                 <ChartContainer config={{}} className="min-h-[200px] w-full">
-                     <BarChart accessibilityLayer data={datasetDataTypeCounts}>
-                         <CartesianGrid vertical={false} />
-                         <XAxis dataKey="dataType" tickLine={false} tickMargin={10} axisLine={false} />
-                         <YAxis tickLine={false} tickMargin={10} axisLine={false} />
-                         <ChartTooltip cursor={false} content={<ChartTooltip />} />
-                         <ChartLegend content={<ChartLegend />} />
-                         <Bar dataKey="count" fill="var(--color-primary)" radius={4} />
-                     </BarChart>
-                 </ChartContainer>
-             ) : (
-                <p className="text-sm text-muted-foreground text-center py-4">{t('noDatasetsForChart')}</p>
-             )}
-           </CardContent>
-         </Card>
          {/* Ongoing Projects */}
          <Card className="md:col-span-2">
            <CardHeader>
@@ -194,7 +164,7 @@ export const ResearcherDashboard = () => {
                        <TableCell className="font-medium">{project.title}</TableCell>
                        <TableCell>
                          <div className="flex items-center gap-2">
-                             <Progress value={project.progress} className="w-[60%]" />
+                             <p>{project.progress}%</p>
                          </div>
                         </TableCell>
                        <TableCell>{(project.collaborators || []).join(', ')}</TableCell>
@@ -221,32 +191,51 @@ export const ResearcherDashboard = () => {
             </CardHeader>
             <CardContent>
                 {(knowledgeHubContributions || []).length > 0 ? (
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>{t('table.title')}</TableHead>
-                        <TableHead>{t('table.status')}</TableHead>
-                        <TableHead className="text-right">{t('table.action')}</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {(knowledgeHubContributions || []).map((contribution) => (
-                        <TableRow key={contribution.id}>
-                          <TableCell className="font-medium">
-                            <Link href={`/blog/${contribution.id}`} className="hover:underline">{contribution.title}</Link>
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
-                          </TableCell>
-                          <TableCell className="text-right">
-                            <Button asChild variant="outline" size="sm">
-                              <Link href={`/blog/${contribution.id}`}>{t('viewButton')}</Link>
-                            </Button>
-                          </TableCell>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>{t('table.title')}</TableHead>
+                          <TableHead>{t('table.status')}</TableHead>
+                          <TableHead className="text-right">{t('table.action')}</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        {(knowledgeHubContributions || []).map((contribution) => (
+                          <TableRow key={contribution.id}>
+                            <TableCell className="font-medium">
+                              <Link href={`/blog/${contribution.id}`} className="hover:underline">{contribution.title}</Link>
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button asChild variant="outline" size="sm">
+                                <Link href={`/blog/${contribution.id}`}>{t('viewButton')}</Link>
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                    {contributionStatusCounts.length > 0 ? (
+                        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+                            <BarChart accessibilityLayer data={contributionStatusCounts}>
+                                <CartesianGrid vertical={false} />
+                                <XAxis dataKey="name" tickLine={false} tickMargin={10} axisLine={false} />
+                                <YAxis tickLine={false} tickMargin={10} axisLine={false} />
+                                <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
+                                <Bar dataKey="count" layout="vertical" radius={4}>
+                                    {contributionStatusCounts.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color || "hsl(var(--primary))"} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ChartContainer>
+                    ) : (
+                      <div/>
+                    )}
+                  </div>
                 ) : (
                    <p className="text-sm text-muted-foreground text-center py-4">{t('noContributions')}</p>
                 )}

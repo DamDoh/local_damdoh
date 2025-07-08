@@ -17,7 +17,13 @@
       "location": "Lieu",
       "energyNeed": "Besoin Énergétique Estimé",
       "status": "Statut",
-      "action": "Action"
+      "action": "Action",
+      "name": "Nom",
+      "dataType": "Type de Données",
+      "accessLevel": "Niveau d'Accès",
+      "progress": "Progression",
+      "collaborators": "Collaborateurs",
+      "title": "Titre"
     },
     "viewLeadButton": "Voir la Piste",
     "noLeads": "Aucune piste de projet pour le moment.",
@@ -357,5 +363,40 @@
     "coverage": "Couverture",
     "expires": "Expire le",
     "noActivePolicies": "Aucune police active trouvée."
+  },
+  "ResearcherDashboard": {
+    "title": "Centre des Chercheurs et Universitaires",
+    "datasetsTitle": "Ensembles de Données Disponibles",
+    "datasetsDescription": "Ensembles de données anonymisées pour vos besoins de recherche.",
+    "table": {
+      "name": "Nom",
+      "dataType": "Type de Données",
+      "accessLevel": "Niveau d'Accès",
+      "action": "Action",
+      "title": "Titre",
+      "progress": "Progression",
+      "collaborators": "Collaborateurs",
+      "status": "Statut"
+    },
+    "requestAccessButton": "Demander l'Accès",
+    "noDatasets": "Aucun ensemble de données disponible actuellement.",
+    "projectsTitle": "Projets en Cours",
+    "projectsDescription": "Vos collaborations de recherche actives sur la plateforme.",
+    "viewProjectButton": "Voir le Projet",
+    "noProjects": "Vous n'avez aucun projet en cours.",
+    "contributionsTitle": "Contributions au Centre de Connaissances",
+    "contributionsDescription": "Articles et publications que vous avez contribués.",
+    "viewButton": "Voir",
+    "noContributions": "Vous n'avez encore contribué à aucun article.",
+    "noData": "Aucune donnée de tableau de bord disponible.",
+    "datasetsByTypeTitle": "Ensembles de Données par Type",
+    "datasetsByTypeDescription": "Répartition des types d'ensembles de données disponibles.",
+    "noDatasetsForChart": "Aucun ensemble de données disponible pour le graphique.",
+    "chart": {
+      "count": "Nombre",
+      "published": "Publié",
+      "pending": "En attente",
+      "draft": "Brouillon"
+    }
   }
 }

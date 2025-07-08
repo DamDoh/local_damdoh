@@ -17,7 +17,13 @@
       "location": "Ubicación",
       "energyNeed": "Necesidad Energética Estimada",
       "status": "Estado",
-      "action": "Acción"
+      "action": "Acción",
+      "name": "Nombre",
+      "dataType": "Tipo de Datos",
+      "accessLevel": "Nivel de Acceso",
+      "progress": "Progreso",
+      "collaborators": "Colaboradores",
+      "title": "Título"
     },
     "viewLeadButton": "Ver Cliente Potencial",
     "noLeads": "No hay clientes potenciales de proyectos en este momento.",
@@ -357,5 +363,40 @@
     "coverage": "Cobertura",
     "expires": "Vence",
     "noActivePolicies": "No se encontraron pólizas activas."
+  },
+  "ResearcherDashboard": {
+    "title": "Centro de Investigadores y Académicos",
+    "datasetsTitle": "Conjuntos de Datos Disponibles",
+    "datasetsDescription": "Conjuntos de datos anonimizados para sus necesidades de investigación.",
+    "table": {
+      "name": "Nombre",
+      "dataType": "Tipo de Datos",
+      "accessLevel": "Nivel de Acceso",
+      "action": "Acción",
+      "title": "Título",
+      "progress": "Progreso",
+      "collaborators": "Colaboradores",
+      "status": "Estado"
+    },
+    "requestAccessButton": "Solicitar Acceso",
+    "noDatasets": "No hay conjuntos de datos disponibles actualmente.",
+    "projectsTitle": "Proyectos en Curso",
+    "projectsDescription": "Sus colaboraciones de investigación activas en la plataforma.",
+    "viewProjectButton": "Ver Proyecto",
+    "noProjects": "No tiene proyectos en curso.",
+    "contributionsTitle": "Contribuciones al Centro de Conocimiento",
+    "contributionsDescription": "Artículos y publicaciones que ha contribuido.",
+    "viewButton": "Ver",
+    "noContributions": "Aún no ha realizado ninguna contribución.",
+    "noData": "No hay datos de panel disponibles.",
+    "datasetsByTypeTitle": "Conjuntos de Datos por Tipo",
+    "datasetsByTypeDescription": "Desglose de los tipos de conjuntos de datos disponibles.",
+    "noDatasetsForChart": "No hay conjuntos de datos disponibles para el gráfico.",
+    "chart": {
+      "count": "Cantidad",
+      "published": "Publicado",
+      "pending": "Pendiente",
+      "draft": "Borrador"
+    }
   }
 }
