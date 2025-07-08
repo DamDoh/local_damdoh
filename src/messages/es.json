@@ -59,22 +59,6 @@
       "unpinnedTitle": "¡Página de Inicio Desfijada!",
       "unpinnedDescription": "Este foro ya no se mostrará como tu página de inicio."
     },
-    "errors": {
-      "loadTitle": "Error al Cargar Temas",
-      "loadDescription": "Ocurrió un error al cargar los temas del foro.",
-      "auth": {
-        "title": "No Autenticado",
-        "description": "Debes iniciar sesión para crear un tema."
-      },
-      "incomplete": {
-        "title": "Campos Incompletos",
-        "description": "Por favor, completa todos los campos requeridos."
-      },
-      "general": {
-        "title": "Error",
-        "description": "Ocurrió un error al crear el tema."
-      }
-    },
     "create": {
       "backLink": "Volver a Temas",
       "title": "Crear Nuevo Tema",
@@ -90,6 +74,22 @@
       "success": {
         "title": "Tema Creado con Éxito",
         "description": "Tu nuevo tema ha sido creado."
+      }
+    },
+    "errors": {
+      "loadTitle": "Error al Cargar Temas",
+      "loadDescription": "Ocurrió un error al cargar los temas del foro.",
+      "auth": {
+        "title": "No Autenticado",
+        "description": "Debes iniciar sesión para crear un tema."
+      },
+      "incomplete": {
+        "title": "Campos Incompletos",
+        "description": "Por favor, completa todos los campos requeridos."
+      },
+      "general": {
+        "title": "Error",
+        "description": "Ocurrió un error al crear el tema."
       }
     },
     "topic": {
@@ -768,5 +768,47 @@
       "emailLinkText": "support@damdoh.org"
     },
     "conclusion": "Al usar DamDoh, aceptas estas directrices. Las violaciones pueden resultar en la eliminación de contenido, la suspensión de la cuenta o la prohibición permanente. Trabajemos juntos para construir una comunidad próspera y de confianza."
+  },
+  "careers": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únete a nuestra misión de revolucionar la agricultura. Buscamos personas apasionadas que nos ayuden a construir un futuro más sostenible.",
+    "whyWorkWithUs": {
+      "title": "¿Por qué trabajar con nosotros?",
+      "intro": "En DamDoh, serás parte de un equipo global y diverso dedicado a generar un impacto real. Ofrecemos:",
+      "point1": "Una cultura orientada a la misión, centrada en el empoderamiento y la sostenibilidad.",
+      "point2": "Oportunidades para trabajar con tecnologías de vanguardia como la IA y blockchain.",
+      "point3": "Un entorno colaborativo donde tus ideas pueden dar forma al futuro de la alimentación.",
+      "point4": "Compensación competitiva y arreglos de trabajo flexibles.",
+      "point5": "La oportunidad de ver cómo tu trabajo mejora directamente la vida de los agricultores en todo el mundo."
+    },
+    "currentOpenings": {
+      "title": "Ofertas Actuales"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Backend Senior (Node.js, Firestore)",
+        "location": "Remoto / Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Diseñar y construir los microservicios escalables que impulsan nuestra plataforma. Se requiere una sólida experiencia con Node.js, TypeScript y bases de datos NoSQL."
+      },
+      "job2": {
+        "title": "Agrónomo Principal y Relaciones con los Agricultores",
+        "location": "Valle del Rift, Kenia",
+        "type": "Tiempo completo",
+        "description": "Liderar nuestro equipo de agentes de campo, proporcionar asesoramiento agronómico experto y construir relaciones sólidas con nuestras comunidades de agricultores."
+      },
+      "job3": {
+        "title": "Diseñador UX/UI para Mercados Emergentes",
+        "location": "Remoto",
+        "type": "Contrato",
+        "description": "Diseñar interfaces de usuario intuitivas y accesibles para nuestras plataformas móviles y web, con un enfoque en usuarios en entornos de baja conectividad."
+      }
+    },
+    "noOpenings": {
+      "title": "Actualmente no hay puestos vacantes",
+      "content1": "Siempre estamos buscando personas con talento. Si te apasiona nuestra misión, no dudes en enviar tu currículum a {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Aplicar ahora"
   }
 }

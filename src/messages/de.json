@@ -59,22 +59,6 @@
       "unpinnedTitle": "Startseite gelöst!",
       "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
     },
-    "errors": {
-      "loadTitle": "Fehler beim Laden der Themen",
-      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
-      "auth": {
-        "title": "Nicht authentifiziert",
-        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
-      },
-      "incomplete": {
-        "title": "Unvollständige Felder",
-        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
-      },
-      "general": {
-        "title": "Fehler",
-        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
-      }
-    },
     "create": {
       "backLink": "Zurück zu den Themen",
       "title": "Neues Thema erstellen",
@@ -90,6 +74,22 @@
       "success": {
         "title": "Thema erfolgreich erstellt",
         "description": "Ihr neues Thema wurde erstellt."
+      }
+    },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
+      "auth": {
+        "title": "Nicht authentifiziert",
+        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+      },
+      "incomplete": {
+        "title": "Unvollständige Felder",
+        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+      },
+      "general": {
+        "title": "Fehler",
+        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
       }
     },
     "topic": {
@@ -212,8 +212,8 @@
     "createShopButton": "Shop erstellen",
     "createListingButton": "Angebot erstellen",
     "myOrdersButton": "Meine erhaltenen Bestellungen",
-    "pinButton": "Als Startseite anheften",
     "unpinButton": "Von Startseite lösen",
+    "pinButton": "Als Startseite anheften",
     "searchPlaceholder": "Marktplatz durchsuchen...",
     "locationPlaceholder": "Nach Ort filtern...",
     "typePlaceholder": "Nach Typ filtern...",
@@ -764,9 +764,50 @@
     },
     "reporting": {
       "title": "Verstöße melden",
-      "content": "Wenn Sie Inhalte oder Verhalten sehen, das gegen diese Richtlinien verstößt, melden Sie es bitte unserem Support-Team unter {emailLink}.",
-      "emailLinkText": "support@damdoh.org"
+      "content": "Wenn Sie Inhalte oder Verhalten sehen, das gegen diese Richtlinien verstößt, melden Sie es bitte unserem Support-Team unter {emailLink}."
     },
     "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Verstöße können zur Entfernung von Inhalten, zur Sperrung des Kontos oder zur dauerhaften Sperrung führen. Lassen Sie uns zusammenarbeiten, um eine blühende und vertrauenswürdige Gemeinschaft aufzubauen."
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Schließen Sie sich unserer Mission an, die Landwirtschaft zu revolutionieren. Wir suchen leidenschaftliche Persönlichkeiten, die uns helfen, eine nachhaltigere Zukunft zu gestalten.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Bei DamDoh werden Sie Teil eines vielfältigen, globalen Teams, das sich der Erzielung einer realen Wirkung verschrieben hat. Wir bieten:",
+      "point1": "Eine missionsgetriebene Kultur, die auf Empowerment und Nachhaltigkeit ausgerichtet ist.",
+      "point2": "Möglichkeiten, mit Spitzentechnologien wie KI und Blockchain zu arbeiten.",
+      "point3": "Ein kollaboratives Umfeld, in dem Ihre Ideen die Zukunft der Ernährung gestalten können.",
+      "point4": "Wettbewerbsfähige Vergütung und flexible Arbeitsregelungen.",
+      "point5": "Die Chance, zu sehen, wie Ihre Arbeit das Leben von Landwirten weltweit direkt verbessert."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend-Ingenieur (Node.js, Firestore)",
+        "location": "Remote / Nairobi, Kenia",
+        "type": "Vollzeit",
+        "description": "Entwerfen und erstellen Sie die skalierbaren Microservices, die unsere Plattform antreiben. Starke Erfahrung mit Node.js, TypeScript und NoSQL-Datenbanken ist erforderlich."
+      },
+      "job2": {
+        "title": "Leitender Agronom & Bauernbeziehungen",
+        "location": "Rift Valley, Kenia",
+        "type": "Vollzeit",
+        "description": "Leiten Sie unser Feldagententeam, geben Sie fachkundige agronomische Ratschläge und bauen Sie starke Beziehungen zu unseren Bauerngemeinschaften auf."
+      },
+      "job3": {
+        "title": "UX/UI-Designer für Schwellenländer",
+        "location": "Remote",
+        "type": "Vertrag",
+        "description": "Entwerfen Sie intuitive und zugängliche Benutzeroberflächen für unsere Mobil- und Webplattformen, mit einem Fokus auf Benutzer in Umgebungen mit geringer Konnektivität."
+      }
+    },
+    "noOpenings": {
+      "title": "Derzeit keine offenen Stellen",
+      "content1": "Wir sind immer auf der Suche nach talentierten Personen. Wenn Sie von unserer Mission begeistert sind, senden Sie uns gerne Ihren Lebenslauf an {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Jetzt bewerben"
   }
 }

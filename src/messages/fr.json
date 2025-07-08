@@ -59,22 +59,6 @@
       "unpinnedTitle": "Accueil détaché !",
       "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
     },
-    "errors": {
-      "loadTitle": "Erreur lors du chargement des sujets",
-      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
-      "auth": {
-        "title": "Non authentifié",
-        "description": "Vous devez être connecté pour créer un sujet."
-      },
-      "incomplete": {
-        "title": "Champs incomplets",
-        "description": "Veuillez remplir tous les champs obligatoires."
-      },
-      "general": {
-        "title": "Erreur",
-        "description": "Une erreur s'est produite lors de la création du sujet."
-      }
-    },
     "create": {
       "backLink": "Retour aux sujets",
       "title": "Créer un nouveau sujet",
@@ -90,6 +74,22 @@
       "success": {
         "title": "Sujet créé avec succès",
         "description": "Votre nouveau sujet a été créé."
+      }
+    },
+    "errors": {
+      "loadTitle": "Erreur lors du chargement des sujets",
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
+      },
+      "incomplete": {
+        "title": "Champs incomplets",
+        "description": "Veuillez remplir tous les champs obligatoires."
+      },
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur s'est produite lors de la création du sujet."
       }
     },
     "topic": {
@@ -768,5 +768,47 @@
       "emailLinkText": "support@damdoh.org"
     },
     "conclusion": "En utilisant DamDoh, vous acceptez ces directives. Les violations peuvent entraîner la suppression de contenu, la suspension du compte ou une interdiction permanente. Travaillons ensemble pour construire une communauté florissante et digne de confiance."
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez notre mission pour révolutionner l'agriculture. Nous recherchons des personnes passionnées pour nous aider à construire un avenir plus durable.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi travailler avec nous ?",
+      "intro": "Chez DamDoh, vous ferez partie d'une équipe mondiale et diversifiée, dédiée à avoir un impact concret. Nous offrons :",
+      "point1": "Une culture axée sur la mission, centrée sur l'autonomisation et la durabilité.",
+      "point2": "Des opportunités de travailler avec des technologies de pointe comme l'IA et la blockchain.",
+      "point3": "Un environnement collaboratif où vos idées peuvent façonner l'avenir de l'alimentation.",
+      "point4": "Une rémunération compétitive et des modalités de travail flexibles.",
+      "point5": "La chance de voir votre travail améliorer directement la vie des agriculteurs du monde entier."
+    },
+    "currentOpenings": {
+      "title": "Offres d'emploi actuelles"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur Backend Senior (Node.js, Firestore)",
+        "location": "Télétravail / Nairobi, Kenya",
+        "type": "Temps plein",
+        "description": "Concevoir et construire les microservices évolutifs qui alimentent notre plateforme. Une solide expérience avec Node.js, TypeScript et les bases de données NoSQL est requise."
+      },
+      "job2": {
+        "title": "Agronome Principal et Relations avec les Agriculteurs",
+        "location": "Vallée du Rift, Kenya",
+        "type": "Temps plein",
+        "description": "Diriger notre équipe d'agents de terrain, fournir des conseils agronomiques experts et établir des relations solides avec nos communautés d'agriculteurs."
+      },
+      "job3": {
+        "title": "Designer UX/UI pour les Marchés Émergents",
+        "location": "Télétravail",
+        "type": "Contrat",
+        "description": "Concevoir des interfaces utilisateur intuitives et accessibles pour nos plateformes mobiles et web, avec un accent sur les utilisateurs dans des environnements à faible connectivité."
+      }
+    },
+    "noOpenings": {
+      "title": "Aucun poste vacant pour le moment",
+      "content1": "Nous sommes toujours à la recherche de personnes talentueuses. Si notre mission vous passionne, n'hésitez pas à nous envoyer votre CV à {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Postuler maintenant"
   }
 }

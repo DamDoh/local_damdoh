@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,7 +34,11 @@ export default function CareersPage() {
     }
   ];
 
-  const showOpenings = true; 
+  const showOpenings = true;
+  
+  const content = t('noOpenings.content1');
+  const emailLinkText = t('noOpenings.emailLinkText');
+  const contentParts = content.split('{emailLink}');
 
   return (
     <div className="space-y-8">
@@ -89,9 +94,13 @@ export default function CareersPage() {
                 <Briefcase className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
                 <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('noOpenings.title')}</h3>
                 <p className="text-muted-foreground max-w-md">
-                  {t.rich('noOpenings.content1', {
-                    emailLink: (chunks) => <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">{chunks}</a>
-                  })}
+                  {contentParts[0]}
+                  {contentParts.length > 1 && (
+                    <a href="mailto:careers@damdoh.org" className="text-primary hover:underline">
+                      {emailLinkText}
+                    </a>
+                  )}
+                  {contentParts[1]}
                 </p>
               </div>
             )}

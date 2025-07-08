@@ -1,292 +1,770 @@
-
 {
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme"
-  },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "AppFooter": {
-    "tagline": "Empowering farmers, restoring ecosystems, and feeding the world sustainably.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All rights reserved.",
-    "getMobileApp": "Get the Mobile App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Syncing {count} pending actions...",
-      "onlinePending": "{count} pending actions to sync.",
-      "onlineSynced": "Online and all changes synced.",
-      "offline": "Offline. {count} actions queued."
-    },
-    "toast": {
-      "online": {
-        "title": "You're back online!",
-        "description": "Any pending changes will now be synced."
-      },
-      "offline": {
-        "title": "You are currently offline",
-        "description": "Your changes will be saved and synced when you reconnect."
-      },
-      "syncing": {
-        "title": "Syncing Offline Changes",
-        "description": "{count, plural, one {# action is} other {# actions are}} being uploaded."
-      },
-      "synced": {
-        "title": "Sync Complete",
-        "description": "All your offline changes have been saved to the server."
-      },
-      "syncFailed": {
-        "title": "Sync Failed",
-        "description": "Could not sync offline changes. Will retry later."
-      },
-      "queued": {
-        "title": "Action Queued",
-        "description": "Your change has been saved and will sync when online."
-      }
+  "traceabilityPage": {
+    "title": "Product Traceability",
+    "description": "Trace the journey of your food from farm to fork with a Vibrant Traceability ID (VTI).",
+    "inputPlaceholder": "Enter VTI or Batch ID...",
+    "trackButton": "Track",
+    "vtiDescription": "A VTI is a unique identifier assigned to each batch of produce, ensuring transparency throughout the supply chain.",
+    "recentTitle": "Recently Verified Batches",
+    "recentDescription": "Explore some of the latest product journeys on the platform.",
+    "noRecentBatches": "No recently verified batches found.",
+    "producerLabel": "Producer",
+    "harvestDateLabel": "Harvest Date",
+    "viewReportButton": "View Full Report",
+    "detailPage": {
+      "backLink": "Back to Traceability Hub",
+      "invalidIdError": "No valid batch ID provided.",
+      "loadError": "Failed to load traceability history for this batch.",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "The traceability report for this ID could not be found.",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Producer",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Initial Yield",
+      "qualityLabel": "Quality Grade",
+      "notSpecified": "Not specified",
+      "journeyTitle": "Product Journey",
+      "journeyDescription": "A chronological record of events for this batch.",
+      "noEventDetails": "No specific details for this event.",
+      "noEventsFound": "No traceability events have been logged for this batch yet.",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "This product was grown using practices that align with sustainable and organic principles, based on logged inputs.",
+      "geoLocationLabel": "Geolocation",
+      "observationType": "Observation Type",
+      "details": "Details",
+      "aiDiagnosis": "AI Diagnosis"
     }
   },
-  "LanguageSwitcher": {
-    "toggle": "Toggle language"
-  },
-  "Auth": {
-    "signUpWelcome": "Join the global agricultural movement with {appName}",
-    "signInWelcome": "Welcome back to {appName}",
-    "forgotPasswordResetPrompt": "Reset your password for {appName}",
-    "resetPasswordPrompt": "Set a new password for {appName}",
-    "signInTitle": "Sign In",
-    "signInDescription": "Enter your credentials to access your account.",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "••••••••",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing In...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign up",
-    "signInLink": "Sign in",
-    "recoverWithUniversalIdPrompt": "Or recover account with Universal ID",
-    "signUpTitle": "Create an Account",
-    "signUpDescription": "Enter your information to get started.",
-    "nameLabel": "Name",
-    "namePlaceholder": "Your full name",
-    "roleLabel": "Your Role",
-    "rolePlaceholder": "Select your primary role",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "Confirm your new password",
-    "creatingAccountButton": "Creating Account...",
-    "signUpButton": "Create Account",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "forgotPasswordTitle": "Forgot Password?",
-    "forgotPasswordDescription": "Enter your email and we'll send you a reset link.",
-    "sendingEmailButton": "Sending Email...",
-    "sendResetLinkButton": "Send Reset Link",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Enter your new password below.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "Enter your new password",
-    "resettingPasswordButton": "Resetting Password...",
-    "resetPasswordButton": "Reset Password",
-    "recoverPage": {
-      "title": "Social Account Recovery",
-      "description": "Regain access to your account securely using your network.",
-      "howItWorksTitle": "How It Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the temporary QR code to a trusted DamDoh friend.",
-      "step3": "Once they confirm, you'll regain access to your account.",
-      "startButton": "Start Account Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted contact in your DamDoh network scan this temporary QR code to verify your identity.",
-      "scanNote": "This code is valid for 10 minutes.",
-      "startOverButton": "Start Over"
-    }
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Revolutionizing Agriculture, Together.",
-      "subtitle": "Connecting every link in the agricultural supply chain, from farmers to consumers, on a single, intelligent platform.",
-      "getStartedButton": "Get Started Free",
-      "learnMoreButton": "Learn More"
+  "Forums": {
+    "title": "Forum Topics",
+    "description": "Browse and create topics for discussion.",
+    "lastActivity": "Last activity {{time}}",
+    "searchPlaceholder": "Search topics...",
+    "buttons": {
+      "createTopic": "Create Topic",
+      "joinDiscussion": "Join Discussion",
+      "pinHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin from Homepage"
     },
-    "features": {
-      "title": "One Platform, Limitless Connections",
-      "subtitle": "DamDoh provides the tools you need to thrive in the modern agricultural landscape.",
-      "networking": {
-        "title": "Smart Networking",
-        "description": "AI-powered matchmaking connects you with the right partners, from suppliers to international buyers."
+    "notFound": {
+      "title": "No Topics Found",
+      "tryDifferentSearch": "Try a different search term.",
+      "beTheFirst": "Be the first to create a topic."
+    },
+    "pinning": {
+      "pinnedTitle": "Homepage Pinned!",
+      "pinnedDescription": "This forum is now showing as your homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "This forum will no longer show as your homepage."
+    },
+    "create": {
+      "backLink": "Back to Topics",
+      "title": "Create New Topic",
+      "description": "Start a new discussion in the forum.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "Enter the name of your topic",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Briefly describe your topic",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
       },
-      "marketplace": {
-        "title": "Global Marketplace",
-        "description": "Buy and sell produce, inputs, and equipment with trust and transparency."
+      "success": {
+        "title": "Topic Created Successfully",
+        "description": "Your new topic has been created."
       },
-      "forums": {
-        "title": "Knowledge Forums",
-        "description": "Share insights, ask questions, and collaborate with a global community of agricultural experts."
-      },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Find skilled labor or offer your agricultural services to a targeted audience."
-      }
-    },
-    "forWho": {
-      "badge": "For Everyone in Agriculture",
-      "title": "A Unified Platform for a Fragmented World",
-      "description": "DamDoh is meticulously designed to meet the unique needs of every stakeholder in the agricultural value chain.",
-      "farmers": {
-        "title": "Farmers",
-        "description": "Access new markets, get fair pricing, and learn sustainable farming practices."
-      },
-      "buyers": {
-        "title": "Buyers & Exporters",
-        "description": "Source high-quality, traceable produce directly from producers and cooperatives."
-      },
-      "experts": {
-        "title": "Experts & Service Providers",
-        "description": "Offer your expertise and services to a global agricultural community."
-      },
-      "imageAlt": "A collage of diverse people in agricultural settings"
-    },
-    "cta": {
-      "title": "Join the Future of Agriculture",
-      "subtitle": "Create your profile today and unlock a world of opportunity. Let's grow together.",
-      "button": "Sign Up Now"
-    }
-  },
-  "aboutPage": {
-    "hero": {
-      "title": "Rebuilding Global Food Systems From the Ground Up",
-      "subtitle": "DamDoh is more than an app; it's a movement to create a more sustainable, equitable, and efficient agricultural future for everyone."
-    },
-    "vision": {
-      "title": "Our Vision",
-      "p1": "We envision a world where every farmer, regardless of their location or scale, has the tools and connections to thrive. A world where supply chains are transparent, food is sustainable, and communities are empowered.",
-      "p2": "Founded by agricultural experts and technologists, DamDoh was born from a passion to solve the deep-rooted inefficiencies and inequities in our global food systems.",
-      "foundersTitle": "Our Founders"
-    },
-    "challenge": {
-      "title": "The Challenge We Face",
-      "description": "The current agricultural supply chain is fragmented, inefficient, and often inequitable. Key stakeholders face immense hurdles:",
-      "list": {
-        "knowledge": "Fragmented knowledge and lack of access to best practices.",
-        "market": "Limited market access and unfair pricing for smallholder farmers.",
-        "quality": "Inconsistent quality control and lack of product traceability.",
-        "logistics": "Inefficient logistics leading to high post-harvest losses.",
-        "financial": "Difficult access to credit and financial services for producers.",
-        "climate": "Increasing pressure from climate change and resource scarcity.",
-        "informal": "Heavy reliance on informal networks, limiting growth and security."
-      }
-    },
-    "solution": {
-      "title": "The DamDoh Solution",
-      "description": "We are building an integrated 'super app' that acts as the digital backbone for the entire agricultural ecosystem:",
-      "list": {
-        "education": "Education & AI-powered farm advisory.",
-        "ai": "Smart matchmaking to connect stakeholders.",
-        "logistics": "Integrated logistics and traceability.",
-        "financial": "Access to financial services and credit scoring."
-      }
-    },
-    "beyondTechnology": {
-      "title": "Beyond Technology: It's About People",
-      "list": {
-        "p2p": {
-          "title": "Peer-to-Peer",
-          "content": "Farmers connecting with other farmers to share knowledge and form cooperatives."
+      "errors": {
+        "auth": {
+          "title": "Not Authenticated",
+          "description": "You must be logged in to create a topic."
         },
-        "p2b": {
-          "title": "Producer-to-Business",
-          "content": "Direct, fair trade between farmers and buyers, processors, or retailers."
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please fill out all required fields."
         },
-        "p2e": {
-          "title": "Producer-to-Expert",
-          "content": "Connecting farmers with agronomists, vets, and financial advisors."
-        },
-        "p2w": {
-          "title": "Producer-to-World",
-          "content": "Enabling smallholders to access global markets through verified traceability."
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the topic."
         }
       }
     },
-    "commitment": {
-      "title": "Our Commitment",
-      "p1": "We are committed to the principles of sustainability, fairness, and empowerment.",
-      "p2": "Every feature we build is designed to put more power and profit back into the hands of the people who grow our food.",
-      "p3": "Join us in cultivating a better future.",
-      "button": "Become a Member"
+    "topic": {
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "buttons": {
+        "createPost": "Add Reply",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "noPosts": {
+        "title": "No posts yet",
+        "description": "Be the first to reply to this topic.",
+        "button": "Add Reply"
+      },
+      "notFound": {
+        "title": "Topic not found",
+        "description": "The topic you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error loading posts",
+          "description": "An error occurred while loading posts for this topic."
+        },
+        "loadTopic": {
+          "title": "Error loading topic",
+          "description": "An error occurred while loading the topic details."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Back to {{topicName}}",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "repliesTitle": "Replies ({{count}})",
+      "noReplies": "No replies yet.",
+      "buttons": {
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "reply": {
+        "title": "Add a Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Add Reply",
+        "submittingButton": "Submitting...",
+        "success": "Reply added!"
+      },
+      "notFound": {
+        "title": "Post not found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error loading post",
+          "description": "An error occurred while loading the post details."
+        },
+        "loadReplies": {
+          "title": "Error loading replies",
+          "description": "An error occurred while loading replies for this post."
+        },
+        "emptyReply": "Reply cannot be empty.",
+        "submitReply": {
+          "title": "Error submitting reply",
+          "description": "An error occurred while submitting your reply."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter the title of your post",
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Write your post content here...",
+        "submitButton": "Create Post",
+        "submittingButton": "Submitting..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "AI Draft Generated!",
+          "description": "A draft has been generated for you."
+        },
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "AI Prompt Missing",
+          "description": "Please provide a prompt for the AI helper."
+        },
+        "aiDraft": {
+          "title": "AI Draft Error",
+          "description": "Failed to generate AI draft."
+        },
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please fill in all required fields."
+        },
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the post."
+        }
+      }
     }
   },
-  "contactPage": {
-    "title": "Get In Touch",
-    "subtitle": "We’d love to hear from you. Whether you have a question, feedback, or a partnership inquiry, here’s how you can reach us.",
-    "emailUs": {
-      "title": "Email Us",
-      "general": "General Inquiries",
-      "support": "Support",
-      "partnerships": "Partnerships"
+  "Marketplace": {
+    "title": "Marketplace",
+    "description": "Browse and discover products and services.",
+    "createShopButton": "Create Shopfront",
+    "createListingButton": "Create Listing",
+    "myOrdersButton": "My Received Orders",
+    "pinButton": "Pin as Homepage",
+    "unpinButton": "Unpin Homepage",
+    "searchPlaceholder": "Search marketplace...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended for you",
+    "discoverMore": "Discover More",
+    "noItemsFound": {
+      "title": "No items found.",
+      "hint": "Try adjusting your filters or search terms."
     },
-    "callUs": {
-      "title": "Call Us",
-      "hours": "Mon - Fri, 9am - 5pm (EAT)",
-      "phone": "+254 700 000 000"
+    "errors": {
+      "aiRecommendations": {
+        "title": "Could not fetch AI recommendations"
+      },
+      "search": {
+        "title": "Search Error",
+        "description": "Could not fetch marketplace items."
+      }
     },
-    "ourOffice": {
-      "title": "Our Office",
-      "org": "DamDoh Holdings",
-      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned!",
+      "pinnedDescription": "The Marketplace is now your default homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "The Dashboard is now your default homepage."
     },
-    "sendMessage": {
-      "title": "Send Us a Message",
-      "nameLabel": "Your Name",
-      "namePlaceholder": "Enter your full name",
-      "emailLabel": "Your Email",
-      "emailPlaceholder": "you@example.com",
-      "subjectLabel": "Subject",
-      "subjectPlaceholder": "What is your message about?",
-      "messageLabel": "Your Message",
-      "messagePlaceholder": "Type your message here...",
-      "buttonText": "Send Message",
-      "note": "We'll do our best to respond within 24 business hours."
+    "createListing": {
+      "backLink": "Back to marketplace",
+      "title": "Create New Listing",
+      "description": "List a product or service in the marketplace.",
+      "form": {
+        "nameLabel": "Item/Service Name",
+        "namePlaceholder": "Enter the name of your listing",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select listing type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your listing",
+        "locationLabel": "Location",
+        "locationPlaceholder": "Enter location",
+        "relatedVtiLabel": "Related VTI / Batch ID (Optional)",
+        "relatedVtiPlaceholder": "Enter the VTI if this listing is for a specific batch",
+        "relatedVtiDescription": "Linking a VTI increases buyer trust.",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select a category",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "e.g., per hour, fixed rate",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., Entry, Intermediate, Expert",
+        "skillsLabel": "Skills Required",
+        "skillsPlaceholder": "List skills needed for the service",
+        "skillsDescription": "Separate skills with commas.",
+        "priceLabel": "Price",
+        "pricePlaceholder": "Enter price",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g., kg, piece, hour",
+        "imageUrlLabel": "Image URL (Optional)",
+        "sustainableLabel": "Sustainable Practice",
+        "sustainableDescription": "Indicate if this listing involves sustainable practices.",
+        "submitButton": "Create Listing",
+        "submittingButton": "Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggest Price with AI",
+        "generatingButton": "Generating...",
+        "suggestionLabel": "AI Suggestion:",
+        "usePriceButton": "Use this price"
+      },
+      "success": {
+        "title": "Success!",
+        "description": "Your listing has been created."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Missing Information",
+            "description": "Please enter a name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "Price Suggestion Failed",
+            "description": "Could not get an AI price suggestion. Please try again or enter a price manually."
+          }
+        },
+        "authentication": {
+          "title": "Authentication Error",
+          "description": "You must be logged in to create a listing."
+        },
+        "creation": {
+          "title": "Creation Failed",
+          "description": "Could not create the listing. Please try again."
+        }
+      }
+    },
+    "itemView": {
+      "backLink": "Back to marketplace",
+      "unknownUser": "Unknown User",
+      "traceabilityButton": "Trade / Batch Link",
+      "skillsLabel": "Skills Required",
+      "experienceLabel": "Experience Level",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contact for rates",
+      "booking": {
+        "perNight": "night",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Add date",
+        "guests": "Guests",
+        "reserveButton": "Reserve",
+        "reservingButton": "Reserving...",
+        "notCharged": "You won't be charged yet",
+        "nights": "nights",
+        "serviceFee": "Service fee",
+        "total": "Total",
+        "successTitle": "Booking Successful!",
+        "successDescription": "Your booking is confirmed.",
+        "failTitle": "Booking Failed",
+        "dateError": "Please select valid check-in and check-out dates.",
+        "authTitle": "Authentication Required",
+        "authDescription": "You must be logged in to book a service.",
+        "bookedTitle": "Booked!",
+        "bookedDescription": "Your booking is confirmed. Present the QR code below upon arrival.",
+        "ticketButton": "Show Ticket",
+        "modalTitle": "Booking Ticket",
+        "modalDescription": "Present this QR code at {{itemName}} for check-in.",
+        "modalScan": "Scan this code to check in"
+      },
+      "coupon": {
+        "label": "Coupon Code",
+        "placeholder": "Enter coupon code",
+        "applyButton": "Apply",
+        "successTitle": "Coupon Applied!",
+        "successDescription": "Discount applied: {{type}}",
+        "failTitle": "Coupon Invalid",
+        "failDescription": "The coupon code is invalid or not applicable.",
+        "appliedText": "Coupon Applied: {{code}}"
+      },
+      "aboutSeller": "About the Seller",
+      "viewShopfront": "View Shopfront",
+      "editListing": "Edit Listing",
+      "manageService": "Manage Service",
+      "buyNowButton": "Buy Now",
+      "contactForService": "Contact for Service",
+      "contactSeller": "Contact Seller",
+      "order": {
+        "title": "Order {{itemName}}",
+        "description": "Enter the quantity you wish to order and any notes.",
+        "quantityLabel": "Quantity",
+        "notesLabel": "Notes (Optional)",
+        "notesPlaceholder": "Add any specific instructions or requests...",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm Order",
+        "placingButton": "Placing Order...",
+        "successTitle": "Order Placed!",
+        "successDescription": "Your order has been placed successfully.",
+        "failTitle": "Order Failed",
+        "failDescription": "Could not place the order. Please try again.",
+        "quantityErrorTitle": "Quantity Error",
+        "quantityErrorDescription": "Please enter a valid quantity (at least 1).",
+        "authTitle": "Authentication Required",
+        "authDescription": "You must be logged in to place an order."
+      },
+      "notFound": {
+        "title": "Item not found",
+        "description": "The marketplace item you are looking for does not exist.",
+        "backButton": "Back to Marketplace"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Error loading item",
+          "description": "An error occurred while loading the marketplace item details."
+        },
+        "unexpected": "An unexpected error occurred."
+      }
+    },
+    "myOrders": {
+      "backLink": "Back to marketplace",
+      "title": "My Received Orders",
+      "description": "View and manage orders received from buyers.",
+      "auth": {
+        "title": "Authentication Required",
+        "description": "You must be logged in to view your orders.",
+        "button": "Sign in"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Buyer",
+        "product": "Product",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm",
+        "ship": "Ship",
+        "complete": "Complete",
+        "cancel": "Cancel"
+      },
+      "status": {
+        "new": "New",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "noOrders": "No orders found.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Failed to fetch orders.",
+        "successTitle": "Success!",
+        "updateSuccess": "Order status updated to {{status}}",
+        "failTitle": "Error"
+      }
+    },
+    "shopView": {
+      "backLink": "Back to marketplace",
+      "ownedBy": "Owned by",
+      "loadingOwner": "Loading...",
+      "editShopButton": "Edit Shop",
+      "contactButton": "Contact Seller",
+      "listingsTitle": "Listings from {{shopName}}",
+      "noListings": "No listings found for this shop.",
+      "errors": {
+        "notFound": "Shop not found",
+        "loadError": "Could not load shop details.",
+        "title": "Error"
+      }
+    },
+    "createShop": {
+      "backLink": "Back to marketplace",
+      "title": "Create Your Digital Shopfront",
+      "description": "Set up your shop to list items and services.",
+      "form": {
+        "nameLabel": "Shop Name",
+        "namePlaceholder": "Enter your shop name",
+        "typeLabel": "Stakeholder Type",
+        "typePlaceholder": "Select your type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your shop and what you offer"
+      },
+      "submitButton": "Create Shop",
+      "submittingButton": "Creating...",
+      "authErrorTitle": "Authentication Error",
+      "authErrorDescription": "You must be logged in to create a shop.",
+      "toast": {
+        "successTitle": "Shopfront Created!",
+        "successDescription": "Your shopfront \"{{shopName}}\" has been created.",
+        "failTitle": "Creation Failed",
+        "failDescription": "Could not create the shop. Please try again."
+      }
+    },
+    "manageService": {
+      "backLink": "Back to {{itemName}}",
+      "title": "Manage Service: {{itemName}}",
+      "description": "Manage bookings and settings for this service.",
+      "tabs": {
+        "bookings": "Bookings",
+        "settings": "Settings"
+      },
+      "bookingsTab": {
+        "title": "Service Bookings",
+        "description": "View and manage bookings for this service.",
+        "table": {
+          "date": "Date",
+          "guest": "Guest",
+          "dates": "Dates",
+          "total": "Total",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "status": {
+          "pending": "Pending",
+          "confirmed": "Confirmed",
+          "cancelled": "Cancelled",
+          "completed": "Completed"
+        },
+        "actions": {
+          "confirm": "Confirm Booking",
+          "cancel": "Cancel Booking",
+          "viewDetails": "View Details"
+        },
+        "noBookings": "No bookings yet.",
+        "toast": {
+          "fetchErrorTitle": "Error loading bookings",
+          "fetchErrorDescription": "Could not fetch bookings for this service.",
+          "updateSuccessTitle": "Booking updated!",
+          "updateSuccessDescription": "Booking status updated to {{status}}.",
+          "updateFailTitle": "Update failed",
+          "updateFailDescription": "Could not update booking status."
+        }
+      },
+      "settingsTab": {
+        "title": "Service Settings",
+        "description": "Update details and availability for this service.",
+        "form": {
+          "priceLabel": "Price per Night",
+          "pricePlaceholder": "Enter price",
+          "currencyLabel": "Currency",
+          "currencyPlaceholder": "Select currency",
+          "availabilityLabel": "Availability Dates",
+          "availabilityDescription": "Select dates when this service is available.",
+          "submitButton": "Save Changes",
+          "submittingButton": "Saving..."
+        },
+        "toast": {
+          "updateSuccessTitle": "Settings saved!",
+          "updateSuccessDescription": "Service settings updated successfully.",
+          "updateFailTitle": "Save failed",
+          "updateFailDescription": "Could not save service settings."
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "Error loading service",
+        "loadErrorDescription": "Could not load service details for management.",
+        "notFoundTitle": "Service not found",
+        "notFoundDescription": "The service you are trying to manage does not exist."
+      },
+      "authRequired": {
+        "title": "Authentication Required",
+        "description": "You must be logged in to manage this service.",
+        "button": "Sign in"
+      }
     }
+  },
+  "ProfilePage": {
+    "backToNetwork": "Back to Network",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "The requested user profile could not be found.",
+    "editProfile": "Edit Profile",
+    "connect": "Connect",
+    "message": "Message",
+    "summaryTitle": "Summary",
+    "aboutTitle": "About {{displayName}}",
+    "experienceTitle": "Experience",
+    "emailTitle": "Email",
+    "websiteTitle": "Website",
+    "interestsTitle": "Areas of Interest",
+    "needsTitle": "Key Needs & Offerings",
+    "detailsTitle": "Details",
+    "roleSpecificInfo": "Role-specific information.",
+    "tempDisplayNotice": "This is a temporary display format for additional profile data.",
+    "recentActivityTitle": "Recent Activity",
+    "recentActivityDescription": "Latest actions and contributions on {appName}.",
+    "noRecentActivity": "No recent activity to display.",
+    "showUniversalIdButton": "Show Universal ID",
+    "universalIdModalTitle": "Your Universal ID",
+    "universalIdModalDescription": "Other users can scan this QR code to view your public profile."
+  },
+  "editProfilePage": {
+    "title": "Edit Your Profile, {name}",
+    "description": "Keep your profile up-to-date to find the best connections.",
+    "profileTab": "Profile",
+    "detailsTab": "Details",
+    "contactTab": "Contact",
+    "nameLabel": "Display Name",
+    "namePlaceholder": "Your full name",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select a role",
+    "summaryLabel": "Profile Summary",
+    "summaryPlaceholder": "A short, professional summary about you.",
+    "summaryDescription": "This will be displayed prominently on your profile.",
+    "generateWithAI": "Generate with AI",
+    "bioLabel": "About Me",
+    "bioPlaceholder": "Tell the community more about yourself, your work, and your goals.",
+    "bioDescription": "More detailed information for your profile.",
+    "locationLabel": "Location",
+    "locationPlaceholder": "City, Country",
+    "interestsLabel": "Areas of Interest",
+    "interestsPlaceholder": "Sustainable farming, coffee export, agritech...",
+    "commaSeparated": "Comma-separated values.",
+    "needsLabel": "Key Needs / Offerings",
+    "needsPlaceholder": "Seeking buyers, offering logistics, looking for funding...",
+    "emailLabel": "Email Address",
+    "emailDescription": "Email cannot be changed.",
+    "phoneLabel": "Phone Number",
+    "websiteLabel": "Website",
+    "saveButton": "Save Changes",
+    "savingButton": "Saving...",
+    "cancelButton": "Cancel",
+    "toast": {
+      "profileNotFound": "Profile not found",
+      "fetchError": "Could not load profile.",
+      "notAuthenticatedTitle": "Not Authenticated",
+      "notAuthenticatedDescription": "You must be signed in to edit your profile.",
+      "unauthorizedTitle": "Unauthorized",
+      "unauthorizedDescription": "You cannot edit this profile.",
+      "missingIdError": "Profile ID is missing. Cannot update.",
+      "profileUpdatedTitle": "Profile Updated!",
+      "profileUpdatedDescription": "Your changes have been saved successfully.",
+      "updateFailedTitle": "Update Failed",
+      "updateFailedDescription": "Could not save your changes. Please try again.",
+      "missingInfoTitle": "Missing Information",
+      "missingInfoDescription": "Please provide your role, interests, and needs to generate a summary.",
+      "summaryGeneratedTitle": "Summary Generated",
+      "summaryGeneratedDescription": "An AI-generated summary has been added to your profile.",
+      "generationFailedTitle": "Generation Failed",
+      "generationFailedDescription": "The AI summary could not be generated. Please try again later."
+    },
+    "notFound": {
+      "title": "Profile Not Found",
+      "description": "The profile you are trying to edit could not be found.",
+      "backButton": "Back to Dashboard"
+    }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account and profile settings.",
+    "profileTab": "Profile",
+    "accountTab": "Account",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Privacy",
+    "appearanceTab": "Appearance",
+    "stakeholderProfile": {
+      "title": "Stakeholder Profile",
+      "description": "Your professional identity on DamDoh. This is how others see you."
+    },
+    "account": {
+      "title": "Account Settings",
+      "description": "Manage your account authentication and security.",
+      "changePasswordSectionTitle": "Change Password",
+      "changePasswordDescription": "Update your account password.",
+      "currentPasswordLabel": "Current Password",
+      "newPasswordLabel": "New Password",
+      "confirmPasswordLabel": "Confirm New Password",
+      "changePasswordButton": "Update Password",
+      "deactivateButton": "Deactivate Account"
+    },
+    "notifications": {
+      "title": "Notification Settings",
+      "description": "Manage your email and push notification preferences.",
+      "emailDigestLabel": "Email Notifications",
+      "emailDigestDescription": "Receive notifications via email.",
+      "connectionRequestsLabel": "Connection Requests",
+      "connectionRequestsDescription": "Notify me about new connection requests.",
+      "forumMentionsLabel": "Forum Mentions & Replies",
+      "forumMentionsDescription": "Notify me when I'm mentioned or my posts are replied to.",
+      "marketplaceActivityLabel": "Marketplace Activity",
+      "marketplaceActivityDescription": "Notify me about orders and inquiries on my listings.",
+      "talentExchangeLabel": "Talent Exchange Updates",
+      "talentExchangeDescription": "Notify me about new job listings and applications.",
+      "saveButton": "Save Preferences"
+    },
+    "privacy": {
+      "title": "Privacy & Visibility",
+      "description": "Control who can see your information and interact with you.",
+      "profileVisibilityLabel": "Profile Visibility",
+      "profileVisibilityDescription": "Control who can see your full profile.",
+      "profileVisibilityAll": "Everyone",
+      "profileVisibilityConnections": "Connections Only",
+      "profileVisibilityPrivate": "Private (Only Me)",
+      "connectionRequestsLabel": "Who can send you connection requests?",
+      "connectionRequestsDescription": "Limit who can send you requests to connect.",
+      "connectionRequestsAll": "Everyone",
+      "connectionRequestsConnectionsOfConnections": "Connections of Connections",
+      "contactInfoVisibilityLabel": "Who can see your contact info?",
+      "contactInfoVisibilityDescription": "Control who sees your email and phone number.",
+      "contactInfoVisibilityConnections": "Connections Only",
+      "activityStatusLabel": "Show my activity status",
+      "activityStatusDescription": "Let your connections know when you're active on DamDoh.",
+      "searchIndexingLabel": "Allow search engines to index my profile",
+      "searchIndexingDescription": "Allow your profile to appear in search results on Google, etc.",
+      "saveButton": "Save Privacy Settings",
+      "dataConsentTitle": "Data Sharing & Consent",
+      "dataConsentDescription": "Control how your data is used across DamDoh's integrated services.",
+      "marketplaceHistoryLabel": "Marketplace History for Financial Services",
+      "marketplaceHistoryDescription": "Allow financial institutions on DamDoh to consider your marketplace transaction history for credit scoring.",
+      "traceabilityDataLabel": "Public Traceability Data",
+      "traceabilityDataDescription": "Allow your anonymized traceability data to be used in public reports and research.",
+      "financialApplicationDataLabel": "Financial Data for AI Matching",
+      "financialApplicationDataDescription": "Allow your anonymized financial application data to be used by our AI to suggest relevant services.",
+      "saveConsentButton": "Save Consent Settings"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Customize the look and feel of the application.",
+      "themeLabel": "Theme",
+      "themeDescription": "Select a light or dark theme for the interface.",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "languageLabel": "Language",
+      "languageDescription": "Choose your preferred language for the application.",
+      "switchToLightAria": "Switch to light theme",
+      "switchToDarkAria": "Switch to dark theme"
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Farmer",
+      "AgriculturalCooperative": "Agricultural Cooperative",
+      "FieldAgentAgronomistDamDohInternal": "Field Agent/Agronomist (DamDoh Internal)",
+      "OperationsLogisticsTeamDamDohInternal": "Operations/Logistics Team (DamDoh Internal)",
+      "QualityAssuranceTeamDamDohInternal": "Quality Assurance Team (DamDoh Internal)",
+      "ProcessingPackagingUnit": "Processing & Packaging Unit",
+      "BuyerRestaurantSupermarketExporter": "Buyer (Restaurant, Supermarket, Exporter)",
+      "InputSupplierSeedFertilizerPesticide": "Input Supplier (Seed, Fertilizer, Pesticide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Equipment Supplier (Sales of Machinery/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Financial Institution (Micro-finance/Loans)",
+      "GovernmentRegulatorAuditor": "Government Regulator/Auditor",
+      "CertificationBodyOrganicFairTradeetc": "Certification Body (Organic, Fair Trade etc.)",
+      "Consumer": "Consumer",
+      "ResearcherAcademic": "Researcher/Academic",
+      "LogisticsPartnerThird-PartyTransporter": "Logistics Partner (Third-Party Transporter)",
+      "StorageWarehouseFacility": "Storage/Warehouse Facility",
+      "AgronomyExpertConsultantExternal": "Agronomy Expert/Consultant (External)",
+      "Agro-TourismOperator": "Agro-Tourism Operator",
+      "EnergySolutionsProviderSolarBiogas": "Energy Solutions Provider (Solar, Biogas)",
+      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export Facilitator/Customs Broker",
+      "Agri-TechInnovatorDeveloper": "Agri-Tech Innovator/Developer",
+      "WasteManagementCompostFacility": "Waste Management & Compost Facility",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Individual)",
+      "InsuranceProvider": "Insurance Provider",
+      "PackagingSupplier": "Packaging Supplier"
+    },
+    "listingTypes": {
+      "Product": "Product",
+      "Service": "Service",
+      "All": "All Types"
+    },
+    "agriEventTypes": {
+      "All": "All Events",
+      "Conference": "Conference",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Trade Show",
+      "FieldDay": "Field Day",
+      "NetworkingEvent": "Networking Event"
+    }
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Fostering a professional, respectful, and collaborative environment for all.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all stakeholders, we ask that you adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful and Professional",
+      "description": "Engage in courteous and constructive discussions. Personal attacks, harassment, hate speech, or defamatory comments will not be tolerated."
+    },
+    "authentic": {
+      "title": "Be Authentic and Honest",
+      "description": "Represent yourself and your business truthfully. Do not misrepresent products, services, or certifications. All transactions and interactions should be conducted with integrity."
+    },
+    "relevant": {
+      "title": "Stay On-Topic and Relevant",
+      "description": "Keep discussions and listings relevant to agriculture, the supply chain, and the purpose of each platform feature. Spam, irrelevant advertising, or solicitation is not permitted."
+    },
+    "fairTrade": {
+      "title": "Uphold Fair Trade Practices",
+      "description": "We encourage fair pricing and transparent negotiations. Do not engage in price-fixing, fraudulent activities, or attempts to exploit other members."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "While not mandatory for all interactions, we strongly encourage the promotion and discussion of sustainable and regenerative agricultural practices."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "By using DamDoh, you agree to these guidelines. Violations may result in content removal, account suspension, or permanent banning. Let's work together to build a thriving and trustworthy community."
   },
   "careers": {
     "title": "Careers at DamDoh",
@@ -325,190 +803,9 @@
     },
     "noOpenings": {
       "title": "No Open Positions Currently",
-      "content1": "We are always looking for talented individuals. If you are passionate about our mission, feel free to send your resume to {emailLink}."
+      "content1": "We are always looking for talented individuals. If you are passionate about our mission, feel free to send your resume to {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "Apply Now"
-  },
-  "communityGuidelines": {
-    "title": "Community Guidelines",
-    "subtitle": "Fostering a professional, respectful, and collaborative environment for all.",
-    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all stakeholders, we ask that you adhere to the following guidelines:",
-    "respectful": {
-      "title": "Be Respectful and Professional",
-      "description": "Engage in courteous and constructive discussions. Personal attacks, harassment, hate speech, or defamatory comments will not be tolerated."
-    },
-    "authentic": {
-      "title": "Be Authentic and Honest",
-      "description": "Represent yourself and your business truthfully. Do not misrepresent products, services, or certifications. All transactions and interactions should be conducted with integrity."
-    },
-    "relevant": {
-      "title": "Stay On-Topic and Relevant",
-      "description": "Keep discussions and listings relevant to agriculture, the supply chain, and the purpose of each platform feature. Spam, irrelevant advertising, or solicitation is not permitted."
-    },
-    "fairTrade": {
-      "title": "Uphold Fair Trade Practices",
-      "description": "We encourage fair pricing and transparent negotiations. Do not engage in price-fixing, fraudulent activities, or attempts to exploit other members."
-    },
-    "sustainable": {
-      "title": "Promote Sustainability",
-      "description": "While not mandatory for all interactions, we strongly encourage the promotion and discussion of sustainable and regenerative agricultural practices."
-    },
-    "reporting": {
-      "title": "Reporting Violations",
-      "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}.",
-      "emailLinkText": "support@damdoh.org"
-    },
-    "conclusion": "By using DamDoh, you agree to these guidelines. Violations may result in content removal, account suspension, or permanent banning. Let's work together to build a thriving and trustworthy community."
-  },
-  "helpCenterPage": {
-    "title": "Help Center",
-    "subtitle": "Your central resource for guides, FAQs, and support.",
-    "howCanWeHelp": "How can we help you today?",
-    "searchPlaceholder": "Search for articles, e.g., 'How to create a listing'",
-    "browseTopics": "Or browse by topic",
-    "gettingStarted": {
-      "title": "Getting Started",
-      "description": "Learn how to set up your profile and navigate the platform.",
-      "placeholder": "Content for Getting Started will be added here."
-    },
-    "marketplaceGuide": {
-      "title": "Marketplace Guide",
-      "description": "Tips for buying, selling, and creating effective listings.",
-      "placeholder": "Content for Marketplace Guide will be added here."
-    },
-    "accountManagement": {
-      "title": "Account Management",
-      "description": "Manage your password, notifications, and privacy settings.",
-      "placeholder": "Content for Account Management will be added here."
-    },
-    "troubleshooting": {
-      "title": "Troubleshooting",
-      "description": "Solutions for common issues and technical problems.",
-      "placeholder": "Content for Troubleshooting will be added here."
-    },
-    "stillNeedHelp": {
-      "title": "Still Need Help?",
-      "description": "If you can't find what you're looking for, our support team is here to assist you.",
-      "button": "Contact Support"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Industry News & Reports",
-    "description": "Stay informed with the latest trends, research, and policy changes affecting the agricultural sector.",
-    "searchPlaceholder": "Search news articles...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Categories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Published",
-    "categoryLabel": "Category",
-    "readButton": "Read Full Story",
-    "noNews": {
-      "title": "No News Found",
-      "description": "There are currently no articles matching your criteria. Check back soon for the latest updates."
-    },
-    "news1": {
-      "title": "Global Grain Prices Surge Amidst Supply Chain Disruptions",
-      "excerpt": "A new report from AgriMarket Insights shows a 15% increase in global wheat and corn prices over the last quarter, driven by logistical bottlenecks and increased demand in Asia."
-    },
-    "news2": {
-      "title": "EU Implements New Regulations for Organic Food Imports",
-      "excerpt": "Exporters targeting the European Union must now comply with stricter digital documentation and traceability requirements for all organic-certified products, effective January 1, 2025."
-    },
-    "news3": {
-      "title": "Breakthrough in Drought-Resistant Maize Varieties",
-      "excerpt": "Researchers at Wageningen University have announced the development of new maize hybrids that show a 30% higher yield under water-scarce conditions, a promising development for climate change adaptation."
-    }
-  },
-  "privacyPolicy": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "This privacy notice for DamDoh ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services').",
-    "whatInfoWeCollect": {
-      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
-      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
-    },
-    "howWeUseInfo": {
-      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
-      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
-    },
-    "willInfoBeShared": {
-      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
-      "content": "We may share information in specific situations described in this section and/or with the following third parties. We may need to share your personal information to facilitate business transactions with other users, financial institutions for credit scoring (with your explicit consent), and with logistics partners to fulfill orders."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
-      "content": "We may use cookies and similar tracking technologies to access or store information. Specific information about how we use such technologies is set out in our Cookie Notice."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
-      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
-      "content": "We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process."
-    },
-    "minors": {
-      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
-      "content": "We do not knowingly collect data from or market to children under 18 years of age."
-    },
-    "privacyRights": {
-      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
-      "content": "You have the right to review, change, or terminate your account at any time. You may also have other privacy rights depending on your location."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
-      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
-    },
-    "updatesToNotice": {
-      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
-      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible."
-    },
-    "conclusion": "Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us."
-  },
-  "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh concerning your access to and use of the DamDoh application as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
-    "agreementToTerms": {
-      "heading": "1. AGREEMENT TO TERMS",
-      "content": "By using the Services, you agree to be bound by these Terms of Use. If you do not agree, you are expressly prohibited from using the Services and must discontinue use immediately."
-    },
-    "intellectualProperty": {
-      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
-      "content": "Unless otherwise indicated, the Services are our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein (the 'Marks') are owned or controlled by us or licensed to us."
-    },
-    "userRepresentations": {
-      "heading": "3. USER REPRESENTATIONS",
-      "content": "By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (6) you will not use the Services for any illegal or unauthorized purpose; and (7) your use of the Services will not violate any applicable law or regulation."
-    },
-    "prohibitedActivities": {
-      "heading": "4. PROHIBITED ACTIVITIES",
-      "content": "You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us. This includes, but is not limited to, fraudulent activities, spamming, and harassment of other users."
-    },
-    "platformManagement": {
-      "heading": "5. PLATFORM MANAGEMENT",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof."
-    },
-    "termAndTermination": {
-      "heading": "6. TERM AND TERMINATION",
-      "content": "These Terms of Use shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
-      "content": "We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Services without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services."
-    },
-    "governingLaw": {
-      "heading": "8. GOVERNING LAW",
-      "content": "These Terms shall be governed by and defined following the laws of Kenya. DamDoh and yourself irrevocably consent that the courts of Kenya shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms."
-    },
-    "disputeResolution": {
-      "heading": "9. DISPUTE RESOLUTION",
-      "content": "Any dispute arising from the relationships between the Parties to this contract shall be determined by one arbitrator who will be chosen in accordance with the Arbitration Act of Kenya."
-    },
-    "contactUs": {
-      "heading": "10. CONTACT US",
-      "content": "In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us."
-    },
-    "conclusion": "You can reach us through our {contactLink} page."
   }
 }
