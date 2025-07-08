@@ -1,42 +1,107 @@
-
 {
-  "DashboardRightSidebar": {
-    "networkTitle": "Ajouter à votre fil d'actualité",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "infoTooltip": "Les suggestions sont basées sur les intérêts et les besoins de votre profil.",
-    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
-    "loadError": "Impossible de charger les suggestions.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
-    "following": "Abonné",
-    "follow": "Suivre",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "Voir les offres spéciales et les promotions des partenaires de l'écosystème.",
-    "managePromotionsButton": "Gérer les Promotions",
-    "ad": "Publicité",
-    "adTitle": "Débloquez les Perspectives du Marché",
-    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
-    "adButton": "En savoir plus"
+  "LandingPage": {
+    "hero": {
+      "title": "Cultiver les Connexions, Récolter la Prospérité avec {appName}",
+      "subtitle": "L'écosystème numérique essentiel qui connecte chaque acteur de la chaîne de valeur agricole. De la semence à la vente, DamDoh favorise la croissance, la transparence et la collaboration.",
+      "getStartedButton": "Commencer Gratuitement",
+      "learnMoreButton": "En Savoir Plus"
+    },
+    "features": {
+      "title": "Fonctionnalités Clés de DamDoh",
+      "subtitle": "Une plateforme intégrée conçue pour répondre aux besoins variés de la communauté agricole.",
+      "networking": {
+        "title": "Réseautage Intelligent",
+        "description": "Suggestions de connexion basées sur l'IA en fonction de votre rôle, de votre emplacement et de vos besoins. Trouvez les bons partenaires, des fournisseurs aux acheteurs."
+      },
+      "marketplace": {
+        "title": "Marché Numérique",
+        "description": "Un canal direct pour acheter et vendre des produits, des intrants et des équipements. Élargissez votre marché et trouvez les meilleurs prix."
+      },
+      "forums": {
+        "title": "Forums Thématiques",
+        "description": "Partagez vos connaissances et discutez de sujets spécifiques tels que la gestion des cultures, la santé du bétail et les nouvelles technologies avec vos pairs."
+      },
+      "talent": {
+        "title": "Bourse de Talents",
+        "description": "Proposez ou trouvez des services agricoles, de la récolte à façon à l'arpentage par drone et au conseil professionnel."
+      }
+    },
+    "forWho": {
+      "badge": "Pour Tous les Acteurs de l'Agriculture",
+      "title": "Une Plateforme pour Chaque Acteur",
+      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de la chaîne de valeur agricole, créant un point de vérité et d'opportunité unique pour tous.",
+      "farmers": {
+        "title": "Agriculteurs",
+        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
+      },
+      "buyers": {
+        "title": "Acheteurs et Transformateurs",
+        "description": "Sourcez des produits de haute qualité et traçables directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Experts et Fournisseurs de Services",
+        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
+      },
+      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+    },
+    "cta": {
+      "title": "Prêt à développer votre réseau ?",
+      "subtitle": "Rejoignez des milliers d'agriculteurs, d'acheteurs et d'experts qui construisent un avenir agricole plus connecté et efficace.",
+      "button": "Rejoignez DamDoh Aujourd'hui"
+    }
   },
-  "AppFooter": {
-    "tagline": "La Plateforme Mondiale de la Chaîne d'Approvisionnement Agricole.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog et Actualités",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités de l'industrie",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Disponible sur Google Play",
-    "appStoreAlt": "Télécharger dans l'App Store"
+  "Auth": {
+    "signInWelcome": "Bienvenue à nouveau sur {appName}",
+    "signUpWelcome": "Rejoignez l'écosystème agricole {appName}",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
+    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte {appName}",
+    "signInTitle": "Se Connecter",
+    "signInDescription": "Entrez vos informations pour accéder à votre compte.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "nom@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion en cours...",
+    "signInButton": "Se Connecter",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "signUpLink": "S'inscrire",
+    "recoverWithUniversalIdPrompt": "Ou récupérez votre compte avec votre ID Universel",
+    "signUpTitle": "Créer un Compte",
+    "signUpDescription": "Remplissez les détails ci-dessous pour rejoindre notre communauté.",
+    "nameLabel": "Nom Complet",
+    "namePlaceholder": "Entrez votre nom complet",
+    "roleLabel": "Votre Rôle Principal",
+    "rolePlaceholder": "Sélectionnez votre rôle dans l'écosystème",
+    "newPasswordLabel": "Nouveau Mot de Passe",
+    "newPasswordPlaceholder": "Entrez un nouveau mot de passe sécurisé",
+    "confirmPasswordLabel": "Confirmer le Mot de Passe",
+    "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "Créer un Compte",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "forgotPasswordTitle": "Mot de Passe Oublié",
+    "forgotPasswordDescription": "Pas de soucis, nous vous enverrons des instructions de réinitialisation.",
+    "sendingEmailButton": "Envoi de l'e-mail...",
+    "sendResetLinkButton": "Envoyer le Lien de Réinitialisation",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "resetPasswordTitle": "Réinitialiser Votre Mot de Passe",
+    "resetPasswordDescription": "Veuillez entrer un nouveau mot de passe pour votre compte.",
+    "resettingPasswordButton": "Réinitialisation du mot de passe...",
+    "resetPasswordButton": "Réinitialiser le Mot de Passe",
+    "recoverPage": {
+      "title": "Récupération de Compte",
+      "description": "Utilisez votre numéro de téléphone ou l'aide d'un ami pour récupérer votre compte.",
+      "howItWorksTitle": "Comment Fonctionne la Récupération Sociale",
+      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
+      "step2": "Montrez le code QR temporaire à un ami de confiance qui utilise également DamDoh.",
+      "step3": "Une fois qu'ils auront confirmé, vous retrouverez l'accès à votre compte sur cet appareil.",
+      "startButton": "Démarrer la Récupération de Compte",
+      "scanTitle": "Demandez à un Ami de Scanner",
+      "scanDescription": "Demandez à une connexion DamDoh de confiance de scanner ce code QR temporaire depuis leur application.",
+      "scanNote": "Ce code est temporaire et uniquement à des fins de récupération.",
+      "startOverButton": "Recommencer",
+      "backToSignIn": "Retour à la Connexion"
+    }
   },
   "AppHeader": {
     "home": "Accueil",
@@ -104,177 +169,21 @@
       "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
     }
   },
-  "settingsPage": {
-    "title": "Paramètres",
-    "description": "Gérez les paramètres de votre compte et de votre profil.",
-    "profileTab": "Profil",
-    "accountTab": "Compte",
-    "notificationsTab": "Notifications",
-    "privacyTab": "Confidentialité",
-    "appearanceTab": "Apparence",
-    "stakeholderProfile": {
-      "title": "Profil de partie prenante",
-      "description": "Votre identité professionnelle sur DamDoh. C'est ainsi que les autres vous voient."
-    },
-    "account": {
-      "title": "Paramètres du compte",
-      "description": "Gérez l'authentification et la sécurité de votre compte.",
-      "currentPasswordLabel": "Mot de passe actuel",
-      "newPasswordLabel": "Nouveau mot de passe",
-      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
-      "changePasswordButton": "Mettre à jour le mot de passe",
-      "deactivateButton": "Désactiver le compte"
-    },
-    "notifications": {
-      "title": "Paramètres des notifications",
-      "description": "Gérez vos préférences de notifications par e-mail et push.",
-      "emailDigestLabel": "Notifications par e-mail",
-      "emailDigestDescription": "Recevoir des notifications par e-mail.",
-      "connectionRequestsLabel": "Demandes de connexion",
-      "connectionRequestsDescription": "M'avertir des nouvelles demandes de connexion.",
-      "forumMentionsLabel": "Mentions et réponses du forum",
-      "forumMentionsDescription": "M'avertir lorsque je suis mentionné ou que mes publications reçoivent une réponse.",
-      "marketplaceActivityLabel": "Activité du marché",
-      "marketplaceActivityDescription": "M'avertir des commandes et des demandes sur mes annonces.",
-      "talentExchangeLabel": "Mises à jour de la bourse de talents",
-      "talentExchangeDescription": "M'avertir des nouvelles offres d'emploi et des candidatures.",
-      "saveButton": "Enregistrer les préférences"
-    },
-    "privacy": {
-      "title": "Confidentialité et visibilité",
-      "description": "Contrôlez qui peut voir vos informations et interagir avec vous.",
-      "profileVisibilityLabel": "Visibilité du profil",
-      "profileVisibilityDescription": "Contrôlez qui peut voir votre profil complet.",
-      "profileVisibilityAll": "Tout le monde",
-      "profileVisibilityConnections": "Connexions uniquement",
-      "profileVisibilityPrivate": "Privé (moi uniquement)",
-      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion ?",
-      "connectionRequestsDescription": "Limitez qui peut vous envoyer des demandes de connexion.",
-      "connectionRequestsAll": "Tout le monde",
-      "connectionRequestsConnectionsOfConnections": "Connexions de connexions",
-      "contactInfoVisibilityLabel": "Qui peut voir vos coordonnées ?",
-      "contactInfoVisibilityDescription": "Contrôlez qui voit votre e-mail et votre numéro de téléphone.",
-      "contactInfoVisibilityAll": "Tout le monde",
-      "contactInfoVisibilityConnections": "Connexions uniquement",
-      "activityStatusLabel": "Afficher mon statut d'activité",
-      "activityStatusDescription": "Faites savoir à vos connexions quand vous êtes actif sur DamDoh.",
-      "searchIndexingLabel": "Autoriser les moteurs de recherche à indexer mon profil",
-      "searchIndexingDescription": "Autorisez votre profil à apparaître dans les résultats de recherche sur Google, etc.",
-      "saveButton": "Enregistrer les paramètres de confidentialité",
-      "dataConsentTitle": "Partage de données et consentement",
-      "dataConsentDescription": "Contrôlez comment vos données sont utilisées dans les services intégrés de DamDoh.",
-      "marketplaceHistoryLabel": "Historique du marché pour les services financiers",
-      "marketplaceHistoryDescription": "Autorisez les institutions financières sur DamDoh à prendre en compte votre historique de transactions sur le marché pour la notation de crédit.",
-      "traceabilityDataLabel": "Données de traçabilité publiques",
-      "traceabilityDataDescription": "Autorisez l'utilisation de vos données de traçabilité anonymisées dans les rapports publics et la recherche.",
-      "financialApplicationDataLabel": "Données de demande financière pour la mise en correspondance par l'IA",
-      "financialApplicationDataDescription": "Autorisez l'utilisation de vos données de demande financière anonymisées par notre IA pour suggérer des services pertinents.",
-      "saveConsentButton": "Enregistrer les consentements"
-    },
-    "appearance": {
-      "title": "Apparence",
-      "description": "Personnalisez l'apparence de l'application.",
-      "themeLabel": "Thème",
-      "themeDescription": "Sélectionnez un thème clair ou sombre pour l'interface.",
-      "lightTheme": "Clair",
-      "darkTheme": "Sombre",
-      "languageLabel": "Langue",
-      "languageDescription": "Choisissez votre langue préférée pour l'application."
-    },
-    "editProfilePage": {
-      "toast": {
-        "notAuthenticatedTitle": "Non authentifié",
-        "notAuthenticatedDescription": "Veuillez vous connecter pour modifier votre profil.",
-        "unauthorizedTitle": "Non autorisé",
-        "unauthorizedDescription": "Vous ne pouvez modifier que votre propre profil."
-      }
-    }
-  },
-  "searchPage": {
-    "title": "Recherche Universelle",
-    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
-    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches Populaires",
-    "popularSearch1": "Grains de Café Bio Kenya",
-    "popularSearch2": "Location de tracteur",
-    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
-    "popularSearch4": "Partenaire logistique Afrique de l'Est",
-    "popularSearch5": "Réduction des pertes post-récolte",
-    "modal": {
-      "title": "Recherche Universelle",
-      "placeholder": "Rechercher personnes, produits, services, forums...",
-      "searchButton": "Rechercher",
-      "searchError": "Erreur de Recherche",
-      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
-      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
-      "scanFailed": "Scan Échoué",
-      "scanError": "Erreur de Scan",
-      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
-      "interpretationTitle": "Interprétation IA",
-      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
-      "filtersTitle": "Filtres Appliqués",
-      "noResults": "Aucun résultat trouvé.",
-      "tryAgain": "Essayez d'affiner vos termes de recherche.",
-      "results": {
-        "users": "Profils",
-        "marketplaceItems": "Marché",
-        "forums": "Forums",
-        "agri_events": "Événements",
-        "knowledge_articles": "Centre de connaissances",
-        "vti_registry": "Rapports de Traçabilité"
-      }
-    }
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Cultiver les Connexions, Récolter la Prospérité avec {appName}",
-      "subtitle": "L'écosystème numérique essentiel qui connecte chaque acteur de la chaîne de valeur agricole. De la semence à la vente, DamDoh favorise la croissance, la transparence et la collaboration.",
-      "getStartedButton": "Commencer Gratuitement",
-      "learnMoreButton": "En Savoir Plus"
-    },
-    "features": {
-      "title": "Fonctionnalités Clés de DamDoh",
-      "subtitle": "Une plateforme intégrée conçue pour répondre aux besoins variés de la communauté agricole.",
-      "networking": {
-        "title": "Réseautage Intelligent",
-        "description": "Suggestions de connexion basées sur l'IA en fonction de votre rôle, de votre emplacement et de vos besoins. Trouvez les bons partenaires, des fournisseurs aux acheteurs."
-      },
-      "marketplace": {
-        "title": "Marché Numérique",
-        "description": "Un canal direct pour acheter et vendre des produits, des intrants et des équipements. Élargissez votre marché et trouvez les meilleurs prix."
-      },
-      "forums": {
-        "title": "Forums Thématiques",
-        "description": "Partagez vos connaissances et discutez de sujets spécifiques tels que la gestion des cultures, la santé du bétail et les nouvelles technologies avec vos pairs."
-      },
-      "talent": {
-        "title": "Bourse de Talents",
-        "description": "Proposez ou trouvez des services agricoles, de la récolte à façon à l'arpentage par drone et au conseil professionnel."
-      }
-    },
-    "forWho": {
-      "badge": "Pour Tous les Acteurs de l'Agriculture",
-      "title": "Une Plateforme pour Chaque Acteur",
-      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de la chaîne de valeur agricole, créant un point de vérité et d'opportunité unique pour tous.",
-      "farmers": {
-        "title": "Agriculteurs",
-        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
-      },
-      "buyers": {
-        "title": "Acheteurs et Transformateurs",
-        "description": "Sourcez des produits de haute qualité et traçables directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
-      },
-      "experts": {
-        "title": "Experts et Fournisseurs de Services",
-        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
-      },
-      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
-    },
-    "cta": {
-      "title": "Prêt à développer votre réseau ?",
-      "subtitle": "Rejoignez des milliers d'agriculteurs, d'acheteurs et d'experts qui construisent un avenir agricole plus connecté et efficace.",
-      "button": "Rejoignez DamDoh Aujourd'hui"
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "Ajouter à votre fil d'actualité",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "infoTooltip": "Les suggestions sont basées sur les intérêts et les besoins de votre profil.",
+    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
+    "loadError": "Impossible de charger les suggestions.",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
+    "following": "Abonné",
+    "follow": "Suivre",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "Voir les offres spéciales et les promotions des partenaires de l'écosystème.",
+    "managePromotionsButton": "Gérer les Promotions",
+    "ad": "Publicité",
+    "adTitle": "Débloquez les Perspectives du Marché",
+    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
+    "adButton": "En savoir plus"
   }
 }

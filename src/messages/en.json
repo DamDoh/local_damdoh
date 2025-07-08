@@ -1,143 +1,4 @@
-
 {
-  "DashboardRightSidebar": {
-    "networkTitle": "Add to your feed",
-    "refreshSuggestions": "Refresh suggestions",
-    "infoTooltip": "Suggestions are based on your profile interests and needs.",
-    "signInPrompt": "Sign in to get personalized suggestions.",
-    "loadError": "Could not load suggestions.",
-    "noSuggestions": "No new suggestions right now. Check back later!",
-    "following": "Following",
-    "follow": "Follow",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
-    "managePromotionsButton": "Manage Promotions",
-    "ad": "Ad",
-    "adTitle": "Unlock Market Insights",
-    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
-    "adButton": "Learn More"
-  },
-  "AppFooter": {
-    "tagline": "The Global Agricultural Supply Chain Platform.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog & News",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the Mobile App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
-  },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Change language"
-  },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "You're back online!",
-        "description": "Your connection has been restored."
-      },
-      "offline": {
-        "title": "You are currently offline",
-        "description": "Your actions will be saved and synced when you reconnect."
-      },
-      "syncing": {
-        "title": "Syncing offline changes...",
-        "description": "Uploading {count, plural, one {# action} other {# actions}} to the server."
-      },
-      "synced": {
-        "title": "Sync Complete!",
-        "description": "All your offline changes have been saved."
-      },
-      "syncFailed": {
-        "title": "Sync Failed",
-        "description": "Could not sync all offline changes. Will retry later."
-      },
-      "queued": {
-        "title": "Action Queued",
-        "description": "This action will be performed once you are online."
-      }
-    },
-    "tooltip": {
-      "syncing": "Syncing {count, plural, one {# pending action} other {# pending actions}}...",
-      "onlinePending": "Online | {count, plural, one {# action} other {# actions}} pending sync",
-      "onlineSynced": "Online | All changes synced",
-      "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
-    }
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search people, products, services, forum posts...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans Kenya",
-    "popularSearch2": "Tractor Rental",
-    "popularSearch3": "Drought-resistant maize seeds",
-    "popularSearch4": "East Africa Logistics Partner",
-    "popularSearch5": "Post-harvest loss reduction",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search people, products, services, forums...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while searching. Please try again.",
-      "invalidCodeError": "Invalid QR Code scanned. It does not appear to be a DamDoh ID.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Searching for items related to your query.",
-      "filtersTitle": "Applied Filters",
-      "noResults": "No results found.",
-      "tryAgain": "Try refining your search terms.",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Hub",
-        "vti_registry": "Traceability Reports"
-      }
-    }
-  },
   "LandingPage": {
     "hero": {
       "title": "Cultivating Connections, Harvesting Prosperity with {appName}",
@@ -188,5 +49,141 @@
       "subtitle": "Join thousands of farmers, buyers, and experts building a more connected and efficient agricultural future.",
       "button": "Join DamDoh Today"
     }
+  },
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the {appName} Agricultural Ecosystem",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Set a new password for your {appName} account",
+    "signInTitle": "Sign In",
+    "signInDescription": "Enter your credentials to access your account.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing In...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "recoverWithUniversalIdPrompt": "Or recover your account with your Universal ID",
+    "signUpTitle": "Create an Account",
+    "signUpDescription": "Fill in the details below to join our community.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the ecosystem",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a new secure password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "creatingAccountButton": "Creating Account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password",
+    "forgotPasswordDescription": "No worries, we'll send you reset instructions.",
+    "sendingEmailButton": "Sending Email...",
+    "sendResetLinkButton": "Send Reset Link",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Please enter a new password for your account.",
+    "resettingPasswordButton": "Resetting Password...",
+    "resetPasswordButton": "Reset Password",
+    "recoverPage": {
+      "title": "Account Recovery",
+      "description": "Use your phone number or a friend's help to recover your account.",
+      "howItWorksTitle": "How Social Recovery Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend who also uses DamDoh.",
+      "step3": "Once they confirm, you'll regain access to your account on this device.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh connection scan this temporary QR code from within their app.",
+      "scanNote": "This code is temporary and for recovery purposes only.",
+      "startOverButton": "Start Over",
+      "backToSignIn": "Back to Sign In"
+    }
+  },
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light mode",
+    "switchToDarkAria": "Switch to dark mode"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Change language"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "You're back online!",
+        "description": "Your connection has been restored."
+      },
+      "offline": {
+        "title": "You are currently offline",
+        "description": "Your actions will be saved and synced when you reconnect."
+      },
+      "syncing": {
+        "title": "Syncing offline changes...",
+        "description": "Uploading {count, plural, one {# action} other {# actions}} to the server."
+      },
+      "synced": {
+        "title": "Sync Complete!",
+        "description": "All your offline changes have been saved."
+      },
+      "syncFailed": {
+        "title": "Sync Failed",
+        "description": "Could not sync all offline changes. Will retry later."
+      },
+      "queued": {
+        "title": "Action Queued",
+        "description": "This action will be performed once you are online."
+      }
+    },
+    "tooltip": {
+      "syncing": "Syncing {count, plural, one {# pending action} other {# pending actions}}...",
+      "onlinePending": "Online | {count, plural, one {# action} other {# actions}} pending sync",
+      "onlineSynced": "Online | All changes synced",
+      "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
+    }
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Add to your feed",
+    "refreshSuggestions": "Refresh suggestions",
+    "infoTooltip": "Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "Sign in to get personalized suggestions.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "following": "Following",
+    "follow": "Follow",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "Manage Promotions",
+    "ad": "Ad",
+    "adTitle": "Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "Learn More"
   }
 }
