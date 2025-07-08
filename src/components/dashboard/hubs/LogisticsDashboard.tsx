@@ -92,7 +92,7 @@ export const LogisticsDashboard = () => {
                            (activeShipments || []).map(shipment => (
                                <div key={shipment.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                    <div>
-                                       <p className="font-medium">To: {shipment.to}</p>
+                                       <p className="font-medium">{t('to')}: {shipment.to}</p>
                                        <Badge variant={shipment.status === 'Delayed' ? 'destructive' : 'secondary'} className="mt-1">{shipment.status}</Badge>
                                    </div>
                                    <Button asChild variant="ghost" size="sm" disabled={shipment.vtiLink === '#'}>
@@ -122,7 +122,7 @@ export const LogisticsDashboard = () => {
  <div key={job.id} className="flex items-center justify-between text-sm p-2 border rounded-lg">
                                     <div className="flex items-center gap-3">
  <Briefcase className="h-4 w-4 text-muted-foreground" />
-                                        <p className="font-medium">{job.from} → {job.to}</p>
+                                        <p className="font-medium">{t('from')}: {job.from} → {job.to}</p>
                                         <p className="text-xs text-muted-foreground">{job.product} ({job.requirements})</p>
                                     </div>
                                     <Button asChild size="sm">

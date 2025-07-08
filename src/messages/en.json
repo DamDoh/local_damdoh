@@ -230,6 +230,9 @@
       "expiry": "Expiry"
     }
   },
+  "InsuranceProviderDashboard": {
+    "title": "Insurance Provider Dashboard"
+  },
   "InsuranceProductsPage": {
     "backLink": "Back to Insurance Hub",
     "title": "My Insurance Products",
@@ -276,18 +279,163 @@
       "errorTitle": "Creation Failed"
     }
   },
-   "InsuranceProviderDashboard": {
-    "title": "Insurance Provider Dashboard",
-    "claimsTitle": "Pending Claims",
-    "claimsDescription": "Review and process new insurance claims from policyholders.",
-    "noPendingClaims": "No pending claims at this time.",
-    "reviewClaimButton": "Review Claim",
+  "FiDashboard": {
+    "title": "Financial Institution Dashboard",
+    "pendingApplicationsTitle": "Pending Applications",
+    "pendingApplicationsDescription": "Loan and grant applications that require your review.",
+    "manageApplicationsButton": "Manage Applications",
+    "portfolioAtRiskTitle": "Portfolio at Risk",
+    "portfolioAtRiskDescription": "{{count}} loans are showing high-risk indicators.",
+    "reviewRiskButton": "Review Risk",
+    "manageProductsTitle": "Financial Products",
+    "manageProductsDescription": "Manage available loan and grant products.",
+    "manageProductsButton": "Manage Products",
     "table": {
-      "policyHolder": "Policyholder",
-      "policyType": "Policy Type",
-      "claimDate": "Claim Date",
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "riskScore": "Risk Score",
+      "action": "Action"
+    },
+    "reviewButton": "Review",
+    "noApplications": "No pending applications at this time.",
+    "viewAllButton": "View All Applications"
+  },
+  "FiApplicationListPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Applications",
+    "description": "View and manage all loan and grant applications.",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Submitted",
       "status": "Status",
       "action": "Action"
+    },
+    "reviewButton": "Review",
+    "noApplications": "No applications found matching this filter."
+  },
+  "FiApplicationPage": {
+    "backLink": "Back to Applications",
+    "title": "Application Detail",
+    "applicationTitle": "Application",
+    "submittedOn": "Submitted on",
+    "amountRequested": "Amount Requested",
+    "purpose": "Purpose of Funding",
+    "approveButton": "Approve",
+    "rejectButton": "Reject",
+    "requestInfoButton": "Request More Info",
+    "applicantDetails": "Applicant Details",
+    "viewProfileButton": "View Full Profile",
+    "profileNotFound": "Applicant profile could not be found.",
+    "riskAssessment": "Risk Assessment",
+    "creditScore": "DamDoh Credit Score",
+    "notFound": "Application not found.",
+    "toast": {
+      "errorTitle": "Error",
+      "updateSuccessTitle": "Status Updated!",
+      "updateSuccessDescription": "The application status has been updated to {{status}}.",
+      "updateFailTitle": "Update Failed"
     }
+  },
+  "FiProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "My Financial Products",
+    "description": "View and manage your listed financial products.",
+    "createButton": "Create New Product",
+    "noProducts": "You have not created any financial products yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "interestRate": "Interest Rate",
+      "maxAmount": "Max Amount"
+    },
+    "toast": {
+      "errorTitle": "Error",
+      "fetchError": "Could not fetch your financial products."
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create Financial Product",
+    "description": "Define a new loan or grant product to offer on the platform.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Seasonal Seed Loan",
+      "typeLabel": "Product Type",
+      "loan": "Loan",
+      "grant": "Grant",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Briefly describe this product and its benefits.",
+      "interestRateLabel": "Interest Rate (%)",
+      "interestRatePlaceholder": "e.g., 12.5",
+      "maxAmountLabel": "Max Amount (USD)",
+      "maxAmountPlaceholder": "e.g., 10000",
+      "targetRolesLabel": "Target Roles",
+      "targetRolesDescription": "Select the roles that are eligible for this product.",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in to create a product.",
+      "successTitle": "Product Created!",
+      "successDescription": "{{name}} has been successfully created.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Processing Unit Dashboard",
+    "yieldTitle": "Yield Optimization",
+    "potential": "Potential",
+    "wasteTitle": "Waste Reduction",
+    "packagingInventoryTitle": "Packaging Inventory",
+    "inStock": "In Stock",
+    "reorderLevel": "Reorder Level",
+    "noPackagingData": "No packaging inventory data.",
+    "sourcePackagingButton": "Source Packaging",
+    "rawMaterialTitle": "Raw Material Inventory",
+    "table": {
+      "product": "Product",
+      "quality": "Quality",
+      "quantity": "Tons (Est.)",
+      "supplier": "Supplier",
+      "deliveryDate": "Delivery Date",
+      "status": "Status",
+      "action": "Action"
+    },
+    "noInventoryData": "No raw material inventory data.",
+    "packagingOrdersTitle": "Packaging Orders",
+    "noPackagingOrders": "No active packaging orders.",
+    "viewButton": "View"
+  },
+  "WarehouseDashboard": {
+    "title": "Warehouse Operations Dashboard",
+    "utilizationTitle": "Storage Utilization",
+    "inventoryTitle": "Inventory Levels",
+    "itemsNeedingAttention": "items needing attention",
+    "alertsTitle": "Predictive Alerts",
+    "noAlerts": "No active alerts.",
+    "investigateButton": "Investigate"
+  },
+  "LogisticsDashboard": {
+    "title": "Logistics Partner Dashboard",
+    "performanceTitle": "On-Time Performance",
+    "onTimeDelivery": "On-time delivery rate",
+    "viewReportButton": "View Full Report",
+    "activeShipmentsTitle": "Active Shipments",
+    "to": "To",
+    "trackButton": "Track",
+    "noActiveShipments": "No active shipments.",
+    "incomingJobsTitle": "Incoming Jobs",
+    "from": "From",
+    "acceptJobButton": "Accept Job",
+    "noIncomingJobs": "No new jobs available."
   }
 }

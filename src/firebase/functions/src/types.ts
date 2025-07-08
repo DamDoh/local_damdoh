@@ -8,6 +8,7 @@ import type {
     ForumPostSchema,
     AgriEventSchema
 } from './schemas';
+import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
 
 // =================================================================
 // 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
@@ -445,7 +446,6 @@ export interface AgronomistDashboardData {
   }[];
   pendingConsultationRequests: {
     id: string;
-    farmerId: string;
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
