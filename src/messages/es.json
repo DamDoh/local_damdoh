@@ -499,6 +499,52 @@
       "heading": "10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?",
       "content": "Podemos actualizar esta política de privacidad de vez en cuando. La versión actualizada se indicará con una fecha de 'Revisión' actualizada y la versión actualizada entrará en vigencia tan pronto como sea accesible. Le recomendamos que revise esta política de privacidad con frecuencia para estar informado sobre cómo protegemos su información."
     }
+  },
+  "termsOfService": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización: 29 de octubre de 2023",
+    "introduction": "Por favor, lea estos Términos de Servicio cuidadosamente antes de usar la plataforma DamDoh operada por DamDoh Inc. Su acceso y uso del Servicio está condicionado a su aceptación y cumplimiento de estos Términos. Estos Términos se aplican a todos los visitantes, usuarios y otras personas que accedan o usen el Servicio.",
+    "agreementToTerms": {
+      "heading": "1. Aceptación de los Términos",
+      "content": "Al acceder o utilizar nuestro Servicio, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con alguna parte de los términos, no podrá acceder al Servicio."
+    },
+    "intellectualProperty": {
+      "heading": "2. Derechos de Propiedad Intelectual",
+      "content": "El Servicio y su contenido original, características y funcionalidad son y seguirán siendo propiedad exclusiva de DamDoh Inc. y sus licenciantes. El Servicio está protegido por derechos de autor, marcas registradas y otras leyes tanto de los Estados Unidos como de países extranjeros."
+    },
+    "userRepresentations": {
+      "heading": "3. Declaraciones del Usuario",
+      "content": "Al usar el Sitio, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información y actualizará rápidamente dicha información de registro según sea necesario; (3) tiene la capacidad legal y acepta cumplir con estos Términos de Uso; (4) no es menor de edad en la jurisdicción en la que reside; (5) no accederá al Sitio a través de medios automatizados o no humanos, ya sea a través de un bot, script o de otro modo; (6) no utilizará el Sitio para ningún propósito ilegal o no autorizado; y (7) su uso del Sitio no violará ninguna ley o regulación aplicable."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Actividades Prohibidas",
+      "content": "No puede acceder ni utilizar el Sitio para ningún otro propósito que no sea el para el que lo ponemos a su disposición. El Sitio no puede utilizarse en relación con ningún esfuerzo comercial, excepto aquellos que están específicamente respaldados o aprobados por nosotros. Como usuario del Sitio, usted acepta no participar en ninguna de las actividades que están explícitamente prohibidas en la versión completa de nuestros términos."
+    },
+    "platformManagement": {
+      "heading": "5. Gestión de la Plataforma",
+      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear el Sitio en busca de violaciones de estos Términos de Uso; (2) tomar las medidas legales apropiadas contra cualquier persona que, a nuestro exclusivo criterio, viole la ley o estos Términos de Uso; (3) a nuestro exclusivo criterio y sin limitación, rechazar, restringir el acceso, limitar la disponibilidad o deshabilitar (en la medida tecnológicamente factible) cualquiera de sus Contribuciones o cualquier parte de las mismas; (4) administrar el Sitio de otra manera de una manera diseñada para proteger nuestros derechos y propiedad y para facilitar el funcionamiento adecuado del Sitio."
+    },
+    "termAndTermination": {
+      "heading": "6. Duración y Terminación",
+      "content": "Estos Términos de Uso permanecerán en pleno vigor y efecto mientras utilice el Sitio. SIN LIMITAR NINGUNA OTRA DISPOSICIÓN DE ESTOS TÉRMINOS DE USO, NOS RESERVAMOS EL DERECHO, A NUESTRO EXCLUSIVO CRITERIO Y SIN PREVIO AVISO NI RESPONSABILIDAD, DE NEGAR EL ACCESO Y EL USO DEL SITIO (INCLUIDO EL BLOQUEO DE CIERTAS DIRECCIONES IP), A CUALQUIER PERSONA POR CUALQUIER MOTIVO O SIN MOTIVO ALGUNO."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modificaciones e Interrupciones",
+      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido del Sitio en cualquier momento o por cualquier motivo a nuestro exclusivo criterio sin previo aviso. También nos reservamos el derecho de modificar o descontinuar todo o parte del Sitio sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante ningún tercero por ninguna modificación, cambio de precio, suspensión o interrupción del Sitio."
+    },
+    "governingLaw": {
+      "heading": "8. Ley Aplicable",
+      "content": "Estos Términos se regirán e interpretarán de acuerdo con las leyes de la jurisdicción en la que está establecida nuestra empresa, sin tener en cuenta sus disposiciones sobre conflicto de leyes."
+    },
+    "disputeResolution": {
+      "heading": "9. Resolución de Disputas",
+      "content": "Cualquier acción legal de cualquier naturaleza iniciada por usted o por nosotros (colectivamente, las 'Partes' e individualmente, una 'Parte') se iniciará o procesará en los tribunales estatales y federales ubicados en nuestra jurisdicción, y las Partes por la presente consienten y renuncian a todas las defensas de falta de jurisdicción personal y foro no conveniente con respecto al lugar y la jurisdicción en dichos tribunales estatales y federales."
+    },
+    "contactUs": {
+      "heading": "10. Contáctenos",
+      "content": "Para resolver una queja sobre el Sitio o para recibir más información sobre el uso del Sitio, contáctenos en nuestra dirección de correo electrónico de soporte designada."
+    },
+    "conclusion": "Para resolver una queja, por favor <contactLink>contáctenos</contactLink>."
   }
 }
 

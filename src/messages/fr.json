@@ -499,6 +499,52 @@
       "heading": "10. METTONS-NOUS À JOUR CET AVIS ?",
       "content": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. La version mise à jour sera indiquée par une date de 'Révision' mise à jour et la version mise à jour sera effective dès qu'elle sera accessible. Nous vous encourageons à consulter fréquemment cette politique de confidentialité pour être informé de la manière dont nous protégeons vos informations."
     }
+  },
+  "termsOfService": {
+    "title": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Veuillez lire attentivement ces Conditions d'utilisation avant d'utiliser la plateforme DamDoh exploitée par DamDoh Inc. Votre accès et votre utilisation du Service sont conditionnés à votre acceptation et à votre respect de ces Conditions. Ces Conditions s'appliquent à tous les visiteurs, utilisateurs et autres personnes qui accèdent ou utilisent le Service.",
+    "agreementToTerms": {
+      "heading": "1. Acceptation des Conditions",
+      "content": "En accédant ou en utilisant notre Service, vous acceptez d'être lié par ces Conditions. Si vous n'êtes pas d'accord avec une partie des conditions, vous ne pouvez pas accéder au Service."
+    },
+    "intellectualProperty": {
+      "heading": "2. Droits de Propriété Intellectuelle",
+      "content": "Le Service et son contenu original, ses caractéristiques et ses fonctionnalités sont et resteront la propriété exclusive de DamDoh Inc. et de ses concédants de licence. Le Service est protégé par le droit d'auteur, les marques de commerce et d'autres lois des États-Unis et des pays étrangers."
+    },
+    "userRepresentations": {
+      "heading": "3. Déclarations de l'Utilisateur",
+      "content": "En utilisant le Site, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, actuelles et complètes ; (2) vous maintiendrez l'exactitude de ces informations et mettrez à jour rapidement ces informations d'inscription si nécessaire ; (3) vous avez la capacité juridique et vous acceptez de vous conformer à ces Conditions d'utilisation ; (4) vous n'êtes pas mineur dans la juridiction dans laquelle vous résidez ; (5) vous n'accéderez pas au Site par des moyens automatisés ou non humains, que ce soit par un bot, un script ou autrement ; (6) vous n'utiliserez pas le Site à des fins illégales ou non autorisées ; et (7) votre utilisation du Site ne violera aucune loi ou réglementation applicable."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Activités Interdites",
+      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous mettons le Site à disposition. Le Site ne peut pas être utilisé en relation avec des entreprises commerciales, sauf celles qui sont spécifiquement approuvées par nous. En tant qu'utilisateur du Site, vous acceptez de ne pas vous engager dans l'une des activités qui sont explicitement interdites dans la version complète de nos conditions."
+    },
+    "platformManagement": {
+      "heading": "5. Gestion de la Plateforme",
+      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces Conditions d'utilisation ; (2) prendre les mesures légales appropriées contre toute personne qui, à notre seule discrétion, enfreint la loi ou ces Conditions d'utilisation ; (3) à notre seule discrétion et sans limitation, refuser, restreindre l'accès, limiter la disponibilité ou désactiver (dans la mesure technologiquement possible) l'une de vos Contributions ou toute partie de celles-ci ; (4) gérer autrement le Site de manière à protéger nos droits et notre propriété et à faciliter le bon fonctionnement du Site."
+    },
+    "termAndTermination": {
+      "heading": "6. Durée et Résiliation",
+      "content": "Ces Conditions d'utilisation resteront en vigueur tant que vous utiliserez le Site. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DU SITE (Y COMPRIS LE BLOCAGE DE CERTAINES ADRESSES IP), À TOUTE PERSONNE POUR QUELQUE RAISON QUE CE SOIT OU SANS RAISON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications et Interruptions",
+      "content": "Nous nous réservons le droit de changer, de modifier ou de supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous nous réservons également le droit de modifier ou d'interrompre tout ou partie du Site sans préavis à tout moment. Nous ne serons pas responsables envers vous ou un tiers pour toute modification, changement de prix, suspension ou interruption du Site."
+    },
+    "governingLaw": {
+      "heading": "8. Droit Applicable",
+      "content": "Ces Conditions seront régies et interprétées conformément aux lois de la juridiction dans laquelle notre société est établie, sans égard à ses dispositions relatives aux conflits de lois."
+    },
+    "disputeResolution": {
+      "heading": "9. Résolution des Litiges",
+      "content": "Toute action en justice de quelque nature que ce soit, intentée par vous ou par nous (collectivement, les « Parties » et individuellement, une « Partie ») sera engagée ou poursuivie devant les tribunaux d'État et fédéraux situés dans notre juridiction, et les Parties consentent par la présente et renoncent à toutes les défenses de défaut de compétence personnelle et de forum non conveniens en ce qui concerne le lieu et la juridiction dans ces tribunaux d'État et fédéraux."
+    },
+    "contactUs": {
+      "heading": "10. Contactez-nous",
+      "content": "Afin de résoudre une plainte concernant le Site ou de recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter à notre adresse e-mail de support désignée."
+    },
+    "conclusion": "Pour résoudre une plainte, veuillez <contactLink>nous contacter</contactLink>."
   }
 }
 
