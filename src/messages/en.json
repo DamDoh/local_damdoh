@@ -1,4 +1,5 @@
 
+
 {
   "FeedItemCard": {
     "signInToLikeToast": "Please sign in to like posts",
@@ -535,5 +536,117 @@
     "flaggedEventsTitle": "Flagged Events",
     "viewVtiButton": "View VTI",
     "noFlaggedEvents": "No automatically flagged events at this time."
+  },
+  "GroupsPage": {
+    "title": "Community Groups",
+    "description": "Find and join groups that match your interests.",
+    "createGroupButton": "Create New Group",
+    "searchPlaceholder": "Search for groups...",
+    "notFound": "No groups found.",
+    "detail": {
+      "backLink": "Back to Groups",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Start a Discussion",
+      "noDiscussions": "No discussions have been started yet.",
+      "beTheFirst": "Be the first to post.",
+      "actionsTitle": "Group Actions",
+      "leaveButton": "Leave Group",
+      "leavingButton": "Leaving...",
+      "joinButton": "Join Group",
+      "joiningButton": "Joining...",
+      "requestJoinButton": "Request to Join",
+      "loginToJoinButton": "Login to Join",
+      "membersTitle": "{memberCount, plural, one {# Member} other {# Members}}"
+    },
+    "toast": {
+      "loginToJoin": "Please sign in to join this group.",
+      "joinSuccess": "Successfully joined the group!",
+      "joinError": "Error joining group",
+      "leaveSuccess": "You have left the group.",
+      "leaveError": "Error leaving group"
+    },
+    "create": {
+      "backLink": "Back to Groups",
+      "title": "Create a New Community Group",
+      "description": "Start a new community for stakeholders with shared interests or goals.",
+      "form": {
+        "nameLabel": "Group Name",
+        "namePlaceholder": "e.g., Organic Coffee Growers of Kenya",
+        "descriptionLabel": "Group Description",
+        "descriptionPlaceholder": "What is the purpose of this group?",
+        "publicLabel": "Public Group",
+        "submitButton": "Create Group",
+        "submittingButton": "Creating..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be logged in to create a group."
+        },
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please provide a name and description for the group."
+        },
+        "success": {
+          "title": "Group Created!",
+          "description": "Your new community group has been successfully created."
+        },
+        "error": {
+          "title": "Error Creating Group",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Group",
+      "title": "Start a New Discussion",
+      "description": "Create a new post to engage with other group members.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter a clear and engaging title",
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Share your thoughts, ask a question, or start a conversation...",
+        "submitButton": "Create Post",
+        "submittingButton": "Creating Post..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be a member of this group to post."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "success": {
+          "title": "Post Created!",
+          "description": "Your discussion has been started."
+        },
+        "error": {
+          "title": "Error Creating Post",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Back to {{groupName}}",
+      "repliesTitle": "Replies ({count})",
+      "yourReplyTitle": "Your Reply",
+      "replyPlaceholder": "Write your reply here...",
+      "replySubmitButton": "Post Reply",
+      "replySubmittingButton": "Posting...",
+      "noReplies": "Be the first to reply to this post.",
+      "loadMoreButton": "Load More Replies",
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Group"
+      },
+      "toast": {
+        "emptyReply": "Your reply cannot be empty.",
+        "replySuccess": "Your reply has been posted!"
+      }
+    }
   }
 }
+

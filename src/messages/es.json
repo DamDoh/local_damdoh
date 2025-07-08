@@ -1,539 +1,500 @@
 
+
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "Por favor, inicie sesión para dar 'me gusta' a las publicaciones",
-    "signInToVoteToast": "Por favor, inicie sesión para votar",
-    "voteSuccessToast": "Voto emitido con éxito",
-    "voteErrorToast": "Error al emitir el voto",
-    "loadCommentsErrorToast": "Error al cargar los comentarios",
-    "editPost": "Editar publicación",
-    "deletePost": "Eliminar publicación",
-    "votes": "{count, plural, one {voto} other {votos}}",
-    "likes": "{count, plural, one {Me gusta} other {Me gusta}}",
-    "comments": "{count, plural, one {Comentario} other {Comentarios}}",
-    "like": "Me gusta",
-    "comment": "Comentar",
-    "repost": "Volver a publicar",
-    "noComments": "Aún no hay comentarios.",
-    "loadingComments": "Cargando comentarios...",
-    "loadMoreComments": "Cargar más comentarios",
-    "writeCommentPlaceholder": "Escribe un comentario...",
-    "postButton": "Publicar"
-  },
-  "CreatePostModal": {
-    "pollOptionsError": "Una encuesta debe tener al menos 2 opciones.",
-    "emptyPostError": "Una publicación no puede estar completamente vacía.",
-    "title": "Crear una nueva publicación",
-    "description": "Comparte una actualización con tu red.",
-    "yourName": "Tu nombre",
-    "shareUpdate": "Compartir una actualización",
-    "placeholder": "¿De qué quieres hablar?",
-    "selectedFile": "Archivo seleccionado:",
-    "pollOptionsLabel": "Opciones de la encuesta",
-    "pollOptionPlaceholder": "Opción {index}",
-    "addOptionButton": "Agregar opción",
-    "pollNote": "Máximo {maxOptions} opciones.",
-    "addMediaButton": "Agregar foto/video",
-    "createEventButton": "Crear evento agrícola",
-    "shareDocumentButton": "Compartir un documento",
-    "createPollButton": "Crear una encuesta",
-    "postButton": "Publicar"
-  },
-  "StartPost": {
-    "placeholder": "Comparte una actualización agrícola, una visión del mercado o haz una pregunta...",
-    "photoVideo": "Foto / Video",
-    "agriEvent": "Evento agrícola",
-    "createPoll": "Crear encuesta"
-  },
-  "AgroTourismDashboard": {
-    "title": "Centro de Operadores de Agroturismo",
-    "bookingsTitle": "Próximas Reservas",
-    "bookingsDescription": "Sus próximas experiencias de agroturismo programadas.",
-    "table": {
-      "experience": "Experiencia",
-      "guest": "Nombre del Huésped",
-      "date": "Fecha",
-      "action": "Acción",
-      "title": "Título",
-      "location": "Ubicación",
-      "status": "Estado",
-      "bookings": "Reservas",
-      "rating": "Calificación",
-      "comment": "Comentario"
-    },
-    "viewDetailsButton": "Ver Detalles",
-    "noBookings": "No hay próximas reservas.",
-    "experiencesTitle": "Experiencias Listadas",
-    "experiencesDescription": "Gestione sus ofertas de agroturismo.",
-    "manageButton": "Gestionar",
-    "noExperiences": "Aún no hay experiencias de agroturismo listadas.",
-    "reviewsTitle": "Reseñas de Huéspedes",
-    "reviewsDescription": "Últimos comentarios de sus huéspedes.",
-    "on": "en",
-    "viewReviewButton": "Ver Reseña",
-    "noReviews": "Aún no hay reseñas de huéspedes."
-  },
-  "AgronomistDashboard": {
-    "title": "Centro de Agrónomos y Consultores",
-    "stats": {
-      "assignedFarmers": "Agricultores Asignados",
-      "farmersWithAlerts": "Agricultores con Alertas",
-      "pendingConsultations": "Consultas Pendientes",
-      "knowledgeContributions": "Contribuciones de Conocimiento"
-    },
-    "descriptions": {
-      "assignedFarmers": "{count} agricultores en su cartera",
-      "farmersWithAlerts": "{count} agricultores necesitan atención",
-      "pendingConsultations": "{count} nuevas solicitudes",
-      "knowledgeContributions": "{count} artículos publicados"
-    },
-    "consultations": {
-      "title": "Solicitudes de Consulta Pendientes",
-      "description": "Revise y responda a las solicitudes entrantes de los agricultores.",
-      "table": {
-        "farmer": "Agricultor",
-        "issue": "Resumen del Problema",
-        "action": "Acción"
+  "Forums": {
+    "topic": {
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "buttons": {
+        "createPost": "Agregar Respuesta",
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
       },
-      "viewButton": "Ver Solicitud",
-      "noRequests": "No hay nuevas solicitudes de consulta."
-    },
-    "portfolio": {
-      "title": "Cartera de Agricultores",
-      "description": "Resumen de los agricultores que asesora.",
-      "table": {
-        "farmer": "Agricultor",
-        "location": "Ubicación",
-        "alerts": "Alertas",
-        "action": "Acción"
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en responder a este tema.",
+        "button": "Agregar Respuesta"
       },
-      "alertsLabel": "alertas",
-      "profileButton": "Ver Perfil",
-      "noFarmers": "Aún no hay agricultores asignados a su cartera."
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error al cargar publicaciones",
+          "description": "Ocurrió un error al cargar las publicaciones para este tema."
+        },
+        "loadTopic": {
+          "title": "Error al cargar tema",
+          "description": "Ocurrió un error al cargar los detalles del tema."
+        }
+      }
     },
-    "contributions": {
-      "statusTitle": "Estado de Contribución al Centro de Conocimiento",
-      "title": "Contribuciones Recientes",
-      "noContributions": "Aún no ha realizado ninguna contribución.",
-      "noData": "No hay datos disponibles para el gráfico."
-    },
-    "chart": {
-      "count": "Cantidad",
-      "published": "Publicado",
-      "pending": "Pendiente de Revisión",
-      "draft": "Borrador"
-    },
-    "noData": "No hay datos de panel disponibles."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Centro de Proveedores de Soluciones Energéticas",
-    "leadsTitle": "Clientes Potenciales de Proyectos",
-    "leadsCount": "{count} nuevos clientes potenciales",
-    "projectsTitle": "Proyectos Activos",
-    "activeProjectsCount": "{count} proyectos activos",
-    "projectsCompleted": "proyectos completados",
-    "impactTitle": "Impacto de Sostenibilidad",
-    "impactDescription": "Reducción de carbono estimada de sus proyectos",
-    "carbonReduction": "{count} instalaciones totales",
-    "leadsTableTitle": "Embudo de Clientes Potenciales de Proyectos",
-    "leadsTableDescription": "Proyectos y clientes potenciales que buscan soluciones energéticas.",
-    "table": {
-      "entity": "Nombre de la Entidad",
-      "location": "Ubicación",
-      "energyNeed": "Necesidad Energética Estimada",
-      "status": "Estado",
-      "action": "Acción"
-    },
-    "viewLeadButton": "Ver Cliente Potencial",
-    "noLeads": "No hay clientes potenciales de proyectos en este momento.",
-    "accessDocsButton": "Acceder a Documentación API",
-    "proposeIntegrationButton": "Proponer Nueva Integración",
-    "statusLabels": {
-      "new": "Nuevo",
-      "contacted": "Contactado",
-      "proposal_sent": "Propuesta Enviada",
-      "closed": "Cerrado",
-      "in_progress": "En Progreso",
-      "completed": "Completado"
+    "createPost": {
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Falta indicación de IA",
+          "description": "Por favor, proporciona una indicación para el asistente de IA."
+        },
+        "aiDraft": {
+          "title": "Error del borrador de IA",
+          "description": "No se pudo generar el borrador de IA."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear la publicación."
+        }
+      }
     }
   },
-  "InputSupplierDashboard": {
-    "title": "Panel de Proveedor de Insumos",
-    "ordersTitle": "Órdenes Activas y Valor",
-    "totalValue": "valor total",
-    "manageOrdersButton": "Gestionar Todas las Órdenes",
-    "forecastTitle": "Pronóstico de Demanda Regional",
-    "in": "en",
-    "performanceTitle": "Rendimiento y Reseñas de Productos",
-    "viewReviewsButton": "Ver Todas las Reseñas",
-    "noForecast": "No hay datos de pronóstico de demanda disponibles en este momento.",
-    "noFeedback": "Aún no hay comentarios sobre productos.",
-    "promotionsTitle": "Cupones y Promociones",
-    "promotionsDescription": "Cree y gestione descuentos para impulsar sus ventas.",
-    "manageCouponsButton": "Gestionar Cupones"
+  "Forums": {
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "buttons": {
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
+      },
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
+    }
   },
-  "CertificationBodyDashboard": {
-    "title": "Centro de Organismos de Certificación",
-    "auditsTitle": "Auditorías Pendientes",
-    "auditsDescription": "Auditorías programadas para fincas e instalaciones.",
-    "table": {
-      "farmName": "Nombre de la Finca",
-      "standard": "Estándar",
-      "dueDate": "Fecha de Vencimiento",
-      "action": "Acción"
-    },
-    "reviewAuditButton": "Revisar y Programar",
-    "noPendingAudits": "No hay auditorías pendientes.",
-    "entitiesTitle": "Resumen de Entidades Certificadas",
-    "entitiesDescription": "Un resumen de las entidades que ha certificado.",
-    "noCertifiedEntities": "No se encontraron entidades certificadas.",
-    "monitoringTitle": "Monitoreo de Estándares",
-    "monitoringDescription": "Tasas de cumplimiento y alertas para estándares clave.",
-    "alerts": "alertas",
-    "viewDetailsButton": "Ver Detalles",
-    "noMonitoringData": "No hay datos de monitoreo de estándares disponibles."
+  "Marketplace": {
+    "itemView": {
+      "backLink": "Volver al mercado",
+      "unknownUser": "Usuario Desconocido",
+      "traceabilityButton": "Enlace de Comercio / Lote",
+      "skillsLabel": "Habilidades requeridas",
+      "experienceLabel": "Nivel de experiencia",
+      "compensationLabel": "Compensación",
+      "contactForRates": "Contactar para tarifas",
+      "booking": {
+        "perNight": "noche",
+        "checkIn": "Llegada",
+        "checkOut": "Salida",
+        "addDate": "Agregar fecha",
+        "guests": "Huéspedes",
+        "reserveButton": "Reservar",
+        "reservingButton": "Reservando...",
+        "notCharged": "Aún no se le cobrará",
+        "nights": "noches",
+        "serviceFee": "Tarifa de servicio",
+        "total": "Total",
+        "successTitle": "¡Reserva exitosa!",
+        "successDescription": "Su reserva está confirmada.",
+        "failTitle": "Reserva fallida",
+        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
+        "bookedTitle": "¡Reservado!",
+        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
+        "ticketButton": "Mostrar ticket",
+        "modalTitle": "Ticket de reserva",
+        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
+        "modalScan": "Escanee este código para registrarse"
+      },
+      "coupon": {
+        "label": "Código de cupón",
+        "placeholder": "Introduce el código de cupón",
+        "applyButton": "Aplicar",
+        "successTitle": "¡Cupón aplicado!",
+        "successDescription": "Descuento aplicado: {{type}}",
+        "failTitle": "Cupón inválido",
+        "failDescription": "El código de cupón es inválido o no aplicable.",
+        "appliedText": "Cupón aplicado: {{code}}"
+      },
+      "aboutSeller": "Sobre el vendedor",
+      "viewShopfront": "Ver escaparate",
+      "editListing": "Editar publicación",
+      "manageService": "Gestionar servicio",
+      "buyNowButton": "Comprar ahora",
+      "contactForService": "Contactar para servicio",
+      "contactSeller": "Contactar vendedor",
+      "order": {
+        "title": "Pedir {{itemName}}",
+        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
+        "quantityLabel": "Cantidad",
+        "notesLabel": "Notas (Opcional)",
+        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Confirmar pedido",
+        "placingButton": "Realizando pedido...",
+        "successTitle": "¡Pedido realizado!",
+        "successDescription": "Tu pedido ha sido realizado con éxito.",
+        "failTitle": "Pedido fallido",
+        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
+        "quantityErrorTitle": "Error de cantidad",
+        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
+      },
+      "notFound": {
+        "title": "Artículo no encontrado",
+        "description": "El artículo del mercado que estás buscando no existe.",
+        "backButton": "Volver a Mercado"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        },
+        "loadItem": {
+          "title": "Error al cargar artículo",
+          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
+        },
+        "unexpected": "Ocurrió un error inesperado."
+      }
+    }
   },
-  "QaDashboard": {
-    "title": "Centro de Garantía de Calidad",
-    "inspectionsTitle": "Inspecciones Pendientes",
-    "inspectionsDescription": "Controles de calidad programados para productos y lotes.",
-    "table": {
-      "batchId": "ID de Lote",
-      "product": "Producto",
-      "seller": "Vendedor",
-      "dueDate": "Fecha de Vencimiento",
-      "action": "Acción"
+  "Marketplace": {
+    "myOrdersButton": "Mis Pedidos Recibidos",
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubre Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos.",
+      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
     },
-    "performInspectionButton": "Realizar Inspección",
-    "noPendingInspections": "No hay inspecciones pendientes.",
-    "resultsTitle": "Informes de Problemas Recientes",
-    "resultsDescription": "Problemas de calidad informados recientemente.",
-    "noRecentIssues": "No se han reportado problemas de calidad recientes.",
-    "metricsTitle": "Métricas de Calidad",
-    "metricsDescription": "Resumen del rendimiento general.",
-    "passRate": "Tasa de Aprobación",
-    "averageScore": "Puntuación Promedio",
-    "noMetrics": "No hay métricas de calidad disponibles."
+    "errors": {
+      "aiRecommendations": {
+        "title": "No se pudieron obtener recomendaciones de IA"
+      },
+      "search": {
+        "title": "Error de búsqueda",
+        "description": "No se pudieron obtener los artículos del mercado."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "¡Mercado fijado!",
+      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
+    }
   },
-  "FiApplicationListPage": {
-    "backLink": "Volver al Panel",
-    "title": "Gestión de Solicitudes",
-    "description": "Ver y gestionar todas las solicitudes financieras recibidas.",
-    "tabs": {
-      "all": "Todas",
-      "pending": "Pendientes",
-      "approved": "Aprobadas",
-      "rejected": "Rechazadas"
-    },
-    "table": {
-      "applicant": "Solicitante",
-      "type": "Tipo",
-      "amount": "Monto",
-      "date": "Fecha de Envío",
-      "status": "Estado",
-      "action": "Acción"
-    },
-    "reviewButton": "Revisar",
-    "noApplications": "No se encontraron solicitudes para este estado."
+  "Marketplace": {
+    "createListing": {
+      "backLink": "Volver al mercado",
+      "title": "Crear Nueva Publicación",
+      "description": "Lista un producto o servicio en el mercado.",
+      "form": {
+        "nameLabel": "Nombre del artículo/servicio",
+        "namePlaceholder": "Introduce el nombre de tu publicación",
+        "typeLabel": "Tipo de publicación",
+        "typePlaceholder": "Selecciona el tipo de publicación",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu publicación",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Introduce la ubicación",
+        "relatedVtiLabel": "VTI / ID de lote relacionado (Opcional)",
+        "relatedVtiPlaceholder": "Introduce el VTI si esta publicación es para un lote específico",
+        "relatedVtiDescription": "Vincular un VTI aumenta la confianza del comprador.",
+        "categoryLabel": "Categoría",
+        "categoryPlaceholder": "Selecciona una categoría",
+        "compensationLabel": "Compensación",
+        "compensationPlaceholder": "ej: por hora, tarifa fija",
+        "experienceLabel": "Nivel de experiencia",
+        "experiencePlaceholder": "ej: Principiante, Intermedio, Experto",
+        "skillsLabel": "Habilidades requeridas",
+        "skillsPlaceholder": "Lista las habilidades necesarias para el servicio",
+        "skillsDescription": "Separa las habilidades con comas.",
+        "priceLabel": "Precio",
+        "pricePlaceholder": "Introduce el precio",
+        "unitLabel": "Unidad",
+        "unitPlaceholder": "ej: kg, pieza, hora",
+        "imageUrlLabel": "URL de la imagen (Opcional)",
+        "sustainableLabel": "Práctica sostenible",
+        "sustainableDescription": "Indica si esta publicación involucra prácticas sostenibles.",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Creando..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Sugerir precio con IA",
+        "generatingButton": "Generando...",
+        "suggestionLabel": "Sugerencia de IA:",
+        "usePriceButton": "Usar este precio"
+      },
+      "success": {
+        "title": "¡Éxito!",
+        "description": "Tu publicación ha sido creada."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Información Faltante",
+            "description": "Por favor, introduce un nombre y una descripción antes de sugerir un precio."
+          },
+          "failed": {
+            "title": "Error de sugerencia de precio",
+            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manualmente."
+          }
+        },
+        "authentication": {
+          "title": "Error de autenticación",
+          "description": "Debes haber iniciado sesión para crear una publicación."
+        },
+        "creation": {
+          "title": "Error de creación",
+          "description": "No se pudo crear la publicación. Por favor, inténtalo de nuevo."
+        }
+      }
+    }
   },
-  "FiApplicationPage": {
-    "backLink": "Volver al Panel de Control",
-    "title": "Revisar Solicitud Financiera",
-    "applicationTitle": "Solicitud",
-    "submittedOn": "Enviado el",
-    "amountRequested": "Monto Solicitado",
-    "purpose": "Propósito del Financiamiento",
-    "applicantDetails": "Detalles del Solicitante",
-    "profileNotFound": "Perfil del solicitante no encontrado.",
-    "viewProfileButton": "Ver Perfil Completo",
-    "riskAssessment": "Evaluación de Riesgo por IA",
-    "creditScore": "Puntaje de Crédito",
-    "notFound": "Solicitud no encontrada.",
-    "approveButton": "Aprobar",
-    "rejectButton": "Rechazar",
-    "requestInfoButton": "Solicitar más información",
+  "Marketplace": {
+    "myOrdersButton": "Mis Pedidos Recibidos",
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubre Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos.",
+      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "No se pudieron obtener recomendaciones de IA"
+      },
+      "search": {
+        "title": "Error de búsqueda",
+        "description": "No se pudieron obtener los artículos del mercado."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "¡Mercado fijado!",
+      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
+    },
+    "myOrders": {
+      "backLink": "Volver al mercado",
+      "title": "Mis Pedidos Recibidos",
+      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
+      "auth": {
+        "title": "Autenticación requerida",
+        "description": "Debe haber iniciado sesión para ver sus pedidos.",
+        "button": "Iniciar sesión"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar",
+        "ship": "Enviar",
+        "complete": "Completar",
+        "cancel": "Cancelar"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "noOrders": "No se encontraron pedidos.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron obtener los pedidos.",
+        "successTitle": "¡Éxito!",
+        "updateSuccess": "Estado del pedido actualizado a {{status}}",
+        "failTitle": "Error"
+      }
+    },
+    "shopView": {
+      "backLink": "Volver al mercado",
+      "ownedBy": "Propiedad de",
+      "loadingOwner": "Cargando...",
+      "editShopButton": "Editar tienda",
+      "contactButton": "Contactar vendedor",
+      "listingsTitle": "Publicaciones de {{shopName}}",
+      "noListings": "No se encontraron publicaciones para esta tienda.",
+      "errors": {
+        "notFound": "Tienda no encontrada",
+        "loadError": "No se pudieron cargar los detalles de la tienda.",
+        "title": "Error"
+      }
+    }
+  },
+  "Homepage": {
+  },
+  "GroupsPage": {
+    "title": "Grupos Comunitarios",
+    "description": "Encuentra y únete a grupos que coincidan con tus intereses.",
+    "createGroupButton": "Crear Nuevo Grupo",
+    "searchPlaceholder": "Buscar grupos...",
+    "notFound": "No se encontraron grupos.",
+    "detail": {
+      "backLink": "Volver a Grupos",
+      "discussionsTitle": "Discusiones",
+      "startDiscussionButton": "Iniciar una Discusión",
+      "noDiscussions": "Aún no se han iniciado discusiones.",
+      "beTheFirst": "Sé el primero en publicar.",
+      "actionsTitle": "Acciones del Grupo",
+      "leaveButton": "Abandonar Grupo",
+      "leavingButton": "Abandonando...",
+      "joinButton": "Unirse al Grupo",
+      "joiningButton": "Uniéndose...",
+      "requestJoinButton": "Solicitar Unirse",
+      "loginToJoinButton": "Iniciar Sesión para Unirte",
+      "membersTitle": "{memberCount, plural, one {# Miembro} other {# Miembros}}"
+    },
     "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "¡Estado Actualizado!",
-      "updateSuccessDescription": "La solicitud ha sido marcada como {status}.",
-      "updateFailTitle": "Actualización Fallida"
+      "loginToJoin": "Por favor, inicia sesión para unirte a este grupo.",
+      "joinSuccess": "¡Te has unido al grupo con éxito!",
+      "joinError": "Error al unirse al grupo",
+      "leaveSuccess": "Has abandonado el grupo.",
+      "leaveError": "Error al abandonar el grupo"
+    },
+    "create": {
+      "backLink": "Volver a Grupos",
+      "title": "Crear un Nuevo Grupo Comunitario",
+      "description": "Inicia una nueva comunidad para partes interesadas con intereses u objetivos compartidos.",
+      "form": {
+        "nameLabel": "Nombre del Grupo",
+        "namePlaceholder": "Ej: Cultivadores de Café Orgánico de Kenia",
+        "descriptionLabel": "Descripción del Grupo",
+        "descriptionPlaceholder": "¿Cuál es el propósito de este grupo?",
+        "publicLabel": "Grupo Público",
+        "submitButton": "Crear Grupo",
+        "submittingButton": "Creando..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Autenticación Requerida",
+          "description": "Debes iniciar sesión para crear un grupo."
+        },
+        "incomplete": {
+          "title": "Campos Incompletos",
+          "description": "Por favor, proporciona un nombre y una descripción para el grupo."
+        },
+        "success": {
+          "title": "¡Grupo Creado!",
+          "description": "Tu nuevo grupo comunitario ha sido creado exitosamente."
+        },
+        "error": {
+          "title": "Error al Crear Grupo",
+          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Grupo",
+      "title": "Iniciar una Nueva Discusión",
+      "description": "Crea una nueva publicación para interactuar con otros miembros del grupo.",
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Introduce un título claro y atractivo",
+        "contentLabel": "Contenido de la Publicación",
+        "contentPlaceholder": "Comparte tus pensamientos, haz una pregunta o inicia una conversación...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Creando Publicación..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Autenticación Requerida",
+          "description": "Debes ser miembro de este grupo para publicar."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporciona tanto un título como contenido para tu publicación."
+        },
+        "success": {
+          "title": "¡Publicación Creada!",
+          "description": "Tu discusión ha sido iniciada."
+        },
+        "error": {
+          "title": "Error al Crear Publicación",
+          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Volver a {{groupName}}",
+      "repliesTitle": "Respuestas ({count})",
+      "yourReplyTitle": "Tu Respuesta",
+      "replyPlaceholder": "Escribe tu respuesta aquí...",
+      "replySubmitButton": "Publicar Respuesta",
+      "replySubmittingButton": "Publicando...",
+      "noReplies": "Sé el primero en responder a esta publicación.",
+      "loadMoreButton": "Cargar Más Respuestas",
+      "notFound": {
+        "title": "Publicación no Encontrada",
+        "description": "La publicación que buscas no existe.",
+        "backButton": "Volver al Grupo"
+      },
+      "toast": {
+        "emptyReply": "Tu respuesta no puede estar vacía.",
+        "replySuccess": "¡Tu respuesta ha sido publicada!"
+      }
     }
-  },
-  "FiDashboard": {
-    "title": "Centro de Instituciones Financieras",
-    "pendingApplicationsTitle": "Solicitudes Pendientes",
-    "pendingApplicationsDescription": "Solicitudes que requieren su revisión",
-    "portfolioAtRiskTitle": "Cartera en Riesgo",
-    "portfolioAtRiskDescription": "{count} cuentas marcadas",
-    "recentUpdates": "actualizaciones recientes",
-    "marketUpdatesTitle": "Actualizaciones del Mercado",
-    "manageProductsTitle": "Productos Financieros",
-    "manageProductsDescription": "Sus préstamos y subvenciones activos",
-    "manageProductsButton": "Gestionar Productos",
-    "table": {
-      "applicant": "Solicitante",
-      "type": "Tipo",
-      "amount": "Monto",
-      "riskScore": "Puntaje Riesgo",
-      "action": "Acción"
-    },
-    "reviewButton": "Revisar",
-    "noApplications": "No hay solicitudes pendientes de revisión.",
-    "accounts": "cuentas",
-    "value": "valor",
-    "reviewRiskButton": "Revisar Riesgo",
-    "readMore": "Leer más",
-    "noUpdates": "No hay actualizaciones del mercado disponibles.",
-    "viewAllButton": "Ver Todas las Solicitudes"
-  },
-  "FiProductsPage": {
-    "backLink": "Volver al Panel de Control",
-    "title": "Gestionar Productos Financieros",
-    "description": "Cree y vea sus préstamos y subvenciones ofrecidos.",
-    "createButton": "Crear Nuevo Producto",
-    "noProducts": "Aún no se han creado productos financieros.",
-    "table": {
-      "productName": "Nombre del Producto",
-      "type": "Tipo",
-      "status": "Estado",
-      "interestRate": "Tasa de Interés",
-      "maxAmount": "Monto Máximo"
-    },
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Volver a Productos",
-    "title": "Crear Nuevo Producto Financiero",
-    "description": "Defina un nuevo préstamo o subvención para ofrecer a los interesados.",
-    "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "Ej: Préstamo de Semillas para Pequeños Agricultores",
-      "typeLabel": "Tipo de Producto",
-      "loan": "Préstamo",
-      "grant": "Subvención",
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Describa el producto, su propósito y los criterios de elegibilidad.",
-      "interestRateLabel": "Tasa de Interés (%)",
-      "interestRatePlaceholder": "Ej: 8.5",
-      "maxAmountLabel": "Monto Máximo (USD)",
-      "maxAmountPlaceholder": "Ej: 5000",
-      "targetRolesLabel": "Público Objetivo",
-      "targetRolesDescription": "Seleccione para qué roles de interesados está disponible este producto.",
-      "submitButton": "Crear Producto"
-    },
-    "toast": {
-      "notAuthenticated": "Debe iniciar sesión para crear un producto.",
-      "successTitle": "¡Producto Creado!",
-      "successDescription": "{name} ha sido creado exitosamente y ahora está activo.",
-      "errorTitle": "Creación Fallida"
-    }
-  },
-  "LogisticsDashboard": {
-    "title": "Centro de Logística",
-    "performanceTitle": "Resumen de Rendimiento",
-    "onTimeDelivery": "Tasa de entrega a tiempo",
-    "viewReportButton": "Ver Informe Completo",
-    "activeShipmentsTitle": "Envíos Activos",
-    "incomingJobsTitle": "Trabajos Entrantes",
-    "noActiveShipments": "No hay envíos activos.",
-    "trackButton": "Rastrear VTI",
-    "noIncomingJobs": "No hay trabajos entrantes disponibles.",
-    "acceptJobButton": "Aceptar Trabajo"
-  },
-  "ProcessingUnitDashboard": {
-    "title": "Centro de Procesamiento y Embalaje",
-    "yieldTitle": "Optimización del Rendimiento",
-    "potential": "Potencial",
-    "wasteTitle": "Reducción de Residuos",
-    "packagingInventoryTitle": "Inventario de Embalaje",
-    "inStock": "En Stock",
-    "reorderLevel": "Reordenar en",
-    "noPackagingData": "No hay datos de inventario de embalaje disponibles.",
-    "sourcePackagingButton": "Adquirir Materiales de Embalaje",
-    "rawMaterialTitle": "Inventario de Materia Prima",
-    "table": {
-      "product": "Producto",
-      "quality": "Calidad",
-      "quantity": "Cantidad (Toneladas)",
-      "supplier": "Proveedor",
-      "deliveryDate": "Fecha de entrega",
-      "status": "Estado",
-      "action": "Acción"
-    },
-    "noInventoryData": "No hay datos de inventario de materia prima disponibles.",
-    "packagingOrdersTitle": "Pedidos de Embalaje",
-    "viewButton": "Ver",
-    "noPackagingOrders": "No hay pedidos de embalaje pendientes."
-  },
-  "WarehouseDashboard": {
-    "title": "Centro de Almacenamiento y Bodega",
-    "utilizationTitle": "Utilización del Almacenamiento",
-    "inventoryTitle": "Niveles de Inventario",
-    "itemsNeedingAttention": "artículos necesitan atención",
-    "alertsTitle": "Alertas Predictivas",
-    "noAlerts": "No hay alertas predictivas en este momento.",
-    "investigateButton": "Investigar"
-  },
-  "AgroExportDashboard": {
-    "title": "Centro de Facilitador de Agroexportación",
-    "docsTitle": "Documentación Aduanera Pendiente",
-    "shipmentsTitle": "Envíos Rastreados",
-    "alertsTitle": "Alertas de Cumplimiento",
-    "table": {
-        "vti": "Enlace VTI",
-        "destination": "Destino",
-        "status": "Estado"
-    },
-    "prepareDocsButton": "Preparar Documentos",
-    "noDocs": "No hay documentos pendientes.",
-    "noShipments": "No hay envíos activos.",
-    "noAlerts": "No hay alertas de cumplimiento.",
-    "readMore": "Leer más"
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Panel de Proveedor de Equipos",
-    "ordersTitle": "Órdenes de Alquiler y Venta",
-    "ordersDescription": "{count, plural, =0 {Sin pedidos} one {# pedido en total} other {# pedidos en total}}",
-    "manageOrdersButton": "Gestionar todos los pedidos",
-    "listedEquipmentTitle": "Equipo Listado",
-    "table": {
-      "name": "Nombre",
-      "type": "Tipo",
-      "status": "Estado",
-      "action": "Acción"
-    },
-    "status": {
-      "available": "Disponible",
-      "rentedout": "Alquilado"
-    },
-    "manageButton": "Gestionar",
-    "noEquipment": "Aún no hay equipo listado.",
-    "listEquipmentButton": "Listar Nuevo Equipo",
-    "maintenanceTitle": "Solicitudes de Mantenimiento",
-    "viewRequestButton": "Ver Solicitud",
-    "noMaintenance": "No hay solicitudes de mantenimiento en este momento."
-  },
-  "WasteManagementDashboard": {
-    "title": "Centro de Gestión de Residuos y Compostaje",
-    "wasteStreamsTitle": "Corrientes de Residuos Entrantes",
-    "from": "De",
-    "acceptButton": "Aceptar",
-    "noWasteStreams": "No hay corrientes de residuos entrantes para procesar.",
-    "compostBatchesTitle": "Lotes de Compost en Proceso",
-    "batch": "Lote",
-    "estReady": "Listo aprox.",
-    "noCompostBatches": "No hay lotes de compost activos.",
-    "inventoryTitle": "Inventario de Producto Terminado",
-    "inStock": "En Stock",
-    "noFinishedProducts": "No hay productos terminados en el inventario.",
-    "sellButton": "Listar Producto en el Mercado"
-  },
-  "CrowdfunderDashboard": {
-    "title": "Centro de Inversores y Financiación Colectiva",
-    "totalInvested": "Total Invertido",
-    "numberOfInvestments": "Número de Inversiones",
-    "estimatedReturns": "Retornos Estimados",
-    "opportunitiesTitle": "Oportunidades Sugeridas",
-    "transactionsTitle": "Transacciones Recientes",
-    "raisedOf": "de",
-    "goal": "objetivo",
-    "viewButton": "Ver",
-    "table": {
-      "project": "Proyecto",
-      "amount": "Monto"
-    },
-    "investment": "Inversión",
-    "payout": "Pago",
-    "on": "el",
-    "noOpportunities": "No hay oportunidades de inversión para sugerir en este momento.",
-    "noTransactions": "No hay transacciones recientes."
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Centro de Proveedores de Seguros",
-    "claimsTitle": "Reclamaciones Pendientes",
-    "claimsDescription": "Revise las reclamaciones presentadas contra las pólizas que gestiona.",
-    "table": {
-      "policyHolder": "Tomador del seguro",
-      "policyType": "Tipo de Póliza",
-      "claimDate": "Fecha de Reclamación",
-      "status": "Estado",
-      "action": "Acción"
-    },
-    "reviewClaimButton": "Revisar Reclamación",
-    "noPendingClaims": "No hay reclamaciones pendientes para revisar.",
-    "riskAlertsTitle": "Alertas de Evaluación de Riesgos",
-    "riskAlertsDescription": "Pólizas activas con indicadores de alto riesgo basados en datos de la plataforma.",
-    "investigateButton": "Investigar",
-    "noRiskAlerts": "No hay alertas de alto riesgo en este momento.",
-    "activePoliciesTitle": "Pólizas Activas",
-    "activePoliciesDescription": "Un resumen de sus pólizas de seguro actualmente activas.",
-    "coverage": "Cobertura",
-    "expires": "Vence",
-    "noActivePolicies": "No se encontraron pólizas activas."
-  },
-  "ResearcherDashboard": {
-    "title": "Centro de Investigadores y Académicos",
-    "datasetsTitle": "Conjuntos de Datos Disponibles",
-    "datasetsDescription": "Conjuntos de datos anonimizados para sus necesidades de investigación.",
-    "table": {
-      "name": "Nombre",
-      "dataType": "Tipo de Datos",
-      "accessLevel": "Nivel de Acceso",
-      "action": "Acción"
-    },
-    "requestAccessButton": "Solicitar Acceso",
-    "noDatasets": "No hay conjuntos de datos disponibles actualmente.",
-    "projectsTitle": "Proyectos en Curso",
-    "projectsDescription": "Sus colaboraciones de investigación activas en la plataforma.",
-    "viewProjectButton": "Ver Proyecto",
-    "noProjects": "No tiene proyectos en curso.",
-    "contributionsTitle": "Contribuciones al Centro de Conocimiento",
-    "contributionsDescription": "Artículos y publicaciones que ha contribuido.",
-    "viewButton": "Ver",
-    "noContributions": "Aún no ha realizado ninguna contribución.",
-    "noData": "No hay datos de panel disponibles.",
-    "datasetsByTypeTitle": "Conjuntos de Datos por Tipo",
-    "datasetsByTypeDescription": "Desglose de los tipos de conjuntos de datos disponibles.",
-    "noDatasetsForChart": "No hay conjuntos de datos disponibles para el gráfico.",
-    "chart": {
-      "count": "Cantidad",
-      "published": "Publicado",
-      "pending": "Pendiente de Revisión",
-      "draft": "Borrador"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Centro de Innovadores Agri-Tech",
-    "sandboxTitle": "Estado del Sandbox",
-    "statusLabel": "Estado",
-    "lastResetLabel": "Último reinicio",
-    "accessDocsButton": "Acceder a Documentación API",
-    "integrationsTitle": "Proyectos de Integración",
-    "activeProjects": "Proyectos Activos",
-    "integrationsDescription": "Ver y gestionar sus integraciones de API.",
-    "proposeIntegrationButton": "Proponer Nueva Integración",
-    "apiKeysTitle": "Claves de API",
-    "apiKeysDescription": "Gestionar y generar claves de API para sus aplicaciones.",
-    "table": {
-      "key": "Clave",
-      "status": "Estado",
-      "environment": "Entorno",
-      "created": "Creado",
-      "actions": "Acciones"
-    },
-    "apiKeyCopied": "¡Clave de API copiada al portapapeles!",
-    "noApiKeys": "Aún no se han generado claves de API.",
-    "generateNewKeyButton": "Generar Nueva Clave de API"
-  },
-  "OperationsDashboard": {
-    "title": "Panel de Operaciones",
-    "vtiRateTitle": "Tasa de Generación de VTI",
-    "pipelineStatusTitle": "Estado de la Tubería de Datos",
-    "lastCheck": "Última comprobación",
-    "flaggedEventsTitle": "Eventos Marcados",
-    "viewVtiButton": "Ver VTI",
-    "noFlaggedEvents": "No hay eventos marcados automáticamente en este momento."
   }
 }
+
