@@ -112,7 +112,7 @@ export default function FinancialApplicationDetailPage() {
     
     return (
         <div className="space-y-6">
-            <Link href="/" className="inline-flex items-center text-sm text-primary hover:underline">
+            <Link href="/fi/applications" className="inline-flex items-center text-sm text-primary hover:underline">
                 <ArrowLeft className="mr-1 h-4 w-4" /> {t('backLink')}
             </Link>
             
@@ -193,4 +193,3 @@ export default function FinancialApplicationDetailPage() {
     );
 }
 
-    
