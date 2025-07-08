@@ -229,8 +229,65 @@
       "status": "Status",
       "expiry": "Expiry"
     }
+  },
+  "InsuranceProductsPage": {
+    "backLink": "Back to Insurance Hub",
+    "title": "My Insurance Products",
+    "description": "View and manage your listed insurance products.",
+    "createButton": "Create New Product",
+    "noProducts": "You have not created any insurance products yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "toast": {
+      "errorTitle": "Error",
+      "fetchError": "Could not fetch your insurance products."
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create Insurance Product",
+    "description": "Define a new insurance product to offer to farmers.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop",
+      "livestock": "Livestock",
+      "asset": "Asset",
+      "weather": "Weather (Parametric)",
+      "descriptionLabel": "Short Description",
+      "descriptionPlaceholder": "Briefly describe this product.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Describe what this policy covers in detail...",
+      "premiumLabel": "Premium",
+      "premiumPlaceholder": "e.g., 250",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in to create a product.",
+      "successTitle": "Product Created!",
+      "successDescription": "{{name}} has been successfully created.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+   "InsuranceProviderDashboard": {
+    "title": "Insurance Provider Dashboard",
+    "claimsTitle": "Pending Claims",
+    "claimsDescription": "Review and process new insurance claims from policyholders.",
+    "noPendingClaims": "No pending claims at this time.",
+    "reviewClaimButton": "Review Claim",
+    "table": {
+      "policyHolder": "Policyholder",
+      "policyType": "Policy Type",
+      "claimDate": "Claim Date",
+      "status": "Status",
+      "action": "Action"
+    }
   }
 }
-    
-
-    

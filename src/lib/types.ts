@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -635,6 +636,31 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
+
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
 
 export type KnfBatch = {
     id: string;
@@ -829,20 +855,5 @@ export type ServiceItem = MarketplaceItem & {
     experienceLevel: string;
 };
 
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
-
-    
