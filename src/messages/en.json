@@ -112,6 +112,7 @@
     "roleLabel": "Your Role",
     "rolePlaceholder": "Select your primary role",
     "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your new password",
     "creatingAccountButton": "Creating Account...",
     "signUpButton": "Create Account",
     "alreadyHaveAccountPrompt": "Already have an account?",
@@ -123,265 +124,60 @@
     "resetPasswordTitle": "Reset Your Password",
     "resetPasswordDescription": "Enter your new password below.",
     "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
     "resettingPasswordButton": "Resetting Password...",
-    "resetPasswordButton": "Reset Password"
-  },
-  "blogPage": {
-    "title": "DamDoh Blog & News",
-    "description": "Latest updates, stories, and insights from the agricultural world.",
-    "meta": "{author} on {date, date, long}",
-    "readMore": "Read More",
-    "noPosts": {
-      "title": "No Articles Yet",
-      "description": "Check back soon for insights, stories, and news from the DamDoh community."
-    },
-    "error": {
-      "title": "Error Loading Articles",
-      "description": "We couldn't fetch the latest articles. Please try again later."
+    "resetPasswordButton": "Reset Password",
+    "recoverPage": {
+      "title": "Social Account Recovery",
+      "description": "Regain access to your account securely using your network.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted DamDoh friend.",
+      "step3": "Once they confirm, you'll regain access to your account.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted contact in your DamDoh network scan this temporary QR code to verify your identity.",
+      "scanNote": "This code is valid for 10 minutes.",
+      "startOverButton": "Start Over"
     }
   },
-  "Blog": {
-    "backLink": "Back to Blog",
-    "notFound": {
-      "title": "Post Not Found",
-      "description": "The article you are looking for does not exist or has been moved.",
-      "backButton": "Return to Blog"
-    },
-    "errors": {
-      "title": "Error",
-      "load": "Could not load the article. Please try again."
-    },
-    "originalContentTitle": "Original Content ({{lang}})"
-  },
-  "helpCenterPage": {
-    "title": "Help Center",
-    "subtitle": "Find answers to your questions and learn how to get the most out of DamDoh.",
-    "howCanWeHelp": "How can we help you today?",
-    "searchPlaceholder": "Search for topics or questions...",
-    "browseTopics": "Or browse by topic",
-    "gettingStarted": {
-      "title": "Getting Started",
-      "description": "Learn the basics of setting up your account and profile.",
-      "placeholder": "Content for Getting Started will be available soon."
-    },
-    "marketplaceGuide": {
-      "title": "Marketplace Guide",
-      "description": "How to buy, sell, and list services effectively.",
-      "placeholder": "Content for Marketplace Guide will be available soon."
-    },
-    "accountManagement": {
-      "title": "Account Management",
-      "description": "Manage your password, notifications, and privacy settings.",
-      "placeholder": "Content for Account Management will be available soon."
-    },
-    "troubleshooting": {
-      "title": "Troubleshooting",
-      "description": "Find solutions to common issues and technical problems.",
-      "placeholder": "Content for Troubleshooting will be available soon."
-    },
-    "stillNeedHelp": {
-      "title": "Still need help?",
-      "description": "If you can't find what you're looking for, our support team is here to assist.",
-      "button": "Contact Support"
-    }
-  },
-  "communityGuidelines": {
-    "title": "Community Guidelines",
-    "subtitle": "Our commitment to a safe, respectful, and professional community.",
-    "intro": "Welcome to the DamDoh community! To ensure our platform remains a constructive and trustworthy space for all stakeholders, we ask that you adhere to the following guidelines:",
-    "respectful": {
-      "title": "Be Respectful and Constructive",
-      "description": "Engage in discussions with professionalism and courtesy. Disagreements are fine, but personal attacks, harassment, hate speech, or discriminatory behavior will not be tolerated."
-    },
-    "authentic": {
-      "title": "Be Authentic and Honest",
-      "description": "Represent yourself and your business truthfully. Do not post misleading information, create fake profiles, or engage in spammy or deceptive practices."
-    },
-    "relevant": {
-      "title": "Stay On-Topic and Add Value",
-      "description": "Contribute to discussions in a way that is relevant to the forum or group topic. Share knowledge, ask thoughtful questions, and help build the collective wisdom of the community."
-    },
-    "fairTrade": {
-      "title": "Conduct Fair and Professional Transactions",
-      "description": "All marketplace transactions should be conducted in good faith. Fulfill your commitments, communicate clearly, and resolve disputes respectfully."
-    },
-    "sustainable": {
-      "title": "Promote Sustainable and Ethical Practices",
-      "description": "We encourage content that supports sustainable agriculture, biodiversity, and ethical supply chains. Do not promote practices that are environmentally harmful or exploitative."
-    },
-    "reporting": {
-      "title": "Reporting Violations",
-      "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}. We are committed to reviewing reports and taking appropriate action."
-    },
-    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thank you for helping us build a positive and impactful community."
-  },
-  "industryNewsPage": {
-    "title": "Industry News",
-    "description": "The latest trends, research, and policy updates in the global agricultural sector.",
-    "searchPlaceholder": "Search news articles...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Categories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Published",
-    "categoryLabel": "Category",
-    "readButton": "Read Article",
-    "noNews": {
-      "title": "No News Found",
-      "description": "Check back later for the latest updates on agricultural trends and policies."
-    },
-    "news1": {
-      "title": "Global Coffee Prices See Slight Increase Amidst Supply Chain Concerns in Southeast Asia",
-      "excerpt": "Coffee futures edged higher this week as reports of shipping delays in key Southeast Asian ports raise concerns about supply chain stability ahead of the holiday season."
-    },
-    "news2": {
-      "title": "EU Implements New Regulations for Organic Food Imports, Stricter Verification Required",
-      "excerpt": "Starting next quarter, all organic produce imported into the European Union will require digital certification and enhanced traceability logs to combat fraudulent labeling."
-    },
-    "news3": {
-      "title": "Study Shows Regenerative Farming Practices Can Increase Soil Carbon by up to 15% in 5 Years",
-      "excerpt": "A landmark 5-year study published in 'Nature Sustainability' demonstrates the significant potential of no-till farming and cover cropping for carbon sequestration."
-    }
-  },
-  "AgriEvents": {
-    "page": {
-      "title": "Agricultural Events",
-      "description": "Discover conferences, workshops, and trade shows happening in the agricultural community.",
-      "createNewEvent": "Create New Event",
-      "pinAsHomepage": "Pin as Homepage",
-      "unpinHomepage": "Unpin from Homepage",
-      "searchEvents": "Search events",
-      "searchPlaceholder": "Search by title, description, or location...",
-      "filterPlaceholder": "Filter by event type",
-      "viewDetails": "View Details",
-      "organizedBy": "Organized by {organizer}",
-      "noEventsFound": "No Events Found",
-      "noEventsHint": "There are currently no events matching your criteria. Why not {link}?",
-      "toast": {
-        "pinned": {
-          "title": "Events Pinned!",
-          "description": "Agri-Events is now your default homepage."
-        },
-        "unpinned": {
-          "title": "Homepage Unpinned!",
-          "description": "The Main Dashboard is now your default homepage."
-        }
-      },
-      "errorLoadingEvents": "Error Loading Events",
-      "couldNotFetchEvents": "Could not fetch the list of events at this time."
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find skilled professionals or offer your expertise to the agricultural community.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search for services or skills...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters or be the first to offer a new service.",
-    "toast": {
-      "error": {
-        "title": "Error",
-        "description": "Could not fetch services at this time. Please try again later."
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search for people, produce, services, discussions...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee Beans",
+    "popularSearch2": "Tractor for Hire",
+    "popularSearch3": "Soil Health Forum",
+    "popularSearch4": "Logistics in Kenya",
+    "popularSearch5": "Export Financing",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search across the entire DamDoh platform...",
+      "searchButton": "Search",
+      "interpretationTitle": "Interpretation",
+      "interpretationNotesDefault": "Here's what I understood from your query.",
+      "filtersTitle": "Filters",
+      "searchError": "Search Error",
+      "searchErrorDescription": "Sorry, an error occurred while searching. Please try again.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
+      "noResults": "No results found.",
+      "tryAgain": "Try another search query.",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forum Topics",
+        "agri_events": "Events",
+        "knowledge_articles": "Knowledge Hub",
+        "vti_registry": "Traceability Report"
       }
     }
   },
-  "privacyPolicy": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "This privacy notice for DamDoh ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services').",
-    "whatInfoWeCollect": {
-      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
-      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
-    },
-    "howWeUseInfo": {
-      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
-      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
-    },
-    "willInfoBeShared": {
-      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
-      "content": "We may share information in specific situations and with specific categories of third parties, such as financial partners for loan applications, only with your explicit consent."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
-      "content": "We may use cookies and similar tracking technologies to access or store information. Specific information about how we use such technologies is set out in our Cookie Notice."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
-      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
-      "content": "We have implemented a series of technical and organizational security measures designed to protect the security of any personal information we process."
-    },
-    "minors": {
-      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
-      "content": "We do not knowingly collect data from or market to children under 18 years of age."
-    },
-    "privacyRights": {
-      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
-      "content": "You may review, change, or terminate your account at any time. Depending on your location, you may have additional rights regarding your personal information."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
-      "content": "Most web browsers and some mobile operating systems include a Do-Not-Track ('DNT') feature. At this stage, we do not currently respond to DNT browser signals."
-    },
-    "updatesToNotice": {
-      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
-      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws. The updated version will be indicated by an updated 'Revised' date."
-    },
-    "contactUs": {
-      "heading": "11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?",
-      "content": "If you have questions or comments about this notice, you may email us at support@damdoh.org."
-    }
-  },
-  "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "Welcome to DamDoh. These Terms of Service ('Terms') govern your use of the DamDoh mobile application and website ('Platform'), operated by the DamDoh Foundation.",
-    "agreementToTerms": {
-      "heading": "1. Agreement to Terms",
-      "content": "By using our Platform, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Platform."
-    },
-    "intellectualProperty": {
-      "heading": "2. Intellectual Property Rights",
-      "content": "The Platform and its original content, features, and functionality are and will remain the exclusive property of the DamDoh Foundation. Your user-generated content remains your own, but you grant us a license to use it in connection with operating the Platform."
-    },
-    "userRepresentations": {
-      "heading": "3. User Representations",
-      "content": "By using the Platform, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information; (3) you have the legal capacity and you agree to comply with these Terms."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Prohibited Activities",
-      "content": "You may not access or use the Platform for any purpose other than that for which we make the Platform available. Prohibited activities include, but are not limited to: fraud, spamming, disseminating viruses, or interfering with the security features of the Platform."
-    },
-    "platformManagement": {
-      "heading": "5. Platform Management",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Platform for violations of these Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms; (3) in our sole discretion and without limitation, refuse, restrict access to, or disable any of your Contributions."
-    },
-    "termAndTermination": {
-      "heading": "6. Term and Termination",
-      "content": "These Terms shall remain in full force and effect while you use the Platform. We may suspend or terminate your account at any time, without warning, for any breach of these Terms."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modifications and Interruptions",
-      "content": "We reserve the right to change, modify, or remove the contents of the Platform at any time or for any reason at our sole discretion without notice. We cannot guarantee the Platform will be available at all times."
-    },
-    "governingLaw": {
-      "heading": "8. Governing Law",
-      "content": "These Terms and your use of the Platform are governed by and construed in accordance with the laws of Kenya applicable to agreements made and to be entirely performed within Kenya, without regard to its conflict of law principles."
-    },
-    "disputeResolution": {
-      "heading": "9. Dispute Resolution",
-      "content": "To expedite resolution and control the cost of any dispute, you agree to first attempt to negotiate any Dispute informally for at least thirty (30) days before initiating arbitration."
-    },
-    "contactUs": {
-      "heading": "10. Contact Us",
-      "content": "In order to resolve a complaint regarding the Platform or to receive further information regarding use of the Platform, please contact us."
-    },
-    "conclusion": "To contact us, please use the {contactLink} page."
+  "common": {
+    "error": "Error"
   }
 }
-
-    

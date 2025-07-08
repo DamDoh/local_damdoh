@@ -112,6 +112,7 @@
     "roleLabel": "Tu rol",
     "rolePlaceholder": "Selecciona tu rol principal",
     "confirmPasswordLabel": "Confirmar contraseña",
+    "confirmPasswordPlaceholder": "Confirma tu nueva contraseña",
     "creatingAccountButton": "Creando cuenta...",
     "signUpButton": "Crear cuenta",
     "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
@@ -123,265 +124,60 @@
     "resetPasswordTitle": "Restablecer tu contraseña",
     "resetPasswordDescription": "Ingresa tu nueva contraseña a continuación.",
     "newPasswordLabel": "Nueva contraseña",
+    "newPasswordPlaceholder": "Introduce tu nueva contraseña",
     "resettingPasswordButton": "Restableciendo contraseña...",
-    "resetPasswordButton": "Restablecer contraseña"
-  },
-  "blogPage": {
-    "title": "Blog y Noticias de DamDoh",
-    "description": "Últimas actualizaciones, historias y conocimientos del mundo agrícola.",
-    "meta": "{author} el {date, date, long}",
-    "readMore": "Leer Más",
-    "noPosts": {
-      "title": "Aún no hay artículos",
-      "description": "Vuelve pronto para conocer las ideas, historias y noticias de la comunidad DamDoh."
-    },
-    "error": {
-      "title": "Error al cargar los artículos",
-      "description": "No se pudieron obtener los últimos artículos. Por favor, inténtalo de nuevo más tarde."
+    "resetPasswordButton": "Restablecer contraseña",
+    "recoverPage": {
+      "title": "Recuperación de Cuenta Social",
+      "description": "Recupera el acceso a tu cuenta de forma segura utilizando tu red.",
+      "howItWorksTitle": "Cómo funciona",
+      "step1": "Introduce tu número de teléfono para iniciar una sesión de recuperación.",
+      "step2": "Muestra el código QR temporal a un amigo de confianza de DamDoh.",
+      "step3": "Una vez que confirmen, recuperarás el acceso a tu cuenta.",
+      "startButton": "Iniciar Recuperación de Cuenta",
+      "scanTitle": "Pide a un Amigo que Escanee",
+      "scanDescription": "Pide a un contacto de confianza de tu red de DamDoh que escanee este código QR temporal para verificar tu identidad.",
+      "scanNote": "Este código es válido por 10 minutos.",
+      "startOverButton": "Empezar de nuevo"
     }
   },
-  "Blog": {
-    "backLink": "Volver al Blog",
-    "notFound": {
-      "title": "Artículo no encontrado",
-      "description": "El artículo que buscas no existe o ha sido movido.",
-      "backButton": "Volver al Blog"
-    },
-    "errors": {
-      "title": "Error",
-      "load": "No se pudo cargar el artículo. Por favor, inténtalo de nuevo."
-    },
-    "originalContentTitle": "Contenido Original ({{lang}})"
-  },
-  "helpCenterPage": {
-    "title": "Centro de Ayuda",
-    "subtitle": "Encuentra respuestas a tus preguntas y aprende a sacar el máximo provecho de DamDoh.",
-    "howCanWeHelp": "¿Cómo podemos ayudarte hoy?",
-    "searchPlaceholder": "Busca temas o preguntas...",
-    "browseTopics": "O busca por tema",
-    "gettingStarted": {
-      "title": "Primeros Pasos",
-      "description": "Aprende los conceptos básicos para configurar tu cuenta y perfil.",
-      "placeholder": "El contenido de 'Primeros Pasos' estará disponible pronto."
-    },
-    "marketplaceGuide": {
-      "title": "Guía del Mercado",
-      "description": "Cómo comprar, vender y listar servicios de manera efectiva.",
-      "placeholder": "El contenido de la 'Guía del Mercado' estará disponible pronto."
-    },
-    "accountManagement": {
-      "title": "Gestión de Cuenta",
-      "description": "Administra tu contraseña, notificaciones y configuración de privacidad.",
-      "placeholder": "El contenido de 'Gestión de Cuenta' estará disponible pronto."
-    },
-    "troubleshooting": {
-      "title": "Solución de Problemas",
-      "description": "Encuentra soluciones a problemas comunes y técnicos.",
-      "placeholder": "El contenido de 'Solución de Problemas' estará disponible pronto."
-    },
-    "stillNeedHelp": {
-      "title": "¿Aún necesitas ayuda?",
-      "description": "Si no encuentras lo que buscas, nuestro equipo de soporte está aquí para ayudarte.",
-      "button": "Contactar a Soporte"
-    }
-  },
-  "communityGuidelines": {
-    "title": "Normas de la Comunidad",
-    "subtitle": "Nuestro compromiso con una comunidad segura, respetuosa y profesional.",
-    "intro": "¡Bienvenido a la comunidad DamDoh! Para asegurar que nuestra plataforma siga siendo un espacio constructivo y de confianza para todos los interesados, te pedimos que sigas las siguientes normas:",
-    "respectful": {
-      "title": "Sé Respetuoso y Constructivo",
-      "description": "Participa en las discusiones con profesionalismo y cortesía. Los desacuerdos están bien, pero no se tolerarán ataques personales, acoso, discursos de odio o comportamiento discriminatorio."
-    },
-    "authentic": {
-      "title": "Sé Auténtico y Honesto",
-      "description": "Representa a ti mismo y a tu negocio con veracidad. No publiques información engañosa, crees perfiles falsos ni participes en prácticas de spam o engañosas."
-    },
-    "relevant": {
-      "title": "Mantente en el Tema y Agrega Valor",
-      "description": "Contribuye a las discusiones de una manera que sea relevante para el tema del foro o grupo. Comparte conocimientos, haz preguntas reflexivas y ayuda a construir la sabiduría colectiva de la comunidad."
-    },
-    "fairTrade": {
-      "title": "Realiza Transacciones Justas y Profesionales",
-      "description": "Todas las transacciones del mercado deben realizarse de buena fe. Cumple tus compromisos, comunícate claramente y resuelve las disputas con respeto."
-    },
-    "sustainable": {
-      "title": "Promueve Prácticas Sostenibles y Éticas",
-      "description": "Fomentamos el contenido que apoya la agricultura sostenible, la biodiversidad y las cadenas de suministro éticas. No promuevas prácticas que sean perjudiciales para el medio ambiente o explotadoras."
-    },
-    "reporting": {
-      "title": "Reportar Violaciones",
-      "content": "Si ves contenido o comportamiento que viola estas normas, por favor repórtalo a nuestro equipo de soporte en {emailLink}. Nos comprometemos a revisar los informes y tomar las medidas apropiadas."
-    },
-    "conclusion": "Al usar DamDoh, aceptas estas normas. Nos reservamos el derecho de eliminar contenido y suspender cuentas que violen estos principios. Gracias por ayudarnos a construir una comunidad positiva e impactante."
-  },
-  "industryNewsPage": {
-    "title": "Noticias del Sector",
-    "description": "Las últimas tendencias, investigaciones y actualizaciones de políticas en el sector agrícola mundial.",
-    "searchPlaceholder": "Buscar artículos de noticias...",
-    "categoryPlaceholder": "Filtrar por categoría...",
-    "allCategories": "Todas las categorías",
-    "sourceLabel": "Fuente",
-    "publishedLabel": "Publicado",
-    "categoryLabel": "Categoría",
-    "readButton": "Leer artículo",
-    "noNews": {
-      "title": "No se encontraron noticias",
-      "description": "Vuelve más tarde para ver las últimas actualizaciones sobre tendencias y políticas agrícolas."
-    },
-    "news1": {
-      "title": "Los precios mundiales del café experimentan un ligero aumento en medio de preocupaciones sobre la cadena de suministro en el sudeste asiático",
-      "excerpt": "Los futuros del café subieron ligeramente esta semana debido a informes de retrasos en los envíos en puertos clave del sudeste asiático, lo que genera preocupaciones sobre la estabilidad de la cadena de suministro antes de la temporada navideña."
-    },
-    "news2": {
-      "title": "La UE implementa nuevas regulaciones para las importaciones de alimentos orgánicos, se requiere una verificación más estricta",
-      "excerpt": "A partir del próximo trimestre, todos los productos orgánicos importados a la Unión Europea requerirán certificación digital y registros de trazabilidad mejorados para combatir el etiquetado fraudulento."
-    },
-    "news3": {
-      "title": "Un estudio muestra que las prácticas de agricultura regenerativa pueden aumentar el carbono del suelo hasta en un 15% en 5 años",
-      "excerpt": "Un estudio histórico de 5 años publicado en 'Nature Sustainability' demuestra el significativo potencial de la siembra directa y los cultivos de cobertura para el secuestro de carbono."
-    }
-  },
-  "talentExchangePage": {
-    "title": "Bolsa de Talentos",
-    "description": "Encuentra profesionales calificados u ofrece tu experiencia a la comunidad agrícola.",
-    "listServiceButton": "Ofrecer un Servicio",
-    "searchPlaceholder": "Buscar servicios o habilidades...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "categoryPlaceholder": "Filtrar por categoría...",
-    "allCategories": "Todas las categorías",
-    "noResultsTitle": "No se encontraron servicios",
-    "noResultsDescription": "Intenta ajustar tus filtros de búsqueda o sé el primero en ofrecer un nuevo servicio.",
-    "toast": {
-      "error": {
-        "title": "Error",
-        "description": "No se pudieron obtener los servicios en este momento. Por favor, inténtalo de nuevo más tarde."
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos, servicios, debates...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de café orgánico",
+    "popularSearch2": "Tractor en alquiler",
+    "popularSearch3": "Foro de salud del suelo",
+    "popularSearch4": "Logística en Kenia",
+    "popularSearch5": "Financiamiento para exportaciones",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Busca en toda la plataforma DamDoh...",
+      "searchButton": "Buscar",
+      "interpretationTitle": "Interpretación",
+      "interpretationNotesDefault": "Esto es lo que entendí de tu consulta.",
+      "filtersTitle": "Filtros",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Lo sentimos, ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Este no parece ser un código QR válido de DamDoh.",
+      "noResults": "No se encontraron resultados.",
+      "tryAgain": "Prueba con otra consulta de búsqueda.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Temas del Foro",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informe de Trazabilidad"
       }
     }
   },
-  "privacyPolicy": {
-    "title": "Política de Privacidad",
-    "lastUpdated": "Última actualización: 29 de octubre de 2023",
-    "introduction": "Este aviso de privacidad para DamDoh ('nosotros', 'nos' o 'nuestro'), describe cómo y por qué podríamos recopilar, almacenar, usar y/o compartir ('procesar') su información cuando utiliza nuestros servicios ('Servicios').",
-    "whatInfoWeCollect": {
-      "heading": "1. ¿QUÉ INFORMACIÓN RECOPILAMOS?",
-      "content": "Recopilamos información personal que usted nos proporciona voluntariamente cuando se registra en los Servicios, expresa interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participa en actividades en los Servicios, o de otra manera cuando nos contacta."
-    },
-    "howWeUseInfo": {
-      "heading": "2. ¿CÓMO PROCESAMOS SU INFORMACIÓN?",
-      "content": "Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento."
-    },
-    "willInfoBeShared": {
-      "heading": "3. ¿CUÁNDO Y CON QUIÉN COMPARTIMOS SU INFORMACIÓN PERSONAL?",
-      "content": "Podemos compartir información en situaciones específicas y con categorías específicas de terceros, como socios financieros para solicitudes de préstamos, solo con su consentimiento explícito."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. ¿UTILIZAMOS COOKIES Y OTRAS TECNOLOGÍAS DE SEGUIMIENTO?",
-      "content": "Podemos usar cookies y tecnologías de seguimiento similares para acceder o almacenar información. La información específica sobre cómo usamos dichas tecnologías se establece en nuestro Aviso de Cookies."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?",
-      "content": "Conservamos su información durante el tiempo que sea necesario para cumplir con los fines descritos en este aviso de privacidad, a menos que la ley exija lo contrario."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?",
-      "content": "Hemos implementado una serie de medidas de seguridad técnicas y organizativas diseñadas para proteger la seguridad de cualquier información personal que procesemos."
-    },
-    "minors": {
-      "heading": "7. ¿RECOPILAMOS INFORMACIÓN DE MENORES?",
-      "content": "No recopilamos datos de niños menores de 18 años ni les comercializamos nuestros servicios a sabiendas."
-    },
-    "privacyRights": {
-      "heading": "8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?",
-      "content": "Puede revisar, cambiar o cancelar su cuenta en cualquier momento. Dependiendo de su ubicación, puede tener derechos adicionales con respecto a su información personal."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO",
-      "content": "La mayoría de los navegadores web y algunos sistemas operativos móviles incluyen una función de No Rastrear ('DNT'). En esta etapa, actualmente no respondemos a las señales de navegador DNT."
-    },
-    "updatesToNotice": {
-      "heading": "10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?",
-      "content": "Sí, actualizaremos este aviso según sea necesario para cumplir con las leyes pertinentes. La versión actualizada se indicará con una fecha de 'Revisado' actualizada."
-    },
-    "contactUs": {
-      "heading": "11. ¿CÓMO PUEDE CONTACTARNOS SOBRE ESTE AVISO?",
-      "content": "Si tiene preguntas o comentarios sobre este aviso, puede enviarnos un correo electrónico a support@damdoh.org."
-    }
-  },
-  "termsOfService": {
-    "title": "Términos de Servicio",
-    "lastUpdated": "Última actualización: 29 de octubre de 2023",
-    "introduction": "Bienvenido a DamDoh. Estos Términos de Servicio ('Términos') rigen su uso de la aplicación móvil y el sitio web de DamDoh ('Plataforma'), operados por la Fundación DamDoh.",
-    "agreementToTerms": {
-      "heading": "1. Aceptación de los Términos",
-      "content": "Al usar nuestra Plataforma, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con estos Términos, no use la Plataforma."
-    },
-    "intellectualProperty": {
-      "heading": "2. Derechos de Propiedad Intelectual",
-      "content": "La Plataforma y su contenido original, características y funcionalidad son y seguirán siendo propiedad exclusiva de la Fundación DamDoh. Su contenido generado por el usuario sigue siendo suyo, pero nos otorga una licencia para usarlo en relación con la operación de la Plataforma."
-    },
-    "userRepresentations": {
-      "heading": "3. Declaraciones del Usuario",
-      "content": "Al usar la Plataforma, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información; (3) tiene la capacidad legal y acepta cumplir con estos Términos."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Actividades Prohibidas",
-      "content": "No puede acceder ni usar la Plataforma para ningún otro propósito que no sea para el que ponemos a disposición la Plataforma. Las actividades prohibidas incluyen, entre otras: fraude, envío de spam, diseminación de virus o interferencia con las características de seguridad de la Plataforma."
-    },
-    "platformManagement": {
-      "heading": "5. Gestión de la Plataforma",
-      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear la Plataforma en busca de violaciones de estos Términos; (2) tomar las acciones legales apropiadas contra cualquier persona que, a nuestra entera discreción, viole la ley o estos Términos; (3) a nuestra entera discreción y sin limitación, rechazar, restringir el acceso o deshabilitar cualquiera de sus Contribuciones."
-    },
-    "termAndTermination": {
-      "heading": "6. Duración y Terminación",
-      "content": "Estos Términos permanecerán en pleno vigor y efecto mientras use la Plataforma. Podemos suspender o cancelar su cuenta en cualquier momento, sin previo aviso, por cualquier incumplimiento de estos Términos."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modificaciones e Interrupciones",
-      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido de la Plataforma en cualquier momento o por cualquier motivo a nuestra entera discreción sin previo aviso. No podemos garantizar que la Plataforma estará disponible en todo momento."
-    },
-    "governingLaw": {
-      "heading": "8. Ley Aplicable",
-      "content": "Estos Términos y su uso de la Plataforma se rigen e interpretan de acuerdo con las leyes de Kenia aplicables a los acuerdos realizados y que se ejecutarán en su totalidad dentro de Kenia, sin tener en cuenta sus principios de conflicto de leyes."
-    },
-    "disputeResolution": {
-      "heading": "9. Resolución de Disputas",
-      "content": "Para agilizar la resolución y controlar el costo de cualquier disputa, usted acepta intentar primero negociar cualquier Disputa de manera informal durante al menos treinta (30) días antes de iniciar un arbitraje."
-    },
-    "contactUs": {
-      "heading": "10. Contáctenos",
-      "content": "Para resolver una queja sobre la Plataforma o para recibir más información sobre el uso de la Plataforma, contáctenos."
-    },
-    "conclusion": "Para contactarnos, por favor use la página de {contactLink}."
-  },
-  "AgriEvents": {
-    "page": {
-      "title": "Eventos Agrícolas",
-      "description": "Descubre conferencias, talleres y ferias comerciales que tienen lugar en la comunidad agrícola.",
-      "createNewEvent": "Crear Nuevo Evento",
-      "pinAsHomepage": "Fijar como Página de Inicio",
-      "unpinHomepage": "Desfijar de la Página de Inicio",
-      "searchEvents": "Buscar eventos",
-      "searchPlaceholder": "Buscar por título, descripción o ubicación...",
-      "filterPlaceholder": "Filtrar por tipo de evento",
-      "viewDetails": "Ver Detalles",
-      "organizedBy": "Organizado por {organizer}",
-      "noEventsFound": "No se encontraron eventos",
-      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no {link}?",
-      "toast": {
-        "pinned": {
-          "title": "¡Eventos Fijados!",
-          "description": "Eventos Agrícolas es ahora tu página de inicio predeterminada."
-        },
-        "unpinned": {
-          "title": "¡Página de Inicio Desfijada!",
-          "description": "El Panel Principal es ahora tu página de inicio predeterminada."
-        }
-      },
-      "errorLoadingEvents": "Error al Cargar Eventos",
-      "couldNotFetchEvents": "No se pudo obtener la lista de eventos en este momento."
-    }
+  "common": {
+    "error": "Error"
   }
 }
-
-    
