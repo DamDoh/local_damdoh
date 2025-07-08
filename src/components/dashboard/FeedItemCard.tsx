@@ -41,6 +41,8 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
   
+  const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'voteOnPoll'), []);
+
   useEffect(() => {
       setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
       // Here you could add logic to check if the user has already voted on this poll
@@ -133,11 +135,13 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         return;
     }
     
-    const voteOnPollCallable = httpsCallable(functions, 'voteOnPoll');
-    
     // Optimistic UI update
+    const originalPollOptions = [...currentPollOptions];
     const newPollOptions = [...currentPollOptions];
-    newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
+    newPollOptions[optionIndex] = {
+        ...newPollOptions[optionIndex],
+        votes: (newPollOptions[optionIndex].votes || 0) + 1
+    };
     setCurrentPollOptions(newPollOptions);
     setVotedOptionIndex(optionIndex);
 
@@ -147,9 +151,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     } catch (error: any) {
         toast({ title: t('voteErrorToast'), description: error.message, variant: "destructive" });
         // Revert UI on error
-        const revertedPollOptions = [...currentPollOptions];
-        revertedPollOptions[optionIndex].votes = (revertedPollOptions[optionIndex].votes || 1) - 1;
-        setCurrentPollOptions(revertedPollOptions);
+        setCurrentPollOptions(originalPollOptions);
         setVotedOptionIndex(null);
     }
   };
