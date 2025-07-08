@@ -179,5 +179,119 @@
   },
   "common": {
     "error": "Erreur"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Transformer l'Agriculture pour une Planète Vivante avec {appName}",
+      "subtitle": "La plateforme mondiale qui autonomise les agriculteurs, restaure la biodiversité et crée des chaînes d'approvisionnement durables de la ferme à la table.",
+      "getStartedButton": "Commencer maintenant",
+      "learnMoreButton": "En savoir plus"
+    },
+    "features": {
+      "title": "Un Écosystème Connecté pour l'Agriculture",
+      "subtitle": "DamDoh rassemble tous les outils et communautés dont vous avez besoin pour prospérer.",
+      "networking": {
+        "title": "Réseautage Intelligent",
+        "description": "Connectez-vous avec des agriculteurs, des acheteurs et des experts du monde entier."
+      },
+      "marketplace": {
+        "title": "Marché Mondial",
+        "description": "Achetez et vendez des produits et des services directement et en toute transparence."
+      },
+      "forums": {
+        "title": "Forums de Connaissances",
+        "description": "Partagez vos connaissances et apprenez d'une communauté mondiale d'experts."
+      },
+      "talent": {
+        "title": "Bourse de Talents",
+        "description": "Proposez ou trouvez des services et une expertise agricoles."
+      }
+    },
+    "forWho": {
+      "badge": "Pour tous les acteurs de la chaîne",
+      "title": "Conçu pour l'ensemble de l'écosystème agricole",
+      "description": "Que vous soyez un petit agriculteur, une entreprise mondiale ou un expert intermédiaire, DamDoh fournit les outils pour croître et réussir.",
+      "farmers": {
+        "title": "Agriculteurs",
+        "description": "Augmentez les rendements, accédez à de nouveaux marchés et adoptez des pratiques durables."
+      },
+      "buyers": {
+        "title": "Acheteurs et Transformateurs",
+        "description": "Approvisionnez-vous en produits traçables de haute qualité directement à la source."
+      },
+      "experts": {
+        "title": "Experts et Fournisseurs de Services",
+        "description": "Proposez votre expertise et vos services à un public mondial."
+      },
+      "imageAlt": "Un groupe diversifié de personnes du secteur agricole collaborant ensemble"
+    },
+    "cta": {
+      "title": "Prêt à transformer l'agriculture ?",
+      "subtitle": "Rejoignez la communauté DamDoh aujourd'hui et faites partie du mouvement pour créer un système alimentaire plus durable, équitable et résilient pour tous.",
+      "button": "Rejoindre Gratuitement"
+    }
+  },
+  "StartPost": {
+    "placeholder": "Démarrer une discussion...",
+    "photoVideo": "Photo/Vidéo",
+    "agriEvent": "Événement Agri",
+    "createPoll": "Créer un Sondage"
+  },
+  "CreatePostModal": {
+    "title": "Créer une Publication",
+    "description": "Partagez une mise à jour avec la communauté",
+    "yourName": "Votre Nom",
+    "shareUpdate": "Partager une mise à jour",
+    "placeholder": "À quoi pensez-vous ?",
+    "addMediaButton": "Ajouter un média",
+    "createEventButton": "Créer un événement",
+    "shareDocumentButton": "Partager un document",
+    "createPollButton": "Créer un sondage",
+    "postButton": "Publier",
+    "selectedFile": "Fichier sélectionné :",
+    "pollOptionsLabel": "Options du sondage",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Ajouter une option",
+    "pollNote": "Maximum de {maxOptions} options autorisées.",
+    "pollOptionsError": "Un sondage doit avoir au moins deux options non vides.",
+    "emptyPostError": "Une publication ne peut pas être vide. Veuillez ajouter du texte, un média ou un sondage."
+  },
+  "FeedItemCard": {
+    "editPost": "Modifier la Publication",
+    "deletePost": "Supprimer la Publication",
+    "likes": "{count, plural, one {J'aime} other {J'aime}}",
+    "comments": "{count, plural, one {Commentaire} other {Commentaires}}",
+    "like": "J'aime",
+    "comment": "Commenter",
+    "repost": "Republier",
+    "postButton": "Publier",
+    "noComments": "Aucun commentaire pour l'instant.",
+    "loadMoreComments": "Charger plus de commentaires",
+    "loadingComments": "Chargement des commentaires...",
+    "writeCommentPlaceholder": "Écrire un commentaire...",
+    "votes": "{count, plural, one {vote} other {votes}}",
+    "signInToLikeToast": "Veuillez vous connecter pour aimer une publication.",
+    "signInToVoteToast": "Veuillez vous connecter pour voter.",
+    "voteSuccessToast": "Votre vote a été enregistré !",
+    "voteErrorToast": "Échec du vote",
+    "repostPlaceholderToast": "La fonctionnalité 'Republier' sera bientôt disponible !",
+    "loadCommentsErrorToast": "Impossible de charger les commentaires"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Connexions Suggérées",
+    "infoTooltip": "Suggestions basées sur vos intérêts et votre rôle.",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "loadError": "Impossible de charger les suggestions.",
+    "noSuggestions": "Aucune suggestion pour le moment.",
+    "following": "Suivi",
+    "follow": "Suivre",
+    "signInPrompt": "Connectez-vous pour voir des suggestions personnalisées.",
+    "promotionsTitle": "Promotions et Coupons",
+    "promotionsDescription": "Créez et gérez des réductions pour vos annonces sur le marché.",
+    "managePromotionsButton": "Gérer les Coupons",
+    "ad": "Publicité",
+    "adTitle": "Débloquez les Perspectives du Marché",
+    "adDescription": "Obtenez des analyses de prix et de demande en temps réel avec DamDoh Pro.",
+    "adButton": "En savoir plus"
   }
 }

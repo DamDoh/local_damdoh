@@ -179,5 +179,119 @@
   },
   "common": {
     "error": "Error"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Transformando la Agricultura para un Planeta Vibrante con {appName}",
+      "subtitle": "La plataforma global que empodera a los agricultores, restaura la biodiversidad y crea cadenas de suministro sostenibles desde la granja hasta la mesa.",
+      "getStartedButton": "Comenzar ahora",
+      "learnMoreButton": "Aprender más"
+    },
+    "features": {
+      "title": "Un Ecosistema Conectado para la Agricultura",
+      "subtitle": "DamDoh une todas las herramientas y comunidades que necesitas para prosperar.",
+      "networking": {
+        "title": "Redes Inteligentes",
+        "description": "Conéctate con agricultores, compradores y expertos de todo el mundo."
+      },
+      "marketplace": {
+        "title": "Mercado Global",
+        "description": "Compra y vende productos y servicios de manera directa y transparente."
+      },
+      "forums": {
+        "title": "Foros de Conocimiento",
+        "description": "Comparte conocimientos y aprende de una comunidad global de expertos."
+      },
+      "talent": {
+        "title": "Bolsa de Talentos",
+        "description": "Ofrece o encuentra servicios y experiencia agrícola."
+      }
+    },
+    "forWho": {
+      "badge": "Para todos en la cadena",
+      "title": "Construido para todo el ecosistema agrícola",
+      "description": "Ya seas un pequeño agricultor, una corporación global o un experto intermedio, DamDoh proporciona las herramientas para crecer y tener éxito.",
+      "farmers": {
+        "title": "Agricultores",
+        "description": "Aumenta el rendimiento, accede a nuevos mercados y adopta prácticas sostenibles."
+      },
+      "buyers": {
+        "title": "Compradores y Procesadores",
+        "description": "Obtén productos trazables de alta calidad directamente de la fuente."
+      },
+      "experts": {
+        "title": "Expertos y Proveedores de Servicios",
+        "description": "Ofrece tu experiencia y servicios a una audiencia global."
+      },
+      "imageAlt": "Un grupo diverso de personas del sector agrícola colaborando juntas"
+    },
+    "cta": {
+      "title": "¿Listo para transformar la agricultura?",
+      "subtitle": "Únete a la comunidad de DamDoh hoy y sé parte del movimiento para crear un sistema alimentario más sostenible, equitativo y resiliente para todos.",
+      "button": "Únete Gratis"
+    }
+  },
+  "StartPost": {
+    "placeholder": "Iniciar una discusión...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Evento Agrícola",
+    "createPoll": "Crear Encuesta"
+  },
+  "CreatePostModal": {
+    "title": "Crear Publicación",
+    "description": "Comparte una actualización con la comunidad",
+    "yourName": "Tu Nombre",
+    "shareUpdate": "Compartir Actualización",
+    "placeholder": "¿En qué estás pensando?",
+    "addMediaButton": "Agregar Medios",
+    "createEventButton": "Crear Evento",
+    "shareDocumentButton": "Compartir Documento",
+    "createPollButton": "Crear Encuesta",
+    "postButton": "Publicar",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la Encuesta",
+    "pollOptionPlaceholder": "Opción {index}",
+    "addOptionButton": "Agregar Opción",
+    "pollNote": "Máximo {maxOptions} opciones permitidas.",
+    "pollOptionsError": "Una encuesta debe tener al menos dos opciones no vacías.",
+    "emptyPostError": "Una publicación no puede estar vacía. Por favor, agregue texto, medios o una encuesta."
+  },
+  "FeedItemCard": {
+    "editPost": "Editar Publicación",
+    "deletePost": "Eliminar Publicación",
+    "likes": "{count, plural, one {Me gusta} other {Me gusta}}",
+    "comments": "{count, plural, one {Comentario} other {Comentarios}}",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Volver a publicar",
+    "postButton": "Publicar",
+    "noComments": "No hay comentarios aún.",
+    "loadMoreComments": "Cargar más comentarios",
+    "loadingComments": "Cargando comentarios...",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "votes": "{count, plural, one {voto} other {votos}}",
+    "signInToLikeToast": "Por favor, inicia sesión para dar 'me gusta' a una publicación.",
+    "signInToVoteToast": "Por favor, inicia sesión para votar.",
+    "voteSuccessToast": "¡Tu voto ha sido registrado!",
+    "voteErrorToast": "Error al votar",
+    "repostPlaceholderToast": "La función 'Volver a publicar' estará disponible pronto.",
+    "loadCommentsErrorToast": "No se pudieron cargar los comentarios"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Conexiones Sugeridas",
+    "infoTooltip": "Sugerencias basadas en tus intereses y rol.",
+    "refreshSuggestions": "Actualizar sugerencias",
+    "loadError": "No se pudieron cargar las sugerencias.",
+    "noSuggestions": "No hay sugerencias por el momento.",
+    "following": "Siguiendo",
+    "follow": "Seguir",
+    "signInPrompt": "Inicia sesión para ver sugerencias personalizadas.",
+    "promotionsTitle": "Promociones y Cupones",
+    "promotionsDescription": "Crea y gestiona descuentos para tus listados del mercado.",
+    "managePromotionsButton": "Gestionar Cupones",
+    "ad": "Anuncio",
+    "adTitle": "Desbloquea Perspectivas de Mercado",
+    "adDescription": "Obtén análisis de precios y demanda en tiempo real con DamDoh Pro.",
+    "adButton": "Aprender más"
   }
 }
