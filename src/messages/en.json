@@ -199,6 +199,38 @@
         "description": "Could not fetch services. Please try again later."
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Hub",
+    "description": "Track and manage your farm's environmental impact and sustainable practices.",
+    "auth": {
+      "title": "Please Sign In",
+      "description": "You must be logged in to view your sustainability hub.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "No Data Available",
+      "description": "We couldn't load your sustainability data. Please try again later."
+    },
+    "metricCard": {
+      "trendText": "from last month"
+    },
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Logged Sustainable Practices",
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTitle": "Certifications",
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expiry"
+    }
   }
 }
+    
+
     

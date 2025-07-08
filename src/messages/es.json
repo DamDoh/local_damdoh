@@ -199,6 +199,38 @@
         "description": "No se pudieron obtener los servicios. Por favor, inténtelo de nuevo más tarde."
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Centro de Sostenibilidad",
+    "description": "Rastrea y gestiona el impacto ambiental y las prácticas sostenibles de tu granja.",
+    "auth": {
+      "title": "Por favor, inicia sesión",
+      "description": "Debes iniciar sesión para ver tu centro de sostenibilidad.",
+      "button": "Iniciar sesión"
+    },
+    "noData": {
+      "title": "No hay datos disponibles",
+      "description": "No pudimos cargar tus datos de sostenibilidad. Por favor, inténtalo de nuevo más tarde."
+    },
+    "metricCard": {
+      "trendText": "desde el mes pasado"
+    },
+    "carbonFootprint": "Huella de Carbono",
+    "waterEfficiency": "Eficiencia del Agua",
+    "biodiversityScore": "Puntuación de Biodiversidad",
+    "practicesTitle": "Prácticas Sostenibles Registradas",
+    "practicesTable": {
+      "practice": "Práctica",
+      "lastLogged": "Último Registro"
+    },
+    "certificationsTitle": "Certificaciones",
+    "certificationsTable": {
+      "certification": "Certificación",
+      "status": "Estado",
+      "expiry": "Vencimiento"
+    }
   }
 }
+    
+
     

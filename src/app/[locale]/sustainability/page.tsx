@@ -14,9 +14,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import type { SustainabilityDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const MetricCard = ({ title, value, unit, trend, icon, higherIsBetter = true }: { title: string, value: number, unit: string, trend: number, icon: React.ReactNode, higherIsBetter?: boolean }) => {
     const isGoodTrend = higherIsBetter ? trend >= 0 : trend < 0;
+    const t = useTranslations('sustainabilityPage.metricCard');
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -30,7 +32,7 @@ const MetricCard = ({ title, value, unit, trend, icon, higherIsBetter = true }: 
                         <TrendingUp className="h-4 w-4 mr-1 text-green-500" /> :
                         <TrendingDown className="h-4 w-4 mr-1 text-red-500" />
                     )}
-                    {trend > 0 ? '+' : ''}{trend}% from last month
+                    {trend > 0 ? '+' : ''}{trend}% {t('trendText')}
                 </p>
             </CardContent>
         </Card>
@@ -57,6 +59,7 @@ const SustainabilitySkeleton = () => (
 );
 
 export default function SustainabilityPage() {
+    const t = useTranslations('sustainabilityPage');
     const { user, loading: authLoading } = useAuth();
     const [data, setData] = useState<SustainabilityDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -91,10 +94,10 @@ export default function SustainabilityPage() {
     if (!user) {
         return (
             <Card className="text-center py-8">
-                <CardHeader><CardTitle>Please Sign In</CardTitle></CardHeader>
+                <CardHeader><CardTitle>{t('auth.title')}</CardTitle></CardHeader>
                 <CardContent>
-                    <CardDescription>You must be logged in to view your sustainability hub.</CardDescription>
-                    <Button asChild className="mt-4"><Link href="/auth/signin">Sign In</Link></Button>
+                    <CardDescription>{t('auth.description')}</CardDescription>
+                    <Button asChild className="mt-4"><Link href="/auth/signin">{t('auth.button')}</Link></Button>
                 </CardContent>
             </Card>
         );
@@ -103,9 +106,9 @@ export default function SustainabilityPage() {
     if (!data) {
         return (
             <Card className="text-center py-8">
-                <CardHeader><CardTitle>No Data Available</CardTitle></CardHeader>
+                <CardHeader><CardTitle>{t('noData.title')}</CardTitle></CardHeader>
                 <CardContent>
-                    <CardDescription>We couldn't load your sustainability data. Please try again later.</CardDescription>
+                    <CardDescription>{t('noData.description')}</CardDescription>
                 </CardContent>
             </Card>
         );
@@ -115,27 +118,27 @@ export default function SustainabilityPage() {
         <div className="space-y-6">
             <div className="flex items-center gap-2">
                 <Leaf className="h-8 w-8 text-green-600" />
-                <h1 className="text-3xl font-bold">Sustainability Hub</h1>
+                <h1 className="text-3xl font-bold">{t('title')}</h1>
             </div>
-            <p className="text-muted-foreground">Track and manage your farm's environmental impact and sustainable practices.</p>
+            <p className="text-muted-foreground">{t('description')}</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <MetricCard title="Carbon Footprint" value={data.carbonFootprint.total} unit={data.carbonFootprint.unit} trend={data.carbonFootprint.trend} icon={<Circle className="h-4 w-4 text-muted-foreground" />} higherIsBetter={false} />
-                <MetricCard title="Water Efficiency" value={data.waterUsage.efficiency} unit={data.waterUsage.unit} trend={data.waterUsage.trend} icon={<Droplets className="h-4 w-4 text-muted-foreground" />} />
-                <MetricCard title="Biodiversity Score" value={data.biodiversityScore.score} unit={data.biodiversityScore.unit} trend={data.biodiversityScore.trend} icon={<PawPrint className="h-4 w-4 text-muted-foreground" />} />
+                <MetricCard title={t('carbonFootprint')} value={data.carbonFootprint.total} unit={data.carbonFootprint.unit} trend={data.carbonFootprint.trend} icon={<Circle className="h-4 w-4 text-muted-foreground" />} higherIsBetter={false} />
+                <MetricCard title={t('waterEfficiency')} value={data.waterUsage.efficiency} unit={data.waterUsage.unit} trend={data.waterUsage.trend} icon={<Droplets className="h-4 w-4 text-muted-foreground" />} />
+                <MetricCard title={t('biodiversityScore')} value={data.biodiversityScore.score} unit={data.biodiversityScore.unit} trend={data.biodiversityScore.trend} icon={<PawPrint className="h-4 w-4 text-muted-foreground" />} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><CheckCircle className="h-5 w-5"/> Logged Sustainable Practices</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><CheckCircle className="h-5 w-5"/> {t('practicesTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Practice</TableHead>
-                                    <TableHead>Last Logged</TableHead>
+                                    <TableHead>{t('practicesTable.practice')}</TableHead>
+                                    <TableHead>{t('practicesTable.lastLogged')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -151,15 +154,15 @@ export default function SustainabilityPage() {
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Award className="h-5 w-5"/> Certifications</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><Award className="h-5 w-5"/> {t('certificationsTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                          <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Certification</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead>Expiry</TableHead>
+                                    <TableHead>{t('certificationsTable.certification')}</TableHead>
+                                    <TableHead>{t('certificationsTable.status')}</TableHead>
+                                    <TableHead>{t('certificationsTable.expiry')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -178,3 +181,5 @@ export default function SustainabilityPage() {
         </div>
     );
 }
+
+    

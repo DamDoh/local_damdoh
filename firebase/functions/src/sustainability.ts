@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -17,7 +16,9 @@ async function getEmissionFactor(criteria: {
   factorType?: string,
 }): Promise<any | null> {
   console.log("Fetching emission factor for criteria (placeholder):", criteria);
-  return null;
+  // In a real implementation, this would query a dedicated 'emission_factors' collection
+  // based on the provided criteria.
+  return null; // Returning null as this is a placeholder.
 }
 
 /**
@@ -26,8 +27,9 @@ async function getEmissionFactor(criteria: {
  * @return {Promise<string | null>} A promise that resolves with the region or null if not found.
  */
 async function getRegionForCalculation(data: any): Promise<string | null> {
+  // Logic to determine region, e.g., from farm location in user profile
   console.log("Determining region for calculation (placeholder):", data);
-  return "Global";
+  return "Global"; // Placeholder
 }
 
 export const calculateCarbonFootprint = functions.firestore
@@ -135,12 +137,12 @@ export const getSustainabilityDashboardData = functions.https.onCall(async (data
     const userId = context.auth.uid;
 
     // In a real app, this would involve complex aggregation queries on the `carbon_footprint_data` collection
-    // and other data sources. For now, we return mock data.
+    // and other data sources. For now, we return mock data that matches the frontend's expectations.
     return {
         carbonFootprint: {
             total: 1250, // kg CO2e
             unit: 'kg CO2e',
-            trend: -5, // % change over last period
+            trend: -5, // % change over last month
         },
         waterUsage: {
             efficiency: 85, // %
@@ -163,3 +165,5 @@ export const getSustainabilityDashboardData = functions.https.onCall(async (data
         ]
     };
 });
+
+    

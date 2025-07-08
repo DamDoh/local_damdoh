@@ -199,6 +199,38 @@
         "description": "Impossible de récupérer les services. Veuillez réessayer plus tard."
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Hub de Durabilité",
+    "description": "Suivez et gérez l'impact environnemental et les pratiques durables de votre ferme.",
+    "auth": {
+      "title": "Veuillez vous connecter",
+      "description": "Vous devez être connecté pour voir votre hub de durabilité.",
+      "button": "Se connecter"
+    },
+    "noData": {
+      "title": "Aucune donnée disponible",
+      "description": "Nous n'avons pas pu charger vos données de durabilité. Veuillez réessayer plus tard."
+    },
+    "metricCard": {
+      "trendText": "depuis le mois dernier"
+    },
+    "carbonFootprint": "Empreinte Carbone",
+    "waterEfficiency": "Efficacité de l'Eau",
+    "biodiversityScore": "Score de Biodiversité",
+    "practicesTitle": "Pratiques Durables Enregistrées",
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier Enregistrement"
+    },
+    "certificationsTitle": "Certifications",
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expiration"
+    }
   }
 }
+    
+
     
