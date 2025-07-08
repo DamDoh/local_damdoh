@@ -154,5 +154,39 @@
     "newPasswordPlaceholder": "••••••••",
     "resettingPasswordButton": "Restableciendo contraseña...",
     "resetPasswordButton": "Restablecer contraseña"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Sincronizando {count} acciones pendientes...",
+      "onlinePending": "{count} acciones pendientes por sincronizar.",
+      "onlineSynced": "En línea y todos los cambios sincronizados.",
+      "offline": "Sin conexión. {count} acciones en cola."
+    },
+    "toast": {
+      "online": {
+        "title": "¡Estás de vuelta en línea!",
+        "description": "Cualquier cambio pendiente se sincronizará ahora."
+      },
+      "offline": {
+        "title": "Actualmente estás sin conexión",
+        "description": "Tus cambios se guardarán y sincronizarán cuando te reconectes."
+      },
+      "syncing": {
+        "title": "Sincronizando cambios sin conexión",
+        "description": "{count, plural, one {# acción se está} other {# acciones se están}} subiendo."
+      },
+      "synced": {
+        "title": "Sincronización completa",
+        "description": "Todos tus cambios sin conexión han sido guardados en el servidor."
+      },
+      "syncFailed": {
+        "title": "Sincronización fallida",
+        "description": "No se pudieron sincronizar los cambios sin conexión. Se reintentará más tarde."
+      },
+      "queued": {
+        "title": "Acción en cola",
+        "description": "Tu cambio ha sido guardado y se sincronizará cuando estés en línea."
+      }
+    }
   }
 }

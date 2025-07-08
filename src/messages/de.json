@@ -154,5 +154,39 @@
     "newPasswordPlaceholder": "••••••••",
     "resettingPasswordButton": "Passwort wird zurückgesetzt...",
     "resetPasswordButton": "Passwort zurücksetzen"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} ausstehende Aktionen...",
+      "onlinePending": "{count} ausstehende Aktionen zum Synchronisieren.",
+      "onlineSynced": "Online und alle Änderungen synchronisiert.",
+      "offline": "Offline. {count} Aktionen in der Warteschlange."
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ausstehende Änderungen werden jetzt synchronisiert."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Ihre Änderungen werden gespeichert und synchronisiert, wenn Sie wieder verbunden sind."
+      },
+      "syncing": {
+        "title": "Synchronisiere Offline-Änderungen",
+        "description": "{count, plural, one {# Aktion wird} other {# Aktionen werden}} hochgeladen."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen",
+        "description": "Alle Ihre Offline-Änderungen wurden auf dem Server gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Wird später erneut versucht."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Ihre Änderung wurde gespeichert und wird synchronisiert, wenn Sie online sind."
+      }
+    }
   }
 }

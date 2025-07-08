@@ -154,5 +154,39 @@
     "newPasswordPlaceholder": "••••••••",
     "resettingPasswordButton": "Réinitialisation du mot de passe...",
     "resetPasswordButton": "Réinitialiser le mot de passe"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisation de {count} actions en attente...",
+      "onlinePending": "{count} actions en attente de synchronisation.",
+      "onlineSynced": "En ligne et toutes les modifications synchronisées.",
+      "offline": "Hors ligne. {count} actions en file d'attente."
+    },
+    "toast": {
+      "online": {
+        "title": "Vous êtes de retour en ligne !",
+        "description": "Les modifications en attente vont maintenant être synchronisées."
+      },
+      "offline": {
+        "title": "Vous êtes actuellement hors ligne",
+        "description": "Vos modifications seront sauvegardées et synchronisées lorsque vous vous reconnecterez."
+      },
+      "syncing": {
+        "title": "Synchronisation des modifications hors ligne",
+        "description": "{count, plural, one {# action est} other {# actions sont}} en cours de téléchargement."
+      },
+      "synced": {
+        "title": "Synchronisation terminée",
+        "description": "Toutes vos modifications hors ligne ont été sauvegardées sur le serveur."
+      },
+      "syncFailed": {
+        "title": "Échec de la synchronisation",
+        "description": "Impossible de synchroniser les modifications hors ligne. Une nouvelle tentative sera effectuée plus tard."
+      },
+      "queued": {
+        "title": "Action en file d'attente",
+        "description": "Votre modification a été sauvegardée et sera synchronisée lorsque vous serez en ligne."
+      }
+    }
   }
 }
