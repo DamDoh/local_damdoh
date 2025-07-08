@@ -88,7 +88,7 @@
       "errorTitle": "Error"
     }
   },
-   "InsurancePage": {
+  "InsurancePage": {
     "title": "Seguros Agrícolas",
     "description": "Proteja su granja y sus activos contra riesgos imprevistos.",
     "perTerm": "/ plazo",
@@ -135,27 +135,27 @@
       "successDescription": "Su solicitud de seguro ha sido enviada al proveedor."
     }
   },
-   "InsuranceProductCreatePage": {
+  "InsuranceProductCreatePage": {
     "backLink": "Volver a Productos",
     "title": "Crear Producto de Seguro",
     "description": "Defina una nueva póliza de seguro para ofrecer en la plataforma.",
     "form": {
-        "nameLabel": "Nombre del Producto",
-        "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
-        "typeLabel": "Tipo de Producto",
-        "typePlaceholder": "Seleccione un tipo",
-        "crop": "Cultivo",
-        "livestock": "Ganado",
-        "asset": "Activo",
-        "weather": "Clima",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describa el producto y sus beneficios.",
-        "coverageLabel": "Detalles de la Cobertura",
-        "coveragePlaceholder": "Detalle qué cubre esta póliza...",
-        "premiumLabel": "Prima (USD)",
-        "premiumPlaceholder": "Ej: 250.00",
-        "currencyLabel": "Moneda",
-        "submitButton": "Crear Producto"
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
+      "typeLabel": "Tipo de Producto",
+      "typePlaceholder": "Seleccione un tipo",
+      "crop": "Cultivo",
+      "livestock": "Ganado",
+      "asset": "Activo",
+      "weather": "Clima",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Describa el producto y sus beneficios.",
+      "coverageLabel": "Detalles de la Cobertura",
+      "coveragePlaceholder": "Detalle qué cubre esta póliza...",
+      "premiumLabel": "Prima (USD)",
+      "premiumPlaceholder": "Ej: 250.00",
+      "currencyLabel": "Moneda",
+      "submitButton": "Crear Producto"
     },
     "toast": {
       "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros.",

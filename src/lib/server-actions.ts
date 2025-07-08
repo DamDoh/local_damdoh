@@ -3,10 +3,9 @@
 
 import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { getAdminDb } from './firebase/admin';
-import type { UserProfile, MarketplaceItem } from '@/lib/types';
+import type { UserProfile, MarketplaceItem, SmartSearchInterpretation } from '@/lib/types';
 import { httpsCallable } from "firebase/functions";
 import { functions } from './firebase/client';
-import type { SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 
 const PROFILES_COLLECTION = 'users';
 const MARKETPLACE_COLLECTION = 'marketplaceItems';

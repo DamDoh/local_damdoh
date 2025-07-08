@@ -10,6 +10,7 @@ import type {
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
+import { SmartSearchInterpretationSchema } from '@/ai/flows/query-interpreter-flow';
 
 
 // =================================================================
@@ -635,60 +636,6 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-  provider?: {
-    id: string;
-    displayName: string;
-    avatarUrl?: string;
-  }
-}
-
-export interface InsuranceApplication {
-    id: string;
-    applicantId: string;
-    providerId: string;
-    productId: string;
-    farmId: string;
-    coverageValue: number;
-    status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-    submittedAt: string;
-}
-
-
-export interface ApiKey {
-    id: string;
-    userId: string;
-    key: string;
-    description: string;
-    environment: 'Sandbox' | 'Production';
-    status: 'Active' | 'Revoked';
-    createdAt: string; // ISO string
-}
-
-
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -825,7 +772,13 @@ export interface AgroTourismDashboardData {
 }
 
 export interface AgriTechInnovatorDashboardData {
-  apiKeys: ApiKey[];
+  apiKeys: {
+    id: string;
+    key: string;
+    status: 'Active' | 'Revoked';
+    environment: 'Sandbox' | 'Production';
+    createdAt: string; // ISO String
+  }[];
   sandboxStatus: {
     status: 'Operational' | 'Degraded' | 'Offline';
     lastReset: string; // ISO String
@@ -873,3 +826,4 @@ export type ServiceItem = MarketplaceItem & {
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;

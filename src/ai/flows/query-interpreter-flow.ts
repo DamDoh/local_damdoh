@@ -22,7 +22,7 @@ const SuggestedFilterSchema = z.object({
   value: z.string().describe("The suggested value for the filter (e.g., 'fresh-produce-fruits', 'Product', 'Region', 'buy').")
 });
 
-const SmartSearchInterpretationSchema = z.object({
+export const SmartSearchInterpretationSchema = z.object({
   originalQuery: z.string().describe("The original query provided by the user."),
   mainKeywords: z.array(z.string()).describe("The core items, products, or services the user is likely searching for, extracted from the query."),
   identifiedLocation: z.string().optional().describe("Any specific location (city, region, country, continent) explicitly mentioned or strongly implied by the query. If multiple are mentioned, pick the most prominent or encompassing one."),

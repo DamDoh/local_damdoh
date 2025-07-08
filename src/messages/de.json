@@ -88,7 +88,7 @@
       "errorTitle": "Fehler"
     }
   },
-   "InsurancePage": {
+  "InsurancePage": {
     "title": "Agrarversicherung",
     "description": "Schützen Sie Ihren Hof und Ihre Vermögenswerte vor unvorhergesehenen Risiken.",
     "perTerm": "/ Laufzeit",
@@ -135,27 +135,27 @@
       "successDescription": "Ihr Versicherungsantrag wurde an den Anbieter gesendet."
     }
   },
-   "InsuranceProductCreatePage": {
+  "InsuranceProductCreatePage": {
     "backLink": "Zurück zu den Produkten",
     "title": "Versicherungsprodukt erstellen",
     "description": "Definieren Sie eine neue Versicherungspolice, die auf der Plattform angeboten werden soll.",
     "form": {
-        "nameLabel": "Produktname",
-        "namePlaceholder": "z.B. Dürreschutz für Mais",
-        "typeLabel": "Produkttyp",
-        "typePlaceholder": "Wählen Sie einen Typ",
-        "crop": "Ernte",
-        "livestock": "Vieh",
-        "asset": "Vermögenswert",
-        "weather": "Wetter",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie das Produkt und seine Vorteile.",
-        "coverageLabel": "Deckungsdetails",
-        "coveragePlaceholder": "Beschreiben Sie, was diese Police abdeckt...",
-        "premiumLabel": "Prämie (USD)",
-        "premiumPlaceholder": "z.B. 250.00",
-        "currencyLabel": "Währung",
-        "submitButton": "Produkt erstellen"
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Dürreschutz für Mais",
+      "typeLabel": "Produkttyp",
+      "typePlaceholder": "Wählen Sie einen Typ",
+      "crop": "Ernte",
+      "livestock": "Vieh",
+      "asset": "Vermögenswert",
+      "weather": "Wetter",
+      "descriptionLabel": "Beschreibung",
+      "descriptionPlaceholder": "Beschreiben Sie das Produkt und seine Vorteile.",
+      "coverageLabel": "Deckungsdetails",
+      "coveragePlaceholder": "Beschreiben Sie, was diese Police abdeckt...",
+      "premiumLabel": "Prämie (USD)",
+      "premiumPlaceholder": "z.B. 250.00",
+      "currencyLabel": "Währung",
+      "submitButton": "Produkt erstellen"
     },
     "toast": {
       "notAuthenticated": "Sie müssen als Versicherungsanbieter angemeldet sein.",

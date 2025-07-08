@@ -88,7 +88,7 @@
       "errorTitle": "Error"
     }
   },
-   "InsurancePage": {
+  "InsurancePage": {
     "title": "Agricultural Insurance",
     "description": "Protect your farm and assets against unforeseen risks.",
     "perTerm": "/ term",
@@ -135,27 +135,27 @@
       "successDescription": "Your insurance application has been sent to the provider."
     }
   },
-   "InsuranceProductCreatePage": {
+  "InsuranceProductCreatePage": {
     "backLink": "Back to Products",
     "title": "Create Insurance Product",
     "description": "Define a new insurance policy to be offered on the platform.",
     "form": {
-        "nameLabel": "Product Name",
-        "namePlaceholder": "e.g., Drought Protection for Maize",
-        "typeLabel": "Product Type",
-        "typePlaceholder": "Select a type",
-        "crop": "Crop",
-        "livestock": "Livestock",
-        "asset": "Asset",
-        "weather": "Weather",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Describe the product and its benefits.",
-        "coverageLabel": "Coverage Details",
-        "coveragePlaceholder": "Detail what this policy covers...",
-        "premiumLabel": "Premium (USD)",
-        "premiumPlaceholder": "e.g., 250.00",
-        "currencyLabel": "Currency",
-        "submitButton": "Create Product"
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Drought Protection for Maize",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop",
+      "livestock": "Livestock",
+      "asset": "Asset",
+      "weather": "Weather",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the product and its benefits.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Detail what this policy covers...",
+      "premiumLabel": "Premium (USD)",
+      "premiumPlaceholder": "e.g., 250.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
     },
     "toast": {
       "notAuthenticated": "You must be logged in as an Insurance Provider.",
