@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -6,12 +5,13 @@ import { usePathname } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Shield, BookOpen, LayoutGrid } from "lucide-react";
+import { Shield, BookOpen, LayoutGrid, FileArchive } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 
 const adminNavItems = [
   { href: "/admin/content", label: "contentManagement", icon: BookOpen },
+  { href: "/admin/reports", label: "reports", icon: FileArchive },
   // { href: "/admin/categories", label: "Marketplace Categories", icon: LayoutGrid }, // This page doesn't exist yet
 ];
 

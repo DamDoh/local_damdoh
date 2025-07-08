@@ -1,4 +1,3 @@
-
 {
   "FiApplicationListPage": {
     "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
@@ -317,7 +316,7 @@
       },
       "synced": {
         "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់!",
-        "description": "រាល់ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកត្រូវបានរក្សាទុកแล้ว។"
+        "description": "រាល់ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកត្រូវបានរក្សាទុកហើយ។"
       },
       "syncFailed": {
         "title": "ការធ្វើសមកាលកម្មបានបរាជ័យ",
@@ -475,6 +474,49 @@
       "scanError": "កំហុសក្នុងការស្កេន",
       "scanErrorDescription": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។",
       "invalidCodeError": "នេះមិនមែនជាកូដ QR របស់ DamDoh ដែលត្រឹមត្រូវទេ។"
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "ផ្នែករដ្ឋបាល",
+      "description": "ឧបករណ៍សម្រាប់គ្រប់គ្រងវេទិកា។",
+      "contentManagement": "ការគ្រប់គ្រងមាតិកា",
+      "reports": "របាយការណ៍"
+    },
+    "reports": {
+      "generate": {
+        "title": "បង្កើតរបាយការណ៍",
+        "description": "បង្កើតរបាយការណ៍ដោយផ្អែកលើទិន្នន័យរបស់វេទិកា។",
+        "reportTypeLabel": "ប្រភេទរបាយការណ៍",
+        "reportTypeVti": "សេចក្តីសង្ខេបព្រឹត្តិការណ៍ VTI",
+        "targetUserLabel": "អ្នកប្រើប្រាស់គោលដៅ",
+        "userSearchPlaceholder": "ស្វែងរកអ្នកប្រើប្រាស់តាមឈ្មោះឬអ៊ីមែល...",
+        "dateRangeLabel": "ជួរកាលបរិច្ឆេទ",
+        "datePlaceholder": "ជ្រើសរើសជួរកាលបរិច្ឆេទ",
+        "submitButton": "បង្កើតរបាយការណ៍"
+      },
+      "list": {
+        "title": "របាយការណ៍ដែលបានបង្កើតថ្មីៗ",
+        "description": "មើលរបាយការណ៍ដែលបានបង្កើតថ្មីៗ។",
+        "table": {
+          "reportType": "ប្រភេទ",
+          "generatedFor": "បង្កើតសម្រាប់",
+          "date": "កាលបរិច្ឆេទ",
+          "status": "ស្ថានភាព",
+          "actions": "សកម្មភាព"
+        },
+        "viewButton": "មើល",
+        "noReports": "មិនទាន់មានរបាយការណ៍ណាមួយត្រូវបានបង្កើតទេ។"
+      },
+      "toast": {
+        "loadErrorTitle": "កំហុស",
+        "formIncompleteTitle": "បំពេញមិនពេញលេញ",
+        "formIncompleteDescription": "សូមបំពេញគ្រប់វាលដើម្បីបង្កើតរបាយការណ៍។",
+        "generateSuccessTitle": "កំពុងបង្កើតរបាយការណ៍",
+        "generateSuccessDescription": "របាយការណ៍របស់អ្នកកំពុងត្រូវបានបង្កើតហើយនឹងបង្ហាញក្នុងបញ្ជីឆាប់ៗនេះ។",
+        "generateErrorTitle": "កំហុស",
+        "generateErrorDescription": "មិនអាចបង្កើតរបាយការណ៍បានទេ។"
+      }
     }
   }
 }

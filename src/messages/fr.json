@@ -1,8 +1,7 @@
-
 {
   "FiApplicationListPage": {
-    "backLink": "Retour au Tableau de Bord",
-    "title": "Demandes de Financement",
+    "backLink": "Retour au tableau de bord",
+    "title": "Demandes de financement",
     "description": "Examinez toutes les demandes soumises par les agriculteurs et les coopératives.",
     "tabs": {
       "all": "Toutes",
@@ -22,66 +21,66 @@
     "noApplications": "Aucune demande trouvée dans cette catégorie."
   },
   "FiApplicationPage": {
-    "backLink": "Retour aux Demandes",
-    "title": "Détails de la Demande",
+    "backLink": "Retour aux demandes",
+    "title": "Détails de la demande",
     "applicationTitle": "Demande",
     "submittedOn": "Soumis le",
-    "amountRequested": "Montant Demandé",
-    "purpose": "Objectif du Financement",
+    "amountRequested": "Montant demandé",
+    "purpose": "Objectif du financement",
     "approveButton": "Approuver",
     "rejectButton": "Rejeter",
-    "requestInfoButton": "Demander plus d'infos",
-    "applicantDetails": "Détails du Demandeur",
-    "viewProfileButton": "Voir le Profil",
+    "requestInfoButton": "Demander plus d'informations",
+    "applicantDetails": "Détails du demandeur",
+    "viewProfileButton": "Voir le profil",
     "profileNotFound": "Profil du demandeur non trouvé.",
-    "riskAssessment": "Évaluation des Risques",
-    "creditScore": "Score de Crédit",
+    "riskAssessment": "Évaluation des risques",
+    "creditScore": "Score de crédit",
     "notFound": "Demande non trouvée.",
     "toast": {
       "errorTitle": "Erreur",
-      "updateSuccessTitle": "Statut Mis à Jour !",
+      "updateSuccessTitle": "Statut mis à jour !",
       "updateSuccessDescription": "Le statut de la demande a été mis à jour à {{status}}.",
-      "updateFailTitle": "Échec de la Mise à Jour"
+      "updateFailTitle": "Échec de la mise à jour"
     }
   },
   "FiProductCreatePage": {
-    "backLink": "Retour aux Produits",
-    "title": "Créer un Produit Financier",
-    "description": "Définissez un nouveau produit de prêt ou de subvention à proposer aux agriculteurs.",
+    "backLink": "Retour aux produits",
+    "title": "Créer un produit financier",
+    "description": "Définir un nouveau produit de prêt ou de subvention à proposer aux agriculteurs.",
     "form": {
-      "nameLabel": "Nom du Produit",
-      "namePlaceholder": "Ex: Prêt Semences Petits Exploitants",
-      "typeLabel": "Type de Produit",
+      "nameLabel": "Nom du produit",
+      "namePlaceholder": "Ex: Prêt aux petits exploitants pour les semences",
+      "typeLabel": "Type de produit",
       "loan": "Prêt",
       "grant": "Subvention",
       "descriptionLabel": "Description",
       "descriptionPlaceholder": "Décrivez le produit, ses avantages et qui est éligible.",
-      "interestRateLabel": "Taux d'Intérêt (%)",
+      "interestRateLabel": "Taux d'intérêt (%)",
       "interestRatePlaceholder": "Ex: 5.5",
-      "maxAmountLabel": "Montant Maximum (USD)",
+      "maxAmountLabel": "Montant maximum (USD)",
       "maxAmountPlaceholder": "Ex: 10000",
-      "targetRolesLabel": "Rôles Cibles",
+      "targetRolesLabel": "Rôles cibles",
       "targetRolesDescription": "Sélectionnez les rôles éligibles pour ce produit.",
-      "submitButton": "Créer le Produit"
+      "submitButton": "Créer un produit"
     },
     "toast": {
-      "notAuthenticated": "Vous devez être connecté en tant qu'Institution Financière.",
-      "successTitle": "Produit Créé !",
+      "notAuthenticated": "Vous devez être connecté en tant qu'institution financière.",
+      "successTitle": "Produit créé !",
       "successDescription": "Le produit '{{name}}' a été créé avec succès.",
-      "errorTitle": "Échec de la Création"
+      "errorTitle": "Échec de la création"
     }
   },
   "FiProductsPage": {
-    "backLink": "Retour au Tableau de Bord",
-    "title": "Produits Financiers",
-    "description": "Affichez et gérez vos produits de prêt et de subvention.",
-    "createButton": "Créer un Nouveau Produit",
+    "backLink": "Retour au tableau de bord",
+    "title": "Produits financiers",
+    "description": "Consultez et gérez vos produits de prêt et de subvention.",
+    "createButton": "Créer un nouveau produit",
     "table": {
-      "productName": "Nom du Produit",
+      "productName": "Nom du produit",
       "type": "Type",
       "status": "Statut",
-      "interestRate": "Taux d'Intérêt",
-      "maxAmount": "Montant Max"
+      "interestRate": "Taux d'intérêt",
+      "maxAmount": "Montant max"
     },
     "noProducts": "Vous n'avez encore créé aucun produit financier.",
     "toast": {
@@ -89,7 +88,7 @@
     }
   },
   "InsurancePage": {
-    "title": "Assurance Agricole",
+    "title": "Assurance agricole",
     "description": "Protégez votre exploitation et vos biens contre les risques imprévus.",
     "perTerm": "/ terme",
     "viewDetailsButton": "Voir les détails et souscrire",
@@ -475,6 +474,49 @@
       "scanError": "Erreur de Scan",
       "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
       "invalidCodeError": "Ceci n'est pas un code QR DamDoh valide."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Section Admin",
+      "description": "Outils pour la gestion de la plateforme.",
+      "contentManagement": "Gestion de contenu",
+      "reports": "Rapports"
+    },
+    "reports": {
+      "generate": {
+        "title": "Générer un Rapport",
+        "description": "Générez des rapports basés sur les données de la plateforme.",
+        "reportTypeLabel": "Type de rapport",
+        "reportTypeVti": "Résumé des événements VTI",
+        "targetUserLabel": "Utilisateur cible",
+        "userSearchPlaceholder": "Rechercher un utilisateur par nom ou e-mail...",
+        "dateRangeLabel": "Plage de dates",
+        "datePlaceholder": "Sélectionnez une plage de dates",
+        "submitButton": "Générer un rapport"
+      },
+      "list": {
+        "title": "Rapports Récemment Générés",
+        "description": "Voir les rapports récemment créés.",
+        "table": {
+          "reportType": "Type",
+          "generatedFor": "Généré pour",
+          "date": "Date",
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "viewButton": "Voir",
+        "noReports": "Aucun rapport généré pour l'instant."
+      },
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "formIncompleteTitle": "Formulaire incomplet",
+        "formIncompleteDescription": "Veuillez remplir tous les champs pour générer un rapport.",
+        "generateSuccessTitle": "Rapport en cours de génération",
+        "generateSuccessDescription": "Votre rapport est en cours de création et apparaîtra bientôt dans la liste.",
+        "generateErrorTitle": "Erreur",
+        "generateErrorDescription": "Impossible de générer le rapport."
+      }
     }
   }
 }

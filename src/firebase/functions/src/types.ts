@@ -1,5 +1,3 @@
-
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -344,7 +342,7 @@ export interface ProcessingUnitDashboardData {
     id: string;
     supplierName: string;
     deliveryDate: string;
-    status: string;
+    status: 'string';
     actionLink: string;
   }[];
   packagingInventory: {
@@ -632,59 +630,6 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-  provider?: {
-    id: string;
-    displayName: string;
-    avatarUrl?: string;
-  }
-}
-
-export interface InsuranceApplication {
-    id: string;
-    applicantId: string;
-    providerId: string;
-    productId: string;
-    farmId: string;
-    coverageValue: number;
-    status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-    submittedAt: string;
-}
-
-
-export interface ApiKey {
-    id: string;
-    userId: string;
-    key: string;
-    description: string;
-    environment: 'Sandbox' | 'Production';
-    status: 'Active' | 'Revoked';
-    createdAt: string; // ISO string
-}
-
 
 export type KnfBatch = {
     id: string;
@@ -869,5 +814,5 @@ export type ServiceItem = MarketplaceItem & {
 };
 
 // AI Related Types
-export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type MarketplaceRecommendation = any; // z.infer<typeof MarketplaceRecommendationOutputSchema>
 export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;

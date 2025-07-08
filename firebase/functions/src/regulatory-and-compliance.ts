@@ -1,4 +1,3 @@
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
@@ -6,12 +5,6 @@ import {_internalProcessReportData} from "./ai-and-analytics";
 
 const db = admin.firestore();
 
-/**
- * Generates a regulatory report based on the provided data.
- * @param {any} data The data for the report.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{reportId: string, status: string}>} A promise that resolves with the report ID and status.
- */
 export const generateRegulatoryReport = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
@@ -24,7 +17,7 @@ export const generateRegulatoryReport = functions.https.onCall(
     const callerUid = context.auth.uid;
     const callerRole = await getRole(callerUid);
 
-    const {reportType, userId, orgId, reportPeriod} = data;
+    const {reportType, userId, reportPeriod} = data;
 
     if (!reportType || typeof reportType !== "string") {
       throw new functions.https.HttpsError(
@@ -32,10 +25,10 @@ export const generateRegulatoryReport = functions.https.onCall(
         "The 'reportType' parameter is required and must be a string.",
       );
     }
-    if (!userId && !orgId) {
+    if (!userId) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "Either userId or orgId is required.",
+        "A target userId is required.",
       );
     }
     if (
@@ -49,51 +42,47 @@ export const generateRegulatoryReport = functions.https.onCall(
         "Valid reportPeriod with start and end timestamps is required.",
       );
     }
-
-    const startDate = admin.firestore.Timestamp.fromMillis(reportPeriod.startDate);
-    const endDate = admin.firestore.Timestamp.fromMillis(reportPeriod.endDate);
-
-    const hasAuthorizedRole =
-      callerRole && ["Admin", "Regulator", "Auditor"].includes(callerRole); // Using UserRole type now
-
-    if (!hasAuthorizedRole) {
+    
+    // For this implementation, we allow Admins to generate reports.
+    // This could be expanded to include 'Regulator' or 'Auditor' roles.
+    if (callerRole !== "Admin") {
       throw new functions.https.HttpsError(
         "permission-denied",
         "User is not authorized to generate regulatory reports.",
       );
     }
 
-    const generatedForRef = userId ?
-      db.collection("users").doc(userId) :
-      db.collection("organizations").doc(orgId!);
+    const startDate = admin.firestore.Timestamp.fromMillis(reportPeriod.startDate);
+    const endDate = admin.firestore.Timestamp.fromMillis(reportPeriod.endDate);
+    const generatedForRef = db.collection("users").doc(userId);
 
     console.log(
-      `Generating regulatory report type '${reportType}' for ${
-        userId || orgId
-      } for period ${startDate.toDate()} to ${endDate.toDate()}...`,
+      `Generating regulatory report type '${reportType}' for ${userId} for period ${startDate.toDate()} to ${endDate.toDate()}...`,
     );
 
     try {
-      console.log(`Fetching data for report type '${reportType}'...`);
-      const fetchedData: {[key: string]: any} = {};
+      let fetchedData: any[] = [];
+      
+      if (reportType === 'VTI_EVENTS_SUMMARY') {
+        const eventsSnapshot = await db.collection("traceability_events")
+          .where("actorRef", "==", userId)
+          .where("timestamp", ">=", startDate)
+          .where("timestamp", "<=", endDate)
+          .orderBy("timestamp", "asc")
+          .get();
+        
+        fetchedData = eventsSnapshot.docs.map(doc => doc.data());
+      } else {
+        throw new functions.https.HttpsError("invalid-argument", `Report type '${reportType}' is not supported.`);
+      }
 
-      const reportContent: {[key: string]: any} = {
-        reportType: reportType,
-        generatedFor: {userId: userId, orgId: orgId},
-        reportPeriod: {
-          startDate: startDate.toDate().toISOString(),
-          endDate: endDate.toDate().toISOString(),
-        },
-        data: fetchedData,
-      };
-
+      console.log(`Fetched ${fetchedData.length} records for report.`);
+      
       const processedContent = await _internalProcessReportData({
         reportType,
-        data: reportContent,
+        data: fetchedData,
       });
-      reportContent.processedContent = processedContent;
 
-      console.log("Storing the generated report...");
       const generatedReportRef = db.collection("generated_reports").doc();
       const generatedReportId = generatedReportRef.id;
 
@@ -101,140 +90,45 @@ export const generateRegulatoryReport = functions.https.onCall(
         reportId: generatedReportId,
         reportType: reportType,
         generatedForRef: generatedForRef,
-        reportPeriod: {
-          startDate: startDate,
-          endDate: endDate,
-        },
+        reportPeriod: { startDate, endDate },
         generatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        status: "generated",
-        reportContent: reportContent,
-        submittedTo: null,
-        submissionLogRef: null,
+        status: "Completed",
+        reportContent: {
+            summary: processedContent.summary,
+            key_findings: processedContent.key_findings,
+            raw_data_count: fetchedData.length,
+        },
       });
-      console.log(
-        `Regulatory report generated and stored with ID: ${generatedReportId} for ${
-          userId || orgId
-        }.`,
-      );
+      
+      console.log(`Regulatory report stored with ID: ${generatedReportId}.`);
 
-      return {reportId: generatedReportId, status: "generated"};
-    } catch (error) {
-      console.error(
-        `Error generating regulatory report type '${reportType}' for ${
-          userId || orgId
-        }:`,
-        error,
-      );
+      return {reportId: generatedReportId, status: "completed"};
+    } catch (error: any) {
+      console.error(`Error generating regulatory report for ${userId}:`, error);
       if (error instanceof functions.https.HttpsError) {
         throw error;
       }
-      throw new functions.https.HttpsError(
-        "internal",
-        "Unable to generate regulatory report.",
-        error,
-      );
+      throw new functions.https.HttpsError("internal", "Unable to generate regulatory report.", error.message);
     }
   },
 );
 
-// OnWrite or Callable function to submit a generated report to an external authority
-export const submitReportToAuthority = functions.firestore
-  .document("generated_reports/{reportId}")
-  .onUpdate(async (change, context) => {
-    const reportAfter = change.after.data();
-    const reportBefore = change.before.data();
-    const reportId = context.params.reportId;
-
-    if (!reportBefore || !reportAfter) {
-      return null;
+export const getGeneratedReports = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
-
-    if (
-      reportBefore.status !== "ready_for_submission" &&
-      reportAfter.status === "ready_for_submission"
-    ) {
-      console.log(
-        `Report ${reportId} status changed to ready_for_submission. Initiating submission process.`,
-      );
-
-      try {
-        const reportData = reportAfter;
-
-        console.log(
-          `Identifying authority and method for report type '${reportData.reportType}'...`,
-        );
-        const targetAuthority = "Example Regulatory Body";
-        const submissionMethod = "api";
-
-        console.log("Creating submission log entry...");
-        const submissionLogRef = db.collection("submission_logs").doc();
-        const submissionLogId = submissionLogRef.id;
-
-        await submissionLogRef.set({
-          logId: submissionLogId,
-          reportRef: change.after.ref,
-          submissionTimestamp: admin.firestore.FieldValue.serverTimestamp(),
-          authority: targetAuthority,
-          method: submissionMethod,
-          status: "in_progress",
-          responseDetails: {},
-          submittedByRef: db.collection("users").doc("system"),
-        });
-        console.log(
-          `Submission log entry created with ID: ${submissionLogId} for report ${reportId}.`,
-        );
-
-        await change.after.ref.update({
-          status: "in_progress",
-          submissionLogRef: submissionLogRef,
-        });
-        console.log(`Report ${reportId} status updated to in_progress.`);
-
-        console.log(
-          `Attempting secure submission to ${targetAuthority} via ${submissionMethod}...`,
-        );
-
-        const submissionSuccessful = Math.random() > 0.2;
-
-        if (submissionSuccessful) {
-          console.log("Submission simulated as successful.");
-          await submissionLogRef.update({
-            status: "successful",
-            responseDetails: {
-              message: "Simulated success",
-              timestamp: new Date().toISOString(),
-            },
-          });
-          await change.after.ref.update({status: "submitted"});
-          console.log(`Submission for report ${reportId} successful. Status updated.`);
-        } else {
-          console.error("Submission simulated as failed.");
-          await submissionLogRef.update({
-            status: "failed",
-            responseDetails: {message: "Simulated failure", error: "Connection error"},
-          });
-          await change.after.ref.update({status: "submission_failed"});
-          console.error(`Submission for report ${reportId} failed. Status updated.`);
-        }
-      } catch (error: any) {
-        console.error(
-          `Error during submission process for report ${reportId}:`,
-          error,
-        );
-        await change.after.ref.update({status: "submission_failed"});
-        const submissionLogRef = change.after.data()?.submissionLogRef;
-        if (submissionLogRef) {
-          await submissionLogRef.update({
-            status: "failed",
-            responseDetails: {error: error.message || "Unknown error"},
-          });
-        }
-      }
-    } else {
-      console.log(
-        `Report ${reportId} status change (${reportBefore.status} -> ${reportAfter.status}) did not trigger submission.`,
-      );
-    }
-
-    return null;
-  });
+    
+    // Add role check if necessary
+    
+    const reportsSnapshot = await db.collection("generated_reports")
+        .orderBy("generatedAt", "desc")
+        .limit(20)
+        .get();
+        
+    const reports = reportsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    
+    return { reports };
+});

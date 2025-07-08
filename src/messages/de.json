@@ -1,4 +1,3 @@
-
 {
   "FiApplicationListPage": {
     "backLink": "Zurück zum Dashboard",
@@ -151,7 +150,7 @@
       "descriptionLabel": "Beschreibung",
       "descriptionPlaceholder": "Beschreiben Sie das Produkt und seine Vorteile.",
       "coverageLabel": "Deckungsdetails",
-      "coveragePlaceholder": "Beschreiben Sie, was diese Police abdeckt...",
+      "coveragePlaceholder": "Detaillieren Sie was diese Police abdeckt...",
       "premiumLabel": "Prämie (USD)",
       "premiumPlaceholder": "z.B. 250.00",
       "currencyLabel": "Währung",
@@ -475,6 +474,49 @@
       "scanError": "Scan-Fehler",
       "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
       "invalidCodeError": "Dies ist kein gültiger DamDoh QR-Code."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin-Bereich",
+      "description": "Werkzeuge zur Verwaltung der Plattform.",
+      "contentManagement": "Inhaltsverwaltung",
+      "reports": "Berichte"
+    },
+    "reports": {
+      "generate": {
+        "title": "Bericht generieren",
+        "description": "Generieren Sie Berichte basierend auf den Daten der Plattform.",
+        "reportTypeLabel": "Berichtstyp",
+        "reportTypeVti": "Zusammenfassung der VTI-Ereignisse",
+        "targetUserLabel": "Zielbenutzer",
+        "userSearchPlaceholder": "Benutzer nach Name oder E-Mail suchen...",
+        "dateRangeLabel": "Datumsbereich",
+        "datePlaceholder": "Wählen Sie einen Datumsbereich",
+        "submitButton": "Bericht generieren"
+      },
+      "list": {
+        "title": "Zuletzt generierte Berichte",
+        "description": "Sehen Sie sich kürzlich erstellte Berichte an.",
+        "table": {
+          "reportType": "Typ",
+          "generatedFor": "Generiert für",
+          "date": "Datum",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "viewButton": "Anzeigen",
+        "noReports": "Noch keine Berichte generiert."
+      },
+      "toast": {
+        "loadErrorTitle": "Fehler",
+        "formIncompleteTitle": "Formular unvollständig",
+        "formIncompleteDescription": "Bitte füllen Sie alle Felder aus, um einen Bericht zu generieren.",
+        "generateSuccessTitle": "Bericht wird generiert",
+        "generateSuccessDescription": "Ihr Bericht wird im Hintergrund erstellt und erscheint bald in der Liste.",
+        "generateErrorTitle": "Fehler",
+        "generateErrorDescription": "Der Bericht konnte nicht generiert werden."
+      }
     }
   }
 }
