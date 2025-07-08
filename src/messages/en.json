@@ -509,5 +509,35 @@
         "general": { "title": "Error", "description": "An error occurred while creating the post." }
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and improve your farm's environmental impact.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Sustainable Practices Log",
+    "certificationsTitle": "Certifications",
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expiry Date"
+    },
+    "auth": {
+      "title": "Authentication Required",
+      "description": "Please sign in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "No Data Available",
+      "description": "We could not load sustainability data at this time."
+    },
+    "metricCard": {
+      "trendText": "from last month"
+    }
   }
 }

@@ -521,5 +521,35 @@
         }
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de Bord de la Durabilité",
+    "description": "Suivez et améliorez l'impact environnemental de votre ferme.",
+    "carbonFootprint": "Empreinte Carbone",
+    "waterEfficiency": "Efficacité de l'Eau",
+    "biodiversityScore": "Score de Biodiversité",
+    "practicesTitle": "Journal des Pratiques Durables",
+    "certificationsTitle": "Certifications",
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernièrement Enregistré"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Date d'Expiration"
+    },
+    "auth": {
+      "title": "Authentification Requise",
+      "description": "Veuillez vous connecter pour voir votre tableau de bord de durabilité.",
+      "button": "Se Connecter"
+    },
+    "noData": {
+      "title": "Aucune Donnée Disponible",
+      "description": "Impossible de charger les données de durabilité pour le moment."
+    },
+    "metricCard": {
+      "trendText": "depuis le mois dernier"
+    }
   }
 }

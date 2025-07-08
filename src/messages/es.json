@@ -521,5 +521,35 @@
         }
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Panel de Sostenibilidad",
+    "description": "Rastrea y mejora el impacto ambiental de tu granja.",
+    "carbonFootprint": "Huella de Carbono",
+    "waterEfficiency": "Eficiencia del Agua",
+    "biodiversityScore": "Puntuación de Biodiversidad",
+    "practicesTitle": "Registro de Prácticas Sostenibles",
+    "certificationsTitle": "Certificaciones",
+    "practicesTable": {
+      "practice": "Práctica",
+      "lastLogged": "Último Registro"
+    },
+    "certificationsTable": {
+      "certification": "Certificación",
+      "status": "Estado",
+      "expiry": "Fecha de Vencimiento"
+    },
+    "auth": {
+      "title": "Autenticación Requerida",
+      "description": "Por favor, inicia sesión para ver tu panel de sostenibilidad.",
+      "button": "Iniciar Sesión"
+    },
+    "noData": {
+      "title": "No hay datos disponibles",
+      "description": "No se pudieron cargar los datos de sostenibilidad en este momento."
+    },
+    "metricCard": {
+      "trendText": "desde el último mes"
+    }
   }
 }

@@ -521,5 +521,35 @@
         }
       }
     }
+  },
+  "sustainabilityPage": {
+    "title": "Nachhaltigkeits-Dashboard",
+    "description": "Verfolgen und verbessern Sie die Umweltauswirkungen Ihres Betriebs.",
+    "carbonFootprint": "CO2-Fußabdruck",
+    "waterEfficiency": "Wassereffizienz",
+    "biodiversityScore": "Biodiversitäts-Score",
+    "practicesTitle": "Protokoll nachhaltiger Praktiken",
+    "certificationsTitle": "Zertifizierungen",
+    "practicesTable": {
+      "practice": "Praxis",
+      "lastLogged": "Zuletzt protokolliert"
+    },
+    "certificationsTable": {
+      "certification": "Zertifizierung",
+      "status": "Status",
+      "expiry": "Ablaufdatum"
+    },
+    "auth": {
+      "title": "Anmeldung erforderlich",
+      "description": "Bitte melden Sie sich an, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
+      "button": "Anmelden"
+    },
+    "noData": {
+      "title": "Keine Daten verfügbar",
+      "description": "Nachhaltigkeitsdaten konnten derzeit nicht geladen werden."
+    },
+    "metricCard": {
+      "trendText": "seit letztem Monat"
+    }
   }
 }
