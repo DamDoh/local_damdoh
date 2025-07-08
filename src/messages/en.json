@@ -1,3 +1,4 @@
+
 {
   "DashboardRightSidebar": {
     "networkTitle": "Add to your feed",
@@ -55,10 +56,7 @@
     "myProfile": "My Profile",
     "settings": "Settings",
     "helpCenter": "Help Center",
-    "myOrders": "My Orders",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme"
+    "logOut": "Log Out"
   },
   "LanguageSwitcher": {
     "toggle": "Change language"
@@ -104,298 +102,6 @@
       "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
     }
   },
-  "sustainabilityPage": {
-    "title": "Sustainability Dashboard",
-    "description": "Track and understand the environmental impact of your agricultural practices.",
-    "carbonFootprint": "Carbon Footprint",
-    "waterEfficiency": "Water Efficiency",
-    "biodiversityScore": "Biodiversity Score",
-    "practicesTitle": "Logged Sustainable Practices",
-    "certificationsTitle": "Active Certifications",
-    "auth": {
-      "title": "Authentication Required",
-      "description": "Please sign in to view your sustainability dashboard.",
-      "button": "Sign In"
-    },
-    "noData": {
-      "title": "No Data Available",
-      "description": "Start logging your farm activities to see your sustainability metrics."
-    },
-    "practicesTable": {
-      "practice": "Practice",
-      "lastLogged": "Last Logged"
-    },
-    "certificationsTable": {
-      "certification": "Certification",
-      "status": "Status",
-      "expiry": "Expiry"
-    },
-    "metricCard": {
-      "trendText": "from last month"
-    }
-  },
-  "Forums": {
-    "title": "Forum Topics",
-    "description": "Browse and create topics for discussion.",
-    "lastActivity": "Last activity {{time}}",
-    "searchPlaceholder": "Search topics...",
-    "buttons": {
-      "createTopic": "Create Topic",
-      "joinDiscussion": "Join Discussion",
-      "pinHomepage": "Pin as Homepage",
-      "unpinHomepage": "Unpin from Homepage"
-    },
-    "notFound": {
-      "title": "No Topics Found",
-      "tryDifferentSearch": "Try a different search term.",
-      "beTheFirst": "Be the first to create a topic."
-    },
-    "pinning": {
-      "pinnedTitle": "Homepage Pinned!",
-      "pinnedDescription": "This forum is now showing as your homepage.",
-      "unpinnedTitle": "Homepage Unpinned!",
-      "unpinnedDescription": "This forum will no longer show as your homepage."
-    },
-    "errors": {
-      "loadTitle": "Error loading topics",
-      "loadDescription": "An error occurred while loading forum topics.",
-      "auth": {
-        "title": "Not Authenticated",
-        "description": "You must be logged in to create a topic."
-      },
-      "incomplete": {
-        "title": "Incomplete Fields",
-        "description": "Please fill out all required fields."
-      },
-      "general": {
-        "title": "Error",
-        "description": "An error occurred while creating the topic."
-      }
-    },
-    "create": {
-      "backLink": "Back to Topics",
-      "title": "Create New Topic",
-      "description": "Start a new discussion in the forum.",
-      "form": {
-        "nameLabel": "Topic Name",
-        "namePlaceholder": "Enter the name of your topic",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Briefly describe your topic",
-        "submitButton": "Create Topic",
-        "submittingButton": "Creating..."
-      },
-      "success": {
-        "title": "Topic Created Successfully",
-        "description": "Your new topic has been created."
-      }
-    },
-    "topic": {
-      "backLink": "Back to Topics",
-      "postMeta": "by {{author}} on {{date}}",
-      "buttons": {
-        "createPost": "Create Post",
-        "loadMore": "Load More",
-        "loadingMore": "Loading..."
-      },
-      "noPosts": {
-        "title": "No posts yet",
-        "description": "Be the first to start the discussion.",
-        "button": "Create the First Post"
-      },
-      "notFound": {
-        "title": "Topic not found",
-        "description": "The topic you are looking for does not exist.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error loading posts",
-          "description": "An error occurred while loading posts for this topic."
-        },
-        "loadTopic": {
-          "title": "Error loading topic",
-          "description": "An error occurred while loading the topic details."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Back to {{topicName}}",
-      "unknownUser": "Unknown User",
-      "repliesTitle": "Replies ({{count}})",
-      "noReplies": "No replies yet.",
-      "reply": {
-        "title": "Add a Reply",
-        "placeholder": "Write your reply here...",
-        "submitButton": "Add Reply",
-        "submittingButton": "Submitting...",
-        "success": "Reply added!"
-      },
-      "notFound": {
-        "title": "Post not found",
-        "description": "The post you are looking for does not exist."
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error loading post",
-          "description": "An error occurred while loading the post details."
-        },
-        "loadReplies": {
-          "title": "Error loading replies",
-          "description": "An error occurred while loading replies for this post."
-        },
-        "emptyReply": "Reply cannot be empty.",
-        "submitReply": {
-          "title": "Error submitting reply",
-          "description": "An error occurred while submitting your reply."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Back to Topic",
-      "aiHelper": {
-        "title": "AI Helper",
-        "description": "Generate a post draft based on a prompt.",
-        "promptLabel": "AI Prompt",
-        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
-        "generateButton": "Generate Draft",
-        "generatingButton": "Generating..."
-      },
-      "title": "Create New Post",
-      "description": "Add a new post to this topic.",
-      "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter the title of your post",
-        "contentLabel": "Post Content",
-        "contentPlaceholder": "Write your post content here...",
-        "submitButton": "Create Post",
-        "submittingButton": "Submitting..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "AI Draft Generated!",
-          "description": "A draft has been generated for you."
-        },
-        "title": "Post Created!",
-        "description": "Your post has been successfully created."
-      },
-      "errors": {
-        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
-        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
-        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
-        "general": { "title": "Error", "description": "An error occurred while creating the post." }
-      }
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find agricultural jobs, services, and experts.",
-    "listServiceButton": "List a Service / Job",
-    "searchPlaceholder": "Search jobs or services...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Service Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search or filters. Or be the first to list a service!",
-    "toast": {
-      "error": {
-        "title": "Error",
-        "description": "Could not fetch services from the talent exchange."
-      }
-    }
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "All Types",
-      "Product": "Product",
-      "Service": "Service"
-    }
-  },
-  "settingsPage": {
-    "title": "Settings",
-    "description": "Manage your account and profile settings.",
-    "profileTab": "Profile",
-    "accountTab": "Account",
-    "notificationsTab": "Notifications",
-    "privacyTab": "Privacy",
-    "appearanceTab": "Appearance",
-    "stakeholderProfile": {
-      "title": "Stakeholder Profile",
-      "description": "Your professional identity on DamDoh. This is how others see you."
-    },
-    "account": {
-      "title": "Account Settings",
-      "description": "Manage your account authentication and security.",
-      "currentPasswordLabel": "Current Password",
-      "newPasswordLabel": "New Password",
-      "confirmPasswordLabel": "Confirm New Password",
-      "changePasswordButton": "Update Password",
-      "deactivateButton": "Deactivate Account"
-    },
-    "notifications": {
-      "title": "Notification Settings",
-      "description": "Manage your email and push notification preferences.",
-      "emailDigestLabel": "Email Notifications",
-      "emailDigestDescription": "Receive notifications via email.",
-      "connectionRequestsLabel": "Connection Requests",
-      "connectionRequestsDescription": "Notify me about new connection requests.",
-      "forumMentionsLabel": "Forum Mentions & Replies",
-      "forumMentionsDescription": "Notify me when I'm mentioned or my posts are replied to.",
-      "marketplaceActivityLabel": "Marketplace Activity",
-      "marketplaceActivityDescription": "Notify me about orders and inquiries on my listings.",
-      "talentExchangeLabel": "Talent Exchange Updates",
-      "talentExchangeDescription": "Notify me about new job listings and applications.",
-      "saveButton": "Save Preferences"
-    },
-    "privacy": {
-      "title": "Privacy & Visibility",
-      "description": "Control who can see your information and interact with you.",
-      "profileVisibilityLabel": "Profile Visibility",
-      "profileVisibilityDescription": "Control who can see your full profile.",
-      "profileVisibilityAll": "Everyone",
-      "profileVisibilityConnections": "Connections Only",
-      "profileVisibilityPrivate": "Private (Only Me)",
-      "connectionRequestsLabel": "Who can send you connection requests?",
-      "connectionRequestsDescription": "Limit who can send you requests to connect.",
-      "connectionRequestsAll": "Everyone",
-      "connectionRequestsConnectionsOfConnections": "Connections of Connections",
-      "contactInfoVisibilityLabel": "Who can see your contact info?",
-      "contactInfoVisibilityDescription": "Control who sees your email and phone number.",
-      "contactInfoVisibilityAll": "Everyone",
-      "contactInfoVisibilityConnections": "Connections Only",
-      "activityStatusLabel": "Show my activity status",
-      "activityStatusDescription": "Let your connections know when you're active on DamDoh.",
-      "searchIndexingLabel": "Allow search engines to index my profile",
-      "searchIndexingDescription": "Allow your profile to appear in search results on Google, etc.",
-      "saveButton": "Save Privacy Settings",
-      "dataConsentTitle": "Data Sharing & Consent",
-      "dataConsentDescription": "Control how your data is used across DamDoh's integrated services.",
-      "marketplaceHistoryLabel": "Marketplace History for Financial Services",
-      "marketplaceHistoryDescription": "Allow financial institutions on DamDoh to consider your marketplace transaction history for credit scoring.",
-      "traceabilityDataLabel": "Public Traceability Data",
-      "traceabilityDataDescription": "Allow your anonymized traceability data to be used in public reports and research.",
-      "financialApplicationDataLabel": "Financial Data for AI Matching",
-      "financialApplicationDataDescription": "Allow your anonymized financial application data to be used by our AI to suggest relevant services.",
-      "saveConsentButton": "Save Consent Settings"
-    },
-    "appearance": {
-      "title": "Appearance",
-      "description": "Customize the look and feel of the application.",
-      "themeLabel": "Theme",
-      "themeDescription": "Select a light or dark theme for the interface.",
-      "lightTheme": "Light",
-      "darkTheme": "Dark",
-      "languageLabel": "Language",
-      "languageDescription": "Choose your preferred language for the application."
-    },
-    "editProfilePage": {
-      "toast": {
-        "notAuthenticatedTitle": "Not Authenticated",
-        "notAuthenticatedDescription": "Please sign in to edit your profile.",
-        "unauthorizedTitle": "Unauthorized",
-        "unauthorizedDescription": "You can only edit your own profile."
-      }
-    }
-  },
   "searchPage": {
     "title": "Universal Search",
     "description": "Find anything across the DamDoh platform.",
@@ -430,6 +136,57 @@
         "knowledge_articles": "Knowledge Hub",
         "vti_registry": "Traceability Reports"
       }
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Cultivating Connections, Harvesting Prosperity with {appName}",
+      "subtitle": "The essential digital ecosystem connecting every stakeholder in the agricultural value chain. From seed to sale, DamDoh fosters growth, transparency, and collaboration.",
+      "getStartedButton": "Get Started for Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "Key Features of DamDoh",
+      "subtitle": "An integrated platform designed to meet the diverse needs of the agricultural community.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "AI-powered connection suggestions based on your role, location, and needs. Find the right partners, from suppliers to buyers."
+      },
+      "marketplace": {
+        "title": "Digital Marketplace",
+        "description": "A direct channel to buy and sell produce, inputs, and equipment. Expand your market and find the best prices."
+      },
+      "forums": {
+        "title": "Thematic Forums",
+        "description": "Share knowledge and discuss specific topics like crop management, livestock health, and new technologies with your peers."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Offer or find agricultural services, from custom harvesting and drone surveying to professional consulting."
+      }
+    },
+    "forWho": {
+      "badge": "For Every Agricultural Stakeholder",
+      "title": "A Platform for Every Player",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural value chain, creating a single source of truth and opportunity for all.",
+      "farmers": {
+        "title": "Farmers",
+        "description": "Access better markets, find quality inputs, and get expert advice to increase your yield and profitability."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Source high-quality, traceable produce directly from growers and co-ops, ensuring supply chain reliability."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
+      },
+      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
+    },
+    "cta": {
+      "title": "Ready to Grow Your Network?",
+      "subtitle": "Join thousands of farmers, buyers, and experts building a more connected and efficient agricultural future.",
+      "button": "Join DamDoh Today"
     }
   }
 }

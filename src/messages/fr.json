@@ -1,3 +1,4 @@
+
 {
   "DashboardRightSidebar": {
     "networkTitle": "Ajouter à votre fil d'actualité",
@@ -101,212 +102,6 @@
       "onlinePending": "En ligne | {count, plural, one {# action} other {# actions}} en attente de synchronisation",
       "onlineSynced": "En ligne | Toutes les modifications synchronisées",
       "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
-    }
-  },
-  "sustainabilityPage": {
-    "title": "Tableau de bord de la durabilité",
-    "description": "Suivez et comprenez l'impact environnemental de vos pratiques agricoles.",
-    "carbonFootprint": "Empreinte carbone",
-    "waterEfficiency": "Efficacité de l'eau",
-    "biodiversityScore": "Score de biodiversité",
-    "practicesTitle": "Pratiques durables enregistrées",
-    "certificationsTitle": "Certifications actives",
-    "auth": {
-      "title": "Authentification requise",
-      "description": "Veuillez vous connecter pour voir votre tableau de bord de la durabilité.",
-      "button": "Se connecter"
-    },
-    "noData": {
-      "title": "Aucune donnée disponible",
-      "description": "Commencez à enregistrer vos activités agricoles pour voir vos mesures de durabilité."
-    },
-    "practicesTable": {
-      "practice": "Pratique",
-      "lastLogged": "Dernier enregistrement"
-    },
-    "certificationsTable": {
-      "certification": "Certification",
-      "status": "Statut",
-      "expiry": "Expiration"
-    },
-    "metricCard": {
-      "trendText": "depuis le mois dernier"
-    }
-  },
-  "Forums": {
-    "title": "Sujets du forum",
-    "description": "Parcourir et créer des sujets de discussion",
-    "lastActivity": "Dernière activité il y a {{time}}",
-    "searchPlaceholder": "Rechercher des sujets...",
-    "buttons": {
-      "createTopic": "Créer un sujet",
-      "joinDiscussion": "Rejoindre la discussion",
-      "pinHomepage": "Épingler à l'accueil",
-      "unpinHomepage": "Détacher de l'accueil"
-    },
-    "notFound": {
-      "title": "Aucun sujet trouvé",
-      "tryDifferentSearch": "Essayez un autre terme de recherche.",
-      "beTheFirst": "Soyez le premier à créer un sujet."
-    },
-    "pinning": {
-      "pinnedTitle": "Accueil épinglé !",
-      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
-      "unpinnedTitle": "Accueil détaché !",
-      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
-    },
-    "errors": {
-      "loadTitle": "Erreur lors du chargement des sujets",
-      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
-      "auth": {
-        "title": "Non authentifié",
-        "description": "Vous devez être connecté pour créer un sujet."
-      },
-      "incomplete": {
-        "title": "Champs incomplets",
-        "description": "Veuillez remplir tous les champs obligatoires."
-      },
-      "general": {
-        "title": "Erreur",
-        "description": "Une erreur s'est produite lors de la création du sujet."
-      }
-    },
-    "create": {
-      "backLink": "Retour aux sujets",
-      "title": "Créer un nouveau sujet",
-      "description": "Commencer une nouvelle discussion sur le forum.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "Entrez le nom de votre sujet",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
-        "submitButton": "Créer le sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "success": {
-        "title": "Sujet créé avec succès",
-        "description": "Votre nouveau sujet a été créé."
-      }
-    },
-    "topic": {
-      "backLink": "Retour aux sujets",
-      "postMeta": "par {{author}} le {{date}}",
-      "buttons": {
-        "createPost": "Créer un message",
-        "loadMore": "Charger plus",
-        "loadingMore": "Chargement..."
-      },
-      "noPosts": {
-        "title": "Aucun message pour l'instant",
-        "description": "Soyez le premier à lancer la discussion.",
-        "button": "Créer le premier message"
-      },
-      "notFound": {
-        "title": "Sujet introuvable",
-        "description": "Le sujet que vous recherchez n'existe pas.",
-        "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Erreur de chargement des messages",
-          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
-        },
-        "loadTopic": {
-          "title": "Erreur de chargement du sujet",
-          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Retour à {{topicName}}",
-      "unknownUser": "Utilisateur inconnu",
-      "repliesTitle": "Réponses ({{count}})",
-      "noReplies": "Aucune réponse pour l'instant.",
-      "reply": {
-        "title": "Ajouter une réponse",
-        "placeholder": "Écrivez votre réponse ici...",
-        "submitButton": "Ajouter une réponse",
-        "submittingButton": "Envoi en cours...",
-        "success": "Réponse ajoutée !"
-      },
-      "notFound": {
-        "title": "Message introuvable",
-        "description": "Le message que vous recherchez n'existe pas."
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Erreur de chargement du message",
-          "description": "Une erreur s'est produite lors du chargement des détails du message."
-        },
-        "loadReplies": {
-          "title": "Erreur de chargement des réponses",
-          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
-        },
-        "emptyReply": "La réponse ne peut pas être vide.",
-        "submitReply": {
-          "title": "Erreur d'envoi de la réponse",
-          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Retour au sujet",
-      "aiHelper": {
-        "title": "Assistant IA",
-        "description": "Générer un brouillon de message basé sur une invite.",
-        "promptLabel": "Invite IA",
-        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
-        "generateButton": "Générer le brouillon",
-        "generatingButton": "Génération en cours..."
-      },
-      "title": "Créer un nouveau message",
-      "description": "Ajouter un nouveau message à ce sujet.",
-      "form": {
-        "titleLabel": "Titre du message",
-        "titlePlaceholder": "Entrez le titre de votre message",
-        "contentLabel": "Contenu du message",
-        "contentPlaceholder": "Écrivez votre message ici...",
-        "submitButton": "Créer le message",
-        "submittingButton": "Envoi en cours..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Brouillon IA généré !",
-          "description": "Un brouillon a été généré pour vous."
-        },
-        "title": "Message créé !",
-        "description": "Votre message a été créé avec succès."
-      },
-      "errors": {
-        "aiPromptMissing": { "title": "Invite IA manquante", "description": "Veuillez fournir une invite pour l'assistant IA." },
-        "aiDraft": { "title": "Erreur de brouillon IA", "description": "Échec de la génération du brouillon IA." },
-        "incomplete": { "title": "Champs incomplets", "description": "Veuillez remplir tous les champs obligatoires." },
-        "general": { "title": "Erreur", "description": "Une erreur s'est produite lors de la création du message." }
-      }
-    }
-  },
-  "talentExchangePage": {
-    "title": "Bourse de talents",
-    "description": "Trouvez des emplois agricoles, des services et des experts.",
-    "listServiceButton": "Lister un Service / Job",
-    "searchPlaceholder": "Rechercher des emplois ou des services...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "categoryPlaceholder": "Filtrer par catégorie...",
-    "allCategories": "Toutes les catégories de services",
-    "noResultsTitle": "Aucun service trouvé",
-    "noResultsDescription": "Essayez d'ajuster votre recherche ou vos filtres. Ou soyez le premier à lister un service !",
-    "toast": {
-      "error": {
-        "title": "Erreur",
-        "description": "Impossible de récupérer les services de la bourse de talents."
-      }
-    }
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "Tous les Types",
-      "Product": "Produit",
-      "Service": "Service"
     }
   },
   "settingsPage": {
@@ -429,6 +224,57 @@
         "knowledge_articles": "Centre de connaissances",
         "vti_registry": "Rapports de Traçabilité"
       }
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Cultiver les Connexions, Récolter la Prospérité avec {appName}",
+      "subtitle": "L'écosystème numérique essentiel qui connecte chaque acteur de la chaîne de valeur agricole. De la semence à la vente, DamDoh favorise la croissance, la transparence et la collaboration.",
+      "getStartedButton": "Commencer Gratuitement",
+      "learnMoreButton": "En Savoir Plus"
+    },
+    "features": {
+      "title": "Fonctionnalités Clés de DamDoh",
+      "subtitle": "Une plateforme intégrée conçue pour répondre aux besoins variés de la communauté agricole.",
+      "networking": {
+        "title": "Réseautage Intelligent",
+        "description": "Suggestions de connexion basées sur l'IA en fonction de votre rôle, de votre emplacement et de vos besoins. Trouvez les bons partenaires, des fournisseurs aux acheteurs."
+      },
+      "marketplace": {
+        "title": "Marché Numérique",
+        "description": "Un canal direct pour acheter et vendre des produits, des intrants et des équipements. Élargissez votre marché et trouvez les meilleurs prix."
+      },
+      "forums": {
+        "title": "Forums Thématiques",
+        "description": "Partagez vos connaissances et discutez de sujets spécifiques tels que la gestion des cultures, la santé du bétail et les nouvelles technologies avec vos pairs."
+      },
+      "talent": {
+        "title": "Bourse de Talents",
+        "description": "Proposez ou trouvez des services agricoles, de la récolte à façon à l'arpentage par drone et au conseil professionnel."
+      }
+    },
+    "forWho": {
+      "badge": "Pour Tous les Acteurs de l'Agriculture",
+      "title": "Une Plateforme pour Chaque Acteur",
+      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de la chaîne de valeur agricole, créant un point de vérité et d'opportunité unique pour tous.",
+      "farmers": {
+        "title": "Agriculteurs",
+        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
+      },
+      "buyers": {
+        "title": "Acheteurs et Transformateurs",
+        "description": "Sourcez des produits de haute qualité et traçables directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Experts et Fournisseurs de Services",
+        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
+      },
+      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+    },
+    "cta": {
+      "title": "Prêt à développer votre réseau ?",
+      "subtitle": "Rejoignez des milliers d'agriculteurs, d'acheteurs et d'experts qui construisent un avenir agricole plus connecté et efficace.",
+      "button": "Rejoignez DamDoh Aujourd'hui"
     }
   }
 }

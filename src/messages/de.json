@@ -1,3 +1,4 @@
+
 {
   "DashboardRightSidebar": {
     "networkTitle": "Zu Ihrem Feed hinzufügen",
@@ -101,171 +102,6 @@
       "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} warten auf Synchronisierung",
       "onlineSynced": "Online | Alle Änderungen synchronisiert",
       "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
-    }
-  },
-  "sustainabilityPage": {
-    "title": "Nachhaltigkeits-Dashboard",
-    "description": "Verfolgen und verstehen Sie die Umweltauswirkungen Ihrer landwirtschaftlichen Praktiken.",
-    "carbonFootprint": "CO2-Fußabdruck",
-    "waterEfficiency": "Wassereffizienz",
-    "biodiversityScore": "Biodiversitäts-Score",
-    "practicesTitle": "Protokollierte nachhaltige Praktiken",
-    "certificationsTitle": "Aktive Zertifizierungen",
-    "auth": {
-      "title": "Authentifizierung erforderlich",
-      "description": "Bitte melden Sie sich an, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
-      "button": "Anmelden"
-    },
-    "noData": {
-      "title": "Keine Daten verfügbar",
-      "description": "Beginnen Sie mit der Protokollierung Ihrer Farmaktivitäten, um Ihre Nachhaltigkeitsmetriken zu sehen."
-    },
-    "practicesTable": {
-      "practice": "Praxis",
-      "lastLogged": "Zuletzt protokolliert"
-    },
-    "certificationsTable": {
-      "certification": "Zertifizierung",
-      "status": "Status",
-      "expiry": "Ablaufdatum"
-    },
-    "metricCard": {
-      "trendText": "vom letzten Monat"
-    }
-  },
-  "Forums": {
-    "title": "Forum-Themen",
-    "description": "Durchsuchen und erstellen Sie Diskussionsthemen",
-    "lastActivity": "Letzte Aktivität vor {{time}}",
-    "searchPlaceholder": "Themen durchsuchen...",
-    "buttons": {
-      "createTopic": "Thema erstellen",
-      "joinDiscussion": "Diskussion beitreten",
-      "pinHomepage": "Als Startseite anheften",
-      "unpinHomepage": "Von Startseite lösen"
-    },
-    "notFound": {
-      "title": "Keine Themen gefunden",
-      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
-      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
-    },
-    "pinning": {
-      "pinnedTitle": "Startseite angeheftet!",
-      "pinnedDescription": "Dieses Forum wird jetzt als Ihre Startseite angezeigt.",
-      "unpinnedTitle": "Startseite gelöst!",
-      "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
-    },
-    "errors": {
-      "loadTitle": "Fehler beim Laden der Themen",
-      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
-      "auth": {
-        "title": "Nicht authentifiziert",
-        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
-      },
-      "incomplete": {
-        "title": "Unvollständige Felder",
-        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
-      },
-      "general": {
-        "title": "Fehler",
-        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
-      }
-    },
-    "createPost": {
-      "aiHelper": {
-        "title": "KI-Helfer",
-        "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
-        "promptLabel": "KI-Eingabeaufforderung",
-        "promptPlaceholder": "Geben Sie eine kurze Beschreibung des zu generierenden Beitrags ein...",
-        "generateButton": "Entwurf generieren",
-        "generatingButton": "Wird generiert..."
-      },
-      "title": "Neuen Beitrag erstellen",
-      "description": "Fügen Sie diesem Thema einen neuen Beitrag hinzu.",
-      "form": {
-        "titleLabel": "Titel des Beitrags",
-        "titlePlaceholder": "Geben Sie den Titel Ihres Beitrags ein",
-        "contentLabel": "Inhalt des Beitrags",
-        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags...",
-        "submitButton": "Beitrag erstellen",
-        "submittingButton": "Wird gesendet..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "KI-Entwurf generiert!",
-          "description": "Ein Entwurf wurde für Sie generiert."
-        },
-        "title": "Beitrag erstellt!",
-        "description": "Ihr Beitrag wurde erfolgreich erstellt."
-      },
-      "errors": {
-        "aiPromptMissing": { "title": "KI-Eingabeaufforderung fehlt", "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein." },
-        "aiDraft": { "title": "KI-Entwurfsfehler", "description": "Fehler beim Generieren des KI-Entwurfs." },
-        "incomplete": { "title": "Unvollständige Felder", "description": "Bitte füllen Sie alle erforderlichen Felder aus." },
-        "general": { "title": "Fehler", "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten." }
-      }
-    },
-    "postView": {
-      "backLink": "Zurück zu {{topicName}}",
-      "unknownUser": "Unbekannter Benutzer",
-      "postMeta": "von {{author}} am {{date}}",
-      "repliesTitle": "Antworten ({{count}})",
-      "noReplies": "Noch keine Antworten.",
-      "buttons": {
-        "loadMore": "Mehr laden",
-        "loadingMore": "Wird geladen..."
-      },
-      "reply": {
-        "title": "Eine Antwort hinzufügen",
-        "placeholder": "Schreiben Sie hier Ihre Antwort...",
-        "submitButton": "Antwort hinzufügen",
-        "submittingButton": "Wird gesendet...",
-        "success": "Antwort hinzugefügt!"
-      },
-      "notFound": {
-        "title": "Beitrag nicht gefunden",
-        "description": "Der gesuchte Beitrag existiert nicht.",
-        "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Fehler beim Laden des Beitrags",
-          "description": "Beim Laden der Beitragsdetails ist ein Fehler aufgetreten."
-        },
-        "loadReplies": {
-          "title": "Fehler beim Laden der Antworten",
-          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
-        },
-        "emptyReply": "Die Antwort darf nicht leer sein.",
-        "submitReply": {
-          "title": "Fehler beim Senden der Antwort",
-          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
-        }
-      }
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Finden Sie landwirtschaftliche Jobs, Dienstleistungen und Experten.",
-    "listServiceButton": "Dienstleistung / Job anbieten",
-    "searchPlaceholder": "Jobs oder Dienstleistungen suchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "categoryPlaceholder": "Nach Kategorie filtern...",
-    "allCategories": "Alle Dienstleistungskategorien",
-    "noResultsTitle": "Keine Dienstleistungen gefunden",
-    "noResultsDescription": "Versuchen Sie, Ihre Suche oder Filter anzupassen. Oder seien Sie der Erste, der eine Dienstleistung anbietet!",
-    "toast": {
-      "error": {
-        "title": "Fehler",
-        "description": "Dienstleistungen von der Talentbörse konnten nicht abgerufen werden."
-      }
-    }
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "Alle Typen",
-      "Product": "Produkt",
-      "Service": "Dienstleistung"
     }
   },
   "settingsPage": {
@@ -388,6 +224,57 @@
         "knowledge_articles": "Wissensdatenbank",
         "vti_registry": "Rückverfolgungsberichte"
       }
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Beziehungen pflegen, Wohlstand ernten mit {appName}",
+      "subtitle": "Das essentielle digitale Ökosystem, das jeden Akteur in der landwirtschaftlichen Wertschöpfungskette verbindet. Vom Saatgut bis zum Verkauf fördert DamDoh Wachstum, Transparenz und Zusammenarbeit.",
+      "getStartedButton": "Kostenlos starten",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Hauptfunktionen von DamDoh",
+      "subtitle": "Eine integrierte Plattform, die den vielfältigen Bedürfnissen der landwirtschaftlichen Gemeinschaft gerecht wird.",
+      "networking": {
+        "title": "Intelligentes Networking",
+        "description": "KI-gestützte Verbindungsvorschläge basierend auf Ihrer Rolle, Ihrem Standort und Ihren Bedürfnissen. Finden Sie die richtigen Partner, von Lieferanten bis zu Käufern."
+      },
+      "marketplace": {
+        "title": "Digitaler Marktplatz",
+        "description": "Ein direkter Kanal zum Kauf und Verkauf von Produkten, Betriebsmitteln und Ausrüstung. Erweitern Sie Ihren Markt und finden Sie die besten Preise."
+      },
+      "forums": {
+        "title": "Thematische Foren",
+        "description": "Teilen Sie Wissen und diskutieren Sie spezifische Themen wie Pflanzenmanagement, Tiergesundheit und neue Technologien mit Gleichgesinnten."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Bieten oder finden Sie landwirtschaftliche Dienstleistungen, von der Lohnarbeit und Drohnenvermessung bis hin zur professionellen Beratung."
+      }
+    },
+    "forWho": {
+      "badge": "Für jeden landwirtschaftlichen Akteur",
+      "title": "Eine Plattform für jeden Spieler",
+      "description": "DamDoh ist einzigartig darauf ausgelegt, die gesamte landwirtschaftliche Wertschöpfungskette zu bedienen und schafft eine einzige Quelle der Wahrheit und Möglichkeiten für alle.",
+      "farmers": {
+        "title": "Landwirte",
+        "description": "Erhalten Sie Zugang zu besseren Märkten, finden Sie hochwertige Betriebsmittel und erhalten Sie Expertenrat, um Ihren Ertrag und Ihre Rentabilität zu steigern."
+      },
+      "buyers": {
+        "title": "Käufer & Verarbeiter",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Erzeugern und Genossenschaften und gewährleisten Sie so die Zuverlässigkeit der Lieferkette."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihre spezialisierten Fähigkeiten und Dienstleistungen einem breiten landwirtschaftlichen Publikum an, das Ihre Expertise sucht."
+      },
+      "imageAlt": "Eine vielfältige Gruppe von landwirtschaftlichen Akteuren, die zusammenarbeiten"
+    },
+    "cta": {
+      "title": "Bereit, Ihr Netzwerk zu erweitern?",
+      "subtitle": "Schließen Sie sich Tausenden von Landwirten, Käufern und Experten an, die eine vernetztere und effizientere landwirtschaftliche Zukunft gestalten.",
+      "button": "Heute DamDoh beitreten"
     }
   }
 }
