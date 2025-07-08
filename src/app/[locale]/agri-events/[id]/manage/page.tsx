@@ -4,7 +4,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy, QrCode, ScanLine, UserCheck, XCircle, AlertCircle, Info, Users, UserPlus, Trash2, Search, Download } from "lucide-react";
+import { Ticket, Share2, PlusCircle, Loader2, CalendarIcon, ClipboardCopy, QrCode, ScanLine, UserCheck, XCircle, AlertCircle, Info, Users, UserPlus, Trash2, Search, Download, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -17,7 +17,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { createMarketplaceCouponSchema, type CreateMarketplaceCouponValues } from "@/lib/form-schemas";
+import { getCreateMarketplaceCouponSchema, type CreateMarketplaceCouponValues } from "@/lib/form-schemas";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { useParams } from "next/navigation";
@@ -32,6 +32,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
@@ -64,10 +65,13 @@ interface EventAttendee {
 
 const CouponCreationForm = ({ onCouponCreated }: { onCouponCreated: () => void }) => {
     const t = useTranslations('AgriEvents.manage.promotions');
+    const tFormErrors = useTranslations('formErrors.createMarketplaceCoupon');
     const { toast } = useToast();
     const params = useParams();
     const eventId = params.id as string;
     const createCouponCallable = useMemo(() => httpsCallable(functions, 'createEventCoupon'), []);
+    
+    const createMarketplaceCouponSchema = getCreateMarketplaceCouponSchema(tFormErrors);
 
     const form = useForm<CreateMarketplaceCouponValues>({
         resolver: zodResolver(createMarketplaceCouponSchema),
@@ -108,11 +112,11 @@ const CouponCreationForm = ({ onCouponCreated }: { onCouponCreated: () => void }
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                         <div className="grid gap-4 md:grid-cols-2">
                             <FormField control={form.control} name="code" render={({ field }) => ( <FormItem> <FormLabel>{t('create.form.code')}</FormLabel> <FormControl> <Input placeholder={t('create.form.codePlaceholder')} {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
-                             <FormField control={form.control} name="usageLimit" render={({ field }) => ( <FormItem> <FormLabel>{t('create.form.usageLimit')}</FormLabel> <FormControl> <Input type="number" placeholder={t('create.form.usageLimitPlaceholder')} {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
+                             <FormField control={form.control} name="usageLimit" render={({ field }) => ( <FormItem> <FormLabel>{t('create.form.usageLimit')}</FormLabel> <FormControl> <Input type="number" placeholder={t('create.form.usageLimitPlaceholder')} {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))} /> </FormControl> <FormMessage /> </FormItem> )} />
                         </div>
                         <div className="grid gap-4 md:grid-cols-3">
                              <FormField control={form.control} name="discountType" render={({ field }) => ( <FormItem> <FormLabel>{t('create.form.discountType')}</FormLabel> <Select onValueChange={field.onChange} defaultValue={field.value}> <FormControl> <SelectTrigger> <SelectValue placeholder={t('create.form.discountTypePlaceholder')} /> </SelectTrigger> </FormControl> <SelectContent> <SelectItem value="percentage">{t('create.form.percentage')}</SelectItem> <SelectItem value="fixed">{t('create.form.fixed')}</SelectItem> </SelectContent> </Select> <FormMessage /> </FormItem> )} />
-                            <FormField control={form.control} name="discountValue" render={({ field }) => ( <FormItem> <FormLabel>{t('create.form.discountValue')}</FormLabel> <FormControl> <Input type="number" placeholder="e.g., 10 or 5" {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
+                            <FormField control={form.control} name="discountValue" render={({ field }) => ( <FormItem> <FormLabel>{t('create.form.discountValue')}</FormLabel> <FormControl> <Input type="number" placeholder="e.g., 10 or 5" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} /> </FormControl> <FormMessage /> </FormItem> )} />
                             <FormField control={form.control} name="expiryDate" render={({ field }) => ( <FormItem className="flex flex-col pt-2"> <FormLabel className="mb-2">{t('create.form.expiryDate')}</FormLabel> <Popover> <PopoverTrigger asChild> <FormControl> <Button variant={"outline"} className={cn("pl-3 text-left font-normal", !field.value && "text-muted-foreground")}> {field.value ? (format(field.value, "PPP")) : (<span>{t('create.form.pickDate')}</span>)} <CalendarIcon className="ml-auto h-4 w-4 opacity-50" /> </Button> </FormControl> </PopoverTrigger> <PopoverContent className="w-auto p-0" align="start"> <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus /> </PopoverContent> </Popover> <FormMessage /> </FormItem> )} />
                         </div>
                         <Button type="submit" disabled={form.formState.isSubmitting}> {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>} {t('create.form.submitButton')} </Button>
@@ -482,6 +486,9 @@ export default function ManageEventPage() {
 
     return (
         <div className="container mx-auto p-4 md:p-8">
+             <Button asChild variant="outline" className="mb-4">
+                <Link href={`/agri-events/${eventId}`}><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link>
+            </Button>
             <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
             <p className="text-muted-foreground mb-6">{event?.title || 'Loading event...'}</p>
             <Tabs defaultValue="check-in" className="w-full">

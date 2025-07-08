@@ -49,7 +49,7 @@ export const createEventCoupon = functions.https.onCall(async (data, context) =>
     const uid = checkAuth(context);
     const { eventId, code, discountType, discountValue, expiryDate, usageLimit } = data;
 
-    if (!eventId || !code || !discountType || !discountValue) {
+    if (!eventId || !code || !discountType || discountValue === undefined) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
     }
     
