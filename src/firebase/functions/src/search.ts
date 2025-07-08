@@ -101,10 +101,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
  * @return {Promise<{results: any[]}>} A promise that resolves with search results.
  */
 export const performSearch = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
-    }
-    const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit } = data;
+    const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit, limit = 50 } = data;
     
     if (!Array.isArray(mainKeywords)) {
         throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
@@ -113,27 +110,23 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
-        // --- Keyword Filtering is the primary driver ---
-        const validKeywords = mainKeywords.filter((k): k is string => typeof k === 'string' && k.trim() !== '');
-        const searchTerms = validKeywords.flatMap(k => k.toLowerCase().split(/\s+/)).slice(0, 10);
+        const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean).slice(0, 10);
         const hasKeywords = searchTerms.length > 0;
 
-        // Apply ONLY the keyword filter to the initial query to avoid complex index requirements.
         if (hasKeywords) {
             query = query.where("searchable_terms", "array-contains-any", searchTerms);
         }
-        
-        // Fetch a larger set to filter and sort in memory.
-        query = query.limit(100); 
 
-        const snapshot = await query.get();
+        query = query.orderBy("updatedAt", "desc");
+        
+        const snapshot = await query.limit(limit).get();
         
         let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // --- In-Memory Filtering for all other criteria ---
         const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
         const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
 
+        // Perform secondary filtering in memory for criteria that cannot be combined with array-contains-any
         const filteredResults = results.filter(r => {
             if (categoryFilter && (!r.tags || !Array.isArray(r.tags) || !r.tags.includes(categoryFilter))) {
                 return false;
@@ -156,23 +149,13 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             return true;
         });
         
-        // --- In-Memory Sorting ---
-        filteredResults.sort((a, b) => {
-            const dateA = (a.updatedAt as admin.firestore.Timestamp)?.toDate() || new Date(0);
-            const dateB = (b.updatedAt as admin.firestore.Timestamp)?.toDate() || new Date(0);
-            return dateB.getTime() - dateA.getTime();
-        });
-
-        // Limit the final results to be sent to the client
-        const finalResults = filteredResults.slice(0, 20);
-
-        return { results: finalResults };
+        return { results: filteredResults };
 
     } catch (error) {
         console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
-        if ((error as any).code === 'FAILED_PRECONDITION') {
+         if ((error as any).code === 'FAILED_PRECONDITION') {
              throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
         }
-        throw new functions.https.HttpsError("internal", "An error occurred while performing the search.", error);
+        throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
     }
 });

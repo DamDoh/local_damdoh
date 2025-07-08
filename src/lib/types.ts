@@ -9,6 +9,7 @@ import type {
     AgriEventSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
+import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
 
 
 // =================================================================
@@ -683,10 +684,6 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
-    // Re-introducing denormalized fields for use in FeedItemCard
-    userId: string;
-    userName: string;
-    userAvatar?: string;
 }
 
 export interface PollOption {
@@ -840,3 +837,6 @@ export interface FinancialProduct {
   status: 'Active' | 'Inactive';
   createdAt: string;
 }
+
+// AI Related Types
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;

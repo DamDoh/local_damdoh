@@ -3,11 +3,11 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Link from 'next/link';
 import type { MarketplaceItem } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart, Brain, Loader2 } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
@@ -15,12 +15,10 @@ import { usePathname, useRouter } from "@/navigation";
 import { useSearchParams } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
-import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
+import { getMarketplaceRecommendations, type MarketplaceRecommendationOutput } from "@/ai/flows/marketplace-recommendations";
 import { performSearch } from "@/lib/server-actions";
-import { Brain } from "lucide-react";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/auth-utils";
@@ -37,14 +35,12 @@ function MarketplaceContent() {
   const [displayedItems, setDisplayedItems] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
+  const [aiRecommendations, setAiRecommendations] = useState<MarketplaceRecommendationOutput['recommendations']>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(true);
-  const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get('category');
-  const userType = searchParams.get('userType') as 'consumer' | 'farmer' | 'trader' | null;
 
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast(); 
@@ -55,7 +51,6 @@ function MarketplaceContent() {
     setIsMounted(true);
   }, []);
 
-  // Effect to perform search when filters change
   const fetchItems = useCallback(async () => {
     setIsLoading(true);
     const filters = [];
@@ -104,10 +99,27 @@ function MarketplaceContent() {
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, toast, t]);
 
   useEffect(() => {
-    if (isMounted) {
-      fetchItems();
-    }
-  }, [isMounted, fetchItems]);
+      const fetchAiRecs = async () => {
+        if (!user) {
+            setIsLoadingAiRecommendations(false);
+            return;
+        };
+        setIsLoadingAiRecommendations(true);
+        try {
+            const result = await getMarketplaceRecommendations({ userId: user.uid });
+            setAiRecommendations(result.recommendations || []);
+        } catch (error) {
+             console.error("Failed to fetch AI recommendations:", error);
+             // Non-blocking error, so don't show a toast unless debugging
+        } finally {
+            setIsLoadingAiRecommendations(false);
+        }
+      }
+      if(isMounted) {
+        fetchItems();
+        fetchAiRecs();
+      }
+  }, [isMounted, fetchItems, user]);
 
   const isCurrentHomepage = homepagePreference === pathname;
 
@@ -185,25 +197,28 @@ function MarketplaceContent() {
               </Select>
             </div>
           </div>
+          
+           {user && (
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold mb-3 flex items-center gap-2"><Brain className="text-primary h-5 w-5" /> {t('recommendedForYou')}</h2>
+              {isLoadingAiRecommendations ? (
+                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    {Array.from({ length: 5 }).map((_, i) => <ItemCardSkeleton key={`skel-rec-${i}`} />)}
+                 </div>
+              ) : aiRecommendations.length > 0 ? (
+                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    {aiRecommendations.map(({ item, reason }) => <ItemCard key={`rec-${item.id}`} item={item} reason={reason} />)}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">{t('errors.aiRecommendations.title')}</p>
+              )}
+            </div>
+          )}
 
           <h2 className="text-xl font-semibold mb-4 mt-6">{t('discoverMore')}</h2>
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                {Array.from({ length: 5 }).map((_, i) => (
-                     <Card key={i} className="w-52">
-                        <CardHeader className="p-0">
-                            <Skeleton className="w-full h-32 rounded-t-lg"/>
-                        </CardHeader>
-                        <CardContent className="p-3 space-y-2">
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-3 w-1/2" />
-                            <Skeleton className="h-5 w-1/3" />
-                        </CardContent>
-                        <CardFooter className="p-2">
-                             <Skeleton className="h-9 w-full" />
-                        </CardFooter>
-                    </Card>
-                ))}
+                {Array.from({ length: 10 }).map((_, i) => <ItemCardSkeleton key={`skel-item-${i}`} />)}
             </div>
           ) : displayedItems.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
@@ -220,6 +235,25 @@ function MarketplaceContent() {
     </div>
   );
 }
+
+function ItemCardSkeleton() {
+    return (
+        <Card className="w-full">
+            <CardHeader className="p-0">
+                <Skeleton className="w-full aspect-[4/3] rounded-t-lg"/>
+            </CardHeader>
+            <CardContent className="p-3 space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-3 w-1/2" />
+                <Skeleton className="h-5 w-1/3" />
+            </CardContent>
+            <CardFooter className="p-2">
+                    <Skeleton className="h-9 w-full" />
+            </CardFooter>
+        </Card>
+    );
+}
+
 
 function MarketplaceSkeleton() {
     return (
@@ -239,22 +273,8 @@ function MarketplaceSkeleton() {
                         </div>
                     </div>
                     <Skeleton className="h-6 w-1/4 mb-4" />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                             <Card key={i} className="w-52">
-                                <CardHeader className="p-0">
-                                    <Skeleton className="w-full h-32 rounded-t-lg"/>
-                                </CardHeader>
-                                <CardContent className="p-3 space-y-2">
-                                    <Skeleton className="h-4 w-full" />
-                                    <Skeleton className="h-3 w-1/2" />
-                                    <Skeleton className="h-5 w-1/3" />
-                                </CardContent>
-                                <CardFooter className="p-2">
-                                     <Skeleton className="h-9 w-full" />
-                                </CardFooter>
-                            </Card>
-                        ))}
+                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {Array.from({ length: 5 }).map((_, i) => <ItemCardSkeleton key={`skel-main-${i}`} />)}
                     </div>
                 </CardContent>
             </Card>

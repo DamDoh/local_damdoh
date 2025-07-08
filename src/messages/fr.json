@@ -47,181 +47,102 @@
     "agriEvent": "Événement Agri",
     "createPoll": "Créer un Sondage"
   },
-  "Forums": {
-    "title": "Sujets du forum",
-    "description": "Parcourir et créer des sujets de discussion",
-    "lastActivity": "Dernière activité il y a {{time}}",
-    "searchPlaceholder": "Rechercher des sujets...",
-    "buttons": {
-      "createTopic": "Créer un sujet",
-      "joinDiscussion": "Rejoindre la discussion",
-      "pinHomepage": "Épingler à l'accueil",
-      "unpinHomepage": "Détacher de l'accueil",
-      "loadMore": "Charger plus",
-      "loadingMore": "Chargement en cours..."
-    },
-    "notFound": {
-      "title": "Aucun sujet trouvé",
-      "tryDifferentSearch": "Essayez une autre recherche.",
-      "beTheFirst": "Soyez le premier à créer un sujet."
-    },
-    "pinning": {
-      "pinnedTitle": "Accueil épinglé !",
-      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
-      "unpinnedTitle": "Accueil détaché !",
-      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
-    },
-    "errors": {
-      "loadTitle": "Erreur lors du chargement des sujets",
-      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
-      "auth": {
-        "title": "Non authentifié",
-        "description": "Vous devez être connecté pour créer un sujet."
-      },
-      "incomplete": {
-        "title": "Champs incomplets",
-        "description": "Veuillez remplir tous les champs obligatoires."
-      },
-      "general": {
-        "title": "Erreur",
-        "description": "Une erreur s'est produite lors de la création du sujet."
-      }
-    },
-    "create": {
-      "backLink": "Retour aux sujets",
-      "title": "Créer un nouveau sujet",
-      "description": "Démarrer une nouvelle discussion dans le forum.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "Entrez le nom de votre sujet",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
-        "submitButton": "Créer un sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "success": {
-        "title": "Sujet créé avec succès",
-        "description": "Votre nouveau sujet a été créé."
-      }
-    },
-    "postView": {
-      "backLink": "Retour à {{topicName}}",
-      "unknownUser": "Utilisateur inconnu",
-      "postMeta": "par {{author}} le {{date}}",
-      "repliesTitle": "Réponses ({count})",
-      "noReplies": "Aucune réponse pour l'instant.",
-      "buttons": {
-        "loadMore": "Charger plus",
-        "loadingMore": "Chargement en cours..."
-      },
-      "reply": {
-        "title": "Ajouter une réponse",
-        "placeholder": "Écrivez votre réponse ici...",
-        "submitButton": "Ajouter une réponse",
-        "submittingButton": "Envoi en cours...",
-        "success": "Réponse ajoutée !"
-      },
-      "notFound": {
-        "title": "Message introuvable",
-        "description": "Le message que vous recherchez n'existe pas.",
-        "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Erreur de chargement du message",
-          "description": "Une erreur s'est produite lors du chargement des détails du message."
-        },
-        "loadReplies": {
-          "title": "Erreur de chargement des réponses",
-          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
-        },
-        "emptyReply": "La réponse ne peut pas être vide.",
-        "submitReply": {
-          "title": "Erreur d'envoi de la réponse",
-          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
-        }
-      }
-    },
-    "topic": {
-      "backLink": "Retour à tous les sujets",
-      "unknownUser": "Utilisateur inconnu",
-      "postMeta": "par {{author}} le {{date}}",
-      "buttons": {
-        "createPost": "Créer une publication",
-        "loadMore": "Charger plus de publications",
-        "loadingMore": "Chargement en cours..."
-      },
-      "noPosts": {
-        "title": "Aucune publication n'a encore été créée.",
-        "description": "Soyez le premier à en créer une !",
-        "button": "Créer la première publication"
-      },
-      "notFound": {
-        "title": "Sujet introuvable",
-        "description": "Le sujet que vous recherchez n'existe pas.",
-        "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Erreur de chargement des publications",
-          "description": "Une erreur s'est produite lors du chargement des publications pour ce sujet."
-        },
-        "loadTopic": {
-          "title": "Erreur de chargement du sujet",
-          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Retour au sujet",
-      "aiHelper": {
-        "title": "Assistant IA",
-        "description": "Générer un brouillon de message basé sur une invite.",
-        "promptLabel": "Invite IA",
-        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
-        "generateButton": "Générer le brouillon",
-        "generatingButton": "Génération en cours..."
-      },
-      "title": "Créer un nouveau message",
-      "description": "Ajouter un nouveau message à ce sujet.",
-      "form": {
-        "titleLabel": "Titre du message",
-        "titlePlaceholder": "Entrez le titre de votre message",
-        "contentLabel": "Contenu du message",
-        "contentPlaceholder": "Écrivez votre message ici...",
-        "submitButton": "Créer le message",
-        "submittingButton": "Envoi en cours..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Brouillon IA généré !",
-          "description": "Un brouillon a été généré pour vous."
-        },
-        "title": "Message créé !",
-        "description": "Votre message a été créé avec succès."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Invite IA manquante",
-          "description": "Veuillez fournir une invite pour l'assistant IA."
-        },
-        "aiDraft": {
-          "title": "Erreur de brouillon IA",
-          "description": "Échec de la génération du brouillon IA."
-        },
-        "incomplete": {
-          "title": "Champs incomplets",
-          "description": "Veuillez remplir tous les champs obligatoires."
-        },
-        "general": {
-          "title": "Erreur",
-          "description": "Une erreur s'est produite lors de la création du message."
-        }
-      }
-    }
-  },
   "Marketplace": {
     "title": "Marché",
+    "description": "Parcourir et découvrir des produits et services.",
+    "createShopButton": "Créer une boutique",
+    "createListingButton": "Créer une annonce",
+    "myOrdersButton": "Mes commandes reçues",
+    "pinButton": "Épingler à l'accueil",
+    "unpinButton": "Détacher de l'accueil",
+    "searchPlaceholder": "Rechercher sur le marché...",
+    "locationPlaceholder": "Filtrer par emplacement...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus",
+    "viewDetails": "Voir les détails",
+    "viewServiceButton": "Voir le service",
+    "itemView": {
+      "backLink": "Retour au marché",
+      "unknownUser": "Utilisateur inconnu",
+      "traceabilityButton": "Lien Commercial / Lot",
+      "skillsLabel": "Compétences requises",
+      "experienceLabel": "Niveau d'expérience",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contacter pour les tarifs",
+      "booking": {
+        "perNight": "nuit",
+        "checkIn": "Arrivée",
+        "checkOut": "Départ",
+        "addDate": "Ajouter une date",
+        "guests": "Invités",
+        "reserveButton": "Réserver",
+        "reservingButton": "Réservation en cours...",
+        "notCharged": "Vous ne serez pas encore facturé",
+        "nights": "nuits",
+        "serviceFee": "Frais de service",
+        "total": "Total",
+        "successTitle": "Réservation réussie !",
+        "successDescription": "Votre réservation est confirmée.",
+        "failTitle": "Échec de la réservation",
+        "dateError": "Veuillez sélectionner des dates d'arrivée et de départ valides.",
+        "authTitle": "Authentification requise",
+        "authDescription": "Vous devez être connecté pour réserver un service.",
+        "bookedTitle": "Réservé !",
+        "bookedDescription": "Votre réservation est confirmée. Présentez le code QR ci-dessous à votre arrivée.",
+        "ticketButton": "Afficher le ticket",
+        "modalTitle": "Ticket de réservation",
+        "modalDescription": "Présentez ce code QR à {{itemName}} pour l'enregistrement.",
+        "modalScan": "Scannez ce code pour vous enregistrer"
+      },
+      "coupon": {
+        "label": "Code promo",
+        "placeholder": "Entrez le code promo",
+        "applyButton": "Appliquer",
+        "successTitle": "Code promo appliqué !",
+        "successDescription": "Réduction appliquée : {{type}}",
+        "failTitle": "Code promo invalide",
+        "failDescription": "Le code promo est invalide ou non applicable.",
+        "appliedText": "Code promo appliqué : {{code}}"
+      },
+      "aboutSeller": "À propos du vendeur",
+      "viewShopfront": "Voir la boutique",
+      "editListing": "Modifier l'annonce",
+      "manageService": "Gérer le service",
+      "buyNowButton": "Acheter maintenant",
+      "contactForService": "Contacter pour le service",
+      "contactSeller": "Contacter le vendeur",
+      "order": {
+        "title": "Commander {{itemName}}",
+        "description": "Entrez la quantité que vous souhaitez commander et toute note.",
+        "quantityLabel": "Quantité",
+        "notesLabel": "Notes (Facultatif)",
+        "notesPlaceholder": "Ajoutez des instructions ou des demandes spécifiques...",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer la commande",
+        "placingButton": "Commande en cours...",
+        "successTitle": "Commande passée !",
+        "successDescription": "Votre commande a été passée avec succès.",
+        "failTitle": "Échec de la commande",
+        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
+        "quantityErrorTitle": "Erreur de quantité",
+        "quantityErrorDescription": "Veuillez entrer une quantité valide (au moins 1).",
+        "authTitle": "Authentification requise",
+        "authDescription": "Vous devez être connecté pour passer une commande."
+      },
+      "notFound": {
+        "title": "Article introuvable",
+        "description": "L'article du marché que vous recherchez n'existe pas.",
+        "backButton": "Retour au Marché"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Erreur de chargement de l'article",
+          "description": "Une erreur s'est produite lors du chargement des détails de l'article du marché."
+        },
+        "unexpected": "Une erreur inattendue s'est produite."
+      }
+    },
     "myOrders": {
       "backLink": "Retour au marché",
       "title": "Mes commandes reçues",
@@ -273,6 +194,95 @@
         "notFound": "Boutique non trouvée",
         "loadError": "Impossible de charger les détails de la boutique.",
         "title": "Erreur"
+      }
+    },
+    "createShop": {
+      "backLink": "Retour au marché",
+      "title": "Créer votre boutique numérique",
+      "description": "Configurez votre boutique pour lister des articles et des services.",
+      "form": {
+        "nameLabel": "Nom de la boutique",
+        "namePlaceholder": "Entrez le nom de votre boutique",
+        "typeLabel": "Type d'intervenant",
+        "typePlaceholder": "Sélectionnez votre type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre boutique et ce que vous proposez"
+      },
+      "submitButton": "Créer la boutique",
+      "submittingButton": "Création en cours...",
+      "authErrorTitle": "Erreur d'authentification",
+      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
+      "toast": {
+        "successTitle": "Boutique créée !",
+        "successDescription": "Votre boutique \"{{shopName}}\" a été créée.",
+        "failTitle": "Échec de la création",
+        "failDescription": "Impossible de créer la boutique. Veuillez réessayer."
+      }
+    },
+    "createListing": {
+      "backLink": "Retour au marché",
+      "title": "Créer une nouvelle annonce",
+      "description": "Lister un produit ou un service sur le marché.",
+      "form": {
+        "nameLabel": "Nom de l'article/service",
+        "namePlaceholder": "Entrez le nom de votre annonce",
+        "typeLabel": "Type d'annonce",
+        "typePlaceholder": "Sélectionnez le type d'annonce",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre annonce",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "Entrez l'emplacement",
+        "relatedVtiLabel": "VTI / ID de lot associé (Facultatif)",
+        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
+        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Sélectionnez une catégorie",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "ex: par heure, taux fixe",
+        "experienceLabel": "Niveau d'expérience",
+        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
+        "skillsLabel": "Compétences requises",
+        "skillsPlaceholder": "Liste des compétences nécessaires pour le service",
+        "skillsDescription": "Séparez les compétences par des virgules.",
+        "priceLabel": "Prix",
+        "pricePlaceholder": "Entrez le prix",
+        "unitLabel": "Unité",
+        "unitPlaceholder": "ex: kg, pièce, heure",
+        "imageUrlLabel": "URL de l'image (Facultatif)",
+        "sustainableLabel": "Pratique durable",
+        "sustainableDescription": "Indique si cette annonce implique des pratiques durables.",
+        "submitButton": "Créer l'annonce",
+        "submittingButton": "Création en cours..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggérer un prix avec l'IA",
+        "generatingButton": "Génération en cours...",
+        "suggestionLabel": "Suggestion IA:",
+        "usePriceButton": "Utiliser ce prix"
+      },
+      "success": {
+        "title": "Succès !",
+        "description": "Votre annonce a été créée."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Informations manquantes",
+            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
+          },
+          "failed": {
+            "title": "Suggestion de prix échouée",
+            "description": "Impossible d'obtenir une suggestion de prix IA. Veuillez réessayer ou entrer un prix manuellement."
+          }
+        },
+        "authentication": {
+          "title": "Erreur d'authentification",
+          "description": "Vous devez être connecté pour créer une annonce."
+        },
+        "creation": {
+          "title": "Échec de la création",
+          "description": "Impossible de créer l'annonce. Veuillez réessayer."
+        }
       }
     },
     "manageService": {
@@ -360,199 +370,68 @@
         "linkCopied": "Lien copié"
       }
     },
-    "description": "Parcourez et découvrez des produits et services.",
-    "createShopButton": "Créer une boutique",
-    "createListingButton": "Créer une annonce",
-    "myOrdersButton": "Mes commandes reçues",
-    "unpinButton": "Détacher de l'accueil",
-    "pinButton": "Épingler à l'accueil",
-    "searchPlaceholder": "Rechercher sur le marché...",
-    "locationPlaceholder": "Filtrer par emplacement...",
-    "typePlaceholder": "Filtrer par type...",
-    "recommendedForYou": "Recommandé pour vous",
-    "discoverMore": "Découvrir plus",
-    "noItemsFound": {
-      "title": "Aucun article trouvé.",
-      "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
+    "filtersAndSorting": {
+      "categoryLabel": "Catégorie",
+      "categoryPlaceholder": "Toutes les catégories",
+      "sortByLabel": "Trier par",
+      "sortByPlaceholder": "Sélectionner une option",
+      "priceAscending": "Prix : Croissant",
+      "priceDescending": "Prix : Décroissant",
+      "dateNewest": "Date : Plus récent",
+      "dateOldest": "Date : Plus ancien",
+      "nameAscending": "Nom : A-Z",
+      "nameDescending": "Nom : Z-A"
     },
-    "errors": {
-      "aiRecommendations": {
-        "title": "Impossible de récupérer les recommandations IA"
-      },
-      "search": {
-        "title": "Erreur de recherche",
-        "description": "Impossible de récupérer les articles du marché."
-      },
-      "loadItem": {
-        "title": "Erreur de chargement de l'article",
-        "description": "Une erreur s'est produite lors du chargement des détails de l'article du marché."
-      },
-      "unexpected": "Une erreur inattendue s'est produite."
-    },
-    "itemView": {
-      "backLink": "Retour au marché",
-      "unknownUser": "Utilisateur inconnu",
-      "traceabilityButton": "Lien Commercial / Lot",
-      "skillsLabel": "Compétences requises",
-      "experienceLabel": "Niveau d'expérience",
-      "compensationLabel": "Compensation",
-      "contactForRates": "Contacter pour les tarifs",
-      "booking": {
-        "perNight": "nuit",
-        "checkIn": "Arrivée",
-        "checkOut": "Départ",
-        "addDate": "Ajouter une date",
-        "guests": "Invités",
-        "reserveButton": "Réserver",
-        "reservingButton": "Réservation en cours...",
-        "notCharged": "Vous ne serez pas encore facturé",
-        "nights": "nuits",
-        "serviceFee": "Frais de service",
-        "total": "Total",
-        "successTitle": "Réservation réussie !",
-        "successDescription": "Votre réservation est confirmée.",
-        "failTitle": "Échec de la réservation",
-        "dateError": "Veuillez sélectionner des dates d'arrivée et de départ valides.",
-        "authTitle": "Authentification requise",
-        "authDescription": "Vous devez être connecté pour réserver un service.",
-        "bookedTitle": "Réservé !",
-        "bookedDescription": "Votre réservation est confirmée. Présentez le code QR ci-dessous à votre arrivée.",
-        "ticketButton": "Afficher le ticket",
-        "modalTitle": "Ticket de réservation",
-        "modalDescription": "Présentez ce code QR à {{itemName}} pour l'enregistrement.",
-        "modalScan": "Scannez ce code pour vous enregistrer"
-      },
-      "coupon": {
-        "label": "Code promo",
-        "placeholder": "Entrez le code promo",
-        "applyButton": "Appliquer",
-        "successTitle": "Code promo appliqué !",
-        "successDescription": "Réduction appliquée : {{type}}",
-        "failTitle": "Code promo invalide",
-        "failDescription": "Le code promo est invalide ou non applicable.",
-        "appliedText": "Code promo appliqué : {{code}}"
-      },
-      "aboutSeller": "À propos du vendeur",
-      "viewShopfront": "Voir la boutique",
-      "editListing": "Modifier l'annonce",
-      "manageService": "Gérer le service",
-      "buyNowButton": "Acheter maintenant",
-      "contactForService": "Contacter pour le service",
-      "contactSeller": "Contacter le vendeur",
-      "order": {
-        "title": "Commander {{itemName}}",
-        "description": "Entrez la quantité que vous souhaitez commander et toute note.",
-        "quantityLabel": "Quantité",
-        "notesLabel": "Notes (Facultatif)",
-        "notesPlaceholder": "Ajoutez des instructions ou des demandes spécifiques...",
-        "cancelButton": "Annuler",
-        "confirmButton": "Confirmer la commande",
-        "placingButton": "Commande en cours...",
-        "successTitle": "Commande passée !",
-        "successDescription": "Votre commande a été passée avec succès.",
-        "failTitle": "Échec de la commande",
-        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
-        "quantityErrorTitle": "Erreur de quantité",
-        "quantityErrorDescription": "Veuillez entrer une quantité valide (au moins 1).",
-        "authTitle": "Authentification requise",
-        "authDescription": "Vous devez être connecté pour passer une commande."
-      },
-      "notFound": {
-        "title": "Article introuvable",
-        "description": "L'article du marché que vous recherchez n'existe pas.",
-        "backButton": "Retour au Marché"
+    "feedback": {
+      "reviewsTitle": "Avis",
+      "addReviewButton": "Ajouter un avis",
+      "ratingLabel": "Évaluation",
+      "noReviews": "Aucun avis pour l'instant. Soyez le premier à évaluer cet article !",
+      "reviewForm": {
+        "placeholder": "Écrivez votre avis ici..."
       }
     },
-    "createListing": {
-      "backLink": "Retour au marché",
-      "title": "Créer une nouvelle annonce",
-      "description": "Lister un produit ou un service sur le marché.",
-      "form": {
-        "nameLabel": "Nom de l'article/service",
-        "namePlaceholder": "Entrez le nom de votre annonce",
-        "typeLabel": "Type d'annonce",
-        "typePlaceholder": "Sélectionnez le type d'annonce",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre annonce",
-        "locationLabel": "Emplacement",
-        "locationPlaceholder": "Entrez l'emplacement",
-        "relatedVtiLabel": "VTI / ID de lot associé (Facultatif)",
-        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
-        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
-        "categoryLabel": "Catégorie",
-        "categoryPlaceholder": "Sélectionnez une catégorie",
-        "compensationLabel": "Compensation",
-        "compensationPlaceholder": "ex: par heure, taux fixe",
-        "experienceLabel": "Niveau d'expérience",
-        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
-        "skillsLabel": "Compétences requises",
-        "skillsPlaceholder": "Liste des compétences nécessaires pour le service",
-        "skillsDescription": "Séparez les compétences par des virgules.",
-        "priceLabel": "Prix",
-        "pricePlaceholder": "Entrez le prix",
-        "unitLabel": "Unité",
-        "unitPlaceholder": "ex: kg, pièce, heure",
-        "imageUrlLabel": "URL de l'image (Facultatif)",
-        "sustainableLabel": "Pratique durable",
-        "sustainableDescription": "Indique si cette annonce implique des pratiques durables.",
-        "submitButton": "Créer l'annonce",
-        "submittingButton": "Création en cours..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Suggérer un prix avec l'IA",
-        "generatingButton": "Génération en cours...",
-        "suggestionLabel": "Suggestion IA:",
-        "usePriceButton": "Utiliser ce prix"
-      },
-      "success": {
-        "title": "Succès !",
-        "description": "Votre annonce a été créée."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Informations manquantes",
-            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
-          },
-          "failed": {
-            "title": "Suggestion de prix échouée",
-            "description": "Impossible d'obtenir une suggestion de prix IA. Veuillez réessayer ou entrer un prix manuellement."
-          }
-        },
-        "authentication": {
-          "title": "Erreur d'authentification",
-          "description": "Vous devez être connecté pour créer une annonce."
-        },
-        "creation": {
-          "title": "Échec de la création",
-          "description": "Impossible de créer l'annonce. Veuillez réessayer."
-        }
-      }
-    },
-    "createShop": {
-      "backLink": "Retour au marché",
-      "title": "Créer votre boutique numérique",
-      "description": "Configurez votre boutique pour lister des articles et des services.",
-      "form": {
-        "nameLabel": "Nom de la boutique",
-        "namePlaceholder": "Entrez le nom de votre boutique",
-        "typeLabel": "Type d'intervenant",
-        "typePlaceholder": "Sélectionnez votre type",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre boutique et ce que vous proposez"
-      },
-      "submitButton": "Créer la boutique",
-      "submittingButton": "Création en cours...",
-      "authErrorTitle": "Erreur d'authentification",
-      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
-      "toast": {
-        "successTitle": "Boutique créée !",
-        "successDescription": "Votre boutique \"{{shopName}}\" a été créée.",
-        "failTitle": "Échec de la création",
-        "failDescription": "Impossible de créer la boutique. Veuillez réessayer."
-      }
+    "pinning": {
+      "pinnedTitle": "Marché épinglé !",
+      "pinnedDescription": "Le marché est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Page d'accueil détachée !",
+      "unpinnedDescription": "Le tableau de bord est maintenant votre page d'accueil par défaut."
     }
   },
-  "Homepage": {}
+  "common": {
+    "error": "Erreur"
+  },
+  "traceabilityPage": {
+    "title": "Centre de traçabilité",
+    "description": "Suivez le parcours de vos aliments de la ferme à la fourchette avec un ID de traçabilité vérifiable (VTI).",
+    "inputPlaceholder": "Entrez le code VTI...",
+    "trackButton": "Suivre",
+    "vtiDescription": "Un VTI est un identifiant unique attribué à un lot spécifique de produits agricoles.",
+    "recentTitle": "Recherches récentes",
+    "recentDescription": "Vous n'avez aucun article suivi récemment.",
+    "detailPage": {
+      "backLink": "Retour au centre de traçabilité",
+      "invalidIdError": "ID de lot non valide.",
+      "loadError": "Échec du chargement des données de traçabilité. Veuillez vérifier l'ID et réessayer.",
+      "notFoundTitle": "Lot non trouvé",
+      "notFoundDescription": "L'ID de traçabilité que vous avez entré ne correspond à aucun enregistrement.",
+      "traceableProduct": "Produit traçable",
+      "batchIdLabel": "ID de lot",
+      "producerLabel": "Producteur",
+      "sustainablyGrownTitle": "Cultivé de manière durable",
+      "sustainablyGrownDescription": "Le journal de ce produit indique qu'il a été cultivé en utilisant des pratiques durables, sans intrants chimiques de synthèse.",
+      "harvestDateLabel": "Date de récolte",
+      "yieldLabel": "Rendement initial",
+      "qualityLabel": "Qualité initiale",
+      "notSpecified": "Non spécifié",
+      "journeyTitle": "Parcours du produit",
+      "journeyDescription": "Un journal chronologique de tous les événements pour ce lot.",
+      "noEventDetails": "Aucun autre détail fourni pour cet événement.",
+      "observationType": "Type d'observation",
+      "details": "Détails",
+      "aiDiagnosis": "Diagnostic IA",
+      "geoLocationLabel": "Géolocalisation",
+      "noEventsFound": "Aucun événement n'a encore été enregistré pour ce lot."
+    }
+  }
 }
-

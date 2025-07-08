@@ -158,10 +158,9 @@ export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> 
 // --- Universal Search Action ---
 // This function calls a Firebase Cloud Function. It is a server action but defined here
 // as it's initiated from the client-side UniversalSearchModal.
-export async function performSearch(interpretation: SmartSearchInterpretation): Promise<any[]> {
+export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
     const performSearchCallable = httpsCallable(functions, 'performSearch');
     try {
-        console.log(`[Action] Calling performSearch cloud function with interpretation:`, interpretation);
         const result = await performSearchCallable(interpretation);
         return (result.data as any)?.results ?? [];
     } catch (error) {

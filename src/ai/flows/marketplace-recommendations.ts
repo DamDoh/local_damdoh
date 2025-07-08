@@ -9,77 +9,93 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import type { MarketplaceItem } from '@/lib/types';
+import { performSearch } from '@/lib/server-actions';
+import { getProfileByIdFromDB } from '@/lib/server-actions';
 
-const MarketplaceRecommendationInputSchema = z.object({
-  stakeholderRole: z.string().describe("The user's primary role in the agricultural supply chain (e.g., Farmer, Trader, Input Supplier)."),
-  recentSearches: z.array(z.string()).optional().describe("A list of keywords the user has recently searched for."),
-  viewedCategories: z.array(z.string()).optional().describe("A list of marketplace category IDs the user has recently viewed."),
-  currentLocation: z.string().optional().describe("The user's current geographical location to help tailor local suggestions if applicable."),
+export const MarketplaceRecommendationInputSchema = z.object({
+  userId: z.string().optional().describe("The ID of the user to generate recommendations for."),
+  count: z.number().optional().default(5).describe('The number of suggestions to generate.'),
 });
 export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommendationInputSchema>;
 
 const RecommendedItemSchema = z.object({
-    itemId: z.string().describe("The unique ID of the suggested marketplace item. Use plausible placeholder IDs like 'item1', 'service2', 'equipment3' from the dummy data context if inventing."),
-    itemName: z.string().describe("The name of the suggested marketplace item."),
+    item: z.custom<MarketplaceItem>(),
     reason: z.string().describe("A brief, user-friendly explanation (max 1-2 sentences) of why this item is recommended for this specific user.")
 });
 
-const MarketplaceRecommendationOutputSchema = z.object({
-  suggestedItems: z.array(RecommendedItemSchema).describe("A list of 3-5 suggested marketplace items (products or services)."),
+export const MarketplaceRecommendationOutputSchema = z.object({
+  recommendations: z.array(RecommendedItemSchema).describe("A list of 3-5 suggested marketplace items (products or services) with accompanying reasons."),
 });
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 
-export async function getMarketplaceRecommendations(input: MarketplaceRecommendationInput): Promise<MarketplaceRecommendationOutput> {
-  return marketplaceRecommendationsFlow(input);
-}
 
-const marketplaceRecommendationsPrompt = ai.definePrompt({
-  name: 'marketplaceRecommendationsPrompt',
-  input: {schema: MarketplaceRecommendationInputSchema},
-  output: {schema: MarketplaceRecommendationOutputSchema},
-  prompt: `You are an AI recommendation engine for DamDoh, an agricultural marketplace.
-Your goal is to suggest relevant products and services to users based on their profile and activity.
+const recommendationPrompt = ai.definePrompt({
+    name: 'marketplaceRecommendationPrompt',
+    input: { schema: z.object({ userProfile: z.any(), items: z.any(), count: z.number() }) },
+    output: { schema: MarketplaceRecommendationOutputSchema },
+    prompt: `You are an AI recommendation engine for DamDoh, an agricultural marketplace.
+Your goal is to suggest relevant products and services to a user based on their profile and a list of available items.
 
-User Context:
-- Stakeholder Role: {{{stakeholderRole}}}
-{{#if recentSearches}}- Recent Searches: {{#each recentSearches}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}}
-{{#if viewedCategories}}- Viewed Categories: {{#each viewedCategories}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}}
-{{#if currentLocation}}- Current Location: {{{currentLocation}}}{{/if}}
+Analyze the following user profile:
+- Role: {{{userProfile.primaryRole}}}
+- Location: {{{userProfile.location}}}
+- Interests: {{#if userProfile.areasOfInterest}}{{#each userProfile.areasOfInterest}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
+- Needs: {{#if userProfile.needs}}{{#each userProfile.needs}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
 
-Available Marketplace Categories (for context, not exhaustive, item IDs will be like 'fresh-produce-fruits', 'farm-labor-staffing'):
-- Agricultural Produce (Fruits, Vegetables, Grains, Livestock, Dairy, Processed)
-- Inputs & Supplies (Seeds, Fertilizers, Pest Control, Small Tools, Packaging)
-- Machinery & Equipment (Heavy Machinery Sale/Rental, Farm Tools)
-- Professional Services & Labor (Farm Labor, Consultancy, Equipment Ops, Logistics, Storage, Processing, Technical, Financial, Land Services, Training, Surveying)
+Here is a list of available marketplace items (JSON format):
+\`\`\`json
+{{{items}}}
+\`\`\`
 
-Based on the user context, suggest 3-5 marketplace items (can be products or services) that would be highly relevant.
-For each suggestion, provide:
-1.  'itemId': A plausible placeholder ID for the item (e.g., 'item_organic_mangoes', 'service_soil_testing', 'equipment_tractor_rental'). If you know some item IDs from a dummy dataset (like 'item1', 'item3', 'service2'), you can use those.
-2.  'itemName': The name of the item.
-3.  'reason': A brief (1-2 sentences) user-friendly explanation of why this item is a good match.
+Based on the user's profile, select up to {{count}} of the most relevant items from the provided list. For each selection, provide a concise, personalized reason explaining why it's a good match.
+- For a **Farmer**, prioritize inputs, tools, equipment rentals, and services that increase yield or reduce costs.
+- For a **Buyer** or **Exporter**, prioritize bulk produce, processed goods, and logistics services.
+- For a **Service Provider** (like an Agronomist), prioritize recommending their services to relevant user types or suggesting tools they might need.
+- Match based on shared interests, location, and complementary needs within the supply chain.
 
-Prioritize items that directly align with the user's role (e.g., inputs/equipment for Farmers, bulk commodities/logistics for Traders).
-If location is provided, consider suggesting items that might be locally relevant, but global/general items are also fine.
-Focus on diversity in your suggestions if possible.
-
-Example for a Farmer interested in "fertilizers-soil" in Kenya:
-- itemId: "item_organic_fertilizer_kenya"
-- itemName: "Bulk Organic Compost (Kenya Sourced)"
-- reason: "Enhance your soil fertility in Kenya with locally sourced organic compost, ideal for your farming needs."
+Return the results as a JSON object with a 'recommendations' array. Each object in the array must contain the full original 'item' JSON object and a 'reason' string.
 `,
 });
 
-const marketplaceRecommendationsFlow = ai.defineFlow(
-  {
-    name: 'marketplaceRecommendationsFlow',
-    inputSchema: MarketplaceRecommendationInputSchema,
-    outputSchema: MarketplaceRecommendationOutputSchema,
-  },
-  async (input) => {
-    const {output} = await marketplaceRecommendationsPrompt(input);
-    // Ensure the output is always a valid object with an array to prevent crashes.
-    return {
-      suggestedItems: output?.suggestedItems ?? [],
-    };
-  }
-);
+
+export async function getMarketplaceRecommendations(input: MarketplaceRecommendationInput): Promise<MarketplaceRecommendationOutput> {
+    const { userId, count = 5 } = input;
+    
+    // Fetch a batch of recent and relevant items to feed to the AI.
+    // This is more efficient than fetching all items.
+    const searchPayload = { mainKeywords: [], limit: 50 }; // Broad search for recent items
+    const candidateItems = await performSearch(searchPayload);
+    
+    if (candidateItems.length === 0) {
+        return { recommendations: [] };
+    }
+    
+    let userProfile = null;
+    if(userId) {
+        userProfile = await getProfileByIdFromDB(userId);
+    }
+    
+    // If no user profile, we can't generate personalized recommendations.
+    // A future enhancement could be to return generic popular items.
+    if (!userProfile) {
+        console.log("No user profile provided, cannot generate personalized recommendations.");
+        return { recommendations: [] };
+    }
+
+    try {
+        const { output } = await recommendationPrompt({
+            userProfile,
+            items: JSON.stringify(candidateItems),
+            count,
+        });
+        
+        return {
+            recommendations: output?.recommendations ?? [],
+        };
+
+    } catch(error) {
+        console.error("Error in getMarketplaceRecommendations flow:", error);
+        throw new Error("Failed to generate AI recommendations.");
+    }
+}
