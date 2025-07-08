@@ -24,7 +24,6 @@ export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
 };
 export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   organizerId: string;
-  dataAiHint?: string; // For images
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
@@ -453,7 +452,6 @@ export interface AgronomistDashboardData {
   }[];
   pendingConsultationRequests: {
     id: string;
-    farmerId: string;
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
@@ -461,7 +459,7 @@ export interface AgronomistDashboardData {
   knowledgeHubContributions: {
     id: string;
     title: string;
-    status: 'Published' | 'Pending Review' | 'Draft';
+    status: 'Published' | 'Pending Review';
   }[];
 }
 
@@ -645,19 +643,6 @@ export interface FinancialProduct {
   interestRate?: number;
   maxAmount?: number;
   targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
   status: 'Active' | 'Inactive';
   createdAt: string;
 }
@@ -857,3 +842,16 @@ export type ServiceItem = MarketplaceItem & {
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}

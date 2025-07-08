@@ -628,6 +628,18 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
 
 export type KnfBatch = {
     id: string;
@@ -822,15 +834,18 @@ export type ServiceItem = MarketplaceItem & {
     experienceLevel: string;
 };
 
-export interface FinancialProduct {
+// AI Related Types
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+
+export interface InsuranceProduct {
   id: string;
-  fiId: string;
+  providerId: string;
   name: string;
-  type: 'Loan' | 'Grant';
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
   description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
+  coverageDetails: string;
+  premium: number;
+  currency: string;
   status: 'Active' | 'Inactive';
   createdAt: string;
 }

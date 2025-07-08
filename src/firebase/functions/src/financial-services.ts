@@ -2,6 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import type { FinancialProduct } from "./types";
 
 const db = admin.firestore();
 
@@ -793,6 +794,7 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
     return { applications };
 });
 
+
 export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
     await checkFiAuth(context);
     const { applicationId } = data;
@@ -902,8 +904,8 @@ export const createFinancialProduct = functions.https.onCall(async (data, contex
         name,
         type,
         description,
-        interestRate: type === 'Loan' ? interestRate : null,
-        maxAmount: maxAmount || null,
+        interestRate: type === 'Loan' ? Number(interestRate) : null,
+        maxAmount: maxAmount ? Number(maxAmount) : null,
         targetRoles: targetRoles || [],
         status: 'Active',
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -914,10 +916,11 @@ export const createFinancialProduct = functions.https.onCall(async (data, contex
 });
 
 export const getFinancialProducts = functions.https.onCall(async (data, context) => {
-    const fiId = await checkFiAuth(context);
-
+    // This function can be called by any authenticated user to see available products.
+    checkAuth(context);
+    
     const productsSnapshot = await db.collection("financial_products")
-        .where("fiId", "==", fiId)
+        .where("status", "==", "Active")
         .orderBy("createdAt", "desc")
         .get();
 
@@ -934,3 +937,4 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
     return { products };
 });
     
+
