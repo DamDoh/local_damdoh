@@ -1,3 +1,4 @@
+
 {
   "FiApplicationListPage": {
     "backLink": "Retour au tableau de bord",
@@ -425,6 +426,43 @@
     }
   },
   "Auth": {
+    "signUpWelcome": "Rejoignez {appName} et connectez-vous avec la communauté agricole mondiale.",
+    "signInWelcome": "Bon retour ! Connectez-vous pour accéder à votre tableau de bord {appName}.",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}.",
+    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte {appName}.",
+    "signInTitle": "Connectez-vous à votre compte",
+    "signInDescription": "Entrez vos identifiants pour accéder à la plateforme.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "vous@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion...",
+    "signInButton": "Se connecter",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "signUpLink": "S'inscrire",
+    "recoverWithUniversalIdPrompt": "Ou récupérer le compte avec l'ID universel",
+    "signUpTitle": "Créez votre compte",
+    "signUpDescription": "Rejoignez la communauté pour vous connecter et grandir.",
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Entrez votre nom complet",
+    "roleLabel": "Votre rôle",
+    "rolePlaceholder": "Sélectionnez votre rôle principal",
+    "confirmPasswordLabel": "Confirmez le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez votre nouveau mot de passe",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "S'inscrire",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "forgotPasswordTitle": "Mot de passe oublié",
+    "forgotPasswordDescription": "Entrez votre e-mail pour recevoir un lien de réinitialisation.",
+    "sendingEmailButton": "Envoi de l'e-mail...",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "resetPasswordTitle": "Réinitialisez votre mot de passe",
+    "resetPasswordDescription": "Entrez votre nouveau mot de passe ci-dessous.",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "Entrez un nouveau mot de passe sécurisé",
+    "resettingPasswordButton": "Réinitialisation...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
     "recoverPage": {
       "title": "Récupération de compte sociale",
       "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance sur DamDoh.",
@@ -474,49 +512,6 @@
       "scanError": "Erreur de Scan",
       "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
       "invalidCodeError": "Ceci n'est pas un code QR DamDoh valide."
-    }
-  },
-  "admin": {
-    "layout": {
-      "title": "Section Admin",
-      "description": "Outils pour la gestion de la plateforme.",
-      "contentManagement": "Gestion de contenu",
-      "reports": "Rapports"
-    },
-    "reports": {
-      "generate": {
-        "title": "Générer un Rapport",
-        "description": "Générez des rapports basés sur les données de la plateforme.",
-        "reportTypeLabel": "Type de rapport",
-        "reportTypeVti": "Résumé des événements VTI",
-        "targetUserLabel": "Utilisateur cible",
-        "userSearchPlaceholder": "Rechercher un utilisateur par nom ou e-mail...",
-        "dateRangeLabel": "Plage de dates",
-        "datePlaceholder": "Sélectionnez une plage de dates",
-        "submitButton": "Générer un rapport"
-      },
-      "list": {
-        "title": "Rapports Récemment Générés",
-        "description": "Voir les rapports récemment créés.",
-        "table": {
-          "reportType": "Type",
-          "generatedFor": "Généré pour",
-          "date": "Date",
-          "status": "Statut",
-          "actions": "Actions"
-        },
-        "viewButton": "Voir",
-        "noReports": "Aucun rapport généré pour l'instant."
-      },
-      "toast": {
-        "loadErrorTitle": "Erreur",
-        "formIncompleteTitle": "Formulaire incomplet",
-        "formIncompleteDescription": "Veuillez remplir tous les champs pour générer un rapport.",
-        "generateSuccessTitle": "Rapport en cours de génération",
-        "generateSuccessDescription": "Votre rapport est en cours de création et apparaîtra bientôt dans la liste.",
-        "generateErrorTitle": "Erreur",
-        "generateErrorDescription": "Impossible de générer le rapport."
-      }
     }
   }
 }

@@ -1,3 +1,4 @@
+
 {
   "FiApplicationListPage": {
     "backLink": "Zurück zum Dashboard",
@@ -425,19 +426,56 @@
     }
   },
   "Auth": {
+    "signUpWelcome": "Treten Sie {appName} bei und vernetzen Sie sich mit der globalen Agrargemeinschaft.",
+    "signInWelcome": "Willkommen zurück! Melden Sie sich an, um auf Ihr {appName}-Dashboard zuzugreifen.",
+    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück.",
+    "resetPasswordPrompt": "Legen Sie ein neues Passwort für Ihr {appName}-Konto fest.",
+    "signInTitle": "In Ihr Konto einloggen",
+    "signInDescription": "Geben Sie Ihre Anmeldeinformationen ein, um auf die Plattform zuzugreifen.",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "sie@beispiel.com",
+    "passwordLabel": "Passwort",
+    "forgotPasswordLink": "Passwort vergessen?",
+    "signingInButton": "Anmelden...",
+    "signInButton": "Anmelden",
+    "noAccountPrompt": "Haben Sie noch kein Konto?",
+    "signUpLink": "Registrieren",
+    "recoverWithUniversalIdPrompt": "Oder Konto mit Universal ID wiederherstellen",
+    "signUpTitle": "Erstellen Sie Ihr Konto",
+    "signUpDescription": "Treten Sie der Community bei, um sich zu vernetzen und zu wachsen.",
+    "nameLabel": "Vollständiger Name",
+    "namePlaceholder": "Geben Sie Ihren vollständigen Namen ein",
+    "roleLabel": "Ihre Rolle",
+    "rolePlaceholder": "Wählen Sie Ihre Hauptrolle",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Bestätigen Sie Ihr neues Passwort",
+    "creatingAccountButton": "Konto wird erstellt...",
+    "signUpButton": "Registrieren",
+    "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
+    "forgotPasswordTitle": "Passwort vergessen",
+    "forgotPasswordDescription": "Geben Sie Ihre E-Mail-Adresse ein, um einen Link zum Zurücksetzen zu erhalten.",
+    "sendingEmailButton": "E-Mail wird gesendet...",
+    "sendResetLinkButton": "Link zum Zurücksetzen senden",
+    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
+    "resetPasswordTitle": "Setzen Sie Ihr Passwort zurück",
+    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein.",
+    "newPasswordLabel": "Neues Passwort",
+    "newPasswordPlaceholder": "Geben Sie ein sicheres neues Passwort ein",
+    "resettingPasswordButton": "Wird zurückgesetzt...",
+    "resetPasswordButton": "Passwort zurücksetzen",
     "recoverPage": {
-      "title": "Soziale Kontowiederherstellung",
-      "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes auf DamDoh wieder Zugriff auf Ihr Konto.",
-      "howItWorksTitle": "Wie es funktioniert",
-      "step1": "Geben Sie die Telefonnummer für das Konto ein, das Sie wiederherstellen möchten.",
-      "step2": "Ein einzigartiger, temporärer QR-Code wird generiert.",
-      "step3": "Lassen Sie einen Freund, der DamDoh verwendet, diesen Code scannen, um Ihre Identität zu bestätigen.",
-      "startButton": "Wiederherstellungsprozess starten",
-      "scanTitle": "Bitten Sie einen Freund zu scannen",
-      "scanDescription": "Zeigen Sie diesen QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh-Benutzer ist. Er kann ihn mit der Option 'Einem Freund helfen' auf seiner Wiederherstellungsseite scannen.",
-      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
-      "startOverButton": "Neu anfangen",
-      "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
+        "title": "Soziale Kontowiederherstellung",
+        "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes auf DamDoh wieder Zugriff auf Ihr Konto.",
+        "howItWorksTitle": "Wie es funktioniert",
+        "step1": "Geben Sie die Telefonnummer für das Konto ein, das Sie wiederherstellen möchten.",
+        "step2": "Ein einzigartiger, temporärer QR-Code wird generiert.",
+        "step3": "Lassen Sie einen Freund, der DamDoh verwendet, diesen Code scannen, um Ihre Identität zu bestätigen.",
+        "startButton": "Wiederherstellungsprozess starten",
+        "scanTitle": "Bitten Sie einen Freund zu scannen",
+        "scanDescription": "Zeigen Sie diesen QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh-Benutzer ist. Er kann ihn mit der Option 'Einem Freund helfen' auf seiner Wiederherstellungsseite scannen.",
+        "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
+        "startOverButton": "Neu anfangen",
+        "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
     }
   },
   "searchPage": {
@@ -474,49 +512,6 @@
       "scanError": "Scan-Fehler",
       "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
       "invalidCodeError": "Dies ist kein gültiger DamDoh QR-Code."
-    }
-  },
-  "admin": {
-    "layout": {
-      "title": "Admin-Bereich",
-      "description": "Werkzeuge zur Verwaltung der Plattform.",
-      "contentManagement": "Inhaltsverwaltung",
-      "reports": "Berichte"
-    },
-    "reports": {
-      "generate": {
-        "title": "Bericht generieren",
-        "description": "Generieren Sie Berichte basierend auf den Daten der Plattform.",
-        "reportTypeLabel": "Berichtstyp",
-        "reportTypeVti": "Zusammenfassung der VTI-Ereignisse",
-        "targetUserLabel": "Zielbenutzer",
-        "userSearchPlaceholder": "Benutzer nach Name oder E-Mail suchen...",
-        "dateRangeLabel": "Datumsbereich",
-        "datePlaceholder": "Wählen Sie einen Datumsbereich",
-        "submitButton": "Bericht generieren"
-      },
-      "list": {
-        "title": "Zuletzt generierte Berichte",
-        "description": "Sehen Sie sich kürzlich erstellte Berichte an.",
-        "table": {
-          "reportType": "Typ",
-          "generatedFor": "Generiert für",
-          "date": "Datum",
-          "status": "Status",
-          "actions": "Aktionen"
-        },
-        "viewButton": "Anzeigen",
-        "noReports": "Noch keine Berichte generiert."
-      },
-      "toast": {
-        "loadErrorTitle": "Fehler",
-        "formIncompleteTitle": "Formular unvollständig",
-        "formIncompleteDescription": "Bitte füllen Sie alle Felder aus, um einen Bericht zu generieren.",
-        "generateSuccessTitle": "Bericht wird generiert",
-        "generateSuccessDescription": "Ihr Bericht wird im Hintergrund erstellt und erscheint bald in der Liste.",
-        "generateErrorTitle": "Fehler",
-        "generateErrorDescription": "Der Bericht konnte nicht generiert werden."
-      }
     }
   }
 }

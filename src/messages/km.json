@@ -1,3 +1,4 @@
+
 {
   "FiApplicationListPage": {
     "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
@@ -425,6 +426,43 @@
     }
   },
   "Auth": {
+    "signUpWelcome": "ចូលរួមជាមួយ {appName} ហើយភ្ជាប់ទំនាក់ទំនងជាមួយសហគមន៍កសិកម្មពិភពលោក។",
+    "signInWelcome": "សូមស្វាគមន៍មកវិញ! សូមចូលដើម្បីចូលប្រើផ្ទាំងគ្រប់គ្រង {appName} របស់អ្នក។",
+    "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញសម្រាប់ {appName}។",
+    "resetPasswordPrompt": "កំណត់ពាក្យសម្ងាត់ថ្មីសម្រាប់គណនី {appName} របស់អ្នក។",
+    "signInTitle": "ចូលគណនីរបស់អ្នក",
+    "signInDescription": "បញ្ចូលព័ត៌មានសម្ងាត់របស់អ្នកដើម្បីចូលប្រើវេទិកា។",
+    "emailLabel": "អ៊ីមែល",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "ពាក្យសម្ងាត់",
+    "forgotPasswordLink": "ភ្លេចពាក្យសម្ងាត់?",
+    "signingInButton": "កំពុងចូល...",
+    "signInButton": "ចូលគណនី",
+    "noAccountPrompt": "មិនទាន់មានគណនី?",
+    "signUpLink": "ចុះឈ្មោះ",
+    "recoverWithUniversalIdPrompt": "ឬសង្គ្រោះគណនីជាមួយលេខសម្គាល់សកល",
+    "signUpTitle": "បង្កើតគណនីរបស់អ្នក",
+    "signUpDescription": "ចូលរួមសហគមន៍ដើម្បីភ្ជាប់ទំនាក់ទំនងនិងរីកចម្រើន។",
+    "nameLabel": "ឈ្មោះពេញ",
+    "namePlaceholder": "បញ្ចូលឈ្មោះពេញរបស់អ្នក",
+    "roleLabel": "តួនាទីរបស់អ្នក",
+    "rolePlaceholder": "ជ្រើសរើសតួនាទីចម្បងរបស់អ្នក",
+    "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់",
+    "confirmPasswordPlaceholder": "បញ្ជាក់ពាក្យសម្ងាត់ថ្មីរបស់អ្នក",
+    "creatingAccountButton": "កំពុងបង្កើតគណនី...",
+    "signUpButton": "ចុះឈ្មោះ",
+    "alreadyHaveAccountPrompt": "មានគណនីហើយ?",
+    "forgotPasswordTitle": "ភ្លេចពាក្យសម្ងាត់",
+    "forgotPasswordDescription": "បញ្ចូលអ៊ីមែលរបស់អ្នកដើម្បីទទួលបានតំណកំណត់ឡើងវិញ។",
+    "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",
+    "sendResetLinkButton": "ផ្ញើតំណកំណត់ឡើងវិញ",
+    "rememberPasswordPrompt": "ចាំពាក្យសម្ងាត់របស់អ្នកទេ?",
+    "resetPasswordTitle": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញ",
+    "resetPasswordDescription": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នកខាងក្រោម។",
+    "newPasswordLabel": "ពាក្យសម្ងាត់ថ្មី",
+    "newPasswordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ថ្មីដែលរឹងមាំ",
+    "resettingPasswordButton": "កំពុងកំណត់ឡើងវិញ...",
+    "resetPasswordButton": "កំណត់ពាក្យសម្ងាត់ឡើងវិញ",
     "recoverPage": {
       "title": "ការសង្គ្រោះគណនីសង្គម",
       "description": "យកមកវិញនូវការចូលប្រើគណនីរបស់អ្នកដោយមានជំនួយពីមិត្តភក្តិដែលទុកចិត្តនៅលើ DamDoh ។",
@@ -474,49 +512,6 @@
       "scanError": "កំហុសក្នុងការស្កេន",
       "scanErrorDescription": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។",
       "invalidCodeError": "នេះមិនមែនជាកូដ QR របស់ DamDoh ដែលត្រឹមត្រូវទេ។"
-    }
-  },
-  "admin": {
-    "layout": {
-      "title": "ផ្នែករដ្ឋបាល",
-      "description": "ឧបករណ៍សម្រាប់គ្រប់គ្រងវេទិកា។",
-      "contentManagement": "ការគ្រប់គ្រងមាតិកា",
-      "reports": "របាយការណ៍"
-    },
-    "reports": {
-      "generate": {
-        "title": "បង្កើតរបាយការណ៍",
-        "description": "បង្កើតរបាយការណ៍ដោយផ្អែកលើទិន្នន័យរបស់វេទិកា។",
-        "reportTypeLabel": "ប្រភេទរបាយការណ៍",
-        "reportTypeVti": "សេចក្តីសង្ខេបព្រឹត្តិការណ៍ VTI",
-        "targetUserLabel": "អ្នកប្រើប្រាស់គោលដៅ",
-        "userSearchPlaceholder": "ស្វែងរកអ្នកប្រើប្រាស់តាមឈ្មោះឬអ៊ីមែល...",
-        "dateRangeLabel": "ជួរកាលបរិច្ឆេទ",
-        "datePlaceholder": "ជ្រើសរើសជួរកាលបរិច្ឆេទ",
-        "submitButton": "បង្កើតរបាយការណ៍"
-      },
-      "list": {
-        "title": "របាយការណ៍ដែលបានបង្កើតថ្មីៗ",
-        "description": "មើលរបាយការណ៍ដែលបានបង្កើតថ្មីៗ។",
-        "table": {
-          "reportType": "ប្រភេទ",
-          "generatedFor": "បង្កើតសម្រាប់",
-          "date": "កាលបរិច្ឆេទ",
-          "status": "ស្ថានភាព",
-          "actions": "សកម្មភាព"
-        },
-        "viewButton": "មើល",
-        "noReports": "មិនទាន់មានរបាយការណ៍ណាមួយត្រូវបានបង្កើតទេ។"
-      },
-      "toast": {
-        "loadErrorTitle": "កំហុស",
-        "formIncompleteTitle": "បំពេញមិនពេញលេញ",
-        "formIncompleteDescription": "សូមបំពេញគ្រប់វាលដើម្បីបង្កើតរបាយការណ៍។",
-        "generateSuccessTitle": "កំពុងបង្កើតរបាយការណ៍",
-        "generateSuccessDescription": "របាយការណ៍របស់អ្នកកំពុងត្រូវបានបង្កើតហើយនឹងបង្ហាញក្នុងបញ្ជីឆាប់ៗនេះ។",
-        "generateErrorTitle": "កំហុស",
-        "generateErrorDescription": "មិនអាចបង្កើតរបាយការណ៍បានទេ។"
-      }
     }
   }
 }
