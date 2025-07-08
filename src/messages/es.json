@@ -332,5 +332,30 @@
     "on": "el",
     "noOpportunities": "No hay oportunidades de inversión para sugerir en este momento.",
     "noTransactions": "No hay transacciones recientes."
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Centro de Proveedores de Seguros",
+    "claimsTitle": "Reclamaciones Pendientes",
+    "claimsDescription": "Revise las reclamaciones presentadas contra las pólizas que gestiona.",
+    "table": {
+      "policyHolder": "Tomador del seguro",
+      "policyType": "Tipo de Póliza",
+      "claimDate": "Fecha de Reclamación",
+      "status": "Estado",
+      "action": "Acción",
+      "alert": "Alerta",
+      "severity": "Gravedad"
+    },
+    "reviewClaimButton": "Revisar Reclamación",
+    "noPendingClaims": "No hay reclamaciones pendientes para revisar.",
+    "riskAlertsTitle": "Alertas de Evaluación de Riesgos",
+    "riskAlertsDescription": "Pólizas activas con indicadores de alto riesgo basados en datos de la plataforma.",
+    "investigateButton": "Investigar",
+    "noRiskAlerts": "No hay alertas de alto riesgo en este momento.",
+    "activePoliciesTitle": "Pólizas Activas",
+    "activePoliciesDescription": "Un resumen de sus pólizas de seguro actualmente activas.",
+    "coverage": "Cobertura",
+    "expires": "Vence",
+    "noActivePolicies": "No se encontraron pólizas activas."
   }
 }

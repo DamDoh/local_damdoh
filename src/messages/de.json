@@ -332,5 +332,30 @@
     "on": "am",
     "noOpportunities": "Derzeit keine Investitionsmöglichkeiten zum Vorschlagen.",
     "noTransactions": "Keine letzten Transaktionen."
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Versicherungsanbieter-Hub",
+    "claimsTitle": "Ausstehende Schadensfälle",
+    "claimsDescription": "Überprüfen Sie Schadensfälle, die gegen von Ihnen verwaltete Policen eingereicht wurden.",
+    "table": {
+      "policyHolder": "Versicherungsnehmer",
+      "policyType": "Policentyp",
+      "claimDate": "Schadensdatum",
+      "status": "Status",
+      "action": "Aktion",
+      "alert": "Warnung",
+      "severity": "Schweregrad"
+    },
+    "reviewClaimButton": "Schadensfall prüfen",
+    "noPendingClaims": "Keine ausstehenden Schadensfälle zur Überprüfung.",
+    "riskAlertsTitle": "Risikobewertungswarnungen",
+    "riskAlertsDescription": "Aktive Policen mit Hochrisiko-Kennzeichnungen basierend auf Plattformdaten.",
+    "investigateButton": "Untersuchen",
+    "noRiskAlerts": "Derzeit keine Hochrisikowarnungen.",
+    "activePoliciesTitle": "Aktive Policen",
+    "activePoliciesDescription": "Eine Zusammenfassung Ihrer derzeit aktiven Versicherungspolicen.",
+    "coverage": "Deckungssumme",
+    "expires": "Läuft ab",
+    "noActivePolicies": "Keine aktiven Policen gefunden."
   }
 }

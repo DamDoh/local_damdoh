@@ -332,5 +332,30 @@
     "on": "on",
     "noOpportunities": "No investment opportunities to suggest right now.",
     "noTransactions": "No recent transactions."
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Insurance Provider Hub",
+    "claimsTitle": "Pending Claims",
+    "claimsDescription": "Review claims submitted against policies you manage.",
+    "table": {
+      "policyHolder": "Policy Holder",
+      "policyType": "Policy Type",
+      "claimDate": "Claim Date",
+      "status": "Status",
+      "action": "Action",
+      "alert": "Alert",
+      "severity": "Severity"
+    },
+    "reviewClaimButton": "Review Claim",
+    "noPendingClaims": "No pending claims to review.",
+    "riskAlertsTitle": "Risk Assessment Alerts",
+    "riskAlertsDescription": "Active policies with high-risk flags based on platform data.",
+    "investigateButton": "Investigate",
+    "noRiskAlerts": "No high-risk alerts at this time.",
+    "activePoliciesTitle": "Active Policies",
+    "activePoliciesDescription": "A summary of your currently active insurance policies.",
+    "coverage": "Coverage",
+    "expires": "Expires",
+    "noActivePolicies": "No active policies found."
   }
 }

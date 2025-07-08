@@ -332,5 +332,30 @@
     "on": "le",
     "noOpportunities": "Aucune opportunité d'investissement à suggérer pour le moment.",
     "noTransactions": "Aucune transaction récente."
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Hub Fournisseur d'Assurances",
+    "claimsTitle": "Sinistres en Attente",
+    "claimsDescription": "Examinez les sinistres déclarés sur les polices que vous gérez.",
+    "table": {
+      "policyHolder": "Titulaire de la police",
+      "policyType": "Type de police",
+      "claimDate": "Date du sinistre",
+      "status": "Statut",
+      "action": "Action",
+      "alert": "Alerte",
+      "severity": "Sévérité"
+    },
+    "reviewClaimButton": "Examiner le sinistre",
+    "noPendingClaims": "Aucun sinistre en attente d'examen.",
+    "riskAlertsTitle": "Alertes d'Évaluation des Risques",
+    "riskAlertsDescription": "Polices actives avec des indicateurs de risque élevé basés sur les données de la plateforme.",
+    "investigateButton": "Enquêter",
+    "noRiskAlerts": "Aucune alerte à haut risque pour le moment.",
+    "activePoliciesTitle": "Polices Actives",
+    "activePoliciesDescription": "Un résumé de vos polices d'assurance actuellement actives.",
+    "coverage": "Couverture",
+    "expires": "Expire le",
+    "noActivePolicies": "Aucune police active trouvée."
   }
 }
