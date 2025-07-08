@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Home",
@@ -292,6 +291,39 @@
       "p2": "By empowering smallholders with knowledge, tools, and fair markets, we help them earn more, restore more, and lead their communities toward a sustainable, dignified future.",
       "p3": "When farmers flourish, biodiversity thrives. When biodiversity thrives, the planet heals. Together, we can transform agriculture into a force for good — restoring ecosystems, cooling the climate, and ensuring abundance for generations to come.",
       "button": "Join the Movement"
+    }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Reach out with any questions or feedback.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon-Fri, 9am - 5pm",
+      "phone": "+1 (555) 123-4567"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Global",
+      "address": "123 Agri-Tech Ave, Innovation City, 10101"
+    },
+    "sendMessage": {
+      "title": "Send us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Enter your name",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "Enter your email address",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "What is your message about?",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Write your message here...",
+      "buttonText": "Send Message",
+      "note": "We'll get back to you as soon as possible."
     }
   }
 }

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
-  const t = useTranslations('contact');
+  const t = useTranslations('contactPage');
 
   return (
     <div className="space-y-8">

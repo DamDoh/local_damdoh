@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Inicio",
@@ -292,6 +291,39 @@
       "p2": "Al empoderar a los pequeños agricultores con conocimiento, herramientas y mercados justos, les ayudamos a ganar más, restaurar más y guiar a sus comunidades hacia un futuro sostenible y digno.",
       "p3": "Cuando los agricultores prosperan, la biodiversidad florece. Cuando la biodiversidad florece, el planeta se cura. Juntos, podemos transformar la agricultura en una fuerza para el bien, restaurando ecosistemas, enfriando el clima y asegurando la abundancia para las generaciones venideras.",
       "button": "Únete al Movimiento"
+    }
+  },
+  "contactPage": {
+    "title": "Contáctanos",
+    "subtitle": "Nos encantaría saber de ti. Contáctanos con cualquier pregunta o comentario.",
+    "emailUs": {
+      "title": "Envíanos un correo electrónico",
+      "general": "Consultas generales",
+      "support": "Soporte",
+      "partnerships": "Alianzas"
+    },
+    "callUs": {
+      "title": "Llámanos",
+      "hours": "Lunes a viernes, 9am - 5pm",
+      "phone": "+1 (555) 123-4567"
+    },
+    "ourOffice": {
+      "title": "Nuestra Oficina",
+      "org": "DamDoh Global",
+      "address": "123 Agri-Tech Ave, Innovation City, 10101"
+    },
+    "sendMessage": {
+      "title": "Envíanos un mensaje",
+      "nameLabel": "Tu Nombre",
+      "namePlaceholder": "Introduce tu nombre",
+      "emailLabel": "Tu Correo Electrónico",
+      "emailPlaceholder": "Introduce tu dirección de correo electrónico",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "¿De qué trata tu mensaje?",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Escribe tu mensaje aquí...",
+      "buttonText": "Enviar Mensaje",
+      "note": "Nos pondremos en contacto contigo lo antes posible."
     }
   }
 }

@@ -1,4 +1,3 @@
-
 {
   "AppHeader": {
     "home": "Startseite",
@@ -292,6 +291,39 @@
       "p2": "Indem wir Kleinbauern mit Wissen, Werkzeugen und fairen Märkten stärken, helfen wir ihnen, mehr zu verdienen, mehr wiederherzustellen und ihre Gemeinden in eine nachhaltige, würdevolle Zukunft zu führen.",
       "p3": "Wenn Bauern gedeihen, gedeiht die Biodiversität. Wenn die Biodiversität gedeiht, heilt der Planet. Gemeinsam können wir die Landwirtschaft zu einer Kraft des Guten machen – Ökosysteme wiederherstellen, das Klima kühlen und Fülle für kommende Generationen sichern.",
       "button": "Der Bewegung beitreten"
+    }
+  },
+  "contactPage": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir würden uns freuen, von Ihnen zu hören. Kontaktieren Sie uns bei Fragen oder Feedback.",
+    "emailUs": {
+      "title": "E-Mail an uns",
+      "general": "Allgemeine Anfragen",
+      "support": "Support",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Mo-Fr, 9:00 - 17:00 Uhr",
+      "phone": "+1 (555) 123-4567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "DamDoh Global",
+      "address": "123 Agri-Tech Ave, Innovation City, 10101"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Geben Sie Ihren Namen ein",
+      "emailLabel": "Ihre E-Mail",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "Worum geht es in Ihrer Nachricht?",
+      "messageLabel": "Nachricht",
+      "messagePlaceholder": "Schreiben Sie Ihre Nachricht hier...",
+      "buttonText": "Nachricht senden",
+      "note": "Wir werden uns so schnell wie möglich bei Ihnen melden."
     }
   }
 }
