@@ -340,5 +340,22 @@
     "sentConnectionRequest": "{name} vous a envoyé une demande de connexion",
     "eventReminder": "Rappel d'événement",
     "unknownNotification": "Vous avez une nouvelle mise à jour."
+  },
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Découvrez des experts agricoles et des services professionnels pour aider votre entreprise à se développer.",
+    "listServiceButton": "Lister un Service",
+    "searchPlaceholder": "Rechercher des compétences ou des services (ex: Analyse de Sol)",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les Catégories de Services",
+    "noResultsTitle": "Aucun service trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard pour de nouvelles annonces.",
+    "toast": {
+      "error": {
+        "title": "Erreur de recherche",
+        "description": "Impossible de récupérer les services disponibles."
+      }
+    }
   }
 }

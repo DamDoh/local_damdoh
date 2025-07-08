@@ -76,12 +76,12 @@ export default function TalentExchangePage() {
             description: res.description,
             imageUrl: res.imageUrl,
             location: res.location,
-            listingType: res.listingType,
+            listingType: 'Service',
             compensation: res.compensation,
             experienceLevel: res.experienceLevel,
             skillsRequired: res.skillsRequired,
             category: res.tags?.find((tag: string) => serviceCategories.some(sc => sc.id === tag)) || '',
-            sellerId: 'unknown',
+            sellerId: 'unknown', // This field is not in the search index, so we default it
             createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
             updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
         }));
@@ -102,7 +102,6 @@ export default function TalentExchangePage() {
     useEffect(() => {
         fetchServices();
     }, [fetchServices]);
-
 
     if (isLoading) {
         return <TalentPageSkeleton />;

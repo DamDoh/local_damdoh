@@ -88,10 +88,10 @@
       "errorTitle": "Error"
     }
   },
-  "InsurancePage": {
+   "InsurancePage": {
     "title": "Agricultural Insurance",
     "description": "Protect your farm and assets against unforeseen risks.",
-    "perTerm": "term",
+    "perTerm": "/ term",
     "viewDetailsButton": "View Details & Apply",
     "noProducts": "No insurance products are currently available.",
     "toast": {
@@ -340,5 +340,22 @@
     "sentConnectionRequest": "{name} sent you a connection request",
     "eventReminder": "Event Reminder",
     "unknownNotification": "You have a new update."
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Discover agricultural experts and professional services to help your business grow.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search skills or services (e.g., Soil Testing)",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Service Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or check back later for new listings.",
+    "toast": {
+      "error": {
+        "title": "Search Error",
+        "description": "Could not fetch available services."
+      }
+    }
   }
 }

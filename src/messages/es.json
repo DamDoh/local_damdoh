@@ -340,5 +340,22 @@
     "sentConnectionRequest": "{name} te ha enviado una solicitud de conexión",
     "eventReminder": "Recordatorio de evento",
     "unknownNotification": "Tienes una nueva actualización."
+  },
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Descubra expertos agrícolas y servicios profesionales para ayudar a su negocio a crecer.",
+    "listServiceButton": "Listar un Servicio",
+    "searchPlaceholder": "Buscar habilidades o servicios (ej: Análisis de Suelo)",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las Categorías de Servicios",
+    "noResultsTitle": "No se encontraron servicios",
+    "noResultsDescription": "Intente ajustar sus filtros de búsqueda o vuelva más tarde para ver nuevas publicaciones.",
+    "toast": {
+      "error": {
+        "title": "Error de búsqueda",
+        "description": "No se pudieron obtener los servicios disponibles."
+      }
+    }
   }
 }

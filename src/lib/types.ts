@@ -708,7 +708,7 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
-  timestamp: string; // ISO String
+  createdAt: string; // ISO String
   author: {
     id: string;
     name: string;
@@ -867,7 +867,6 @@ export interface PaymentLog {
 
 export type ServiceItem = MarketplaceItem & {
     listingType: 'Service';
-    skillsRequired: string[];
     compensation: string;
     experienceLevel: string;
 };
