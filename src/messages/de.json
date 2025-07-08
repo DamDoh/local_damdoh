@@ -1,77 +1,20 @@
-
 {
-  "traceabilityPage": {
-    "title": "Produkt-Rückverfolgbarkeit",
-    "description": "Verfolgen Sie den Weg Ihrer Lebensmittel vom Bauernhof bis zur Gabel mit einer Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "VTI oder Chargen-ID eingeben...",
-    "trackButton": "Verfolgen",
-    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die jeder Produktcharge zugewiesen wird und Transparenz entlang der gesamten Lieferkette gewährleistet.",
-    "recentTitle": "Kürzlich verifizierte Chargen",
-    "recentDescription": "Entdecken Sie einige der neuesten Produktreisen auf der Plattform.",
-    "noRecentBatches": "Keine kürzlich verifizierten Chargen gefunden.",
-    "producerLabel": "Erzeuger",
-    "harvestDateLabel": "Erntedatum",
-    "viewReportButton": "Vollständigen Bericht anzeigen",
-    "detailPage": {
-      "backLink": "Zurück zum Rückverfolgungs-Hub",
-      "invalidIdError": "Keine gültige Chargen-ID angegeben.",
-      "loadError": "Fehler beim Laden der Rückverfolgungshistorie für diese Charge.",
-      "notFoundTitle": "Charge nicht gefunden",
-      "notFoundDescription": "Der Rückverfolgungsbericht für diese ID konnte nicht gefunden werden.",
-      "traceableProduct": "Rückverfolgbares Produkt",
-      "batchIdLabel": "Chargen-ID",
-      "producerLabel": "Erzeuger",
-      "harvestDateLabel": "Erntedatum",
-      "yieldLabel": "Anfänglicher Ertrag",
-      "qualityLabel": "Qualitätsstufe",
-      "notSpecified": "Nicht angegeben",
-      "journeyTitle": "Produktreise",
-      "journeyDescription": "Ein chronologisches Protokoll der Ereignisse für diese Charge.",
-      "noEventDetails": "Keine spezifischen Details für dieses Ereignis.",
-      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgungsereignisse protokolliert.",
-      "sustainablyGrownTitle": "Nachhaltig angebaut",
-      "sustainablyGrownDescription": "Dieses Produkt wurde unter Verwendung von Praktiken angebaut, die den Prinzipien der nachhaltigen und biologischen Landwirtschaft entsprechen, basierend auf den protokollierten Betriebsmitteln.",
-      "geoLocationLabel": "Geolokalisierung",
-      "observationType": "Beobachtungstyp",
-      "details": "Details",
-      "aiDiagnosis": "KI-Diagnose"
-    }
-  },
-  "searchPage": {
-    "title": "Universelle Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform.",
-    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchen",
-    "popularSearch1": "Bio-Kaffeebohnen Kenia",
-    "popularSearch2": "Traktorvermietung",
-    "popularSearch3": "Dürreresistente Maissamen",
-    "popularSearch4": "Logistikpartner Ostafrika",
-    "popularSearch5": "Reduzierung von Nachernteverlusten",
-    "modal": {
-      "title": "Universelle Suche",
-      "placeholder": "Personen, Produkte, Dienste, Foren suchen...",
-      "searchButton": "Suchen",
-      "searchError": "Suchfehler",
-      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-      "invalidCodeError": "Ungültiger QR-Code gescannt. Dies scheint keine DamDoh-ID zu sein.",
-      "scanFailed": "Scan fehlgeschlagen",
-      "scanError": "Scan-Fehler",
-      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
-      "interpretationTitle": "KI-Interpretation",
-      "interpretationNotesDefault": "Suche nach Elementen, die sich auf Ihre Anfrage beziehen.",
-      "filtersTitle": "Angewandte Filter",
-      "noResults": "Keine Ergebnisse gefunden.",
-      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
-      "results": {
-        "users": "Profile",
-        "marketplaceItems": "Marktplatz",
-        "forums": "Foren",
-        "agri_events": "Veranstaltungen",
-        "knowledge_articles": "Wissensdatenbank",
-        "vti_registry": "Rückverfolgungsberichte"
-      }
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "Zu Ihrem Feed hinzufügen",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "Vorschläge basieren auf den Interessen und Bedürfnissen Ihres Profils.",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
+    "loadError": "Vorschläge konnten nicht geladen werden.",
+    "noSuggestions": "Zurzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
+    "following": "Folge ich",
+    "follow": "Folgen",
+    "promotionsTitle": "Aktionen",
+    "promotionsDescription": "Sehen Sie sich Sonderangebote und Deals von Partnern im Ökosystem an.",
+    "managePromotionsButton": "Aktionen verwalten",
+    "ad": "Anzeige",
+    "adTitle": "Markteinblicke freischalten",
+    "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
+    "adButton": "Mehr erfahren"
   },
   "AppFooter": {
     "tagline": "Die globale landwirtschaftliche Lieferkettenplattform.",
@@ -228,86 +171,7 @@
         "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
       }
     },
-    "create": {
-      "backLink": "Zurück zu den Themen",
-      "title": "Neues Thema erstellen",
-      "description": "Starten Sie eine neue Diskussion im Forum.",
-      "form": {
-        "nameLabel": "Themenname",
-        "namePlaceholder": "Geben Sie den Namen Ihres Themas ein",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Thema kurz",
-        "submitButton": "Thema erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "success": {
-        "title": "Thema erfolgreich erstellt",
-        "description": "Ihr neues Thema wurde erstellt."
-      }
-    },
-    "topic": {
-      "backLink": "Zurück zu den Themen",
-      "postMeta": "von {{author}} am {{date}}",
-      "buttons": {
-        "createPost": "Beitrag erstellen",
-        "loadMore": "Mehr laden",
-        "loadingMore": "Wird geladen..."
-      },
-      "noPosts": {
-        "title": "Noch keine Beiträge",
-        "description": "Seien Sie der Erste, der die Diskussion startet.",
-        "button": "Ersten Beitrag erstellen"
-      },
-      "notFound": {
-        "title": "Thema nicht gefunden",
-        "description": "Das gesuchte Thema existiert nicht.",
-        "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Fehler beim Laden der Beiträge",
-          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
-        },
-        "loadTopic": {
-          "title": "Fehler beim Laden des Themas",
-          "description": "Beim Laden der Themendetails ist ein Fehler aufgetreten."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Zurück zu {{topicName}}",
-      "unknownUser": "Unbekannter Benutzer",
-      "repliesTitle": "Antworten ({{count}})",
-      "noReplies": "Noch keine Antworten.",
-      "reply": {
-        "title": "Eine Antwort hinzufügen",
-        "placeholder": "Schreiben Sie hier Ihre Antwort...",
-        "submitButton": "Antwort hinzufügen",
-        "submittingButton": "Wird gesendet...",
-        "success": "Antwort hinzugefügt!"
-      },
-      "notFound": {
-        "title": "Beitrag nicht gefunden",
-        "description": "Der gesuchte Beitrag existiert nicht."
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Fehler beim Laden des Beitrags",
-          "description": "Beim Laden der Beitragsdetails ist ein Fehler aufgetreten."
-        },
-        "loadReplies": {
-          "title": "Fehler beim Laden der Antworten",
-          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
-        },
-        "emptyReply": "Die Antwort darf nicht leer sein.",
-        "submitReply": {
-          "title": "Fehler beim Senden der Antwort",
-          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
-        }
-      }
-    },
     "createPost": {
-      "backLink": "Zurück zum Thema",
       "aiHelper": {
         "title": "KI-Helfer",
         "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
@@ -340,13 +204,44 @@
         "incomplete": { "title": "Unvollständige Felder", "description": "Bitte füllen Sie alle erforderlichen Felder aus." },
         "general": { "title": "Fehler", "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten." }
       }
-    }
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "Alle Typen",
-      "Product": "Produkt",
-      "Service": "Dienstleistung"
+    },
+    "postView": {
+      "backLink": "Zurück zu {{topicName}}",
+      "unknownUser": "Unbekannter Benutzer",
+      "postMeta": "von {{author}} am {{date}}",
+      "repliesTitle": "Antworten ({{count}})",
+      "noReplies": "Noch keine Antworten.",
+      "buttons": {
+        "loadMore": "Mehr laden",
+        "loadingMore": "Wird geladen..."
+      },
+      "reply": {
+        "title": "Eine Antwort hinzufügen",
+        "placeholder": "Schreiben Sie hier Ihre Antwort...",
+        "submitButton": "Antwort hinzufügen",
+        "submittingButton": "Wird gesendet...",
+        "success": "Antwort hinzugefügt!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Beim Laden der Beitragsdetails ist ein Fehler aufgetreten."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
+        },
+        "emptyReply": "Die Antwort darf nicht leer sein.",
+        "submitReply": {
+          "title": "Fehler beim Senden der Antwort",
+          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
+        }
+      }
     }
   },
   "talentExchangePage": {
@@ -366,7 +261,14 @@
       }
     }
   },
-   "settingsPage": {
+  "constants": {
+    "listingTypes": {
+      "All": "Alle Typen",
+      "Product": "Produkt",
+      "Service": "Dienstleistung"
+    }
+  },
+  "settingsPage": {
     "title": "Einstellungen",
     "description": "Verwalten Sie Ihre Konto- und Profileinstellungen.",
     "profileTab": "Profil",
@@ -416,6 +318,7 @@
       "connectionRequestsConnectionsOfConnections": "Verbindungen von Verbindungen",
       "contactInfoVisibilityLabel": "Wer kann Ihre Kontaktdaten sehen?",
       "contactInfoVisibilityDescription": "Kontrollieren Sie, wer Ihre E-Mail und Telefonnummer sieht.",
+      "contactInfoVisibilityAll": "Jeder",
       "contactInfoVisibilityConnections": "Nur Verbindungen",
       "activityStatusLabel": "Meinen Aktivitätsstatus anzeigen",
       "activityStatusDescription": "Lassen Sie Ihre Verbindungen wissen, wann Sie auf DamDoh aktiv sind.",
@@ -450,7 +353,41 @@
         "unauthorizedDescription": "Sie können nur Ihr eigenes Profil bearbeiten."
       }
     }
+  },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform.",
+    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffeebohnen Kenia",
+    "popularSearch2": "Traktorvermietung",
+    "popularSearch3": "Dürreresistente Maissamen",
+    "popularSearch4": "Logistikpartner Ostafrika",
+    "popularSearch5": "Reduzierung von Nachernteverlusten",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Personen, Produkte, Dienste, Foren suchen...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Ungültiger QR-Code gescannt. Dies scheint keine DamDoh-ID zu sein.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scan-Fehler",
+      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Suche nach Elementen, die sich auf Ihre Anfrage beziehen.",
+      "filtersTitle": "Angewandte Filter",
+      "noResults": "Keine Ergebnisse gefunden.",
+      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissensdatenbank",
+        "vti_registry": "Rückverfolgungsberichte"
+      }
+    }
   }
 }
-
-    

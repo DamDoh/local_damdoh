@@ -1,77 +1,20 @@
-
 {
-  "traceabilityPage": {
-    "title": "Product Traceability",
-    "description": "Trace the journey of your food from farm to fork with a Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "Enter VTI or Batch ID...",
-    "trackButton": "Track",
-    "vtiDescription": "A VTI is a unique identifier assigned to each batch of produce, ensuring transparency throughout the supply chain.",
-    "recentTitle": "Recently Verified Batches",
-    "recentDescription": "Explore some of the latest product journeys on the platform.",
-    "noRecentBatches": "No recently verified batches found.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "viewReportButton": "View Full Report",
-    "detailPage": {
-      "backLink": "Back to Traceability Hub",
-      "invalidIdError": "No valid batch ID provided.",
-      "loadError": "Failed to load traceability history for this batch.",
-      "notFoundTitle": "Batch Not Found",
-      "notFoundDescription": "The traceability report for this ID could not be found.",
-      "traceableProduct": "Traceable Product",
-      "batchIdLabel": "Batch ID",
-      "producerLabel": "Producer",
-      "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Initial Yield",
-      "qualityLabel": "Quality Grade",
-      "notSpecified": "Not specified",
-      "journeyTitle": "Product Journey",
-      "journeyDescription": "A chronological record of events for this batch.",
-      "noEventDetails": "No specific details for this event.",
-      "noEventsFound": "No traceability events have been logged for this batch yet.",
-      "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product was grown using practices that align with sustainable and organic principles, based on logged inputs.",
-      "geoLocationLabel": "Geolocation",
-      "observationType": "Observation Type",
-      "details": "Details",
-      "aiDiagnosis": "AI Diagnosis"
-    }
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search people, products, services, forum posts...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans Kenya",
-    "popularSearch2": "Tractor Rental",
-    "popularSearch3": "Drought-resistant maize seeds",
-    "popularSearch4": "East Africa Logistics Partner",
-    "popularSearch5": "Post-harvest loss reduction",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search people, products, services, forums...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while searching. Please try again.",
-      "invalidCodeError": "Invalid QR Code scanned. It does not appear to be a DamDoh ID.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Searching for items related to your query.",
-      "filtersTitle": "Applied Filters",
-      "noResults": "No results found.",
-      "tryAgain": "Try refining your search terms.",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Hub",
-        "vti_registry": "Traceability Reports"
-      }
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "Add to your feed",
+    "refreshSuggestions": "Refresh suggestions",
+    "infoTooltip": "Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "Sign in to get personalized suggestions.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "following": "Following",
+    "follow": "Follow",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "Manage Promotions",
+    "ad": "Ad",
+    "adTitle": "Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "Learn More"
   },
   "AppFooter": {
     "tagline": "The Global Agricultural Supply Chain Platform.",
@@ -280,10 +223,6 @@
       "unknownUser": "Unknown User",
       "repliesTitle": "Replies ({{count}})",
       "noReplies": "No replies yet.",
-      "buttons": {
-        "loadMore": "Load More",
-        "loadingMore": "Loading More..."
-      },
       "reply": {
         "title": "Add a Reply",
         "placeholder": "Write your reply here...",
@@ -293,8 +232,7 @@
       },
       "notFound": {
         "title": "Post not found",
-        "description": "The post you are looking for does not exist.",
-        "backButton": "Back to Forums"
+        "description": "The post you are looking for does not exist."
       },
       "errors": {
         "loadPost": {
@@ -348,13 +286,6 @@
       }
     }
   },
-  "constants": {
-    "listingTypes": {
-      "All": "All Types",
-      "Product": "Product",
-      "Service": "Service"
-    }
-  },
   "talentExchangePage": {
     "title": "Talent Exchange",
     "description": "Find agricultural jobs, services, and experts.",
@@ -372,7 +303,14 @@
       }
     }
   },
-   "settingsPage": {
+  "constants": {
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service"
+    }
+  },
+  "settingsPage": {
     "title": "Settings",
     "description": "Manage your account and profile settings.",
     "profileTab": "Profile",
@@ -457,7 +395,41 @@
         "unauthorizedDescription": "You can only edit your own profile."
       }
     }
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search people, products, services, forum posts...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee Beans Kenya",
+    "popularSearch2": "Tractor Rental",
+    "popularSearch3": "Drought-resistant maize seeds",
+    "popularSearch4": "East Africa Logistics Partner",
+    "popularSearch5": "Post-harvest loss reduction",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search people, products, services, forums...",
+      "searchButton": "Search",
+      "searchError": "Search Error",
+      "searchErrorDescription": "An error occurred while searching. Please try again.",
+      "invalidCodeError": "Invalid QR Code scanned. It does not appear to be a DamDoh ID.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Searching for items related to your query.",
+      "filtersTitle": "Applied Filters",
+      "noResults": "No results found.",
+      "tryAgain": "Try refining your search terms.",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "agri_events": "Events",
+        "knowledge_articles": "Knowledge Hub",
+        "vti_registry": "Traceability Reports"
+      }
+    }
   }
 }
-
-    

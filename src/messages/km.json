@@ -1,90 +1,20 @@
-
 {
-  "settingsPage": {
-    "title": "ការកំណត់",
-    "description": "គ្រប់គ្រងការកំណត់គណនីនិងប្រវត្តិរូបរបស់អ្នក។",
-    "profileTab": "ប្រវត្តិរូប",
-    "accountTab": "គណនី",
-    "notificationsTab": "ការជូនដំណឹង",
-    "privacyTab": "ឯកជនភាព",
-    "appearanceTab": "រូបរាង",
-    "stakeholderProfile": {
-      "title": "ប្រវត្តិរូបអ្នកពាក់ព័ន្ធ",
-      "description": "អត្តសញ្ញាណវិជ្ជាជីវៈរបស់អ្នកនៅលើដាំដុះ។ នេះជារបៀបដែលអ្នកដទៃមើលឃើញអ្នក។"
-    },
-    "account": {
-      "title": "ការកំណត់គណនី",
-      "description": "គ្រប់គ្រងការផ្ទៀងផ្ទាត់និងសុវត្ថិភាពគណនីរបស់អ្នក។",
-      "currentPasswordLabel": "លេខសម្ងាត់បច្ចុប្បន្ន",
-      "newPasswordLabel": "លេខសម្ងាត់ថ្មី",
-      "confirmPasswordLabel": "បញ្ជាក់លេខសម្ងាត់ថ្មី",
-      "changePasswordButton": "ធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់",
-      "deactivateButton": "បិទគណនី"
-    },
-    "notifications": {
-      "title": "ការកំណត់ការជូនដំណឹង",
-      "description": "គ្រប់គ្រងចំណង់ចំណូលចិត្តការជូនដំណឹងតាមអ៊ីមែលและ push របស់អ្នក។",
-      "emailDigestLabel": "ការជូនដំណឹងតាមអ៊ីមែល",
-      "emailDigestDescription": "ទទួលការជូនដំណឹងតាមអ៊ីមែល។",
-      "connectionRequestsLabel": "សំណើភ្ជាប់",
-      "connectionRequestsDescription": "ជូនដំណឹងខ្ញុំអំពីសំណើភ្ជាប់ថ្មី។",
-      "forumMentionsLabel": "ការនិយាយដល់និងការឆ្លើយតបនៅក្នុងវេទិកា",
-      "forumMentionsDescription": "ជូនដំណឹងខ្ញុំនៅពេលខ្ញុំត្រូវបានគេនិយាយដល់หรือប្រកាសរបស់ខ្ញុំត្រូវបានឆ្លើយតប។",
-      "marketplaceActivityLabel": "សកម្មភាពទីផ្សារ",
-      "marketplaceActivityDescription": "ជូនដំណឹងខ្ញុំអំពីការបញ្ជាទិញនិងសំណួរលើបញ្ជីរបស់ខ្ញុំ។",
-      "talentExchangeLabel": "ការធ្វើបច្ចុប្បន្នភាពការផ្លាស់ប្តូរទេពកោសល្យ",
-      "talentExchangeDescription": "ជូនដំណឹងខ្ញុំអំពីបញ្ជីការងារថ្មីនិងពាក្យសុំ។",
-      "saveButton": "រក្សាទុកចំណង់ចំណូលចិត្ត"
-    },
-    "privacy": {
-      "title": "ឯកជនភាពและភាពមើលឃើញ",
-      "description": "ត្រួតពិនិត្យអ្នកដែលអាចមើលឃើញព័ត៌មានរបស់អ្នកและធ្វើអន្តរកម្មជាមួយអ្នក។",
-      "profileVisibilityLabel": "ភាពមើលឃើញប្រវត្តិរូប",
-      "profileVisibilityDescription": "ត្រួតពិនិត្យអ្នកដែលអាចមើលឃើញប្រវត្តិរូបពេញលេញរបស់អ្នក។",
-      "profileVisibilityAll": "អ្នករាល់គ្នា",
-      "profileVisibilityConnections": "តែការតភ្ជាប់ប៉ុណ្ណោះ",
-      "profileVisibilityPrivate": "ឯកជន (តែខ្ញុំប៉ុណ្ណោះ)",
-      "connectionRequestsLabel": "តើអ្នកណាអាចផ្ញើសំណើភ្ជាប់មកអ្នកបាន?",
-      "connectionRequestsDescription": "កំណត់អ្នកដែលអាចផ្ញើសំណើភ្ជាប់មកអ្នក។",
-      "connectionRequestsAll": "អ្នករាល់គ្នា",
-      "connectionRequestsConnectionsOfConnections": "ការតភ្ជាប់នៃការតភ្ជាប់",
-      "contactInfoVisibilityLabel": "តើអ្នកណាអាចមើលឃើញព័ត៌មានទំនាក់ទំនងរបស់អ្នក?",
-      "contactInfoVisibilityDescription": "ត្រួតពិនិត្យអ្នកที่មើលឃើញអ៊ីមែលและលេខទូរស័ព្ទរបស់អ្នក។",
-      "contactInfoVisibilityAll": "អ្នករាល់គ្នា",
-      "contactInfoVisibilityConnections": "តែការតភ្ជាប់ប៉ុណ្ណោះ",
-      "activityStatusLabel": "បង្ហាញស្ថានភាពសកម្មភាពរបស់ខ្ញុំ",
-      "activityStatusDescription": "អនុញ្ញាតឱ្យការតភ្ជាប់របស់អ្នកដឹងនៅពេលអ្នកសកម្មនៅលើដាំដុះ។",
-      "searchIndexingLabel": "អនុញ្ញាតឱ្យម៉ាស៊ីនស្វែងរកធ្វើលិបិក្រមប្រវត្តិរូបរបស់ខ្ញុំ",
-      "searchIndexingDescription": "អនុញ្ញាតឱ្យប្រវត្តិរូបរបស់អ្នកបង្ហាញនៅក្នុងលទ្ធផលស្វែងរកនៅលើ Google ជាដើម។",
-      "saveButton": "រក្សាទុកការកំណត់ឯកជនភាព",
-      "dataConsentTitle": "ការចែករំលែកទិន្នន័យและการយល់ព្រម",
-      "dataConsentDescription": "ត្រួតពិនិត្យពីរបៀបដែលទិន្នន័យរបស់អ្នកត្រូវបានប្រើប្រាស់នៅទូទាំងសេវាកម្មบูรณาการរបស់ដាំដុះ។",
-      "marketplaceHistoryLabel": "ប្រវត្តិទីផ្សារសម្រាប់សេវាកម្មហិរញ្ញវត្ថុ",
-      "marketplaceHistoryDescription": "អនុញ្ញាតឱ្យสถาบันการเงินบน DamDoh النظرประวัติธุรกรรมตลาดของคุณสำหรับการให้คะแนนเครดิต.",
-      "traceabilityDataLabel": "ទិន្នន័យតាមដានសាធារណៈ",
-      "traceabilityDataDescription": "អនុញ្ញាតឱ្យទិន្នន័យតាមដានដែលមិនបញ្ចេញឈ្មោះរបស់អ្នកត្រូវបានប្រើប្រាស់ក្នុងរបាយការណ៍សាធារណៈនិងការស្រាវជ្រាវ។",
-      "financialApplicationDataLabel": "ទិន្នន័យពាក្យសុំហិរញ្ញវត្ថុសម្រាប់ការផ្គូផ្គង AI",
-      "financialApplicationDataDescription": "អនុញ្ញាតឱ្យទិន្នន័យពាក្យសុំហិរញ្ញវត្ថុដែលមិនបញ្ចេញឈ្មោះរបស់អ្នកត្រូវបានប្រើប្រាស់ដោយ AI របស់យើងដើម្បីណែនាំសេវាកម្មដែលពាក់ព័ន្ធ។",
-      "saveConsentButton": "រក្សាទុកការយល់ព្រម"
-    },
-    "appearance": {
-      "title": "រូបរាង",
-      "description": "ប្ដូររូបរាងและអារម្មណ៍របស់កម្មវិធីតាមបំណង។",
-      "themeLabel": "រូបរាង",
-      "themeDescription": "ជ្រើសរើសរូបរាងភ្លឺหรือងងឹតសម្រាប់ចំណុចប្រទាក់។",
-      "lightTheme": "ភ្លឺ",
-      "darkTheme": "ងងឹត",
-      "languageLabel": "ភាសា",
-      "languageDescription": "ជ្រើសរើសភាសាដែលអ្នកចូលចិត្តសម្រាប់កម្មវិធី។"
-    },
-    "editProfilePage": {
-      "toast": {
-        "notAuthenticatedTitle": "មិនបានផ្ទៀងផ្ទាត់",
-        "notAuthenticatedDescription": "សូមចូលគណនីដើម្បីកែសម្រួលប្រវត្តិរូបរបស់អ្នក។",
-        "unauthorizedTitle": "គ្មានការអនុញ្ញាត",
-        "unauthorizedDescription": "អ្នកអាចកែសម្រួលតែប្រវត្តិរូបរបស់អ្នកផ្ទាល់ប៉ុណ្ណោះ។"
-      }
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "បន្ថែមទៅក្នុងហ្វីតរបស់អ្នក",
+    "refreshSuggestions": "ធ្វើឱ្យការណែនាំស្រស់ស្រាយ",
+    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍និងតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
+    "signInPrompt": "ចូលដើម្បីទទួលបានការណែនាំផ្ទាល់ខ្លួន។",
+    "loadError": "មិនអាចផ្ទុកការណែនាំបានទេ។",
+    "noSuggestions": "មិនមានការណែនាំថ្មីនៅពេលនេះទេ។ សូមពិនិត្យមើលពេលក្រោយ!",
+    "following": "កំពុងតាមដាន",
+    "follow": "តាមដាន",
+    "promotionsTitle": "ការផ្សព្វផ្សាយ",
+    "promotionsDescription": "មើលការផ្តល់ជូនពិសេសនិងកិច្ចព្រមព្រៀងពីដៃគូក្នុងប្រព័ន្ធអេកូឡូស៊ី។",
+    "managePromotionsButton": "គ្រប់គ្រងការផ្សព្វផ្សាយ",
+    "ad": "ពាណិជ្ជកម្ម",
+    "adTitle": "ដោះសោការយល់ដឹងទីផ្សារ",
+    "adDescription": "ទទួលបានទិន្នន័យនិងការវិភាគតាមពេលវេលាជាក់ស្តែងជាមួយដាំដុះប្រូ។",
+    "adButton": "ស្វែងយល់បន្ថែម"
   },
   "AppFooter": {
     "tagline": "វេទិកាសកលសម្រាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
@@ -179,7 +109,7 @@
     "carbonFootprint": "បាតជើងកាបូន",
     "waterEfficiency": "ប្រសិទ្ធភាពទឹក",
     "biodiversityScore": "ពិន្ទុជីវចម្រុះ",
-    "practicesTitle": "ការអនុវត្តប្រកបដោយនិរន្តរភាពដែលបានบันทึก",
+    "practicesTitle": "ការអនុវត្តប្រកបដោយនិរន្តរភាពដែលបានកត់ត្រា",
     "certificationsTitle": "វិញ្ញាបនបត្រសកម្ម",
     "auth": {
       "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
@@ -188,7 +118,7 @@
     },
     "noData": {
       "title": "គ្មានទិន្នន័យ",
-      "description": "ចាប់ផ្តើមบันทึกกิจกรรมในฟาร์มរបស់អ្នកដើម្បីមើលเมตริกความยั่งยืนของคุณ។"
+      "description": "ចាប់ផ្តើមកត់ត្រាសកម្មភាពនៅក្នុងកសិដ្ឋានរបស់អ្នកដើម្បីមើលmetricsនិរន្តរភាពរបស់អ្នក។"
     },
     "practicesTable": {
       "practice": "ការអនុវត្ត",
@@ -200,7 +130,7 @@
       "expiry": "ផុតកំណត់"
     },
     "metricCard": {
-      "trendText": "จากเดือนที่แล้ว"
+      "trendText": "ពីខែមុន"
     }
   },
   "Forums": {
@@ -355,6 +285,23 @@
       }
     }
   },
+  "talentExchangePage": {
+    "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "description": "ស្វែងរកការងារកសិកម្ម សេវាកម្ម និងអ្នកជំនាញ។",
+    "listServiceButton": "ចុះបញ្ជីសេវាកម្ម / ការងារ",
+    "searchPlaceholder": "ស្វែងរកការងារ ឬសេវាកម្ម...",
+    "locationPlaceholder": "តម្រងតាមទីតាំង...",
+    "categoryPlaceholder": "តម្រងតាមប្រភេទ...",
+    "allCategories": "គ្រប់ប្រភេទសេវាកម្ម",
+    "noResultsTitle": "រកមិនឃើញសេវាកម្ម",
+    "noResultsDescription": "ព្យាយាមកែតម្រូវការស្វែងរក หรือតម្រងរបស់អ្នក។ ឬក្លាយជាអ្នកដំបូងដែលចុះបញ្ជីសេវាកម្ម!",
+    "toast": {
+      "error": {
+        "title": "កំហុស",
+        "description": "មិនអាចទាញយកសេវាកម្មจากตลาดความสามารถได้។"
+      }
+    }
+  },
   "constants": {
     "listingTypes": {
       "All": "គ្រប់ប្រភេទ",
@@ -362,23 +309,126 @@
       "Service": "សេវាកម្ម"
     }
   },
-  "talentExchangePage": {
-    "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-    "description": "ស្វែងរកការងារកសិកម្ម សេវាកម្ម และผู้เชี่ยวชาญ។",
-    "listServiceButton": "ចុះបញ្ជីសេវាកម្ម / ការងារ",
-    "searchPlaceholder": "ស្វែងរកការងារ ឬសេវាកម្ម...",
-    "locationPlaceholder": "តម្រងតាមទីតាំង...",
-    "categoryPlaceholder": "តម្រងតាមប្រភេទ...",
-    "allCategories": "គ្រប់ប្រភេទសេវាកម្ម",
-    "noResultsTitle": "រកមិនឃើញសេវាកម្ម",
-    "noResultsDescription": "ព្យាយាមកែតម្រូវការស្វែងរក หรือតម្រងរបស់អ្នក។ ឬក្លាយជាអ្នកដំបូងที่ลงรายการบริการ!",
-    "toast": {
-      "error": {
-        "title": "កំហុស",
-        "description": "មិនអាចទាញយកសេវាកម្មពីการแลกเปลี่ยนความสามารถพิเศษได้។"
+  "settingsPage": {
+    "title": "ការកំណត់",
+    "description": "គ្រប់គ្រងការកំណត់គណនីនិងប្រវត្តិរូបរបស់អ្នក។",
+    "profileTab": "ប្រវត្តិរូប",
+    "accountTab": "គណនី",
+    "notificationsTab": "ការជូនដំណឹង",
+    "privacyTab": "ឯកជនភាព",
+    "appearanceTab": "រូបរាង",
+    "stakeholderProfile": {
+      "title": "ប្រវត្តិរូបអ្នកពាក់ព័ន្ធ",
+      "description": "អត្តសញ្ញាណវិជ្ជាជីវៈរបស់អ្នកនៅលើដាំដុះ។ នេះជារបៀបដែលអ្នកដទៃមើលឃើញអ្នក។"
+    },
+    "account": {
+      "title": "ការកំណត់គណនី",
+      "description": "គ្រប់គ្រងការផ្ទៀងផ្ទាត់និងសុវត្ថិភាពគណនីរបស់អ្នក។",
+      "currentPasswordLabel": "លេខសម្ងាត់បច្ចុប្បន្ន",
+      "newPasswordLabel": "លេខសម្ងាត់ថ្មី",
+      "confirmPasswordLabel": "បញ្ជាក់លេខសម្ងាត់ថ្មី",
+      "changePasswordButton": "ធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់",
+      "deactivateButton": "បិទគណនី"
+    },
+    "notifications": {
+      "title": "ការកំណត់ការជូនដំណឹង",
+      "description": "គ្រប់គ្រងចំណង់ចំណូលចិត្តការជូនដំណឹងតាមអ៊ីមែល និង push របស់អ្នក។",
+      "emailDigestLabel": "ការជូនដំណឹងតាមអ៊ីមែល",
+      "emailDigestDescription": "ទទួលការជូនដំណឹងតាមអ៊ីមែល។",
+      "connectionRequestsLabel": "សំណើភ្ជាប់",
+      "connectionRequestsDescription": "ជូនដំណឹងខ្ញុំអំពីសំណើភ្ជាប់ថ្មី។",
+      "forumMentionsLabel": "ការនិយាយដល់และការឆ្លើយតបនៅក្នុងវេទិកា",
+      "forumMentionsDescription": "ជូនដំណឹងខ្ញុំនៅពេលខ្ញុំត្រូវបានគេនិយាយដល់หรือប្រកាសរបស់ខ្ញុំត្រូវបានឆ្លើយតប។",
+      "marketplaceActivityLabel": "សកម្មភាពទីផ្សារ",
+      "marketplaceActivityDescription": "ជូនដំណឹងខ្ញុំអំពីការបញ្ជាទិញ និងសំណួរលើបញ្ជីរបស់ខ្ញុំ។",
+      "talentExchangeLabel": "ការធ្វើបច្ចុប្បន្នភាពការផ្លាស់ប្តូរទេពកោសល្យ",
+      "talentExchangeDescription": "ជូនដំណឹងខ្ញុំអំពីបញ្ជីការងារថ្មីและពាក្យសុំ។",
+      "saveButton": "រក្សាទុកចំណង់ចំណូលចិត្ត"
+    },
+    "privacy": {
+      "title": "ឯកជនភាពและភាពមើលឃើញ",
+      "description": "ត្រួតពិនិត្យអ្នកដែលអាចមើលឃើញព័ត៌មានរបស់អ្នកและធ្វើអន្តរកម្មជាមួយអ្នក។",
+      "profileVisibilityLabel": "ភាពមើលឃើញប្រវត្តិរូប។",
+      "profileVisibilityDescription": "ត្រួតពិនិត្យអ្នកដែលអាចមើលឃើញប្រវត្តិរូបពេញលេញរបស់អ្នក។",
+      "profileVisibilityAll": "អ្នករាល់គ្នា",
+      "profileVisibilityConnections": "តែការតភ្ជាប់ប៉ុណ្ណោះ",
+      "profileVisibilityPrivate": "ឯកជន (តែខ្ញុំប៉ុណ្ណោះ)",
+      "connectionRequestsLabel": "តើអ្នកណាអាចផ្ញើសំណើភ្ជាប់មកអ្នកបាន?",
+      "connectionRequestsDescription": "កំណត់អ្នកដែលអាចផ្ញើសំណើភ្ជាប់មកអ្នក។",
+      "connectionRequestsAll": "អ្នករាល់គ្នា",
+      "connectionRequestsConnectionsOfConnections": "ការតភ្ជាប់នៃការតភ្ជាប់",
+      "contactInfoVisibilityLabel": "តើអ្នកណាអាចមើលឃើញព័ត៌មានទំនាក់ទំនងរបស់អ្នក?",
+      "contactInfoVisibilityDescription": "ត្រួតពិនិត្យអ្នកដែលអាចមើលឃើញអ៊ីមែល និងលេខទូរស័ព្ទរបស់អ្នក។",
+      "contactInfoVisibilityAll": "អ្នករាល់គ្នា",
+      "contactInfoVisibilityConnections": "តែការតភ្ជាប់ប៉ុណ្ណោះ",
+      "activityStatusLabel": "បង្ហាញស្ថានភាពសកម្មភាពរបស់ខ្ញុំ",
+      "activityStatusDescription": "អនុញ្ញាតឱ្យការតភ្ជាប់របស់អ្នកដឹងនៅពេលអ្នកសកម្មនៅលើដាំដុះ។",
+      "searchIndexingLabel": "អនុញ្ញាតឱ្យម៉ាស៊ីនស្វែងរកធ្វើលិបិក្រមប្រវត្តិរូបរបស់ខ្ញុំ",
+      "searchIndexingDescription": "អនុញ្ញាតឱ្យប្រវត្តិរូបរបស់អ្នកបង្ហាញនៅក្នុងលទ្ធផលស្វែងរកនៅលើ Google ជាដើម។",
+      "saveButton": "រក្សាទុកការកំណត់ឯកជនភាព",
+      "dataConsentTitle": "ការចែករំលែកទិន្នន័យและการយល់ព្រម",
+      "dataConsentDescription": "ត្រួតពិនិត្យពីរបៀបដែលទិន្នន័យរបស់អ្នកត្រូវបានប្រើប្រាស់នៅទូទាំងសេវាកម្មរួមបញ្ចូលរបស់ដាំដុះ។",
+      "marketplaceHistoryLabel": "ប្រវត្តិទីផ្សារសម្រាប់សេវាកម្មហិរញ្ញវត្ថុ",
+      "marketplaceHistoryDescription": "អនុញ្ញាតឱ្យស្ថាប័នហិរញ្ញវត្ថុនៅលើដាំដុះមើលប្រវត្តិប្រតិបត្តិការទីផ្សាររបស់អ្នកសម្រាប់ការវាយតម្លៃឥណទាន។",
+      "traceabilityDataLabel": "ទិន្នន័យតាមដានសាធារណៈ",
+      "traceabilityDataDescription": "អនុញ្ញាតឱ្យទិន្នន័យតាមដានដែលមិនបញ្ចេញឈ្មោះរបស់អ្នកត្រូវបានប្រើប្រាស់ក្នុងរបាយការណ៍សាធារណៈនិងការស្រាវជ្រាវ។",
+      "financialApplicationDataLabel": "ទិន្នន័យពាក្យសុំហិរញ្ញវត្ថុសម្រាប់ការផ្គូផ្គង AI",
+      "financialApplicationDataDescription": "អនុញ្ញាតឱ្យទិន្នន័យពាក្យសុំហិរញ្ញវត្ថុដែលមិនបញ្ចេញឈ្មោះរបស់អ្នកត្រូវបានប្រើប្រាស់ដោយ AI របស់យើងដើម្បីណែនាំសេវាកម្មពាក់ព័ន្ធ។",
+      "saveConsentButton": "រក្សាទុកការយល់ព្រម"
+    },
+    "appearance": {
+      "title": "រូបរាង",
+      "description": "ប្ដូររូបរាងและអារម្មណ៍របស់កម្មវិធីតាមបំណង។",
+      "themeLabel": "រូបរាង",
+      "themeDescription": "ជ្រើសរើសរូបរាងភ្លឺหรือងងឹតសម្រាប់ចំណុចប្រទាក់។",
+      "lightTheme": "ភ្លឺ",
+      "darkTheme": "ងងឹត",
+      "languageLabel": "ភាសា",
+      "languageDescription": "ជ្រើសរើសភាសាដែលអ្នកចូលចិត្តสำหรับកម្មវិធី។"
+    },
+    "editProfilePage": {
+      "toast": {
+        "notAuthenticatedTitle": "មិនបានផ្ទៀងផ្ទាត់",
+        "notAuthenticatedDescription": "សូមចូលគណនីដើម្បីកែសម្រួលប្រវត្តិរូបរបស់អ្នក។",
+        "unauthorizedTitle": "គ្មានការអនុញ្ញាត",
+        "unauthorizedDescription": "អ្នកអាចកែសម្រួលតែប្រវត្តិរូបរបស់អ្នកផ្ទាល់ប៉ុណ្ណោះ។"
+      }
+    }
+  },
+  "searchPage": {
+    "title": "ការស្វែងរកជាសកល",
+    "description": "ស្វែងរកអ្វីៗគ្រប់យ៉ាងនៅលើវេទិកាដាំដុះ។",
+    "placeholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម ការបង្ហោះក្នុងវេទិកា...",
+    "searchButton": "ស្វែងរក",
+    "popularSearches": "ការស្វែងរកពេញនិយម",
+    "popularSearch1": "គ្រាប់កាហ្វេអនាម័យកេនយ៉ា",
+    "popularSearch2": "ជួលត្រាក់ទ័រ",
+    "popularSearch3": "គ្រាប់ពោតធន់នឹងគ្រោះរាំងស្ងួត",
+    "popularSearch4": "ដៃគូដឹកជញ្ជូនអាហ្វ្រិកខាងកើត",
+    "popularSearch5": "ការកាត់បន្ថយការខាតបង់ក្រោយពេលប្រមូលផល",
+    "modal": {
+      "title": "ការស្វែងរកជាសកល",
+      "placeholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម វេទិកា...",
+      "searchButton": "ស្វែងរក",
+      "searchError": "កំហុសក្នុងការស្វែងរក",
+      "searchErrorDescription": "មានកំហុសមួយបានកើតឡើងនៅពេលស្វែងរក។ សូមព្យាយាមម្តងទៀត។",
+      "invalidCodeError": "បានស្កេនកូដ QR មិនត្រឹមត្រូវ។ វាហាក់ដូចជាមិនមែនជាលេខសម្គាល់ដាំដុះទេ។",
+      "scanFailed": "ការស្កេនបរាជ័យ",
+      "scanError": "កំហុសក្នុងការស្កេន",
+      "scanErrorDescription": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។",
+      "interpretationTitle": "ការបកស្រាយដោយ AI",
+      "interpretationNotesDefault": "កំពុងស្វែងរកធាតុដែលទាក់ទងនឹងសំណួររបស់អ្នក។",
+      "filtersTitle": "តម្រងដែលបានអនុវត្ត",
+      "noResults": "រកមិនឃើញលទ្ធផលទេ។",
+      "tryAgain": "ព្យាយាមកែលម្អពាក្យស្វែងរករបស់អ្នក។",
+      "results": {
+        "users": "ប្រវត្តិរូប",
+        "marketplaceItems": "ទីផ្សារ",
+        "forums": "វេទិកា",
+        "agri_events": "ព្រឹត្តិការណ៍",
+        "knowledge_articles": "មជ្ឈមណ្ឌលចំណេះដឹង",
+        "vti_registry": "របាយការណ៍តាមដាន"
       }
     }
   }
 }
-
-    

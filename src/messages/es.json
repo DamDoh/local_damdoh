@@ -1,90 +1,20 @@
-
 {
-  "settingsPage": {
-    "title": "Configuración",
-    "description": "Gestiona la configuración de tu cuenta y perfil.",
-    "profileTab": "Perfil",
-    "accountTab": "Cuenta",
-    "notificationsTab": "Notificaciones",
-    "privacyTab": "Privacidad",
-    "appearanceTab": "Apariencia",
-    "stakeholderProfile": {
-      "title": "Perfil de Interesado",
-      "description": "Tu identidad profesional en DamDoh. Así es como te ven los demás."
-    },
-    "account": {
-      "title": "Configuración de la Cuenta",
-      "description": "Gestiona la autenticación y seguridad de tu cuenta.",
-      "currentPasswordLabel": "Contraseña Actual",
-      "newPasswordLabel": "Nueva Contraseña",
-      "confirmPasswordLabel": "Confirmar Nueva Contraseña",
-      "changePasswordButton": "Actualizar Contraseña",
-      "deactivateButton": "Desactivar Cuenta"
-    },
-    "notifications": {
-      "title": "Configuración de Notificaciones",
-      "description": "Gestiona tus preferencias de notificaciones por correo electrónico y push.",
-      "emailDigestLabel": "Notificaciones por Correo Electrónico",
-      "emailDigestDescription": "Recibir notificaciones por correo electrónico.",
-      "connectionRequestsLabel": "Solicitudes de Conexión",
-      "connectionRequestsDescription": "Notificarme sobre nuevas solicitudes de conexión.",
-      "forumMentionsLabel": "Menciones y Respuestas en el Foro",
-      "forumMentionsDescription": "Notificarme cuando me mencionen o respondan a mis publicaciones.",
-      "marketplaceActivityLabel": "Actividad del Mercado",
-      "marketplaceActivityDescription": "Notificarme sobre pedidos y consultas en mis anuncios.",
-      "talentExchangeLabel": "Actualizaciones de la Bolsa de Talentos",
-      "talentExchangeDescription": "Notificarme sobre nuevas ofertas de trabajo y solicitudes.",
-      "saveButton": "Guardar Preferencias"
-    },
-    "privacy": {
-      "title": "Privacidad y Visibilidad",
-      "description": "Controla quién puede ver tu información e interactuar contigo.",
-      "profileVisibilityLabel": "Visibilidad del Perfil",
-      "profileVisibilityDescription": "Controla quién puede ver tu perfil completo.",
-      "profileVisibilityAll": "Todos",
-      "profileVisibilityConnections": "Solo Conexiones",
-      "profileVisibilityPrivate": "Privado (Solo yo)",
-      "connectionRequestsLabel": "¿Quién puede enviarte solicitudes de conexión?",
-      "connectionRequestsDescription": "Limita quién puede enviarte solicitudes para conectar.",
-      "connectionRequestsAll": "Todos",
-      "connectionRequestsConnectionsOfConnections": "Conexiones de Conexiones",
-      "contactInfoVisibilityLabel": "¿Quién puede ver tu información de contacto?",
-      "contactInfoVisibilityDescription": "Controla quién ve tu correo electrónico y número de teléfono.",
-      "contactInfoVisibilityAll": "Todos",
-      "contactInfoVisibilityConnections": "Solo Conexiones",
-      "activityStatusLabel": "Mostrar mi estado de actividad",
-      "activityStatusDescription": "Haz que tus conexiones sepan cuándo estás activo en DamDoh.",
-      "searchIndexingLabel": "Permitir que los motores de búsqueda indexen mi perfil",
-      "searchIndexingDescription": "Permite que tu perfil aparezca en los resultados de búsqueda en Google, etc.",
-      "saveButton": "Guardar Configuración de Privacidad",
-      "dataConsentTitle": "Compartir Datos y Consentimiento",
-      "dataConsentDescription": "Controla cómo se utilizan tus datos en los servicios integrados de DamDoh.",
-      "marketplaceHistoryLabel": "Historial del Mercado para Servicios Financieros",
-      "marketplaceHistoryDescription": "Permite que las instituciones financieras en DamDoh consideren tu historial de transacciones en el mercado para la calificación crediticia.",
-      "traceabilityDataLabel": "Datos de Trazabilidad Públicos",
-      "traceabilityDataDescription": "Permite que tus datos de trazabilidad anonimizados se utilicen en informes públicos e investigaciones.",
-      "financialApplicationDataLabel": "Datos de Solicitud Financiera para Coincidencia de IA",
-      "financialApplicationDataDescription": "Permite que tus datos de solicitud financiera anonimizados sean utilizados por nuestra IA para sugerir servicios relevantes.",
-      "saveConsentButton": "Guardar Consentimientos"
-    },
-    "appearance": {
-      "title": "Apariencia",
-      "description": "Personaliza la apariencia de la aplicación.",
-      "themeLabel": "Tema",
-      "themeDescription": "Selecciona un tema claro u oscuro para la interfaz.",
-      "lightTheme": "Claro",
-      "darkTheme": "Oscuro",
-      "languageLabel": "Idioma",
-      "languageDescription": "Elige tu idioma preferido para la aplicación."
-    },
-    "editProfilePage": {
-      "toast": {
-        "notAuthenticatedTitle": "No Autenticado",
-        "notAuthenticatedDescription": "Por favor, inicia sesión para editar tu perfil.",
-        "unauthorizedTitle": "No Autorizado",
-        "unauthorizedDescription": "Solo puedes editar tu propio perfil."
-      }
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "Añadir a tu feed",
+    "refreshSuggestions": "Actualizar sugerencias",
+    "infoTooltip": "Las sugerencias se basan en los intereses y necesidades de tu perfil.",
+    "signInPrompt": "Inicia sesión para obtener sugerencias personalizadas.",
+    "loadError": "No se pudieron cargar las sugerencias.",
+    "noSuggestions": "No hay nuevas sugerencias por ahora. ¡Vuelve más tarde!",
+    "following": "Siguiendo",
+    "follow": "Seguir",
+    "promotionsTitle": "Promociones",
+    "promotionsDescription": "Ver ofertas especiales y tratos de socios en el ecosistema.",
+    "managePromotionsButton": "Gestionar Promociones",
+    "ad": "Anuncio",
+    "adTitle": "Desbloquea Perspectivas de Mercado",
+    "adDescription": "Obtén datos y análisis en tiempo real con DamDoh Pro.",
+    "adButton": "Saber Más"
   },
   "AppFooter": {
     "tagline": "La plataforma global de la cadena de suministro agrícola.",
@@ -355,13 +285,6 @@
       }
     }
   },
-  "constants": {
-    "listingTypes": {
-      "All": "Todos los Tipos",
-      "Product": "Producto",
-      "Service": "Servicio"
-    }
-  },
   "talentExchangePage": {
     "title": "Bolsa de Talentos",
     "description": "Encuentra trabajos agrícolas, servicios y expertos.",
@@ -378,7 +301,134 @@
         "description": "No se pudieron obtener los servicios de la bolsa de talentos."
       }
     }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Todos los Tipos",
+      "Product": "Producto",
+      "Service": "Servicio"
+    }
+  },
+  "settingsPage": {
+    "title": "Configuración",
+    "description": "Gestiona la configuración de tu cuenta y perfil.",
+    "profileTab": "Perfil",
+    "accountTab": "Cuenta",
+    "notificationsTab": "Notificaciones",
+    "privacyTab": "Privacidad",
+    "appearanceTab": "Apariencia",
+    "stakeholderProfile": {
+      "title": "Perfil de Interesado",
+      "description": "Tu identidad profesional en DamDoh. Así es como te ven los demás."
+    },
+    "account": {
+      "title": "Configuración de la Cuenta",
+      "description": "Gestiona la autenticación y seguridad de tu cuenta.",
+      "currentPasswordLabel": "Contraseña Actual",
+      "newPasswordLabel": "Nueva Contraseña",
+      "confirmPasswordLabel": "Confirmar Nueva Contraseña",
+      "changePasswordButton": "Actualizar Contraseña",
+      "deactivateButton": "Desactivar Cuenta"
+    },
+    "notifications": {
+      "title": "Configuración de Notificaciones",
+      "description": "Gestiona tus preferencias de notificaciones por correo electrónico y push.",
+      "emailDigestLabel": "Notificaciones por Correo Electrónico",
+      "emailDigestDescription": "Recibir notificaciones por correo electrónico.",
+      "connectionRequestsLabel": "Solicitudes de Conexión",
+      "connectionRequestsDescription": "Notificarme sobre nuevas solicitudes de conexión.",
+      "forumMentionsLabel": "Menciones y Respuestas en el Foro",
+      "forumMentionsDescription": "Notificarme cuando me mencionen o respondan a mis publicaciones.",
+      "marketplaceActivityLabel": "Actividad del Mercado",
+      "marketplaceActivityDescription": "Notificarme sobre pedidos y consultas en mis anuncios.",
+      "talentExchangeLabel": "Actualizaciones de la Bolsa de Talentos",
+      "talentExchangeDescription": "Notificarme sobre nuevas ofertas de trabajo y solicitudes.",
+      "saveButton": "Guardar Preferencias"
+    },
+    "privacy": {
+      "title": "Privacidad y Visibilidad",
+      "description": "Controla quién puede ver tu información e interactuar contigo.",
+      "profileVisibilityLabel": "Visibilidad del Perfil",
+      "profileVisibilityDescription": "Controla quién puede ver tu perfil completo.",
+      "profileVisibilityAll": "Todos",
+      "profileVisibilityConnections": "Solo Conexiones",
+      "profileVisibilityPrivate": "Privado (Solo yo)",
+      "connectionRequestsLabel": "¿Quién puede enviarte solicitudes de conexión?",
+      "connectionRequestsDescription": "Limita quién puede enviarte solicitudes para conectar.",
+      "connectionRequestsAll": "Todos",
+      "connectionRequestsConnectionsOfConnections": "Conexiones de Conexiones",
+      "contactInfoVisibilityLabel": "¿Quién puede ver tu información de contacto?",
+      "contactInfoVisibilityDescription": "Controla quién ve tu correo electrónico y número de teléfono.",
+      "contactInfoVisibilityAll": "Todos",
+      "contactInfoVisibilityConnections": "Solo Conexiones",
+      "activityStatusLabel": "Mostrar mi estado de actividad",
+      "activityStatusDescription": "Haz que tus conexiones sepan cuándo estás activo en DamDoh.",
+      "searchIndexingLabel": "Permitir que los motores de búsqueda indexen mi perfil",
+      "searchIndexingDescription": "Permite que tu perfil aparezca en los resultados de búsqueda en Google, etc.",
+      "saveButton": "Guardar Configuración de Privacidad",
+      "dataConsentTitle": "Compartir Datos y Consentimiento",
+      "dataConsentDescription": "Controla cómo se utilizan tus datos en los servicios integrados de DamDoh.",
+      "marketplaceHistoryLabel": "Historial del Mercado para Servicios Financieros",
+      "marketplaceHistoryDescription": "Permite que las instituciones financieras en DamDoh consideren tu historial de transacciones en el mercado para la calificación crediticia.",
+      "traceabilityDataLabel": "Datos de Trazabilidad Públicos",
+      "traceabilityDataDescription": "Permite que tus datos de trazabilidad anonimizados se utilicen en informes públicos e investigaciones.",
+      "financialApplicationDataLabel": "Datos de Solicitud Financiera para Coincidencia de IA",
+      "financialApplicationDataDescription": "Permite que tus datos de solicitud financiera anonimizados sean utilizados por nuestra IA para sugerir servicios relevantes.",
+      "saveConsentButton": "Guardar Consentimientos"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "description": "Personaliza la apariencia de la aplicación.",
+      "themeLabel": "Tema",
+      "themeDescription": "Selecciona un tema claro u oscuro para la interfaz.",
+      "lightTheme": "Claro",
+      "darkTheme": "Oscuro",
+      "languageLabel": "Idioma",
+      "languageDescription": "Elige tu idioma preferido para la aplicación."
+    },
+    "editProfilePage": {
+      "toast": {
+        "notAuthenticatedTitle": "No Autenticado",
+        "notAuthenticatedDescription": "Por favor, inicia sesión para editar tu perfil.",
+        "unauthorizedTitle": "No Autorizado",
+        "unauthorizedDescription": "Solo puedes editar tu propio perfil."
+      }
+    }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos, servicios, publicaciones de foros...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de Café Orgánico Kenia",
+    "popularSearch2": "Alquiler de Tractor",
+    "popularSearch3": "Semillas de maíz resistentes a la sequía",
+    "popularSearch4": "Socio Logístico África Oriental",
+    "popularSearch5": "Reducción de pérdidas post-cosecha",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Buscar personas, productos, servicios, foros...",
+      "searchButton": "Buscar",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Código QR no válido escaneado. No parece ser una ID de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
+      "filtersTitle": "Filtros Aplicados",
+      "noResults": "No se encontraron resultados.",
+      "tryAgain": "Intenta refinar tus términos de búsqueda.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informes de Trazabilidad"
+      }
+    }
   }
 }
-
-    

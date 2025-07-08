@@ -1,77 +1,20 @@
-
 {
-  "traceabilityPage": {
-    "title": "Traçabilité des Produits",
-    "description": "Suivez le parcours de vos aliments de la ferme à la fourchette avec un Identifiant de Traçabilité Vibrant (VTI).",
-    "inputPlaceholder": "Entrez l'ID VTI ou de lot...",
-    "trackButton": "Suivre",
-    "vtiDescription": "Un VTI est un identifiant unique attribué à chaque lot de produits, garantissant la transparence tout au long de la chaîne d'approvisionnement.",
-    "recentTitle": "Lots Récemment Vérifiés",
-    "recentDescription": "Explorez certains des derniers parcours de produits sur la plateforme.",
-    "noRecentBatches": "Aucun lot récemment vérifié trouvé.",
-    "producerLabel": "Producteur",
-    "harvestDateLabel": "Date de Récolte",
-    "viewReportButton": "Voir le Rapport Complet",
-    "detailPage": {
-      "backLink": "Retour au Hub de Traçabilité",
-      "invalidIdError": "Aucun ID de lot valide fourni.",
-      "loadError": "Échec du chargement de l'historique de traçabilité pour ce lot.",
-      "notFoundTitle": "Lot non trouvé",
-      "notFoundDescription": "Le rapport de traçabilité pour cet ID n'a pas pu être trouvé.",
-      "traceableProduct": "Produit Traçable",
-      "batchIdLabel": "ID du Lot",
-      "producerLabel": "Producteur",
-      "harvestDateLabel": "Date de Récolte",
-      "yieldLabel": "Rendement Initial",
-      "qualityLabel": "Classe de Qualité",
-      "notSpecified": "Non spécifié",
-      "journeyTitle": "Parcours du Produit",
-      "journeyDescription": "Un enregistrement chronologique des événements pour ce lot.",
-      "noEventDetails": "Aucun détail spécifique pour cet événement.",
-      "noEventsFound": "Aucun événement de traçabilité n'a encore été enregistré pour ce lot.",
-      "sustainablyGrownTitle": "Cultivé de Manière Durable",
-      "sustainablyGrownDescription": "Ce produit a été cultivé en utilisant des pratiques conformes aux principes durables et biologiques, sur la base des intrants enregistrés.",
-      "geoLocationLabel": "Géolocalisation",
-      "observationType": "Type d'Observation",
-      "details": "Détails",
-      "aiDiagnosis": "Diagnostic IA"
-    }
-  },
-  "searchPage": {
-    "title": "Recherche Universelle",
-    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
-    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches Populaires",
-    "popularSearch1": "Grains de Café Bio Kenya",
-    "popularSearch2": "Location de tracteur",
-    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
-    "popularSearch4": "Partenaire logistique Afrique de l'Est",
-    "popularSearch5": "Réduction des pertes post-récolte",
-    "modal": {
-      "title": "Recherche Universelle",
-      "placeholder": "Rechercher personnes, produits, services, forums...",
-      "searchButton": "Rechercher",
-      "searchError": "Erreur de Recherche",
-      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
-      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
-      "scanFailed": "Scan Échoué",
-      "scanError": "Erreur de Scan",
-      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
-      "interpretationTitle": "Interprétation IA",
-      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
-      "filtersTitle": "Filtres Appliqués",
-      "noResults": "Aucun résultat trouvé.",
-      "tryAgain": "Essayez d'affiner vos termes de recherche.",
-      "results": {
-        "users": "Profils",
-        "marketplaceItems": "Marché",
-        "forums": "Forums",
-        "agri_events": "Événements",
-        "knowledge_articles": "Centre de connaissances",
-        "vti_registry": "Rapports de Traçabilité"
-      }
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "Ajouter à votre fil d'actualité",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "infoTooltip": "Les suggestions sont basées sur les intérêts et les besoins de votre profil.",
+    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
+    "loadError": "Impossible de charger les suggestions.",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
+    "following": "Abonné",
+    "follow": "Suivre",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "Voir les offres spéciales et les promotions des partenaires de l'écosystème.",
+    "managePromotionsButton": "Gérer les Promotions",
+    "ad": "Publicité",
+    "adTitle": "Débloquez les Perspectives du Marché",
+    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
+    "adButton": "En savoir plus"
   },
   "AppFooter": {
     "tagline": "La Plateforme Mondiale de la Chaîne d'Approvisionnement Agricole.",
@@ -342,13 +285,6 @@
       }
     }
   },
-  "constants": {
-    "listingTypes": {
-      "All": "Tous les Types",
-      "Product": "Produit",
-      "Service": "Service"
-    }
-  },
   "talentExchangePage": {
     "title": "Bourse de talents",
     "description": "Trouvez des emplois agricoles, des services et des experts.",
@@ -366,7 +302,14 @@
       }
     }
   },
-   "settingsPage": {
+  "constants": {
+    "listingTypes": {
+      "All": "Tous les Types",
+      "Product": "Produit",
+      "Service": "Service"
+    }
+  },
+  "settingsPage": {
     "title": "Paramètres",
     "description": "Gérez les paramètres de votre compte et de votre profil.",
     "profileTab": "Profil",
@@ -451,7 +394,41 @@
         "unauthorizedDescription": "Vous ne pouvez modifier que votre propre profil."
       }
     }
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
+    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Grains de Café Bio Kenya",
+    "popularSearch2": "Location de tracteur",
+    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
+    "popularSearch4": "Partenaire logistique Afrique de l'Est",
+    "popularSearch5": "Réduction des pertes post-récolte",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Rechercher personnes, produits, services, forums...",
+      "searchButton": "Rechercher",
+      "searchError": "Erreur de Recherche",
+      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
+      "scanFailed": "Scan Échoué",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation IA",
+      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
+      "filtersTitle": "Filtres Appliqués",
+      "noResults": "Aucun résultat trouvé.",
+      "tryAgain": "Essayez d'affiner vos termes de recherche.",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "agri_events": "Événements",
+        "knowledge_articles": "Centre de connaissances",
+        "vti_registry": "Rapports de Traçabilité"
+      }
+    }
   }
 }
-
-    
