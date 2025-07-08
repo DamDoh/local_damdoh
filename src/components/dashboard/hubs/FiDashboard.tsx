@@ -89,6 +89,8 @@ export const FiDashboard = () => {
                     value={pendingApplications?.length || 0}
                     description={t('pendingApplicationsDescription')}
                     icon={<UserCheck className="h-4 w-4 text-muted-foreground" />}
+                    ctaLink="/fi/applications"
+                    ctaText={t('manageApplicationsButton')}
                 />
                 <StatCard 
                     title={t('portfolioAtRiskTitle')}

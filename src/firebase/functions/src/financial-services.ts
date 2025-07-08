@@ -763,6 +763,36 @@ const checkFiAuth = async (context: functions.https.CallableContext) => {
     return uid;
 };
 
+export const getFiApplications = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+    const { status } = data; // Optional status filter: 'All', 'Pending', 'Approved', etc.
+
+    let query: admin.firestore.Query = db.collection('financial_applications').where('fiId', '==', fiId);
+
+    if (status && status !== 'All') {
+        if (status === 'Pending') {
+            // "Pending" in UI might mean "Pending" or "Under Review" in DB
+            query = query.where('status', 'in', ['Pending', 'Under Review']);
+        } else {
+            query = query.where('status', '==', status);
+        }
+    }
+
+    const snapshot = await query.orderBy('submittedAt', 'desc').get();
+
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            id: doc.id,
+            ...appData,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            updatedAt: (appData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
+});
+
 export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
     await checkFiAuth(context);
     const { applicationId } = data;
@@ -902,35 +932,5 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
     });
     
     return { products };
-});
-
-export const getFiApplications = functions.https.onCall(async (data, context) => {
-    const fiId = await checkFiAuth(context);
-    const { status } = data; // Optional status filter: 'All', 'Pending', 'Approved', etc.
-
-    let query: admin.firestore.Query = db.collection('financial_applications').where('fiId', '==', fiId);
-
-    if (status && status !== 'All') {
-        if (status === 'Pending') {
-            // "Pending" in UI might mean "Pending" or "Under Review" in DB
-            query = query.where('status', 'in', ['Pending', 'Under Review']);
-        } else {
-            query = query.where('status', '==', status);
-        }
-    }
-
-    const snapshot = await query.orderBy('submittedAt', 'desc').get();
-
-    const applications = snapshot.docs.map(doc => {
-        const appData = doc.data();
-        return {
-            id: doc.id,
-            ...appData,
-            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-            updatedAt: (appData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-        }
-    });
-
-    return { applications };
 });
     
