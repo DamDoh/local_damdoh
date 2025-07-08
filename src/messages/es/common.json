@@ -75,6 +75,35 @@
       "general": {
         "title": "Error",
         "description": "Ocurrió un error al crear el tema."
+      },
+      "loadPosts": {
+        "title": "Error al cargar publicaciones",
+        "description": "Ocurrió un error al cargar las publicaciones para este tema."
+      },
+      "loadTopic": {
+        "title": "Error al cargar tema",
+        "description": "Ocurrió un error al cargar los detalles del tema."
+      },
+      "loadPost": {
+        "title": "Error al cargar publicación",
+        "description": "Ocurrió un error al cargar los detalles de la publicación."
+      },
+      "loadReplies": {
+        "title": "Error al cargar respuestas",
+        "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+      },
+      "emptyReply": "La respuesta no puede estar vacía.",
+      "submitReply": {
+        "title": "Error al enviar respuesta",
+        "description": "Ocurrió un error al enviar tu respuesta."
+      },
+      "aiPromptMissing": {
+        "title": "Falta indicación de IA",
+        "description": "Por favor, proporciona una indicación para el asistente de IA."
+      },
+      "aiDraft": {
+        "title": "Error del borrador de IA",
+        "description": "No se pudo generar el borrador de IA."
       }
     },
     "create": {
@@ -111,16 +140,6 @@
         "title": "Tema no encontrado",
         "description": "El tema que estás buscando no existe.",
         "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error al cargar publicaciones",
-          "description": "Ocurrió un error al cargar las publicaciones para este tema."
-        },
-        "loadTopic": {
-          "title": "Error al cargar tema",
-          "description": "Ocurrió un error al cargar los detalles del tema."
-        }
       }
     },
     "postView": {
@@ -144,21 +163,6 @@
         "title": "Publicación no encontrada",
         "description": "La publicación que estás buscando no existe.",
         "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error al cargar publicación",
-          "description": "Ocurrió un error al cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error al cargar respuestas",
-          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
-        },
-        "emptyReply": "La respuesta no puede estar vacía.",
-        "submitReply": {
-          "title": "Error al enviar respuesta",
-          "description": "Ocurrió un error al enviar tu respuesta."
-        }
       }
     },
     "createPost": {
@@ -187,24 +191,6 @@
         },
         "title": "¡Publicación Creada!",
         "description": "Tu publicación ha sido creada con éxito."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Falta indicación de IA",
-          "description": "Por favor, proporciona una indicación para el asistente de IA."
-        },
-        "aiDraft": {
-          "title": "Error del borrador de IA",
-          "description": "No se pudo generar el borrador de IA."
-        },
-        "incomplete": {
-          "title": "Campos incompletos",
-          "description": "Por favor, completa todos los campos requeridos."
-        },
-        "general": {
-          "title": "Error",
-          "description": "Ocurrió un error al crear la publicación."
-        }
       }
     }
   },

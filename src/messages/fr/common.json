@@ -75,6 +75,35 @@
       "general": {
         "title": "Erreur",
         "description": "Une erreur s'est produite lors de la création du sujet."
+      },
+      "loadPosts": {
+        "title": "Erreur de chargement des messages",
+        "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
+      },
+      "loadTopic": {
+        "title": "Erreur de chargement du sujet",
+        "description": "Une erreur s'est produite lors du chargement des détails du sujet."
+      },
+      "loadPost": {
+        "title": "Erreur de chargement du message",
+        "description": "Une erreur s'est produite lors du chargement des détails du message."
+      },
+      "loadReplies": {
+        "title": "Erreur de chargement des réponses",
+        "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
+      },
+      "emptyReply": "La réponse ne peut pas être vide.",
+      "submitReply": {
+        "title": "Erreur d'envoi de la réponse",
+        "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
+      },
+      "aiPromptMissing": {
+        "title": "Invite IA manquante",
+        "description": "Veuillez fournir une invite pour l'assistant IA."
+      },
+      "aiDraft": {
+        "title": "Erreur de brouillon IA",
+        "description": "Échec de la génération du brouillon IA."
       }
     },
     "create": {
@@ -97,6 +126,11 @@
     "topic": {
       "unknownUser": "Utilisateur inconnu",
       "postMeta": "par {{author}} le {{date}}",
+      "buttons": {
+        "createPost": "Ajouter une réponse",
+        "loadMore": "Charger plus",
+        "loadingMore": "Chargement en cours..."
+      },
       "noPosts": {
         "title": "Aucun message pour l'instant",
         "description": "Soyez le premier à répondre à ce sujet.",
@@ -106,16 +140,6 @@
         "title": "Sujet introuvable",
         "description": "Le sujet que vous recherchez n'existe pas.",
         "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Erreur de chargement des messages",
-          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
-        },
-        "loadTopic": {
-          "title": "Erreur de chargement du sujet",
-          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
-        }
       }
     },
     "postView": {
@@ -139,21 +163,6 @@
         "title": "Message introuvable",
         "description": "Le message que vous recherchez n'existe pas.",
         "backButton": "Retour aux forums"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Erreur de chargement du message",
-          "description": "Une erreur s'est produite lors du chargement des détails du message."
-        },
-        "loadReplies": {
-          "title": "Erreur de chargement des réponses",
-          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
-        },
-        "emptyReply": "La réponse ne peut pas être vide.",
-        "submitReply": {
-          "title": "Erreur d'envoi de la réponse",
-          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
-        }
       }
     },
     "createPost": {
@@ -182,24 +191,6 @@
         },
         "title": "Message créé !",
         "description": "Votre message a été créé avec succès."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Invite IA manquante",
-          "description": "Veuillez fournir une invite pour l'assistant IA."
-        },
-        "aiDraft": {
-          "title": "Erreur de brouillon IA",
-          "description": "Échec de la génération du brouillon IA."
-        },
-        "incomplete": {
-          "title": "Champs incomplets",
-          "description": "Veuillez remplir tous les champs obligatoires."
-        },
-        "general": {
-          "title": "Erreur",
-          "description": "Une erreur s'est produite lors de la création du message."
-        }
       }
     }
   },
@@ -590,16 +581,16 @@
       "profileNotFound": "Profil non trouvé",
       "fetchError": "Impossible de charger le profil.",
       "notAuthenticatedTitle": "Non authentifié",
-      "notAuthenticatedDescription": "Vous devez être connecté pour modifier votre profil.",
+      "notAuthenticatedDescription": "Vous devez vous connecter pour modifier votre profil.",
       "unauthorizedTitle": "Non autorisé",
       "unauthorizedDescription": "Vous ne pouvez pas modifier ce profil.",
-      "missingIdError": "ID de profil manquant. Impossible de mettre à jour.",
+      "missingIdError": "ID de profil manquant. Mise à jour impossible.",
       "profileUpdatedTitle": "Profil mis à jour !",
       "profileUpdatedDescription": "Vos modifications ont été enregistrées avec succès.",
       "updateFailedTitle": "Échec de la mise à jour",
       "updateFailedDescription": "Impossible d'enregistrer vos modifications. Veuillez réessayer.",
       "missingInfoTitle": "Informations manquantes",
-      "missingInfoDescription": "Veuillez fournir un rôle, des intérêts et des besoins pour générer un résumé.",
+      "missingInfoDescription": "Veuillez indiquer le rôle, les intérêts et les besoins pour générer un résumé.",
       "summaryGeneratedTitle": "Résumé généré",
       "summaryGeneratedDescription": "Un résumé généré par l'IA a été ajouté à votre profil.",
       "generationFailedTitle": "Échec de la génération",
@@ -644,7 +635,7 @@
       "forumMentionsLabel": "Mentions et réponses du forum",
       "forumMentionsDescription": "Me notifier lorsque je suis mentionné ou que mes messages reçoivent une réponse.",
       "marketplaceActivityLabel": "Activité du marché",
-      "marketplaceActivityDescription": "Me notifier des commandes et des demandes sur mes annonces.",
+      "marketplaceActivityDescription": "Me notifier des commandes et des demandes de renseignements sur mes annonces.",
       "talentExchangeLabel": "Mises à jour de la bourse de talents",
       "talentExchangeDescription": "Me notifier des nouvelles offres d'emploi et des candidatures.",
       "saveButton": "Enregistrer les préférences"
@@ -672,7 +663,7 @@
       "dataConsentTitle": "Partage de données et consentement",
       "dataConsentDescription": "Contrôlez comment vos données sont utilisées dans les services intégrés de DamDoh.",
       "marketplaceHistoryLabel": "Historique du marché pour les services financiers",
-      "marketplaceHistoryDescription": "Autorisez les institutions financières sur DamDoh à prendre en compte votre historique de transactions sur le marché pour la notation de crédit.",
+      "marketplaceHistoryDescription": "Autorisez les institutions financières sur DamDoh à prendre en compte l'historique de vos transactions sur le marché pour la notation de crédit.",
       "traceabilityDataLabel": "Données de traçabilité publiques",
       "traceabilityDataDescription": "Autorisez l'utilisation de vos données de traçabilité anonymisées dans les rapports et recherches publics.",
       "financialApplicationDataLabel": "Données de demande financière pour la mise en correspondance par l'IA",
@@ -736,5 +727,3 @@
     }
   }
 }
-
-    

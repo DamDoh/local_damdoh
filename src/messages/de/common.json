@@ -46,7 +46,9 @@
       "createTopic": "Thema erstellen",
       "joinDiscussion": "Diskussion beitreten",
       "pinHomepage": "Als Startseite anheften",
-      "unpinHomepage": "Von Startseite lösen"
+      "unpinHomepage": "Von Startseite lösen",
+      "loadMore": "Mehr laden",
+      "loadingMore": "Lädt mehr..."
     },
     "notFound": {
       "title": "Keine Themen gefunden",
@@ -73,6 +75,35 @@
       "general": {
         "title": "Fehler",
         "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+      },
+      "loadPosts": {
+        "title": "Fehler beim Laden der Beiträge",
+        "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+      },
+      "loadTopic": {
+        "title": "Fehler beim Laden des Themas",
+        "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
+      },
+      "loadPost": {
+        "title": "Fehler beim Laden des Beitrags",
+        "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
+      },
+      "loadReplies": {
+        "title": "Fehler beim Laden der Antworten",
+        "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
+      },
+      "emptyReply": "Antwort darf nicht leer sein.",
+      "submitReply": {
+        "title": "Fehler beim Senden der Antwort",
+        "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
+      },
+      "aiPromptMissing": {
+        "title": "KI-Eingabeaufforderung fehlt",
+        "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
+      },
+      "aiDraft": {
+        "title": "KI-Entwurfsfehler",
+        "description": "Fehler beim Generieren des KI-Entwurfs."
       }
     },
     "create": {
@@ -109,16 +140,6 @@
         "title": "Thema nicht gefunden",
         "description": "Das gesuchte Thema existiert nicht.",
         "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Fehler beim Laden der Beiträge",
-          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
-        },
-        "loadTopic": {
-          "title": "Fehler beim Laden des Themas",
-          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
-        }
       }
     },
     "postView": {
@@ -142,21 +163,6 @@
         "title": "Beitrag nicht gefunden",
         "description": "Der gesuchte Beitrag existiert nicht.",
         "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Fehler beim Laden des Beitrags",
-          "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
-        },
-        "loadReplies": {
-          "title": "Fehler beim Laden der Antworten",
-          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
-        },
-        "emptyReply": "Antwort darf nicht leer sein.",
-        "submitReply": {
-          "title": "Fehler beim Senden der Antwort",
-          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
-        }
       }
     },
     "createPost": {
@@ -185,24 +191,6 @@
         },
         "title": "Beitrag erstellt!",
         "description": "Ihr Beitrag wurde erfolgreich erstellt."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "KI-Eingabeaufforderung fehlt",
-          "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
-        },
-        "aiDraft": {
-          "title": "KI-Entwurfsfehler",
-          "description": "Fehler beim Generieren des KI-Entwurfs."
-        },
-        "incomplete": {
-          "title": "Unvollständige Felder",
-          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
-        },
-        "general": {
-          "title": "Fehler",
-          "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten."
-        }
       }
     }
   },
@@ -212,8 +200,8 @@
     "createShopButton": "Shop erstellen",
     "createListingButton": "Angebot erstellen",
     "myOrdersButton": "Meine erhaltenen Bestellungen",
-    "pinButton": "Als Startseite anheften",
     "unpinButton": "Von Startseite lösen",
+    "pinButton": "Als Startseite anheften",
     "searchPlaceholder": "Marktplatz durchsuchen...",
     "locationPlaceholder": "Nach Ort filtern...",
     "typePlaceholder": "Nach Typ filtern...",
@@ -222,87 +210,6 @@
     "noItemsFound": {
       "title": "Keine Artikel gefunden.",
       "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
-      },
-      "search": {
-        "title": "Suchfehler",
-        "description": "Marktplatzartikel konnten nicht abgerufen werden."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "Marktplatz angeheftet!",
-      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
-      "unpinnedTitle": "Startseite gelöst!",
-      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
-    },
-    "createListing": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Neues Angebot erstellen",
-      "description": "Listen Sie ein Produkt oder eine Dienstleistung auf dem Marktplatz auf.",
-      "form": {
-        "nameLabel": "Name des Artikels/der Dienstleistung",
-        "namePlaceholder": "Geben Sie den Namen Ihres Angebots ein",
-        "typeLabel": "Angebotstyp",
-        "typePlaceholder": "Wählen Sie den Angebotstyp",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Angebot",
-        "locationLabel": "Standort",
-        "locationPlaceholder": "Standort eingeben",
-        "relatedVtiLabel": "Zugehörige VTI / Chargen-ID (Optional)",
-        "relatedVtiPlaceholder": "Geben Sie die VTI ein, wenn dieses Angebot für eine bestimmte Charge gilt",
-        "relatedVtiDescription": "Die Verknüpfung einer VTI erhöht das Vertrauen des Käufers.",
-        "categoryLabel": "Kategorie",
-        "categoryPlaceholder": "Kategorie auswählen",
-        "compensationLabel": "Vergütung",
-        "compensationPlaceholder": "z.B. pro Stunde, fester Satz",
-        "experienceLabel": "Erfahrungslevel",
-        "experiencePlaceholder": "z.B. Anfänger, Fortgeschrittener, Experte",
-        "skillsLabel": "Benötigte Fähigkeiten",
-        "skillsPlaceholder": "Liste der für die Dienstleistung benötigten Fähigkeiten",
-        "skillsDescription": "Trennen Sie Fähigkeiten durch Kommas.",
-        "priceLabel": "Preis",
-        "pricePlaceholder": "Preis eingeben",
-        "unitLabel": "Einheit",
-        "unitPlaceholder": "z.B. kg, Stück, Stunde",
-        "imageUrlLabel": "Bild-URL (Optional)",
-        "sustainableLabel": "Nachhaltige Praxis",
-        "sustainableDescription": "Geben Sie an, ob dieses Angebot nachhaltige Praktiken beinhaltet.",
-        "submitButton": "Angebot erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Preis mit KI vorschlagen",
-        "generatingButton": "Wird generiert...",
-        "suggestionLabel": "KI-Vorschlag:",
-        "usePriceButton": "Diesen Preis verwenden"
-      },
-      "success": {
-        "title": "Erfolg!",
-        "description": "Ihr Angebot wurde erstellt."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Fehlende Informationen",
-            "description": "Bitte geben Sie einen Namen und eine Beschreibung ein, bevor Sie einen Preis vorschlagen."
-          },
-          "failed": {
-            "title": "Preisvorschlag fehlgeschlagen",
-            "description": "KI-Preisvorschlag konnte nicht abgerufen werden. Bitte versuchen Sie es erneut oder geben Sie einen Preis manuell ein."
-          }
-        },
-        "authentication": {
-          "title": "Authentifizierungsfehler",
-          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
-        },
-        "creation": {
-          "title": "Erstellung fehlgeschlagen",
-          "description": "Das Angebot konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
-        }
-      }
     },
     "itemView": {
       "backLink": "Zurück zum Marktplatz",
@@ -532,6 +439,116 @@
         "description": "Sie müssen angemeldet sein, um diese Dienstleistung zu verwalten.",
         "button": "Anmelden"
       }
+    },
+    "createListing": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Neues Angebot erstellen",
+      "description": "Listen Sie ein Produkt oder eine Dienstleistung auf dem Marktplatz auf.",
+      "form": {
+        "nameLabel": "Name des Artikels/der Dienstleistung",
+        "namePlaceholder": "Geben Sie den Namen Ihres Angebots ein",
+        "typeLabel": "Angebotstyp",
+        "typePlaceholder": "Wählen Sie den Angebotstyp",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Angebot",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "Standort eingeben",
+        "relatedVtiLabel": "Zugehörige VTI / Chargen-ID (Optional)",
+        "relatedVtiPlaceholder": "Geben Sie die VTI ein, wenn dieses Angebot für eine bestimmte Charge gilt",
+        "relatedVtiDescription": "Die Verknüpfung einer VTI erhöht das Vertrauen des Käufers.",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "Kategorie auswählen",
+        "compensationLabel": "Vergütung",
+        "compensationPlaceholder": "z.B. pro Stunde, fester Satz",
+        "experienceLabel": "Erfahrungslevel",
+        "experiencePlaceholder": "z.B. Anfänger, Fortgeschrittener, Experte",
+        "skillsLabel": "Benötigte Fähigkeiten",
+        "skillsPlaceholder": "Liste der für die Dienstleistung benötigten Fähigkeiten",
+        "skillsDescription": "Trennen Sie Fähigkeiten durch Kommas.",
+        "priceLabel": "Preis",
+        "pricePlaceholder": "Preis eingeben",
+        "unitLabel": "Einheit",
+        "unitPlaceholder": "z.B. kg, Stück, Stunde",
+        "imageUrlLabel": "Bild-URL (Optional)",
+        "sustainableLabel": "Nachhaltige Praxis",
+        "sustainableDescription": "Geben Sie an, ob dieses Angebot nachhaltige Praktiken beinhaltet.",
+        "submitButton": "Angebot erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Preis mit KI vorschlagen",
+        "generatingButton": "Wird generiert...",
+        "suggestionLabel": "KI-Vorschlag:",
+        "usePriceButton": "Diesen Preis verwenden"
+      },
+      "success": {
+        "title": "Erfolg!",
+        "description": "Ihr Angebot wurde erstellt."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Fehlende Informationen",
+            "description": "Bitte geben Sie einen Namen und eine Beschreibung ein, bevor Sie einen Preis vorschlagen."
+          },
+          "failed": {
+            "title": "Preisvorschlag fehlgeschlagen",
+            "description": "KI-Preisvorschlag konnte nicht abgerufen werden. Bitte versuchen Sie es erneut oder geben Sie einen Preis manuell ein."
+          }
+        },
+        "authentication": {
+          "title": "Authentifizierungsfehler",
+          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
+        },
+        "creation": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Das Angebot konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        }
+      }
+    }
+  },
+  "Homepage": {},
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Landwirt",
+      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
+      "FieldAgentAgronomistDamDohInternal": "Feldagent/Agronom (DamDoh Intern)",
+      "OperationsLogisticsTeamDamDohInternal": "Betriebs-/Logistikteam (DamDoh Intern)",
+      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungsteam (DamDoh Intern)",
+      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
+      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
+      "InputSupplierSeedFertilizerPesticide": "Zulieferer (Saatgut, Dünger, Pestizide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
+      "FinancialInstitutionMicro-financeLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
+      "GovernmentRegulatorAuditor": "Regierungsregulierungsbehörde/Prüfer",
+      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
+      "Consumer": "Verbraucher",
+      "ResearcherAcademic": "Forscher/Akademiker",
+      "LogisticsPartnerThird-PartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
+      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
+      "AgronomyExpertConsultantExternal": "Agronomie-Experte/Berater (Extern)",
+      "Agro-TourismOperator": "Agrotourismus-Betreiber",
+      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogás)",
+      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
+      "Agri-TechInnovatorDeveloper": "Agrartechnik-Innovator/Entwickler",
+      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
+      "InsuranceProvider": "Versicherungsanbieter",
+      "PackagingSupplier": "Verpackungslieferant"
+    },
+    "listingTypes": {
+      "Product": "Produkt",
+      "Service": "Dienstleistung",
+      "All": "Alle Typen"
+    },
+    "agriEventTypes": {
+      "All": "Alle Events",
+      "Conference": "Konferenz",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Messe",
+      "FieldDay": "Feldtag",
+      "NetworkingEvent": "Networking-Event"
     }
   },
   "ProfilePage": {
@@ -694,50 +711,5 @@
       "switchToLightAria": "Zum hellen Thema wechseln",
       "switchToDarkAria": "Zum dunklen Thema wechseln"
     }
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Landwirt",
-      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
-      "FieldAgentAgronomistDamDohInternal": "Feldagent/Agronom (DamDoh Intern)",
-      "OperationsLogisticsTeamDamDohInternal": "Betriebs-/Logistikteam (DamDoh Intern)",
-      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungsteam (DamDoh Intern)",
-      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
-      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
-      "InputSupplierSeedFertilizerPesticide": "Zulieferer (Saatgut, Dünger, Pestizide)",
-      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
-      "FinancialInstitutionMicro-financeLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
-      "GovernmentRegulatorAuditor": "Regierungsregulierungsbehörde/Prüfer",
-      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
-      "Consumer": "Verbraucher",
-      "ResearcherAcademic": "Forscher/Akademiker",
-      "LogisticsPartnerThird-PartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
-      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
-      "AgronomyExpertConsultantExternal": "Agronomie-Experte/Berater (Extern)",
-      "Agro-TourismOperator": "Agrotourismus-Betreiber",
-      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogás)",
-      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
-      "Agri-TechInnovatorDeveloper": "Agrartechnik-Innovator/Entwickler",
-      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
-      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
-      "InsuranceProvider": "Versicherungsanbieter",
-      "PackagingSupplier": "Verpackungslieferant"
-    },
-    "listingTypes": {
-      "Product": "Produkt",
-      "Service": "Dienstleistung",
-      "All": "Alle Typen"
-    },
-    "agriEventTypes": {
-      "All": "Alle Events",
-      "Conference": "Konferenz",
-      "Webinar": "Webinar",
-      "Workshop": "Workshop",
-      "TradeShow": "Messe",
-      "FieldDay": "Feldtag",
-      "NetworkingEvent": "Networking-Event"
-    }
   }
 }
-
-    
