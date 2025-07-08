@@ -1,180 +1,91 @@
 
 {
-  "myNetworkPage": {
-    "backLink": "Volver a la Red",
-    "connectionsTitle": "Mis Conexiones",
-    "connectionsDescription": "Ver y gestionar sus conexiones establecidas.",
-    "requestsTitle": "Solicitudes Pendientes",
-    "requestsDescription": "Aceptar o rechazar solicitudes de conexión entrantes.",
-    "noConnections": "Aún no has hecho ninguna conexión. ¡Empieza explorando la red!",
-    "noRequests": "No tienes solicitudes de conexión pendientes.",
-    "sentTimeAgo": "Enviado hace {timeAgo}",
-    "myConnectionsTab": "Mis Conexiones ({count})",
-    "pendingRequestsTab": "Solicitudes Pendientes"
+  "FiApplicationListPage": {
+    "backLink": "Volver al Panel",
+    "title": "Solicitudes de Financiamiento",
+    "description": "Revise todas las solicitudes enviadas por agricultores y cooperativas.",
+    "tabs": {
+      "all": "Todas",
+      "pending": "Pendientes",
+      "approved": "Aprobadas",
+      "rejected": "Rechazadas"
+    },
+    "table": {
+      "applicant": "Solicitante",
+      "type": "Tipo",
+      "amount": "Monto",
+      "date": "Fecha",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "reviewButton": "Revisar",
+    "noApplications": "No se encontraron solicitudes en esta categoría."
   },
-  "talentExchangePage": {
-    "title": "Bolsa de Talentos",
-    "description": "Encuentre expertos agrícolas, mano de obra especializada y servicios profesionales.",
-    "listServiceButton": "Ofrecer un Servicio",
-    "searchPlaceholder": "Buscar habilidades o servicios...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "categoryPlaceholder": "Filtrar por categoría...",
-    "allCategories": "Todas las Categorías de Servicios",
-    "noResultsTitle": "No se Encontraron Servicios",
-    "noResultsDescription": "Intente ajustar sus filtros de búsqueda para encontrar el talento que necesita.",
+  "FiApplicationPage": {
+    "backLink": "Volver a Solicitudes",
+    "title": "Detalles de la Solicitud",
+    "applicationTitle": "Solicitud",
+    "submittedOn": "Enviada el",
+    "amountRequested": "Monto Solicitado",
+    "purpose": "Propósito del Financiamiento",
+    "approveButton": "Aprobar",
+    "rejectButton": "Rechazar",
+    "requestInfoButton": "Solicitar más información",
+    "applicantDetails": "Detalles del Solicitante",
+    "viewProfileButton": "Ver Perfil",
+    "profileNotFound": "Perfil del solicitante no encontrado.",
+    "riskAssessment": "Evaluación de Riesgo",
+    "creditScore": "Puntaje de Crédito",
+    "notFound": "Solicitud no encontrada.",
     "toast": {
-      "error": {
-        "title": "Error de Búsqueda",
-        "description": "No se pudieron obtener los servicios. Por favor, inténtelo de nuevo."
-      }
+      "errorTitle": "Error",
+      "updateSuccessTitle": "¡Estado Actualizado!",
+      "updateSuccessDescription": "El estado de la solicitud ha sido actualizado a {{status}}.",
+      "updateFailTitle": "Actualización Fallida"
     }
   },
-  "AppHeader": {
-    "home": "Inicio",
-    "network": "Red",
-    "farmMgmt": "Gestión Agrícola",
-    "marketplace": "Mercado",
-    "talentExchange": "Talento",
-    "traceability": "Trazabilidad",
-    "forums": "Foros",
-    "notifications": "Notificaciones",
-    "messages": "Mensajes",
-    "wallet": "Billetera",
-    "searchPlaceholder": "Buscar personas, productos, servicios...",
-    "signIn": "Iniciar Sesión",
-    "signUp": "Registrarse",
-    "myProfile": "Mi Perfil",
-    "settings": "Configuración",
-    "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar Sesión",
-    "switchToLightAria": "Cambiar a tema claro",
-    "switchToDarkAria": "Cambiar a tema oscuro"
-  },
-  "MobileBottomNav": {
-    "home": "Inicio",
-    "market": "Mercado",
-    "search": "Buscar",
-    "forums": "Foros",
-    "profile": "Perfil"
-  },
-  "AppFooter": {
-    "tagline": "Conectando toda la cadena de valor agrícola, desde la semilla hasta la mesa.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre Nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog y Noticias",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de Ayuda",
-    "communityGuidelinesLabel": "Normas de la Comunidad",
-    "industryNewsLabel": "Noticias de la Industria",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de Talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de Privacidad",
-    "termsOfServiceLabel": "Términos de Servicio",
-    "getMobileApp": "Obtén la Aplicación Móvil",
-    "googlePlayAlt": "Consíguelo en Google Play",
-    "appStoreAlt": "Descárgalo en la App Store",
-    "copyright": "© {year} {appName}. Todos los derechos reservados."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Cambiar idioma"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Empoderando la Agricultura, Juntos.",
-      "subtitle": "Únete a DamDoh, la plataforma global que conecta cada eslabón de la cadena de suministro agrícola. Desde agricultores hasta consumidores, fomentamos el crecimiento, la sostenibilidad y el comercio directo.",
-      "getStartedButton": "Comenzar Gratis",
-      "learnMoreButton": "Aprender Más"
+  "FiProductCreatePage": {
+    "backLink": "Volver a Productos",
+    "title": "Crear Producto Financiero",
+    "description": "Defina un nuevo producto de préstamo o subvención para ofrecer a los agricultores.",
+    "form": {
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "Ej: Préstamo para Semillas de Pequeños Agricultores",
+      "typeLabel": "Tipo de Producto",
+      "loan": "Préstamo",
+      "grant": "Subvención",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Describa el producto, sus beneficios y quiénes son elegibles.",
+      "interestRateLabel": "Tasa de Interés (%)",
+      "interestRatePlaceholder": "Ej: 5.5",
+      "maxAmountLabel": "Monto Máximo (USD)",
+      "maxAmountPlaceholder": "Ej: 10000",
+      "targetRolesLabel": "Roles Objetivo",
+      "targetRolesDescription": "Seleccione los roles elegibles para este producto.",
+      "submitButton": "Crear Producto"
     },
-    "features": {
-      "title": "Una Plataforma Unificada para Todos los Interesados",
-      "subtitle": "DamDoh proporciona las herramientas y la red que necesitas para prosperar en el ecosistema agrícola moderno.",
-      "networking": {
-        "title": "Red Inteligente",
-        "description": "Matchmaking impulsado por IA para conectarte con los socios adecuados, desde proveedores hasta compradores internacionales."
-      },
-      "marketplace": {
-        "title": "Mercado Directo",
-        "description": "Compra y vende productos, insumos y equipos directamente, eliminando intermediarios y aumentando la transparencia."
-      },
-      "forums": {
-        "title": "Foros de Conocimiento",
-        "description": "Comparte ideas, haz preguntas y aprende de una comunidad global de expertos y colegas agrícolas."
-      },
-      "talent": {
-        "title": "Bolsa de Talentos",
-        "description": "Ofrece tus servicios profesionales o encuentra talento agrícola calificado para tus necesidades específicas."
-      }
-    },
-    "forWho": {
-      "badge": "Para Todos en la Cadena de Valor",
-      "title": "Construido para Todo el Mundo Agrícola",
-      "description": "Ya sea que estés sembrando semillas o sirviendo una mesa, DamDoh es tu plataforma para la conexión y el crecimiento.",
-      "farmers": {
-        "title": "Agricultores y Productores",
-        "description": "Accede a nuevos mercados, obtén precios justos, encuentra insumos sostenibles y gestiona tus operaciones agrícolas de manera eficiente."
-      },
-      "buyers": {
-        "title": "Compradores y Procesadores",
-        "description": "Adquiere productos de alta calidad y trazables directamente de los productores y gestiona tu cadena de suministro con confianza."
-      },
-      "experts": {
-        "title": "Expertos y Proveedores de Servicios",
-        "description": "Ofrece tu experiencia, encuentra nuevos clientes y contribuye a un sector agrícola más eficiente y sostenible."
-      },
-      "imageAlt": "Un collage de diversas personas trabajando en la agricultura"
-    },
-    "cta": {
-      "title": "¿Listo para Cultivar tu Futuro Agrícola?",
-      "subtitle": "Únete a miles de interesados que ya están construyendo un sistema alimentario más conectado y sostenible.",
-      "button": "Regístrate Ahora"
+    "toast": {
+      "notAuthenticated": "Debe iniciar sesión como Institución Financiera.",
+      "successTitle": "¡Producto Creado!",
+      "successDescription": "El producto '{{name}}' se creó con éxito.",
+      "errorTitle": "Creación Fallida"
     }
   },
-  "InsuranceProductsPage": {
-    "title": "Productos de Seguros",
-    "description": "Gestiona tus productos de seguros ofrecidos.",
-    "createButton": "Crear Producto",
-    "noProducts": "Aún no has creado ningún producto de seguro.",
+  "FiProductsPage": {
+    "backLink": "Volver al Panel",
+    "title": "Productos Financieros",
+    "description": "Vea y gestione sus productos de préstamo y subvención.",
+    "createButton": "Crear Nuevo Producto",
     "table": {
       "productName": "Nombre del Producto",
       "type": "Tipo",
       "status": "Estado",
-      "premium": "Prima"
+      "interestRate": "Tasa de Interés",
+      "maxAmount": "Monto Máx."
     },
+    "noProducts": "Aún no ha creado ningún producto financiero.",
     "toast": {
-      "errorTitle": "Error",
-      "fetchError": "No se pudieron obtener los productos de seguros."
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "title": "Crear Producto de Seguro",
-    "description": "Define un nuevo producto de seguro para ofrecer en la plataforma.",
-    "backLink": "Volver a Productos",
-    "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "Ej: Seguro de Cultivos de Riesgo Múltiple",
-      "typeLabel": "Tipo de Producto",
-      "typePlaceholder": "Seleccione un tipo",
-      "crop": "Cultivo",
-      "livestock": "Ganado",
-      "asset": "Activo",
-      "weather": "Climático/Paramétrico",
-      "descriptionLabel": "Descripción Corta",
-      "descriptionPlaceholder": "Un resumen breve del producto.",
-      "coverageLabel": "Detalles de la Cobertura",
-      "coveragePlaceholder": "Describe en detalle qué cubre este seguro, incluyendo riesgos, límites y exclusiones.",
-      "premiumLabel": "Monto de la Prima",
-      "premiumPlaceholder": "Ej: 50.00",
-      "currencyLabel": "Moneda",
-      "submitButton": "Crear Producto"
-    },
-    "toast": {
-      "notAuthenticated": "Debes iniciar sesión como Proveedor de Seguros para crear un producto.",
-      "successTitle": "Producto Creado",
-      "successDescription": "El producto '{{name}}' ha sido creado con éxito.",
-      "errorTitle": "Creación Fallida"
+      "errorTitle": "Error"
     }
   }
 }

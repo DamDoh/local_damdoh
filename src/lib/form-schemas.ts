@@ -237,12 +237,12 @@ export const financialApplicationSchema = z.object({
 });
 export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
 
-export const createInsuranceProductSchema = z.object({
+export const createFinancialProductSchema = z.object({
   name: z.string().min(5, "Product name must be at least 5 characters.").max(100),
-  type: z.enum(['Crop', 'Livestock', 'Asset', 'Weather'], { required_error: "Please select a product type." }),
+  type: z.enum(['Loan', 'Grant'], { required_error: "Please select a product type."}),
   description: z.string().min(20, "Description must be at least 20 characters.").max(1000),
-  coverageDetails: z.string().min(20, "Coverage details must be at least 20 characters.").max(5000),
-  premium: z.coerce.number().positive("Premium must be a positive number."),
-  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
+  interestRate: z.coerce.number().min(0).optional(),
+  maxAmount: z.coerce.number().positive().optional(),
+  targetRoles: z.array(z.string()).optional(),
 });
-export type CreateInsuranceProductValues = z.infer<typeof createInsuranceProductSchema>;
+export type CreateFinancialProductValues = z.infer<typeof createFinancialProductSchema>;

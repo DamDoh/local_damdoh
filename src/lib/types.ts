@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -635,15 +634,15 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-export interface InsuranceProduct {
+export interface FinancialProduct {
   id: string;
-  providerId: string;
+  fiId: string;
   name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  type: 'Loan' | 'Grant';
   description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
   status: 'Active' | 'Inactive';
   createdAt: string;
 }
