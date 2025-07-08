@@ -16,7 +16,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatDistanceToNow } from 'date-fns';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from "@/components/ui/badge";
 import { useTranslations } from 'next-intl';
 
 export default function MyNetworkPage() {
@@ -206,3 +206,5 @@ const NetworkPageSkeleton = () => (
         </Card>
     </div>
 )
+
+    

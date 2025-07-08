@@ -20,7 +20,7 @@ import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { useAuth } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { app as firebaseApp } from '@/lib/firebase/client';
 import type { SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 
 function ProfileCardSkeleton() {
@@ -311,3 +311,5 @@ export default function NetworkPage() {
     </div>
   );
 }
+
+    

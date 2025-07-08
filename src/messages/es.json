@@ -1,5 +1,4 @@
 
-
 {
   "FeedItemCard": {
     "editPost": "Editar Publicación",
@@ -47,391 +46,41 @@
     "agriEvent": "Evento Agrícola",
     "createPoll": "Crear Encuesta"
   },
-  "Marketplace": {
-    "title": "Mercado",
-    "description": "Navega y descubre productos y servicios.",
-    "createShopButton": "Crear Tienda",
-    "createListingButton": "Crear Publicación",
-    "myOrdersButton": "Mis Pedidos Recibidos",
-    "pinButton": "Fijar como Página de Inicio",
-    "unpinButton": "Desfijar Página de Inicio",
-    "searchPlaceholder": "Buscar en el mercado...",
+  "myNetworkPage": {
+    "backLink": "Volver a la Red",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Ver y gestionar tus conexiones actuales.",
+    "noConnections": "Aún no has hecho ninguna conexión. ¡Empieza explorando la red!",
+    "requestsTitle": "Solicitudes de Conexión",
+    "requestsDescription": "Aceptar o rechazar solicitudes para conectar.",
+    "noRequests": "No tienes solicitudes de conexión pendientes.",
+    "sentTimeAgo": "Enviado hace {timeAgo}"
+  },
+  "networkPage": {
+    "title": "Mi Red Profesional",
+    "description": "Descubre y conecta con actores de toda la cadena de suministro agrícola.",
+    "myNetworkButton": "Mi Red",
+    "agentToolsButton": "Herramientas de Agente",
+    "aiSuggestionsTitle": "Sugerencias con IA",
+    "aiSuggestionsDescription": "Basado en tu perfil, aquí tienes algunos actores con los que podrías querer conectar.",
+    "connect": "Conectar",
+    "profile": "Perfil",
+    "browseAllTitle": "Explorar Todos los Actores",
+    "browseAllDescription": "Encuentra las personas y empresas adecuadas para hacer crecer tu red.",
+    "searchPlaceholder": "Buscar por nombre, rol o interés...",
     "locationPlaceholder": "Filtrar por ubicación...",
-    "typePlaceholder": "Filtrar por tipo...",
-    "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre Más",
-    "viewDetails": "Ver Detalles",
-    "viewServiceButton": "Ver Servicio",
-    "itemView": {
-      "backLink": "Volver al mercado",
-      "unknownUser": "Usuario Desconocido",
-      "traceabilityButton": "Enlace de Comercio / Lote",
-      "skillsLabel": "Habilidades requeridas",
-      "experienceLabel": "Nivel de experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "booking": {
-        "perNight": "noche",
-        "checkIn": "Llegada",
-        "checkOut": "Salida",
-        "addDate": "Agregar fecha",
-        "guests": "Huéspedes",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "notCharged": "Aún no se le cobrará",
-        "nights": "noches",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total",
-        "successTitle": "¡Reserva exitosa!",
-        "successDescription": "Su reserva está confirmada.",
-        "failTitle": "Reserva fallida",
-        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
-        "bookedTitle": "¡Reservado!",
-        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
-        "ticketButton": "Mostrar ticket",
-        "modalTitle": "Ticket de reserva",
-        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
-        "modalScan": "Escanee este código para registrarse"
-      },
-      "coupon": {
-        "label": "Código de cupón",
-        "placeholder": "Introduce el código de cupón",
-        "applyButton": "Aplicar",
-        "successTitle": "¡Cupón aplicado!",
-        "successDescription": "Descuento aplicado: {{type}}",
-        "failTitle": "Cupón inválido",
-        "failDescription": "El código de cupón es inválido o no aplicable.",
-        "appliedText": "Cupón aplicado: {{code}}"
-      },
-      "aboutSeller": "Sobre el vendedor",
-      "viewShopfront": "Ver escaparate",
-      "editListing": "Editar publicación",
-      "manageService": "Gestionar servicio",
-      "buyNowButton": "Comprar ahora",
-      "contactForService": "Contactar para servicio",
-      "contactSeller": "Contactar vendedor",
-      "order": {
-        "title": "Pedir {{itemName}}",
-        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas (Opcional)",
-        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
-        "cancelButton": "Cancelar",
-        "confirmButton": "Confirmar pedido",
-        "placingButton": "Realizando pedido...",
-        "successTitle": "¡Pedido realizado!",
-        "successDescription": "Tu pedido ha sido realizado con éxito.",
-        "failTitle": "Pedido fallido",
-        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
-        "quantityErrorTitle": "Error de cantidad",
-        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
-      },
-      "notFound": {
-        "title": "Artículo no encontrado",
-        "description": "El artículo del mercado que estás buscando no existe.",
-        "backButton": "Volver a Mercado"
-      },
-      "errors": {
-        "loadItem": {
-          "title": "Error al cargar artículo",
-          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
-        },
-        "unexpected": "Ocurrió un error inesperado."
-      }
-    },
-    "myOrders": {
-      "backLink": "Volver al mercado",
-      "title": "Mis Pedidos Recibidos",
-      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
-      "auth": {
-        "title": "Autenticación requerida",
-        "description": "Debe haber iniciado sesión para ver sus pedidos.",
-        "button": "Iniciar sesión"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "actions": {
-        "confirm": "Confirmar",
-        "ship": "Enviar",
-        "complete": "Completar",
-        "cancel": "Cancelar"
-      },
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      },
-      "noOrders": "No se encontraron pedidos.",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron obtener los pedidos.",
-        "successTitle": "¡Éxito!",
-        "updateSuccess": "Estado del pedido actualizado a {{status}}",
-        "failTitle": "Error"
-      }
-    },
-    "shopView": {
-      "backLink": "Volver al mercado",
-      "ownedBy": "Propiedad de",
-      "loadingOwner": "Cargando...",
-      "editShopButton": "Editar tienda",
-      "contactButton": "Contactar vendedor",
-      "listingsTitle": "Publicaciones de {{shopName}}",
-      "noListings": "No se encontraron publicaciones para esta tienda.",
-      "errors": {
-        "notFound": "Tienda no encontrada",
-        "loadError": "No se pudieron cargar los detalles de la tienda.",
-        "title": "Error"
-      }
-    },
-    "createShop": {
-      "backLink": "Volver al mercado",
-      "title": "Crear tu escaparate digital",
-      "description": "Configura tu tienda para listar artículos y servicios.",
-      "form": {
-        "nameLabel": "Nombre de la tienda",
-        "namePlaceholder": "Introduce el nombre de tu tienda",
-        "typeLabel": "Tipo de actor",
-        "typePlaceholder": "Selecciona tu tipo",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describe tu tienda y lo que ofreces"
-      },
-      "submitButton": "Crear tienda",
-      "submittingButton": "Creando...",
-      "authErrorTitle": "Error de autenticación",
-      "authErrorDescription": "Debes haber iniciado sesión para crear una tienda.",
-      "toast": {
-        "successTitle": "¡Escaparate creado!",
-        "successDescription": "Tu escaparate \"{{shopName}}\" ha sido creado.",
-        "failTitle": "Creación fallida",
-        "failDescription": "No se pudo crear la tienda. Por favor, inténtalo de nuevo."
-      }
-    },
-    "createListing": {
-      "backLink": "Volver al mercado",
-      "title": "Crear Nueva Publicación",
-      "description": "Lista un producto o servicio en el mercado.",
-      "form": {
-        "nameLabel": "Nombre del artículo/servicio",
-        "namePlaceholder": "Introduce el nombre de tu publicación",
-        "typeLabel": "Tipo de publicación",
-        "typePlaceholder": "Selecciona el tipo de publicación",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describe tu publicación",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "Introduce la ubicación",
-        "relatedVtiLabel": "VTI / ID de lote relacionado (Opcional)",
-        "relatedVtiPlaceholder": "Introduce el VTI si esta publicación es para un lote específico",
-        "relatedVtiDescription": "Vincular un VTI aumenta la confianza del comprador.",
-        "categoryLabel": "Categoría",
-        "categoryPlaceholder": "Selecciona una categoría",
-        "compensationLabel": "Compensación",
-        "compensationPlaceholder": "ej: por hora, tarifa fija",
-        "experienceLabel": "Nivel de experiencia",
-        "experiencePlaceholder": "ej: Principiante, Intermedio, Experto",
-        "skillsLabel": "Habilidades requeridas",
-        "skillsPlaceholder": "Lista las habilidades necesarias para el servicio",
-        "skillsDescription": "Separa las habilidades con comas.",
-        "priceLabel": "Precio",
-        "pricePlaceholder": "Introduce el precio",
-        "unitLabel": "Unidad",
-        "unitPlaceholder": "ej: kg, pieza, hora",
-        "imageUrlLabel": "URL de la imagen (Opcional)",
-        "sustainableLabel": "Práctica sostenible",
-        "sustainableDescription": "Indica si esta publicación involucra prácticas sostenibles.",
-        "submitButton": "Crear Publicación",
-        "submittingButton": "Creando..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Sugerir precio con IA",
-        "generatingButton": "Generando...",
-        "suggestionLabel": "Sugerencia de IA:",
-        "usePriceButton": "Usar este precio"
-      },
-      "success": {
-        "title": "¡Éxito!",
-        "description": "Tu publicación ha sido creada."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Información Faltante",
-            "description": "Por favor, introduce un nombre y una descripción antes de sugerir un precio."
-          },
-          "failed": {
-            "title": "Error de sugerencia de precio",
-            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manualmente."
-          }
-        },
-        "authentication": {
-          "title": "Error de autenticación",
-          "description": "Debes haber iniciado sesión para crear una publicación."
-        },
-        "creation": {
-          "title": "Error de creación",
-          "description": "No se pudo crear la publicación. Por favor, inténtalo de nuevo."
-        }
-      }
-    },
-    "manageService": {
-      "backLink": "Volver a {{itemName}}",
-      "title": "Gestionar servicio",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Reservas",
-        "staff": "Personal"
-      },
-      "loading": "Cargando...",
-      "bookingsTab": {
-        "title": "Reservas del servicio ({count})",
-        "description": "Ver y gestionar las reservas para este servicio.",
-        "downloadCsv": "Descargar CSV",
-        "table": {
-          "guest": "Huésped",
-          "bookedOn": "Reservado el",
-          "status": "Estado",
-          "checkedInAt": "Registrado el"
-        },
-        "status": {
-          "booked": "Reservado",
-          "checkedIn": "Registrado"
-        },
-        "noBookings": "Aún no hay reservas.",
-        "error": "Error al obtener las reservas.",
-        "toast": {
-          "noBookings": "No hay reservas para descargar."
-        }
-      }
-    },
-    "promotions": {
-      "backToDashboard": "Volver al Panel",
-      "title": "Promociones y Cupones",
-      "description": "Cree y gestione cupones para promocionar sus listados en el mercado.",
-      "signInPrompt": "Inicie sesión para gestionar sus promociones.",
-      "create": {
-        "title": "Crear un Nuevo Cupón",
-        "form": {
-          "code": "Código de Cupón",
-          "codePlaceholder": "ej. VERANO10",
-          "usageLimit": "Límite de Uso",
-          "usageLimitPlaceholder": "ej. 100",
-          "discountType": "Tipo de Descuento",
-          "discountTypePlaceholder": "Seleccionar un tipo",
-          "percentage": "Porcentaje",
-          "fixed": "Cantidad Fija",
-          "discountValue": "Valor del Descuento",
-          "expiryDate": "Fecha de Vencimiento (Opcional)",
-          "pickDate": "Seleccionar una fecha",
-          "submitButton": "Crear Cupón"
-        },
-        "toast": {
-          "successTitle": "¡Cupón Creado!",
-          "successDescription": "El cupón '{{code}}' ya está activo.",
-          "failTitle": "Creación Fallida"
-        }
-      },
-      "list": {
-        "title": "Cupones Existentes",
-        "description": "Aquí están sus cupones activos y pasados.",
-        "usage": "Uso",
-        "expires": "Vence",
-        "never": "Nunca",
-        "share": "Compartir",
-        "noCoupons": "Aún no ha creado ningún cupón.",
-        "toastTitle": "¡Enlace Copiado!",
-        "toastDescription": "Se ha copiado a su portapapeles un enlace para compartir el cupón '{{link}}'.",
-        "shareModal": {
-          "title": "Compartir Cupón",
-          "description": "Comparta este enlace con sus clientes para darles un descuento.",
-          "link": "Enlace",
-          "copy": "Copiar",
-          "close": "Cerrar"
-        }
-      },
-      "toast": {
-        "error": "Error",
-        "fetchError": "No se pudieron obtener sus cupones.",
-        "createSuccess": "Cupón '{{code}}' creado con éxito.",
-        "createFail": "No se pudo crear el cupón.",
-        "createError": "Ocurrió un error inesperado.",
-        "success": "Éxito",
-        "linkCopied": "Enlace Copiado"
-      }
-    },
-    "filtersAndSorting": {
-      "categoryLabel": "Categoría",
-      "categoryPlaceholder": "Todas las Categorías",
-      "sortByLabel": "Ordenar por",
-      "sortByPlaceholder": "Seleccionar una opción",
-      "priceAscending": "Precio: Menor a Mayor",
-      "priceDescending": "Precio: Mayor a Menor",
-      "dateNewest": "Fecha: Más Nuevos Primero",
-      "dateOldest": "Fecha: Más Antiguos Primero",
-      "nameAscending": "Nombre: A-Z",
-      "nameDescending": "Nombre: Z-A"
-    },
-    "feedback": {
-      "reviewsTitle": "Reseñas",
-      "addReviewButton": "Agregar una Reseña",
-      "ratingLabel": "Calificación",
-      "noReviews": "Aún no hay reseñas. ¡Sé el primero en reseñar este artículo!",
-      "reviewForm": {
-        "placeholder": "Escribe tu reseña aquí..."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "¡Mercado fijado!",
-      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "¡Página de inicio desfijada!",
-      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
-    }
-  },
-  "common": {
-    "error": "Error"
-  },
-  "traceabilityPage": {
-    "title": "Centro de Trazabilidad",
-    "description": "Rastrea el viaje de tus alimentos desde la granja hasta la mesa con un ID de Trazabilidad Verificable (VTI).",
-    "inputPlaceholder": "Introduce el código VTI...",
-    "trackButton": "Rastrear",
-    "vtiDescription": "Un VTI es un identificador único asignado a un lote específico de productos agrícolas.",
-    "recentTitle": "Búsquedas Recientes",
-    "recentDescription": "No tienes artículos rastreados recientemente.",
-    "detailPage": {
-      "backLink": "Volver al Centro de Trazabilidad",
-      "invalidIdError": "ID de lote no válido.",
-      "loadError": "Error al cargar los datos de trazabilidad. Por favor, compruebe el ID e inténtelo de nuevo.",
-      "notFoundTitle": "Lote no encontrado",
-      "notFoundDescription": "El ID de trazabilidad que ha introducido no coincide con ningún registro.",
-      "traceableProduct": "Producto Trazable",
-      "batchIdLabel": "ID de Lote",
-      "producerLabel": "Productor",
-      "sustainablyGrownTitle": "Cultivado de Forma Sostenible",
-      "sustainablyGrownDescription": "El registro de este producto indica que fue cultivado utilizando prácticas sostenibles, sin insumos químicos sintéticos.",
-      "harvestDateLabel": "Fecha de Cosecha",
-      "yieldLabel": "Rendimiento Inicial",
-      "qualityLabel": "Calidad Inicial",
-      "notSpecified": "No especificado",
-      "journeyTitle": "Viaje del Producto",
-      "journeyDescription": "Un registro cronológico de todos los eventos de este lote.",
-      "noEventDetails": "No se proporcionaron más detalles para este evento.",
-      "observationType": "Tipo de Observación",
-      "details": "Detalles",
-      "aiDiagnosis": "Diagnóstico IA",
-      "geoLocationLabel": "Ubicación Geográfica",
-      "noEventsFound": "Aún no se han registrado eventos para este lote."
+    "rolePlaceholder": "Filtrar por rol...",
+    "allRoles": "Todos los roles",
+    "noStakeholdersFound": "No se encontraron actores.",
+    "noStakeholdersHint": "Intenta ajustar tu búsqueda o filtros.",
+    "noSuggestions": "No hay nuevas sugerencias para ti en este momento. Intenta completar tu perfil para obtener mejores recomendaciones.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "No se pudieron cargar los datos de la red."
     }
   }
 }
+
+    
