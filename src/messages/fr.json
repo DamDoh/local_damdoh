@@ -1,5 +1,57 @@
 
 {
+  "AgronomistDashboard": {
+    "title": "Hub des Agronomes & Consultants",
+    "stats": {
+      "assignedFarmers": "Agriculteurs Assignés",
+      "farmersWithAlerts": "Agriculteurs avec Alertes",
+      "pendingConsultations": "Consultations en Attente",
+      "knowledgeContributions": "Contributions Savoir"
+    },
+    "descriptions": {
+      "assignedFarmers": "{count} agriculteurs dans votre portefeuille",
+      "farmersWithAlerts": "{count} agriculteurs nécessitent une attention",
+      "pendingConsultations": "{count} nouvelles demandes",
+      "knowledgeContributions": "{count} articles publiés"
+    },
+    "consultations": {
+      "title": "Demandes de Consultation en Attente",
+      "description": "Examinez et répondez aux demandes entrantes des agriculteurs.",
+      "table": {
+        "farmer": "Agriculteur",
+        "issue": "Résumé du Problème",
+        "action": "Action"
+      },
+      "viewButton": "Voir la Demande",
+      "noRequests": "Aucune nouvelle demande de consultation."
+    },
+    "portfolio": {
+      "title": "Portefeuille d'Agriculteurs",
+      "description": "Aperçu des agriculteurs que vous conseillez.",
+      "table": {
+        "farmer": "Agriculteur",
+        "location": "Lieu",
+        "alerts": "Alertes",
+        "action": "Action"
+      },
+      "alertsLabel": "alertes",
+      "profileButton": "Voir le Profil",
+      "noFarmers": "Aucun agriculteur assigné à votre portefeuille pour le moment."
+    },
+    "contributions": {
+      "statusTitle": "Statut de Contribution au Hub de Connaissances",
+      "title": "Contributions Récentes",
+      "noContributions": "Vous n'avez encore rédigé aucune contribution.",
+      "noData": "Aucune donnée disponible pour le graphique."
+    },
+    "chart": {
+      "count": "Nombre",
+      "published": "Publié",
+      "pending": "En Attente d'Examen",
+      "draft": "Brouillon"
+    },
+    "noData": "Aucune donnée de tableau de bord disponible."
+  },
   "EnergyProviderDashboard": {
     "title": "Hub Fournisseur de Solutions Énergétiques",
     "leadsTitle": "Pistes de Projets",
@@ -17,13 +69,7 @@
       "location": "Lieu",
       "energyNeed": "Besoin Énergétique Estimé",
       "status": "Statut",
-      "action": "Action",
-      "name": "Nom",
-      "dataType": "Type de Données",
-      "accessLevel": "Niveau d'Accès",
-      "progress": "Progression",
-      "collaborators": "Collaborateurs",
-      "title": "Titre"
+      "action": "Action"
     },
     "viewLeadButton": "Voir la Piste",
     "noLeads": "Aucune piste de projet pour le moment.",
@@ -61,10 +107,7 @@
       "farmName": "Nom de la Ferme",
       "standard": "Norme",
       "dueDate": "Date Limite",
-      "action": "Action",
-      "name": "Nom",
-      "type": "Type",
-      "status": "Statut"
+      "action": "Action"
     },
     "reviewAuditButton": "Examiner et Planifier",
     "noPendingAudits": "Aucun audit en attente.",
@@ -86,10 +129,7 @@
       "product": "Produit",
       "seller": "Vendeur",
       "dueDate": "Date Limite",
-      "action": "Action",
-      "result": "Résultat",
-      "reason": "Raison",
-      "inspectedAt": "Inspecté le"
+      "action": "Action"
     },
     "performInspectionButton": "Effectuer l'Inspection",
     "noPendingInspections": "Aucune inspection en attente.",
@@ -243,11 +283,7 @@
     "table": {
       "product": "Produit",
       "quality": "Qualité",
-      "quantity": "Quantité (Tonnes)",
-      "supplier": "Fournisseur",
-      "deliveryDate": "Date de Livraison",
-      "status": "Statut",
-      "action": "Action"
+      "quantity": "Quantité (Tonnes)"
     },
     "noInventoryData": "Aucune donnée d'inventaire de matières premières disponible.",
     "packagingOrdersTitle": "Commandes d'Emballage",
@@ -271,9 +307,7 @@
     "table": {
         "vti": "Lien VTI",
         "destination": "Destination",
-        "status": "Statut",
-        "carrier": "Transporteur",
-        "location": "Emplacement"
+        "status": "Statut"
     },
     "prepareDocsButton": "Préparer les Documents",
     "noDocs": "Aucun document en attente.",
@@ -348,9 +382,7 @@
       "policyType": "Type de police",
       "claimDate": "Date du sinistre",
       "status": "Statut",
-      "action": "Action",
-      "alert": "Alerte",
-      "severity": "Sévérité"
+      "action": "Action"
     },
     "reviewClaimButton": "Examiner le sinistre",
     "noPendingClaims": "Aucun sinistre en attente d'examen.",
@@ -372,11 +404,7 @@
       "name": "Nom",
       "dataType": "Type de Données",
       "accessLevel": "Niveau d'Accès",
-      "action": "Action",
-      "title": "Titre",
-      "progress": "Progression",
-      "collaborators": "Collaborateurs",
-      "status": "Statut"
+      "action": "Action"
     },
     "requestAccessButton": "Demander l'Accès",
     "noDatasets": "Aucun ensemble de données disponible actuellement.",

@@ -1,5 +1,57 @@
 
 {
+  "AgronomistDashboard": {
+    "title": "Centro de Agrónomos y Consultores",
+    "stats": {
+      "assignedFarmers": "Agricultores Asignados",
+      "farmersWithAlerts": "Agricultores con Alertas",
+      "pendingConsultations": "Consultas Pendientes",
+      "knowledgeContributions": "Contribuciones de Conocimiento"
+    },
+    "descriptions": {
+      "assignedFarmers": "{count} agricultores en su cartera",
+      "farmersWithAlerts": "{count} agricultores necesitan atención",
+      "pendingConsultations": "{count} nuevas solicitudes",
+      "knowledgeContributions": "{count} artículos publicados"
+    },
+    "consultations": {
+      "title": "Solicitudes de Consulta Pendientes",
+      "description": "Revise y responda a las solicitudes entrantes de los agricultores.",
+      "table": {
+        "farmer": "Agricultor",
+        "issue": "Resumen del Problema",
+        "action": "Acción"
+      },
+      "viewButton": "Ver Solicitud",
+      "noRequests": "No hay nuevas solicitudes de consulta."
+    },
+    "portfolio": {
+      "title": "Cartera de Agricultores",
+      "description": "Resumen de los agricultores que asesora.",
+      "table": {
+        "farmer": "Agricultor",
+        "location": "Ubicación",
+        "alerts": "Alertas",
+        "action": "Acción"
+      },
+      "alertsLabel": "alertas",
+      "profileButton": "Ver Perfil",
+      "noFarmers": "Aún no hay agricultores asignados a su cartera."
+    },
+    "contributions": {
+      "statusTitle": "Estado de Contribución al Centro de Conocimiento",
+      "title": "Contribuciones Recientes",
+      "noContributions": "Aún no ha realizado ninguna contribución.",
+      "noData": "No hay datos disponibles para el gráfico."
+    },
+    "chart": {
+      "count": "Cantidad",
+      "published": "Publicado",
+      "pending": "Pendiente de Revisión",
+      "draft": "Borrador"
+    },
+    "noData": "No hay datos de panel disponibles."
+  },
   "EnergyProviderDashboard": {
     "title": "Centro de Proveedores de Soluciones Energéticas",
     "leadsTitle": "Clientes Potenciales de Proyectos",
@@ -17,13 +69,7 @@
       "location": "Ubicación",
       "energyNeed": "Necesidad Energética Estimada",
       "status": "Estado",
-      "action": "Acción",
-      "name": "Nombre",
-      "dataType": "Tipo de Datos",
-      "accessLevel": "Nivel de Acceso",
-      "progress": "Progreso",
-      "collaborators": "Colaboradores",
-      "title": "Título"
+      "action": "Acción"
     },
     "viewLeadButton": "Ver Cliente Potencial",
     "noLeads": "No hay clientes potenciales de proyectos en este momento.",
@@ -40,14 +86,14 @@
   },
   "InputSupplierDashboard": {
     "title": "Panel de Proveedor de Insumos",
-    "ordersTitle": "Pedidos Activos y Valor",
+    "ordersTitle": "Órdenes Activas y Valor",
     "totalValue": "valor total",
-    "manageOrdersButton": "Gestionar Todos los Pedidos",
-    "forecastTitle": "Previsión de Demanda Regional",
+    "manageOrdersButton": "Gestionar Todas las Órdenes",
+    "forecastTitle": "Pronóstico de Demanda Regional",
     "in": "en",
     "performanceTitle": "Rendimiento y Reseñas de Productos",
     "viewReviewsButton": "Ver Todas las Reseñas",
-    "noForecast": "No hay datos de previsión de demanda disponibles en este momento.",
+    "noForecast": "No hay datos de pronóstico de demanda disponibles en este momento.",
     "noFeedback": "Aún no hay comentarios sobre productos.",
     "promotionsTitle": "Cupones y Promociones",
     "promotionsDescription": "Cree y gestione descuentos para impulsar sus ventas.",
@@ -61,10 +107,7 @@
       "farmName": "Nombre de la Finca",
       "standard": "Estándar",
       "dueDate": "Fecha de Vencimiento",
-      "action": "Acción",
-      "name": "Nombre",
-      "type": "Tipo",
-      "status": "Estado"
+      "action": "Acción"
     },
     "reviewAuditButton": "Revisar y Programar",
     "noPendingAudits": "No hay auditorías pendientes.",
@@ -86,10 +129,7 @@
       "product": "Producto",
       "seller": "Vendedor",
       "dueDate": "Fecha de Vencimiento",
-      "action": "Acción",
-      "result": "Resultado",
-      "reason": "Motivo",
-      "inspectedAt": "Inspeccionado en"
+      "action": "Acción"
     },
     "performInspectionButton": "Realizar Inspección",
     "noPendingInspections": "No hay inspecciones pendientes.",
@@ -243,11 +283,7 @@
     "table": {
       "product": "Producto",
       "quality": "Calidad",
-      "quantity": "Cantidad (Toneladas)",
-      "supplier": "Proveedor",
-      "deliveryDate": "Fecha de Entrega",
-      "status": "Estado",
-      "action": "Acción"
+      "quantity": "Cantidad (Toneladas)"
     },
     "noInventoryData": "No hay datos de inventario de materia prima disponibles.",
     "packagingOrdersTitle": "Pedidos de Embalaje",
@@ -271,9 +307,7 @@
     "table": {
         "vti": "Enlace VTI",
         "destination": "Destino",
-        "status": "Estado",
-        "carrier": "Transportista",
-        "location": "Ubicación"
+        "status": "Estado"
     },
     "prepareDocsButton": "Preparar Documentos",
     "noDocs": "No hay documentos pendientes.",
@@ -348,9 +382,7 @@
       "policyType": "Tipo de Póliza",
       "claimDate": "Fecha de Reclamación",
       "status": "Estado",
-      "action": "Acción",
-      "alert": "Alerta",
-      "severity": "Gravedad"
+      "action": "Acción"
     },
     "reviewClaimButton": "Revisar Reclamación",
     "noPendingClaims": "No hay reclamaciones pendientes para revisar.",
@@ -372,11 +404,7 @@
       "name": "Nombre",
       "dataType": "Tipo de Datos",
       "accessLevel": "Nivel de Acceso",
-      "action": "Acción",
-      "title": "Título",
-      "progress": "Progreso",
-      "collaborators": "Colaboradores",
-      "status": "Estado"
+      "action": "Acción"
     },
     "requestAccessButton": "Solicitar Acceso",
     "noDatasets": "No hay conjuntos de datos disponibles actualmente.",
@@ -395,7 +423,7 @@
     "chart": {
       "count": "Cantidad",
       "published": "Publicado",
-      "pending": "Pendiente",
+      "pending": "Pendiente de Revisión",
       "draft": "Borrador"
     }
   }

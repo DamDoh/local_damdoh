@@ -1,5 +1,57 @@
 
 {
+  "AgronomistDashboard": {
+    "title": "មជ្ឈមណ្ឌលអ្នកជំនាញកសិកម្ម និងទីប្រឹក្សា",
+    "stats": {
+      "assignedFarmers": "កសិករដែលបានចាត់តាំង",
+      "farmersWithAlerts": "កសិករមានការជូនដំណឹង",
+      "pendingConsultations": "ការពិគ្រោះយោបល់ដែលមិនទាន់សម្រេច",
+      "knowledgeContributions": "ការចូលរួមចំណែកចំណេះដឹង"
+    },
+    "descriptions": {
+      "assignedFarmers": "{count} កសិករក្នុងផលប័ត្ររបស់អ្នក",
+      "farmersWithAlerts": "{count} កសិករត្រូវការការយកចិត្តទុកដាក់",
+      "pendingConsultations": "{count} សំណើថ្មី",
+      "knowledgeContributions": "{count} អត្ថបទបានបោះពុម្ពផ្សាយ"
+    },
+    "consultations": {
+      "title": "សំណើពិគ្រោះយោបល់ដែលមិនទាន់សម្រេច",
+      "description": "ពិនិត្យ និងឆ្លើយតបទៅនឹងសំណើដែលចូលមកពីកសិករ។",
+      "table": {
+        "farmer": "កសិករ",
+        "issue": "សេចក្តីសង្ខេបបញ្ហា",
+        "action": "សកម្មភាព"
+      },
+      "viewButton": "មើលសំណើ",
+      "noRequests": "គ្មានសំណើពិគ្រោះយោបល់ថ្មីទេ។"
+    },
+    "portfolio": {
+      "title": "ផលប័ត្រកសិករ",
+      "description": "ទិដ្ឋភាពទូទៅនៃកសិករដែលអ្នកកំពុងផ្តល់ប្រឹក្សា។",
+      "table": {
+        "farmer": "កសិករ",
+        "location": "ទីតាំង",
+        "alerts": "ការជូនដំណឹង",
+        "action": "សកម្មភាព"
+      },
+      "alertsLabel": "ការជូនដំណឹង",
+      "profileButton": "មើលប្រវត្តិរូប",
+      "noFarmers": "មិនទាន់មានកសិករត្រូវបានចាត់តាំងក្នុងផលប័ត្ររបស់អ្នកទេ។"
+    },
+    "contributions": {
+      "statusTitle": "ស្ថានភាពការចូលរួមចំណែកក្នុងមជ្ឈមណ្ឌលចំណេះដឹង",
+      "title": "ការចូលរួមចំណែកថ្មីៗ",
+      "noContributions": "អ្នកមិនទាន់បានសរសេរអត្ថបទណាមួយនៅឡើយទេ។",
+      "noData": "គ្មានទិន្នន័យសម្រាប់គំនូសតាងទេ។"
+    },
+    "chart": {
+      "count": "ចំនួន",
+      "published": "បានផ្សព្វផ្សាយ",
+      "pending": "កំពុងរង់ចាំការពិនិត្យ",
+      "draft": "សេចក្តីព្រាង"
+    },
+    "noData": "គ្មានទិន្នន័យផ្ទាំងគ្រប់គ្រងទេ។"
+  },
   "EnergyProviderDashboard": {
     "title": "មជ្ឈមណ្ឌលអ្នកផ្តល់ដំណោះស្រាយថាមពល",
     "leadsTitle": "គម្រោងនាំមុខ",
@@ -17,13 +69,7 @@
       "location": "ទីតាំង",
       "energyNeed": "តម្រូវការថាមពលប៉ាន់ស្មាន",
       "status": "ស្ថានភាព",
-      "action": "សកម្មភាព",
-      "name": "ឈ្មោះ",
-      "dataType": "ប្រភេទ​ទិន្នន័យ",
-      "accessLevel": "កម្រិត​ចូល​ដំណើរការ",
-      "progress": "វឌ្ឍនភាព",
-      "collaborators": "អ្នកសហការ",
-      "title": "ចំណងជើង"
+      "action": "សកម្មភាព"
     },
     "viewLeadButton": "មើលគម្រោងនាំមុខ",
     "noLeads": "មិនមានគម្រោងនាំមុខនៅពេលនេះទេ។",
@@ -61,10 +107,7 @@
       "farmName": "ឈ្មោះកសិដ្ឋាន",
       "standard": "ស្តង់ដារ",
       "dueDate": "កាលបរិច្ឆេទកំណត់",
-      "action": "សកម្មភាព",
-      "name": "ឈ្មោះ",
-      "type": "ប្រភេទ",
-      "status": "ស្ថានភាព"
+      "action": "សកម្មភាព"
     },
     "reviewAuditButton": "ពិនិត្យ និងរៀបចំផែនការ",
     "noPendingAudits": "គ្មានសវនកម្មដែលមិនទាន់សម្រេចទេ។",
@@ -86,10 +129,7 @@
       "product": "ផលិតផល",
       "seller": "អ្នកលក់",
       "dueDate": "កាលបរិច្ឆេទកំណត់",
-      "action": "សកម្មភាព",
-      "result": "លទ្ធផល",
-      "reason": "មូលហេតុ",
-      "inspectedAt": "បានត្រួតពិនិត្យនៅ"
+      "action": "សកម្មភាព"
     },
     "performInspectionButton": "ធ្វើការត្រួតពិនិត្យ",
     "noPendingInspections": "គ្មានការត្រួតពិនិត្យដែលមិនទាន់សម្រេចទេ។",
@@ -243,11 +283,7 @@
     "table": {
       "product": "ផលិតផល",
       "quality": "គុណភាព",
-      "quantity": "បរិមាណ (តោន)",
-      "supplier": "អ្នកផ្គត់ផ្គង់",
-      "deliveryDate": "កាលបរិច្ឆេទដឹកជញ្ជូន",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
+      "quantity": "បរិមាណ (តោន)"
     },
     "noInventoryData": "គ្មានទិន្នន័យបញ្ជីសារពើភ័ណ្ឌវត្ថុធាតុដើមទេ។",
     "packagingOrdersTitle": "ការបញ្ជាទិញវេចខ្ចប់",
@@ -271,9 +307,7 @@
     "table": {
         "vti": "តំណ VTI",
         "destination": "គោលដៅ",
-        "status": "ស្ថានភាព",
-        "carrier": "ក្រុមហ៊ុនដឹកជញ្ជូន",
-        "location": "ទីតាំង"
+        "status": "ស្ថានភាព"
     },
     "prepareDocsButton": "រៀបចំឯកសារ",
     "noDocs": "គ្មានឯកសារដែលមិនទាន់សម្រេចទេ។",
@@ -348,9 +382,7 @@
       "policyType": "ប្រភេទគោលនយោបាយ",
       "claimDate": "កាលបរិច្ឆេទទាមទារ",
       "status": "ស្ថានភាព",
-      "action": "សកម្មភាព",
-      "alert": "ការជូនដំណឹង",
-      "severity": "កម្រិត"
+      "action": "សកម្មភាព"
     },
     "reviewClaimButton": "ពិនិត្យការទាមទារ",
     "noPendingClaims": "គ្មានការទាមទារដែលមិនទាន់សម្រេចដើម្បីពិនិត្យ។",
@@ -372,11 +404,7 @@
       "name": "ឈ្មោះ",
       "dataType": "ប្រភេទ​ទិន្នន័យ",
       "accessLevel": "កម្រិត​ចូល​ដំណើរការ",
-      "action": "សកម្មភាព",
-      "title": "ចំណងជើង",
-      "progress": "វឌ្ឍនភាព",
-      "collaborators": "អ្នកសហការ",
-      "status": "ស្ថានភាព"
+      "action": "សកម្មភាព"
     },
     "requestAccessButton": "ស្នើសុំការចូលប្រើ",
     "noDatasets": "បច្ចុប្បន្នមិនមានសំណុំទិន្នន័យទេ។",

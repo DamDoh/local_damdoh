@@ -1,5 +1,57 @@
 
 {
+  "AgronomistDashboard": {
+    "title": "Agronomist & Consultant Hub",
+    "stats": {
+      "assignedFarmers": "Assigned Farmers",
+      "farmersWithAlerts": "Farmers with Alerts",
+      "pendingConsultations": "Pending Consultations",
+      "knowledgeContributions": "Knowledge Contributions"
+    },
+    "descriptions": {
+      "assignedFarmers": "{count} farmers in your portfolio",
+      "farmersWithAlerts": "{count} farmers need attention",
+      "pendingConsultations": "{count} new requests",
+      "knowledgeContributions": "{count} articles published"
+    },
+    "consultations": {
+      "title": "Pending Consultation Requests",
+      "description": "Review and respond to incoming requests from farmers.",
+      "table": {
+        "farmer": "Farmer",
+        "issue": "Issue Summary",
+        "action": "Action"
+      },
+      "viewButton": "View Request",
+      "noRequests": "No new consultation requests."
+    },
+    "portfolio": {
+      "title": "Farmer Portfolio",
+      "description": "Overview of farmers you are advising.",
+      "table": {
+        "farmer": "Farmer",
+        "location": "Location",
+        "alerts": "Alerts",
+        "action": "Action"
+      },
+      "alertsLabel": "alerts",
+      "profileButton": "View Profile",
+      "noFarmers": "No farmers assigned to your portfolio yet."
+    },
+    "contributions": {
+      "statusTitle": "Knowledge Hub Contribution Status",
+      "title": "Recent Contributions",
+      "noContributions": "You have not authored any contributions yet.",
+      "noData": "No data available for chart."
+    },
+    "chart": {
+      "count": "Count",
+      "published": "Published",
+      "pending": "Pending Review",
+      "draft": "Draft"
+    },
+    "noData": "No dashboard data available."
+  },
   "EnergyProviderDashboard": {
     "title": "Energy Solutions Provider Hub",
     "leadsTitle": "Project Leads",
@@ -55,10 +107,7 @@
       "farmName": "Farm Name",
       "standard": "Standard",
       "dueDate": "Due Date",
-      "action": "Action",
-      "name": "Name",
-      "type": "Type",
-      "status": "Status"
+      "action": "Action"
     },
     "reviewAuditButton": "Review & Schedule",
     "noPendingAudits": "No pending audits.",
@@ -80,10 +129,7 @@
       "product": "Product",
       "seller": "Seller",
       "dueDate": "Due Date",
-      "action": "Action",
-      "result": "Result",
-      "reason": "Reason",
-      "inspectedAt": "Inspected At"
+      "action": "Action"
     },
     "performInspectionButton": "Perform Inspection",
     "noPendingInspections": "No pending inspections.",
@@ -342,9 +388,7 @@
       "policyType": "Policy Type",
       "claimDate": "Claim Date",
       "status": "Status",
-      "action": "Action",
-      "alert": "Alert",
-      "severity": "Severity"
+      "action": "Action"
     },
     "reviewClaimButton": "Review Claim",
     "noPendingClaims": "No pending claims to review.",
@@ -366,11 +410,7 @@
       "name": "Name",
       "dataType": "Data Type",
       "accessLevel": "Access Level",
-      "action": "Action",
-      "title": "Title",
-      "progress": "Progress",
-      "collaborators": "Collaborators",
-      "status": "Status"
+      "action": "Action"
     },
     "requestAccessButton": "Request Access",
     "noDatasets": "No datasets are currently available.",
@@ -389,7 +429,7 @@
     "chart": {
       "count": "Count",
       "published": "Published",
-      "pending": "Pending",
+      "pending": "Pending Review",
       "draft": "Draft"
     }
   }

@@ -1,5 +1,57 @@
 
 {
+  "AgronomistDashboard": {
+    "title": "Hub für Agronomen & Berater",
+    "stats": {
+      "assignedFarmers": "Zugeordnete Landwirte",
+      "farmersWithAlerts": "Landwirte mit Warnungen",
+      "pendingConsultations": "Ausstehende Beratungen",
+      "knowledgeContributions": "Wissensbeiträge"
+    },
+    "descriptions": {
+      "assignedFarmers": "{count} Landwirte in Ihrem Portfolio",
+      "farmersWithAlerts": "{count} Landwirte benötigen Aufmerksamkeit",
+      "pendingConsultations": "{count} neue Anfragen",
+      "knowledgeContributions": "{count} Artikel veröffentlicht"
+    },
+    "consultations": {
+      "title": "Ausstehende Beratungsanfragen",
+      "description": "Überprüfen und beantworten Sie eingehende Anfragen von Landwirten.",
+      "table": {
+        "farmer": "Landwirt",
+        "issue": "Problemzusammenfassung",
+        "action": "Aktion"
+      },
+      "viewButton": "Anfrage anzeigen",
+      "noRequests": "Keine neuen Beratungsanfragen."
+    },
+    "portfolio": {
+      "title": "Landwirte-Portfolio",
+      "description": "Übersicht der von Ihnen beratenen Landwirte.",
+      "table": {
+        "farmer": "Landwirt",
+        "location": "Standort",
+        "alerts": "Warnungen",
+        "action": "Aktion"
+      },
+      "alertsLabel": "Warnungen",
+      "profileButton": "Profil anzeigen",
+      "noFarmers": "Noch keine Landwirte Ihrem Portfolio zugeordnet."
+    },
+    "contributions": {
+      "statusTitle": "Status der Wissens-Hub-Beiträge",
+      "title": "Letzte Beiträge",
+      "noContributions": "Sie haben noch keine Beiträge verfasst.",
+      "noData": "Keine Daten für Diagramm verfügbar."
+    },
+    "chart": {
+      "count": "Anzahl",
+      "published": "Veröffentlicht",
+      "pending": "Ausstehende Überprüfung",
+      "draft": "Entwurf"
+    },
+    "noData": "Keine Dashboard-Daten verfügbar."
+  },
   "EnergyProviderDashboard": {
     "title": "Hub für Energieversorger",
     "leadsTitle": "Projekt-Leads",
@@ -17,13 +69,7 @@
       "location": "Standort",
       "energyNeed": "Geschätzter Energiebedarf",
       "status": "Status",
-      "action": "Aktion",
-      "name": "Name",
-      "dataType": "Datentyp",
-      "accessLevel": "Zugriffsebene",
-      "progress": "Fortschritt",
-      "collaborators": "Mitarbeiter",
-      "title": "Titel"
+      "action": "Aktion"
     },
     "viewLeadButton": "Lead anzeigen",
     "noLeads": "Derzeit keine Projekt-Leads.",
@@ -61,10 +107,7 @@
       "farmName": "Farmname",
       "standard": "Standard",
       "dueDate": "Fälligkeitsdatum",
-      "action": "Aktion",
-      "name": "Name",
-      "type": "Typ",
-      "status": "Status"
+      "action": "Aktion"
     },
     "reviewAuditButton": "Überprüfen & Planen",
     "noPendingAudits": "Keine ausstehenden Audits.",
@@ -86,10 +129,7 @@
       "product": "Produkt",
       "seller": "Verkäufer",
       "dueDate": "Fälligkeitsdatum",
-      "action": "Aktion",
-      "result": "Ergebnis",
-      "reason": "Grund",
-      "inspectedAt": "Inspiziert am"
+      "action": "Aktion"
     },
     "performInspectionButton": "Inspektion durchführen",
     "noPendingInspections": "Keine ausstehenden Inspektionen.",
@@ -243,11 +283,7 @@
     "table": {
       "product": "Produkt",
       "quality": "Qualität",
-      "quantity": "Menge (Tonnen)",
-      "supplier": "Lieferant",
-      "deliveryDate": "Lieferdatum",
-      "status": "Status",
-      "action": "Aktion"
+      "quantity": "Menge (Tonnen)"
     },
     "noInventoryData": "Keine Rohstoffinventardaten verfügbar.",
     "packagingOrdersTitle": "Verpackungsbestellungen",
@@ -271,9 +307,7 @@
     "table": {
         "vti": "VTI-Link",
         "destination": "Ziel",
-        "status": "Status",
-        "carrier": "Spediteur",
-        "location": "Standort"
+        "status": "Status"
     },
     "prepareDocsButton": "Dokumente vorbereiten",
     "noDocs": "Keine Dokumente ausstehend.",
@@ -348,9 +382,7 @@
       "policyType": "Policentyp",
       "claimDate": "Schadensdatum",
       "status": "Status",
-      "action": "Aktion",
-      "alert": "Warnung",
-      "severity": "Schweregrad"
+      "action": "Aktion"
     },
     "reviewClaimButton": "Schadensfall prüfen",
     "noPendingClaims": "Keine ausstehenden Schadensfälle zur Überprüfung.",
@@ -372,11 +404,7 @@
       "name": "Name",
       "dataType": "Datentyp",
       "accessLevel": "Zugriffsebene",
-      "action": "Aktion",
-      "title": "Titel",
-      "progress": "Fortschritt",
-      "collaborators": "Mitarbeiter",
-      "status": "Status"
+      "action": "Aktion"
     },
     "requestAccessButton": "Zugang anfordern",
     "noDatasets": "Derzeit sind keine Datensätze verfügbar.",
@@ -395,7 +423,7 @@
     "chart": {
       "count": "Anzahl",
       "published": "Veröffentlicht",
-      "pending": "Ausstehend",
+      "pending": "Ausstehende Überprüfung",
       "draft": "Entwurf"
     }
   }
