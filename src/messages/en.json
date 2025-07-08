@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Product Traceability",
@@ -237,6 +238,52 @@
       "requestSentTitle": "Connection Request Sent!",
       "requestSentDescription": "Your request has been sent to the user.",
       "requestErrorTitle": "Could Not Send Request"
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central dashboard for all farm-related activities, from managing plots and crops to tracking inputs and finances.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "View, edit, and manage all your registered farm plots and the crops growing on them.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Keep track of your farm workers, log hours, and manage payments all in one place.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF Input Assistant",
+        "description": "Create and track your Korean Natural Farming concoctions like FPJ, FAA, and more.",
+        "button": "Manage KNF Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way Guide",
+        "description": "Learn about the principles of FGW, including no-tillage and 'God's Blanket' mulching.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Financials & Funding",
+        "description": "Track farm income and expenses, and apply for loans or grants from financial partners.",
+        "button": "View Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "A comprehensive guide to successfully starting seeds indoors for a head start on the season.",
+        "button": "View Guide"
+      },
+      "familyFarm": {
+        "title": "200sqm Family Farm Model",
+        "description": "Explore a model for a self-sufficient, integrated 200sqm family farm.",
+        "button": "Explore Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Log and manage your farm machinery, tools, and other physical assets. (Coming Soon)",
+        "button": "Manage Assets"
+      }
     }
   }
 }

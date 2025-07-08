@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Trazabilidad de Productos",
@@ -237,6 +238,52 @@
       "requestSentTitle": "¡Solicitud de conexión enviada!",
       "requestSentDescription": "Su solicitud ha sido enviada al usuario.",
       "requestErrorTitle": "No se pudo enviar la solicitud"
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión de Fincas",
+      "description": "Su panel central para todas las actividades relacionadas con la finca, desde la gestión de parcelas y cultivos hasta el seguimiento de insumos y finanzas.",
+      "myFarms": {
+        "title": "Mis Fincas y Cultivos",
+        "description": "Vea, edite y gestione todas sus parcelas agrícolas registradas y los cultivos que crecen en ellas.",
+        "button": "Gestionar Fincas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Lleve un registro de sus trabajadores agrícolas, registre horas y gestione pagos en un solo lugar.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Asistente de Insumos KNF",
+        "description": "Cree y siga sus preparados de Agricultura Natural Coreana como FPJ, FAA y más.",
+        "button": "Gestionar Insumos KNF"
+      },
+      "fgw": {
+        "title": "Guía de Agricultura a la Manera de Dios",
+        "description": "Aprenda sobre los principios de FGW, incluyendo la labranza cero y el mulching 'Manto de Dios'.",
+        "button": "Ver Guía FGW"
+      },
+      "financials": {
+        "title": "Finanzas y Financiamiento",
+        "description": "Realice un seguimiento de los ingresos y gastos de la finca, y solicite préstamos o subvenciones a socios financieros.",
+        "button": "Ver Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía para Iniciar Semillas",
+        "description": "Una guía completa para iniciar semillas con éxito en interiores para adelantar la temporada.",
+        "button": "Ver Guía"
+      },
+      "familyFarm": {
+        "title": "Modelo de Granja Familiar de 200m²",
+        "description": "Explore un modelo para una granja familiar autosuficiente e integrada de 200m².",
+        "button": "Explorar Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Registre y gestione su maquinaria agrícola, herramientas y otros activos físicos. (Próximamente)",
+        "button": "Gestionar Activos"
+      }
     }
   }
 }

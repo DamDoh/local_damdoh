@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Produkt-Rückverfolgbarkeit",
@@ -237,6 +238,52 @@
       "requestSentTitle": "Verbindungsanfrage gesendet!",
       "requestSentDescription": "Ihre Anfrage wurde an den Benutzer gesendet.",
       "requestErrorTitle": "Anfrage konnte nicht gesendet werden"
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Hub",
+      "description": "Ihr zentrales Dashboard für alle landwirtschaftlichen Aktivitäten, von der Verwaltung von Parzellen und Kulturen bis zur Verfolgung von Betriebsmitteln und Finanzen.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Sehen, bearbeiten und verwalten Sie alle Ihre registrierten landwirtschaftlichen Parzellen und die darauf wachsenden Kulturen.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitskräfteverwaltung",
+        "description": "Verfolgen Sie Ihre landwirtschaftlichen Arbeitskräfte, protokollieren Sie Stunden und verwalten Sie Zahlungen an einem Ort.",
+        "button": "Arbeitskräfte verwalten"
+      },
+      "knf": {
+        "title": "KNF-Betriebsmittel-Assistent",
+        "description": "Erstellen und verfolgen Sie Ihre koreanischen Naturlandwirtschafts-Zubereitungen wie FPJ, FAA und mehr.",
+        "button": "KNF-Betriebsmittel verwalten"
+      },
+      "fgw": {
+        "title": "Anleitung: Landwirtschaft nach Gottes Art",
+        "description": "Lernen Sie die Prinzipien von FGW kennen, einschließlich pflugloser Bodenbearbeitung und Mulchen mit 'Gottes Decke'.",
+        "button": "FGW-Anleitung anzeigen"
+      },
+      "financials": {
+        "title": "Finanzen & Finanzierung",
+        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihres Betriebs und beantragen Sie Kredite oder Zuschüsse von Finanzpartnern.",
+        "button": "Finanzen anzeigen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Anzucht von Saatgut",
+        "description": "Eine umfassende Anleitung für den erfolgreichen Start von Saatgut im Haus für einen Vorsprung in der Saison.",
+        "button": "Anleitung anzeigen"
+      },
+      "familyFarm": {
+        "title": "200m² Familienfarm-Modell",
+        "description": "Entdecken Sie ein Modell für eine autarke, integrierte 200m² Familienfarm.",
+        "button": "Modell erkunden"
+      },
+      "assetManagement": {
+        "title": "Vermögensverwaltung",
+        "description": "Erfassen und verwalten Sie Ihre landwirtschaftlichen Maschinen, Werkzeuge und andere physische Vermögenswerte. (Demnächst verfügbar)",
+        "button": "Vermögen verwalten"
+      }
     }
   }
 }
