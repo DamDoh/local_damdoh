@@ -9,7 +9,7 @@
     "privacyTab": "Privacidad",
     "appearanceTab": "Apariencia",
     "stakeholderProfile": {
-      "title": "Perfil de Actor Interesado",
+      "title": "Perfil de Interesado",
       "description": "Tu identidad profesional en DamDoh. Así es como te ven los demás."
     },
     "account": {
@@ -171,6 +171,79 @@
       "onlinePending": "En línea | {count, plural, one {# acción} other {# acciones}} pendientes de sincronización",
       "onlineSynced": "En línea | Todos los cambios sincronizados",
       "offline": "Desconectado | {count, plural, one {# acción} other {# acciones}} en cola"
+    }
+  },
+  "sustainabilityPage": {
+    "title": "Panel de Sostenibilidad",
+    "description": "Rastrea y comprende el impacto ambiental de tus prácticas agrícolas.",
+    "carbonFootprint": "Huella de Carbono",
+    "waterEfficiency": "Eficiencia del Agua",
+    "biodiversityScore": "Puntuación de Biodiversidad",
+    "practicesTitle": "Prácticas Sostenibles Registradas",
+    "certificationsTitle": "Certificaciones Activas",
+    "auth": {
+      "title": "Autenticación Requerida",
+      "description": "Por favor, inicia sesión para ver tu panel de sostenibilidad.",
+      "button": "Iniciar Sesión"
+    },
+    "noData": {
+      "title": "No hay datos disponibles",
+      "description": "Comienza a registrar las actividades de tu granja para ver tus métricas de sostenibilidad."
+    },
+    "practicesTable": {
+      "practice": "Práctica",
+      "lastLogged": "Último Registro"
+    },
+    "certificationsTable": {
+      "certification": "Certificación",
+      "status": "Estado",
+      "expiry": "Vencimiento"
+    },
+    "metricCard": {
+      "trendText": "desde el mes pasado"
+    }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Todos los Tipos",
+      "Product": "Producto",
+      "Service": "Servicio"
+    }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos, servicios, publicaciones de foros...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de Café Orgánico Kenia",
+    "popularSearch2": "Alquiler de Tractor",
+    "popularSearch3": "Semillas de maíz resistentes a la sequía",
+    "popularSearch4": "Socio logístico África Oriental",
+    "popularSearch5": "Reducción de pérdidas poscosecha",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Buscar personas, productos, servicios, foros...",
+      "searchButton": "Buscar",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Código QR no válido escaneado. No parece ser un ID de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
+      "filtersTitle": "Filtros Aplicados",
+      "noResults": "No se encontraron resultados.",
+      "tryAgain": "Intenta refinar tus términos de búsqueda.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informes de Trazabilidad"
+      }
     }
   }
 }

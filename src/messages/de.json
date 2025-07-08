@@ -172,5 +172,78 @@
       "onlineSynced": "Online | Alle Änderungen synchronisiert",
       "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
     }
+  },
+  "sustainabilityPage": {
+    "title": "Nachhaltigkeits-Dashboard",
+    "description": "Verfolgen und verstehen Sie die Umweltauswirkungen Ihrer landwirtschaftlichen Praktiken.",
+    "carbonFootprint": "CO2-Fußabdruck",
+    "waterEfficiency": "Wassereffizienz",
+    "biodiversityScore": "Biodiversitäts-Score",
+    "practicesTitle": "Protokollierte nachhaltige Praktiken",
+    "certificationsTitle": "Aktive Zertifizierungen",
+    "auth": {
+      "title": "Authentifizierung erforderlich",
+      "description": "Bitte melden Sie sich an, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
+      "button": "Anmelden"
+    },
+    "noData": {
+      "title": "Keine Daten verfügbar",
+      "description": "Beginnen Sie mit der Protokollierung Ihrer Farmaktivitäten, um Ihre Nachhaltigkeitsmetriken zu sehen."
+    },
+    "practicesTable": {
+      "practice": "Praxis",
+      "lastLogged": "Zuletzt protokolliert"
+    },
+    "certificationsTable": {
+      "certification": "Zertifizierung",
+      "status": "Status",
+      "expiry": "Ablaufdatum"
+    },
+    "metricCard": {
+      "trendText": "vom letzten Monat"
+    }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Alle Typen",
+      "Product": "Produkt",
+      "Service": "Dienstleistung"
+    }
+  },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform.",
+    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffeebohnen Kenia",
+    "popularSearch2": "Traktorvermietung",
+    "popularSearch3": "Dürreresistente Maissamen",
+    "popularSearch4": "Logistikpartner Ostafrika",
+    "popularSearch5": "Reduzierung von Nachernteverlusten",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Personen, Produkte, Dienste, Foren suchen...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Ungültiger QR-Code gescannt. Dies scheint keine DamDoh-ID zu sein.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scan-Fehler",
+      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Suche nach Elementen, die sich auf Ihre Anfrage beziehen.",
+      "filtersTitle": "Angewandte Filter",
+      "noResults": "Keine Ergebnisse gefunden.",
+      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissensdatenbank",
+        "vti_registry": "Rückverfolgungsberichte"
+      }
+    }
   }
 }

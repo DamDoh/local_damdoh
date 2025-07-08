@@ -172,5 +172,78 @@
       "onlineSynced": "En ligne | Toutes les modifications synchronisées",
       "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
     }
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de bord de la durabilité",
+    "description": "Suivez et comprenez l'impact environnemental de vos pratiques agricoles.",
+    "carbonFootprint": "Empreinte carbone",
+    "waterEfficiency": "Efficacité de l'eau",
+    "biodiversityScore": "Score de biodiversité",
+    "practicesTitle": "Pratiques durables enregistrées",
+    "certificationsTitle": "Certifications actives",
+    "auth": {
+      "title": "Authentification requise",
+      "description": "Veuillez vous connecter pour voir votre tableau de bord de la durabilité.",
+      "button": "Se connecter"
+    },
+    "noData": {
+      "title": "Aucune donnée disponible",
+      "description": "Commencez à enregistrer vos activités agricoles pour voir vos mesures de durabilité."
+    },
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier enregistrement"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expiration"
+    },
+    "metricCard": {
+      "trendText": "depuis le mois dernier"
+    }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Tous les Types",
+      "Product": "Produit",
+      "Service": "Service"
+    }
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
+    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Grains de Café Bio Kenya",
+    "popularSearch2": "Location de tracteur",
+    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
+    "popularSearch4": "Partenaire logistique Afrique de l'Est",
+    "popularSearch5": "Réduction des pertes post-récolte",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Rechercher personnes, produits, services, forums...",
+      "searchButton": "Rechercher",
+      "searchError": "Erreur de Recherche",
+      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
+      "scanFailed": "Scan Échoué",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation IA",
+      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
+      "filtersTitle": "Filtres Appliqués",
+      "noResults": "Aucun résultat trouvé.",
+      "tryAgain": "Essayez d'affiner vos termes de recherche.",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "agri_events": "Événements",
+        "knowledge_articles": "Centre de connaissances",
+        "vti_registry": "Rapports de Traçabilité"
+      }
+    }
   }
 }

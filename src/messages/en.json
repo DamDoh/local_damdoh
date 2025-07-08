@@ -74,7 +74,9 @@
       "lightTheme": "Light",
       "darkTheme": "Dark",
       "languageLabel": "Language",
-      "languageDescription": "Choose your preferred language for the application."
+      "languageDescription": "Choose your preferred language for the application.",
+      "switchToLightAria": "Switch to light theme",
+      "switchToDarkAria": "Switch to dark theme"
     },
     "editProfilePage": {
       "toast": {
@@ -170,6 +172,236 @@
       "onlinePending": "Online | {count, plural, one {# action} other {# actions}} pending sync",
       "onlineSynced": "Online | All changes synced",
       "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
+    }
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and understand the environmental impact of your agricultural practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Logged Sustainable Practices",
+    "certificationsTitle": "Active Certifications",
+    "auth": {
+      "title": "Authentication Required",
+      "description": "Please sign in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "No Data Available",
+      "description": "Start logging your farm activities to see your sustainability metrics."
+    },
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expiry"
+    },
+    "metricCard": {
+      "trendText": "from last month"
+    }
+  },
+  "Forums": {
+    "title": "Forum Topics",
+    "description": "Browse and create topics for discussion.",
+    "lastActivity": "Last activity {{time}}",
+    "searchPlaceholder": "Search topics...",
+    "buttons": {
+      "createTopic": "Create Topic",
+      "joinDiscussion": "Join Discussion",
+      "pinHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin from Homepage"
+    },
+    "notFound": {
+      "title": "No Topics Found",
+      "tryDifferentSearch": "Try a different search term.",
+      "beTheFirst": "Be the first to create a topic."
+    },
+    "pinning": {
+      "pinnedTitle": "Homepage Pinned!",
+      "pinnedDescription": "This forum is now showing as your homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "This forum will no longer show as your homepage."
+    },
+    "errors": {
+      "loadTitle": "Error loading topics",
+      "loadDescription": "An error occurred while loading forum topics.",
+      "auth": {
+        "title": "Not Authenticated",
+        "description": "You must be logged in to create a topic."
+      },
+      "incomplete": {
+        "title": "Incomplete Fields",
+        "description": "Please fill out all required fields."
+      },
+      "general": {
+        "title": "Error",
+        "description": "An error occurred while creating the topic."
+      }
+    },
+    "create": {
+      "backLink": "Back to Topics",
+      "title": "Create New Topic",
+      "description": "Start a new discussion in the forum.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "Enter the name of your topic",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Briefly describe your topic",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
+      },
+      "success": {
+        "title": "Topic Created Successfully",
+        "description": "Your new topic has been created."
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter the title of your post",
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Write your post content here...",
+        "submitButton": "Create Post",
+        "submittingButton": "Submitting..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "AI Draft Generated!",
+          "description": "A draft has been generated for you."
+        },
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
+        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
+        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
+        "general": { "title": "Error", "description": "An error occurred while creating the post." }
+      }
+    },
+    "postView": {
+      "backLink": "Back to {{topicName}}",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "repliesTitle": "Replies ({{count}})",
+      "noReplies": "No replies yet.",
+      "buttons": {
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "reply": {
+        "title": "Add a Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Add Reply",
+        "submittingButton": "Submitting...",
+        "success": "Reply added!"
+      },
+      "notFound": {
+        "title": "Post not found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error loading post",
+          "description": "An error occurred while loading the post details."
+        },
+        "loadReplies": {
+          "title": "Error loading replies",
+          "description": "An error occurred while loading replies for this post."
+        },
+        "emptyReply": "Reply cannot be empty.",
+        "submitReply": {
+          "title": "Error submitting reply",
+          "description": "An error occurred while submitting your reply."
+        }
+      }
+    },
+    "topic": {
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "buttons": {
+        "createPost": "Add Reply",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "noPosts": {
+        "title": "No posts yet",
+        "description": "Be the first to reply to this topic.",
+        "button": "Add Reply"
+      },
+      "notFound": {
+        "title": "Topic not found",
+        "description": "The topic you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error loading posts",
+          "description": "An error occurred while loading posts for this topic."
+        },
+        "loadTopic": {
+          "title": "Error loading topic",
+          "description": "An error occurred while loading the topic details."
+        }
+      }
+    }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service"
+    }
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search people, products, services, forum posts...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee Beans Kenya",
+    "popularSearch2": "Tractor Rental",
+    "popularSearch3": "Drought-resistant maize seeds",
+    "popularSearch4": "East Africa Logistics Partner",
+    "popularSearch5": "Post-harvest loss reduction",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search people, products, services, forums...",
+      "searchButton": "Search",
+      "searchError": "Search Error",
+      "searchErrorDescription": "An error occurred while searching. Please try again.",
+      "invalidCodeError": "Invalid QR Code scanned. It does not appear to be a DamDoh ID.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Searching for items related to your query.",
+      "filtersTitle": "Applied Filters",
+      "noResults": "No results found.",
+      "tryAgain": "Try refining your search terms.",
+      "results": {
+          "users": "Profiles",
+          "marketplaceItems": "Marketplace",
+          "forums": "Forums",
+          "agri_events": "Events",
+          "knowledge_articles": "Knowledge Hub",
+          "vti_registry": "Traceability Reports"
+      }
     }
   }
 }
