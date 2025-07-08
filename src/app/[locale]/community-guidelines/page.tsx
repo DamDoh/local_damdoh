@@ -36,6 +36,10 @@ export default function CommunityGuidelinesPage() {
     },
   ];
 
+  const reportingContent = t('reporting.content');
+  const emailLinkText = t('reporting.emailLinkText');
+  const contentParts = reportingContent.split('{emailLink}');
+
   return (
     <div className="space-y-8">
       <Card>
@@ -68,9 +72,13 @@ export default function CommunityGuidelinesPage() {
           <section className="pt-4 text-center">
             <h3 className="text-xl font-semibold text-foreground mb-2">{t('reporting.title')}</h3>
             <div className="mb-3">
-              {t.rich('reporting.content', {
-                emailLink: (chunks) => <a href="mailto:support@damdoh.org" className="text-primary hover:underline">{chunks}</a>
-              })}
+              {contentParts[0]}
+              {contentParts.length > 1 && (
+                <a href="mailto:support@damdoh.org" className="text-primary hover:underline">
+                  {emailLinkText}
+                </a>
+              )}
+              {contentParts[1]}
             </div>
             <p>
               {t('conclusion')}

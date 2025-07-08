@@ -737,7 +737,36 @@
       "FieldDay": "Día de Campo",
       "NetworkingEvent": "Evento de Networking"
     }
+  },
+  "communityGuidelines": {
+    "title": "Directrices de la Comunidad",
+    "subtitle": "Fomentando un entorno profesional, respetuoso y colaborativo para todos.",
+    "intro": "¡Bienvenido a la comunidad de DamDoh! Para asegurar que nuestra plataforma siga siendo un espacio productivo y seguro para todas las partes interesadas, te pedimos que sigas las siguientes directrices:",
+    "respectful": {
+      "title": "Sé Respetuoso y Profesional",
+      "description": "Participa en discusiones corteses y constructivas. No se tolerarán ataques personales, acoso, discursos de odio o comentarios difamatorios."
+    },
+    "authentic": {
+      "title": "Sé Auténtico y Honesto",
+      "description": "Represéntate a ti mismo y a tu negocio con veracidad. No tergiverses productos, servicios o certificaciones. Todas las transacciones e interacciones deben realizarse con integridad."
+    },
+    "relevant": {
+      "title": "Mantente en el Tema y Sé Relevante",
+      "description": "Mantén las discusiones y los anuncios relevantes para la agricultura, la cadena de suministro y el propósito de cada función de la plataforma. El spam, la publicidad irrelevante o la solicitación no están permitidos."
+    },
+    "fairTrade": {
+      "title": "Defiende las Prácticas de Comercio Justo",
+      "description": "Fomentamos precios justos y negociaciones transparentes. No participes en la fijación de precios, actividades fraudulentas o intentos de explotar a otros miembros."
+    },
+    "sustainable": {
+      "title": "Promueve la Sostenibilidad",
+      "description": "Aunque no es obligatorio para todas las interacciones, fomentamos encarecidamente la promoción y discusión de prácticas agrícolas sostenibles y regenerativas."
+    },
+    "reporting": {
+      "title": "Denunciar Violaciones",
+      "content": "Si ves contenido o comportamiento que viola estas directrices, por favor, denúncialo a nuestro equipo de soporte en {emailLink}.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Al usar DamDoh, aceptas estas directrices. Las violaciones pueden resultar en la eliminación de contenido, la suspensión de la cuenta o la prohibición permanente. Trabajemos juntos para construir una comunidad próspera y de confianza."
   }
 }
-
-    

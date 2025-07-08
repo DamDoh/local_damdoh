@@ -39,7 +39,7 @@
   },
   "Forums": {
     "title": "Forum-Themen",
-    "description": "Durchsuchen und erstellen Sie Diskussionsthemen",
+    "description": "Durchsuchen und erstellen Sie Diskussionsthemen.",
     "lastActivity": "Letzte Aktivität vor {{time}}",
     "searchPlaceholder": "Themen durchsuchen...",
     "buttons": {
@@ -737,7 +737,36 @@
       "FieldDay": "Feldtag",
       "NetworkingEvent": "Networking-Event"
     }
+  },
+  "communityGuidelines": {
+    "title": "Gemeinschaftsrichtlinien",
+    "subtitle": "Förderung eines professionellen, respektvollen und kollaborativen Umfelds für alle.",
+    "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein produktiver und sicherer Ort für alle Beteiligten bleibt, bitten wir Sie, die folgenden Richtlinien zu befolgen:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und professionell",
+      "description": "Führen Sie höfliche und konstruktive Diskussionen. Persönliche Angriffe, Belästigung, Hassreden oder verleumderische Kommentare werden nicht toleriert."
+    },
+    "authentic": {
+      "title": "Seien Sie authentisch und ehrlich",
+      "description": "Stellen Sie sich und Ihr Unternehmen wahrheitsgemäß dar. Stellen Sie Produkte, Dienstleistungen oder Zertifizierungen nicht falsch dar. Alle Transaktionen und Interaktionen sollten mit Integrität durchgeführt werden."
+    },
+    "relevant": {
+      "title": "Bleiben Sie themenrelevant",
+      "description": "Halten Sie Diskussionen und Angebote für Landwirtschaft, Lieferkette und den Zweck jeder Plattformfunktion relevant. Spam, irrelevante Werbung oder Anwerbung sind nicht gestattet."
+    },
+    "fairTrade": {
+      "title": "Halten Sie faire Handelspraktiken ein",
+      "description": "Wir fördern faire Preise und transparente Verhandlungen. Beteiligen Sie sich nicht an Preisabsprachen, betrügerischen Aktivitäten oder Versuchen, andere Mitglieder auszunutzen."
+    },
+    "sustainable": {
+      "title": "Fördern Sie Nachhaltigkeit",
+      "description": "Obwohl nicht für alle Interaktionen zwingend erforderlich, ermutigen wir nachdrücklich die Förderung und Diskussion nachhaltiger und regenerativer landwirtschaftlicher Praktiken."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte oder Verhalten sehen, das gegen diese Richtlinien verstößt, melden Sie es bitte unserem Support-Team unter {emailLink}.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Verstöße können zur Entfernung von Inhalten, zur Sperrung des Kontos oder zur dauerhaften Sperrung führen. Lassen Sie uns zusammenarbeiten, um eine blühende und vertrauenswürdige Gemeinschaft aufzubauen."
   }
 }
-
-    
