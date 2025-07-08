@@ -80,7 +80,108 @@
       "errorTitle": "Error",
       "loadError": "Could not load network data."
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central place to manage all farm operations, from crop cycles and KNF inputs to labor and financials.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "View and manage your farms, plots, and active crop cycles.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Track your workforce, log hours, and manage payments.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF Input Assistant",
+        "description": "Create and track your Korean Natural Farming input batches.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "FGW Field Guide",
+        "description": "Learn and apply the core principles of Farming God's Way.",
+        "button": "View Guide"
+      },
+      "financials": {
+        "title": "Money Matters",
+        "description": "Track income, expenses, and apply for financial products.",
+        "button": "View Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Plan your planting season with our comprehensive seed starting guide.",
+        "button": "View Guide"
+      },
+      "familyFarm": {
+        "title": "200sqm Family Farm",
+        "description": "Explore the integrated model for a sustainable 200sqm family farm.",
+        "button": "View Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Manage your equipment, tools, and other farm assets (Coming Soon).",
+        "button": "Manage Assets"
+      }
+    },
+    "laborPage": {
+      "loading": "Loading...",
+      "backLink": "Back to Farm Management",
+      "title": "Labor Management",
+      "description": "Manage your workforce, track hours, and record payments.",
+      "addWorker": "Add Worker",
+      "workerName": "Worker Name",
+      "saveWorker": "Save Worker",
+      "hoursLogged": "Hours Logged",
+      "totalPaid": "Total Paid",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "noWorkers": "No workers have been added yet.",
+      "logHoursFor": "Log Hours for",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description",
+      "logPaymentFor": "Log Payment for",
+      "amountPaid": "Amount Paid",
+      "signInPrompt": {
+        "title": "Please Sign In",
+        "description": "You must be logged in to manage your farm labor.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "Failed to fetch worker data.",
+        "nameRequired": "Worker name is required.",
+        "workerAdded": "Worker successfully added!",
+        "hoursLogged": "Hours successfully logged!",
+        "paymentLoggedTitle": "Payment Logged!",
+        "paymentLoggedDescription": "The payment has been recorded and an expense entry was created in your financials."
+      },
+      "workerDetailPage": {
+        "backLink": "Back to Labor Management",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker profile you are looking for does not exist.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "noWorkLogs": "No work has been logged for this worker.",
+        "noPayments": "No payments have been recorded for this worker.",
+        "toasts": {
+          "errorTitle": "Error fetching details",
+          "errorDescription": "Could not load details for this worker."
+        }
+      }
+    }
   }
 }
-
     

@@ -80,7 +80,108 @@
       "errorTitle": "Fehler",
       "loadError": "Netzwerkdaten konnten nicht geladen werden."
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Hub",
+      "description": "Ihr zentraler Ort zur Verwaltung aller landwirtschaftlichen Betriebsabläufe, von Erntezyklen und KNF-Inputs bis hin zu Arbeitskräften und Finanzen.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Anzeigen und Verwalten Ihrer Farmen, Parzellen und aktiven Erntezyklen.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitskräfte-Management",
+        "description": "Verfolgen Sie Ihre Arbeitskräfte, protokollieren Sie Stunden und verwalten Sie Zahlungen.",
+        "button": "Arbeitskräfte verwalten"
+      },
+      "knf": {
+        "title": "KNF-Input-Assistent",
+        "description": "Erstellen und verfolgen Sie Ihre Chargen für Korean Natural Farming-Inputs.",
+        "button": "Inputs verwalten"
+      },
+      "fgw": {
+        "title": "FGW-Feldführer",
+        "description": "Lernen und wenden Sie die Kernprinzipien von Farming God's Way an.",
+        "button": "Anleitung ansehen"
+      },
+      "financials": {
+        "title": "Finanzen",
+        "description": "Verfolgen Sie Einnahmen, Ausgaben und beantragen Sie Finanzprodukte.",
+        "button": "Finanzen ansehen"
+      },
+      "seedStarting": {
+        "title": "Anzucht-Anleitung",
+        "description": "Planen Sie Ihre Pflanzsaison mit unserer umfassenden Anzucht-Anleitung.",
+        "button": "Anleitung ansehen"
+      },
+      "familyFarm": {
+        "title": "200qm Familienfarm",
+        "description": "Entdecken Sie das integrierte Modell für eine nachhaltige 200qm Familienfarm.",
+        "button": "Modell ansehen"
+      },
+      "assetManagement": {
+        "title": "Anlagenverwaltung",
+        "description": "Verwalten Sie Ihre Ausrüstung, Werkzeuge und andere landwirtschaftliche Anlagen (Demnächst verfügbar).",
+        "button": "Anlagen verwalten"
+      }
+    },
+    "laborPage": {
+      "loading": "Wird geladen...",
+      "backLink": "Zurück zum Farm-Management",
+      "title": "Arbeitskräfte-Management",
+      "description": "Verwalten Sie Ihre Arbeitskräfte, verfolgen Sie Stunden und erfassen Sie Zahlungen.",
+      "addWorker": "Arbeiter hinzufügen",
+      "workerName": "Name des Arbeiters",
+      "saveWorker": "Arbeiter speichern",
+      "hoursLogged": "Geleistete Stunden",
+      "totalPaid": "Insgesamt bezahlt",
+      "logHours": "Stunden protokollieren",
+      "logPayment": "Zahlung protokollieren",
+      "viewDetails": "Details anzeigen",
+      "noWorkers": "Es wurden noch keine Arbeiter hinzugefügt.",
+      "logHoursFor": "Stunden protokollieren für",
+      "hoursWorked": "Geleistete Stunden",
+      "date": "Datum",
+      "pickDate": "Datum auswählen",
+      "taskDescription": "Aufgabenbeschreibung",
+      "logPaymentFor": "Zahlung protokollieren für",
+      "amountPaid": "Bezahlter Betrag",
+      "signInPrompt": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre landwirtschaftlichen Arbeitskräfte zu verwalten.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchWorkersError": "Abrufen der Arbeiterdaten fehlgeschlagen.",
+        "nameRequired": "Der Name des Arbeiters ist erforderlich.",
+        "workerAdded": "Arbeiter erfolgreich hinzugefügt!",
+        "hoursLogged": "Stunden erfolgreich protokolliert!",
+        "paymentLoggedTitle": "Zahlung protokolliert!",
+        "paymentLoggedDescription": "Die Zahlung wurde erfasst und ein Ausgabeneintrag in Ihren Finanzen erstellt."
+      },
+      "workerDetailPage": {
+        "backLink": "Zurück zum Arbeitskräfte-Management",
+        "notFoundTitle": "Arbeiter nicht gefunden",
+        "notFoundDescription": "Das gesuchte Arbeiterprofil existiert nicht.",
+        "goBackButton": "Zurückgehen",
+        "workLogsTitle": "Arbeitsprotokolle",
+        "paymentHistoryTitle": "Zahlungshistorie",
+        "table": {
+          "date": "Datum",
+          "hours": "Stunden",
+          "task": "Aufgabe",
+          "amount": "Betrag"
+        },
+        "noWorkLogs": "Für diesen Arbeiter wurde noch keine Arbeit protokolliert.",
+        "noPayments": "Für diesen Arbeiter wurden noch keine Zahlungen erfasst.",
+        "toasts": {
+          "errorTitle": "Fehler beim Abrufen der Details",
+          "errorDescription": "Details für diesen Arbeiter konnten nicht geladen werden."
+        }
+      }
+    }
   }
 }
-
     

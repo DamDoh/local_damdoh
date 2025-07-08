@@ -21,16 +21,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
-
-interface Worker {
-  id: string;
-  name: string;
-  contactInfo?: string;
-  payRate?: number;
-  payRateUnit?: string;
-  totalHoursLogged?: number;
-  totalPaid?: number;
-}
+import type { Worker } from '@/lib/types';
 
 export default function LaborManagementPage() {
     const t = useTranslations('farmManagement.laborPage');
@@ -73,8 +64,10 @@ export default function LaborManagementPage() {
     }, [user, getWorkersCallable, toast, t]);
 
     useEffect(() => {
-        fetchWorkers();
-    }, [fetchWorkers]);
+        if (!authLoading) {
+            fetchWorkers();
+        }
+    }, [authLoading, fetchWorkers]);
 
     const handleAddWorker = async () => {
         if (!newWorkerName.trim()) {
@@ -193,7 +186,7 @@ export default function LaborManagementPage() {
                 <DialogContent>
                     <DialogHeader><DialogTitle>{t('logHoursFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                      <div className="space-y-4 py-4">
-                        <div className="grid grid-cols-2 gap-4"><div className="flex items-center gap-2"><Clock className="h-4 w-4 text-muted-foreground" />
+                        <div className="grid grid-cols-2 gap-4">
                             <div><Label htmlFor="hours">{t('hoursWorked')}</Label><Input id="hours" type="number" value={hours} onChange={e => setHours(e.target.value)} /></div>
                             <div>
                                 <Label htmlFor="date">{t('date')}</Label>
@@ -207,7 +200,7 @@ export default function LaborManagementPage() {
                                 </Popover>
                             </div>
                         </div>
-                         <div className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" /><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
+                         <div className="space-y-2"><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
                     <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<Clock className="mr-2 h-4 w-4"/>{t('logHours')}</Button>
                 </DialogContent>
@@ -217,7 +210,7 @@ export default function LaborManagementPage() {
                 <DialogContent>
                     <DialogHeader><DialogTitle>{t('logPaymentFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                     <div className="space-y-4 py-4">
-                         <div className="grid grid-cols-2 gap-4"><div className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />
+                         <div className="grid grid-cols-2 gap-4">
                             <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
                              <div>
                                 <Label htmlFor="payment-date">{t('date')}</Label>
@@ -232,7 +225,7 @@ export default function LaborManagementPage() {
                             </div>
                         </div>
                     </div>
-                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/><Clock className="mr-2 h-4 w-4"/>}{!isSubmitting && <DollarSign className="mr-2 h-4 w-4" />}{t('logPayment')}</Button>
+                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{!isSubmitting && <DollarSign className="mr-2 h-4 w-4" />}{t('logPayment')}</Button>
                 </DialogContent>
             </Dialog>
         </div>

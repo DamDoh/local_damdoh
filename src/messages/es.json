@@ -80,7 +80,108 @@
       "errorTitle": "Error",
       "loadError": "No se pudieron cargar los datos de la red."
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión Agrícola",
+      "description": "Su lugar central para gestionar todas las operaciones agrícolas, desde ciclos de cultivo e insumos KNF hasta mano de obra y finanzas.",
+      "myFarms": {
+        "title": "Mis Granjas y Cultivos",
+        "description": "Ver y gestionar sus granjas, parcelas y ciclos de cultivo activos.",
+        "button": "Gestionar Granjas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Realice un seguimiento de su fuerza laboral, registre horas y gestione pagos.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Asistente de Insumos KNF",
+        "description": "Cree y realice un seguimiento de sus lotes de insumos de Agricultura Natural Coreana.",
+        "button": "Gestionar Insumos"
+      },
+      "fgw": {
+        "title": "Guía de Campo de FGW",
+        "description": "Aprenda y aplique los principios básicos de la Agricultura a la Manera de Dios.",
+        "button": "Ver Guía"
+      },
+      "financials": {
+        "title": "Asuntos de Dinero",
+        "description": "Realice un seguimiento de ingresos, gastos y solicite productos financieros.",
+        "button": "Ver Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Inicio de Semillas",
+        "description": "Planifique su temporada de siembra con nuestra completa guía de inicio de semillas.",
+        "button": "Ver Guía"
+      },
+      "familyFarm": {
+        "title": "Granja Familiar de 200m²",
+        "description": "Explore el modelo integrado para una granja familiar sostenible de 200m².",
+        "button": "Ver Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Gestione su equipo, herramientas y otros activos agrícolas (Próximamente).",
+        "button": "Gestionar Activos"
+      }
+    },
+    "laborPage": {
+      "loading": "Cargando...",
+      "backLink": "Volver a Gestión Agrícola",
+      "title": "Gestión de Mano de Obra",
+      "description": "Gestione su fuerza laboral, realice un seguimiento de las horas y registre los pagos.",
+      "addWorker": "Añadir Trabajador",
+      "workerName": "Nombre del Trabajador",
+      "saveWorker": "Guardar Trabajador",
+      "hoursLogged": "Horas Registradas",
+      "totalPaid": "Total Pagado",
+      "logHours": "Registrar Horas",
+      "logPayment": "Registrar Pago",
+      "viewDetails": "Ver Detalles",
+      "noWorkers": "Aún no se han añadido trabajadores.",
+      "logHoursFor": "Registrar Horas para",
+      "hoursWorked": "Horas Trabajadas",
+      "date": "Fecha",
+      "pickDate": "Seleccionar una fecha",
+      "taskDescription": "Descripción de la Tarea",
+      "logPaymentFor": "Registrar Pago para",
+      "amountPaid": "Monto Pagado",
+      "signInPrompt": {
+        "title": "Por favor, inicie sesión",
+        "description": "Debe iniciar sesión para gestionar la mano de obra de su granja.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "No se pudieron obtener los datos de los trabajadores.",
+        "nameRequired": "Se requiere el nombre del trabajador.",
+        "workerAdded": "¡Trabajador añadido con éxito!",
+        "hoursLogged": "¡Horas registradas con éxito!",
+        "paymentLoggedTitle": "¡Pago Registrado!",
+        "paymentLoggedDescription": "El pago ha sido registrado y se ha creado un asiento de gastos en sus finanzas."
+      },
+      "workerDetailPage": {
+        "backLink": "Volver a Gestión de Mano de Obra",
+        "notFoundTitle": "Trabajador No Encontrado",
+        "notFoundDescription": "El perfil del trabajador que busca no existe.",
+        "goBackButton": "Volver",
+        "workLogsTitle": "Registros de Trabajo",
+        "paymentHistoryTitle": "Historial de Pagos",
+        "table": {
+          "date": "Fecha",
+          "hours": "Horas",
+          "task": "Tarea",
+          "amount": "Monto"
+        },
+        "noWorkLogs": "No se ha registrado ningún trabajo para este trabajador.",
+        "noPayments": "No se han registrado pagos para este trabajador.",
+        "toasts": {
+          "errorTitle": "Error al obtener detalles",
+          "errorDescription": "No se pudieron cargar los detalles de este trabajador."
+        }
+      }
+    }
   }
 }
-
     
