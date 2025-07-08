@@ -279,7 +279,21 @@
       "created": "Créé le",
       "actions": "Actions"
     },
-    "apiKeyCopied": "Clé API copiée dans le presse-papiers."
+    "apiKeyCopied": "Clé API copiée dans le presse-papiers.",
+    "toast": {
+      "descriptionRequired": "Une description pour la nouvelle clé est requise.",
+      "keyGeneratedSuccess": "Clé API générée avec succès.",
+      "keyGeneratedError": "Échec de la génération de la clé API.",
+      "keyRevokedSuccess": "La clé API a été révoquée.",
+      "keyRevokedError": "Échec de la révocation de la clé API."
+    },
+    "revokeDialog": {
+      "title": "Êtes-vous sûr de vouloir révoquer cette clé API ?",
+      "description": "Cette action ne peut pas être annulée. Toute application utilisant cette clé perdra immédiatement son accès.",
+      "cancel": "Annuler",
+      "confirm": "Révoquer la clé"
+    },
+    "generateButton": "Générer la clé"
   },
   "MobileBottomNav": {
     "home": "Accueil",

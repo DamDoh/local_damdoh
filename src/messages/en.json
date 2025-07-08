@@ -279,7 +279,21 @@
       "created": "Created",
       "actions": "Actions"
     },
-    "apiKeyCopied": "API Key copied to clipboard."
+    "apiKeyCopied": "API Key copied to clipboard.",
+    "toast": {
+      "descriptionRequired": "A description for the new key is required.",
+      "keyGeneratedSuccess": "API Key generated successfully.",
+      "keyGeneratedError": "Failed to generate API Key.",
+      "keyRevokedSuccess": "API Key has been revoked.",
+      "keyRevokedError": "Failed to revoke API Key."
+    },
+    "revokeDialog": {
+      "title": "Are you sure you want to revoke this API key?",
+      "description": "This action cannot be undone. Any applications using this key will immediately lose access.",
+      "cancel": "Cancel",
+      "confirm": "Revoke Key"
+    },
+    "generateButton": "Generate Key"
   },
   "MobileBottomNav": {
     "home": "Home",

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -9,16 +9,19 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Link from 'next/link';
-import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye } from 'lucide-react';
-import type { AgriTechInnovatorDashboardData } from '@/lib/types';
+import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2 } from 'lucide-react';
+import type { ApiKey } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { format, formatDistanceToNow } from 'date-fns';
 import { useTranslations } from 'next-intl';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const functions = getFunctions(firebaseApp);
 
-const ApiKeyRow = ({ apiKey }: { apiKey: AgriTechInnovatorDashboardData['apiKeys'][0] }) => {
+const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: string) => void }) => {
     const t = useTranslations('AgriTechDashboard');
     const [isVisible, setIsVisible] = useState(false);
     const { toast } = useToast();
@@ -30,19 +33,39 @@ const ApiKeyRow = ({ apiKey }: { apiKey: AgriTechInnovatorDashboardData['apiKeys
 
     return (
         <TableRow>
-            <TableCell className="font-mono text-xs">
-                {isVisible ? apiKey.key : apiKey.key.replace(/_([^_]+)$/, '_...$1')}
+            <TableCell>
+                <p className="font-semibold">{apiKey.description}</p>
+                 <p className="font-mono text-xs text-muted-foreground">
+                    {isVisible ? apiKey.key : `${apiKey.key.substring(0, 11)}...`}
+                 </p>
             </TableCell>
             <TableCell><Badge variant={apiKey.status === 'Active' ? 'default' : 'destructive'}>{apiKey.status}</Badge></TableCell>
             <TableCell><Badge variant={apiKey.environment === 'Sandbox' ? 'secondary' : 'outline'}>{apiKey.environment}</Badge></TableCell>
-            <TableCell>{new Date(apiKey.createdAt).toLocaleDateString()}</TableCell>
+            <TableCell>{apiKey.createdAt ? format(new Date(apiKey.createdAt), "PPP") : 'N/A'}</TableCell>
             <TableCell className="text-right flex justify-end gap-1">
-                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsVisible(!isVisible)}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsVisible(!isVisible)} title={isVisible ? 'Hide key' : 'Show key'}>
                     {isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy} title="Copy key">
                     <Copy className="h-4 w-4" />
                 </Button>
+                 <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" title="Revoke key" disabled={apiKey.status === 'Revoked'}>
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                        <DialogTitle>{t('revokeDialog.title')}</DialogTitle>
+                        <DialogDescription>{t('revokeDialog.description')}</DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                            <Button variant="outline" onClick={(e) => (e.target as HTMLElement).closest('[role="dialog"]')?.click()}>{t('revokeDialog.cancel')}</Button>
+                            <Button variant="destructive" onClick={() => onRevoke(apiKey.id)}>{t('revokeDialog.confirm')}</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             </TableCell>
         </TableRow>
     );
@@ -51,29 +74,73 @@ const ApiKeyRow = ({ apiKey }: { apiKey: AgriTechInnovatorDashboardData['apiKeys
 
 export const AgriTechInnovatorDashboard = () => {
   const t = useTranslations('AgriTechDashboard');
+  const { toast } = useToast();
   const [dashboardData, setDashboardData] = useState<AgriTechInnovatorDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
 
-  const getAgriTechData = useMemo(() => httpsCallable(functions, 'getAgriTechInnovatorDashboardData'), [functions]);
+  // Form state for the new key dialog
+  const [newKeyDescription, setNewKeyDescription] = useState('');
+  const [newKeyEnv, setNewKeyEnv] = useState<'Sandbox' | 'Production'>('Sandbox');
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const getApiKeysCallable = useMemo(() => httpsCallable(functions, 'getApiKeys'), []);
+  const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'generateApiKey'), []);
+  const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'revokeApiKey'), []);
+
+  const fetchDashboardData = useCallback(async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getAgriTechData();
-        setDashboardData(result.data as AgriTechInnovatorDashboardData);
+        // This is mock data for now, will be replaced by a real callable function
+        const result = await httpsCallable(functions, 'getAgriTechInnovatorDashboardData')();
+        const apiKeysResult = await getApiKeysCallable();
+
+        const data = result.data as AgriTechInnovatorDashboardData;
+        data.apiKeys = (apiKeysResult.data as any).keys || [];
+
+        setDashboardData(data);
       } catch (err) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
         setError("Failed to load dashboard data.");
       } finally {
         setIsLoading(false);
       }
-    };
+  }, [getApiKeysCallable]);
+  
+  useEffect(() => {
+      fetchDashboardData();
+  }, [fetchDashboardData]);
 
-    fetchData();
-  }, [getAgriTechData]);
+  const handleGenerateKey = async () => {
+      if (!newKeyDescription.trim()) {
+          toast({ title: t('toast.descriptionRequired'), variant: 'destructive' });
+          return;
+      }
+      setIsSubmitting(true);
+      try {
+          await generateApiKeyCallable({ description: newKeyDescription, environment: newKeyEnv });
+          toast({ title: t('toast.keyGeneratedSuccess') });
+          setIsGenerateModalOpen(false);
+          setNewKeyDescription('');
+          fetchDashboardData(); // Refresh data
+      } catch (error: any) {
+          toast({ title: t('toast.keyGeneratedError'), description: error.message, variant: 'destructive' });
+      } finally {
+          setIsSubmitting(false);
+      }
+  };
+  
+  const handleRevokeKey = async (keyId: string) => {
+       try {
+          await revokeApiKeyCallable({ keyId });
+          toast({ title: t('toast.keyRevokedSuccess') });
+          fetchDashboardData(); // Refresh data
+      } catch (error: any) {
+          toast({ title: t('toast.keyRevokedError'), description: error.message, variant: 'destructive' });
+      }
+  }
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -111,6 +178,7 @@ export const AgriTechInnovatorDashboard = () => {
     };
 
   return (
+    <>
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -141,9 +209,46 @@ export const AgriTechInnovatorDashboard = () => {
       </div>
 
        <Card>
-           <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Key className="h-4 w-4"/>{t('apiKeysTitle')}</CardTitle>
-             <CardDescription>{t('apiKeysDescription')}</CardDescription>
+           <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                    <CardTitle className="text-base flex items-center gap-2"><Key className="h-4 w-4"/>{t('apiKeysTitle')}</CardTitle>
+                    <CardDescription>{t('apiKeysDescription')}</CardDescription>
+                </div>
+                <Dialog open={isGenerateModalOpen} onOpenChange={setIsGenerateModalOpen}>
+                    <DialogTrigger asChild>
+                        <Button size="sm"><PlusCircle className="mr-2 h-4 w-4"/>{t('generateNewKeyButton')}</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>{t('generateNewKeyButton')}</DialogTitle>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="key-desc" className="text-right">Description</Label>
+                                <Input id="key-desc" value={newKeyDescription} onChange={(e) => setNewKeyDescription(e.target.value)} className="col-span-3" />
+                            </div>
+                             <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="key-env" className="text-right">Environment</Label>
+                                <Select value={newKeyEnv} onValueChange={(val) => setNewKeyEnv(val as any)}>
+                                    <SelectTrigger className="col-span-3">
+                                        <SelectValue placeholder="Select environment" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="Sandbox">Sandbox</SelectItem>
+                                        <SelectItem value="Production">Production</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button variant="outline" onClick={() => setIsGenerateModalOpen(false)}>{t('revokeDialog.cancel')}</Button>
+                            <Button onClick={handleGenerateKey} disabled={isSubmitting}>
+                                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                                {t('generateButton')}
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
            </CardHeader>
            <CardContent>
              {(apiKeys || []).length > 0 ? (
@@ -159,7 +264,7 @@ export const AgriTechInnovatorDashboard = () => {
                  </TableHeader>
                  <TableBody>
                    {(apiKeys || []).map((key) => (
-                      <ApiKeyRow key={key.id} apiKey={key} />
+                      <ApiKeyRow key={key.id} apiKey={key} onRevoke={() => handleRevokeKey(key.id)} />
                    ))}
                  </TableBody>
                </Table>
@@ -167,12 +272,10 @@ export const AgriTechInnovatorDashboard = () => {
                <p className="text-sm text-muted-foreground text-center py-4">{t('noApiKeys')}</p>
              )}
            </CardContent>
-            <CardFooter>
-                <Button>{t('generateNewKeyButton')}</Button>
-            </CardFooter>
          </Card>
 
     </div>
+    </>
   );
 };
 

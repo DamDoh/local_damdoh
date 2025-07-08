@@ -279,7 +279,21 @@
       "created": "បានបង្កើត",
       "actions": "សកម្មភាព"
     },
-    "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់។"
+    "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់។",
+    "toast": {
+      "descriptionRequired": "ត្រូវការការពិពណ៌នាសម្រាប់កូនសោថ្មី។",
+      "keyGeneratedSuccess": "បានបង្កើតកូនសោ API ដោយជោគជ័យ។",
+      "keyGeneratedError": "មិនអាចបង្កើតកូនសោ API បានទេ។",
+      "keyRevokedSuccess": "កូនសោ API ត្រូវបានដកហូតហើយ។",
+      "keyRevokedError": "មិនអាចដកហូតកូនសោ API បានទេ។"
+    },
+    "revokeDialog": {
+      "title": "តើអ្នកប្រាកដថាចង់ដកហូតកូនសោ API នេះទេ?",
+      "description": "សកម្មភាពនេះមិនអាចមិនធ្វើវិញបានទេ។ កម្មវិធីណាមួយដែលប្រើកូនសោនេះនឹងបាត់បង់ការចូលប្រើភ្លាមៗ។",
+      "cancel": "បោះបង់",
+      "confirm": "ដកហូតកូនសោ"
+    },
+    "generateButton": "បង្កើតកូនសោ"
   },
   "MobileBottomNav": {
     "home": "ទំព័រដើម",

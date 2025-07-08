@@ -657,6 +657,16 @@ export interface InsuranceProduct {
   createdAt: string;
 }
 
+export interface ApiKey {
+    id: string;
+    userId: string;
+    key: string;
+    description: string;
+    environment: 'Sandbox' | 'Production';
+    status: 'Active' | 'Revoked';
+    createdAt: string; // ISO string
+}
+
 
 export type KnfBatch = {
     id: string;

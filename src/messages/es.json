@@ -279,7 +279,21 @@
       "created": "Creado",
       "actions": "Acciones"
     },
-    "apiKeyCopied": "Clave de API copiada al portapapeles."
+    "apiKeyCopied": "Clave de API copiada al portapapeles.",
+    "toast": {
+      "descriptionRequired": "Se requiere una descripción para la nueva clave.",
+      "keyGeneratedSuccess": "Clave de API generada con éxito.",
+      "keyGeneratedError": "No se pudo generar la clave de API.",
+      "keyRevokedSuccess": "La clave de API ha sido revocada.",
+      "keyRevokedError": "No se pudo revocar la clave de API."
+    },
+    "revokeDialog": {
+      "title": "¿Está seguro de que desea revocar esta clave de API?",
+      "description": "Esta acción no se puede deshacer. Cualquier aplicación que utilice esta clave perderá el acceso inmediatamente.",
+      "cancel": "Cancelar",
+      "confirm": "Revocar Clave"
+    },
+    "generateButton": "Generar Clave"
   },
   "MobileBottomNav": {
     "home": "Inicio",
@@ -296,26 +310,26 @@
     "biodiversityScore": "Puntuación de Biodiversidad",
     "practicesTitle": "Prácticas Sostenibles Registradas",
     "practicesTable": {
-      "practice": "Práctica",
-      "lastLogged": "Último Registro"
+        "practice": "Práctica",
+        "lastLogged": "Último Registro"
     },
     "certificationsTitle": "Certificaciones Verificables",
     "certificationsTable": {
-      "certification": "Certificación",
-      "status": "Estado",
-      "expiry": "Vencimiento"
+        "certification": "Certificación",
+        "status": "Estado",
+        "expiry": "Vencimiento"
     },
     "metricCard": {
-      "trendText": "del último mes"
+        "trendText": "del último mes"
     },
     "auth": {
-      "title": "Autenticación Requerida",
-      "description": "Debe iniciar sesión para ver su panel de sostenibilidad.",
-      "button": "Iniciar Sesión"
+        "title": "Autenticación Requerida",
+        "description": "Debe iniciar sesión para ver su panel de sostenibilidad.",
+        "button": "Iniciar Sesión"
     },
     "noData": {
-      "title": "No hay Datos Disponibles",
-      "description": "Aún no tenemos datos de sostenibilidad para su perfil. Comience registrando actividades en su granja."
+        "title": "No hay Datos Disponibles",
+        "description": "Aún no tenemos datos de sostenibilidad para su perfil. Comience registrando actividades en su granja."
     }
   },
   "RegulatorDashboard": {

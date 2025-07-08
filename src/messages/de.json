@@ -279,7 +279,21 @@
       "created": "Erstellt",
       "actions": "Aktionen"
     },
-    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert."
+    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert.",
+    "toast": {
+      "descriptionRequired": "Eine Beschreibung für den neuen Schlüssel ist erforderlich.",
+      "keyGeneratedSuccess": "API-Schlüssel erfolgreich generiert.",
+      "keyGeneratedError": "API-Schlüssel konnte nicht generiert werden.",
+      "keyRevokedSuccess": "API-Schlüssel wurde widerrufen.",
+      "keyRevokedError": "API-Schlüssel konnte nicht widerrufen werden."
+    },
+    "revokeDialog": {
+      "title": "Sind Sie sicher, dass Sie diesen API-Schlüssel widerrufen möchten?",
+      "description": "Diese Aktion kann nicht rückgängig gemacht werden. Alle Anwendungen, die diesen Schlüssel verwenden, verlieren sofort den Zugriff.",
+      "cancel": "Abbrechen",
+      "confirm": "Schlüssel widerrufen"
+    },
+    "generateButton": "Schlüssel generieren"
   },
   "MobileBottomNav": {
     "home": "Start",
