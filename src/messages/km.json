@@ -22,6 +22,34 @@
     "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
     "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត"
   },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
+  },
+  "AppFooter": {
+    "tagline": "ផ្តល់អំណាចដល់កសិករ ស្តារប្រព័ន្ធអេកូឡូស៊ី និងចិញ្ចឹមពិភពលោកប្រកបដោយនិរន្តរភាព។",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "អំពីយើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍ឯកជនភាព",
+    "termsOfServiceLabel": "លក្ខខណ្ឌប្រើប្រាស់",
+    "copyright": "© {year} {appName} ។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
+    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
+    "appStoreAlt": "ទាញយកនៅលើ App Store"
+  },
   "aboutPage": {
     "hero": {
       "title": "ផ្តល់អំណាចដល់កសិករ, ស្តារភពផែនដីឡើងវិញ",
@@ -85,27 +113,6 @@
       "p3": "នៅពេលដែលកសិកររីកចម្រើន ជីវចម្រុះក៏លូតលាស់។ នៅពេលដែលជីវចម្រុះលូតលាស់ ភពផែនដីក៏បានជាសះស្បើយ។",
       "button": "ចូលរួមជាមួយយើង - ឱ្យកសិករដឹកនាំផ្លូវ"
     }
-  },
-  "AppFooter": {
-    "tagline": "ផ្តល់អំណាចដល់កសិករ ស្តារប្រព័ន្ធអេកូឡូស៊ី និងចិញ្ចឹមពិភពលោកប្រកបដោយនិរន្តរភាព។",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "អំពីយើង",
-    "contactLabel": "ទំនាក់ទំនង",
-    "careersLabel": "អាជីព",
-    "blogLabel": "ប្លុក",
-    "resourcesTitle": "ធនធាន",
-    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
-    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
-    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
-    "eventsLabel": "ព្រឹត្តិការណ៍",
-    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-    "legalTitle": "ផ្នែកច្បាប់",
-    "privacyPolicyLabel": "គោលការណ៍ឯកជនភាព",
-    "termsOfServiceLabel": "លក្ខខណ្ឌប្រើប្រាស់",
-    "copyright": "© {year} {appName} ។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
-    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
-    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
-    "appStoreAlt": "ទាញយកនៅលើ App Store"
   },
   "Auth": {
     "signUpWelcome": "ចូលរួមចលនាកសិកម្មសកលជាមួយ {appName}",

@@ -22,6 +22,34 @@
     "switchToLightAria": "Cambiar a tema claro",
     "switchToDarkAria": "Cambiar a tema oscuro"
   },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  },
+  "AppFooter": {
+    "tagline": "Empoderando a agricultores, restaurando ecosistemas y alimentando al mundo de manera sostenible.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de ayuda",
+    "communityGuidelinesLabel": "Normas de la comunidad",
+    "industryNewsLabel": "Noticias del sector",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Bolsa de talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de privacidad",
+    "termsOfServiceLabel": "Términos de servicio",
+    "copyright": "© {year} {appName}. Todos los derechos reservados.",
+    "getMobileApp": "Obtén la aplicación móvil",
+    "googlePlayAlt": "Consíguelo en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
+  },
   "aboutPage": {
     "hero": {
       "title": "Empoderando a los Agricultores, Restaurando el Planeta",
@@ -85,27 +113,6 @@
       "p3": "Cuando los agricultores prosperan, la biodiversidad florece. Cuando la biodiversidad florece, el planeta sana.",
       "button": "Únete a nosotros - Deja que los agricultores lideren el camino"
     }
-  },
-  "AppFooter": {
-    "tagline": "Empoderando a agricultores, restaurando ecosistemas y alimentando al mundo de manera sostenible.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de ayuda",
-    "communityGuidelinesLabel": "Normas de la comunidad",
-    "industryNewsLabel": "Noticias del sector",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de privacidad",
-    "termsOfServiceLabel": "Términos de servicio",
-    "copyright": "© {year} {appName}. Todos los derechos reservados.",
-    "getMobileApp": "Obtén la aplicación móvil",
-    "googlePlayAlt": "Consíguelo en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
   },
   "Auth": {
     "signUpWelcome": "Únete al movimiento agrícola global con {appName}",

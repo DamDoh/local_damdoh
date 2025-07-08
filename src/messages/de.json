@@ -22,6 +22,34 @@
     "switchToLightAria": "Zum hellen Thema wechseln",
     "switchToDarkAria": "Zum dunklen Thema wechseln"
   },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
+  },
+  "AppFooter": {
+    "tagline": "Bauern stärken, Ökosysteme wiederherstellen und die Welt nachhaltig ernähren.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
   "aboutPage": {
     "hero": {
       "title": "Bauern stärken, den Planeten wiederherstellen",
@@ -85,27 +113,6 @@
       "p3": "Wenn Bauern florieren, gedeiht die Biodiversität. Wenn die Biodiversität gedeiht, heilt der Planet.",
       "button": "Machen Sie mit – Lassen Sie die Bauern den Weg weisen"
     }
-  },
-  "AppFooter": {
-    "tagline": "Bauern stärken, Ökosysteme wiederherstellen und die Welt nachhaltig ernähren.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
   },
   "Auth": {
     "signUpWelcome": "Treten Sie der globalen landwirtschaftlichen Bewegung mit {appName} bei",
