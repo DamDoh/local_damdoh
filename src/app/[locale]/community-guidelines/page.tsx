@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -66,11 +67,11 @@ export default function CommunityGuidelinesPage() {
 
           <section className="pt-4 text-center">
             <h3 className="text-xl font-semibold text-foreground mb-2">{t('reporting.title')}</h3>
-            <p className="mb-3">
+            <div className="mb-3">
               {t.rich('reporting.content', {
                 emailLink: (chunks) => <a href="mailto:support@damdoh.org" className="text-primary hover:underline">{chunks}</a>
               })}
-            </p>
+            </div>
             <p>
               {t('conclusion')}
             </p>
