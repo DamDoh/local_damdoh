@@ -279,5 +279,12 @@
       "actions": "Aktionen"
     },
     "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert."
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
   }
 }

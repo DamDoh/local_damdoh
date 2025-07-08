@@ -279,5 +279,12 @@
       "actions": "Acciones"
     },
     "apiKeyCopied": "Clave de API copiada al portapapeles."
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
   }
 }

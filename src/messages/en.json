@@ -279,5 +279,12 @@
       "actions": "Actions"
     },
     "apiKeyCopied": "API Key copied to clipboard."
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
   }
 }

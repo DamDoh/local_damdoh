@@ -279,5 +279,12 @@
       "actions": "Actions"
     },
     "apiKeyCopied": "Clé API copiée dans le presse-papiers."
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Rechercher",
+    "forums": "Forums",
+    "profile": "Profil"
   }
 }
