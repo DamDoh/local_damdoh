@@ -208,5 +208,39 @@
       "product": "Produkt",
       "seller": "Verkäufer"
     }
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} Änderungen...",
+      "onlinePending": "{count, plural, one {# Änderung zur Synchronisierung ausstehend.} other {# Änderungen zur Synchronisierung ausstehend.}}",
+      "onlineSynced": "Online: Alle Änderungen synchronisiert.",
+      "offline": "Offline: {count, plural, one {# Änderung lokal gespeichert.} other {# Änderungen lokal gespeichert.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Verbindung wiederhergestellt."
+      },
+      "offline": {
+        "title": "Verbindung verloren",
+        "description": "Sie sind jetzt offline. Änderungen werden lokal gespeichert."
+      },
+      "syncing": {
+        "title": "Daten werden synchronisiert",
+        "description": "Versuche, {count, plural, one {# ausstehende Änderung} other {# ausstehende Änderungen}} mit dem Server zu synchronisieren."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen!",
+        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Erneuter Versuch später."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Ihre Änderung wurde lokal gespeichert und wird synchronisiert, wenn Sie online sind."
+      }
+    }
   }
 }

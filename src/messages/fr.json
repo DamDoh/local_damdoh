@@ -203,5 +203,39 @@
     "anomaliesTitle": "Anomalies de la Chaîne d'Approvisionnement",
     "trackVtiButton": "Suivre VTI",
     "noAnomalies": "Aucune anomalie de la chaîne d'approvisionnement détectée."
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisation de {count} changements...",
+      "onlinePending": "{count, plural, one {# changement en attente de synchronisation.} other {# changements en attente de synchronisation.}}",
+      "onlineSynced": "En ligne : Tous les changements sont synchronisés.",
+      "offline": "Hors ligne : {count, plural, one {# changement enregistré localement.} other {# changements enregistrés localement.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "Vous êtes de nouveau en ligne !",
+        "description": "Connexion rétablie."
+      },
+      "offline": {
+        "title": "Connexion perdue",
+        "description": "Vous êtes maintenant hors ligne. Les changements seront enregistrés localement."
+      },
+      "syncing": {
+        "title": "Synchronisation des données",
+        "description": "Tentative de synchronisation de {count, plural, one {# changement en attente} other {# changements en attente}} avec le serveur."
+      },
+      "synced": {
+        "title": "Synchronisation terminée !",
+        "description": "Tous vos changements hors ligne ont été enregistrés."
+      },
+      "syncFailed": {
+        "title": "Échec de la synchronisation",
+        "description": "Impossible de synchroniser les changements hors ligne. Une nouvelle tentative sera effectuée plus tard."
+      },
+      "queued": {
+        "title": "Action mise en file d'attente",
+        "description": "Votre changement a été enregistré localement et sera synchronisé lorsque vous serez en ligne."
+      }
+    }
   }
 }

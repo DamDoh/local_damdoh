@@ -203,5 +203,39 @@
     "anomaliesTitle": "Anomalías en la Cadena de Suministro",
     "trackVtiButton": "Rastrear VTI",
     "noAnomalies": "No se detectaron anomalías en la cadena de suministro."
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Sincronizando {count} cambios...",
+      "onlinePending": "{count, plural, one {# cambio pendiente de sincronización.} other {# cambios pendientes de sincronización.}}",
+      "onlineSynced": "En línea: Todos los cambios sincronizados.",
+      "offline": "Sin conexión: {count, plural, one {# cambio guardado localmente.} other {# cambios guardados localmente.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "¡Estás de vuelta en línea!",
+        "description": "Conexión restaurada."
+      },
+      "offline": {
+        "title": "Conexión Perdida",
+        "description": "Ahora estás sin conexión. Los cambios se guardarán localmente."
+      },
+      "syncing": {
+        "title": "Sincronizando Datos",
+        "description": "Intentando sincronizar {count, plural, one {# cambio pendiente} other {# cambios pendientes}} con el servidor."
+      },
+      "synced": {
+        "title": "¡Sincronización Completa!",
+        "description": "Todos tus cambios sin conexión han sido guardados."
+      },
+      "syncFailed": {
+        "title": "Sincronización Fallida",
+        "description": "No se pudieron sincronizar los cambios sin conexión. Se reintentará más tarde."
+      },
+      "queued": {
+        "title": "Acción en Cola",
+        "description": "Tu cambio ha sido guardado localmente y se sincronizará cuando estés en línea."
+      }
+    }
   }
 }

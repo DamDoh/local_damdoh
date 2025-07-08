@@ -11,6 +11,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { locales } from '@/i18n-config';
 import { notFound } from "next/navigation";
+import { OfflineIndicator } from "@/components/layout/OfflineIndicator";
  
 export const metadata: Metadata = {
   title: {
@@ -49,6 +50,7 @@ export default async function LocaleLayout({
               </main>
               <div className="md:hidden h-16" />
               <MobileBottomNavigation />
+              <OfflineIndicator />
               <AppFooter />
               <Toaster />
             </div>
