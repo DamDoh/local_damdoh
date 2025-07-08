@@ -165,5 +165,3 @@ export const getSustainabilityDashboardData = functions.https.onCall(async (data
         ]
     };
 });
-
-    

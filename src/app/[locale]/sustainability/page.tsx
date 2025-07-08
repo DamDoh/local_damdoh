@@ -17,8 +17,8 @@ import type { SustainabilityDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 const MetricCard = ({ title, value, unit, trend, icon, higherIsBetter = true }: { title: string, value: number, unit: string, trend: number, icon: React.ReactNode, higherIsBetter?: boolean }) => {
-    const isGoodTrend = higherIsBetter ? trend >= 0 : trend < 0;
     const t = useTranslations('sustainabilityPage.metricCard');
+    const isGoodTrend = higherIsBetter ? trend >= 0 : trend < 0;
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -181,5 +181,3 @@ export default function SustainabilityPage() {
         </div>
     );
 }
-
-    

@@ -107,7 +107,8 @@
     "helpCenter": "Hilfezentrum",
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Design wechseln",
-    "switchToDarkAria": "Zum dunklen Design wechseln"
+    "switchToDarkAria": "Zum dunklen Design wechseln",
+    "sustainability": "Nachhaltigkeit"
   },
   "LanguageSwitcher": {
     "toggle": "Sprache wechseln"
@@ -246,7 +247,7 @@
       "coverageLabel": "Deckungsdetails",
       "coveragePlaceholder": "Beschreiben Sie die spezifischen Gefahren, Deckungsgrenzen und Selbstbehalte.",
       "premiumLabel": "Prämie (USD)",
-      "premiumPlaceholder": "z.B. 250,00",
+      "premiumPlaceholder": "z.B. 250.00",
       "currencyLabel": "Währung",
       "submitButton": "Produkt erstellen"
     },
@@ -286,5 +287,35 @@
     "search": "Suche",
     "forums": "Foren",
     "profile": "Profil"
+  },
+  "sustainabilityPage": {
+    "title": "Nachhaltigkeits-Dashboard",
+    "description": "Verfolgen und verwalten Sie die Umweltauswirkungen und nachhaltigen Praktiken Ihres Betriebs.",
+    "carbonFootprint": "CO2-Fußabdruck",
+    "waterEfficiency": "Wassereffizienz",
+    "biodiversityScore": "Biodiversitäts-Score",
+    "practicesTitle": "Protokollierte nachhaltige Praktiken",
+    "practicesTable": {
+        "practice": "Praxis",
+        "lastLogged": "Zuletzt protokolliert"
+    },
+    "certificationsTitle": "Überprüfbare Zertifizierungen",
+    "certificationsTable": {
+        "certification": "Zertifizierung",
+        "status": "Status",
+        "expiry": "Ablaufdatum"
+    },
+    "metricCard": {
+        "trendText": "vom letzten Monat"
+    },
+    "auth": {
+        "title": "Authentifizierung erforderlich",
+        "description": "Sie müssen angemeldet sein, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
+        "button": "Anmelden"
+    },
+    "noData": {
+        "title": "Keine Daten verfügbar",
+        "description": "Wir haben noch keine Nachhaltigkeitsdaten für Ihr Profil. Beginnen Sie mit der Protokollierung von Aktivitäten auf Ihrem Bauernhof."
+    }
   }
 }

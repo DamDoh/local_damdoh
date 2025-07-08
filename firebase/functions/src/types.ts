@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -445,6 +444,7 @@ export interface AgronomistDashboardData {
   }[];
   pendingConsultationRequests: {
     id: string;
+    farmerId: string;
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
@@ -627,7 +627,6 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -676,6 +675,10 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
+    // Re-introducing denormalized fields for use in FeedItemCard
+    userId: string;
+    userName: string;
+    userAvatar?: string;
 }
 
 export interface PollOption {
@@ -693,7 +696,7 @@ export interface FeedItem {
   userHeadline?: string;
   content: string;
   link: string;
-  postImage?: string;
+  imageUrl?: string;
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
@@ -723,7 +726,7 @@ export interface Message {
 export interface MobileHomeCategory {
     id: string;
     name: string;
-    icon: React.ElementType;
+    icon: LucideIcon;
     href: string;
     dataAiHint?: string;
 }
@@ -809,3 +812,13 @@ export interface PaymentLog {
     date: string; // ISO string
     notes: string;
 }
+
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    skillsRequired: string[];
+    compensation: string;
+    experienceLevel: string;
+};
+
+// AI Related Types
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;

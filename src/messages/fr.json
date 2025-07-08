@@ -107,7 +107,8 @@
     "helpCenter": "Aide",
     "logOut": "Se déconnecter",
     "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre"
+    "switchToDarkAria": "Passer au thème sombre",
+    "sustainability": "Durabilité"
   },
   "LanguageSwitcher": {
     "toggle": "Changer de langue"
@@ -286,5 +287,35 @@
     "search": "Rechercher",
     "forums": "Forums",
     "profile": "Profil"
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de bord de la durabilité",
+    "description": "Suivez et gérez l'impact environnemental et les pratiques durables de votre exploitation.",
+    "carbonFootprint": "Empreinte carbone",
+    "waterEfficiency": "Efficacité de l'eau",
+    "biodiversityScore": "Score de biodiversité",
+    "practicesTitle": "Pratiques durables enregistrées",
+    "practicesTable": {
+        "practice": "Pratique",
+        "lastLogged": "Dernier enregistrement"
+    },
+    "certificationsTitle": "Certifications vérifiables",
+    "certificationsTable": {
+        "certification": "Certification",
+        "status": "Statut",
+        "expiry": "Expiration"
+    },
+    "metricCard": {
+        "trendText": "depuis le mois dernier"
+    },
+    "auth": {
+        "title": "Authentification requise",
+        "description": "Vous devez être connecté pour voir votre tableau de bord de la durabilité.",
+        "button": "Se connecter"
+    },
+    "noData": {
+        "title": "Aucune donnée disponible",
+        "description": "Nous n'avons pas encore de données de durabilité pour votre profil. Commencez par enregistrer des activités sur votre exploitation."
+    }
   }
 }

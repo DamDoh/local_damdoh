@@ -21,7 +21,8 @@ import {
   UserPlus,
   X,
   Fingerprint,
-  ShoppingCart
+  ShoppingCart,
+  Leaf
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -104,6 +105,7 @@ const desktopNavItems = [
     { href: "/talent-exchange", icon: Briefcase, label: 'talentExchange' },
     { href: "/traceability", icon: Fingerprint, label: 'traceability' },
     { href: "/forums", icon: MessageSquare, label: 'forums' },
+    { href: "/sustainability", icon: Leaf, label: 'sustainability' },
 ];
   
 const mobileSheetSecondaryNavItems = [
@@ -262,9 +264,11 @@ export function AppHeader() {
             <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
               <SheetHeader className="p-4 border-b">
                 <SheetTitle className="text-left">Main Menu</SheetTitle>
-                <SheetDescription className="text-left text-xs">
-                  Navigate to different sections of the application.
-                </SheetDescription>
+                <VisuallyHidden>
+                  <SheetDescription>
+                    Navigate to different sections of the application.
+                  </SheetDescription>
+                </VisuallyHidden>
               </SheetHeader>
               <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
                 {user && (

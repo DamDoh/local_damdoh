@@ -107,7 +107,8 @@
     "helpCenter": "ជំនួយ",
     "logOut": "ចាកចេញ",
     "switchToLightAria": "ប្ដូរទៅរូបរាងភ្លឺ",
-    "switchToDarkAria": "ប្ដូរទៅរូបរាងងងឹត"
+    "switchToDarkAria": "ប្ដូរទៅរូបរាងងងឹត",
+    "sustainability": "និរន្តរភាព"
   },
   "LanguageSwitcher": {
     "toggle": "ប្តូរភាសា"
@@ -286,5 +287,35 @@
     "search": "ស្វែងរក",
     "forums": "វេទិកា",
     "profile": "ប្រវត្តិរូប"
+  },
+  "sustainabilityPage": {
+    "title": "ផ្ទាំងគ្រប់គ្រងនិរន្តរភាព",
+    "description": "តាមដាននិងគ្រប់គ្រងផលប៉ះពាល់បរិស្ថាននិងការអនុវត្តប្រកបដោយនិរន្តរភាពរបស់កសិដ្ឋានអ្នក។",
+    "carbonFootprint": "បាតជើងកាបូន",
+    "waterEfficiency": "ប្រសិទ្ធភាពទឹក",
+    "biodiversityScore": "ពិន្ទុជីវចម្រុះ",
+    "practicesTitle": "ការអនុវត្តប្រកបដោយនិរន្តរភាពដែលបានកត់ត្រា",
+    "practicesTable": {
+        "practice": "ការអនុវត្ត",
+        "lastLogged": "បានកត់ត្រាចុងក្រោយ"
+    },
+    "certificationsTitle": "វិញ្ញាបនបត្រដែលអាចផ្ទៀងផ្ទាត់បាន",
+    "certificationsTable": {
+        "certification": "វិញ្ញាបនបត្រ",
+        "status": "ស្ថានភាព",
+        "expiry": "ផុតកំណត់"
+    },
+    "metricCard": {
+        "trendText": "ពីខែមុន"
+    },
+    "auth": {
+        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "description": "អ្នកត្រូវតែចូលដើម្បីមើលផ្ទាំងគ្រប់គ្រងនិរន្តរភាពរបស់អ្នក។",
+        "button": "ចូលគណនី"
+    },
+    "noData": {
+        "title": "គ្មានទិន្នន័យ",
+        "description": "យើងមិនមានទិន្នន័យនិរន្តរភាពសម្រាប់ប្រវត្តិរូបរបស់អ្នកនៅឡើយទេ។ ចាប់ផ្តើមកត់ត្រាសកម្មភាពនៅលើកសិដ្ឋានរបស់អ្នក។"
+    }
   }
 }

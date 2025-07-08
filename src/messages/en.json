@@ -107,7 +107,8 @@
     "helpCenter": "Help Center",
     "logOut": "Log Out",
     "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme"
+    "switchToDarkAria": "Switch to dark theme",
+    "sustainability": "Sustainability"
   },
   "LanguageSwitcher": {
     "toggle": "Switch language"
@@ -286,5 +287,35 @@
     "search": "Search",
     "forums": "Forums",
     "profile": "Profile"
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and manage your farm's environmental impact and sustainable practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Sustainable Practices Logged",
+    "practicesTable": {
+        "practice": "Practice",
+        "lastLogged": "Last Logged"
+    },
+    "certificationsTitle": "Verifiable Certifications",
+    "certificationsTable": {
+        "certification": "Certification",
+        "status": "Status",
+        "expiry": "Expiry"
+    },
+    "metricCard": {
+        "trendText": "from last month"
+    },
+    "auth": {
+        "title": "Authentication Required",
+        "description": "You need to be logged in to view your sustainability dashboard.",
+        "button": "Sign In"
+    },
+    "noData": {
+        "title": "No Data Available",
+        "description": "We don't have any sustainability data for your profile yet. Start by logging activities on your farm."
+    }
   }
 }
