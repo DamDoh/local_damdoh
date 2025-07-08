@@ -37,6 +37,42 @@
       "aiDiagnosis": "AI Diagnosis"
     }
   },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search for people, products, services, forum posts...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee Beans Kenya",
+    "popularSearch2": "Tractor rental",
+    "popularSearch3": "Drought-resistant maize seeds",
+    "popularSearch4": "Logistics partner East Africa",
+    "popularSearch5": "Post-harvest loss reduction",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search people, products, services, forums...",
+      "searchButton": "Search",
+      "searchError": "Search Error",
+      "searchErrorDescription": "An error occurred while searching. Please try again.",
+      "invalidCodeError": "Invalid QR code scanned. It does not appear to be a DamDoh ID.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Searching for items related to your query.",
+      "filtersTitle": "Applied Filters",
+      "noResults": "No results found",
+      "tryAgain": "Try refining your search terms.",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "agri_events": "Events",
+        "knowledge_articles": "Knowledge Hub",
+        "vti_registry": "Traceability Reports"
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "The Global Agricultural Supply Chain Platform.",
     "damdohTitle": "DamDoh",
@@ -76,7 +112,9 @@
     "myProfile": "My Profile",
     "settings": "Settings",
     "helpCenter": "Help Center",
-    "logOut": "Log Out"
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light mode",
+    "switchToDarkAria": "Switch to dark mode"
   },
   "LanguageSwitcher": {
     "toggle": "Change language"
@@ -120,42 +158,6 @@
       "onlinePending": "Online | {count, plural, one {# action} other {# actions}} waiting to sync",
       "onlineSynced": "Online | All changes synced",
       "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
-    }
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search for people, products, services, forum posts...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans Kenya",
-    "popularSearch2": "Tractor rental",
-    "popularSearch3": "Drought-resistant maize seeds",
-    "popularSearch4": "Logistics partner East Africa",
-    "popularSearch5": "Post-harvest loss reduction",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search people, products, services, forums...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while searching. Please try again.",
-      "invalidCodeError": "Invalid QR code scanned. It does not appear to be a DamDoh ID.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Searching for items related to your query.",
-      "filtersTitle": "Applied Filters",
-      "noResults": "No results found",
-      "tryAgain": "Try refining your search terms.",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Hub",
-        "vti_registry": "Traceability Reports"
-      }
     }
   },
   "LandingPage": {
@@ -207,6 +209,37 @@
       "title": "Ready to Grow Your Network?",
       "subtitle": "Join thousands of farmers, buyers, and experts who are building a more connected and efficient agricultural future.",
       "button": "Join DamDoh Today"
+    }
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Fostering a professional, respectful, and collaborative environment.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all stakeholders in the agricultural supply chain, we ask everyone to adhere to the following guidelines.",
+    "respectful": {
+      "title": "Be Respectful",
+      "description": "Treat all members with professionalism and courtesy. We encourage constructive discussions and debates, but personal attacks, harassment, and hate speech will not be tolerated."
+    },
+    "authentic": {
+      "title": "Be Authentic",
+      "description": "Represent yourself and your business truthfully. Do not impersonate others or provide misleading information about your products, services, or credentials."
+    },
+    "relevant": {
+      "title": "Stay Relevant",
+      "description": "Keep discussions and content relevant to the agricultural industry, supply chains, and the purpose of the specific forum or group you are in. Avoid spam and excessive self-promotion."
+    },
+    "fairTrade": {
+      "title": "Engage in Fair Trade",
+      "description": "Conduct all transactions and negotiations with fairness and integrity. Do not engage in fraudulent activities or attempt to scam other users."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "We are a platform dedicated to improving agricultural practices. We encourage sharing and promoting sustainable and regenerative methods."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you encounter content or behavior that violates these guidelines, please report it to our support team at {emailLink}.",
+      "emailLinkText": "support@damdoh.org",
+      "conclusion": "By using DamDoh, you agree to these guidelines. Violations may result in content removal, warnings, or account suspension. Thank you for helping us build a trusted community."
     }
   }
 }

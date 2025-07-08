@@ -37,42 +37,6 @@
       "aiDiagnosis": "Diagnóstico de IA"
     }
   },
-  "searchPage": {
-    "title": "Búsqueda Universal",
-    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
-    "placeholder": "Busca personas, productos, servicios, publicaciones de foros...",
-    "searchButton": "Buscar",
-    "popularSearches": "Búsquedas Populares",
-    "popularSearch1": "Granos de Café Orgánico Kenia",
-    "popularSearch2": "Alquiler de tractores",
-    "popularSearch3": "Semillas de maíz resistentes a la sequía",
-    "popularSearch4": "Socio logístico África Oriental",
-    "popularSearch5": "Reducción de pérdidas postcosecha",
-    "modal": {
-      "title": "Búsqueda Universal",
-      "placeholder": "Busca personas, productos, servicios, foros...",
-      "searchButton": "Buscar",
-      "searchError": "Error de Búsqueda",
-      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
-      "invalidCodeError": "Código QR escaneado no válido. No parece ser un ID de DamDoh.",
-      "scanFailed": "Escaneo Fallido",
-      "scanError": "Error de Escaneo",
-      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
-      "interpretationTitle": "Interpretación de IA",
-      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
-      "filtersTitle": "Filtros Aplicados",
-      "noResults": "No se encontraron resultados",
-      "tryAgain": "Intenta refinar tus términos de búsqueda.",
-      "results": {
-        "users": "Perfiles",
-        "marketplaceItems": "Mercado",
-        "forums": "Foros",
-        "agri_events": "Eventos",
-        "knowledge_articles": "Centro de Conocimiento",
-        "vti_registry": "Informes de Trazabilidad"
-      }
-    }
-  },
   "AppFooter": {
     "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
     "damdohTitle": "DamDoh",
@@ -112,7 +76,9 @@
     "myProfile": "Mi Perfil",
     "settings": "Configuración",
     "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar Sesión"
+    "logOut": "Cerrar Sesión",
+    "switchToLightAria": "Cambiar a modo claro",
+    "switchToDarkAria": "Cambiar a modo oscuro"
   },
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
@@ -156,6 +122,42 @@
       "onlinePending": "En línea | {count, plural, one {# acción} other {# acciones}} esperando para sincronizar",
       "onlineSynced": "En línea | Todos los cambios sincronizados",
       "offline": "Desconectado | {count, plural, one {# acción} other {# acciones}} en cola"
+    }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos, servicios, publicaciones de foros...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de Café Orgánico Kenia",
+    "popularSearch2": "Alquiler de tractores",
+    "popularSearch3": "Semillas de maíz resistentes a la sequía",
+    "popularSearch4": "Socio logístico África Oriental",
+    "popularSearch5": "Reducción de pérdidas postcosecha",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Busca personas, productos, servicios, foros...",
+      "searchButton": "Buscar",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Código QR escaneado no válido. No parece ser un ID de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
+      "filtersTitle": "Filtros Aplicados",
+      "noResults": "No se encontraron resultados",
+      "tryAgain": "Intenta refinar tus términos de búsqueda.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informes de Trazabilidad"
+      }
     }
   },
   "LandingPage": {
@@ -207,6 +209,79 @@
       "title": "¿Listo para hacer crecer tu red?",
       "subtitle": "Únete a miles de agricultores, compradores y expertos que están construyendo un futuro agrícola más conectado y eficiente.",
       "button": "Únete a DamDoh Hoy"
+    }
+  },
+  "careers": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únete a nosotros para dar forma al futuro de la agrotecnología. Sé parte de un equipo apasionado dedicado a tener un impacto global.",
+    "whyWorkWithUs": {
+      "title": "¿Por qué trabajar con nosotros?",
+      "intro": "En DamDoh, estamos resolviendo algunos de los problemas más urgentes del mundo, desde la seguridad alimentaria hasta la sostenibilidad. Podrás:",
+      "point1": "Trabajar en un producto que mejora la vida de millones.",
+      "point2": "Colaborar con un equipo diverso y global.",
+      "point3": "Tener acceso a las últimas tecnologías en IA y análisis de datos.",
+      "point4": "Disfrutar de una cultura de aprendizaje y crecimiento profesional.",
+      "point5": "Recibir arreglos de trabajo flexibles y una compensación competitiva."
+    },
+    "currentOpenings": {
+      "title": "Ofertas de Empleo Actuales"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Frontend (React/Next.js)",
+        "location": "Remoto",
+        "type": "Tiempo completo",
+        "description": "Buscamos un ingeniero frontend con experiencia para ayudarnos a construir una interfaz de usuario intuitiva y de alto rendimiento para nuestra plataforma."
+      },
+      "job2": {
+        "title": "Agrónomo / Agente de Campo - África Oriental",
+        "location": "Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Únete a nuestro equipo en el terreno para capacitar a los agricultores, recopilar datos y facilitar la incorporación a nuestro ecosistema."
+      },
+      "job3": {
+        "title": "Ingeniero de IA/ML - Perspectivas Agrícolas",
+        "location": "Remoto",
+        "type": "Tiempo completo",
+        "description": "Desarrolla e implementa modelos de IA para predicciones de cosechas, diagnóstico de enfermedades y perspectivas de mercado."
+      }
+    },
+    "noOpenings": {
+      "title": "No hay vacantes en este momento",
+      "content": "Actualmente no tenemos vacantes, pero siempre estamos buscando personas con talento. Envía tu currículum a {emailLink} y nos pondremos en contacto si surge una oportunidad adecuada.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Aplicar ahora"
+  },
+  "communityGuidelines": {
+    "title": "Directrices de la Comunidad",
+    "subtitle": "Fomentando un entorno profesional, respetuoso y colaborativo.",
+    "intro": "¡Bienvenido a la comunidad de DamDoh! Para garantizar que nuestra plataforma siga siendo un espacio productivo y seguro para todos los actores de la cadena de suministro agrícola, pedimos a todos que se adhieran a las siguientes directrices.",
+    "respectful": {
+      "title": "Sé respetuoso",
+      "description": "Trata a todos los miembros con profesionalismo y cortesía. Fomentamos las discusiones y debates constructivos, pero no se tolerarán los ataques personales, el acoso ni el discurso de odio."
+    },
+    "authentic": {
+      "title": "Sé auténtico",
+      "description": "Preséntate a ti mismo y a tu negocio con veracidad. No te hagas pasar por otros ni proporciones información engañosa sobre tus productos, servicios o credenciales."
+    },
+    "relevant": {
+      "title": "Mantente relevante",
+      "description": "Mantén las discusiones y el contenido relevantes para la industria agrícola, las cadenas de suministro y el propósito del foro o grupo específico en el que te encuentres. Evita el spam y la autopromoción excesiva."
+    },
+    "fairTrade": {
+      "title": "Participa en el comercio justo",
+      "description": "Realiza todas las transacciones y negociaciones con equidad e integridad. No participes en actividades fraudulentas ni intentes estafar a otros usuarios."
+    },
+    "sustainable": {
+      "title": "Promueve la sostenibilidad",
+      "description": "Somos una plataforma dedicada a mejorar las prácticas agrícolas. Fomentamos el intercambio y la promoción de métodos sostenibles y regenerativos."
+    },
+    "reporting": {
+      "title": "Denunciar violaciones",
+      "content": "Si encuentras contenido o comportamiento que viole estas directrices, por favor, repórtalo a nuestro equipo de soporte en {emailLink}.",
+      "emailLinkText": "support@damdoh.org",
+      "conclusion": "Al usar DamDoh, aceptas estas directrices. Las violaciones pueden resultar en la eliminación de contenido, advertencias o la suspensión de la cuenta. Gracias por ayudarnos a construir una comunidad de confianza."
     }
   }
 }
