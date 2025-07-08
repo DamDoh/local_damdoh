@@ -1,118 +1,77 @@
 
 {
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light mode",
-    "switchToDarkAria": "Switch to dark mode"
+  "common": {
+    "error": "Error"
   },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "AppFooter": {
-    "tagline": "Connecting the entire agricultural supply chain, from seed to table.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the mobile app",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
-  },
-  "agentToolsPage": {
-    "backLink": "Back to Network",
-    "title": "Agent Tools",
-    "description": "Securely look up user information for verification and support.",
-    "accessDeniedTitle": "Access Denied",
-    "accessDeniedDescription": "You do not have the required permissions to access this page.",
-    "findUserLabel": "Find User by Phone Number",
-    "findButton": "Find",
-    "resultsTitle": "Lookup Result",
-    "resultsPlaceholder": "Enter a phone number to look up a user.",
-    "phoneRequiredError": "Phone number is required."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Toggle language"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Empowering Agriculture from Seed to Sale, with {appName}",
-      "subtitle": "The comprehensive platform connecting every stakeholder in the agricultural supply chain for a more sustainable and prosperous future.",
-      "getStartedButton": "Get Started for Free",
-      "learnMoreButton": "Learn More"
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "This is a restricted area. Changes here affect the entire platform.",
+      "contentManagement": "Content"
     },
-    "features": {
-      "title": "A Fully Integrated Ecosystem",
-      "subtitle": "DamDoh provides the tools you need to connect, trade, and grow your agricultural business.",
-      "networking": {
-        "title": "Smart Networking",
-        "description": "Connect with farmers, buyers, experts, and suppliers using our AI-powered suggestion engine."
+    "dashboard": {
+      "title": "Welcome to the Admin Dashboard",
+      "description": "Select a module from the sidebar to manage platform content and settings.",
+      "content": "From here you can manage articles, courses, and other platform-wide information.",
+      "contentManagementButton": "Manage Content"
+    },
+    "contentManagement": {
+      "toast": {
+        "loadErrorTitle": "Error Loading Articles",
+        "loadErrorDescription": "Could not retrieve the list of articles. Please check the console.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new knowledge article has been saved.",
+        "createErrorTitle": "Creation Failed",
+        "createErrorDescription": "Could not create the new article."
       },
-      "marketplace": {
-        "title": "Global Marketplace",
-        "description": "Buy and sell produce, inputs, and equipment with trust and transparency through traceable listings."
+      "allArticles": {
+        "title": "All Knowledge Articles",
+        "description": "Manage all blog posts, news, and educational content.",
+        "refreshButton": "Refresh"
       },
-      "forums": {
-        "title": "Knowledge Sharing",
-        "description": "Join community forums to discuss best practices, solve challenges, and share your expertise."
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles found. Create one to get started."
       },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Offer your skills or find expert help for custom harvesting, drone surveying, and other services."
+      "createArticle": {
+        "title": "Create New Content",
+        "description": "Add a new article to the knowledge base. Content in one language will be auto-translated to the other.",
+        "englishContent": "English Content",
+        "titleEnLabel": "Title (English)",
+        "excerptEnLabel": "Excerpt (English)",
+        "excerptDescription": "A short summary for previews.",
+        "contentEnLabel": "Full Content (English)",
+        "khmerContent": "Khmer Content",
+        "titleKmLabel": "Title (Khmer)",
+        "excerptKmLabel": "Excerpt (Khmer)",
+        "contentKmLabel": "Full Content (Khmer)",
+        "metadataTitle": "Metadata & Publishing",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Blog, Industry News, KNF Guide",
+        "authorLabel": "Author",
+        "authorPlaceholder": "e.g., DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Header Image URL",
+        "imageUrlPlaceholder": "https://placehold.co/1200x400.png",
+        "aiHintLabel": "AI Image Hint",
+        "aiHintPlaceholder": "e.g., coffee beans harvest",
+        "publishingButton": "Publishing...",
+        "publishButton": "Publish Article"
+      },
+      "createCourse": {
+        "title": "Create New Course",
+        "description": "Add a new educational course to the platform.",
+        "titleLabel": "Course Title",
+        "descriptionLabel": "Course Description",
+        "categoryLabel": "Category",
+        "submittingButton": "Submitting...",
+        "submitButton": "Create Course"
       }
-    },
-    "forWho": {
-      "badge": "For Everyone in the Supply Chain",
-      "title": "A Platform Built for You",
-      "description": "Whether you're tending the fields or sourcing for a global market, DamDoh is designed to meet your specific needs.",
-      "farmers": {
-        "title": "For Farmers & Cooperatives",
-        "description": "Access new markets, get fair prices, and learn sustainable practices to increase your yield and profitability."
-      },
-      "buyers": {
-        "title": "For Buyers & Exporters",
-        "description": "Source high-quality, traceable produce directly from producers and manage your supply chain with confidence."
-      },
-      "experts": {
-        "title": "For Experts & Service Providers",
-        "description": "Offer your expertise, find new clients, and contribute to a more efficient agricultural ecosystem."
-      },
-      "imageAlt": "A diverse group of agricultural professionals collaborating."
-    },
-    "cta": {
-      "title": "Join the DamDoh Community Today",
-      "subtitle": "Sign up now and become part of the future of agriculture. It's free to get started.",
-      "button": "Sign Up Now"
     }
   }
 }

@@ -1,118 +1,74 @@
 
 {
-  "AppHeader": {
-    "home": "Inicio",
-    "network": "Red",
-    "farmMgmt": "Gestión Finca",
-    "marketplace": "Mercado",
-    "talentExchange": "Talento",
-    "traceability": "Trazabilidad",
-    "forums": "Foros",
-    "notifications": "Notificaciones",
-    "messages": "Mensajes",
-    "wallet": "Cartera",
-    "searchPlaceholder": "Buscar personas, productos, servicios...",
-    "signIn": "Iniciar sesión",
-    "signUp": "Registrarse",
-    "myProfile": "Mi Perfil",
-    "settings": "Configuración",
-    "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar sesión",
-    "switchToLightAria": "Cambiar a modo claro",
-    "switchToDarkAria": "Cambiar a modo oscuro"
-  },
-  "MobileBottomNav": {
-    "home": "Inicio",
-    "market": "Mercado",
-    "search": "Buscar",
-    "forums": "Foros",
-    "profile": "Perfil"
-  },
-  "AppFooter": {
-    "tagline": "Conectando toda la cadena de suministro agrícola, desde la semilla hasta la mesa.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de Ayuda",
-    "communityGuidelinesLabel": "Normas de la Comunidad",
-    "industryNewsLabel": "Noticias del Sector",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de Talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de Privacidad",
-    "termsOfServiceLabel": "Términos de Servicio",
-    "copyright": "© {year} {appName}. Todos los derechos reservados.",
-    "getMobileApp": "Obtén la aplicación móvil",
-    "googlePlayAlt": "Consíguelo en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
-  },
-  "agentToolsPage": {
-    "backLink": "Volver a Red",
-    "title": "Herramientas de Agente",
-    "description": "Busque de forma segura la información del usuario para verificación y soporte.",
-    "accessDeniedTitle": "Acceso Denegado",
-    "accessDeniedDescription": "No tiene los permisos necesarios para acceder a esta página.",
-    "findUserLabel": "Buscar Usuario por Número de Teléfono",
-    "findButton": "Buscar",
-    "resultsTitle": "Resultado de la Búsqueda",
-    "resultsPlaceholder": "Introduzca un número de teléfono para buscar un usuario.",
-    "phoneRequiredError": "Se requiere número de teléfono."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Cambiar idioma"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Potenciando la Agricultura desde la Semilla hasta la Venta, con {appName}",
-      "subtitle": "La plataforma integral que conecta a todos los actores de la cadena de suministro agrícola para un futuro más sostenible y próspero.",
-      "getStartedButton": "Comenzar Gratis",
-      "learnMoreButton": "Aprende Más"
+  "admin": {
+    "layout": {
+      "title": "Panel de Administración",
+      "description": "Esta es un área restringida. Los cambios aquí afectan a toda la plataforma.",
+      "contentManagement": "Contenido"
     },
-    "features": {
-      "title": "Un Ecosistema Totalmente Integrado",
-      "subtitle": "DamDoh proporciona las herramientas que necesitas para conectar, comerciar y hacer crecer tu negocio agrícola.",
-      "networking": {
-        "title": "Networking Inteligente",
-        "description": "Conéctate con agricultores, compradores, expertos y proveedores utilizando nuestro motor de sugerencias impulsado por IA."
+    "dashboard": {
+      "title": "Bienvenido al Panel de Administración",
+      "description": "Seleccione un módulo de la barra lateral para gestionar el contenido y la configuración de la plataforma.",
+      "content": "Desde aquí puede gestionar artículos, cursos y otra información de toda la plataforma.",
+      "contentManagementButton": "Gestionar Contenido"
+    },
+    "contentManagement": {
+      "toast": {
+        "loadErrorTitle": "Error al cargar los artículos",
+        "loadErrorDescription": "No se pudo recuperar la lista de artículos. Por favor, revise la consola.",
+        "createSuccessTitle": "Artículo Creado",
+        "createSuccessDescription": "El nuevo artículo de conocimiento ha sido guardado.",
+        "createErrorTitle": "Creación Fallida",
+        "createErrorDescription": "No se pudo crear el nuevo artículo."
       },
-      "marketplace": {
-        "title": "Mercado Global",
-        "description": "Compra y vende productos, insumos y equipos con confianza y transparencia a través de listados trazables."
+      "allArticles": {
+        "title": "Todos los Artículos de Conocimiento",
+        "description": "Gestione todas las publicaciones del blog, noticias y contenido educativo.",
+        "refreshButton": "Actualizar"
       },
-      "forums": {
-        "title": "Intercambio de Conocimientos",
-        "description": "Únete a foros comunitarios para discutir las mejores prácticas, resolver desafíos y compartir tu experiencia."
+      "table": {
+        "title": "Título",
+        "category": "Categoría",
+        "status": "Estado",
+        "created": "Creado",
+        "actions": "Acciones",
+        "noArticles": "No se encontraron artículos. Cree uno para empezar."
       },
-      "talent": {
-        "title": "Bolsa de Talentos",
-        "description": "Ofrece tus habilidades o encuentra ayuda experta para cosechas personalizadas, levantamientos con drones y otros servicios."
+      "createArticle": {
+        "title": "Crear Nuevo Contenido",
+        "description": "Añada un nuevo artículo a la base de conocimiento. El contenido en un idioma se traducirá automáticamente al otro.",
+        "englishContent": "Contenido en Inglés",
+        "titleEnLabel": "Título (Inglés)",
+        "excerptEnLabel": "Extracto (Inglés)",
+        "excerptDescription": "Un breve resumen para vistas previas.",
+        "contentEnLabel": "Contenido Completo (Inglés)",
+        "khmerContent": "Contenido en Jemer",
+        "titleKmLabel": "Título (Jemer)",
+        "excerptKmLabel": "Extracto (Jemer)",
+        "contentKmLabel": "Contenido Completo (Jemer)",
+        "metadataTitle": "Metadatos y Publicación",
+        "categoryLabel": "Categoría",
+        "categoryPlaceholder": "Ej: Blog, Noticias del Sector, Guía KNF",
+        "authorLabel": "Autor",
+        "authorPlaceholder": "Ej: Equipo DamDoh",
+        "statusLabel": "Estado",
+        "tagsLabel": "Etiquetas (separadas por comas)",
+        "imageUrlLabel": "URL de la Imagen de Cabecera",
+        "imageUrlPlaceholder": "https://placehold.co/1200x400.png",
+        "aiHintLabel": "Pista de Imagen para IA",
+        "aiHintPlaceholder": "Ej: cosecha de granos de café",
+        "publishingButton": "Publicando...",
+        "publishButton": "Publicar Artículo"
+      },
+      "createCourse": {
+        "title": "Crear Nuevo Curso",
+        "description": "Añada un nuevo curso educativo a la plataforma.",
+        "titleLabel": "Título del Curso",
+        "descriptionLabel": "Descripción del Curso",
+        "categoryLabel": "Categoría",
+        "submittingButton": "Enviando...",
+        "submitButton": "Crear Curso"
       }
-    },
-    "forWho": {
-      "badge": "Para Todos en la Cadena de Suministro",
-      "title": "Una Plataforma Construida para Ti",
-      "description": "Ya sea que estés cultivando los campos o buscando proveedores para un mercado global, DamDoh está diseñado para satisfacer tus necesidades específicas.",
-      "farmers": {
-        "title": "Para Agricultores y Cooperativas",
-        "description": "Accede a nuevos mercados, obtén precios justos y aprende prácticas sostenibles para aumentar tu rendimiento y rentabilidad."
-      },
-      "buyers": {
-        "title": "Para Compradores y Exportadores",
-        "description": "Adquiere productos trazables de alta calidad directamente de los productores y gestiona tu cadena de suministro con confianza."
-      },
-      "experts": {
-        "title": "Para Expertos y Proveedores de Servicios",
-        "description": "Ofrece tu experiencia, encuentra nuevos clientes y contribuye a un ecosistema agrícola más eficiente."
-      },
-      "imageAlt": "Un grupo diverso de profesionales agrícolas colaborando."
-    },
-    "cta": {
-      "title": "Únete a la Comunidad DamDoh Hoy",
-      "subtitle": "Regístrate ahora y sé parte del futuro de la agricultura. Empezar es gratis.",
-      "button": "Regístrate Ahora"
     }
   }
 }

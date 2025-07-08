@@ -1,8 +1,8 @@
 
 "use client";
 
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -11,45 +11,59 @@ import { functions } from '@/lib/firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { Separator } from '@/components/ui/separator';
 import { useTranslations } from 'next-intl';
+import { useToast } from '@/hooks/use-toast';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
+import { format } from 'date-fns';
+import { PlusCircle, Edit } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+// Define the structure of an article for the frontend
+interface Article {
+  id: string;
+  title_en?: string;
+  title_km?: string;
+  category: string;
+  status: 'Published' | 'Draft';
+  createdAt: string;
+  author: string;
+}
 
 // Create callable references to our content creation functions
-const createCourseFunction = httpsCallable(functions, 'createCourse');
 const createArticleFunction = httpsCallable(functions, 'createKnowledgeArticle');
+const getArticlesFunction = httpsCallable(functions, 'getKnowledgeArticles');
 
 export default function ContentManagementPage() {
   const t = useTranslations('admin.contentManagement');
-  const [courseSubmitting, setCourseSubmitting] = useState(false);
   const [articleSubmitting, setArticleSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ type: '', message: '' });
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
 
-  const handleCreateCourse = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setCourseSubmitting(true);
-    setFeedback({ type: '', message: '' });
-
+  const fetchArticles = useCallback(async () => {
+    setIsLoading(true);
     try {
-      const formData = new FormData(event.target as HTMLFormElement);
-      const courseData = {
-        title_en: formData.get('course_title'),
-        description_en: formData.get('course_description'),
-        category: formData.get('course_category'),
-        level: 'Beginner',
-        targetRoles: ['farmer'],
-      };
-      
-      console.log("Calling 'createCourse' with payload:", courseData);
-      const result = await createCourseFunction(courseData);
-
-      if (!(result.data as any).success) throw new Error((result.data as any).message);
-
-      setFeedback({ type: 'success', message: 'Course created successfully!' });
-      (event.target as HTMLFormElement).reset();
+        const result = await getArticlesFunction();
+        const data = (result.data as { success: boolean, articles: any[] });
+        if(data.success && data.articles) {
+            setArticles(data.articles);
+        } else {
+            throw new Error("Failed to fetch articles.");
+        }
     } catch (error: any) {
-      setFeedback({ type: 'error', message: error.message || 'Failed to create course.' });
+        toast({ title: t('toast.loadErrorTitle'), description: error.message || t('toast.loadErrorDescription'), variant: "destructive" });
     } finally {
-      setCourseSubmitting(false);
+        setIsLoading(false);
     }
-  };
+  }, [getArticlesFunction, toast, t]);
+
+  useEffect(() => {
+      fetchArticles();
+  }, [fetchArticles]);
+
 
   const handleCreateArticle = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,6 +84,7 @@ export default function ContentManagementPage() {
         tags: (formData.get('article_tags') as string).split(',').map(tag => tag.trim()).filter(Boolean),
         imageUrl: formData.get('article_image_url'),
         dataAiHint: formData.get('article_data_ai_hint'),
+        status: formData.get('article_status'),
       };
 
       console.log("Calling 'createKnowledgeArticle' with payload:", articleData);
@@ -77,122 +92,113 @@ export default function ContentManagementPage() {
 
       if (!(result.data as any).success) throw new Error((result.data as any).message);
 
-      setFeedback({ type: 'success', message: 'Article created successfully! It will be auto-translated shortly.' });
+      toast({
+        title: t('toast.createSuccessTitle'),
+        description: t('toast.createSuccessDescription'),
+      });
       (event.target as HTMLFormElement).reset();
+      fetchArticles(); // Refresh the list
     } catch (error: any) {
-      setFeedback({ type: 'error', message: error.message || 'Failed to create article.' });
+       toast({
+        title: t('toast.createErrorTitle'),
+        description: error.message || 'Failed to create article.',
+        variant: "destructive"
+      });
     } finally {
       setArticleSubmitting(false);
     }
   };
 
   return (
-    <div className="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-       {feedback.message && (
-        <div className={`md:col-span-2 mb-4 p-3 rounded-md ${feedback.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-          {feedback.message}
-        </div>
-      )}
-      
-      <Card className="md:col-span-1">
-        <CardHeader>
-          <CardTitle>{t('createCourse.title')}</CardTitle>
-          <CardDescription>{t('createCourse.description')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleCreateCourse} className="space-y-4">
-             <div className="space-y-1.5">
-                <Label htmlFor="course_title">{t('createCourse.titleLabel')}</Label>
-                <Input id="course_title" name="course_title" required />
-            </div>
-             <div className="space-y-1.5">
-                <Label htmlFor="course_description">{t('createCourse.descriptionLabel')}</Label>
-                <Textarea id="course_description" name="course_description" required />
-            </div>
-             <div className="space-y-1.5">
-                <Label htmlFor="course_category">{t('createCourse.categoryLabel')}</Label>
-                <Input id="course_category" name="course_category" required />
-            </div>
-            <Button type="submit" disabled={courseSubmitting}>
-                {courseSubmitting ? t('createCourse.submittingButton') : t('createCourse.submitButton')}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-
-      <Card className="md:col-span-1">
-        <CardHeader>
-          <CardTitle>{t('createArticle.title')}</CardTitle>
-          <CardDescription>{t('createArticle.description')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-           <form onSubmit={handleCreateArticle} className="space-y-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-lg text-primary">{t('createArticle.englishContent')}</h4>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_title_en">{t('createArticle.titleEnLabel')}</Label>
-                    <Input id="article_title_en" name="article_title_en" />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_excerpt_en">{t('createArticle.excerptEnLabel')}</Label>
-                    <Textarea id="article_excerpt_en" name="article_excerpt_en" className="h-24" />
-                    <p className="text-xs text-muted-foreground">{t('createArticle.excerptDescription')}</p>
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_content_en">{t('createArticle.contentEnLabel')}</Label>
-                    <Textarea id="article_content_en" name="article_content_en" className="h-40" />
-                </div>
+    <div className="p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="lg:col-span-8 space-y-6">
+        <Card>
+            <CardHeader className="flex flex-row justify-between items-center">
+              <div>
+                <CardTitle>{t('allArticles.title')}</CardTitle>
+                <CardDescription>{t('allArticles.description')}</CardDescription>
               </div>
+              <Button size="sm" onClick={() => fetchArticles()}><PlusCircle className="mr-2 h-4 w-4" />{t('allArticles.refreshButton')}</Button>
+            </CardHeader>
+            <CardContent>
+              {isLoading ? (
+                  <div className="space-y-2">
+                      <Skeleton className="h-10 w-full" />
+                      <Skeleton className="h-10 w-full" />
+                      <Skeleton className="h-10 w-full" />
+                  </div>
+              ) : (
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>{t('table.title')}</TableHead>
+                            <TableHead>{t('table.category')}</TableHead>
+                            <TableHead>{t('table.status')}</TableHead>
+                            <TableHead>{t('table.created')}</TableHead>
+                            <TableHead className="text-right">{t('table.actions')}</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {articles.length > 0 ? articles.map(article => (
+                            <TableRow key={article.id}>
+                                <TableCell className="font-medium">{article.title_en || article.title_km}</TableCell>
+                                <TableCell><Badge variant="outline">{article.category}</Badge></TableCell>
+                                <TableCell><Badge variant={article.status === 'Published' ? 'default' : 'secondary'}>{article.status}</Badge></TableCell>
+                                <TableCell>{format(new Date(article.createdAt), 'dd MMM yyyy')}</TableCell>
+                                <TableCell className="text-right">
+                                    <Button variant="ghost" size="icon" asChild>
+                                        <Link href={`/admin/content/${article.id}/edit`}><Edit className="h-4 w-4" /></Link>
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        )) : (
+                            <TableRow>
+                                <TableCell colSpan={5} className="text-center h-24">{t('table.noArticles')}</TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+              )}
+            </CardContent>
+        </Card>
+      </div>
 
-              <Separator />
+      <div className="lg:col-span-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('createArticle.title')}</CardTitle>
+            <CardDescription>{t('createArticle.description')}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleCreateArticle} className="space-y-4">
+                <h4 className="font-semibold text-primary">{t('createArticle.englishContent')}</h4>
+                <div className="space-y-1.5"><Label htmlFor="article_title_en">{t('createArticle.titleEnLabel')}</Label><Input id="article_title_en" name="article_title_en" /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_excerpt_en">{t('createArticle.excerptEnLabel')}</Label><Textarea id="article_excerpt_en" name="article_excerpt_en" className="h-24" /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_content_en">{t('createArticle.contentEnLabel')}</Label><Textarea id="article_content_en" name="article_content_en" className="h-40" /></div>
+              
+                <Separator />
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-lg text-primary">{t('createArticle.khmerContent')}</h4>
-                 <div className="space-y-1.5">
-                    <Label htmlFor="article_title_km">{t('createArticle.titleKmLabel')}</Label>
-                    <Input id="article_title_km" name="article_title_km" />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_excerpt_km">{t('createArticle.excerptKmLabel')}</Label>
-                    <Textarea id="article_excerpt_km" name="article_excerpt_km" className="h-24" />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_content_km">{t('createArticle.contentKmLabel')}</Label>
-                    <Textarea id="article_content_km" name="article_content_km" className="h-40" />
-                </div>
-              </div>
+                <h4 className="font-semibold text-primary">{t('createArticle.khmerContent')}</h4>
+                <div className="space-y-1.5"><Label htmlFor="article_title_km">{t('createArticle.titleKmLabel')}</Label><Input id="article_title_km" name="article_title_km" /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_excerpt_km">{t('createArticle.excerptKmLabel')}</Label><Textarea id="article_excerpt_km" name="article_excerpt_km" className="h-24" /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_content_km">{t('createArticle.contentKmLabel')}</Label><Textarea id="article_content_km" name="article_content_km" className="h-40" /></div>
 
-              <Separator />
+                <Separator />
 
-              <div className="space-y-4">
-                <h4 className="font-semibold text-lg text-primary">{t('createArticle.metadataTitle')}</h4>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_category">{t('createArticle.categoryLabel')}</Label>
-                    <Input id="article_category" name="article_category" placeholder={t('createArticle.categoryPlaceholder')} required />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_author">{t('createArticle.authorLabel')}</Label>
-                    <Input id="article_author" name="article_author" placeholder={t('createArticle.authorPlaceholder')} defaultValue="DamDoh Team" />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_tags">{t('createArticle.tagsLabel')}</Label>
-                    <Input id="article_tags" name="article_tags" />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_image_url">{t('createArticle.imageUrlLabel')}</Label>
-                    <Input id="article_image_url" name="article_image_url" placeholder={t('createArticle.imageUrlPlaceholder')} />
-                </div>
-                <div className="space-y-1.5">
-                    <Label htmlFor="article_data_ai_hint">{t('createArticle.aiHintLabel')}</Label>
-                    <Input id="article_data_ai_hint" name="article_data_ai_hint" placeholder={t('createArticle.aiHintPlaceholder')} />
-                </div>
-              </div>
-              <Button type="submit" disabled={articleSubmitting}>
-                {articleSubmitting ? t('createArticle.publishingButton') : t('createArticle.publishButton')}
-              </Button>
+                <h4 className="font-semibold text-primary">{t('createArticle.metadataTitle')}</h4>
+                <div className="space-y-1.5"><Label htmlFor="article_category">{t('createArticle.categoryLabel')}</Label><Input id="article_category" name="article_category" placeholder={t('createArticle.categoryPlaceholder')} required /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_author">{t('createArticle.authorLabel')}</Label><Input id="article_author" name="article_author" placeholder={t('createArticle.authorPlaceholder')} defaultValue="DamDoh Team" /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_status">{t('createArticle.statusLabel')}</Label><Select name="article_status" defaultValue="Published"><SelectTrigger><SelectValue/></SelectTrigger><SelectContent><SelectItem value="Published">Published</SelectItem><SelectItem value="Draft">Draft</SelectItem></SelectContent></Select></div>
+                <div className="space-y-1.5"><Label htmlFor="article_tags">{t('createArticle.tagsLabel')}</Label><Input id="article_tags" name="article_tags" /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_image_url">{t('createArticle.imageUrlLabel')}</Label><Input id="article_image_url" name="article_image_url" placeholder={t('createArticle.imageUrlPlaceholder')} /></div>
+                <div className="space-y-1.5"><Label htmlFor="article_data_ai_hint">{t('createArticle.aiHintLabel')}</Label><Input id="article_data_ai_hint" name="article_data_ai_hint" placeholder={t('createArticle.aiHintPlaceholder')} /></div>
+                <Button type="submit" disabled={articleSubmitting}>
+                    {articleSubmitting ? t('createArticle.publishingButton') : t('createArticle.publishButton')}
+                </Button>
             </form>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

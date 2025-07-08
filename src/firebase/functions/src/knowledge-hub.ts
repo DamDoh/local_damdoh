@@ -204,6 +204,7 @@ export const getFeaturedKnowledge = functions.https.onCall(async (data, context)
     }
 
     const articlesSnapshot = await db.collection('knowledge_articles')
+      .where('status', '==', 'Published')
       .orderBy('createdAt', 'desc')
       .limit(3)
       .get();
@@ -423,14 +424,14 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     // 3. Combine the data
     const finalData = {
       id: courseDoc.id,
-      title: courseData.titleEn,
-      description: courseData.descriptionEn,
+      title: courseData.title_en,
+      description: courseData.description_en,
       category: courseData.category,
       level: courseData.level,
       instructor: {name: "Dr. Alima Bello", title: "Senior Agronomist"}, // Instructor info would need another fetch
       modules: modulesData.map((m: any) => ({
         id: m.id,
-        title: m.moduleTitleEn,
+        title: m.moduleTitle_en,
         content: m.contentUrls || [],
       })),
     };
