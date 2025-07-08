@@ -200,194 +200,27 @@
       }
     }
   },
-  "sustainabilityPage": {
-    "title": "Centro de Sostenibilidad",
-    "description": "Rastrea y gestiona el impacto ambiental y las prácticas sostenibles de tu granja.",
-    "auth": {
-      "title": "Por favor, inicia sesión",
-      "description": "Debes iniciar sesión para ver tu centro de sostenibilidad.",
-      "button": "Iniciar sesión"
-    },
-    "noData": {
-      "title": "No hay datos disponibles",
-      "description": "No pudimos cargar tus datos de sostenibilidad. Por favor, inténtalo de nuevo más tarde."
-    },
-    "metricCard": {
-      "trendText": "desde el mes pasado"
-    },
-    "carbonFootprint": "Huella de Carbono",
-    "waterEfficiency": "Eficiencia del Agua",
-    "biodiversityScore": "Puntuación de Biodiversidad",
-    "practicesTitle": "Prácticas Sostenibles Registradas",
-    "practicesTable": {
-      "practice": "Práctica",
-      "lastLogged": "Último Registro"
-    },
-    "certificationsTitle": "Certificaciones",
-    "certificationsTable": {
-      "certification": "Certificación",
-      "status": "Estado",
-      "expiry": "Vencimiento"
-    }
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Panel del Proveedor de Seguros"
-  },
-  "InsuranceProductsPage": {
-    "backLink": "Volver a Productos de Seguro",
-    "title": "Mis Productos de Seguro",
-    "description": "Ver y gestionar sus productos de seguro listados.",
-    "createButton": "Crear Nuevo Producto",
-    "noProducts": "Aún no ha creado ningún producto de seguro.",
-    "table": {
-      "productName": "Nombre del Producto",
-      "type": "Tipo",
-      "status": "Estado",
-      "premium": "Prima"
-    },
-    "toast": {
-      "errorTitle": "Error",
-      "fetchError": "No se pudieron obtener sus productos de seguro."
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Volver a Productos",
-    "title": "Crear Producto de Seguro",
-    "description": "Definir un nuevo producto de seguro para ofrecer a los agricultores.",
-    "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "ej., Seguro de Cultivos de Riesgo Múltiple",
-      "typeLabel": "Tipo de Producto",
-      "typePlaceholder": "Seleccione un tipo",
-      "crop": "Cultivo",
-      "livestock": "Ganado",
-      "asset": "Activo",
-      "weather": "Climático (Paramétrico)",
-      "descriptionLabel": "Breve Descripción",
-      "descriptionPlaceholder": "Describa brevemente este producto.",
-      "coverageLabel": "Detalles de la Cobertura",
-      "coveragePlaceholder": "Describa en detalle lo que cubre esta póliza...",
-      "premiumLabel": "Prima",
-      "premiumPlaceholder": "ej., 250",
-      "currencyLabel": "Moneda",
-      "submitButton": "Crear Producto"
-    },
-    "toast": {
-      "notAuthenticated": "Debe iniciar sesión para crear un producto.",
-      "successTitle": "¡Producto Creado!",
-      "successDescription": "{{name}} ha sido creado con éxito.",
-      "errorTitle": "Creación Fallida"
-    }
-  },
-  "FiDashboard": {
-    "title": "Panel de la Institución Financiera",
-    "pendingApplicationsTitle": "Solicitudes Pendientes",
-    "pendingApplicationsDescription": "Solicitudes de préstamos y subvenciones que requieren su revisión.",
-    "manageApplicationsButton": "Gestionar Solicitudes",
-    "portfolioAtRiskTitle": "Cartera en Riesgo",
-    "portfolioAtRiskDescription": "{{count}} préstamos muestran indicadores de alto riesgo.",
-    "reviewRiskButton": "Revisar Riesgo",
-    "manageProductsTitle": "Productos Financieros",
-    "manageProductsDescription": "Gestionar los productos de préstamos y subvenciones disponibles.",
-    "manageProductsButton": "Gestionar Productos",
-    "table": {
-      "applicant": "Solicitante",
-      "type": "Tipo",
-      "amount": "Monto",
-      "riskScore": "Puntuación de Riesgo",
-      "action": "Acción"
-    },
-    "reviewButton": "Revisar",
-    "noApplications": "No hay solicitudes pendientes en este momento.",
-    "viewAllButton": "Ver todas las solicitudes"
-  },
-  "FiApplicationListPage": {
-    "backLink": "Volver al Panel",
-    "title": "Solicitudes Financieras",
-    "description": "Ver y gestionar todas las solicitudes de préstamos y subvenciones.",
-    "tabs": {
-      "all": "Todas",
-      "pending": "Pendientes",
-      "approved": "Aprobadas",
-      "rejected": "Rechazadas"
-    },
-    "table": {
-      "applicant": "Solicitante",
-      "type": "Tipo",
-      "amount": "Monto",
-      "date": "Fecha de Envío",
-      "status": "Estado",
-      "action": "Acción"
-    },
-    "reviewButton": "Revisar",
-    "noApplications": "No se encontraron solicitudes que coincidan con este filtro."
-  },
-  "FiApplicationPage": {
-    "backLink": "Volver a Solicitudes",
-    "title": "Detalle de la Solicitud",
-    "applicationTitle": "Solicitud",
-    "submittedOn": "Enviado el",
-    "amountRequested": "Monto Solicitado",
-    "purpose": "Propósito de la Financiación",
-    "approveButton": "Aprobar",
-    "rejectButton": "Rechazar",
-    "requestInfoButton": "Solicitar más información",
-    "applicantDetails": "Detalles del Solicitante",
-    "viewProfileButton": "Ver Perfil Completo",
-    "profileNotFound": "No se encontró el perfil del solicitante.",
-    "riskAssessment": "Evaluación de Riesgos",
-    "creditScore": "Puntuación de Crédito DamDoh",
-    "notFound": "Solicitud no encontrada.",
-    "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "¡Estado Actualizado!",
-      "updateSuccessDescription": "El estado de la solicitud ha sido actualizado a {{status}}.",
-      "updateFailTitle": "Actualización Fallida"
-    }
-  },
-  "FiProductsPage": {
-    "backLink": "Volver al Panel",
-    "title": "Mis Productos Financieros",
-    "description": "Ver y gestionar sus productos financieros listados.",
-    "createButton": "Crear Nuevo Producto",
-    "noProducts": "Aún no ha creado ningún producto financiero.",
-    "table": {
-      "productName": "Nombre del Producto",
-      "type": "Tipo",
-      "status": "Estado",
-      "interestRate": "Tasa de Interés",
-      "maxAmount": "Monto Máximo"
-    },
-    "toast": {
-      "errorTitle": "Error",
-      "fetchError": "No se pudieron obtener sus productos financieros."
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Volver a Productos",
-    "title": "Crear Producto Financiero",
-    "description": "Definir un nuevo producto de préstamo o subvención para ofrecer en la plataforma.",
-    "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "ej., Préstamo para Semillas de Temporada",
-      "typeLabel": "Tipo de Producto",
-      "loan": "Préstamo",
-      "grant": "Subvención",
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Describa brevemente este producto y sus beneficios.",
-      "interestRateLabel": "Tasa de Interés (%)",
-      "interestRatePlaceholder": "ej., 12.5",
-      "maxAmountLabel": "Monto Máximo (USD)",
-      "maxAmountPlaceholder": "ej., 10000",
-      "targetRolesLabel": "Roles Objetivo",
-      "targetRolesDescription": "Seleccione los roles que son elegibles para este producto.",
-      "submitButton": "Crear Producto"
-    },
-    "toast": {
-      "notAuthenticated": "Debe iniciar sesión para crear un producto.",
-      "successTitle": "¡Producto Creado!",
-      "successDescription": "{{name}} ha sido creado con éxito.",
-      "errorTitle": "Creación Fallida"
-    }
+  "AppFooter": {
+    "tagline": "Conectando toda la cadena de suministro agrícola, desde la semilla hasta la mesa.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de ayuda",
+    "communityGuidelinesLabel": "Normas de la comunidad",
+    "industryNewsLabel": "Noticias del sector",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Bolsa de talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de privacidad",
+    "termsOfServiceLabel": "Términos de servicio",
+    "copyright": "© {year} {appName}. Todos los derechos reservados.",
+    "getMobileApp": "Obtén la aplicación móvil",
+    "googlePlayAlt": "Consíguelo en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
   }
 }
+
+    

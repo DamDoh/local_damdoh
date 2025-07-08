@@ -199,5 +199,28 @@
         "description": "Dienstleistungen konnten nicht abgerufen werden. Bitte versuchen Sie es später erneut."
       }
     }
+  },
+  "AppFooter": {
+    "tagline": "Verbindung der gesamten landwirtschaftlichen Lieferkette, vom Samen bis zum Tisch.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutz-Bestimmungen",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
   }
 }
+
+    

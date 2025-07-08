@@ -200,34 +200,27 @@
       }
     }
   },
-  "sustainabilityPage": {
-    "title": "មជ្ឈមណ្ឌលនិរន្តរភាព",
-    "description": "តាមដាន និងគ្រប់គ្រងផលប៉ះពាល់បរិស្ថាន និងការអនុវត្តប្រកបដោយនិរន្តរភាពនៃកសិដ្ឋានរបស់អ្នក។",
-    "auth": {
-      "title": "សូមចូលគណនី",
-      "description": "អ្នកត្រូវតែចូលគណនីដើម្បីមើលមជ្ឈមណ្ឌលនិរន្តរភាពរបស់អ្នក។",
-      "button": "ចូលគណនី"
-    },
-    "noData": {
-      "title": "មិនមានទិន្នន័យ",
-      "description": "យើងមិនអាចផ្ទុកទិន្នន័យនិរន្តរភាពរបស់អ្នកបានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
-    },
-    "metricCard": {
-      "trendText": "ពីខែមុន"
-    },
-    "carbonFootprint": "ស្នាមជើងកាបូន",
-    "waterEfficiency": "ប្រសិទ្ធភាពទឹក",
-    "biodiversityScore": "ពិន្ទុជីវចម្រុះ",
-    "practicesTitle": "ការអនុវត្តប្រកបដោយនិរន្តរភាពដែលបានកត់ត្រា",
-    "practicesTable": {
-      "practice": "ការអនុវត្ត",
-      "lastLogged": "កត់ត្រាចុងក្រោយ"
-    },
-    "certificationsTitle": "វិញ្ញាបនបត្រ",
-    "certificationsTable": {
-      "certification": "វិញ្ញាបនបត្រ",
-      "status": "ស្ថានភាព",
-      "expiry": "ផុតកំណត់"
-    }
+  "AppFooter": {
+    "tagline": "ការតភ្ជាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មទាំងមូល ពីគ្រាប់ពូជដល់តុ។",
+    "damdohTitle": "ដាំដុះ",
+    "aboutLabel": "អំពី​ពួក​យើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌល​ជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
+    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
+    "copyright": "© {year} {appName}. រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។",
+    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
+    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
+    "appStoreAlt": "ទាញយកនៅលើ App Store"
   }
 }
+
+    

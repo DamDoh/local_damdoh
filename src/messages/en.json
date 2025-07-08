@@ -437,5 +437,28 @@
     "from": "From",
     "acceptJobButton": "Accept Job",
     "noIncomingJobs": "No new jobs available."
+  },
+  "AppFooter": {
+    "tagline": "Connecting the entire agricultural supply chain, from seed to table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the mobile app",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   }
 }
+
+    
