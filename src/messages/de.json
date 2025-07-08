@@ -187,6 +187,8 @@
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
     "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden"
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Design wechseln",
+    "switchToDarkAria": "Zum dunklen Design wechseln"
   }
 }

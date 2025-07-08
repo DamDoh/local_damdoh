@@ -187,6 +187,8 @@
     "myProfile": "Mi Perfil",
     "settings": "Configuración",
     "helpCenter": "Ayuda",
-    "logOut": "Cerrar Sesión"
+    "logOut": "Cerrar Sesión",
+    "switchToLightAria": "Cambiar a tema claro",
+    "switchToDarkAria": "Cambiar a tema oscuro"
   }
 }

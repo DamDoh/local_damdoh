@@ -187,6 +187,8 @@
     "myProfile": "My Profile",
     "settings": "Settings",
     "helpCenter": "Help Center",
-    "logOut": "Log Out"
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme"
   }
 }

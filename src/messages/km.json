@@ -187,6 +187,8 @@
     "myProfile": "ប្រវត្តិរូបខ្ញុំ",
     "settings": "ការកំណត់",
     "helpCenter": "ជំនួយ",
-    "logOut": "ចាកចេញ"
+    "logOut": "ចាកចេញ",
+    "switchToLightAria": "ប្ដូរទៅរូបរាងភ្លឺ",
+    "switchToDarkAria": "ប្ដូរទៅរូបរាងងងឹត"
   }
 }

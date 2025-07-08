@@ -187,6 +187,8 @@
     "myProfile": "Mon Profil",
     "settings": "Paramètres",
     "helpCenter": "Aide",
-    "logOut": "Se déconnecter"
+    "logOut": "Se déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
   }
 }
