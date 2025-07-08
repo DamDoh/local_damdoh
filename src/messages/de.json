@@ -454,5 +454,50 @@
       "title": "Durchbruch bei trockenresistenten Maissorten",
       "excerpt": "Forscher verkünden einen bedeutenden Durchbruch bei der Entwicklung neuer Maissorten, die eine bemerkenswerte Widerstandsfähigkeit gegen Dürrebedingungen aufweisen und Hoffnung für aride Regionen bieten."
     }
+  },
+  "privacyPolicy": {
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Willkommen bei DamDoh. Wir verpflichten uns, Ihre persönlichen Daten und Ihr Recht auf Privatsphäre zu schützen. Wenn Sie Fragen oder Bedenken zu unserer Richtlinie oder unseren Praktiken bezüglich Ihrer persönlichen Daten haben, kontaktieren Sie uns bitte.",
+    "whatInfoWeCollect": {
+      "heading": "1. WELCHE INFORMATIONEN SAMMELN WIR?",
+      "content": "Wir sammeln personenbezogene Daten, die Sie uns freiwillig zur Verfügung stellen, wenn Sie sich auf der Plattform registrieren, Interesse an Informationen über uns oder unsere Produkte und Dienstleistungen bekunden, an Aktivitäten auf der Plattform teilnehmen oder uns anderweitig kontaktieren. Dazu gehören Namen, Telefonnummern, E-Mail-Adressen, Postanschriften, Berufsbezeichnungen, Kontaktpräferenzen und ähnliche Informationen."
+    },
+    "howWeUseInfo": {
+      "heading": "2. WIE VERWENDEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir verwenden personenbezogene Daten, die über unsere Plattform gesammelt werden, für eine Vielzahl von Geschäftszwecken, die unten beschrieben werden. Wir verarbeiten Ihre personenbezogenen Daten für diese Zwecke im Vertrauen auf unsere legitimen Geschäftsinteressen, um einen Vertrag mit Ihnen einzugehen oder zu erfüllen, mit Ihrer Zustimmung und/oder zur Erfüllung unserer gesetzlichen Verpflichtungen."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WERDEN IHRE INFORMATIONEN AN DRITTE WEITERGEGEBEN?",
+      "content": "Wir geben Informationen nur mit Ihrer Zustimmung weiter, um Gesetze einzuhalten, Ihnen Dienstleistungen zu erbringen, Ihre Rechte zu schützen oder geschäftliche Verpflichtungen zu erfüllen. Wir können Ihre Daten, die wir besitzen, auf der folgenden Rechtsgrundlage verarbeiten oder weitergeben: Zustimmung, berechtigte Interessen, Vertragserfüllung, gesetzliche Verpflichtungen."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. VERWENDEN WIR COOKIES UND ANDERE TRACKING-TECHNOLOGIEN?",
+      "content": "Wir können Cookies und ähnliche Tracking-Technologien (wie Web-Beacons und Pixel) verwenden, um auf Informationen zuzugreifen oder diese zu speichern. Spezifische Informationen darüber, wie wir solche Technologien verwenden und wie Sie bestimmte Cookies ablehnen können, finden Sie in unserer Cookie-Richtlinie."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. WIE LANGE BEWAHREN WIR IHRE INFORMATIONEN AUF?",
+      "content": "Wir bewahren Ihre personenbezogenen Daten nur so lange auf, wie es für die in dieser Datenschutzrichtlinie dargelegten Zwecke erforderlich ist, es sei denn, eine längere Aufbewahrungsfrist ist gesetzlich vorgeschrieben oder zulässig (z. B. aus steuerlichen, buchhalterischen oder anderen rechtlichen Gründen)."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. WIE SCHÜTZEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir haben angemessene technische und organisatorische Sicherheitsmaßnahmen implementiert, die darauf abzielen, die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen. Trotz unserer Schutzmaßnahmen und Bemühungen, Ihre Informationen zu sichern, kann keine elektronische Übertragung über das Internet oder Informationsspeichertechnologie zu 100 % sicher garantiert werden."
+    },
+    "minors": {
+      "heading": "7. SAMMELN WIR INFORMATIONEN VON MINDERJÄHRIGEN?",
+      "content": "Wir sammeln nicht wissentlich Daten von Kindern unter 18 Jahren und vermarkten unsere Produkte nicht an sie. Durch die Nutzung der Plattform versichern Sie, dass Sie mindestens 18 Jahre alt sind oder dass Sie der Elternteil oder Erziehungsberechtigte eines solchen Minderjährigen sind und der Nutzung der Plattform durch diesen minderjährigen Abhängigen zustimmen."
+    },
+    "privacyRights": {
+      "heading": "8. WAS SIND IHRE DATENSCHUTZRECHTE?",
+      "content": "In einigen Regionen (wie dem Europäischen Wirtschaftsraum und dem Vereinigten Königreich) haben Sie bestimmte Rechte gemäß den geltenden Datenschutzgesetzen. Dazu können das Recht gehören, (i) Zugang zu Ihren personenbezogenen Daten anzufordern und eine Kopie davon zu erhalten, (ii) Berichtigung oder Löschung zu verlangen; (iii) die Verarbeitung Ihrer personenbezogenen Daten einzuschränken; und (iv) gegebenenfalls Datenübertragbarkeit."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. STEUERUNGEN FÜR DO-NOT-TRACK-FUNKTIONEN",
+      "content": "Die meisten Webbrowser und einige mobile Betriebssysteme und mobile Anwendungen enthalten eine Do-Not-Track-Funktion („DNT“) oder -Einstellung, die Sie aktivieren können, um Ihre Datenschutzpräferenz zu signalisieren, dass Daten über Ihre Online-Browsing-Aktivitäten nicht überwacht und gesammelt werden sollen. In diesem Stadium wurde noch kein einheitlicher Technologiestandard für die Erkennung und Implementierung von DNT-Signalen fertiggestellt. Daher reagieren wir derzeit nicht auf DNT-Browsersignale oder andere Mechanismen, die Ihre Wahl, nicht online verfolgt zu werden, automatisch kommunizieren."
+    },
+    "updatesToNotice": {
+      "heading": "10. AKTUALISIEREN WIR DIESE MITTEILUNG?",
+      "content": "Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Die aktualisierte Version wird durch ein aktualisiertes „Überarbeitet“-Datum angezeigt und die aktualisierte Version wird wirksam, sobald sie zugänglich ist. Wir empfehlen Ihnen, diese Datenschutzrichtlinie regelmäßig zu überprüfen, um darüber informiert zu sein, wie wir Ihre Informationen schützen."
+    }
   }
 }

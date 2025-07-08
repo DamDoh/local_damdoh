@@ -454,5 +454,50 @@
       "title": "Avance en variedades de maíz resistentes a la sequía",
       "excerpt": "Investigadores anuncian un avance significativo en el desarrollo de nuevas variedades de maíz que muestran una notable resistencia a las condiciones de sequía, ofreciendo esperanza para las regiones áridas."
     }
+  },
+  "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: 29 de octubre de 2023",
+    "introduction": "Bienvenido a DamDoh. Nos comprometemos a proteger su información personal y su derecho a la privacidad. Si tiene alguna pregunta o inquietud sobre nuestra política o nuestras prácticas con respecto a su información personal, contáctenos.",
+    "whatInfoWeCollect": {
+      "heading": "1. ¿QUÉ INFORMACIÓN RECOPILAMOS?",
+      "content": "Recopilamos información personal que usted nos proporciona voluntariamente cuando se registra en la plataforma, expresa interés en obtener información sobre nosotros o nuestros productos y servicios, cuando participa en actividades en la plataforma o cuando nos contacta de otra manera. Esto incluye nombres, números de teléfono, direcciones de correo electrónico, direcciones postales, cargos laborales, preferencias de contacto y otra información similar."
+    },
+    "howWeUseInfo": {
+      "heading": "2. ¿CÓMO UTILIZAMOS SU INFORMACIÓN?",
+      "content": "Utilizamos la información personal recopilada a través de nuestra plataforma para una variedad de fines comerciales que se describen a continuación. Procesamos su información personal para estos fines en base a nuestros intereses comerciales legítimos, para celebrar o ejecutar un contrato con usted, con su consentimiento y/o para cumplir con nuestras obligaciones legales."
+    },
+    "willInfoBeShared": {
+      "heading": "3. ¿SE COMPARTIRÁ SU INFORMACIÓN CON ALGUIEN?",
+      "content": "Solo compartimos información con su consentimiento, para cumplir con las leyes, para brindarle servicios, para proteger sus derechos o para cumplir con obligaciones comerciales. Podemos procesar o compartir los datos que tenemos sobre usted en base a la siguiente base legal: Consentimiento, Intereses legítimos, Ejecución de un contrato, Obligaciones legales."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. ¿UTILIZAMOS COOKIES Y OTRAS TECNOLOGÍAS DE SEGUIMIENTO?",
+      "content": "Podemos utilizar cookies y tecnologías de seguimiento similares (como balizas web y píxeles) para acceder o almacenar información. La información específica sobre cómo utilizamos dichas tecnologías y cómo puede rechazar ciertas cookies se establece en nuestro Aviso de cookies."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?",
+      "content": "Solo conservaremos su información personal durante el tiempo que sea necesario para los fines establecidos en esta política de privacidad, a menos que la ley exija o permita un período de retención más largo (como requisitos fiscales, contables u otros requisitos legales)."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?",
+      "content": "Hemos implementado medidas de seguridad técnicas y organizativas apropiadas diseñadas para proteger la seguridad de cualquier información personal que procesemos. Sin embargo, a pesar de nuestras salvaguardas y esfuerzos para proteger su información, ninguna transmisión electrónica a través de Internet o tecnología de almacenamiento de información puede garantizarse como 100% segura."
+    },
+    "minors": {
+      "heading": "7. ¿RECOPILAMOS INFORMACIÓN DE MENORES?",
+      "content": "No solicitamos datos ni comercializamos a sabiendas a niños menores de 18 años. Al utilizar la plataforma, usted declara que tiene al menos 18 años o que es el padre o tutor de dicho menor y da su consentimiento para el uso de la plataforma por parte de dicho dependiente menor."
+    },
+    "privacyRights": {
+      "heading": "8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?",
+      "content": "En algunas regiones (como el Espacio Económico Europeo y el Reino Unido), usted tiene ciertos derechos en virtud de las leyes de protección de datos aplicables. Estos pueden incluir el derecho (i) a solicitar acceso y obtener una copia de su información personal, (ii) a solicitar la rectificación o el borrado; (iii) a restringir el procesamiento de su información personal; y (iv) si corresponde, a la portabilidad de los datos."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO",
+      "content": "La mayoría de los navegadores web y algunos sistemas operativos y aplicaciones móviles incluyen una función o configuración de No seguimiento ('DNT') que puede activar para indicar su preferencia de privacidad de no tener datos sobre sus actividades de navegación en línea monitoreados y recopilados. En esta etapa, no se ha finalizado ningún estándar tecnológico uniforme para reconocer e implementar señales DNT. Como tal, actualmente no respondemos a las señales DNT del navegador ni a ningún otro mecanismo que comunique automáticamente su elección de no ser rastreado en línea."
+    },
+    "updatesToNotice": {
+      "heading": "10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?",
+      "content": "Podemos actualizar esta política de privacidad de vez en cuando. La versión actualizada se indicará con una fecha de 'Revisión' actualizada y la versión actualizada entrará en vigencia tan pronto como sea accesible. Le recomendamos que revise esta política de privacidad con frecuencia para estar informado sobre cómo protegemos su información."
+    }
   }
 }
