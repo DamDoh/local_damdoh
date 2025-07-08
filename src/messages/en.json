@@ -135,7 +135,7 @@
       "successDescription": "Your insurance application has been sent to the provider."
     }
   },
-  "InsuranceProductCreatePage": {
+   "InsuranceProductCreatePage": {
     "backLink": "Back to Products",
     "title": "Create Insurance Product",
     "description": "Define a new insurance policy to be offered on the platform.",
@@ -328,5 +328,17 @@
         "description": "Your change has been saved locally and will be synced when you are online."
       }
     }
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Here are your latest updates and alerts.",
+    "noNotifications": "You have no new notifications.",
+    "likedYourPost": "{name} liked your post",
+    "commentedOnYourPost": "{name} commented on your post",
+    "viewedYourProfile": "{name} viewed your profile",
+    "placedNewOrder": "{name} placed a new order",
+    "sentConnectionRequest": "{name} sent you a connection request",
+    "eventReminder": "Event Reminder",
+    "unknownNotification": "You have a new update."
   }
 }

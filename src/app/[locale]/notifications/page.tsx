@@ -154,7 +154,7 @@ export default function NotificationsPage() {
                     ) : notifications.length > 0 ? (
                         <div className="space-y-2">
                             {notifications.map((notification) => {
-                                const actor = actorProfiles[notification.actorId] || { name: 'Someone' };
+                                const actor = actorProfiles[notification.actorId] || { displayName: 'Someone' };
                                 const link = getNotificationLink(notification);
 
                                 return (
@@ -165,7 +165,7 @@ export default function NotificationsPage() {
                                         </div>
                                         <div className="flex-1">
                                             <p className="text-sm">
-                                                {getNotificationText(notification, actor.name, t)}
+                                                {getNotificationText(notification, actor.displayName, t)}
                                             </p>
                                             <p className="text-xs text-muted-foreground">
                                                 {formatDistanceToNow(new Date(notification.createdAt.toDate()), { addSuffix: true })}

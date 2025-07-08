@@ -140,22 +140,22 @@
     "title": "Crear Producto de Seguro",
     "description": "Defina una nueva póliza de seguro para ofrecer en la plataforma.",
     "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
-      "typeLabel": "Tipo de Producto",
-      "typePlaceholder": "Seleccione un tipo",
-      "crop": "Cultivo",
-      "livestock": "Ganado",
-      "asset": "Activo",
-      "weather": "Clima",
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Describa el producto y sus beneficios.",
-      "coverageLabel": "Detalles de la Cobertura",
-      "coveragePlaceholder": "Detalle qué cubre esta póliza...",
-      "premiumLabel": "Prima (USD)",
-      "premiumPlaceholder": "Ej: 250.00",
-      "currencyLabel": "Moneda",
-      "submitButton": "Crear Producto"
+        "nameLabel": "Nombre del Producto",
+        "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
+        "typeLabel": "Tipo de Producto",
+        "typePlaceholder": "Seleccione un tipo",
+        "crop": "Cultivo",
+        "livestock": "Ganado",
+        "asset": "Activo",
+        "weather": "Clima",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describa el producto y sus beneficios.",
+        "coverageLabel": "Detalles de la Cobertura",
+        "coveragePlaceholder": "Detalle qué cubre esta póliza...",
+        "premiumLabel": "Prima (USD)",
+        "premiumPlaceholder": "Ej: 250.00",
+        "currencyLabel": "Moneda",
+        "submitButton": "Crear Producto"
     },
     "toast": {
       "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros.",
@@ -328,5 +328,17 @@
         "description": "Tu cambio ha sido guardado localmente y se sincronizará cuando estés en línea."
       }
     }
+  },
+  "notificationsPage": {
+    "title": "Notificaciones",
+    "description": "Aquí están tus últimas actualizaciones y alertas.",
+    "noNotifications": "No tienes notificaciones nuevas.",
+    "likedYourPost": "A {name} le ha gustado tu publicación",
+    "commentedOnYourPost": "{name} ha comentado en tu publicación",
+    "viewedYourProfile": "{name} ha visto tu perfil",
+    "placedNewOrder": "{name} ha realizado un nuevo pedido",
+    "sentConnectionRequest": "{name} te ha enviado una solicitud de conexión",
+    "eventReminder": "Recordatorio de evento",
+    "unknownNotification": "Tienes una nueva actualización."
   }
 }

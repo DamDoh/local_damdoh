@@ -168,7 +168,7 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         return {
             id: doc.id,
             content: commentData.content,
-            author: { // Standardized author object
+            author: {
                 id: commentData.userId,
                 name: commentData.userName || 'Unknown User',
                 avatarUrl: commentData.userAvatar || null,

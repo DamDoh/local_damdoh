@@ -88,6 +88,97 @@
       "errorTitle": "Fehler"
     }
   },
+   "InsurancePage": {
+    "title": "Agrarversicherung",
+    "description": "Schützen Sie Ihren Hof und Ihre Vermögenswerte vor unvorhergesehenen Risiken.",
+    "perTerm": "/ Laufzeit",
+    "viewDetailsButton": "Details anzeigen & Beantragen",
+    "noProducts": "Derzeit sind keine Versicherungsprodukte verfügbar.",
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Zurück zu allen Versicherungen",
+    "coverageTitle": "Deckungsdetails",
+    "premiumTitle": "Prämie",
+    "perTerm": "/ Laufzeit",
+    "providerTitle": "Angeboten von",
+    "applyButton": "Für diese Police beantragen",
+    "notFound": "Versicherungsprodukt nicht gefunden.",
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Zurück zu den Produktdetails",
+    "title": "Versicherung beantragen",
+    "description": "Beantragen Sie eine Deckung für Ihren Hof mit {{productName}}.",
+    "form": {
+      "farmLabel": "Zu versichernder Hof",
+      "farmPlaceholder": "Wählen Sie einen Hof",
+      "noFarms": "Keine Höfe gefunden. Bitte erstellen Sie zuerst einen.",
+      "coverageValueLabel": "Vermögens-/Deckungswert (USD)",
+      "coverageValuePlaceholder": "z.B. 50000",
+      "coverageValueDescription": "Geben Sie den Gesamtwert der zu versichernden Vermögenswerte ein.",
+      "submitButton": "Antrag einreichen"
+    },
+    "success": {
+      "title": "Antrag eingereicht!",
+      "description": "Ihr Versicherungsantrag wurde zur Überprüfung gesendet.",
+      "backToDashboardButton": "Zurück zum Dashboard",
+      "applyForAnotherButton": "Für eine weitere Police beantragen"
+    },
+    "toast": {
+      "error": "Fehler",
+      "successTitle": "Antrag eingereicht!",
+      "successDescription": "Ihr Versicherungsantrag wurde an den Anbieter gesendet."
+    }
+  },
+   "InsuranceProductCreatePage": {
+    "backLink": "Zurück zu den Produkten",
+    "title": "Versicherungsprodukt erstellen",
+    "description": "Definieren Sie eine neue Versicherungspolice, die auf der Plattform angeboten werden soll.",
+    "form": {
+        "nameLabel": "Produktname",
+        "namePlaceholder": "z.B. Dürreschutz für Mais",
+        "typeLabel": "Produkttyp",
+        "typePlaceholder": "Wählen Sie einen Typ",
+        "crop": "Ernte",
+        "livestock": "Vieh",
+        "asset": "Vermögenswert",
+        "weather": "Wetter",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie das Produkt und seine Vorteile.",
+        "coverageLabel": "Deckungsdetails",
+        "coveragePlaceholder": "Beschreiben Sie, was diese Police abdeckt...",
+        "premiumLabel": "Prämie (USD)",
+        "premiumPlaceholder": "z.B. 250.00",
+        "currencyLabel": "Währung",
+        "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen als Versicherungsanbieter angemeldet sein.",
+      "successTitle": "Produkt erstellt!",
+      "successDescription": "Das Versicherungsprodukt '{{name}}' wurde erfolgreich erstellt.",
+      "errorTitle": "Erstellung fehlgeschlagen"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Versicherungsprodukte",
+    "description": "Anzeigen und Verwalten Ihrer Versicherungsprodukte.",
+    "createButton": "Neues Produkt erstellen",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "premium": "Prämie"
+    },
+    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
   "AppHeader": {
     "home": "Start",
     "network": "Netzwerk",
@@ -202,12 +293,7 @@
     "noComplianceAlerts": "Derzeit keine Konformitätswarnungen.",
     "anomaliesTitle": "Anomalien in der Lieferkette",
     "trackVtiButton": "VTI verfolgen",
-    "noAnomalies": "Keine Anomalien in der Lieferkette erkannt.",
-    "table": {
-      "destination": "Ziel",
-      "product": "Produkt",
-      "seller": "Verkäufer"
-    }
+    "noAnomalies": "Keine Anomalien in der Lieferkette erkannt."
   },
   "OfflineIndicator": {
     "tooltip": {
@@ -242,5 +328,17 @@
         "description": "Ihre Änderung wurde lokal gespeichert und wird synchronisiert, wenn Sie online sind."
       }
     }
+  },
+  "notificationsPage": {
+    "title": "Benachrichtigungen",
+    "description": "Hier sind Ihre neuesten Updates und Benachrichtigungen.",
+    "noNotifications": "Sie haben keine neuen Benachrichtigungen.",
+    "likedYourPost": "{name} hat Ihren Beitrag geliked",
+    "commentedOnYourPost": "{name} hat Ihren Beitrag kommentiert",
+    "viewedYourProfile": "{name} hat Ihr Profil angesehen",
+    "placedNewOrder": "{name} hat eine neue Bestellung aufgegeben",
+    "sentConnectionRequest": "{name} hat Ihnen eine Verbindungsanfrage gesendet",
+    "eventReminder": "Ereigniserinnerung",
+    "unknownNotification": "Sie haben ein neues Update."
   }
 }

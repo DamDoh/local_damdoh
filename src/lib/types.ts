@@ -659,6 +659,11 @@ export interface InsuranceProduct {
   currency: string;
   status: 'Active' | 'Inactive';
   createdAt: string;
+  provider?: {
+    id: string;
+    displayName: string;
+    avatarUrl?: string;
+  }
 }
 
 export interface InsuranceApplication {
@@ -732,10 +737,6 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
-    // Re-introducing denormalized fields for use in FeedItemCard
-    userId: string;
-    userName: string;
-    userAvatar?: string;
 }
 
 export interface PollOption {

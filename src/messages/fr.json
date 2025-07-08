@@ -88,6 +88,97 @@
       "errorTitle": "Erreur"
     }
   },
+  "InsurancePage": {
+    "title": "Assurance Agricole",
+    "description": "Protégez votre exploitation et vos biens contre les risques imprévus.",
+    "perTerm": "/ terme",
+    "viewDetailsButton": "Voir les détails et souscrire",
+    "noProducts": "Aucun produit d'assurance n'est actuellement disponible.",
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Retour à toutes les assurances",
+    "coverageTitle": "Détails de la couverture",
+    "premiumTitle": "Prime",
+    "perTerm": "/ terme",
+    "providerTitle": "Fourni par",
+    "applyButton": "Souscrire à cette police",
+    "notFound": "Produit d'assurance non trouvé.",
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Retour aux détails du produit",
+    "title": "Souscrire une assurance",
+    "description": "Demandez une couverture pour votre exploitation avec {{productName}}.",
+    "form": {
+      "farmLabel": "Exploitation à assurer",
+      "farmPlaceholder": "Sélectionnez une exploitation",
+      "noFarms": "Aucune exploitation trouvée. Veuillez en créer une d'abord.",
+      "coverageValueLabel": "Valeur de la couverture/des biens (USD)",
+      "coverageValuePlaceholder": "Ex: 50000",
+      "coverageValueDescription": "Entrez la valeur totale des biens que vous souhaitez assurer.",
+      "submitButton": "Soumettre la demande"
+    },
+    "success": {
+      "title": "Demande Soumise !",
+      "description": "Votre demande d'assurance a été envoyée pour examen.",
+      "backToDashboardButton": "Retour au tableau de bord",
+      "applyForAnotherButton": "Souscrire à une autre police"
+    },
+    "toast": {
+      "error": "Erreur",
+      "successTitle": "Demande Soumise !",
+      "successDescription": "Votre demande d'assurance a été envoyée au fournisseur."
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Retour aux produits",
+    "title": "Créer un produit d'assurance",
+    "description": "Définir une nouvelle police d'assurance à proposer sur la plateforme.",
+    "form": {
+      "nameLabel": "Nom du produit",
+      "namePlaceholder": "Ex: Protection contre la sécheresse pour le maïs",
+      "typeLabel": "Type de produit",
+      "typePlaceholder": "Sélectionnez un type",
+      "crop": "Récolte",
+      "livestock": "Bétail",
+      "asset": "Actif",
+      "weather": "Météo",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Décrivez le produit et ses avantages.",
+      "coverageLabel": "Détails de la couverture",
+      "coveragePlaceholder": "Détaillez ce que cette police couvre...",
+      "premiumLabel": "Prime (USD)",
+      "premiumPlaceholder": "Ex: 250.00",
+      "currencyLabel": "Devise",
+      "submitButton": "Créer un produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant que fournisseur d'assurance.",
+      "successTitle": "Produit créé !",
+      "successDescription": "Le produit d'assurance '{{name}}' a été créé avec succès.",
+      "errorTitle": "Échec de la création"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Produits d'assurance",
+    "description": "Visualisez et gérez vos produits d'assurance.",
+    "createButton": "Créer un nouveau produit",
+    "table": {
+      "productName": "Nom du produit",
+      "type": "Type",
+      "status": "Statut",
+      "premium": "Prime"
+    },
+    "noProducts": "Vous n'avez encore créé aucun produit d'assurance.",
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
   "AppHeader": {
     "home": "Accueil",
     "network": "Réseau",
@@ -237,5 +328,17 @@
         "description": "Votre changement a été enregistré localement et sera synchronisé lorsque vous serez en ligne."
       }
     }
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Voici vos dernières mises à jour et alertes.",
+    "noNotifications": "Vous n'avez aucune nouvelle notification.",
+    "likedYourPost": "{name} a aimé votre publication",
+    "commentedOnYourPost": "{name} a commenté votre publication",
+    "viewedYourProfile": "{name} a consulté votre profil",
+    "placedNewOrder": "{name} a passé une nouvelle commande",
+    "sentConnectionRequest": "{name} vous a envoyé une demande de connexion",
+    "eventReminder": "Rappel d'événement",
+    "unknownNotification": "Vous avez une nouvelle mise à jour."
   }
 }
