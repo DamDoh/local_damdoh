@@ -458,5 +458,28 @@
       "pending": "Pending Review",
       "draft": "Draft"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Agri-Tech Innovator Hub",
+    "sandboxTitle": "Sandbox Status",
+    "statusLabel": "Status",
+    "lastResetLabel": "Last Reset",
+    "accessDocsButton": "Access API Docs",
+    "integrationsTitle": "Integration Projects",
+    "activeProjects": "Active Projects",
+    "integrationsDescription": "View and manage your API integrations.",
+    "proposeIntegrationButton": "Propose New Integration",
+    "apiKeysTitle": "API Keys",
+    "apiKeysDescription": "Manage and generate API keys for your applications.",
+    "table": {
+      "key": "Key",
+      "status": "Status",
+      "environment": "Environment",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "API Key copied to clipboard!",
+    "noApiKeys": "No API keys have been generated yet.",
+    "generateNewKeyButton": "Generate New API Key"
   }
 }

@@ -458,7 +458,28 @@
       "pending": "Ausstehende Überprüfung",
       "draft": "Entwurf"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Agri-Tech-Innovator-Hub",
+    "sandboxTitle": "Sandbox-Status",
+    "statusLabel": "Status",
+    "lastResetLabel": "Letzter Reset",
+    "accessDocsButton": "API-Dokumentation aufrufen",
+    "integrationsTitle": "Integrationsprojekte",
+    "activeProjects": "Aktive Projekte",
+    "integrationsDescription": "Ihre API-Integrationen anzeigen und verwalten.",
+    "proposeIntegrationButton": "Neue Integration vorschlagen",
+    "apiKeysTitle": "API-Schlüssel",
+    "apiKeysDescription": "API-Schlüssel für Ihre Anwendungen verwalten und generieren.",
+    "table": {
+      "key": "Schlüssel",
+      "status": "Status",
+      "environment": "Umgebung",
+      "created": "Erstellt",
+      "actions": "Aktionen"
+    },
+    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert!",
+    "noApiKeys": "Es wurden noch keine API-Schlüssel generiert.",
+    "generateNewKeyButton": "Neuen API-Schlüssel generieren"
   }
 }
-
-    

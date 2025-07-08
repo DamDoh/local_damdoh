@@ -311,7 +311,11 @@
     "table": {
       "product": "Producto",
       "quality": "Calidad",
-      "quantity": "Cantidad (Toneladas)"
+      "quantity": "Cantidad (Toneladas)",
+      "supplier": "Proveedor",
+      "deliveryDate": "Fecha de entrega",
+      "status": "Estado",
+      "action": "Acción"
     },
     "noInventoryData": "No hay datos de inventario de materia prima disponibles.",
     "packagingOrdersTitle": "Pedidos de Embalaje",
@@ -454,7 +458,28 @@
       "pending": "Pendiente de Revisión",
       "draft": "Borrador"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Centro de Innovadores Agri-Tech",
+    "sandboxTitle": "Estado del Sandbox",
+    "statusLabel": "Estado",
+    "lastResetLabel": "Último reinicio",
+    "accessDocsButton": "Acceder a Documentación API",
+    "integrationsTitle": "Proyectos de Integración",
+    "activeProjects": "Proyectos Activos",
+    "integrationsDescription": "Ver y gestionar sus integraciones de API.",
+    "proposeIntegrationButton": "Proponer Nueva Integración",
+    "apiKeysTitle": "Claves de API",
+    "apiKeysDescription": "Gestionar y generar claves de API para sus aplicaciones.",
+    "table": {
+      "key": "Clave",
+      "status": "Estado",
+      "environment": "Entorno",
+      "created": "Creado",
+      "actions": "Acciones"
+    },
+    "apiKeyCopied": "¡Clave de API copiada al portapapeles!",
+    "noApiKeys": "Aún no se han generado claves de API.",
+    "generateNewKeyButton": "Generar Nueva Clave de API"
   }
 }
-
-    

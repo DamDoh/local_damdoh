@@ -458,7 +458,28 @@
       "pending": "កំពុងរង់ចាំ",
       "draft": "សេចក្តីព្រាង"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "មជ្ឈមណ្ឌលអ្នកច្នៃប្រឌិតបច្ចេកវិទ្យាកសិកម្ម",
+    "sandboxTitle": "ស្ថានភាព Sandbox",
+    "statusLabel": "ស្ថានភាព",
+    "lastResetLabel": "ការកំណត់ឡើងវិញចុងក្រោយ",
+    "accessDocsButton": "ចូលប្រើឯកសារ API",
+    "integrationsTitle": "គម្រោងរួមបញ្ចូល",
+    "activeProjects": "គម្រោងសកម្ម",
+    "integrationsDescription": "មើល និងគ្រប់គ្រងការរួមបញ្ចូល API របស់អ្នក។",
+    "proposeIntegrationButton": "ស្នើរសុំការរួមបញ្ចូលថ្មី",
+    "apiKeysTitle": "កូនសោ API",
+    "apiKeysDescription": "គ្រប់គ្រង និងបង្កើតកូនសោ API សម្រាប់កម្មវិធីរបស់អ្នក។",
+    "table": {
+      "key": "កូនសោ",
+      "status": "ស្ថានភាព",
+      "environment": "បរិស្ថាន",
+      "created": "បានបង្កើត",
+      "actions": "សកម្មភាព"
+    },
+    "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់!",
+    "noApiKeys": "មិនទាន់មានកូនសោ API ត្រូវបានបង្កើតនៅឡើយទេ។",
+    "generateNewKeyButton": "បង្កើតកូនសោ API ថ្មី"
   }
 }
-
-    

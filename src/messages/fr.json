@@ -458,7 +458,28 @@
       "pending": "En attente",
       "draft": "Brouillon"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Hub des innovateurs Agri-Tech",
+    "sandboxTitle": "Statut du Sandbox",
+    "statusLabel": "Statut",
+    "lastResetLabel": "Dernière réinitialisation",
+    "accessDocsButton": "Accéder à la documentation API",
+    "integrationsTitle": "Projets d'intégration",
+    "activeProjects": "Projets actifs",
+    "integrationsDescription": "Visualisez et gérez vos intégrations API.",
+    "proposeIntegrationButton": "Proposer une nouvelle intégration",
+    "apiKeysTitle": "Clés API",
+    "apiKeysDescription": "Gérez et générez des clés API pour vos applications.",
+    "table": {
+      "key": "Clé",
+      "status": "Statut",
+      "environment": "Environnement",
+      "created": "Créé",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "Clé API copiée dans le presse-papiers !",
+    "noApiKeys": "Aucune clé API n'a encore été générée.",
+    "generateNewKeyButton": "Générer une nouvelle clé API"
   }
 }
-
-    
