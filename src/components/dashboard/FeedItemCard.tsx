@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Trash2, Share2, Send, CheckCircle } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -182,12 +181,12 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                     <DropdownMenuContent align="end">
                     <DropdownMenuItem>
                         <Edit className="mr-2 h-4 w-4" />
-                        Edit Post
+                        {t('editPost')}
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="text-destructive" onClick={() => onDeletePost(item.id)}>
                         <Trash2 className="mr-2 h-4 w-4" />
-                        Delete Post
+                        {t('deletePost')}
                     </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
@@ -222,15 +221,15 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                 </Button>
               )
             })}
-             <p className="text-xs text-muted-foreground text-right">{totalVotes} vote{totalVotes !== 1 && 's'}</p>
+             <p className="text-xs text-muted-foreground text-right">{totalVotes} {t('votes', {count: totalVotes})}</p>
           </div>
         )}
       </CardContent>
       
       <CardFooter className="p-2 flex flex-col items-stretch">
         <div className="px-2 flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
-            <span>{item.likesCount} Like{item.likesCount === 1 ? '' : 's'}</span>
-            <span>{item.commentsCount} Comment{item.commentsCount === 1 ? '' : 's'}</span>
+            <span>{item.likesCount} {t('likes', {count: item.likesCount})}</span>
+            <span>{item.commentsCount} {t('comments', {count: item.commentsCount})}</span>
         </div>
         <div className="flex justify-around border-t pt-1">
           <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>

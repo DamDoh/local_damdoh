@@ -1,5 +1,50 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "Bitte anmelden, um zu liken",
+    "signInToVoteToast": "Bitte anmelden, um abzustimmen",
+    "voteSuccessToast": "Stimme erfolgreich abgegeben",
+    "voteErrorToast": "Fehler beim Abstimmen",
+    "loadCommentsErrorToast": "Kommentare konnten nicht geladen werden",
+    "editPost": "Beitrag bearbeiten",
+    "deletePost": "Beitrag löschen",
+    "votes": "{count, plural, one {Stimme} other {Stimmen}}",
+    "likes": "{count, plural, one {Gefällt mir} other {Gefällt mir}}",
+    "comments": "{count, plural, one {Kommentar} other {Kommentare}}",
+    "like": "Gefällt mir",
+    "comment": "Kommentieren",
+    "repost": "Erneut veröffentlichen",
+    "noComments": "Noch keine Kommentare.",
+    "loadingComments": "Lade Kommentare...",
+    "loadMoreComments": "Weitere Kommentare laden",
+    "writeCommentPlaceholder": "Schreibe einen Kommentar...",
+    "postButton": "Veröffentlichen"
+  },
+  "CreatePostModal": {
+    "pollOptionsError": "Eine Umfrage muss mindestens 2 Optionen haben.",
+    "emptyPostError": "Ein Beitrag kann nicht komplett leer sein.",
+    "title": "Neuen Beitrag erstellen",
+    "description": "Teilen Sie ein Update mit Ihrem Netzwerk.",
+    "yourName": "Ihr Name",
+    "shareUpdate": "Teilen Sie ein Update",
+    "placeholder": "Worüber möchten Sie sprechen?",
+    "selectedFile": "Ausgewählte Datei:",
+    "pollOptionsLabel": "Umfrageoptionen",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Option hinzufügen",
+    "pollNote": "Maximal {maxOptions} Optionen.",
+    "addMediaButton": "Foto/Video hinzufügen",
+    "createEventButton": "Agri-Veranstaltung erstellen",
+    "shareDocumentButton": "Dokument teilen",
+    "createPollButton": "Umfrage erstellen",
+    "postButton": "Veröffentlichen"
+  },
+  "StartPost": {
+    "placeholder": "Ein landwirtschaftliches Update, eine Markteinsicht teilen oder eine Frage stellen...",
+    "photoVideo": "Foto / Video",
+    "agriEvent": "Agri-Veranstaltung",
+    "createPoll": "Umfrage erstellen"
+  },
   "AgroTourismDashboard": {
     "title": "Zentrum für Agrotourismus-Anbieter",
     "bookingsTitle": "Anstehende Buchungen",

@@ -1,5 +1,50 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "Veuillez vous connecter pour aimer les publications",
+    "signInToVoteToast": "Veuillez vous connecter pour voter",
+    "voteSuccessToast": "Vote enregistré avec succès",
+    "voteErrorToast": "Erreur lors de l'enregistrement du vote",
+    "loadCommentsErrorToast": "Échec du chargement des commentaires",
+    "editPost": "Modifier la publication",
+    "deletePost": "Supprimer la publication",
+    "votes": "{count, plural, one {vote} other {votes}}",
+    "likes": "{count, plural, one {J'aime} other {J'aime}}",
+    "comments": "{count, plural, one {Commentaire} other {Commentaires}}",
+    "like": "J'aime",
+    "comment": "Commenter",
+    "repost": "Republier",
+    "noComments": "Aucun commentaire pour l'instant.",
+    "loadingComments": "Chargement des commentaires...",
+    "loadMoreComments": "Charger plus de commentaires",
+    "writeCommentPlaceholder": "Écrire un commentaire...",
+    "postButton": "Publier"
+  },
+  "CreatePostModal": {
+    "pollOptionsError": "Un sondage doit avoir au moins 2 options.",
+    "emptyPostError": "Une publication ne peut pas être entièrement vide.",
+    "title": "Créer une nouvelle publication",
+    "description": "Partagez une mise à jour avec votre réseau.",
+    "yourName": "Votre nom",
+    "shareUpdate": "Partager une mise à jour",
+    "placeholder": "De quoi voulez-vous parler ?",
+    "selectedFile": "Fichier sélectionné :",
+    "pollOptionsLabel": "Options du sondage",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Ajouter une option",
+    "pollNote": "Maximum {maxOptions} options.",
+    "addMediaButton": "Ajouter photo/vidéo",
+    "createEventButton": "Créer un événement agricole",
+    "shareDocumentButton": "Partager un document",
+    "createPollButton": "Créer un sondage",
+    "postButton": "Publier"
+  },
+  "StartPost": {
+    "placeholder": "Partagez une mise à jour agricole, une analyse du marché ou posez une question...",
+    "photoVideo": "Photo / Vidéo",
+    "agriEvent": "Événement agricole",
+    "createPoll": "Créer un sondage"
+  },
   "AgroTourismDashboard": {
     "title": "Hub des Opérateurs d'Agrotourisme",
     "bookingsTitle": "Réservations à Venir",

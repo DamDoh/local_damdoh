@@ -1,5 +1,50 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "សូមចូលគណនីដើម្បី Like ប្រកាស",
+    "signInToVoteToast": "សូមចូលគណនីដើម្បីបោះឆ្នោត",
+    "voteSuccessToast": "បានបោះឆ្នោតដោយជោគជ័យ",
+    "voteErrorToast": "មានកំហុសក្នុងការបោះឆ្នោត",
+    "loadCommentsErrorToast": "បរាជ័យក្នុងការផ្ទុកមតិយោបល់",
+    "editPost": "កែសម្រួលប្រកាស",
+    "deletePost": "លុបប្រកាស",
+    "votes": "{count, plural, one {ការបោះឆ្នោត} other {ការបោះឆ្នោត}}",
+    "likes": "{count, plural, one {Like} other {Likes}}",
+    "comments": "{count, plural, one {មតិយោបល់} other {មតិយោបល់}}",
+    "like": "Like",
+    "comment": "មតិយោបល់",
+    "repost": "Reposte",
+    "noComments": "មិនទាន់មានមតិយោបល់ទេ។",
+    "loadingComments": "កំពុងផ្ទុកមតិយោបល់...",
+    "loadMoreComments": "ផ្ទុកមតិយោបល់បន្ថែម",
+    "writeCommentPlaceholder": "សរសេរមតិយោបល់...",
+    "postButton": "ប្រកាស"
+  },
+  "CreatePostModal": {
+    "pollOptionsError": "ការស្ទង់មតិត្រូវមានជម្រើសយ៉ាងតិច ២។",
+    "emptyPostError": "ប្រកាសមិនអាចទទេទាំងស្រុងបានទេ។",
+    "title": "បង្កើតប្រកាសថ្មី",
+    "description": "ចែករំលែកព័ត៌មានថ្មីៗជាមួយបណ្តាញរបស់អ្នក។",
+    "yourName": "ឈ្មោះ​របស់​អ្នក",
+    "shareUpdate": "ចែករំលែកព័ត៌មានថ្មីៗ",
+    "placeholder": "តើអ្នកចង់និយាយអំពីអ្វី?",
+    "selectedFile": "ឯកសារដែលបានជ្រើសរើស៖",
+    "pollOptionsLabel": "ជម្រើសនៃការស្ទង់មតិ",
+    "pollOptionPlaceholder": "ជម្រើស {index}",
+    "addOptionButton": "បន្ថែមជម្រើស",
+    "pollNote": "ជម្រើសអតិបរមា {maxOptions}។",
+    "addMediaButton": "បន្ថែមរូបថត/វីដេអូ",
+    "createEventButton": "បង្កើតព្រឹត្តិការណ៍កសិកម្ម",
+    "shareDocumentButton": "ចែករំលែកឯកសារ",
+    "createPollButton": "បង្កើតការស្ទង់មតិ",
+    "postButton": "ប្រកាស"
+  },
+  "StartPost": {
+    "placeholder": "ចែករំលែកព័ត៌មានថ្មីៗអំពីកសិកម្ម ការយល់ដឹងអំពីទីផ្សារ ឬសួរសំណួរ...",
+    "photoVideo": "រូបថត / វីដេអូ",
+    "agriEvent": "ព្រឹត្តិការណ៍កសិកម្ម",
+    "createPoll": "បង្កើតការស្ទង់មតិ"
+  },
   "AgroTourismDashboard": {
     "title": "មជ្ឈមណ្ឌលប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
     "bookingsTitle": "ការកក់ខាងមុខ",

@@ -1,5 +1,50 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "Please sign in to like posts",
+    "signInToVoteToast": "Please sign in to vote",
+    "voteSuccessToast": "Vote successfully cast",
+    "voteErrorToast": "Error casting vote",
+    "loadCommentsErrorToast": "Failed to load comments",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "votes": "{count, plural, one {vote} other {votes}}",
+    "likes": "{count, plural, one {Like} other {Likes}}",
+    "comments": "{count, plural, one {Comment} other {Comments}}",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "noComments": "No comments yet.",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post"
+  },
+  "CreatePostModal": {
+    "pollOptionsError": "A poll must have at least 2 options.",
+    "emptyPostError": "A post cannot be completely empty.",
+    "title": "Create a New Post",
+    "description": "Share an update with your network.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What do you want to talk about?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add option",
+    "pollNote": "Max {maxOptions} options.",
+    "addMediaButton": "Add photo/video",
+    "createEventButton": "Create agri-event",
+    "shareDocumentButton": "Share a document",
+    "createPollButton": "Create a poll",
+    "postButton": "Post"
+  },
+  "StartPost": {
+    "placeholder": "Share an agricultural update, market insight, or ask a question...",
+    "photoVideo": "Photo / Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll"
+  },
   "AgroTourismDashboard": {
     "title": "Agro-Tourism Operator Hub",
     "bookingsTitle": "Upcoming Bookings",

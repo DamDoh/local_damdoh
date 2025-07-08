@@ -11,12 +11,14 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { CreatePostModal } from './CreatePostModal';
 import { Skeleton } from '../ui/skeleton';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface StartPostProps {
   onCreatePost: (content: string, media?: File, pollOptions?: { text: string }[]) => void;
 }
 
 export function StartPost({ onCreatePost }: StartPostProps) {
+  const t = useTranslations('StartPost');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { profile, loading } = useUserProfile();
 
@@ -53,20 +55,20 @@ export function StartPost({ onCreatePost }: StartPostProps) {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleOpenModal()}
 
             >
-             Share an agricultural update, market insight, or ask a question...
+             {t('placeholder')}
             </div>
           </div>
           <div className="mt-4 flex flex-wrap justify-around gap-2 sm:gap-0">
             <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
-              <ImageIcon className="mr-2 h-5 w-5 text-green-500" /> Photo / Video
+              <ImageIcon className="mr-2 h-5 w-5 text-green-500" /> {t('photoVideo')}
             </Button>
             <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none" asChild>
                 <Link href="/agri-events/create">
-                    <CalendarDays className="mr-2 h-5 w-5 text-red-500" /> Agri Event
+                    <CalendarDays className="mr-2 h-5 w-5 text-red-500" /> {t('agriEvent')}
                 </Link>
             </Button>
             <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
-              <BarChart3 className="mr-2 h-5 w-5 text-blue-500" /> Create Poll
+              <BarChart3 className="mr-2 h-5 w-5 text-blue-500" /> {t('createPoll')}
             </Button>
           </div>
         </CardContent>

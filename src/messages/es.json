@@ -1,5 +1,50 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "Por favor, inicie sesión para dar 'me gusta' a las publicaciones",
+    "signInToVoteToast": "Por favor, inicie sesión para votar",
+    "voteSuccessToast": "Voto emitido con éxito",
+    "voteErrorToast": "Error al emitir el voto",
+    "loadCommentsErrorToast": "Error al cargar los comentarios",
+    "editPost": "Editar publicación",
+    "deletePost": "Eliminar publicación",
+    "votes": "{count, plural, one {voto} other {votos}}",
+    "likes": "{count, plural, one {Me gusta} other {Me gusta}}",
+    "comments": "{count, plural, one {Comentario} other {Comentarios}}",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Volver a publicar",
+    "noComments": "Aún no hay comentarios.",
+    "loadingComments": "Cargando comentarios...",
+    "loadMoreComments": "Cargar más comentarios",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "postButton": "Publicar"
+  },
+  "CreatePostModal": {
+    "pollOptionsError": "Una encuesta debe tener al menos 2 opciones.",
+    "emptyPostError": "Una publicación no puede estar completamente vacía.",
+    "title": "Crear una nueva publicación",
+    "description": "Comparte una actualización con tu red.",
+    "yourName": "Tu nombre",
+    "shareUpdate": "Compartir una actualización",
+    "placeholder": "¿De qué quieres hablar?",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la encuesta",
+    "pollOptionPlaceholder": "Opción {index}",
+    "addOptionButton": "Agregar opción",
+    "pollNote": "Máximo {maxOptions} opciones.",
+    "addMediaButton": "Agregar foto/video",
+    "createEventButton": "Crear evento agrícola",
+    "shareDocumentButton": "Compartir un documento",
+    "createPollButton": "Crear una encuesta",
+    "postButton": "Publicar"
+  },
+  "StartPost": {
+    "placeholder": "Comparte una actualización agrícola, una visión del mercado o haz una pregunta...",
+    "photoVideo": "Foto / Video",
+    "agriEvent": "Evento agrícola",
+    "createPoll": "Crear encuesta"
+  },
   "AgroTourismDashboard": {
     "title": "Centro de Operadores de Agroturismo",
     "bookingsTitle": "Próximas Reservas",
