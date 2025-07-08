@@ -1,108 +1,20 @@
 
 {
-  "AppHeader": {
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Mgmt",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talente",
-    "traceability": "Rückverfolgbarkeit",
-    "forums": "Foren",
-    "notifications": "Benachrichtigungen",
-    "messages": "Nachrichten",
-    "wallet": "Brieftasche",
-    "searchPlaceholder": "Suche nach Personen, Produkten, Dienstleistungen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Design wechseln",
-    "switchToDarkAria": "Zum dunklen Design wechseln"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache wechseln"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Die Welt der Landwirtschaft mit {appName} verbinden",
-      "subtitle": "Eine einheitliche Plattform für Landwirte, Käufer und Experten zum Netzwerken, Handeln und gemeinsamen Wachsen.",
-      "getStartedButton": "Kostenlos starten",
-      "learnMoreButton": "Mehr erfahren"
-    },
-    "features": {
-      "title": "Kernfunktionen",
-      "subtitle": "DamDoh bietet die Werkzeuge, die Sie für den Erfolg in der landwirtschaftlichen Lieferkette benötigen.",
-      "networking": {
-        "title": "Intelligentes Netzwerken",
-        "description": "KI-gestützte Verbindungsvorschläge zur Erweiterung Ihres beruflichen Netzwerks."
-      },
-      "marketplace": {
-        "title": "Globaler Marktplatz",
-        "description": "Ein direkter Vertriebskanal, um Landwirte mit Käufern und Dienstleistern zu verbinden."
-      },
-      "forums": {
-        "title": "Thematische Foren",
-        "description": "Teilen Sie Wissen und diskutieren Sie spezifische Themen mit landwirtschaftlichen Gemeinschaften."
-      },
-      "talent": {
-        "title": "Talentbörse",
-        "description": "Eine Jobbörse zum Anbieten und Finden von spezialisierten landwirtschaftlichen Dienstleistungen."
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie Agrarexperten, spezialisierte Arbeitskräfte und professionelle Dienstleistungen.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Suchen Sie nach Fähigkeiten oder Dienstleistungen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Dienstleistungskategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, um die Talente zu finden, die Sie benötigen.",
+    "toast": {
+      "error": {
+        "title": "Suchfehler",
+        "description": "Dienstleistungen konnten nicht abgerufen werden. Bitte versuchen Sie es erneut."
       }
-    },
-    "forWho": {
-      "badge": "Für alle in der Landwirtschaft",
-      "title": "Für die gesamte Lieferkette entwickelt",
-      "description": "DamDoh wurde entwickelt, um jeden Akteur zu stärken, vom Feld bis zum Endverbraucher.",
-      "farmers": {
-        "title": "Landwirte",
-        "description": "Erschließen Sie neue Märkte, erwerben Sie Wissen über nachhaltige Praktiken und verwalten Sie Ihren Betrieb effizient."
-      },
-      "buyers": {
-        "title": "Käufer & Verarbeiter",
-        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Produzenten und Kooperativen."
-      },
-      "experts": {
-        "title": "Experten & Dienstleister",
-        "description": "Bieten Sie Ihre Fähigkeiten an, von Agronomie bis Logistik, und verbinden Sie sich mit einer globalen Kundenbasis."
-      },
-      "imageAlt": "Eine vielfältige Gruppe von landwirtschaftlichen Akteuren, die zusammenarbeiten"
-    },
-    "cta": {
-      "title": "Treten Sie noch heute der DamDoh-Community bei",
-      "subtitle": "Bauen Sie Ihr Netzwerk auf, präsentieren Sie Ihre Produkte und erweitern Sie Ihr Geschäft auf globaler Ebene.",
-      "button": "Jetzt registrieren"
     }
-  },
-  "AppFooter": {
-    "tagline": "Die globale landwirtschaftliche Lieferkettenplattform.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App:",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
   }
 }
-
-    

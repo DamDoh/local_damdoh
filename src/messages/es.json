@@ -1,108 +1,20 @@
 
 {
-  "AppHeader": {
-    "home": "Inicio",
-    "network": "Red",
-    "farmMgmt": "Gestión Agrícola",
-    "marketplace": "Mercado",
-    "talentExchange": "Talentos",
-    "traceability": "Trazabilidad",
-    "forums": "Foros",
-    "notifications": "Notificaciones",
-    "messages": "Mensajes",
-    "wallet": "Billetera",
-    "searchPlaceholder": "Buscar personas, productos, servicios...",
-    "signIn": "Iniciar Sesión",
-    "signUp": "Registrarse",
-    "myProfile": "Mi Perfil",
-    "settings": "Configuración",
-    "helpCenter": "Centro de Ayuda",
-    "logOut": "Cerrar Sesión",
-    "switchToLightAria": "Cambiar a tema claro",
-    "switchToDarkAria": "Cambiar a tema oscuro"
-  },
-  "MobileBottomNav": {
-    "home": "Inicio",
-    "market": "Mercado",
-    "search": "Buscar",
-    "forums": "Foros",
-    "profile": "Perfil"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Cambiar idioma"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Conectando el Mundo de la Agricultura con {appName}",
-      "subtitle": "Una plataforma unificada para que agricultores, compradores y expertos se conecten, comercien y crezcan juntos.",
-      "getStartedButton": "Comenzar Gratis",
-      "learnMoreButton": "Saber Más"
-    },
-    "features": {
-      "title": "Características Principales",
-      "subtitle": "DamDoh proporciona las herramientas que necesitas para tener éxito en la cadena de suministro agrícola.",
-      "networking": {
-        "title": "Redes Inteligentes",
-        "description": "Sugerencias de conexión impulsadas por IA para expandir tu red profesional."
-      },
-      "marketplace": {
-        "title": "Mercado Global",
-        "description": "Un canal de venta directo para conectar a los agricultores con compradores y proveedores de servicios."
-      },
-      "forums": {
-        "title": "Foros Temáticos",
-        "description": "Comparte conocimientos y discute temas específicos con comunidades agrícolas."
-      },
-      "talent": {
-        "title": "Bolsa de Talentos",
-        "description": "Una bolsa de trabajo para ofrecer y encontrar servicios agrícolas especializados."
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Encuentre expertos agrícolas, mano de obra especializada y servicios profesionales.",
+    "listServiceButton": "Ofrecer un Servicio",
+    "searchPlaceholder": "Buscar habilidades o servicios...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las Categorías de Servicios",
+    "noResultsTitle": "No se Encontraron Servicios",
+    "noResultsDescription": "Intente ajustar sus filtros de búsqueda para encontrar el talento que necesita.",
+    "toast": {
+      "error": {
+        "title": "Error de Búsqueda",
+        "description": "No se pudieron obtener los servicios. Por favor, inténtelo de nuevo."
       }
-    },
-    "forWho": {
-      "badge": "Para Todos en la Agricultura",
-      "title": "Construido para Toda la Cadena de Suministro",
-      "description": "DamDoh está diseñado para empoderar a cada actor, desde el campo hasta el consumidor final.",
-      "farmers": {
-        "title": "Agricultores",
-        "description": "Accede a nuevos mercados, adquiere conocimientos sobre prácticas sostenibles y gestiona tu granja de manera eficiente."
-      },
-      "buyers": {
-        "title": "Compradores y Procesadores",
-        "description": "Abastécete de productos trazables y de alta calidad directamente de productores y cooperativas."
-      },
-      "experts": {
-        "title": "Expertos y Proveedores de Servicios",
-        "description": "Ofrece tus habilidades, desde agronomía hasta logística, y conéctate con una base de clientes global."
-      },
-      "imageAlt": "Un grupo diverso de actores agrícolas colaborando"
-    },
-    "cta": {
-      "title": "Únete a la Comunidad DamDoh Hoy",
-      "subtitle": "Comienza a construir tu red, mostrar tus productos y hacer crecer tu negocio a escala global.",
-      "button": "Regístrate Ahora"
     }
-  },
-  "AppFooter": {
-    "tagline": "La plataforma global de la cadena de suministro agrícola.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de ayuda",
-    "communityGuidelinesLabel": "Normas de la comunidad",
-    "industryNewsLabel": "Noticias del sector",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de privacidad",
-    "termsOfServiceLabel": "Términos de servicio",
-    "copyright": "© {year} {appName}. Todos los derechos reservados.",
-    "getMobileApp": "Obtén la aplicación móvil:",
-    "googlePlayAlt": "Consíguelo en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
   }
 }
-
-    
