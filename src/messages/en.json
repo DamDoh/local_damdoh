@@ -1,5 +1,54 @@
 
 {
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light mode",
+    "switchToDarkAria": "Switch to dark mode"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
+  },
+  "AppFooter": {
+    "tagline": "Connecting the entire agricultural supply chain, from seed to table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the mobile app",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
+  },
   "FeedItemCard": {
     "editPost": "Edit Post",
     "deletePost": "Delete Post",
@@ -438,32 +487,321 @@
     "acceptJobButton": "Accept Job",
     "noIncomingJobs": "No new jobs available."
   },
-  "AppFooter": {
-    "tagline": "Connecting the entire agricultural supply chain, from seed to table.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the mobile app",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
+  "AgriTechDashboard": {
+    "title": "Agri-Tech Innovator Dashboard",
+    "sandboxTitle": "API Sandbox",
+    "statusLabel": "Status",
+    "lastResetLabel": "Last Reset",
+    "accessDocsButton": "Access API Docs",
+    "integrationsTitle": "Integrations",
+    "activeProjects": "Active Projects",
+    "integrationsDescription": "View and manage your API integrations.",
+    "proposeIntegrationButton": "Propose New Integration",
+    "apiKeysTitle": "API Keys",
+    "apiKeysDescription": "Manage your API keys for sandbox and production environments.",
+    "noApiKeys": "No API keys have been generated.",
+    "generateNewKeyButton": "Generate New Key",
+    "table": {
+      "key": "Key",
+      "status": "Status",
+      "environment": "Environment",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "API Key copied to clipboard!"
   },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
+  "WasteManagementDashboard": {
+    "title": "Waste Management & Composting Dashboard",
+    "wasteStreamsTitle": "Incoming Waste Streams",
+    "from": "From",
+    "acceptButton": "Accept",
+    "noWasteStreams": "No new incoming waste streams.",
+    "compostBatchesTitle": "Compost Batches",
+    "batch": "Batch",
+    "estReady": "Est. Ready",
+    "noCompostBatches": "No active compost batches.",
+    "inventoryTitle": "Finished Product Inventory",
+    "inStock": "In Stock",
+    "noFinishedProducts": "No finished products available.",
+    "sellButton": "Sell on Marketplace"
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "Equipment Supplier Dashboard",
+    "ordersTitle": "Active Rentals / Orders",
+    "ordersDescription": "{count, plural, one {rental/sale order} other {rental/sale orders}}",
+    "manageOrdersButton": "Manage All Orders",
+    "listedEquipmentTitle": "Listed Equipment",
+    "table": {
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "action": "Action"
+    },
+    "status": {
+      "available": "Available",
+      "rentedout": "Rented Out"
+    },
+    "manageButton": "Manage",
+    "noEquipment": "No equipment listed yet.",
+    "listEquipmentButton": "List New Equipment",
+    "maintenanceTitle": "Maintenance Requests",
+    "viewRequestButton": "View Request",
+    "noMaintenance": "No pending maintenance requests."
+  },
+  "CrowdfunderDashboard": {
+    "title": "Crowdfunding Investment Dashboard",
+    "totalInvested": "Total Invested",
+    "numberOfInvestments": "Number of Investments",
+    "estimatedReturns": "Estimated Returns",
+    "opportunitiesTitle": "Suggested Opportunities",
+    "viewButton": "View",
+    "raisedOf": "raised of",
+    "goal": "goal",
+    "noOpportunities": "No new investment opportunities at this time.",
+    "transactionsTitle": "Recent Transactions",
+    "table": {
+      "project": "Project",
+      "amount": "Amount"
+    },
+    "investment": "Investment",
+    "payout": "Payout",
+    "on": "on",
+    "noTransactions": "No recent transactions."
+  },
+  "EnergyProviderDashboard": {
+    "title": "Energy Solutions Dashboard",
+    "leadsTitle": "Project Leads",
+    "leadsCount": "{count, plural, one {active lead} other {active leads}}",
+    "newLeadsDescription": "New inquiries for energy solutions.",
+    "projectsTitle": "Active Projects",
+    "activeProjectsCount": "{count, plural, one {active project} other {active projects}}",
+    "projectsCompleted": "projects completed",
+    "impactTitle": "Cumulative Impact",
+    "impactDescription": "Estimated carbon reduction from all your installations.",
+    "carbonReduction": "tCO2e/year from {count} installations",
+    "leadsTableTitle": "Project Leads Pipeline",
+    "leadsTableDescription": "Track inquiries from initial contact to deployment.",
+    "table": {
+      "entity": "Entity Name",
+      "location": "Location",
+      "energyNeed": "Estimated Need",
+      "status": "Status",
+      "action": "Action"
+    },
+    "statusLabels": {
+      "new": "New",
+      "contacted": "Contacted",
+      "proposal_sent": "Proposal Sent",
+      "closed": "Closed"
+    },
+    "viewLeadButton": "View Lead",
+    "noLeads": "No active project leads.",
+    "accessDocsButton": "Access API Docs",
+    "proposeIntegrationButton": "Propose New Integration"
+  },
+  "ResearcherDashboard": {
+    "title": "Researcher & Academic Dashboard",
+    "datasetsTitle": "Available Datasets",
+    "datasetsDescription": "Access anonymized, aggregated platform data for your research.",
+    "table": {
+      "name": "Dataset Name",
+      "dataType": "Data Type",
+      "accessLevel": "Access Level",
+      "action": "Action"
+    },
+    "requestAccessButton": "Request Access",
+    "noDatasets": "No datasets are currently available for request.",
+    "projectsTitle": "Ongoing Projects",
+    "projectsDescription": "Manage your collaborative research projects on the platform.",
+    "tableProjects": {
+      "title": "Project Title",
+      "progress": "Progress",
+      "collaborators": "Collaborators",
+      "action": "Action"
+    },
+    "viewProjectButton": "View Project",
+    "noProjects": "You have no ongoing research projects.",
+    "contributionsTitle": "Knowledge Hub Contributions",
+    "contributionsDescription": "Your submitted articles and research papers.",
+    "noContributions": "You have not submitted any articles.",
+    "chart": {
+      "count": "Count",
+      "published": "Published",
+      "pending": "Pending Review",
+      "draft": "Draft"
+    },
+    "noData": "No dashboard data available."
+  },
+  "AgronomistDashboard": {
+    "title": "Agronomist Dashboard",
+    "stats": {
+      "assignedFarmers": "Assigned Farmers",
+      "farmersWithAlerts": "Farmers with Alerts",
+      "pendingConsultations": "Pending Consultations",
+      "knowledgeContributions": "Knowledge Contributions"
+    },
+    "activeAlerts": "active alerts",
+    "consultations": {
+      "title": "Pending Consultation Requests",
+      "description": "Farmers who have requested your expertise.",
+      "table": {
+        "farmer": "Farmer",
+        "issue": "Issue Summary",
+        "action": "Action"
+      },
+      "viewButton": "View Request",
+      "noRequests": "No pending consultation requests."
+    },
+    "portfolio": {
+      "title": "Farmer Portfolio",
+      "description": "An overview of the farmers you are advising.",
+      "table": {
+        "farmer": "Farmer",
+        "location": "Location",
+        "alerts": "Alerts",
+        "action": "Action"
+      },
+      "alertsLabel": "alerts",
+      "profileButton": "View Profile",
+      "noFarmers": "No farmers assigned to your portfolio."
+    },
+    "contributions": {
+      "statusTitle": "Contribution Status",
+      "title": "My Knowledge Hub Contributions",
+      "noData": "No contribution data to display.",
+      "noContributions": "You have not made any contributions yet."
+    },
+    "chart": {
+      "count": "Count",
+      "published": "Published",
+      "pending": "Pending Review",
+      "draft": "Draft"
+    },
+    "noData": "No dashboard data available."
+  },
+  "CertificationBodyDashboard": {
+    "title": "Certification Body Dashboard",
+    "auditsTitle": "Pending Audits",
+    "auditsDescription": "Scheduled audits that require your attention.",
+    "table": {
+      "farmName": "Farm/Entity Name",
+      "standard": "Standard",
+      "dueDate": "Due Date",
+      "action": "Action"
+    },
+    "reviewAuditButton": "Review Audit",
+    "noPendingAudits": "No pending audits at this time.",
+    "entitiesTitle": "Certified Entities Overview",
+    "entitiesDescription": "A summary of entities under your certification.",
+    "noCertifiedEntities": "No data on certified entities available.",
+    "monitoringTitle": "Standards Monitoring",
+    "monitoringDescription": "Overview of adherence to your certification standards.",
+    "adherenceRate": "Adherence Rate",
+    "alerts": "Alerts",
+    "viewDetailsButton": "View Details",
+    "noMonitoringData": "No monitoring data available."
+  },
+  "QaDashboard": {
+    "title": "Quality Assurance Dashboard",
+    "inspectionsTitle": "Pending Inspections",
+    "inspectionsDescription": "Batches awaiting quality inspection and verification.",
+    "table": {
+      "batchId": "Batch ID",
+      "product": "Product",
+      "seller": "Seller",
+      "dueDate": "Due Date",
+      "action": "Action"
+    },
+    "performInspectionButton": "Perform Inspection",
+    "noPendingInspections": "No batches are currently awaiting inspection.",
+    "resultsTitle": "Recent Quality Issues",
+    "resultsDescription": "Recently failed inspections or quality alerts.",
+    "tableResults": {
+      "product": "Product",
+      "result": "Result",
+      "reason": "Reason for Failure",
+      "inspectedAt": "Inspected At"
+    },
+    "noRecentIssues": "No recent quality issues have been flagged.",
+    "metricsTitle": "Overall Quality Metrics",
+    "metricsDescription": "A high-level view of platform quality.",
+    "passRate": "Pass Rate",
+    "averageScore": "Average Quality Score",
+    "noMetrics": "Quality metrics are still being calculated."
+  },
+  "RegulatorDashboard": {
+    "title": "Regulator Dashboard",
+    "pendingCertificationsTitle": "Pending Certifications",
+    "reviewsOutstanding": "reviews outstanding",
+    "reviewAllButton": "Review All",
+    "riskAlertsTitle": "Compliance Risk Alerts",
+    "table": {
+      "destination": "Destination"
+    },
+    "prepareDocsButton": "Prepare Docs",
+    "investigateButton": "Investigate",
+    "noComplianceAlerts": "No compliance alerts at this time.",
+    "anomaliesTitle": "Supply Chain Anomalies",
+    "trackVtiButton": "Track VTI",
+    "noAnomalies": "No supply chain anomalies detected."
+  },
+  "AgroExportDashboard": {
+    "title": "Agro-Export Dashboard",
+    "docsTitle": "Pending Customs Documents",
+    "table": {
+      "destination": "Destination"
+    },
+    "prepareDocsButton": "Prepare Docs",
+    "noDocs": "No documents are currently pending.",
+    "shipmentsTitle": "Tracked Shipments",
+    "noShipments": "No shipments are currently being tracked.",
+    "alertsTitle": "Compliance Alerts",
+    "readMore": "Read More",
+    "noAlerts": "No new compliance alerts."
+  },
+  "BuyerDashboard": {
+    "title": "Buyer Dashboard",
+    "riskTitle": "Supply Chain Risk",
+    "diversifySourcing": "Diversify Sourcing",
+    "priceTitle": "Market Price Intelligence",
+    "secureContracts": "Secure Forward Contracts",
+    "sourcingTitle": "Sourcing Recommendations",
+    "reliabilityScore": "Reliability Score",
+    "findSuppliersButton": "Find More Suppliers"
+  },
+  "CooperativeDashboard": {
+    "title": "Cooperative Dashboard",
+    "membersTitle": "Total Members",
+    "membersDescription": "{count} active members in your cooperative",
+    "landAreaTitle": "Total Land Under Cultivation",
+    "landAreaDescription": "Hectares managed by your members",
+    "pendingApplicationsTitle": "Pending Applications",
+    "pendingApplicationsDescription": "New farmers waiting to join",
+    "produceTitle": "Aggregated Produce Ready for Market",
+    "produceDescription": "Consolidated view of your members' available produce.",
+    "table": {
+      "product": "Product",
+      "quantity": "Quantity (Tons)",
+      "quality": "Quality",
+      "readyBy": "Ready By",
+      "action": "Action"
+    },
+    "createListingButton": "Create Listing",
+    "noProduce": "No aggregated produce ready for market at this time.",
+    "aggregateButton": "Aggregate New Produce"
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "title": "Agent Tools",
+    "description": "Securely look up user information for verification and support.",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to access this page.",
+    "findUserLabel": "Find User by Phone Number",
+    "findButton": "Find",
+    "resultsTitle": "Lookup Result",
+    "resultsPlaceholder": "Enter a phone number to look up a user.",
+    "phoneRequiredError": "Phone number is required."
   }
 }
+
+

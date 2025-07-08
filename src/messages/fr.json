@@ -1,204 +1,203 @@
 
 {
-  "FeedItemCard": {
-    "editPost": "Modifier la publication",
-    "deletePost": "Supprimer la publication",
-    "repostPlaceholderToast": "Action de republication déclenchée (placeholder).",
-    "signInToLikeToast": "Veuillez vous connecter pour aimer une publication.",
-    "signInToVoteToast": "Veuillez vous connecter pour voter.",
-    "voteSuccessToast": "Vote enregistré avec succès !",
-    "voteErrorToast": "Échec du vote",
-    "loadCommentsErrorToast": "Échec du chargement des commentaires",
-    "noComments": "Aucun commentaire pour l'instant.",
-    "loadingComments": "Chargement des commentaires...",
-    "loadMoreComments": "Charger plus de commentaires",
-    "writeCommentPlaceholder": "Écrivez un commentaire...",
-    "postButton": "Publier",
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "likes": "{count, plural, one {J'aime} other {J'aime}}",
-    "comments": "{count, plural, one {Commentaire} other {Commentaires}}",
-    "votes": "{count, plural, one {vote} other {votes}}"
-  },
-  "CreatePostModal": {
-    "title": "Créer une publication",
-    "description": "Partagez une mise à jour avec votre communauté.",
-    "yourName": "Votre Nom",
-    "shareUpdate": "Partagez une mise à jour",
-    "placeholder": "Quoi de neuf ?",
-    "selectedFile": "Fichier sélectionné :",
-    "pollOptionsLabel": "Options du sondage",
-    "pollOptionPlaceholder": "Option {{index}}",
-    "addOptionButton": "Ajouter une option",
-    "pollNote": "Maximum de {{maxOptions}} options.",
-    "addMediaButton": "Ajouter Photo/Vidéo",
-    "createEventButton": "Créer un Événement Agricole",
-    "shareDocumentButton": "Partager un Document",
-    "createPollButton": "Créer un Sondage",
-    "postButton": "Publier",
-    "pollOptionsError": "Un sondage doit avoir au moins deux options.",
-    "emptyPostError": "Une publication ne peut pas être vide."
-  },
-  "StartPost": {
-    "placeholder": "Commencez une publication, créez un sondage ou partagez un document...",
-    "photoVideo": "Photo/Vidéo",
-    "agriEvent": "Événement Agri",
-    "createPoll": "Créer un Sondage"
-  },
-  "myNetworkPage": {
-    "backLink": "Retour au réseau",
-    "myConnectionsTab": "Mes Connexions ({count})",
-    "pendingRequestsTab": "Demandes en attente",
-    "connectionsTitle": "Mes Connexions",
-    "connectionsDescription": "Affichez et gérez vos connexions actuelles.",
-    "noConnections": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau !",
-    "requestsTitle": "Demandes de Connexion",
-    "requestsDescription": "Acceptez ou refusez les demandes de connexion.",
-    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
-    "sentTimeAgo": "Envoyé il y a {timeAgo}"
-  },
-  "networkPage": {
-    "title": "Mon Réseau Professionnel",
-    "description": "Découvrez et connectez-vous avec des acteurs de toute la chaîne d'approvisionnement agricole.",
-    "myNetworkButton": "Mon Réseau",
-    "agentToolsButton": "Outils d'Agent",
-    "aiSuggestionsTitle": "Suggestions par IA",
-    "aiSuggestionsDescription": "En fonction de votre profil, voici quelques acteurs avec qui vous pourriez vouloir vous connecter.",
-    "connect": "Connecter",
-    "profile": "Profil",
-    "browseAllTitle": "Parcourir tous les Acteurs",
-    "browseAllDescription": "Trouvez les bonnes personnes et entreprises pour développer votre réseau.",
-    "searchPlaceholder": "Rechercher par nom, rôle ou intérêt...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "rolePlaceholder": "Filtrer par rôle...",
-    "allRoles": "Tous les rôles",
-    "noStakeholdersFound": "Aucun acteur trouvé.",
-    "noStakeholdersHint": "Essayez d'ajuster votre recherche ou vos filtres.",
-    "noSuggestions": "Pas de nouvelles suggestions pour vous pour le moment. Essayez de compléter votre profil pour de meilleures recommandations.",
-    "toast": {
-      "errorTitle": "Erreur",
-      "loadError": "Impossible de charger les données du réseau."
-    }
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Centre de Gestion Agricole",
-      "description": "Votre lieu central pour gérer toutes les opérations de la ferme, des cycles de culture et des intrants KNF à la main-d'œuvre et aux finances.",
-      "myFarms": {
-        "title": "Mes Fermes et Cultures",
-        "description": "Visualisez et gérez vos fermes, parcelles et cycles de culture actifs.",
-        "button": "Gérer les Fermes"
+  "Forums": {
+    "title": "Sujets du forum",
+    "description": "Parcourir et créer des sujets de discussion",
+    "lastActivity": "Dernière activité il y a {time}",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "joinDiscussion": "Rejoindre la discussion",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement...",
+      "pinHomepage": "Épingler à l'accueil",
+      "unpinHomepage": "Détacher de l'accueil"
+    },
+    "create": {
+      "backLink": "Retour aux sujets",
+      "title": "Créer un nouveau sujet",
+      "description": "Démarrer une nouvelle discussion sur le forum.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
       },
-      "labor": {
-        "title": "Gestion de la Main-d'œuvre",
-        "description": "Suivez votre personnel, enregistrez les heures et gérez les paiements.",
-        "button": "Gérer la Main-d'œuvre"
-      },
-      "knf": {
-        "title": "Assistant Intrants KNF",
-        "description": "Créez et suivez vos lots d'intrants de l'Agriculture Naturelle Coréenne.",
-        "button": "Gérer les Intrants"
-      },
-      "fgw": {
-        "title": "Guide de Terrain FGW",
-        "description": "Apprenez et appliquez les principes de base de l'Agriculture selon la Volonté de Dieu.",
-        "button": "Voir le Guide"
-      },
-      "financials": {
-        "title": "Questions d'Argent",
-        "description": "Suivez les revenus, les dépenses et demandez des produits financiers.",
-        "button": "Voir les Finances"
-      },
-      "seedStarting": {
-        "title": "Guide de Démarrage des Semis",
-        "description": "Planifiez votre saison de plantation avec notre guide complet de démarrage des semis.",
-        "button": "Voir le Guide"
-      },
-      "familyFarm": {
-        "title": "Ferme Familiale de 200m²",
-        "description": "Explorez le modèle intégré pour une ferme familiale durable de 200m².",
-        "button": "Voir le Modèle"
-      },
-      "assetManagement": {
-        "title": "Gestion des Actifs",
-        "description": "Gérez votre équipement, vos outils et autres actifs de la ferme (Bientôt disponible).",
-        "button": "Gérer les Actifs"
+      "success": {
+        "title": "Sujet créé avec succès",
+        "description": "Votre nouveau sujet a été créé."
       }
     },
-    "laborPage": {
-      "loading": "Chargement...",
-      "backLink": "Retour à la Gestion de la Ferme",
-      "title": "Gestion de la Main-d'œuvre",
-      "description": "Gérez votre personnel, suivez les heures et enregistrez les paiements.",
-      "addWorker": "Ajouter un travailleur",
-      "workerName": "Nom du travailleur",
-      "saveWorker": "Enregistrer le travailleur",
-      "hoursLogged": "Heures enregistrées",
-      "totalPaid": "Total payé",
-      "logHours": "Enregistrer les heures",
-      "logPayment": "Enregistrer le paiement",
-      "viewDetails": "Voir les détails",
-      "noWorkers": "Aucun travailleur n'a encore été ajouté.",
-      "logHoursFor": "Enregistrer les heures pour",
-      "hoursWorked": "Heures travaillées",
-      "date": "Date",
-      "pickDate": "Choisir une date",
-      "taskDescription": "Description de la tâche",
-      "logPaymentFor": "Enregistrer le paiement pour",
-      "amountPaid": "Montant payé",
-      "signInPrompt": {
-        "title": "Veuillez vous connecter",
-        "description": "Vous devez être connecté pour gérer la main-d'œuvre de votre ferme.",
-        "button": "Se connecter"
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez une autre recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
+    },
+    "pinning": {
+      "pinnedTitle": "Accueil épinglé !",
+      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
+      "unpinnedTitle": "Accueil détaché !",
+      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    },
+    "errors": {
+      "loadTitle": "Erreur lors du chargement des sujets",
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
       },
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchWorkersError": "Échec de la récupération des données des travailleurs.",
-        "nameRequired": "Le nom du travailleur est requis.",
-        "workerAdded": "Travailleur ajouté avec succès !",
-        "hoursLogged": "Heures enregistrées avec succès !",
-        "paymentLoggedTitle": "Paiement enregistré !",
-        "paymentLoggedDescription": "Le paiement a été enregistré et une entrée de dépense a été créée dans vos finances."
+      "incomplete": {
+        "title": "Champs incomplets",
+        "description": "Veuillez remplir tous les champs obligatoires."
       },
-      "workerDetailPage": {
-        "backLink": "Retour à la Gestion de la Main-d'œuvre",
-        "notFoundTitle": "Travailleur non trouvé",
-        "notFoundDescription": "Le profil du travailleur que vous recherchez n'existe pas.",
-        "goBackButton": "Retour",
-        "workLogsTitle": "Journaux de travail",
-        "paymentHistoryTitle": "Historique des paiements",
-        "table": {
-          "date": "Date",
-          "hours": "Heures",
-          "task": "Tâche",
-          "amount": "Montant"
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur s'est produite lors de la création du sujet."
+      }
+    },
+    "topic": {
+      "unknownUser": "Utilisateur inconnu",
+      "postMeta": "par {{author}} le {{date}}",
+      "buttons": {
+        "createPost": "Ajouter une réponse",
+        "loadMore": "Charger plus",
+        "loadingMore": "Chargement..."
+      },
+      "noPosts": {
+        "title": "Aucun message pour l'instant",
+        "description": "Soyez le premier à répondre à ce sujet.",
+        "button": "Ajouter une réponse"
+      },
+      "notFound": {
+        "title": "Sujet introuvable",
+        "description": "Le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des messages",
+          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
         },
-        "noWorkLogs": "Aucun travail n'a été enregistré pour ce travailleur.",
-        "noPayments": "Aucun paiement n'a été enregistré pour ce travailleur.",
-        "toasts": {
-          "errorTitle": "Erreur lors de la récupération des détails",
-          "errorDescription": "Impossible de charger les détails de ce travailleur."
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {{topicName}}",
+      "unknownUser": "Utilisateur inconnu",
+      "postMeta": "par {{author}} le {{date}}",
+      "repliesTitle": "Réponses ({{count}})",
+      "noReplies": "Aucune réponse pour l'instant.",
+      "buttons": {
+        "loadMore": "Charger plus",
+        "loadingMore": "Chargement en cours..."
+      },
+      "reply": {
+        "title": "Ajouter une réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Ajouter une réponse",
+        "submittingButton": "Envoi en cours...",
+        "success": "Réponse ajoutée !"
+      },
+      "notFound": {
+        "title": "Message introuvable",
+        "description": "Le message que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement du message",
+          "description": "Une erreur s'est produite lors du chargement des détails du message."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
+        },
+        "emptyReply": "La réponse ne peut pas être vide.",
+        "submitReply": {
+          "title": "Erreur d'envoi de la réponse",
+          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Assistant IA",
+        "description": "Générer un brouillon de message basé sur une invite.",
+        "promptLabel": "Invite IA",
+        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
+        "generateButton": "Générer le brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "title": "Créer un nouveau message",
+      "description": "Ajouter un nouveau message à ce sujet.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Entrez le titre de votre message",
+        "contentLabel": "Contenu du message",
+        "contentPlaceholder": "Écrivez votre message ici...",
+        "submitButton": "Créer le message",
+        "submittingButton": "Envoi en cours..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon IA généré !",
+          "description": "Un brouillon a été généré pour vous."
+        },
+        "title": "Message créé !",
+        "description": "Votre message a été créé avec succès."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Invite IA manquante",
+          "description": "Veuillez fournir une invite pour l'assistant IA."
+        },
+        "aiDraft": {
+          "title": "Erreur de brouillon IA",
+          "description": "Échec de la génération du brouillon IA."
+        },
+        "incomplete": {
+          "title": "Champs incomplets",
+          "description": "Veuillez remplir tous les champs obligatoires."
+        },
+        "general": {
+          "title": "Erreur",
+          "description": "Une erreur s'est produite lors de la création du message."
         }
       }
     }
   },
-  "talentExchangePage": {
-    "title": "Bourse de Talents",
-    "description": "Trouvez des professionnels et des services qualifiés, ou proposez votre propre expertise.",
-    "listServiceButton": "Proposer Votre Service",
-    "searchPlaceholder": "Rechercher des compétences ou des services...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "categoryPlaceholder": "Filtrer par catégorie...",
-    "allCategories": "Toutes les catégories",
-    "noResultsTitle": "Aucun Service Trouvé",
-    "noResultsDescription": "Essayez d'ajuster vos termes de recherche ou vos filtres. Il y a peut-être une opportunité pour vous d'être le premier à offrir ce service !",
-    "toast": {
-      "error": {
-        "title": "Erreur",
-        "description": "Impossible de récupérer les services. Veuillez réessayer plus tard."
-      }
-    }
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'aide",
+    "logOut": "Se déconnecter",
+    "switchToLightAria": "Passer au mode clair",
+    "switchToDarkAria": "Passer au mode sombre"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Rechercher",
+    "forums": "Forums",
+    "profile": "Profil"
   },
   "AppFooter": {
     "tagline": "Connecter toute la chaîne d'approvisionnement agricole, de la semence à la table.",
@@ -221,11 +220,144 @@
     "googlePlayAlt": "Disponible sur Google Play",
     "appStoreAlt": "Télécharger dans l'App Store"
   },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Rechercher",
-    "forums": "Forums",
-    "profile": "Profil"
+  "Marketplace": {
+    "title": "Marché",
+    "description": "Parcourir et découvrir des produits et services.",
+    "createShopButton": "Créer un magasin",
+    "createListingButton": "Créer une annonce",
+    "myOrdersButton": "Mes commandes reçues",
+    "pinButton": "Épingler à la page d'accueil",
+    "unpinButton": "Détacher de la page d'accueil",
+    "searchPlaceholder": "Rechercher sur le marché...",
+    "locationPlaceholder": "Filtrer par emplacement...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus",
+    "noItemsFound": {
+      "title": "Aucun article trouvé.",
+      "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Impossible de récupérer les recommandations IA"
+      },
+      "search": {
+        "title": "Erreur de recherche",
+        "description": "Impossible de récupérer les articles du marché."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Marché épinglé !",
+      "pinnedDescription": "Le marché est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Page d'accueil détachée !",
+      "unpinnedDescription": "Le tableau de bord est maintenant votre page d'accueil par défaut."
+    }
+  },
+  "Settings": {
+    "backLink": "Retour",
+    "title": "Paramètres",
+    "description": "Gérez vos paramètres de compte et de profil.",
+    "tabs": {
+      "profile": "Profil",
+      "account": "Compte",
+      "notifications": "Notifications",
+      "language": "Langue"
+    },
+    "profileTab": {
+      "title": "Paramètres du profil",
+      "description": "Mettez à jour vos informations de profil public.",
+      "form": {
+        "displayNameLabel": "Nom d'affichage",
+        "displayNamePlaceholder": "Entrez votre nom d'affichage",
+        "bioLabel": "Bio",
+        "bioPlaceholder": "Parlez-nous de vous...",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "Entrez votre emplacement",
+        "avatarLabel": "Avatar",
+        "avatarDescription": "Téléchargez une photo de profil.",
+        "currentAvatar": "Avatar actuel",
+        "changeAvatarButton": "Changer d'avatar",
+        "uploadingAvatar": "Téléchargement en cours...",
+        "saveButton": "Enregistrer le profil",
+        "savingButton": "Enregistrement en cours..."
+      },
+      "toast": {
+        "updateSuccessTitle": "Profil mis à jour !",
+        "updateSuccessDescription": "Votre profil a été mis à jour avec succès."
+      },
+      "errors": {
+        "updateFailTitle": "Échec de la mise à jour",
+        "updateFailDescription": "Impossible de mettre à jour votre profil. Veuillez réessayer."
+      }
+    },
+    "accountTab": {
+      "title": "Paramètres du compte",
+      "description": "Gérez l'authentification et la sécurité de votre compte.",
+      "changePasswordSectionTitle": "Changer le mot de passe",
+      "changePasswordDescription": "Mettez à jour le mot de passe de votre compte.",
+      "form": {
+        "currentPasswordLabel": "Mot de passe actuel",
+        "currentPasswordPlaceholder": "Entrez votre mot de passe actuel",
+        "newPasswordLabel": "Nouveau mot de passe",
+        "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
+        "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+        "confirmPasswordPlaceholder": "Confirmez votre nouveau mot de passe",
+        "updatePasswordButton": "Mettre à jour le mot de passe",
+        "updatingPasswordButton": "Mise à jour en cours..."
+      },
+      "toast": {
+        "passwordUpdateSuccessTitle": "Mot de passe mis à jour !",
+        "passwordUpdateSuccessDescription": "Votre mot de passe a été mis à jour avec succès."
+      },
+      "errors": {
+        "passwordUpdateFailTitle": "Échec de la mise à jour du mot de passe",
+        "passwordUpdateFailDescription": "Impossible de mettre à jour votre mot de passe. Veuillez vérifier votre mot de passe actuel et réessayer."
+      }
+    },
+    "notificationsTab": {
+      "title": "Paramètres de notification",
+      "description": "Gérez vos préférences de notification par e-mail et push.",
+      "emailNotificationsLabel": "Notifications par e-mail",
+      "emailNotificationsDescription": "Recevoir des notifications par e-mail.",
+      "pushNotificationsLabel": "Notifications push",
+      "pushNotificationsDescription": "Recevoir des notifications sur votre appareil.",
+      "saveButton": "Enregistrer les préférences",
+      "savingButton": "Enregistrement en cours...",
+      "toast": {
+        "updateSuccessTitle": "Préférences enregistrées !",
+        "updateSuccessDescription": "Vos préférences de notification ont été enregistrées."
+      },
+      "errors": {
+        "updateFailTitle": "Échec de l'enregistrement",
+        "updateFailDescription": "Impossible d'enregistrer vos préférences de notification."
+      }
+    },
+    "languageTab": {
+      "title": "Paramètres de langue",
+      "description": "Choisissez votre langue préférée.",
+      "languageLabel": "Langue",
+      "languagePlaceholder": "Sélectionnez une langue",
+      "saveButton": "Enregistrer la langue",
+      "savingButton": "Enregistrement en cours...",
+      "toast": {
+        "updateSuccessTitle": "Langue enregistrée !",
+        "updateSuccessDescription": "Votre préférence de langue a été enregistrée."
+      },
+      "errors": {
+        "updateFailTitle": "Échec de l'enregistrement",
+        "updateFailDescription": "Impossible d'enregistrer votre préférence de langue."
+      }
+    },
+    "loading": "Chargement des paramètres...",
+    "errors": {
+      "loadErrorTitle": "Erreur de chargement des paramètres",
+      "loadErrorDescription": "Impossible de charger vos paramètres."
+    },
+    "authenticationRequired": {
+      "title": "Authentification requise",
+      "description": "Vous devez être connecté pour voir vos paramètres.",
+      "button": "Se connecter"
+    }
   }
 }
+
