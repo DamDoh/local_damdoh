@@ -425,90 +425,20 @@
       "keyRevokedError": "Impossible de révoquer la clé API."
     }
   },
-  "farmManagement": {
-    "knfInputsPage": {
-      "backLink": "Retour à la Gestion de la Ferme",
-      "title": "Assistant d'Intrants KNF",
-      "description": "Suivez vos intrants maison d'Agriculture Naturelle Coréenne et accédez aux recettes.",
-      "guidesTitle": "Guides & Recettes KNF",
-      "ingredients": "Ingrédients",
-      "steps": "Étapes",
-      "usage": "Usage & Application",
-      "fermentingBatchesTitle": "En Fermentation Actuellement",
-      "started": "Commencé",
-      "nextStepOn": "Prochaine étape le",
-      "markReady": "Marquer comme Prêt",
-      "noFermentingBatches": "Aucun lot n'est actuellement en fermentation.",
-      "readyBatchesTitle": "Prêt à l'Emploi",
-      "readySince": "Prêt depuis",
-      "logUsage": "Enregistrer l'Usage",
-      "archive": "Archiver",
-      "noReadyBatches": "Vous n'avez aucun intrant KNF prêt à l'emploi.",
-      "startNewBatch": "Démarrer un Nouveau Lot",
-      "createNewBatchTitle": "Créer un Nouveau Lot KNF",
-      "cancel": "Annuler",
-      "form": {
-        "typeLabel": "Type d'Intrant",
-        "typePlaceholder": "Sélectionner un Intrant KNF",
-        "ingredientsLabel": "Ingrédients Clés",
-        "startDateLabel": "Date de Début",
-        "startButton": "Commencer la Fermentation",
-        "startingButton": "Démarrage..."
-      },
-      "knfOptions": {
-        "fpj": {
-          "label": "Jus de Plantes Fermenté (FPJ)",
-          "placeholder": "Ex: Pointes de patate douce, pousses de bambou"
-        },
-        "faa": {
-          "label": "Acide Aminé de Poisson (FAA)",
-          "placeholder": "Ex: Déchets de poisson, têtes, arêtes"
-        },
-        "wca": {
-          "label": "Calcium Soluble dans l'Eau (WCA)",
-          "placeholder": "Ex: Coquilles d'œufs"
-        },
-        "imo": {
-          "label": "Micro-organismes Indigènes (IMO)",
-          "placeholder": "Ex: Riz cuit, terre de forêt locale"
-        },
-        "lab": {
-          "label": "Bactéries Lactiques (LAB)",
-          "placeholder": "Ex: Eau de lavage du riz, lait"
-        }
-      },
-      "recipeData": [
-        {
-          "id": "fpj",
-          "name": "Jus de Plantes Fermenté (FPJ)",
-          "description": "Un activateur de croissance fabriqué à partir de la sève fermentée de plantes à croissance rapide.",
-          "ingredients": ["1kg de parties de plantes à croissance rapide (ex: pointes de courge, lianes de patate douce)", "1kg de sucre brun"],
-          "steps": ["Hacher les plantes", "Mélanger avec un poids égal de sucre brun", "Tasser dans un récipient respirant", "Laisser fermenter 7 jours dans un endroit frais et sombre"],
-          "usage": "Diluer 1:500 - 1:1000 avec de l'eau. Utiliser en pulvérisation foliaire ou en arrosage du sol pendant la croissance végétative."
-        },
-        {
-          "id": "faa",
-          "name": "Acide Aminé de Poisson (FAA)",
-          "description": "Une source d'azote puissante fabriquée à partir de déchets de poisson fermentés.",
-          "ingredients": ["1kg de parties de poisson (viscères, têtes, arêtes)", "1kg de sucre brun"],
-          "steps": ["Alterner les couches de poisson et de sucre dans un récipient", "Couvrir et laisser fermenter pendant 3-6 mois"],
-          "usage": "Diluer 1:1000 avec de l'eau. Excellent pour la croissance végétative."
-        }
-      ],
-      "toasts": {
-        "loadErrorTitle": "Erreur",
-        "loadErrorDescription": "Impossible de charger vos lots KNF.",
-        "validationError": "Veuillez sélectionner un type d'intrant, et fournir les ingrédients et une date de début.",
-        "batchStartedTitle": "Lot Démarré !",
-        "batchStartedDescription": "Votre nouveau lot KNF est maintenant en fermentation.",
-        "batchStartFailed": "Échec du Démarrage du Lot",
-        "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer.",
-        "batchUpdatedTitle": "Lot Mis à Jour",
-        "batchUpdatedDescription": "Statut mis à jour à {{status}}.",
-        "updateFailed": "Mise à Jour Échouée",
-        "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
-      }
+  "Auth": {
+    "recoverPage": {
+      "title": "Récupération de compte sociale",
+      "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance sur DamDoh.",
+      "howItWorksTitle": "Comment ça marche",
+      "step1": "Entrez le numéro de téléphone du compte que vous souhaitez récupérer.",
+      "step2": "Un code QR unique et temporaire sera généré.",
+      "step3": "Demandez à un ami qui utilise DamDoh de scanner ce code pour confirmer votre identité.",
+      "startButton": "Démarrer le processus de récupération",
+      "scanTitle": "Demandez à un ami de scanner",
+      "scanDescription": "Montrez ce code QR à un ami de confiance qui est également un utilisateur de DamDoh. Il peut le scanner en utilisant l'option 'Aider un ami' sur sa page de récupération.",
+      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
+      "startOverButton": "Recommencer",
+      "helpFriendButton": "Aider un ami à récupérer"
     }
   }
 }
-

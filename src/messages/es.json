@@ -425,90 +425,20 @@
       "keyRevokedError": "No se pudo revocar la clave de API."
     }
   },
-  "farmManagement": {
-    "knfInputsPage": {
-      "backLink": "Volver a Gestión de Finca",
-      "title": "Asistente de Insumos KNF",
-      "description": "Rastrea tus insumos caseros de Agricultura Natural Coreana y accede a recetas.",
-      "guidesTitle": "Guías y Recetas KNF",
-      "ingredients": "Ingredientes",
-      "steps": "Pasos",
-      "usage": "Uso y Aplicación",
-      "fermentingBatchesTitle": "Actualmente en Fermentación",
-      "started": "Iniciado",
-      "nextStepOn": "Próximo paso el",
-      "markReady": "Marcar como Listo",
-      "noFermentingBatches": "No hay lotes en fermentación actualmente.",
-      "readyBatchesTitle": "Listo para Usar",
-      "readySince": "Listo desde",
-      "logUsage": "Registrar Uso",
-      "archive": "Archivar",
-      "noReadyBatches": "No tienes insumos KNF listos para usar.",
-      "startNewBatch": "Iniciar un Nuevo Lote",
-      "createNewBatchTitle": "Crear Nuevo Lote KNF",
-      "cancel": "Cancelar",
-      "form": {
-        "typeLabel": "Tipo de Insumo",
-        "typePlaceholder": "Seleccionar Insumo KNF",
-        "ingredientsLabel": "Ingredientes Clave",
-        "startDateLabel": "Fecha de Inicio",
-        "startButton": "Iniciar Fermentación",
-        "startingButton": "Iniciando..."
-      },
-      "knfOptions": {
-        "fpj": {
-          "label": "Jugo de Planta Fermentado (FPJ)",
-          "placeholder": "Ej: Puntas de batata, brotes de bambú"
-        },
-        "faa": {
-          "label": "Ácido Amino de Pescado (FAA)",
-          "placeholder": "Ej: Restos de pescado, cabezas, espinas"
-        },
-        "wca": {
-          "label": "Calcio Soluble en Agua (WCA)",
-          "placeholder": "Ej: Cáscaras de huevo"
-        },
-        "imo": {
-          "label": "Microorganismos Indígenas (IMO)",
-          "placeholder": "Ej: Arroz cocido, suelo de bosque local"
-        },
-        "lab": {
-          "label": "Bacterias del Ácido Láctico (LAB)",
-          "placeholder": "Ej: Lavado de arroz, leche"
-        }
-      },
-      "recipeData": [
-        {
-          "id": "fpj",
-          "name": "Jugo de Planta Fermentado (FPJ)",
-          "description": "Un potenciador del crecimiento hecho de la savia fermentada de plantas de rápido crecimiento.",
-          "ingredients": ["1kg de partes de plantas de rápido crecimiento (ej: puntas de camote, brotes de bambú)", "1kg de azúcar moreno"],
-          "steps": ["Picar las plantas", "Mezclar con igual peso de azúcar moreno", "Envasar en un recipiente transpirable", "Fermentar durante 7 días en un lugar fresco y oscuro"],
-          "usage": "Diluir 1:500 - 1:1000 con agua. Usar como pulverización foliar o remojo del suelo durante el crecimiento vegetativo."
-        },
-        {
-          "id": "faa",
-          "name": "Ácido Amino de Pescado (FAA)",
-          "description": "Una potente fuente de nitrógeno hecha de restos de pescado fermentados.",
-          "ingredients": ["1kg de partes de pescado (vísceras, cabezas, espinas)", "1kg de azúcar moreno"],
-          "steps": ["Poner en capas partes de pescado y azúcar en un recipiente", "Cubrir y fermentar durante 3-6 meses"],
-          "usage": "Diluir 1:1000 con agua. Excelente para el crecimiento vegetativo."
-        }
-      ],
-      "toasts": {
-        "loadErrorTitle": "Error",
-        "loadErrorDescription": "No se pudieron cargar tus lotes KNF.",
-        "validationError": "Por favor, selecciona un tipo de insumo, y proporciona los ingredientes y la fecha de inicio.",
-        "batchStartedTitle": "¡Lote Iniciado!",
-        "batchStartedDescription": "Tu nuevo lote KNF está ahora en fermentación.",
-        "batchStartFailed": "Fallo al Iniciar Lote",
-        "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo.",
-        "batchUpdatedTitle": "Lote Actualizado",
-        "batchUpdatedDescription": "Estado actualizado a {{status}}.",
-        "updateFailed": "Actualización Fallida",
-        "couldNotUpdate": "No se pudo actualizar el estado del lote."
-      }
+  "Auth": {
+    "recoverPage": {
+      "title": "Recuperación de cuenta social",
+      "description": "Recupere el acceso a su cuenta con la ayuda de un amigo de confianza en DamDoh.",
+      "howItWorksTitle": "Cómo funciona",
+      "step1": "Ingrese el número de teléfono de la cuenta que desea recuperar.",
+      "step2": "Se generará un código QR único y temporal.",
+      "step3": "Haga que un amigo que use DamDoh escanee este código para confirmar su identidad.",
+      "startButton": "Iniciar proceso de recuperación",
+      "scanTitle": "Pídale a un amigo que escanee",
+      "scanDescription": "Muestre este código QR a un amigo de confianza que también sea usuario de DamDoh. Puede escanearlo usando la opción 'Ayudar a un amigo' en su página de recuperación.",
+      "scanNote": "Este código es temporal y caducará en 10 minutos.",
+      "startOverButton": "Empezar de nuevo",
+      "helpFriendButton": "Ayudar a un amigo a recuperarse"
     }
   }
 }
-

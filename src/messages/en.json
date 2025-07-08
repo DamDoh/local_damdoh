@@ -509,6 +509,21 @@
         "couldNotUpdate": "Could not update batch status."
       }
     }
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Social Account Recovery",
+      "description": "Regain access to your account with help from a trusted friend on DamDoh.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Enter the phone number for the account you want to recover.",
+      "step2": "A unique, temporary QR code will be generated.",
+      "step3": "Have a friend who uses DamDoh scan this code to confirm your identity.",
+      "startButton": "Start Recovery Process",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Show this QR code to a trusted friend who is also a DamDoh user. They can scan it using the 'Help a Friend' option on their recovery page.",
+      "scanNote": "This code is temporary and will expire in 10 minutes.",
+      "startOverButton": "Start Over",
+      "helpFriendButton": "Help a Friend Recover"
+    }
   }
 }
-

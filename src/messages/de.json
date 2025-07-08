@@ -358,43 +358,6 @@
       }
     }
   },
-  "searchPage": {
-    "title": "Universelle Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform, von Personen bis zu Produkten.",
-    "placeholder": "Suchen Sie nach Produkten, Dienstleistungen, Personen oder sogar einer VTI...",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchen",
-    "popularSearch1": "Bio-Kaffeebohnen Kenia",
-    "popularSearch2": "Traktor zu vermieten",
-    "popularSearch3": "Bodenanalysedienste",
-    "popularSearch4": "Logistikpartner für den Export",
-    "popularSearch5": "DamDoh-Community-Richtlinien",
-    "modal": {
-      "title": "Universelle Suche",
-      "placeholder": "Suchen Sie nach allem...",
-      "searchButton": "Suchen",
-      "searchError": "Suchfehler",
-      "searchErrorDescription": "Bei der Durchführung der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-      "invalidCodeError": "Ungültiger QR-Code. Dies ist kein gültiger DamDoh-Benutzer- oder Chargencode.",
-      "scanFailed": "Scan fehlgeschlagen",
-      "scanError": "Scanfehler",
-      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
-      "userNotFound": "Benutzer für die gescannte ID nicht gefunden.",
-      "results": {
-        "users": "Profile",
-        "marketplaceItems": "Marktplatzartikel",
-        "forums": "Forum-Themen",
-        "vti_registry": "Rückverfolgungsbericht",
-        "agri_events": "Veranstaltungen",
-        "knowledge_articles": "Artikel"
-      },
-      "noResults": "Keine Ergebnisse gefunden.",
-      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
-      "interpretationTitle": "Interpretation",
-      "interpretationNotesDefault": "Suche basierend auf Ihrer Anfrage.",
-      "filtersTitle": "Angewandte Filter"
-    }
-  },
   "sustainabilityPage": {
     "title": "Nachhaltigkeits-Dashboard",
     "description": "Verfolgen und verstehen Sie die Umweltauswirkungen Ihres Betriebs.",
@@ -460,6 +423,22 @@
       "keyGeneratedError": "API-Schlüssel konnte nicht generiert werden.",
       "keyRevokedSuccess": "API-Schlüssel erfolgreich widerrufen.",
       "keyRevokedError": "API-Schlüssel konnte nicht widerrufen werden."
+    }
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Soziale Kontowiederherstellung",
+      "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes auf DamDoh wieder Zugriff auf Ihr Konto.",
+      "howItWorksTitle": "Wie es funktioniert",
+      "step1": "Geben Sie die Telefonnummer für das Konto ein, das Sie wiederherstellen möchten.",
+      "step2": "Ein einzigartiger, temporärer QR-Code wird generiert.",
+      "step3": "Lassen Sie einen Freund, der DamDoh verwendet, diesen Code scannen, um Ihre Identität zu bestätigen.",
+      "startButton": "Wiederherstellungsprozess starten",
+      "scanTitle": "Bitten Sie einen Freund zu scannen",
+      "scanDescription": "Zeigen Sie diesen QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh-Benutzer ist. Er kann ihn mit der Option 'Einem Freund helfen' auf seiner Wiederherstellungsseite scannen.",
+      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
+      "startOverButton": "Neu anfangen",
+      "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
     }
   }
 }
