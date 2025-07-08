@@ -16,5 +16,108 @@
         "description": "Dienstleistungen konnten nicht abgerufen werden. Bitte versuchen Sie es erneut."
       }
     }
+  },
+  "AppHeader": {
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Mgmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Brieftasche",
+    "searchPlaceholder": "Suche nach Personen, Produkten, Dienstleistungen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Thema wechseln",
+    "switchToDarkAria": "Zum dunklen Thema wechseln"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
+  },
+  "AppFooter": {
+    "tagline": "Verbindung der gesamten landwirtschaftlichen Wertschöpfungskette, vom Samen bis zum Tisch.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog & Nachrichten",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfe-Center",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache ändern"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Landwirtschaft stärken, gemeinsam.",
+      "subtitle": "Treten Sie DamDoh bei, der globalen Plattform, die jedes Glied in der landwirtschaftlichen Lieferkette verbindet. Vom Landwirt bis zum Verbraucher fördern wir Wachstum, Nachhaltigkeit und direkten Handel.",
+      "getStartedButton": "Kostenlos starten",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Eine einheitliche Plattform für alle Beteiligten",
+      "subtitle": "DamDoh bietet die Werkzeuge und das Netzwerk, die Sie benötigen, um im modernen landwirtschaftlichen Ökosystem erfolgreich zu sein.",
+      "networking": {
+        "title": "Intelligentes Netzwerken",
+        "description": "KI-gestütztes Matchmaking, um Sie mit den richtigen Partnern zu verbinden, von Lieferanten bis zu internationalen Käufern."
+      },
+      "marketplace": {
+        "title": "Direkter Marktplatz",
+        "description": "Kaufen und verkaufen Sie Produkte, Betriebsmittel und Ausrüstung direkt, um Zwischenhändler zu umgehen und die Transparenz zu erhöhen."
+      },
+      "forums": {
+        "title": "Wissensforen",
+        "description": "Teilen Sie Einblicke, stellen Sie Fragen und lernen Sie von einer globalen Gemeinschaft von Agrarexperten und Gleichgesinnten."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Bieten Sie Ihre professionellen Dienstleistungen an oder finden Sie qualifizierte landwirtschaftliche Talente für Ihre spezifischen Bedürfnisse."
+      }
+    },
+    "forWho": {
+      "badge": "Für jeden in der Wertschöpfungskette",
+      "title": "Gebaut für die gesamte Agrarwelt",
+      "description": "Egal, ob Sie Samen säen oder einen Tisch decken, DamDoh ist Ihre Plattform für Verbindung und Wachstum.",
+      "farmers": {
+        "title": "Landwirte & Produzenten",
+        "description": "Greifen Sie auf neue Märkte zu, erzielen Sie faire Preise, finden Sie nachhaltige Betriebsmittel und verwalten Sie Ihren landwirtschaftlichen Betrieb effizient."
+      },
+      "buyers": {
+        "title": "Käufer & Verarbeiter",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von den Erzeugern und verwalten Sie Ihre Lieferkette mit Zuversicht."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihr Fachwissen an, finden Sie neue Kunden und tragen Sie zu einem effizienteren und nachhaltigeren Agrarsektor bei."
+      },
+      "imageAlt": "Eine Collage von verschiedenen Menschen, die in der Landwirtschaft arbeiten"
+    },
+    "cta": {
+      "title": "Bereit, Ihre landwirtschaftliche Zukunft zu gestalten?",
+      "subtitle": "Schließen Sie sich Tausenden von Beteiligten an, die bereits ein vernetzteres und nachhaltigeres Lebensmittelsystem aufbauen.",
+      "button": "Jetzt anmelden"
+    }
   }
 }

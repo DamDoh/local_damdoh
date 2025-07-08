@@ -16,5 +16,108 @@
         "description": "Impossible de récupérer les services. Veuillez réessayer."
       }
     }
+  },
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'Aide",
+    "logOut": "Se Déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Recherche",
+    "forums": "Forums",
+    "profile": "Profil"
+  },
+  "AppFooter": {
+    "tagline": "Connecter l'ensemble de la chaîne de valeur agricole, de la semence à la table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog & Actualités",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "getMobileApp": "Obtenez l'application mobile",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store",
+    "copyright": "© {year} {appName}. Tous droits réservés."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Renforcer l'Agriculture, Ensemble.",
+      "subtitle": "Rejoignez DamDoh, la plateforme mondiale qui connecte chaque maillon de la chaîne d'approvisionnement agricole. Des agriculteurs aux consommateurs, nous favorisons la croissance, la durabilité et le commerce direct.",
+      "getStartedButton": "Commencer Gratuitement",
+      "learnMoreButton": "En Savoir Plus"
+    },
+    "features": {
+      "title": "Une Plateforme Unifiée pour Tous les Acteurs",
+      "subtitle": "DamDoh fournit les outils et le réseau dont vous avez besoin pour prospérer dans l'écosystème agricole moderne.",
+      "networking": {
+        "title": "Réseautage Intelligent",
+        "description": "Mise en relation par IA pour vous connecter avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
+      },
+      "marketplace": {
+        "title": "Marché Direct",
+        "description": "Achetez et vendez des produits, des intrants et du matériel directement, en éliminant les intermédiaires et en augmentant la transparence."
+      },
+      "forums": {
+        "title": "Forums de Connaissances",
+        "description": "Partagez des idées, posez des questions et apprenez d'une communauté mondiale d'experts et de pairs agricoles."
+      },
+      "talent": {
+        "title": "Bourse de Talents",
+        "description": "Proposez vos services professionnels ou trouvez des talents agricoles qualifiés pour vos besoins spécifiques."
+      }
+    },
+    "forWho": {
+      "badge": "Pour Tous les Acteurs de la Chaîne de Valeur",
+      "title": "Conçu pour l'Ensemble du Monde Agricole",
+      "description": "Que vous plantiez des graines ou mettiez la table, DamDoh est votre plateforme de connexion et de croissance.",
+      "farmers": {
+        "title": "Agriculteurs & Producteurs",
+        "description": "Accédez à de nouveaux marchés, obtenez des prix équitables, trouvez des intrants durables et gérez efficacement vos exploitations agricoles."
+      },
+      "buyers": {
+        "title": "Acheteurs & Transformateurs",
+        "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et gérez votre chaîne d'approvisionnement en toute confiance."
+      },
+      "experts": {
+        "title": "Experts & Fournisseurs de Services",
+        "description": "Offrez votre expertise, trouvez de nouveaux clients et contribuez à un secteur agricole plus efficace et durable."
+      },
+      "imageAlt": "Un collage de diverses personnes travaillant dans l'agriculture"
+    },
+    "cta": {
+      "title": "Prêt à Cultiver votre Avenir Agricole ?",
+      "subtitle": "Rejoignez des milliers d'acteurs qui construisent déjà un système alimentaire plus connecté et durable.",
+      "button": "Inscrivez-vous Maintenant"
+    }
   }
 }
