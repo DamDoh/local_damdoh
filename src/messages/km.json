@@ -33,7 +33,7 @@
       "marketplaceActivityLabel": "សកម្មភាពទីផ្សារ",
       "marketplaceActivityDescription": "ជូនដំណឹងខ្ញុំអំពីការបញ្ជាទិញและសំណួរលើបញ្ជីរបស់ខ្ញុំ។",
       "talentExchangeLabel": "ការធ្វើបច្ចុប្បន្នភាពការផ្លាស់ប្តូរទេពកោសល្យ",
-      "talentExchangeDescription": "ជូនដំណឹងខ្ញុំអំពីបញ្ជីការងារថ្មីនិងពាក្យសុំ។",
+      "talentExchangeDescription": "ជូនដំណឹងខ្ញុំអំពីបញ្ជីការងារថ្មីและពាក្យសុំ។",
       "saveButton": "រក្សាទុកចំណង់ចំណូលចិត្ត"
     },
     "privacy": {
@@ -131,5 +131,12 @@
   },
   "LanguageSwitcher": {
     "toggle": "ផ្លាស់ប្តូរភាសា"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   }
 }

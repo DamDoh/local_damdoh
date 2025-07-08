@@ -131,5 +131,12 @@
   },
   "LanguageSwitcher": {
     "toggle": "Changer de langue"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Rechercher",
+    "forums": "Forums",
+    "profile": "Profil"
   }
 }
