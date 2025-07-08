@@ -76,9 +76,7 @@
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
     "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Thema wechseln",
-    "switchToDarkAria": "Zum dunklen Thema wechseln"
+    "logOut": "Abmelden"
   },
   "LanguageSwitcher": {
     "toggle": "Sprache ändern"
@@ -89,5 +87,39 @@
     "search": "Suche",
     "forums": "Foren",
     "profile": "Profil"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Ihre Aktionen werden gespeichert und synchronisiert, wenn Sie sich wieder verbinden."
+      },
+      "syncing": {
+        "title": "Offline-Änderungen werden synchronisiert...",
+        "description": "Lade {count, plural, one {# Aktion} other {# Aktionen}} auf den Server hoch."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen!",
+        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Nicht alle Offline-Änderungen konnten synchronisiert werden. Erneuter Versuch später."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Diese Aktion wird ausgeführt, sobald Sie online sind."
+      }
+    },
+    "tooltip": {
+      "syncing": "Synchronisiere {count, plural, one {# ausstehende Aktion} other {# ausstehende Aktionen}}...",
+      "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} warten auf Synchronisierung",
+      "onlineSynced": "Online | Alle Änderungen synchronisiert",
+      "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
+    }
   }
 }

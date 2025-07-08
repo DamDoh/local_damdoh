@@ -87,5 +87,39 @@
     "search": "Rechercher",
     "forums": "Forums",
     "profile": "Profil"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "Vous êtes de nouveau en ligne !",
+        "description": "Votre connexion a été rétablie."
+      },
+      "offline": {
+        "title": "Vous êtes actuellement hors ligne",
+        "description": "Vos actions seront enregistrées et synchronisées lorsque vous vous reconnecterez."
+      },
+      "syncing": {
+        "title": "Synchronisation des modifications hors ligne...",
+        "description": "Téléchargement de {count, plural, one {# action} other {# actions}} sur le serveur."
+      },
+      "synced": {
+        "title": "Synchronisation terminée !",
+        "description": "Toutes vos modifications hors ligne ont été enregistrées."
+      },
+      "syncFailed": {
+        "title": "Échec de la synchronisation",
+        "description": "Impossible de synchroniser toutes les modifications hors ligne. Une nouvelle tentative sera effectuée plus tard."
+      },
+      "queued": {
+        "title": "Action mise en file d'attente",
+        "description": "Cette action sera effectuée une fois que vous serez en ligne."
+      }
+    },
+    "tooltip": {
+      "syncing": "Synchronisation de {count, plural, one {# action en attente} other {# actions en attente}}...",
+      "onlinePending": "En ligne | {count, plural, one {# action} other {# actions}} en attente de synchronisation",
+      "onlineSynced": "En ligne | Toutes les modifications synchronisées",
+      "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
+    }
   }
 }
