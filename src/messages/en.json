@@ -131,6 +131,9 @@
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
   },
+  "LanguageSwitcher": {
+    "toggle": "Change language"
+  },
   "MobileBottomNav": {
     "home": "Home",
     "market": "Market",

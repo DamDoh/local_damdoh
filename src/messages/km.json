@@ -131,6 +131,9 @@
     "googlePlayAlt": "ទាញយកនៅលើ Google Play",
     "appStoreAlt": "ទាញយកនៅលើ App Store"
   },
+  "LanguageSwitcher": {
+    "toggle": "ប្តូរភាសា"
+  },
   "MobileBottomNav": {
     "home": "ទំព័រដើម",
     "market": "ទីផ្សារ",

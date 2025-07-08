@@ -131,6 +131,9 @@
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
   },
+  "LanguageSwitcher": {
+    "toggle": "Sprache ändern"
+  },
   "MobileBottomNav": {
     "home": "Start",
     "market": "Markt",
