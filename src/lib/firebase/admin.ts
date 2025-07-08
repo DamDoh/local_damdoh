@@ -13,7 +13,7 @@ function initializeAdminApp() {
       console.warn(
         '**************************************************************************************************\n' +
         '*** WARNING: FIREBASE_SERVICE_ACCOUNT_KEY is not set in your environment variables. ***\n' +
-        '*** Firebase Admin SDK is not initialized. Server-side actions will fail.            ***\n' +
+        '*** Firebase Admin SDK is not initialized. Server-side functions will not be available.            ***\n' +
         '*** To fix this, create a service account in your Firebase project console,          ***\n' +
         '*** download the JSON key, and set its contents as the                               ***\n' +
         '*** FIREBASE_SERVICE_ACCOUNT_KEY in your .env.local file.                              ***\n' +
@@ -42,15 +42,17 @@ function initializeAdminApp() {
 // This "lazy-loads" the services and ensures initialization happens first.
 export function getAdminDb() {
   initializeAdminApp();
-  return admin.firestore();
+  // Return null if the admin app is not initialized to avoid crashing serverless functions
+  // that might not have the env var (like client-side bundle analysis).
+  return admin.apps.length > 0 ? admin.firestore() : null;
 }
 
 export function getAdminAuth() {
   initializeAdminApp();
-  return admin.auth();
+  return admin.apps.length > 0 ? admin.auth() : null;
 }
 
 export function getAdminStorage() {
   initializeAdminApp();
-  return admin.storage();
+  return admin.apps.length > 0 ? admin.storage() : null;
 }

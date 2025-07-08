@@ -358,43 +358,6 @@
       }
     }
   },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform, from people to products.",
-    "placeholder": "Search for products, services, people, or even a VTI...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans Kenya",
-    "popularSearch2": "Tractor for rent",
-    "popularSearch3": "Soil testing services",
-    "popularSearch4": "Logistics partner for export",
-    "popularSearch5": "DamDoh community guidelines",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search for anything...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while performing the search. Please try again.",
-      "invalidCodeError": "Invalid QR code. This is not a valid DamDoh user or batch code.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "userNotFound": "User not found for the scanned ID.",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace Items",
-        "forums": "Forum Topics",
-        "vti_registry": "Traceability Report",
-        "agri_events": "Events",
-        "knowledge_articles": "Articles"
-      },
-      "noResults": "No results found.",
-      "tryAgain": "Try refining your search terms.",
-      "interpretationTitle": "Interpretation",
-      "interpretationNotesDefault": "Searching based on your query.",
-      "filtersTitle": "Filters Applied"
-    }
-  },
   "sustainabilityPage": {
     "title": "Sustainability Dashboard",
     "description": "Track and understand your farm's environmental impact.",
@@ -424,5 +387,128 @@
       "title": "No Data Available",
       "description": "We don't have enough data to generate your sustainability report yet. Start logging your farm activities!"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Agri-Tech Innovator Dashboard",
+    "sandboxTitle": "Sandbox Status",
+    "integrationsTitle": "Integrations",
+    "apiKeysTitle": "Your API Keys",
+    "apiKeysDescription": "Manage your API keys for accessing the DamDoh platform.",
+    "statusLabel": "Status",
+    "lastResetLabel": "Last Reset",
+    "activeProjects": "Active Projects",
+    "integrationsDescription": "Partner integrations that are currently active.",
+    "proposeIntegrationButton": "Propose Integration",
+    "accessDocsButton": "Access API Docs",
+    "generateNewKeyButton": "Generate New Key",
+    "noApiKeys": "You have not generated any API keys yet.",
+    "table": {
+      "key": "Description / Key",
+      "status": "Status",
+      "environment": "Environment",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "API Key copied to clipboard!",
+    "generateButton": "Generate",
+    "revokeDialog": {
+      "title": "Revoke API Key?",
+      "description": "This action cannot be undone. This will permanently disable this API key.",
+      "cancel": "Cancel",
+      "confirm": "Revoke"
+    },
+    "toast": {
+      "descriptionRequired": "A description for the key is required.",
+      "keyGeneratedSuccess": "API Key generated successfully.",
+      "keyGeneratedError": "Could not generate API key.",
+      "keyRevokedSuccess": "API Key revoked successfully.",
+      "keyRevokedError": "Could not revoke API Key."
+    }
+  },
+  "farmManagement": {
+    "knfInputsPage": {
+      "backLink": "Back to Farm Management",
+      "title": "KNF Input Assistant",
+      "description": "Track your homemade Korean Natural Farming inputs and access recipes.",
+      "guidesTitle": "KNF Guides & Recipes",
+      "ingredients": "Ingredients",
+      "steps": "Steps",
+      "usage": "Usage & Application",
+      "fermentingBatchesTitle": "Currently Fermenting",
+      "started": "Started",
+      "nextStepOn": "Next step on",
+      "markReady": "Mark as Ready",
+      "noFermentingBatches": "No batches are currently fermenting.",
+      "readyBatchesTitle": "Ready to Use",
+      "readySince": "Ready since",
+      "logUsage": "Log Usage",
+      "archive": "Archive",
+      "noReadyBatches": "You have no KNF inputs ready for use.",
+      "startNewBatch": "Start a New Batch",
+      "createNewBatchTitle": "Create New KNF Batch",
+      "cancel": "Cancel",
+      "form": {
+        "typeLabel": "Type of Input",
+        "typePlaceholder": "Select KNF Input",
+        "ingredientsLabel": "Key Ingredients",
+        "startDateLabel": "Start Date",
+        "startButton": "Start Fermentation",
+        "startingButton": "Starting..."
+      },
+      "knfOptions": {
+        "fpj": {
+          "label": "Fermented Plant Juice (FPJ)",
+          "placeholder": "e.g., Sweet potato tips, bamboo shoots"
+        },
+        "faa": {
+          "label": "Fish Amino Acid (FAA)",
+          "placeholder": "e.g., Fish scraps, heads, bones"
+        },
+        "wca": {
+          "label": "Water-Soluble Calcium (WCA)",
+          "placeholder": "e.g., Eggshells"
+        },
+        "imo": {
+          "label": "Indigenous Microorganisms (IMO)",
+          "placeholder": "e.g., Cooked rice, local forest soil"
+        },
+        "lab": {
+          "label": "Lactic Acid Bacteria (LAB)",
+          "placeholder": "e.g., Rice wash, milk"
+        }
+      },
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A growth enhancer made from the fermented sap of fast-growing plants.",
+          "ingredients": ["1kg fast-growing plants (e.g., squash tips, sweet potato vines)", "1kg brown sugar"],
+          "steps": ["Chop plants", "Mix with equal weight of brown sugar", "Pack in a breathable container", "Ferment for 7 days in a cool, dark place"],
+          "usage": "Dilute 1:500 - 1:1000 with water. Use as a foliar spray or soil drench during vegetative growth."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A potent nitrogen source made from fermented fish scraps.",
+          "ingredients": ["1kg fish parts (guts, heads, bones)", "1kg brown sugar"],
+          "steps": ["Layer fish parts and sugar in a container", "Cover and ferment for 3-6 months"],
+          "usage": "Dilute 1:1000 with water. Excellent for vegetative growth."
+        }
+      ],
+      "toasts": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not fetch your KNF batches.",
+        "validationError": "Please select an input type, and provide ingredients and a start date.",
+        "batchStartedTitle": "Batch Started!",
+        "batchStartedDescription": "Your new KNF batch is now fermenting.",
+        "batchStartFailed": "Failed to Start Batch",
+        "unexpectedError": "An unexpected error occurred. Please try again.",
+        "batchUpdatedTitle": "Batch Updated",
+        "batchUpdatedDescription": "Status updated to {{status}}.",
+        "updateFailed": "Update Failed",
+        "couldNotUpdate": "Could not update batch status."
+      }
+    }
   }
 }
+
