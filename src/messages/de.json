@@ -154,98 +154,43 @@
       }
     }
   },
-  "Homepage": {},
-  "networkPage": {
-    "title": "Netzwerk & Verbindungen",
-    "description": "Vernetzen Sie sich mit Landwirten, Käufern, Dienstleistern und mehr entlang der gesamten landwirtschaftlichen Wertschöpfungskette.",
-    "myNetworkButton": "Mein Netzwerk",
-    "agentToolsButton": "Agenten-Tools",
-    "aiSuggestionsTitle": "KI-gestützte Vorschläge",
-    "aiSuggestionsDescription": "Basierend auf Ihrem Profil und Ihrer Aktivität sind hier einige Stakeholder, mit denen Sie sich möglicherweise vernetzen möchten.",
-    "toast": {
-      "errorTitle": "Fehler",
-      "loadError": "Netzwerkdaten konnten nicht geladen werden."
-    },
-    "noSuggestions": "Derzeit keine Vorschläge verfügbar. Vervollständigen Sie Ihr Profil für bessere Empfehlungen.",
-    "signInPrompt": "Melden Sie sich an, um personalisierte Empfehlungen zu sehen.",
-    "connect": "Verbinden",
-    "profile": "Profil",
-    "browseAllTitle": "Alle Stakeholder durchsuchen",
-    "browseAllDescription": "Finden und vernetzen Sie sich mit jedem Stakeholder auf der Plattform.",
-    "searchPlaceholder": "Suche nach Name oder Zusammenfassung...",
+  "Marketplace": {
+    "title": "Marktplatz",
+    "description": "Durchsuchen und entdecken Sie Produkte und Dienstleistungen.",
+    "createShopButton": "Shop erstellen",
+    "createListingButton": "Angebot erstellen",
+    "myOrdersButton": "Meine erhaltenen Bestellungen",
+    "pinButton": "Als Startseite anheften",
+    "unpinButton": "Von Startseite lösen",
+    "searchPlaceholder": "Marktplatz durchsuchen...",
     "locationPlaceholder": "Nach Ort filtern...",
-    "rolePlaceholder": "Nach Rolle filtern...",
-    "allRoles": "Alle Rollen",
-    "noStakeholdersFound": "Keine Stakeholder gefunden, die Ihren Kriterien entsprechen.",
-    "noStakeholdersHint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
-  },
-  "myNetworkPage": {
-    "backLink": "Zurück zum Netzwerk",
-    "myConnectionsTab": "Meine Verbindungen ({count})",
-    "pendingRequestsTab": "Ausstehende Anfragen",
-    "connectionsTitle": "Meine Verbindungen",
-    "connectionsDescription": "Dies sind Ihre aktuellen Verbindungen auf der Plattform.",
-    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie mit dem Durchsuchen des Netzwerks!",
-    "requestsTitle": "Verbindungsanfragen",
-    "requestsDescription": "Akzeptieren oder lehnen Sie Anfragen von anderen Benutzern ab.",
-    "sentTimeAgo": "Gesendet vor {timeAgo}",
-    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen."
-  },
-  "agentToolsPage": {
-    "backLink": "Zurück zum Netzwerk",
-    "title": "Agenten-Tools",
-    "description": "Sichere Tools für autorisierte Feldagenten und Administratoren.",
-    "findUserLabel": "Benutzer nach Telefonnummer suchen",
-    "findButton": "Finden",
-    "phoneRequiredError": "Bitte geben Sie eine gültige Telefonnummer ein.",
-    "resultsTitle": "Suchergebnis",
-    "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt.",
-    "accessDeniedTitle": "Zugriff verweigert",
-    "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um diese Tools zu verwenden."
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Zentrale für Betriebsführung",
-      "description": "Ihre Kommandozentrale für alle Aktivitäten auf dem Bauernhof, von der Anbauplanung und KNF-Inputs bis zur Arbeits- und Finanzverwaltung.",
-      "myFarms": {
-        "title": "Meine Betriebe & Kulturen",
-        "description": "Verwalten Sie Ihre Betriebe, Felder und verfolgen Sie einzelne Anbauzyklen vom Samen bis zur Ernte.",
-        "button": "Betriebe verwalten"
+    "typePlaceholder": "Nach Typ filtern...",
+    "recommendedForYou": "Für Sie empfohlen",
+    "discoverMore": "Mehr entdecken",
+    "viewDetails": "Details anzeigen",
+    "viewServiceButton": "Dienstleistung ansehen",
+    "pinning": {
+      "pinnedTitle": "Marktplatz angeheftet!",
+      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
+      "unpinnedTitle": "Startseite gelöst!",
+      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
+    },
+    "categories": {
+      "allCategories": "Alle Kategorien",
+      "viewAllItems": "Alle Artikel anzeigen",
+      "viewAllCategory": "Alle in {{categoryName}}"
+    },
+    "noItemsFound": {
+      "title": "Keine Artikel gefunden.",
+      "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
       },
-      "labor": {
-        "title": "Arbeitsverwaltung",
-        "description": "Behalten Sie den Überblick über Ihre Arbeitskräfte, protokollieren Sie Stunden und verwalten Sie Zahlungen effizient.",
-        "button": "Arbeit verwalten"
-      },
-      "knf": {
-        "title": "KNF & Organische Inputs",
-        "description": "Erstellen und verwalten Sie Ihre Korean Natural Farming-Chargen und andere organische Inputs.",
-        "button": "Inputs verwalten"
-      },
-      "fgw": {
-        "title": "Anleitung zum Farming God's Way",
-        "description": "Greifen Sie auf Anleitungen und Prinzipien zur Umsetzung von Farming God's Way-Techniken zu.",
-        "button": "FGW-Anleitung ansehen"
-      },
-      "financials": {
-        "title": "Finanzen",
-        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihres Betriebs und beantragen Sie Finanzprodukte.",
-        "button": "Finanzen ansehen"
-      },
-      "seedStarting": {
-        "title": "Anleitung zur Aussaat",
-        "description": "Lernen Sie die besten Praktiken für eine erfolgreiche Aussaat zur Verpflanzung.",
-        "button": "Aussaat-Anleitung ansehen"
-      },
-      "familyFarm": {
-        "title": "200qm Familienbetrieb-Modell",
-        "description": "Erkunden Sie ein Modell für einen autarken, integrierten 200qm Familienbetrieb.",
-        "button": "Modell erkunden"
-      },
-      "assetManagement": {
-        "title": "Anlagenverwaltung",
-        "description": "Protokollieren und verwalten Sie Ihre landwirtschaftlichen Geräte, Werkzeuge und andere wertvolle Vermögenswerte. (Kommt bald)",
-        "button": "Anlagen verwalten"
+      "search": {
+        "title": "Suchfehler",
+        "description": "Marktplatzartikel konnten nicht abgerufen werden."
       }
     }
   }

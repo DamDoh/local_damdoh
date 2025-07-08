@@ -154,99 +154,47 @@
       }
     }
   },
-  "Homepage": {},
-  "networkPage": {
-    "title": "Network & Connections",
-    "description": "Connect with farmers, buyers, service providers, and more across the entire agricultural value chain.",
-    "myNetworkButton": "My Network",
-    "agentToolsButton": "Agent Tools",
-    "aiSuggestionsTitle": "AI-Powered Suggestions",
-    "aiSuggestionsDescription": "Based on your profile and activity, here are some stakeholders you might want to connect with.",
-    "toast": {
-      "errorTitle": "Error",
-      "loadError": "Could not load network data."
-    },
-    "noSuggestions": "No suggestions available right now. Complete your profile for better recommendations.",
-    "signInPrompt": "Sign in to see personalized recommendations.",
-    "connect": "Connect",
-    "profile": "Profile",
-    "browseAllTitle": "Browse All Stakeholders",
-    "browseAllDescription": "Find and connect with any stakeholder on the platform.",
-    "searchPlaceholder": "Search by name or summary...",
+  "Marketplace": {
+    "title": "Marketplace",
+    "description": "Browse and discover products and services.",
+    "createShopButton": "Create Shop",
+    "createListingButton": "Create Listing",
+    "myOrdersButton": "My Received Orders",
+    "pinButton": "Pin Homepage",
+    "unpinButton": "Unpin Homepage",
+    "searchPlaceholder": "Search marketplace...",
     "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter by role...",
-    "allRoles": "All Roles",
-    "noStakeholdersFound": "No stakeholders found matching your criteria.",
-    "noStakeholdersHint": "Try adjusting your filters or search terms."
-  },
-  "myNetworkPage": {
-    "backLink": "Back to Network",
-    "myConnectionsTab": "My Connections ({count})",
-    "pendingRequestsTab": "Pending Requests",
-    "connectionsTitle": "My Connections",
-    "connectionsDescription": "These are your current connections on the platform.",
-    "noConnections": "You haven't made any connections yet. Start browsing the network!",
-    "requestsTitle": "Connection Requests",
-    "requestsDescription": "Accept or decline requests from other users.",
-    "sentTimeAgo": "Sent {timeAgo}",
-    "noRequests": "You have no pending connection requests."
-  },
-  "agentToolsPage": {
-    "backLink": "Back to Network",
-    "title": "Agent Tools",
-    "description": "Secure tools for authorized field agents and administrators.",
-    "findUserLabel": "Find User by Phone Number",
-    "findButton": "Find",
-    "phoneRequiredError": "Please enter a valid phone number.",
-    "resultsTitle": "Search Result",
-    "resultsPlaceholder": "User details will appear here after a successful search.",
-    "accessDeniedTitle": "Access Denied",
-    "accessDeniedDescription": "You do not have the required permissions to use these tools."
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central command center for all on-farm activities, from crop planning and KNF inputs to labor and financial tracking.",
-      "myFarms": {
-        "title": "My Farms & Crops",
-        "description": "Manage your farms, fields, and track individual crop cycles from seed to harvest.",
-        "button": "Manage Farms"
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended for you",
+    "discoverMore": "Discover More",
+    "viewDetails": "View Details",
+    "viewServiceButton": "View Service",
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned!",
+      "pinnedDescription": "The Marketplace is now your default homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "The Dashboard is now your default homepage."
+    },
+    "categories": {
+      "allCategories": "All Categories",
+      "viewAllItems": "View All Items",
+      "viewAllCategory": "View All in {{categoryName}}"
+    },
+    "noItemsFound": {
+      "title": "No items found.",
+      "hint": "Try adjusting your filters or search terms."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Could not fetch AI recommendations"
       },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Keep track of your workforce, log hours, and manage payments efficiently.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF & Organic Inputs",
-        "description": "Create and manage your Korean Natural Farming batches and other organic inputs.",
-        "button": "Manage Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way Guide",
-        "description": "Access guides and principles for implementing Farming God's Way techniques.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Money Matters",
-        "description": "Track your farm's income, expenses, and apply for financial products.",
-        "button": "View Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "Learn the best practices for starting seeds successfully for transplantation.",
-        "button": "View Seed Guide"
-      },
-      "familyFarm": {
-        "title": "200sqm Family Farm Model",
-        "description": "Explore a model for a self-sufficient, integrated 200sqm family farm.",
-        "button": "Explore Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Log and manage your farm equipment, tools, and other valuable assets. (Coming Soon)",
-        "button": "Manage Assets"
+      "search": {
+        "title": "Search Error",
+        "description": "Could not fetch marketplace items."
       }
+    },
+    "itemView": {
+      "contactForRates": "Contact for rates"
     }
   }
 }

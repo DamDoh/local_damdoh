@@ -116,103 +116,34 @@
     }
   },
   "Marketplace": {
-    "itemView": {
-      "backLink": "Volver al mercado",
-      "unknownUser": "Usuario Desconocido",
-      "traceabilityButton": "Enlace de Comercio / Lote",
-      "skillsLabel": "Habilidades requeridas",
-      "experienceLabel": "Nivel de experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "booking": {
-        "perNight": "noche",
-        "checkIn": "Llegada",
-        "checkOut": "Salida",
-        "addDate": "Agregar fecha",
-        "guests": "Huéspedes",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "notCharged": "Aún no se le cobrará",
-        "nights": "noches",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total",
-        "successTitle": "¡Reserva exitosa!",
-        "successDescription": "Su reserva está confirmada.",
-        "failTitle": "Reserva fallida",
-        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
-        "bookedTitle": "¡Reservado!",
-        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
-        "ticketButton": "Mostrar ticket",
-        "modalTitle": "Ticket de reserva",
-        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
-        "modalScan": "Escanee este código para registrarse"
-      },
-      "coupon": {
-        "label": "Código de cupón",
-        "placeholder": "Introduce el código de cupón",
-        "applyButton": "Aplicar",
-        "successTitle": "¡Cupón aplicado!",
-        "successDescription": "Descuento aplicado: {{type}}",
-        "failTitle": "Cupón inválido",
-        "failDescription": "El código de cupón es inválido o no aplicable.",
-        "appliedText": "Cupón aplicado: {{code}}"
-      },
-      "aboutSeller": "Sobre el vendedor",
-      "viewShopfront": "Ver escaparate",
-      "editListing": "Editar publicación",
-      "manageService": "Gestionar servicio",
-      "buyNowButton": "Comprar ahora",
-      "contactForService": "Contactar para servicio",
-      "contactSeller": "Contactar vendedor",
-      "order": {
-        "title": "Pedir {{itemName}}",
-        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas (Opcional)",
-        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
-        "cancelButton": "Cancelar",
-        "confirmButton": "Confirmar pedido",
-        "placingButton": "Realizando pedido...",
-        "successTitle": "¡Pedido realizado!",
-        "successDescription": "Tu pedido ha sido realizado con éxito.",
-        "failTitle": "Pedido fallido",
-        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
-        "quantityErrorTitle": "Error de cantidad",
-        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
-      },
-      "notFound": {
-        "title": "Artículo no encontrado",
-        "description": "El artículo del mercado que estás buscando no existe.",
-        "backButton": "Volver a Mercado"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error al cargar publicación",
-          "description": "Ocurrió un error al cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error al cargar respuestas",
-          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
-        },
-        "emptyReply": "La respuesta no puede estar vacía.",
-        "submitReply": {
-          "title": "Error al enviar respuesta",
-          "description": "Ocurrió un error al enviar tu respuesta."
-        },
-        "loadItem": {
-          "title": "Error al cargar artículo",
-          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
-        },
-        "unexpected": "Ocurrió un error inesperado."
-      }
-    },
+    "title": "Mercado",
+    "description": "Explora y descubre productos y servicios.",
+    "createShopButton": "Crear Tienda",
+    "createListingButton": "Crear Anuncio",
     "myOrdersButton": "Mis Pedidos Recibidos",
+    "pinButton": "Fijar a Inicio",
+    "unpinButton": "Desfijar de Inicio",
+    "searchPlaceholder": "Buscar en el mercado...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "typePlaceholder": "Filtrar por tipo...",
     "recommendedForYou": "Recomendado para ti",
     "discoverMore": "Descubre Más",
+    "viewDetails": "Ver Detalles",
+    "viewServiceButton": "Ver Servicio",
+    "itemView": {
+      "contactForRates": "Contactar para tarifas"
+    },
+    "pinning": {
+      "pinnedTitle": "¡Mercado Fijado!",
+      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de Inicio Desfijada!",
+      "unpinnedDescription": "El Panel de Control es ahora tu página de inicio predeterminada."
+    },
+    "categories": {
+      "allCategories": "Todas las Categorías",
+      "viewAllItems": "Ver Todos los Artículos",
+      "viewAllCategory": "Ver todo en {{categoryName}}"
+    },
     "noItemsFound": {
       "title": "No se encontraron artículos.",
       "hint": "Intenta ajustar tus filtros o términos de búsqueda."
@@ -222,99 +153,8 @@
         "title": "No se pudieron obtener recomendaciones de IA"
       },
       "search": {
-        "title": "Error de búsqueda",
+        "title": "Error de Búsqueda",
         "description": "No se pudieron obtener los artículos del mercado."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "¡Mercado fijado!",
-      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "¡Página de inicio desfijada!",
-      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
-    },
-    "myOrders": {
-      "backLink": "Volver al mercado",
-      "title": "Mis Pedidos Recibidos",
-      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
-      "auth": {
-        "title": "Autenticación requerida",
-        "description": "Debe haber iniciado sesión para ver sus pedidos.",
-        "button": "Iniciar sesión"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "actions": {
-        "confirm": "Confirmar",
-        "ship": "Enviar",
-        "complete": "Completar",
-        "cancel": "Cancelar"
-      },
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      },
-      "noOrders": "No se encontraron pedidos.",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron obtener los pedidos.",
-        "successTitle": "¡Éxito!",
-        "updateSuccess": "Estado del pedido actualizado a {{status}}",
-        "failTitle": "Error"
-      }
-    }
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Centro de Gestión Agrícola",
-      "description": "Su centro de mando para todas las actividades en la granja, desde la planificación de cultivos e insumos KNF hasta el seguimiento laboral y financiero.",
-      "myFarms": {
-        "title": "Mis Granjas y Cultivos",
-        "description": "Gestione sus granjas, campos y siga los ciclos de cultivo individuales desde la siembra hasta la cosecha.",
-        "button": "Gestionar Granjas"
-      },
-      "labor": {
-        "title": "Gestión Laboral",
-        "description": "Lleve un registro de su fuerza laboral, registre horas y gestione los pagos de manera eficiente.",
-        "button": "Gestionar Mano de Obra"
-      },
-      "knf": {
-        "title": "Insumos KNF y Orgánicos",
-        "description": "Cree y gestione sus lotes de Agricultura Natural Coreana y otros insumos orgánicos.",
-        "button": "Gestionar Insumos"
-      },
-      "fgw": {
-        "title": "Guía Farming God's Way",
-        "description": "Acceda a guías y principios para implementar las técnicas de Farming God's Way.",
-        "button": "Ver Guía FGW"
-      },
-      "financials": {
-        "title": "Asuntos Monetarios",
-        "description": "Siga los ingresos y gastos de su granja y solicite productos financieros.",
-        "button": "Ver Finanzas"
-      },
-      "seedStarting": {
-        "title": "Guía de Germinación de Semillas",
-        "description": "Aprenda las mejores prácticas para iniciar semillas con éxito para el trasplante.",
-        "button": "Ver Guía de Semillas"
-      },
-      "familyFarm": {
-        "title": "Modelo de Granja Familiar de 200m²",
-        "description": "Explore un modelo para una granja familiar autosuficiente e integrada de 200m².",
-        "button": "Explorar Modelo"
-      },
-      "assetManagement": {
-        "title": "Gestión de Activos",
-        "description": "Registre y gestione su equipo agrícola, herramientas y otros activos valiosos. (Próximamente)",
-        "button": "Gestionar Activos"
       }
     }
   }

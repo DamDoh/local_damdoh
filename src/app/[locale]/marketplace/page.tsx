@@ -96,13 +96,13 @@ function MarketplaceContent() {
             setAiRecommendationReasons(reasons);
         } catch (error) {
             console.error("Error fetching AI marketplace recommendations:", error);
-            toast({ variant: "destructive", title: "Could not fetch AI recommendations" });
+            toast({ variant: "destructive", title: t('errors.aiRecommendations.title') });
         } finally {
             setIsLoadingAiRecommendations(false);
         }
     };
     fetchAiRecommendations();
-  }, [allItemsForAI, userType, toast]);
+  }, [allItemsForAI, userType, toast, t]);
   
   // Effect to perform search when filters change
   useEffect(() => {
@@ -138,15 +138,15 @@ function MarketplaceContent() {
             perUnit: res.perUnit,
             category: res.tags?.find((t: string) => UNIFIED_MARKETPLACE_CATEGORY_IDS.includes(t)) || res.tags?.[0] || '',
             sellerId: 'unknown',
-            createdAt: res.createdAt?.toDate ? res.createdAt.toDate().toISOString() : new Date().toISOString(),
-            updatedAt: res.updatedAt?.toDate ? res.updatedAt.toDate().toISOString() : new Date().toISOString(),
+            createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+            updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
         }));
         setDisplayedItems(mappedItems);
       } catch (error) {
         console.error("Failed to perform search:", error);
         toast({
           variant: "destructive",
-          title: "Search Error",
+          title: t('errors.search.title'),
           description: t('errors.search.description'),
         });
         setDisplayedItems([]);
@@ -187,7 +187,7 @@ function MarketplaceContent() {
               </Button>
                {user && (
                 <Button asChild variant="secondary" className="bg-blue-600 hover:bg-blue-700 text-white">
-                  <Link href="/marketplace/my-orders"><ShoppingCart className="mr-2 h-4 w-4" />My Received Orders</Link>
+                  <Link href="/marketplace/my-orders"><ShoppingCart className="mr-2 h-4 w-4" />{t('myOrdersButton')}</Link>
                 </Button>
               )}
               <Button asChild>

@@ -16,7 +16,7 @@ interface ItemCardProps {
 }
 
 export function ItemCard({ item, reason, className }: ItemCardProps) {
-    const t = useTranslations('marketplacePage');
+    const t = useTranslations('Marketplace');
     const isService = item.listingType === 'Service';
 
     return (
@@ -50,7 +50,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                 <div className="text-md font-bold pt-1 flex items-center gap-1.5">
                     {isService ? <Briefcase className="h-4 w-4" /> : <DollarSign className="h-4 w-4" />}
                     {isService ? (
-                        <span>{item.compensation || "Contact for rates"}</span>
+                        <span>{(item as ServiceItem).compensation || t('itemView.contactForRates')}</span>
                     ) : (
                         <span>
                             {typeof item.price === 'number' ? (
@@ -69,7 +69,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
             <CardFooter className="p-2 pt-0">
                 <Button asChild size="sm" className="w-full">
                     <Link href={`/marketplace/${item.id}`} className="flex items-center justify-center gap-2">
-                        {isService ? t('viewServiceButton', {defaultValue: "View Service"}) : t('viewDetails')}
+                        {isService ? "View Service" : t('viewDetails')}
                     </Link>
                 </Button>
             </CardFooter>

@@ -154,98 +154,46 @@
       }
     }
   },
-  "Homepage": {},
-  "networkPage": {
-    "title": "Réseau et Connexions",
-    "description": "Connectez-vous avec des agriculteurs, des acheteurs, des fournisseurs de services, et plus encore à travers toute la chaîne de valeur agricole.",
-    "myNetworkButton": "Mon Réseau",
-    "agentToolsButton": "Outils d'Agent",
-    "aiSuggestionsTitle": "Suggestions par IA",
-    "aiSuggestionsDescription": "En fonction de votre profil et de votre activité, voici quelques parties prenantes avec lesquelles vous pourriez vouloir vous connecter.",
-    "toast": {
-      "errorTitle": "Erreur",
-      "loadError": "Impossible de charger les données du réseau."
-    },
-    "noSuggestions": "Aucune suggestion disponible pour le moment. Complétez votre profil pour de meilleures recommandations.",
-    "signInPrompt": "Connectez-vous pour voir des recommandations personnalisées.",
-    "connect": "Connecter",
-    "profile": "Profil",
-    "browseAllTitle": "Parcourir tous les Acteurs",
-    "browseAllDescription": "Trouvez et connectez-vous avec n'importe quel acteur sur la plateforme.",
-    "searchPlaceholder": "Rechercher par nom ou résumé...",
+  "Marketplace": {
+    "title": "Marché",
+    "description": "Parcourez et découvrez des produits et des services.",
+    "createShopButton": "Créer une Boutique",
+    "createListingButton": "Créer une Annonce",
+    "myOrdersButton": "Mes Commandes Reçues",
+    "pinButton": "Épingler à l'Accueil",
+    "unpinButton": "Détacher de l'Accueil",
+    "searchPlaceholder": "Rechercher sur le marché...",
     "locationPlaceholder": "Filtrer par lieu...",
-    "rolePlaceholder": "Filtrer par rôle...",
-    "allRoles": "Tous les rôles",
-    "noStakeholdersFound": "Aucun acteur ne correspond à vos critères.",
-    "noStakeholdersHint": "Essayez d'ajuster vos filtres ou vos termes de recherche."
-  },
-  "myNetworkPage": {
-    "backLink": "Retour au Réseau",
-    "myConnectionsTab": "Mes Connexions ({count})",
-    "pendingRequestsTab": "Demandes en attente",
-    "connectionsTitle": "Mes Connexions",
-    "connectionsDescription": "Ce sont vos connexions actuelles sur la plateforme.",
-    "noConnections": "Vous n'avez pas encore établi de connexions. Commencez à explorer le réseau !",
-    "requestsTitle": "Demandes de Connexion",
-    "requestsDescription": "Acceptez ou refusez les demandes des autres utilisateurs.",
-    "sentTimeAgo": "Envoyé il y a {timeAgo}",
-    "noRequests": "Vous n'avez aucune demande de connexion en attente."
-  },
-  "agentToolsPage": {
-    "backLink": "Retour au Réseau",
-    "title": "Outils d'Agent",
-    "description": "Outils sécurisés pour les agents de terrain autorisés et les administrateurs.",
-    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
-    "findButton": "Trouver",
-    "phoneRequiredError": "Veuillez entrer un numéro de téléphone valide.",
-    "resultsTitle": "Résultat de la recherche",
-    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie.",
-    "accessDeniedTitle": "Accès refusé",
-    "accessDeniedDescription": "Vous n'avez pas les autorisations requises pour utiliser ces outils."
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Centre de Gestion de la Ferme",
-      "description": "Votre centre de commande central pour toutes les activités de la ferme, de la planification des cultures et des intrants KNF au suivi de la main-d'œuvre et des finances.",
-      "myFarms": {
-        "title": "Mes Fermes et Cultures",
-        "description": "Gérez vos fermes, vos champs et suivez les cycles de culture individuels, de la semence à la récolte.",
-        "button": "Gérer les Fermes"
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir Plus",
+    "viewDetails": "Voir les Détails",
+    "viewServiceButton": "Voir le Service",
+    "itemView": {
+      "contactForRates": "Contacter pour les tarifs"
+    },
+    "pinning": {
+      "pinnedTitle": "Marché Épinglé !",
+      "pinnedDescription": "Le marché est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Page d'Accueil Détachée !",
+      "unpinnedDescription": "Le tableau de bord est maintenant votre page d'accueil par défaut."
+    },
+    "categories": {
+      "allCategories": "Toutes les Catégories",
+      "viewAllItems": "Voir Tous les Articles",
+      "viewAllCategory": "Voir tout dans {{categoryName}}"
+    },
+    "noItemsFound": {
+      "title": "Aucun article trouvé.",
+      "hint": "Essayez d'ajuster vos filtres ou vos termes de recherche."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Impossible de récupérer les recommandations de l'IA"
       },
-      "labor": {
-        "title": "Gestion de la Main-d'œuvre",
-        "description": "Gardez une trace de votre main-d'œuvre, enregistrez les heures et gérez les paiements efficacement.",
-        "button": "Gérer la Main-d'œuvre"
-      },
-      "knf": {
-        "title": "Intrants KNF et Organiques",
-        "description": "Créez et gérez vos lots de Korean Natural Farming et autres intrants organiques.",
-        "button": "Gérer les Intrants"
-      },
-      "fgw": {
-        "title": "Guide Farming God's Way",
-        "description": "Accédez aux guides et principes pour la mise en œuvre des techniques de Farming God's Way.",
-        "button": "Voir le Guide FGW"
-      },
-      "financials": {
-        "title": "Questions d'Argent",
-        "description": "Suivez les revenus et les dépenses de votre ferme et demandez des produits financiers.",
-        "button": "Voir les Finances"
-      },
-      "seedStarting": {
-        "title": "Guide de Démarrage des Semis",
-        "description": "Apprenez les meilleures pratiques pour démarrer avec succès les semis en vue de la transplantation.",
-        "button": "Voir le Guide des Semis"
-      },
-      "familyFarm": {
-        "title": "Modèle de Ferme Familiale de 200m²",
-        "description": "Explorez un modèle de ferme familiale intégrée et autosuffisante de 200m².",
-        "button": "Explorer le Modèle"
-      },
-      "assetManagement": {
-        "title": "Gestion des Actifs",
-        "description": "Enregistrez et gérez votre équipement agricole, vos outils et autres actifs de valeur. (Bientôt disponible)",
-        "button": "Gérer les Actifs"
+      "search": {
+        "title": "Erreur de Recherche",
+        "description": "Impossible de récupérer les articles du marché."
       }
     }
   }
