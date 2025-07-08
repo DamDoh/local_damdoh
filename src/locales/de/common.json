@@ -1,3 +1,4 @@
+
 {
   "Forums": {
     "title": "Forum-Themen",
@@ -120,581 +121,141 @@
           "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
         }
       }
-    },
-    "createListing": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Neues Angebot erstellen",
-      "description": "Listen Sie ein Produkt oder eine Dienstleistung auf dem Marktplatz auf.",
-      "form": {
-        "nameLabel": "Name des Artikels/der Dienstleistung",
-        "namePlaceholder": "Geben Sie den Namen Ihres Angebots ein",
-        "typeLabel": "Angebotstyp",
-        "typePlaceholder": "Wählen Sie den Angebotstyp",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Angebot",
-        "locationLabel": "Standort",
-        "locationPlaceholder": "Standort eingeben",
-        "relatedVtiLabel": "Zugehörige VTI / Chargen-ID (Optional)",
-        "relatedVtiPlaceholder": "Geben Sie die VTI ein, wenn dieses Angebot für eine bestimmte Charge gilt",
-        "relatedVtiDescription": "Die Verknüpfung einer VTI erhöht das Vertrauen des Käufers.",
-        "categoryLabel": "Kategorie",
-        "categoryPlaceholder": "Kategorie auswählen",
-        "compensationLabel": "Vergütung",
-        "compensationPlaceholder": "z.B. pro Stunde, fester Satz",
-        "experienceLabel": "Erfahrungslevel",
-        "experiencePlaceholder": "z.B. Anfänger, Fortgeschrittener, Experte",
-        "skillsLabel": "Benötigte Fähigkeiten",
-        "skillsPlaceholder": "Liste der für die Dienstleistung benötigten Fähigkeiten",
-        "skillsDescription": "Trennen Sie Fähigkeiten durch Kommas.",
-        "priceLabel": "Preis",
-        "pricePlaceholder": "Preis eingeben",
-        "unitLabel": "Einheit",
-        "unitPlaceholder": "z.B. kg, Stück, Stunde",
-        "imageUrlLabel": "Bild-URL (Optional)",
-        "sustainableLabel": "Nachhaltige Praxis",
-        "sustainableDescription": "Geben Sie an, ob dieses Angebot nachhaltige Praktiken beinhaltet.",
-        "submitButton": "Angebot erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Preis mit KI vorschlagen",
-        "generatingButton": "Wird generiert...",
-        "suggestionLabel": "KI-Vorschlag:",
-        "usePriceButton": "Diesen Preis verwenden"
-      },
-      "success": {
-        "title": "Erfolg!",
-        "description": "Ihr Angebot wurde erstellt."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Fehlende Informationen",
-            "description": "Bitte geben Sie einen Namen und eine Beschreibung ein, bevor Sie einen Preis vorschlagen."
-          },
-          "failed": {
-            "title": "Preisvorschlag fehlgeschlagen",
-            "description": "KI-Preisvorschlag konnte nicht abgerufen werden. Bitte versuchen Sie es erneut oder geben Sie einen Preis manuell ein."
-          }
-        },
-        "authentication": {
-          "title": "Authentifizierungsfehler",
-          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
-        },
-        "creation": {
-          "title": "Erstellung fehlgeschlagen",
-          "description": "Das Angebot konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
-        }
-      }
-    },
-    "itemView": {
- "backLink": "Zurück zum Marktplatz",
- "unknownUser": "Unbekannter Benutzer",
- "traceabilityButton": "Handels-/Chargen-Link",
- "skillsLabel": "Benötigte Fähigkeiten",
- "experienceLabel": "Erfahrungslevel",
- "compensationLabel": "Vergütung",
- "contactForRates": "Kontakt für Preise",
- "booking": {
- "perNight": "Nacht",
- "checkIn": "Check-in",
- "checkOut": "Check-out",
- "addDate": "Datum hinzufügen",
- "guests": "Gäste",
- "reserveButton": "Buchen",
- "reservingButton": "Wird gebucht...",
- "notCharged": "Ihnen wird noch nichts berechnet",
- "nights": "Nächte",
- "serviceFee": "Servicegebühr",
- "total": "Gesamt",
- "successTitle": "Buchung erfolgreich!",
- "successDescription": "Ihre Buchung ist bestätigt.",
- "failTitle": "Buchung fehlgeschlagen",
- "dateError": "Bitte wählen Sie gültige Check-in- und Check-out-Daten.",
- "authTitle": "Authentifizierung erforderlich",
- "authDescription": "Sie müssen angemeldet sein, um einen Dienst zu buchen.",
- "bookedTitle": "Gebucht!",
- "bookedDescription": "Ihre Buchung ist bestätigt. Zeigen Sie den QR-Code unten bei Ihrer Ankunft vor.",
- "ticketButton": "Ticket anzeigen",
- "modalTitle": "Buchungsticket",
- "modalDescription": "Zeigen Sie diesen QR-Code bei {{itemName}} für den Check-in vor.",
- "modalScan": "Diesen Code zum Einchecken scannen"
- },
- "coupon": {
- "label": "Gutscheincode",
- "placeholder": "Gutscheincode eingeben",
- "applyButton": "Anwenden",
- "successTitle": "Gutschein angewendet!",
- "successDescription": "Rabatt angewendet: {{type}}",
- "failTitle": "Gutschein ungültig",
- "failDescription": "Der Gutscheincode ist ungültig oder nicht anwendbar.",
- "appliedText": "Gutschein angewendet: {{code}}"
- },
- "aboutSeller": "Über den Verkäufer",
- "viewShopfront": "Schaufenster anzeigen",
- "editListing": "Angebot bearbeiten",
- "manageService": "Dienstleistung verwalten",
- "buyNowButton": "Jetzt kaufen",
- "contactForService": "Kontakt für Dienstleistung",
- "contactSeller": "Verkäufer kontaktieren",
- "order": {
- "title": "Artikel bestellen: {{itemName}}",
- "description": "Geben Sie die gewünschte Menge und eventuelle Anmerkungen ein.",
- "quantityLabel": "Menge",
- "notesLabel": "Anmerkungen (Optional)",
- "notesPlaceholder": "Fügen Sie spezifische Anweisungen oder Anfragen hinzu...",
- "cancelButton": "Abbrechen",
- "confirmButton": "Bestellung bestätigen",
- "placingButton": "Bestellung wird aufgegeben...",
- "successTitle": "Bestellung aufgegeben!",
- "successDescription": "Ihre Bestellung wurde erfolgreich aufgegeben.",
- "failTitle": "Bestellung fehlgeschlagen",
- "failDescription": "Die Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
- "quantityErrorTitle": "Mengenfehler",
- "quantityErrorDescription": "Bitte geben Sie eine gültige Menge ein (mindestens 1).",
- "authTitle": "Authentifizierung erforderlich",
- "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben."
- },
- "notFound": {
- "title": "Artikel nicht gefunden",
- "description": "Der gesuchte Marktplatzartikel existiert nicht.",
- "backButton": "Zurück zum Marktplatz"
- },
- "errors": {
- "loadPost": {
- "title": "Fehler beim Laden des Beitrags",
- "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
- },
- "loadReplies": {
- "title": "Fehler beim Laden der Antworten",
- "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
- },
- "emptyReply": "Antwort darf nicht leer sein.",
- "submitReply": {
- "title": "Fehler beim Senden der Antwort",
- "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
- },
- "loadItem": {
- "title": "Fehler beim Laden des Artikels",
- "description": "Beim Laden der Details des Marktplatzartikels ist ein Fehler aufgetreten."
- },
- "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
- }
- }
+    }
   },
   "Marketplace": {
     "myOrders": {
- "backLink": "Zurück zum Marktplatz",
- "title": "Meine erhaltenen Bestellungen",
- "description": "Anzeigen und Verwalten von Bestellungen, die von Käufern erhalten wurden.",
- "auth": {
- "title": "Authentifizierung erforderlich",
- "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
- "button": "Anmelden"
- },
- "table": {
- "date": "Datum",
- "buyer": "Käufer",
- "product": "Produkt",
- "total": "Gesamt",
- "status": "Status",
- "actions": "Aktionen"
- },
- "actions": {
- "confirm": "Bestätigen",
- "ship": "Versenden",
- "complete": "Abschließen",
- "cancel": "Stornieren"
- },
- "status": {
- "new": "Neu",
- "confirmed": "Bestätigt",
- "shipped": "Versandt",
- "completed": "Abgeschlossen",
- "cancelled": "Storniert"
- },
- "noOrders": "Keine Bestellungen gefunden.",
- "toast": {
- "errorTitle": "Fehler",
- "fetchError": "Bestellungen konnten nicht abgerufen werden.",
- "successTitle": "Erfolg!",
- "updateSuccess": "Bestellstatus aktualisiert auf {{status}}",
- "failTitle": "Fehler"
-    }
-    },
-    "myOrdersButton": "Meine erhaltenen Bestellungen",
-    "recommendedForYou": "Empfohlen für Sie",
-    "discoverMore": "Mehr entdecken",
-    "noItemsFound": {
-      "title": "Keine Artikel gefunden.",
-      "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Meine erhaltenen Bestellungen",
+      "description": "Anzeigen und Verwalten von Bestellungen, die von Käufern erhalten wurden.",
+      "auth": {
+        "title": "Authentifizierung erforderlich",
+        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
+        "button": "Anmelden"
       },
-      "search": {
-        "title": "Suchfehler",
-        "description": "Marktplatzartikel konnten nicht abgerufen werden."
+      "table": {
+        "date": "Datum",
+        "buyer": "Käufer",
+        "product": "Produkt",
+        "total": "Gesamt",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "actions": {
+        "confirm": "Bestätigen",
+        "ship": "Versenden",
+        "complete": "Abschließen",
+        "cancel": "Stornieren"
+      },
+      "status": {
+        "new": "Neu",
+        "confirmed": "Bestätigt",
+        "shipped": "Versandt",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
+      },
+      "noOrders": "Keine Bestellungen gefunden.",
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Bestellungen konnten nicht abgerufen werden.",
+        "successTitle": "Erfolg!",
+        "updateSuccess": "Bestellstatus aktualisiert auf {{status}}",
+        "failTitle": "Fehler"
       }
     },
-    "topic": {
+    "itemView": {
+      "backLink": "Zurück zum Marktplatz",
       "unknownUser": "Unbekannter Benutzer",
-      "postMeta": "von {{author}} am {{date}}",
-      "buttons": {
-        "createPost": "Antwort hinzufügen",
-        "loadMore": "Mehr laden",
-        "loadingMore": "Lädt mehr..."
+      "traceabilityButton": "Handels-/Chargen-Link",
+      "skillsLabel": "Benötigte Fähigkeiten",
+      "experienceLabel": "Erfahrungslevel",
+      "compensationLabel": "Vergütung",
+      "contactForRates": "Kontakt für Preise",
+      "booking": {
+        "perNight": "Nacht",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Datum hinzufügen",
+        "guests": "Gäste",
+        "reserveButton": "Buchen",
+        "reservingButton": "Wird gebucht...",
+        "notCharged": "Ihnen wird noch nichts berechnet",
+        "nights": "Nächte",
+        "serviceFee": "Servicegebühr",
+        "total": "Gesamt",
+        "successTitle": "Buchung erfolgreich!",
+        "successDescription": "Ihre Buchung ist bestätigt.",
+        "failTitle": "Buchung fehlgeschlagen",
+        "dateError": "Bitte wählen Sie gültige Check-in- und Check-out-Daten.",
+        "authTitle": "Authentifizierung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um einen Dienst zu buchen.",
+        "bookedTitle": "Gebucht!",
+        "bookedDescription": "Ihre Buchung ist bestätigt. Zeigen Sie den QR-Code unten bei Ihrer Ankunft vor.",
+        "ticketButton": "Ticket anzeigen",
+        "modalTitle": "Buchungsticket",
+        "modalDescription": "Zeigen Sie diesen QR-Code bei {{itemName}} für den Check-in vor.",
+        "modalScan": "Diesen Code zum Einchecken scannen"
       },
-      "noPosts": {
-        "title": "Noch keine Beiträge",
-        "description": "Seien Sie der Erste, der auf dieses Thema antwortet.",
-        "button": "Antwort hinzufügen"
+      "coupon": {
+        "label": "Gutscheincode",
+        "placeholder": "Gutscheincode eingeben",
+        "applyButton": "Anwenden",
+        "successTitle": "Gutschein angewendet!",
+        "successDescription": "Rabatt angewendet: {{type}}",
+        "failTitle": "Gutschein ungültig",
+        "failDescription": "Der Gutscheincode ist ungültig oder nicht anwendbar.",
+        "appliedText": "Gutschein angewendet: {{code}}"
+      },
+      "aboutSeller": "Über den Verkäufer",
+      "viewShopfront": "Schaufenster anzeigen",
+      "editListing": "Angebot bearbeiten",
+      "manageService": "Dienstleistung verwalten",
+      "buyNowButton": "Jetzt kaufen",
+      "contactForService": "Kontakt für Dienstleistung",
+      "contactSeller": "Verkäufer kontaktieren",
+      "order": {
+        "title": "Artikel bestellen: {{itemName}}",
+        "description": "Geben Sie die gewünschte Menge und eventuelle Anmerkungen ein.",
+        "quantityLabel": "Menge",
+        "notesLabel": "Anmerkungen (Optional)",
+        "notesPlaceholder": "Fügen Sie spezifische Anweisungen oder Anfragen hinzu...",
+        "cancelButton": "Abbrechen",
+        "confirmButton": "Bestellung bestätigen",
+        "placingButton": "Bestellung wird aufgegeben...",
+        "successTitle": "Bestellung aufgegeben!",
+        "successDescription": "Ihre Bestellung wurde erfolgreich aufgegeben.",
+        "failTitle": "Bestellung fehlgeschlagen",
+        "failDescription": "Die Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
+        "quantityErrorTitle": "Mengenfehler",
+        "quantityErrorDescription": "Bitte geben Sie eine gültige Menge ein (mindestens 1).",
+        "authTitle": "Authentifizierung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben."
       },
       "notFound": {
-        "title": "Thema nicht gefunden",
-        "description": "Das gesuchte Thema existiert nicht.",
-        "backButton": "Zurück zu den Foren"
+        "title": "Artikel nicht gefunden",
+        "description": "Der gesuchte Marktplatzartikel existiert nicht.",
+        "backButton": "Zurück zum Marktplatz"
       },
       "errors": {
-        "loadPosts": {
-          "title": "Fehler beim Laden der Beiträge",
-          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
         },
-        "loadTopic": {
-          "title": "Fehler beim Laden des Themas",
-          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
-        }
-      }
-    },
-    "create": {
-      "backLink": "Zurück zu den Themen",
-      "title": "Neues Thema erstellen",
-      "description": "Starten Sie eine neue Diskussion im Forum.",
-      "form": {
-        "nameLabel": "Themenname",
-        "namePlaceholder": "Geben Sie den Namen Ihres Themas ein",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Thema kurz",
-        "submitButton": "Thema erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "success": {
-        "title": "Thema erfolgreich erstellt",
-        "description": "Ihr neues Thema wurde erstellt."
-      },
-      "errors": {
-        "auth": {
-          "title": "Nicht authentifiziert",
-          "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
         },
-        "incomplete": {
-          "title": "Unvollständige Felder",
-          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        "emptyReply": "Antwort darf nicht leer sein.",
+        "submitReply": {
+          "title": "Fehler beim Senden der Antwort",
+          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
         },
-        "general": {
-          "title": "Fehler",
-          "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
-        }
+        "loadItem": {
+          "title": "Fehler beim Laden des Artikels",
+          "description": "Beim Laden der Details des Marktplatzartikels ist ein Fehler aufgetreten."
+        },
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
       }
     }
-    "pinning": {
-      "pinnedTitle": "Marktplatz angeheftet!",
-      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
-      "unpinnedTitle": "Startseite gelöst!",
-      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
-    },
-    "description": "Durchsuchen und entdecken Sie Produkte und Dienstleistungen.",
-    "createShopButton": "Shop erstellen",
-    "createListingButton": "Angebot erstellen",
-    "searchPlaceholder": "Marktplatz durchsuchen..."
-  },
-  "Homepage": {
-  }
-}{
-  "Marketplace": {
-    "createShop": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Erstellen Sie Ihren digitalen Shop",
-      "description": "Richten Sie Ihren Shop ein, um Artikel und Dienstleistungen anzubieten.",
-      "form": {
-        "nameLabel": "Name des Shops",
-        "namePlaceholder": "Geben Sie den Namen Ihres Shops ein",
-        "typeLabel": "Stakeholder-Typ",
-        "typePlaceholder": "Wählen Sie Ihren Typ",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihren Shop und Ihr Angebot"
-      },
-      "submitButton": "Shop erstellen",
-      "submittingButton": "Wird erstellt...",
-      "authErrorTitle": "Authentifizierungsfehler",
-      "authErrorDescription": "Sie müssen angemeldet sein, um einen Shop zu erstellen.",
-      "toast": {
-        "successTitle": "Shop erstellt!",
-        "successDescription": "Ihr Shop \"{{shopName}}\" wurde erstellt.",
-        "failTitle": "Erstellung fehlgeschlagen",
-        "failDescription": "Der Shop konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
-      }
-    }
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "farmer": "Landwirt",
-      "trader": "Händler",
-      "agro_innovator": "Agro-Innovator",
-      "researcher": "Forscher",
-      "service_provider": "Dienstleister",
-      "consumer": "Verbraucher"
-      // Add other roles from STAKEHOLDER_ROLES array
-    }
-  }
-}
-{
-  "Marketplace": {
-    "manageService": {
-      "backLink": "Zurück zu {{itemName}}",
-      "title": "Dienstleistung verwalten: {{itemName}}",
-      "description": "Buchungen und Einstellungen für diese Dienstleistung verwalten.",
-      "tabs": {
-        "bookings": "Buchungen",
-        "settings": "Einstellungen"
-      },
-      "bookingsTab": {
-        "title": "Dienstleistungsbuchungen",
-        "description": "Buchungen für diese Dienstleistung anzeigen und verwalten.",
-        "table": {
-          "date": "Datum",
-          "guest": "Gast",
-          "dates": "Daten",
-          "total": "Gesamt",
-          "status": "Status",
-          "actions": "Aktionen"
-        },
-        "status": {
-          "pending": "Ausstehend",
-          "confirmed": "Bestätigt",
-          "cancelled": "Storniert",
-          "completed": "Abgeschlossen"
-        },
-        "actions": {
-          "confirm": "Buchung bestätigen",
-          "cancel": "Buchung stornieren",
-          "viewDetails": "Details anzeigen"
-        },
-        "noBookings": "Noch keine Buchungen.",
-        "toast": {
-          "fetchErrorTitle": "Fehler beim Laden der Buchungen",
-          "fetchErrorDescription": "Buchungen für diese Dienstleistung konnten nicht abgerufen werden.",
-          "updateSuccessTitle": "Buchung aktualisiert!",
-          "updateSuccessDescription": "Buchungsstatus aktualisiert auf {{status}}.",
-          "updateFailTitle": "Update fehlgeschlagen",
-          "updateFailDescription": "Buchungsstatus konnte nicht aktualisiert werden."
-        }
-      },
-      "settingsTab": {
-        "title": "Dienstleistungseinstellungen",
-        "description": "Details und Verfügbarkeit für diese Dienstleistung aktualisieren.",
-        "form": {
-          "priceLabel": "Preis pro Nacht",
-          "pricePlaceholder": "Preis eingeben",
-          "currencyLabel": "Währung",
-          "currencyPlaceholder": "Währung auswählen",
-          "availabilityLabel": "Verfügbarkeitsdaten",
-          "availabilityDescription": "Wählen Sie die Daten aus, an denen diese Dienstleistung verfügbar ist.",
-          "submitButton": "Änderungen speichern",
-          "submittingButton": "Wird gespeichert..."
-        },
-         "toast": {
-          "updateSuccessTitle": "Einstellungen gespeichert!",
-          "updateSuccessDescription": "Dienstleistungseinstellungen erfolgreich aktualisiert.",
-          "updateFailTitle": "Speichern fehlgeschlagen",
-          "updateFailDescription": "Dienstleistungseinstellungen konnten nicht gespeichert werden."
-        }
-      },
-       "errors": {
-        "loadErrorTitle": "Fehler beim Laden der Dienstleistung",
-        "loadErrorDescription": "Details zur Verwaltung der Dienstleistung konnten nicht geladen werden.",
-        "notFoundTitle": "Dienstleistung nicht gefunden",
-        "notFoundDescription": "Die Dienstleistung, die Sie verwalten möchten, existiert nicht."
-      },
-       "authRequired": {
-        "title": "Authentifizierung erforderlich",
-        "description": "Sie müssen angemeldet sein, um diese Dienstleistung zu verwalten.",
-        "button": "Anmelden"
-      }
-    }
-  }
-}
-{
-  "Profile": {
-    "backLink": "Zurück",
-    "loading": "Profil wird geladen...",
-    "notFound": {
-      "title": "Profil nicht gefunden",
-      "description": "Das gesuchte Benutzerprofil existiert nicht."
-    },
-    "tabs": {
-      "overview": "Übersicht",
-      "listings": "Marktplatz-Angebote",
-      "orders": "Meine Bestellungen"
-      // Add other relevant tabs here
-    },
-    "overviewTab": {
-      "contactButton": "Kontaktieren",
-      "aboutSectionTitle": "Über",
-      "rolesLabel": "Rollen",
-      "locationLabel": "Standort",
-      "bioLabel": "Bio",
-      "joinedLabel": "Beigetreten",
-      "loadingText": "Übersicht wird geladen...",
-      "noBio": "Noch keine Bio angegeben."
-       // Add other overview specific keys
-    },
-    "listingsTab": {
-      "title": "Marktplatz-Angebote",
-      "description": "Artikel und Dienstleistungen, die von diesem Benutzer angeboten werden.",
-      "noListings": "Dieser Benutzer hat keine aktiven Angebote.",
-      "loading": "Angebote werden geladen..."
-      // Reuse Marketplace item card translations from Marketplace.itemView
-    },
-    "ordersTab": {
-      "title": "Meine Bestellungen",
-      "description": "Ihre aufgegebenen Marktplatzbestellungen.",
-      "table": {
-        "orderDate": "Bestelldatum",
-        "seller": "Verkäufer",
-        "item": "Artikel",
-        "quantity": "Menge",
-        "total": "Gesamt",
-        "status": "Status"
-        // Reuse Marketplace order status translations from Marketplace.myOrders
-      },
-      "noOrders": "Sie haben noch keine Bestellungen aufgegeben.",
-      "loading": "Bestellungen werden geladen...",
-      "errors": {
-        "fetchErrorTitle": "Fehler beim Laden der Bestellungen",
-        "fetchErrorDescription": "Ihre aufgegebenen Bestellungen konnten nicht abgerufen werden."
-      }
-       // Reuse Marketplace order status translations from Marketplace.myOrders
-    },
-    "errors": {
-      "loadErrorTitle": "Fehler beim Laden des Profils",
-      "loadErrorDescription": "Das Benutzerprofil konnte nicht geladen werden."
-    },
-     "actions": {
-      "editProfile": "Profil bearbeiten"
-    }
-     // Reuse other general keys like 'unknownUser' if needed
-  }
-}
-{
-  "Settings": {
-    "backLink": "Zurück",
-    "title": "Einstellungen",
-    "description": "Verwalten Sie Ihre Konto- und Profileinstellungen.",
-    "tabs": {
-      "profile": "Profil",
-      "account": "Konto",
-      "notifications": "Benachrichtigungen",
-      "language": "Sprache"
-      // Add other relevant tabs here
-    },
-    "profileTab": {
-      "title": "Profileinstellungen",
-      "description": "Aktualisieren Sie Ihre öffentlichen Profilinformationen.",
-      "form": {
-        "displayNameLabel": "Anzeigename",
-        "displayNamePlaceholder": "Geben Sie Ihren Anzeigenamen ein",
-        "bioLabel": "Bio",
-        "bioPlaceholder": "Erzählen Sie uns etwas über sich...",
-        "locationLabel": "Standort",
-        "locationPlaceholder": "Geben Sie Ihren Standort ein",
-        "avatarLabel": "Avatar",
-        "avatarDescription": "Laden Sie ein Profilbild hoch.",
-        "currentAvatar": "Aktueller Avatar",
-        "changeAvatarButton": "Avatar ändern",
-        "uploadingAvatar": "Wird hochgeladen...",
-        "saveButton": "Profil speichern",
-        "savingButton": "Wird gespeichert..."
-      },
-      "toast": {
-        "updateSuccessTitle": "Profil aktualisiert!",
-        "updateSuccessDescription": "Ihr Profil wurde erfolgreich aktualisiert."
-      },
-      "errors": {
-        "updateFailTitle": "Aktualisierung fehlgeschlagen",
-        "updateFailDescription": "Ihr Profil konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut."
-      }
-    },
-    "accountTab": {
-      "title": "Kontoeinstellungen",
-      "description": "Verwalten Sie die Authentifizierung und Sicherheit Ihres Kontos.",
-      "changePasswordSectionTitle": "Passwort ändern",
-      "changePasswordDescription": "Aktualisieren Sie das Passwort Ihres Kontos.",
-      "form": {
-        "currentPasswordLabel": "Aktuelles Passwort",
-        "currentPasswordPlaceholder": "Geben Sie Ihr aktuelles Passwort ein",
-        "newPasswordLabel": "Neues Passwort",
-        "newPasswordPlaceholder": "Geben Sie Ihr neues Passwort ein",
-        "confirmPasswordLabel": "Neues Passwort bestätigen",
-        "confirmPasswordPlaceholder": "Bestätigen Sie Ihr neues Passwort",
-        "updatePasswordButton": "Passwort aktualisieren",
-        "updatingPasswordButton": "Wird aktualisiert..."
-      },
-      "toast": {
-        "passwordUpdateSuccessTitle": "Passwort aktualisiert!",
-        "passwordUpdateSuccessDescription": "Ihr Passwort wurde erfolgreich aktualisiert."
-      },
-      "errors": {
-         "passwordUpdateFailTitle": "Passwort-Aktualisierung fehlgeschlagen",
-        "passwordUpdateFailDescription": "Ihr Passwort konnte nicht aktualisiert werden. Bitte überprüfen Sie Ihr aktuelles Passwort und versuchen Sie es erneut."
-      }
-       // Add other account related keys (email, etc.)
-    },
-    "notificationsTab": {
-      "title": "Benachrichtigungseinstellungen",
-      "description": "Verwalten Sie Ihre E-Mail- und Push-Benachrichtigungseinstellungen.",
-      "emailNotificationsLabel": "E-Mail-Benachrichtigungen",
-      "emailNotificationsDescription": "Benachrichtigungen per E-Mail erhalten.",
-      "pushNotificationsLabel": "Push-Benachrichtigungen",
-      "pushNotificationsDescription": "Benachrichtigungen auf Ihrem Gerät erhalten.",
-       "saveButton": "Einstellungen speichern",
-      "savingButton": "Wird gespeichert...",
-       "toast": {
-        "updateSuccessTitle": "Einstellungen gespeichert!",
-        "updateSuccessDescription": "Ihre Benachrichtigungseinstellungen wurden gespeichert."
-      },
-      "errors": {
-        "updateFailTitle": "Speichern fehlgeschlagen",
-        "updateFailDescription": "Ihre Benachrichtigungseinstellungen konnten nicht gespeichert werden."
-      }
-       // Add keys for specific notification types
-    },
-     "languageTab": {
-      "title": "Spracheinstellungen",
-      "description": "Wählen Sie Ihre bevorzugte Sprache.",
-      "languageLabel": "Sprache",
-      "languagePlaceholder": "Sprache auswählen",
-       "saveButton": "Sprache speichern",
-      "savingButton": "Wird gespeichert...",
-       "toast": {
-        "updateSuccessTitle": "Sprache gespeichert!",
-        "updateSuccessDescription": "Ihre Spracheinstellung wurde gespeichert."
-      },
-      "errors": {
-        "updateFailTitle": "Speichern fehlgeschlagen",
-        "updateFailDescription": "Ihre Spracheinstellung konnte nicht gespeichert werden."
-      }
-    },
-    "loading": "Einstellungen werden geladen...",
-     "errors": {
-      "loadErrorTitle": "Fehler beim Laden der Einstellungen",
-      "loadErrorDescription": "Ihre Einstellungen konnten nicht geladen werden."
-     },
-     "authenticationRequired": {
-        "title": "Authentifizierung erforderlich",
-        "description": "Sie müssen angemeldet sein, um Ihre Einstellungen anzuzeigen.",
-        "button": "Anmelden"
-      }
   }
 }

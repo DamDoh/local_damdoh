@@ -292,43 +292,101 @@
       "viewAllItems": "Voir Tous les Articles",
       "viewAllCategory": "Tout en {categoryName}"
     },
-    "myOrders": {
+    "title": "Marché",
+    "description": "Parcourez et découvrez des produits et des services.",
+    "createShopButton": "Créer une Vitrine",
+    "createListingButton": "Créer une Annonce",
+    "myOrdersButton": "Mes Commandes Reçues",
+    "pinButton": "Épingler comme Page d'Accueil",
+    "unpinButton": "Détacher de la Page d'Accueil",
+    "searchPlaceholder": "Rechercher sur le marché...",
+    "locationPlaceholder": "Filtrer par emplacement...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir Plus",
+    "noItemsFound": {
+      "title": "Aucun article trouvé.",
+      "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Impossible de récupérer les recommandations de l'IA"
+      },
+      "search": {
+        "title": "Erreur de Recherche",
+        "description": "Impossible de récupérer les articles du marché."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Marché Épinglé !",
+      "pinnedDescription": "Le Marché est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Page d'Accueil Détachée !",
+      "unpinnedDescription": "Le Tableau de Bord est maintenant votre page d'accueil par défaut."
+    },
+    "createListing": {
       "backLink": "Retour au marché",
-      "title": "Mes Commandes Reçues",
-      "description": "Voir et gérer les commandes reçues des acheteurs.",
-      "auth": {
-        "title": "Authentification Requise",
-        "description": "Vous devez être connecté pour voir vos commandes.",
-        "button": "Se Connecter"
+      "title": "Créer une Nouvelle Annonce",
+      "description": "Annoncez un produit ou un service sur le marché.",
+      "form": {
+        "nameLabel": "Nom de l'Article/Service",
+        "namePlaceholder": "Entrez le nom de votre annonce",
+        "typeLabel": "Type d'Annonce",
+        "typePlaceholder": "Sélectionnez le type d'annonce",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre annonce",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "Entrez l'emplacement",
+        "relatedVtiLabel": "VTI / ID de Lot Associé (Optionnel)",
+        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
+        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Sélectionnez une catégorie",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "ex: par heure, tarif fixe",
+        "experienceLabel": "Niveau d'Expérience",
+        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
+        "skillsLabel": "Compétences Requises",
+        "skillsPlaceholder": "Listez les compétences nécessaires pour le service",
+        "skillsDescription": "Séparez les compétences par des virgules.",
+        "priceLabel": "Prix",
+        "pricePlaceholder": "Entrez le prix",
+        "unitLabel": "Unité",
+        "unitPlaceholder": "ex: kg, pièce, heure",
+        "imageUrlLabel": "URL de l'Image (Optionnel)",
+        "sustainableLabel": "Pratique Durable",
+        "sustainableDescription": "Indiquez si cette annonce implique des pratiques durables.",
+        "submitButton": "Créer l'Annonce",
+        "submittingButton": "Création en cours..."
       },
-      "table": {
-        "date": "Date",
-        "buyer": "Acheteur",
-        "product": "Produit",
-        "total": "Total",
-        "status": "Statut",
-        "actions": "Actions"
+      "aiPriceSuggestion": {
+        "button": "Suggérer un Prix avec l'IA",
+        "generatingButton": "Génération en cours...",
+        "suggestionLabel": "Suggestion IA :",
+        "usePriceButton": "Utiliser ce prix"
       },
-      "actions": {
-        "confirm": "Confirmer",
-        "ship": "Expédier",
-        "complete": "Terminer",
-        "cancel": "Annuler"
+      "success": {
+        "title": "Succès !",
+        "description": "Votre annonce a été créée."
       },
-      "status": {
-        "new": "Nouveau",
-        "confirmed": "Confirmé",
-        "shipped": "Expédié",
-        "completed": "Terminé",
-        "cancelled": "Annulé"
-      },
-      "noOrders": "Aucune commande trouvée.",
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchError": "Échec de la récupération des commandes.",
-        "successTitle": "Succès !",
-        "updateSuccess": "Statut de la commande mis à jour vers {{status}}",
-        "failTitle": "Erreur"
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Informations Manquantes",
+            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
+          },
+          "failed": {
+            "title": "Suggestion de Prix Échouée",
+            "description": "Impossible d'obtenir une suggestion de prix de l'IA. Veuillez réessayer ou entrer un prix manuellement."
+          }
+        },
+        "authentication": {
+          "title": "Erreur d'Authentification",
+          "description": "Vous devez être connecté pour créer une annonce."
+        },
+        "creation": {
+          "title": "Création Échouée",
+          "description": "Impossible de créer l'annonce. Veuillez réessayer."
+        }
       }
     },
     "itemView": {
@@ -410,6 +468,59 @@
           "description": "Une erreur s'est produite lors du chargement des détails de l'article du marché."
         },
         "unexpected": "Une erreur inattendue s'est produite."
+      }
+    },
+    "myOrders": {
+      "backLink": "Retour au marché",
+      "title": "Mes Commandes Reçues",
+      "description": "Voir et gérer les commandes reçues des acheteurs.",
+      "auth": {
+        "title": "Authentification Requise",
+        "description": "Vous devez être connecté pour voir vos commandes.",
+        "button": "Se Connecter"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Acheteur",
+        "product": "Produit",
+        "total": "Total",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirmer",
+        "ship": "Expédier",
+        "complete": "Terminer",
+        "cancel": "Annuler"
+      },
+      "status": {
+        "new": "Nouveau",
+        "confirmed": "Confirmé",
+        "shipped": "Expédié",
+        "completed": "Terminé",
+        "cancelled": "Annulé"
+      },
+      "noOrders": "Aucune commande trouvée.",
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Échec de la récupération des commandes.",
+        "successTitle": "Succès !",
+        "updateSuccess": "Statut de la commande mis à jour vers {{status}}",
+        "failTitle": "Erreur"
+      }
+    },
+    "shopView": {
+      "backLink": "Retour au marché",
+      "ownedBy": "Propriété de",
+      "loadingOwner": "Chargement...",
+      "editShopButton": "Modifier la Boutique",
+      "contactButton": "Contacter le Vendeur",
+      "listingsTitle": "Annonces de {{shopName}}",
+      "noListings": "Aucune annonce trouvée pour cette boutique.",
+      "errors": {
+        "notFound": "Boutique non trouvée",
+        "loadError": "Impossible de charger les détails de la boutique.",
+        "title": "Erreur"
       }
     },
     "createShop": {
@@ -521,211 +632,6 @@
       "All": "Tous les Types",
       "Product": "Produit",
       "Service": "Service"
-    }
-  },
-  "Forums": {
-    "title": "Sujets du forum",
-    "description": "Parcourir et créer des sujets de discussion",
-    "lastActivity": "Dernière activité il y a {{time}}",
-    "searchPlaceholder": "Rechercher des sujets...",
-    "buttons": {
-      "createTopic": "Créer un sujet",
-      "joinDiscussion": "Rejoindre la discussion",
-      "pinHomepage": "Épingler à l'accueil",
-      "unpinHomepage": "Détacher de l'accueil"
-    },
-    "notFound": {
-      "title": "Aucun sujet trouvé",
-      "tryDifferentSearch": "Essayez une autre recherche.",
-      "beTheFirst": "Soyez le premier à créer un sujet."
-    },
-    "pinning": {
-      "pinnedTitle": "Accueil épinglé !",
-      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
-      "unpinnedTitle": "Accueil détaché !",
-      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
-    },
-    "errors": {
-      "loadTitle": "Erreur de chargement des sujets",
-      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
-      "auth": {
-        "title": "Non authentifié",
-        "description": "Vous devez être connecté pour créer un sujet."
-      },
-      "incomplete": {
-        "title": "Champs incomplets",
-        "description": "Veuillez remplir tous les champs obligatoires."
-      },
-      "general": {
-        "title": "Erreur",
-        "description": "Une erreur s'est produite lors de la création du sujet."
-      }
-    },
-    "create": {
-      "backLink": "Retour aux sujets",
-      "title": "Créer un nouveau sujet",
-      "description": "Une nouvelle discussion dans le forum.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "Entrez le nom de votre sujet",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
-        "submitButton": "Créer le sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "success": {
-        "title": "Sujet créé avec succès",
-        "description": "Votre nouveau sujet a été créé."
-      }
-    }
-  },
-  "Profile": {
-    "backLink": "Retour",
-    "loading": "Chargement du profil...",
-    "notFound": {
-      "title": "Profil introuvable",
-      "description": "Le profil utilisateur que vous recherchez n'existe pas."
-    },
-    "tabs": {
-      "overview": "Aperçu",
-      "listings": "Annonces sur le marché",
-      "orders": "Mes commandes"
-    },
-    "overviewTab": {
-      "contactButton": "Contacter",
-      "aboutSectionTitle": "À propos",
-      "rolesLabel": "Rôles",
-      "locationLabel": "Emplacement",
-      "bioLabel": "Biographie",
-      "joinedLabel": "A rejoint",
-      "loadingText": "Chargement de l'aperçu...",
-      "noBio": "Aucune biographie fournie pour le moment."
-    },
-    "listingsTab": {
-      "title": "Annonces sur le marché",
-      "description": "Articles et services listés par cet utilisateur.",
-      "noListings": "Cet utilisateur n'a aucune annonce active.",
-      "loading": "Chargement des annonces..."
-    },
-    "ordersTab": {
-      "title": "Mes commandes",
-      "description": "Vos commandes passées sur le marché.",
-      "table": {
-        "orderDate": "Date de la commande",
-        "seller": "Vendeur",
-        "item": "Article",
-        "quantity": "Quantité",
-        "total": "Total",
-        "status": "Statut"
-      },
-      "noOrders": "Vous n'avez pas encore passé de commande.",
-      "loading": "Chargement des commandes...",
-      "errors": {
-        "fetchErrorTitle": "Erreur de chargement des commandes",
-        "fetchErrorDescription": "Impossible de récupérer vos commandes passées."
-      }
-    },
-    "errors": {
-      "loadErrorTitle": "Erreur de chargement du profil",
-      "loadErrorDescription": "Impossible de charger le profil utilisateur."
-    },
-    "actions": {
-      "editProfile": "Modifier le profil"
-    }
-  },
-  "Settings": {
-    "backLink": "Retour",
-    "title": "Paramètres",
-    "description": "Gérez vos paramètres de compte et de profil.",
-    "tabs": {
-      "profile": "Profil",
-      "account": "Compte",
-      "notifications": "Notifications",
-      "language": "Langue",
-      "privacy": "Confidentialité",
-      "appearance": "Apparence"
-    },
-    "stakeholderProfile": {
-      "title": "Profil de partie prenante",
-      "description": "Votre identité professionnelle sur DamDoh. C'est ainsi que les autres vous voient."
-    },
-    "account": {
-      "title": "Paramètres du compte",
-      "description": "Gérez l'authentification et la sécurité de votre compte.",
-      "changePasswordSectionTitle": "Changer le mot de passe",
-      "changePasswordDescription": "Mettez à jour le mot de passe de votre compte.",
-      "currentPasswordLabel": "Mot de passe actuel",
-      "newPasswordLabel": "Nouveau mot de passe",
-      "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
-      "changePasswordButton": "Mettre à jour le mot de passe",
-      "deactivateButton": "Désactiver le compte"
-    },
-    "notifications": {
-      "title": "Paramètres de notification",
-      "description": "Gérez vos préférences de notification par e-mail et push.",
-      "emailDigestLabel": "Notifications par e-mail",
-      "emailDigestDescription": "Recevoir des notifications par e-mail.",
-      "connectionRequestsLabel": "Demandes de connexion",
-      "connectionRequestsDescription": "Me notifier des nouvelles demandes de connexion.",
-      "forumMentionsLabel": "Mentions et réponses sur le forum",
-      "forumMentionsDescription": "Me notifier lorsque je suis mentionné ou que mes messages reçoivent une réponse.",
-      "marketplaceActivityLabel": "Activité du marché",
-      "marketplaceActivityDescription": "Me notifier des commandes et des demandes sur mes annonces.",
-      "talentExchangeLabel": "Mises à jour de la bourse de talents",
-      "talentExchangeDescription": "Me notifier des nouvelles offres d'emploi et des candidatures.",
-      "saveButton": "Enregistrer les préférences"
-    },
-    "privacy": {
-      "title": "Confidentialité et visibilité",
-      "description": "Contrôlez qui peut voir vos informations et interagir avec vous.",
-      "profileVisibilityLabel": "Visibilité du profil",
-      "profileVisibilityDescription": "Contrôlez qui peut voir votre profil complet.",
-      "profileVisibilityAll": "Tout le monde",
-      "profileVisibilityConnections": "Connexions uniquement",
-      "profileVisibilityPrivate": "Privé (moi uniquement)",
-      "connectionRequestsLabel": "Qui peut vous envoyer des demandes de connexion ?",
-      "connectionRequestsDescription": "Limitez qui peut vous envoyer des demandes de connexion.",
-      "connectionRequestsAll": "Tout le monde",
-      "connectionRequestsConnectionsOfConnections": "Connexions de connexions",
-      "contactInfoVisibilityLabel": "Qui peut voir vos coordonnées ?",
-      "contactInfoVisibilityDescription": "Contrôlez qui voit votre e-mail et votre numéro de téléphone.",
-      "contactInfoVisibilityConnections": "Connexions uniquement",
-      "activityStatusLabel": "Afficher mon statut d'activité",
-      "activityStatusDescription": "Faites savoir à vos connexions quand vous êtes actif sur DamDoh.",
-      "searchIndexingLabel": "Autoriser les moteurs de recherche à indexer mon profil",
-      "searchIndexingDescription": "Autoriser votre profil à apparaître dans les résultats de recherche sur Google, etc.",
-      "saveButton": "Enregistrer les paramètres de confidentialité",
-      "dataConsentTitle": "Partage de données et consentement",
-      "dataConsentDescription": "Contrôlez comment vos données sont utilisées dans les services intégrés de DamDoh.",
-      "marketplaceHistoryLabel": "Historique du marché pour les services financiers",
-      "marketplaceHistoryDescription": "Autoriser les institutions financières sur DamDoh à prendre en compte votre historique de transactions sur le marché pour l'évaluation de crédit.",
-      "traceabilityDataLabel": "Données de traçabilité publiques",
-      "traceabilityDataDescription": "Autoriser l'utilisation de vos données de traçabilité anonymisées dans les rapports publics et la recherche.",
-      "financialApplicationDataLabel": "Données de demande financière pour la mise en correspondance IA",
-      "financialApplicationDataDescription": "Autoriser l'utilisation de vos données de demande financière anonymisées par notre IA pour suggérer des services pertinents.",
-      "saveConsentButton": "Enregistrer les consentements"
-    },
-    "appearance": {
-      "title": "Apparence",
-      "description": "Personnalisez l'apparence de l'application.",
-      "themeLabel": "Thème",
-      "themeDescription": "Sélectionnez un thème clair ou sombre pour l'interface.",
-      "lightTheme": "Clair",
-      "darkTheme": "Sombre",
-      "languageLabel": "Langue",
-      "languageDescription": "Choisissez votre langue préférée pour l'application.",
-      "switchToLightAria": "Passer au thème clair",
-      "switchToDarkAria": "Passer au thème sombre"
-    },
-    "loading": "Chargement des paramètres...",
-    "errors": {
-      "loadErrorTitle": "Erreur de chargement des paramètres",
-      "loadErrorDescription": "Impossible de charger vos paramètres."
-    },
-    "authenticationRequired": {
-      "title": "Authentification requise",
-      "description": "Vous devez être connecté pour voir vos paramètres.",
-      "button": "Se connecter"
     }
   }
 }
