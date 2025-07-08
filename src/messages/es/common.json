@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Trazabilidad de Productos",
@@ -45,7 +46,9 @@
       "createTopic": "Crear Tema",
       "joinDiscussion": "Unirse a la Discusión",
       "pinHomepage": "Fijar como Página de Inicio",
-      "unpinHomepage": "Desfijar de la Página de Inicio"
+      "unpinHomepage": "Desfijar de la Página de Inicio",
+      "loadMore": "Cargar Más",
+      "loadingMore": "Cargando Más..."
     },
     "notFound": {
       "title": "No se encontraron temas",
@@ -290,7 +293,7 @@
           },
           "failed": {
             "title": "Error de sugerencia de precio",
-            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manualmente."
+            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manually."
           }
         },
         "authentication": {

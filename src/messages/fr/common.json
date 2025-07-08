@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Traçabilité des Produits",
@@ -38,14 +39,16 @@
   },
   "Forums": {
     "title": "Sujets du forum",
-    "description": "Parcourir et créer des sujets de discussion",
+    "description": "Parcourir et créer des sujets de discussion.",
     "lastActivity": "Dernière activité il y a {{time}}",
     "searchPlaceholder": "Rechercher des sujets...",
     "buttons": {
       "createTopic": "Créer un sujet",
       "joinDiscussion": "Rejoindre la discussion",
       "pinHomepage": "Épingler à l'accueil",
-      "unpinHomepage": "Détacher de l'accueil"
+      "unpinHomepage": "Détacher de l'accueil",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement en cours..."
     },
     "notFound": {
       "title": "Aucun sujet trouvé",
@@ -60,7 +63,19 @@
     },
     "errors": {
       "loadTitle": "Erreur lors du chargement des sujets",
-      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum."
+      "loadDescription": "Une erreur s'est produite lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
+      },
+      "incomplete": {
+        "title": "Champs incomplets",
+        "description": "Veuillez remplir tous les champs obligatoires."
+      },
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur s'est produite lors de la création du sujet."
+      }
     },
     "create": {
       "backLink": "Retour aux sujets",
@@ -77,30 +92,11 @@
       "success": {
         "title": "Sujet créé avec succès",
         "description": "Votre nouveau sujet a été créé."
-      },
-      "errors": {
-        "auth": {
-          "title": "Non authentifié",
-          "description": "Vous devez être connecté pour créer un sujet."
-        },
-        "incomplete": {
-          "title": "Champs incomplets",
-          "description": "Veuillez remplir tous les champs obligatoires."
-        },
-        "general": {
-          "title": "Erreur",
-          "description": "Une erreur s'est produite lors de la création du sujet."
-        }
       }
     },
     "topic": {
       "unknownUser": "Utilisateur inconnu",
       "postMeta": "par {{author}} le {{date}}",
-      "buttons": {
-        "createPost": "Ajouter une réponse",
-        "loadMore": "Charger plus",
-        "loadingMore": "Chargement en cours..."
-      },
       "noPosts": {
         "title": "Aucun message pour l'instant",
         "description": "Soyez le premier à répondre à ce sujet.",
@@ -213,8 +209,8 @@
     "createShopButton": "Créer une boutique",
     "createListingButton": "Créer une annonce",
     "myOrdersButton": "Mes commandes reçues",
-    "pinButton": "Épingler à l'accueil",
-    "unpinButton": "Détacher de l'accueil",
+    "unpinButton": "Détacher la page d'accueil",
+    "pinButton": "Épingler à la page d'accueil",
     "searchPlaceholder": "Rechercher sur le marché...",
     "locationPlaceholder": "Filtrer par lieu...",
     "typePlaceholder": "Filtrer par type...",
@@ -740,3 +736,5 @@
     }
   }
 }
+
+    
