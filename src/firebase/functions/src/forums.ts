@@ -144,35 +144,15 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
         return { replies: [], lastVisible: null };
     }
 
-    const authorIds = [...new Set(repliesSnapshot.docs.map(doc => doc.data().authorRef).filter(Boolean))];
-    const profiles: Record<string, any> = {};
-
-    if (authorIds.length > 0) {
-        const profileChunks: string[][] = [];
-        for (let i = 0; i < authorIds.length; i += 30) {
-            profileChunks.push(authorIds.slice(i, i + 30));
-        }
-        for (const chunk of profileChunks) {
-            const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
-            profileDocs.forEach(doc => {
-                profiles[doc.id] = {
-                    displayName: doc.data().displayName || 'Unknown User',
-                    avatarUrl: doc.data().avatarUrl || null,
-                };
-            });
-        }
-    }
-
     const replies = repliesSnapshot.docs.map(doc => {
         const data = doc.data();
-        const authorProfile = profiles[data.authorRef] || { displayName: 'Unknown User', avatarUrl: null };
         return { 
             id: doc.id, 
             content: data.content,
-            author: {
+            author: { // Construct the author object from denormalized data
                 id: data.authorRef,
-                name: authorProfile.displayName,
-                avatarUrl: authorProfile.avatarUrl,
+                name: data.authorName || 'Unknown User',
+                avatarUrl: data.authorAvatarUrl || null,
             },
             timestamp: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
         }

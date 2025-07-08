@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -704,7 +703,7 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
-  timestamp: string; // ISO String
+  createdAt: string; // ISO String
   author: {
     id: string;
     name: string;
@@ -733,10 +732,6 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
-    // Re-introducing denormalized fields for use in FeedItemCard
-    userId: string;
-    userName: string;
-    userAvatar?: string;
 }
 
 export interface PollOption {

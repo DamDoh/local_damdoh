@@ -429,36 +429,14 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
         .where("farmFieldId", "==", farmFieldId)
         .orderBy("timestamp", "asc")
         .get();
-        
-      const actorIds = [...new Set(eventsSnapshot.docs.map(doc => doc.data().actorRef).filter(Boolean))];
-      const actorProfiles: Record<string, any> = {};
-
-      if (actorIds.length > 0) {
-          const profileChunks: string[][] = [];
-          for (let i = 0; i < actorIds.length; i += 30) {
-              profileChunks.push(actorIds.slice(i, i + 30));
-          }
-          for (const chunk of profileChunks) {
-              const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
-              profileDocs.forEach(doc => {
-                  actorProfiles[doc.id] = {
-                      name: doc.data().displayName || 'Unknown Actor',
-                      role: doc.data().primaryRole || 'Stakeholder',
-                      avatarUrl: doc.data().avatarUrl || null,
-                  };
-              });
-          }
-      }
 
       const events = eventsSnapshot.docs.map((doc) => {
         const eventData = doc.data();
         if (!eventData) return null; // Defensive check
-        const actorProfile = actorProfiles[eventData.actorRef] || { name: 'System', role: 'Platform', avatarUrl: null };
         return {
           id: doc.id,
           ...eventData,
           timestamp: (eventData.timestamp as admin.firestore.Timestamp)?.toDate ? (eventData.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
-          actor: actorProfile,
         };
       }).filter(Boolean); // Filter out any null results
 
@@ -609,8 +587,15 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
                 const harvestEvent = harvestEventSnapshot.docs[0].data();
                 harvestDate = harvestEvent.timestamp.toDate().toISOString();
                 if (harvestEvent.actorRef) {
-                    const userDoc = await db.collection('users').doc(harvestEvent.actorRef).get();
-                    producerName = userDoc.data()?.displayName || 'Unknown';
+                    try {
+                        const userDoc = await db.collection('users').doc(harvestEvent.actorRef).get();
+                        if (userDoc.exists) {
+                            producerName = userDoc.data()?.displayName || 'Unknown';
+                        }
+                    } catch (e) {
+                        // User might not exist if it's an org, or other issue.
+                        console.log(`Could not fetch user profile for actorRef: ${harvestEvent.actorRef}`);
+                    }
                 }
             }
             
@@ -628,3 +613,4 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
         throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");
     }
 });
+

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,18 @@ import { useTranslations } from 'next-intl';
 
 export default function SearchPage() {
     const t = useTranslations('searchPage');
+    const searchParams = useSearchParams();
     const [searchQuery, setSearchQuery] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [initialModalQuery, setInitialModalQuery] = useState("");
+
+    useEffect(() => {
+        const queryFromUrl = searchParams.get('q');
+        if (queryFromUrl) {
+            setInitialModalQuery(queryFromUrl);
+            setIsModalOpen(true);
+        }
+    }, [searchParams]);
 
     const handleSearchSubmit = (e: React.FormEvent) => {
         e.preventDefault();

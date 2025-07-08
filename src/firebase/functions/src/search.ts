@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -68,7 +67,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
       createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
       title: title,
       description: description,
-      imageUrl: newData.imageUrl || newData.photoURL || null,
+      imageUrl: newData.imageUrl || newData.avatarUrl || null,
       tags: tags,
       searchable_terms: searchable_terms,
       location: newData.location || null,
@@ -94,8 +93,8 @@ export const onSourceDocumentWriteIndex = functions.firestore
 
 
 /**
- * Performs a search against the denormalized search_index collection.
- * This version is enhanced to use the output of the query-interpreter AI flow.
+ * Performs a search. If the query looks like a VTI, it searches the VTI registry.
+ * Otherwise, it searches the denormalized search_index collection.
  * @param {any} data The data for the function call, containing the AI's interpretation.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{results: any[]}>} A promise that resolves with search results.
@@ -106,54 +105,89 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     if (!Array.isArray(mainKeywords)) {
         throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
     }
+    
+    const rawQuery = mainKeywords.join(' ');
+    // Check if the query looks like a VTI (UUID format)
+    const isVtiQuery = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawQuery);
+
+    if (isVtiQuery) {
+        try {
+            const vtiDoc = await db.collection("vti_registry").doc(rawQuery).get();
+            if (vtiDoc.exists) {
+                const vtiData = vtiDoc.data()!;
+                return {
+                    results: [{
+                        id: `vti_${vtiDoc.id}`,
+                        itemId: vtiDoc.id,
+                        itemCollection: 'vti_registry',
+                        title: `VTI Batch: ${vtiData.metadata?.cropType || 'Product'}`,
+                        description: `Traceability report for batch ID ${vtiDoc.id}`,
+                    }]
+                };
+            }
+        } catch (error) {
+            console.error(`Error performing direct VTI search for ${rawQuery}:`, error);
+        }
+    }
 
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
-        const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean).slice(0, 10);
-        const hasKeywords = searchTerms.length > 0;
-
-        if (hasKeywords) {
-            query = query.where("searchable_terms", "array-contains-any", searchTerms);
+        // --- Apply structured filters first ---
+        const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
+        const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+        
+        if (listingTypeFilter) {
+            query = query.where('listingType', '==', listingTypeFilter);
+        }
+        if (categoryFilter) {
+            query = query.where('tags', 'array-contains', categoryFilter);
+        }
+        if (identifiedLocation) {
+            query = query.where("location", ">=", identifiedLocation);
+            query = query.where("location", "<=", identifiedLocation + '\uf8ff');
+        }
+        if (perUnit) {
+            query = query.where("perUnit", "==", perUnit);
         }
 
-        query = query.orderBy("updatedAt", "desc");
+        let hasPriceFilter = false;
+        if (typeof minPrice === 'number' && minPrice > 0) {
+            query = query.where('price', '>=', minPrice);
+            hasPriceFilter = true;
+        }
+        if (typeof maxPrice === 'number' && maxPrice > 0) {
+            query = query.where('price', '<=', maxPrice);
+            hasPriceFilter = true;
+        }
         
-        const snapshot = await query.limit(limit).get();
+        if (hasPriceFilter) {
+            query = query.orderBy('price', 'asc');
+        } else {
+            query = query.orderBy("updatedAt", "desc");
+        }
+
+        query = query.limit(limit);
+
+        const snapshot = await query.get();
         
         let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
-        const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+        // --- Keyword filtering in-memory on the pre-filtered dataset ---
+        const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
 
-        // Perform secondary filtering in memory for criteria that cannot be combined with array-contains-any
-        const filteredResults = results.filter(r => {
-            if (categoryFilter && (!r.tags || !Array.isArray(r.tags) || !r.tags.includes(categoryFilter))) {
-                return false;
-            }
-            if (listingTypeFilter && r.listingType !== listingTypeFilter) {
-                return false;
-            }
-            if (identifiedLocation && r.location !== identifiedLocation) {
-                return false;
-            }
-            if (perUnit && r.perUnit !== perUnit) {
-                return false;
-            }
-            if (typeof minPrice === 'number' && (r.price == null || r.price < minPrice)) {
-                return false;
-            }
-            if (typeof maxPrice === 'number' && (r.price == null || r.price > maxPrice)) {
-                return false;
-            }
-            return true;
-        });
+        if (searchTerms.length > 0) {
+            results = results.filter(r => {
+                const searchableText = (r.searchable_terms || []).join(' ');
+                return searchTerms.some(term => searchableText.includes(term));
+            });
+        }
         
-        return { results: filteredResults };
+        return { results };
 
-    } catch (error) {
-        console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
-         if ((error as any).code === 'FAILED_PRECONDITION') {
+    } catch (error: any) {
+        console.error(`Error performing search for query "${rawQuery}":`, error);
+         if (error.code === 'FAILED_PRECONDITION') {
              throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
         }
         throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
