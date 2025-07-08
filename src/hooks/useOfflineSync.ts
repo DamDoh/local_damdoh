@@ -6,20 +6,18 @@ import { useToast } from '@/hooks/use-toast';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from '@/lib/firebase/client';
 import { useTranslations } from 'next-intl';
-
-// In a real-world app, this would use IndexedDB. For this UI demo, we'll use a simple in-memory array.
-interface OfflineAction {
-  id: string;
-  payload: any;
-  timestamp: number;
-}
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db, type OfflineAction } from '@/lib/db';
 
 export function useOfflineSync() {
   const t = useTranslations('OfflineIndicator');
   const { toast } = useToast();
   const [isOnline, setIsOnline] = useState<boolean>(true);
-  const [pendingActions, setPendingActions] = useState<OfflineAction[]>([]);
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
+  
+  // Use dexie-react-hooks to get a live count of pending actions.
+  // This is more efficient than fetching the whole array.
+  const pendingActionCount = useLiveQuery(() => db.outbox.count(), [], 0);
 
   // Safely get initial online status on the client
   useEffect(() => {
@@ -49,23 +47,25 @@ export function useOfflineSync() {
     };
   }, [handleOnline, handleOffline]);
 
-  // Simulate syncing process
+  // Syncing process
   useEffect(() => {
-    if (isOnline && pendingActions.length > 0 && !isSyncing) {
+    if (isOnline && pendingActionCount > 0 && !isSyncing) {
       const syncChanges = async () => {
         setIsSyncing(true);
-        toast({ title: t('toast.syncing.title'), description: t('toast.syncing.description', { count: pendingActions.length }) });
+        toast({ title: t('toast.syncing.title'), description: t('toast.syncing.description', { count: pendingActionCount }) });
         
         try {
-          // In a real app, you would call your backend function here.
-          // const uploadChanges = httpsCallable(functions, 'uploadOfflineChanges');
-          // await uploadChanges({ changes: pendingActions });
-
-          // Simulate network delay and success
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          // Fetch all pending actions from IndexedDB
+          const actionsToSync = await db.outbox.toArray();
+          
+          // Call the backend function with the batch of changes
+          const uploadChanges = httpsCallable(functions, 'uploadOfflineChanges');
+          await uploadChanges({ changes: actionsToSync });
+          
+          // On success, clear the synced items from the outbox
+          await db.outbox.clear();
           
           toast({ title: t('toast.synced.title'), description: t('toast.synced.description') });
-          setPendingActions([]); // Clear the queue on success
         } catch (error) {
           console.error("Sync failed:", error);
           toast({ title: t('toast.syncFailed.title'), description: t('toast.syncFailed.description'), variant: 'destructive' });
@@ -76,18 +76,22 @@ export function useOfflineSync() {
       
       syncChanges();
     }
-  }, [isOnline, pendingActions, isSyncing, toast, t]);
-
-  // Exposed function to add an action to the queue (for simulation)
-  const addActionToQueue = useCallback((actionPayload: any) => {
+  }, [isOnline, pendingActionCount, isSyncing, toast, t]);
+  
+  // Exposed function to add an action to the queue (for simulation or actual use)
+  const addActionToQueue = useCallback(async (actionPayload: any) => {
     const newAction: OfflineAction = {
-      id: `action-${Date.now()}`,
-      payload: actionPayload,
+      ...actionPayload, // This should contain collectionPath, documentId, operation, payload
       timestamp: Date.now()
     };
-    setPendingActions(prev => [...prev, newAction]);
-    toast({ title: t('toast.queued.title'), description: t('toast.queued.description') });
+    try {
+        await db.outbox.add(newAction);
+        toast({ title: t('toast.queued.title'), description: t('toast.queued.description') });
+    } catch(error) {
+        console.error("Failed to add action to offline queue:", error);
+        toast({ title: "Error", description: "Could not save action for offline sync.", variant: "destructive"});
+    }
   }, [toast, t]);
 
-  return { isOnline, pendingActionCount: pendingActions.length, isSyncing, addActionToQueue };
+  return { isOnline, pendingActionCount: pendingActionCount || 0, isSyncing, addActionToQueue };
 }
