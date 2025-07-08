@@ -10,14 +10,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { MapPin, Calendar, Star } from 'lucide-react';
+import { MapPin, Calendar, Star, Sun } from 'lucide-react';
 import type { AgroTourismDashboardData } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 
 const functions = getFunctions(firebaseApp);
 
 
 export const AgroTourismDashboard = () => {
+  const t = useTranslations('AgroTourismDashboard');
   const [dashboardData, setDashboardData] = useState<AgroTourismDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -83,24 +85,27 @@ export const AgroTourismDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Agro-Tourism Operator Hub</h1>
+      <h1 className="text-3xl font-bold mb-6 flex items-center gap-2">
+        <Sun className="h-8 w-8 text-amber-500" />
+        {t('title')}
+      </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          {/* Upcoming Bookings */}
          <Card className="md:col-span-2">
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><Calendar className="h-4 w-4"/> Upcoming Bookings</CardTitle>
-             <CardDescription>Your scheduled agro-tourism experiences.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><Calendar className="h-4 w-4"/> {t('bookingsTitle')}</CardTitle>
+             <CardDescription>{t('bookingsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(upcomingBookings || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Experience</TableHead>
-                     <TableHead>Guest Name</TableHead>
-                     <TableHead>Date</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.experience')}</TableHead>
+                     <TableHead>{t('table.guest')}</TableHead>
+                     <TableHead>{t('table.date')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -111,7 +116,7 @@ export const AgroTourismDashboard = () => {
                        <TableCell>{new Date(booking.date).toLocaleDateString()}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={booking.actionLink}>View Details</Link>
+                           <Link href={booking.actionLink}>{t('viewDetailsButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -119,39 +124,37 @@ export const AgroTourismDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No upcoming bookings.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noBookings')}</p>
              )}
            </CardContent>
          </Card>
 
          {/* Listed Experiences */}
-         <Card className="md:col-span-2">
+         <Card>
            <CardHeader>
-             <CardTitle className="text-base flex items-center gap-2"><MapPin className="h-4 w-4 text-green-500"/> Listed Experiences</CardTitle>
-             <CardDescription>Manage your agro-tourism offerings.</CardDescription>
+             <CardTitle className="text-base flex items-center gap-2"><MapPin className="h-4 w-4 text-green-500"/> {t('experiencesTitle')}</CardTitle>
+             <CardDescription>{t('experiencesDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(listedExperiences || []).length > 0 ? (
                <Table>
                  <TableHeader>
                    <TableRow>
-                     <TableHead>Title</TableHead>
-                     <TableHead>Location</TableHead>
-                     <TableHead>Status</TableHead>
-                     <TableHead>Bookings</TableHead>
-                     <TableHead>Action</TableHead>
+                     <TableHead>{t('table.title')}</TableHead>
+                     <TableHead>{t('table.status')}</TableHead>
+                     <TableHead>{t('table.bookings')}</TableHead>
+                     <TableHead>{t('table.action')}</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
                    {(listedExperiences || []).map((experience) => (
                      <TableRow key={experience.id}>
                        <TableCell className="font-medium">{experience.title}</TableCell>
-                       <TableCell>{experience.location}</TableCell>
                        <TableCell><Badge variant={experience.status === 'Published' ? 'default' : 'secondary'}>{experience.status}</Badge></TableCell>
                        <TableCell>{experience.bookingsCount}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={experience.actionLink}>Manage</Link>
+                           <Link href={experience.actionLink}>{t('manageButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
@@ -159,16 +162,16 @@ export const AgroTourismDashboard = () => {
                  </TableBody>
                </Table>
              ) : (
-               <p className="text-sm text-muted-foreground text-center py-4">No agro-tourism experiences listed yet.</p>
+               <p className="text-sm text-muted-foreground text-center py-4">{t('noExperiences')}</p>
              )}
            </CardContent>
          </Card>
 
           {/* Guest Reviews */}
-         <Card className="md:col-span-2">
+         <Card>
             <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><Star className="h-4 w-4 text-yellow-500"/> Guest Reviews</CardTitle>
-                <CardDescription>Latest feedback from your guests.</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><Star className="h-4 w-4 text-yellow-500"/> {t('reviewsTitle')}</CardTitle>
+                <CardDescription>{t('reviewsDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
                 {(guestReviews || []).length > 0 ? (
@@ -176,18 +179,18 @@ export const AgroTourismDashboard = () => {
                         {(guestReviews || []).map((review) => (
                             <div key={review.id} className="text-sm p-3 border rounded-lg">
                                 <div className="flex justify-between items-start">
-                                    <p className="font-medium">{review.guestName} on "{review.experienceTitle}"</p>
+                                    <p className="font-medium">{review.guestName} {t('on')} "{review.experienceTitle}"</p>
                                     {getRatingStars(review.rating)}
                                 </div>
                                 <p className="text-xs text-muted-foreground italic mt-1">"{review.comment}"</p>
                                 <Button asChild variant="link" size="sm" className="px-0 pt-1">
-                                    <Link href={review.actionLink}>View Review</Link>
+                                    <Link href={review.actionLink}>{t('viewReviewButton')}</Link>
                                 </Button>
                             </div>
                         ))}
                     </div>
                 ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">No guest reviews yet.</p>
+                   <p className="text-sm text-muted-foreground text-center py-4">{t('noReviews')}</p>
                 )}
             </CardContent>
          </Card>
@@ -202,7 +205,9 @@ const DashboardSkeleton = () => (
     <div className="space-y-6">
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
-        <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Skeleton className="h-64 w-full rounded-lg" />
+            <Skeleton className="h-64 w-full rounded-lg" />
+        </div>
     </div>
 );

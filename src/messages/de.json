@@ -1,5 +1,33 @@
 
 {
+  "AgroTourismDashboard": {
+    "title": "Zentrum für Agrotourismus-Anbieter",
+    "bookingsTitle": "Anstehende Buchungen",
+    "bookingsDescription": "Ihre nächsten geplanten Agrotourismus-Erlebnisse.",
+    "table": {
+      "experience": "Erlebnis",
+      "guest": "Gästename",
+      "date": "Datum",
+      "action": "Aktion",
+      "title": "Titel",
+      "location": "Ort",
+      "status": "Status",
+      "bookings": "Buchungen",
+      "rating": "Bewertung",
+      "comment": "Kommentar"
+    },
+    "viewDetailsButton": "Details anzeigen",
+    "noBookings": "Keine anstehenden Buchungen.",
+    "experiencesTitle": "Gelistete Erlebnisse",
+    "experiencesDescription": "Verwalten Sie Ihre Agrotourismus-Angebote.",
+    "manageButton": "Verwalten",
+    "noExperiences": "Noch keine Agrotourismus-Erlebnisse gelistet.",
+    "reviewsTitle": "Gästebewertungen",
+    "reviewsDescription": "Neuestes Feedback von Ihren Gästen.",
+    "on": "zu",
+    "viewReviewButton": "Bewertung ansehen",
+    "noReviews": "Noch keine Gästebewertungen."
+  },
   "AgronomistDashboard": {
     "title": "Hub für Agronomen & Berater",
     "stats": {
@@ -283,7 +311,11 @@
     "table": {
       "product": "Produkt",
       "quality": "Qualität",
-      "quantity": "Menge (Tonnen)"
+      "quantity": "Menge (Tonnen)",
+      "supplier": "Lieferant",
+      "deliveryDate": "Lieferdatum",
+      "status": "Status",
+      "action": "Aktion"
     },
     "noInventoryData": "Keine Rohstoffinventardaten verfügbar.",
     "packagingOrdersTitle": "Verpackungsbestellungen",
@@ -428,3 +460,5 @@
     }
   }
 }
+
+    

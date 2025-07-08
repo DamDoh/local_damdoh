@@ -1,5 +1,33 @@
 
 {
+  "AgroTourismDashboard": {
+    "title": "Agro-Tourism Operator Hub",
+    "bookingsTitle": "Upcoming Bookings",
+    "bookingsDescription": "Your next scheduled agro-tourism experiences.",
+    "table": {
+      "experience": "Experience",
+      "guest": "Guest Name",
+      "date": "Date",
+      "action": "Action",
+      "title": "Title",
+      "location": "Location",
+      "status": "Status",
+      "bookings": "Bookings",
+      "rating": "Rating",
+      "comment": "Comment"
+    },
+    "viewDetailsButton": "View Details",
+    "noBookings": "No upcoming bookings.",
+    "experiencesTitle": "Listed Experiences",
+    "experiencesDescription": "Manage your agro-tourism offerings.",
+    "manageButton": "Manage",
+    "noExperiences": "No agro-tourism experiences listed yet.",
+    "reviewsTitle": "Guest Reviews",
+    "reviewsDescription": "Latest feedback from your guests.",
+    "on": "on",
+    "viewReviewButton": "View Review",
+    "noReviews": "No guest reviews yet."
+  },
   "AgronomistDashboard": {
     "title": "Agronomist & Consultant Hub",
     "stats": {
@@ -311,9 +339,7 @@
     "table": {
         "vti": "VTI Link",
         "destination": "Destination",
-        "status": "Status",
-        "carrier": "Carrier",
-        "location": "Location"
+        "status": "Status"
     },
     "prepareDocsButton": "Prepare Docs",
     "noDocs": "No documents pending.",

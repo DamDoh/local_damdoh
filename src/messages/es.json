@@ -1,5 +1,33 @@
 
 {
+  "AgroTourismDashboard": {
+    "title": "Centro de Operadores de Agroturismo",
+    "bookingsTitle": "Próximas Reservas",
+    "bookingsDescription": "Sus próximas experiencias de agroturismo programadas.",
+    "table": {
+      "experience": "Experiencia",
+      "guest": "Nombre del Huésped",
+      "date": "Fecha",
+      "action": "Acción",
+      "title": "Título",
+      "location": "Ubicación",
+      "status": "Estado",
+      "bookings": "Reservas",
+      "rating": "Calificación",
+      "comment": "Comentario"
+    },
+    "viewDetailsButton": "Ver Detalles",
+    "noBookings": "No hay próximas reservas.",
+    "experiencesTitle": "Experiencias Listadas",
+    "experiencesDescription": "Gestione sus ofertas de agroturismo.",
+    "manageButton": "Gestionar",
+    "noExperiences": "Aún no hay experiencias de agroturismo listadas.",
+    "reviewsTitle": "Reseñas de Huéspedes",
+    "reviewsDescription": "Últimos comentarios de sus huéspedes.",
+    "on": "en",
+    "viewReviewButton": "Ver Reseña",
+    "noReviews": "Aún no hay reseñas de huéspedes."
+  },
   "AgronomistDashboard": {
     "title": "Centro de Agrónomos y Consultores",
     "stats": {
@@ -428,3 +456,5 @@
     }
   }
 }
+
+    
