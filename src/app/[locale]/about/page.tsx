@@ -1,83 +1,150 @@
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Info, Users, Eye, Heart, Shield } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function AboutPage() {
-  const t = useTranslations('about');
+  const t = useTranslations('aboutPage');
 
-  const teamMembers = [
-    { name: t('team.member1Name'), role: t('team.member1Role'), bio: t('team.member1Bio') },
-    { name: t('team.member2Name'), role: t('team.member2Role'), bio: t('team.member2Bio') },
-    { name: t('team.member3Name'), role: t('team.member3Role'), bio: t('team.member3Bio') },
+  const challenges = [
+    { text: t('challenge.list.knowledge'), icon: <BookOpen className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.market'), icon: <ShoppingCart className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.quality'), icon: <CheckCircle className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.logistics'), icon: <Truck className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.financial'), icon: <CircleDollarSign className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.climate'), icon: <Leaf className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.informal'), icon: <Handshake className="h-5 w-5 text-destructive" /> },
+  ];
+
+  const solutions = [
+    { text: t('solution.list.education'), icon: <BookOpen className="h-5 w-5 text-primary" /> },
+    { text: t('solution.list.ai'), icon: <Brain className="h-5 w-5 text-primary" /> },
+    { text: 'Marketplace & E-Commerce', icon: <ShoppingCart className="h-5 w-5 text-primary" /> },
+    { text: t('solution.list.logistics'), icon: <Truck className="h-5 w-5 text-primary" /> },
+    { text: t('solution.list.financial'), icon: <CircleDollarSign className="h-5 w-5 text-primary" /> },
+  ];
+  
+  const connectionTypes = [
+    { id: "c1", title: t('beyondTechnology.list.p2p.title'), content: t('beyondTechnology.list.p2p.content'), icon: <Users className="h-5 w-5 text-primary" /> },
+    { id: "c2", title: t('beyondTechnology.list.p2b.title'), content: t('beyondTechnology.list.p2b.content'), icon: <Handshake className="h-5 w-5 text-primary" /> },
+    { id: "c3", title: t('beyondTechnology.list.p2e.title'), content: t('beyondTechnology.list.p2e.content'), icon: <Briefcase className="h-5 w-5 text-primary" /> },
+    { id: "c4", title: t('beyondTechnology.list.p2w.title'), content: t('beyondTechnology.list.p2w.content'), icon: <Globe className="h-5 w-5 text-primary" /> },
   ];
 
   return (
-    <div className="space-y-8">
-      <Card>
-        <CardHeader className="text-center">
-          <div className="inline-flex items-center justify-center gap-2 mb-2">
-            <Info className="h-10 w-10 text-primary" />
-            <CardTitle className="text-4xl">{t('title')}</CardTitle>
-          </div>
-          <CardDescription className="text-lg">
-            {t('subtitle')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-10 text-muted-foreground">
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Shield className="h-6 w-6 text-primary"/>{t('mission.title')}</h2>
-            <p>
-              {t('mission.content')}
-            </p>
-          </section>
+    <div className="space-y-12 md:space-y-20">
+      {/* Hero Section */}
+      <section className="relative text-center py-20 md:py-28 rounded-lg overflow-hidden bg-primary/10">
+         <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('https://placehold.co/1920x1080.png')" }} data-ai-hint="agriculture field landscape"></div>
+        <div className="container relative z-10">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground/90">{t('hero.title')}</h1>
+          <p className="max-w-3xl mx-auto mt-4 text-lg md:text-xl text-primary-foreground/80">{t('hero.subtitle')}</p>
+        </div>
+      </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Eye className="h-6 w-6 text-primary"/>{t('vision.title')}</h2>
-            <p>
-              {t('vision.content')}
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Heart className="h-6 w-6 text-primary"/>{t('values.title')}</h2>
-            <ul className="list-disc list-inside space-y-2 pl-5">
-              <li><strong className="text-foreground">{t('values.sustainability.title')}:</strong> {t('values.sustainability.content')}</li>
-              <li><strong className="text-foreground">{t('values.collaboration.title')}:</strong> {t('values.collaboration.content')}</li>
-              <li><strong className="text-foreground">{t('values.innovation.title')}:</strong> {t('values.innovation.content')}</li>
-              <li><strong className="text-foreground">{t('values.integrity.title')}:</strong> {t('values.integrity.content')}</li>
-              <li><strong className="text-foreground">{t('values.empowerment.title')}:</strong> {t('values.empowerment.content')}</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3 flex items-center gap-2"><Users className="h-6 w-6 text-primary"/>{t('team.title')}</h2>
-            <p className="mb-4">
-              {t('team.intro')}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {teamMembers.map((member, index) => (
-                <Card key={index} className="text-center p-4">
-                  <Image 
-                    src={`https://placehold.co/150x150.png`} 
-                    alt={member.name} 
-                    width={120} 
-                    height={120} 
-                    className="rounded-full mx-auto mb-3 border-2 border-primary"
-                    data-ai-hint="team member portrait"
-                  />
-                  <h3 className="font-semibold text-foreground">{member.name}</h3>
-                  <p className="text-sm text-primary">{member.role}</p>
-                  <p className="text-xs mt-1">{member.bio}</p>
-                </Card>
-              ))}
+      {/* Vision Section */}
+      <section className="container grid md:grid-cols-2 gap-12 items-center">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight">{t('vision.title')}</h2>
+          <p className="text-muted-foreground">{t('vision.p1')}</p>
+          <p className="text-muted-foreground">{t('vision.p2')}</p>
+        </div>
+        <div className="flex flex-col items-center gap-6 p-6 bg-muted/50 rounded-lg">
+          <h3 className="font-semibold text-lg">{t('vision.foundersTitle')}</h3>
+          <div className="flex gap-6">
+            <div className="text-center">
+              <Avatar className="h-20 w-20 mx-auto mb-2">
+                <AvatarImage src="https://placehold.co/150x150.png" alt="Manil" data-ai-hint="founder portrait"/>
+                <AvatarFallback>M</AvatarFallback>
+              </Avatar>
+              <p className="font-medium">Manil</p>
             </div>
-             <p className="mt-4 text-center">{t('team.note')}</p>
-          </section>
-        </CardContent>
-      </Card>
+            <div className="text-center">
+              <Avatar className="h-20 w-20 mx-auto mb-2">
+                <AvatarImage src="https://placehold.co/150x150.png" alt="Sok" data-ai-hint="founder portrait"/>
+                <AvatarFallback>S</AvatarFallback>
+              </Avatar>
+              <p className="font-medium">Sok</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* The Challenge Section */}
+      <section className="container">
+          <Card className="bg-destructive/5 border-destructive/20">
+              <CardHeader className="text-center">
+                  <h2 className="text-3xl font-bold tracking-tight">{t('challenge.title')}</h2>
+                  <CardDescription>{t('challenge.description')}</CardDescription>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {challenges.map((challenge, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 bg-background rounded-lg">
+                          <div className="shrink-0">{challenge.icon}</div>
+                          <p className="text-sm text-muted-foreground">{challenge.text}</p>
+                      </div>
+                  ))}
+              </CardContent>
+          </Card>
+      </section>
+
+      {/* The Solution Section */}
+      <section className="container">
+          <Card className="bg-primary/5 border-primary/20">
+              <CardHeader className="text-center">
+                  <h2 className="text-3xl font-bold tracking-tight">{t('solution.title')}</h2>
+                  <CardDescription>{t('solution.description')}</CardDescription>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {solutions.map((solution, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 bg-background rounded-lg">
+                           <div className="shrink-0">{solution.icon}</div>
+                          <p className="text-sm text-muted-foreground">{solution.text}</p>
+                      </div>
+                  ))}
+              </CardContent>
+          </Card>
+      </section>
+
+       {/* Beyond Technology Section */}
+      <section className="container">
+        <h2 className="text-3xl font-bold tracking-tight text-center mb-8">{t('beyondTechnology.title')}</h2>
+        <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto" defaultValue="c1">
+          {connectionTypes.map(item => (
+            <AccordionItem value={item.id} key={item.id}>
+              <AccordionTrigger className="text-lg hover:no-underline">
+                <div className="flex items-center gap-3">
+                  {item.icon}
+                  {item.title}
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">{item.content}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </section>
+
+      {/* Final CTA */}
+      <section className="container">
+         <Card className="text-center p-8 md:p-12 bg-muted/50">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{t('commitment.title')}</h2>
+            <p className="max-w-2xl mx-auto mt-3 text-muted-foreground">{t('commitment.p1')}</p>
+            <p className="max-w-2xl mx-auto mt-3 text-muted-foreground">{t('commitment.p2')}</p>
+            <p className="max-w-2xl mx-auto mt-4 font-semibold text-primary">{t('commitment.p3')}</p>
+            <Button size="lg" asChild className="mt-6">
+                <Link href="/auth/signup">{t('commitment.button')} <ArrowRight className="ml-2 h-5 w-5"/></Link>
+            </Button>
+         </Card>
+      </section>
+
     </div>
   );
 }
+
+    

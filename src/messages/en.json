@@ -1,518 +1,69 @@
 
 {
-  "FiApplicationListPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Funding Applications",
-    "description": "Review all applications submitted by farmers and cooperatives.",
-    "tabs": {
-      "all": "All",
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "date": "Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No applications found in this category."
-  },
-  "FiApplicationPage": {
-    "backLink": "Back to Applications",
-    "title": "Application Details",
-    "applicationTitle": "Application",
-    "submittedOn": "Submitted on",
-    "amountRequested": "Amount Requested",
-    "purpose": "Purpose of Funding",
-    "approveButton": "Approve",
-    "rejectButton": "Reject",
-    "requestInfoButton": "Request More Info",
-    "applicantDetails": "Applicant Details",
-    "viewProfileButton": "View Profile",
-    "profileNotFound": "Applicant profile not found.",
-    "riskAssessment": "Risk Assessment",
-    "creditScore": "Credit Score",
-    "notFound": "Application not found.",
-    "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "Status Updated!",
-      "updateSuccessDescription": "Application status has been updated to {{status}}.",
-      "updateFailTitle": "Update Failed"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create Financial Product",
-    "description": "Define a new loan or grant product to be offered to farmers.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Smallholder Seed Loan",
-      "typeLabel": "Product Type",
-      "loan": "Loan",
-      "grant": "Grant",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product, its benefits, and who is eligible.",
-      "interestRateLabel": "Interest Rate (%)",
-      "interestRatePlaceholder": "e.g., 5.5",
-      "maxAmountLabel": "Maximum Amount (USD)",
-      "maxAmountPlaceholder": "e.g., 10000",
-      "targetRolesLabel": "Target Roles",
-      "targetRolesDescription": "Select the roles eligible for this product.",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be logged in as a Financial Institution.",
-      "successTitle": "Product Created!",
-      "successDescription": "The product '{{name}}' was created successfully.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "FiProductsPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Financial Products",
-    "description": "View and manage your loan and grant products.",
-    "createButton": "Create New Product",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "noProducts": "You have not created any financial products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsurancePage": {
-    "title": "Agricultural Insurance",
-    "description": "Protect your farm and assets against unforeseen risks.",
-    "perTerm": "/ term",
-    "viewDetailsButton": "View Details & Apply",
-    "noProducts": "No insurance products are currently available.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Back to All Insurance",
-    "coverageTitle": "Coverage Details",
-    "premiumTitle": "Premium",
-    "perTerm": "/ term",
-    "providerTitle": "Provided by",
-    "applyButton": "Apply for this Policy",
-    "notFound": "Insurance product not found.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Back to Product Details",
-    "title": "Apply for Insurance",
-    "description": "Apply for coverage for your farm with {{productName}}.",
-    "form": {
-      "farmLabel": "Farm to Insure",
-      "farmPlaceholder": "Select a farm",
-      "noFarms": "No farms found. Please create one first.",
-      "coverageValueLabel": "Asset/Coverage Value (USD)",
-      "coverageValuePlaceholder": "e.g., 50000",
-      "coverageValueDescription": "Enter the total value of the assets you wish to insure.",
-      "submitButton": "Submit Application"
-    },
-    "success": {
-      "title": "Application Submitted!",
-      "description": "Your insurance application has been sent for review.",
-      "backToDashboardButton": "Back to Dashboard",
-      "applyForAnotherButton": "Apply for Another Policy"
-    },
-    "toast": {
-      "error": "Error",
-      "successTitle": "Application Submitted!",
-      "successDescription": "Your insurance application has been sent to the provider."
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create Insurance Product",
-    "description": "Define a new insurance policy to be offered on the platform.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Drought Protection for Maize",
-      "typeLabel": "Product Type",
-      "typePlaceholder": "Select a type",
-      "crop": "Crop",
-      "livestock": "Livestock",
-      "asset": "Asset",
-      "weather": "Weather",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product and its benefits.",
-      "coverageLabel": "Coverage Details",
-      "coveragePlaceholder": "Detail what this policy covers...",
-      "premiumLabel": "Premium (USD)",
-      "premiumPlaceholder": "e.g., 250.00",
-      "currencyLabel": "Currency",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be logged in as an Insurance Provider.",
-      "successTitle": "Product Created!",
-      "successDescription": "The insurance product '{{name}}' was created successfully.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "Insurance Products",
-    "description": "View and manage your insurance products.",
-    "createButton": "Create New Product",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "premium": "Premium"
-    },
-    "noProducts": "You have not created any insurance products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "notifications": "Alerts",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme",
-    "sustainability": "Sustainability"
-  },
-  "AppFooter": {
-    "tagline": "Connecting the agricultural world, from seed to table.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the Mobile App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Change language"
-  },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "LandingPage": {
+  "aboutPage": {
     "hero": {
-      "title": "Rebuilding Global Food Supply Chains with {appName}",
-      "subtitle": "Connecting farmers, buyers, and every stakeholder in between with transparency, technology, and trust.",
-      "getStartedButton": "Get Started for Free",
-      "learnMoreButton": "Learn More"
+      "title": "Empowering Farmers, Restoring the Planet",
+      "subtitle": "At DamDoh, we believe that the future of our planet rests in the hands of its smallest farmers."
     },
-    "features": {
-      "title": "A Unified Platform for a Connected Supply Chain",
-      "subtitle": "DamDoh brings every aspect of the agricultural value chain into a single, intelligent ecosystem.",
-      "networking": {
-        "title": "Professional Network",
-        "description": "Connect directly with farmers, exporters, financiers, and service providers from around the world."
-      },
-      "marketplace": {
-        "title": "Global Marketplace",
-        "description": "Buy and sell produce, inputs, and equipment with confidence, backed by verifiable data."
-      },
-      "forums": {
-        "title": "Knowledge Forums",
-        "description": "Share insights, ask questions, and collaborate with a global community of agricultural experts."
-      },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Find or offer specialized agricultural services, from agronomy consulting to logistics."
+    "vision": {
+      "title": "Farmers as Stewards of the Earth",
+      "p1": "Agriculture is not just a way of life — it is the foundation of healthy communities, resilient economies, cultural continuity, and the biodiversity that sustains all life. Yet today, a broken global food supply chain, deep inequalities, and a warming climate threaten not only farmer livelihoods but the very ecosystems we all depend on.",
+      "p2": "We exist to change that — by empowering farmers to become agents of biodiversity restoration, climate resilience, and sustainable prosperity.",
+      "foundersTitle": "Our Founders"
+    },
+    "challenge": {
+      "title": "The Challenge: A Broken System, A Warming Planet",
+      "description": "Our food comes through a supply chain riddled with vulnerabilities:",
+      "list": {
+        "knowledge": "Knowledge Gaps: Farmers often lack access to sustainable, biodiversity-friendly practices, lowering yields and degrading ecosystems.",
+        "market": "Market Barriers: Unfair markets and middlemen trap farmers in poverty and discourage investment in the land.",
+        "quality": "Quality & Standards: Without access to standards and tools, farmers can’t meet premium, biodiversity-conscious market demands.",
+        "logistics": "Logistics Failures: Poor infrastructure leads to food waste and unnecessary emissions.",
+        "financial": "Financial Exclusion: Without financing, farmers cannot afford to transition to regenerative, climate-smart agriculture.",
+        "climate": "Climate Vulnerability: Floods, droughts, and pests — worsened by climate change — devastate harvests and drive migration.",
+        "informal": "Informal Systems: Lack of transparency erodes trust and undermines sustainability goals."
       }
     },
-    "forWho": {
-      "badge": "For Everyone in Agriculture",
-      "title": "Empowering Every Link in the Chain",
-      "description": "DamDoh is built for the entire agricultural ecosystem. Whether you're tending a small plot or managing international trade, our platform provides the tools you need to succeed.",
-      "imageAlt": "A diverse group of agricultural professionals collaborating.",
-      "farmers": {
-        "title": "Farmers & Cooperatives",
-        "description": "Access new markets, secure financing, and utilize best practices to increase yield and profitability."
-      },
-      "buyers": {
-        "title": "Buyers & Exporters",
-        "description": "Source high-quality, traceable produce directly from producers and streamline your supply chain."
-      },
-      "experts": {
-        "title": "Experts & Service Providers",
-        "description": "Offer your expertise, find new clients, and contribute to a more efficient and sustainable food system."
+    "solution": {
+      "title": "Our Solution: DamDoh — A Global “Super App” for a Restored Planet",
+      "description": "DamDoh is a smart, integrated digital platform designed to empower farmers as stewards of biodiversity and catalysts of climate action:",
+      "list": {
+        "education": "Education & Training: Practical courses on regenerative farming, soil health, and business skills.",
+        "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and weather forecasts to provide precise soil and ecosystem analysis.",
+        "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly products.",
+        "logistics": "Supply Chain & Logistics: Transparent, efficient logistics minimize loss and reduce emissions.",
+        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in climate-smart innovations."
       }
     },
-    "cta": {
-      "title": "Ready to Transform Your Agri-Business?",
-      "subtitle": "Join thousands of stakeholders who are building a more transparent and prosperous agricultural future.",
-      "button": "Join the DamDoh Network"
-    }
-  },
-  "RegulatorDashboard": {
-    "title": "Regulator Dashboard",
-    "pendingCertificationsTitle": "Pending Certifications",
-    "reviewsOutstanding": "Reviews Outstanding",
-    "reviewAllButton": "Review All",
-    "riskAlertsTitle": "Compliance Risk Alerts",
-    "investigateButton": "Investigate",
-    "noComplianceAlerts": "No compliance alerts at this time.",
-    "anomaliesTitle": "Supply Chain Anomalies",
-    "trackVtiButton": "Track VTI",
-    "noAnomalies": "No supply chain anomalies detected."
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Syncing {count} changes...",
-      "onlinePending": "{count, plural, one {# change pending sync.} other {# changes pending sync.}}",
-      "onlineSynced": "Online: All changes synced.",
-      "offline": "Offline: {count, plural, one {# change saved locally.} other {# changes saved locally.}}"
-    },
-    "toast": {
-      "online": {
-        "title": "You are back online!",
-        "description": "Connection restored."
-      },
-      "offline": {
-        "title": "Connection Lost",
-        "description": "You are now offline. Changes will be saved locally."
-      },
-      "syncing": {
-        "title": "Syncing Data",
-        "description": "Attempting to sync {count, plural, one {# pending change} other {# pending changes}} with the server."
-      },
-      "synced": {
-        "title": "Sync Complete!",
-        "description": "All your offline changes have been saved."
-      },
-      "syncFailed": {
-        "title": "Sync Failed",
-        "description": "Could not sync offline changes. Will retry later."
-      },
-      "queued": {
-        "title": "Action Queued",
-        "description": "Your change has been saved locally and will be synced when you are online."
+    "beyondTechnology": {
+      "title": "Beyond Technology: A Global Hub for Restoration",
+      "list": {
+        "p2p": {
+          "title": "Farmer-to-Farmer",
+          "content": "Sharing indigenous knowledge and regenerative techniques across borders."
+        },
+        "p2b": {
+          "title": "Farmer-to-Buyer",
+          "content": "Linking farmers to buyers committed to biodiversity and climate goals."
+        },
+        "p2e": {
+          "title": "Farmer-to-Expert",
+          "content": "Providing direct advice from agronomists, ecologists, and researchers."
+        },
+        "p2w": {
+          "title": "Farmer-to-World",
+          "content": "Partnering with NGOs, governments, and cooperatives to scale impact."
+        }
       }
-    }
-  },
-  "notificationsPage": {
-    "title": "Notifications",
-    "description": "Here are your latest updates and alerts.",
-    "noNotifications": "You have no new notifications.",
-    "likedYourPost": "{name} liked your post",
-    "commentedOnYourPost": "{name} commented on your post",
-    "viewedYourProfile": "{name} viewed your profile",
-    "placedNewOrder": "{name} placed a new order",
-    "sentConnectionRequest": "{name} sent you a connection request",
-    "eventReminder": "Event Reminder",
-    "unknownNotification": "You have a new update."
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Discover agricultural experts and professional services to help your business grow.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search skills or services (e.g., Soil Testing)",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Service Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters or check back later for new listings.",
-    "toast": {
-      "error": {
-        "title": "Search Error",
-        "description": "Could not fetch available services."
-      }
-    }
-  },
-  "sustainabilityPage": {
-    "title": "Sustainability Dashboard",
-    "description": "Track and understand your farm's environmental impact.",
-    "carbonFootprint": "Carbon Footprint",
-    "waterEfficiency": "Water Efficiency",
-    "biodiversityScore": "Biodiversity Score",
-    "practicesTitle": "Logged Sustainable Practices",
-    "certificationsTitle": "Active Certifications",
-    "practicesTable": {
-      "practice": "Practice",
-      "lastLogged": "Last Logged"
     },
-    "certificationsTable": {
-      "certification": "Certification",
-      "status": "Status",
-      "expiry": "Expiry"
-    },
-    "metricCard": {
-      "trendText": "from last month"
-    },
-    "auth": {
-      "title": "Authentication Required",
-      "description": "Please sign in to view your sustainability dashboard.",
-      "button": "Sign In"
-    },
-    "noData": {
-      "title": "No Data Available",
-      "description": "We don't have enough data to generate your sustainability report yet. Start logging your farm activities!"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Agri-Tech Innovator Dashboard",
-    "sandboxTitle": "Sandbox Status",
-    "integrationsTitle": "Integrations",
-    "apiKeysTitle": "Your API Keys",
-    "apiKeysDescription": "Manage your API keys for accessing the DamDoh platform.",
-    "statusLabel": "Status",
-    "lastResetLabel": "Last Reset",
-    "activeProjects": "Active Projects",
-    "integrationsDescription": "Partner integrations that are currently active.",
-    "proposeIntegrationButton": "Propose Integration",
-    "accessDocsButton": "Access API Docs",
-    "generateNewKeyButton": "Generate New Key",
-    "noApiKeys": "You have not generated any API keys yet.",
-    "table": {
-      "key": "Description / Key",
-      "status": "Status",
-      "environment": "Environment",
-      "created": "Created",
-      "actions": "Actions"
-    },
-    "apiKeyCopied": "API Key copied to clipboard!",
-    "generateButton": "Generate",
-    "revokeDialog": {
-      "title": "Revoke API Key?",
-      "description": "This action cannot be undone. This will permanently disable this API key.",
-      "cancel": "Cancel",
-      "confirm": "Revoke"
-    },
-    "toast": {
-      "descriptionRequired": "A description for the key is required.",
-      "keyGeneratedSuccess": "API Key generated successfully.",
-      "keyGeneratedError": "Could not generate API key.",
-      "keyRevokedSuccess": "API Key revoked successfully.",
-      "keyRevokedError": "Could not revoke API Key."
-    }
-  },
-  "Auth": {
-    "signUpWelcome": "Join {appName} and connect with the global agricultural community.",
-    "signInWelcome": "Welcome back! Sign in to access your {appName} dashboard.",
-    "forgotPasswordResetPrompt": "Reset your password for {appName}.",
-    "resetPasswordPrompt": "Set a new password for your {appName} account.",
-    "signInTitle": "Sign In to Your Account",
-    "signInDescription": "Enter your credentials to access the platform.",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing In...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign up",
-    "recoverWithUniversalIdPrompt": "Or recover account with Universal ID",
-    "signUpTitle": "Create Your Account",
-    "signUpDescription": "Join the community to connect and grow.",
-    "nameLabel": "Full Name",
-    "namePlaceholder": "Enter your full name",
-    "roleLabel": "Your Role",
-    "rolePlaceholder": "Select your primary role",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "Confirm your new password",
-    "creatingAccountButton": "Creating Account...",
-    "signUpButton": "Sign Up",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "signInLink": "Sign In",
-    "forgotPasswordTitle": "Forgot Password",
-    "forgotPasswordDescription": "Enter your email to receive a reset link.",
-    "sendingEmailButton": "Sending email...",
-    "sendResetLinkButton": "Send Reset Link",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Enter your new password below.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "Enter a strong new password",
-    "resettingPasswordButton": "Resetting...",
-    "resetPasswordButton": "Reset Password",
-    "recoverPage": {
-      "title": "Social Account Recovery",
-      "description": "Regain access to your account with help from a trusted friend on DamDoh.",
-      "howItWorksTitle": "How It Works",
-      "step1": "Enter the phone number for the account you want to recover.",
-      "step2": "A unique, temporary QR code will be generated.",
-      "step3": "Have a friend who uses DamDoh scan this code to confirm your identity.",
-      "startButton": "Start Recovery Process",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Show this QR code to a trusted friend who is also a DamDoh user. They can scan it using the 'Help a Friend' option on their recovery page.",
-      "scanNote": "This code is temporary and will expire in 10 minutes.",
-      "startOverButton": "Start Over",
-      "helpFriendButton": "Help a Friend Recover"
-    }
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search for people, produce, services, or topics...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans",
-    "popularSearch2": "Tractor for rent",
-    "popularSearch3": "Logistics in Kenya",
-    "popularSearch4": "Drought-resistant seeds",
-    "popularSearch5": "KNF Recipes",
-    "modal": {
-      "title": "Universal Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while performing the search. Please try again.",
-      "placeholder": "Search DamDoh...",
-      "searchButton": "Search",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Showing results for your query.",
-      "filtersTitle": "Applied Filters",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace Listings",
-        "forums": "Forum Topics",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Articles",
-        "vti_registry": "Traceability Batches"
-      },
-      "noResults": "No results found for your query.",
-      "tryAgain": "Try refining your search terms.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "invalidCodeError": "This is not a valid DamDoh QR code."
+    "commitment": {
+      "title": "Our Commitment: Restoring Hope, Land, and Livelihoods",
+      "p1": "At DamDoh, we see farmers not only as food producers but as guardians of the earth — capable of turning degraded fields into thriving, biodiverse landscapes.",
+      "p2": "By empowering smallholders with knowledge, tools, and fair markets, we help them earn more, restore more, and lead their communities toward a sustainable, dignified future.",
+      "p3": "When farmers flourish, biodiversity thrives. When biodiversity thrives, the planet heals.",
+      "button": "Join Us - Let Farmers Lead the Way"
     }
   }
 }
+
+    

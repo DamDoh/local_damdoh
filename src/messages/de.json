@@ -1,518 +1,69 @@
 
 {
-  "FiApplicationListPage": {
-    "backLink": "Zurück zum Dashboard",
-    "title": "Finanzierungsanträge",
-    "description": "Überprüfen Sie alle von Landwirten und Genossenschaften eingereichten Anträge.",
-    "tabs": {
-      "all": "Alle",
-      "pending": "Ausstehend",
-      "approved": "Genehmigt",
-      "rejected": "Abgelehnt"
-    },
-    "table": {
-      "applicant": "Antragsteller",
-      "type": "Typ",
-      "amount": "Betrag",
-      "date": "Datum",
-      "status": "Status",
-      "action": "Aktion"
-    },
-    "reviewButton": "Überprüfen",
-    "noApplications": "Keine Anträge in dieser Kategorie gefunden."
-  },
-  "FiApplicationPage": {
-    "backLink": "Zurück zu den Anträgen",
-    "title": "Antragsdetails",
-    "applicationTitle": "Antrag",
-    "submittedOn": "Eingereicht am",
-    "amountRequested": "Angeforderter Betrag",
-    "purpose": "Zweck der Finanzierung",
-    "approveButton": "Genehmigen",
-    "rejectButton": "Ablehnen",
-    "requestInfoButton": "Weitere Informationen anfordern",
-    "applicantDetails": "Details zum Antragsteller",
-    "viewProfileButton": "Profil anzeigen",
-    "profileNotFound": "Antragstellerprofil nicht gefunden.",
-    "riskAssessment": "Risikobewertung",
-    "creditScore": "Kreditwürdigkeit",
-    "notFound": "Antrag nicht gefunden.",
-    "toast": {
-      "errorTitle": "Fehler",
-      "updateSuccessTitle": "Status aktualisiert!",
-      "updateSuccessDescription": "Der Antragsstatus wurde auf {{status}} aktualisiert.",
-      "updateFailTitle": "Aktualisierung fehlgeschlagen"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Finanzprodukt erstellen",
-    "description": "Definieren Sie ein neues Darlehens- oder Zuschussprodukt, das Landwirten angeboten werden soll.",
-    "form": {
-      "nameLabel": "Produktname",
-      "namePlaceholder": "z.B. Saatgutdarlehen für Kleinbauern",
-      "typeLabel": "Produkttyp",
-      "loan": "Darlehen",
-      "grant": "Zuschuss",
-      "descriptionLabel": "Beschreibung",
-      "descriptionPlaceholder": "Beschreiben Sie das Produkt, seine Vorteile und wer berechtigt ist.",
-      "interestRateLabel": "Zinssatz (%)",
-      "interestRatePlaceholder": "z.B. 5.5",
-      "maxAmountLabel": "Maximaler Betrag (USD)",
-      "maxAmountPlaceholder": "z.B. 10000",
-      "targetRolesLabel": "Zielgruppen",
-      "targetRolesDescription": "Wählen Sie die Rollen aus, die für dieses Produkt berechtigt sind.",
-      "submitButton": "Produkt erstellen"
-    },
-    "toast": {
-      "notAuthenticated": "Sie müssen als Finanzinstitut angemeldet sein.",
-      "successTitle": "Produkt erstellt!",
-      "successDescription": "Das Produkt '{{name}}' wurde erfolgreich erstellt.",
-      "errorTitle": "Erstellung fehlgeschlagen"
-    }
-  },
-  "FiProductsPage": {
-    "backLink": "Zurück zum Dashboard",
-    "title": "Finanzprodukte",
-    "description": "Anzeigen und Verwalten Ihrer Darlehens- und Zuschussprodukte.",
-    "createButton": "Neues Produkt erstellen",
-    "table": {
-      "productName": "Produktname",
-      "type": "Typ",
-      "status": "Status",
-      "interestRate": "Zinssatz",
-      "maxAmount": "Max. Betrag"
-    },
-    "noProducts": "Sie haben noch keine Finanzprodukte erstellt.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsurancePage": {
-    "title": "Agrarversicherung",
-    "description": "Schützen Sie Ihren Hof und Ihre Vermögenswerte vor unvorhergesehenen Risiken.",
-    "perTerm": "/ Laufzeit",
-    "viewDetailsButton": "Details anzeigen & Beantragen",
-    "noProducts": "Derzeit sind keine Versicherungsprodukte verfügbar.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Zurück zu allen Versicherungen",
-    "coverageTitle": "Deckungsdetails",
-    "premiumTitle": "Prämie",
-    "perTerm": "/ Laufzeit",
-    "providerTitle": "Angeboten von",
-    "applyButton": "Für diese Police beantragen",
-    "notFound": "Versicherungsprodukt nicht gefunden.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Zurück zu den Produktdetails",
-    "title": "Versicherung beantragen",
-    "description": "Beantragen Sie eine Deckung für Ihren Hof mit {{productName}}.",
-    "form": {
-      "farmLabel": "Zu versichernder Hof",
-      "farmPlaceholder": "Wählen Sie einen Hof",
-      "noFarms": "Keine Höfe gefunden. Bitte erstellen Sie zuerst einen.",
-      "coverageValueLabel": "Vermögens-/Deckungswert (USD)",
-      "coverageValuePlaceholder": "z.B. 50000",
-      "coverageValueDescription": "Geben Sie den Gesamtwert der zu versichernden Vermögenswerte ein.",
-      "submitButton": "Antrag einreichen"
-    },
-    "success": {
-      "title": "Antrag eingereicht!",
-      "description": "Ihr Versicherungsantrag wurde zur Überprüfung gesendet.",
-      "backToDashboardButton": "Zurück zum Dashboard",
-      "applyForAnotherButton": "Für eine weitere Police beantragen"
-    },
-    "toast": {
-      "error": "Fehler",
-      "successTitle": "Antrag eingereicht!",
-      "successDescription": "Ihr Versicherungsantrag wurde an den Anbieter gesendet."
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Versicherungsprodukt erstellen",
-    "description": "Definieren Sie eine neue Versicherungspolice, die auf der Plattform angeboten werden soll.",
-    "form": {
-      "nameLabel": "Produktname",
-      "namePlaceholder": "z.B. Dürreschutz für Mais",
-      "typeLabel": "Produkttyp",
-      "typePlaceholder": "Wählen Sie einen Typ",
-      "crop": "Ernte",
-      "livestock": "Vieh",
-      "asset": "Vermögenswert",
-      "weather": "Wetter",
-      "descriptionLabel": "Beschreibung",
-      "descriptionPlaceholder": "Beschreiben Sie das Produkt und seine Vorteile.",
-      "coverageLabel": "Deckungsdetails",
-      "coveragePlaceholder": "Detaillieren Sie was diese Police abdeckt...",
-      "premiumLabel": "Prämie (USD)",
-      "premiumPlaceholder": "z.B. 250.00",
-      "currencyLabel": "Währung",
-      "submitButton": "Produkt erstellen"
-    },
-    "toast": {
-      "notAuthenticated": "Sie müssen als Versicherungsanbieter angemeldet sein.",
-      "successTitle": "Produkt erstellt!",
-      "successDescription": "Das Versicherungsprodukt '{{name}}' wurde erfolgreich erstellt.",
-      "errorTitle": "Erstellung fehlgeschlagen"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "Versicherungsprodukte",
-    "description": "Anzeigen und Verwalten Ihrer Versicherungsprodukte.",
-    "createButton": "Neues Produkt erstellen",
-    "table": {
-      "productName": "Produktname",
-      "type": "Typ",
-      "status": "Status",
-      "premium": "Prämie"
-    },
-    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "AppHeader": {
-    "home": "Start",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Mgmt",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talente",
-    "traceability": "Rückverfolgbarkeit",
-    "forums": "Foren",
-    "notifications": "Alarme",
-    "messages": "Nachrichten",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Design wechseln",
-    "switchToDarkAria": "Zum dunklen Design wechseln",
-    "sustainability": "Nachhaltigkeit"
-  },
-  "AppFooter": {
-    "tagline": "Die Welt der Landwirtschaft verbinden, vom Samen bis zum Tisch.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutz-Bestimmungen",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache ändern"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "LandingPage": {
+  "aboutPage": {
     "hero": {
-      "title": "Globale Lebensmittel-Lieferketten mit {appName} neu gestalten",
-      "subtitle": "Landwirte, Käufer und alle Beteiligten dazwischen mit Transparenz, Technologie und Vertrauen verbinden.",
-      "getStartedButton": "Kostenlos starten",
-      "learnMoreButton": "Mehr erfahren"
+      "title": "Bauern stärken, den Planeten wiederherstellen",
+      "subtitle": "Bei DamDoh glauben wir, dass die Zukunft unseres Planeten in den Händen seiner kleinsten Bauern liegt."
     },
-    "features": {
-      "title": "Eine einheitliche Plattform für eine vernetzte Lieferkette",
-      "subtitle": "DamDoh integriert jeden Aspekt der landwirtschaftlichen Wertschöpfungskette in ein einziges, intelligentes Ökosystem.",
-      "networking": {
-        "title": "Professionelles Netzwerk",
-        "description": "Vernetzen Sie sich direkt mit Landwirten, Exporteuren, Finanziers und Dienstleistern aus der ganzen Welt."
-      },
-      "marketplace": {
-        "title": "Globaler Marktplatz",
-        "description": "Kaufen und verkaufen Sie Produkte, Betriebsmittel und Ausrüstung mit Vertrauen, gestützt auf überprüfbare Daten."
-      },
-      "forums": {
-        "title": "Wissensforen",
-        "description": "Teilen Sie Einblicke, stellen Sie Fragen und arbeiten Sie mit einer globalen Gemeinschaft von Agrarexperten zusammen."
-      },
-      "talent": {
-        "title": "Talentbörse",
-        "description": "Finden oder bieten Sie spezialisierte landwirtschaftliche Dienstleistungen an, von der Agrarberatung bis zur Logistik."
+    "vision": {
+      "title": "Bauern als Hüter der Erde",
+      "p1": "Die Landwirtschaft ist nicht nur eine Lebensweise – sie ist die Grundlage für gesunde Gemeinschaften, widerstandsfähige Volkswirtschaften, kulturelle Kontinuität und die Biodiversität, die alles Leben erhält. Doch heute bedrohen eine kaputte globale Lebensmittelversorgungskette, tiefgreifende Ungleichheiten und ein sich erwärmendes Klima nicht nur die Lebensgrundlagen der Bauern, sondern auch die Ökosysteme, von denen wir alle abhängen.",
+      "p2": "Wir existieren, um das zu ändern – indem wir Bauern befähigen, Akteure der Wiederherstellung der Biodiversität, der Klimaresilienz und des nachhaltigen Wohlstands zu werden.",
+      "foundersTitle": "Unsere Gründer"
+    },
+    "challenge": {
+      "title": "Die Herausforderung: Ein kaputtes System, ein sich erwärmender Planet",
+      "description": "Unsere Lebensmittel kommen über eine Lieferkette, die von Schwachstellen durchzogen ist:",
+      "list": {
+        "knowledge": "Wissenslücken: Landwirte haben oft keinen Zugang zu nachhaltigen, biodiversitätsfreundlichen Praktiken, was zu geringeren Erträgen und degradierten Ökosystemen führt.",
+        "market": "Marktbarrieren: Unfaire Märkte und Zwischenhändler fangen Landwirte in Armut und entmutigen Investitionen in das Land.",
+        "quality": "Qualität & Standards: Ohne Zugang zu Standards und Werkzeugen können Landwirte die Anforderungen von Premium-Märkten mit Bewusstsein für Biodiversität nicht erfüllen.",
+        "logistics": "Logistikfehler: Schlechte Infrastruktur führt zu Lebensmittelverschwendung und unnötigen Emissionen.",
+        "financial": "Finanzielle Ausgrenzung: Ohne Finanzierung können sich Landwirte den Übergang zu einer regenerativen, klimafreundlichen Landwirtschaft nicht leisten.",
+        "climate": "Klimaanfälligkeit: Überschwemmungen, Dürren und Schädlinge – verschärft durch den Klimawandel – zerstören Ernten und treiben die Migration an.",
+        "informal": "Informelle Systeme: Mangelnde Transparenz untergräbt das Vertrauen und die Nachhaltigkeitsziele."
       }
     },
-    "forWho": {
-      "badge": "Für jeden in der Landwirtschaft",
-      "title": "Stärkung jedes Glieds in der Kette",
-      "description": "DamDoh ist für das gesamte landwirtschaftliche Ökosystem konzipiert. Ob Sie ein kleines Feld bewirtschaften oder den internationalen Handel verwalten, unsere Plattform bietet die Werkzeuge, die Sie für den Erfolg benötigen.",
-      "imageAlt": "Eine vielfältige Gruppe von Landwirtschaftsexperten bei der Zusammenarbeit.",
-      "farmers": {
-        "title": "Landwirte & Kooperativen",
-        "description": "Erschließen Sie neue Märkte, sichern Sie Finanzierungen und nutzen Sie bewährte Verfahren, um Ertrag und Rentabilität zu steigern."
-      },
-      "buyers": {
-        "title": "Käufer & Exporteure",
-        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von den Erzeugern und optimieren Sie Ihre Lieferkette."
-      },
-      "experts": {
-        "title": "Experten & Dienstleister",
-        "description": "Bieten Sie Ihre Expertise an, finden Sie neue Kunden und tragen Sie zu einem effizienteren und nachhaltigeren Lebensmittelsystem bei."
+    "solution": {
+      "title": "Unsere Lösung: DamDoh – Eine globale „Super-App“ für einen wiederhergestellten Planeten",
+      "description": "DamDoh ist eine intelligente, integrierte digitale Plattform, die Landwirte als Hüter der Biodiversität und Katalysatoren des Klimaschutzes befähigt:",
+      "list": {
+        "education": "Bildung & Schulung: Praktische Kurse zu regenerativer Landwirtschaft, Bodengesundheit und unternehmerischen Fähigkeiten.",
+        "ai": "Intelligente Landwirtschaft & KI-Erkenntnisse: Wir nutzen Satellitendaten, KI und Wettervorhersagen, um präzise Boden- und Ökosystemanalysen zu liefern.",
+        "marketplace": "Marktplatz & E-Commerce: Landwirte verbinden sich direkt mit ethischen Käufern, die biodiversitätsfreundliche Produkte schätzen.",
+        "logistics": "Lieferkette & Logistik: Transparente, effiziente Logistik minimiert Verluste und reduziert Emissionen.",
+        "financial": "Finanzielle Werkzeuge: Kredite, Mikrofinanzierungen und Crowdfunding-Lösungen helfen Landwirten, in klimafreundliche Innovationen zu investieren."
       }
     },
-    "cta": {
-      "title": "Bereit, Ihr Agrargeschäft zu transformieren?",
-      "subtitle": "Schließen Sie sich Tausenden von Interessengruppen an, die eine transparentere und wohlhabendere landwirtschaftliche Zukunft aufbauen.",
-      "button": "Treten Sie dem DamDoh-Netzwerk bei"
-    }
-  },
-  "RegulatorDashboard": {
-    "title": "Regulierungs-Dashboard",
-    "pendingCertificationsTitle": "Ausstehende Zertifizierungen",
-    "reviewsOutstanding": "Überprüfungen ausstehend",
-    "reviewAllButton": "Alle überprüfen",
-    "riskAlertsTitle": "Konformitätsrisiko-Warnungen",
-    "investigateButton": "Untersuchen",
-    "noComplianceAlerts": "Derzeit keine Konformitätswarnungen.",
-    "anomaliesTitle": "Anomalien in der Lieferkette",
-    "trackVtiButton": "VTI verfolgen",
-    "noAnomalies": "Keine Anomalien in der Lieferkette erkannt."
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Synchronisiere {count} Änderungen...",
-      "onlinePending": "{count, plural, one {# Änderung zur Synchronisierung ausstehend.} other {# Änderungen zur Synchronisierung ausstehend.}}",
-      "onlineSynced": "Online: Alle Änderungen synchronisiert.",
-      "offline": "Offline: {count, plural, one {# Änderung lokal gespeichert.} other {# Änderungen lokal gespeichert.}}"
-    },
-    "toast": {
-      "online": {
-        "title": "Sie sind wieder online!",
-        "description": "Verbindung wiederhergestellt."
-      },
-      "offline": {
-        "title": "Verbindung verloren",
-        "description": "Sie sind jetzt offline. Änderungen werden lokal gespeichert."
-      },
-      "syncing": {
-        "title": "Daten werden synchronisiert",
-        "description": "Versuche, {count, plural, one {# ausstehende Änderung} other {# ausstehende Änderungen}} mit dem Server zu synchronisieren."
-      },
-      "synced": {
-        "title": "Synchronisierung abgeschlossen!",
-        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
-      },
-      "syncFailed": {
-        "title": "Synchronisierung fehlgeschlagen",
-        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Erneuter Versuch später."
-      },
-      "queued": {
-        "title": "Aktion in Warteschlange",
-        "description": "Ihre Änderung wurde lokal gespeichert und wird synchronisiert, wenn Sie online sind."
+    "beyondTechnology": {
+      "title": "Über die Technologie hinaus: Ein globales Zentrum für Wiederherstellung",
+      "list": {
+        "p2p": {
+          "title": "Bauer-zu-Bauer",
+          "content": "Austausch von indigenem Wissen und regenerativen Techniken über Grenzen hinweg."
+        },
+        "p2b": {
+          "title": "Bauer-zu-Käufer",
+          "content": "Verbindung von Landwirten mit Käufern, die sich für Biodiversität und Klimaziele einsetzen."
+        },
+        "p2e": {
+          "title": "Bauer-zu-Experte",
+          "content": "Direkte Beratung von Agronomen, Ökologen und Forschern."
+        },
+        "p2w": {
+          "title": "Bauer-zur-Welt",
+          "content": "Zusammenarbeit mit NGOs, Regierungen und Genossenschaften, um die Wirkung zu skalieren."
+        }
       }
-    }
-  },
-  "notificationsPage": {
-    "title": "Benachrichtigungen",
-    "description": "Hier sind Ihre neuesten Updates und Benachrichtigungen.",
-    "noNotifications": "Sie haben keine neuen Benachrichtigungen.",
-    "likedYourPost": "{name} hat Ihren Beitrag geliked",
-    "commentedOnYourPost": "{name} hat Ihren Beitrag kommentiert",
-    "viewedYourProfile": "{name} hat Ihr Profil angesehen",
-    "placedNewOrder": "{name} hat eine neue Bestellung aufgegeben",
-    "sentConnectionRequest": "{name} hat Ihnen eine Verbindungsanfrage gesendet",
-    "eventReminder": "Ereigniserinnerung",
-    "unknownNotification": "Sie haben ein neues Update."
-  },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Entdecken Sie Agrarexperten und professionelle Dienstleistungen, um Ihr Unternehmen zu fördern.",
-    "listServiceButton": "Dienstleistung anbieten",
-    "searchPlaceholder": "Fähigkeiten oder Dienstleistungen suchen (z.B. Bodenanalyse)",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "categoryPlaceholder": "Nach Kategorie filtern...",
-    "allCategories": "Alle Dienstleistungskategorien",
-    "noResultsTitle": "Keine Dienstleistungen gefunden",
-    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später nach neuen Angeboten.",
-    "toast": {
-      "error": {
-        "title": "Suchfehler",
-        "description": "Verfügbare Dienstleistungen konnten nicht abgerufen werden."
-      }
-    }
-  },
-  "sustainabilityPage": {
-    "title": "Nachhaltigkeits-Dashboard",
-    "description": "Verfolgen und verstehen Sie die Umweltauswirkungen Ihres Betriebs.",
-    "carbonFootprint": "CO2-Fußabdruck",
-    "waterEfficiency": "Wassereffizienz",
-    "biodiversityScore": "Biodiversitäts-Score",
-    "practicesTitle": "Protokollierte nachhaltige Praktiken",
-    "certificationsTitle": "Aktive Zertifizierungen",
-    "practicesTable": {
-      "practice": "Praxis",
-      "lastLogged": "Zuletzt protokolliert"
     },
-    "certificationsTable": {
-      "certification": "Zertifizierung",
-      "status": "Status",
-      "expiry": "Ablaufdatum"
-    },
-    "metricCard": {
-      "trendText": "zum Vormonat"
-    },
-    "auth": {
-      "title": "Authentifizierung erforderlich",
-      "description": "Bitte melden Sie sich an, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
-      "button": "Anmelden"
-    },
-    "noData": {
-      "title": "Keine Daten verfügbar",
-      "description": "Wir haben nicht genügend Daten, um Ihren Nachhaltigkeitsbericht zu erstellen. Beginnen Sie mit der Protokollierung Ihrer landwirtschaftlichen Aktivitäten!"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Dashboard für Agri-Tech-Innovatoren",
-    "sandboxTitle": "Sandbox-Status",
-    "integrationsTitle": "Integrationen",
-    "apiKeysTitle": "Ihre API-Schlüssel",
-    "apiKeysDescription": "Verwalten Sie Ihre API-Schlüssel für den Zugriff auf die DamDoh-Plattform.",
-    "statusLabel": "Status",
-    "lastResetLabel": "Letzter Reset",
-    "activeProjects": "Aktive Projekte",
-    "integrationsDescription": "Partnerintegrationen, die derzeit aktiv sind.",
-    "proposeIntegrationButton": "Integration vorschlagen",
-    "accessDocsButton": "API-Dokumentation aufrufen",
-    "generateNewKeyButton": "Neuen Schlüssel generieren",
-    "noApiKeys": "Sie haben noch keine API-Schlüssel generiert.",
-    "table": {
-      "key": "Beschreibung / Schlüssel",
-      "status": "Status",
-      "environment": "Umgebung",
-      "created": "Erstellt am",
-      "actions": "Aktionen"
-    },
-    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert!",
-    "generateButton": "Generieren",
-    "revokeDialog": {
-      "title": "API-Schlüssel widerrufen?",
-      "description": "Diese Aktion kann nicht rückgängig gemacht werden. Dadurch wird dieser API-Schlüssel dauerhaft deaktiviert.",
-      "cancel": "Abbrechen",
-      "confirm": "Widerrufen"
-    },
-    "toast": {
-      "descriptionRequired": "Eine Beschreibung für den Schlüssel ist erforderlich.",
-      "keyGeneratedSuccess": "API-Schlüssel erfolgreich generiert.",
-      "keyGeneratedError": "API-Schlüssel konnte nicht generiert werden.",
-      "keyRevokedSuccess": "API-Schlüssel erfolgreich widerrufen.",
-      "keyRevokedError": "API-Schlüssel konnte nicht widerrufen werden."
-    }
-  },
-  "Auth": {
-    "signUpWelcome": "Treten Sie {appName} bei und vernetzen Sie sich mit der globalen Agrargemeinschaft.",
-    "signInWelcome": "Willkommen zurück! Melden Sie sich an, um auf Ihr {appName}-Dashboard zuzugreifen.",
-    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück.",
-    "resetPasswordPrompt": "Legen Sie ein neues Passwort für Ihr {appName}-Konto fest.",
-    "signInTitle": "In Ihr Konto einloggen",
-    "signInDescription": "Geben Sie Ihre Anmeldeinformationen ein, um auf die Plattform zuzugreifen.",
-    "emailLabel": "E-Mail",
-    "emailPlaceholder": "sie@beispiel.com",
-    "passwordLabel": "Passwort",
-    "forgotPasswordLink": "Passwort vergessen?",
-    "signingInButton": "Anmelden...",
-    "signInButton": "Anmelden",
-    "noAccountPrompt": "Haben Sie noch kein Konto?",
-    "signUpLink": "Registrieren",
-    "recoverWithUniversalIdPrompt": "Oder Konto mit Universal ID wiederherstellen",
-    "signUpTitle": "Erstellen Sie Ihr Konto",
-    "signUpDescription": "Treten Sie der Community bei, um sich zu vernetzen und zu wachsen.",
-    "nameLabel": "Vollständiger Name",
-    "namePlaceholder": "Geben Sie Ihren vollständigen Namen ein",
-    "roleLabel": "Ihre Rolle",
-    "rolePlaceholder": "Wählen Sie Ihre Hauptrolle",
-    "confirmPasswordLabel": "Passwort bestätigen",
-    "confirmPasswordPlaceholder": "Bestätigen Sie Ihr neues Passwort",
-    "creatingAccountButton": "Konto wird erstellt...",
-    "signUpButton": "Registrieren",
-    "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
-    "signInLink": "Anmelden",
-    "forgotPasswordTitle": "Passwort vergessen",
-    "forgotPasswordDescription": "Geben Sie Ihre E-Mail-Adresse ein, um einen Link zum Zurücksetzen zu erhalten.",
-    "sendingEmailButton": "E-Mail wird gesendet...",
-    "sendResetLinkButton": "Link zum Zurücksetzen senden",
-    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
-    "resetPasswordTitle": "Setzen Sie Ihr Passwort zurück",
-    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein.",
-    "newPasswordLabel": "Neues Passwort",
-    "newPasswordPlaceholder": "Geben Sie ein sicheres neues Passwort ein",
-    "resettingPasswordButton": "Wird zurückgesetzt...",
-    "resetPasswordButton": "Passwort zurücksetzen",
-    "recoverPage": {
-      "title": "Soziale Kontowiederherstellung",
-      "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes auf DamDoh wieder Zugriff auf Ihr Konto.",
-      "howItWorksTitle": "Wie es funktioniert",
-      "step1": "Geben Sie die Telefonnummer für das Konto ein, das Sie wiederherstellen möchten.",
-      "step2": "Ein einzigartiger, temporärer QR-Code wird generiert.",
-      "step3": "Lassen Sie einen Freund, der DamDoh verwendet, diesen Code scannen, um Ihre Identität zu bestätigen.",
-      "startButton": "Wiederherstellungsprozess starten",
-      "scanTitle": "Bitten Sie einen Freund zu scannen",
-      "scanDescription": "Zeigen Sie diesen QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh-Benutzer ist. Er kann ihn mit der Option 'Einem Freund helfen' auf seiner Wiederherstellungsseite scannen.",
-      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
-      "startOverButton": "Neu anfangen",
-      "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
-    }
-  },
-  "searchPage": {
-    "title": "Universelle Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform.",
-    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen oder Themen...",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchanfragen",
-    "popularSearch1": "Bio-Kaffeebohnen",
-    "popularSearch2": "Traktor zu vermieten",
-    "popularSearch3": "Logistik in Kenia",
-    "popularSearch4": "Trockenresistente Samen",
-    "popularSearch5": "KNF-Rezepte",
-    "modal": {
-      "title": "Universelle Suche",
-      "searchError": "Suchfehler",
-      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-      "placeholder": "DamDoh durchsuchen...",
-      "searchButton": "Suchen",
-      "interpretationTitle": "KI-Interpretation",
-      "interpretationNotesDefault": "Zeige Ergebnisse für Ihre Anfrage.",
-      "filtersTitle": "Angewendete Filter",
-      "results": {
-        "users": "Profile",
-        "marketplaceItems": "Marktplatzangebote",
-        "forums": "Forum-Themen",
-        "agri_events": "Veranstaltungen",
-        "knowledge_articles": "Wissensartikel",
-        "vti_registry": "Rückverfolgbarkeits-Chargen"
-      },
-      "noResults": "Keine Ergebnisse für Ihre Anfrage gefunden.",
-      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
-      "scanFailed": "Scan fehlgeschlagen",
-      "scanError": "Scan-Fehler",
-      "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
-      "invalidCodeError": "Dies ist kein gültiger DamDoh QR-Code."
+    "commitment": {
+      "title": "Unser Engagement: Hoffnung, Land und Lebensgrundlagen wiederherstellen",
+      "p1": "Bei DamDoh sehen wir Landwirte nicht nur als Lebensmittelproduzenten, sondern als Wächter der Erde – fähig, degradierte Felder in blühende, artenreiche Landschaften zu verwandeln.",
+      "p2": "Indem wir Kleinbauern mit Wissen, Werkzeugen und fairen Märkten stärken, helfen wir ihnen, mehr zu verdienen, mehr wiederherzustellen und ihre Gemeinschaften in eine nachhaltige, würdevolle Zukunft zu führen.",
+      "p3": "Wenn Bauern florieren, gedeiht die Biodiversität. Wenn die Biodiversität gedeiht, heilt der Planet.",
+      "button": "Machen Sie mit – Lassen Sie die Bauern den Weg weisen"
     }
   }
 }
+
+    
