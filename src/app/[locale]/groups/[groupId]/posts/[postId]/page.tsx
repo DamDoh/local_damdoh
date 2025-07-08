@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -154,15 +153,15 @@ export default function GroupPostPage() {
         } catch (error) {
              console.error("Error fetching replies:", error);
             toast({
-                title: "Error loading replies",
-                description: "Could not load the discussion for this post.",
+                title: t('toast.loadRepliesError.title'),
+                description: t('toast.loadRepliesError.description'),
                 variant: "destructive"
             });
         } finally {
             if(isInitialLoad) setIsLoading(false);
             else setIsLoadingMore(false);
         }
-    }, [groupId, postId, lastVisible, getRepliesForPost, toast, hasMore]);
+    }, [groupId, postId, lastVisible, getRepliesForPost, toast, hasMore, t]);
 
     const fetchInitialData = useCallback(async () => {
         setIsLoading(true);
@@ -175,14 +174,14 @@ export default function GroupPostPage() {
         } catch (error) {
             console.error("Error fetching post data:", error);
              toast({
-                title: "Error loading post",
-                description: "Could not load the post details.",
+                title: t('toast.loadPostError.title'),
+                description: t('toast.loadPostError.description'),
                 variant: "destructive"
             });
         } finally {
             setIsLoading(false);
         }
-    }, [groupId, postId, fetchReplies, toast]);
+    }, [groupId, postId, fetchReplies, toast, t]);
 
 
     useEffect(() => {
@@ -208,8 +207,8 @@ export default function GroupPostPage() {
         } catch (error) {
              console.error("Error adding reply:", error);
              toast({
-                title: "Error posting reply",
-                description: "Could not submit your reply. Please try again.",
+                title: t('toast.submitError.title'),
+                description: t('toast.submitError.description'),
                 variant: "destructive"
             });
         } finally {

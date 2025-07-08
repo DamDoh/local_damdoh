@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -75,14 +74,14 @@ export default function GroupPage() {
         } catch (error) {
             console.error("Error fetching group data:", error);
              toast({
-                title: "Failed to load group",
-                description: "There was a problem fetching the group details.",
+                title: t('toast.loadError.title'),
+                description: t('toast.loadError.description'),
                 variant: "destructive"
             });
         } finally {
             setIsLoading(false);
         }
-    }, [groupId, getGroupDetails, getGroupMembers, getGroupPosts, user, toast]);
+    }, [groupId, getGroupDetails, getGroupMembers, getGroupPosts, user, toast, t]);
 
 
     useEffect(() => {
@@ -102,7 +101,7 @@ export default function GroupPage() {
             fetchData(); // Refetch all data to update UI
         } catch (error: any) {
             console.error("Error joining group:", error);
-            toast({ title: t('toast.joinError'), description: error.message || "An error occurred. Please try again.", variant: "destructive" });
+            toast({ title: t('toast.joinError'), description: error.message || t('toast.error.description'), variant: "destructive" });
         } finally {
             setIsJoining(false);
         }
@@ -118,7 +117,7 @@ export default function GroupPage() {
             fetchData(); // Refetch all data to update UI
         } catch (error: any) {
             console.error("Error leaving group:", error);
-            toast({ title: t('toast.leaveError'), description: error.message || "An error occurred. Please try again.", variant: "destructive" });
+            toast({ title: t('toast.leaveError'), description: error.message || t('toast.error.description'), variant: "destructive" });
         } finally {
             setIsJoining(false);
         }
@@ -146,10 +145,10 @@ export default function GroupPage() {
     if (!group) {
         return (
             <div className="container mx-auto max-w-4xl py-8 text-center">
-                <h3 className="text-lg font-semibold">Group not found.</h3>
-                <p className="text-muted-foreground">This group may have been deleted or the link is incorrect.</p>
+                <h3 className="text-lg font-semibold">{t('notFound.title')}</h3>
+                <p className="text-muted-foreground">{t('notFound.description')}</p>
                 <Button asChild className="mt-4">
-                    <Link href="/groups">Back to Groups</Link>
+                    <Link href="/groups">{t('notFound.backButton')}</Link>
                 </Button>
             </div>
         );
@@ -202,7 +201,7 @@ export default function GroupPage() {
                                                 <div className="flex-grow overflow-hidden">
                                                     <h4 className="font-semibold truncate text-sm">{post.title}</h4>
                                                     <p className="text-xs text-muted-foreground">
-                                                        By {post.authorName} &bull; {new Date(post.createdAt).toLocaleDateString()}
+                                                        {t('detail.by', { author: post.authorName })} &bull; {new Date(post.createdAt).toLocaleDateString()}
                                                     </p>
                                                 </div>
                                                 <div className="text-sm text-muted-foreground flex items-center gap-1 shrink-0">
