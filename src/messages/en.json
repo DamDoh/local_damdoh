@@ -1,246 +1,5 @@
 
 {
-  "traceabilityPage": {
-    "title": "Product Traceability",
-    "description": "Trace the journey of your food from farm to fork with a Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "Enter VTI or Batch ID...",
-    "trackButton": "Track",
-    "vtiDescription": "A VTI is a unique identifier assigned to each batch of produce, ensuring transparency throughout the supply chain.",
-    "recentTitle": "Recently Verified Batches",
-    "recentDescription": "Explore some of the latest product journeys on the platform.",
-    "noRecentBatches": "No recently verified batches found.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "viewReportButton": "View Full Report",
-    "detailPage": {
-      "backLink": "Back to Traceability Hub",
-      "invalidIdError": "No valid batch ID provided.",
-      "loadError": "Failed to load traceability history for this batch.",
-      "notFoundTitle": "Batch Not Found",
-      "notFoundDescription": "The traceability report for this ID could not be found.",
-      "traceableProduct": "Traceable Product",
-      "batchIdLabel": "Batch ID",
-      "producerLabel": "Producer",
-      "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Initial Yield",
-      "qualityLabel": "Quality Grade",
-      "notSpecified": "Not specified",
-      "journeyTitle": "Product Journey",
-      "journeyDescription": "A chronological record of events for this batch.",
-      "noEventDetails": "No specific details for this event.",
-      "noEventsFound": "No traceability events have been logged for this batch yet.",
-      "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product was grown using practices that align with sustainable and organic principles, based on logged inputs.",
-      "geoLocationLabel": "Geolocation",
-      "observationType": "Observation Type",
-      "details": "Details",
-      "aiDiagnosis": "AI Diagnosis"
-    }
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search for people, products, services, forum posts...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans Kenya",
-    "popularSearch2": "Tractor rental",
-    "popularSearch3": "Drought-resistant maize seeds",
-    "popularSearch4": "Logistics partner East Africa",
-    "popularSearch5": "Post-harvest loss reduction",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search people, products, services, forums...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while searching. Please try again.",
-      "invalidCodeError": "Invalid QR code scanned. It does not appear to be a DamDoh ID.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Searching for items related to your query.",
-      "filtersTitle": "Applied Filters",
-      "noResults": "No results found",
-      "tryAgain": "Try refining your search terms.",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Hub",
-        "vti_registry": "Traceability Reports"
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "The Global Agricultural Supply Chain Platform.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog & News",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the Mobile App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
-  },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light mode",
-    "switchToDarkAria": "Switch to dark mode"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Change language"
-  },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "You're back online!",
-        "description": "Your connection has been restored."
-      },
-      "offline": {
-        "title": "You are currently offline",
-        "description": "Your actions will be saved and synced when you reconnect."
-      },
-      "syncing": {
-        "title": "Syncing offline changes...",
-        "description": "Uploading {count, plural, one {# action} other {# actions}} to the server."
-      },
-      "synced": {
-        "title": "Sync Complete!",
-        "description": "All your offline changes have been saved."
-      },
-      "syncFailed": {
-        "title": "Sync Failed",
-        "description": "Could not sync all offline changes. Will retry later."
-      },
-      "queued": {
-        "title": "Action Queued",
-        "description": "This action will be performed once you are online."
-      }
-    },
-    "tooltip": {
-      "syncing": "Syncing {count, plural, one {# pending action} other {# pending actions}}...",
-      "onlinePending": "Online | {count, plural, one {# action} other {# actions}} waiting to sync",
-      "onlineSynced": "Online | All changes synced",
-      "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
-    }
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Cultivating Connections, Harvesting Prosperity with {appName}",
-      "subtitle": "The essential digital ecosystem connecting every stakeholder in the agricultural value chain. From seed to sale, DamDoh empowers growth, transparency, and collaboration.",
-      "getStartedButton": "Get Started Free",
-      "learnMoreButton": "Learn More"
-    },
-    "features": {
-      "title": "Core Features of DamDoh",
-      "subtitle": "An integrated platform designed to meet the diverse needs of the agricultural community.",
-      "networking": {
-        "title": "Smart Networking",
-        "description": "AI-powered connection suggestions based on your role, location, and needs. Find the right partners, from suppliers to buyers."
-      },
-      "marketplace": {
-        "title": "Digital Marketplace",
-        "description": "A direct channel to buy and sell produce, inputs, and equipment. Expand your market reach and find the best prices."
-      },
-      "forums": {
-        "title": "Thematic Forums",
-        "description": "Share knowledge and discuss specific topics like crop management, livestock health, and new technologies with peers."
-      },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Offer or find agricultural services, from custom harvesting to drone surveying and professional consultancy."
-      }
-    },
-    "forWho": {
-      "badge": "For Everyone in Agriculture",
-      "title": "A Platform for Every Stakeholder",
-      "description": "DamDoh is uniquely designed to serve the entire agricultural value chain, creating a single point of truth and opportunity for all.",
-      "farmers": {
-        "title": "Farmers",
-        "description": "Access better markets, find quality inputs, and get expert advice to increase your yield and profitability."
-      },
-      "buyers": {
-        "title": "Buyers & Processors",
-        "description": "Source high-quality, traceable produce directly from producers and co-ops, ensuring supply chain reliability."
-      },
-      "experts": {
-        "title": "Experts & Service Providers",
-        "description": "Offer your specialized skills and services to a broad agricultural audience seeking your expertise."
-      },
-      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
-    },
-    "cta": {
-      "title": "Ready to Grow Your Network?",
-      "subtitle": "Join thousands of farmers, buyers, and experts who are building a more connected and efficient agricultural future.",
-      "button": "Join DamDoh Today"
-    }
-  },
-  "sustainabilityPage": {
-    "title": "Sustainability Dashboard",
-    "description": "Track and improve your farm's environmental impact.",
-    "carbonFootprint": "Carbon Footprint",
-    "waterEfficiency": "Water Efficiency",
-    "biodiversityScore": "Biodiversity Score",
-    "practicesTitle": "Sustainable Practices Log",
-    "certificationsTitle": "Certifications",
-    "practicesTable": {
-      "practice": "Practice",
-      "lastLogged": "Last Logged"
-    },
-    "certificationsTable": {
-      "certification": "Certification",
-      "status": "Status",
-      "expiry": "Expiry Date"
-    },
-    "auth": {
-      "title": "Authentication Required",
-      "description": "Please sign in to view your sustainability dashboard.",
-      "button": "Sign In"
-    },
-    "noData": {
-      "title": "No Data Available",
-      "description": "We could not load sustainability data at this time."
-    },
-    "metricCard": {
-      "trendText": "from last month"
-    }
-  },
   "settingsPage": {
     "title": "Settings",
     "description": "Manage your account and profile settings.",
@@ -326,5 +85,26 @@
         "unauthorizedDescription": "You can only edit your own profile."
       }
     }
+  },
+  "AppFooter": {
+    "tagline": "The Global Agricultural Supply Chain Platform.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog & News",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   }
 }
