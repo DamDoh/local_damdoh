@@ -16,7 +16,7 @@ import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 // Mock Chart component as it is not part of the base project
-const Chart = ({ data, children }: { data: any[], children: React.ReactNode, className: string }) => <div className="w-full h-full bg-muted/50 rounded-lg flex items-center justify-center"><p className="text-xs text-muted-foreground">Chart Placeholder</p></div>;
+const Chart = ({ data, children, className }: { data: any[], children: React.ReactNode, className: string }) => <div className="w-full h-full bg-muted/50 rounded-lg flex items-center justify-center"><p className="text-xs text-muted-foreground">Chart Placeholder</p></div>;
 
 export const RegulatorDashboard = () => {
     const t = useTranslations('RegulatorDashboard');

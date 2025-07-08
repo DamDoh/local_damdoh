@@ -110,8 +110,33 @@
     "switchToDarkAria": "Cambiar a tema oscuro",
     "sustainability": "Sostenibilidad"
   },
-  "LanguageSwitcher": {
-    "toggle": "Cambiar idioma"
+  "AppFooter": {
+    "tagline": "Conectando el mundo agrícola, desde la semilla hasta la mesa.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de ayuda",
+    "communityGuidelinesLabel": "Normas de la comunidad",
+    "industryNewsLabel": "Noticias de la industria",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Bolsa de talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de privacidad",
+    "termsOfServiceLabel": "Términos de servicio",
+    "copyright": "© {year} {appName}. Todos los derechos reservados.",
+    "getMobileApp": "Obtén la aplicación móvil",
+    "googlePlayAlt": "Obtener en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
   },
   "LandingPage": {
     "hero": {
@@ -164,174 +189,6 @@
       "button": "Únase a la Red DamDoh"
     }
   },
-  "AppFooter": {
-    "tagline": "Conectando el mundo agrícola, desde la semilla hasta la mesa.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de ayuda",
-    "communityGuidelinesLabel": "Normas de la comunidad",
-    "industryNewsLabel": "Noticias de la industria",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de privacidad",
-    "termsOfServiceLabel": "Términos de servicio",
-    "copyright": "© {year} {appName}. Todos los derechos reservados.",
-    "getMobileApp": "Obtén la aplicación móvil",
-    "googlePlayAlt": "Obtener en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
-  },
-  "talentExchangePage": {
-    "title": "Bolsa de Talentos",
-    "description": "Encuentre profesionales agrícolas calificados u ofrezca su experiencia.",
-    "listServiceButton": "Anuncie su servicio",
-    "searchPlaceholder": "Buscar habilidades o servicios...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "categoryPlaceholder": "Filtrar por categoría...",
-    "allCategories": "Todas las categorías",
-    "toast": {
-      "error": {
-        "title": "Error",
-        "description": "No se pudieron obtener los servicios."
-      }
-    },
-    "noResultsTitle": "No se encontraron servicios",
-    "noResultsDescription": "Intente ajustar sus filtros de búsqueda o sea el primero en anunciar un servicio en esta categoría."
-  },
-  "myNetworkPage": {
-    "backLink": "Volver a la Red",
-    "myConnectionsTab": "Mis Conexiones ({count})",
-    "pendingRequestsTab": "Solicitudes Pendientes",
-    "connectionsTitle": "Mis Conexiones",
-    "connectionsDescription": "Su red de socios de confianza en DamDoh.",
-    "noConnections": "Aún no ha hecho ninguna conexión. ¡Comience a explorar la red!",
-    "requestsTitle": "Solicitudes de Conexión",
-    "requestsDescription": "Acepte o rechace solicitudes para hacer crecer su red.",
-    "noRequests": "No tiene solicitudes de conexión pendientes.",
-    "sentTimeAgo": "Enviado hace {timeAgo}"
-  },
-  "InsuranceProductsPage": {
-    "title": "Productos de Seguros",
-    "description": "Vea y gestione sus ofertas de productos de seguros.",
-    "createButton": "Crear Nuevo Producto",
-    "table": {
-      "productName": "Nombre del Producto",
-      "type": "Tipo",
-      "status": "Estado",
-      "premium": "Prima"
-    },
-    "noProducts": "Aún no ha creado ningún producto de seguro.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Volver a Productos",
-    "title": "Crear Producto de Seguro",
-    "description": "Defina un nuevo producto de seguro para el mercado.",
-    "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "Ej: Plan de Protección contra la Sequía",
-      "typeLabel": "Tipo de Producto",
-      "typePlaceholder": "Seleccione un tipo",
-      "crop": "Seguro de Cosecha",
-      "livestock": "Seguro de Ganado",
-      "asset": "Seguro de Activos",
-      "weather": "Seguro Basado en el Clima",
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Describa brevemente lo que cubre este producto.",
-      "coverageLabel": "Detalles de Cobertura",
-      "coveragePlaceholder": "Detalle los peligros específicos, límites de cobertura y deducibles.",
-      "premiumLabel": "Prima (USD)",
-      "premiumPlaceholder": "Ej: 250.00",
-      "currencyLabel": "Moneda",
-      "submitButton": "Crear Producto"
-    },
-    "toast": {
-      "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros.",
-      "successTitle": "¡Producto Creado!",
-      "successDescription": "El producto '{{name}}' se creó con éxito.",
-      "errorTitle": "Creación Fallida"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Centro de Agri-Tech y Desarrolladores",
-    "sandboxTitle": "Estado del Sandbox",
-    "statusLabel": "Estado",
-    "lastResetLabel": "Último reinicio",
-    "accessDocsButton": "Acceder a Documentación de API",
-    "integrationsTitle": "Proyectos de Integración",
-    "activeProjects": "Proyectos Activos",
-    "integrationsDescription": "Vea y gestione sus proyectos de integración en curso.",
-    "proposeIntegrationButton": "Proponer Nueva Integración",
-    "apiKeysTitle": "Claves de API",
-    "apiKeysDescription": "Gestione sus claves de API para acceder a los servicios de DamDoh.",
-    "noApiKeys": "No se encontraron claves de API. Genere una nueva para comenzar.",
-    "generateNewKeyButton": "Generar Nueva Clave de API",
-    "table": {
-      "key": "Clave",
-      "status": "Estado",
-      "environment": "Entorno",
-      "created": "Creado",
-      "actions": "Acciones"
-    },
-    "apiKeyCopied": "Clave de API copiada al portapapeles.",
-    "toast": {
-      "descriptionRequired": "Se requiere una descripción para la nueva clave.",
-      "keyGeneratedSuccess": "Clave de API generada con éxito.",
-      "keyGeneratedError": "No se pudo generar la clave de API.",
-      "keyRevokedSuccess": "La clave de API ha sido revocada.",
-      "keyRevokedError": "No se pudo revocar la clave de API."
-    },
-    "revokeDialog": {
-      "title": "¿Está seguro de que desea revocar esta clave de API?",
-      "description": "Esta acción no se puede deshacer. Cualquier aplicación que utilice esta clave perderá el acceso inmediatamente.",
-      "cancel": "Cancelar",
-      "confirm": "Revocar Clave"
-    },
-    "generateButton": "Generar Clave"
-  },
-  "MobileBottomNav": {
-    "home": "Inicio",
-    "market": "Mercado",
-    "search": "Buscar",
-    "forums": "Foros",
-    "profile": "Perfil"
-  },
-  "sustainabilityPage": {
-    "title": "Panel de Sostenibilidad",
-    "description": "Realice un seguimiento y gestione el impacto ambiental y las prácticas sostenibles de su granja.",
-    "carbonFootprint": "Huella de Carbono",
-    "waterEfficiency": "Eficiencia del Agua",
-    "biodiversityScore": "Puntuación de Biodiversidad",
-    "practicesTitle": "Prácticas Sostenibles Registradas",
-    "practicesTable": {
-        "practice": "Práctica",
-        "lastLogged": "Último Registro"
-    },
-    "certificationsTitle": "Certificaciones Verificables",
-    "certificationsTable": {
-        "certification": "Certificación",
-        "status": "Estado",
-        "expiry": "Vencimiento"
-    },
-    "metricCard": {
-        "trendText": "del último mes"
-    },
-    "auth": {
-        "title": "Autenticación Requerida",
-        "description": "Debe iniciar sesión para ver su panel de sostenibilidad.",
-        "button": "Iniciar Sesión"
-    },
-    "noData": {
-        "title": "No hay Datos Disponibles",
-        "description": "Aún no tenemos datos de sostenibilidad para su perfil. Comience registrando actividades en su granja."
-    }
-  },
   "RegulatorDashboard": {
     "title": "Panel del Regulador",
     "pendingCertificationsTitle": "Certificaciones Pendientes",
@@ -342,11 +199,6 @@
     "noComplianceAlerts": "No hay alertas de cumplimiento en este momento.",
     "anomaliesTitle": "Anomalías en la Cadena de Suministro",
     "trackVtiButton": "Rastrear VTI",
-    "noAnomalies": "No se detectaron anomalías en la cadena de suministro.",
-    "table": {
-      "destination": "Destino",
-      "product": "Producto",
-      "seller": "Vendedor"
-    }
+    "noAnomalies": "No se detectaron anomalías en la cadena de suministro."
   }
 }

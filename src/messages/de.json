@@ -110,8 +110,33 @@
     "switchToDarkAria": "Zum dunklen Design wechseln",
     "sustainability": "Nachhaltigkeit"
   },
-  "LanguageSwitcher": {
-    "toggle": "Sprache wechseln"
+  "AppFooter": {
+    "tagline": "Die Welt der Landwirtschaft verbinden, vom Samen bis zum Tisch.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutz-Bestimmungen",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
   },
   "LandingPage": {
     "hero": {
@@ -162,174 +187,6 @@
       "title": "Bereit, Ihr Agrargeschäft zu transformieren?",
       "subtitle": "Schließen Sie sich Tausenden von Interessengruppen an, die eine transparentere und wohlhabendere landwirtschaftliche Zukunft aufbauen.",
       "button": "Treten Sie dem DamDoh-Netzwerk bei"
-    }
-  },
-  "AppFooter": {
-    "tagline": "Die Welt der Landwirtschaft verbinden, vom Samen bis zum Tisch.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutz-Bestimmungen",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
-  },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Finden Sie qualifizierte Agrarfachleute oder bieten Sie Ihre Expertise an.",
-    "listServiceButton": "Ihren Service anbieten",
-    "searchPlaceholder": "Nach Fähigkeiten oder Dienstleistungen suchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "categoryPlaceholder": "Nach Kategorie filtern...",
-    "allCategories": "Alle Kategorien",
-    "toast": {
-      "error": {
-        "title": "Fehler",
-        "description": "Dienste konnten nicht abgerufen werden."
-      }
-    },
-    "noResultsTitle": "Keine Dienste gefunden",
-    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen oder seien Sie der Erste, der einen Dienst in dieser Kategorie anbietet."
-  },
-  "myNetworkPage": {
-    "backLink": "Zurück zum Netzwerk",
-    "myConnectionsTab": "Meine Verbindungen ({count})",
-    "pendingRequestsTab": "Ausstehende Anfragen",
-    "connectionsTitle": "Meine Verbindungen",
-    "connectionsDescription": "Ihr Netzwerk von vertrauenswürdigen Partnern auf DamDoh.",
-    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie damit, das Netzwerk zu erkunden!",
-    "requestsTitle": "Verbindungsanfragen",
-    "requestsDescription": "Anfragen annehmen oder ablehnen, um Ihr Netzwerk zu erweitern.",
-    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
-    "sentTimeAgo": "Gesendet vor {timeAgo}"
-  },
-  "InsuranceProductsPage": {
-    "title": "Versicherungsprodukte",
-    "description": "Anzeigen und Verwalten Ihrer Versicherungsproduktangebote.",
-    "createButton": "Neues Produkt erstellen",
-    "table": {
-      "productName": "Produktname",
-      "type": "Typ",
-      "status": "Status",
-      "premium": "Prämie"
-    },
-    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Versicherungsprodukt erstellen",
-    "description": "Definieren Sie ein neues Versicherungsprodukt für den Marktplatz.",
-    "form": {
-      "nameLabel": "Produktname",
-      "namePlaceholder": "z.B. Dürreschutzplan",
-      "typeLabel": "Produkttyp",
-      "typePlaceholder": "Wählen Sie einen Typ",
-      "crop": "Ernteversicherung",
-      "livestock": "Tierversicherung",
-      "asset": "Vermögensversicherung",
-      "weather": "Wetterbasierte Versicherung",
-      "descriptionLabel": "Beschreibung",
-      "descriptionPlaceholder": "Beschreiben Sie kurz, was dieses Produkt abdeckt.",
-      "coverageLabel": "Deckungsdetails",
-      "coveragePlaceholder": "Beschreiben Sie die spezifischen Gefahren, Deckungsgrenzen und Selbstbehalte.",
-      "premiumLabel": "Prämie (USD)",
-      "premiumPlaceholder": "z.B. 250.00",
-      "currencyLabel": "Währung",
-      "submitButton": "Produkt erstellen"
-    },
-    "toast": {
-      "notAuthenticated": "Sie müssen als Versicherungsanbieter angemeldet sein.",
-      "successTitle": "Produkt erstellt!",
-      "successDescription": "Das Produkt '{{name}}' wurde erfolgreich erstellt.",
-      "errorTitle": "Erstellung fehlgeschlagen"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Agri-Tech & Entwickler-Hub",
-    "sandboxTitle": "Sandbox-Status",
-    "statusLabel": "Status",
-    "lastResetLabel": "Letzter Reset",
-    "accessDocsButton": "API-Dokumentation aufrufen",
-    "integrationsTitle": "Integrationsprojekte",
-    "activeProjects": "Aktive Projekte",
-    "integrationsDescription": "Anzeigen und Verwalten Ihrer laufenden Integrationsprojekte.",
-    "proposeIntegrationButton": "Neue Integration vorschlagen",
-    "apiKeysTitle": "API-Schlüssel",
-    "apiKeysDescription": "Verwalten Sie Ihre API-Schlüssel für den Zugriff auf DamDoh-Dienste.",
-    "noApiKeys": "Keine API-Schlüssel gefunden. Generieren Sie einen neuen, um zu beginnen.",
-    "generateNewKeyButton": "Neuen API-Schlüssel generieren",
-    "table": {
-      "key": "Schlüssel",
-      "status": "Status",
-      "environment": "Umgebung",
-      "created": "Erstellt",
-      "actions": "Aktionen"
-    },
-    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert.",
-    "toast": {
-      "descriptionRequired": "Eine Beschreibung für den neuen Schlüssel ist erforderlich.",
-      "keyGeneratedSuccess": "API-Schlüssel erfolgreich generiert.",
-      "keyGeneratedError": "API-Schlüssel konnte nicht generiert werden.",
-      "keyRevokedSuccess": "API-Schlüssel wurde widerrufen.",
-      "keyRevokedError": "API-Schlüssel konnte nicht widerrufen werden."
-    },
-    "revokeDialog": {
-      "title": "Sind Sie sicher, dass Sie diesen API-Schlüssel widerrufen möchten?",
-      "description": "Diese Aktion kann nicht rückgängig gemacht werden. Alle Anwendungen, die diesen Schlüssel verwenden, verlieren sofort den Zugriff.",
-      "cancel": "Abbrechen",
-      "confirm": "Schlüssel widerrufen"
-    },
-    "generateButton": "Schlüssel generieren"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "sustainabilityPage": {
-    "title": "Nachhaltigkeits-Dashboard",
-    "description": "Verfolgen und verwalten Sie die Umweltauswirkungen und nachhaltigen Praktiken Ihres Betriebs.",
-    "carbonFootprint": "CO2-Fußabdruck",
-    "waterEfficiency": "Wassereffizienz",
-    "biodiversityScore": "Biodiversitäts-Score",
-    "practicesTitle": "Protokollierte nachhaltige Praktiken",
-    "practicesTable": {
-        "practice": "Praxis",
-        "lastLogged": "Zuletzt protokolliert"
-    },
-    "certificationsTitle": "Überprüfbare Zertifizierungen",
-    "certificationsTable": {
-        "certification": "Zertifizierung",
-        "status": "Status",
-        "expiry": "Ablaufdatum"
-    },
-    "metricCard": {
-        "trendText": "vom letzten Monat"
-    },
-    "auth": {
-        "title": "Authentifizierung erforderlich",
-        "description": "Sie müssen angemeldet sein, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
-        "button": "Anmelden"
-    },
-    "noData": {
-        "title": "Keine Daten verfügbar",
-        "description": "Wir haben noch keine Nachhaltigkeitsdaten für Ihr Profil. Beginnen Sie mit der Protokollierung von Aktivitäten auf Ihrem Bauernhof."
     }
   },
   "RegulatorDashboard": {

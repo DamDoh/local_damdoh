@@ -635,7 +635,6 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-
 export type KnfBatch = {
     id: string;
     userId: string;

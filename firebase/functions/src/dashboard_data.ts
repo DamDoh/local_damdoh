@@ -247,7 +247,7 @@ export const getFiDashboardData = functions.https.onCall(
                 status: appData.status,
                 riskScore: appData.riskScore,
                 purpose: appData.purpose,
-                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
                 actionLink: `/fi/applications/${doc.id}`,
             };
         });

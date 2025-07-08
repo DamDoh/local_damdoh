@@ -110,8 +110,33 @@
     "switchToDarkAria": "ប្ដូរទៅរូបរាងងងឹត",
     "sustainability": "និរន្តរភាព"
   },
-  "LanguageSwitcher": {
-    "toggle": "ប្តូរភាសា"
+  "AppFooter": {
+    "tagline": "ភ្ជាប់ពិភពកសិកម្ម ចាប់ពីគ្រាប់ពូជរហូតដល់តុអាហារ។",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "អំពី​យើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
+    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
+    "copyright": "© {year} {appName}។ រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។",
+    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
+    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
+    "appStoreAlt": "ទាញយកនៅលើ App Store"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   },
   "LandingPage": {
     "hero": {
@@ -164,174 +189,6 @@
       "button": "ចូលរួមបណ្តាញ DamDoh"
     }
   },
-  "AppFooter": {
-    "tagline": "ភ្ជាប់ពិភពកសិកម្ម ចាប់ពីគ្រាប់ពូជរហូតដល់តុអាហារ។",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "អំពី​យើង",
-    "contactLabel": "ទំនាក់ទំនង",
-    "careersLabel": "អាជីព",
-    "blogLabel": "ប្លុក",
-    "resourcesTitle": "ធនធាន",
-    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
-    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
-    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
-    "eventsLabel": "ព្រឹត្តិការណ៍",
-    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-    "legalTitle": "ផ្នែកច្បាប់",
-    "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
-    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
-    "copyright": "© {year} {appName}។ រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។",
-    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
-    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
-    "appStoreAlt": "ទាញយកនៅលើ App Store"
-  },
-  "talentExchangePage": {
-    "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-    "description": "ស្វែងរកអ្នកជំនាញកសិកម្មដែលមានជំនាញ ឬផ្តល់ជំនាញរបស់អ្នក។",
-    "listServiceButton": "ចុះបញ្ជីសេវាកម្មរបស់អ្នក",
-    "searchPlaceholder": "ស្វែងរកជំនាញ ឬសេវាកម្ម...",
-    "locationPlaceholder": "ត្រងតាមទីតាំង...",
-    "categoryPlaceholder": "ត្រងតាមប្រភេទ...",
-    "allCategories": "គ្រប់ប្រភេទ",
-    "toast": {
-      "error": {
-        "title": "កំហុស",
-        "description": "មិនអាចទាញយកសេវាកម្មបានទេ។"
-      }
-    },
-    "noResultsTitle": "រកមិនឃើញសេវាកម្ម",
-    "noResultsDescription": "ព្យាយាមកែសម្រួលតម្រងស្វែងរករបស់អ្នក ឬក្លាយជាអ្នកដំបូងដែលចុះបញ្ជីសេវាកម្មក្នុងប្រភេទនេះ។"
-  },
-  "myNetworkPage": {
-    "backLink": "ត្រលប់ទៅបណ្តាញ",
-    "myConnectionsTab": "ការតភ្ជាប់របស់ខ្ញុំ ({count})",
-    "pendingRequestsTab": "សំណើដែលកំពុងរង់ចាំ",
-    "connectionsTitle": "ការតភ្ជាប់របស់ខ្ញុំ",
-    "connectionsDescription": "បណ្តាញដៃគូដែលទុកចិត្តរបស់អ្នកនៅលើ DamDoh ។",
-    "noConnections": "អ្នកមិនទាន់បានធ្វើការតភ្ជាប់ណាមួយទេ។ ចាប់ផ្តើមស្វែងរកបណ្តាញ!",
-    "requestsTitle": "សំណើសុំតភ្ជាប់",
-    "requestsDescription": "ទទួលយកឬបដិសេधសំណើដើម្បីពង្រីកបណ្តាញរបស់អ្នក។",
-    "noRequests": "អ្នកមិនមានសំណើសុំតភ្ជាប់ដែលកំពុងរង់ចាំទេ។",
-    "sentTimeAgo": "បានផ្ញើ {timeAgo}"
-  },
-  "InsuranceProductsPage": {
-    "title": "ផលិតផលធានារ៉ាប់រង",
-    "description": "មើលនិងគ្រប់គ្រងការផ្តល់ជូនផលិតផលធានារ៉ាប់រងរបស់អ្នក។",
-    "createButton": "បង្កើតផលិតផលថ្មី",
-    "table": {
-      "productName": "ឈ្មោះ​ផលិតផល",
-      "type": "ប្រភេទ",
-      "status": "ស្ថានភាព",
-      "premium": "បុព្វលាភ"
-    },
-    "noProducts": "អ្នកមិនទាន់បានបង្កើតផលិតផលធានារ៉ាប់រងណាមួយទេ។",
-    "toast": {
-      "errorTitle": "កំហុស"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "ត្រលប់ទៅផលិតផល",
-    "title": "បង្កើតផលិតផលធានារ៉ាប់រង",
-    "description": "កំណត់ផលិតផលធានារ៉ាប់រងថ្មីសម្រាប់ទីផ្សារ។",
-    "form": {
-      "nameLabel": "ឈ្មោះ​ផលិតផល",
-      "namePlaceholder": "ឧ. ផែនការការពារគ្រោះរាំងស្ងួត",
-      "typeLabel": "ប្រភេទផលិតផល",
-      "typePlaceholder": "ជ្រើសរើសប្រភេទ",
-      "crop": "ធានារ៉ាប់រងដំណាំ",
-      "livestock": "ធានារ៉ាប់រងសត្វពាហនៈ",
-      "asset": "ធានារ៉ាប់រងទ្រព្យសកម្ម",
-      "weather": "ធានារ៉ាប់រងផ្អែកលើអាកាសធាតុ",
-      "descriptionLabel": "ការពិពណ៌នា",
-      "descriptionPlaceholder": "ពិពណ៌នាសង្ខេបអំពីអ្វីដែលផលិតផលនេះគ្របដណ្តប់។",
-      "coverageLabel": "ព័ត៌មានលម្អិតអំពីការធានារ៉ាប់រង",
-      "coveragePlaceholder": "លម្អិតអំពីហានិភ័យជាក់លាក់ ដែនកំណត់នៃការធានារ៉ាប់រង និងការកាត់ចេញ។",
-      "premiumLabel": "បុព្វលាភ (USD)",
-      "premiumPlaceholder": "ឧ. 250.00",
-      "currencyLabel": "រូបិយប័ណ្ណ",
-      "submitButton": "បង្កើតផលិតផល"
-    },
-    "toast": {
-      "notAuthenticated": "អ្នកត្រូវតែចូលជាអ្នកផ្តល់សេវាធានារ៉ាប់រង។",
-      "successTitle": "បានបង្កើតផលិតផល!",
-      "successDescription": "ផលិតផល '{{name}}' ត្រូវបានបង្កើតដោយជោគជ័យ។",
-      "errorTitle": "ការបង្កើតបានបរាជ័យ"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "មជ្ឈមណ្ឌល Agri-Tech និងអ្នកអភិវឌ្ឍន៍",
-    "sandboxTitle": "ស្ថានភាព Sandbox",
-    "statusLabel": "ស្ថានភាព",
-    "lastResetLabel": "ការកំណត់ឡើងវិញចុងក្រោយ",
-    "accessDocsButton": "ចូលប្រើឯកសារ API",
-    "integrationsTitle": "គម្រោងសមាហរណកម្ម",
-    "activeProjects": "គម្រោងសកម្ម",
-    "integrationsDescription": "មើលនិងគ្រប់គ្រងគម្រោងសមាហរណកម្មដែលកំពុងដំណើរការរបស់អ្នក។",
-    "proposeIntegrationButton": "ស្នើរសុំសមាហរណកម្មថ្មី",
-    "apiKeysTitle": "កូនសោ API",
-    "apiKeysDescription": "គ្រប់គ្រងកូនសោ API របស់អ្នកដើម្បីចូលប្រើសេវាកម្ម DamDoh ។",
-    "noApiKeys": "រកមិនឃើញកូនសោ API ទេ។ បង្កើតកូនសោថ្មីដើម្បីចាប់ផ្តើម។",
-    "generateNewKeyButton": "បង្កើតកូនសោ API ថ្មី",
-    "table": {
-      "key": "កូនសោ",
-      "status": "ស្ថានភាព",
-      "environment": "បរិស្ថាន",
-      "created": "បានបង្កើត",
-      "actions": "សកម្មភាព"
-    },
-    "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់។",
-    "toast": {
-      "descriptionRequired": "ត្រូវការការពិពណ៌នាសម្រាប់កូនសោថ្មី។",
-      "keyGeneratedSuccess": "បានបង្កើតកូនសោ API ដោយជោគជ័យ។",
-      "keyGeneratedError": "មិនអាចបង្កើតកូនសោ API បានទេ។",
-      "keyRevokedSuccess": "កូនសោ API ត្រូវបានដកហូតហើយ។",
-      "keyRevokedError": "មិនអាចដកហូតកូនសោ API បានទេ។"
-    },
-    "revokeDialog": {
-      "title": "តើអ្នកប្រាកដថាចង់ដកហូតកូនសោ API នេះទេ?",
-      "description": "សកម្មភាពនេះមិនអាចមិនធ្វើវិញបានទេ។ កម្មវិធីណាមួយដែលប្រើកូនសោនេះនឹងបាត់បង់ការចូលប្រើភ្លាមៗ។",
-      "cancel": "បោះបង់",
-      "confirm": "ដកហូតកូនសោ"
-    },
-    "generateButton": "បង្កើតកូនសោ"
-  },
-  "MobileBottomNav": {
-    "home": "ទំព័រដើម",
-    "market": "ទីផ្សារ",
-    "search": "ស្វែងរក",
-    "forums": "វេទិកា",
-    "profile": "ប្រវត្តិរូប"
-  },
-  "sustainabilityPage": {
-    "title": "ផ្ទាំងគ្រប់គ្រងនិរន្តរភាព",
-    "description": "តាមដាននិងគ្រប់គ្រងផលប៉ះពាល់បរិស្ថាននិងការអនុវត្តប្រកបដោយនិរន្តរភាពរបស់កសិដ្ឋានអ្នក។",
-    "carbonFootprint": "បាតជើងកាបូន",
-    "waterEfficiency": "ប្រសិទ្ធភាពទឹក",
-    "biodiversityScore": "ពិន្ទុជីវចម្រុះ",
-    "practicesTitle": "ការអនុវត្តប្រកបដោយនិរន្តរភាពដែលបានកត់ត្រា",
-    "practicesTable": {
-        "practice": "ការអនុវត្ត",
-        "lastLogged": "បានកត់ត្រាចុងក្រោយ"
-    },
-    "certificationsTitle": "វិញ្ញាបនបត្រដែលអាចផ្ទៀងផ្ទាត់បាន",
-    "certificationsTable": {
-        "certification": "វិញ្ញាបនបត្រ",
-        "status": "ស្ថានភាព",
-        "expiry": "ផុតកំណត់"
-    },
-    "metricCard": {
-        "trendText": "ពីខែមុន"
-    },
-    "auth": {
-        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-        "description": "អ្នកត្រូវតែចូលដើម្បីមើលផ្ទាំងគ្រប់គ្រងនិរន្តរភាពរបស់អ្នក។",
-        "button": "ចូលគណនី"
-    },
-    "noData": {
-        "title": "គ្មានទិន្នន័យ",
-        "description": "យើងមិនមានទិន្នន័យនិរន្តរភាពសម្រាប់ប្រវត្តិរូបរបស់អ្នកនៅឡើយទេ។ ចាប់ផ្តើមកត់ត្រាសកម្មភាពនៅលើកសិដ្ឋានរបស់អ្នក។"
-    }
-  },
   "RegulatorDashboard": {
     "title": "ផ្ទាំងគ្រប់គ្រងនិយតករ",
     "pendingCertificationsTitle": "វិញ្ញាបនបត្រដែលមិនទាន់សម្រេច",
@@ -342,11 +199,6 @@
     "noComplianceAlerts": "មិនមានការជូនដំណឹងអំពីអនុលោមភាពនៅពេលនេះទេ។",
     "anomaliesTitle": "ភាពមិនប្រក្រតីនៃខ្សែសង្វាក់ផ្គត់ផ្គង់",
     "trackVtiButton": "តាមដាន VTI",
-    "noAnomalies": "មិនមានភាពមិនប្រក្រតីនៃខ្សែសង្វាក់ផ្គត់ផ្គង់ទេ។",
-    "table": {
-      "destination": "គោលដៅ",
-      "product": "ផលិតផល",
-      "seller": "អ្នកលក់"
-    }
+    "noAnomalies": "មិនមានភាពមិនប្រក្រតីនៃខ្សែសង្វាក់ផ្គត់ផ្គង់ទេ។"
   }
 }
