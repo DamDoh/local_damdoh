@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Traçabilité des Produits",
@@ -345,6 +346,176 @@
       "All": "Tous les Types",
       "Product": "Produit",
       "Service": "Service"
+    }
+  },
+  "Forums": {
+    "title": "Sujets du forum",
+    "description": "Parcourez et créez des sujets de discussion.",
+    "lastActivity": "Dernière activité il y a {{time}}",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "joinDiscussion": "Rejoindre la discussion",
+      "pinHomepage": "Épingler à l'accueil",
+      "unpinHomepage": "Détacher de l'accueil"
+    },
+    "notFound": {
+      "title": "Aucun sujet trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
+    },
+    "pinning": {
+      "pinnedTitle": "Accueil épinglé !",
+      "pinnedDescription": "Ce forum est maintenant affiché comme votre page d'accueil.",
+      "unpinnedTitle": "Accueil détaché !",
+      "unpinnedDescription": "Ce forum n'est plus affiché comme votre page d'accueil."
+    },
+    "create": {
+      "backLink": "Retour aux sujets",
+      "title": "Créer un nouveau sujet",
+      "description": "Lancez une nouvelle discussion dans le forum.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "success": {
+        "title": "Sujet créé avec succès",
+        "description": "Votre nouveau sujet a été créé."
+      },
+      "errors": {
+        "auth": {
+          "title": "Non authentifié",
+          "description": "Vous devez être connecté pour créer un sujet."
+        },
+        "incomplete": {
+          "title": "Champs incomplets",
+          "description": "Veuillez remplir tous les champs obligatoires."
+        },
+        "general": {
+          "title": "Erreur",
+          "description": "Une erreur s'est produite lors de la création du sujet."
+        }
+      }
+    },
+    "topic": {
+      "backLink": "Retour aux forums",
+      "title": "Sujets du forum",
+      "description": "Parcourez et participez aux discussions.",
+      "postMeta": "par {{author}} le {{date}}",
+      "buttons": {
+        "createPost": "Créer un message",
+        "loadMore": "Charger plus",
+        "loadingMore": "Chargement en cours..."
+      },
+      "noPosts": {
+        "title": "Aucun message pour l'instant",
+        "description": "Soyez le premier à lancer une discussion dans ce sujet.",
+        "button": "Créer le premier message"
+      },
+      "notFound": {
+        "title": "Sujet introuvable",
+        "description": "Le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des messages",
+          "description": "Une erreur s'est produite lors du chargement des messages pour ce sujet."
+        },
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Une erreur s'est produite lors du chargement des détails du sujet."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {{topicName}}",
+      "unknownUser": "Utilisateur inconnu",
+      "postMeta": "par {{author}} le {{date}}",
+      "repliesTitle": "Réponses ({{count}})",
+      "noReplies": "Aucune réponse pour l'instant.",
+      "buttons": {
+        "loadMore": "Charger plus",
+        "loadingMore": "Chargement en cours..."
+      },
+      "reply": {
+        "title": "Ajouter une réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Ajouter une réponse",
+        "submittingButton": "Envoi en cours...",
+        "success": "Réponse ajoutée !"
+      },
+      "notFound": {
+        "title": "Message introuvable",
+        "description": "Le message que vous recherchez n'existe pas.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement du message",
+          "description": "Une erreur s'est produite lors du chargement des détails du message."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Une erreur s'est produite lors du chargement des réponses pour ce message."
+        },
+        "emptyReply": "La réponse ne peut pas être vide.",
+        "submitReply": {
+          "title": "Erreur d'envoi de la réponse",
+          "description": "Une erreur s'est produite lors de l'envoi de votre réponse."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Assistant IA",
+        "description": "Générer un brouillon de message basé sur une invite.",
+        "promptLabel": "Invite IA",
+        "promptPlaceholder": "Entrez une brève description du message que vous souhaitez générer...",
+        "generateButton": "Générer le brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "backLink": "Retour au sujet",
+      "title": "Créer un nouveau message",
+      "description": "Ajouter un nouveau message à ce sujet.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Entrez le titre de votre message",
+        "contentLabel": "Contenu du message",
+        "contentPlaceholder": "Écrivez votre message ici...",
+        "submitButton": "Créer le message",
+        "submittingButton": "Envoi en cours..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon IA généré !",
+          "description": "Un brouillon a été généré pour vous."
+        },
+        "title": "Message créé !",
+        "description": "Votre message a été créé avec succès."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Invite IA manquante",
+          "description": "Veuillez fournir une invite pour l'assistant IA."
+        },
+        "aiDraft": {
+          "title": "Erreur de brouillon IA",
+          "description": "Échec de la génération du brouillon IA."
+        },
+        "incomplete": {
+          "title": "Champs incomplets",
+          "description": "Veuillez remplir tous les champs obligatoires."
+        },
+        "general": {
+          "title": "Erreur",
+          "description": "Une erreur s'est produite lors de la création du message."
+        }
+      }
     }
   }
 }
