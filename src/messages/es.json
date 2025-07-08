@@ -193,16 +193,6 @@
     "toggle": "Cambiar idioma"
   },
   "searchPage": {
-    "title": "Búsqueda Universal",
-    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
-    "placeholder": "Busca personas, productos o temas...",
-    "searchButton": "Buscar",
-    "popularSearches": "Búsquedas Populares",
-    "popularSearch1": "Fertilizante orgánico",
-    "popularSearch2": "Logística en Kenia",
-    "popularSearch3": "Semillas de maíz resistentes a la sequía",
-    "popularSearch4": "Tractor en alquiler",
-    "popularSearch5": "Compradores de café de comercio justo",
     "modal": {
       "title": "Búsqueda Universal",
       "placeholder": "Busca cualquier cosa...",
@@ -224,6 +214,39 @@
       },
       "noResults": "No se encontraron resultados.",
       "tryAgain": "Intenta con otro término de búsqueda o escanea un código."
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Nos encantaría saber de ti. Así es como puedes comunicarte con nosotros.",
+    "emailUs": {
+      "title": "Envíanos un correo electrónico",
+      "general": "Consultas generales",
+      "support": "Soporte",
+      "partnerships": "Asociaciones"
+    },
+    "callUs": {
+      "title": "Llámanos",
+      "hours": "Lun - Vie, 9am - 5pm (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Nuestra Oficina",
+      "org": "Fundación DamDoh",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Envíanos un mensaje",
+      "nameLabel": "Tu nombre",
+      "namePlaceholder": "Juan Pérez",
+      "emailLabel": "Tu correo electrónico",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Con respecto a...",
+      "messageLabel": "Tu mensaje",
+      "messagePlaceholder": "Escribe tu mensaje aquí.",
+      "buttonText": "Enviar mensaje",
+      "note": "Nos pondremos en contacto contigo lo antes posible."
     }
   }
 }

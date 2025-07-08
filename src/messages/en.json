@@ -78,11 +78,11 @@
       "title": "Our Solution: DamDoh — A Global “Super App” for a Restored Planet",
       "description": "DamDoh is a smart, integrated digital platform designed to empower farmers as stewards of biodiversity and catalysts of climate action:",
       "list": {
-        "education": "Education & Training: Practical, accessible courses on regenerative farming, soil health, crop diversity, and business skills — helping farmers adopt practices that restore biodiversity and capture carbon while increasing incomes.",
-        "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and real-time weather forecasts to provide precise soil and ecosystem analysis, guiding farmers to plant the right crops in the right way, at the right time — regenerating their land and boosting yields sustainably.",
-        "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly, traceable products — earning better prices and reducing waste.",
+        "education": "Education & Training: Practical, accessible courses on regenerative farming, soil health, crop diversity, and business skills.",
+        "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and real-time weather forecasts to provide precise soil and ecosystem analysis.",
+        "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly, traceable products.",
         "logistics": "Supply Chain & Logistics: Transparent, efficient logistics minimize loss, reduce emissions, and ensure traceability from farm to fork.",
-        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in biodiversity-enhancing practices and climate-smart innovations."
+        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in biodiversity-enhancing practices."
       }
     },
     "beyondTechnology": {
@@ -193,16 +193,6 @@
     "toggle": "Toggle language"
   },
   "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search for people, products, or topics...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Fertilizer",
-    "popularSearch2": "Logistics in Kenya",
-    "popularSearch3": "Drought-resistant maize seeds",
-    "popularSearch4": "Tractor for rent",
-    "popularSearch5": "Fair trade coffee buyers",
     "modal": {
       "title": "Universal Search",
       "placeholder": "Search for anything...",
@@ -224,6 +214,39 @@
       },
       "noResults": "No results found.",
       "tryAgain": "Try a different search term or scan a code."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Here's how you can reach us.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon - Fri, 9am - 5pm (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Foundation",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Send us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "you@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Regarding...",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here.",
+      "buttonText": "Send Message",
+      "note": "We'll get back to you as soon as possible."
     }
   }
 }

@@ -193,16 +193,6 @@
     "toggle": "Sprache wechseln"
   },
   "searchPage": {
-    "title": "Universelle Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform.",
-    "placeholder": "Suchen Sie nach Personen, Produkten oder Themen...",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchen",
-    "popularSearch1": "Organischer Dünger",
-    "popularSearch2": "Logistik in Kenia",
-    "popularSearch3": "Dürreresistente Maissamen",
-    "popularSearch4": "Traktor zu vermieten",
-    "popularSearch5": "Fair-Trade-Kaffeekäufer",
     "modal": {
       "title": "Universelle Suche",
       "placeholder": "Suchen Sie nach etwas...",
@@ -224,6 +214,39 @@
       },
       "noResults": "Keine Ergebnisse gefunden.",
       "tryAgain": "Versuchen Sie einen anderen Suchbegriff oder scannen Sie einen Code."
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir würden uns freuen, von Ihnen zu hören. So können Sie uns erreichen.",
+    "emailUs": {
+      "title": "E-Mail an uns",
+      "general": "Allgemeine Anfragen",
+      "support": "Support",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Mo - Fr, 9:00 - 17:00 Uhr (OAZ)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "DamDoh Stiftung",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Max Mustermann",
+      "emailLabel": "Ihre E-Mail",
+      "emailPlaceholder": "sie@beispiel.com",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "Betreffend...",
+      "messageLabel": "Ihre Nachricht",
+      "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein.",
+      "buttonText": "Nachricht senden",
+      "note": "Wir werden uns so schnell wie möglich bei Ihnen melden."
     }
   }
 }

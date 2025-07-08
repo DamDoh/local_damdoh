@@ -193,16 +193,6 @@
     "toggle": "Changer de langue"
   },
   "searchPage": {
-    "title": "Recherche Universelle",
-    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
-    "placeholder": "Rechercher des personnes, des produits ou des sujets...",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches Populaires",
-    "popularSearch1": "Engrais organique",
-    "popularSearch2": "Logistique au Kenya",
-    "popularSearch3": "Graines de maïs résistantes à la sécheresse",
-    "popularSearch4": "Tracteur à louer",
-    "popularSearch5": "Acheteurs de café équitable",
     "modal": {
       "title": "Recherche Universelle",
       "placeholder": "Rechercher n'importe quoi...",
@@ -224,6 +214,39 @@
       },
       "noResults": "Aucun résultat trouvé.",
       "tryAgain": "Essayez un autre terme de recherche ou scannez un code."
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous serions ravis d'avoir de vos nouvelles. Voici comment vous pouvez nous joindre.",
+    "emailUs": {
+      "title": "Envoyez-nous un e-mail",
+      "general": "Demandes générales",
+      "support": "Support",
+      "partnerships": "Partenariats"
+    },
+    "callUs": {
+      "title": "Appelez-nous",
+      "hours": "Lun - Ven, 9h - 17h (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Notre Bureau",
+      "org": "Fondation DamDoh",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Envoyez-nous un message",
+      "nameLabel": "Votre nom",
+      "namePlaceholder": "Jean Dupont",
+      "emailLabel": "Votre e-mail",
+      "emailPlaceholder": "vous@exemple.com",
+      "subjectLabel": "Sujet",
+      "subjectPlaceholder": "Concernant...",
+      "messageLabel": "Votre message",
+      "messagePlaceholder": "Tapez votre message ici.",
+      "buttonText": "Envoyer le message",
+      "note": "Nous vous répondrons dès que possible."
     }
   }
 }
