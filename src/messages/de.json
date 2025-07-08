@@ -185,5 +185,66 @@
     "adTitle": "Markteinblicke freischalten",
     "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
     "adButton": "Mehr erfahren"
+  },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform.",
+    "placeholder": "Suche nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffeebohnen Kenia",
+    "popularSearch2": "Traktorvermietung",
+    "popularSearch3": "Dürreresistente Maissamen",
+    "popularSearch4": "Logistikpartner Ostafrika",
+    "popularSearch5": "Reduzierung von Nachernteverlusten",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Personen, Produkte, Dienstleistungen, Foren suchen...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Ungültiger QR-Code gescannt. Dies scheint keine DamDoh-ID zu sein.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scan-Fehler",
+      "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Suche nach Elementen, die sich auf Ihre Anfrage beziehen.",
+      "filtersTitle": "Angewandte Filter",
+      "noResults": "Keine Ergebnisse gefunden",
+      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissensdatenbank",
+        "vti_registry": "Rückverfolgbarkeitsberichte"
+      }
+    }
+  },
+  "StartPost": {
+    "placeholder": "Einen Beitrag starten, ein Update teilen oder eine Frage stellen...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Agri-Veranstaltung",
+    "createPoll": "Umfrage erstellen"
+  },
+  "CreatePostModal": {
+    "title": "Beitrag erstellen",
+    "description": "Teilen Sie Ihre Gedanken mit der Community.",
+    "yourName": "Ihr Name",
+    "shareUpdate": "Update teilen",
+    "placeholder": "Was geht Ihnen durch den Kopf?",
+    "selectedFile": "Ausgewählte Datei:",
+    "pollOptionsLabel": "Umfrageoptionen",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Option hinzufügen",
+    "pollNote": "Sie können bis zu {maxOptions} Optionen hinzufügen.",
+    "addMediaButton": "Medien hinzufügen",
+    "createEventButton": "Veranstaltung erstellen",
+    "shareDocumentButton": "Dokument teilen",
+    "createPollButton": "Umfrage erstellen",
+    "postButton": "Posten",
+    "pollOptionsError": "Eine Umfrage muss mindestens zwei Optionen haben.",
+    "emptyPostError": "Ein leerer Beitrag kann nicht erstellt werden."
   }
 }

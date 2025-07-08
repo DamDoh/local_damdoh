@@ -185,5 +185,66 @@
     "adTitle": "Desbloquea Perspectivas de Mercado",
     "adDescription": "Obtén datos y análisis en tiempo real con DamDoh Pro.",
     "adButton": "Saber Más"
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos, servicios, publicaciones del foro...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de café orgánico Kenia",
+    "popularSearch2": "Alquiler de tractor",
+    "popularSearch3": "Semillas de maíz resistentes a la sequía",
+    "popularSearch4": "Socio logístico África Oriental",
+    "popularSearch5": "Reducción de pérdidas poscosecha",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Buscar personas, productos, servicios, foros...",
+      "searchButton": "Buscar",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Código QR inválido escaneado. No parece ser un ID de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "interpretationTitle": "Interpretación IA",
+      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
+      "filtersTitle": "Filtros Aplicados",
+      "noResults": "No se encontraron resultados",
+      "tryAgain": "Intenta refinar tus términos de búsqueda.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informes de Trazabilidad"
+      }
+    }
+  },
+  "StartPost": {
+    "placeholder": "Iniciar una publicación, compartir una actualización o hacer una pregunta...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Agro-Evento",
+    "createPoll": "Crear Encuesta"
+  },
+  "CreatePostModal": {
+    "title": "Crear una Publicación",
+    "description": "Comparte tus pensamientos con la comunidad.",
+    "yourName": "Tu Nombre",
+    "shareUpdate": "Compartir una actualización",
+    "placeholder": "¿En qué estás pensando?",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la Encuesta",
+    "pollOptionPlaceholder": "Opción {index}",
+    "addOptionButton": "Añadir Opción",
+    "pollNote": "Puedes añadir hasta {maxOptions} opciones.",
+    "addMediaButton": "Añadir multimedia",
+    "createEventButton": "Crear un evento",
+    "shareDocumentButton": "Compartir un documento",
+    "createPollButton": "Crear una encuesta",
+    "postButton": "Publicar",
+    "pollOptionsError": "Una encuesta debe tener al menos dos opciones.",
+    "emptyPostError": "No se puede crear una publicación vacía."
   }
 }

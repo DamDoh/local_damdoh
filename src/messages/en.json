@@ -185,5 +185,66 @@
     "adTitle": "Unlock Market Insights",
     "adDescription": "Get real-time data and analytics with DamDoh Pro.",
     "adButton": "Learn More"
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search people, products, services, forum posts...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee Beans Kenya",
+    "popularSearch2": "Tractor for rent",
+    "popularSearch3": "Drought-resistant maize seeds",
+    "popularSearch4": "Logistics partner East Africa",
+    "popularSearch5": "Post-harvest loss reduction",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search people, products, services, forums...",
+      "searchButton": "Search",
+      "searchError": "Search Error",
+      "searchErrorDescription": "An error occurred while searching. Please try again.",
+      "invalidCodeError": "Invalid QR Code scanned. This does not appear to be a DamDoh ID.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Searching for items related to your query.",
+      "filtersTitle": "Applied Filters",
+      "noResults": "No Results Found",
+      "tryAgain": "Try refining your search terms.",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "agri_events": "Events",
+        "knowledge_articles": "Knowledge Hub",
+        "vti_registry": "Traceability Reports"
+      }
+    }
+  },
+  "StartPost": {
+    "placeholder": "Start a post, share an update or ask a question...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll"
+  },
+  "CreatePostModal": {
+    "title": "Create a Post",
+    "description": "Share your thoughts with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "You can add up to {maxOptions} options.",
+    "addMediaButton": "Add media",
+    "createEventButton": "Create an event",
+    "shareDocumentButton": "Share a document",
+    "createPollButton": "Create a poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least two options.",
+    "emptyPostError": "Cannot create an empty post."
   }
 }
