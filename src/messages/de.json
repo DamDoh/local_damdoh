@@ -202,5 +202,51 @@
     "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt.",
     "accessDeniedTitle": "Zugriff verweigert",
     "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um diese Tools zu verwenden."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Zentrale für Betriebsführung",
+      "description": "Ihre Kommandozentrale für alle Aktivitäten auf dem Bauernhof, von der Anbauplanung und KNF-Inputs bis zur Arbeits- und Finanzverwaltung.",
+      "myFarms": {
+        "title": "Meine Betriebe & Kulturen",
+        "description": "Verwalten Sie Ihre Betriebe, Felder und verfolgen Sie einzelne Anbauzyklen vom Samen bis zur Ernte.",
+        "button": "Betriebe verwalten"
+      },
+      "labor": {
+        "title": "Arbeitsverwaltung",
+        "description": "Behalten Sie den Überblick über Ihre Arbeitskräfte, protokollieren Sie Stunden und verwalten Sie Zahlungen effizient.",
+        "button": "Arbeit verwalten"
+      },
+      "knf": {
+        "title": "KNF & Organische Inputs",
+        "description": "Erstellen und verwalten Sie Ihre Korean Natural Farming-Chargen und andere organische Inputs.",
+        "button": "Inputs verwalten"
+      },
+      "fgw": {
+        "title": "Anleitung zum Farming God's Way",
+        "description": "Greifen Sie auf Anleitungen und Prinzipien zur Umsetzung von Farming God's Way-Techniken zu.",
+        "button": "FGW-Anleitung ansehen"
+      },
+      "financials": {
+        "title": "Finanzen",
+        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihres Betriebs und beantragen Sie Finanzprodukte.",
+        "button": "Finanzen ansehen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Aussaat",
+        "description": "Lernen Sie die besten Praktiken für eine erfolgreiche Aussaat zur Verpflanzung.",
+        "button": "Aussaat-Anleitung ansehen"
+      },
+      "familyFarm": {
+        "title": "200qm Familienbetrieb-Modell",
+        "description": "Erkunden Sie ein Modell für einen autarken, integrierten 200qm Familienbetrieb.",
+        "button": "Modell erkunden"
+      },
+      "assetManagement": {
+        "title": "Anlagenverwaltung",
+        "description": "Protokollieren und verwalten Sie Ihre landwirtschaftlichen Geräte, Werkzeuge und andere wertvolle Vermögenswerte. (Kommt bald)",
+        "button": "Anlagen verwalten"
+      }
+    }
   }
 }

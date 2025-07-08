@@ -87,7 +87,6 @@
     },
     "postView": {
       "backLink": "Back to {{topicName}}",
-      "postMeta": "by {{author}} on {{date}}",
       "repliesTitle": "Replies ({count})",
       "noReplies": "No replies yet.",
       "buttons": {
@@ -203,6 +202,51 @@
     "resultsPlaceholder": "User details will appear here after a successful search.",
     "accessDeniedTitle": "Access Denied",
     "accessDeniedDescription": "You do not have the required permissions to use these tools."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central command center for all on-farm activities, from crop planning and KNF inputs to labor and financial tracking.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "Manage your farms, fields, and track individual crop cycles from seed to harvest.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Keep track of your workforce, log hours, and manage payments efficiently.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF & Organic Inputs",
+        "description": "Create and manage your Korean Natural Farming batches and other organic inputs.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way Guide",
+        "description": "Access guides and principles for implementing Farming God's Way techniques.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Money Matters",
+        "description": "Track your farm's income, expenses, and apply for financial products.",
+        "button": "View Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn the best practices for starting seeds successfully for transplantation.",
+        "button": "View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "200sqm Family Farm Model",
+        "description": "Explore a model for a self-sufficient, integrated 200sqm family farm.",
+        "button": "Explore Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Log and manage your farm equipment, tools, and other valuable assets. (Coming Soon)",
+        "button": "Manage Assets"
+      }
+    }
   }
 }
-

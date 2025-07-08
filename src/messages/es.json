@@ -1,75 +1,18 @@
 
 {
   "Forums": {
-    "title": "Temas del Foro",
-    "description": "Navega y crea temas de discusión",
-    "lastActivity": "Última actividad hace {{time}}",
-    "searchPlaceholder": "Buscar temas...",
-    "buttons": {
-      "createTopic": "Crear Tema",
-      "joinDiscussion": "Unirse a la Discusión",
-      "pinHomepage": "Fijar en Inicio",
-      "unpinHomepage": "Desfijar de Inicio"
-    },
-    "notFound": {
-      "title": "No se encontraron temas",
-      "tryDifferentSearch": "Intenta con otro término de búsqueda.",
-      "beTheFirst": "Sé el primero en crear un tema."
-    },
-    "pinning": {
-      "pinnedTitle": "¡Inicio fijado!",
-      "pinnedDescription": "Este foro ahora se muestra como tu página de inicio.",
-      "unpinnedTitle": "¡Inicio desfijado!",
-      "unpinnedDescription": "Este foro ya no se mostrará como tu página de inicio."
-    },
-    "errors": {
-      "loadTitle": "Error al cargar los temas",
-      "loadDescription": "Ocurrió un error al cargar los temas del foro."
-    },
-    "create": {
-      "backLink": "Volver a Temas",
-      "title": "Crear Nuevo Tema",
-      "description": "Inicia una nueva discusión en el foro.",
-      "form": {
-        "nameLabel": "Nombre del Tema",
-        "namePlaceholder": "Introduce el nombre de tu tema",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describe brevemente tu tema",
-        "submitButton": "Crear Tema",
-        "submittingButton": "Creando..."
-      },
-      "success": {
-        "title": "Tema creado con éxito",
-        "description": "Tu nuevo tema ha sido creado."
-      },
-      "errors": {
-        "auth": {
-          "title": "No autenticado",
-          "description": "Debes iniciar sesión para crear un tema."
-        },
-        "incomplete": {
-          "title": "Campos incompletos",
-          "description": "Por favor, completa todos los campos requeridos."
-        },
-        "general": {
-          "title": "Error",
-          "description": "Ocurrió un error al crear el tema."
-        }
-      }
-    },
     "topic": {
-      "backLink": "Volver a todos los temas",
       "unknownUser": "Usuario Desconocido",
       "postMeta": "por {{author}} el {{date}}",
       "buttons": {
-        "createPost": "Crear Publicación",
-        "loadMore": "Cargar Más Publicaciones",
-        "loadingMore": "Cargando más..."
+        "createPost": "Agregar Respuesta",
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
       },
       "noPosts": {
-        "title": "Aún no se han creado publicaciones.",
-        "description": "¡Sé el primero en crear una!",
-        "button": "Crear Primera Publicación"
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en responder a este tema.",
+        "button": "Agregar Respuesta"
       },
       "notFound": {
         "title": "Tema no encontrado",
@@ -87,10 +30,57 @@
         }
       }
     },
+    "createPost": {
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Falta indicación de IA",
+          "description": "Por favor, proporciona una indicación para el asistente de IA."
+        },
+        "aiDraft": {
+          "title": "Error del borrador de IA",
+          "description": "No se pudo generar el borrador de IA."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear la publicación."
+        }
+      }
+    },
     "postView": {
       "backLink": "Volver a {{topicName}}",
+      "unknownUser": "Usuario Desconocido",
       "postMeta": "por {{author}} el {{date}}",
-      "repliesTitle": "Respuestas ({count})",
+      "repliesTitle": "Respuestas ({{count}})",
       "noReplies": "Aún no hay respuestas.",
       "buttons": {
         "loadMore": "Cargar Más",
@@ -123,87 +113,209 @@
           "description": "Ocurrió un error al enviar tu respuesta."
         }
       }
-    },
-    "createPost": {
-      "backLink": "Volver al Tema",
-      "aiHelper": {
-        "title": "Asistente de IA",
-        "description": "Genera un borrador de publicación basado en una indicación.",
-        "promptLabel": "Indicación de IA",
-        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
-        "generateButton": "Generar Borrador",
-        "generatingButton": "Generando..."
+    }
+  },
+  "Marketplace": {
+    "itemView": {
+      "backLink": "Volver al mercado",
+      "unknownUser": "Usuario Desconocido",
+      "traceabilityButton": "Enlace de Comercio / Lote",
+      "skillsLabel": "Habilidades requeridas",
+      "experienceLabel": "Nivel de experiencia",
+      "compensationLabel": "Compensación",
+      "contactForRates": "Contactar para tarifas",
+      "booking": {
+        "perNight": "noche",
+        "checkIn": "Llegada",
+        "checkOut": "Salida",
+        "addDate": "Agregar fecha",
+        "guests": "Huéspedes",
+        "reserveButton": "Reservar",
+        "reservingButton": "Reservando...",
+        "notCharged": "Aún no se le cobrará",
+        "nights": "noches",
+        "serviceFee": "Tarifa de servicio",
+        "total": "Total",
+        "successTitle": "¡Reserva exitosa!",
+        "successDescription": "Su reserva está confirmada.",
+        "failTitle": "Reserva fallida",
+        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
+        "bookedTitle": "¡Reservado!",
+        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
+        "ticketButton": "Mostrar ticket",
+        "modalTitle": "Ticket de reserva",
+        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
+        "modalScan": "Escanee este código para registrarse"
       },
-      "title": "Crear Nueva Publicación",
-      "description": "Agrega una nueva publicación a este tema.",
-      "form": {
-        "titleLabel": "Título de la publicación",
-        "titlePlaceholder": "Introduce el título de tu publicación",
-        "contentLabel": "Contenido de la publicación",
-        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
-        "submitButton": "Crear Publicación",
-        "submittingButton": "Enviando..."
+      "coupon": {
+        "label": "Código de cupón",
+        "placeholder": "Introduce el código de cupón",
+        "applyButton": "Aplicar",
+        "successTitle": "¡Cupón aplicado!",
+        "successDescription": "Descuento aplicado: {{type}}",
+        "failTitle": "Cupón inválido",
+        "failDescription": "El código de cupón es inválido o no aplicable.",
+        "appliedText": "Cupón aplicado: {{code}}"
       },
-      "success": {
-        "aiDraft": { "title": "¡Borrador de IA Generado!", "description": "Se ha generado un borrador para ti." },
-        "title": "¡Publicación Creada!",
-        "description": "Tu publicación ha sido creada con éxito."
+      "aboutSeller": "Sobre el vendedor",
+      "viewShopfront": "Ver escaparate",
+      "editListing": "Editar publicación",
+      "manageService": "Gestionar servicio",
+      "buyNowButton": "Comprar ahora",
+      "contactForService": "Contactar para servicio",
+      "contactSeller": "Contactar vendedor",
+      "order": {
+        "title": "Pedir {{itemName}}",
+        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
+        "quantityLabel": "Cantidad",
+        "notesLabel": "Notas (Opcional)",
+        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Confirmar pedido",
+        "placingButton": "Realizando pedido...",
+        "successTitle": "¡Pedido realizado!",
+        "successDescription": "Tu pedido ha sido realizado con éxito.",
+        "failTitle": "Pedido fallido",
+        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
+        "quantityErrorTitle": "Error de cantidad",
+        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
+      },
+      "notFound": {
+        "title": "Artículo no encontrado",
+        "description": "El artículo del mercado que estás buscando no existe.",
+        "backButton": "Volver a Mercado"
       },
       "errors": {
-        "aiPromptMissing": { "title": "Falta indicación de IA", "description": "Por favor, proporciona una indicación para el asistente de IA." },
-        "aiDraft": { "title": "Error del borrador de IA", "description": "No se pudo generar el borrador de IA." },
-        "incomplete": { "title": "Campos incompletos", "description": "Por favor, completa todos los campos requeridos." },
-        "general": { "title": "Error", "description": "Ocurrió un error al crear la publicación." }
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        },
+        "loadItem": {
+          "title": "Error al cargar artículo",
+          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
+        },
+        "unexpected": "Ocurrió un error inesperado."
+      }
+    },
+    "myOrdersButton": "Mis Pedidos Recibidos",
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubre Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos.",
+      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "No se pudieron obtener recomendaciones de IA"
+      },
+      "search": {
+        "title": "Error de búsqueda",
+        "description": "No se pudieron obtener los artículos del mercado."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "¡Mercado fijado!",
+      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de inicio desfijada!",
+      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
+    },
+    "myOrders": {
+      "backLink": "Volver al mercado",
+      "title": "Mis Pedidos Recibidos",
+      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
+      "auth": {
+        "title": "Autenticación requerida",
+        "description": "Debe haber iniciado sesión para ver sus pedidos.",
+        "button": "Iniciar sesión"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar",
+        "ship": "Enviar",
+        "complete": "Completar",
+        "cancel": "Cancelar"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "noOrders": "No se encontraron pedidos.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron obtener los pedidos.",
+        "successTitle": "¡Éxito!",
+        "updateSuccess": "Estado del pedido actualizado a {{status}}",
+        "failTitle": "Error"
       }
     }
   },
-  "Homepage": {},
-  "networkPage": {
-    "title": "Red y Conexiones",
-    "description": "Conéctate con agricultores, compradores, proveedores de servicios y más en toda la cadena de valor agrícola.",
-    "myNetworkButton": "Mi Red",
-    "agentToolsButton": "Herramientas de Agente",
-    "aiSuggestionsTitle": "Sugerencias con IA",
-    "aiSuggestionsDescription": "Basado en tu perfil y actividad, aquí hay algunos interesados con los que podrías querer conectarte.",
-    "toast": {
-      "errorTitle": "Error",
-      "loadError": "No se pudieron cargar los datos de la red."
-    },
-    "noSuggestions": "No hay sugerencias disponibles en este momento. Completa tu perfil para obtener mejores recomendaciones.",
-    "signInPrompt": "Inicia sesión para ver recomendaciones personalizadas.",
-    "connect": "Conectar",
-    "profile": "Perfil",
-    "browseAllTitle": "Explorar Todos los Interesados",
-    "browseAllDescription": "Encuentra y conéctate con cualquier interesado en la plataforma.",
-    "searchPlaceholder": "Buscar por nombre o resumen...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "rolePlaceholder": "Filtrar por rol...",
-    "allRoles": "Todos los roles",
-    "noStakeholdersFound": "No se encontraron interesados que coincidan con tus criterios.",
-    "noStakeholdersHint": "Intenta ajustar tus filtros o términos de búsqueda."
-  },
-  "myNetworkPage": {
-    "backLink": "Volver a la Red",
-    "myConnectionsTab": "Mis Conexiones ({count})",
-    "pendingRequestsTab": "Solicitudes Pendientes",
-    "connectionsTitle": "Mis Conexiones",
-    "connectionsDescription": "Estas son tus conexiones actuales en la plataforma.",
-    "noConnections": "Aún no has hecho ninguna conexión. ¡Empieza a explorar la red!",
-    "requestsTitle": "Solicitudes de Conexión",
-    "requestsDescription": "Acepta o rechaza solicitudes de otros usuarios.",
-    "sentTimeAgo": "Enviado hace {timeAgo}",
-    "noRequests": "No tienes solicitudes de conexión pendientes."
-  },
-  "agentToolsPage": {
-    "backLink": "Volver a la Red",
-    "title": "Herramientas de Agente",
-    "description": "Herramientas seguras para agentes de campo y administradores autorizados.",
-    "findUserLabel": "Buscar Usuario por Número de Teléfono",
-    "findButton": "Buscar",
-    "phoneRequiredError": "Por favor, introduce un número de teléfono válido.",
-    "resultsTitle": "Resultado de la Búsqueda",
-    "resultsPlaceholder": "Los detalles del usuario aparecerán aquí después de una búsqueda exitosa.",
-    "accessDeniedTitle": "Acceso Denegado",
-    "accessDeniedDescription": "No tienes los permisos necesarios para usar estas herramientas."
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión Agrícola",
+      "description": "Su centro de mando para todas las actividades en la granja, desde la planificación de cultivos e insumos KNF hasta el seguimiento laboral y financiero.",
+      "myFarms": {
+        "title": "Mis Granjas y Cultivos",
+        "description": "Gestione sus granjas, campos y siga los ciclos de cultivo individuales desde la siembra hasta la cosecha.",
+        "button": "Gestionar Granjas"
+      },
+      "labor": {
+        "title": "Gestión Laboral",
+        "description": "Lleve un registro de su fuerza laboral, registre horas y gestione los pagos de manera eficiente.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Insumos KNF y Orgánicos",
+        "description": "Cree y gestione sus lotes de Agricultura Natural Coreana y otros insumos orgánicos.",
+        "button": "Gestionar Insumos"
+      },
+      "fgw": {
+        "title": "Guía Farming God's Way",
+        "description": "Acceda a guías y principios para implementar las técnicas de Farming God's Way.",
+        "button": "Ver Guía FGW"
+      },
+      "financials": {
+        "title": "Asuntos Monetarios",
+        "description": "Siga los ingresos y gastos de su granja y solicite productos financieros.",
+        "button": "Ver Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Germinación de Semillas",
+        "description": "Aprenda las mejores prácticas para iniciar semillas con éxito para el trasplante.",
+        "button": "Ver Guía de Semillas"
+      },
+      "familyFarm": {
+        "title": "Modelo de Granja Familiar de 200m²",
+        "description": "Explore un modelo para una granja familiar autosuficiente e integrada de 200m².",
+        "button": "Explorar Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Registre y gestione su equipo agrícola, herramientas y otros activos valiosos. (Próximamente)",
+        "button": "Gestionar Activos"
+      }
+    }
   }
 }

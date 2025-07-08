@@ -23,7 +23,7 @@ export default function FarmManagementPage() {
     {
       title: t('labor.title'),
       description: t('labor.description'),
-      link: "/farm-management/labor", // Assuming a labor management page exists
+      link: "/farm-management/labor",
       icon: <Users className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <Users className="mr-2 h-4 w-4" />,
       buttonText: t('labor.button'),
@@ -32,7 +32,7 @@ export default function FarmManagementPage() {
     {
       title: t('knf.title'),
       description: t('knf.description'),
-      link: "/farm-management/knf-inputs", // Assuming a KNF inputs page exists
+      link: "/farm-management/knf-inputs",
       icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <FlaskConical className="mr-2 h-4 w-4" />,
       buttonText: t('knf.button'),
@@ -41,7 +41,7 @@ export default function FarmManagementPage() {
      {
       title: t('fgw.title'),
       description: t('fgw.description'),
-      link: "/farm-management/fgw-guide", // Assuming an FGW guide page exists
+      link: "/farm-management/fgw-guide",
       icon: <Heart className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <Heart className="mr-2 h-4 w-4" />,
       buttonText: t('fgw.button'),
@@ -50,7 +50,7 @@ export default function FarmManagementPage() {
     {
       title: t('financials.title'),
       description: t('financials.description'),
-      link: "/farm-management/financials", // Assuming a financials page exists
+      link: "/farm-management/financials",
       icon: <DollarSign className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <DollarSign className="mr-2 h-4 w-4" />,
       buttonText: t('financials.button'),
@@ -59,7 +59,7 @@ export default function FarmManagementPage() {
      {
       title: t('seedStarting.title'),
       description: t('seedStarting.description'),
-      link: "/farm-management/seed-starting", // Assuming a seed starting page exists
+      link: "/farm-management/seed-starting",
       icon: <Sprout className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <Sprout className="mr-2 h-4 w-4" />,
       buttonText: t('seedStarting.button'),
@@ -68,7 +68,7 @@ export default function FarmManagementPage() {
     {
       title: t('familyFarm.title'),
       description: t('familyFarm.description'),
-      link: "/farm-management/family-farm", // Assuming a family farm page exists
+      link: "/farm-management/family-farm",
       icon: <Leaf className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <Leaf className="mr-2 h-4 w-4" />,
       buttonText: t('familyFarm.button'),

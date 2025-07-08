@@ -202,5 +202,51 @@
     "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie.",
     "accessDeniedTitle": "Accès refusé",
     "accessDeniedDescription": "Vous n'avez pas les autorisations requises pour utiliser ces outils."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centre de Gestion de la Ferme",
+      "description": "Votre centre de commande central pour toutes les activités de la ferme, de la planification des cultures et des intrants KNF au suivi de la main-d'œuvre et des finances.",
+      "myFarms": {
+        "title": "Mes Fermes et Cultures",
+        "description": "Gérez vos fermes, vos champs et suivez les cycles de culture individuels, de la semence à la récolte.",
+        "button": "Gérer les Fermes"
+      },
+      "labor": {
+        "title": "Gestion de la Main-d'œuvre",
+        "description": "Gardez une trace de votre main-d'œuvre, enregistrez les heures et gérez les paiements efficacement.",
+        "button": "Gérer la Main-d'œuvre"
+      },
+      "knf": {
+        "title": "Intrants KNF et Organiques",
+        "description": "Créez et gérez vos lots de Korean Natural Farming et autres intrants organiques.",
+        "button": "Gérer les Intrants"
+      },
+      "fgw": {
+        "title": "Guide Farming God's Way",
+        "description": "Accédez aux guides et principes pour la mise en œuvre des techniques de Farming God's Way.",
+        "button": "Voir le Guide FGW"
+      },
+      "financials": {
+        "title": "Questions d'Argent",
+        "description": "Suivez les revenus et les dépenses de votre ferme et demandez des produits financiers.",
+        "button": "Voir les Finances"
+      },
+      "seedStarting": {
+        "title": "Guide de Démarrage des Semis",
+        "description": "Apprenez les meilleures pratiques pour démarrer avec succès les semis en vue de la transplantation.",
+        "button": "Voir le Guide des Semis"
+      },
+      "familyFarm": {
+        "title": "Modèle de Ferme Familiale de 200m²",
+        "description": "Explorez un modèle de ferme familiale intégrée et autosuffisante de 200m².",
+        "button": "Explorer le Modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des Actifs",
+        "description": "Enregistrez et gérez votre équipement agricole, vos outils et autres actifs de valeur. (Bientôt disponible)",
+        "button": "Gérer les Actifs"
+      }
+    }
   }
 }
