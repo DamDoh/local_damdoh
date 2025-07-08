@@ -312,5 +312,25 @@
     "inStock": "En Stock",
     "noFinishedProducts": "Aucun produit fini en inventaire.",
     "sellButton": "Vendre le Produit sur le Marché"
+  },
+  "CrowdfunderDashboard": {
+    "title": "Hub des investisseurs et du financement participatif",
+    "totalInvested": "Total investi",
+    "numberOfInvestments": "Nombre d'investissements",
+    "estimatedReturns": "Rendements estimés",
+    "opportunitiesTitle": "Opportunités suggérées",
+    "transactionsTitle": "Transactions récentes",
+    "raisedOf": "de",
+    "goal": "objectif",
+    "viewButton": "Voir",
+    "table": {
+      "project": "Projet",
+      "amount": "Montant"
+    },
+    "investment": "Investissement",
+    "payout": "Paiement",
+    "on": "le",
+    "noOpportunities": "Aucune opportunité d'investissement à suggérer pour le moment.",
+    "noTransactions": "Aucune transaction récente."
   }
 }

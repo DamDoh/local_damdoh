@@ -84,7 +84,6 @@ export const CrowdfunderDashboard = () => {
         <Card className="lg:col-span-2">
            <CardHeader>
              <CardTitle className="text-base">{t('opportunitiesTitle')}</CardTitle>
-             <CardDescription>{t('opportunitiesDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(suggestedOpportunities || []).length > 0 ? (
@@ -120,7 +119,6 @@ export const CrowdfunderDashboard = () => {
          <Card>
            <CardHeader>
              <CardTitle className="text-base">{t('transactionsTitle')}</CardTitle>
-             <CardDescription>{t('transactionsDescription')}</CardDescription>
            </CardHeader>
            <CardContent>
              {(recentTransactions || []).length > 0 ? (
@@ -186,3 +184,4 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
+

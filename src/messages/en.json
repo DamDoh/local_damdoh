@@ -312,7 +312,25 @@
     "inStock": "In Stock",
     "noFinishedProducts": "No finished products in inventory.",
     "sellButton": "List Product on Marketplace"
+  },
+  "CrowdfunderDashboard": {
+    "title": "Crowdfunder & Investor Hub",
+    "totalInvested": "Total Invested",
+    "numberOfInvestments": "Number of Investments",
+    "estimatedReturns": "Estimated Returns",
+    "opportunitiesTitle": "Suggested Opportunities",
+    "transactionsTitle": "Recent Transactions",
+    "raisedOf": "of",
+    "goal": "goal",
+    "viewButton": "View",
+    "table": {
+      "project": "Project",
+      "amount": "Amount"
+    },
+    "investment": "Investment",
+    "payout": "Payout",
+    "on": "on",
+    "noOpportunities": "No investment opportunities to suggest right now.",
+    "noTransactions": "No recent transactions."
   }
 }
-
-

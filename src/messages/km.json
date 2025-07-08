@@ -312,5 +312,25 @@
     "inStock": "ក្នុងស្តុក",
     "noFinishedProducts": "គ្មានផលិតផលសម្រេចក្នុងបញ្ជីទេ។",
     "sellButton": "ដាក់លក់ផលិតផលនៅលើទីផ្សារ"
+  },
+  "CrowdfunderDashboard": {
+    "title": "មជ្ឈមណ្ឌលអ្នកផ្តល់មូលនិធិ និងវិនិយោគិន",
+    "totalInvested": "បានវិនិយោគសរុប",
+    "numberOfInvestments": "ចំនួននៃការវិនិយោគ",
+    "estimatedReturns": "ប្រាក់ចំណេញប៉ាន់ស្មាន",
+    "opportunitiesTitle": "ឱកាសដែលបានណែនាំ",
+    "transactionsTitle": "ប្រតិបត្តិការថ្មីៗ",
+    "raisedOf": "នៃ",
+    "goal": "គោលដៅ",
+    "viewButton": "មើល",
+    "table": {
+      "project": "គម្រោង",
+      "amount": "ចំនួនទឹកប្រាក់"
+    },
+    "investment": "ការវិនិយោគ",
+    "payout": "ការទូទាត់",
+    "on": "នៅ",
+    "noOpportunities": "មិនមានឱកាសវិនិយោគដើម្បីណែនាំនៅពេលនេះទេ។",
+    "noTransactions": "គ្មានប្រតិបត្តិការថ្មីៗទេ។"
   }
 }

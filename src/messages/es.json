@@ -312,5 +312,25 @@
     "inStock": "En Stock",
     "noFinishedProducts": "No hay productos terminados en el inventario.",
     "sellButton": "Listar Producto en el Mercado"
+  },
+  "CrowdfunderDashboard": {
+    "title": "Centro de Inversores y Financiación Colectiva",
+    "totalInvested": "Total Invertido",
+    "numberOfInvestments": "Número de Inversiones",
+    "estimatedReturns": "Retornos Estimados",
+    "opportunitiesTitle": "Oportunidades Sugeridas",
+    "transactionsTitle": "Transacciones Recientes",
+    "raisedOf": "de",
+    "goal": "objetivo",
+    "viewButton": "Ver",
+    "table": {
+      "project": "Proyecto",
+      "amount": "Monto"
+    },
+    "investment": "Inversión",
+    "payout": "Pago",
+    "on": "el",
+    "noOpportunities": "No hay oportunidades de inversión para sugerir en este momento.",
+    "noTransactions": "No hay transacciones recientes."
   }
 }
