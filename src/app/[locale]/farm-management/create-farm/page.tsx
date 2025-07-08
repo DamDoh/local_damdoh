@@ -86,7 +86,7 @@ export default function CreateFarmPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.farmNameLabel')}</FormLabel> {/* Already has icon */}
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.farmNameLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('form.farmNamePlaceholder')} {...field} />
                     </FormControl>
@@ -100,7 +100,7 @@ export default function CreateFarmPage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{t('form.locationLabel')}</FormLabel> {/* Already has icon */}
+                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{t('form.locationLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('form.locationPlaceholder')} {...field} />
                     </FormControl>
@@ -115,7 +115,7 @@ export default function CreateFarmPage() {
                 name="size"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Circle className="h-4 w-4 text-muted-foreground" />{t('form.sizeLabel')}</FormLabel> {/* Already has icon */}
+                    <FormLabel className="flex items-center gap-2"><Circle className="h-4 w-4 text-muted-foreground" />{t('form.sizeLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('form.sizePlaceholder')} {...field} />
                     </FormControl>
@@ -130,7 +130,7 @@ export default function CreateFarmPage() {
                 name="farmType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />{t('form.typeLabel')}</FormLabel> {/* Already has icon */}
+                    <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />{t('form.typeLabel')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -155,7 +155,7 @@ export default function CreateFarmPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.descriptionLabel')}</FormLabel> {/* Already has icon */}
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.descriptionLabel')}</FormLabel>
                     <FormControl>
                       <Textarea placeholder={t('form.descriptionPlaceholder')} {...field} />
                     </FormControl>
@@ -169,7 +169,7 @@ export default function CreateFarmPage() {
                 name="irrigationMethods"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />{t('form.irrigationLabel')}</FormLabel> {/* Already has icon */}
+                    <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />{t('form.irrigationLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('form.irrigationPlaceholder')} {...field} />
                     </FormControl>

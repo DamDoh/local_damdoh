@@ -23,8 +23,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { logFinancialTransactionSchema, LogFinancialTransactionValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, DollarSign, Loader2 } from "lucide-react";
+import { logFinancialTransactionSchema, type LogFinancialTransactionValues } from "@/lib/form-schemas";
+import { ArrowLeft, Save, DollarSign, Loader2, ListFilter, FileText, Tag } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth-utils";
@@ -119,7 +119,7 @@ export default function LogFinancialTransactionPage() {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
- <FormLabel className="flex items-center gap-2"><ListFilter className="h-4 w-4 text-muted-foreground" />{t('typeLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><ListFilter className="h-4 w-4 text-muted-foreground" />{t('typeLabel')}</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -142,7 +142,7 @@ export default function LogFinancialTransactionPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
- <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('descriptionLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('descriptionLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('descriptionPlaceholder')} {...field} />
                     </FormControl>
@@ -157,7 +157,7 @@ export default function LogFinancialTransactionPage() {
                   name="amount"
                   render={({ field }) => (
                     <FormItem>
- <FormLabel className="flex items-center gap-2"><DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />{t('amountLabel')}</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />{t('amountLabel')}</FormLabel>
                       <FormControl>
                         <Input type="number" step="0.01" placeholder={t('amountPlaceholder')} {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
                       </FormControl>
@@ -170,7 +170,7 @@ export default function LogFinancialTransactionPage() {
                   name="currency"
                   render={({ field }) => (
                     <FormItem>
- <FormLabel className="flex items-center gap-2"><DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />{t('currencyLabel')}</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />{t('currencyLabel')}</FormLabel>
                        <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -192,7 +192,7 @@ export default function LogFinancialTransactionPage() {
                 name="category"
                 render={({ field }) => (
                   <FormItem>
- <FormLabel className="flex items-center gap-2"><Tag className="mr-2 h-4 w-4 text-muted-foreground" />{t('categoryLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Tag className="mr-2 h-4 w-4 text-muted-foreground" />{t('categoryLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('categoryPlaceholder')} {...field} />
                     </FormControl>

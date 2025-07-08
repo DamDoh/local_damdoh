@@ -23,6 +23,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function EditFarmPage() {
   const t = useTranslations('farmManagement.editFarm');
+  const tCreate = useTranslations('farmManagement.createFarm'); // Reuse for form labels
   const { toast } = useToast();
   const router = useRouter();
   const params = useParams();
@@ -59,7 +60,7 @@ export default function EditFarmPage() {
             router.push('/farm-management/farms');
         }
     } catch (error: any) {
-        toast({ title: "Error", description: `Failed to load farm data: ${error.message}`, variant: "destructive" });
+        toast({ title: "Error", description: t('toast.loadFail', { message: error.message }), variant: "destructive" });
     } finally {
         setIsLoadingData(false);
     }
@@ -134,9 +135,9 @@ export default function EditFarmPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.farmNameLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{tCreate('form.farmNameLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('form.farmNamePlaceholder')} {...field} />
+                      <Input placeholder={tCreate('form.farmNamePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -148,11 +149,11 @@ export default function EditFarmPage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{t('form.locationLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><MapPin className="h-4 w-4 text-muted-foreground" />{tCreate('form.locationLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('form.locationPlaceholder')} {...field} />
+                      <Input placeholder={tCreate('form.locationPlaceholder')} {...field} />
                     </FormControl>
-                    <FormDescription>{t('form.locationDescription')}</FormDescription>
+                    <FormDescription>{tCreate('form.locationDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -163,11 +164,11 @@ export default function EditFarmPage() {
                 name="size"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Circle className="h-4 w-4 text-muted-foreground" />{t('form.sizeLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Circle className="h-4 w-4 text-muted-foreground" />{tCreate('form.sizeLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('form.sizePlaceholder')} {...field} />
+                      <Input placeholder={tCreate('form.sizePlaceholder')} {...field} />
                     </FormControl>
-                     <FormDescription>{t('form.sizeDescription')}</FormDescription>
+                     <FormDescription>{tCreate('form.sizeDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -178,19 +179,19 @@ export default function EditFarmPage() {
                 name="farmType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />{t('form.typeLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Tractor className="h-4 w-4 text-muted-foreground" />{tCreate('form.typeLabel')}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder={t('form.typePlaceholder')} />
+                          <SelectValue placeholder={tCreate('form.typePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="crop">{t('form.types.crop')}</SelectItem>
-                        <SelectItem value="livestock">{t('form.types.livestock')}</SelectItem>
-                        <SelectItem value="mixed">{t('form.types.mixed')}</SelectItem>
-                        <SelectItem value="aquaculture">{t('form.types.aquaculture')}</SelectItem>
-                        <SelectItem value="other">{t('form.types.other')}</SelectItem>
+                        <SelectItem value="crop">{tCreate('form.types.crop')}</SelectItem>
+                        <SelectItem value="livestock">{tCreate('form.types.livestock')}</SelectItem>
+                        <SelectItem value="mixed">{tCreate('form.types.mixed')}</SelectItem>
+                        <SelectItem value="aquaculture">{tCreate('form.types.aquaculture')}</SelectItem>
+                        <SelectItem value="other">{tCreate('form.types.other')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -203,9 +204,9 @@ export default function EditFarmPage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{t('form.descriptionLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" />{tCreate('form.descriptionLabel')}</FormLabel>
                     <FormControl>
-                      <Textarea placeholder={t('form.descriptionPlaceholder')} {...field} />
+                      <Textarea placeholder={tCreate('form.descriptionPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -217,11 +218,11 @@ export default function EditFarmPage() {
                 name="irrigationMethods"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />{t('form.irrigationLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Wrench className="h-4 w-4 text-muted-foreground" />{tCreate('form.irrigationLabel')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('form.irrigationPlaceholder')} {...field} />
+                      <Input placeholder={tCreate('form.irrigationPlaceholder')} {...field} />
                     </FormControl>
-                     <FormDescription>{t('form.irrigationDescription')}</FormDescription>
+                     <FormDescription>{tCreate('form.irrigationDescription')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

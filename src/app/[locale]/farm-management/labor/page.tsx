@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Clock, Eye } from "lucide-react";
+import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Clock, Eye, FileText } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -209,7 +209,7 @@ export default function LaborManagementPage() {
                         </div>
                          <div className="flex items-center gap-2"><FileText className="h-4 w-4 text-muted-foreground" /><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
-                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className=\"mr-2 h-4 w-4 animate-spin\"/>}<Clock className=\"mr-2 h-4 w-4\"/>{t('logHours')}</Button>
+                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<Clock className="mr-2 h-4 w-4"/>{t('logHours')}</Button>
                 </DialogContent>
             </Dialog>
 
@@ -217,7 +217,7 @@ export default function LaborManagementPage() {
                 <DialogContent>
                     <DialogHeader><DialogTitle>{t('logPaymentFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
                     <div className="space-y-4 py-4">
-                         <div className=\"grid grid-cols-2 gap-4\"><div className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />
+                         <div className="grid grid-cols-2 gap-4"><div className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />
                             <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
                              <div>
                                 <Label htmlFor="payment-date">{t('date')}</Label>

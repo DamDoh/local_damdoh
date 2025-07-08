@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Home, ArrowLeft, LayoutGrid, Sprout, ShoppingBasket, Recycle, Fish, Bird, ShieldCheck, Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 interface FarmZone {
   id: string;

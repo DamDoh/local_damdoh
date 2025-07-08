@@ -27,6 +27,7 @@ import type { UserProfile } from '@/lib/types';
 
 
 function ApplyForFundingSkeleton() {
+  const t = useTranslations('farmManagement.financials.apply');
   return (
     <div className="space-y-6">
       <Skeleton className="h-10 w-40" />
