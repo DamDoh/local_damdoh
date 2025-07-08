@@ -394,5 +394,35 @@
       "interpretationNotesDefault": "Recherche basée sur votre requête.",
       "filtersTitle": "Filtres Appliqués"
     }
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de Bord de la Durabilité",
+    "description": "Suivez et comprenez l'impact environnemental de votre exploitation.",
+    "carbonFootprint": "Empreinte Carbone",
+    "waterEfficiency": "Efficacité de l'Eau",
+    "biodiversityScore": "Score de Biodiversité",
+    "practicesTitle": "Pratiques Durables Enregistrées",
+    "certificationsTitle": "Certifications Actives",
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier enregistrement"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expiration"
+    },
+    "metricCard": {
+      "trendText": "par rapport au mois dernier"
+    },
+    "auth": {
+      "title": "Authentification Requise",
+      "description": "Veuillez vous connecter pour voir votre tableau de bord de la durabilité.",
+      "button": "Se Connecter"
+    },
+    "noData": {
+      "title": "Aucune Donnée Disponible",
+      "description": "Nous n'avons pas assez de données pour générer votre rapport de durabilité. Commencez à enregistrer les activités de votre exploitation !"
+    }
   }
 }

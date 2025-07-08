@@ -394,5 +394,35 @@
       "interpretationNotesDefault": "Searching based on your query.",
       "filtersTitle": "Filters Applied"
     }
+  },
+  "sustainabilityPage": {
+    "title": "ផ្ទាំងគ្រប់គ្រងនិរន្តរភាព",
+    "description": "តាមដាននិងយល់ពីផលប៉ះពាល់បរិស្ថានរបស់កសិដ្ឋានអ្នក។",
+    "carbonFootprint": "បាតជើងកាបូន",
+    "waterEfficiency": "ប្រសិទ្ធភាពទឹក",
+    "biodiversityScore": "ពិន្ទុជីវចម្រុះ",
+    "practicesTitle": "ការអនុវត្តប្រកបដោយនិរន្តរភាពដែលបានកត់ត្រា",
+    "certificationsTitle": "វិញ្ញាបនបត្រសកម្ម",
+    "practicesTable": {
+      "practice": "ការអនុវត្ត",
+      "lastLogged": "កត់ត្រាចុងក្រោយ"
+    },
+    "certificationsTable": {
+      "certification": "វិញ្ញាបនបត្រ",
+      "status": "ស្ថានភាព",
+      "expiry": "ផុតកំណត់"
+    },
+    "metricCard": {
+      "trendText": "ពីខែមុន"
+    },
+    "auth": {
+      "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+      "description": "សូមចូលគណនីដើម្បីមើលផ្ទាំងគ្រប់គ្រងនិរន្តរភាពរបស់អ្នក។",
+      "button": "ចូលគណនី"
+    },
+    "noData": {
+      "title": "គ្មានទិន្នន័យ",
+      "description": "យើងមិនមានទិន្នន័យគ្រប់គ្រាន់ដើម្បីបង្កើតរបាយការណ៍និរន្តរភាពរបស់អ្នកទេ។ ចាប់ផ្តើមកត់ត្រាសកម្មភាពកសិដ្ឋានរបស់អ្នក!"
+    }
   }
 }
