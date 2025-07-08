@@ -140,5 +140,4740 @@
       "scanNote": "This code is valid for 10 minutes.",
       "startOverButton": "Start Over"
     }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Revolutionizing Agriculture, Together.",
+      "subtitle": "Connecting every link in the agricultural supply chain, from farmers to consumers, on a single, intelligent platform.",
+      "getStartedButton": "Get Started Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "One Platform, Limitless Connections",
+      "subtitle": "DamDoh provides the tools you need to thrive in the modern agricultural landscape.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "AI-powered matchmaking connects you with the right partners, from suppliers to international buyers."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell produce, inputs, and equipment with trust and transparency."
+      },
+      "forums": {
+        "title": "Knowledge Forums",
+        "description": "Share insights, ask questions, and collaborate with a global community of agricultural experts."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Find skilled labor or offer your agricultural services to a targeted audience."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in Agriculture",
+      "title": "A Unified Platform for a Fragmented World",
+      "description": "DamDoh is meticulously designed to meet the unique needs of every stakeholder in the agricultural value chain.",
+      "farmers": {
+        "title": "Farmers",
+        "description": "Access new markets, get fair pricing, and learn sustainable farming practices."
+      },
+      "buyers": {
+        "title": "Buyers & Exporters",
+        "description": "Source high-quality, traceable produce directly from producers and cooperatives."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your expertise and services to a global agricultural community."
+      },
+      "imageAlt": "A collage of diverse people in agricultural settings"
+    },
+    "cta": {
+      "title": "Join the Future of Agriculture",
+      "subtitle": "Create your profile today and unlock a world of opportunity. Let's grow together.",
+      "button": "Sign Up Now"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Rebuilding Global Food Systems From the Ground Up",
+      "subtitle": "DamDoh is more than an app; it's a movement to create a more sustainable, equitable, and efficient agricultural future for everyone."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "p1": "We envision a world where every farmer, regardless of their location or scale, has the tools and connections to thrive. A world where supply chains are transparent, food is sustainable, and communities are empowered.",
+      "p2": "Founded by agricultural experts and technologists, DamDoh was born from a passion to solve the deep-rooted inefficiencies and inequities in our global food systems.",
+      "foundersTitle": "Our Founders"
+    },
+    "challenge": {
+      "title": "The Challenge We Face",
+      "description": "The current agricultural supply chain is fragmented, inefficient, and often inequitable. Key stakeholders face immense hurdles:",
+      "list": {
+        "knowledge": "Fragmented knowledge and lack of access to best practices.",
+        "market": "Limited market access and unfair pricing for smallholder farmers.",
+        "quality": "Inconsistent quality control and lack of product traceability.",
+        "logistics": "Inefficient logistics leading to high post-harvest losses.",
+        "financial": "Difficult access to credit and financial services for producers.",
+        "climate": "Increasing pressure from climate change and resource scarcity.",
+        "informal": "Heavy reliance on informal networks, limiting growth and security."
+      }
+    },
+    "solution": {
+      "title": "The DamDoh Solution",
+      "description": "We are building an integrated 'super app' that acts as the digital backbone for the entire agricultural ecosystem:",
+      "list": {
+        "education": "Education & AI-powered farm advisory.",
+        "ai": "Smart matchmaking to connect stakeholders.",
+        "logistics": "Integrated logistics and traceability.",
+        "financial": "Access to financial services and credit scoring."
+      }
+    },
+    "beyondTechnology": {
+      "title": "Beyond Technology: It's About People",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Farmers connecting with other farmers to share knowledge and form cooperatives."
+        },
+        "p2b": {
+          "title": "Producer-to-Business",
+          "content": "Direct, fair trade between farmers and buyers, processors, or retailers."
+        },
+        "p2e": {
+          "title": "Producer-to-Expert",
+          "content": "Connecting farmers with agronomists, vets, and financial advisors."
+        },
+        "p2w": {
+          "title": "Producer-to-World",
+          "content": "Enabling smallholders to access global markets through verified traceability."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Our Commitment",
+      "p1": "We are committed to the principles of sustainability, fairness, and empowerment.",
+      "p2": "Every feature we build is designed to put more power and profit back into the hands of the people who grow our food.",
+      "p3": "Join us in cultivating a better future.",
+      "button": "Become a Member"
+    }
+  },
+  "contactPage": {
+    "title": "Get In Touch",
+    "subtitle": "We’d love to hear from you. Whether you have a question, feedback, or a partnership inquiry, here’s how you can reach us.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon - Fri, 9am - 5pm (EAT)",
+      "phone": "+254 700 000 000"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Holdings",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Send Us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Enter your full name",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "you@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "What is your message about?",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "We'll do our best to respond within 24 business hours."
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to revolutionize agriculture. We're looking for passionate individuals to help us build a more sustainable future.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "At DamDoh, you'll be part of a diverse, global team dedicated to making a real-world impact. We offer:",
+      "point1": "A mission-driven culture focused on empowerment and sustainability.",
+      "point2": "Opportunities to work with cutting-edge technology like AI and blockchain.",
+      "point3": "A collaborative environment where your ideas can shape the future of food.",
+      "point4": "Competitive compensation and flexible work arrangements.",
+      "point5": "The chance to see your work directly improve the lives of farmers worldwide."
+    },
+    "currentOpenings": {
+      "title": "Current Openings"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend Engineer (Node.js, Firestore)",
+        "location": "Remote / Nairobi, Kenya",
+        "type": "Full-time",
+        "description": "Design and build the scalable microservices that power our platform. Strong experience with Node.js, TypeScript, and NoSQL databases is required."
+      },
+      "job2": {
+        "title": "Lead Agronomist & Farmer Relations",
+        "location": "Rift Valley, Kenya",
+        "type": "Full-time",
+        "description": "Lead our field agent team, provide expert agronomic advice, and build strong relationships with our farmer communities."
+      },
+      "job3": {
+        "title": "UX/UI Designer for Emerging Markets",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Design intuitive and accessible user interfaces for our mobile and web platforms, with a focus on users in low-connectivity environments."
+      }
+    },
+    "noOpenings": {
+      "title": "No Open Positions Currently",
+      "content1": "We are always looking for talented individuals. If you are passionate about our mission, feel free to send your resume to {emailLink}.",
+      "content2": "careers@damdoh.org"
+    },
+    "applyNowButton": "Apply Now"
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Fostering a professional, respectful, and collaborative environment for all.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all stakeholders, we ask that you adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful and Professional",
+      "description": "Engage in courteous and constructive discussions. Personal attacks, harassment, hate speech, or defamatory comments will not be tolerated."
+    },
+    "authentic": {
+      "title": "Be Authentic and Honest",
+      "description": "Represent yourself and your business truthfully. Do not misrepresent products, services, or certifications. All transactions and interactions should be conducted with integrity."
+    },
+    "relevant": {
+      "title": "Stay On-Topic and Relevant",
+      "description": "Keep discussions and listings relevant to agriculture, the supply chain, and the purpose of each platform feature. Spam, irrelevant advertising, or solicitation is not permitted."
+    },
+    "fairTrade": {
+      "title": "Uphold Fair Trade Practices",
+      "description": "We encourage fair pricing and transparent negotiations. Do not engage in price-fixing, fraudulent activities, or attempts to exploit other members."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "While not mandatory for all interactions, we strongly encourage the promotion and discussion of sustainable and regenerative agricultural practices."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}."
+    },
+    "conclusion": "By using DamDoh, you agree to these guidelines. Violations may result in content removal, account suspension, or permanent banning. Let's work together to build a thriving and trustworthy community."
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Your central resource for guides, FAQs, and support.",
+    "howCanWeHelp": "How can we help you today?",
+    "searchPlaceholder": "Search for articles, e.g., 'How to create a listing'",
+    "browseTopics": "Or browse by topic",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Learn how to set up your profile and navigate the platform.",
+      "placeholder": "Content for Getting Started will be added here."
+    },
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "Tips for buying, selling, and creating effective listings.",
+      "placeholder": "Content for Marketplace Guide will be added here."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Manage your password, notifications, and privacy settings.",
+      "placeholder": "Content for Account Management will be added here."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Solutions for common issues and technical problems.",
+      "placeholder": "Content for Troubleshooting will be added here."
+    },
+    "stillNeedHelp": {
+      "title": "Still Need Help?",
+      "description": "If you can't find what you're looking for, our support team is here to assist you.",
+      "button": "Contact Support"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Industry News & Reports",
+    "description": "Stay informed with the latest trends, research, and policy changes affecting the agricultural sector.",
+    "searchPlaceholder": "Search news articles...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "readButton": "Read Full Story",
+    "noNews": {
+      "title": "No News Found",
+      "description": "There are currently no articles matching your criteria. Check back soon for the latest updates."
+    },
+    "news1": {
+      "title": "Global Grain Prices Surge Amidst Supply Chain Disruptions",
+      "excerpt": "A new report from AgriMarket Insights shows a 15% increase in global wheat and corn prices over the last quarter, driven by logistical bottlenecks and increased demand in Asia."
+    },
+    "news2": {
+      "title": "EU Implements New Regulations for Organic Food Imports",
+      "excerpt": "Exporters targeting the European Union must now comply with stricter digital documentation and traceability requirements for all organic-certified products, effective January 1, 2025."
+    },
+    "news3": {
+      "title": "Breakthrough in Drought-Resistant Maize Varieties",
+      "excerpt": "Researchers at Wageningen University have announced the development of new maize hybrids that show a 30% higher yield under water-scarce conditions, a promising development for climate change adaptation."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "This privacy notice for DamDoh ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services').",
+    "whatInfoWeCollect": {
+      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
+    },
+    "howWeUseInfo": {
+      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
+      "content": "We may share information in specific situations described in this section and/or with the following third parties. We may need to share your personal information to facilitate business transactions with other users, financial institutions for credit scoring (with your explicit consent), and with logistics partners to fulfill orders."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "We may use cookies and similar tracking technologies to access or store information. Specific information about how we use such technologies is set out in our Cookie Notice."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process."
+    },
+    "minors": {
+      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "We do not knowingly collect data from or market to children under 18 years of age."
+    },
+    "privacyRights": {
+      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "You have the right to review, change, or terminate your account at any time. You may also have other privacy rights depending on your location."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
+    },
+    "updatesToNotice": {
+      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible."
+    },
+    "conclusion": "Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us."
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh concerning your access to and use of the DamDoh application as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
+    "agreementToTerms": {
+      "heading": "1. AGREEMENT TO TERMS",
+      "content": "By using the Services, you agree to be bound by these Terms of Use. If you do not agree, you are expressly prohibited from using the Services and must discontinue use immediately."
+    },
+    "intellectualProperty": {
+      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "Unless otherwise indicated, the Services are our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein (the 'Marks') are owned or controlled by us or licensed to us."
+    },
+    "userRepresentations": {
+      "heading": "3. USER REPRESENTATIONS",
+      "content": "By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (6) you will not use the Services for any illegal or unauthorized purpose; and (7) your use of the Services will not violate any applicable law or regulation."
+    },
+    "prohibitedActivities": {
+      "heading": "4. PROHIBITED ACTIVITIES",
+      "content": "You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us. This includes, but is not limited to, fraudulent activities, spamming, and harassment of other users."
+    },
+    "platformManagement": {
+      "heading": "5. PLATFORM MANAGEMENT",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof."
+    },
+    "termAndTermination": {
+      "heading": "6. TERM AND TERMINATION",
+      "content": "These Terms of Use shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Services without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services."
+    },
+    "governingLaw": {
+      "heading": "8. GOVERNING LAW",
+      "content": "These Terms shall be governed by and defined following the laws of Kenya. DamDoh and yourself irrevocably consent that the courts of Kenya shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms."
+    },
+    "disputeResolution": {
+      "heading": "9. DISPUTE RESOLUTION",
+      "content": "Any dispute arising from the relationships between the Parties to this contract shall be determined by one arbitrator who will be chosen in accordance with the Arbitration Act of Kenya."
+    },
+    "contactUs": {
+      "heading": "10. CONTACT US",
+      "content": "In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us."
+    },
+    "conclusion": "You can reach us through our {contactLink} page."
+  },
+  "pinboardPage": {
+    "title": "Pinboard",
+    "description": "Your personal space to save and organize items from across DamDoh.",
+    "comingSoonTitle": "Pinboard is Coming Soon!",
+    "comingSoonDescription": "This feature will allow you to 'pin' marketplace items, forum posts, user profiles, and more to a personal board for easy access later.",
+    "stayTuned": "Stay tuned for updates!"
+  },
+  "walletPage": {
+    "title": "DamDoh Wallet",
+    "description": "Manage your platform finances, view transaction history, and access financial services.",
+    "underDevelopmentTitle": "Wallet & Financial Services Hub is Under Development",
+    "underDevelopmentDescription": "We are building a robust financial ecosystem to empower our users. This section will soon include:",
+    "feature1": "Secure digital wallet for platform transactions.",
+    "feature2": "Detailed transaction history.",
+    "feature3": "AI-powered credit scoring based on your platform activity.",
+    "feature4": "Access to tailored loans, grants, and insurance products.",
+    "stayTuned": "This feature is a top priority. Stay tuned!"
+  },
+  "sustainabilityPage": {
+    "title": "My Sustainability Dashboard",
+    "description": "Track and understand the environmental impact of your agricultural practices.",
+    "auth": {
+      "title": "Please Sign In",
+      "description": "You need to be logged in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "No Data Yet",
+      "description": "Start logging your farm activities, like input applications and harvests, to see your sustainability metrics here."
+    },
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Logged Sustainable Practices",
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTitle": "My Certifications",
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expires"
+    },
+    "metricCard": {
+      "trendText": "from last month"
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled agricultural professionals or offer your expertise to the community.",
+    "listServiceButton": "List a Service / Job",
+    "searchPlaceholder": "Search for skills, services, or roles...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Service Categories",
+    "noResultsTitle": "No Services or Talent Found",
+    "noResultsDescription": "Try adjusting your search criteria or be the first to offer a service in your area.",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Could not fetch talent listings. Please try again."
+      }
+    }
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the entire DamDoh platform.",
+    "placeholder": "What are you looking for today?",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Logistics in Kenya",
+    "popularSearch3": "Tractor for rent",
+    "popularSearch4": "Coffee Buyers Europe",
+    "popularSearch5": "Soil Health Forum",
+    "modal": {
+      "title": "AI-Powered Search",
+      "placeholder": "Search for users, products, services, forum posts...",
+      "searchButton": "Search",
+      "interpretationTitle": "Interpretation",
+      "interpretationNotesDefault": "Searching across all categories.",
+      "filtersTitle": "Filters",
+      "noResults": "No results found for your query.",
+      "tryAgain": "Please try a different search term.",
+      "searchError": "Search Error",
+      "searchErrorDescription": "An unexpected error occurred while searching.",
+      "scanFailed": "Scan Failed",
+      "scanError": "QR Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "invalidCodeError": "This QR code is not a valid DamDoh user or batch ID.",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "agri_events": "Events",
+        "knowledge_articles": "Articles",
+        "vti_registry": "Traceability Batch"
+      }
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network Hub",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "Your established professional network on DamDoh.",
+    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
+    "requestsTitle": "Connection Requests",
+    "requestsDescription": "Accept or decline requests to grow your network.",
+    "noRequests": "You have no pending connection requests.",
+    "sentTimeAgo": "Sent {timeAgo}"
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network Hub",
+    "title": "Agent Tools",
+    "description": "Tools for Field Agents and Admins to assist users.",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to view this page.",
+    "findUserLabel": "Find User by Phone Number",
+    "findButton": "Find",
+    "resultsTitle": "Search Result",
+    "resultsPlaceholder": "User details will appear here.",
+    "phoneRequiredError": "Phone number is required for lookup."
+  },
+  "networkPage": {
+    "title": "My Network",
+    "description": "Discover and connect with stakeholders across the agricultural supply chain.",
+    "myNetworkButton": "Manage My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI Connection Suggestions",
+    "aiSuggestionsDescription": "Based on your profile, here are some people you might want to connect with.",
+    "browseAllTitle": "Browse All Stakeholders",
+    "searchPlaceholder": "Search by name or summary...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "allInterests": "All Interests",
+    "interestPlaceholder": "Filter by interest...",
+    "noStakeholdersFound": "No stakeholders found matching your criteria.",
+    "noStakeholdersHint": "Try adjusting your filters.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "following": "Following",
+    "follow": "Follow",
+    "noSuggestions": "No new suggestions right now. Complete your profile for better recommendations!",
+    "loadError": "Could not load network data.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Build Your Network",
+    "refreshSuggestions": "Refresh Suggestions",
+    "infoTooltip": "These suggestions are AI-powered based on your profile and platform activity.",
+    "signInPrompt": "Sign in to see personalized connection suggestions.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No suggestions available right now.",
+    "follow": "Follow",
+    "following": "Following",
+    "ad": "Ad",
+    "adTitle": "DamDoh Market Trends",
+    "adDescription": "Unlock exclusive data and insights.",
+    "adButton": "Learn More",
+    "promotionsTitle": "Promotions & Coupons",
+    "promotionsDescription": "Create and manage discounts for your marketplace items to boost sales.",
+    "managePromotionsButton": "Manage Promotions"
+  },
+  "FeedItemCard": {
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "noComments": "No comments yet. Be the first!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "votes": "{count, plural, one {vote} other {votes}}",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteSuccessToast": "Your vote has been cast!",
+    "voteErrorToast": "Failed to cast vote."
+  },
+  "CreatePostModal": {
+    "title": "Create Post",
+    "description": "Share your thoughts with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Max {maxOptions} options allowed.",
+    "selectedFile": "Selected file:",
+    "addMediaButton": "Add Photo/Video",
+    "createEventButton": "Create Agri-Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least two non-empty options.",
+    "emptyPostError": "Cannot create an empty post. Please add content, media, or a valid poll."
+  },
+  "StartPost": {
+    "placeholder": "Start a post, ask a question, or share an update...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll"
+  },
+  "FiApplicationListPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Applications",
+    "description": "Review and manage incoming loan and grant applications.",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Submitted",
+      "status": "Status",
+      "action": "Action"
+    },
+    "reviewButton": "Review",
+    "noApplications": "No applications found in this category."
+  },
+  "FiApplicationPage": {
+    "backLink": "Back to Applications",
+    "title": "Application Review",
+    "applicationTitle": "Application",
+    "submittedOn": "Submitted on",
+    "amountRequested": "Amount Requested",
+    "purpose": "Purpose of Funds",
+    "approveButton": "Approve",
+    "rejectButton": "Reject",
+    "requestInfoButton": "Request More Info",
+    "applicantDetails": "Applicant Details",
+    "profileNotFound": "Applicant profile could not be loaded.",
+    "viewProfileButton": "View Full Profile",
+    "riskAssessment": "Risk Assessment",
+    "creditScore": "Credit Score",
+    "notFound": "Application not found.",
+    "toast": {
+      "errorTitle": "Error",
+      "updateSuccessTitle": "Status Updated",
+      "updateSuccessDescription": "Application status has been set to {status}.",
+      "updateFailTitle": "Update Failed"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Financial Product",
+    "description": "Define a new loan or grant product to offer to platform users.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Smallholder Seed Loan",
+      "typeLabel": "Product Type",
+      "loan": "Loan",
+      "grant": "Grant",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the product, its purpose, and key benefits.",
+      "interestRateLabel": "Interest Rate (%)",
+      "interestRatePlaceholder": "e.g., 12.5",
+      "maxAmountLabel": "Max Amount (USD)",
+      "maxAmountPlaceholder": "e.g., 5000",
+      "targetRolesLabel": "Target Audience",
+      "targetRolesDescription": "Select the stakeholder roles this product is available to.",
+      "submitButton": "Create Product",
+      "submittingButton": "Creating..."
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in to create a product.",
+      "successTitle": "Product Created",
+      "successDescription": "The product '{name}' has been successfully created.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Manage Financial Products",
+    "description": "View and manage your institution's financial products.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "interestRate": "Interest Rate",
+      "maxAmount": "Max Amount"
+    },
+    "noProducts": "You have not created any financial products yet.",
+    "toast": {
+      "errorTitle": "Error fetching products"
+    }
+  },
+  "InsurancePage": {
+    "title": "Agricultural Insurance",
+    "description": "Protect your investments against unforeseen risks. Browse and apply for insurance products from trusted providers on the platform.",
+    "perTerm": "term",
+    "viewDetailsButton": "View Details",
+    "noProducts": "No insurance products are available at this time.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create Insurance Product",
+    "description": "Define a new insurance product to offer to platform users.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop",
+      "livestock": "Livestock",
+      "asset": "Farm Asset",
+      "weather": "Parametric Weather",
+      "descriptionLabel": "Short Description",
+      "descriptionPlaceholder": "A brief summary of the product.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Describe what this insurance covers in detail.",
+      "premiumLabel": "Premium per Term",
+      "premiumPlaceholder": "e.g., 150.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be an Insurance Provider to create products.",
+      "successTitle": "Product Created",
+      "successDescription": "The product '{name}' is now available.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Manage Insurance Products",
+    "description": "View and manage your insurance products.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "noProducts": "You have not created any insurance products yet.",
+    "toast": {
+      "errorTitle": "Error fetching products"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Back to Insurance Hub",
+    "coverageTitle": "Coverage Details",
+    "premiumTitle": "Premium",
+    "providerTitle": "Provided By",
+    "applyButton": "Apply for this Product",
+    "perTerm": "per term",
+    "notFound": "Product not found.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Back to Product",
+    "title": "Apply for Insurance",
+    "description": "Apply for the '{productName}' policy.",
+    "form": {
+      "farmLabel": "Select Farm to Insure",
+      "farmPlaceholder": "Select a farm",
+      "noFarms": "No farms found. Please create a farm first.",
+      "coverageValueLabel": "Total Value to Insure (USD)",
+      "coverageValuePlaceholder": "e.g., 10000",
+      "coverageValueDescription": "The total estimated value of the crop, livestock, or asset you are insuring.",
+      "submitButton": "Submit Application"
+    },
+    "success": {
+      "title": "Application Submitted!",
+      "description": "Your insurance application has been sent to the provider for review.",
+      "backToDashboardButton": "Back to Dashboard",
+      "applyForAnotherButton": "Apply for Another Product"
+    },
+    "toast": {
+      "error": "Error",
+      "notAuthenticated": "You must be logged in to apply.",
+      "fetchFiError": "Could not fetch financial institutions.",
+      "successTitle": "Application Submitted",
+      "successDescription": "Your application has been sent for review."
+    }
   }
 }
+```
+- src/messages/fr.json:
+```json
+
+{
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "sustainability": "Durabilité",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'aide",
+    "logOut": "Se déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Recherche",
+    "forums": "Forums",
+    "profile": "Profil"
+  },
+  "AppFooter": {
+    "tagline": "Autonomiser les agriculteurs, restaurer les écosystèmes et nourrir le monde durablement.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "copyright": "© {year} {appName}. Tous droits réservés.",
+    "getMobileApp": "Obtenez l'application mobile",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisation de {count} actions en attente...",
+      "onlinePending": "{count} actions en attente de synchronisation.",
+      "onlineSynced": "En ligne et toutes les modifications synchronisées.",
+      "offline": "Hors ligne. {count} actions en file d'attente."
+    },
+    "toast": {
+      "online": {
+        "title": "Vous êtes de retour en ligne !",
+        "description": "Les modifications en attente vont maintenant être synchronisées."
+      },
+      "offline": {
+        "title": "Vous êtes actuellement hors ligne",
+        "description": "Vos modifications seront sauvegardées et synchronisées lorsque vous vous reconnecterez."
+      },
+      "syncing": {
+        "title": "Synchronisation des modifications hors ligne",
+        "description": "{count, plural, one {# action est} other {# actions sont}} en cours de téléchargement."
+      },
+      "synced": {
+        "title": "Synchronisation terminée",
+        "description": "Toutes vos modifications hors ligne ont été sauvegardées sur le serveur."
+      },
+      "syncFailed": {
+        "title": "Échec de la synchronisation",
+        "description": "Impossible de synchroniser les modifications hors ligne. Une nouvelle tentative sera effectuée plus tard."
+      },
+      "queued": {
+        "title": "Action en file d'attente",
+        "description": "Votre modification a été sauvegardée et sera synchronisée lorsque vous serez en ligne."
+      }
+    }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
+  },
+  "Auth": {
+    "signUpWelcome": "Rejoignez le mouvement agricole mondial avec {appName}",
+    "signInWelcome": "Bienvenue à nouveau sur {appName}",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
+    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour {appName}",
+    "signInTitle": "Se connecter",
+    "signInDescription": "Entrez vos identifiants pour accéder à votre compte.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "vous@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion en cours...",
+    "signInButton": "Se connecter",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "signUpLink": "S'inscrire",
+    "signInLink": "Se connecter",
+    "recoverWithUniversalIdPrompt": "Ou récupérer le compte avec l'ID Universel",
+    "signUpTitle": "Créer un compte",
+    "signUpDescription": "Entrez vos informations pour commencer.",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre nom complet",
+    "roleLabel": "Votre rôle",
+    "rolePlaceholder": "Sélectionnez votre rôle principal",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez votre nouveau mot de passe",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "Créer un compte",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "forgotPasswordTitle": "Mot de passe oublié ?",
+    "forgotPasswordDescription": "Entrez votre e-mail et nous vous enverrons un lien de réinitialisation.",
+    "sendingEmailButton": "Envoi de l'e-mail...",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "resetPasswordTitle": "Réinitialisez votre mot de passe",
+    "resetPasswordDescription": "Entrez votre nouveau mot de passe ci-dessous.",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
+    "resettingPasswordButton": "Réinitialisation du mot de passe...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "recoverPage": {
+      "title": "Récupération de Compte Sociale",
+      "description": "Récupérez l'accès à votre compte en toute sécurité en utilisant votre réseau.",
+      "howItWorksTitle": "Comment ça marche",
+      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
+      "step2": "Montrez le code QR temporaire à un ami DamDoh de confiance.",
+      "step3": "Une fois qu'ils auront confirmé, vous retrouverez l'accès à votre compte.",
+      "startButton": "Démarrer la Récupération de Compte",
+      "scanTitle": "Demandez à un Ami de Scanner",
+      "scanDescription": "Demandez à un contact de confiance de votre réseau DamDoh de scanner ce code QR temporaire pour vérifier votre identité.",
+      "scanNote": "Ce code est valide pendant 10 minutes.",
+      "startOverButton": "Recommencer"
+    }
+  }
+}
+
+```
+- src/messages/km.json:
+```json
+
+{
+  "AppHeader": {
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "គ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូបលុយ",
+    "searchPlaceholder": "ស្វែងរកមនុស្ស, ផលិតផល, សេវាកម្ម...",
+    "signIn": "ចូលគណនី",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "logOut": "ចេញពីគណនី",
+    "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
+    "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
+  },
+  "AppFooter": {
+    "tagline": "ផ្តល់អំណាចដល់កសិករ, ស្តារប្រព័ន្ធអេកូឡូស៊ី, และចិញ្ចឹមពិភពលោកប្រកបដោយនិរន្តរភាព។",
+    "damdohTitle": "ដាំដុះ",
+    "aboutLabel": "អំពីយើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍ឯកជនភាព",
+    "termsOfServiceLabel": "លក្ខខណ្ឌប្រើប្រាស់",
+    "copyright": "© {year} {appName} ។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
+    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
+    "appStoreAlt": "ទាញយកនៅលើ App Store"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "កំពុងធ្វើសមកាលកម្មសកម្មភាពដែលមិនទាន់សម្រេចចំនួន {count}...",
+      "onlinePending": "សកម្មភាពដែលមិនទាន់សម្រេចចំនួន {count} ត្រូវធ្វើសមកាលកម្ម។",
+      "onlineSynced": "នៅលើអ៊ីនធឺណិត និងការផ្លាស់ប្តូរទាំងអស់ត្រូវបានធ្វើសមកាលកម្ម។",
+      "offline": "ក្រៅបណ្តាញ។ សកម្មភាពចំនួន {count} ត្រូវបានដាក់ក្នុងជួរ។"
+    },
+    "toast": {
+      "online": {
+        "title": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតវិញហើយ!",
+        "description": "ការផ្លាស់ប្តូរដែលមិនទាន់សម្រេចទាំងអស់នឹងត្រូវបានធ្វើសមកាលកម្មឥឡូវនេះ។"
+      },
+      "offline": {
+        "title": "អ្នកកំពុងនៅក្រៅបណ្តាញ",
+        "description": "ការផ្លាស់ប្តូររបស់អ្នកនឹងត្រូវបានរក្សាទុក ហើយធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ។"
+      },
+      "syncing": {
+        "title": "កំពុងធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញ",
+        "description": "សកម្មភាពចំនួន {count} កំពុងត្រូវបានផ្ទុកឡើង។"
+      },
+      "synced": {
+        "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
+        "description": "ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកទាំងអស់ត្រូវបានរក្សាទុកនៅលើម៉ាស៊ីនមេ។"
+      },
+      "syncFailed": {
+        "title": "ការធ្វើសមកាលកម្មបានបរាជ័យ",
+        "description": "មិនអាចធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញបានទេ។ នឹងព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
+      },
+      "queued": {
+        "title": "សកម្មភាពត្រូវបានដាក់ក្នុងជួរ",
+        "description": "ការផ្លាស់ប្តូររបស់អ្នកត្រូវបានរក្សាទុក ហើយនឹងធ្វើសមកាលកម្មនៅពេលមានអ៊ីនធឺណិត។"
+      }
+    }
+  },
+  "LanguageSwitcher": {
+    "toggle": "ប្តូរភាសា"
+  },
+  "Auth": {
+    "signUpWelcome": "ចូលរួមចលនាកសិកម្មសកលជាមួយ {appName}",
+    "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} វិញ",
+    "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកសម្រាប់ {appName} ឡើងវិញ",
+    "resetPasswordPrompt": "កំណត់ពាក្យសម្ងាត់ថ្មីសម្រាប់ {appName}",
+    "signInTitle": "ចូលគណនី",
+    "signInDescription": "បញ្ចូលព័ត៌មានសម្គាល់របស់អ្នកដើម្បីចូលប្រើគណនីរបស់អ្នក។",
+    "emailLabel": "អ៊ីមែល",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "ពាក្យសម្ងាត់",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "ភ្លេចពាក្យសម្ងាត់?",
+    "signingInButton": "កំពុងចូលគណនី...",
+    "signInButton": "ចូលគណនី",
+    "noAccountPrompt": "មិនទាន់មានគណនី?",
+    "signUpLink": "ចុះឈ្មោះ",
+    "signInLink": "ចូលគណនី",
+    "recoverWithUniversalIdPrompt": "ឬស្តារគណនីឡើងវិញជាមួយអត្តសញ្ញាណប័ណ្ណសកល",
+    "signUpTitle": "បង្កើតគណនី",
+    "signUpDescription": "បញ្ចូលព័ត៌មានរបស់អ្នកដើម្បីចាប់ផ្តើម។",
+    "nameLabel": "ឈ្មោះ",
+    "namePlaceholder": "ឈ្មោះពេញរបស់អ្នក",
+    "roleLabel": "តួនាទីរបស់អ្នក",
+    "rolePlaceholder": "ជ្រើសរើសតួនាទីចម្បងរបស់អ្នក",
+    "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់",
+    "confirmPasswordPlaceholder": "បញ្ជាក់ពាក្យសម្ងាត់ថ្មីរបស់អ្នក",
+    "creatingAccountButton": "កំពុងបង្កើតគណនី...",
+    "signUpButton": "បង្កើតគណនី",
+    "alreadyHaveAccountPrompt": "មានគណនីរួចហើយ?",
+    "forgotPasswordTitle": "ភ្លេចពាក្យសម្ងាត់?",
+    "forgotPasswordDescription": "បញ្ចូលអ៊ីមែលរបស់អ្នក ហើយយើងនឹងផ្ញើតំណកំណត់ឡើងវិញឱ្យអ្នក។",
+    "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",
+    "sendResetLinkButton": "ផ្ញើតំណកំណត់ឡើងវិញ",
+    "rememberPasswordPrompt": "ចាំពាក្យសម្ងាត់របស់អ្នកទេ?",
+    "resetPasswordTitle": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញ",
+    "resetPasswordDescription": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នកខាងក្រោម។",
+    "newPasswordLabel": "ពាក្យសម្ងាត់ថ្មី",
+    "newPasswordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នក",
+    "resettingPasswordButton": "កំពុងកំណត់ពាក្យសម្ងាត់ឡើងវិញ...",
+    "resetPasswordButton": "កំណត់ពាក្យសម្ងាត់ឡើងវិញ",
+    "recoverPage": {
+      "title": "ការសង្គ្រោះគណនីសង្គម",
+      "description": "ទទួលបានការចូលប្រើគណនីរបស់អ្នកឡើងវិញដោយសុវត្ថិភាពដោយប្រើបណ្តាញរបស់អ្នក។",
+      "howItWorksTitle": "របៀបដែលវាដំណើរការ",
+      "step1": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្តើមវគ្គសង្គ្រោះ។",
+      "step2": "បង្ហាញលេខកូដ QR បណ្តោះអាសន្នទៅកាន់មិត្តភក្តិ DamDoh ដែលទុកចិត្ត។",
+      "step3": "នៅពេលដែលពួកគេបញ្ជាក់ អ្នកនឹងទទួលបានការចូលប្រើគណនីរបស់អ្នកឡើងវិញ។",
+      "startButton": "ចាប់ផ្តើមការសង្គ្រោះគណនី",
+      "scanTitle": "សុំមិត្តភក្តិឱ្យស្កេន",
+      "scanDescription": "ឱ្យទំនាក់ទំនងដែលទុកចិត្តក្នុងបណ្តាញ DamDoh របស់អ្នកស្កេនលេខកូដ QR បណ្តោះអាសន្ននេះដើម្បីផ្ទៀងផ្ទាត់អត្តសញ្ញាណរបស់អ្នក។",
+      "scanNote": "លេខកូដនេះមានសុពលភាពរយៈពេល 10 នាទី។",
+      "startOverButton": "ចាប់ផ្តើមឡើងវិញ"
+    }
+  }
+}
+
+```
+- src/middleware.ts:
+```ts
+
+import createMiddleware from 'next-intl/middleware';
+import { locales } from './i18n-config';
+ 
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: locales,
+ 
+  // Used when no locale matches
+  defaultLocale: 'en',
+  localePrefix: 'as-needed' 
+});
+ 
+export const config = {
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};
+
+```
+- src/navigation.ts:
+```ts
+
+import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
+import {locales} from './i18n-config';
+
+export const {Link, redirect, usePathname, useRouter} =
+  createLocalizedPathnamesNavigation({
+    locales,
+    pathnames: {},
+  });
+
+```
+- tailwind.config.ts:
+```ts
+import type { Config } from "tailwindcss";
+
+export default {
+    darkMode: ["class"],
+    content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+  	container: {
+  		center: true,
+  		padding: '2rem',
+  		screens: {
+  			'2xl': '1400px'
+  		}
+  	},
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+
+```
+- src/lib/constants.ts:
+```ts
+
+import { AGRICULTURAL_CATEGORIES } from './category-data';
+import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes } from './i18n-constants';
+import type { LucideIcon } from "lucide-react";
+import {
+  Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
+  BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
+  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
+  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck, Box
+} from 'lucide-react';
+
+
+export const APP_NAME = "DamDoh";
+
+// These have been moved to the root i18n.ts file to be the single source of truth
+// and to avoid dependency issues with the middleware.
+
+export const STAKEHOLDER_ROLES = [
+  'Farmer',
+  'Agricultural Cooperative',
+  'Field Agent/Agronomist (DamDoh Internal)',
+  'Operations/Logistics Team (DamDoh Internal)',
+  'Quality Assurance Team (DamDoh Internal)',
+  'Processing & Packaging Unit',
+  'Buyer (Restaurant, Supermarket, Exporter)',
+  'Input Supplier (Seed, Fertilizer, Pesticide)',
+  'Equipment Supplier (Sales of Machinery/IoT)',
+  'Financial Institution (Micro-finance/Loans)',
+  'Government Regulator/Auditor',
+  'Certification Body (Organic, Fair Trade etc.)',
+  'Consumer',
+  'Researcher/Academic',
+  'Logistics Partner (Third-Party Transporter)',
+  'Storage/Warehouse Facility',
+  'Agronomy Expert/Consultant (External)',
+  'Agro-Tourism Operator',
+  'Energy Solutions Provider (Solar, Biogas)',
+  'Agro-Export Facilitator/Customs Broker',
+  'Agri-Tech Innovator/Developer',
+  'Waste Management & Compost Facility',
+  'Crowdfunder (Impact Investor, Individual)',
+  'Insurance Provider',
+  'Packaging Supplier'
+] as const;
+
+
+export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
+
+// Unified Marketplace Categories - Leaf nodes from AGRICULTURAL_CATEGORIES
+export const UNIFIED_MARKETPLACE_CATEGORY_IDS = AGRICULTURAL_CATEGORIES.map(cat => cat.id) as [string, ...string[]];
+export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORY_IDS[number];
+
+
+export const LISTING_TYPES = ['Product', 'Service'] as const;
+export type ListingType = typeof LISTING_TYPES[number];
+
+// Filter options for Marketplace page
+export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketplaceCategoryType | 'All', label: string }> = [
+  { value: 'All', label: 'All Categories' },
+  ...AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name })),
+];
+
+export const getListingTypeFilterOptions = (t: any) => [
+  { value: 'All', label: t('listingTypes.All') },
+  ...getListingTypes(t).map(type => ({ value: type.value, label: `${type.label}s` })),
+];
+
+// Form options for Marketplace creation
+export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
+  AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name }));
+
+export const getListingTypeFormOptions = (t: any) =>
+    getListingTypes(t).map(type => ({ value: type.value, label: type.label }));
+
+
+export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
+
+export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event'] as const;
+export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
+
+export const getAgriEventTypeFormOptions = (t: any) =>
+    getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}));
+
+export const getAgriEventFilterOptions = (t: any) => [
+    {value: 'All', label: t('All')},
+    ...getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}))
+];
+
+// Added for financial services module
+export const FINANCIAL_SERVICE_TYPES = [
+  'loan', 'credit', 'grant', 'savings'
+] as const;
+export type FinancialServiceType = typeof FINANCIAL_SERVICE_TYPES[number];
+
+// Added for insurance module
+export const INSURANCE_SERVICE_TYPES = [
+  'crop_insurance', 'livestock_insurance', 'property_insurance'
+] as const;
+export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
+
+// Icon mapping for Stakeholder Roles
+export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
+    'Farmer': Sprout,
+    'Agricultural Cooperative': Building2,
+    'Field Agent/Agronomist (DamDoh Internal)': UserCheck,
+    'Operations/Logistics Team (DamDoh Internal)': Truck,
+    'Quality Assurance Team (DamDoh Internal)': Clipboard,
+    'Processing & Packaging Unit': Factory,
+    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
+    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
+    'Financial Institution (Micro-finance/Loans)': CircleDollarSign,
+    'Government Regulator/Auditor': Scale,
+    'Certification Body (Organic, Fair Trade etc.)': Award,
+    'Consumer': Users,
+    'Researcher/Academic': BookOpen,
+    'Logistics Partner (Third-Party Transporter)': GitBranch,
+    'Storage/Warehouse Facility': Warehouse,
+    'Agronomy Expert/Consultant (External)': GraduationCap,
+    'Agro-Tourism Operator': Home,
+    'Energy Solutions Provider (Solar, Biogas)': Sun,
+    'Agro-Export Facilitator/Customs Broker': Globe,
+    'Agri-Tech Innovator/Developer': Brain,
+    'Waste Management & Compost Facility': Recycle,
+    'Crowdfunder (Impact Investor, Individual)': Banknote,
+    'Insurance Provider': ShieldCheck,
+    'Packaging Supplier': Box,
+};
+
+```
+- src/lib/i18n-constants.ts:
+```ts
+
+import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from './constants';
+
+export const getStakeholderRoles = (t: any) =>
+  STAKEHOLDER_ROLES.map(role => ({
+    value: role,
+    label: t('stakeholderRoles.' + role.replace(/[\s/()&,.]+/g, ''))
+  }));
+  
+export const getListingTypes = (t: any) =>
+  LISTING_TYPES.map(type => ({
+    value: type,
+    label: t('listingTypes.' + type)
+  }));
+  
+export const getAgriEventTypes = (t: any) =>
+  AGRI_EVENT_TYPES.map(type => ({
+    value: type,
+    label: t('agriEventTypes.' + type.replace(/\s/g, ''))
+  }));
+
+export const getFinancialServiceTypes = (t: any) =>
+  FINANCIAL_SERVICE_TYPES.map(type => ({
+    value: type,
+    label: t('financialServiceTypes.' + type)
+  }));
+
+export const getInsuranceServiceTypes = (t: any) =>
+  INSURANCE_SERVICE_TYPES.map(type => ({
+    value: type,
+    label: t('insuranceServiceTypes.' + type)
+  }));
+
+```
+- src/lib/types.ts:
+```ts
+
+
+import type { z } from 'zod';
+import type { 
+    StakeholderProfileSchema,
+    MarketplaceItemSchema,
+    MarketplaceOrderSchema,
+    ForumPostSchema,
+    AgriEventSchema,
+    SmartSearchInterpretationSchema,
+    MarketplaceRecommendationOutputSchema
+} from './schemas';
+import type { LucideIcon } from 'lucide-react';
+
+
+// =================================================================
+// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
+// These are the primary data structures used across the application.
+// =================================================================
+
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
+    buyerProfile: { displayName: string, avatarUrl?: string }
+};
+export type AgriEvent = z.infer<typeof AgriEventSchema> & {
+  organizerId: string;
+};
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
+
+
+export interface MarketplaceCoupon {
+    id: string;
+    sellerId: string;
+    code: string;
+    discountType: 'percentage' | 'fixed';
+    discountValue: number;
+    expiresAt: any;
+    usageLimit: number | null;
+    usageCount: number;
+    isActive: boolean;
+    applicableToListingIds: string[];
+    applicableToCategories: string[];
+    createdAt: any;
+}
+
+export interface Shop {
+    id: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    stakeholderType: string;
+    createdAt: any;
+    updatedAt: any;
+    logoUrl: string | null;
+    bannerUrl: string | null;
+    contactInfo: {
+        phone?: string;
+        website?: string;
+    };
+    itemCount: number;
+    rating: number;
+}
+
+export type ForumGroup = {
+  id: string;
+  name: string;
+  description: string;
+  memberCount: number;
+  isPublic: boolean;
+  ownerId: string;
+  createdAt: string; // ISO String
+}
+
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
+}
+
+export interface ConnectionRequest {
+    id: string; // The request document ID
+    requester: {
+        id: string;
+        displayName: string;
+        avatarUrl?: string;
+        primaryRole: string;
+    };
+    createdAt: string; // ISO string
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder' | 'profile_view';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  isRead: boolean;
+  createdAt: any; // Firestore Timestamp
+}
+
+
+// =================================================================
+// 2. DASHBOARD & UI-SPECIFIC TYPES
+// =================================================================
+export interface FarmerDashboardAlert {
+    id: string;
+    icon: 'FlaskConical' | 'Sprout';
+    type: 'info' | 'warning';
+    message: string;
+    link: string;
+}
+
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: any; // Allow for firestore timestamp
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
+export interface FarmerDashboardData {
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
+      id: string;
+      name: string;
+      stage: string;
+      farmName: string;
+      farmId: string;
+      plantingDate: string | null;
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStepDate: string | null;
+  }[];
+  financialSummary?: FinancialSummary;
+  alerts?: FarmerDashboardAlert[];
+  certifications?: {
+    id: string;
+    name: string;
+    issuingBody: string;
+  }[];
+}
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
+
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down' | 'stable';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+}
+
+
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    issue: string;
+    region: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: 'Critical' | 'Warning';
+    vtiLink: string;
+  }[];
+}
+
+
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+        actionLink: string;
+    }[];
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
+        actionLink: string;
+    };
+}
+
+export interface FiDashboardData {
+    pendingApplications: FinancialApplication[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
+}
+
+export interface InputSupplierDashboardData {
+    demandForecast: {
+        id: string;
+        region: string;
+        product: string;
+        trend: 'High' | 'Steady' | 'Low';
+        reason: string;
+    }[];
+    productPerformance: {
+        id: string;
+        productName: string;
+        rating: number;
+        feedback: string;
+        link: string;
+    }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
+}
+
+export interface AgroExportDashboardData {
+    pendingCustomsDocs: {
+        id: string;
+        vtiLink: string;
+        destination: string;
+        status: string;
+    }[];
+    trackedShipments: {
+        id: string;
+        status: string;
+        location: string;
+        carrier: string;
+    }[];
+    complianceAlerts: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface ProcessingUnitDashboardData {
+  yieldOptimization: {
+    currentYield: number;
+    potentialYield: number;
+    suggestion: string;
+  };
+  inventory: {
+    product: string;
+    quality: string;
+    tons: number;
+  }[];
+  wasteReduction: {
+    currentRate: number;
+    insight: string;
+  };
+  packagingOrders: {
+    id: string;
+    supplierName: string;
+    deliveryDate: string;
+    status: 'string';
+    actionLink: string;
+  }[];
+  packagingInventory: {
+    packagingType: string;
+    unitsInStock: number;
+    reorderLevel: number;
+  }[];
+}
+
+
+export interface WarehouseDashboardData {
+  storageOptimization: {
+    utilization: number;
+    suggestion: string;
+  };
+  inventoryLevels: {
+    totalItems: number;
+    itemsNeedingAttention: number;
+  };
+  predictiveAlerts: {
+    alert: string;
+    actionLink: string;
+  }[];
+}
+
+
+export interface QaDashboardData {
+  pendingInspections: {
+    id: string;
+    batchId: string;
+    productName: string;
+    sellerName: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string; // ISO String
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
+}
+
+
+export interface CertificationBodyDashboardData {
+  pendingAudits: {
+    id: string;
+    farmName: string;
+    standard: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  certifiedEntities: {
+    id: string;
+    name: string;
+    type: string;
+    certificationStatus: 'Active' | 'Pending Renewal' | 'Expired';
+    actionLink: string;
+  }[];
+  standardsMonitoring: {
+    standard: string;
+    adherenceRate: number;
+    alerts: number;
+    actionLink: string;
+  }[];
+}
+
+export interface ResearcherDashboardData {
+  availableDatasets: {
+    id: string;
+    name: string;
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
+    actionLink: string;
+  }[];
+  ongoingProjects: {
+    id: string;
+    title: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review' | 'Draft';
+  }[];
+}
+
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id: string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO String
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review';
+  }[];
+}
+
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: string;
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO String
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string;
+  };
+}
+
+
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO String
+  }[];
+}
+
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+    
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
+}
+
+export interface SustainabilityDashboardData {
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
+}
+
+export interface OperationsDashboardData {
+  vtiGenerationRate: {
+    rate: number;
+    unit: 'VTIs/hour';
+    trend: number;
+  };
+  dataPipelineStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastChecked: string; // ISO string
+  };
+  flaggedEvents: {
+    id: string;
+    type: 'Anomalous Geolocation' | 'Unusual Time Lag' | 'Data Mismatch';
+    description: string;
+    vtiLink: string;
+  }[];
+}
+
+export interface FinancialApplication {
+  id: string;
+  applicantId: string;
+  applicantName: string;
+  fiId: string;
+  type: string;
+  amount: number;
+  currency: string;
+  status: string;
+  riskScore?: number;
+  purpose: string;
+  submittedAt: string | null;
+  actionLink?: string;
+  applicantProfile?: UserProfile;
+}
+
+export interface ApiKey {
+    id: string;
+    key: string;
+    description: string;
+    environment: 'Sandbox' | 'Production';
+    status: 'Active' | 'Revoked';
+    createdAt: string; // ISO string
+}
+
+export type KnfBatch = {
+    id: string;
+    userId: string;
+    type: string; // 'fpj', 'faa', etc.
+    typeName: string; // "Fermented Plant Juice"
+    ingredients: string;
+    startDate: any; // Firestore Timestamp
+    nextStepDate: any; // Firestore Timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    createdAt?: any;
+}
+
+export interface ForumPost {
+  id: string;
+  title: string;
+  content: string;
+  topicId: string;
+  topicName: string;
+  createdAt: string; // ISO String
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  replyCount: number;
+}
+
+export interface GroupPost {
+  id: string;
+  title: string;
+  content: string;
+  authorRef: string;
+  authorName: string;
+  authorAvatarUrl: string;
+  replyCount: number;
+  createdAt: string; // ISO
+}
+
+export interface PostReply {
+    id: string;
+    content: string;
+    timestamp: string; // ISO string
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    userAvatar?: string;
+    userName: string;
+}
+
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
+export interface FeedItem {
+  id: string;
+  type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
+  timestamp: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  userHeadline?: string;
+  content: string;
+  link: string;
+  imageUrl?: string;
+  dataAiHint?: string;
+  likesCount: number;
+  commentsCount: number;
+  pollOptions?: PollOption[];
+}
+
+export interface Conversation {
+  id: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  lastMessage: string;
+  lastMessageTimestamp: string;
+  unreadCount: number;
+}
+
+export interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string; // ISO string
+}
+
+export interface MobileHomeCategory {
+    id: string;
+    name: string;
+    icon: LucideIcon;
+    href: string;
+    dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+    id: string;
+    title: string;
+    imageUrl: string;
+    type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
+    link: string;
+    dataAiHint?: string;
+}
+
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO String
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number;
+    comment: string;
+    actionLink: string;
+  }[];
+}
+
+export interface AgriTechInnovatorDashboardData {
+  apiKeys: ApiKey[];
+  sandboxStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastReset: string; // ISO String
+  };
+  integrationProjects: {
+    id: string;
+    title: string;
+    status: 'In Development' | 'Live' | 'Archived';
+    partner: string;
+    actionLink: string;
+  }[];
+}
+
+export interface Worker {
+  id: string;
+  name: string;
+  contactInfo?: string;
+  payRate?: number;
+  payRateUnit?: string;
+  totalHoursLogged?: number;
+  totalPaid?: number;
+}
+
+export interface WorkLog {
+    id: string;
+    hours: number;
+    date: string; // ISO string
+    taskDescription: string;
+    isPaid: boolean;
+}
+
+export interface PaymentLog {
+    id: string;
+    amount: number;
+    currency: string;
+    date: string; // ISO string
+    notes: string;
+}
+
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    compensation: string;
+    experienceLevel: string;
+};
+
+// AI Related Types
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+
+```
+- src/middleware.ts:
+```ts
+
+import createMiddleware from 'next-intl/middleware';
+import { locales } from './i18n-config';
+
+const defaultLocale = 'en';
+ 
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: locales,
+ 
+  // Used when no locale matches
+  defaultLocale: defaultLocale,
+  localePrefix: 'as-needed' 
+});
+ 
+export const config = {
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};
+
+```
+- src/navigation.ts:
+```ts
+
+import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
+import {locales} from './i18n-config';
+
+export const {Link, redirect, usePathname, useRouter} =
+  createLocalizedPathnamesNavigation({
+    locales,
+    // No path-specific translations for now
+    pathnames: {},
+  });
+
+```
+- tailwind.config.ts:
+```ts
+import type { Config } from "tailwindcss";
+
+export default {
+    darkMode: ["class"],
+    content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+  	container: {
+  		center: true,
+  		padding: '2rem',
+  		screens: {
+  			'2xl': '1400px'
+  		}
+  	},
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+
+```
+- src/lib/constants.ts:
+```ts
+
+import { AGRICULTURAL_CATEGORIES } from './category-data';
+import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes } from './i18n-constants';
+import type { LucideIcon } from "lucide-react";
+import {
+  Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
+  BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
+  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
+  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck, Box
+} from 'lucide-react';
+
+
+export const APP_NAME = "DamDoh";
+
+// These have been moved to the root i18n.ts file to be the single source of truth
+// and to avoid dependency issues with the middleware.
+
+export const STAKEHOLDER_ROLES = [
+  'Farmer',
+  'Agricultural Cooperative',
+  'Field Agent/Agronomist (DamDoh Internal)',
+  'Operations/Logistics Team (DamDoh Internal)',
+  'Quality Assurance Team (DamDoh Internal)',
+  'Processing & Packaging Unit',
+  'Buyer (Restaurant, Supermarket, Exporter)',
+  'Input Supplier (Seed, Fertilizer, Pesticide)',
+  'Equipment Supplier (Sales of Machinery/IoT)',
+  'Financial Institution (Micro-finance/Loans)',
+  'Government Regulator/Auditor',
+  'Certification Body (Organic, Fair Trade etc.)',
+  'Consumer',
+  'Researcher/Academic',
+  'Logistics Partner (Third-Party Transporter)',
+  'Storage/Warehouse Facility',
+  'Agronomy Expert/Consultant (External)',
+  'Agro-Tourism Operator',
+  'Energy Solutions Provider (Solar, Biogas)',
+  'Agro-Export Facilitator/Customs Broker',
+  'Agri-Tech Innovator/Developer',
+  'Waste Management & Compost Facility',
+  'Crowdfunder (Impact Investor, Individual)',
+  'Insurance Provider',
+  'Packaging Supplier'
+] as const;
+
+
+export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
+
+// Unified Marketplace Categories - Leaf nodes from AGRICULTURAL_CATEGORIES
+export const UNIFIED_MARKETPLACE_CATEGORY_IDS = AGRICULTURAL_CATEGORIES.map(cat => cat.id) as [string, ...string[]];
+export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORY_IDS[number];
+
+
+export const LISTING_TYPES = ['Product', 'Service'] as const;
+export type ListingType = typeof LISTING_TYPES[number];
+
+// Filter options for Marketplace page
+export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketplaceCategoryType | 'All', label: string }> = [
+  { value: 'All', label: 'All Categories' },
+  ...AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name })),
+];
+
+export const getListingTypeFilterOptions = (t: any) => [
+  { value: 'All', label: t('listingTypes.All') },
+  ...getListingTypes(t).map(type => ({ value: type.value, label: `${type.label}s` })),
+];
+
+// Form options for Marketplace creation
+export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
+  AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name }));
+
+export const getListingTypeFormOptions = (t: any) =>
+    getListingTypes(t).map(type => ({ value: type.value, label: type.label }));
+
+
+export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
+
+export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event'] as const;
+export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
+
+export const getAgriEventTypeFormOptions = (t: any) =>
+    getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}));
+
+export const getAgriEventFilterOptions = (t: any) => [
+    {value: 'All', label: t('All')},
+    ...getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}))
+];
+
+// Added for financial services module
+export const FINANCIAL_SERVICE_TYPES = [
+  'loan', 'credit', 'grant', 'savings'
+] as const;
+export type FinancialServiceType = typeof FINANCIAL_SERVICE_TYPES[number];
+
+// Added for insurance module
+export const INSURANCE_SERVICE_TYPES = [
+  'crop_insurance', 'livestock_insurance', 'property_insurance'
+] as const;
+export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
+
+// Icon mapping for Stakeholder Roles
+export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
+    'Farmer': Sprout,
+    'Agricultural Cooperative': Building2,
+    'Field Agent/Agronomist (DamDoh Internal)': UserCheck,
+    'Operations/Logistics Team (DamDoh Internal)': Truck,
+    'Quality Assurance Team (DamDoh Internal)': Clipboard,
+    'Processing & Packaging Unit': Factory,
+    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
+    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
+    'Financial Institution (Micro-finance/Loans)': CircleDollarSign,
+    'Government Regulator/Auditor': Scale,
+    'Certification Body (Organic, Fair Trade etc.)': Award,
+    'Consumer': Users,
+    'Researcher/Academic': BookOpen,
+    'Logistics Partner (Third-Party Transporter)': GitBranch,
+    'Storage/Warehouse Facility': Warehouse,
+    'Agronomy Expert/Consultant (External)': GraduationCap,
+    'Agro-Tourism Operator': Home,
+    'Energy Solutions Provider (Solar, Biogas)': Sun,
+    'Agro-Export Facilitator/Customs Broker': Globe,
+    'Agri-Tech Innovator/Developer': Brain,
+    'Waste Management & Compost Facility': Recycle,
+    'Crowdfunder (Impact Investor, Individual)': Banknote,
+    'Insurance Provider': ShieldCheck,
+    'Packaging Supplier': Box,
+};
+
+```
+- src/lib/i18n-constants.ts:
+```ts
+
+import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from './constants';
+
+export const getStakeholderRoles = (t: any) =>
+  STAKEHOLDER_ROLES.map(role => ({
+    value: role,
+    label: t('stakeholderRoles.' + role.replace(/[\s/()&,.]+/g, ''))
+  }));
+  
+export const getListingTypes = (t: any) =>
+  LISTING_TYPES.map(type => ({
+    value: type,
+    label: t('listingTypes.' + type)
+  }));
+  
+export const getAgriEventTypes = (t: any) =>
+  AGRI_EVENT_TYPES.map(type => ({
+    value: type,
+    label: t('agriEventTypes.' + type.replace(/\s/g, ''))
+  }));
+
+export const getFinancialServiceTypes = (t: any) =>
+  FINANCIAL_SERVICE_TYPES.map(type => ({
+    value: type,
+    label: t('financialServiceTypes.' + type)
+  }));
+
+export const getInsuranceServiceTypes = (t: any) =>
+  INSURANCE_SERVICE_TYPES.map(type => ({
+    value: type,
+    label: t('insuranceServiceTypes.' + type)
+  }));
+
+```
+- src/lib/types.ts:
+```ts
+
+
+import type { z } from 'zod';
+import type { 
+    StakeholderProfileSchema,
+    MarketplaceItemSchema,
+    MarketplaceOrderSchema,
+    ForumPostSchema,
+    AgriEventSchema,
+    SmartSearchInterpretationSchema,
+    MarketplaceRecommendationOutputSchema
+} from './schemas';
+import type { LucideIcon } from 'lucide-react';
+
+
+// =================================================================
+// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
+// These are the primary data structures used across the application.
+// =================================================================
+
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
+    buyerProfile: { displayName: string, avatarUrl?: string }
+};
+export type AgriEvent = z.infer<typeof AgriEventSchema> & {
+  organizerId: string;
+};
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
+
+
+export interface MarketplaceCoupon {
+    id: string;
+    sellerId: string;
+    code: string;
+    discountType: 'percentage' | 'fixed';
+    discountValue: number;
+    expiresAt: any;
+    usageLimit: number | null;
+    usageCount: number;
+    isActive: boolean;
+    applicableToListingIds: string[];
+    applicableToCategories: string[];
+    createdAt: any;
+}
+
+export interface Shop {
+    id: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    stakeholderType: string;
+    createdAt: any;
+    updatedAt: any;
+    logoUrl: string | null;
+    bannerUrl: string | null;
+    contactInfo: {
+        phone?: string;
+        website?: string;
+    };
+    itemCount: number;
+    rating: number;
+}
+
+export type ForumGroup = {
+  id: string;
+  name: string;
+  description: string;
+  memberCount: number;
+  isPublic: boolean;
+  ownerId: string;
+  createdAt: string; // ISO String
+}
+
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
+}
+
+export interface ConnectionRequest {
+    id: string; // The request document ID
+    requester: {
+        id: string;
+        displayName: string;
+        avatarUrl?: string;
+        primaryRole: string;
+    };
+    createdAt: string; // ISO string
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder' | 'profile_view';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  isRead: boolean;
+  createdAt: any; // Firestore Timestamp
+}
+
+
+// =================================================================
+// 2. DASHBOARD & UI-SPECIFIC TYPES
+// =================================================================
+export interface FarmerDashboardAlert {
+    id: string;
+    icon: 'FlaskConical' | 'Sprout';
+    type: 'info' | 'warning';
+    message: string;
+    link: string;
+}
+
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: any; // Allow for firestore timestamp
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
+export interface FarmerDashboardData {
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
+      id: string;
+      name: string;
+      stage: string;
+      farmName: string;
+      farmId: string;
+      plantingDate: string | null;
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStepDate: string | null;
+  }[];
+  financialSummary?: FinancialSummary;
+  alerts?: FarmerDashboardAlert[];
+  certifications?: {
+    id: string;
+    name: string;
+    issuingBody: string;
+  }[];
+}
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
+
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down' | 'stable';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+}
+
+
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    issue: string;
+    region: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: 'Critical' | 'Warning';
+    vtiLink: string;
+  }[];
+}
+
+
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+        actionLink: string;
+    }[];
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
+        actionLink: string;
+    };
+}
+
+export interface FiDashboardData {
+    pendingApplications: FinancialApplication[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
+}
+
+export interface InputSupplierDashboardData {
+    demandForecast: {
+        id: string;
+        region: string;
+        product: string;
+        trend: 'High' | 'Steady' | 'Low';
+        reason: string;
+    }[];
+    productPerformance: {
+        id: string;
+        productName: string;
+        rating: number;
+        feedback: string;
+        link: string;
+    }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
+}
+
+export interface AgroExportDashboardData {
+    pendingCustomsDocs: {
+        id: string;
+        vtiLink: string;
+        destination: string;
+        status: string;
+    }[];
+    trackedShipments: {
+        id: string;
+        status: string;
+        location: string;
+        carrier: string;
+    }[];
+    complianceAlerts: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface ProcessingUnitDashboardData {
+  yieldOptimization: {
+    currentYield: number;
+    potentialYield: number;
+    suggestion: string;
+  };
+  inventory: {
+    product: string;
+    quality: string;
+    tons: number;
+  }[];
+  wasteReduction: {
+    currentRate: number;
+    insight: string;
+  };
+  packagingOrders: {
+    id: string;
+    supplierName: string;
+    deliveryDate: string;
+    status: 'string';
+    actionLink: string;
+  }[];
+  packagingInventory: {
+    packagingType: string;
+    unitsInStock: number;
+    reorderLevel: number;
+  }[];
+}
+
+
+export interface WarehouseDashboardData {
+  storageOptimization: {
+    utilization: number;
+    suggestion: string;
+  };
+  inventoryLevels: {
+    totalItems: number;
+    itemsNeedingAttention: number;
+  };
+  predictiveAlerts: {
+    alert: string;
+    actionLink: string;
+  }[];
+}
+
+
+export interface QaDashboardData {
+  pendingInspections: {
+    id: string;
+    batchId: string;
+    productName: string;
+    sellerName: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string; // ISO String
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
+}
+
+
+export interface CertificationBodyDashboardData {
+  pendingAudits: {
+    id: string;
+    farmName: string;
+    standard: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  certifiedEntities: {
+    id: string;
+    name: string;
+    type: string;
+    certificationStatus: 'Active' | 'Pending Renewal' | 'Expired';
+    actionLink: string;
+  }[];
+  standardsMonitoring: {
+    standard: string;
+    adherenceRate: number;
+    alerts: number;
+    actionLink: string;
+  }[];
+}
+
+export interface ResearcherDashboardData {
+  availableDatasets: {
+    id: string;
+    name: string;
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
+    actionLink: string;
+  }[];
+  ongoingProjects: {
+    id: string;
+    title: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review' | 'Draft';
+  }[];
+}
+
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id: string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO String
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review';
+  }[];
+}
+
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: string;
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO String
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string;
+  };
+}
+
+
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO String
+  }[];
+}
+
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+    
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
+}
+
+export interface SustainabilityDashboardData {
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
+}
+
+export interface OperationsDashboardData {
+  vtiGenerationRate: {
+    rate: number;
+    unit: 'VTIs/hour';
+    trend: number;
+  };
+  dataPipelineStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastChecked: string; // ISO string
+  };
+  flaggedEvents: {
+    id: string;
+    type: 'Anomalous Geolocation' | 'Unusual Time Lag' | 'Data Mismatch';
+    description: string;
+    vtiLink: string;
+  }[];
+}
+
+export interface FinancialApplication {
+  id: string;
+  applicantId: string;
+  applicantName: string;
+  fiId: string;
+  type: string;
+  amount: number;
+  currency: string;
+  status: string;
+  riskScore?: number;
+  purpose: string;
+  submittedAt: string | null;
+  actionLink?: string;
+  applicantProfile?: UserProfile;
+}
+
+
+export type KnfBatch = {
+    id: string;
+    userId: string;
+    type: string; // 'fpj', 'faa', etc.
+    typeName: string; // "Fermented Plant Juice"
+    ingredients: string;
+    startDate: any; // Firestore Timestamp
+    nextStepDate: any; // Firestore Timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    createdAt?: any;
+}
+
+export interface ForumPost {
+  id: string;
+  title: string;
+  content: string;
+  topicId: string;
+  topicName: string;
+  createdAt: string; // ISO String
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  replyCount: number;
+}
+
+export interface GroupPost {
+  id: string;
+  title: string;
+  content: string;
+  authorRef: string;
+  authorName: string;
+  authorAvatarUrl: string;
+  replyCount: number;
+  createdAt: string; // ISO
+}
+
+export interface PostReply {
+    id: string;
+    content: string;
+    timestamp: string; // ISO string
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    userAvatar?: string;
+    userName: string;
+}
+
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
+export interface FeedItem {
+  id: string;
+  type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
+  timestamp: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  userHeadline?: string;
+  content: string;
+  link: string;
+  imageUrl?: string;
+  dataAiHint?: string;
+  likesCount: number;
+  commentsCount: number;
+  pollOptions?: PollOption[];
+}
+
+export interface Conversation {
+  id: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  lastMessage: string;
+  lastMessageTimestamp: string;
+  unreadCount: number;
+}
+
+export interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string; // ISO string
+}
+
+export interface MobileHomeCategory {
+    id: string;
+    name: string;
+    icon: LucideIcon;
+    href: string;
+    dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+    id: string;
+    title: string;
+    imageUrl: string;
+    type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
+    link: string;
+    dataAiHint?: string;
+}
+
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO String
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number;
+    comment: string;
+    actionLink: string;
+  }[];
+}
+
+export interface AgriTechInnovatorDashboardData {
+  apiKeys: ApiKey[];
+  sandboxStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastReset: string; // ISO String
+  };
+  integrationProjects: {
+    id: string;
+    title: string;
+    status: 'In Development' | 'Live' | 'Archived';
+    partner: string;
+    actionLink: string;
+  }[];
+}
+
+export interface Worker {
+  id: string;
+  name: string;
+  contactInfo?: string;
+  payRate?: number;
+  payRateUnit?: string;
+  totalHoursLogged?: number;
+  totalPaid?: number;
+}
+
+export interface WorkLog {
+    id: string;
+    hours: number;
+    date: string; // ISO string
+    taskDescription: string;
+    isPaid: boolean;
+}
+
+export interface PaymentLog {
+    id: string;
+    amount: number;
+    currency: string;
+    date: string; // ISO string
+    notes: string;
+}
+
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    compensation: string;
+    experienceLevel: string;
+};
+
+// AI Related Types
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+
+```
+- src/middleware.ts:
+```ts
+
+import createMiddleware from 'next-intl/middleware';
+import { locales } from './i18n-config';
+
+const defaultLocale = 'en';
+ 
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: locales,
+ 
+  // Used when no locale matches
+  defaultLocale: defaultLocale,
+  localePrefix: 'as-needed' 
+});
+ 
+export const config = {
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};
+
+```
+- src/navigation.ts:
+```ts
+
+import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
+import {locales} from './i18n-config';
+
+export const {Link, redirect, usePathname, useRouter} =
+  createLocalizedPathnamesNavigation({
+    locales,
+    // No path-specific translations for now
+    pathnames: {},
+  });
+
+```
+- tailwind.config.ts:
+```ts
+import type { Config } from "tailwindcss";
+
+export default {
+    darkMode: ["class"],
+    content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+  	container: {
+  		center: true,
+  		padding: '2rem',
+  		screens: {
+  			'2xl': '1400px'
+  		}
+  	},
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+
+```
+- src/lib/constants.ts:
+```ts
+
+import { AGRICULTURAL_CATEGORIES } from './category-data';
+import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes, getInsuranceProductTypes } from './i18n-constants';
+import type { LucideIcon } from "lucide-react";
+import {
+  Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
+  BookOpen, Brain, TrendingUp, CircleDollarSign, GraduationCap,
+  Home, GitBranch, Satellite, Sun, UserCheck, Recycle, Building2,
+  Factory, ShoppingBag, Globe, Scale, Clipboard, Bolt, Banknote, ShieldCheck, Box
+} from 'lucide-react';
+
+
+export const APP_NAME = "DamDoh";
+
+// These have been moved to the root i18n.ts file to be the single source of truth
+// and to avoid dependency issues with the middleware.
+
+export const STAKEHOLDER_ROLES = [
+  'Farmer',
+  'Agricultural Cooperative',
+  'Field Agent/Agronomist (DamDoh Internal)',
+  'Operations/Logistics Team (DamDoh Internal)',
+  'Quality Assurance Team (DamDoh Internal)',
+  'Processing & Packaging Unit',
+  'Buyer (Restaurant, Supermarket, Exporter)',
+  'Input Supplier (Seed, Fertilizer, Pesticide)',
+  'Equipment Supplier (Sales of Machinery/IoT)',
+  'Financial Institution (Micro-finance/Loans)',
+  'Government Regulator/Auditor',
+  'Certification Body (Organic, Fair Trade etc.)',
+  'Consumer',
+  'Researcher/Academic',
+  'Logistics Partner (Third-Party Transporter)',
+  'Storage/Warehouse Facility',
+  'Agronomy Expert/Consultant (External)',
+  'Agro-Tourism Operator',
+  'Energy Solutions Provider (Solar, Biogas)',
+  'Agro-Export Facilitator/Customs Broker',
+  'Agri-Tech Innovator/Developer',
+  'Waste Management & Compost Facility',
+  'Crowdfunder (Impact Investor, Individual)',
+  'Insurance Provider',
+  'Packaging Supplier'
+] as const;
+
+
+export type StakeholderRole = typeof STAKEHOLDER_ROLES[number];
+
+// Unified Marketplace Categories - Leaf nodes from AGRICULTURAL_CATEGORIES
+export const UNIFIED_MARKETPLACE_CATEGORY_IDS = AGRICULTURAL_CATEGORIES.map(cat => cat.id) as [string, ...string[]];
+export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORY_IDS[number];
+
+
+export const LISTING_TYPES = ['Product', 'Service'] as const;
+export type ListingType = typeof LISTING_TYPES[number];
+
+// Filter options for Marketplace page
+export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketplaceCategoryType | 'All', label: string }> = [
+  { value: 'All', label: 'All Categories' },
+  ...AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name })),
+];
+
+export const getListingTypeFilterOptions = (t: any) => [
+  { value: 'All', label: t('listingTypes.All') },
+  ...getListingTypes(t).map(type => ({ value: type.value, label: `${type.label}s` })),
+];
+
+// Form options for Marketplace creation
+export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
+  AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name }));
+
+export const getListingTypeFormOptions = (t: any) =>
+    getListingTypes(t).map(type => ({ value: type.value, label: type.label }));
+
+
+export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
+
+export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event'] as const;
+export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
+
+export const getAgriEventTypeFormOptions = (t: any) =>
+    getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}));
+
+export const getAgriEventFilterOptions = (t: any) => [
+    {value: 'All', label: t('All')},
+    ...getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}))
+];
+
+// Added for financial services module
+export const FINANCIAL_SERVICE_TYPES = [
+  'loan', 'credit', 'grant', 'savings'
+] as const;
+export type FinancialServiceType = typeof FINANCIAL_SERVICE_TYPES[number];
+
+// Added for insurance module
+export const INSURANCE_SERVICE_TYPES = [
+  'crop_insurance', 'livestock_insurance', 'property_insurance'
+] as const;
+export type InsuranceServiceType = typeof INSURANCE_SERVICE_TYPES[number];
+
+export const INSURANCE_PRODUCT_TYPES = ['Crop', 'Livestock', 'Asset', 'Weather'] as const;
+export type InsuranceProductTypeConstant = typeof INSURANCE_PRODUCT_TYPES[number];
+
+// Icon mapping for Stakeholder Roles
+export const STAKEHOLDER_ICONS: Record<string, LucideIcon> = {
+    'Farmer': Sprout,
+    'Agricultural Cooperative': Building2,
+    'Field Agent/Agronomist (DamDoh Internal)': UserCheck,
+    'Operations/Logistics Team (DamDoh Internal)': Truck,
+    'Quality Assurance Team (DamDoh Internal)': Clipboard,
+    'Processing & Packaging Unit': Factory,
+    'Buyer (Restaurant, Supermarket, Exporter)': Briefcase,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': ShoppingBag,
+    'Equipment Supplier (Sales of Machinery/IoT)': Tractor,
+    'Financial Institution (Micro-finance/Loans)': CircleDollarSign,
+    'Government Regulator/Auditor': Scale,
+    'Certification Body (Organic, Fair Trade etc.)': Award,
+    'Consumer': Users,
+    'Researcher/Academic': BookOpen,
+    'Logistics Partner (Third-Party Transporter)': GitBranch,
+    'Storage/Warehouse Facility': Warehouse,
+    'Agronomy Expert/Consultant (External)': GraduationCap,
+    'Agro-Tourism Operator': Home,
+    'Energy Solutions Provider (Solar, Biogas)': Sun,
+    'Agro-Export Facilitator/Customs Broker': Globe,
+    'Agri-Tech Innovator/Developer': Brain,
+    'Waste Management & Compost Facility': Recycle,
+    'Crowdfunder (Impact Investor, Individual)': Banknote,
+    'Insurance Provider': ShieldCheck,
+    'Packaging Supplier': Box,
+};
+
+```
+- src/lib/i18n-constants.ts:
+```ts
+
+import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES, INSURANCE_PRODUCT_TYPES } from './constants';
+
+export const getStakeholderRoles = (t: any) =>
+  STAKEHOLDER_ROLES.map(role => ({
+    value: role,
+    label: t('stakeholderRoles.' + role.replace(/[\s/()&,.]+/g, ''))
+  }));
+  
+export const getListingTypes = (t: any) =>
+  LISTING_TYPES.map(type => ({
+    value: type,
+    label: t('listingTypes.' + type)
+  }));
+  
+export const getAgriEventTypes = (t: any) =>
+  AGRI_EVENT_TYPES.map(type => ({
+    value: type,
+    label: t('agriEventTypes.' + type.replace(/\s/g, ''))
+  }));
+
+export const getFinancialServiceTypes = (t: any) =>
+  FINANCIAL_SERVICE_TYPES.map(type => ({
+    value: type,
+    label: t('financialServiceTypes.' + type)
+  }));
+
+export const getInsuranceServiceTypes = (t: any) =>
+  INSURANCE_SERVICE_TYPES.map(type => ({
+    value: type,
+    label: t('insuranceServiceTypes.' + type)
+  }));
+
+export const getInsuranceProductTypes = (t: any) =>
+  INSURANCE_PRODUCT_TYPES.map(type => ({
+    value: type,
+    label: t('insuranceProductTypes.' + type)
+  }));
+
+```
+- src/lib/types.ts:
+```ts
+
+
+import type { z } from 'zod';
+import type { 
+    StakeholderProfileSchema,
+    MarketplaceItemSchema,
+    MarketplaceOrderSchema,
+    ForumPostSchema,
+    AgriEventSchema,
+    SmartSearchInterpretationSchema,
+    MarketplaceRecommendationOutputSchema
+} from './schemas';
+import type { LucideIcon } from 'lucide-react';
+
+
+// =================================================================
+// 1. CORE TYPES (INFERRED FROM ZOD SCHEMAS)
+// These are the primary data structures used across the application.
+// =================================================================
+
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
+    buyerProfile: { displayName: string, avatarUrl?: string }
+};
+export type AgriEvent = z.infer<typeof AgriEventSchema> & {
+  organizerId: string;
+};
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
+
+
+export interface MarketplaceCoupon {
+    id: string;
+    sellerId: string;
+    code: string;
+    discountType: 'percentage' | 'fixed';
+    discountValue: number;
+    expiresAt: any;
+    usageLimit: number | null;
+    usageCount: number;
+    isActive: boolean;
+    applicableToListingIds: string[];
+    applicableToCategories: string[];
+    createdAt: any;
+}
+
+export interface Shop {
+    id: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    stakeholderType: string;
+    createdAt: any;
+    updatedAt: any;
+    logoUrl: string | null;
+    bannerUrl: string | null;
+    contactInfo: {
+        phone?: string;
+        website?: string;
+    };
+    itemCount: number;
+    rating: number;
+}
+
+export type ForumGroup = {
+  id: string;
+  name: string;
+  description: string;
+  memberCount: number;
+  isPublic: boolean;
+  ownerId: string;
+  createdAt: string; // ISO String
+}
+
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
+}
+
+export interface ConnectionRequest {
+    id: string; // The request document ID
+    requester: {
+        id: string;
+        displayName: string;
+        avatarUrl?: string;
+        primaryRole: string;
+    };
+    createdAt: string; // ISO string
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder' | 'profile_view';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  isRead: boolean;
+  createdAt: any; // Firestore Timestamp
+}
+
+
+// =================================================================
+// 2. DASHBOARD & UI-SPECIFIC TYPES
+// =================================================================
+export interface FarmerDashboardAlert {
+    id: string;
+    icon: 'FlaskConical' | 'Sprout';
+    type: 'info' | 'warning';
+    message: string;
+    link: string;
+}
+
+export interface FinancialTransaction {
+    id: string;
+    type: 'income' | 'expense';
+    amount: number;
+    currency: string;
+    description: string;
+    category?: string;
+    timestamp: any; // Allow for firestore timestamp
+}
+
+export interface FinancialSummary {
+    totalIncome: number;
+    totalExpense: number;
+    netFlow: number;
+}
+
+export interface FarmerDashboardData {
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
+      id: string;
+      name: string;
+      stage: string;
+      farmName: string;
+      farmId: string;
+      plantingDate: string | null;
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStepDate: string | null;
+  }[];
+  financialSummary?: FinancialSummary;
+  alerts?: FarmerDashboardAlert[];
+  certifications?: {
+    id: string;
+    name: string;
+    issuingBody: string;
+  }[];
+}
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+}
+
+
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down' | 'stable';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+}
+
+
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    issue: string;
+    region: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: 'Critical' | 'Warning';
+    vtiLink: string;
+  }[];
+}
+
+
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+        actionLink: string;
+    }[];
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
+        actionLink: string;
+    };
+}
+
+export interface FiDashboardData {
+    pendingApplications: FinancialApplication[];
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
+    };
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
+        actionLink: string;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
+}
+
+export interface InputSupplierDashboardData {
+    demandForecast: {
+        id: string;
+        region: string;
+        product: string;
+        trend: 'High' | 'Steady' | 'Low';
+        reason: string;
+    }[];
+    productPerformance: {
+        id: string;
+        productName: string;
+        rating: number;
+        feedback: string;
+        link: string;
+    }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
+}
+
+export interface AgroExportDashboardData {
+    pendingCustomsDocs: {
+        id: string;
+        vtiLink: string;
+        destination: string;
+        status: string;
+    }[];
+    trackedShipments: {
+        id: string;
+        status: string;
+        location: string;
+        carrier: string;
+    }[];
+    complianceAlerts: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface ProcessingUnitDashboardData {
+  yieldOptimization: {
+    currentYield: number;
+    potentialYield: number;
+    suggestion: string;
+  };
+  inventory: {
+    product: string;
+    quality: string;
+    tons: number;
+  }[];
+  wasteReduction: {
+    currentRate: number;
+    insight: string;
+  };
+  packagingOrders: {
+    id: string;
+    supplierName: string;
+    deliveryDate: string;
+    status: 'string';
+    actionLink: string;
+  }[];
+  packagingInventory: {
+    packagingType: string;
+    unitsInStock: number;
+    reorderLevel: number;
+  }[];
+}
+
+
+export interface WarehouseDashboardData {
+  storageOptimization: {
+    utilization: number;
+    suggestion: string;
+  };
+  inventoryLevels: {
+    totalItems: number;
+    itemsNeedingAttention: number;
+  };
+  predictiveAlerts: {
+    alert: string;
+    actionLink: string;
+  }[];
+}
+
+
+export interface QaDashboardData {
+  pendingInspections: {
+    id: string;
+    batchId: string;
+    productName: string;
+    sellerName: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string; // ISO String
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
+}
+
+
+export interface CertificationBodyDashboardData {
+  pendingAudits: {
+    id: string;
+    farmName: string;
+    standard: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  certifiedEntities: {
+    id: string;
+    name: string;
+    type: string;
+    certificationStatus: 'Active' | 'Pending Renewal' | 'Expired';
+    actionLink: string;
+  }[];
+  standardsMonitoring: {
+    standard: string;
+    adherenceRate: number;
+    alerts: number;
+    actionLink: string;
+  }[];
+}
+
+export interface ResearcherDashboardData {
+  availableDatasets: {
+    id: string;
+    name: string;
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
+    actionLink: string;
+  }[];
+  ongoingProjects: {
+    id: string;
+    title: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review' | 'Draft';
+  }[];
+}
+
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+  }[];
+  pendingConsultationRequests: {
+    id: string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO String
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review';
+  }[];
+}
+
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: string;
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO String
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string;
+  };
+}
+
+
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO String
+  }[];
+}
+
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+    
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
+}
+
+export interface SustainabilityDashboardData {
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
+}
+
+export interface OperationsDashboardData {
+  vtiGenerationRate: {
+    rate: number;
+    unit: 'VTIs/hour';
+    trend: number;
+  };
+  dataPipelineStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastChecked: string; // ISO string
+  };
+  flaggedEvents: {
+    id: string;
+    type: 'Anomalous Geolocation' | 'Unusual Time Lag' | 'Data Mismatch';
+    description: string;
+    vtiLink: string;
+  }[];
+}
+
+export interface FinancialApplication {
+  id: string;
+  applicantId: string;
+  applicantName: string;
+  fiId: string;
+  type: string;
+  amount: number;
+  currency: string;
+  status: string;
+  riskScore?: number;
+  purpose: string;
+  submittedAt: string | null;
+  actionLink?: string;
+  applicantProfile?: UserProfile;
+}
+
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+  provider?: {
+    id: string;
+    displayName: string;
+    avatarUrl?: string;
+  }
+}
+
+export type KnfBatch = {
+    id: string;
+    userId: string;
+    type: string; // 'fpj', 'faa', etc.
+    typeName: string; // "Fermented Plant Juice"
+    ingredients: string;
+    startDate: any; // Firestore Timestamp
+    nextStepDate: any; // Firestore Timestamp
+    status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
+    nextStep: string;
+    createdAt?: any;
+}
+
+export interface ForumPost {
+  id: string;
+  title: string;
+  content: string;
+  topicId: string;
+  topicName: string;
+  createdAt: string; // ISO String
+  author: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  replyCount: number;
+}
+
+export interface GroupPost {
+  id: string;
+  title: string;
+  content: string;
+  authorRef: string;
+  authorName: string;
+  authorAvatarUrl: string;
+  replyCount: number;
+  createdAt: string; // ISO
+}
+
+export interface PostReply {
+    id: string;
+    content: string;
+    timestamp: string; // ISO string
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    userAvatar?: string;
+    userName: string;
+}
+
+export interface PollOption {
+  text: string;
+  votes?: number;
+}
+
+export interface FeedItem {
+  id: string;
+  type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
+  timestamp: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  userHeadline?: string;
+  content: string;
+  link: string;
+  imageUrl?: string;
+  dataAiHint?: string;
+  likesCount: number;
+  commentsCount: number;
+  pollOptions?: PollOption[];
+}
+
+export interface Conversation {
+  id: string;
+  participant: {
+    id: string;
+    name: string;
+    avatarUrl?: string;
+  };
+  lastMessage: string;
+  lastMessageTimestamp: string;
+  unreadCount: number;
+}
+
+export interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  content: string;
+  timestamp: string; // ISO string
+}
+
+export interface MobileHomeCategory {
+    id: string;
+    name: string;
+    icon: LucideIcon;
+    href: string;
+    dataAiHint?: string;
+}
+
+export interface MobileDiscoverItem {
+    id: string;
+    title: string;
+    imageUrl: string;
+    type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
+    link: string;
+    dataAiHint?: string;
+}
+
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO String
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number;
+    comment: string;
+    actionLink: string;
+  }[];
+}
+
+export interface AgriTechInnovatorDashboardData {
+  apiKeys: ApiKey[];
+  sandboxStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastReset: string; // ISO String
+  };
+  integrationProjects: {
+    id: string;
+    title: string;
+    status: 'In Development' | 'Live' | 'Archived';
+    partner: string;
+    actionLink: string;
+  }[];
+}
+
+export interface Worker {
+  id: string;
+  name: string;
+  contactInfo?: string;
+  payRate?: number;
+  payRateUnit?: string;
+  totalHoursLogged?: number;
+  totalPaid?: number;
+}
+
+export interface WorkLog {
+    id: string;
+    hours: number;
+    date: string; // ISO string
+    taskDescription: string;
+    isPaid: boolean;
+}
+
+export interface PaymentLog {
+    id: string;
+    amount: number;
+    currency: string;
+    date: string; // ISO string
+    notes: string;
+}
+
+export type ServiceItem = MarketplaceItem & {
+    listingType: 'Service';
+    compensation: string;
+    experienceLevel: string;
+};
+
+// AI Related Types
+export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+
+```
+- src/lib/utils.ts:
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+```
+- src/messages/ar.json:
+```json
+{}
+```
+- src/messages/de.json:
+```json
+
+{
+  "AppHeader": {
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Mngmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Brieftasche",
+    "searchPlaceholder": "Suche Personen, Produkte, Dienstleistungen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Thema wechseln",
+    "switchToDarkAria": "Zum dunklen Thema wechseln"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
+  },
+  "AppFooter": {
+    "tagline": "Bauern stärken, Ökosysteme wiederherstellen und die Welt nachhaltig ernähren.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} ausstehende Aktionen...",
+      "onlinePending": "{count} ausstehende Aktionen zum Synchronisieren.",
+      "onlineSynced": "Online und alle Änderungen synchronisiert.",
+      "offline": "Offline. {count} Aktionen in der Warteschlange."
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ausstehende Änderungen werden jetzt synchronisiert."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Ihre Änderungen werden gespeichert und synchronisiert, wenn Sie wieder verbunden sind."
+      },
+      "syncing": {
+        "title": "Synchronisiere Offline-Änderungen",
+        "description": "{count, plural, one {# Aktion wird} other {# Aktionen werden}} hochgeladen."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen",
+        "description": "Alle Ihre Offline-Änderungen wurden auf dem Server gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Wird später erneut versucht."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Ihre Änderung wurde gespeichert und wird synchronisiert, wenn Sie online sind."
+      }
+    }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache wechseln"
+  },
+  "Auth": {
+    "signUpWelcome": "Treten Sie der globalen landwirtschaftlichen Bewegung mit {appName} bei",
+    "signInWelcome": "Willkommen zurück bei {appName}",
+    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
+    "resetPasswordPrompt": "Legen Sie ein neues Passwort für {appName} fest",
+    "signInTitle": "Anmelden",
+    "signInDescription": "Geben Sie Ihre Anmeldeinformationen ein, um auf Ihr Konto zuzugreifen.",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "Passwort vergessen?",
+    "signingInButton": "Wird angemeldet...",
+    "signInButton": "Anmelden",
+    "noAccountPrompt": "Haben Sie noch kein Konto?",
+    "signUpLink": "Registrieren",
+    "signInLink": "Anmelden",
+    "recoverWithUniversalIdPrompt": "Oder Konto mit Universal-ID wiederherstellen",
+    "signUpTitle": "Konto erstellen",
+    "signUpDescription": "Geben Sie Ihre Informationen ein, um zu beginnen.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Ihr vollständiger Name",
+    "roleLabel": "Ihre Rolle",
+    "rolePlaceholder": "Wählen Sie Ihre primäre Rolle",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Bestätigen Sie Ihr neues Passwort",
+    "creatingAccountButton": "Konto wird erstellt...",
+    "signUpButton": "Konto erstellen",
+    "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
+    "forgotPasswordTitle": "Passwort vergessen?",
+    "forgotPasswordDescription": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen.",
+    "sendingEmailButton": "E-Mail wird gesendet...",
+    "sendResetLinkButton": "Link zum Zurücksetzen senden",
+    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
+    "resetPasswordTitle": "Passwort zurücksetzen",
+    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein.",
+    "newPasswordLabel": "Neues Passwort",
+    "newPasswordPlaceholder": "Geben Sie Ihr neues Passwort ein",
+    "resettingPasswordButton": "Passwort wird zurückgesetzt...",
+    "resetPasswordButton": "Passwort zurücksetzen",
+    "recoverPage": {
+      "title": "Soziale Kontowiederherstellung",
+      "description": "Erhalten Sie sicheren Zugriff auf Ihr Konto über Ihr Netzwerk.",
+      "howItWorksTitle": "Wie es funktioniert",
+      "step1": "Geben Sie Ihre Telefonnummer ein, um eine Wiederherstellungssitzung zu starten.",
+      "step2": "Zeigen Sie den temporären QR-Code einem vertrauenswürdigen DamDoh-Freund.",
+      "step3": "Sobald sie bestätigen, erhalten Sie wieder Zugriff auf Ihr Konto.",
+      "startButton": "Kontowiederherstellung starten",
+      "scanTitle": "Bitten Sie einen Freund zu scannen",
+      "scanDescription": "Lassen Sie einen vertrauenswürdigen Kontakt in Ihrem DamDoh-Netzwerk diesen temporären QR-Code scannen, um Ihre Identität zu überprüfen.",
+      "scanNote": "Dieser Code ist 10 Minuten gültig.",
+      "startOverButton": "Von vorne anfangen"
+    }
+  }
+}
+
+```
+- src/messages/hi.json:
+```json
+{}
+
+```
+- src/messages/id.json:
+```json
+{}
+```
+- src/messages/ja.json:
+```json
+
+{}
+
+
+```
+- src/messages/ms.json:
+```json
+{}
+```
+- src/messages/pt.json:
+```json
+{
+  "AgriEvents": {
+    "page": {
+      "noEventsHint": {
+        "link": "criar um"
+      }
+    }
+  }
+}
+```
+- src/messages/ru.json:
+```json
+{}
+
+```
+- src/messages/th.json:
+```json
+{}
+
+```
+- src/messages/tr.json:
+```json
+{}
+
+```
+- src/messages/vi.json:
+```json
+{}
+```
+- src/messages/zh.json:
+```json
+
+{}
+
+
+```
