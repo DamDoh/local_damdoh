@@ -18,6 +18,8 @@ interface Article {
   // Add other fields if necessary
 }
 
+const functions = getFunctions(firebaseApp);
+
 const KnowledgeHubPage = () => {
   const t = useTranslations('knowledgeHub');
   const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);

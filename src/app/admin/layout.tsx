@@ -7,9 +7,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Shield, BookOpen, LayoutGrid } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 
 const adminNavItems = [
-  { href: "/admin/content", label: "Content Management", icon: BookOpen },
+  { href: "/admin/content", label: "contentManagement", icon: BookOpen },
   // { href: "/admin/categories", label: "Marketplace Categories", icon: LayoutGrid }, // This page doesn't exist yet
 ];
 
@@ -19,6 +21,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const t = useTranslations('admin.layout');
 
   return (
     <div className="grid md:grid-cols-12 gap-6 items-start">
@@ -37,7 +40,7 @@ export default function AdminLayout({
                     >
                         <Link href={item.href}>
                             <item.icon className="mr-2 h-4 w-4" />
-                            {item.label}
+                            {t(item.label as any)}
                         </Link>
                     </Button>
                     );
@@ -50,8 +53,8 @@ export default function AdminLayout({
         <div className="flex items-center gap-2 border-l-4 border-primary bg-muted/50 p-3 rounded-r-lg mb-6">
             <Shield className="h-5 w-5 text-primary" />
             <div>
-                <h3 className="font-semibold">Admin Area</h3>
-                <p className="text-xs text-muted-foreground">Changes made here affect the entire platform. Please proceed with caution.</p>
+                <h3 className="font-semibold">{t('title')}</h3>
+                <p className="text-xs text-muted-foreground">{t('description')}</p>
             </div>
         </div>
         {children}

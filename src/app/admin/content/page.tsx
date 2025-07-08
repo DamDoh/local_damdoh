@@ -10,12 +10,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { functions } from '@/lib/firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { Separator } from '@/components/ui/separator';
+import { useTranslations } from 'next-intl';
 
 // Create callable references to our content creation functions
 const createCourseFunction = httpsCallable(functions, 'createCourse');
 const createArticleFunction = httpsCallable(functions, 'createKnowledgeArticle');
 
 export default function ContentManagementPage() {
+  const t = useTranslations('admin.contentManagement');
   const [courseSubmitting, setCourseSubmitting] = useState(false);
   const [articleSubmitting, setArticleSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ type: '', message: '' });
@@ -94,25 +96,25 @@ export default function ContentManagementPage() {
       
       <Card className="md:col-span-1">
         <CardHeader>
-          <CardTitle>Create New Course</CardTitle>
-          <CardDescription>Develop a new course for the Knowledge Hub.</CardDescription>
+          <CardTitle>{t('createCourse.title')}</CardTitle>
+          <CardDescription>{t('createCourse.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleCreateCourse} className="space-y-4">
              <div className="space-y-1.5">
-                <Label htmlFor="course_title">Course Title</Label>
+                <Label htmlFor="course_title">{t('createCourse.titleLabel')}</Label>
                 <Input id="course_title" name="course_title" required />
             </div>
              <div className="space-y-1.5">
-                <Label htmlFor="course_description">Course Description</Label>
+                <Label htmlFor="course_description">{t('createCourse.descriptionLabel')}</Label>
                 <Textarea id="course_description" name="course_description" required />
             </div>
              <div className="space-y-1.5">
-                <Label htmlFor="course_category">Category</Label>
+                <Label htmlFor="course_category">{t('createCourse.categoryLabel')}</Label>
                 <Input id="course_category" name="course_category" required />
             </div>
             <Button type="submit" disabled={courseSubmitting}>
-                {courseSubmitting ? 'Creating...' : 'Create Course'}
+                {courseSubmitting ? t('createCourse.submittingButton') : t('createCourse.submitButton')}
             </Button>
           </form>
         </CardContent>
@@ -120,24 +122,24 @@ export default function ContentManagementPage() {
 
       <Card className="md:col-span-1">
         <CardHeader>
-          <CardTitle>Create Knowledge Article</CardTitle>
-          <CardDescription>Write a blog post or news update. The system will auto-translate to the other language if one is left blank.</CardDescription>
+          <CardTitle>{t('createArticle.title')}</CardTitle>
+          <CardDescription>{t('createArticle.description')}</CardDescription>
         </CardHeader>
         <CardContent>
            <form onSubmit={handleCreateArticle} className="space-y-4">
               <div className="space-y-2">
-                <h4 className="font-semibold text-lg text-primary">English Content</h4>
+                <h4 className="font-semibold text-lg text-primary">{t('createArticle.englishContent')}</h4>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_title_en">Article Title (EN)</Label>
+                    <Label htmlFor="article_title_en">{t('createArticle.titleEnLabel')}</Label>
                     <Input id="article_title_en" name="article_title_en" />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_excerpt_en">Excerpt (EN)</Label>
+                    <Label htmlFor="article_excerpt_en">{t('createArticle.excerptEnLabel')}</Label>
                     <Textarea id="article_excerpt_en" name="article_excerpt_en" className="h-24" />
-                    <p className="text-xs text-muted-foreground">A short summary for the article preview.</p>
+                    <p className="text-xs text-muted-foreground">{t('createArticle.excerptDescription')}</p>
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_content_en">Full Content (EN, Markdown supported)</Label>
+                    <Label htmlFor="article_content_en">{t('createArticle.contentEnLabel')}</Label>
                     <Textarea id="article_content_en" name="article_content_en" className="h-40" />
                 </div>
               </div>
@@ -145,17 +147,17 @@ export default function ContentManagementPage() {
               <Separator />
 
               <div className="space-y-2">
-                <h4 className="font-semibold text-lg text-primary">Khmer Content (ភាសាខ្មែរ)</h4>
+                <h4 className="font-semibold text-lg text-primary">{t('createArticle.khmerContent')}</h4>
                  <div className="space-y-1.5">
-                    <Label htmlFor="article_title_km">Article Title (KM)</Label>
+                    <Label htmlFor="article_title_km">{t('createArticle.titleKmLabel')}</Label>
                     <Input id="article_title_km" name="article_title_km" />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_excerpt_km">Excerpt (KM)</Label>
+                    <Label htmlFor="article_excerpt_km">{t('createArticle.excerptKmLabel')}</Label>
                     <Textarea id="article_excerpt_km" name="article_excerpt_km" className="h-24" />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_content_km">Full Content (KM)</Label>
+                    <Label htmlFor="article_content_km">{t('createArticle.contentKmLabel')}</Label>
                     <Textarea id="article_content_km" name="article_content_km" className="h-40" />
                 </div>
               </div>
@@ -163,30 +165,30 @@ export default function ContentManagementPage() {
               <Separator />
 
               <div className="space-y-4">
-                <h4 className="font-semibold text-lg text-primary">Metadata</h4>
+                <h4 className="font-semibold text-lg text-primary">{t('createArticle.metadataTitle')}</h4>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_category">Category</Label>
-                    <Input id="article_category" name="article_category" placeholder="e.g., Blog, Industry News, Sustainability" required />
+                    <Label htmlFor="article_category">{t('createArticle.categoryLabel')}</Label>
+                    <Input id="article_category" name="article_category" placeholder={t('createArticle.categoryPlaceholder')} required />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_author">Author</Label>
-                    <Input id="article_author" name="article_author" placeholder="e.g., Dr. Green Thumb" defaultValue="DamDoh Team" />
+                    <Label htmlFor="article_author">{t('createArticle.authorLabel')}</Label>
+                    <Input id="article_author" name="article_author" placeholder={t('createArticle.authorPlaceholder')} defaultValue="DamDoh Team" />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_tags">Tags (comma-separated)</Label>
+                    <Label htmlFor="article_tags">{t('createArticle.tagsLabel')}</Label>
                     <Input id="article_tags" name="article_tags" />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_image_url">Image URL (Optional)</Label>
-                    <Input id="article_image_url" name="article_image_url" placeholder="https://placehold.co/600x400.png" />
+                    <Label htmlFor="article_image_url">{t('createArticle.imageUrlLabel')}</Label>
+                    <Input id="article_image_url" name="article_image_url" placeholder={t('createArticle.imageUrlPlaceholder')} />
                 </div>
                 <div className="space-y-1.5">
-                    <Label htmlFor="article_data_ai_hint">Image AI Hint (Optional)</Label>
-                    <Input id="article_data_ai_hint" name="article_data_ai_hint" placeholder="e.g., sustainable farming field" />
+                    <Label htmlFor="article_data_ai_hint">{t('createArticle.aiHintLabel')}</Label>
+                    <Input id="article_data_ai_hint" name="article_data_ai_hint" placeholder={t('createArticle.aiHintPlaceholder')} />
                 </div>
               </div>
               <Button type="submit" disabled={articleSubmitting}>
-                {articleSubmitting ? 'Publishing...' : 'Publish Article'}
+                {articleSubmitting ? t('createArticle.publishingButton') : t('createArticle.publishButton')}
               </Button>
             </form>
         </CardContent>

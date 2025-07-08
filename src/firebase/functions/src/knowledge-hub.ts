@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -116,8 +115,8 @@ export const createCourse = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const { titleEn, descriptionEn, category, level, targetRoles } = data;
-  if (!titleEn || !descriptionEn || !category || !level) {
+  const { title_en, description_en, category, level, targetRoles } = data;
+  if (!title_en || !description_en || !category || !level) {
     throw new functions.https.HttpsError(
       "invalid-argument",
       "error.course.missingFields",
@@ -126,8 +125,8 @@ export const createCourse = functions.https.onCall(async (data, context) => {
 
   try {
     const newCourseRef = await db.collection("courses").add({
-      titleEn,
-      descriptionEn,
+      title_en,
+      description_en,
       category,
       level,
       targetRoles: targetRoles || [],
@@ -161,8 +160,8 @@ export const createModule = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const {courseId, moduleTitleEn, contentUrls} = data;
-  if (!courseId || !moduleTitleEn) {
+  const {courseId, moduleTitle_en, contentUrls} = data;
+  if (!courseId || !moduleTitle_en) {
     throw new functions.https.HttpsError(
       "invalid-argument",
       "error.module.missingFields",
@@ -175,7 +174,7 @@ export const createModule = functions.https.onCall(async (data, context) => {
       .doc(courseId)
       .collection("modules")
       .add({
-        moduleTitleEn,
+        moduleTitle_en,
         contentUrls: contentUrls || [],
         order: 999, // Simple order, can be improved
         createdAt: admin.firestore.FieldValue.serverTimestamp(),

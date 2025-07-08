@@ -158,7 +158,7 @@ export default function BlogPostPage() {
       
       {originalTitle && originalContent && (
         <div className="pt-6 mt-6 border-t border-dashed">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">Original Content ({originalLang.toUpperCase()})</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-2">{t('originalContentTitle', { lang: originalLang.toUpperCase() })}</h3>
             <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
                 <h2 className="text-2xl font-bold leading-tight">{originalTitle}</h2>
                  <div className="prose dark:prose-invert max-w-none">

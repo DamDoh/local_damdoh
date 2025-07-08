@@ -142,6 +142,7 @@
       }
     },
     "topic": {
+      "backLink": "ត្រឡប់ទៅប្រធានបទទាំងអស់",
       "unknownUser": "អ្នកប្រើមិនស្គាល់",
       "postMeta": "ដោយ {{author}} នៅ {{date}}",
       "buttons": {

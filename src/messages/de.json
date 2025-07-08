@@ -89,7 +89,7 @@
     "create": {
       "backLink": "Zurück zu den Themen",
       "title": "Neues Thema erstellen",
-      "description": "Starten Sie eine neue Diskussion im Forum.",
+      "description": "Eine neue Diskussion im Forum starten.",
       "form": {
         "nameLabel": "Themenname",
         "namePlaceholder": "Geben Sie den Namen Ihres Themas ein",
@@ -214,6 +214,7 @@
     }
   },
   "Marketplace": {
+    "title": "Marktplatz",
     "myOrders": {
       "backLink": "Zurück zum Marktplatz",
       "title": "Meine erhaltenen Bestellungen",

@@ -214,6 +214,7 @@
     }
   },
   "Marketplace": {
+    "title": "Mercado",
     "myOrders": {
       "backLink": "Volver al mercado",
       "title": "Mis Pedidos Recibidos",

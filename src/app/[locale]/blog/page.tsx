@@ -12,7 +12,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface BlogPost {
   id: string;
@@ -56,6 +56,7 @@ export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const locale = useLocale();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -64,7 +65,7 @@ export default function BlogPage() {
         const result = await getArticlesCallable();
         const data = result.data as { success: boolean, articles: any[] };
         if (data.success) {
-          const blogPosts = data.articles.filter(article => article.category === 'Blog');
+          const blogPosts = data.articles.filter(article => article.category === 'Blog' || article.category === 'Industry News');
           setPosts(blogPosts);
         } else {
           throw new Error("Failed to fetch articles.");
@@ -101,46 +102,52 @@ export default function BlogPage() {
         </div>
       ) : posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <Card key={post.id} className="flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              {post.imageUrl && (
-                <Link href={`/blog/${post.id}`} className="block">
-                  <div className="relative h-56 w-full">
-                    <Image
-                      src={post.imageUrl}
-                      alt={post.title_en}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{objectFit: 'cover'}}
-                      data-ai-hint={post.dataAiHint || "agriculture blog image"}
-                    />
-                  </div>
-                </Link>
-              )}
-              <CardHeader>
-                <CardTitle className="text-xl line-clamp-2 hover:text-primary transition-colors h-14">
-                  <Link href={`/blog/${post.id}`}>{post.title_en}</Link>
-                </CardTitle>
-                <CardDescription className="text-xs">
-                  {t('meta', { author: post.author, date: new Date(post.createdAt).toLocaleDateString() })}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt_en}</p>
-                {post.excerpt_km && (
-                  <>
-                    <Separator className="my-2" />
-                    <p className="text-sm text-muted-foreground line-clamp-3 font-serif">{post.excerpt_km}</p>
-                  </>
+          {posts.map((post) => {
+            const displayTitle = locale === 'km' && post.title_km ? post.title_km : post.title_en;
+            const displayExcerpt = locale === 'km' && post.excerpt_km ? post.excerpt_km : post.excerpt_en;
+            const originalExcerpt = locale === 'km' ? post.excerpt_en : post.excerpt_km;
+
+            return (
+              <Card key={post.id} className="flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                {post.imageUrl && (
+                  <Link href={`/blog/${post.id}`} className="block">
+                    <div className="relative h-56 w-full">
+                      <Image
+                        src={post.imageUrl}
+                        alt={displayTitle}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{objectFit: 'cover'}}
+                        data-ai-hint={post.dataAiHint || "agriculture blog image"}
+                      />
+                    </div>
+                  </Link>
                 )}
-              </CardContent>
-              <CardContent className="pt-2">
-                <Button asChild variant="outline" className="w-full">
-                  <Link href={`/blog/${post.id}`}>{t('readMore')}</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader>
+                  <CardTitle className="text-xl line-clamp-2 hover:text-primary transition-colors h-14">
+                    <Link href={`/blog/${post.id}`}>{displayTitle}</Link>
+                  </CardTitle>
+                  <CardDescription className="text-xs">
+                    {t('meta', { author: post.author, date: new Date(post.createdAt).toLocaleDateString() })}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-sm text-muted-foreground line-clamp-3">{displayExcerpt}</p>
+                  {originalExcerpt && (
+                    <>
+                      <Separator className="my-2" />
+                      <p className="text-sm text-muted-foreground line-clamp-3 font-serif">{originalExcerpt}</p>
+                    </>
+                  )}
+                </CardContent>
+                <CardContent className="pt-2">
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href={`/blog/${post.id}`}>{t('readMore')}</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       ) : (
         <Card>
