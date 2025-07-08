@@ -16,6 +16,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
+import type { FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 
 // Define types for the data we expect from the backend
 interface TraceabilityEvent {
@@ -67,7 +68,7 @@ const EventPayload = ({ payload, t }: { payload: any, t: any }) => {
     }
     
     if (payload.aiAnalysis) {
-        const analysis = payload.aiAnalysis as { summary: string };
+        const analysis = payload.aiAnalysis as FarmingAssistantOutput;
         return (
             <div className="text-sm text-muted-foreground space-y-2 mt-2 p-2 bg-background rounded-md">
                 <p><strong>{t('detailPage.observationType')}:</strong> {payload.observationType}</p>

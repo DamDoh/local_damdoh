@@ -1,5 +1,4 @@
 
-
 {
   "FeedItemCard": {
     "editPost": "Edit Post",
@@ -46,179 +45,6 @@
     "photoVideo": "Photo/Video",
     "agriEvent": "Agri-Event",
     "createPoll": "Create Poll"
-  },
-  "Forums": {
-    "title": "Forum Topics",
-    "description": "Browse and create discussion topics",
-    "lastActivity": "Last activity {{time}}",
-    "searchPlaceholder": "Search topics...",
-    "buttons": {
-      "createTopic": "Create Topic",
-      "joinDiscussion": "Join Discussion",
-      "pinHomepage": "Pin as Homepage",
-      "unpinHomepage": "Unpin from Homepage",
-      "loadMore": "Load More",
-      "loadingMore": "Loading More..."
-    },
-    "notFound": {
-      "title": "No Topics Found",
-      "tryDifferentSearch": "Try a different search term.",
-      "beTheFirst": "Be the first one to create a topic."
-    },
-    "pinning": {
-      "pinnedTitle": "Homepage Pinned!",
-      "pinnedDescription": "This forum is now shown as your homepage.",
-      "unpinnedTitle": "Homepage Unpinned!",
-      "unpinnedDescription": "This forum is no longer shown as your homepage."
-    },
-    "errors": {
-      "loadTitle": "Error Loading Topics",
-      "loadDescription": "An error occurred while loading forum topics.",
-      "auth": {
-        "title": "Not Authenticated",
-        "description": "You must be logged in to create a topic."
-      },
-      "incomplete": {
-        "title": "Incomplete Fields",
-        "description": "Please fill in all required fields."
-      },
-      "general": {
-        "title": "Error",
-        "description": "An error occurred while creating the topic."
-      }
-    },
-    "create": {
-      "backLink": "Back to Topics",
-      "title": "Create New Topic",
-      "description": "Start a new discussion in the forum.",
-      "form": {
-        "nameLabel": "Topic Name",
-        "namePlaceholder": "Enter the name of your topic",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Briefly describe your topic",
-        "submitButton": "Create Topic",
-        "submittingButton": "Creating..."
-      },
-      "success": {
-        "title": "Topic Created Successfully",
-        "description": "Your new topic has been created."
-      }
-    },
-    "postView": {
-      "backLink": "Back to {{topicName}}",
-      "unknownUser": "Unknown User",
-      "postMeta": "by {{author}} on {{date}}",
-      "repliesTitle": "Replies ({count})",
-      "noReplies": "No replies yet.",
-      "buttons": {
-        "loadMore": "Load More",
-        "loadingMore": "Loading More..."
-      },
-      "reply": {
-        "title": "Add a Reply",
-        "placeholder": "Write your reply here...",
-        "submitButton": "Add Reply",
-        "submittingButton": "Submitting...",
-        "success": "Reply added!"
-      },
-      "notFound": {
-        "title": "Post not found",
-        "description": "The post you are looking for does not exist.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error loading post",
-          "description": "An error occurred while loading the post details."
-        },
-        "loadReplies": {
-          "title": "Error loading replies",
-          "description": "An error occurred while loading replies for this post."
-        },
-        "emptyReply": "Reply cannot be empty.",
-        "submitReply": {
-          "title": "Error submitting reply",
-          "description": "An error occurred while submitting your reply."
-        }
-      }
-    },
-    "topic": {
-      "backLink": "Back to all topics",
-      "unknownUser": "Unknown User",
-      "postMeta": "by {{author}} on {{date}}",
-      "buttons": {
-        "createPost": "Create Post",
-        "loadMore": "Load more posts",
-        "loadingMore": "Loading more..."
-      },
-      "noPosts": {
-        "title": "No posts yet.",
-        "description": "Be the first to create one!",
-        "button": "Create First Post"
-      },
-      "notFound": {
-        "title": "Topic not found",
-        "description": "The topic you are looking for does not exist.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error loading posts",
-          "description": "An error occurred while loading posts for this topic."
-        },
-        "loadTopic": {
-          "title": "Error loading topic",
-          "description": "An error occurred while loading the topic details."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Back to Topic",
-      "aiHelper": {
-        "title": "AI Helper",
-        "description": "Generate a post draft based on a prompt.",
-        "promptLabel": "AI Prompt",
-        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
-        "generateButton": "Generate Draft",
-        "generatingButton": "Generating..."
-      },
-      "title": "Create New Post",
-      "description": "Add a new post to this topic.",
-      "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter the title of your post",
-        "contentLabel": "Post Content",
-        "contentPlaceholder": "Write your post content here...",
-        "submitButton": "Create Post",
-        "submittingButton": "Submitting..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "AI Draft Generated!",
-          "description": "A draft has been generated for you."
-        },
-        "title": "Post Created!",
-        "description": "Your post has been successfully created."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "AI Prompt Missing",
-          "description": "Please provide a prompt for the AI helper."
-        },
-        "aiDraft": {
-          "title": "AI Draft Error",
-          "description": "Failed to generate AI draft."
-        },
-        "incomplete": {
-          "title": "Incomplete Fields",
-          "description": "Please fill in all required fields."
-        },
-        "general": {
-          "title": "Error",
-          "description": "An error occurred while creating the post."
-        }
-      }
-    }
   },
   "Marketplace": {
     "title": "Marketplace",
@@ -542,8 +368,69 @@
         "success": "Success",
         "linkCopied": "Link Copied"
       }
+    },
+    "filtersAndSorting": {
+      "categoryLabel": "Category",
+      "categoryPlaceholder": "All Categories",
+      "sortByLabel": "Sort by",
+      "sortByPlaceholder": "Select an option",
+      "priceAscending": "Price: Low to High",
+      "priceDescending": "Price: High to Low",
+      "dateNewest": "Date: Newest First",
+      "dateOldest": "Date: Oldest First",
+      "nameAscending": "Name: A-Z",
+      "nameDescending": "Name: Z-A"
+    },
+    "feedback": {
+      "reviewsTitle": "Reviews",
+      "addReviewButton": "Add a Review",
+      "ratingLabel": "Rating",
+      "noReviews": "No reviews yet. Be the first to review this item!",
+      "reviewForm": {
+        "placeholder": "Write your review here..."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned!",
+      "pinnedDescription": "The Marketplace is now your default homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "The Dashboard is now your default homepage."
     }
   },
-  "Homepage": {}
+  "common": {
+    "error": "Error"
+  },
+  "traceabilityPage": {
+    "title": "Traceability Hub",
+    "description": "Track the journey of your food from farm to fork with a Verifiable Traceability ID (VTI).",
+    "inputPlaceholder": "Enter VTI Code...",
+    "trackButton": "Track",
+    "vtiDescription": "A VTI is a unique identifier assigned to a specific batch of agricultural produce.",
+    "recentTitle": "Recent Searches",
+    "recentDescription": "You have no recently tracked items.",
+    "detailPage": {
+      "backLink": "Back to Traceability Hub",
+      "invalidIdError": "Invalid Batch ID provided.",
+      "loadError": "Failed to load traceability data. Please check the ID and try again.",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "The traceability ID you entered does not match any records.",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Producer",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "This product's log indicates it was grown using sustainable practices, without synthetic chemical inputs.",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Initial Yield",
+      "qualityLabel": "Initial Quality Grade",
+      "notSpecified": "Not Specified",
+      "journeyTitle": "Product Journey",
+      "journeyDescription": "A chronological log of all events for this batch.",
+      "noEventDetails": "No further details provided for this event.",
+      "observationType": "Observation Type",
+      "details": "Details",
+      "aiDiagnosis": "AI Diagnosis",
+      "geoLocationLabel": "Geo-Location",
+      "noEventsFound": "No events have been logged for this batch yet."
+    }
+  }
 }
-

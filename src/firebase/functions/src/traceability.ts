@@ -1,4 +1,5 @@
 
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -442,7 +443,7 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
               const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
               profileDocs.forEach(doc => {
                   actorProfiles[doc.id] = {
-                      name: doc.data().displayName || 'Unknown User',
+                      name: doc.data().displayName || 'Unknown Actor',
                       role: doc.data().primaryRole || 'Stakeholder',
                       avatarUrl: doc.data().avatarUrl || null,
                   };
