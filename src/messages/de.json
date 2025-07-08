@@ -1,5 +1,51 @@
 
 {
+  "FeedItemCard": {
+    "editPost": "Beitrag bearbeiten",
+    "deletePost": "Beitrag löschen",
+    "repostPlaceholderToast": "Repost-Aktion ausgelöst (Platzhalter).",
+    "signInToLikeToast": "Bitte anmelden, um einen Beitrag zu liken.",
+    "signInToVoteToast": "Bitte anmelden, um abzustimmen.",
+    "voteSuccessToast": "Stimme erfolgreich abgegeben!",
+    "voteErrorToast": "Abstimmung fehlgeschlagen",
+    "loadCommentsErrorToast": "Laden der Kommentare fehlgeschlagen",
+    "noComments": "Noch keine Kommentare.",
+    "loadingComments": "Lade Kommentare...",
+    "loadMoreComments": "Weitere Kommentare laden",
+    "writeCommentPlaceholder": "Schreibe einen Kommentar...",
+    "postButton": "Posten",
+    "like": "Gefällt mir",
+    "comment": "Kommentieren",
+    "repost": "Erneut posten",
+    "likes": "{count, plural, one {Gefällt-mir-Angabe} other {Gefällt-mir-Angaben}}",
+    "comments": "{count, plural, one {Kommentar} other {Kommentare}}",
+    "votes": "{count, plural, one {Stimme} other {Stimmen}}"
+  },
+  "CreatePostModal": {
+    "title": "Beitrag erstellen",
+    "description": "Teile ein Update mit deiner Community.",
+    "yourName": "Dein Name",
+    "shareUpdate": "Teile ein Update",
+    "placeholder": "Was gibt's Neues?",
+    "selectedFile": "Ausgewählte Datei:",
+    "pollOptionsLabel": "Umfrageoptionen",
+    "pollOptionPlaceholder": "Option {{index}}",
+    "addOptionButton": "Option hinzufügen",
+    "pollNote": "Maximal {{maxOptions}} Optionen.",
+    "addMediaButton": "Foto/Video hinzufügen",
+    "createEventButton": "Agri-Event erstellen",
+    "shareDocumentButton": "Dokument teilen",
+    "createPollButton": "Umfrage erstellen",
+    "postButton": "Posten",
+    "pollOptionsError": "Eine Umfrage muss mindestens zwei Optionen haben.",
+    "emptyPostError": "Ein Beitrag kann nicht leer sein."
+  },
+  "StartPost": {
+    "placeholder": "Starte einen Beitrag, erstelle eine Umfrage oder teile ein Dokument...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Umfrage erstellen"
+  },
   "Forums": {
     "title": "Forum-Themen",
     "description": "Durchsuchen und erstellen Sie Diskussionsthemen",
@@ -9,7 +55,9 @@
       "createTopic": "Thema erstellen",
       "joinDiscussion": "Diskussion beitreten",
       "pinHomepage": "Als Startseite anheften",
-      "unpinHomepage": "Von Startseite lösen"
+      "unpinHomepage": "Von Startseite lösen",
+      "loadMore": "Mehr laden",
+      "loadingMore": "Lädt mehr..."
     },
     "notFound": {
       "title": "Keine Themen gefunden",
@@ -57,6 +105,7 @@
     },
     "topic": {
       "backLink": "Zurück zu allen Themen",
+      "unknownUser": "Unbekannter Benutzer",
       "postMeta": "von {{author}} am {{date}}",
       "buttons": {
         "createPost": "Beitrag erstellen",
@@ -86,13 +135,8 @@
     },
     "postView": {
       "backLink": "Zurück zu {{topicName}}",
-      "unknownUser": "Unbekannter Benutzer",
       "repliesTitle": "Antworten ({count})",
       "noReplies": "Noch keine Antworten.",
-      "buttons": {
-        "loadMore": "Mehr laden",
-        "loadingMore": "Lädt mehr..."
-      },
       "reply": {
         "title": "Eine Antwort hinzufügen",
         "placeholder": "Schreiben Sie hier Ihre Antwort...",
@@ -142,150 +186,31 @@
         "submittingButton": "Wird gesendet..."
       },
       "success": {
-        "aiDraft": { "title": "KI-Entwurf generiert!", "description": "Ein Entwurf wurde für Sie generiert." },
+        "aiDraft": {
+          "title": "KI-Entwurf generiert!",
+          "description": "Ein Entwurf wurde für Sie generiert."
+        },
         "title": "Beitrag erstellt!",
         "description": "Ihr Beitrag wurde erfolgreich erstellt."
       },
       "errors": {
-        "aiPromptMissing": { "title": "Fehlende KI-Eingabeaufforderung", "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein." },
-        "aiDraft": { "title": "KI-Entwurfsfehler", "description": "Fehler beim Generieren des KI-Entwurfs." },
-        "incomplete": { "title": "Unvollständige Felder", "description": "Bitte füllen Sie alle erforderlichen Felder aus." },
-        "general": { "title": "Fehler", "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten." }
+        "aiPromptMissing": {
+          "title": "Fehlende KI-Eingabeaufforderung",
+          "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
+        },
+        "aiDraft": {
+          "title": "KI-Entwurfsfehler",
+          "description": "Fehler beim Generieren des KI-Entwurfs."
+        },
+        "incomplete": {
+          "title": "Unvollständige Felder",
+          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        },
+        "general": {
+          "title": "Fehler",
+          "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten."
+        }
       }
-    }
-  },
-  "Marketplace": {
-    "title": "Marktplatz",
-    "description": "Durchsuchen und entdecken Sie Produkte und Dienstleistungen.",
-    "createShopButton": "Shop erstellen",
-    "createListingButton": "Angebot erstellen",
-    "myOrdersButton": "Meine erhaltenen Bestellungen",
-    "pinButton": "Als Startseite anheften",
-    "unpinButton": "Von Startseite lösen",
-    "searchPlaceholder": "Marktplatz durchsuchen...",
-    "locationPlaceholder": "Nach Ort filtern...",
-    "typePlaceholder": "Nach Typ filtern...",
-    "recommendedForYou": "Für Sie empfohlen",
-    "discoverMore": "Mehr entdecken",
-    "viewDetails": "Details anzeigen",
-    "viewServiceButton": "Dienstleistung ansehen",
-    "itemView": {
-      "contactForRates": "Kontakt für Preise"
-    },
-    "pinning": {
-      "pinnedTitle": "Marktplatz angeheftet!",
-      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
-      "unpinnedTitle": "Startseite gelöst!",
-      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
-    },
-    "categories": {
-      "allCategories": "Alle Kategorien",
-      "viewAllItems": "Alle Artikel anzeigen",
-      "viewAllCategory": "Alle in {{categoryName}}"
-    },
-    "noItemsFound": {
-      "title": "Keine Artikel gefunden.",
-      "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
-      },
-      "search": {
-        "title": "Suchfehler",
-        "description": "Marktplatzartikel konnten nicht abgerufen werden."
-      }
-    },
-    "myOrders": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Meine erhaltenen Bestellungen",
-      "description": "Anzeigen und Verwalten von Bestellungen, die von Käufern erhalten wurden.",
-      "auth": {
-        "title": "Authentifizierung erforderlich",
-        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
-        "button": "Anmelden"
-      },
-      "table": {
-        "date": "Datum",
-        "buyer": "Käufer",
-        "product": "Produkt",
-        "total": "Gesamt",
-        "status": "Status",
-        "actions": "Aktionen"
-      },
-      "actions": {
-        "confirm": "Bestätigen",
-        "ship": "Versenden",
-        "complete": "Abschließen",
-        "cancel": "Stornieren"
-      },
-      "status": {
-        "new": "Neu",
-        "confirmed": "Bestätigt",
-        "shipped": "Versandt",
-        "completed": "Abgeschlossen",
-        "cancelled": "Storniert"
-      },
-      "noOrders": "Keine Bestellungen gefunden.",
-      "toast": {
-        "errorTitle": "Fehler",
-        "fetchError": "Bestellungen konnten nicht abgerufen werden.",
-        "successTitle": "Erfolg!",
-        "updateSuccess": "Bestellstatus aktualisiert auf {{status}}",
-        "failTitle": "Fehler"
-      }
-    }
-  },
-  "Homepage": {},
-  "LandingPage": {
-    "hero": {
-      "title": "Erweitern Sie Ihr landwirtschaftliches Netzwerk mit {appName}",
-      "subtitle": "Vernetzen, handeln und lernen Sie mit Akteuren entlang der landwirtschaftlichen Lieferkette. Vom Hof bis auf den Tisch ist {appName} Ihr vertrauenswürdiger Partner für Wachstum und Nachhaltigkeit.",
-      "getStartedButton": "Loslegen",
-      "learnMoreButton": "Mehr erfahren"
-    },
-    "features": {
-      "title": "Leistungsstarke Funktionen, nahtloses Erlebnis",
-      "subtitle": "Alles, was Sie brauchen, um in der heutigen Agrarlandschaft erfolgreich zu sein, an einem Ort.",
-      "networking": {
-        "title": "Professionelles Networking",
-        "description": "Vernetzen Sie sich mit Landwirten, Käufern, Lieferanten und Experten. Bauen Sie Ihr berufliches Netzwerk auf und entdecken Sie neue Möglichkeiten."
-      },
-      "marketplace": {
-        "title": "Globaler Marktplatz",
-        "description": "Kaufen und verkaufen Sie Produkte, von frischen Erzeugnissen bis hin zu schweren Maschinen. Eine sichere Plattform für den lokalen und internationalen Handel."
-      },
-      "forums": {
-        "title": "Community-Foren",
-        "description": "Teilen Sie Wissen, stellen Sie Fragen und arbeiten Sie mit Kollegen an Themen wie nachhaltigen Praktiken und Markttrends."
-      },
-      "talent": {
-        "title": "Talentbörse",
-        "description": "Finden Sie qualifizierte Arbeitskräfte oder bieten Sie Ihre Expertise an. Vernetzen Sie sich mit Möglichkeiten für Farmmanagement, Betrieb und mehr."
-      }
-    },
-    "forWho": {
-      "badge": "Für alle im Agribusiness",
-      "title": "Eine Plattform für die gesamte Lieferkette",
-      "description": "{appName} wurde entwickelt, um jeden Akteur im landwirtschaftlichen Ökosystem zu stärken, die Zusammenarbeit zu fördern und auf jeder Stufe Werte zu schaffen.",
-      "farmers": {
-        "title": "Landwirte & Kooperativen",
-        "description": "Greifen Sie auf neue Märkte zu, erhalten Sie faire Preise, lernen Sie nachhaltige Praktiken und vernetzen Sie sich mit Lieferanten und Finanzdienstleistungen."
-      },
-      "buyers": {
-        "title": "Käufer & Händler",
-        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von den Erzeugern. Finden Sie zuverlässige Partner und verwalten Sie Ihre Lieferkette effizient."
-      },
-      "experts": {
-        "title": "Experten & Dienstleister",
-        "description": "Bieten Sie Ihre Expertise, von Agronomie und Finanzen bis hin zu Logistik und Technologie, einem gezielten Publikum an."
-      },
-      "imageAlt": "Eine vielfältige Gruppe von Akteuren der Landwirtschaft bei der Zusammenarbeit, einschließlich eines Landwirts auf einem Feld, einer Person, die Produkte inspiziert, und jemandem, der ein Tablet verwendet."
-    },
-    "cta": {
-      "title": "Treten Sie noch heute der DamDoh-Community bei",
-      "subtitle": "Bereit, Ihr landwirtschaftliches Unternehmen zu transformieren? Melden Sie sich jetzt an und vernetzen Sie sich mit der Zukunft der Landwirtschaft.",
-      "button": "Jetzt beitreten"
     }
   }
 }

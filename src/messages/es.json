@@ -1,18 +1,121 @@
 
 {
+  "FeedItemCard": {
+    "editPost": "Editar Publicación",
+    "deletePost": "Eliminar Publicación",
+    "repostPlaceholderToast": "Acción de republicar activada (marcador de posición).",
+    "signInToLikeToast": "Por favor, inicie sesión para dar me gusta a una publicación.",
+    "signInToVoteToast": "Por favor, inicie sesión para votar.",
+    "voteSuccessToast": "¡Voto registrado con éxito!",
+    "voteErrorToast": "Error al votar",
+    "loadCommentsErrorToast": "Error al cargar comentarios",
+    "noComments": "Aún no hay comentarios.",
+    "loadingComments": "Cargando comentarios...",
+    "loadMoreComments": "Cargar más comentarios",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "postButton": "Publicar",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Republicar",
+    "likes": "{count, plural, one {Me gusta} other {Me gusta}}",
+    "comments": "{count, plural, one {Comentario} other {Comentarios}}",
+    "votes": "{count, plural, one {voto} other {votos}}"
+  },
+  "CreatePostModal": {
+    "title": "Crear Publicación",
+    "description": "Comparte una actualización con tu comunidad.",
+    "yourName": "Tu Nombre",
+    "shareUpdate": "Comparte una actualización",
+    "placeholder": "¿Qué tienes en mente?",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la encuesta",
+    "pollOptionPlaceholder": "Opción {{index}}",
+    "addOptionButton": "Agregar opción",
+    "pollNote": "Máximo {{maxOptions}} opciones.",
+    "addMediaButton": "Agregar Foto/Video",
+    "createEventButton": "Crear Evento Agrícola",
+    "shareDocumentButton": "Compartir Documento",
+    "createPollButton": "Crear Encuesta",
+    "postButton": "Publicar",
+    "pollOptionsError": "Una encuesta debe tener al menos dos opciones.",
+    "emptyPostError": "Una publicación no puede estar vacía."
+  },
+  "StartPost": {
+    "placeholder": "Inicia una publicación, crea una encuesta o comparte un documento...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Evento Agrícola",
+    "createPoll": "Crear Encuesta"
+  },
   "Forums": {
+    "title": "Temas del Foro",
+    "description": "Navega y crea temas de discusión",
+    "lastActivity": "Última actividad hace {{time}}",
+    "searchPlaceholder": "Buscar temas...",
+    "buttons": {
+      "createTopic": "Crear Tema",
+      "joinDiscussion": "Unirse a la Discusión",
+      "pinHomepage": "Fijar a Inicio",
+      "unpinHomepage": "Desfijar de Inicio",
+      "loadMore": "Cargar Más",
+      "loadingMore": "Cargando Más..."
+    },
+    "notFound": {
+      "title": "No se encontraron temas",
+      "tryDifferentSearch": "Intenta con otra búsqueda.",
+      "beTheFirst": "Sé el primero en crear un tema."
+    },
+    "pinning": {
+      "pinnedTitle": "¡Página de Inicio Fijada!",
+      "pinnedDescription": "Este foro ahora se muestra como tu página de inicio.",
+      "unpinnedTitle": "¡Página de Inicio Desfijada!",
+      "unpinnedDescription": "Este foro ya no se muestra como tu página de inicio."
+    },
+    "errors": {
+      "loadTitle": "Error al cargar temas",
+      "loadDescription": "Ocurrió un error al cargar los temas del foro.",
+      "auth": {
+        "title": "No autenticado",
+        "description": "Debes haber iniciado sesión para crear un tema."
+      },
+      "incomplete": {
+        "title": "Campos incompletos",
+        "description": "Por favor, completa todos los campos requeridos."
+      },
+      "general": {
+        "title": "Error",
+        "description": "Ocurrió un error al crear el tema."
+      }
+    },
+    "create": {
+      "backLink": "Volver a Temas",
+      "title": "Crear Nuevo Tema",
+      "description": "Inicia una nueva discusión en el foro.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Introduce el nombre de tu tema",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe brevemente tu tema",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "success": {
+        "title": "¡Tema Creado Exitosamente!",
+        "description": "Tu nuevo tema ha sido creado."
+      }
+    },
     "topic": {
+      "backLink": "Volver a todos los temas",
       "unknownUser": "Usuario Desconocido",
       "postMeta": "por {{author}} el {{date}}",
       "buttons": {
-        "createPost": "Agregar Respuesta",
-        "loadMore": "Cargar Más",
-        "loadingMore": "Cargando Más..."
+        "createPost": "Crear Publicación",
+        "loadMore": "Cargar más publicaciones",
+        "loadingMore": "Cargando más..."
       },
       "noPosts": {
-        "title": "Aún no hay publicaciones",
-        "description": "Sé el primero en responder a este tema.",
-        "button": "Agregar Respuesta"
+        "title": "Aún no hay publicaciones.",
+        "description": "¡Sé el primero en crear una!",
+        "button": "Crear primera publicación"
       },
       "notFound": {
         "title": "Tema no encontrado",
@@ -30,7 +133,40 @@
         }
       }
     },
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
+    },
     "createPost": {
+      "backLink": "Volver al Tema",
       "aiHelper": {
         "title": "Asistente de IA",
         "description": "Genera un borrador de publicación basado en una indicación.",
@@ -75,178 +211,6 @@
           "description": "Ocurrió un error al crear la publicación."
         }
       }
-    },
-    "postView": {
-      "backLink": "Volver a {{topicName}}",
-      "unknownUser": "Usuario Desconocido",
-      "postMeta": "por {{author}} el {{date}}",
-      "repliesTitle": "Respuestas ({{count}})",
-      "noReplies": "Aún no hay respuestas.",
-      "buttons": {
-        "loadMore": "Cargar Más",
-        "loadingMore": "Cargando Más..."
-      },
-      "reply": {
-        "title": "Agregar una Respuesta",
-        "placeholder": "Escribe tu respuesta aquí...",
-        "submitButton": "Agregar Respuesta",
-        "submittingButton": "Enviando...",
-        "success": "¡Respuesta agregada!"
-      },
-      "notFound": {
-        "title": "Publicación no encontrada",
-        "description": "La publicación que estás buscando no existe.",
-        "backButton": "Volver a Foros"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error al cargar publicación",
-          "description": "Ocurrió un error al cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error al cargar respuestas",
-          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
-        },
-        "emptyReply": "La respuesta no puede estar vacía.",
-        "submitReply": {
-          "title": "Error al enviar respuesta",
-          "description": "Ocurrió un error al enviar tu respuesta."
-        }
-      }
-    }
-  },
-  "Marketplace": {
-    "title": "Mercado",
-    "description": "Explora y descubre productos y servicios.",
-    "createShopButton": "Crear Tienda",
-    "createListingButton": "Crear Anuncio",
-    "myOrdersButton": "Mis Pedidos Recibidos",
-    "pinButton": "Fijar a Inicio",
-    "unpinButton": "Desfijar de Inicio",
-    "searchPlaceholder": "Buscar en el mercado...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "typePlaceholder": "Filtrar por tipo...",
-    "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre Más",
-    "viewDetails": "Ver Detalles",
-    "viewServiceButton": "Ver Servicio",
-    "itemView": {
-      "contactForRates": "Contactar para tarifas"
-    },
-    "pinning": {
-      "pinnedTitle": "¡Mercado Fijado!",
-      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "¡Página de Inicio Desfijada!",
-      "unpinnedDescription": "El Panel de Control es ahora tu página de inicio predeterminada."
-    },
-    "categories": {
-      "allCategories": "Todas las Categorías",
-      "viewAllItems": "Ver Todos los Artículos",
-      "viewAllCategory": "Ver todo en {{categoryName}}"
-    },
-    "noItemsFound": {
-      "title": "No se encontraron artículos.",
-      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "No se pudieron obtener recomendaciones de IA"
-      },
-      "search": {
-        "title": "Error de Búsqueda",
-        "description": "No se pudieron obtener los artículos del mercado."
-      }
-    },
-    "myOrders": {
-      "backLink": "Volver al mercado",
-      "title": "Mis Pedidos Recibidos",
-      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
-      "auth": {
-        "title": "Autenticación requerida",
-        "description": "Debe haber iniciado sesión para ver sus pedidos.",
-        "button": "Iniciar sesión"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "actions": {
-        "confirm": "Confirmar",
-        "ship": "Enviar",
-        "complete": "Completar",
-        "cancel": "Cancelar"
-      },
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      },
-      "noOrders": "No se encontraron pedidos.",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron obtener los pedidos.",
-        "successTitle": "¡Éxito!",
-        "updateSuccess": "Estado del pedido actualizado a {{status}}",
-        "failTitle": "Error"
-      }
-    }
-  },
-  "Homepage": {},
-  "LandingPage": {
-    "hero": {
-      "title": "Haga crecer su red agrícola con {appName}",
-      "subtitle": "Conecte, comercie y aprenda con los actores de toda la cadena de suministro agrícola. Del campo a la mesa, {appName} es su socio de confianza para el crecimiento y la sostenibilidad.",
-      "getStartedButton": "Empezar",
-      "learnMoreButton": "Más información"
-    },
-    "features": {
-      "title": "Funciones potentes, experiencia perfecta",
-      "subtitle": "Todo lo que necesita para prosperar en el panorama agrícola actual, todo en un solo lugar.",
-      "networking": {
-        "title": "Red profesional",
-        "description": "Conéctese con agricultores, compradores, proveedores y expertos. Construya su red profesional y descubra nuevas oportunidades."
-      },
-      "marketplace": {
-        "title": "Mercado global",
-        "description": "Compre y venda productos, desde productos frescos hasta maquinaria pesada. Una plataforma segura para el comercio local e internacional."
-      },
-      "forums": {
-        "title": "Foros comunitarios",
-        "description": "Comparta conocimientos, haga preguntas y colabore con sus pares en temas como prácticas sostenibles y tendencias del mercado."
-      },
-      "talent": {
-        "title": "Bolsa de talentos",
-        "description": "Encuentre mano de obra calificada u ofrezca su experiencia. Conéctese con oportunidades de gestión de granjas, operaciones y más."
-      }
-    },
-    "forWho": {
-      "badge": "Para todos en el agronegocio",
-      "title": "Una plataforma para toda la cadena de suministro",
-      "description": "{appName} está diseñado para empoderar a cada actor del ecosistema agrícola, fomentando la colaboración y creando valor en cada paso.",
-      "farmers": {
-        "title": "Agricultores y cooperativas",
-        "description": "Acceda a nuevos mercados, obtenga precios justos, aprenda prácticas sostenibles y conéctese con proveedores y servicios financieros."
-      },
-      "buyers": {
-        "title": "Compradores y comerciantes",
-        "description": "Obtenga productos de alta calidad y trazables directamente de los productores. Encuentre socios confiables y gestione su cadena de suministro de manera eficiente."
-      },
-      "experts": {
-        "title": "Expertos y proveedores de servicios",
-        "description": "Ofrezca su experiencia, desde agronomía y finanzas hasta logística y tecnología, a un público objetivo."
-      },
-      "imageAlt": "Un grupo diverso de actores agrícolas colaborando, incluido un agricultor en un campo, una persona inspeccionando productos y alguien usando una tableta."
-    },
-    "cta": {
-      "title": "Únase a la comunidad de DamDoh hoy",
-      "subtitle": "¿Listo para transformar su negocio agrícola? Regístrese ahora y comience a conectarse con el futuro de la agricultura.",
-      "button": "Unirse ahora"
     }
   }
 }

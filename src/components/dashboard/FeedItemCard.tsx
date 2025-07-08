@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -128,7 +127,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     }
   };
 
-  const handleRepost = () => toast({ title: "Repost action triggered (placeholder)." });
+  const handleRepost = () => toast({ title: t('repostPlaceholderToast') });
   
   const handlePollVote = async (optionIndex: number) => {
     if (votedOptionIndex !== null || !user) {
