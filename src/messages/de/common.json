@@ -409,6 +409,29 @@
     "createShopButton": "Shop erstellen",
     "createListingButton": "Angebot erstellen",
     "searchPlaceholder": "Marktplatz durchsuchen...",
+    "createShop": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Erstellen Sie Ihren digitalen Shop",
+      "description": "Richten Sie Ihren Shop ein, um Artikel und Dienstleistungen anzubieten.",
+      "form": {
+        "nameLabel": "Name des Shops",
+        "namePlaceholder": "Geben Sie den Namen Ihres Shops ein",
+        "typeLabel": "Stakeholder-Typ",
+        "typePlaceholder": "Wählen Sie Ihren Typ",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihren Shop und Ihr Angebot"
+      },
+      "submitButton": "Shop erstellen",
+      "submittingButton": "Wird erstellt...",
+      "authErrorTitle": "Authentifizierungsfehler",
+      "authErrorDescription": "Sie müssen angemeldet sein, um einen Shop zu erstellen.",
+      "toast": {
+        "successTitle": "Shop erstellt!",
+        "successDescription": "Ihr Shop \"{{shopName}}\" wurde erstellt.",
+        "failTitle": "Erstellung fehlgeschlagen",
+        "failDescription": "Der Shop konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+      }
+    },
     "shopView": {
       "backLink": "Zurück zum Marktplatz",
       "ownedBy": "Besitzer",
@@ -422,119 +445,92 @@
         "loadError": "Shop-Details konnten nicht geladen werden.",
         "title": "Fehler"
       }
+    },
+    "promotions": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Marktplatz-Aktionen",
+      "description": "Erstellen und verwalten Sie Gutscheine, um den Verkauf anzukurbeln.",
+      "signInPrompt": "Bitte melden Sie sich an, um Ihre Aktionen zu verwalten.",
+      "create": {
+        "title": "Neuen Gutschein erstellen",
+        "form": {
+          "code": "Gutscheincode",
+          "codePlaceholder": "z.B. SOMMER20",
+          "usageLimit": "Nutzungslimit",
+          "usageLimitPlaceholder": "z.B. 100",
+          "discountType": "Rabattart",
+          "discountTypePlaceholder": "Art auswählen",
+          "percentage": "Prozentsatz",
+          "fixed": "Fester Betrag",
+          "discountValue": "Rabattwert",
+          "expiryDate": "Ablaufdatum (Optional)",
+          "pickDate": "Datum auswählen",
+          "submitButton": "Gutschein erstellen"
+        },
+        "toast": {
+          "successTitle": "Gutschein erstellt",
+          "successDescription": "Der Gutschein {{code}} ist jetzt aktiv.",
+          "failTitle": "Erstellung fehlgeschlagen"
+        }
+      },
+      "list": {
+        "title": "Ihre aktiven Gutscheine",
+        "description": "Verwalten Sie Ihre vorhandenen Gutscheine.",
+        "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
+        "expires": "Läuft ab",
+        "never": "Nie",
+        "usage": "Nutzung",
+        "share": "Teilen",
+        "toastTitle": "Link kopiert!",
+        "toastDescription": "Ein teilbarer Link für den Gutschein {{link}} wurde in Ihre Zwischenablage kopiert.",
+        "shareModal": {
+          "title": "Gutschein teilen",
+          "description": "Teilen Sie diesen Link, damit Kunden Ihren Gutschein verwenden können.",
+          "link": "Link",
+          "copy": "Kopieren",
+          "close": "Schließen"
+        }
+      },
+      "toast": {
+        "error": "Fehler",
+        "fetchError": "Gutscheine konnten nicht abgerufen werden.",
+        "success": "Erfolg!",
+        "createSuccess": "Der Gutschein {{code}} wurde erfolgreich erstellt.",
+        "createFail": "Gutschein konnte nicht erstellt werden.",
+        "createError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "linkCopied": "Link kopiert!"
+      }
+    },
+    "manageService": {
+      "backLink": "Zurück zur Dienstleistung",
+      "title": "Dienstleistung verwalten",
+      "description": "Buchungen, Personal und Einstellungen für diese Dienstleistung verwalten.",
+      "loading": "Wird geladen...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Buchungen",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Dienstleistungsbuchungen",
+        "description": "Buchungen für diese Dienstleistung anzeigen.",
+        "error": "Fehler",
+        "fetchError": "Buchungen konnten nicht abgerufen werden.",
+        "toast": { "noBookings": "Keine Buchungen zum Herunterladen vorhanden." },
+        "downloadCsv": "CSV herunterladen",
+        "table": {
+          "guest": "Gast",
+          "bookedOn": "Gebucht am",
+          "status": "Status",
+          "checkedInAt": "Eingecheckt am"
+        },
+        "status": {
+          "checkedIn": "Eingecheckt",
+          "booked": "Gebucht"
+        },
+        "noBookings": "Keine Buchungen gefunden."
+      }
     }
   },
-  "Homepage": {
-  },
-  "GroupsPage": {
-    "title": "Community-Gruppen",
-    "description": "Finden und treten Sie Gruppen bei, die Ihren Interessen entsprechen.",
-    "createGroupButton": "Neue Gruppe erstellen",
-    "searchPlaceholder": "Gruppen suchen...",
-    "notFound": "Keine Gruppen gefunden.",
-    "detail": {
-      "backLink": "Zurück zu den Gruppen",
-      "discussionsTitle": "Diskussionen",
-      "startDiscussionButton": "Diskussion starten",
-      "noDiscussions": "Noch keine Diskussionen gestartet.",
-      "beTheFirst": "Seien Sie der Erste, der etwas veröffentlicht.",
-      "actionsTitle": "Gruppenaktionen",
-      "leaveButton": "Gruppe verlassen",
-      "leavingButton": "Wird verlassen...",
-      "joinButton": "Gruppe beitreten",
-      "joiningButton": "Tritt bei...",
-      "requestJoinButton": "Beitrittsanfrage",
-      "loginToJoinButton": "Zum Beitreten anmelden",
-      "membersTitle": "{memberCount, plural, one {# Mitglied} other {# Mitglieder}}"
-    },
-    "toast": {
-      "loginToJoin": "Bitte melden Sie sich an, um dieser Gruppe beizutreten.",
-      "joinSuccess": "Der Gruppe erfolgreich beigetreten!",
-      "joinError": "Fehler beim Beitreten der Gruppe",
-      "leaveSuccess": "Sie haben die Gruppe verlassen.",
-      "leaveError": "Fehler beim Verlassen der Gruppe"
-    },
-    "create": {
-      "backLink": "Zurück zu den Gruppen",
-      "title": "Neue Community-Gruppe erstellen",
-      "description": "Starten Sie eine neue Community für Stakeholder mit gemeinsamen Interessen oder Zielen.",
-      "form": {
-        "nameLabel": "Gruppenname",
-        "namePlaceholder": "z.B. Bio-Kaffeebauern aus Kenia",
-        "descriptionLabel": "Gruppenbeschreibung",
-        "descriptionPlaceholder": "Was ist der Zweck dieser Gruppe?",
-        "publicLabel": "Öffentliche Gruppe",
-        "submitButton": "Gruppe erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentifizierung erforderlich",
-          "description": "Sie müssen angemeldet sein, um eine Gruppe zu erstellen."
-        },
-        "incomplete": {
-          "title": "Unvollständige Felder",
-          "description": "Bitte geben Sie einen Namen und eine Beschreibung für die Gruppe an."
-        },
-        "success": {
-          "title": "Gruppe erstellt!",
-          "description": "Ihre neue Community-Gruppe wurde erfolgreich erstellt."
-        },
-        "error": {
-          "title": "Fehler beim Erstellen der Gruppe",
-          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Zurück zur Gruppe",
-      "title": "Neue Diskussion starten",
-      "description": "Erstellen Sie einen neuen Beitrag, um mit anderen Gruppenmitgliedern zu interagieren.",
-      "form": {
-        "titleLabel": "Titel des Beitrags",
-        "titlePlaceholder": "Geben Sie einen klaren und ansprechenden Titel ein",
-        "contentLabel": "Inhalt des Beitrags",
-        "contentPlaceholder": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Konversation...",
-        "submitButton": "Beitrag erstellen",
-        "submittingButton": "Beitrag wird erstellt..."
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentifizierung erforderlich",
-          "description": "Sie müssen Mitglied dieser Gruppe sein, um zu posten."
-        },
-        "incomplete": {
-          "title": "Unvollständiger Beitrag",
-          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
-        },
-        "success": {
-          "title": "Beitrag erstellt!",
-          "description": "Ihre Diskussion wurde gestartet."
-        },
-        "error": {
-          "title": "Fehler beim Erstellen des Beitrags",
-          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "Zurück zu {{groupName}}",
-      "repliesTitle": "Antworten ({count})",
-      "yourReplyTitle": "Ihre Antwort",
-      "replyPlaceholder": "Schreiben Sie hier Ihre Antwort...",
-      "replySubmitButton": "Antwort veröffentlichen",
-      "replySubmittingButton": "Wird veröffentlicht...",
-      "noReplies": "Seien Sie der Erste, der auf diesen Beitrag antwortet.",
-      "loadMoreButton": "Weitere Antworten laden",
-      "notFound": {
-        "title": "Beitrag nicht gefunden",
-        "description": "Der gesuchte Beitrag existiert nicht.",
-        "backButton": "Zurück zur Gruppe"
-      },
-      "toast": {
-        "emptyReply": "Ihre Antwort darf nicht leer sein.",
-        "replySuccess": "Ihre Antwort wurde veröffentlicht!"
-      }
-    }
-  }
+  "Homepage": {}
 }

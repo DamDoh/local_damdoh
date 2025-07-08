@@ -1,0 +1,361 @@
+
+{
+  "Forums": {
+    "topic": {
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "buttons": {
+        "createPost": "Agregar Respuesta",
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
+      },
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en responder a este tema.",
+        "button": "Agregar Respuesta"
+      },
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error al cargar publicaciones",
+          "description": "Ocurrió un error al cargar las publicaciones para este tema."
+        },
+        "loadTopic": {
+          "title": "Error al cargar tema",
+          "description": "Ocurrió un error al cargar los detalles del tema."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
+        "submitButton": "Crear Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador de IA Generado!",
+          "description": "Se ha generado un borrador para ti."
+        },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Falta indicación de IA",
+          "description": "Por favor, proporciona una indicación para el asistente de IA."
+        },
+        "aiDraft": {
+          "title": "Error del borrador de IA",
+          "description": "No se pudo generar el borrador de IA."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear la publicación."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Volver a {{topicName}}",
+      "unknownUser": "Usuario Desconocido",
+      "postMeta": "por {{author}} el {{date}}",
+      "repliesTitle": "Respuestas ({{count}})",
+      "noReplies": "Aún no hay respuestas.",
+      "buttons": {
+        "loadMore": "Cargar Más",
+        "loadingMore": "Cargando Más..."
+      },
+      "reply": {
+        "title": "Agregar una Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Agregar Respuesta",
+        "submittingButton": "Enviando...",
+        "success": "¡Respuesta agregada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que estás buscando no existe.",
+        "backButton": "Volver a Foros"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al cargar publicación",
+          "description": "Ocurrió un error al cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al cargar respuestas",
+          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
+        },
+        "emptyReply": "La respuesta no puede estar vacía.",
+        "submitReply": {
+          "title": "Error al enviar respuesta",
+          "description": "Ocurrió un error al enviar tu respuesta."
+        }
+      }
+    }
+  },
+  "Marketplace": {
+    "itemView": {
+      "backLink": "Volver al mercado",
+      "unknownUser": "Usuario Desconocido",
+      "traceabilityButton": "Enlace de Comercio / Lote",
+      "skillsLabel": "Habilidades requeridas",
+      "experienceLabel": "Nivel de experiencia",
+      "compensationLabel": "Compensación",
+      "contactForRates": "Contactar para tarifas",
+      "booking": {
+        "perNight": "noche",
+        "checkIn": "Llegada",
+        "checkOut": "Salida",
+        "addDate": "Agregar fecha",
+        "guests": "Huéspedes",
+        "reserveButton": "Reservar",
+        "reservingButton": "Reservando...",
+        "notCharged": "Aún no se le cobrará",
+        "nights": "noches",
+        "serviceFee": "Tarifa de servicio",
+        "total": "Total",
+        "successTitle": "¡Reserva exitosa!",
+        "successDescription": "Su reserva está confirmada.",
+        "failTitle": "Reserva fallida",
+        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
+        "bookedTitle": "¡Reservado!",
+        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
+        "ticketButton": "Mostrar ticket",
+        "modalTitle": "Ticket de reserva",
+        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
+        "modalScan": "Escanee este código para registrarse"
+      },
+      "coupon": {
+        "label": "Código de cupón",
+        "placeholder": "Introduce el código de cupón",
+        "applyButton": "Aplicar",
+        "successTitle": "¡Cupón aplicado!",
+        "successDescription": "Descuento aplicado: {{type}}",
+        "failTitle": "Cupón inválido",
+        "failDescription": "El código de cupón es inválido o no aplicable.",
+        "appliedText": "Cupón aplicado: {{code}}"
+      },
+      "aboutSeller": "Sobre el vendedor",
+      "viewShopfront": "Ver escaparate",
+      "editListing": "Editar publicación",
+      "manageService": "Gestionar servicio",
+      "buyNowButton": "Comprar ahora",
+      "contactForService": "Contactar para servicio",
+      "contactSeller": "Contactar vendedor",
+      "order": {
+        "title": "Pedir {{itemName}}",
+        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
+        "quantityLabel": "Cantidad",
+        "notesLabel": "Notas (Opcional)",
+        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Confirmar pedido",
+        "placingButton": "Realizando pedido...",
+        "successTitle": "¡Pedido realizado!",
+        "successDescription": "Tu pedido ha sido realizado con éxito.",
+        "failTitle": "Pedido fallido",
+        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
+        "quantityErrorTitle": "Error de cantidad",
+        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
+        "authTitle": "Autenticación requerida",
+        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
+      },
+      "notFound": {
+        "title": "Artículo no encontrado",
+        "description": "El artículo del mercado que estás buscando no existe.",
+        "backButton": "Volver a Mercado"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Error al cargar artículo",
+          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
+        },
+        "unexpected": "Ocurrió un error inesperado."
+      }
+    },
+    "myOrders": {
+      "backLink": "Volver al mercado",
+      "title": "Mis Pedidos Recibidos",
+      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
+      "auth": {
+        "title": "Autenticación requerida",
+        "description": "Debe haber iniciado sesión para ver sus pedidos.",
+        "button": "Iniciar sesión"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar",
+        "ship": "Enviar",
+        "complete": "Completar",
+        "cancel": "Cancelar"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "noOrders": "No se encontraron pedidos.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron obtener los pedidos.",
+        "successTitle": "¡Éxito!",
+        "updateSuccess": "Estado del pedido actualizado a {{status}}",
+        "failTitle": "Error"
+      }
+    },
+    "shopView": {
+      "backLink": "Volver al mercado",
+      "ownedBy": "Propiedad de",
+      "loadingOwner": "Cargando...",
+      "editShopButton": "Editar tienda",
+      "contactButton": "Contactar vendedor",
+      "listingsTitle": "Publicaciones de {{shopName}}",
+      "noListings": "No se encontraron publicaciones para esta tienda.",
+      "errors": {
+        "notFound": "Tienda no encontrada",
+        "loadError": "No se pudieron cargar los detalles de la tienda.",
+        "title": "Error"
+      }
+    },
+    "createShop": {
+      "backLink": "Volver al mercado",
+      "title": "Crear tu escaparate digital",
+      "description": "Configura tu tienda para listar artículos y servicios.",
+      "form": {
+        "nameLabel": "Nombre de la tienda",
+        "namePlaceholder": "Introduce el nombre de tu tienda",
+        "typeLabel": "Tipo de actor",
+        "typePlaceholder": "Selecciona tu tipo",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu tienda y lo que ofreces"
+      },
+      "submitButton": "Crear tienda",
+      "submittingButton": "Creando...",
+      "authErrorTitle": "Error de autenticación",
+      "authErrorDescription": "Debes haber iniciado sesión para crear una tienda.",
+      "toast": {
+        "successTitle": "¡Escaparate creado!",
+        "successDescription": "Tu escaparate \"{{shopName}}\" ha sido creado.",
+        "failTitle": "Creación fallida",
+        "failDescription": "No se pudo crear la tienda. Por favor, inténtalo de nuevo."
+      }
+    },
+    "manageService": {
+      "backLink": "Volver a Servicio",
+      "title": "Gestionar Servicio",
+      "loading": "Cargando...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Reservas",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Reservas de Servicio",
+        "description": "Ver las reservas para este servicio.",
+        "error": "Error",
+        "fetchError": "No se pudieron cargar las reservas.",
+        "toast": { "noBookings": "No hay reservas para descargar." },
+        "downloadCsv": "Descargar CSV",
+        "table": {
+          "guest": "Huésped",
+          "bookedOn": "Reservado el",
+          "status": "Estado",
+          "checkedInAt": "Registrado el"
+        },
+        "status": {
+          "checkedIn": "Registrado",
+          "booked": "Reservado"
+        },
+        "noBookings": "No se encontraron reservas."
+      }
+    },
+    "promotions": {
+      "backToDashboard": "Volver al Panel de Control",
+      "title": "Promociones del Mercado",
+      "description": "Crea y gestiona cupones para impulsar las ventas.",
+      "signInPrompt": "Por favor, inicia sesión para gestionar tus promociones.",
+      "create": {
+        "title": "Crear Nuevo Cupón",
+        "form": {
+          "code": "Código de Cupón",
+          "codePlaceholder": "ej. VERANO20",
+          "usageLimit": "Límite de Uso",
+          "usageLimitPlaceholder": "ej. 100",
+          "discountType": "Tipo de Descuento",
+          "discountTypePlaceholder": "Seleccionar tipo",
+          "percentage": "Porcentaje",
+          "fixed": "Cantidad Fija",
+          "discountValue": "Valor del Descuento",
+          "expiryDate": "Fecha de Vencimiento (Opcional)",
+          "pickDate": "Seleccionar fecha",
+          "submitButton": "Crear Cupón"
+        },
+        "toast": {
+          "successTitle": "Cupón Creado",
+          "successDescription": "El cupón {{code}} ya está activo.",
+          "failTitle": "Error al Crear"
+        }
+      },
+      "list": {
+        "title": "Tus Cupones Activos",
+        "description": "Gestiona tus cupones existentes.",
+        "noCoupons": "Aún no has creado ningún cupón.",
+        "expires": "Vence",
+        "never": "Nunca",
+        "usage": "Uso",
+        "share": "Compartir",
+        "toastTitle": "¡Enlace copiado!",
+        "toastDescription": "Un enlace compartible para el cupón {{link}} ha sido copiado a tu portapapeles.",
+        "shareModal": {
+          "title": "Compartir Cupón",
+          "description": "Comparte este enlace para que los clientes puedan usar tu cupón.",
+          "link": "Enlace",
+          "copy": "Copiar",
+          "close": "Cerrar"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "fetchError": "No se pudieron obtener los cupones.",
+        "success": "¡Éxito!",
+        "createSuccess": "El cupón {{code}} se creó con éxito.",
+        "createFail": "No se pudo crear el cupón.",
+        "createError": "Ocurrió un error inesperado.",
+        "linkCopied": "¡Enlace copiado!"
+      }
+    }
+  }
+}

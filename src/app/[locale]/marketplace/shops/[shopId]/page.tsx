@@ -105,7 +105,7 @@ export default function ShopFrontPage() {
     if (error) {
         return (
             <Card className="text-center p-8">
-                <CardTitle className="text-destructive">{t('errorTitle')}</CardTitle>
+                <CardTitle className="text-destructive">{t('errors.title')}</CardTitle>
                 <CardDescription>{error}</CardDescription>
                 <Button asChild variant="outline" className="mt-4">
                     <Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link>
@@ -154,7 +154,7 @@ export default function ShopFrontPage() {
                             ) : (
                                 <Button asChild className="w-full sm:w-auto">
                                     <Link href={`/messages?with=${shop.ownerId}`}>
-                                        <MessageCircle className="mr-2 h-4 w-4" /> {t('contactButton')}
+                                        <MessageSquare className="mr-2 h-4 w-4" /> {t('contactButton')}
                                     </Link>
                                 </Button>
                             )}

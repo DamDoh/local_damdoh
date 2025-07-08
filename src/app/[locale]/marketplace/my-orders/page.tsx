@@ -49,7 +49,7 @@ export default function MyOrdersPage() {
             const result = await getSellerOrdersCallable();
             setOrders((result?.data as any)?.orders || []);
         } catch (error: any) {
- toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchError') });
+            toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchError') });
         } finally {
             setIsLoading(false);
         }
@@ -66,7 +66,7 @@ export default function MyOrdersPage() {
     const handleStatusUpdate = async (orderId: string, newStatus: MarketplaceOrder['status']) => {
         try {
             await updateOrderStatusCallable({ orderId, newStatus });
- toast({ title: t('toast.successTitle'), description: t('toast.updateSuccess', { status: t(`status.${newStatus}`) }) });
+            toast({ title: t('toast.successTitle'), description: t('toast.updateSuccess', { status: t(`status.${newStatus}`) }) });
             fetchOrders(); // Refresh the list
         } catch (error: any) {
             toast({ variant: "destructive", title: t('toast.failTitle'), description: error.message });
@@ -90,9 +90,9 @@ export default function MyOrdersPage() {
     
     if (!user) {
         return (
- <Card className=\"text-center py-8\">
+            <Card className="text-center py-8">
                 <CardHeader><CardTitle>{t('auth.title')}</CardTitle></CardHeader>
- <CardContent>
+                <CardContent>
                     <CardDescription>{t('auth.description')}</CardDescription>
                     <Button asChild className="mt-4"><Link href="/auth/signin">{t('auth.button')}</Link></Button>
                 </CardContent>
@@ -107,8 +107,8 @@ export default function MyOrdersPage() {
             </Link>
             <Card>
                 <CardHeader>
- <CardTitle className=\"flex items-center gap-2\"><ShoppingCart className=\"h-6 w-6\" />{t('title')}</CardTitle>
- <CardDescription>{t('description')}</CardDescription>
+                    <CardTitle className="flex items-center gap-2"><ShoppingCart className="h-6 w-6" />{t('title')}</CardTitle>
+                    <CardDescription>{t('description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Table>
