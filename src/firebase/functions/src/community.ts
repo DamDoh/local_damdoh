@@ -126,6 +126,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const batch = db.batch();
 
+    // Denormalize author data on write for performance
     batch.set(commentRef, {
         content,
         userId: uid,
@@ -161,36 +162,16 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     if (commentsSnapshot.empty) {
         return { replies: [], lastVisible: null };
     }
-
-    const authorIds = [...new Set(commentsSnapshot.docs.map(doc => doc.data().userId).filter(Boolean))];
-    const profiles: Record<string, any> = {};
-
-    if (authorIds.length > 0) {
-        const profileChunks: string[][] = [];
-        for (let i = 0; i < authorIds.length; i += 30) {
-            profileChunks.push(authorIds.slice(i, i + 30));
-        }
-        for (const chunk of profileChunks) {
-            const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
-            profileDocs.forEach(doc => {
-                profiles[doc.id] = {
-                    displayName: doc.data().displayName || 'Unknown User',
-                    avatarUrl: doc.data().avatarUrl || null,
-                };
-            });
-        }
-    }
-
+    
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
-        const authorProfile = profiles[commentData.userId] || { displayName: 'Unknown User', avatarUrl: null };
         return {
             id: doc.id,
             content: commentData.content,
-            author: {
+            author: { // Standardized author object
                 id: commentData.userId,
-                name: authorProfile.displayName,
-                avatarUrl: authorProfile.avatarUrl,
+                name: commentData.userName || 'Unknown User',
+                avatarUrl: commentData.userAvatar || null,
             },
             timestamp: (commentData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }

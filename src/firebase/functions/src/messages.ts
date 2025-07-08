@@ -99,7 +99,6 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
     return { conversations };
 });
 
-
 // Sends a new message to a conversation.
 export const sendMessage = functions.https.onCall(async (data, context) => {
     const userId = checkAuth(context);

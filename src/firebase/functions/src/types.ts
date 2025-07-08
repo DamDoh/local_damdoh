@@ -446,6 +446,7 @@ export interface AgronomistDashboardData {
   }[];
   pendingConsultationRequests: {
     id: string;
+    farmerId: string;
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
@@ -641,6 +642,20 @@ export interface FinancialProduct {
   createdAt: string;
 }
 
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
+
+
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -689,10 +704,6 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
-    // Re-introducing denormalized fields for use in FeedItemCard
-    userId: string;
-    userName: string;
-    userAvatar?: string;
 }
 
 export interface PollOption {
@@ -836,16 +847,3 @@ export type ServiceItem = MarketplaceItem & {
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
