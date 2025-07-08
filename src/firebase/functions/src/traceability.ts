@@ -1,5 +1,4 @@
 
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -430,14 +429,36 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
         .where("farmFieldId", "==", farmFieldId)
         .orderBy("timestamp", "asc")
         .get();
+        
+      const actorIds = [...new Set(eventsSnapshot.docs.map(doc => doc.data().actorRef).filter(Boolean))];
+      const actorProfiles: Record<string, any> = {};
+
+      if (actorIds.length > 0) {
+          const profileChunks: string[][] = [];
+          for (let i = 0; i < actorIds.length; i += 30) {
+              profileChunks.push(actorIds.slice(i, i + 30));
+          }
+          for (const chunk of profileChunks) {
+              const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+              profileDocs.forEach(doc => {
+                  actorProfiles[doc.id] = {
+                      name: doc.data().displayName || 'Unknown User',
+                      role: doc.data().primaryRole || 'Stakeholder',
+                      avatarUrl: doc.data().avatarUrl || null,
+                  };
+              });
+          }
+      }
 
       const events = eventsSnapshot.docs.map((doc) => {
         const eventData = doc.data();
         if (!eventData) return null; // Defensive check
+        const actorProfile = actorProfiles[eventData.actorRef] || { name: 'System', role: 'Platform', avatarUrl: null };
         return {
           id: doc.id,
           ...eventData,
           timestamp: (eventData.timestamp as admin.firestore.Timestamp)?.toDate ? (eventData.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
+          actor: actorProfile,
         };
       }).filter(Boolean); // Filter out any null results
 

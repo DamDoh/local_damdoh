@@ -28,10 +28,16 @@ interface CropDetails {
 }
 
 interface TraceabilityEvent {
-    id: string;
-    eventType: string;
-    timestamp: string;
-    payload: any;
+  id: string;
+  eventType: string;
+  timestamp: string;
+  payload: any;
+  actor: {
+    name: string;
+    role: string;
+    avatarUrl?: string;
+  };
+  geoLocation?: { lat: number; lng: number } | null;
 }
 
 const getEventIcon = (eventType: string) => {
