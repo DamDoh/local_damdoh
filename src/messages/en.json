@@ -50,111 +50,6 @@
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
   },
-  "aboutPage": {
-    "hero": {
-      "title": "Empowering Farmers, Restoring the Planet",
-      "subtitle": "At DamDoh, we believe that the future of our planet rests in the hands of its smallest farmers."
-    },
-    "vision": {
-      "title": "Farmers as Stewards of the Earth",
-      "p1": "Agriculture is not just a way of life — it is the foundation of healthy communities, resilient economies, cultural continuity, and the biodiversity that sustains all life. Yet today, a broken global food supply chain, deep inequalities, and a warming climate threaten not only farmer livelihoods but the very ecosystems we all depend on.",
-      "p2": "We exist to change that — by empowering farmers to become agents of biodiversity restoration, climate resilience, and sustainable prosperity.",
-      "foundersTitle": "Our Founders"
-    },
-    "challenge": {
-      "title": "The Challenge: A Broken System, A Warming Planet",
-      "description": "Our food comes through a supply chain riddled with vulnerabilities:",
-      "list": {
-        "knowledge": "Knowledge Gaps: Farmers often lack access to sustainable, biodiversity-friendly practices, lowering yields and degrading ecosystems.",
-        "market": "Market Barriers: Unfair markets and middlemen trap farmers in poverty and discourage investment in the land.",
-        "quality": "Quality & Standards: Without access to standards and tools, farmers can’t meet premium, biodiversity-conscious market demands.",
-        "logistics": "Logistics Failures: Poor infrastructure leads to food waste and unnecessary emissions.",
-        "financial": "Financial Exclusion: Without financing, farmers cannot afford to transition to regenerative, climate-smart agriculture.",
-        "climate": "Climate Vulnerability: Floods, droughts, and pests — worsened by climate change — devastate harvests and drive migration.",
-        "informal": "Informal Systems: Lack of transparency erodes trust and undermines sustainability goals."
-      }
-    },
-    "solution": {
-      "title": "Our Solution: DamDoh — A Global “Super App” for a Restored Planet",
-      "description": "DamDoh is a smart, integrated digital platform designed to empower farmers as stewards of biodiversity and catalysts of climate action:",
-      "list": {
-        "education": "Education & Training: Practical, accessible courses on regenerative farming, soil health, crop diversity, and business skills.",
-        "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and real-time weather forecasts to provide precise soil and ecosystem analysis.",
-        "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly, traceable products.",
-        "logistics": "Supply Chain & Logistics: Transparent, efficient logistics minimize loss, reduce emissions, and ensure traceability from farm to fork.",
-        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in biodiversity-enhancing practices and climate-smart innovations."
-      }
-    },
-    "beyondTechnology": {
-      "title": "Beyond Technology: A Global Hub for Restoration",
-      "list": {
-        "p2p": {
-          "title": "Farmer-to-Farmer",
-          "content": "Sharing indigenous knowledge and regenerative techniques across borders."
-        },
-        "p2b": {
-          "title": "Farmer-to-Buyer",
-          "content": "Linking farmers to buyers committed to biodiversity and climate goals."
-        },
-        "p2e": {
-          "title": "Farmer-to-Expert",
-          "content": "Providing direct advice from agronomists, ecologists, and researchers."
-        },
-        "p2w": {
-          "title": "Farmer-to-World",
-          "content": "Partnering with NGOs, governments, and cooperatives to scale impact."
-        }
-      }
-    },
-    "commitment": {
-      "title": "Our Commitment: Restoring Hope, Land, and Livelihoods",
-      "p1": "At DamDoh, we see farmers not only as food producers but as guardians of the earth — capable of turning degraded fields into thriving, biodiverse landscapes.",
-      "p2": "By empowering smallholders with knowledge, tools, and fair markets, we help them earn more, restore more, and lead their communities toward a sustainable, dignified future.",
-      "p3": "When farmers flourish, biodiversity thrives. When biodiversity thrives, the planet heals.",
-      "button": "Join Us - Let Farmers Lead the Way"
-    }
-  },
-  "Auth": {
-    "signUpWelcome": "Join the global agricultural movement with {appName}",
-    "signInWelcome": "Welcome back to {appName}",
-    "forgotPasswordResetPrompt": "Reset your password for {appName}",
-    "resetPasswordPrompt": "Set a new password for {appName}",
-    "signInTitle": "Sign In",
-    "signInDescription": "Enter your credentials to access your account.",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "••••••••",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing In...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign up",
-    "signInLink": "Sign in",
-    "recoverWithUniversalIdPrompt": "Or recover account with Universal ID",
-    "signUpTitle": "Create an Account",
-    "signUpDescription": "Enter your information to get started.",
-    "nameLabel": "Name",
-    "namePlaceholder": "Your full name",
-    "roleLabel": "Your Role",
-    "rolePlaceholder": "Select your primary role",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creating Account...",
-    "signUpButton": "Create Account",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "forgotPasswordTitle": "Forgot Password?",
-    "forgotPasswordDescription": "Enter your email and we'll send you a reset link.",
-    "sendingEmailButton": "Sending Email...",
-    "sendResetLinkButton": "Send Reset Link",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Enter your new password below.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "••••••••",
-    "resettingPasswordButton": "Resetting Password...",
-    "resetPasswordButton": "Reset Password"
-  },
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Syncing {count} pending actions...",
@@ -192,103 +87,301 @@
   "LanguageSwitcher": {
     "toggle": "Toggle language"
   },
-  "searchPage": {
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search for anything...",
-      "searchButton": "Search",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Showing general results. Try being more specific for a smarter search.",
-      "filtersTitle": "Applied Filters",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "vti_registry": "Traceability Reports",
-        "knowledge_articles": "Articles",
-        "agri_events": "Events"
-      },
-      "noResults": "No results found.",
-      "tryAgain": "Try a different search term or scan a code."
+  "Auth": {
+    "signUpWelcome": "Join the global agricultural movement with {appName}",
+    "signInWelcome": "Welcome back to {appName}",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Set a new password for {appName}",
+    "signInTitle": "Sign In",
+    "signInDescription": "Enter your credentials to access your account.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing In...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign up",
+    "signInLink": "Sign in",
+    "recoverWithUniversalIdPrompt": "Or recover account with Universal ID",
+    "signUpTitle": "Create an Account",
+    "signUpDescription": "Enter your information to get started.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your full name",
+    "roleLabel": "Your Role",
+    "rolePlaceholder": "Select your primary role",
+    "confirmPasswordLabel": "Confirm Password",
+    "creatingAccountButton": "Creating Account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "Enter your email and we'll send you a reset link.",
+    "sendingEmailButton": "Sending Email...",
+    "sendResetLinkButton": "Send Reset Link",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter your new password below.",
+    "newPasswordLabel": "New Password",
+    "resettingPasswordButton": "Resetting Password...",
+    "resetPasswordButton": "Reset Password"
+  },
+  "blogPage": {
+    "title": "DamDoh Blog & News",
+    "description": "Latest updates, stories, and insights from the agricultural world.",
+    "meta": "{author} on {date, date, long}",
+    "readMore": "Read More",
+    "noPosts": {
+      "title": "No Articles Yet",
+      "description": "Check back soon for insights, stories, and news from the DamDoh community."
+    },
+    "error": {
+      "title": "Error Loading Articles",
+      "description": "We couldn't fetch the latest articles. Please try again later."
     }
   },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle": "We'd love to hear from you. Here's how you can reach us.",
-    "emailUs": {
-      "title": "Email Us",
-      "general": "General Inquiries",
-      "support": "Support",
-      "partnerships": "Partnerships"
+  "Blog": {
+    "backLink": "Back to Blog",
+    "notFound": {
+      "title": "Post Not Found",
+      "description": "The article you are looking for does not exist or has been moved.",
+      "backButton": "Return to Blog"
     },
-    "callUs": {
-      "title": "Call Us",
-      "hours": "Mon - Fri, 9am - 5pm (EAT)",
-      "phone": "+254 20 1234567"
+    "errors": {
+      "title": "Error",
+      "load": "Could not load the article. Please try again."
     },
-    "ourOffice": {
-      "title": "Our Office",
-      "org": "DamDoh Foundation",
-      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    "originalContentTitle": "Original Content ({{lang}})"
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Find answers to your questions and learn how to get the most out of DamDoh.",
+    "howCanWeHelp": "How can we help you today?",
+    "searchPlaceholder": "Search for topics or questions...",
+    "browseTopics": "Or browse by topic",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Learn the basics of setting up your account and profile.",
+      "placeholder": "Content for Getting Started will be available soon."
     },
-    "sendMessage": {
-      "title": "Send us a Message",
-      "nameLabel": "Your Name",
-      "namePlaceholder": "John Doe",
-      "emailLabel": "Your Email",
-      "emailPlaceholder": "you@example.com",
-      "subjectLabel": "Subject",
-      "subjectPlaceholder": "Regarding...",
-      "messageLabel": "Your Message",
-      "messagePlaceholder": "Type your message here.",
-      "buttonText": "Send Message",
-      "note": "We'll get back to you as soon as possible."
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "How to buy, sell, and list services effectively.",
+      "placeholder": "Content for Marketplace Guide will be available soon."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Manage your password, notifications, and privacy settings.",
+      "placeholder": "Content for Account Management will be available soon."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Find solutions to common issues and technical problems.",
+      "placeholder": "Content for Troubleshooting will be available soon."
+    },
+    "stillNeedHelp": {
+      "title": "Still need help?",
+      "description": "If you can't find what you're looking for, our support team is here to assist.",
+      "button": "Contact Support"
     }
   },
-  "careers": {
-    "title": "Careers at DamDoh",
-    "subtitle": "Join our mission to empower farmers and restore the planet.",
-    "whyWorkWithUs": {
-      "title": "Why Work With Us?",
-      "intro": "We are a passionate, mission-driven team dedicated to creating meaningful change. We offer:",
-      "point1": "A collaborative and innovative environment.",
-      "point2": "The opportunity to work on a platform with global impact.",
-      "point3": "Competitive salary and benefits.",
-      "point4": "Flexible work arrangements.",
-      "point5": "A culture that values learning and growth."
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Our commitment to a safe, respectful, and professional community.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a constructive and trustworthy space for all stakeholders, we ask that you adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful and Constructive",
+      "description": "Engage in discussions with professionalism and courtesy. Disagreements are fine, but personal attacks, harassment, hate speech, or discriminatory behavior will not be tolerated."
     },
-    "currentOpenings": {
-      "title": "Current Openings"
+    "authentic": {
+      "title": "Be Authentic and Honest",
+      "description": "Represent yourself and your business truthfully. Do not post misleading information, create fake profiles, or engage in spammy or deceptive practices."
     },
-    "openings": {
-      "job1": {
-        "title": "Senior Full-Stack Engineer",
-        "location": "Remote / Nairobi",
-        "type": "Full-Time",
-        "description": "Build and scale the core features of the DamDoh platform. Experience with Next.js, Firebase, and TypeScript is essential."
+    "relevant": {
+      "title": "Stay On-Topic and Add Value",
+      "description": "Contribute to discussions in a way that is relevant to the forum or group topic. Share knowledge, ask thoughtful questions, and help build the collective wisdom of the community."
+    },
+    "fairTrade": {
+      "title": "Conduct Fair and Professional Transactions",
+      "description": "All marketplace transactions should be conducted in good faith. Fulfill your commitments, communicate clearly, and resolve disputes respectfully."
+    },
+    "sustainable": {
+      "title": "Promote Sustainable and Ethical Practices",
+      "description": "We encourage content that supports sustainable agriculture, biodiversity, and ethical supply chains. Do not promote practices that are environmentally harmful or exploitative."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our support team at {emailLink}. We are committed to reviewing reports and taking appropriate action."
+    },
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thank you for helping us build a positive and impactful community."
+  },
+  "industryNewsPage": {
+    "title": "Industry News",
+    "description": "The latest trends, research, and policy updates in the global agricultural sector.",
+    "searchPlaceholder": "Search news articles...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "readButton": "Read Article",
+    "noNews": {
+      "title": "No News Found",
+      "description": "Check back later for the latest updates on agricultural trends and policies."
+    },
+    "news1": {
+      "title": "Global Coffee Prices See Slight Increase Amidst Supply Chain Concerns in Southeast Asia",
+      "excerpt": "Coffee futures edged higher this week as reports of shipping delays in key Southeast Asian ports raise concerns about supply chain stability ahead of the holiday season."
+    },
+    "news2": {
+      "title": "EU Implements New Regulations for Organic Food Imports, Stricter Verification Required",
+      "excerpt": "Starting next quarter, all organic produce imported into the European Union will require digital certification and enhanced traceability logs to combat fraudulent labeling."
+    },
+    "news3": {
+      "title": "Study Shows Regenerative Farming Practices Can Increase Soil Carbon by up to 15% in 5 Years",
+      "excerpt": "A landmark 5-year study published in 'Nature Sustainability' demonstrates the significant potential of no-till farming and cover cropping for carbon sequestration."
+    }
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Agricultural Events",
+      "description": "Discover conferences, workshops, and trade shows happening in the agricultural community.",
+      "createNewEvent": "Create New Event",
+      "pinAsHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin from Homepage",
+      "searchEvents": "Search events",
+      "searchPlaceholder": "Search by title, description, or location...",
+      "filterPlaceholder": "Filter by event type",
+      "viewDetails": "View Details",
+      "organizedBy": "Organized by {organizer}",
+      "noEventsFound": "No Events Found",
+      "noEventsHint": "There are currently no events matching your criteria. Why not {link}?",
+      "toast": {
+        "pinned": {
+          "title": "Events Pinned!",
+          "description": "Agri-Events is now your default homepage."
+        },
+        "unpinned": {
+          "title": "Homepage Unpinned!",
+          "description": "The Main Dashboard is now your default homepage."
+        }
       },
-      "job2": {
-        "title": "Lead Agronomist - East Africa",
-        "location": "Nairobi, Kenya",
-        "type": "Full-Time",
-        "description": "Lead our field agent team, develop sustainable farming curricula, and engage with farmer cooperatives."
-      },
-      "job3": {
-        "title": "Data Scientist - Agricultural Insights",
-        "location": "Remote",
-        "type": "Full-Time",
-        "description": "Analyze platform and satellite data to provide actionable insights for farmers and supply chain partners."
+      "errorLoadingEvents": "Error Loading Events",
+      "couldNotFetchEvents": "Could not fetch the list of events at this time."
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled professionals or offer your expertise to the agricultural community.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search for services or skills...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or be the first to offer a new service.",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Could not fetch services at this time. Please try again later."
       }
-    },
-    "applyNowButton": "Apply Now",
-    "noOpenings": {
-      "title": "No Current Openings",
-      "content1": "We are always looking for talented individuals passionate about our mission. Feel free to send your resume to {emailLink}.",
-      "emailLink": "careers@damdoh.org"
     }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "This privacy notice for DamDoh ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services').",
+    "whatInfoWeCollect": {
+      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
+    },
+    "howWeUseInfo": {
+      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
+      "content": "We may share information in specific situations and with specific categories of third parties, such as financial partners for loan applications, only with your explicit consent."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "We may use cookies and similar tracking technologies to access or store information. Specific information about how we use such technologies is set out in our Cookie Notice."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "We have implemented a series of technical and organizational security measures designed to protect the security of any personal information we process."
+    },
+    "minors": {
+      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "We do not knowingly collect data from or market to children under 18 years of age."
+    },
+    "privacyRights": {
+      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "You may review, change, or terminate your account at any time. Depending on your location, you may have additional rights regarding your personal information."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "Most web browsers and some mobile operating systems include a Do-Not-Track ('DNT') feature. At this stage, we do not currently respond to DNT browser signals."
+    },
+    "updatesToNotice": {
+      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws. The updated version will be indicated by an updated 'Revised' date."
+    },
+    "contactUs": {
+      "heading": "11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?",
+      "content": "If you have questions or comments about this notice, you may email us at support@damdoh.org."
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "Welcome to DamDoh. These Terms of Service ('Terms') govern your use of the DamDoh mobile application and website ('Platform'), operated by the DamDoh Foundation.",
+    "agreementToTerms": {
+      "heading": "1. Agreement to Terms",
+      "content": "By using our Platform, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Platform."
+    },
+    "intellectualProperty": {
+      "heading": "2. Intellectual Property Rights",
+      "content": "The Platform and its original content, features, and functionality are and will remain the exclusive property of the DamDoh Foundation. Your user-generated content remains your own, but you grant us a license to use it in connection with operating the Platform."
+    },
+    "userRepresentations": {
+      "heading": "3. User Representations",
+      "content": "By using the Platform, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information; (3) you have the legal capacity and you agree to comply with these Terms."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Prohibited Activities",
+      "content": "You may not access or use the Platform for any purpose other than that for which we make the Platform available. Prohibited activities include, but are not limited to: fraud, spamming, disseminating viruses, or interfering with the security features of the Platform."
+    },
+    "platformManagement": {
+      "heading": "5. Platform Management",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Platform for violations of these Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms; (3) in our sole discretion and without limitation, refuse, restrict access to, or disable any of your Contributions."
+    },
+    "termAndTermination": {
+      "heading": "6. Term and Termination",
+      "content": "These Terms shall remain in full force and effect while you use the Platform. We may suspend or terminate your account at any time, without warning, for any breach of these Terms."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications and Interruptions",
+      "content": "We reserve the right to change, modify, or remove the contents of the Platform at any time or for any reason at our sole discretion without notice. We cannot guarantee the Platform will be available at all times."
+    },
+    "governingLaw": {
+      "heading": "8. Governing Law",
+      "content": "These Terms and your use of the Platform are governed by and construed in accordance with the laws of Kenya applicable to agreements made and to be entirely performed within Kenya, without regard to its conflict of law principles."
+    },
+    "disputeResolution": {
+      "heading": "9. Dispute Resolution",
+      "content": "To expedite resolution and control the cost of any dispute, you agree to first attempt to negotiate any Dispute informally for at least thirty (30) days before initiating arbitration."
+    },
+    "contactUs": {
+      "heading": "10. Contact Us",
+      "content": "In order to resolve a complaint regarding the Platform or to receive further information regarding use of the Platform, please contact us."
+    },
+    "conclusion": "To contact us, please use the {contactLink} page."
   }
 }
+
+    

@@ -50,111 +50,6 @@
     "googlePlayAlt": "Consíguelo en Google Play",
     "appStoreAlt": "Descargar en la App Store"
   },
-  "aboutPage": {
-    "hero": {
-      "title": "Empoderando a los Agricultores, Restaurando el Planeta",
-      "subtitle": "En DamDoh, creemos que el futuro de nuestro planeta descansa en las manos de sus agricultores más pequeños."
-    },
-    "vision": {
-      "title": "Los Agricultores como Guardianes de la Tierra",
-      "p1": "La agricultura no es solo una forma de vida, es la base de comunidades saludables, economías resilientes, continuidad cultural y la biodiversidad que sustenta toda la vida. Sin embargo, hoy en día, una cadena de suministro de alimentos global rota, profundas desigualdades y un clima que se calienta amenazan no solo los medios de vida de los agricultores, sino los mismos ecosistemas de los que todos dependemos.",
-      "p2": "Existimos para cambiar eso, empoderando a los agricultores para que se conviertan en agentes de restauración de la biodiversidad, resiliencia climática y prosperidad sostenible.",
-      "foundersTitle": "Nuestros Fundadores"
-    },
-    "challenge": {
-      "title": "El Desafío: Un Sistema Roto, un Planeta que se Calienta",
-      "description": "Nuestros alimentos llegan a través de una cadena de suministro plagada de vulnerabilidades:",
-      "list": {
-        "knowledge": "Brechas de conocimiento: Los agricultores a menudo carecen de acceso a prácticas sostenibles y amigables con la biodiversidad, lo que reduce los rendimientos y degrada los ecosistemas.",
-        "market": "Barreras de mercado: Los mercados injustos y los intermediarios atrapan a los agricultores en la pobreza y desalientan la inversión en la tierra.",
-        "quality": "Calidad y Estándares: Sin acceso a estándares y herramientas, los agricultores no pueden satisfacer las demandas de los mercados premium conscientes de la biodiversidad.",
-        "logistics": "Fallas logísticas: La infraestructura deficiente conduce al desperdicio de alimentos y a emisiones innecesarias.",
-        "financial": "Exclusión financiera: Sin financiamiento, los agricultores no pueden permitirse la transición a una agricultura regenerativa e inteligente con el clima.",
-        "climate": "Vulnerabilidad climática: Inundaciones, sequías y plagas, agravadas por el cambio climático, devastan las cosechas e impulsan la migración.",
-        "informal": "Sistemas informales: La falta de transparencia erosiona la confianza y socava los objetivos de sostenibilidad."
-      }
-    },
-    "solution": {
-      "title": "Nuestra Solución: DamDoh – Una “Super App” Global para un Planeta Restaurado",
-      "description": "DamDoh es una plataforma digital inteligente e integrada diseñada para empoderar a los agricultores como guardianes de la biodiversidad y catalizadores de la acción climática:",
-      "list": {
-        "education": "Educación y Capacitación: Cursos prácticos sobre agricultura regenerativa, salud del suelo y habilidades empresariales.",
-        "ai": "Agricultura Inteligente e Información de IA: Aprovechamos datos satelitales, IA y pronósticos meteorológicos para proporcionar análisis precisos de suelos y ecosistemas.",
-        "marketplace": "Mercado y Comercio Electrónico: Los agricultores se conectan directamente con compradores éticos que valoran los productos amigables con la biodiversidad.",
-        "logistics": "Cadena de Suministro y Logística: Logística transparente y eficiente que minimiza las pérdidas y reduce las emisiones.",
-        "financial": "Herramientas Financieras: Soluciones de crédito, microfinanzas y crowdfunding ayudan a los agricultores a invertir en innovaciones climáticamente inteligentes."
-      }
-    },
-    "beyondTechnology": {
-      "title": "Más Allá de la Tecnología: Un Centro Global para la Restauración",
-      "list": {
-        "p2p": {
-          "title": "De Agricultor a Agricultor",
-          "content": "Compartiendo conocimientos indígenas y técnicas regenerativas a través de las fronteras."
-        },
-        "p2b": {
-          "title": "De Agricultor a Comprador",
-          "content": "Vinculando a los agricultores con compradores comprometidos con la biodiversidad y los objetivos climáticos."
-        },
-        "p2e": {
-          "title": "De Agricultor a Experto",
-          "content": "Brindando asesoramiento directo de agrónomos, ecologistas e investigadores."
-        },
-        "p2w": {
-          "title": "De Agricultor al Mundo",
-          "content": "Asociándose con ONG, gobiernos y cooperativas para escalar el impacto."
-        }
-      }
-    },
-    "commitment": {
-      "title": "Nuestro Compromiso: Restaurar la Esperanza, la Tierra y los Medios de Vida",
-      "p1": "En DamDoh, vemos a los agricultores no solo como productores de alimentos, sino como guardianes de la tierra, capaces de convertir campos degradados en paisajes prósperos y biodiversos.",
-      "p2": "Al empoderar a los pequeños agricultores con conocimiento, herramientas y mercados justos, les ayudamos a ganar más, restaurar más y liderar a sus comunidades hacia un futuro sostenible y digno.",
-      "p3": "Cuando los agricultores prosperan, la biodiversidad florece. Cuando la biodiversidad florece, el planeta sana.",
-      "button": "Únete a nosotros - Deja que los agricultores lideren el camino"
-    }
-  },
-  "Auth": {
-    "signUpWelcome": "Únete al movimiento agrícola global con {appName}",
-    "signInWelcome": "Bienvenido de nuevo a {appName}",
-    "forgotPasswordResetPrompt": "Restablece tu contraseña para {appName}",
-    "resetPasswordPrompt": "Establece una nueva contraseña para {appName}",
-    "signInTitle": "Iniciar sesión",
-    "signInDescription": "Ingresa tus credenciales para acceder a tu cuenta.",
-    "emailLabel": "Correo electrónico",
-    "emailPlaceholder": "tu@ejemplo.com",
-    "passwordLabel": "Contraseña",
-    "passwordPlaceholder": "••••••••",
-    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
-    "signingInButton": "Iniciando sesión...",
-    "signInButton": "Iniciar sesión",
-    "noAccountPrompt": "¿No tienes una cuenta?",
-    "signUpLink": "Regístrate",
-    "signInLink": "Iniciar sesión",
-    "recoverWithUniversalIdPrompt": "O recuperar cuenta con ID Universal",
-    "signUpTitle": "Crear una cuenta",
-    "signUpDescription": "Ingresa tu información para comenzar.",
-    "nameLabel": "Nombre",
-    "namePlaceholder": "Tu nombre completo",
-    "roleLabel": "Tu rol",
-    "rolePlaceholder": "Selecciona tu rol principal",
-    "confirmPasswordLabel": "Confirmar contraseña",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creando cuenta...",
-    "signUpButton": "Crear cuenta",
-    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
-    "forgotPasswordTitle": "¿Olvidaste tu contraseña?",
-    "forgotPasswordDescription": "Ingresa tu correo electrónico y te enviaremos un enlace para restablecerla.",
-    "sendingEmailButton": "Enviando correo electrónico...",
-    "sendResetLinkButton": "Enviar enlace de restablecimiento",
-    "rememberPasswordPrompt": "¿Recordaste tu contraseña?",
-    "resetPasswordTitle": "Restablecer tu contraseña",
-    "resetPasswordDescription": "Ingresa tu nueva contraseña a continuación.",
-    "newPasswordLabel": "Nueva contraseña",
-    "newPasswordPlaceholder": "••••••••",
-    "resettingPasswordButton": "Restableciendo contraseña...",
-    "resetPasswordButton": "Restablecer contraseña"
-  },
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Sincronizando {count} acciones pendientes...",
@@ -192,103 +87,301 @@
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
   },
-  "searchPage": {
-    "modal": {
-      "title": "Búsqueda Universal",
-      "placeholder": "Busca cualquier cosa...",
-      "searchButton": "Buscar",
-      "scanFailed": "Escaneo fallido",
-      "scanError": "Error de escaneo",
-      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
-      "invalidCodeError": "Este no es un código válido de recuperación o perfil de DamDoh.",
-      "interpretationTitle": "Interpretación de IA",
-      "interpretationNotesDefault": "Mostrando resultados generales. Intenta ser más específico para una búsqueda más inteligente.",
-      "filtersTitle": "Filtros aplicados",
-      "results": {
-        "users": "Perfiles",
-        "marketplaceItems": "Mercado",
-        "forums": "Foros",
-        "vti_registry": "Informes de Trazabilidad",
-        "knowledge_articles": "Artículos",
-        "agri_events": "Eventos"
-      },
-      "noResults": "No se encontraron resultados.",
-      "tryAgain": "Intenta con otro término de búsqueda o escanea un código."
+  "Auth": {
+    "signUpWelcome": "Únete al movimiento agrícola global con {appName}",
+    "signInWelcome": "Bienvenido de nuevo a {appName}",
+    "forgotPasswordResetPrompt": "Restablece tu contraseña para {appName}",
+    "resetPasswordPrompt": "Establece una nueva contraseña para {appName}",
+    "signInTitle": "Iniciar sesión",
+    "signInDescription": "Ingresa tus credenciales para acceder a tu cuenta.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+    "signingInButton": "Iniciando sesión...",
+    "signInButton": "Iniciar sesión",
+    "noAccountPrompt": "¿No tienes una cuenta?",
+    "signUpLink": "Regístrate",
+    "signInLink": "Iniciar sesión",
+    "recoverWithUniversalIdPrompt": "O recuperar cuenta con ID Universal",
+    "signUpTitle": "Crear una cuenta",
+    "signUpDescription": "Ingresa tu información para comenzar.",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre completo",
+    "roleLabel": "Tu rol",
+    "rolePlaceholder": "Selecciona tu rol principal",
+    "confirmPasswordLabel": "Confirmar contraseña",
+    "creatingAccountButton": "Creando cuenta...",
+    "signUpButton": "Crear cuenta",
+    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
+    "forgotPasswordTitle": "¿Olvidaste tu contraseña?",
+    "forgotPasswordDescription": "Ingresa tu correo electrónico y te enviaremos un enlace para restablecerla.",
+    "sendingEmailButton": "Enviando correo electrónico...",
+    "sendResetLinkButton": "Enviar enlace de restablecimiento",
+    "rememberPasswordPrompt": "¿Recordaste tu contraseña?",
+    "resetPasswordTitle": "Restablecer tu contraseña",
+    "resetPasswordDescription": "Ingresa tu nueva contraseña a continuación.",
+    "newPasswordLabel": "Nueva contraseña",
+    "resettingPasswordButton": "Restableciendo contraseña...",
+    "resetPasswordButton": "Restablecer contraseña"
+  },
+  "blogPage": {
+    "title": "Blog y Noticias de DamDoh",
+    "description": "Últimas actualizaciones, historias y conocimientos del mundo agrícola.",
+    "meta": "{author} el {date, date, long}",
+    "readMore": "Leer Más",
+    "noPosts": {
+      "title": "Aún no hay artículos",
+      "description": "Vuelve pronto para conocer las ideas, historias y noticias de la comunidad DamDoh."
+    },
+    "error": {
+      "title": "Error al cargar los artículos",
+      "description": "No se pudieron obtener los últimos artículos. Por favor, inténtalo de nuevo más tarde."
     }
   },
-  "contact": {
-    "title": "Contáctanos",
-    "subtitle": "Nos encantaría saber de ti. Así es como puedes comunicarte con nosotros.",
-    "emailUs": {
-      "title": "Envíanos un correo electrónico",
-      "general": "Consultas generales",
-      "support": "Soporte",
-      "partnerships": "Asociaciones"
+  "Blog": {
+    "backLink": "Volver al Blog",
+    "notFound": {
+      "title": "Artículo no encontrado",
+      "description": "El artículo que buscas no existe o ha sido movido.",
+      "backButton": "Volver al Blog"
     },
-    "callUs": {
-      "title": "Llámanos",
-      "hours": "Lun - Vie, 9am - 5pm (EAT)",
-      "phone": "+254 20 1234567"
+    "errors": {
+      "title": "Error",
+      "load": "No se pudo cargar el artículo. Por favor, inténtalo de nuevo."
     },
-    "ourOffice": {
-      "title": "Nuestra Oficina",
-      "org": "Fundación DamDoh",
-      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    "originalContentTitle": "Contenido Original ({{lang}})"
+  },
+  "helpCenterPage": {
+    "title": "Centro de Ayuda",
+    "subtitle": "Encuentra respuestas a tus preguntas y aprende a sacar el máximo provecho de DamDoh.",
+    "howCanWeHelp": "¿Cómo podemos ayudarte hoy?",
+    "searchPlaceholder": "Busca temas o preguntas...",
+    "browseTopics": "O busca por tema",
+    "gettingStarted": {
+      "title": "Primeros Pasos",
+      "description": "Aprende los conceptos básicos para configurar tu cuenta y perfil.",
+      "placeholder": "El contenido de 'Primeros Pasos' estará disponible pronto."
     },
-    "sendMessage": {
-      "title": "Envíanos un mensaje",
-      "nameLabel": "Tu nombre",
-      "namePlaceholder": "Juan Pérez",
-      "emailLabel": "Tu correo electrónico",
-      "emailPlaceholder": "tu@ejemplo.com",
-      "subjectLabel": "Asunto",
-      "subjectPlaceholder": "Con respecto a...",
-      "messageLabel": "Tu mensaje",
-      "messagePlaceholder": "Escribe tu mensaje aquí.",
-      "buttonText": "Enviar mensaje",
-      "note": "Nos pondremos en contacto contigo lo antes posible."
+    "marketplaceGuide": {
+      "title": "Guía del Mercado",
+      "description": "Cómo comprar, vender y listar servicios de manera efectiva.",
+      "placeholder": "El contenido de la 'Guía del Mercado' estará disponible pronto."
+    },
+    "accountManagement": {
+      "title": "Gestión de Cuenta",
+      "description": "Administra tu contraseña, notificaciones y configuración de privacidad.",
+      "placeholder": "El contenido de 'Gestión de Cuenta' estará disponible pronto."
+    },
+    "troubleshooting": {
+      "title": "Solución de Problemas",
+      "description": "Encuentra soluciones a problemas comunes y técnicos.",
+      "placeholder": "El contenido de 'Solución de Problemas' estará disponible pronto."
+    },
+    "stillNeedHelp": {
+      "title": "¿Aún necesitas ayuda?",
+      "description": "Si no encuentras lo que buscas, nuestro equipo de soporte está aquí para ayudarte.",
+      "button": "Contactar a Soporte"
     }
   },
-  "careers": {
-    "title": "Carreras en DamDoh",
-    "subtitle": "Únete a nuestra misión de empoderar a los agricultores y restaurar el planeta.",
-    "whyWorkWithUs": {
-      "title": "¿Por qué trabajar con nosotros?",
-      "intro": "Somos un equipo apasionado e impulsado por una misión, dedicado a crear un cambio significativo. Ofrecemos:",
-      "point1": "Un entorno colaborativo e innovador.",
-      "point2": "La oportunidad de trabajar en una plataforma con impacto global.",
-      "point3": "Salario y beneficios competitivos.",
-      "point4": "Acuerdos de trabajo flexibles.",
-      "point5": "Una cultura que valora el aprendizaje y el crecimiento."
+  "communityGuidelines": {
+    "title": "Normas de la Comunidad",
+    "subtitle": "Nuestro compromiso con una comunidad segura, respetuosa y profesional.",
+    "intro": "¡Bienvenido a la comunidad DamDoh! Para asegurar que nuestra plataforma siga siendo un espacio constructivo y de confianza para todos los interesados, te pedimos que sigas las siguientes normas:",
+    "respectful": {
+      "title": "Sé Respetuoso y Constructivo",
+      "description": "Participa en las discusiones con profesionalismo y cortesía. Los desacuerdos están bien, pero no se tolerarán ataques personales, acoso, discursos de odio o comportamiento discriminatorio."
     },
-    "currentOpenings": {
-      "title": "Vacantes actuales"
+    "authentic": {
+      "title": "Sé Auténtico y Honesto",
+      "description": "Representa a ti mismo y a tu negocio con veracidad. No publiques información engañosa, crees perfiles falsos ni participes en prácticas de spam o engañosas."
     },
-    "openings": {
-      "job1": {
-        "title": "Ingeniero/a Full-Stack Senior",
-        "location": "Remoto / Nairobi",
-        "type": "Tiempo completo",
-        "description": "Construye y escala las características principales de la plataforma DamDoh. Es esencial tener experiencia con Next.js, Firebase y TypeScript."
-      },
-      "job2": {
-        "title": "Agrónomo/a Principal - África Oriental",
-        "location": "Nairobi, Kenia",
-        "type": "Tiempo completo",
-        "description": "Lidera nuestro equipo de agentes de campo, desarrolla planes de estudio de agricultura sostenible y colabora con cooperativas de agricultores."
-      },
-      "job3": {
-        "title": "Científico/a de Datos - Perspectivas Agrícolas",
-        "location": "Remoto",
-        "type": "Tiempo completo",
-        "description": "Analiza datos de la plataforma y satélites para proporcionar información procesable para agricultores y socios de la cadena de suministro."
+    "relevant": {
+      "title": "Mantente en el Tema y Agrega Valor",
+      "description": "Contribuye a las discusiones de una manera que sea relevante para el tema del foro o grupo. Comparte conocimientos, haz preguntas reflexivas y ayuda a construir la sabiduría colectiva de la comunidad."
+    },
+    "fairTrade": {
+      "title": "Realiza Transacciones Justas y Profesionales",
+      "description": "Todas las transacciones del mercado deben realizarse de buena fe. Cumple tus compromisos, comunícate claramente y resuelve las disputas con respeto."
+    },
+    "sustainable": {
+      "title": "Promueve Prácticas Sostenibles y Éticas",
+      "description": "Fomentamos el contenido que apoya la agricultura sostenible, la biodiversidad y las cadenas de suministro éticas. No promuevas prácticas que sean perjudiciales para el medio ambiente o explotadoras."
+    },
+    "reporting": {
+      "title": "Reportar Violaciones",
+      "content": "Si ves contenido o comportamiento que viola estas normas, por favor repórtalo a nuestro equipo de soporte en {emailLink}. Nos comprometemos a revisar los informes y tomar las medidas apropiadas."
+    },
+    "conclusion": "Al usar DamDoh, aceptas estas normas. Nos reservamos el derecho de eliminar contenido y suspender cuentas que violen estos principios. Gracias por ayudarnos a construir una comunidad positiva e impactante."
+  },
+  "industryNewsPage": {
+    "title": "Noticias del Sector",
+    "description": "Las últimas tendencias, investigaciones y actualizaciones de políticas en el sector agrícola mundial.",
+    "searchPlaceholder": "Buscar artículos de noticias...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las categorías",
+    "sourceLabel": "Fuente",
+    "publishedLabel": "Publicado",
+    "categoryLabel": "Categoría",
+    "readButton": "Leer artículo",
+    "noNews": {
+      "title": "No se encontraron noticias",
+      "description": "Vuelve más tarde para ver las últimas actualizaciones sobre tendencias y políticas agrícolas."
+    },
+    "news1": {
+      "title": "Los precios mundiales del café experimentan un ligero aumento en medio de preocupaciones sobre la cadena de suministro en el sudeste asiático",
+      "excerpt": "Los futuros del café subieron ligeramente esta semana debido a informes de retrasos en los envíos en puertos clave del sudeste asiático, lo que genera preocupaciones sobre la estabilidad de la cadena de suministro antes de la temporada navideña."
+    },
+    "news2": {
+      "title": "La UE implementa nuevas regulaciones para las importaciones de alimentos orgánicos, se requiere una verificación más estricta",
+      "excerpt": "A partir del próximo trimestre, todos los productos orgánicos importados a la Unión Europea requerirán certificación digital y registros de trazabilidad mejorados para combatir el etiquetado fraudulento."
+    },
+    "news3": {
+      "title": "Un estudio muestra que las prácticas de agricultura regenerativa pueden aumentar el carbono del suelo hasta en un 15% en 5 años",
+      "excerpt": "Un estudio histórico de 5 años publicado en 'Nature Sustainability' demuestra el significativo potencial de la siembra directa y los cultivos de cobertura para el secuestro de carbono."
+    }
+  },
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Encuentra profesionales calificados u ofrece tu experiencia a la comunidad agrícola.",
+    "listServiceButton": "Ofrecer un Servicio",
+    "searchPlaceholder": "Buscar servicios o habilidades...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las categorías",
+    "noResultsTitle": "No se encontraron servicios",
+    "noResultsDescription": "Intenta ajustar tus filtros de búsqueda o sé el primero en ofrecer un nuevo servicio.",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "No se pudieron obtener los servicios en este momento. Por favor, inténtalo de nuevo más tarde."
       }
+    }
+  },
+  "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: 29 de octubre de 2023",
+    "introduction": "Este aviso de privacidad para DamDoh ('nosotros', 'nos' o 'nuestro'), describe cómo y por qué podríamos recopilar, almacenar, usar y/o compartir ('procesar') su información cuando utiliza nuestros servicios ('Servicios').",
+    "whatInfoWeCollect": {
+      "heading": "1. ¿QUÉ INFORMACIÓN RECOPILAMOS?",
+      "content": "Recopilamos información personal que usted nos proporciona voluntariamente cuando se registra en los Servicios, expresa interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participa en actividades en los Servicios, o de otra manera cuando nos contacta."
     },
-    "applyNowButton": "Aplicar ahora",
-    "noOpenings": {
-      "title": "No hay vacantes actualmente",
-      "content1": "Siempre estamos buscando personas con talento y apasionadas por nuestra misión. No dudes en enviarnos tu currículum a {emailLink}.",
-      "emailLink": "careers@damdoh.org"
+    "howWeUseInfo": {
+      "heading": "2. ¿CÓMO PROCESAMOS SU INFORMACIÓN?",
+      "content": "Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento."
+    },
+    "willInfoBeShared": {
+      "heading": "3. ¿CUÁNDO Y CON QUIÉN COMPARTIMOS SU INFORMACIÓN PERSONAL?",
+      "content": "Podemos compartir información en situaciones específicas y con categorías específicas de terceros, como socios financieros para solicitudes de préstamos, solo con su consentimiento explícito."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. ¿UTILIZAMOS COOKIES Y OTRAS TECNOLOGÍAS DE SEGUIMIENTO?",
+      "content": "Podemos usar cookies y tecnologías de seguimiento similares para acceder o almacenar información. La información específica sobre cómo usamos dichas tecnologías se establece en nuestro Aviso de Cookies."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?",
+      "content": "Conservamos su información durante el tiempo que sea necesario para cumplir con los fines descritos en este aviso de privacidad, a menos que la ley exija lo contrario."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?",
+      "content": "Hemos implementado una serie de medidas de seguridad técnicas y organizativas diseñadas para proteger la seguridad de cualquier información personal que procesemos."
+    },
+    "minors": {
+      "heading": "7. ¿RECOPILAMOS INFORMACIÓN DE MENORES?",
+      "content": "No recopilamos datos de niños menores de 18 años ni les comercializamos nuestros servicios a sabiendas."
+    },
+    "privacyRights": {
+      "heading": "8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?",
+      "content": "Puede revisar, cambiar o cancelar su cuenta en cualquier momento. Dependiendo de su ubicación, puede tener derechos adicionales con respecto a su información personal."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO",
+      "content": "La mayoría de los navegadores web y algunos sistemas operativos móviles incluyen una función de No Rastrear ('DNT'). En esta etapa, actualmente no respondemos a las señales de navegador DNT."
+    },
+    "updatesToNotice": {
+      "heading": "10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?",
+      "content": "Sí, actualizaremos este aviso según sea necesario para cumplir con las leyes pertinentes. La versión actualizada se indicará con una fecha de 'Revisado' actualizada."
+    },
+    "contactUs": {
+      "heading": "11. ¿CÓMO PUEDE CONTACTARNOS SOBRE ESTE AVISO?",
+      "content": "Si tiene preguntas o comentarios sobre este aviso, puede enviarnos un correo electrónico a support@damdoh.org."
+    }
+  },
+  "termsOfService": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización: 29 de octubre de 2023",
+    "introduction": "Bienvenido a DamDoh. Estos Términos de Servicio ('Términos') rigen su uso de la aplicación móvil y el sitio web de DamDoh ('Plataforma'), operados por la Fundación DamDoh.",
+    "agreementToTerms": {
+      "heading": "1. Aceptación de los Términos",
+      "content": "Al usar nuestra Plataforma, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con estos Términos, no use la Plataforma."
+    },
+    "intellectualProperty": {
+      "heading": "2. Derechos de Propiedad Intelectual",
+      "content": "La Plataforma y su contenido original, características y funcionalidad son y seguirán siendo propiedad exclusiva de la Fundación DamDoh. Su contenido generado por el usuario sigue siendo suyo, pero nos otorga una licencia para usarlo en relación con la operación de la Plataforma."
+    },
+    "userRepresentations": {
+      "heading": "3. Declaraciones del Usuario",
+      "content": "Al usar la Plataforma, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información; (3) tiene la capacidad legal y acepta cumplir con estos Términos."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Actividades Prohibidas",
+      "content": "No puede acceder ni usar la Plataforma para ningún otro propósito que no sea para el que ponemos a disposición la Plataforma. Las actividades prohibidas incluyen, entre otras: fraude, envío de spam, diseminación de virus o interferencia con las características de seguridad de la Plataforma."
+    },
+    "platformManagement": {
+      "heading": "5. Gestión de la Plataforma",
+      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear la Plataforma en busca de violaciones de estos Términos; (2) tomar las acciones legales apropiadas contra cualquier persona que, a nuestra entera discreción, viole la ley o estos Términos; (3) a nuestra entera discreción y sin limitación, rechazar, restringir el acceso o deshabilitar cualquiera de sus Contribuciones."
+    },
+    "termAndTermination": {
+      "heading": "6. Duración y Terminación",
+      "content": "Estos Términos permanecerán en pleno vigor y efecto mientras use la Plataforma. Podemos suspender o cancelar su cuenta en cualquier momento, sin previo aviso, por cualquier incumplimiento de estos Términos."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modificaciones e Interrupciones",
+      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido de la Plataforma en cualquier momento o por cualquier motivo a nuestra entera discreción sin previo aviso. No podemos garantizar que la Plataforma estará disponible en todo momento."
+    },
+    "governingLaw": {
+      "heading": "8. Ley Aplicable",
+      "content": "Estos Términos y su uso de la Plataforma se rigen e interpretan de acuerdo con las leyes de Kenia aplicables a los acuerdos realizados y que se ejecutarán en su totalidad dentro de Kenia, sin tener en cuenta sus principios de conflicto de leyes."
+    },
+    "disputeResolution": {
+      "heading": "9. Resolución de Disputas",
+      "content": "Para agilizar la resolución y controlar el costo de cualquier disputa, usted acepta intentar primero negociar cualquier Disputa de manera informal durante al menos treinta (30) días antes de iniciar un arbitraje."
+    },
+    "contactUs": {
+      "heading": "10. Contáctenos",
+      "content": "Para resolver una queja sobre la Plataforma o para recibir más información sobre el uso de la Plataforma, contáctenos."
+    },
+    "conclusion": "Para contactarnos, por favor use la página de {contactLink}."
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Eventos Agrícolas",
+      "description": "Descubre conferencias, talleres y ferias comerciales que tienen lugar en la comunidad agrícola.",
+      "createNewEvent": "Crear Nuevo Evento",
+      "pinAsHomepage": "Fijar como Página de Inicio",
+      "unpinHomepage": "Desfijar de la Página de Inicio",
+      "searchEvents": "Buscar eventos",
+      "searchPlaceholder": "Buscar por título, descripción o ubicación...",
+      "filterPlaceholder": "Filtrar por tipo de evento",
+      "viewDetails": "Ver Detalles",
+      "organizedBy": "Organizado por {organizer}",
+      "noEventsFound": "No se encontraron eventos",
+      "noEventsHint": "Actualmente no hay eventos que coincidan con tus criterios. ¿Por qué no {link}?",
+      "toast": {
+        "pinned": {
+          "title": "¡Eventos Fijados!",
+          "description": "Eventos Agrícolas es ahora tu página de inicio predeterminada."
+        },
+        "unpinned": {
+          "title": "¡Página de Inicio Desfijada!",
+          "description": "El Panel Principal es ahora tu página de inicio predeterminada."
+        }
+      },
+      "errorLoadingEvents": "Error al Cargar Eventos",
+      "couldNotFetchEvents": "No se pudo obtener la lista de eventos en este momento."
     }
   }
 }
+
+    
