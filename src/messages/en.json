@@ -367,5 +367,35 @@
         "description": "Engage with our user community, foster knowledge sharing, and gather feedback to drive product improvements for the East African region."
       }
     }
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Fostering a respectful, collaborative, and trustworthy environment for all.",
+    "intro": "Welcome to the DamDoh community! We are building a global network based on trust and mutual respect. To ensure a positive experience for everyone, please adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful & Constructive",
+      "description": "Engage in discussions with courtesy. Disagreements are fine, but personal attacks, harassment, hate speech, or bullying will not be tolerated. Focus on constructive criticism and collaborative problem-solving."
+    },
+    "authentic": {
+      "title": "Be Authentic & Honest",
+      "description": "Represent yourself and your products truthfully. Do not post misleading information, create fake profiles, or engage in deceptive practices. Transparency is the foundation of trust in our supply chain."
+    },
+    "relevant": {
+      "title": "Stay Relevant & On-Topic",
+      "description": "Keep your posts and comments relevant to the forum topic or marketplace listing. Spam, irrelevant promotions, or off-topic content may be removed to keep discussions focused and valuable."
+    },
+    "fairTrade": {
+      "title": "Uphold Fair Trade Practices",
+      "description": "Conduct all transactions and negotiations ethically. Do not engage in price-fixing, fraudulent activities, or attempts to exploit other members of the community. All dealings should be fair and transparent."
+    },
+    "sustainable": {
+      "title": "Promote Sustainable & Ethical Practices",
+      "description": "Our community values sustainability. Share and promote practices that are environmentally sound, socially responsible, and economically viable. Avoid promoting harmful or unethical agricultural practices."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content that violates these guidelines, please report it to our moderation team by flagging the content or emailing us at <emailLink>support@damdoh.org</emailLink>."
+    },
+    "conclusion": "By participating in the DamDoh community, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thank you for helping us build a positive and impactful ecosystem."
   }
 }

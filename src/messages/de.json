@@ -367,5 +367,35 @@
         "description": "Interagieren Sie mit unserer Benutzergemeinschaft, fördern Sie den Wissensaustausch und sammeln Sie Feedback, um Produktverbesserungen für die ostafrikanische Region voranzutreiben."
       }
     }
+  },
+  "communityGuidelines": {
+    "title": "Community-Richtlinien",
+    "subtitle": "Förderung einer respektvollen, kollaborativen und vertrauenswürdigen Umgebung für alle.",
+    "intro": "Willkommen in der DamDoh-Community! Wir bauen ein globales Netzwerk auf, das auf Vertrauen und gegenseitigem Respekt basiert. Um eine positive Erfahrung für alle zu gewährleisten, halten Sie sich bitte an die folgenden Richtlinien:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und konstruktiv",
+      "description": "Nehmen Sie höflich an Diskussionen teil. Meinungsverschiedenheiten sind in Ordnung, aber persönliche Angriffe, Belästigung, Hassreden oder Mobbing werden nicht toleriert. Konzentrieren Sie sich auf konstruktive Kritik und gemeinschaftliche Problemlösung."
+    },
+    "authentic": {
+      "title": "Seien Sie authentisch und ehrlich",
+      "description": "Stellen Sie sich und Ihre Produkte wahrheitsgemäß dar. Veröffentlichen Sie keine irreführenden Informationen, erstellen Sie keine gefälschten Profile und beteiligen Sie sich nicht an betrügerischen Praktiken. Transparenz ist die Grundlage des Vertrauens in unserer Lieferkette."
+    },
+    "relevant": {
+      "title": "Bleiben Sie relevant und themenbezogen",
+      "description": "Halten Sie Ihre Beiträge und Kommentare für das Forumsthema oder das Marktplatzangebot relevant. Spam, irrelevante Werbung oder themenfremde Inhalte können entfernt werden, um die Diskussionen fokussiert und wertvoll zu halten."
+    },
+    "fairTrade": {
+      "title": "Fair-Trade-Praktiken einhalten",
+      "description": "Führen Sie alle Transaktionen und Verhandlungen ethisch durch. Beteiligen Sie sich nicht an Preisabsprachen, betrügerischen Aktivitäten oder Versuchen, andere Mitglieder der Community auszunutzen. Alle Geschäfte sollten fair und transparent sein."
+    },
+    "sustainable": {
+      "title": "Nachhaltige und ethische Praktiken fördern",
+      "description": "Unsere Community legt Wert auf Nachhaltigkeit. Teilen und fördern Sie Praktiken, die umweltverträglich, sozial verantwortlich und wirtschaftlich tragfähig sind. Vermeiden Sie die Förderung schädlicher oder unethischer landwirtschaftlicher Praktiken."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte sehen, die gegen diese Richtlinien verstoßen, melden Sie dies bitte unserem Moderationsteam, indem Sie den Inhalt markieren oder uns eine E-Mail an <emailLink>support@damdoh.org</emailLink> senden."
+    },
+    "conclusion": "Durch die Teilnahme an der DamDoh-Community stimmen Sie diesen Richtlinien zu. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, ein positives und wirkungsvolles Ökosystem aufzubauen."
   }
 }
