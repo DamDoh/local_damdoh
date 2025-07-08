@@ -18,6 +18,7 @@ import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { doc, getDoc, getFirestore, collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { useUserProfile } from '@/hooks/useUserProfile';
+import { uploadFileAndGetURL } from '@/lib/storage-utils';
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -101,9 +102,10 @@ function MainContent() {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
   
-  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), []);
-  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), []);
-  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), []);
+  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), [functions]);
+  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
+  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
+  const deletePostCallable = useMemo(() => httpsCallable(functions, 'deletePost'), [functions]);
   
   useEffect(() => {
     let unsubscribeFeed: () => void = () => {};
@@ -134,8 +136,22 @@ function MainContent() {
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
+    if (!user) {
+      toast({ title: "You must be logged in to post.", variant: "destructive" });
+      return;
+    }
+    
     try {
-      await createPostCallable({ content, pollOptions: pollData });
+      let imageUrl: string | undefined = undefined;
+      // Step 1: Upload media if it exists
+      if (media) {
+        toast({ title: "Uploading media..." });
+        imageUrl = await uploadFileAndGetURL(media, `feed-posts/${user.uid}`);
+        toast({ title: "Upload complete!" });
+      }
+
+      // Step 2: Call the cloud function with all data
+      await createPostCallable({ content, pollOptions: pollData, imageUrl });
       toast({ title: "Post Created!", description: "Your post is now live." });
       // Feed will update automatically via onSnapshot
     } catch (error) {
@@ -145,6 +161,10 @@ function MainContent() {
   };
 
   const handleLikePost = async (postId: string) => {
+    if (!user) {
+        toast({ title: "You must be logged in to like a post.", variant: "destructive" });
+        return;
+    }
     try {
       await likePostCallable({ postId });
     } catch(error) {
@@ -154,6 +174,10 @@ function MainContent() {
   };
   
   const handleCommentOnPost = async (postId: string, commentText: string) => {
+     if (!user) {
+        toast({ title: "You must be logged in to comment.", variant: "destructive" });
+        return;
+    }
      try {
         await addCommentCallable({ postId, content: commentText });
         toast({ title: "Comment added!" });
@@ -163,9 +187,20 @@ function MainContent() {
      }
   };
 
-  const handleDeletePost = (postId: string) => {
-    setFeedItems(prevItems => prevItems.filter(item => item.id !== postId));
-     toast({ title: "Post Deleted (Simulated)" });
+  const handleDeletePost = async (postId: string) => {
+    if (!user) {
+        toast({ title: "You must be logged in to delete a post.", variant: "destructive" });
+        return;
+    }
+
+    try {
+        await deletePostCallable({ postId });
+        toast({ title: "Post Deleted", description: "Your post has been successfully removed." });
+        // The real-time listener will automatically remove the post from the UI.
+    } catch (error) {
+        console.error("Error deleting post:", error);
+        toast({ title: "Failed to delete post", variant: "destructive" });
+    }
   };
 
   const renderContent = () => {
