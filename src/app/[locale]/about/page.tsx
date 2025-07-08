@@ -1,13 +1,13 @@
-
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain } from "lucide-react";
+import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain, Briefcase, Globe } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from 'next/link';
 
 export default function AboutPage() {
   const t = useTranslations('aboutPage');
@@ -146,5 +146,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
-    
