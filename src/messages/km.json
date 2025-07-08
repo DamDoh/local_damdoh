@@ -1,570 +1,67 @@
 
 {
-  "Forums": {
-    "title": "ប្រធានបទវេទិកា",
-    "description": "រកមើលនិងបង្កើតប្រធានបទពិភាក្សា",
-    "lastActivity": "សកម្មភាពចុងក្រោយ: {{time}}",
-    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
-    "buttons": {
-      "createTopic": "បង្កើតប្រធានបទ",
-      "joinDiscussion": "ចូលរួមការពិភាក្សា",
-      "pinHomepage": "ខ្ទាស់ទៅទំព័រដើម",
-      "unpinHomepage": "មិនខ្ទាស់ពីទំព័រដើម"
-    },
-    "notFound": {
-      "title": "រកមិនឃើញប្រធានបទ",
-      "tryDifferentSearch": "ព្យាយាមស្វែងរកពាក្យផ្សេង។",
-      "beTheFirst": "ធ្វើជាអ្នកដំបូងដែលបង្កើតប្រធានបទ។"
-    },
-    "pinning": {
-      "pinnedTitle": "បានខ្ទាស់ទំព័រដើម!",
-      "pinnedDescription": "វេទិកានេះត្រូវបានបង្ហាញជាទំព័រដើមរបស់អ្នកហើយ។",
-      "unpinnedTitle": "បានមិនខ្ទាស់ទំព័រដើម!",
-      "unpinnedDescription": "វេទិកានេះលែងត្រូវបានបង្ហាញជាទំព័រដើមរបស់អ្នកទៀតហើយ។"
-    },
-    "errors": {
-      "loadTitle": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
-      "loadDescription": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកប្រធានបទវេទិកា។",
-      "auth": {
-        "title": "មិនបានផ្ទៀងផ្ទាត់",
-        "description": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតប្រធានបទ។"
-      },
-      "incomplete": {
-        "title": "បំពេញមិនពេញលេញ",
-        "description": "សូមបំពេញគ្រប់វាលដែលត្រូវការ។"
-      },
-      "general": {
-        "title": "កំហុស",
-        "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបង្កើតប្រធានបទ។"
-      }
-    },
-    "create": {
-      "backLink": "ត្រឡប់ទៅប្រធានបទ",
-      "title": "បង្កើតប្រធានបទថ្មី",
-      "description": "ចាប់ផ្តើមការពិភាក្សាថ្មីនៅក្នុងវេទិកា។",
-      "form": {
-        "nameLabel": "ឈ្មោះប្រធានបទ",
-        "namePlaceholder": "បញ្ចូលឈ្មោះប្រធានបទរបស់អ្នក",
-        "descriptionLabel": "ការពិពណ៌នា",
-        "descriptionPlaceholder": "ពិពណ៌នាប្រធានបទរបស់អ្នកដោយសង្ខេប",
-        "submitButton": "បង្កើតប្រធានបទ",
-        "submittingButton": "កំពុងបង្កើត..."
-      },
-      "success": {
-        "title": "បង្កើតប្រធានបទបានជោគជ័យ",
-        "description": "ប្រធានបទថ្មីរបស់អ្នកត្រូវបានបង្កើតហើយ។"
-      }
-    },
-    "postView": {
-      "backLink": "ត្រឡប់ទៅ {{topicName}}",
-      "unknownUser": "អ្នកប្រើមិនស្គាល់",
-      "postMeta": "ដោយ {{author}} នៅ {{date}}",
-      "repliesTitle": "ការឆ្លើយតប ({{count}})",
-      "noReplies": "មិនទាន់មានការឆ្លើយតបទេ។",
-      "buttons": {
-        "loadMore": "ផ្ទុកបន្ថែម",
-        "loadingMore": "កំពុងផ្ទុក..."
-      },
-      "reply": {
-        "title": "បន្ថែមការឆ្លើយតប",
-        "placeholder": "សរសេរការឆ្លើយតបរបស់អ្នកនៅទីនេះ...",
-        "submitButton": "បន្ថែមការឆ្លើយតប",
-        "submittingButton": "កំពុងបញ្ជូន...",
-        "success": "បានបន្ថែមការឆ្លើយតប!"
-      },
-      "notFound": {
-        "title": "រកមិនឃើញប្រកាស",
-        "description": "ប្រកាសដែលអ្នកកំពុងរកមិនមានទេ។",
-        "backButton": "ត្រឡប់ទៅវេទិកា"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "កំហុសក្នុងការផ្ទុកប្រកាស",
-          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃប្រកាស។"
-        },
-        "loadReplies": {
-          "title": "កំហុសក្នុងការផ្ទុកការឆ្លើយតប",
-          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកការឆ្លើយតបសម្រាប់ប្រកាសនេះ។"
-        },
-        "emptyReply": "ការឆ្លើយតបមិនអាចទទេបានទេ។",
-        "submitReply": {
-          "title": "កំហុសក្នុងការបញ្ជូនការឆ្លើយតប",
-          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបញ្ជូនការឆ្លើយតបរបស់អ្នក។"
-        }
-      }
-    },
-    "topic": {
-      "unknownUser": "អ្នកប្រើមិនស្គាល់",
-      "postMeta": "ដោយ {{author}} នៅ {{date}}",
-      "buttons": {
-        "createPost": "បន្ថែមការឆ្លើយតប",
-        "loadMore": "ផ្ទុកបន្ថែម",
-        "loadingMore": "កំពុងផ្ទុក..."
-      },
-      "noPosts": {
-        "title": "មិនទាន់មានប្រកាស",
-        "description": "ធ្វើជាអ្នកដំបូងដែលឆ្លើយតបប្រធានបទនេះ។",
-        "button": "បន្ថែមការឆ្លើយតប"
-      },
-      "notFound": {
-        "title": "រកមិនឃើញប្រធានបទ",
-        "description": "ប្រធានបទដែលអ្នកកំពុងរកមិនមានទេ។",
-        "backButton": "ត្រឡប់ទៅវេទិកា"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "កំហុសក្នុងការផ្ទុកប្រកាស",
-          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកប្រកាសសម្រាប់ប្រធានបទនេះ។"
-        },
-        "loadTopic": {
-          "title": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
-          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃប្រធានបទ។"
-        }
-      }
-    },
-    "createPost": {
-      "aiHelper": {
-        "title": "ជំនួយការ AI",
-        "description": "បង្កើតសេចក្តីព្រាងប្រកាសដោយផ្អែកលើការណែនាំ។",
-        "promptLabel": "ការណែនាំ AI",
-        "promptPlaceholder": "បញ្ចូលការពិពណ៌នាសង្ខេបនៃប្រកាសដែលអ្នកចង់បង្កើត...",
-        "generateButton": "បង្កើតសេចក្តីព្រាង",
-        "generatingButton": "កំពុងបង្កើត..."
-      },
-      "title": "បង្កើតប្រកាសថ្មី",
-      "description": "បន្ថែមប្រកាសថ្មីទៅប្រធានបទនេះ។",
-      "form": {
-        "titleLabel": "ចំណងជើងប្រកាស",
-        "titlePlaceholder": "បញ្ចូលចំណងជើងប្រកាសរបស់អ្នក",
-        "contentLabel": "ខ្លឹមសារប្រកាស",
-        "contentPlaceholder": "សរសេរខ្លឹមសារប្រកាសរបស់អ្នកនៅទីនេះ...",
-        "submitButton": "បង្កើតប្រកាស",
-        "submittingButton": "កំពុងបញ្ជូន..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "បានបង្កើតសេចក្តីព្រាង AI!",
-          "description": "សេចក្តីព្រាងត្រូវបានបង្កើតសម្រាប់អ្នកហើយ។"
-        },
-        "title": "បានបង្កើតប្រកាស!",
-        "description": "ប្រកាសរបស់អ្នកត្រូវបានបង្កើតដោយជោគជ័យហើយ។"
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "ខ្វះការណែនាំ AI",
-          "description": "សូមផ្តល់ការណែនាំសម្រាប់ជំនួយការ AI ។"
-        },
-        "aiDraft": {
-          "title": "កំហុសសេចក្តីព្រាង AI",
-          "description": "បរាជ័យក្នុងការបង្កើតសេចក្តីព្រាង AI ។"
-        },
-        "incomplete": {
-          "title": "បំពេញមិនពេញលេញ",
-          "description": "សូមបំពេញគ្រប់វាលដែលត្រូវការ។"
-        },
-        "general": {
-          "title": "កំហុស",
-          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបង្កើតប្រកាស។"
-        }
-      }
-    }
+  "AppHeader": {
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "ការគ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូបលុយ",
+    "searchPlaceholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម...",
+    "signIn": "ចូលគណនី",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "logOut": "ចេញពីគណនី",
+    "switchToLightAria": "ប្តូរទៅរូបរាងភ្លឺ",
+    "switchToDarkAria": "ប្តូរទៅរូបរាងងងឹត"
   },
-  "Marketplace": {
-    "myOrdersButton": "ការបញ្ជាទិញដែលខ្ញុំបានទទួល",
-    "recommendedForYou": "បានណែនាំសម្រាប់អ្នក",
-    "discoverMore": "ស្វែងយល់បន្ថែម",
-    "noItemsFound": {
-      "title": "រកមិនឃើញធាតុទេ។",
-      "hint": "ព្យាយាមកែសម្រួលតម្រង ឬពាក្យស្វែងរករបស់អ្នក។"
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "មិនអាចទាញយកការណែនាំ AI បានទេ"
-      },
-      "search": {
-        "title": "កំហុសក្នុងការស្វែងរក",
-        "description": "មិនអាចទាញយកធាតុផ្សារបានទេ។"
-      }
-    },
-    "createListing": {
-      "backLink": "ត្រឡប់ទៅផ្សារ",
-      "title": "បង្កើតបញ្ជីថ្មី",
-      "description": "ដាក់បញ្ជីផលិតផលឬសេវាកម្មនៅក្នុងផ្សារ។",
-      "form": {
-        "nameLabel": "ឈ្មោះធាតុ/សេវាកម្ម",
-        "namePlaceholder": "បញ្ចូលឈ្មោះបញ្ជីរបស់អ្នក",
-        "typeLabel": "ប្រភេទបញ្ជី",
-        "typePlaceholder": "ជ្រើសរើសប្រភេទបញ្ជី",
-        "descriptionLabel": "ការពិពណ៌នា",
-        "descriptionPlaceholder": "ពិពណ៌នាបញ្ជីរបស់អ្នក",
-        "locationLabel": "ទីតាំង",
-        "locationPlaceholder": "បញ្ចូលទីតាំង",
-        "relatedVtiLabel": "VTI / លេខសម្គាល់បាច់ដែលពាក់ព័ន្ធ (ស្រេចចិត្ត)",
-        "relatedVtiPlaceholder": "បញ្ចូល VTI ប្រសិនបើបញ្ជីនេះសម្រាប់បាច់ជាក់លាក់",
-        "relatedVtiDescription": "ការភ្ជាប់ VTI បង្កើនការជឿទុកចិត្តរបស់អ្នកទិញ។",
-        "categoryLabel": "ប្រភេទ",
-        "categoryPlaceholder": "ជ្រើសរើសប្រភេទ",
-        "compensationLabel": "សំណង",
-        "compensationPlaceholder": "ឧទាហរណ៍: ក្នុងមួយម៉ោង, អត្រាថេរ",
-        "experienceLabel": "កម្រិតបទពិសោធន៍",
-        "experiencePlaceholder": "ឧទាហរណ៍: កម្រិតចាប់ផ្តើម, កម្រិតមធ្យម, អ្នកជំនាញ",
-        "skillsLabel": "ជំនាញដែលត្រូវការ",
-        "skillsPlaceholder": "រាយជំនាញដែលត្រូវការសម្រាប់សេវាកម្ម",
-        "skillsDescription": "ញែកជំនាញដោយសញ្ញាក្បៀស។",
-        "priceLabel": "តម្លៃ",
-        "pricePlaceholder": "បញ្ចូលតម្លៃ",
-        "unitLabel": "ឯកតា",
-        "unitPlaceholder": "ឧទាហរណ៍: គីឡូក្រាម, ដុំ, ម៉ោង",
-        "imageUrlLabel": "URL រូបភាព (ស្រេចចិត្ត)",
-        "sustainableLabel": "ការអនុវត្តប្រកបដោយនិរន្តរភាព",
-        "sustainableDescription": "បង្ហាញថាតើបញ្ជីនេះពាក់ព័ន្ធនឹងការអនុវត្តប្រកបដោយនិរន្តរភាពឬអត់។",
-        "submitButton": "បង្កើតបញ្ជី",
-        "submittingButton": "កំពុងបង្កើត..."
-      },
-      "aiPriceSuggestion": {
-        "button": "ស្នើរសុំតម្លៃជាមួយ AI",
-        "generatingButton": "កំពុងបង្កើត...",
-        "suggestionLabel": "ការណែនាំ AI:",
-        "usePriceButton": "ប្រើតម្លៃនេះ"
-      },
-      "success": {
-        "title": "ជោគជ័យ!",
-        "description": "បញ្ជីរបស់អ្នកត្រូវបានបង្កើតហើយ។"
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "ព័ត៌មានបាត់",
-            "description": "សូមបញ្ចូលឈ្មោះនិងការពិពណ៌នាមុនពេលស្នើរសុំតម្លៃ។"
-          },
-          "failed": {
-            "title": "ស្នើរសុំតម្លៃបរាជ័យ",
-            "description": "មិនអាចទទួលបានការណែនាំតម្លៃ AI ។ សូមព្យាយាមម្តងទៀតឬបញ្ចូលតម្លៃដោយដៃ។"
-          }
-        },
-        "authentication": {
-          "title": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
-          "description": "អ្នកត្រូវតែចូលដើម្បីបង្កើតបញ្ជី។"
-        },
-        "creation": {
-          "title": "ការបង្កើតបរាជ័យ",
-          "description": "មិនអាចបង្កើតបញ្ជីបានទេ។ សូមព្យាយាមម្តងទៀត។"
-        }
-      }
-    },
-    "myOrders": {
-      "backLink": "ត្រឡប់ទៅផ្សារ",
-      "title": "ការបញ្ជាទិញដែលខ្ញុំបានទទួល",
-      "description": "មើលនិងគ្រប់គ្រងការបញ្ជាទិញដែលបានទទួលពីអ្នកទិញ។",
-      "auth": {
-        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-        "description": "អ្នកត្រូវតែចូលដើម្បីមើលការបញ្ជាទិញរបស់អ្នក។",
-        "button": "ចូល"
-      },
-      "table": {
-        "date": "កាលបរិច្ឆេទ",
-        "buyer": "អ្នកទិញ",
-        "product": "ផលិតផល",
-        "total": "សរុប",
-        "status": "ស្ថានភាព",
-        "actions": "សកម្មភាព"
-      },
-      "actions": {
-        "confirm": "បញ្ជាក់",
-        "ship": "ដឹកជញ្ជូន",
-        "complete": "បញ្ចប់",
-        "cancel": "បោះបង់"
-      },
-      "status": {
-        "new": "ថ្មី",
-        "confirmed": "បានបញ្ជាក់",
-        "shipped": "បានដឹកជញ្ជូន",
-        "completed": "បានបញ្ចប់",
-        "cancelled": "បានបោះបង់"
-      },
-      "noOrders": "រកមិនឃើញការបញ្ជាទិញទេ។",
-      "toast": {
-        "errorTitle": "កំហុស",
-        "fetchError": "មិនអាចទាញយកការបញ្ជាទិញបានទេ។",
-        "successTitle": "ជោគជ័យ!",
-        "updateSuccess": "ស្ថានភាពការបញ្ជាទិញបានធ្វើបច្ចុប្បន្នភាពទៅ {{status}}",
-        "failTitle": "កំហុស"
-      }
-    },
-    "createShop": {
-      "backLink": "ត្រឡប់ទៅផ្សារ",
-      "title": "បង្កើតមុខហាងឌីជីថលរបស់អ្នក",
-      "description": "រៀបចំហាងរបស់អ្នកដើម្បីដាក់បញ្ជីធាតុនិងសេវាកម្ម។",
-      "form": {
-        "nameLabel": "ឈ្មោះហាង",
-        "namePlaceholder": "បញ្ចូលឈ្មោះហាងរបស់អ្នក",
-        "typeLabel": "ប្រភេទអ្នកពាក់ព័ន្ធ",
-        "typePlaceholder": "ជ្រើសរើសប្រភេទរបស់អ្នក",
-        "descriptionLabel": "ការពិពណ៌នា",
-        "descriptionPlaceholder": "ពិពណ៌នាហាងរបស់អ្នកនិងអ្វីដែលអ្នកផ្តល់ជូន"
-      },
-      "submitButton": "បង្កើតហាង",
-      "submittingButton": "កំពុងបង្កើត...",
-      "authErrorTitle": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
-      "authErrorDescription": "អ្នកត្រូវតែចូលដើម្បីបង្កើតហាង។",
-      "toast": {
-        "successTitle": "បានបង្កើតមុខហាង!",
-        "successDescription": "មុខហាងរបស់អ្នក \"{{shopName}}\" ត្រូវបានបង្កើតហើយ។",
-        "failTitle": "ការបង្កើតបរាជ័យ",
-        "failDescription": "មិនអាចបង្កើតហាងបានទេ។ សូមព្យាយាមម្តងទៀត។"
-      }
-    },
-    "manageService": {
-      "backLink": "ត្រឡប់ទៅ {{itemName}}",
-      "title": "គ្រប់គ្រងសេវាកម្ម៖ {{itemName}}",
-      "description": "គ្រប់គ្រងការកក់និងការកំណត់សម្រាប់សេវាកម្មនេះ។",
-      "tabs": {
-        "bookings": "ការកក់",
-        "settings": "ការកំណត់"
-      },
-      "bookingsTab": {
-        "title": "ការកក់សេវាកម្ម",
-        "description": "មើលនិងគ្រប់គ្រងការកក់សម្រាប់សេវាកម្មនេះ។",
-        "table": {
-          "date": "កាលបរិច្ឆេទ",
-          "guest": "ភ្ញៀវ",
-          "dates": "កាលបរិច្ឆេទ",
-          "total": "សរុប",
-          "status": "ស្ថានភាព",
-          "actions": "សកម្មភាព"
-        },
-        "status": {
-          "pending": "កំពុងរង់ចាំ",
-          "confirmed": "បានបញ្ជាក់",
-          "cancelled": "បានបោះបង់",
-          "completed": "បានបញ្ចប់"
-        },
-        "actions": {
-          "confirm": "បញ្ជាក់ការកក់",
-          "cancel": "បោះបង់ការកក់",
-          "viewDetails": "មើលព័ត៌មានលម្អិត"
-        },
-        "noBookings": "មិនទាន់មានការកក់ទេ។",
-        "toast": {
-          "fetchErrorTitle": "កំហុសក្នុងការផ្ទុកការកក់",
-          "fetchErrorDescription": "មិនអាចទាញយកការកក់សម្រាប់សេវាកម្មនេះបានទេ។",
-          "updateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពការកក់!",
-          "updateSuccessDescription": "ស្ថានភាពការកក់បានធ្វើបច្ចុប្បន្នភាពទៅ {{status}}។",
-          "updateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពបរាជ័យ",
-          "updateFailDescription": "មិនអាចធ្វើបច្ចុប្បន្នភាពស្ថានភាពការកក់បានទេ។"
-        }
-      },
-      "settingsTab": {
-        "title": "ការកំណត់សេវាកម្ម",
-        "description": "ធ្វើបច្ចុប្បន្នភាពព័ត៌មានលម្អិតនិងភាពអាចរកបានសម្រាប់សេវាកម្មនេះ។",
-        "form": {
-          "priceLabel": "តម្លៃក្នុងមួយយប់",
-          "pricePlaceholder": "បញ្ចូលតម្លៃ",
-          "currencyLabel": "រូបិយប័ណ្ណ",
-          "currencyPlaceholder": "ជ្រើសរើសរូបិយប័ណ្ណ",
-          "availabilityLabel": "កាលបរិច្ឆេទអាចរកបាន",
-          "availabilityDescription": "ជ្រើសរើសកាលបរិច្ឆេទដែលសេវាកម្មនេះអាចរកបាន។",
-          "submitButton": "រក្សាទុកការផ្លាស់ប្តូរ",
-          "submittingButton": "កំពុងរក្សាទុក..."
-        },
-        "toast": {
-          "updateSuccessTitle": "បានរក្សាទុកការកំណត់!",
-          "updateSuccessDescription": "ការកំណត់សេវាកម្មបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។",
-          "updateFailTitle": "ការរក្សាទុកបរាជ័យ",
-          "updateFailDescription": "មិនអាចរក្សាទុកការកំណត់សេវាកម្មបានទេ។"
-        }
-      },
-      "errors": {
-        "loadErrorTitle": "កំហុសក្នុងការផ្ទុកសេវាកម្ម",
-        "loadErrorDescription": "មិនអាចផ្ទុកព័ត៌មានលម្អិតសេវាកម្មសម្រាប់ការគ្រប់គ្រងបានទេ។",
-        "notFoundTitle": "រកមិនឃើញសេវាកម្ម",
-        "notFoundDescription": "សេវាកម្មដែលអ្នកកំពុងព្យាយាមគ្រប់គ្រងមិនមានទេ។"
-      },
-      "authRequired": {
-        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-        "description": "អ្នកត្រូវតែចូលដើម្បីគ្រប់គ្រងសេវាកម្មនេះ។",
-        "button": "ចូល"
-      }
-    },
-    "shopView": {
-      "backLink": "ត្រឡប់ទៅផ្សារ",
-      "ownedBy": "ជាកម្មសិទ្ធិរបស់",
-      "loadingOwner": "កំពុងផ្ទុក...",
-      "editShopButton": "កែសម្រួលហាង",
-      "contactButton": "ទាក់ទងអ្នកលក់",
-      "listingsTitle": "បញ្ជីពី {{shopName}}",
-      "noListings": "រកមិនឃើញបញ្ជីសម្រាប់ហាងនេះទេ។"
-    }
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   },
-  "Profile": {
-    "backLink": "ត្រឡប់",
-    "loading": "កំពុងផ្ទុកប្រវត្តិរូប...",
-    "notFound": {
-      "title": "រកមិនឃើញប្រវត្តិរូប",
-      "description": "ប្រវត្តិរូបអ្នកប្រើប្រាស់ដែលអ្នកកំពុងរកមិនមានទេ។"
-    },
-    "tabs": {
-      "overview": "ទិដ្ឋភាពទូទៅ",
-      "listings": "បញ្ជីផ្សារ",
-      "orders": "ការបញ្ជាទិញរបស់ខ្ញុំ"
-    },
-    "overviewTab": {
-      "contactButton": "ទាក់ទង",
-      "aboutSectionTitle": "អំពី",
-      "rolesLabel": "តួនាទី",
-      "locationLabel": "ទីតាំង",
-      "bioLabel": "ជីវប្រវត្តិ",
-      "joinedLabel": "បានចូលរួម",
-      "loadingText": "កំពុងផ្ទុកទិដ្ឋភាពទូទៅ...",
-      "noBio": "មិនទាន់មានជីវប្រវត្តិនៅឡើយទេ។"
-    },
-    "listingsTab": {
-      "title": "បញ្ជីផ្សារ",
-      "description": "ធាតុនិងសេវាកម្មដែលបានចុះបញ្ជីដោយអ្នកប្រើប្រាស់នេះ។",
-      "noListings": "អ្នកប្រើប្រាស់នេះមិនមានបញ្ជីសកម្មទេ។",
-      "loading": "កំពុងផ្ទុកបញ្ជី..."
-    },
-    "ordersTab": {
-      "title": "ការបញ្ជាទិញរបស់ខ្ញុំ",
-      "description": "ការបញ្ជាទិញផ្សារដែលអ្នកបានដាក់។",
-      "table": {
-        "orderDate": "កាលបរិច្ឆេទបញ្ជាទិញ",
-        "seller": "អ្នកលក់",
-        "item": "ធាតុ",
-        "quantity": "ចំនួន",
-        "total": "សរុប",
-        "status": "ស្ថានភាព"
-      },
-      "noOrders": "អ្នកមិនទាន់បានដាក់ការបញ្ជាទិញនៅឡើយទេ។",
-      "loading": "កំពុងផ្ទុកការបញ្ជាទិញ...",
-      "errors": {
-        "fetchErrorTitle": "កំហុសក្នុងការផ្ទុកការបញ្ជាទិញ",
-        "fetchErrorDescription": "មិនអាចទាញយកការបញ្ជាទិញដែលអ្នកបានដាក់បានទេ។"
-      }
-    },
-    "errors": {
-      "loadErrorTitle": "កំហុសក្នុងការផ្ទុកប្រវត្តិរូប",
-      "loadErrorDescription": "មិនអាចផ្ទុកប្រវត្តិរូបអ្នកប្រើប្រាស់បានទេ។"
-    },
-    "actions": {
-      "editProfile": "កែសម្រួលប្រវត្តិរូប"
-    }
+  "AppFooter": {
+    "tagline": "ការភ្ជាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មទាំងមូល ពីគ្រាប់ពូជដល់តុ។",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "អំពី​ពួក​យើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
+    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
+    "copyright": "© {year} {appName} រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។",
+    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
+    "googlePlayAlt": "ទាញយកនៅលើ Google Play",
+    "appStoreAlt": "ទាញយកនៅលើ App Store"
   },
-  "Settings": {
-    "backLink": "ត្រឡប់",
-    "title": "ការកំណត់",
-    "description": "គ្រប់គ្រងការកំណត់គណនីនិងប្រវត្តិរូបរបស់អ្នក។",
-    "tabs": {
-      "profile": "ប្រវត្តិរូប",
-      "account": "គណនី",
-      "notifications": "ការជូនដំណឹង",
-      "language": "ភាសា"
-    },
-    "profileTab": {
-      "title": "ការកំណត់ប្រវត្តិរូប",
-      "description": "ធ្វើបច្ចុប្បន្នភាពព័ត៌មានប្រវត្តិរូបសាធារណៈរបស់អ្នក។",
-      "form": {
-        "displayNameLabel": "ឈ្មោះបង្ហាញ",
-        "displayNamePlaceholder": "បញ្ចូលឈ្មោះបង្ហាញរបស់អ្នក",
-        "bioLabel": "ជីវប្រវត្តិ",
-        "bioPlaceholder": "ប្រាប់យើងអំពីខ្លួនអ្នក...",
-        "locationLabel": "ទីតាំង",
-        "locationPlaceholder": "បញ្ចូលទីតាំងរបស់អ្នក",
-        "avatarLabel": "រូបតំណាង",
-        "avatarDescription": "ផ្ទុករូបភាពប្រវត្តិរូប។",
-        "currentAvatar": "រូបតំណាងបច្ចុប្បន្ន",
-        "changeAvatarButton": "ប្តូររូបតំណាង",
-        "uploadingAvatar": "កំពុងផ្ទុកឡើង...",
-        "saveButton": "រក្សាទុកប្រវត្តិរូប",
-        "savingButton": "កំពុងរក្សាទុក..."
-      },
-      "toast": {
-        "updateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូប!",
-        "updateSuccessDescription": "ប្រវត្តិរូបរបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យហើយ។"
-      },
-      "errors": {
-        "updateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពបរាជ័យ",
-        "updateFailDescription": "មិនអាចធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូបរបស់អ្នកបានទេ។ សូមព្យាយាមម្តងទៀត។"
-      }
-    },
-    "accountTab": {
-      "title": "ការកំណត់គណនី",
-      "description": "គ្រប់គ្រងការផ្ទៀងផ្ទាត់និងសុវត្ថិភាពគណនីរបស់អ្នក។",
-      "changePasswordSectionTitle": "ប្តូរលេខសម្ងាត់",
-      "changePasswordDescription": "ធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់គណនីរបស់អ្នក។",
-      "form": {
-        "currentPasswordLabel": "លេខសម្ងាត់បច្ចុប្បន្ន",
-        "currentPasswordPlaceholder": "បញ្ចូលលេខសម្ងាត់បច្ចុប្បន្នរបស់អ្នក",
-        "newPasswordLabel": "លេខសម្ងាត់ថ្មី",
-        "newPasswordPlaceholder": "បញ្ចូលលេខសម្ងាត់ថ្មីរបស់អ្នក",
-        "confirmPasswordLabel": "បញ្ជាក់លេខសម្ងាត់ថ្មី",
-        "confirmPasswordPlaceholder": "បញ្ជាក់លេខសម្ងាត់ថ្មីរបស់អ្នក",
-        "updatePasswordButton": "ធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់",
-        "updatingPasswordButton": "កំពុងធ្វើបច្ចុប្បន្នភាព..."
-      },
-      "toast": {
-        "passwordUpdateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់!",
-        "passwordUpdateSuccessDescription": "លេខសម្ងាត់របស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យហើយ។"
-      },
-      "errors": {
-        "passwordUpdateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់បរាជ័យ",
-        "passwordUpdateFailDescription": "មិនអាចធ្វើបច្ចុប្បន្នភាពលេខសម្ងាត់របស់អ្នកបានទេ។ សូមពិនិត្យមើលលេខសម្ងាត់បច្ចុប្បន្នរបស់អ្នកហើយព្យាយាមម្តងទៀត។"
-      }
-    },
-    "notificationsTab": {
-      "title": "ការកំណត់ការជូនដំណឹង",
-      "description": "គ្រប់គ្រងចំណង់ចំណូលចិត្តការជូនដំណឹងតាមអ៊ីមែលនិង push របស់អ្នក។",
-      "emailNotificationsLabel": "ការជូនដំណឹងតាមអ៊ីមែល",
-      "emailNotificationsDescription": "ទទួលការជូនដំណឹងតាមអ៊ីមែល។",
-      "pushNotificationsLabel": "ការជូនដំណឹង push",
-      "pushNotificationsDescription": "ទទួលការជូនដំណឹងនៅលើឧបករណ៍របស់អ្នក។",
-      "saveButton": "រក្សាទុកចំណង់ចំណូលចិត្ត",
-      "savingButton": "កំពុងរក្សាទុក...",
-      "toast": {
-        "updateSuccessTitle": "បានរក្សាទុកចំណង់ចំណូលចិត្ត!",
-        "updateSuccessDescription": "ចំណង់ចំណូលចិត្តការជូនដំណឹងរបស់អ្នកត្រូវបានរក្សាទុកហើយ។"
-      },
-      "errors": {
-        "updateFailTitle": "ការរក្សាទុកបរាជ័យ",
-        "updateFailDescription": "មិនអាចរក្សាទុកចំណង់ចំណូលចិត្តការជូនដំណឹងរបស់អ្នកបានទេ។"
-      }
-    },
-    "languageTab": {
-      "title": "ការកំណត់ភាសា",
-      "description": "ជ្រើសរើសភាសាដែលអ្នកចូលចិត្ត។",
-      "languageLabel": "ភាសា",
-      "languagePlaceholder": "ជ្រើសរើសភាសា",
-      "saveButton": "រក្សាទុកភាសា",
-      "savingButton": "កំពុងរក្សាទុក...",
-      "toast": {
-        "updateSuccessTitle": "បានរក្សាទុកភាសា!",
-        "updateSuccessDescription": "ចំណង់ចំណូលចិត្តភាសារបស់អ្នកត្រូវបានរក្សាទុកហើយ។"
-      },
-      "errors": {
-        "updateFailTitle": "ការរក្សាទុកបរាជ័យ",
-        "updateFailDescription": "មិនអាចរក្សាទុកចំណង់ចំណូលចិត្តភាសារបស់អ្នកបានទេ។"
-      }
-    },
-    "loading": "កំពុងផ្ទុកការកំណត់...",
-    "errors": {
-      "loadErrorTitle": "កំហុសក្នុងការផ្ទុកការកំណត់",
-      "loadErrorDescription": "មិនអាចផ្ទុកការកំណត់របស់អ្នកបានទេ។"
-    },
-    "authenticationRequired": {
-      "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-      "description": "អ្នកត្រូវតែចូលដើម្បីមើលការកំណត់របស់អ្នក។",
-      "button": "ចូល"
-    }
+  "agentToolsPage": {
+    "backLink": "ត្រឡប់ទៅបណ្តាញវិញ",
+    "title": "ឧបករណ៍ភ្នាក់ងារ",
+    "description": "ស្វែងរកព័ត៌មានអ្នកប្រើប្រាស់ដោយសុវត្ថិភាពសម្រាប់ការផ្ទៀងផ្ទាត់និងការគាំទ្រ។",
+    "accessDeniedTitle": "ការចូលប្រើត្រូវបានបដិសេធ",
+    "accessDeniedDescription": "អ្នកមិនមានសិទ្ធិចូលប្រើទំព័រនេះទេ។",
+    "findUserLabel": "ស្វែងរកអ្នកប្រើប្រាស់តាមលេខទូរស័ព្ទ",
+    "findButton": "ស្វែងរក",
+    "resultsTitle": "លទ្ធផលស្វែងរក",
+    "resultsPlaceholder": "បញ្ចូលលេខទូរស័ព្ទដើម្បីស្វែងរកអ្នកប្រើប្រាស់។",
+    "phoneRequiredError": "ទាមទារលេខទូរស័ព្ទ។"
   },
-  "constants": {
-    "stakeholderRoles": {
-      "farmer": "កសិករ",
-      "trader": "ពាណិជ្ជករ",
-      "agro_innovator": "អ្នកច្នៃប្រឌិតកសិកម្ម",
-      "researcher": "អ្នកស្រាវជ្រាវ",
-      "service_provider": "អ្នកផ្តល់សេវា",
-      "consumer": "អ្នកប្រើប្រាស់"
-    }
+  "LanguageSwitcher": {
+    "toggle": "ប្តូរភាសា"
   }
 }
-
