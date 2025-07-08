@@ -1,4 +1,5 @@
 
+
 {
   "FeedItemCard": {
     "editPost": "Edit Post",
@@ -142,6 +143,7 @@
       }
     },
     "topic": {
+      "backLink": "Back to all topics",
       "unknownUser": "Unknown User",
       "postMeta": "by {{author}} on {{date}}",
       "buttons": {
@@ -541,5 +543,7 @@
         "linkCopied": "Link Copied"
       }
     }
-  }
+  },
+  "Homepage": {}
 }
+
