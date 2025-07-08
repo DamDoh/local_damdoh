@@ -79,7 +79,7 @@
     "aboutLabel": "À propos de nous",
     "contactLabel": "Contact",
     "careersLabel": "Carrières",
-    "blogLabel": "Blog et Actualités",
+    "blogLabel": "Blog & Actualités",
     "resourcesTitle": "Ressources",
     "helpCenterLabel": "Centre d'aide",
     "communityGuidelinesLabel": "Règles de la communauté",
@@ -287,6 +287,11 @@
     }
   },
   "Marketplace": {
+    "categories": {
+      "allCategories": "Toutes Catégories",
+      "viewAllItems": "Voir Tous les Articles",
+      "viewAllCategory": "Tout en {categoryName}"
+    },
     "title": "Marché",
     "description": "Parcourez et découvrez des produits et des services.",
     "createShopButton": "Créer une Vitrine",
@@ -317,316 +322,25 @@
       "pinnedDescription": "Le Marché est maintenant votre page d'accueil par défaut.",
       "unpinnedTitle": "Page d'Accueil Détachée !",
       "unpinnedDescription": "Le Tableau de Bord est maintenant votre page d'accueil par défaut."
-    },
-    "createListing": {
-      "backLink": "Retour au marché",
-      "title": "Créer une Nouvelle Annonce",
-      "description": "Annoncez un produit ou un service sur le marché.",
-      "form": {
-        "nameLabel": "Nom de l'Article/Service",
-        "namePlaceholder": "Entrez le nom de votre annonce",
-        "typeLabel": "Type d'Annonce",
-        "typePlaceholder": "Sélectionnez le type d'annonce",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre annonce",
-        "locationLabel": "Emplacement",
-        "locationPlaceholder": "Entrez l'emplacement",
-        "relatedVtiLabel": "VTI / ID de Lot Associé (Optionnel)",
-        "relatedVtiPlaceholder": "Entrez le VTI si cette annonce concerne un lot spécifique",
-        "relatedVtiDescription": "Lier un VTI augmente la confiance de l'acheteur.",
-        "categoryLabel": "Catégorie",
-        "categoryPlaceholder": "Sélectionnez une catégorie",
-        "compensationLabel": "Compensation",
-        "compensationPlaceholder": "ex: par heure, tarif fixe",
-        "experienceLabel": "Niveau d'Expérience",
-        "experiencePlaceholder": "ex: Débutant, Intermédiaire, Expert",
-        "skillsLabel": "Compétences Requises",
-        "skillsPlaceholder": "Listez les compétences nécessaires pour le service",
-        "skillsDescription": "Séparez les compétences par des virgules.",
-        "priceLabel": "Prix",
-        "pricePlaceholder": "Entrez le prix",
-        "unitLabel": "Unité",
-        "unitPlaceholder": "ex: kg, pièce, heure",
-        "imageUrlLabel": "URL de l'Image (Optionnel)",
-        "sustainableLabel": "Pratique Durable",
-        "sustainableDescription": "Indiquez si cette annonce implique des pratiques durables.",
-        "submitButton": "Créer l'Annonce",
-        "submittingButton": "Création en cours..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Suggérer un Prix avec l'IA",
-        "generatingButton": "Génération en cours...",
-        "suggestionLabel": "Suggestion IA :",
-        "usePriceButton": "Utiliser ce prix"
-      },
-      "success": {
-        "title": "Succès !",
-        "description": "Votre annonce a été créée."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Informations Manquantes",
-            "description": "Veuillez entrer un nom et une description avant de suggérer un prix."
-          },
-          "failed": {
-            "title": "Suggestion de Prix Échouée",
-            "description": "Impossible d'obtenir une suggestion de prix de l'IA. Veuillez réessayer ou entrer un prix manuellement."
-          }
-        },
-        "authentication": {
-          "title": "Erreur d'Authentification",
-          "description": "Vous devez être connecté pour créer une annonce."
-        },
-        "creation": {
-          "title": "Création Échouée",
-          "description": "Impossible de créer l'annonce. Veuillez réessayer."
-        }
-      }
-    },
-    "itemView": {
-      "backLink": "Retour au marché",
-      "unknownUser": "Utilisateur Inconnu",
-      "traceabilityButton": "Lien Commerce / Lot",
-      "skillsLabel": "Compétences Requises",
-      "experienceLabel": "Niveau d'Expérience",
-      "compensationLabel": "Rémunération",
-      "contactForRates": "Contacter pour les tarifs",
-      "booking": {
-        "perNight": "nuit",
-        "checkIn": "Arrivée",
-        "checkOut": "Départ",
-        "addDate": "Ajouter une date",
-        "guests": "Invités",
-        "reserveButton": "Réserver",
-        "reservingButton": "Réservation en cours...",
-        "notCharged": "Vous ne serez pas encore facturé",
-        "nights": "nuits",
-        "serviceFee": "Frais de service",
-        "total": "Total",
-        "successTitle": "Réservation Réussie !",
-        "successDescription": "Votre réservation est confirmée.",
-        "failTitle": "Échec de la Réservation",
-        "dateError": "Veuillez sélectionner des dates d'arrivée et de départ valides.",
-        "authTitle": "Authentification Requise",
-        "authDescription": "Vous devez être connecté pour réserver un service.",
-        "bookedTitle": "Réservé !",
-        "bookedDescription": "Votre réservation est confirmée. Présentez le code QR ci-dessous à votre arrivée.",
-        "ticketButton": "Afficher le Billet",
-        "modalTitle": "Billet de Réservation",
-        "modalDescription": "Présentez ce code QR à {{itemName}} pour l'enregistrement.",
-        "modalScan": "Scannez ce code pour vous enregistrer"
-      },
-      "coupon": {
-        "label": "Code de Coupon",
-        "placeholder": "Entrez le code de coupon",
-        "applyButton": "Appliquer",
-        "successTitle": "Coupon Appliqué !",
-        "successDescription": "Réduction appliquée : {{type}}",
-        "failTitle": "Coupon Invalide",
-        "failDescription": "Le code de coupon est invalide ou non applicable.",
-        "appliedText": "Coupon Appliqué : {{code}}"
-      },
-      "aboutSeller": "À propos du Vendeur",
-      "viewShopfront": "Voir la Vitrine",
-      "editListing": "Modifier l'Annonce",
-      "manageService": "Gérer le Service",
-      "buyNowButton": "Acheter Maintenant",
-      "contactForService": "Contacter pour le Service",
-      "contactSeller": "Contacter le Vendeur",
-      "order": {
-        "title": "Commander {{itemName}}",
-        "description": "Entrez la quantité que vous souhaitez commander et toute note.",
-        "quantityLabel": "Quantité",
-        "notesLabel": "Notes (Optionnel)",
-        "notesPlaceholder": "Ajoutez des instructions ou des demandes spécifiques...",
-        "cancelButton": "Annuler",
-        "confirmButton": "Confirmer la Commande",
-        "placingButton": "Passage de la commande...",
-        "successTitle": "Commande Passée !",
-        "successDescription": "Votre commande a été passée avec succès.",
-        "failTitle": "Échec de la Commande",
-        "failDescription": "Impossible de passer la commande. Veuillez réessayer.",
-        "quantityErrorTitle": "Erreur de Quantité",
-        "quantityErrorDescription": "Veuillez entrer une quantité valide (au moins 1).",
-        "authTitle": "Authentification Requise",
-        "authDescription": "Vous devez être connecté pour passer une commande."
-      },
-      "notFound": {
-        "title": "Article non trouvé",
-        "description": "L'article du marché que vous recherchez n'existe pas.",
-        "backButton": "Retour au Marché"
-      },
-      "errors": {
-        "loadItem": {
-          "title": "Erreur de chargement de l'article",
-          "description": "Une erreur s'est produite lors du chargement des détails de l'article du marché."
-        },
-        "unexpected": "Une erreur inattendue s'est produite."
-      }
-    },
-    "myOrders": {
-      "backLink": "Retour au marché",
-      "title": "Mes Commandes Reçues",
-      "description": "Voir et gérer les commandes reçues des acheteurs.",
-      "auth": {
-        "title": "Authentification Requise",
-        "description": "Vous devez être connecté pour voir vos commandes.",
-        "button": "Se Connecter"
-      },
-      "table": {
-        "date": "Date",
-        "buyer": "Acheteur",
-        "product": "Produit",
-        "total": "Total",
-        "status": "Statut",
-        "actions": "Actions"
-      },
-      "actions": {
-        "confirm": "Confirmer",
-        "ship": "Expédier",
-        "complete": "Terminer",
-        "cancel": "Annuler"
-      },
-      "status": {
-        "new": "Nouveau",
-        "confirmed": "Confirmé",
-        "shipped": "Expédié",
-        "completed": "Terminé",
-        "cancelled": "Annulé"
-      },
-      "noOrders": "Aucune commande trouvée.",
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchError": "Échec de la récupération des commandes.",
-        "successTitle": "Succès !",
-        "updateSuccess": "Statut de la commande mis à jour vers {{status}}",
-        "failTitle": "Erreur"
-      }
-    },
-    "shopView": {
-      "backLink": "Retour au marché",
-      "ownedBy": "Propriété de",
-      "loadingOwner": "Chargement...",
-      "editShopButton": "Modifier la Boutique",
-      "contactButton": "Contacter le Vendeur",
-      "listingsTitle": "Annonces de {{shopName}}",
-      "noListings": "Aucune annonce trouvée pour cette boutique.",
-      "errors": {
-        "notFound": "Boutique non trouvée",
-        "loadError": "Impossible de charger les détails de la boutique.",
-        "title": "Erreur"
-      }
-    },
-    "createShop": {
-      "backLink": "Retour au marché",
-      "title": "Créez Votre Vitrine Numérique",
-      "description": "Configurez votre boutique pour lister des articles et des services.",
-      "form": {
-        "nameLabel": "Nom de la Boutique",
-        "namePlaceholder": "Entrez le nom de votre boutique",
-        "typeLabel": "Type d'Acteur",
-        "typePlaceholder": "Sélectionnez votre type",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre boutique et ce que vous proposez"
-      },
-      "submitButton": "Créer la Boutique",
-      "submittingButton": "Création en cours...",
-      "authErrorTitle": "Erreur d'Authentification",
-      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
-      "toast": {
-        "successTitle": "Vitrine Créée !",
-        "successDescription": "Votre vitrine \"{{shopName}}\" a été créée.",
-        "failTitle": "Création Échouée",
-        "failDescription": "Impossible de créer la boutique. Veuillez réessayer."
-      }
-    },
-    "manageService": {
-      "backLink": "Retour à {{itemName}}",
-      "title": "Gérer le Service : {{itemName}}",
-      "description": "Gérez les réservations et les paramètres de ce service.",
-      "tabs": {
-        "bookings": "Réservations",
-        "settings": "Paramètres"
-      },
-      "bookingsTab": {
-        "title": "Réservations du Service",
-        "description": "Voir et gérer les réservations pour ce service.",
-        "table": {
-          "date": "Date",
-          "guest": "Invité",
-          "dates": "Dates",
-          "total": "Total",
-          "status": "Statut",
-          "actions": "Actions"
-        },
-        "status": {
-          "pending": "En attente",
-          "confirmed": "Confirmé",
-          "cancelled": "Annulé",
-          "completed": "Terminé"
-        },
-        "actions": {
-          "confirm": "Confirmer la Réservation",
-          "cancel": "Annuler la Réservation",
-          "viewDetails": "Voir les Détails"
-        },
-        "noBookings": "Aucune réservation pour l'instant.",
-        "toast": {
-          "fetchErrorTitle": "Erreur de chargement des réservations",
-          "fetchErrorDescription": "Impossible de récupérer les réservations pour ce service.",
-          "updateSuccessTitle": "Réservation mise à jour !",
-          "updateSuccessDescription": "Statut de la réservation mis à jour vers {{status}}.",
-          "updateFailTitle": "Mise à jour Échouée",
-          "updateFailDescription": "Impossible de mettre à jour le statut de la réservation."
-        }
-      },
-      "settingsTab": {
-        "title": "Paramètres du Service",
-        "description": "Mettez à jour les détails et la disponibilité de ce service.",
-        "form": {
-          "priceLabel": "Prix par Nuit",
-          "pricePlaceholder": "Entrez le prix",
-          "currencyLabel": "Devise",
-          "currencyPlaceholder": "Sélectionnez la devise",
-          "availabilityLabel": "Dates de Disponibilité",
-          "availabilityDescription": "Sélectionnez les dates auxquelles ce service est disponible.",
-          "submitButton": "Enregistrer les Modifications",
-          "submittingButton": "Enregistrement en cours..."
-        },
-        "toast": {
-          "updateSuccessTitle": "Paramètres enregistrés !",
-          "updateSuccessDescription": "Les paramètres du service ont été mis à jour avec succès.",
-          "updateFailTitle": "Échec de l'Enregistrement",
-          "updateFailDescription": "Impossible d'enregistrer les paramètres du service."
-        }
-      },
-      "errors": {
-        "loadErrorTitle": "Erreur de chargement du service",
-        "loadErrorDescription": "Impossible de charger les détails du service pour la gestion.",
-        "notFoundTitle": "Service non trouvé",
-        "notFoundDescription": "Le service que vous essayez de gérer n'existe pas."
-      },
-      "authRequired": {
-        "title": "Authentification Requise",
-        "description": "Vous devez être connecté pour gérer ce service.",
-        "button": "Se Connecter"
-      }
     }
   },
-  "constants": {
-    "stakeholderRoles": {
-      "farmer": "Agriculteur",
-      "trader": "Commerçant",
-      "agro_innovator": "Innovateur Agricole",
-      "researcher": "Chercheur",
-      "service_provider": "Fournisseur de Services",
-      "consumer": "Consommateur"
-    },
-    "listingTypes": {
-      "All": "Tous les Types",
-      "Product": "Produit",
-      "Service": "Service"
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez ou offrez des services agricoles et de l'expertise.",
+    "listServiceButton": "Lister un Service",
+    "searchPlaceholder": "Rechercher par compétence ou service...",
+    "locationPlaceholder": "Filtrer par emplacement",
+    "categoryPlaceholder": "Filtrer par catégorie",
+    "allCategories": "Toutes les Catégories de Services",
+    "noResultsTitle": "Aucun Service Trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou proposez votre propre service à la communauté.",
+    "toast": {
+      "error": {
+        "title": "Erreur de Recherche",
+        "description": "Impossible de récupérer les services du marché."
+      }
     }
   }
 }
+
+      
