@@ -1,5 +1,17 @@
 
 {
+  "myNetworkPage": {
+    "backLink": "Retour au réseau",
+    "connectionsTitle": "Mes connexions",
+    "connectionsDescription": "Affichez et gérez vos connexions établies.",
+    "requestsTitle": "Demandes en attente",
+    "requestsDescription": "Acceptez ou refusez les demandes de connexion entrantes.",
+    "noConnections": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau!",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "myConnectionsTab": "Mes connexions ({count})",
+    "pendingRequestsTab": "Demandes en attente"
+  },
   "talentExchangePage": {
     "title": "Bourse de Talents",
     "description": "Trouvez des experts agricoles, de la main-d'œuvre spécialisée et des services professionnels.",
@@ -121,3 +133,5 @@
     }
   }
 }
+
+    

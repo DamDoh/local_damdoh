@@ -1,5 +1,17 @@
 
 {
+  "myNetworkPage": {
+    "backLink": "Volver a la Red",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Ver y gestionar sus conexiones establecidas.",
+    "requestsTitle": "Solicitudes Pendientes",
+    "requestsDescription": "Aceptar o rechazar solicitudes de conexión entrantes.",
+    "noConnections": "Aún no has hecho ninguna conexión. ¡Empieza explorando la red!",
+    "noRequests": "No tienes solicitudes de conexión pendientes.",
+    "sentTimeAgo": "Enviado hace {timeAgo}",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes"
+  },
   "talentExchangePage": {
     "title": "Bolsa de Talentos",
     "description": "Encuentre expertos agrícolas, mano de obra especializada y servicios profesionales.",
@@ -121,3 +133,5 @@
     }
   }
 }
+
+    

@@ -180,3 +180,5 @@ export const removeConnection = functions.https.onCall(async (data, context) => 
 
     return { success: true, message: "Connection removed." };
 });
+
+    

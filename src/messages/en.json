@@ -1,5 +1,17 @@
 
 {
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "View and manage your established connections.",
+    "requestsTitle": "Pending Requests",
+    "requestsDescription": "Accept or decline incoming connection requests.",
+    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
+    "noRequests": "You have no pending connection requests.",
+    "sentTimeAgo": "Sent {timeAgo}",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests"
+  },
   "talentExchangePage": {
     "title": "Talent Exchange",
     "description": "Find agricultural experts, specialized labor, and professional services.",
@@ -14,24 +26,6 @@
       "error": {
         "title": "Search Error",
         "description": "Failed to fetch services. Please try again."
-      }
-    }
-  },
-  "Marketplace": {
-    "myOrdersButton": "My Received Orders",
-    "recommendedForYou": "Recommended for you",
-    "discoverMore": "Discover More",
-    "noItemsFound": {
-      "title": "No items found.",
-      "hint": "Try adjusting your filters or search terms."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "Could not fetch AI recommendations"
-      },
-      "search": {
-        "title": "Search Error",
-        "description": "Could not fetch marketplace items."
       }
     }
   },
@@ -139,3 +133,5 @@
     }
   }
 }
+
+    

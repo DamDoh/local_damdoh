@@ -635,32 +635,6 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
 
 export type KnfBatch = {
     id: string;
@@ -681,12 +655,12 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
+  timestamp: string; // ISO String
   author: {
     id: string;
     name: string;
     avatarUrl?: string;
   };
-  createdAt: string;
   replyCount: number;
 }
 
@@ -727,7 +701,7 @@ export interface FeedItem {
   userHeadline?: string;
   content: string;
   link: string;
-  imageUrl?: string;
+  postImage?: string;
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
@@ -757,7 +731,7 @@ export interface Message {
 export interface MobileHomeCategory {
     id: string;
     name: string;
-    icon: React.ElementType;
+    icon: LucideIcon;
     href: string;
     dataAiHint?: string;
 }
@@ -853,3 +827,5 @@ export type ServiceItem = MarketplaceItem & {
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+
+    

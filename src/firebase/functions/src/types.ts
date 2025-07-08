@@ -675,12 +675,12 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
+  timestamp: string; // ISO String
   author: {
     id: string;
     name: string;
     avatarUrl?: string;
   };
-  createdAt: string;
   replyCount: number;
 }
 
@@ -847,3 +847,5 @@ export type ServiceItem = MarketplaceItem & {
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+
+    

@@ -1,5 +1,17 @@
 
 {
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Sehen und verwalten Sie Ihre bestehenden Verbindungen.",
+    "requestsTitle": "Ausstehende Anfragen",
+    "requestsDescription": "Annehmen oder ablehnen von eingehenden Verbindungsanfragen.",
+    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie, indem Sie das Netzwerk erkunden!",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen"
+  },
   "talentExchangePage": {
     "title": "Talentbörse",
     "description": "Finden Sie Agrarexperten, spezialisierte Arbeitskräfte und professionelle Dienstleistungen.",
@@ -121,3 +133,5 @@
     }
   }
 }
+
+    
