@@ -1,8 +1,5 @@
 
 {
-  "common": {
-    "error": "Error"
-  },
   "admin": {
     "layout": {
       "title": "Admin Panel",
@@ -73,5 +70,154 @@
         "submitButton": "Create Course"
       }
     }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Connecting the World of Agriculture with {appName}",
+      "subtitle": "A unified platform for farmers, buyers, and experts to network, trade, and grow together.",
+      "getStartedButton": "Get Started for Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "Core Features",
+      "subtitle": "DamDoh provides the tools you need to succeed in the agricultural supply chain.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "AI-powered connection suggestions to expand your professional network."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "A direct sales channel to connect farmers with buyers and service providers."
+      },
+      "forums": {
+        "title": "Thematic Forums",
+        "description": "Share knowledge and discuss specific topics with agricultural communities."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "A job board to offer and find specialized agricultural services."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in Agriculture",
+      "title": "Built for the Entire Supply Chain",
+      "description": "DamDoh is designed to empower every stakeholder, from the field to the final consumer.",
+      "farmers": {
+        "title": "Farmers",
+        "description": "Access new markets, gain knowledge on sustainable practices, and manage your farm efficiently."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Source high-quality, traceable produce directly from producers and cooperatives."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your skills, from agronomy to logistics, and connect with a global client base."
+      },
+      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
+    },
+    "cta": {
+      "title": "Join the DamDoh Community Today",
+      "subtitle": "Start building your network, showcasing your products, and growing your business on a global scale.",
+      "button": "Sign Up Now"
+    }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Switch language"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
+  },
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search for people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme"
+  },
+  "StartPost": {
+    "placeholder": "Start a post, share an update, or ask a question...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create a poll"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteSuccessToast": "Your vote has been cast!",
+    "voteErrorToast": "Failed to cast vote.",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "likes": "Likes",
+    "comments": "Comments",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "votes": "votes",
+    "noComments": "Be the first to comment.",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Build Your Network",
+    "refreshSuggestions": "Refresh Suggestions",
+    "infoTooltip": "These suggestions are AI-powered based on your profile and platform activity.",
+    "following": "Following",
+    "follow": "Follow",
+    "signInPrompt": "Sign in to get personalized suggestions.",
+    "noSuggestions": "No suggestions available right now.",
+    "loadError": "Could not load suggestions.",
+    "promotionsTitle": "My Promotions",
+    "promotionsDescription": "Create and manage coupons for your marketplace items.",
+    "managePromotionsButton": "Manage Coupons",
+    "ad": "Ad",
+    "adTitle": "DamDoh Market Trends",
+    "adDescription": "Unlock premium insights on market prices, demand forecasts, and supply chain analytics.",
+    "adButton": "Learn More"
+  },
+  "AppFooter": {
+    "tagline": "The Global Agricultural Supply Chain Platform.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the Mobile App:",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   }
 }
+
+    

@@ -1,74 +1,108 @@
 
 {
-  "admin": {
-    "layout": {
-      "title": "Panel de Administración",
-      "description": "Esta es un área restringida. Los cambios aquí afectan a toda la plataforma.",
-      "contentManagement": "Contenido"
+  "AppHeader": {
+    "home": "Inicio",
+    "network": "Red",
+    "farmMgmt": "Gestión Agrícola",
+    "marketplace": "Mercado",
+    "talentExchange": "Talentos",
+    "traceability": "Trazabilidad",
+    "forums": "Foros",
+    "notifications": "Notificaciones",
+    "messages": "Mensajes",
+    "wallet": "Billetera",
+    "searchPlaceholder": "Buscar personas, productos, servicios...",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "settings": "Configuración",
+    "helpCenter": "Centro de Ayuda",
+    "logOut": "Cerrar Sesión",
+    "switchToLightAria": "Cambiar a tema claro",
+    "switchToDarkAria": "Cambiar a tema oscuro"
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Cambiar idioma"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Conectando el Mundo de la Agricultura con {appName}",
+      "subtitle": "Una plataforma unificada para que agricultores, compradores y expertos se conecten, comercien y crezcan juntos.",
+      "getStartedButton": "Comenzar Gratis",
+      "learnMoreButton": "Saber Más"
     },
-    "dashboard": {
-      "title": "Bienvenido al Panel de Administración",
-      "description": "Seleccione un módulo de la barra lateral para gestionar el contenido y la configuración de la plataforma.",
-      "content": "Desde aquí puede gestionar artículos, cursos y otra información de toda la plataforma.",
-      "contentManagementButton": "Gestionar Contenido"
-    },
-    "contentManagement": {
-      "toast": {
-        "loadErrorTitle": "Error al cargar los artículos",
-        "loadErrorDescription": "No se pudo recuperar la lista de artículos. Por favor, revise la consola.",
-        "createSuccessTitle": "Artículo Creado",
-        "createSuccessDescription": "El nuevo artículo de conocimiento ha sido guardado.",
-        "createErrorTitle": "Creación Fallida",
-        "createErrorDescription": "No se pudo crear el nuevo artículo."
+    "features": {
+      "title": "Características Principales",
+      "subtitle": "DamDoh proporciona las herramientas que necesitas para tener éxito en la cadena de suministro agrícola.",
+      "networking": {
+        "title": "Redes Inteligentes",
+        "description": "Sugerencias de conexión impulsadas por IA para expandir tu red profesional."
       },
-      "allArticles": {
-        "title": "Todos los Artículos de Conocimiento",
-        "description": "Gestione todas las publicaciones del blog, noticias y contenido educativo.",
-        "refreshButton": "Actualizar"
+      "marketplace": {
+        "title": "Mercado Global",
+        "description": "Un canal de venta directo para conectar a los agricultores con compradores y proveedores de servicios."
       },
-      "table": {
-        "title": "Título",
-        "category": "Categoría",
-        "status": "Estado",
-        "created": "Creado",
-        "actions": "Acciones",
-        "noArticles": "No se encontraron artículos. Cree uno para empezar."
+      "forums": {
+        "title": "Foros Temáticos",
+        "description": "Comparte conocimientos y discute temas específicos con comunidades agrícolas."
       },
-      "createArticle": {
-        "title": "Crear Nuevo Contenido",
-        "description": "Añada un nuevo artículo a la base de conocimiento. El contenido en un idioma se traducirá automáticamente al otro.",
-        "englishContent": "Contenido en Inglés",
-        "titleEnLabel": "Título (Inglés)",
-        "excerptEnLabel": "Extracto (Inglés)",
-        "excerptDescription": "Un breve resumen para vistas previas.",
-        "contentEnLabel": "Contenido Completo (Inglés)",
-        "khmerContent": "Contenido en Jemer",
-        "titleKmLabel": "Título (Jemer)",
-        "excerptKmLabel": "Extracto (Jemer)",
-        "contentKmLabel": "Contenido Completo (Jemer)",
-        "metadataTitle": "Metadatos y Publicación",
-        "categoryLabel": "Categoría",
-        "categoryPlaceholder": "Ej: Blog, Noticias del Sector, Guía KNF",
-        "authorLabel": "Autor",
-        "authorPlaceholder": "Ej: Equipo DamDoh",
-        "statusLabel": "Estado",
-        "tagsLabel": "Etiquetas (separadas por comas)",
-        "imageUrlLabel": "URL de la Imagen de Cabecera",
-        "imageUrlPlaceholder": "https://placehold.co/1200x400.png",
-        "aiHintLabel": "Pista de Imagen para IA",
-        "aiHintPlaceholder": "Ej: cosecha de granos de café",
-        "publishingButton": "Publicando...",
-        "publishButton": "Publicar Artículo"
-      },
-      "createCourse": {
-        "title": "Crear Nuevo Curso",
-        "description": "Añada un nuevo curso educativo a la plataforma.",
-        "titleLabel": "Título del Curso",
-        "descriptionLabel": "Descripción del Curso",
-        "categoryLabel": "Categoría",
-        "submittingButton": "Enviando...",
-        "submitButton": "Crear Curso"
+      "talent": {
+        "title": "Bolsa de Talentos",
+        "description": "Una bolsa de trabajo para ofrecer y encontrar servicios agrícolas especializados."
       }
+    },
+    "forWho": {
+      "badge": "Para Todos en la Agricultura",
+      "title": "Construido para Toda la Cadena de Suministro",
+      "description": "DamDoh está diseñado para empoderar a cada actor, desde el campo hasta el consumidor final.",
+      "farmers": {
+        "title": "Agricultores",
+        "description": "Accede a nuevos mercados, adquiere conocimientos sobre prácticas sostenibles y gestiona tu granja de manera eficiente."
+      },
+      "buyers": {
+        "title": "Compradores y Procesadores",
+        "description": "Abastécete de productos trazables y de alta calidad directamente de productores y cooperativas."
+      },
+      "experts": {
+        "title": "Expertos y Proveedores de Servicios",
+        "description": "Ofrece tus habilidades, desde agronomía hasta logística, y conéctate con una base de clientes global."
+      },
+      "imageAlt": "Un grupo diverso de actores agrícolas colaborando"
+    },
+    "cta": {
+      "title": "Únete a la Comunidad DamDoh Hoy",
+      "subtitle": "Comienza a construir tu red, mostrar tus productos y hacer crecer tu negocio a escala global.",
+      "button": "Regístrate Ahora"
     }
+  },
+  "AppFooter": {
+    "tagline": "La plataforma global de la cadena de suministro agrícola.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de ayuda",
+    "communityGuidelinesLabel": "Normas de la comunidad",
+    "industryNewsLabel": "Noticias del sector",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Bolsa de talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de privacidad",
+    "termsOfServiceLabel": "Términos de servicio",
+    "copyright": "© {year} {appName}. Todos los derechos reservados.",
+    "getMobileApp": "Obtén la aplicación móvil:",
+    "googlePlayAlt": "Consíguelo en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
   }
 }
+
+    
