@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { MarketplaceItem } from "@/lib/types";
@@ -19,7 +19,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { getMarketplaceRecommendations, type MarketplaceRecommendationInput } from "@/ai/flows/marketplace-recommendations";
-import { getAllMarketplaceItemsFromDB, performSearch } from "@/lib/server-actions";
+import { performSearch } from "@/lib/server-actions";
 import { Brain } from "lucide-react";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
@@ -37,7 +37,6 @@ function MarketplaceContent() {
   const [displayedItems, setDisplayedItems] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  const [allItemsForAI, setAllItemsForAI] = useState<MarketplaceItem[]>([]);
   const [aiRecommendedItems, setAiRecommendedItems] = useState<MarketplaceItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(true);
   const [aiRecommendationReasons, setAiRecommendationReasons] = useState<Record<string, string>>({});
@@ -51,112 +50,64 @@ function MarketplaceContent() {
   const { toast } = useToast(); 
 
   const listingTypeFilterOptions = getListingTypeFilterOptions(tConstants);
-
-  // Effect to fetch ALL items once, just for AI recommendations.
+  
   useEffect(() => {
     setIsMounted(true);
-    const fetchAllForAI = async () => {
-        const result = await getAllMarketplaceItemsFromDB();
-        const allFetchedItems = Array.isArray(result) ? (result as MarketplaceItem[]) : [];
-        setAllItemsForAI(allFetchedItems);
-    }
-    fetchAllForAI();
   }, []);
 
-  // Effect to generate AI recommendations once all items are fetched.
-  useEffect(() => {
-    if (allItemsForAI.length === 0) {
-        setIsLoadingAiRecommendations(false);
-        return;
-    }
-    const fetchAiRecommendations = async () => {
-        setIsLoadingAiRecommendations(true);
-        try {
-            const mockUserContext: MarketplaceRecommendationInput = {
-            stakeholderRole: userType === 'farmer' ? "Farmer" : userType === 'trader' ? "Trader" : "Consumer",
-            recentSearches: userType === 'farmer' ? ["organic fertilizer", "irrigation"] : userType === 'trader' ? ["bulk maize", "shipping"] : ["fresh tomatoes"],
-            viewedCategories: userType === 'farmer' ? ["fertilizers-soil"] : userType === 'trader' ? ["grains-cereals"] : ["fresh-produce-vegetables"],
-            currentLocation: "Kenya" 
-            };
-            const recommendationsOutput = await getMarketplaceRecommendations(mockUserContext);
-            
-            const recommendedFullItems: MarketplaceItem[] = [];
-            const reasons: Record<string, string> = {};
-
-            if (recommendationsOutput && Array.isArray(recommendationsOutput.suggestedItems)) {
-                recommendationsOutput.suggestedItems.forEach(suggested => {
-                const foundItem = allItemsForAI.find(item => item && item.id === suggested.itemId);
-                if (foundItem) {
-                    recommendedFullItems.push(foundItem as MarketplaceItem);
-                    reasons[foundItem.id] = suggested.reason;
-                }
-                });
-            }
-            setAiRecommendedItems(recommendedFullItems.slice(0, 5)); 
-            setAiRecommendationReasons(reasons);
-        } catch (error) {
-            console.error("Error fetching AI marketplace recommendations:", error);
-            toast({ variant: "destructive", title: t('errors.aiRecommendations.title') });
-        } finally {
-            setIsLoadingAiRecommendations(false);
-        }
-    };
-    fetchAiRecommendations();
-  }, [allItemsForAI, userType, toast, t]);
-  
   // Effect to perform search when filters change
-  useEffect(() => {
-    if (!isMounted) return;
+  const fetchItems = useCallback(async () => {
+    setIsLoading(true);
+    const filters = [];
+    if (currentCategory) {
+      filters.push({ type: 'category', value: currentCategory });
+    }
+    if (listingTypeFilter !== 'All') {
+      filters.push({ type: 'listingType', value: listingTypeFilter });
+    }
 
-    const fetchFilteredItems = async () => {
-      setIsLoading(true);
-      const filters = [];
-      if (currentCategory) {
-        filters.push({ type: 'category', value: currentCategory });
-      }
-      if (listingTypeFilter !== 'All') {
-        filters.push({ type: 'listingType', value: listingTypeFilter });
-      }
-
-      const searchPayload = {
-        mainKeywords: searchTerm.split(' ').filter(Boolean),
-        identifiedLocation: locationFilter,
-        suggestedFilters: filters,
-      };
-
-      try {
-        const results = await performSearch(searchPayload);
-        const mappedItems = results.map((res: any): MarketplaceItem => ({
-            id: res.itemId,
-            name: res.title,
-            description: res.description,
-            imageUrl: res.imageUrl,
-            location: res.location,
-            listingType: res.listingType,
-            price: res.price,
-            currency: res.currency,
-            perUnit: res.perUnit,
-            category: res.tags?.find((t: string) => UNIFIED_MARKETPLACE_CATEGORY_IDS.includes(t)) || res.tags?.[0] || '',
-            sellerId: 'unknown',
-            createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-            updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
-        }));
-        setDisplayedItems(mappedItems);
-      } catch (error) {
-        console.error("Failed to perform search:", error);
-        toast({
-          variant: "destructive",
-          title: t('errors.search.title'),
-          description: t('errors.search.description'),
-        });
-        setDisplayedItems([]);
-      } finally {
-        setIsLoading(false);
-      }
+    const searchPayload = {
+      mainKeywords: searchTerm.split(' ').filter(Boolean),
+      identifiedLocation: locationFilter,
+      suggestedFilters: filters,
     };
 
-    fetchFilteredItems();
-  }, [isMounted, searchTerm, currentCategory, listingTypeFilter, locationFilter, toast, t]);
+    try {
+      const results = await performSearch(searchPayload);
+      const mappedItems = results.map((res: any): MarketplaceItem => ({
+          id: res.itemId,
+          name: res.title,
+          description: res.description,
+          imageUrl: res.imageUrl,
+          location: res.location,
+          listingType: res.listingType,
+          price: res.price,
+          currency: res.currency,
+          perUnit: res.perUnit,
+          category: res.tags?.find((t: string) => UNIFIED_MARKETPLACE_CATEGORY_IDS.includes(t)) || res.tags?.[0] || '',
+          sellerId: 'unknown',
+          createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+          updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
+      }));
+      setDisplayedItems(mappedItems);
+    } catch (error) {
+      console.error("Failed to perform search:", error);
+      toast({
+        variant: "destructive",
+        title: t('errors.search.title'),
+        description: t('errors.search.description'),
+      });
+      setDisplayedItems([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, toast, t]);
+
+  useEffect(() => {
+    if (isMounted) {
+      fetchItems();
+    }
+  }, [isMounted, fetchItems]);
 
   const isCurrentHomepage = homepagePreference === pathname;
 
@@ -235,31 +186,23 @@ function MarketplaceContent() {
             </div>
           </div>
 
-          {aiRecommendedItems.length > 0 && (
-            <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-3 flex items-center gap-1.5"><Brain className="h-5 w-5 text-primary"/>{t('recommendedForYou')}</h2>
-              <ScrollArea className="w-full whitespace-nowrap">
-                <div className="flex space-x-4 pb-2">
-                {isLoadingAiRecommendations ? 
-                  Array.from({ length: 4 }).map((_, i) => <Skeleton key={`aiskel-desk-${i}`} className="w-52 h-72 rounded-lg" />) :
-                  aiRecommendedItems.map(item => <ItemCard key={`ai-rec-${item.id}`} item={item} reason={aiRecommendationReasons[item.id]} />)}
-                </div>
-                <ScrollBar orientation="horizontal" />
-              </ScrollArea>
-            </section>
-          )}
-
           <h2 className="text-xl font-semibold mb-4 mt-6">{t('discoverMore')}</h2>
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {Array.from({ length: 5 }).map((_, i) => (
-                    <div key={i} className="w-52 space-y-2">
-                        <Skeleton className="h-32 w-full rounded-lg" />
-                        <Skeleton className="h-4 w-full" />
-                        <Skeleton className="h-3 w-1/2" />
-                        <Skeleton className="h-5 w-1/3" />
-                        <Skeleton className="h-9 w-full" />
-                    </div>
+                     <Card key={i} className="w-52">
+                        <CardHeader className="p-0">
+                            <Skeleton className="w-full h-32 rounded-t-lg"/>
+                        </CardHeader>
+                        <CardContent className="p-3 space-y-2">
+                            <Skeleton className="h-4 w-full" />
+                            <Skeleton className="h-3 w-1/2" />
+                            <Skeleton className="h-5 w-1/3" />
+                        </CardContent>
+                        <CardFooter className="p-2">
+                             <Skeleton className="h-9 w-full" />
+                        </CardFooter>
+                    </Card>
                 ))}
             </div>
           ) : displayedItems.length > 0 ? (

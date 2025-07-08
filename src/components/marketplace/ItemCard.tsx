@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { MarketplaceItem, ServiceItem } from "@/lib/types";
-import { cn, withIcon } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { Briefcase, DollarSign } from "lucide-react";
 
@@ -31,14 +31,16 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                     {item.listingType}
                 </Badge>
                 <Link href={`/marketplace/${item.id}`}>
-                    <Image
-                        src={item.imageUrl || (Array.isArray(item.imageUrls) && item.imageUrls[0]) || 'https://placehold.co/600x400.png'}
-                        alt={item.name}
-                        width={300}
-                        height={200}
-                        className="w-full h-40 object-cover rounded-t-lg hover:opacity-90 transition-opacity"
-                        data-ai-hint="marketplace item"
-                    />
+                    <div className="relative w-full aspect-[4/3] bg-muted">
+                        <Image
+                            src={item.imageUrl || (Array.isArray(item.imageUrls) && item.imageUrls[0]) || 'https://placehold.co/400x300.png'}
+                            alt={item.name}
+                            fill
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                            className="object-cover rounded-t-lg hover:opacity-90 transition-opacity"
+                            data-ai-hint="marketplace item"
+                        />
+                    </div>
                 </Link>
             </CardHeader>
             <CardContent className="flex-grow p-3 space-y-1">
@@ -69,7 +71,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
             <CardFooter className="p-2 pt-0">
                 <Button asChild size="sm" className="w-full">
                     <Link href={`/marketplace/${item.id}`} className="flex items-center justify-center gap-2">
-                        {isService ? "View Service" : t('viewDetails')}
+                        {isService ? t('viewServiceButton') : t('viewDetails')}
                     </Link>
                 </Button>
             </CardFooter>
