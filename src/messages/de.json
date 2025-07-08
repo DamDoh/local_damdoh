@@ -1,555 +1,89 @@
 
 {
-  "traceabilityPage": {
-    "title": "Produkt-Rückverfolgbarkeit",
-    "description": "Verfolgen Sie den Weg Ihrer Lebensmittel vom Bauernhof bis zur Gabel mit einer Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "VTI oder Chargen-ID eingeben...",
-    "trackButton": "Verfolgen",
-    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die jeder Produktcharge zugewiesen wird und Transparenz entlang der Lieferkette gewährleistet.",
-    "recentTitle": "Kürzlich verifizierte Chargen",
-    "recentDescription": "Entdecken Sie einige der neuesten Produktreisen auf der Plattform.",
-    "noRecentBatches": "Keine kürzlich verifizierten Chargen gefunden.",
-    "producerLabel": "Hersteller",
-    "harvestDateLabel": "Erntedatum",
-    "viewReportButton": "Vollständigen Bericht anzeigen",
-    "detailPage": {
-      "backLink": "Zurück zur Rückverfolgbarkeits-Zentrale",
-      "invalidIdError": "Keine gültige Chargen-ID angegeben.",
-      "loadError": "Fehler beim Laden der Rückverfolgbarkeitshistorie für diese Charge.",
-      "notFoundTitle": "Charge nicht gefunden",
-      "notFoundDescription": "Der Rückverfolgbarkeitsbericht für diese ID konnte nicht gefunden werden.",
-      "traceableProduct": "Rückverfolgbares Produkt",
-      "batchIdLabel": "Chargen-ID",
-      "producerLabel": "Hersteller",
-      "harvestDateLabel": "Erntedatum",
-      "yieldLabel": "Anfänglicher Ertrag",
-      "qualityLabel": "Qualitätsgrad",
-      "notSpecified": "Nicht angegeben",
-      "journeyTitle": "Produktreise",
-      "journeyDescription": "Eine chronologische Aufzeichnung der Ereignisse für diese Charge.",
-      "noEventDetails": "Keine spezifischen Details für dieses Ereignis.",
-      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgbarkeitsereignisse protokolliert.",
-      "sustainablyGrownTitle": "Nachhaltig angebaut",
-      "sustainablyGrownDescription": "Dieses Produkt wurde unter Verwendung von Praktiken angebaut, die den Prinzipien der nachhaltigen und biologischen Landwirtschaft entsprechen, basierend auf protokollierten Betriebsmitteln.",
-      "geoLocationLabel": "Geolokalisierung",
-      "observationType": "Beobachtungstyp",
-      "details": "Details",
-      "aiDiagnosis": "KI-Diagnose"
-    }
-  },
-  "searchPage": {
-    "title": "Universelle Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform.",
-    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchen",
-    "popularSearch1": "Bio-Kaffeebohnen Kenia",
-    "popularSearch2": "Traktorvermietung",
-    "popularSearch3": "Trockenresistente Maissamen",
-    "popularSearch4": "Logistikpartner Ostafrika",
-    "popularSearch5": "Reduzierung von Nachernteverlusten",
-    "modal": {
-      "title": "Universelle Suche",
-      "placeholder": "Personen, Produkte, Dienstleistungen, Foren suchen...",
-      "searchButton": "Suchen",
-      "searchError": "Suchfehler",
-      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-      "invalidCodeError": "Ungültiger QR-Code gescannt. Es scheint sich nicht um eine DamDoh-ID zu handeln.",
-      "scanFailed": "Scan fehlgeschlagen",
-      "scanError": "Scanfehler",
-      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
-      "interpretationTitle": "KI-Interpretation",
-      "interpretationNotesDefault": "Suche nach Elementen, die Ihrer Anfrage entsprechen.",
-      "filtersTitle": "Angewandte Filter",
-      "noResults": "Keine Ergebnisse gefunden",
-      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
-      "results": {
-        "users": "Profile",
-        "marketplaceItems": "Marktplatz",
-        "forums": "Foren",
-        "agri_events": "Veranstaltungen",
-        "knowledge_articles": "Wissensdatenbank",
-        "vti_registry": "Rückverfolgungsberichte"
+  "settingsPage": {
+    "title": "Einstellungen",
+    "description": "Verwalten Sie Ihre Konto- und Profileinstellungen.",
+    "profileTab": "Profil",
+    "accountTab": "Konto",
+    "notificationsTab": "Benachrichtigungen",
+    "privacyTab": "Datenschutz",
+    "appearanceTab": "Erscheinungsbild",
+    "stakeholderProfile": {
+      "title": "Stakeholder-Profil",
+      "description": "Ihre professionelle Identität auf DamDoh. So sehen Sie andere."
+    },
+    "account": {
+      "title": "Kontoeinstellungen",
+      "description": "Verwalten Sie Ihre Kontoauthentifizierung und -sicherheit.",
+      "currentPasswordLabel": "Aktuelles Passwort",
+      "newPasswordLabel": "Neues Passwort",
+      "confirmPasswordLabel": "Neues Passwort bestätigen",
+      "changePasswordButton": "Passwort aktualisieren",
+      "deactivateButton": "Konto deaktivieren"
+    },
+    "notifications": {
+      "title": "Benachrichtigungseinstellungen",
+      "description": "Verwalten Sie Ihre E-Mail- und Push-Benachrichtigungspräferenzen.",
+      "emailDigestLabel": "E-Mail-Benachrichtigungen",
+      "emailDigestDescription": "Benachrichtigungen per E-Mail erhalten.",
+      "connectionRequestsLabel": "Verbindungsanfragen",
+      "connectionRequestsDescription": "Benachrichtigen Sie mich über neue Verbindungsanfragen.",
+      "forumMentionsLabel": "Forumerwähnungen & Antworten",
+      "forumMentionsDescription": "Benachrichtigen Sie mich, wenn ich erwähnt werde oder auf meine Beiträge geantwortet wird.",
+      "marketplaceActivityLabel": "Marktplatzaktivität",
+      "marketplaceActivityDescription": "Benachrichtigen Sie mich über Bestellungen und Anfragen zu meinen Angeboten.",
+      "talentExchangeLabel": "Updates zur Talentbörse",
+      "talentExchangeDescription": "Benachrichtigen Sie mich über neue Stellenangebote und Bewerbungen.",
+      "saveButton": "Präferenzen speichern"
+    },
+    "privacy": {
+      "title": "Datenschutz & Sichtbarkeit",
+      "description": "Kontrollieren Sie, wer Ihre Informationen sehen und mit Ihnen interagieren kann.",
+      "profileVisibilityLabel": "Profilsichtbarkeit",
+      "profileVisibilityDescription": "Kontrollieren Sie, wer Ihr vollständiges Profil sehen kann.",
+      "profileVisibilityAll": "Jeder",
+      "profileVisibilityConnections": "Nur Verbindungen",
+      "profileVisibilityPrivate": "Privat (Nur ich)",
+      "connectionRequestsLabel": "Wer kann Ihnen Verbindungsanfragen senden?",
+      "connectionRequestsDescription": "Beschränken Sie, wer Ihnen Verbindungsanfragen senden kann.",
+      "connectionRequestsAll": "Jeder",
+      "connectionRequestsConnectionsOfConnections": "Verbindungen von Verbindungen",
+      "contactInfoVisibilityLabel": "Wer kann Ihre Kontaktdaten sehen?",
+      "contactInfoVisibilityDescription": "Kontrollieren Sie, wer Ihre E-Mail und Telefonnummer sieht.",
+      "contactInfoVisibilityAll": "Jeder",
+      "contactInfoVisibilityConnections": "Nur Verbindungen",
+      "activityStatusLabel": "Meinen Aktivitätsstatus anzeigen",
+      "activityStatusDescription": "Lassen Sie Ihre Verbindungen wissen, wann Sie auf DamDoh aktiv sind.",
+      "searchIndexingLabel": "Suchmaschinen erlauben, mein Profil zu indizieren",
+      "searchIndexingDescription": "Erlauben Sie, dass Ihr Profil in Suchergebnissen auf Google usw. erscheint.",
+      "saveButton": "Datenschutzeinstellungen speichern",
+      "dataConsentTitle": "Datenfreigabe & Einwilligung",
+      "dataConsentDescription": "Kontrollieren Sie, wie Ihre Daten über die integrierten Dienste von DamDoh verwendet werden.",
+      "marketplaceHistoryLabel": "Marktplatzhistorie für Finanzdienstleistungen",
+      "marketplaceHistoryDescription": "Erlauben Sie Finanzinstituten auf DamDoh, Ihre Marktplatz-Transaktionshistorie für die Bonitätsprüfung zu berücksichtigen.",
+      "traceabilityDataLabel": "Öffentliche Rückverfolgungsdaten",
+      "traceabilityDataDescription": "Erlauben Sie die Verwendung Ihrer anonymisierten Rückverfolgungsdaten in öffentlichen Berichten und Forschungen.",
+      "financialApplicationDataLabel": "Finanzantragsdaten für KI-Abgleich",
+      "financialApplicationDataDescription": "Erlauben Sie die Verwendung Ihrer anonymisierten Finanzantragsdaten durch unsere KI, um relevante Dienste vorzuschlagen.",
+      "saveConsentButton": "Einwilligungen speichern"
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "description": "Passen Sie das Aussehen der Anwendung an.",
+      "themeLabel": "Thema",
+      "themeDescription": "Wählen Sie ein helles oder dunkles Thema für die Benutzeroberfläche.",
+      "lightTheme": "Hell",
+      "darkTheme": "Dunkel",
+      "languageLabel": "Sprache",
+      "languageDescription": "Wählen Sie Ihre bevorzugte Sprache für die Anwendung."
+    },
+    "editProfilePage": {
+      "toast": {
+        "notAuthenticatedTitle": "Nicht authentifiziert",
+        "notAuthenticatedDescription": "Bitte melden Sie sich an, um Ihr Profil zu bearbeiten.",
+        "unauthorizedTitle": "Nicht autorisiert",
+        "unauthorizedDescription": "Sie können nur Ihr eigenes Profil bearbeiten."
       }
-    }
-  },
-  "AppFooter": {
-    "tagline": "Die globale landwirtschaftliche Lieferkettenplattform.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog & Nachrichten",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Jetzt bei Google Play",
-    "appStoreAlt": "Im App Store herunterladen"
-  },
-  "AppHeader": {
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Mgmt",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talente",
-    "traceability": "Rückverfolgbarkeit",
-    "forums": "Foren",
-    "sustainability": "Nachhaltigkeit",
-    "notifications": "Benachrichtigungen",
-    "messages": "Nachrichten",
-    "wallet": "Brieftasche",
-    "searchPlaceholder": "Personen, Produkte, Dienstleistungen suchen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Design wechseln",
-    "switchToDarkAria": "Zum dunklen Design wechseln"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache ändern"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "Sie sind wieder online!",
-        "description": "Ihre Verbindung wurde wiederhergestellt."
-      },
-      "offline": {
-        "title": "Sie sind derzeit offline",
-        "description": "Ihre Aktionen werden gespeichert und synchronisiert, wenn Sie sich wieder verbinden."
-      },
-      "syncing": {
-        "title": "Offline-Änderungen werden synchronisiert...",
-        "description": "Lade {count, plural, one {# Aktion} other {# Aktionen}} auf den Server hoch."
-      },
-      "synced": {
-        "title": "Synchronisierung abgeschlossen!",
-        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
-      },
-      "syncFailed": {
-        "title": "Synchronisierung fehlgeschlagen",
-        "description": "Nicht alle Offline-Änderungen konnten synchronisiert werden. Erneuter Versuch später."
-      },
-      "queued": {
-        "title": "Aktion in Warteschlange",
-        "description": "Diese Aktion wird ausgeführt, sobald Sie online sind."
-      }
-    },
-    "tooltip": {
-      "syncing": "Synchronisiere {count, plural, one {# ausstehende Aktion} other {# ausstehende Aktionen}}...",
-      "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} warten auf Synchronisierung",
-      "onlineSynced": "Online | Alle Änderungen synchronisiert",
-      "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
-    }
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Verbindungen pflegen, Wohlstand ernten mit {appName}",
-      "subtitle": "Das unverzichtbare digitale Ökosystem, das jeden Akteur in der landwirtschaftlichen Wertschöpfungskette verbindet. Von der Saat bis zum Verkauf fördert DamDoh Wachstum, Transparenz und Zusammenarbeit.",
-      "getStartedButton": "Kostenlos starten",
-      "learnMoreButton": "Mehr erfahren"
-    },
-    "features": {
-      "title": "Kernfunktionen von DamDoh",
-      "subtitle": "Eine integrierte Plattform, die auf die vielfältigen Bedürfnisse der Agrargemeinschaft zugeschnitten ist.",
-      "networking": {
-        "title": "Intelligentes Netzwerken",
-        "description": "KI-gestützte Verbindungsvorschläge basierend auf Ihrer Rolle, Ihrem Standort und Ihren Bedürfnissen. Finden Sie die richtigen Partner, von Lieferanten bis zu Käufern."
-      },
-      "marketplace": {
-        "title": "Digitaler Marktplatz",
-        "description": "Ein direkter Kanal zum Kauf und Verkauf von Produkten, Betriebsmitteln und Ausrüstung. Erweitern Sie Ihre Marktreichweite und finden Sie die besten Preise."
-      },
-      "forums": {
-        "title": "Thematische Foren",
-        "description": "Teilen Sie Wissen und diskutieren Sie spezifische Themen wie Pflanzenmanagement, Tiergesundheit und neue Technologien mit Kollegen."
-      },
-      "talent": {
-        "title": "Talentbörse",
-        "description": "Bieten oder finden Sie landwirtschaftliche Dienstleistungen, von der Lohnarbeit bis zur Drohnenvermessung und professioneller Beratung."
-      }
-    },
-    "forWho": {
-      "badge": "Für alle in der Landwirtschaft",
-      "title": "Eine Plattform für jeden Akteur",
-      "description": "DamDoh ist einzigartig konzipiert, um die gesamte landwirtschaftliche Wertschöpfungskette zu bedienen und schafft einen einzigen Punkt der Wahrheit und der Chancen für alle.",
-      "farmers": {
-        "title": "Landwirte",
-        "description": "Greifen Sie auf bessere Märkte zu, finden Sie hochwertige Betriebsmittel und erhalten Sie Expertenrat, um Ihren Ertrag und Ihre Rentabilität zu steigern."
-      },
-      "buyers": {
-        "title": "Käufer & Verarbeiter",
-        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Erzeugern und Genossenschaften und sichern Sie so die Zuverlässigkeit der Lieferkette."
-      },
-      "experts": {
-        "title": "Experten & Dienstleister",
-        "description": "Bieten Sie Ihre speziellen Fähigkeiten und Dienstleistungen einem breiten landwirtschaftlichen Publikum an, das Ihre Expertise sucht."
-      },
-      "imageAlt": "Eine vielfältige Gruppe von Akteuren der Landwirtschaft bei der Zusammenarbeit"
-    },
-    "cta": {
-      "title": "Bereit, Ihr Netzwerk zu erweitern?",
-      "subtitle": "Schließen Sie sich Tausenden von Landwirten, Käufern und Experten an, die eine vernetztere und effizientere landwirtschaftliche Zukunft aufbauen.",
-      "button": "Heute DamDoh beitreten"
-    }
-  },
-  "networkPage": {
-    "title": "Stakeholder finden",
-    "description": "Suchen und vernetzen Sie sich mit allen Stakeholdern im DamDoh-Ökosystem.",
-    "myNetworkButton": "Mein Netzwerk",
-    "agentToolsButton": "Agentenwerkzeuge",
-    "aiSuggestionsTitle": "KI-Vorschläge",
-    "aiSuggestionsDescription": "KI-gestützte Empfehlungen basierend auf Ihrem Profil.",
-    "refreshSuggestions": "Vorschläge aktualisieren",
-    "infoTooltip": "Vorschläge basieren auf den in Ihrem Profil angegebenen Interessen und Bedürfnissen.",
-    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
-    "noSuggestions": "Derzeit keine personalisierten Vorschläge verfügbar.",
-    "connect": "Verbinden",
-    "profile": "Profil",
-    "browseAllTitle": "Alle Stakeholder durchsuchen",
-    "browseAllDescription": "Filtern und finden Sie genau, wen Sie suchen.",
-    "searchPlaceholder": "Nach Name oder Schlüsselwort suchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "rolePlaceholder": "Nach Rolle filtern...",
-    "allRoles": "Alle Rollen",
-    "noStakeholdersFound": "Keine Stakeholder gefunden, die Ihren Kriterien entsprechen.",
-    "noStakeholdersHint": "Versuchen Sie, Ihre Suche oder Filter anzupassen.",
-    "toast": {
-      "errorTitle": "Fehler",
-      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
-      "requestSentTitle": "Verbindungsanfrage gesendet!",
-      "requestSentDescription": "Ihre Anfrage wurde an den Benutzer gesendet.",
-      "requestErrorTitle": "Anfrage konnte nicht gesendet werden"
-    }
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm-Management-Hub",
-      "description": "Ihr zentrales Dashboard für alle landwirtschaftlichen Aktivitäten, von der Verwaltung von Parzellen und Kulturen bis zur Verfolgung von Betriebsmitteln und Finanzen.",
-      "myFarms": {
-        "title": "Meine Farmen & Kulturen",
-        "description": "Sehen, bearbeiten und verwalten Sie alle Ihre registrierten landwirtschaftlichen Parzellen und die darauf wachsenden Kulturen.",
-        "button": "Farmen verwalten"
-      },
-      "labor": {
-        "title": "Arbeitskräfteverwaltung",
-        "description": "Verfolgen Sie Ihre landwirtschaftlichen Arbeitskräfte, protokollieren Sie Stunden und verwalten Sie Zahlungen an einem Ort.",
-        "button": "Arbeitskräfte verwalten"
-      },
-      "knf": {
-        "title": "KNF-Betriebsmittel-Assistent",
-        "description": "Erstellen und verfolgen Sie Ihre koreanischen Naturlandwirtschafts-Zubereitungen wie FPJ, FAA und mehr.",
-        "button": "KNF-Betriebsmittel verwalten"
-      },
-      "fgw": {
-        "title": "Anleitung: Landwirtschaft nach Gottes Art",
-        "description": "Lernen Sie die Prinzipien von FGW kennen, einschließlich pflugloser Bodenbearbeitung und Mulchen mit 'Gottes Decke'.",
-        "button": "FGW-Anleitung anzeigen"
-      },
-      "financials": {
-        "title": "Finanzen & Finanzierung",
-        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihres Betriebs und beantragen Sie Kredite oder Zuschüsse von Finanzpartnern.",
-        "button": "Finanzen anzeigen"
-      },
-      "seedStarting": {
-        "title": "Anleitung zur Anzucht von Saatgut",
-        "description": "Eine umfassende Anleitung für den erfolgreichen Start von Saatgut im Haus für einen Vorsprung in der Saison.",
-        "button": "Anleitung anzeigen"
-      },
-      "familyFarm": {
-        "title": "200m² Familienfarm-Modell",
-        "description": "Entdecken Sie ein Modell für eine autarke, integrierte 200m² Familienfarm.",
-        "button": "Modell erkunden"
-      },
-      "assetManagement": {
-        "title": "Vermögensverwaltung",
-        "description": "Erfassen und verwalten Sie Ihre landwirtschaftlichen Maschinen, Werkzeuge und andere physische Vermögenswerte. (Demnächst verfügbar)",
-        "button": "Vermögen verwalten"
-      }
-    }
-  },
-  "Marketplace": {
-    "categories": {
-      "allCategories": "Alle Kategorien",
-      "viewAllItems": "Alle Artikel anzeigen",
-      "viewAllCategory": "Alle in {categoryName}"
-    },
-    "title": "Marktplatz",
-    "description": "Durchsuchen und entdecken Sie Produkte und Dienstleistungen.",
-    "createShopButton": "Shop erstellen",
-    "createListingButton": "Angebot erstellen",
-    "myOrdersButton": "Meine erhaltenen Bestellungen",
-    "pinButton": "Als Startseite anheften",
-    "unpinButton": "Von Startseite lösen",
-    "searchPlaceholder": "Marktplatz durchsuchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "typePlaceholder": "Nach Typ filtern...",
-    "recommendedForYou": "Empfohlen für Sie",
-    "discoverMore": "Mehr entdecken",
-    "noItemsFound": {
-      "title": "Keine Artikel gefunden.",
-      "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "KI-Empfehlungen konnten nicht abgerufen werden"
-      },
-      "search": {
-        "title": "Suchfehler",
-        "description": "Marktplatzartikel konnten nicht abgerufen werden."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "Marktplatz angeheftet!",
-      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
-      "unpinnedTitle": "Startseite gelöst!",
-      "unpinnedDescription": "Das Dashboard ist jetzt Ihre Standard-Startseite."
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Finden oder bieten Sie landwirtschaftliche Dienstleistungen und Fachkenntnisse an.",
-    "listServiceButton": "Dienstleistung anbieten",
-    "searchPlaceholder": "Nach Fähigkeit oder Dienstleistung suchen...",
-    "locationPlaceholder": "Nach Standort filtern",
-    "categoryPlaceholder": "Nach Kategorie filtern",
-    "allCategories": "Alle Dienstleistungskategorien",
-    "noResultsTitle": "Keine Dienstleistungen gefunden",
-    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder bieten Sie Ihre eigene Dienstleistung der Community an.",
-    "toast": {
-      "error": {
-        "title": "Suchfehler",
-        "description": "Dienstleistungen konnten nicht vom Marktplatz abgerufen werden."
-      }
-    }
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "Alle Typen",
-      "Product": "Produkt",
-      "Service": "Dienstleistung"
-    }
-  },
-  "Forums": {
-    "title": "Forum-Themen",
-    "description": "Durchsuchen und erstellen Sie Diskussionsthemen.",
-    "lastActivity": "Letzte Aktivität vor {{time}}",
-    "searchPlaceholder": "Themen durchsuchen...",
-    "buttons": {
-      "createTopic": "Thema erstellen",
-      "joinDiscussion": "Diskussion beitreten",
-      "pinHomepage": "Als Startseite anheften",
-      "unpinHomepage": "Von Startseite lösen"
-    },
-    "notFound": {
-      "title": "Keine Themen gefunden",
-      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
-      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
-    },
-    "pinning": {
-      "pinnedTitle": "Startseite angeheftet!",
-      "pinnedDescription": "Dieses Forum wird jetzt als Ihre Startseite angezeigt.",
-      "unpinnedTitle": "Startseite gelöst!",
-      "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
-    },
-    "errors": {
-      "loadTitle": "Fehler beim Laden der Themen",
-      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten."
-    },
-    "create": {
-      "backLink": "Zurück zu den Themen",
-      "title": "Neues Thema erstellen",
-      "description": "Starten Sie eine neue Diskussion im Forum.",
-      "form": {
-        "nameLabel": "Themenname",
-        "namePlaceholder": "Geben Sie den Namen Ihres Themas ein",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Thema kurz",
-        "submitButton": "Thema erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "success": {
-        "title": "Thema erfolgreich erstellt",
-        "description": "Ihr neues Thema wurde erstellt."
-      },
-      "errors": {
-        "auth": {
-          "title": "Nicht authentifiziert",
-          "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
-        },
-        "incomplete": {
-          "title": "Unvollständige Felder",
-          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
-        },
-        "general": {
-          "title": "Fehler",
-          "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
-        }
-      }
-    },
-    "topic": {
-      "backLink": "Zurück zu den Foren",
-      "title": "Forum-Themen",
-      "description": "Durchsuchen und an Diskussionen teilnehmen.",
-      "postMeta": "von {{author}} am {{date}}",
-      "buttons": {
-        "createPost": "Beitrag erstellen",
-        "loadMore": "Mehr laden",
-        "loadingMore": "Lädt mehr..."
-      },
-      "noPosts": {
-        "title": "Noch keine Beiträge",
-        "description": "Seien Sie der Erste, der eine Diskussion in diesem Thema beginnt.",
-        "button": "Ersten Beitrag erstellen"
-      },
-      "notFound": {
-        "title": "Thema nicht gefunden",
-        "description": "Das gesuchte Thema existiert nicht.",
-        "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Fehler beim Laden der Beiträge",
-          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
-        },
-        "loadTopic": {
-          "title": "Fehler beim Laden des Themas",
-          "description": "Beim Laden der Themendetails ist ein Fehler aufgetreten."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Zurück zu {{topicName}}",
-      "unknownUser": "Unbekannter Benutzer",
-      "postMeta": "von {{author}} am {{date}}",
-      "repliesTitle": "Antworten ({{count}})",
-      "noReplies": "Noch keine Antworten.",
-      "buttons": {
-        "loadMore": "Mehr laden",
-        "loadingMore": "Lädt mehr..."
-      },
-      "reply": {
-        "title": "Antwort hinzufügen",
-        "placeholder": "Schreiben Sie Ihre Antwort hier...",
-        "submitButton": "Antwort hinzufügen",
-        "submittingButton": "Wird gesendet...",
-        "success": "Antwort hinzugefügt!"
-      },
-      "notFound": {
-        "title": "Beitrag nicht gefunden",
-        "description": "Der gesuchte Beitrag existiert nicht.",
-        "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Fehler beim Laden des Beitrags",
-          "description": "Beim Laden der Beitragsdetails ist ein Fehler aufgetreten."
-        },
-        "loadReplies": {
-          "title": "Fehler beim Laden der Antworten",
-          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
-        },
-        "emptyReply": "Antwort darf nicht leer sein.",
-        "submitReply": {
-          "title": "Fehler beim Senden der Antwort",
-          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
-        }
-      }
-    },
-    "createPost": {
-      "aiHelper": {
-        "title": "KI-Helfer",
-        "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
-        "promptLabel": "KI-Eingabeaufforderung",
-        "promptPlaceholder": "Geben Sie eine kurze Beschreibung des zu generierenden Beitrags ein...",
-        "generateButton": "Entwurf generieren",
-        "generatingButton": "Wird generiert..."
-      },
-      "backLink": "Zurück zum Thema",
-      "title": "Neuen Beitrag erstellen",
-      "description": "Fügen Sie diesem Thema einen neuen Beitrag hinzu.",
-      "form": {
-        "titleLabel": "Titel des Beitrags",
-        "titlePlaceholder": "Geben Sie den Titel Ihres Beitrags ein",
-        "contentLabel": "Inhalt des Beitrags",
-        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags...",
-        "submitButton": "Beitrag erstellen",
-        "submittingButton": "Wird gesendet..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "KI-Entwurf generiert!",
-          "description": "Ein Entwurf wurde für Sie generiert."
-        },
-        "title": "Beitrag erstellt!",
-        "description": "Ihr Beitrag wurde erfolgreich erstellt."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "KI-Eingabeaufforderung fehlt",
-          "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
-        },
-        "aiDraft": {
-          "title": "KI-Entwurfsfehler",
-          "description": "Fehler beim Generieren des KI-Entwurfs."
-        },
-        "incomplete": {
-          "title": "Unvollständige Felder",
-          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
-        },
-        "general": {
-          "title": "Fehler",
-          "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten."
-        }
-      }
-    }
-  },
-  "sustainabilityPage": {
-    "title": "Nachhaltigkeits-Dashboard",
-    "description": "Verfolgen und verbessern Sie die Umweltauswirkungen Ihres Betriebs.",
-    "carbonFootprint": "CO2-Fußabdruck",
-    "waterEfficiency": "Wassereffizienz",
-    "biodiversityScore": "Biodiversitäts-Score",
-    "practicesTitle": "Protokoll nachhaltiger Praktiken",
-    "certificationsTitle": "Zertifizierungen",
-    "practicesTable": {
-      "practice": "Praxis",
-      "lastLogged": "Zuletzt protokolliert"
-    },
-    "certificationsTable": {
-      "certification": "Zertifizierung",
-      "status": "Status",
-      "expiry": "Ablaufdatum"
-    },
-    "auth": {
-      "title": "Anmeldung erforderlich",
-      "description": "Bitte melden Sie sich an, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
-      "button": "Anmelden"
-    },
-    "noData": {
-      "title": "Keine Daten verfügbar",
-      "description": "Nachhaltigkeitsdaten konnten derzeit nicht geladen werden."
-    },
-    "metricCard": {
-      "trendText": "seit letztem Monat"
     }
   }
 }

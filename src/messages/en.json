@@ -211,305 +211,6 @@
       "button": "Join DamDoh Today"
     }
   },
-  "networkPage": {
-    "title": "Find Stakeholders",
-    "description": "Search and connect with all stakeholders in the DamDoh ecosystem.",
-    "myNetworkButton": "My Network",
-    "agentToolsButton": "Agent Tools",
-    "aiSuggestionsTitle": "AI Suggestions",
-    "aiSuggestionsDescription": "AI-powered recommendations based on your profile.",
-    "refreshSuggestions": "Refresh suggestions",
-    "infoTooltip": "Suggestions are based on your profile's stated interests and needs.",
-    "signInPrompt": "Sign in to get personalized suggestions.",
-    "noSuggestions": "No personalized suggestions available right now.",
-    "connect": "Connect",
-    "profile": "Profile",
-    "browseAllTitle": "Browse All Stakeholders",
-    "browseAllDescription": "Filter and find exactly who you're looking for.",
-    "searchPlaceholder": "Search by name or keyword...",
-    "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter by role...",
-    "allRoles": "All Roles",
-    "noStakeholdersFound": "No stakeholders found matching your criteria.",
-    "noStakeholdersHint": "Try adjusting your search or filters.",
-    "toast": {
-      "errorTitle": "Error",
-      "loadError": "Could not load network data.",
-      "requestSentTitle": "Connection Request Sent!",
-      "requestSentDescription": "Your request has been sent to the user.",
-      "requestErrorTitle": "Could Not Send Request"
-    }
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central dashboard for all farm-related activities, from managing plots and crops to tracking inputs and finances.",
-      "myFarms": {
-        "title": "My Farms & Crops",
-        "description": "View, edit, and manage all your registered farm plots and the crops growing on them.",
-        "button": "Manage Farms"
-      },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Keep track of your farm workers, log hours, and manage payments all in one place.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF Input Assistant",
-        "description": "Create and track your Korean Natural Farming concoctions like FPJ, FAA, and more.",
-        "button": "Manage KNF Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way Guide",
-        "description": "Learn about the principles of FGW, including no-tillage and 'God's Blanket' mulching.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Financials & Funding",
-        "description": "Track farm income and expenses, and apply for loans or grants from financial partners.",
-        "button": "View Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "A comprehensive guide to successfully starting seeds indoors for a head start on the season.",
-        "button": "View Guide"
-      },
-      "familyFarm": {
-        "title": "200sqm Family Farm Model",
-        "description": "Explore a model for a self-sufficient, integrated 200sqm family farm.",
-        "button": "Explore Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Log and manage your farm machinery, tools, and other physical assets. (Coming Soon)",
-        "button": "Manage Assets"
-      }
-    }
-  },
-  "Marketplace": {
-    "categories": {
-      "allCategories": "All Categories",
-      "viewAllItems": "View All Items",
-      "viewAllCategory": "All in {categoryName}"
-    },
-    "title": "Marketplace",
-    "description": "Browse and discover products and services.",
-    "createShopButton": "Create Shopfront",
-    "createListingButton": "Create Listing",
-    "myOrdersButton": "My Received Orders",
-    "pinButton": "Pin as Homepage",
-    "unpinButton": "Unpin Homepage",
-    "searchPlaceholder": "Search marketplace...",
-    "locationPlaceholder": "Filter by location...",
-    "typePlaceholder": "Filter by type...",
-    "recommendedForYou": "Recommended for you",
-    "discoverMore": "Discover More",
-    "noItemsFound": {
-      "title": "No items found.",
-      "hint": "Try adjusting your filters or search terms."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "Could not fetch AI recommendations"
-      },
-      "search": {
-        "title": "Search Error",
-        "description": "Could not fetch marketplace items."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "Marketplace Pinned!",
-      "pinnedDescription": "The Marketplace is now your default homepage.",
-      "unpinnedTitle": "Homepage Unpinned!",
-      "unpinnedDescription": "The Dashboard is now your default homepage."
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find or offer agricultural services and expertise.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search by skill or service...",
-    "locationPlaceholder": "Filter by location",
-    "categoryPlaceholder": "Filter by category",
-    "allCategories": "All Service Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters or offer your own service to the community.",
-    "toast": {
-      "error": {
-        "title": "Search Error",
-        "description": "Could not fetch services from the marketplace."
-      }
-    }
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "All Types",
-      "Product": "Product",
-      "Service": "Service"
-    }
-  },
-  "Forums": {
-    "title": "Forum Topics",
-    "description": "Browse and create topics for discussion.",
-    "lastActivity": "Last activity {{time}}",
-    "searchPlaceholder": "Search topics...",
-    "buttons": {
-      "createTopic": "Create Topic",
-      "joinDiscussion": "Join Discussion",
-      "pinHomepage": "Pin as Homepage",
-      "unpinHomepage": "Unpin from Homepage"
-    },
-    "notFound": {
-      "title": "No Topics Found",
-      "tryDifferentSearch": "Try a different search term.",
-      "beTheFirst": "Be the first to create a topic."
-    },
-    "pinning": {
-      "pinnedTitle": "Homepage Pinned!",
-      "pinnedDescription": "This forum is now showing as your homepage.",
-      "unpinnedTitle": "Homepage Unpinned!",
-      "unpinnedDescription": "This forum will no longer show as your homepage."
-    },
-    "errors": {
-      "loadTitle": "Error Loading Topics",
-      "loadDescription": "An error occurred while loading the forum topics."
-    },
-    "create": {
-      "backLink": "Back to Topics",
-      "title": "Create New Topic",
-      "description": "Start a new discussion in the forum.",
-      "form": {
-        "nameLabel": "Topic Name",
-        "namePlaceholder": "Enter the name of your topic",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Briefly describe your topic",
-        "submitButton": "Create Topic",
-        "submittingButton": "Creating..."
-      },
-      "success": {
-        "title": "Topic Created Successfully",
-        "description": "Your new topic has been created."
-      },
-      "errors": {
-        "auth": {
-          "title": "Not Authenticated",
-          "description": "You must be logged in to create a topic."
-        },
-        "incomplete": {
-          "title": "Incomplete Fields",
-          "description": "Please fill out all required fields."
-        },
-        "general": {
-          "title": "Error",
-          "description": "An error occurred while creating the topic."
-        }
-      }
-    },
-    "topic": {
-      "backLink": "Back to Forums",
-      "title": "Forum Topics",
-      "description": "Browse and participate in discussions.",
-      "postMeta": "by {{author}} on {{date}}",
-      "buttons": {
-        "createPost": "Create Post",
-        "loadMore": "Load More",
-        "loadingMore": "Loading More..."
-      },
-      "noPosts": {
-        "title": "No posts yet",
-        "description": "Be the first one to start a discussion in this topic.",
-        "button": "Create First Post"
-      },
-      "notFound": {
-        "title": "Topic not found",
-        "description": "The topic you are looking for does not exist.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Error loading posts",
-          "description": "An error occurred while loading posts for this topic."
-        },
-        "loadTopic": {
-          "title": "Error loading topic",
-          "description": "An error occurred while loading the topic details."
-        }
-      }
-    },
-    "postView": {
-      "backLink": "Back to {{topicName}}",
-      "unknownUser": "Unknown User",
-      "postMeta": "by {{author}} on {{date}}",
-      "repliesTitle": "Replies ({{count}})",
-      "noReplies": "No replies yet.",
-      "buttons": {
-        "loadMore": "Load More",
-        "loadingMore": "Loading More..."
-      },
-      "reply": {
-        "title": "Add a Reply",
-        "placeholder": "Write your reply here...",
-        "submitButton": "Add Reply",
-        "submittingButton": "Submitting...",
-        "success": "Reply added!"
-      },
-      "notFound": {
-        "title": "Post not found",
-        "description": "The post you are looking for does not exist.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error loading post",
-          "description": "An error occurred while loading the post details."
-        },
-        "loadReplies": {
-          "title": "Error loading replies",
-          "description": "An error occurred while loading replies for this post."
-        },
-        "emptyReply": "Reply cannot be empty.",
-        "submitReply": {
-          "title": "Error submitting reply",
-          "description": "An error occurred while submitting your reply."
-        }
-      }
-    },
-    "createPost": {
-      "aiHelper": {
-        "title": "AI Helper",
-        "description": "Generate a post draft based on a prompt.",
-        "promptLabel": "AI Prompt",
-        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
-        "generateButton": "Generate Draft",
-        "generatingButton": "Generating..."
-      },
-      "backLink": "Back to Topic",
-      "title": "Create New Post",
-      "description": "Add a new post to this topic.",
-      "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter the title of your post",
-        "contentLabel": "Post Content",
-        "contentPlaceholder": "Write your post content here...",
-        "submitButton": "Create Post",
-        "submittingButton": "Submitting..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "AI Draft Generated!",
-          "description": "A draft has been generated for you."
-        },
-        "title": "Post Created!",
-        "description": "Your post has been successfully created."
-      },
-      "errors": {
-        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
-        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
-        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
-        "general": { "title": "Error", "description": "An error occurred while creating the post." }
-      }
-    }
-  },
   "sustainabilityPage": {
     "title": "Sustainability Dashboard",
     "description": "Track and improve your farm's environmental impact.",
@@ -538,6 +239,92 @@
     },
     "metricCard": {
       "trendText": "from last month"
+    }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account and profile settings.",
+    "profileTab": "Profile",
+    "accountTab": "Account",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Privacy",
+    "appearanceTab": "Appearance",
+    "stakeholderProfile": {
+      "title": "Stakeholder Profile",
+      "description": "Your professional identity on DamDoh. This is how others see you."
+    },
+    "account": {
+      "title": "Account Settings",
+      "description": "Manage your account authentication and security.",
+      "currentPasswordLabel": "Current Password",
+      "newPasswordLabel": "New Password",
+      "confirmPasswordLabel": "Confirm New Password",
+      "changePasswordButton": "Update Password",
+      "deactivateButton": "Deactivate Account"
+    },
+    "notifications": {
+      "title": "Notification Settings",
+      "description": "Manage your email and push notification preferences.",
+      "emailDigestLabel": "Email Notifications",
+      "emailDigestDescription": "Receive notifications via email.",
+      "connectionRequestsLabel": "Connection Requests",
+      "connectionRequestsDescription": "Notify me about new connection requests.",
+      "forumMentionsLabel": "Forum Mentions & Replies",
+      "forumMentionsDescription": "Notify me when I'm mentioned or my posts are replied to.",
+      "marketplaceActivityLabel": "Marketplace Activity",
+      "marketplaceActivityDescription": "Notify me about orders and inquiries on my listings.",
+      "talentExchangeLabel": "Talent Exchange Updates",
+      "talentExchangeDescription": "Notify me about new job listings and applications.",
+      "saveButton": "Save Preferences"
+    },
+    "privacy": {
+      "title": "Privacy & Visibility",
+      "description": "Control who can see your information and interact with you.",
+      "profileVisibilityLabel": "Profile Visibility",
+      "profileVisibilityDescription": "Control who can see your full profile.",
+      "profileVisibilityAll": "Everyone",
+      "profileVisibilityConnections": "Connections Only",
+      "profileVisibilityPrivate": "Private (Only Me)",
+      "connectionRequestsLabel": "Who can send you connection requests?",
+      "connectionRequestsDescription": "Limit who can send you requests to connect.",
+      "connectionRequestsAll": "Everyone",
+      "connectionRequestsConnectionsOfConnections": "Connections of Connections",
+      "contactInfoVisibilityLabel": "Who can see your contact info?",
+      "contactInfoVisibilityDescription": "Control who sees your email and phone number.",
+      "contactInfoVisibilityAll": "Everyone",
+      "contactInfoVisibilityConnections": "Connections Only",
+      "activityStatusLabel": "Show my activity status",
+      "activityStatusDescription": "Let your connections know when you're active on DamDoh.",
+      "searchIndexingLabel": "Allow search engines to index my profile",
+      "searchIndexingDescription": "Allow your profile to appear in search results on Google, etc.",
+      "saveButton": "Save Privacy Settings",
+      "dataConsentTitle": "Data Sharing & Consent",
+      "dataConsentDescription": "Control how your data is used across DamDoh's integrated services.",
+      "marketplaceHistoryLabel": "Marketplace History for Financial Services",
+      "marketplaceHistoryDescription": "Allow financial institutions on DamDoh to consider your marketplace transaction history for credit scoring.",
+      "traceabilityDataLabel": "Public Traceability Data",
+      "traceabilityDataDescription": "Allow your anonymized traceability data to be used in public reports and research.",
+      "financialApplicationDataLabel": "Financial Data for AI Matching",
+      "financialApplicationDataDescription": "Allow your anonymized financial application data to be used by our AI to suggest relevant services.",
+      "saveConsentButton": "Save Consent Settings"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Customize the look and feel of the application.",
+      "themeLabel": "Theme",
+      "themeDescription": "Select a light or dark theme for the interface.",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "languageLabel": "Language",
+      "languageDescription": "Choose your preferred language for the application."
+    },
+    "editProfilePage": {
+      "toast": {
+        "notAuthenticatedTitle": "Not Authenticated",
+        "notAuthenticatedDescription": "Please sign in to edit your profile.",
+        "unauthorizedTitle": "Unauthorized",
+        "unauthorizedDescription": "You can only edit your own profile."
+      }
     }
   }
 }
