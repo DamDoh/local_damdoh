@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Product Traceability",
@@ -807,5 +808,28 @@
       "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "Apply Now"
+  },
+  "AppFooter": {
+    "tagline": "The Global Agricultural Supply Chain Platform.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog & News",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   }
 }
+
+    
