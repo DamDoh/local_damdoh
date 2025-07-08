@@ -108,5 +108,85 @@
     "getMobileApp": "Obtén la aplicación móvil",
     "googlePlayAlt": "Obtener en Google Play",
     "appStoreAlt": "Descargar en la App Store"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Cambiar idioma"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Reconstruyendo las Cadenas de Suministro Alimentario Globales con {appName}",
+      "subtitle": "Conectando agricultores, compradores y a todos los actores intermedios con transparencia, tecnología y confianza.",
+      "getStartedButton": "Comenzar Gratis",
+      "learnMoreButton": "Aprende Más"
+    },
+    "features": {
+      "title": "Una Plataforma Unificada para una Cadena de Suministro Conectada",
+      "subtitle": "DamDoh integra todos los aspectos de la cadena de valor agrícola en un único ecosistema inteligente.",
+      "networking": {
+        "title": "Red Profesional",
+        "description": "Conéctese directamente con agricultores, exportadores, financieros y proveedores de servicios de todo el mundo."
+      },
+      "marketplace": {
+        "title": "Mercado Global",
+        "description": "Compre y venda productos, insumos y equipos con confianza, respaldado por datos verificables."
+      },
+      "forums": {
+        "title": "Foros de Conocimiento",
+        "description": "Comparta ideas, haga preguntas y colabore con una comunidad global de expertos agrícolas."
+      },
+      "talent": {
+        "title": "Bolsa de Talentos",
+        "description": "Encuentre u ofrezca servicios agrícolas especializados, desde consultoría agronómica hasta logística."
+      }
+    },
+    "forWho": {
+      "badge": "Para Todos en la Agricultura",
+      "title": "Empoderando Cada Eslabón de la Cadena",
+      "description": "DamDoh está diseñado para todo el ecosistema agrícola. Ya sea que esté cultivando una pequeña parcela o gestionando el comercio internacional, nuestra plataforma le proporciona las herramientas que necesita para tener éxito.",
+      "imageAlt": "Un grupo diverso de profesionales agrícolas colaborando.",
+      "farmers": {
+        "title": "Agricultores y Cooperativas",
+        "description": "Acceda a nuevos mercados, asegure financiamiento y utilice las mejores prácticas para aumentar el rendimiento y la rentabilidad."
+      },
+      "buyers": {
+        "title": "Compradores y Exportadores",
+        "description": "Obtenga productos de alta calidad y trazables directamente de los productores y optimice su cadena de suministro."
+      },
+      "experts": {
+        "title": "Expertos y Proveedores de Servicios",
+        "description": "Ofrezca su experiencia, encuentre nuevos clientes y contribuya a un sistema alimentario más eficiente y sostenible."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Transformar su Agronegocio?",
+      "subtitle": "Únase a miles de actores que están construyendo un futuro agrícola más transparente y próspero.",
+      "button": "Únase a la Red DamDoh"
+    }
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
+  },
+  "AppHeader": {
+    "home": "Inicio",
+    "network": "Red",
+    "farmMgmt": "Gestión Finca",
+    "marketplace": "Mercado",
+    "talentExchange": "Talento",
+    "traceability": "Trazabilidad",
+    "forums": "Foros",
+    "notifications": "Alertas",
+    "messages": "Mensajes",
+    "wallet": "Billetera",
+    "searchPlaceholder": "Buscar personas, productos, servicios...",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "settings": "Configuración",
+    "helpCenter": "Ayuda",
+    "logOut": "Cerrar Sesión"
   }
 }

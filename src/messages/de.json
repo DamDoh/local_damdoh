@@ -108,5 +108,85 @@
     "getMobileApp": "Holen Sie sich die mobile App",
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache wechseln"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Globale Lebensmittel-Lieferketten mit {appName} neu gestalten",
+      "subtitle": "Landwirte, Käufer und alle Beteiligten dazwischen mit Transparenz, Technologie und Vertrauen verbinden.",
+      "getStartedButton": "Kostenlos starten",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Eine einheitliche Plattform für eine vernetzte Lieferkette",
+      "subtitle": "DamDoh integriert jeden Aspekt der landwirtschaftlichen Wertschöpfungskette in ein einziges, intelligentes Ökosystem.",
+      "networking": {
+        "title": "Professionelles Netzwerk",
+        "description": "Vernetzen Sie sich direkt mit Landwirten, Exporteuren, Finanziers und Dienstleistern aus der ganzen Welt."
+      },
+      "marketplace": {
+        "title": "Globaler Marktplatz",
+        "description": "Kaufen und verkaufen Sie Produkte, Betriebsmittel und Ausrüstung mit Vertrauen, gestützt auf überprüfbare Daten."
+      },
+      "forums": {
+        "title": "Wissensforen",
+        "description": "Teilen Sie Einblicke, stellen Sie Fragen und arbeiten Sie mit einer globalen Gemeinschaft von Agrarexperten zusammen."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Finden oder bieten Sie spezialisierte landwirtschaftliche Dienstleistungen an, von der Agrarberatung bis zur Logistik."
+      }
+    },
+    "forWho": {
+      "badge": "Für jeden in der Landwirtschaft",
+      "title": "Stärkung jedes Glieds in der Kette",
+      "description": "DamDoh ist für das gesamte landwirtschaftliche Ökosystem konzipiert. Ob Sie ein kleines Feld bewirtschaften oder den internationalen Handel verwalten, unsere Plattform bietet die Werkzeuge, die Sie für den Erfolg benötigen.",
+      "imageAlt": "Eine vielfältige Gruppe von Landwirtschaftsexperten bei der Zusammenarbeit.",
+      "farmers": {
+        "title": "Landwirte & Kooperativen",
+        "description": "Erschließen Sie neue Märkte, sichern Sie Finanzierungen und nutzen Sie bewährte Verfahren, um Ertrag und Rentabilität zu steigern."
+      },
+      "buyers": {
+        "title": "Käufer & Exporteure",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von den Erzeugern und optimieren Sie Ihre Lieferkette."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihre Expertise an, finden Sie neue Kunden und tragen Sie zu einem effizienteren und nachhaltigeren Lebensmittelsystem bei."
+      }
+    },
+    "cta": {
+      "title": "Bereit, Ihr Agrargeschäft zu transformieren?",
+      "subtitle": "Schließen Sie sich Tausenden von Interessengruppen an, die eine transparentere und wohlhabendere landwirtschaftliche Zukunft aufbauen.",
+      "button": "Treten Sie dem DamDoh-Netzwerk bei"
+    }
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
+  },
+  "AppHeader": {
+    "home": "Start",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Mgmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "notifications": "Alarme",
+    "messages": "Nachrichten",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden"
   }
 }
