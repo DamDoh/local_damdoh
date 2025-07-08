@@ -452,6 +452,7 @@
     "creatingAccountButton": "Creating Account...",
     "signUpButton": "Sign Up",
     "alreadyHaveAccountPrompt": "Already have an account?",
+    "signInLink": "Sign In",
     "forgotPasswordTitle": "Forgot Password",
     "forgotPasswordDescription": "Enter your email to receive a reset link.",
     "sendingEmailButton": "Sending email...",

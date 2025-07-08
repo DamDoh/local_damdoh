@@ -452,6 +452,7 @@
     "creatingAccountButton": "កំពុងបង្កើតគណនី...",
     "signUpButton": "ចុះឈ្មោះ",
     "alreadyHaveAccountPrompt": "មានគណនីហើយ?",
+    "signInLink": "ចូលគណនី",
     "forgotPasswordTitle": "ភ្លេចពាក្យសម្ងាត់",
     "forgotPasswordDescription": "បញ្ចូលអ៊ីមែលរបស់អ្នកដើម្បីទទួលបានតំណកំណត់ឡើងវិញ។",
     "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",

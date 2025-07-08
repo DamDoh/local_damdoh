@@ -452,6 +452,7 @@
     "creatingAccountButton": "Creando cuenta...",
     "signUpButton": "Registrarse",
     "alreadyHaveAccountPrompt": "¿Ya tiene una cuenta?",
+    "signInLink": "Iniciar Sesión",
     "forgotPasswordTitle": "Contraseña Olvidada",
     "forgotPasswordDescription": "Ingrese su correo electrónico para recibir un enlace de restablecimiento.",
     "sendingEmailButton": "Enviando correo...",

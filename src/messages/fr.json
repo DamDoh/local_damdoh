@@ -452,6 +452,7 @@
     "creatingAccountButton": "Création du compte...",
     "signUpButton": "S'inscrire",
     "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "signInLink": "Se connecter",
     "forgotPasswordTitle": "Mot de passe oublié",
     "forgotPasswordDescription": "Entrez votre e-mail pour recevoir un lien de réinitialisation.",
     "sendingEmailButton": "Envoi de l'e-mail...",

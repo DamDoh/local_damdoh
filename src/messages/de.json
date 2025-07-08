@@ -452,6 +452,7 @@
     "creatingAccountButton": "Konto wird erstellt...",
     "signUpButton": "Registrieren",
     "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
+    "signInLink": "Anmelden",
     "forgotPasswordTitle": "Passwort vergessen",
     "forgotPasswordDescription": "Geben Sie Ihre E-Mail-Adresse ein, um einen Link zum Zurücksetzen zu erhalten.",
     "sendingEmailButton": "E-Mail wird gesendet...",
@@ -464,18 +465,18 @@
     "resettingPasswordButton": "Wird zurückgesetzt...",
     "resetPasswordButton": "Passwort zurücksetzen",
     "recoverPage": {
-        "title": "Soziale Kontowiederherstellung",
-        "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes auf DamDoh wieder Zugriff auf Ihr Konto.",
-        "howItWorksTitle": "Wie es funktioniert",
-        "step1": "Geben Sie die Telefonnummer für das Konto ein, das Sie wiederherstellen möchten.",
-        "step2": "Ein einzigartiger, temporärer QR-Code wird generiert.",
-        "step3": "Lassen Sie einen Freund, der DamDoh verwendet, diesen Code scannen, um Ihre Identität zu bestätigen.",
-        "startButton": "Wiederherstellungsprozess starten",
-        "scanTitle": "Bitten Sie einen Freund zu scannen",
-        "scanDescription": "Zeigen Sie diesen QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh-Benutzer ist. Er kann ihn mit der Option 'Einem Freund helfen' auf seiner Wiederherstellungsseite scannen.",
-        "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
-        "startOverButton": "Neu anfangen",
-        "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
+      "title": "Soziale Kontowiederherstellung",
+      "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes auf DamDoh wieder Zugriff auf Ihr Konto.",
+      "howItWorksTitle": "Wie es funktioniert",
+      "step1": "Geben Sie die Telefonnummer für das Konto ein, das Sie wiederherstellen möchten.",
+      "step2": "Ein einzigartiger, temporärer QR-Code wird generiert.",
+      "step3": "Lassen Sie einen Freund, der DamDoh verwendet, diesen Code scannen, um Ihre Identität zu bestätigen.",
+      "startButton": "Wiederherstellungsprozess starten",
+      "scanTitle": "Bitten Sie einen Freund zu scannen",
+      "scanDescription": "Zeigen Sie diesen QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh-Benutzer ist. Er kann ihn mit der Option 'Einem Freund helfen' auf seiner Wiederherstellungsseite scannen.",
+      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
+      "startOverButton": "Neu anfangen",
+      "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
     }
   },
   "searchPage": {
