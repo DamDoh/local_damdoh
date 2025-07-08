@@ -397,5 +397,36 @@
       "content": "If you see content that violates these guidelines, please report it to our moderation team by flagging the content or emailing us at <emailLink>support@damdoh.org</emailLink>."
     },
     "conclusion": "By participating in the DamDoh community, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thank you for helping us build a positive and impactful ecosystem."
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Your guide to navigating the DamDoh platform.",
+    "howCanWeHelp": "How can we help you today?",
+    "searchPlaceholder": "Search articles, guides, and FAQs...",
+    "browseTopics": "Or browse by topic",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Creating your account, setting up your profile, and first steps.",
+      "placeholder": "Content for getting started will go here."
+    },
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "How to create listings, manage orders, and transact safely.",
+      "placeholder": "Content for the marketplace guide will go here."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Managing your password, notifications, and privacy settings."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Common issues and how to resolve them."
+    },
+    "stillNeedHelp": {
+      "title": "Still need help?",
+      "description": "If you can't find what you're looking for, our support team is happy to assist.",
+      "button": "Contact Support"
+    }
   }
 }
+
