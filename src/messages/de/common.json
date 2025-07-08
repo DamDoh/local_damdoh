@@ -1,3 +1,4 @@
+
 {
   "traceabilityPage": {
     "title": "Produkt-Rückverfolgbarkeit",
@@ -60,7 +61,19 @@
     },
     "errors": {
       "loadTitle": "Fehler beim Laden der Themen",
-      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten."
+      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
+      "auth": {
+        "title": "Nicht authentifiziert",
+        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+      },
+      "incomplete": {
+        "title": "Unvollständige Felder",
+        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+      },
+      "general": {
+        "title": "Fehler",
+        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+      }
     },
     "create": {
       "backLink": "Zurück zu den Themen",
@@ -77,20 +90,6 @@
       "success": {
         "title": "Thema erfolgreich erstellt",
         "description": "Ihr neues Thema wurde erstellt."
-      },
-      "errors": {
-        "auth": {
-          "title": "Nicht authentifiziert",
-          "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
-        },
-        "incomplete": {
-          "title": "Unvollständige Felder",
-          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
-        },
-        "general": {
-          "title": "Fehler",
-          "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
-        }
       }
     },
     "topic": {
@@ -716,7 +715,7 @@
       "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
       "AgronomyExpertConsultantExternal": "Agronomie-Experte/Berater (Extern)",
       "Agro-TourismOperator": "Agrotourismus-Betreiber",
-      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogas)",
+      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogás)",
       "Agro-ExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
       "Agri-TechInnovatorDeveloper": "Agrartechnik-Innovator/Entwickler",
       "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
@@ -740,3 +739,5 @@
     }
   }
 }
+
+    
