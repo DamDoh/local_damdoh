@@ -1,9 +1,45 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
 
 const db = admin.firestore();
+
+/**
+ * Triggered on new Firebase Authentication user creation.
+ * Creates a corresponding user document in Firestore with default values.
+ * This is the secure, server-side way to create user profiles.
+ */
+export const onUserCreate = functions.auth.user().onCreate(async (user) => {
+    console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
+
+    const userRef = db.collection("users").doc(user.uid);
+    const universalId = uuidv4();
+
+    try {
+        await userRef.set({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName || user.email?.split('@')[0] || "New User",
+            avatarUrl: user.photoURL || null,
+            primaryRole: 'Consumer', // Default role
+            profileSummary: "Just joined the DamDoh community!",
+            universalId: universalId,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        console.log(`Successfully created Firestore profile for user ${user.uid}.`);
+        return null;
+    } catch (error) {
+        console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
+        // Optional: you could add logic to delete the auth user if the profile creation fails,
+        // but this could also be problematic if the function fails for transient reasons.
+        return null;
+    }
+});
+
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
@@ -44,12 +80,7 @@ const validateProfileData = (role: string, data: any) => {
  */
 export const upsertStakeholderProfile = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
+    const userId = checkAuth(context);
 
     const {
       primaryRole,
@@ -64,6 +95,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
       profileData,
     } = data;
 
+    // During initial sign-up, only role and display name are required.
+    // The onUserCreate trigger handles the base document. This function just merges the initial role info.
     if (!primaryRole) {
       throw new functions.https.HttpsError(
         "invalid-argument",
@@ -73,8 +106,6 @@ export const upsertStakeholderProfile = functions.https.onCall(
 
     // Validate the role-specific data if it exists
     const validatedProfileData = profileData ? validateProfileData(primaryRole, profileData) : {};
-
-    const userId = context.auth.uid;
 
     try {
       const userRef = db.collection("users").doc(userId);
@@ -99,6 +130,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
       // Add the validated data to the payload
       if (validatedProfileData) updatePayload.profileData = validatedProfileData;
 
+      // Use { merge: true } to create or update the document without overwriting existing fields.
       await userRef.set(updatePayload, {merge: true});
 
       return {status: "success", message: "Profile updated successfully."};

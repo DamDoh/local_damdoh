@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { signUpSchema, type SignUpValues } from "@/lib/form-schemas";
-import { registerUser } from "@/lib/auth-utils";
+import { registerUser, logIn } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Users } from "lucide-react";
@@ -59,12 +59,16 @@ export default function SignUpPage() {
     
     try {
       await registerUser(data.name, data.email, data.password, data.role as StakeholderRole);
+      
+      // Automatically log the user in after successful registration
+      await logIn(data.email, data.password);
+
       toast({
-        title: "Account Created Successfully!",
-        description: "You can now sign in with your new credentials.",
+        title: "Account Created & Signed In!",
+        description: `Welcome to ${APP_NAME}! You have been successfully signed in.`,
         variant: "default", 
       });
-      router.push("/auth/signin"); 
+      router.push("/"); // Redirect to the main dashboard after login
     } catch (error: any) {
       let errorMessage = "An unexpected error occurred. Please try again.";
       if (error.code) {

@@ -60,21 +60,31 @@ export async function logIn(email: string, password: string): Promise<FirebaseUs
   }
 }
 
+/**
+ * Registers a user with Firebase Auth and calls a secure Cloud Function to create their profile.
+ * @param name The user's display name.
+ * @param email The user's email.
+ * @param password The user's password.
+ * @param role The user's selected stakeholder role.
+ * @returns The created Firebase User object.
+ */
 export async function registerUser(name: string, email: string, password: string, role: StakeholderRole): Promise<FirebaseUser> {
   try {
+    // Step 1: Create the user in Firebase Authentication.
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
     
-    // Create the initial profile using the callable function
+    // Step 2: Call a secure Cloud Function to create the initial profile.
+    // The onUserCreate trigger will handle the actual Firestore document creation.
+    // We still call this function to pass along the initial display name and role.
     const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
-
     await upsertStakeholderProfile({
         displayName: name,
         primaryRole: role,
-        // The backend will set the timestamps and other defaults
+        email: email, // Pass email to be stored in Firestore document
     });
 
-    console.log("Basic Firestore profile created for user:", userCredential.user.uid);
+    console.log("Profile creation request sent for user:", userCredential.user.uid);
     
     return userCredential.user;
   } catch (error) {

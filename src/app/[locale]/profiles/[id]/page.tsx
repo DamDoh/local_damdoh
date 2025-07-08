@@ -156,7 +156,7 @@ export default function ProfileDetailPage() {
   }
 
   const isCurrentUserProfile = authUser?.uid === profile.id;
-  const qrCodeValue = profile.universalId ? `damdoh:user?id=${profile.universalId}` : 'error';
+  const qrCodeValue = profile.universalId ? `${window.location.origin}/profiles/${profile.id}` : 'error';
   
   const areasOfInterest = (profile as any)?.areasOfInterest;
   const needs = (profile as any)?.needs;
