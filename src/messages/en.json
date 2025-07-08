@@ -82,7 +82,7 @@
         "ai": "Smart Farming & AI Insights: We harness satellite data, AI, and real-time weather forecasts to provide precise soil and ecosystem analysis.",
         "marketplace": "Marketplace & E-Commerce: Farmers connect directly to ethical buyers who value biodiversity-friendly, traceable products.",
         "logistics": "Supply Chain & Logistics: Transparent, efficient logistics minimize loss, reduce emissions, and ensure traceability from farm to fork.",
-        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in biodiversity-enhancing practices."
+        "financial": "Financial Tools: Credit, microfinance, and crowdfunding solutions help farmers invest in biodiversity-enhancing practices and climate-smart innovations."
       }
     },
     "beyondTechnology": {
@@ -247,6 +247,48 @@
       "messagePlaceholder": "Type your message here.",
       "buttonText": "Send Message",
       "note": "We'll get back to you as soon as possible."
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to empower farmers and restore the planet.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "We are a passionate, mission-driven team dedicated to creating meaningful change. We offer:",
+      "point1": "A collaborative and innovative environment.",
+      "point2": "The opportunity to work on a platform with global impact.",
+      "point3": "Competitive salary and benefits.",
+      "point4": "Flexible work arrangements.",
+      "point5": "A culture that values learning and growth."
+    },
+    "currentOpenings": {
+      "title": "Current Openings"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Full-Stack Engineer",
+        "location": "Remote / Nairobi",
+        "type": "Full-Time",
+        "description": "Build and scale the core features of the DamDoh platform. Experience with Next.js, Firebase, and TypeScript is essential."
+      },
+      "job2": {
+        "title": "Lead Agronomist - East Africa",
+        "location": "Nairobi, Kenya",
+        "type": "Full-Time",
+        "description": "Lead our field agent team, develop sustainable farming curricula, and engage with farmer cooperatives."
+      },
+      "job3": {
+        "title": "Data Scientist - Agricultural Insights",
+        "location": "Remote",
+        "type": "Full-Time",
+        "description": "Analyze platform and satellite data to provide actionable insights for farmers and supply chain partners."
+      }
+    },
+    "applyNowButton": "Apply Now",
+    "noOpenings": {
+      "title": "No Current Openings",
+      "content1": "We are always looking for talented individuals passionate about our mission. Feel free to send your resume to {emailLink}.",
+      "emailLink": "careers@damdoh.org"
     }
   }
 }

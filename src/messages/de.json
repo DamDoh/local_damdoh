@@ -248,5 +248,47 @@
       "buttonText": "Nachricht senden",
       "note": "Wir werden uns so schnell wie möglich bei Ihnen melden."
     }
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Schließen Sie sich unserer Mission an, Landwirte zu stärken und den Planeten wiederherzustellen.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Wir sind ein leidenschaftliches, missionsorientiertes Team, das sich für bedeutende Veränderungen einsetzt. Wir bieten:",
+      "point1": "Ein kollaboratives und innovatives Umfeld.",
+      "point2": "Die Möglichkeit, an einer Plattform mit globaler Wirkung zu arbeiten.",
+      "point3": "Wettbewerbsfähiges Gehalt und Sozialleistungen.",
+      "point4": "Flexible Arbeitsregelungen.",
+      "point5": "Eine Kultur, die Lernen und Wachstum schätzt."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Full-Stack-Ingenieur",
+        "location": "Remote / Nairobi",
+        "type": "Vollzeit",
+        "description": "Entwickeln und skalieren Sie die Kernfunktionen der DamDoh-Plattform. Erfahrung mit Next.js, Firebase und TypeScript ist unerlässlich."
+      },
+      "job2": {
+        "title": "Leitender Agronom - Ostafrika",
+        "location": "Nairobi, Kenia",
+        "type": "Vollzeit",
+        "description": "Leiten Sie unser Außendienstteam, entwickeln Sie Lehrpläne für nachhaltige Landwirtschaft und arbeiten Sie mit Bauerngenossenschaften zusammen."
+      },
+      "job3": {
+        "title": "Datenwissenschaftler - Landwirtschaftliche Einblicke",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Analysieren Sie Plattform- und Satellitendaten, um umsetzbare Erkenntnisse für Landwirte und Lieferkettenpartner zu liefern."
+      }
+    },
+    "applyNowButton": "Jetzt bewerben",
+    "noOpenings": {
+      "title": "Keine aktuellen Stellenangebote",
+      "content1": "Wir sind immer auf der Suche nach talentierten Personen, die sich für unsere Mission begeistern. Senden Sie uns gerne Ihren Lebenslauf an {emailLink}.",
+      "emailLink": "careers@damdoh.org"
+    }
   }
 }

@@ -248,5 +248,47 @@
       "buttonText": "Envoyer le message",
       "note": "Nous vous répondrons dès que possible."
     }
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez notre mission pour autonomiser les agriculteurs et restaurer la planète.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi travailler avec nous ?",
+      "intro": "Nous sommes une équipe passionnée, axée sur la mission, dédiée à créer un changement significatif. Nous offrons :",
+      "point1": "Un environnement collaboratif et innovant.",
+      "point2": "L'opportunité de travailler sur une plateforme à impact mondial.",
+      "point3": "Un salaire et des avantages compétitifs.",
+      "point4": "Des modalités de travail flexibles.",
+      "point5": "Une culture qui valorise l'apprentissage et la croissance."
+    },
+    "currentOpenings": {
+      "title": "Offres d'emploi actuelles"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur(e) Full-Stack Senior",
+        "location": "Télétravail / Nairobi",
+        "type": "Plein temps",
+        "description": "Construire et faire évoluer les fonctionnalités principales de la plateforme DamDoh. Une expérience avec Next.js, Firebase et TypeScript est essentielle."
+      },
+      "job2": {
+        "title": "Agronome en chef - Afrique de l'Est",
+        "location": "Nairobi, Kenya",
+        "type": "Plein temps",
+        "description": "Diriger notre équipe d'agents de terrain, développer des programmes d'agriculture durable et collaborer avec les coopératives d'agriculteurs."
+      },
+      "job3": {
+        "title": "Scientifique des données - Perspectives agricoles",
+        "location": "Télétravail",
+        "type": "Plein temps",
+        "description": "Analyser les données de la plateforme et satellitaires pour fournir des informations exploitables aux agriculteurs et aux partenaires de la chaîne d'approvisionnement."
+      }
+    },
+    "applyNowButton": "Postuler maintenant",
+    "noOpenings": {
+      "title": "Aucune offre d'emploi pour le moment",
+      "content1": "Nous sommes toujours à la recherche de personnes talentueuses et passionnées par notre mission. N'hésitez pas à nous envoyer votre CV à {emailLink}.",
+      "emailLink": "careers@damdoh.org"
+    }
   }
 }

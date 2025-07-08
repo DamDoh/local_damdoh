@@ -248,5 +248,47 @@
       "buttonText": "Enviar mensaje",
       "note": "Nos pondremos en contacto contigo lo antes posible."
     }
+  },
+  "careers": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únete a nuestra misión de empoderar a los agricultores y restaurar el planeta.",
+    "whyWorkWithUs": {
+      "title": "¿Por qué trabajar con nosotros?",
+      "intro": "Somos un equipo apasionado e impulsado por una misión, dedicado a crear un cambio significativo. Ofrecemos:",
+      "point1": "Un entorno colaborativo e innovador.",
+      "point2": "La oportunidad de trabajar en una plataforma con impacto global.",
+      "point3": "Salario y beneficios competitivos.",
+      "point4": "Acuerdos de trabajo flexibles.",
+      "point5": "Una cultura que valora el aprendizaje y el crecimiento."
+    },
+    "currentOpenings": {
+      "title": "Vacantes actuales"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero/a Full-Stack Senior",
+        "location": "Remoto / Nairobi",
+        "type": "Tiempo completo",
+        "description": "Construye y escala las características principales de la plataforma DamDoh. Es esencial tener experiencia con Next.js, Firebase y TypeScript."
+      },
+      "job2": {
+        "title": "Agrónomo/a Principal - África Oriental",
+        "location": "Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Lidera nuestro equipo de agentes de campo, desarrolla planes de estudio de agricultura sostenible y colabora con cooperativas de agricultores."
+      },
+      "job3": {
+        "title": "Científico/a de Datos - Perspectivas Agrícolas",
+        "location": "Remoto",
+        "type": "Tiempo completo",
+        "description": "Analiza datos de la plataforma y satélites para proporcionar información procesable para agricultores y socios de la cadena de suministro."
+      }
+    },
+    "applyNowButton": "Aplicar ahora",
+    "noOpenings": {
+      "title": "No hay vacantes actualmente",
+      "content1": "Siempre estamos buscando personas con talento y apasionadas por nuestra misión. No dudes en enviarnos tu currículum a {emailLink}.",
+      "emailLink": "careers@damdoh.org"
+    }
   }
 }
