@@ -196,5 +196,57 @@
         "description": "Impossible de récupérer les articles du marché."
       }
     }
+  },
+  "Homepage": {},
+  "LandingPage": {
+    "hero": {
+      "title": "Développez votre réseau agricole avec {appName}",
+      "subtitle": "Connectez-vous, échangez et apprenez avec les acteurs de toute la chaîne d'approvisionnement agricole. De la ferme à la fourchette, {appName} est votre partenaire de confiance pour la croissance et la durabilité.",
+      "getStartedButton": "Commencer",
+      "learnMoreButton": "En savoir plus"
+    },
+    "features": {
+      "title": "Fonctionnalités puissantes, expérience fluide",
+      "subtitle": "Tout ce dont vous avez besoin pour prospérer dans le paysage agricole d'aujourd'hui, le tout en un seul endroit.",
+      "networking": {
+        "title": "Réseautage professionnel",
+        "description": "Connectez-vous avec des agriculteurs, des acheteurs, des fournisseurs et des experts. Développez votre réseau professionnel et découvrez de nouvelles opportunités."
+      },
+      "marketplace": {
+        "title": "Marché mondial",
+        "description": "Achetez et vendez des produits, des produits frais aux machines lourdes. Une plateforme sécurisée pour le commerce local et international."
+      },
+      "forums": {
+        "title": "Forums communautaires",
+        "description": "Partagez vos connaissances, posez des questions et collaborez avec vos pairs sur des sujets tels que les pratiques durables et les tendances du marché."
+      },
+      "talent": {
+        "title": "Bourse de talents",
+        "description": "Trouvez de la main-d'œuvre qualifiée ou offrez votre expertise. Connectez-vous avec des opportunités de gestion de ferme, d'opérations et plus encore."
+      }
+    },
+    "forWho": {
+      "badge": "Pour tous dans l'agro-industrie",
+      "title": "Une plateforme pour toute la chaîne d'approvisionnement",
+      "description": "{appName} est conçu pour autonomiser chaque acteur de l'écosystème agricole, en favorisant la collaboration et en créant de la valeur à chaque étape.",
+      "farmers": {
+        "title": "Agriculteurs et coopératives",
+        "description": "Accédez à de nouveaux marchés, obtenez des prix équitables, apprenez des pratiques durables et connectez-vous avec des fournisseurs et des services financiers."
+      },
+      "buyers": {
+        "title": "Acheteurs et commerçants",
+        "description": "Approvisionnez-vous en produits de haute qualité et traçables directement auprès des producteurs. Trouvez des partenaires fiables et gérez efficacement votre chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Experts et prestataires de services",
+        "description": "Offrez votre expertise, de l'agronomie et de la finance à la logistique et à la technologie, à un public ciblé."
+      },
+      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant, comprenant un agriculteur dans un champ, une personne inspectant des produits et quelqu'un utilisant une tablette."
+    },
+    "cta": {
+      "title": "Rejoignez la communauté DamDoh aujourd'hui",
+      "subtitle": "Prêt à transformer votre entreprise agricole ? Inscrivez-vous maintenant et commencez à vous connecter avec l'avenir de l'agriculture.",
+      "button": "Rejoindre maintenant"
+    }
   }
 }

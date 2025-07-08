@@ -197,5 +197,56 @@
       }
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "LandingPage": {
+    "hero": {
+      "title": "Haga crecer su red agrícola con {appName}",
+      "subtitle": "Conecte, comercie y aprenda con los actores de toda la cadena de suministro agrícola. Del campo a la mesa, {appName} es su socio de confianza para el crecimiento y la sostenibilidad.",
+      "getStartedButton": "Empezar",
+      "learnMoreButton": "Más información"
+    },
+    "features": {
+      "title": "Funciones potentes, experiencia perfecta",
+      "subtitle": "Todo lo que necesita para prosperar en el panorama agrícola actual, todo en un solo lugar.",
+      "networking": {
+        "title": "Red profesional",
+        "description": "Conéctese con agricultores, compradores, proveedores y expertos. Construya su red profesional y descubra nuevas oportunidades."
+      },
+      "marketplace": {
+        "title": "Mercado global",
+        "description": "Compre y venda productos, desde productos frescos hasta maquinaria pesada. Una plataforma segura para el comercio local e internacional."
+      },
+      "forums": {
+        "title": "Foros comunitarios",
+        "description": "Comparta conocimientos, haga preguntas y colabore con sus pares en temas como prácticas sostenibles y tendencias del mercado."
+      },
+      "talent": {
+        "title": "Bolsa de talentos",
+        "description": "Encuentre mano de obra calificada u ofrezca su experiencia. Conéctese con oportunidades de gestión de granjas, operaciones y más."
+      }
+    },
+    "forWho": {
+      "badge": "Para todos en el agronegocio",
+      "title": "Una plataforma para toda la cadena de suministro",
+      "description": "{appName} está diseñado para empoderar a cada actor del ecosistema agrícola, fomentando la colaboración y creando valor en cada paso.",
+      "farmers": {
+        "title": "Agricultores y cooperativas",
+        "description": "Acceda a nuevos mercados, obtenga precios justos, aprenda prácticas sostenibles y conéctese con proveedores y servicios financieros."
+      },
+      "buyers": {
+        "title": "Compradores y comerciantes",
+        "description": "Obtenga productos de alta calidad y trazables directamente de los productores. Encuentre socios confiables y gestione su cadena de suministro de manera eficiente."
+      },
+      "experts": {
+        "title": "Expertos y proveedores de servicios",
+        "description": "Ofrezca su experiencia, desde agronomía y finanzas hasta logística y tecnología, a un público objetivo."
+      },
+      "imageAlt": "Un grupo diverso de actores agrícolas colaborando, incluido un agricultor en un campo, una persona inspeccionando productos y alguien usando una tableta."
+    },
+    "cta": {
+      "title": "Únase a la comunidad de DamDoh hoy",
+      "subtitle": "¿Listo para transformar su negocio agrícola? Regístrese ahora y comience a conectarse con el futuro de la agricultura.",
+      "button": "Unirse ahora"
+    }
+  }
 }

@@ -236,5 +236,56 @@
       }
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "LandingPage": {
+    "hero": {
+      "title": "Erweitern Sie Ihr landwirtschaftliches Netzwerk mit {appName}",
+      "subtitle": "Vernetzen, handeln und lernen Sie mit Akteuren entlang der landwirtschaftlichen Lieferkette. Vom Hof bis auf den Tisch ist {appName} Ihr vertrauenswürdiger Partner für Wachstum und Nachhaltigkeit.",
+      "getStartedButton": "Loslegen",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Leistungsstarke Funktionen, nahtloses Erlebnis",
+      "subtitle": "Alles, was Sie brauchen, um in der heutigen Agrarlandschaft erfolgreich zu sein, an einem Ort.",
+      "networking": {
+        "title": "Professionelles Networking",
+        "description": "Vernetzen Sie sich mit Landwirten, Käufern, Lieferanten und Experten. Bauen Sie Ihr berufliches Netzwerk auf und entdecken Sie neue Möglichkeiten."
+      },
+      "marketplace": {
+        "title": "Globaler Marktplatz",
+        "description": "Kaufen und verkaufen Sie Produkte, von frischen Erzeugnissen bis hin zu schweren Maschinen. Eine sichere Plattform für den lokalen und internationalen Handel."
+      },
+      "forums": {
+        "title": "Community-Foren",
+        "description": "Teilen Sie Wissen, stellen Sie Fragen und arbeiten Sie mit Kollegen an Themen wie nachhaltigen Praktiken und Markttrends."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Finden Sie qualifizierte Arbeitskräfte oder bieten Sie Ihre Expertise an. Vernetzen Sie sich mit Möglichkeiten für Farmmanagement, Betrieb und mehr."
+      }
+    },
+    "forWho": {
+      "badge": "Für alle im Agribusiness",
+      "title": "Eine Plattform für die gesamte Lieferkette",
+      "description": "{appName} wurde entwickelt, um jeden Akteur im landwirtschaftlichen Ökosystem zu stärken, die Zusammenarbeit zu fördern und auf jeder Stufe Werte zu schaffen.",
+      "farmers": {
+        "title": "Landwirte & Kooperativen",
+        "description": "Greifen Sie auf neue Märkte zu, erhalten Sie faire Preise, lernen Sie nachhaltige Praktiken und vernetzen Sie sich mit Lieferanten und Finanzdienstleistungen."
+      },
+      "buyers": {
+        "title": "Käufer & Händler",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von den Erzeugern. Finden Sie zuverlässige Partner und verwalten Sie Ihre Lieferkette effizient."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihre Expertise, von Agronomie und Finanzen bis hin zu Logistik und Technologie, einem gezielten Publikum an."
+      },
+      "imageAlt": "Eine vielfältige Gruppe von Akteuren der Landwirtschaft bei der Zusammenarbeit, einschließlich eines Landwirts auf einem Feld, einer Person, die Produkte inspiziert, und jemandem, der ein Tablet verwendet."
+    },
+    "cta": {
+      "title": "Treten Sie noch heute der DamDoh-Community bei",
+      "subtitle": "Bereit, Ihr landwirtschaftliches Unternehmen zu transformieren? Melden Sie sich jetzt an und vernetzen Sie sich mit der Zukunft der Landwirtschaft.",
+      "button": "Jetzt beitreten"
+    }
+  }
 }

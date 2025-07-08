@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Link } from '@/navigation';
@@ -122,7 +121,7 @@ export function LandingPage() {
            <div className="relative w-full aspect-square">
                 <Image
                     src="https://placehold.co/600x600.png"
-                    alt="Diverse group of agricultural stakeholders"
+                    alt={t('forWho.imageAlt')}
                     fill
                     className="rounded-xl object-cover shadow-2xl"
                     data-ai-hint="agriculture diverse community"

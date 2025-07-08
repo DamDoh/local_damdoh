@@ -1,73 +1,18 @@
 
 {
   "Forums": {
-    "title": "Forum Topics",
-    "description": "Browse and create discussion topics",
-    "searchPlaceholder": "Search for topics...",
-    "buttons": {
-      "createTopic": "Create Topic",
-      "joinDiscussion": "Join Discussion",
-      "pinHomepage": "Pin to Homepage",
-      "unpinHomepage": "Unpin from Homepage"
-    },
-    "notFound": {
-      "title": "No topics found",
-      "tryDifferentSearch": "Try a different search term.",
-      "beTheFirst": "Be the first one to create a topic."
-    },
-    "lastActivity": "Last activity {time}",
-    "pinning": {
-      "pinnedTitle": "Homepage Pinned!",
-      "pinnedDescription": "This forum is now displayed as your homepage.",
-      "unpinnedTitle": "Homepage Unpinned!",
-      "unpinnedDescription": "This forum will no longer be displayed as your homepage."
-    },
-    "errors": {
-      "loadTitle": "Error loading topics",
-      "loadDescription": "An error occurred while loading forum topics.",
-      "auth": {
-        "title": "Not Authenticated",
-        "description": "You must be logged in to create a topic."
-      },
-      "incomplete": {
-        "title": "Incomplete Fields",
-        "description": "Please fill in all required fields."
-      },
-      "general": {
-        "title": "Error",
-        "description": "An error occurred while creating the topic."
-      }
-    },
-    "create": {
-      "backLink": "Back to Topics",
-      "title": "Create New Topic",
-      "description": "Start a new discussion in the forum.",
-      "form": {
-        "nameLabel": "Topic Name",
-        "namePlaceholder": "Enter the name of your topic",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Briefly describe your topic",
-        "submitButton": "Create Topic",
-        "submittingButton": "Creating..."
-      },
-      "success": {
-        "title": "Topic Created Successfully",
-        "description": "Your new topic has been created."
-      }
-    },
     "topic": {
-      "backLink": "Back to all topics",
       "unknownUser": "Unknown User",
       "postMeta": "by {{author}} on {{date}}",
       "buttons": {
-        "createPost": "Create Post",
-        "loadMore": "Load More Posts",
-        "loadingMore": "Loading more..."
+        "createPost": "Add Reply",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
       },
       "noPosts": {
-        "title": "No posts have been created yet.",
-        "description": "Be the first to create one!",
-        "button": "Create First Post"
+        "title": "No posts yet",
+        "description": "Be the first to reply to this topic.",
+        "button": "Add Reply"
       },
       "notFound": {
         "title": "Topic not found",
@@ -85,8 +30,56 @@
         }
       }
     },
+    "createPost": {
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter the title of your post",
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Write your post content here...",
+        "submitButton": "Create Post",
+        "submittingButton": "Submitting..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "AI Draft Generated!",
+          "description": "A draft has been generated for you."
+        },
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "AI Prompt Missing",
+          "description": "Please provide a prompt for the AI helper."
+        },
+        "aiDraft": {
+          "title": "AI Draft Error",
+          "description": "Failed to generate AI draft."
+        },
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please fill in all required fields."
+        },
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the post."
+        }
+      }
+    },
     "postView": {
       "backLink": "Back to {{topicName}}",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
       "repliesTitle": "Replies ({count})",
       "noReplies": "No replies yet.",
       "buttons": {
@@ -121,36 +114,35 @@
         }
       }
     },
-    "createPost": {
-      "backLink": "Back to Topic",
-      "aiHelper": {
-        "title": "AI Helper",
-        "description": "Generate a post draft based on a prompt.",
-        "promptLabel": "AI Prompt",
-        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
-        "generateButton": "Generate Draft",
-        "generatingButton": "Generating..."
-      },
-      "title": "Create New Post",
-      "description": "Add a new post to this topic.",
+    "create": {
+      "backLink": "Back to Topics",
+      "title": "Create New Topic",
+      "description": "Start a new discussion in the forum.",
       "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter the title of your post",
-        "contentLabel": "Post Content",
-        "contentPlaceholder": "Write your post content here...",
-        "submitButton": "Create Post",
-        "submittingButton": "Submitting..."
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "Enter the name of your topic",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Briefly describe your topic",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
       },
       "success": {
-        "aiDraft": { "title": "AI Draft Generated!", "description": "A draft has been generated for you." },
-        "title": "Post Created!",
-        "description": "Your post has been successfully created."
+        "title": "Topic Created Successfully",
+        "description": "Your new topic has been created."
       },
       "errors": {
-        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
-        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
-        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
-        "general": { "title": "Error", "description": "An error occurred while creating the post." }
+        "auth": {
+          "title": "Not Authenticated",
+          "description": "You must be logged in to create a topic."
+        },
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please fill in all required fields."
+        },
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the topic."
+        }
       }
     }
   },
@@ -169,6 +161,9 @@
     "discoverMore": "Discover More",
     "viewDetails": "View Details",
     "viewServiceButton": "View Service",
+    "itemView": {
+      "contactForRates": "Contact for rates"
+    },
     "pinning": {
       "pinnedTitle": "Marketplace Pinned!",
       "pinnedDescription": "The Marketplace is now your default homepage.",
@@ -193,8 +188,96 @@
         "description": "Could not fetch marketplace items."
       }
     },
-    "itemView": {
-      "contactForRates": "Contact for rates"
+    "myOrders": {
+      "backLink": "Back to marketplace",
+      "title": "My Received Orders",
+      "description": "View and manage orders received from buyers.",
+      "auth": {
+        "title": "Authentication Required",
+        "description": "You must be logged in to view your orders.",
+        "button": "Sign in"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Buyer",
+        "product": "Product",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm",
+        "ship": "Ship",
+        "complete": "Complete",
+        "cancel": "Cancel"
+      },
+      "status": {
+        "new": "New",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "noOrders": "No orders found.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Failed to fetch orders.",
+        "successTitle": "Success!",
+        "updateSuccess": "Order status updated to {{status}}",
+        "failTitle": "Error"
+      }
+    }
+  },
+  "Homepage": {},
+  "LandingPage": {
+    "hero": {
+      "title": "Grow Your Agricultural Network with {appName}",
+      "subtitle": "Connect, trade, and learn with stakeholders across the agricultural supply chain. From farm to fork, {appName} is your trusted partner for growth and sustainability.",
+      "getStartedButton": "Get Started",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "Powerful Features, Seamless Experience",
+      "subtitle": "Everything you need to thrive in today's agricultural landscape, all in one place.",
+      "networking": {
+        "title": "Professional Networking",
+        "description": "Connect with farmers, buyers, suppliers, and experts. Build your professional network and discover new opportunities."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell products, from fresh produce to heavy machinery. A secure platform for local and international trade."
+      },
+      "forums": {
+        "title": "Community Forums",
+        "description": "Share knowledge, ask questions, and collaborate with peers on topics like sustainable practices and market trends."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Find skilled labor or offer your expertise. Connect with opportunities for farm management, operations, and more."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in Agribusiness",
+      "title": "A Platform for the Entire Supply Chain",
+      "description": "{appName} is designed to empower every stakeholder in the agricultural ecosystem, fostering collaboration and creating value at every step.",
+      "farmers": {
+        "title": "Farmers & Cooperatives",
+        "description": "Access new markets, get fair prices, learn sustainable practices, and connect with suppliers and financial services."
+      },
+      "buyers": {
+        "title": "Buyers & Traders",
+        "description": "Source high-quality, traceable products directly from producers. Find reliable partners and manage your supply chain efficiently."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your expertise, from agronomy and finance to logistics and technology, to a targeted audience."
+      },
+      "imageAlt": "A diverse group of agricultural stakeholders collaborating, including a farmer in a field, a person inspecting produce, and someone using a tablet."
+    },
+    "cta": {
+      "title": "Join the DamDoh Community Today",
+      "subtitle": "Ready to transform your agricultural business? Sign up now and start connecting with the future of agriculture.",
+      "button": "Join Now"
     }
   }
 }
