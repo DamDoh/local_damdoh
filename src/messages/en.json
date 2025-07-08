@@ -231,16 +231,39 @@
     "shipmentsTitle": "Tracked Shipments",
     "alertsTitle": "Compliance Alerts",
     "table": {
-        "vti": "VTI Link",
-        "destination": "Destination",
-        "status": "Status",
-        "carrier": "Carrier",
-        "location": "Location"
+      "vti": "VTI Link",
+      "destination": "Destination",
+      "status": "Status",
+      "carrier": "Carrier",
+      "location": "Location"
     },
     "prepareDocsButton": "Prepare Docs",
     "noDocs": "No documents pending.",
     "noShipments": "No active shipments.",
     "noAlerts": "No compliance alerts.",
     "readMore": "Read More"
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "Equipment Supplier Hub",
+    "ordersTitle": "Rental & Sales Orders",
+    "ordersDescription": "{count, plural, =0 {No orders} one {# total order} other {# total orders}}",
+    "manageOrdersButton": "Manage all orders",
+    "listedEquipmentTitle": "Listed Equipment",
+    "table": {
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "action": "Action"
+    },
+    "status": {
+      "available": "Available",
+      "rentedout": "Rented Out"
+    },
+    "manageButton": "Manage",
+    "noEquipment": "No equipment listed yet.",
+    "listEquipmentButton": "List New Equipment",
+    "maintenanceTitle": "Maintenance Requests",
+    "viewRequestButton": "View Request",
+    "noMaintenance": "No maintenance requests at this time."
   }
 }

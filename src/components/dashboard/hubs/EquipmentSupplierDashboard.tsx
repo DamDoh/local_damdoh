@@ -70,9 +70,14 @@ export const EquipmentSupplierDashboard = () => {
                         <BarChart className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{rentalActivity?.totalRentals || 0} {t('totalOrders')}</div>
-                        <p className="text-xs text-muted-foreground">{t('ordersDescription')}</p>
+                        <div className="text-2xl font-bold">{rentalActivity?.totalRentals || 0}</div>
+                         <p className="text-xs text-muted-foreground">{t('ordersDescription', { count: rentalActivity?.totalRentals || 0 })}</p>
                     </CardContent>
+                    <CardFooter>
+                        <Button asChild variant="outline" size="sm" className="w-full">
+                            <Link href="/marketplace/my-orders">{t('manageOrdersButton')}</Link>
+                        </Button>
+                    </CardFooter>
                 </Card>
 
                 <Card className="col-span-1 md:col-span-2 flex flex-col">
@@ -98,7 +103,7 @@ export const EquipmentSupplierDashboard = () => {
                                        <TableRow key={item.id}>
                                            <TableCell className="font-medium">{item.name}</TableCell>
                                            <TableCell><Badge variant="secondary">{item.type}</Badge></TableCell>
-                                           <TableCell><Badge variant={item.status === 'Available' ? 'default' : 'outline'}>{item.status}</Badge></TableCell>
+                                           <TableCell><Badge variant={item.status === 'Available' ? 'default' : 'outline'}>{t(`status.${item.status.toLowerCase().replace(' ', '')}`)}</Badge></TableCell>
                                            <TableCell className="text-right">
                                                <Button asChild variant="ghost" size="sm">
                                                    <Link href={item.actionLink}>{t('manageButton')}</Link>
@@ -159,5 +164,3 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
-
-    

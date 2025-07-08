@@ -242,5 +242,28 @@
     "noShipments": "គ្មានការដឹកជញ្ជូនសកម្មទេ។",
     "noAlerts": "គ្មានការជូនដំណឹងអំពីការអនុលោមទេ។",
     "readMore": "អាន​បន្ថែម"
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "មជ្ឈមណ្ឌលអ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ",
+    "ordersTitle": "ការបញ្ជាទិញជួល និងលក់",
+    "ordersDescription": "{count, plural, =0 {គ្មានការបញ្ជាទិញ} one {# ការបញ្ជាទិញសរុប} other {# ការបញ្ជាទិញសរុប}}",
+    "manageOrdersButton": "គ្រប់គ្រងការបញ្ជាទិញទាំងអស់",
+    "listedEquipmentTitle": "គ្រឿងបរិក្ខារដែលបានចុះបញ្ជី",
+    "table": {
+      "name": "ឈ្មោះ",
+      "type": "ប្រភេទ",
+      "status": "ស្ថានភាព",
+      "action": "សកម្មភាព"
+    },
+    "status": {
+      "available": "មាន",
+      "rentedout": "បានជួលចេញ"
+    },
+    "manageButton": "គ្រប់គ្រង",
+    "noEquipment": "មិនទាន់មានគ្រឿងបរិក្ខារត្រូវបានចុះបញ្ជីទេ។",
+    "listEquipmentButton": "ចុះបញ្ជីគ្រឿងបរិក្ខារថ្មី",
+    "maintenanceTitle": "សំណើរសុំការថែទាំ",
+    "viewRequestButton": "មើលសំណើ",
+    "noMaintenance": "មិនមានសំណើរសុំការថែទាំនៅពេលនេះទេ។"
   }
 }

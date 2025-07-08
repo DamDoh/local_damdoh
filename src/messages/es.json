@@ -242,5 +242,28 @@
     "noShipments": "No hay envíos activos.",
     "noAlerts": "No hay alertas de cumplimiento.",
     "readMore": "Leer más"
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "Panel de Proveedor de Equipos",
+    "ordersTitle": "Órdenes de Alquiler y Venta",
+    "ordersDescription": "{count, plural, =0 {Sin pedidos} one {# pedido en total} other {# pedidos en total}}",
+    "manageOrdersButton": "Gestionar todos los pedidos",
+    "listedEquipmentTitle": "Equipo Listado",
+    "table": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "status": {
+      "available": "Disponible",
+      "rentedout": "Alquilado"
+    },
+    "manageButton": "Gestionar",
+    "noEquipment": "Aún no hay equipo listado.",
+    "listEquipmentButton": "Listar Nuevo Equipo",
+    "maintenanceTitle": "Solicitudes de Mantenimiento",
+    "viewRequestButton": "Ver Solicitud",
+    "noMaintenance": "No hay solicitudes de mantenimiento en este momento."
   }
 }

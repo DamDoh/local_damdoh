@@ -242,5 +242,28 @@
     "noShipments": "Aucune expédition active.",
     "noAlerts": "Aucune alerte de conformité.",
     "readMore": "Lire la suite"
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "Hub du Fournisseur d'Équipements",
+    "ordersTitle": "Commandes de Location & Vente",
+    "ordersDescription": "{count, plural, =0 {Aucune commande} one {# commande au total} other {# commandes au total}}",
+    "manageOrdersButton": "Gérer toutes les commandes",
+    "listedEquipmentTitle": "Équipement Listé",
+    "table": {
+      "name": "Nom",
+      "type": "Type",
+      "status": "Statut",
+      "action": "Action"
+    },
+    "status": {
+      "available": "Disponible",
+      "rentedout": "Loué"
+    },
+    "manageButton": "Gérer",
+    "noEquipment": "Aucun équipement listé pour le moment.",
+    "listEquipmentButton": "Lister un Nouvel Équipement",
+    "maintenanceTitle": "Demandes de Maintenance",
+    "viewRequestButton": "Voir la Demande",
+    "noMaintenance": "Aucune demande de maintenance pour le moment."
   }
 }
