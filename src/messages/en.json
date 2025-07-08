@@ -179,5 +179,56 @@
   },
   "common": {
     "error": "Error"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Transforming Agriculture for a Vibrant Planet with {appName}",
+      "subtitle": "The global platform empowering farmers, restoring biodiversity, and creating sustainable farm-to-fork supply chains.",
+      "getStartedButton": "Get Started Now",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "A Connected Ecosystem for Agriculture",
+      "subtitle": "DamDoh brings together all the tools and communities you need to thrive.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "Connect with farmers, buyers, and experts across the globe."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell products and services directly and transparently."
+      },
+      "forums": {
+        "title": "Knowledge Forums",
+        "description": "Share knowledge and learn from a global community of experts."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Offer or find agricultural services and expertise."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in the Chain",
+      "title": "Built for the Entire Agricultural Ecosystem",
+      "description": "Whether you're a smallholder farmer, a global enterprise, or an expert in between, DamDoh provides the tools to grow and succeed.",
+      "farmers": {
+        "title": "Farmers",
+        "description": "Increase yield, access new markets, and adopt sustainable practices."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Source high-quality, traceable products directly from the source."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your expertise and services to a global audience."
+      },
+      "imageAlt": "A diverse group of agricultural people collaborating"
+    },
+    "cta": {
+      "title": "Ready to Transform Agriculture?",
+      "subtitle": "Join the DamDoh community today and become part of the movement to create a more sustainable, equitable, and resilient food system for all.",
+      "button": "Join for Free"
+    }
   }
 }
