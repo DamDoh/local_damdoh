@@ -142,10 +142,7 @@
         "submittingButton": "Wird gesendet..."
       },
       "success": {
-        "aiDraft": {
-          "title": "KI-Entwurf generiert!",
-          "description": "Ein Entwurf wurde für Sie generiert."
-        },
+        "aiDraft": { "title": "KI-Entwurf generiert!", "description": "Ein Entwurf wurde für Sie generiert." },
         "title": "Beitrag erstellt!",
         "description": "Ihr Beitrag wurde erfolgreich erstellt."
       },
@@ -157,5 +154,53 @@
       }
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Netzwerk & Verbindungen",
+    "description": "Vernetzen Sie sich mit Landwirten, Käufern, Dienstleistern und mehr entlang der gesamten landwirtschaftlichen Wertschöpfungskette.",
+    "myNetworkButton": "Mein Netzwerk",
+    "agentToolsButton": "Agenten-Tools",
+    "aiSuggestionsTitle": "KI-gestützte Vorschläge",
+    "aiSuggestionsDescription": "Basierend auf Ihrem Profil und Ihrer Aktivität sind hier einige Stakeholder, mit denen Sie sich möglicherweise vernetzen möchten.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden."
+    },
+    "noSuggestions": "Derzeit keine Vorschläge verfügbar. Vervollständigen Sie Ihr Profil für bessere Empfehlungen.",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Empfehlungen zu sehen.",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "browseAllTitle": "Alle Stakeholder durchsuchen",
+    "browseAllDescription": "Finden und vernetzen Sie sich mit jedem Stakeholder auf der Plattform.",
+    "searchPlaceholder": "Suche nach Name oder Zusammenfassung...",
+    "locationPlaceholder": "Nach Ort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Stakeholder gefunden, die Ihren Kriterien entsprechen.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Dies sind Ihre aktuellen Verbindungen auf der Plattform.",
+    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie mit dem Durchsuchen des Netzwerks!",
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Akzeptieren oder lehnen Sie Anfragen von anderen Benutzern ab.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen."
+  },
+  "agentToolsPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "title": "Agenten-Tools",
+    "description": "Sichere Tools für autorisierte Feldagenten und Administratoren.",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "findButton": "Finden",
+    "phoneRequiredError": "Bitte geben Sie eine gültige Telefonnummer ein.",
+    "resultsTitle": "Suchergebnis",
+    "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt.",
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um diese Tools zu verwenden."
+  }
 }

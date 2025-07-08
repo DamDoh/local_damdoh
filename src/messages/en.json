@@ -24,7 +24,19 @@
     },
     "errors": {
       "loadTitle": "Error loading topics",
-      "loadDescription": "An error occurred while loading forum topics."
+      "loadDescription": "An error occurred while loading forum topics.",
+      "auth": {
+        "title": "Not Authenticated",
+        "description": "You must be logged in to create a topic."
+      },
+      "incomplete": {
+        "title": "Incomplete Fields",
+        "description": "Please fill in all required fields."
+      },
+      "general": {
+        "title": "Error",
+        "description": "An error occurred while creating the topic."
+      }
     },
     "create": {
       "backLink": "Back to Topics",
@@ -41,20 +53,6 @@
       "success": {
         "title": "Topic Created Successfully",
         "description": "Your new topic has been created."
-      },
-      "errors": {
-        "auth": {
-          "title": "Not Authenticated",
-          "description": "You must be logged in to create a topic."
-        },
-        "incomplete": {
-          "title": "Incomplete Fields",
-          "description": "Please fill in all required fields."
-        },
-        "general": {
-          "title": "Error",
-          "description": "An error occurred while creating the topic."
-        }
       }
     },
     "topic": {
@@ -145,10 +143,7 @@
         "submittingButton": "Submitting..."
       },
       "success": {
-        "aiDraft": {
-          "title": "AI Draft Generated!",
-          "description": "A draft has been generated for you."
-        },
+        "aiDraft": { "title": "AI Draft Generated!", "description": "A draft has been generated for you." },
         "title": "Post Created!",
         "description": "Your post has been successfully created."
       },
@@ -160,5 +155,54 @@
       }
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Network & Connections",
+    "description": "Connect with farmers, buyers, service providers, and more across the entire agricultural value chain.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI-Powered Suggestions",
+    "aiSuggestionsDescription": "Based on your profile and activity, here are some stakeholders you might want to connect with.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data."
+    },
+    "noSuggestions": "No suggestions available right now. Complete your profile for better recommendations.",
+    "signInPrompt": "Sign in to see personalized recommendations.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Find and connect with any stakeholder on the platform.",
+    "searchPlaceholder": "Search by name or summary...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No stakeholders found matching your criteria.",
+    "noStakeholdersHint": "Try adjusting your filters or search terms."
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "These are your current connections on the platform.",
+    "noConnections": "You haven't made any connections yet. Start browsing the network!",
+    "requestsTitle": "Connection Requests",
+    "requestsDescription": "Accept or decline requests from other users.",
+    "sentTimeAgo": "Sent {timeAgo}",
+    "noRequests": "You have no pending connection requests."
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "title": "Agent Tools",
+    "description": "Secure tools for authorized field agents and administrators.",
+    "findUserLabel": "Find User by Phone Number",
+    "findButton": "Find",
+    "phoneRequiredError": "Please enter a valid phone number.",
+    "resultsTitle": "Search Result",
+    "resultsPlaceholder": "User details will appear here after a successful search.",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to use these tools."
+  }
 }
+

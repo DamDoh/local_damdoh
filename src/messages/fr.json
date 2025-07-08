@@ -154,5 +154,53 @@
       }
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Réseau et Connexions",
+    "description": "Connectez-vous avec des agriculteurs, des acheteurs, des fournisseurs de services, et plus encore à travers toute la chaîne de valeur agricole.",
+    "myNetworkButton": "Mon Réseau",
+    "agentToolsButton": "Outils d'Agent",
+    "aiSuggestionsTitle": "Suggestions par IA",
+    "aiSuggestionsDescription": "En fonction de votre profil et de votre activité, voici quelques parties prenantes avec lesquelles vous pourriez vouloir vous connecter.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau."
+    },
+    "noSuggestions": "Aucune suggestion disponible pour le moment. Complétez votre profil pour de meilleures recommandations.",
+    "signInPrompt": "Connectez-vous pour voir des recommandations personnalisées.",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "browseAllTitle": "Parcourir tous les Acteurs",
+    "browseAllDescription": "Trouvez et connectez-vous avec n'importe quel acteur sur la plateforme.",
+    "searchPlaceholder": "Rechercher par nom ou résumé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les rôles",
+    "noStakeholdersFound": "Aucun acteur ne correspond à vos critères.",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres ou vos termes de recherche."
+  },
+  "myNetworkPage": {
+    "backLink": "Retour au Réseau",
+    "myConnectionsTab": "Mes Connexions ({count})",
+    "pendingRequestsTab": "Demandes en attente",
+    "connectionsTitle": "Mes Connexions",
+    "connectionsDescription": "Ce sont vos connexions actuelles sur la plateforme.",
+    "noConnections": "Vous n'avez pas encore établi de connexions. Commencez à explorer le réseau !",
+    "requestsTitle": "Demandes de Connexion",
+    "requestsDescription": "Acceptez ou refusez les demandes des autres utilisateurs.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente."
+  },
+  "agentToolsPage": {
+    "backLink": "Retour au Réseau",
+    "title": "Outils d'Agent",
+    "description": "Outils sécurisés pour les agents de terrain autorisés et les administrateurs.",
+    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
+    "findButton": "Trouver",
+    "phoneRequiredError": "Veuillez entrer un numéro de téléphone valide.",
+    "resultsTitle": "Résultat de la recherche",
+    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie.",
+    "accessDeniedTitle": "Accès refusé",
+    "accessDeniedDescription": "Vous n'avez pas les autorisations requises pour utiliser ces outils."
+  }
 }

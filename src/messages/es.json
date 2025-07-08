@@ -157,5 +157,53 @@
       }
     }
   },
-  "Homepage": {}
+  "Homepage": {},
+  "networkPage": {
+    "title": "Red y Conexiones",
+    "description": "Conéctate con agricultores, compradores, proveedores de servicios y más en toda la cadena de valor agrícola.",
+    "myNetworkButton": "Mi Red",
+    "agentToolsButton": "Herramientas de Agente",
+    "aiSuggestionsTitle": "Sugerencias con IA",
+    "aiSuggestionsDescription": "Basado en tu perfil y actividad, aquí hay algunos interesados con los que podrías querer conectarte.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "No se pudieron cargar los datos de la red."
+    },
+    "noSuggestions": "No hay sugerencias disponibles en este momento. Completa tu perfil para obtener mejores recomendaciones.",
+    "signInPrompt": "Inicia sesión para ver recomendaciones personalizadas.",
+    "connect": "Conectar",
+    "profile": "Perfil",
+    "browseAllTitle": "Explorar Todos los Interesados",
+    "browseAllDescription": "Encuentra y conéctate con cualquier interesado en la plataforma.",
+    "searchPlaceholder": "Buscar por nombre o resumen...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "rolePlaceholder": "Filtrar por rol...",
+    "allRoles": "Todos los roles",
+    "noStakeholdersFound": "No se encontraron interesados que coincidan con tus criterios.",
+    "noStakeholdersHint": "Intenta ajustar tus filtros o términos de búsqueda."
+  },
+  "myNetworkPage": {
+    "backLink": "Volver a la Red",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Estas son tus conexiones actuales en la plataforma.",
+    "noConnections": "Aún no has hecho ninguna conexión. ¡Empieza a explorar la red!",
+    "requestsTitle": "Solicitudes de Conexión",
+    "requestsDescription": "Acepta o rechaza solicitudes de otros usuarios.",
+    "sentTimeAgo": "Enviado hace {timeAgo}",
+    "noRequests": "No tienes solicitudes de conexión pendientes."
+  },
+  "agentToolsPage": {
+    "backLink": "Volver a la Red",
+    "title": "Herramientas de Agente",
+    "description": "Herramientas seguras para agentes de campo y administradores autorizados.",
+    "findUserLabel": "Buscar Usuario por Número de Teléfono",
+    "findButton": "Buscar",
+    "phoneRequiredError": "Por favor, introduce un número de teléfono válido.",
+    "resultsTitle": "Resultado de la Búsqueda",
+    "resultsPlaceholder": "Los detalles del usuario aparecerán aquí después de una búsqueda exitosa.",
+    "accessDeniedTitle": "Acceso Denegado",
+    "accessDeniedDescription": "No tienes los permisos necesarios para usar estas herramientas."
+  }
 }
