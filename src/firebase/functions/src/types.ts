@@ -699,7 +699,7 @@ export interface FeedItem {
   userHeadline?: string;
   content: string;
   link: string;
-  postImage?: string;
+  imageUrl?: string;
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;

@@ -678,9 +678,11 @@ export interface PostReply {
     id: string;
     content: string;
     timestamp: string; // ISO string
-    userId: string;
-    userName: string;
-    userAvatar?: string;
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
 }
 
 export interface PollOption {
