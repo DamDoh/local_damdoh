@@ -37,6 +37,42 @@
       "aiDiagnosis": "KI-Diagnose"
     }
   },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform.",
+    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffeebohnen Kenia",
+    "popularSearch2": "Traktorvermietung",
+    "popularSearch3": "Trockenresistente Maissamen",
+    "popularSearch4": "Logistikpartner Ostafrika",
+    "popularSearch5": "Reduzierung von Nachernteverlusten",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Personen, Produkte, Dienstleistungen, Foren suchen...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Ungültiger QR-Code gescannt. Es scheint sich nicht um eine DamDoh-ID zu handeln.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scanfehler",
+      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Suche nach Elementen, die Ihrer Anfrage entsprechen.",
+      "filtersTitle": "Angewandte Filter",
+      "noResults": "Keine Ergebnisse gefunden",
+      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissensdatenbank",
+        "vti_registry": "Rückverfolgungsberichte"
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "Die globale landwirtschaftliche Lieferkettenplattform.",
     "damdohTitle": "DamDoh",
@@ -76,7 +112,9 @@
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
     "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden"
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Design wechseln",
+    "switchToDarkAria": "Zum dunklen Design wechseln"
   },
   "LanguageSwitcher": {
     "toggle": "Sprache ändern"
@@ -120,6 +158,57 @@
       "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} warten auf Synchronisierung",
       "onlineSynced": "Online | Alle Änderungen synchronisiert",
       "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Verbindungen pflegen, Wohlstand ernten mit {appName}",
+      "subtitle": "Das unverzichtbare digitale Ökosystem, das jeden Akteur in der landwirtschaftlichen Wertschöpfungskette verbindet. Von der Saat bis zum Verkauf fördert DamDoh Wachstum, Transparenz und Zusammenarbeit.",
+      "getStartedButton": "Kostenlos starten",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Kernfunktionen von DamDoh",
+      "subtitle": "Eine integrierte Plattform, die auf die vielfältigen Bedürfnisse der Agrargemeinschaft zugeschnitten ist.",
+      "networking": {
+        "title": "Intelligentes Netzwerken",
+        "description": "KI-gestützte Verbindungsvorschläge basierend auf Ihrer Rolle, Ihrem Standort und Ihren Bedürfnissen. Finden Sie die richtigen Partner, von Lieferanten bis zu Käufern."
+      },
+      "marketplace": {
+        "title": "Digitaler Marktplatz",
+        "description": "Ein direkter Kanal zum Kauf und Verkauf von Produkten, Betriebsmitteln und Ausrüstung. Erweitern Sie Ihre Marktreichweite und finden Sie die besten Preise."
+      },
+      "forums": {
+        "title": "Thematische Foren",
+        "description": "Teilen Sie Wissen und diskutieren Sie spezifische Themen wie Pflanzenmanagement, Tiergesundheit und neue Technologien mit Kollegen."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Bieten oder finden Sie landwirtschaftliche Dienstleistungen, von der Lohnarbeit bis zur Drohnenvermessung und professioneller Beratung."
+      }
+    },
+    "forWho": {
+      "badge": "Für alle in der Landwirtschaft",
+      "title": "Eine Plattform für jeden Akteur",
+      "description": "DamDoh ist einzigartig konzipiert, um die gesamte landwirtschaftliche Wertschöpfungskette zu bedienen und schafft einen einzigen Punkt der Wahrheit und der Chancen für alle.",
+      "farmers": {
+        "title": "Landwirte",
+        "description": "Greifen Sie auf bessere Märkte zu, finden Sie hochwertige Betriebsmittel und erhalten Sie Expertenrat, um Ihren Ertrag und Ihre Rentabilität zu steigern."
+      },
+      "buyers": {
+        "title": "Käufer & Verarbeiter",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Erzeugern und Genossenschaften und sichern Sie so die Zuverlässigkeit der Lieferkette."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihre speziellen Fähigkeiten und Dienstleistungen einem breiten landwirtschaftlichen Publikum an, das Ihre Expertise sucht."
+      },
+      "imageAlt": "Eine vielfältige Gruppe von Akteuren der Landwirtschaft bei der Zusammenarbeit"
+    },
+    "cta": {
+      "title": "Bereit, Ihr Netzwerk zu erweitern?",
+      "subtitle": "Schließen Sie sich Tausenden von Landwirten, Käufern und Experten an, die eine vernetztere und effizientere landwirtschaftliche Zukunft aufbauen.",
+      "button": "Heute DamDoh beitreten"
     }
   }
 }

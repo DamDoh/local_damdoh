@@ -37,6 +37,42 @@
       "aiDiagnosis": "Diagnostic IA"
     }
   },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
+    "placeholder": "Recherchez des personnes, produits, services, messages de forum...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Grains de Café Bio Kenya",
+    "popularSearch2": "Location de tracteur",
+    "popularSearch3": "Semences de maïs résistantes à la sécheresse",
+    "popularSearch4": "Partenaire logistique Afrique de l'Est",
+    "popularSearch5": "Réduction des pertes post-récolte",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Rechercher personnes, produits, services, forums...",
+      "searchButton": "Rechercher",
+      "searchError": "Erreur de Recherche",
+      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Code QR invalide scanné. Il ne semble pas être un ID DamDoh.",
+      "scanFailed": "Scan Échoué",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation IA",
+      "interpretationNotesDefault": "Recherche d'éléments liés à votre requête.",
+      "filtersTitle": "Filtres Appliqués",
+      "noResults": "Aucun résultat trouvé",
+      "tryAgain": "Essayez d'affiner vos termes de recherche.",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "agri_events": "Événements",
+        "knowledge_articles": "Centre de connaissances",
+        "vti_registry": "Rapports de Traçabilité"
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "La Plateforme Mondiale de la Chaîne d'Approvisionnement Agricole.",
     "damdohTitle": "DamDoh",
@@ -120,6 +156,57 @@
       "onlinePending": "En ligne | {count, plural, one {# action} other {# actions}} en attente de synchronisation",
       "onlineSynced": "En ligne | Toutes les modifications synchronisées",
       "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Cultiver les Connexions, Récolter la Prospérité avec {appName}",
+      "subtitle": "L'écosystème numérique essentiel qui connecte chaque acteur de la chaîne de valeur agricole. De la semence à la vente, DamDoh favorise la croissance, la transparence et la collaboration.",
+      "getStartedButton": "Commencer Gratuitement",
+      "learnMoreButton": "En Savoir Plus"
+    },
+    "features": {
+      "title": "Fonctionnalités Clés de DamDoh",
+      "subtitle": "Une plateforme intégrée conçue pour répondre aux besoins variés de la communauté agricole.",
+      "networking": {
+        "title": "Réseautage Intelligent",
+        "description": "Suggestions de connexion basées sur l'IA en fonction de votre rôle, de votre emplacement et de vos besoins. Trouvez les bons partenaires, des fournisseurs aux acheteurs."
+      },
+      "marketplace": {
+        "title": "Marché Numérique",
+        "description": "Un canal direct pour acheter et vendre des produits, des intrants et des équipements. Élargissez votre marché et trouvez les meilleurs prix."
+      },
+      "forums": {
+        "title": "Forums Thématiques",
+        "description": "Partagez vos connaissances et discutez de sujets spécifiques tels que la gestion des cultures, la santé du bétail et les nouvelles technologies avec vos pairs."
+      },
+      "talent": {
+        "title": "Bourse de Talents",
+        "description": "Proposez ou trouvez des services agricoles, de la récolte à façon à l'arpentage par drone et au conseil professionnel."
+      }
+    },
+    "forWho": {
+      "badge": "Pour Tous les Acteurs de l'Agriculture",
+      "title": "Une Plateforme pour Chaque Acteur",
+      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de la chaîne de valeur agricole, créant un point de vérité et d'opportunité unique pour tous.",
+      "farmers": {
+        "title": "Agriculteurs",
+        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
+      },
+      "buyers": {
+        "title": "Acheteurs et Transformateurs",
+        "description": "Sourcez des produits de haute qualité et traçables directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Experts et Fournisseurs de Services",
+        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
+      },
+      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+    },
+    "cta": {
+      "title": "Prêt à développer votre réseau ?",
+      "subtitle": "Rejoignez des milliers d'agriculteurs, d'acheteurs et d'experts qui construisent un avenir agricole plus connecté et efficace.",
+      "button": "Rejoignez DamDoh Aujourd'hui"
     }
   }
 }

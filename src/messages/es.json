@@ -37,6 +37,42 @@
       "aiDiagnosis": "Diagnóstico de IA"
     }
   },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos, servicios, publicaciones de foros...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de Café Orgánico Kenia",
+    "popularSearch2": "Alquiler de tractores",
+    "popularSearch3": "Semillas de maíz resistentes a la sequía",
+    "popularSearch4": "Socio logístico África Oriental",
+    "popularSearch5": "Reducción de pérdidas postcosecha",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Busca personas, productos, servicios, foros...",
+      "searchButton": "Buscar",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Ocurrió un error al buscar. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Código QR escaneado no válido. No parece ser un ID de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Buscando elementos relacionados con tu consulta.",
+      "filtersTitle": "Filtros Aplicados",
+      "noResults": "No se encontraron resultados",
+      "tryAgain": "Intenta refinar tus términos de búsqueda.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informes de Trazabilidad"
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
     "damdohTitle": "DamDoh",
@@ -120,6 +156,57 @@
       "onlinePending": "En línea | {count, plural, one {# acción} other {# acciones}} esperando para sincronizar",
       "onlineSynced": "En línea | Todos los cambios sincronizados",
       "offline": "Desconectado | {count, plural, one {# acción} other {# acciones}} en cola"
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Cultivando Conexiones, Cosechando Prosperidad con {appName}",
+      "subtitle": "El ecosistema digital esencial que conecta a todos los actores de la cadena de valor agrícola. Desde la semilla hasta la venta, DamDoh potencia el crecimiento, la transparencia y la colaboración.",
+      "getStartedButton": "Comenzar Gratis",
+      "learnMoreButton": "Saber Más"
+    },
+    "features": {
+      "title": "Características Principales de DamDoh",
+      "subtitle": "Una plataforma integrada diseñada para satisfacer las diversas necesidades de la comunidad agrícola.",
+      "networking": {
+        "title": "Networking Inteligente",
+        "description": "Sugerencias de conexión impulsadas por IA basadas en tu rol, ubicación y necesidades. Encuentra los socios adecuados, desde proveedores hasta compradores."
+      },
+      "marketplace": {
+        "title": "Mercado Digital",
+        "description": "Un canal directo para comprar y vender productos, insumos y equipos. Amplía tu alcance de mercado y encuentra los mejores precios."
+      },
+      "forums": {
+        "title": "Foros Temáticos",
+        "description": "Comparte conocimientos y discute temas específicos como el manejo de cultivos, la salud del ganado y las nuevas tecnologías con tus pares."
+      },
+      "talent": {
+        "title": "Bolsa de Talentos",
+        "description": "Ofrece o encuentra servicios agrícolas, desde cosecha personalizada hasta topografía con drones y consultoría profesional."
+      }
+    },
+    "forWho": {
+      "badge": "Para Todos en la Agricultura",
+      "title": "Una Plataforma para Cada Actor",
+      "description": "DamDoh está diseñado de manera única para servir a toda la cadena de valor agrícola, creando un único punto de verdad y oportunidad para todos.",
+      "farmers": {
+        "title": "Agricultores",
+        "description": "Accede a mejores mercados, encuentra insumos de calidad y obtén asesoramiento experto para aumentar tu rendimiento y rentabilidad."
+      },
+      "buyers": {
+        "title": "Compradores y Procesadores",
+        "description": "Obtén productos de alta calidad y trazables directamente de productores y cooperativas, garantizando la fiabilidad de la cadena de suministro."
+      },
+      "experts": {
+        "title": "Expertos y Proveedores de Servicios",
+        "description": "Ofrece tus habilidades y servicios especializados a una amplia audiencia agrícola que busca tu experiencia."
+      },
+      "imageAlt": "Un grupo diverso de actores agrícolas colaborando"
+    },
+    "cta": {
+      "title": "¿Listo para hacer crecer tu red?",
+      "subtitle": "Únete a miles de agricultores, compradores y expertos que están construyendo un futuro agrícola más conectado y eficiente.",
+      "button": "Únete a DamDoh Hoy"
     }
   }
 }
