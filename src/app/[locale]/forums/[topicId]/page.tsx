@@ -25,35 +25,12 @@ const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
         return {
             id: topicSnap.id,
             ...data,
-            lastActivityAt: data.lastActivityAt ? new Date(data.lastActivityAt.seconds * 1000).toISOString() : new Date().toISOString(),
-            createdAt: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
+            lastActivityAt: (data.lastActivityAt as any)?.toDate ? (data.lastActivityAt as any).toDate().toISOString() : new Date().toISOString(),
+            createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
         } as ForumTopic;
     }
     return null;
 };
-
-const fetchPostAuthors = async (posts: any[]): Promise<Record<string, UserProfile>> => {
-    if (!posts || posts.length === 0) return {};
-    const db = getFirestore(firebaseApp);
-    const authorIds = [...new Set(posts.map(p => p.authorRef))].filter(Boolean) as string[]; // FIX: Filter out undefined/null IDs
-    if (authorIds.length === 0) return {};
-
-    const profiles: Record<string, UserProfile> = {};
-    
-    const userPromises = authorIds.map(id => getDoc(doc(db, "users", id)));
-    const userSnaps = await Promise.all(userPromises);
-
-    userSnaps.forEach(userSnap => {
-        if (userSnap.exists()) {
-            profiles[userSnap.id] = userSnap.data() as UserProfile;
-        } else {
-            profiles[userSnap.id] = { id: userSnap.id, displayName: "Unknown User", avatarUrl: "" } as UserProfile;
-        }
-    });
-
-    return profiles;
-};
-
 
 export default function TopicPage() {
     const params = useParams();
@@ -78,23 +55,11 @@ export default function TopicPage() {
 
         try {
             const result = await getPostsForTopic({ topicId, lastVisible });
-            const data = result.data as { posts?: any[], lastVisible?: any };
+            const data = result.data as { posts?: ForumPost[], lastVisible?: any };
             const backendPosts = data?.posts || [];
             
             if (backendPosts.length > 0) {
-              const authorProfiles = await fetchPostAuthors(backendPosts);
-
-              const newPosts: ForumPost[] = backendPosts.map((post: any) => ({
-                  ...post,
-                  timestamp: post.createdAt ? new Date(post.createdAt).toISOString() : new Date().toISOString(),
-                  author: {
-                      id: post.authorRef,
-                      name: authorProfiles[post.authorRef]?.displayName || t('unknownUser'),
-                      avatarUrl: authorProfiles[post.authorRef]?.avatarUrl || ""
-                  },
-              }));
-              
-              setPosts(prev => isInitialLoad ? newPosts : [...prev, ...newPosts]);
+              setPosts(prev => isInitialLoad ? backendPosts : [...prev, ...backendPosts]);
               setLastVisible(data.lastVisible);
               setHasMore(!!data.lastVisible);
             } else {
@@ -169,7 +134,7 @@ export default function TopicPage() {
             <Link href="/forums" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 {t('backLink')}
- </Link>
+            </Link>
             <Card>
                 <CardHeader>
                     <CardTitle className="text-2xl">{topic.name}</CardTitle>
@@ -196,7 +161,7 @@ export default function TopicPage() {
                                         <div className="flex-grow overflow-hidden">
                                             <h4 className="font-semibold">{post.title}</h4>
                                             <p className="text-xs text-muted-foreground">
-                                                {t('postMeta', { author: post.author.name, date: new Date(post.timestamp).toLocaleDateString() })}
+                                                {t('postMeta', { author: post.author.name, date: new Date(post.createdAt).toLocaleDateString() })}
                                             </p>
                                         </div>
                                         <div className="text-sm text-muted-foreground flex items-center gap-1 shrink-0">

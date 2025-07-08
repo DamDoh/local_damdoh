@@ -60,12 +60,35 @@ export const getPostsForTopic = functions.https.onCall(async (data, context) => 
     }
     
     const postsSnapshot = await query.get();
+
+    if (postsSnapshot.empty) {
+        return { posts: [], lastVisible: null };
+    }
+
+    const authorIds = [...new Set(postsSnapshot.docs.map(doc => doc.data().authorRef).filter(Boolean))];
+    const profiles: Record<string, UserProfile> = {};
+
+    if (authorIds.length > 0) {
+        const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', authorIds).get();
+        profileDocs.forEach(doc => {
+            profiles[doc.id] = doc.data() as UserProfile;
+        });
+    }
     
-    const posts = postsSnapshot.docs.map(doc => ({ 
-        id: doc.id, 
-        ...doc.data(),
-        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
-    }));
+    const posts = postsSnapshot.docs.map(doc => {
+        const postData = doc.data();
+        const authorProfile = profiles[postData.authorRef];
+        return { 
+            id: doc.id, 
+            ...postData,
+            author: {
+                id: postData.authorRef,
+                name: authorProfile?.displayName || "Unknown User",
+                avatarUrl: authorProfile?.avatarUrl || null
+            },
+            createdAt: (postData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
+        }
+    });
 
     const newLastVisible = posts.length > 0 ? posts[posts.length - 1].id : null;
 
@@ -120,11 +143,34 @@ export const getRepliesForPost = functions.https.onCall(async (data, context) =>
 
     const repliesSnapshot = await query.get();
 
-    const replies = repliesSnapshot.docs.map(doc => ({ 
-        id: doc.id, 
-        ...doc.data(),
-        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
-    }));
+    if (repliesSnapshot.empty) {
+        return { replies: [], lastVisible: null };
+    }
+
+    const authorIds = [...new Set(repliesSnapshot.docs.map(doc => doc.data().authorRef).filter(Boolean))];
+    const profiles: Record<string, UserProfile> = {};
+
+    if (authorIds.length > 0) {
+        const profileDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', authorIds).get();
+        profileDocs.forEach(doc => {
+            profiles[doc.id] = doc.data() as UserProfile;
+        });
+    }
+
+    const replies = repliesSnapshot.docs.map(doc => {
+        const data = doc.data();
+        const authorProfile = profiles[data.authorRef];
+        return { 
+            id: doc.id, 
+            content: data.content,
+            author: {
+                id: data.authorRef,
+                name: authorProfile?.displayName || 'Unknown User',
+                avatarUrl: authorProfile?.avatarUrl || null,
+            },
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
+        }
+    });
     
     const newLastVisible = replies.length > 0 ? replies[replies.length - 1].id : null;
     

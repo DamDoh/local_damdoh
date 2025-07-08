@@ -1,539 +1,161 @@
 
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "Bitte anmelden, um zu liken",
-    "signInToVoteToast": "Bitte anmelden, um abzustimmen",
-    "voteSuccessToast": "Stimme erfolgreich abgegeben",
-    "voteErrorToast": "Fehler beim Abstimmen",
-    "loadCommentsErrorToast": "Kommentare konnten nicht geladen werden",
-    "editPost": "Beitrag bearbeiten",
-    "deletePost": "Beitrag löschen",
-    "votes": "{count, plural, one {Stimme} other {Stimmen}}",
-    "likes": "{count, plural, one {Gefällt mir} other {Gefällt mir}}",
-    "comments": "{count, plural, one {Kommentar} other {Kommentare}}",
-    "like": "Gefällt mir",
-    "comment": "Kommentieren",
-    "repost": "Erneut veröffentlichen",
-    "noComments": "Noch keine Kommentare.",
-    "loadingComments": "Lade Kommentare...",
-    "loadMoreComments": "Weitere Kommentare laden",
-    "writeCommentPlaceholder": "Schreibe einen Kommentar...",
-    "postButton": "Veröffentlichen"
-  },
-  "CreatePostModal": {
-    "pollOptionsError": "Eine Umfrage muss mindestens 2 Optionen haben.",
-    "emptyPostError": "Ein Beitrag kann nicht komplett leer sein.",
-    "title": "Neuen Beitrag erstellen",
-    "description": "Teilen Sie ein Update mit Ihrem Netzwerk.",
-    "yourName": "Ihr Name",
-    "shareUpdate": "Teilen Sie ein Update",
-    "placeholder": "Worüber möchten Sie sprechen?",
-    "selectedFile": "Ausgewählte Datei:",
-    "pollOptionsLabel": "Umfrageoptionen",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Option hinzufügen",
-    "pollNote": "Maximal {maxOptions} Optionen.",
-    "addMediaButton": "Foto/Video hinzufügen",
-    "createEventButton": "Agri-Veranstaltung erstellen",
-    "shareDocumentButton": "Dokument teilen",
-    "createPollButton": "Umfrage erstellen",
-    "postButton": "Veröffentlichen"
-  },
-  "StartPost": {
-    "placeholder": "Ein landwirtschaftliches Update, eine Markteinsicht teilen oder eine Frage stellen...",
-    "photoVideo": "Foto / Video",
-    "agriEvent": "Agri-Veranstaltung",
-    "createPoll": "Umfrage erstellen"
-  },
-  "AgroTourismDashboard": {
-    "title": "Zentrum für Agrotourismus-Anbieter",
-    "bookingsTitle": "Anstehende Buchungen",
-    "bookingsDescription": "Ihre nächsten geplanten Agrotourismus-Erlebnisse.",
-    "table": {
-      "experience": "Erlebnis",
-      "guest": "Gästename",
-      "date": "Datum",
-      "action": "Aktion",
-      "title": "Titel",
-      "location": "Ort",
-      "status": "Status",
-      "bookings": "Buchungen",
-      "rating": "Bewertung",
-      "comment": "Kommentar"
+  "Forums": {
+    "title": "Forum-Themen",
+    "description": "Durchsuchen und erstellen Sie Diskussionsthemen",
+    "lastActivity": "Letzte Aktivität vor {{time}}",
+    "searchPlaceholder": "Themen durchsuchen...",
+    "buttons": {
+      "createTopic": "Thema erstellen",
+      "joinDiscussion": "Diskussion beitreten",
+      "pinHomepage": "Als Startseite anheften",
+      "unpinHomepage": "Von Startseite lösen"
     },
-    "viewDetailsButton": "Details anzeigen",
-    "noBookings": "Keine anstehenden Buchungen.",
-    "experiencesTitle": "Gelistete Erlebnisse",
-    "experiencesDescription": "Verwalten Sie Ihre Agrotourismus-Angebote.",
-    "manageButton": "Verwalten",
-    "noExperiences": "Noch keine Agrotourismus-Erlebnisse gelistet.",
-    "reviewsTitle": "Gästebewertungen",
-    "reviewsDescription": "Neuestes Feedback von Ihren Gästen.",
-    "on": "zu",
-    "viewReviewButton": "Bewertung ansehen",
-    "noReviews": "Noch keine Gästebewertungen."
-  },
-  "AgronomistDashboard": {
-    "title": "Hub für Agronomen & Berater",
-    "stats": {
-      "assignedFarmers": "Zugeordnete Landwirte",
-      "farmersWithAlerts": "Landwirte mit Warnungen",
-      "pendingConsultations": "Ausstehende Beratungen",
-      "knowledgeContributions": "Wissensbeiträge"
+    "notFound": {
+      "title": "Keine Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
+      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
     },
-    "descriptions": {
-      "assignedFarmers": "{count} Landwirte in Ihrem Portfolio",
-      "farmersWithAlerts": "{count} Landwirte benötigen Aufmerksamkeit",
-      "pendingConsultations": "{count} neue Anfragen",
-      "knowledgeContributions": "{count} Artikel veröffentlicht"
+    "pinning": {
+      "pinnedTitle": "Startseite angeheftet!",
+      "pinnedDescription": "Dieses Forum wird jetzt als Ihre Startseite angezeigt.",
+      "unpinnedTitle": "Startseite gelöst!",
+      "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
     },
-    "consultations": {
-      "title": "Ausstehende Beratungsanfragen",
-      "description": "Überprüfen und beantworten Sie eingehende Anfragen von Landwirten.",
-      "table": {
-        "farmer": "Landwirt",
-        "issue": "Problemzusammenfassung",
-        "action": "Aktion"
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
+      "auth": {
+        "title": "Nicht authentifiziert",
+        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
       },
-      "viewButton": "Anfrage anzeigen",
-      "noRequests": "Keine neuen Beratungsanfragen."
-    },
-    "portfolio": {
-      "title": "Landwirte-Portfolio",
-      "description": "Übersicht der von Ihnen beratenen Landwirte.",
-      "table": {
-        "farmer": "Landwirt",
-        "location": "Standort",
-        "alerts": "Warnungen",
-        "action": "Aktion"
+      "incomplete": {
+        "title": "Unvollständige Felder",
+        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
       },
-      "alertsLabel": "Warnungen",
-      "profileButton": "Profil anzeigen",
-      "noFarmers": "Noch keine Landwirte Ihrem Portfolio zugeordnet."
+      "general": {
+        "title": "Fehler",
+        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+      }
     },
-    "contributions": {
-      "statusTitle": "Status der Wissens-Hub-Beiträge",
-      "title": "Letzte Beiträge",
-      "noContributions": "Sie haben noch keine Beiträge verfasst.",
-      "noData": "Keine Daten für Diagramm verfügbar."
+    "create": {
+      "backLink": "Zurück zu den Themen",
+      "title": "Neues Thema erstellen",
+      "description": "Starten Sie eine neue Diskussion im Forum.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "Geben Sie den Namen Ihres Themas ein",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Thema kurz",
+        "submitButton": "Thema erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "success": {
+        "title": "Thema erfolgreich erstellt",
+        "description": "Ihr neues Thema wurde erstellt."
+      }
     },
-    "chart": {
-      "count": "Anzahl",
-      "published": "Veröffentlicht",
-      "pending": "Ausstehende Überprüfung",
-      "draft": "Entwurf"
+    "topic": {
+      "backLink": "Zurück zu allen Themen",
+      "postMeta": "von {{author}} am {{date}}",
+      "buttons": {
+        "createPost": "Beitrag erstellen",
+        "loadMore": "Weitere Beiträge laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "noPosts": {
+        "title": "Noch keine Beiträge erstellt.",
+        "description": "Seien Sie der Erste, der einen erstellt!",
+        "button": "Ersten Beitrag erstellen"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Thema existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+        },
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
+        }
+      }
     },
-    "noData": "Keine Dashboard-Daten verfügbar."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Hub für Energieversorger",
-    "leadsTitle": "Projekt-Leads",
-    "leadsCount": "{count} neue Leads",
-    "projectsTitle": "Aktive Projekte",
-    "activeProjectsCount": "{count} aktive Projekte",
-    "projectsCompleted": "Projekte abgeschlossen",
-    "impactTitle": "Nachhaltigkeitsauswirkungen",
-    "impactDescription": "Geschätzte CO2-Reduktion durch Ihre Projekte",
-    "carbonReduction": "{count} Gesamtinstallationen",
-    "leadsTableTitle": "Pipeline für Projekt-Leads",
-    "leadsTableDescription": "Potenzielle Projekte und Kunden, die nach Energielösungen suchen.",
-    "table": {
-      "entity": "Name der Entität",
-      "location": "Standort",
-      "energyNeed": "Geschätzter Energiebedarf",
-      "status": "Status",
-      "action": "Aktion"
+    "postView": {
+      "backLink": "Zurück zu {{topicName}}",
+      "unknownUser": "Unbekannter Benutzer",
+      "repliesTitle": "Antworten ({count})",
+      "noReplies": "Noch keine Antworten.",
+      "buttons": {
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "reply": {
+        "title": "Eine Antwort hinzufügen",
+        "placeholder": "Schreiben Sie hier Ihre Antwort...",
+        "submitButton": "Antwort hinzufügen",
+        "submittingButton": "Wird gesendet...",
+        "success": "Antwort hinzugefügt!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
+        },
+        "emptyReply": "Antwort darf nicht leer sein.",
+        "submitReply": {
+          "title": "Fehler beim Senden der Antwort",
+          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
+        }
+      }
     },
-    "viewLeadButton": "Lead anzeigen",
-    "noLeads": "Derzeit keine Projekt-Leads.",
-    "accessDocsButton": "API-Dokumentation aufrufen",
-    "proposeIntegrationButton": "Neue Integration vorschlagen",
-    "statusLabels": {
-      "new": "Neu",
-      "contacted": "Kontaktiert",
-      "proposal_sent": "Angebot gesendet",
-      "closed": "Geschlossen",
-      "in_progress": "In Bearbeitung",
-      "completed": "Abgeschlossen"
+    "createPost": {
+      "backLink": "Zurück zum Thema",
+      "aiHelper": {
+        "title": "KI-Helfer",
+        "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
+        "promptLabel": "KI-Eingabeaufforderung",
+        "promptPlaceholder": "Geben Sie eine kurze Beschreibung des zu generierenden Beitrags ein...",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "title": "Neuen Beitrag erstellen",
+      "description": "Fügen Sie diesem Thema einen neuen Beitrag hinzu.",
+      "form": {
+        "titleLabel": "Titel des Beitrags",
+        "titlePlaceholder": "Geben Sie den Titel Ihres Beitrags ein",
+        "contentLabel": "Inhalt des Beitrags",
+        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags...",
+        "submitButton": "Beitrag erstellen",
+        "submittingButton": "Wird gesendet..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "KI-Entwurf generiert!",
+          "description": "Ein Entwurf wurde für Sie generiert."
+        },
+        "title": "Beitrag erstellt!",
+        "description": "Ihr Beitrag wurde erfolgreich erstellt."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "Fehlende KI-Eingabeaufforderung", "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein." },
+        "aiDraft": { "title": "KI-Entwurfsfehler", "description": "Fehler beim Generieren des KI-Entwurfs." },
+        "incomplete": { "title": "Unvollständige Felder", "description": "Bitte füllen Sie alle erforderlichen Felder aus." },
+        "general": { "title": "Fehler", "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten." }
+      }
     }
   },
-  "InputSupplierDashboard": {
-    "title": "Drehscheibe für Input-Lieferanten",
-    "ordersTitle": "Aktive Bestellungen & Wert",
-    "totalValue": "Gesamtwert",
-    "manageOrdersButton": "Alle Bestellungen verwalten",
-    "forecastTitle": "Regionale Nachfrageprognose",
-    "in": "in",
-    "performanceTitle": "Produktleistung & Bewertungen",
-    "viewReviewsButton": "Alle Bewertungen anzeigen",
-    "noForecast": "Zurzeit keine Nachfrageprognosedaten verfügbar.",
-    "noFeedback": "Noch kein Produktfeedback verfügbar.",
-    "promotionsTitle": "Gutscheine & Werbeaktionen",
-    "promotionsDescription": "Erstellen und verwalten Sie Rabatte, um Ihren Umsatz zu steigern.",
-    "manageCouponsButton": "Gutscheine verwalten"
-  },
-  "CertificationBodyDashboard": {
-    "title": "Zertifizierungsstellen-Hub",
-    "auditsTitle": "Ausstehende Audits",
-    "auditsDescription": "Geplante Audits für Farmen und Einrichtungen.",
-    "table": {
-      "farmName": "Farmname",
-      "standard": "Standard",
-      "dueDate": "Fälligkeitsdatum",
-      "action": "Aktion"
-    },
-    "reviewAuditButton": "Überprüfen & Planen",
-    "noPendingAudits": "Keine ausstehenden Audits.",
-    "entitiesTitle": "Zertifizierte Entitäten Übersicht",
-    "entitiesDescription": "Eine Zusammenfassung der von Ihnen zertifizierten Entitäten.",
-    "noCertifiedEntities": "Keine zertifizierten Entitäten gefunden.",
-    "monitoringTitle": "Überwachung der Standards",
-    "monitoringDescription": "Einhaltungsquoten und Warnungen für wichtige Standards.",
-    "alerts": "Warnungen",
-    "viewDetailsButton": "Details anzeigen",
-    "noMonitoringData": "Keine Überwachungsdaten für Standards verfügbar."
-  },
-  "QaDashboard": {
-    "title": "Qualitätssicherungs-Hub",
-    "inspectionsTitle": "Ausstehende Inspektionen",
-    "inspectionsDescription": "Geplante Qualitätsprüfungen für Produkte und Chargen.",
-    "table": {
-      "batchId": "Chargen-ID",
-      "product": "Produkt",
-      "seller": "Verkäufer",
-      "dueDate": "Fälligkeitsdatum",
-      "action": "Aktion"
-    },
-    "performInspectionButton": "Inspektion durchführen",
-    "noPendingInspections": "Keine ausstehenden Inspektionen.",
-    "resultsTitle": "Aktuelle Problemberichte",
-    "resultsDescription": "Zuletzt gemeldete Qualitätsprobleme.",
-    "noRecentIssues": "Keine aktuellen Qualitätsprobleme gemeldet.",
-    "metricsTitle": "Qualitätskennzahlen",
-    "metricsDescription": "Gesamtleistungsübersicht.",
-    "passRate": "Bestandene Rate",
-    "averageScore": "Durchschnittliche Punktzahl",
-    "noMetrics": "Keine Qualitätskennzahlen verfügbar."
-  },
-  "FiApplicationListPage": {
-    "backLink": "Zurück zum Dashboard",
-    "title": "Antragsverwaltung",
-    "description": "Alle erhaltenen Finanzierungsanträge anzeigen und verwalten.",
-    "tabs": {
-      "all": "Alle",
-      "pending": "Ausstehend",
-      "approved": "Genehmigt",
-      "rejected": "Abgelehnt"
-    },
-    "table": {
-      "applicant": "Antragsteller",
-      "type": "Typ",
-      "amount": "Betrag",
-      "date": "Eingereicht am",
-      "status": "Status",
-      "action": "Aktion"
-    },
-    "reviewButton": "Überprüfen",
-    "noApplications": "Keine Anträge für diesen Status gefunden."
-  },
-  "FiApplicationPage": {
-    "backLink": "Zurück zum Panel de Control",
-    "title": "Finanzierungsantrag prüfen",
-    "applicationTitle": "Antrag",
-    "submittedOn": "Eingereicht am",
-    "amountRequested": "Beantragter Betrag",
-    "purpose": "Zweck der Finanzierung",
-    "applicantDetails": "Antragstellerdetails",
-    "profileNotFound": "Antragstellerprofil nicht gefunden.",
-    "viewProfileButton": "Vollständiges Profil anzeigen",
-    "riskAssessment": "KI-Risikobewertung",
-    "creditScore": "Kredit-Score",
-    "notFound": "Antrag nicht gefunden.",
-    "approveButton": "Genehmigen",
-    "rejectButton": "Ablehnen",
-    "requestInfoButton": "Weitere Informationen anfordern",
-    "toast": {
-      "errorTitle": "Fehler",
-      "updateSuccessTitle": "Status aktualisiert",
-      "updateSuccessDescription": "Der Antrag wurde als {status} markiert.",
-      "updateFailTitle": "Aktualisierung fehlgeschlagen"
-    }
-  },
-  "FiDashboard": {
-    "title": "Finanzinstitut-Hub",
-    "pendingApplicationsTitle": "Ausstehende Anträge",
-    "pendingApplicationsDescription": "Anträge, die Ihre Überprüfung erfordern",
-    "portfolioAtRiskTitle": "Portfolio mit Risiko",
-    "portfolioAtRiskDescription": "{count} Konten markiert",
-    "recentUpdates": "kürzliche Updates",
-    "marketUpdatesTitle": "Markt-Updates",
-    "manageProductsTitle": "Finanzprodukte",
-    "manageProductsDescription": "Ihre aktiven Kredite & Zuschüsse",
-    "manageProductsButton": "Produkte verwalten",
-    "table": {
-      "applicant": "Antragsteller",
-      "type": "Typ",
-      "amount": "Betrag",
-      "riskScore": "Risiko-Score",
-      "action": "Aktion"
-    },
-    "reviewButton": "Überprüfen",
-    "noApplications": "Keine ausstehenden Anträge zur Überprüfung.",
-    "accounts": "Konten",
-    "value": "Wert",
-    "reviewRiskButton": "Risiko überprüfen",
-    "readMore": "Mehr lesen",
-    "noUpdates": "Keine Markt-Updates verfügbar.",
-    "viewAllButton": "Alle Anträge anzeigen"
-  },
-  "FiProductsPage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Finanzprodukte verwalten",
-    "description": "Erstellen und sehen Sie Ihre angebotenen Kredite und Zuschüsse.",
-    "createButton": "Neues Produkt erstellen",
-    "noProducts": "Es wurden noch keine Finanzprodukte erstellt.",
-    "table": {
-      "productName": "Produktname",
-      "type": "Typ",
-      "status": "Status",
-      "interestRate": "Zinssatz",
-      "maxAmount": "Höchstbetrag"
-    },
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Neues Finanzprodukt erstellen",
-    "description": "Definieren Sie einen neuen Kredit oder Zuschuss, um ihn den Stakeholdern anzubieten.",
-    "form": {
-      "nameLabel": "Produktname",
-      "namePlaceholder": "z.B. Kleinbauern-Saatgutkredit",
-      "typeLabel": "Produkttyp",
-      "loan": "Kredit",
-      "grant": "Zuschuss",
-      "descriptionLabel": "Beschreibung",
-      "descriptionPlaceholder": "Beschreiben Sie das Produkt, seinen Zweck und die Förderkriterien.",
-      "interestRateLabel": "Zinssatz (%)",
-      "interestRatePlaceholder": "z.B. 8.5",
-      "maxAmountLabel": "Höchstbetrag (USD)",
-      "maxAmountPlaceholder": "z.B. 5000",
-      "targetRolesLabel": "Zielgruppen",
-      "targetRolesDescription": "Wählen Sie aus, für welche Stakeholder-Rollen dieses Produkt verfügbar ist.",
-      "submitButton": "Produkt erstellen"
-    },
-    "toast": {
-      "notAuthenticated": "Sie müssen angemeldet sein, um ein Produkt zu erstellen.",
-      "successTitle": "Produkt erstellt!",
-      "successDescription": "{name} wurde erfolgreich erstellt und ist jetzt aktiv.",
-      "errorTitle": "Erstellung fehlgeschlagen"
-    }
-  },
-  "LogisticsDashboard": {
-    "title": "Logistik-Hub",
-    "performanceTitle": "Leistungsübersicht",
-    "onTimeDelivery": "Pünktliche Lieferrate",
-    "viewReportButton": "Vollständigen Bericht anzeigen",
-    "activeShipmentsTitle": "Aktive Sendungen",
-    "incomingJobsTitle": "Eingehende Aufträge",
-    "noActiveShipments": "Keine aktiven Sendungen.",
-    "trackButton": "VTI verfolgen",
-    "noIncomingJobs": "Keine eingehenden Aufträge verfügbar.",
-    "acceptJobButton": "Auftrag annehmen"
-  },
-  "ProcessingUnitDashboard": {
-    "title": "Verarbeitungs- & Verpackungs-Hub",
-    "yieldTitle": "Ertragsoptimierung",
-    "potential": "Potenzial",
-    "wasteTitle": "Abfallreduzierung",
-    "packagingInventoryTitle": "Verpackungsinventar",
-    "inStock": "Auf Lager",
-    "reorderLevel": "Nachbestellen bei",
-    "noPackagingData": "Keine Verpackungsinventardaten verfügbar.",
-    "sourcePackagingButton": "Verpackungsmaterialien beschaffen",
-    "rawMaterialTitle": "Rohstoffinventar",
-    "table": {
-      "product": "Produkt",
-      "quality": "Qualität",
-      "quantity": "Menge (Tonnen)",
-      "supplier": "Lieferant",
-      "deliveryDate": "Lieferdatum",
-      "status": "Status",
-      "action": "Aktion"
-    },
-    "noInventoryData": "Keine Rohstoffinventardaten verfügbar.",
-    "packagingOrdersTitle": "Verpackungsbestellungen",
-    "viewButton": "Ansehen",
-    "noPackagingOrders": "Keine ausstehenden Verpackungsbestellungen."
-  },
-  "WarehouseDashboard": {
-    "title": "Lager- & Lagereinrichtungs-Hub",
-    "utilizationTitle": "Lagerauslastung",
-    "inventoryTitle": "Lagerbestände",
-    "itemsNeedingAttention": "Artikel benötigen Aufmerksamkeit",
-    "alertsTitle": "Vorausschauende Warnungen",
-    "noAlerts": "Derzeit keine vorausschauenden Warnungen.",
-    "investigateButton": "Untersuchen"
-  },
-  "AgroExportDashboard": {
-    "title": "Drehscheibe für Agrarexport-Vermittler",
-    "docsTitle": "Ausstehende Zoll-Dokumentation",
-    "shipmentsTitle": "Verfolgte Sendungen",
-    "alertsTitle": "Konformitätswarnungen",
-    "table": {
-        "vti": "VTI-Link",
-        "destination": "Ziel",
-        "status": "Status"
-    },
-    "prepareDocsButton": "Dokumente vorbereiten",
-    "noDocs": "Keine Dokumente ausstehend.",
-    "noShipments": "Keine aktiven Sendungen.",
-    "noAlerts": "Keine Konformitätswarnungen.",
-    "readMore": "Mehr lesen"
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Ausrüstungslieferanten-Hub",
-    "ordersTitle": "Miet- & Verkaufsaufträge",
-    "ordersDescription": "{count, plural, =0 {Keine Bestellungen} one {# Gesamtbestellung} other {# Gesamtbestellungen}}",
-    "manageOrdersButton": "Alle Bestellungen verwalten",
-    "listedEquipmentTitle": "Gelistete Ausrüstung",
-    "table": {
-      "name": "Name",
-      "type": "Typ",
-      "status": "Status",
-      "action": "Aktion"
-    },
-    "status": {
-      "available": "Verfügbar",
-      "rentedout": "Vermietet"
-    },
-    "manageButton": "Verwalten",
-    "noEquipment": "Noch keine Ausrüstung gelistet.",
-    "listEquipmentButton": "Neue Ausrüstung listen",
-    "maintenanceTitle": "Wartungsanfragen",
-    "viewRequestButton": "Anfrage anzeigen",
-    "noMaintenance": "Derzeit keine Wartungsanfragen."
-  },
-  "WasteManagementDashboard": {
-    "title": "Hub für Abfallwirtschaft & Kompostierung",
-    "wasteStreamsTitle": "Eingehende Abfallströme",
-    "from": "Von",
-    "acceptButton": "Akzeptieren",
-    "noWasteStreams": "Keine eingehenden Abfallströme zu verarbeiten.",
-    "compostBatchesTitle": "Kompostchargen in Bearbeitung",
-    "batch": "Charge",
-    "estReady": "Voraussichtlich fertig",
-    "noCompostBatches": "Keine aktiven Kompostchargen.",
-    "inventoryTitle": "Fertigproduktinventar",
-    "inStock": "Auf Lager",
-    "noFinishedProducts": "Keine Fertigprodukte im Inventar.",
-    "sellButton": "Produkt auf dem Marktplatz anbieten"
-  },
-  "CrowdfunderDashboard": {
-    "title": "Crowdfunder- & Investoren-Hub",
-    "totalInvested": "Insgesamt investiert",
-    "numberOfInvestments": "Anzahl der Investitionen",
-    "estimatedReturns": "Geschätzte Renditen",
-    "opportunitiesTitle": "Empfohlene Möglichkeiten",
-    "transactionsTitle": "Letzte Transaktionen",
-    "raisedOf": "von",
-    "goal": "Ziel",
-    "viewButton": "Ansehen",
-    "table": {
-      "project": "Projekt",
-      "amount": "Betrag"
-    },
-    "investment": "Investition",
-    "payout": "Auszahlung",
-    "on": "am",
-    "noOpportunities": "Derzeit keine Investitionsmöglichkeiten zum Vorschlagen.",
-    "noTransactions": "Keine letzten Transaktionen."
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Versicherungsanbieter-Hub",
-    "claimsTitle": "Ausstehende Schadensfälle",
-    "claimsDescription": "Überprüfen Sie Schadensfälle, die gegen von Ihnen verwaltete Policen eingereicht wurden.",
-    "table": {
-      "policyHolder": "Versicherungsnehmer",
-      "policyType": "Policentyp",
-      "claimDate": "Schadensdatum",
-      "status": "Status",
-      "action": "Aktion"
-    },
-    "reviewClaimButton": "Schadensfall prüfen",
-    "noPendingClaims": "Keine ausstehenden Schadensfälle zur Überprüfung.",
-    "riskAlertsTitle": "Risikobewertungswarnungen",
-    "riskAlertsDescription": "Aktive Policen mit Hochrisiko-Kennzeichnungen basierend auf Plattformdaten.",
-    "investigateButton": "Untersuchen",
-    "noRiskAlerts": "Derzeit keine Hochrisikowarnungen.",
-    "activePoliciesTitle": "Aktive Policen",
-    "activePoliciesDescription": "Eine Zusammenfassung Ihrer derzeit aktiven Versicherungspolicen.",
-    "coverage": "Deckungssumme",
-    "expires": "Läuft ab",
-    "noActivePolicies": "Keine aktiven Policen gefunden."
-  },
-  "ResearcherDashboard": {
-    "title": "Forscher & Akademiker-Hub",
-    "datasetsTitle": "Verfügbare Datensätze",
-    "datasetsDescription": "Anonymisierte Datensätze für Ihre Forschungszwecke.",
-    "table": {
-      "name": "Name",
-      "dataType": "Datentyp",
-      "accessLevel": "Zugriffsebene",
-      "action": "Aktion"
-    },
-    "requestAccessButton": "Zugang anfordern",
-    "noDatasets": "Derzeit sind keine Datensätze verfügbar.",
-    "projectsTitle": "Laufende Projekte",
-    "projectsDescription": "Ihre aktiven Forschungskooperationen auf der Plattform.",
-    "viewProjectButton": "Projekt ansehen",
-    "noProjects": "Sie haben keine laufenden Projekte.",
-    "contributionsTitle": "Wissens-Hub-Beiträge",
-    "contributionsDescription": "Artikel und Veröffentlichungen, die Sie beigesteuert haben.",
-    "viewButton": "Ansehen",
-    "noContributions": "Sie haben noch keine Beiträge verfasst.",
-    "noData": "Keine Dashboard-Daten verfügbar.",
-    "datasetsByTypeTitle": "Datensätze nach Typ",
-    "datasetsByTypeDescription": "Verteilung der verfügbaren Datensatztypen.",
-    "noDatasetsForChart": "Keine Datensätze für Diagramm verfügbar.",
-    "chart": {
-      "count": "Anzahl",
-      "published": "Veröffentlicht",
-      "pending": "Ausstehende Überprüfung",
-      "draft": "Entwurf"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Agri-Tech-Innovator-Hub",
-    "sandboxTitle": "Sandbox-Status",
-    "statusLabel": "Status",
-    "lastResetLabel": "Letzter Reset",
-    "accessDocsButton": "API-Dokumentation aufrufen",
-    "integrationsTitle": "Integrationsprojekte",
-    "activeProjects": "Aktive Projekte",
-    "integrationsDescription": "Ihre API-Integrationen anzeigen und verwalten.",
-    "proposeIntegrationButton": "Neue Integration vorschlagen",
-    "apiKeysTitle": "API-Schlüssel",
-    "apiKeysDescription": "API-Schlüssel für Ihre Anwendungen verwalten und generieren.",
-    "table": {
-      "key": "Schlüssel",
-      "status": "Status",
-      "environment": "Umgebung",
-      "created": "Erstellt",
-      "actions": "Aktionen"
-    },
-    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert!",
-    "noApiKeys": "Es wurden noch keine API-Schlüssel generiert.",
-    "generateNewKeyButton": "Neuen API-Schlüssel generieren"
-  },
-  "OperationsDashboard": {
-    "title": "Betriebs-Dashboard",
-    "vtiRateTitle": "VTI-Generierungsrate",
-    "pipelineStatusTitle": "Datenpipeline-Status",
-    "lastCheck": "Letzte Überprüfung",
-    "flaggedEventsTitle": "Gekennzeichnete Ereignisse",
-    "viewVtiButton": "VTI anzeigen",
-    "noFlaggedEvents": "Derzeit keine automatisch gekennzeichneten Ereignisse."
-  }
+  "Homepage": {}
 }

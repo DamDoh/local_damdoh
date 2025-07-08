@@ -1,19 +1,75 @@
 
-
 {
   "Forums": {
+    "title": "Temas del Foro",
+    "description": "Navega y crea temas de discusión",
+    "lastActivity": "Última actividad hace {{time}}",
+    "searchPlaceholder": "Buscar temas...",
+    "buttons": {
+      "createTopic": "Crear Tema",
+      "joinDiscussion": "Unirse a la Discusión",
+      "pinHomepage": "Fijar en Inicio",
+      "unpinHomepage": "Desfijar de Inicio"
+    },
+    "notFound": {
+      "title": "No se encontraron temas",
+      "tryDifferentSearch": "Intenta con otro término de búsqueda.",
+      "beTheFirst": "Sé el primero en crear un tema."
+    },
+    "pinning": {
+      "pinnedTitle": "¡Inicio fijado!",
+      "pinnedDescription": "Este foro ahora se muestra como tu página de inicio.",
+      "unpinnedTitle": "¡Inicio desfijado!",
+      "unpinnedDescription": "Este foro ya no se mostrará como tu página de inicio."
+    },
+    "errors": {
+      "loadTitle": "Error al cargar los temas",
+      "loadDescription": "Ocurrió un error al cargar los temas del foro."
+    },
+    "create": {
+      "backLink": "Volver a Temas",
+      "title": "Crear Nuevo Tema",
+      "description": "Inicia una nueva discusión en el foro.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Introduce el nombre de tu tema",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe brevemente tu tema",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "success": {
+        "title": "Tema creado con éxito",
+        "description": "Tu nuevo tema ha sido creado."
+      },
+      "errors": {
+        "auth": {
+          "title": "No autenticado",
+          "description": "Debes iniciar sesión para crear un tema."
+        },
+        "incomplete": {
+          "title": "Campos incompletos",
+          "description": "Por favor, completa todos los campos requeridos."
+        },
+        "general": {
+          "title": "Error",
+          "description": "Ocurrió un error al crear el tema."
+        }
+      }
+    },
     "topic": {
+      "backLink": "Volver a todos los temas",
       "unknownUser": "Usuario Desconocido",
       "postMeta": "por {{author}} el {{date}}",
       "buttons": {
-        "createPost": "Agregar Respuesta",
-        "loadMore": "Cargar Más",
-        "loadingMore": "Cargando Más..."
+        "createPost": "Crear Publicación",
+        "loadMore": "Cargar Más Publicaciones",
+        "loadingMore": "Cargando más..."
       },
       "noPosts": {
-        "title": "Aún no hay publicaciones",
-        "description": "Sé el primero en responder a este tema.",
-        "button": "Agregar Respuesta"
+        "title": "Aún no se han creado publicaciones.",
+        "description": "¡Sé el primero en crear una!",
+        "button": "Crear Primera Publicación"
       },
       "notFound": {
         "title": "Tema no encontrado",
@@ -31,59 +87,10 @@
         }
       }
     },
-    "createPost": {
-      "aiHelper": {
-        "title": "Asistente de IA",
-        "description": "Genera un borrador de publicación basado en una indicación.",
-        "promptLabel": "Indicación de IA",
-        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
-        "generateButton": "Generar Borrador",
-        "generatingButton": "Generando..."
-      },
-      "title": "Crear Nueva Publicación",
-      "description": "Agrega una nueva publicación a este tema.",
-      "form": {
-        "titleLabel": "Título de la publicación",
-        "titlePlaceholder": "Introduce el título de tu publicación",
-        "contentLabel": "Contenido de la publicación",
-        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
-        "submitButton": "Crear Publicación",
-        "submittingButton": "Enviando..."
-      },
-      "success": {
-        "aiDraft": {
-          "title": "¡Borrador de IA Generado!",
-          "description": "Se ha generado un borrador para ti."
-        },
-        "title": "¡Publicación Creada!",
-        "description": "Tu publicación ha sido creada con éxito."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Falta indicación de IA",
-          "description": "Por favor, proporciona una indicación para el asistente de IA."
-        },
-        "aiDraft": {
-          "title": "Error del borrador de IA",
-          "description": "No se pudo generar el borrador de IA."
-        },
-        "incomplete": {
-          "title": "Campos incompletos",
-          "description": "Por favor, completa todos los campos requeridos."
-        },
-        "general": {
-          "title": "Error",
-          "description": "Ocurrió un error al crear la publicación."
-        }
-      }
-    }
-  },
-  "Forums": {
     "postView": {
       "backLink": "Volver a {{topicName}}",
-      "unknownUser": "Usuario Desconocido",
       "postMeta": "por {{author}} el {{date}}",
-      "repliesTitle": "Respuestas ({{count}})",
+      "repliesTitle": "Respuestas ({count})",
       "noReplies": "Aún no hay respuestas.",
       "buttons": {
         "loadMore": "Cargar Más",
@@ -116,385 +123,39 @@
           "description": "Ocurrió un error al enviar tu respuesta."
         }
       }
-    }
-  },
-  "Marketplace": {
-    "itemView": {
-      "backLink": "Volver al mercado",
-      "unknownUser": "Usuario Desconocido",
-      "traceabilityButton": "Enlace de Comercio / Lote",
-      "skillsLabel": "Habilidades requeridas",
-      "experienceLabel": "Nivel de experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "booking": {
-        "perNight": "noche",
-        "checkIn": "Llegada",
-        "checkOut": "Salida",
-        "addDate": "Agregar fecha",
-        "guests": "Huéspedes",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "notCharged": "Aún no se le cobrará",
-        "nights": "noches",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total",
-        "successTitle": "¡Reserva exitosa!",
-        "successDescription": "Su reserva está confirmada.",
-        "failTitle": "Reserva fallida",
-        "dateError": "Por favor, seleccione fechas de llegada y salida válidas.",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para reservar un servicio.",
-        "bookedTitle": "¡Reservado!",
-        "bookedDescription": "Su reserva está confirmada. Presente el código QR a continuación a su llegada.",
-        "ticketButton": "Mostrar ticket",
-        "modalTitle": "Ticket de reserva",
-        "modalDescription": "Presente este código QR en {{itemName}} para el registro.",
-        "modalScan": "Escanee este código para registrarse"
-      },
-      "coupon": {
-        "label": "Código de cupón",
-        "placeholder": "Introduce el código de cupón",
-        "applyButton": "Aplicar",
-        "successTitle": "¡Cupón aplicado!",
-        "successDescription": "Descuento aplicado: {{type}}",
-        "failTitle": "Cupón inválido",
-        "failDescription": "El código de cupón es inválido o no aplicable.",
-        "appliedText": "Cupón aplicado: {{code}}"
-      },
-      "aboutSeller": "Sobre el vendedor",
-      "viewShopfront": "Ver escaparate",
-      "editListing": "Editar publicación",
-      "manageService": "Gestionar servicio",
-      "buyNowButton": "Comprar ahora",
-      "contactForService": "Contactar para servicio",
-      "contactSeller": "Contactar vendedor",
-      "order": {
-        "title": "Pedir {{itemName}}",
-        "description": "Introduce la cantidad que deseas pedir y cualquier nota.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas (Opcional)",
-        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
-        "cancelButton": "Cancelar",
-        "confirmButton": "Confirmar pedido",
-        "placingButton": "Realizando pedido...",
-        "successTitle": "¡Pedido realizado!",
-        "successDescription": "Tu pedido ha sido realizado con éxito.",
-        "failTitle": "Pedido fallido",
-        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
-        "quantityErrorTitle": "Error de cantidad",
-        "quantityErrorDescription": "Por favor, introduce una cantidad válida (al menos 1).",
-        "authTitle": "Autenticación requerida",
-        "authDescription": "Debe haber iniciado sesión para realizar un pedido."
-      },
-      "notFound": {
-        "title": "Artículo no encontrado",
-        "description": "El artículo del mercado que estás buscando no existe.",
-        "backButton": "Volver a Mercado"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error al cargar publicación",
-          "description": "Ocurrió un error al cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error al cargar respuestas",
-          "description": "Ocurrió un error al cargar las respuestas para esta publicación."
-        },
-        "emptyReply": "La respuesta no puede estar vacía.",
-        "submitReply": {
-          "title": "Error al enviar respuesta",
-          "description": "Ocurrió un error al enviar tu respuesta."
-        },
-        "loadItem": {
-          "title": "Error al cargar artículo",
-          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
-        },
-        "unexpected": "Ocurrió un error inesperado."
-      }
-    }
-  },
-  "Marketplace": {
-    "myOrdersButton": "Mis Pedidos Recibidos",
-    "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre Más",
-    "noItemsFound": {
-      "title": "No se encontraron artículos.",
-      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "No se pudieron obtener recomendaciones de IA"
-      },
-      "search": {
-        "title": "Error de búsqueda",
-        "description": "No se pudieron obtener los artículos del mercado."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "¡Mercado fijado!",
-      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "¡Página de inicio desfijada!",
-      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
-    }
-  },
-  "Marketplace": {
-    "createListing": {
-      "backLink": "Volver al mercado",
-      "title": "Crear Nueva Publicación",
-      "description": "Lista un producto o servicio en el mercado.",
-      "form": {
-        "nameLabel": "Nombre del artículo/servicio",
-        "namePlaceholder": "Introduce el nombre de tu publicación",
-        "typeLabel": "Tipo de publicación",
-        "typePlaceholder": "Selecciona el tipo de publicación",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describe tu publicación",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "Introduce la ubicación",
-        "relatedVtiLabel": "VTI / ID de lote relacionado (Opcional)",
-        "relatedVtiPlaceholder": "Introduce el VTI si esta publicación es para un lote específico",
-        "relatedVtiDescription": "Vincular un VTI aumenta la confianza del comprador.",
-        "categoryLabel": "Categoría",
-        "categoryPlaceholder": "Selecciona una categoría",
-        "compensationLabel": "Compensación",
-        "compensationPlaceholder": "ej: por hora, tarifa fija",
-        "experienceLabel": "Nivel de experiencia",
-        "experiencePlaceholder": "ej: Principiante, Intermedio, Experto",
-        "skillsLabel": "Habilidades requeridas",
-        "skillsPlaceholder": "Lista las habilidades necesarias para el servicio",
-        "skillsDescription": "Separa las habilidades con comas.",
-        "priceLabel": "Precio",
-        "pricePlaceholder": "Introduce el precio",
-        "unitLabel": "Unidad",
-        "unitPlaceholder": "ej: kg, pieza, hora",
-        "imageUrlLabel": "URL de la imagen (Opcional)",
-        "sustainableLabel": "Práctica sostenible",
-        "sustainableDescription": "Indica si esta publicación involucra prácticas sostenibles.",
-        "submitButton": "Crear Publicación",
-        "submittingButton": "Creando..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Sugerir precio con IA",
-        "generatingButton": "Generando...",
-        "suggestionLabel": "Sugerencia de IA:",
-        "usePriceButton": "Usar este precio"
-      },
-      "success": {
-        "title": "¡Éxito!",
-        "description": "Tu publicación ha sido creada."
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Información Faltante",
-            "description": "Por favor, introduce un nombre y una descripción antes de sugerir un precio."
-          },
-          "failed": {
-            "title": "Error de sugerencia de precio",
-            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o introduce un precio manualmente."
-          }
-        },
-        "authentication": {
-          "title": "Error de autenticación",
-          "description": "Debes haber iniciado sesión para crear una publicación."
-        },
-        "creation": {
-          "title": "Error de creación",
-          "description": "No se pudo crear la publicación. Por favor, inténtalo de nuevo."
-        }
-      }
-    }
-  },
-  "Marketplace": {
-    "myOrdersButton": "Mis Pedidos Recibidos",
-    "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre Más",
-    "noItemsFound": {
-      "title": "No se encontraron artículos.",
-      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
-    },
-    "errors": {
-      "aiRecommendations": {
-        "title": "No se pudieron obtener recomendaciones de IA"
-      },
-      "search": {
-        "title": "Error de búsqueda",
-        "description": "No se pudieron obtener los artículos del mercado."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "¡Mercado fijado!",
-      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "¡Página de inicio desfijada!",
-      "unpinnedDescription": "El panel de control es ahora tu página de inicio predeterminada."
-    },
-    "myOrders": {
-      "backLink": "Volver al mercado",
-      "title": "Mis Pedidos Recibidos",
-      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
-      "auth": {
-        "title": "Autenticación requerida",
-        "description": "Debe haber iniciado sesión para ver sus pedidos.",
-        "button": "Iniciar sesión"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "actions": {
-        "confirm": "Confirmar",
-        "ship": "Enviar",
-        "complete": "Completar",
-        "cancel": "Cancelar"
-      },
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      },
-      "noOrders": "No se encontraron pedidos.",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron obtener los pedidos.",
-        "successTitle": "¡Éxito!",
-        "updateSuccess": "Estado del pedido actualizado a {{status}}",
-        "failTitle": "Error"
-      }
-    },
-    "shopView": {
-      "backLink": "Volver al mercado",
-      "ownedBy": "Propiedad de",
-      "loadingOwner": "Cargando...",
-      "editShopButton": "Editar tienda",
-      "contactButton": "Contactar vendedor",
-      "listingsTitle": "Publicaciones de {{shopName}}",
-      "noListings": "No se encontraron publicaciones para esta tienda.",
-      "errors": {
-        "notFound": "Tienda no encontrada",
-        "loadError": "No se pudieron cargar los detalles de la tienda.",
-        "title": "Error"
-      }
-    }
-  },
-  "Homepage": {
-  },
-  "GroupsPage": {
-    "title": "Grupos Comunitarios",
-    "description": "Encuentra y únete a grupos que coincidan con tus intereses.",
-    "createGroupButton": "Crear Nuevo Grupo",
-    "searchPlaceholder": "Buscar grupos...",
-    "notFound": "No se encontraron grupos.",
-    "detail": {
-      "backLink": "Volver a Grupos",
-      "discussionsTitle": "Discusiones",
-      "startDiscussionButton": "Iniciar una Discusión",
-      "noDiscussions": "Aún no se han iniciado discusiones.",
-      "beTheFirst": "Sé el primero en publicar.",
-      "actionsTitle": "Acciones del Grupo",
-      "leaveButton": "Abandonar Grupo",
-      "leavingButton": "Abandonando...",
-      "joinButton": "Unirse al Grupo",
-      "joiningButton": "Uniéndose...",
-      "requestJoinButton": "Solicitar Unirse",
-      "loginToJoinButton": "Iniciar Sesión para Unirte",
-      "membersTitle": "{memberCount, plural, one {# Miembro} other {# Miembros}}"
-    },
-    "toast": {
-      "loginToJoin": "Por favor, inicia sesión para unirte a este grupo.",
-      "joinSuccess": "¡Te has unido al grupo con éxito!",
-      "joinError": "Error al unirse al grupo",
-      "leaveSuccess": "Has abandonado el grupo.",
-      "leaveError": "Error al abandonar el grupo"
-    },
-    "create": {
-      "backLink": "Volver a Grupos",
-      "title": "Crear un Nuevo Grupo Comunitario",
-      "description": "Inicia una nueva comunidad para partes interesadas con intereses u objetivos compartidos.",
-      "form": {
-        "nameLabel": "Nombre del Grupo",
-        "namePlaceholder": "Ej: Cultivadores de Café Orgánico de Kenia",
-        "descriptionLabel": "Descripción del Grupo",
-        "descriptionPlaceholder": "¿Cuál es el propósito de este grupo?",
-        "publicLabel": "Grupo Público",
-        "submitButton": "Crear Grupo",
-        "submittingButton": "Creando..."
-      },
-      "toast": {
-        "auth": {
-          "title": "Autenticación Requerida",
-          "description": "Debes iniciar sesión para crear un grupo."
-        },
-        "incomplete": {
-          "title": "Campos Incompletos",
-          "description": "Por favor, proporciona un nombre y una descripción para el grupo."
-        },
-        "success": {
-          "title": "¡Grupo Creado!",
-          "description": "Tu nuevo grupo comunitario ha sido creado exitosamente."
-        },
-        "error": {
-          "title": "Error al Crear Grupo",
-          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
-        }
-      }
     },
     "createPost": {
-      "backLink": "Volver al Grupo",
-      "title": "Iniciar una Nueva Discusión",
-      "description": "Crea una nueva publicación para interactuar con otros miembros del grupo.",
+      "backLink": "Volver al Tema",
+      "aiHelper": {
+        "title": "Asistente de IA",
+        "description": "Genera un borrador de publicación basado en una indicación.",
+        "promptLabel": "Indicación de IA",
+        "promptPlaceholder": "Introduce una breve descripción de la publicación que quieres generar...",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear Nueva Publicación",
+      "description": "Agrega una nueva publicación a este tema.",
       "form": {
-        "titleLabel": "Título de la Publicación",
-        "titlePlaceholder": "Introduce un título claro y atractivo",
-        "contentLabel": "Contenido de la Publicación",
-        "contentPlaceholder": "Comparte tus pensamientos, haz una pregunta o inicia una conversación...",
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Introduce el título de tu publicación",
+        "contentLabel": "Contenido de la publicación",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí...",
         "submitButton": "Crear Publicación",
-        "submittingButton": "Creando Publicación..."
+        "submittingButton": "Enviando..."
       },
-      "toast": {
-        "auth": {
-          "title": "Autenticación Requerida",
-          "description": "Debes ser miembro de este grupo para publicar."
-        },
-        "incomplete": {
-          "title": "Publicación Incompleta",
-          "description": "Por favor, proporciona tanto un título como contenido para tu publicación."
-        },
-        "success": {
-          "title": "¡Publicación Creada!",
-          "description": "Tu discusión ha sido iniciada."
-        },
-        "error": {
-          "title": "Error al Crear Publicación",
-          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "Volver a {{groupName}}",
-      "repliesTitle": "Respuestas ({count})",
-      "yourReplyTitle": "Tu Respuesta",
-      "replyPlaceholder": "Escribe tu respuesta aquí...",
-      "replySubmitButton": "Publicar Respuesta",
-      "replySubmittingButton": "Publicando...",
-      "noReplies": "Sé el primero en responder a esta publicación.",
-      "loadMoreButton": "Cargar Más Respuestas",
-      "notFound": {
-        "title": "Publicación no Encontrada",
-        "description": "La publicación que buscas no existe.",
-        "backButton": "Volver al Grupo"
+      "success": {
+        "aiDraft": { "title": "¡Borrador de IA Generado!", "description": "Se ha generado un borrador para ti." },
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido creada con éxito."
       },
-      "toast": {
-        "emptyReply": "Tu respuesta no puede estar vacía.",
-        "replySuccess": "¡Tu respuesta ha sido publicada!"
+      "errors": {
+        "aiPromptMissing": { "title": "Falta indicación de IA", "description": "Por favor, proporciona una indicación para el asistente de IA." },
+        "aiDraft": { "title": "Error del borrador de IA", "description": "No se pudo generar el borrador de IA." },
+        "incomplete": { "title": "Campos incompletos", "description": "Por favor, completa todos los campos requeridos." },
+        "general": { "title": "Error", "description": "Ocurrió un error al crear la publicación." }
       }
     }
-  }
+  },
+  "Homepage": {}
 }
-

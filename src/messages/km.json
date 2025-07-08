@@ -1,652 +1,159 @@
 
-
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "សូមចូលគណនីដើម្បី Like ប្រកាស",
-    "signInToVoteToast": "សូមចូលគណនីដើម្បីបោះឆ្នោត",
-    "voteSuccessToast": "បានបោះឆ្នោតដោយជោគជ័យ",
-    "voteErrorToast": "មានកំហុសក្នុងការបោះឆ្នោត",
-    "loadCommentsErrorToast": "បរាជ័យក្នុងការផ្ទុកមតិយោបល់",
-    "editPost": "កែសម្រួលប្រកាស",
-    "deletePost": "លុបប្រកាស",
-    "votes": "{count, plural, one {ការបោះឆ្នោត} other {ការបោះឆ្នោត}}",
-    "likes": "{count, plural, one {Like} other {Likes}}",
-    "comments": "{count, plural, one {មតិយោបល់} other {មតិយោបល់}}",
-    "like": "Like",
-    "comment": "មតិយោបល់",
-    "repost": "Reposte",
-    "noComments": "មិនទាន់មានមតិយោបល់ទេ។",
-    "loadingComments": "កំពុងផ្ទុកមតិយោបល់...",
-    "loadMoreComments": "ផ្ទុកមតិយោបល់បន្ថែម",
-    "writeCommentPlaceholder": "សរសេរមតិយោបល់...",
-    "postButton": "ប្រកាស"
-  },
-  "CreatePostModal": {
-    "pollOptionsError": "ការស្ទង់មតិត្រូវមានជម្រើសយ៉ាងតិច ២។",
-    "emptyPostError": "ប្រកាសមិនអាចទទេទាំងស្រុងបានទេ។",
-    "title": "បង្កើតប្រកាសថ្មី",
-    "description": "ចែករំលែកព័ត៌មានថ្មីៗជាមួយបណ្តាញរបស់អ្នក។",
-    "yourName": "ឈ្មោះ​របស់​អ្នក",
-    "shareUpdate": "ចែករំលែកព័ត៌មានថ្មីៗ",
-    "placeholder": "តើអ្នកចង់និយាយអំពីអ្វី?",
-    "selectedFile": "ឯកសារដែលបានជ្រើសរើស៖",
-    "pollOptionsLabel": "ជម្រើសនៃការស្ទង់មតិ",
-    "pollOptionPlaceholder": "ជម្រើស {index}",
-    "addOptionButton": "បន្ថែមជម្រើស",
-    "pollNote": "ជម្រើសអតិបរមា {maxOptions}។",
-    "addMediaButton": "បន្ថែមរូបថត/វីដេអូ",
-    "createEventButton": "បង្កើតព្រឹត្តិការណ៍កសិកម្ម",
-    "shareDocumentButton": "ចែករំលែកឯកសារ",
-    "createPollButton": "បង្កើតការស្ទង់មតិ",
-    "postButton": "ប្រកាស"
-  },
-  "StartPost": {
-    "placeholder": "ចែករំលែកព័ត៌មានថ្មីៗអំពីកសិកម្ម ការយល់ដឹងអំពីទីផ្សារ ឬសួរសំណួរ...",
-    "photoVideo": "រូបថត / វីដេអូ",
-    "agriEvent": "ព្រឹត្តិការណ៍កសិកម្ម",
-    "createPoll": "បង្កើតការស្ទង់មតិ"
-  },
-  "AgroTourismDashboard": {
-    "title": "មជ្ឈមណ្ឌលប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
-    "bookingsTitle": "ការកក់ខាងមុខ",
-    "bookingsDescription": "បទពិសោធន៍ទេសចរណ៍កសិកម្មដែលបានគ្រោងទុកបន្ទាប់របស់អ្នក។",
-    "table": {
-      "experience": "បទពិសោធន៍",
-      "guest": "ឈ្មោះភ្ញៀវ",
-      "date": "កាលបរិច្ឆេទ",
-      "action": "សកម្មភាព",
-      "title": "ចំណងជើង",
-      "location": "ទីតាំង",
-      "status": "ស្ថានភាព",
-      "bookings": "ការកក់",
-      "rating": "ការវាយតម្លៃ",
-      "comment": "មតិយោបល់"
+  "Forums": {
+    "title": "ប្រធានបទវេទិកា",
+    "description": "រកមើលនិងបង្កើតប្រធានបទពិភាក្សា",
+    "lastActivity": "សកម្មភាពចុងក្រោយ: {{time}}",
+    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
+    "buttons": {
+      "createTopic": "បង្កើតប្រធានបទ",
+      "joinDiscussion": "ចូលរួមការពិភាក្សា",
+      "pinHomepage": "ខ្ទាស់ទៅទំព័រដើម",
+      "unpinHomepage": "មិនខ្ទាស់ពីទំព័រដើម"
     },
-    "viewDetailsButton": "មើលព័ត៌មានលម្អិត",
-    "noBookings": "គ្មានការកក់ខាងមុខទេ។",
-    "experiencesTitle": "បទពិសោធន៍ដែលបានចុះបញ្ជី",
-    "experiencesDescription": "គ្រប់គ្រងការផ្តល់ជូនទេសចរណ៍កសិកម្មរបស់អ្នក។",
-    "manageButton": "គ្រប់គ្រង",
-    "noExperiences": "មិនទាន់មានបទពិសោធន៍ទេសចរណ៍កសិកម្មត្រូវបានចុះបញ្ជីនៅឡើយទេ។",
-    "reviewsTitle": "ការវាយតម្លៃរបស់ភ្ញៀវ",
-    "reviewsDescription": "មតិត្រឡប់ចុងក្រោយពីភ្ញៀវរបស់អ្នក។",
-    "on": "លើ",
-    "viewReviewButton": "មើលការវាយតម្លៃ",
-    "noReviews": "មិនទាន់មានការវាយតម្លៃពីភ្ញៀវនៅឡើយទេ។"
-  },
-  "AgronomistDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកជំនាញកសិកម្ម និងទីប្រឹក្សា",
-    "stats": {
-      "assignedFarmers": "កសិករដែលបានចាត់តាំង",
-      "farmersWithAlerts": "កសិករមានការជូនដំណឹង",
-      "pendingConsultations": "ការពិគ្រោះយោបល់ដែលមិនទាន់សម្រេច",
-      "knowledgeContributions": "ការចូលរួមចំណែកចំណេះដឹង"
+    "notFound": {
+      "title": "រកមិនឃើញប្រធានបទ",
+      "tryDifferentSearch": "ព្យាយាមស្វែងរកពាក្យផ្សេង។",
+      "beTheFirst": "ធ្វើជាអ្នកដំបូងដែលបង្កើតប្រធានបទ។"
     },
-    "descriptions": {
-      "assignedFarmers": "{count} កសិករក្នុងផលប័ត្ររបស់អ្នក",
-      "farmersWithAlerts": "{count} កសិករត្រូវការការយកចិត្តទុកដាក់",
-      "pendingConsultations": "{count} សំណើថ្មី",
-      "knowledgeContributions": "{count} អត្ថបទបានបោះពុម្ពផ្សាយ"
+    "pinning": {
+      "pinnedTitle": "បានខ្ទាស់ទំព័រដើម!",
+      "pinnedDescription": "វេទិកានេះត្រូវបានបង្ហាញជាទំព័រដើមរបស់អ្នកហើយ។",
+      "unpinnedTitle": "បានមិនខ្ទាស់ទំព័រដើម!",
+      "unpinnedDescription": "វេទិកានេះលែងត្រូវបានបង្ហាញជាទំព័រដើមរបស់អ្នកទៀតហើយ។"
     },
-    "consultations": {
-      "title": "សំណើពិគ្រោះយោបល់ដែលមិនទាន់សម្រេច",
-      "description": "ពិនិត្យ និងឆ្លើយតបទៅនឹងសំណើដែលចូលមកពីកសិករ។",
-      "table": {
-        "farmer": "កសិករ",
-        "issue": "សេចក្តីសង្ខេបបញ្ហា",
-        "action": "សកម្មភាព"
+    "errors": {
+      "loadTitle": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
+      "loadDescription": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកប្រធានបទវេទិកា។",
+      "auth": {
+        "title": "មិនបានផ្ទៀងផ្ទាត់",
+        "description": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតប្រធានបទ។"
       },
-      "viewButton": "មើលសំណើ",
-      "noRequests": "គ្មានសំណើពិគ្រោះយោបល់ថ្មីទេ។"
-    },
-    "portfolio": {
-      "title": "ផលប័ត្រកសិករ",
-      "description": "ទិដ្ឋភាពទូទៅនៃកសិករដែលអ្នកកំពុងផ្តល់ប្រឹក្សា។",
-      "table": {
-        "farmer": "កសិករ",
-        "location": "ទីតាំង",
-        "alerts": "ការជូនដំណឹង",
-        "action": "សកម្មភាព"
+      "incomplete": {
+        "title": "បំពេញមិនពេញលេញ",
+        "description": "សូមបំពេញគ្រប់វាលដែលត្រូវការ។"
       },
-      "alertsLabel": "ការជូនដំណឹង",
-      "profileButton": "មើលប្រវត្តិរូប",
-      "noFarmers": "មិនទាន់មានកសិករត្រូវបានចាត់តាំងក្នុងផលប័ត្ររបស់អ្នកទេ។"
-    },
-    "contributions": {
-      "statusTitle": "ស្ថានភាពការចូលរួមចំណែកក្នុងមជ្ឈមណ្ឌលចំណេះដឹង",
-      "title": "ការចូលរួមចំណែកថ្មីៗ",
-      "noContributions": "អ្នកមិនទាន់បានសរសេរអត្ថបទណាមួយនៅឡើយទេ។",
-      "noData": "គ្មានទិន្នន័យសម្រាប់គំនូសតាងទេ។"
-    },
-    "chart": {
-      "count": "ចំនួន",
-      "published": "បានផ្សព្វផ្សាយ",
-      "pending": "កំពុងរង់ចាំការពិនិត្យ",
-      "draft": "សេចក្តីព្រាង"
-    },
-    "noData": "គ្មានទិន្នន័យផ្ទាំងគ្រប់គ្រងទេ។"
-  },
-  "EnergyProviderDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកផ្តល់ដំណោះស្រាយថាមពល",
-    "leadsTitle": "គម្រោងនាំមុខ",
-    "leadsCount": "{count} គម្រោងនាំមុខថ្មី",
-    "projectsTitle": "គម្រោងសកម្ម",
-    "activeProjectsCount": "{count} គម្រោងសកម្ម",
-    "projectsCompleted": "គម្រោងបានបញ្ចប់",
-    "impactTitle": "ផលប៉ះពាល់និរន្តរភាព",
-    "impactDescription": "ការកាត់បន្ថយកាបូនប៉ាន់ស្មានពីគម្រោងរបស់អ្នក",
-    "carbonReduction": "{count} ការติดตั้งសរុប",
-    "leadsTableTitle": "បំពង់គម្រោងនាំមុខ",
-    "leadsTableDescription": "គម្រោងសក្តានុពល និងអតិថិជនដែលកំពុងស្វែងរកដំណោះស្រាយថាមពល។",
-    "table": {
-      "entity": "ឈ្មោះអង្គភាព",
-      "location": "ទីតាំង",
-      "energyNeed": "តម្រូវការថាមពលប៉ាន់ស្មាន",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
-    },
-    "viewLeadButton": "មើលគម្រោងនាំមុខ",
-    "noLeads": "មិនមានគម្រោងនាំមុខនៅពេលនេះទេ។",
-    "accessDocsButton": "ចូលប្រើឯកសារ API",
-    "proposeIntegrationButton": "ស្នើរសុំការរួមបញ្ចូលថ្មី",
-    "statusLabels": {
-      "new": "ថ្មី",
-      "contacted": "បានទាក់ទង",
-      "proposal_sent": "បានផ្ញើសំណើ",
-      "closed": "បានបិទ",
-      "in_progress": "កំពុង​ដំណើរការ",
-      "completed": "បាន​បញ្ចប់"
-    }
-  },
-  "InputSupplierDashboard": {
-    "title": "ផ្ទាំងគ្រប់គ្រងអ្នកផ្គត់ផ្គង់ធាតុចូល",
-    "ordersTitle": "ការបញ្ជាទិញសកម្ម និងតម្លៃ",
-    "totalValue": "តម្លៃសរុប",
-    "manageOrdersButton": "គ្រប់គ្រងការបញ្ជាទិញទាំងអស់",
-    "forecastTitle": "ការព្យាករណ៍តម្រូវការក្នុងតំបន់",
-    "in": "ក្នុង",
-    "performanceTitle": "ការអនុវត្តផលិតផល និងការពិនិត្យឡើងវិញ",
-    "viewReviewsButton": "មើលការពិនិត្យទាំងអស់",
-    "noForecast": "មិនមានទិន្នន័យព្យាករណ៍តម្រូវការនៅពេលនេះទេ។",
-    "noFeedback": "មិនទាន់មានមតិត្រឡប់លើផលិតផលទេ។",
-    "promotionsTitle": "ប័ណ្ណបញ្ចុះតម្លៃ និងការផ្សព្វផ្សាយ",
-    "promotionsDescription": "បង្កើត និងគ្រប់គ្រងការបញ្ចុះតម្លៃដើម្បីជំរុញការលក់របស់អ្នក។",
-    "manageCouponsButton": "គ្រប់គ្រងប័ណ្ណ"
-  },
-  "CertificationBodyDashboard": {
-    "title": "មជ្ឈមណ្ឌលស្ថាប័នវិញ្ញាបនប័ត្រ",
-    "auditsTitle": "សវនកម្មដែលមិនទាន់សម្រេច",
-    "auditsDescription": "សវនកម្មដែលបានគ្រោងទុកសម្រាប់កសិដ្ឋាន និងកន្លែងផ្សេងៗ។",
-    "table": {
-      "farmName": "ឈ្មោះកសិដ្ឋាន",
-      "standard": "ស្តង់ដារ",
-      "dueDate": "កាលបរិច្ឆេទកំណត់",
-      "action": "សកម្មភាព"
-    },
-    "reviewAuditButton": "ពិនិត្យ និងរៀបចំផែនការ",
-    "noPendingAudits": "គ្មានសវនកម្មដែលមិនទាន់សម្រេចទេ។",
-    "entitiesTitle": "ទិដ្ឋភាពទូទៅនៃស្ថាប័នដែលបានបញ្ជាក់",
-    "entitiesDescription": "សេចក្តីសង្ខេបនៃស្ថាប័នដែលអ្នកបានបញ្ជាក់។",
-    "noCertifiedEntities": "រកមិនឃើញស្ថាប័នដែលបានបញ្ជាក់ទេ។",
-    "monitoringTitle": "ការត្រួតពិនិត្យស្តង់ដារ",
-    "monitoringDescription": "អត្រាអនុលោមភាព និងការជូនដំណឹងសម្រាប់ស្តង់ដារសំខាន់ៗ។",
-    "alerts": "ការជូនដំណឹង",
-    "viewDetailsButton": "មើលព័ត៌មានលម្អិត",
-    "noMonitoringData": "គ្មានទិន្នន័យត្រួតពិនិត្យស្តង់ដារទេ។"
-  },
-  "QaDashboard": {
-    "title": "មជ្ឈមណ្ឌលធានាគុណភាព",
-    "inspectionsTitle": "ការត្រួតពិនិត្យដែលមិនទាន់សម្រេច",
-    "inspectionsDescription": "ការត្រួតពិនិត្យគុណភាពដែលបានគ្រោងទុកសម្រាប់ផលិតផល និងបាច់។",
-    "table": {
-      "batchId": "លេខសម្គាល់បាច់",
-      "product": "ផលិតផល",
-      "seller": "អ្នកលក់",
-      "dueDate": "កាលបរិច្ឆេទកំណត់",
-      "action": "សកម្មភាព"
-    },
-    "performInspectionButton": "ធ្វើការត្រួតពិនិត្យ",
-    "noPendingInspections": "គ្មានការត្រួតពិនិត្យដែលមិនទាន់សម្រេចទេ។",
-    "resultsTitle": "របាយការណ៍បញ្ហាថ្មីៗ",
-    "resultsDescription": "បញ្ហាគុណភាពដែលបានរាយការណ៍ថ្មីៗនេះ។",
-    "noRecentIssues": "គ្មានបញ្ហាគុណភាពថ្មីៗត្រូវបានរាយការណ៍ទេ។",
-    "metricsTitle": "ម៉ែត្រគុណភាព",
-    "metricsDescription": "ទិដ្ឋភាពទូទៅនៃដំណើរការរួម។",
-    "passRate": "អត្រាឆ្លងកាត់",
-    "averageScore": "ពិន្ទុមធ្យម",
-    "noMetrics": "គ្មានម៉ែត្រគុណភាពទេ។"
-  },
-  "FiApplicationListPage": {
-    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
-    "title": "ការគ្រប់គ្រងពាក្យស្នើសុំ",
-    "description": "មើល និងគ្រប់គ្រងពាក្យស្នើសុំហិរញ្ញវត្ថុទាំងអស់ដែលបានទទួល។",
-    "tabs": {
-      "all": "ទាំងអស់",
-      "pending": "កំពុងរង់ចាំ",
-      "approved": "បានយល់ព្រម",
-      "rejected": "បានបដិសេធ"
-    },
-    "table": {
-      "applicant": "អ្នកដាក់ពាក្យ",
-      "type": "ប្រភេទ",
-      "amount": "ចំនួនទឹកប្រាក់",
-      "date": "កាលបរិច្ឆេទដាក់ស្នើ",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
-    },
-    "reviewButton": "ពិនិត្យ",
-    "noApplications": "រកមិនឃើញពាក្យស្នើសុំសម្រាប់ស្ថានភាពនេះទេ។"
-  },
-  "FiApplicationPage": {
-    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
-    "title": "ពិនិត្យពាក្យស្នើសុំហិរញ្ញវត្ថុ",
-    "applicationTitle": "ពាក្យស្នើសុំ",
-    "submittedOn": "បានដាក់ស្នើនៅថ្ងៃទី",
-    "amountRequested": "ចំនួនទឹកប្រាក់ដែលបានស្នើសុំ",
-    "purpose": "គោលបំណងនៃហិរញ្ញប្បទាន",
-    "applicantDetails": "ព័ត៌មានលម្អិតរបស់អ្នកដាក់ពាក្យ",
-    "profileNotFound": "រកមិនឃើញប្រវត្តិរូបអ្នកដាក់ពាក្យទេ។",
-    "viewProfileButton": "មើលប្រវត្តិរូបពេញ",
-    "riskAssessment": "ការវាយតម្លៃហានិភ័យដោយ AI",
-    "creditScore": "ពិន្ទុឥណទាន",
-    "notFound": "រកមិនឃើញពាក្យស្នើសុំទេ។",
-    "approveButton": "យល់ព្រម",
-    "rejectButton": "បដិសេធ",
-    "requestInfoButton": "ស្នើសុំព័ត៌មានបន្ថែម",
-    "toast": {
-      "errorTitle": "កំហុស",
-      "updateSuccessTitle": "ស្ថានភាពបានធ្វើបច្ចុប្បន្នភាព",
-      "updateSuccessDescription": "ពាក្យស្នើសុំត្រូវបានសម្គាល់ថា {status}។",
-      "updateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពបានបរាជ័យ"
-    }
-  },
-  "FiDashboard": {
-    "title": "មជ្ឈមណ្ឌលស្ថាប័នហិរញ្ញវត្ថុ",
-    "pendingApplicationsTitle": "ពាក្យស្នើសុំកំពុងរង់ចាំ",
-    "pendingApplicationsDescription": "ពាក្យស្នើសុំដែលទាមទារការពិនិត្យរបស់អ្នក",
-    "portfolioAtRiskTitle": "ផលប័ត្រដែលមានហានិភ័យ",
-    "portfolioAtRiskDescription": "{count} គណនីត្រូវបានសម្គាល់",
-    "recentUpdates": "បច្ចុប្បន្នភាពថ្មីៗ",
-    "marketUpdatesTitle": "បច្ចុប្បន្នភាពទីផ្សារ",
-    "manageProductsTitle": "ផលិតផលហិរញ្ញវត្ថុ",
-    "manageProductsDescription": "កម្ចី និងជំនួយសកម្មរបស់អ្នក",
-    "manageProductsButton": "គ្រប់គ្រងផលិតផល",
-    "table": {
-      "applicant": "អ្នកដាក់ពាក្យ",
-      "type": "ប្រភេទ",
-      "amount": "ចំនួនទឹកប្រាក់",
-      "riskScore": "ពិន្ទុហានិភ័យ",
-      "action": "សកម្មភាព"
-    },
-    "reviewButton": "ពិនិត្យ",
-    "noApplications": "មិនមានពាក្យស្នើសុំរង់ចាំការពិនិត្យទេ។",
-    "accounts": "គណនី",
-    "value": "តម្លៃ",
-    "reviewRiskButton": "ពិនិត្យហានិភ័យ",
-    "readMore": "អាន​បន្ថែម",
-    "noUpdates": "មិនមានបច្ចុប្បន្នភាពទីផ្សារទេ។",
-    "viewAllButton": "មើលពាក្យស្នើសុំទាំងអស់"
-  },
-  "FiProductsPage": {
-    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
-    "title": "គ្រប់គ្រងផលិតផលហិរញ្ញវត្ថុ",
-    "description": "បង្កើត និងមើលកម្ចី និងជំនួយដែលអ្នកផ្តល់ជូន។",
-    "createButton": "បង្កើតផលិតផលថ្មី",
-    "noProducts": "មិនទាន់មានផលិតផលហិរញ្ញវត្ថុត្រូវបានបង្កើតនៅឡើយទេ។",
-    "table": {
-      "productName": "ឈ្មោះ​ផលិតផល",
-      "type": "ប្រភេទ",
-      "status": "ស្ថានភាព",
-      "interestRate": "អត្រា​ការ​ប្រាក់",
-      "maxAmount": "ចំនួនទឹកប្រាក់អតិបរមា"
-    },
-    "toast": {
-      "errorTitle": "កំហុស"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "ត្រឡប់ទៅផលិតផល",
-    "title": "បង្កើតផលិតផលហិរញ្ញវត្ថុថ្មី",
-    "description": "កំណត់កម្ចី ឬជំនួយថ្មីដើម្បីផ្តល់ជូនដល់អ្នកពាក់ព័ន្ធ។",
-    "form": {
-      "nameLabel": "ឈ្មោះផលិតផល",
-      "namePlaceholder": "ឧ: កម្ចីគ្រាប់ពូជសម្រាប់កសិករខ្នាតតូច",
-      "typeLabel": "ប្រភេទ​ផលិតផល",
-      "loan": "កម្ចី",
-      "grant": "ជំនួយ",
-      "descriptionLabel": "ការពិពណ៌នា",
-      "descriptionPlaceholder": "ពិពណ៌នាផលិតផល គោលបំណង និងលក្ខណៈវិនិច្ឆ័យ។",
-      "interestRateLabel": "អត្រា​ការ​ប្រាក់ (%)",
-      "interestRatePlaceholder": "ឧ: 8.5",
-      "maxAmountLabel": "ចំនួនអតិបរមា (USD)",
-      "maxAmountPlaceholder": "ឧ: 5000",
-      "targetRolesLabel": "អ្នកពាក់ព័ន្ធគោលដៅ",
-      "targetRolesDescription": "ជ្រើសរើសតួនាទីអ្នកពាក់ព័ន្ធដែលផលិតផលនេះអាចប្រើបាន។",
-      "submitButton": "បង្កើតផលិតផល"
-    },
-    "toast": {
-      "notAuthenticated": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតផលិតផល។",
-      "successTitle": "បានបង្កើតផលិតផល!",
-      "successDescription": "{name} ត្រូវបានបង្កើតដោយជោគជ័យ និងសកម្មឥឡូវនេះ។",
-      "errorTitle": "ការបង្កើតបានបរាជ័យ"
-    }
-  },
-  "LogisticsDashboard": {
-    "title": "មជ្ឈមណ្ឌលឡូជីស្ទិក",
-    "performanceTitle": "ទិដ្ឋភាពទូទៅនៃដំណើរការ",
-    "onTimeDelivery": "អត្រាដឹកជញ្ជូនទាន់ពេល",
-    "viewReportButton": "មើលរបាយការណ៍ពេញលេញ",
-    "activeShipmentsTitle": "ការដឹកជញ្ជូនសកម្ម",
-    "incomingJobsTitle": "ការងារចូល",
-    "noActiveShipments": "គ្មានការដឹកជញ្ជូនសកម្មទេ។",
-    "trackButton": "តាមដាន VTI",
-    "noIncomingJobs": "គ្មានការងារចូលទេ។",
-    "acceptJobButton": "ទទួលយកការងារ"
-  },
-  "ProcessingUnitDashboard": {
-    "title": "មជ្ឈមណ្ឌលកែច្នៃ និងវេចខ្ចប់",
-    "yieldTitle": "ការបង្កើនប្រសិទ្ធភាពទិន្នផល",
-    "potential": "សក្តានុពល",
-    "wasteTitle": "ការកាត់បន្ថយសំណល់",
-    "packagingInventoryTitle": "បញ្ជីសារពើភ័ណ្ឌវេចខ្ចប់",
-    "inStock": "ក្នុងស្តុក",
-    "reorderLevel": "បញ្ជាទិញឡើងវិញនៅ",
-    "noPackagingData": "គ្មានទិន្នន័យបញ្ជីសារពើភ័ណ្ឌវេចខ្ចប់ទេ។",
-    "sourcePackagingButton": "ស្វែងរកសម្ភារៈវេចខ្ចប់",
-    "rawMaterialTitle": "បញ្ជីសារពើភ័ណ្ឌវត្ថុធាតុដើម",
-    "table": {
-      "product": "ផលិតផល",
-      "quality": "គុណភាព",
-      "quantity": "បរិមាណ (តោន)",
-      "supplier": "អ្នកផ្គត់ផ្គង់",
-      "deliveryDate": "កាលបរិច្ឆេទដឹកជញ្ជូន",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
-    },
-    "noInventoryData": "គ្មានទិន្នន័យបញ្ជីសារពើភ័ណ្ឌវត្ថុធាតុដើមទេ។",
-    "packagingOrdersTitle": "ការបញ្ជាទិញវេចខ្ចប់",
-    "viewButton": "មើល",
-    "noPackagingOrders": "គ្មានការបញ្ជាទិញវេចខ្ចប់ដែលកំពុងរង់ចាំទេ។"
-  },
-  "WarehouseDashboard": {
-    "title": "មជ្ឈមណ្ឌលឃ្លាំង និងស្តុក",
-    "utilizationTitle": "ការប្រើប្រាស់កន្លែងស្តុក",
-    "inventoryTitle": "កម្រិតសារពើភ័ណ្ឌ",
-    "itemsNeedingAttention": "មុខទំនិញត្រូវការការយកចិត្តទុកដាក់",
-    "alertsTitle": "ការជូនដំណឹងព្យាករណ៍",
-    "noAlerts": "មិនមានការជូនដំណឹងព្យាករណ៍នៅពេលនេះទេ។",
-    "investigateButton": "ស៊ើបអង្កេត"
-  },
-  "AgroExportDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកសម្របសម្រួលការនាំចេញកសិកម្ម",
-    "docsTitle": "ឯកសារគយដែលមិនទាន់សម្រេច",
-    "shipmentsTitle": "ការដឹកជញ្ជូនដែលបានតាមដាន",
-    "alertsTitle": "ការជូនដំណឹងអំពីការអនុលោម",
-    "table": {
-        "vti": "តំណ VTI",
-        "destination": "គោលដៅ",
-        "status": "ស្ថានភាព"
-    },
-    "prepareDocsButton": "រៀបចំឯកសារ",
-    "noDocs": "គ្មានឯកសារដែលមិនទាន់សម្រេចទេ។",
-    "noShipments": "គ្មានការដឹកជញ្ជូនសកម្មទេ។",
-    "noAlerts": "គ្មានការជូនដំណឹងអំពីការអនុលោមទេ។",
-    "readMore": "អាន​បន្ថែម"
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ",
-    "ordersTitle": "ការបញ្ជាទិញជួល និងលក់",
-    "ordersDescription": "{count, plural, =0 {គ្មានការបញ្ជាទិញ} one {# ការបញ្ជាទិញសរុប} other {# ការបញ្ជាទិញសរុប}}",
-    "manageOrdersButton": "គ្រប់គ្រងការបញ្ជាទិញទាំងអស់",
-    "listedEquipmentTitle": "គ្រឿងបរិក្ខារដែលបានចុះបញ្ជី",
-    "table": {
-      "name": "ឈ្មោះ",
-      "type": "ប្រភេទ",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
-    },
-    "status": {
-      "available": "មាន",
-      "rentedout": "បានជួលចេញ"
-    },
-    "manageButton": "គ្រប់គ្រង",
-    "noEquipment": "មិនទាន់មានគ្រឿងបរិក្ខារត្រូវបានចុះបញ្ជីទេ។",
-    "listEquipmentButton": "ចុះបញ្ជីគ្រឿងបរិក្ខារថ្មី",
-    "maintenanceTitle": "សំណើរសុំការថែទាំ",
-    "viewRequestButton": "មើលសំណើ",
-    "noMaintenance": "មិនមានសំណើរសុំការថែទាំនៅពេលនេះទេ។"
-  },
-  "WasteManagementDashboard": {
-    "title": "មជ្ឈមណ្ឌលគ្រប់គ្រងសំណល់ និងជីកំប៉ុស",
-    "wasteStreamsTitle": "ស្ទ្រីមសំណល់ចូល",
-    "from": "ពី",
-    "acceptButton": "ទទួលយក",
-    "noWasteStreams": "គ្មានស្ទ្រីមសំណល់ចូលដើម្បីដំណើរការទេ។",
-    "compostBatchesTitle": "បាច់ជីកំប៉ុសកំពុងដំណើរការ",
-    "batch": "បាច់",
-    "estReady": "ត្រៀមរួចរាល់",
-    "noCompostBatches": "គ្មានបាច់ជីកំប៉ុសសកម្មទេ។",
-    "inventoryTitle": "បញ្ជីផលិតផលសម្រេច",
-    "inStock": "ក្នុងស្តុក",
-    "noFinishedProducts": "គ្មានផលិតផលសម្រេចក្នុងបញ្ជីទេ។",
-    "sellButton": "ដាក់លក់ផលិតផលនៅលើទីផ្សារ"
-  },
-  "CrowdfunderDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកផ្តល់មូលនិធិ និងវិនិយោគិន",
-    "totalInvested": "បានវិនិយោគសរុប",
-    "numberOfInvestments": "ចំនួននៃការវិនិយោគ",
-    "estimatedReturns": "ប្រាក់ចំណេញប៉ាន់ស្មាន",
-    "opportunitiesTitle": "ឱកាសដែលបានណែនាំ",
-    "transactionsTitle": "ប្រតិបត្តិការថ្មីៗ",
-    "raisedOf": "នៃ",
-    "goal": "គោលដៅ",
-    "viewButton": "មើល",
-    "table": {
-      "project": "គម្រោង",
-      "amount": "ចំនួនទឹកប្រាក់"
-    },
-    "investment": "ការវិនិយោគ",
-    "payout": "ការទូទាត់",
-    "on": "នៅ",
-    "noOpportunities": "មិនមានឱកាសវិនិយោគដើម្បីណែនាំនៅពេលនេះទេ។",
-    "noTransactions": "គ្មានប្រតិបត្តិការថ្មីៗទេ។"
-  },
-  "InsuranceProviderDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកផ្តល់សេវាធានារ៉ាប់រង",
-    "claimsTitle": "ការទាមទារដែលមិនទាន់សម្រេច",
-    "claimsDescription": "ពិនិត្យការទាមទារដែលបានដាក់ប្រឆាំងនឹងគោលនយោបាយដែលអ្នកគ្រប់គ្រង។",
-    "table": {
-      "policyHolder": "អ្នកកាន់គោលនយោបាយ",
-      "policyType": "ប្រភេទគោលនយោបាយ",
-      "claimDate": "កាលបរិច្ឆេទទាមទារ",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
-    },
-    "reviewClaimButton": "ពិនិត្យការទាមទារ",
-    "noPendingClaims": "គ្មានការទាមទារដែលមិនទាន់សម្រេចដើម្បីពិនិត្យ។",
-    "riskAlertsTitle": "ការជូនដំណឹងអំពីការវាយតម្លៃហានិភ័យ",
-    "riskAlertsDescription": "គោលនយោបាយសកម្មដែលមានសញ្ញាហានិភ័យខ្ពស់ដោយផ្អែកលើទិន្នន័យវេទិកា។",
-    "investigateButton": "ស៊ើបអង្កេត",
-    "noRiskAlerts": "គ្មានការជូនដំណឹងហានិភ័យខ្ពស់នៅពេលនេះទេ។",
-    "activePoliciesTitle": "គោលនយោបាយសកម្ម",
-    "activePoliciesDescription": "សេចក្តីសង្ខេបនៃគោលនយោបាយធានារ៉ាប់រងសកម្មរបស់អ្នកបច្ចុប្បន្ន។",
-    "coverage": "ការ​គ្រប​ដ​ណ្ត​ប់",
-    "expires": "ផុតកំណត់",
-    "noActivePolicies": "រកមិនឃើញគោលនយោបាយសកម្មទេ។"
-  },
-  "ResearcherDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកស្រាវជ្រាវ និងសិក្សាធិការ",
-    "datasetsTitle": "សំណុំទិន្នន័យដែលមាន",
-    "datasetsDescription": "សំណុំទិន្នន័យអនាមិកសម្រាប់តម្រូវការស្រាវជ្រាវរបស់អ្នក។",
-    "table": {
-      "name": "ឈ្មោះ",
-      "dataType": "ប្រភេទ​ទិន្នន័យ",
-      "accessLevel": "កម្រិត​ចូល​ដំណើរការ",
-      "action": "សកម្មភាព"
-    },
-    "requestAccessButton": "ស្នើសុំការចូលប្រើ",
-    "noDatasets": "បច្ចុប្បន្នមិនមានសំណុំទិន្នន័យទេ។",
-    "projectsTitle": "គម្រោងកំពុងដំណើរការ",
-    "projectsDescription": "កិច្ចសហប្រតិបត្តិការស្រាវជ្រាវសកម្មរបស់អ្នកនៅលើវេទិកា។",
-    "viewProjectButton": "មើលគម្រោង",
-    "noProjects": "អ្នកមិនមានគម្រោងកំពុងដំណើរការទេ។",
-    "contributionsTitle": "ការចូលរួមចំណែកក្នុងមជ្ឈមណ្ឌលចំណេះដឹង",
-    "contributionsDescription": "អត្ថបទនិងការបោះពុម្ពផ្សាយដែលអ្នកបានចូលរួមចំណែក។",
-    "viewButton": "មើល",
-    "noContributions": "អ្នកមិនទាន់បានសរសេរអត្ថបទណាមួយនៅឡើយទេ។",
-    "noData": "គ្មានទិន្នន័យផ្ទាំងគ្រប់គ្រងទេ។",
-    "datasetsByTypeTitle": "សំណុំទិន្នន័យតាមប្រភេទ",
-    "datasetsByTypeDescription": "ការបែងចែកប្រភេទសំណុំទិន្នន័យដែលមាន។",
-    "noDatasetsForChart": "គ្មានសំណុំទិន្នន័យសម្រាប់គំនូសតាងទេ។",
-    "chart": {
-      "count": "ចំនួន",
-      "published": "បានផ្សព្វផ្សាយ",
-      "pending": "កំពុងរង់ចាំ",
-      "draft": "សេចក្តីព្រាង"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "មជ្ឈមណ្ឌលអ្នកច្នៃប្រឌិតបច្ចេកវិទ្យាកសិកម្ម",
-    "sandboxTitle": "ស្ថានភាព Sandbox",
-    "statusLabel": "ស្ថានភាព",
-    "lastResetLabel": "ការកំណត់ឡើងវិញចុងក្រោយ",
-    "accessDocsButton": "ចូលប្រើឯកសារ API",
-    "integrationsTitle": "គម្រោងរួមបញ្ចូល",
-    "activeProjects": "គម្រោងសកម្ម",
-    "integrationsDescription": "មើល និងគ្រប់គ្រងការរួមបញ្ចូល API របស់អ្នក។",
-    "proposeIntegrationButton": "ស្នើរសុំការរួមបញ្ចូលថ្មី",
-    "apiKeysTitle": "កូនសោ API",
-    "apiKeysDescription": "គ្រប់គ្រង និងបង្កើតកូនសោ API សម្រាប់កម្មវិធីរបស់អ្នក។",
-    "table": {
-      "key": "កូនសោ",
-      "status": "ស្ថានភាព",
-      "environment": "បរិស្ថាន",
-      "created": "បានបង្កើត",
-      "actions": "សកម្មភាព"
-    },
-    "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់!",
-    "noApiKeys": "មិនទាន់មានកូនសោ API ត្រូវបានបង្កើតនៅឡើយទេ។",
-    "generateNewKeyButton": "បង្កើតកូនសោ API ថ្មី"
-  },
-  "OperationsDashboard": {
-    "title": "ផ្ទាំងគ្រប់គ្រងប្រតិបត្តិការ",
-    "vtiRateTitle": "អត្រាបង្កើត VTI",
-    "pipelineStatusTitle": "ស្ថានភាពបំពង់ទិន្នន័យ",
-    "lastCheck": "បានពិនិត្យចុងក្រោយ",
-    "flaggedEventsTitle": "ព្រឹត្តិការណ៍ដែលបានដាក់ទង់",
-    "viewVtiButton": "មើល VTI",
-    "noFlaggedEvents": "មិនមានព្រឹត្តិការណ៍ដែលបានដាក់ទង់ដោយស្វ័យប្រវត្តិនៅពេលនេះទេ។"
-  },
-  "GroupsPage": {
-    "title": "ក្រុមសហគមន៍",
-    "description": "ស្វែងរក និងចូលរួមក្រុមដែលត្រូវនឹងចំណាប់អារម្មណ៍របស់អ្នក។",
-    "createGroupButton": "បង្កើតក្រុថ្មី",
-    "searchPlaceholder": "ស្វែងរកក្រុម...",
-    "notFound": "រកមិនឃើញក្រុមទេ។",
-    "detail": {
-      "backLink": "ត្រឡប់ទៅក្រុម",
-      "discussionsTitle": "ការពិភាក្សា",
-      "startDiscussionButton": "ចាប់ផ្តើមការពិភាក្សា",
-      "noDiscussions": "មិនទាន់មានការពិភាក្សាចាប់ផ្តើមនៅឡើយទេ។",
-      "beTheFirst": "ធ្វើជាអ្នកដំបូងដែលប្រកាស។",
-      "actionsTitle": "សកម្មភាពក្រុម",
-      "leaveButton": "ចាកចេញពីក្រុម",
-      "leavingButton": "កំពុងចាកចេញ...",
-      "joinButton": "ចូលរួមក្រុម",
-      "joiningButton": "កំពុងចូលរួម...",
-      "requestJoinButton": "ស្នើសុំចូលរួម",
-      "loginToJoinButton": "ចូលដើម្បីចូលរួម",
-      "membersTitle": "{memberCount, plural, one {# សមាជិក} other {# សមាជិក}}"
-    },
-    "toast": {
-      "loginToJoin": "សូមចូលគណនីដើម្បីចូលរួមក្រុមនេះ។",
-      "joinSuccess": "បានចូលរួមក្រុមដោយជោគជ័យ!",
-      "joinError": "កំហុសក្នុងការចូលរួមក្រុម",
-      "leaveSuccess": "អ្នកបានចាកចេញពីក្រុមហើយ។",
-      "leaveError": "កំហុសក្នុងការចាកចេញពីក្រុម"
+      "general": {
+        "title": "កំហុស",
+        "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបង្កើតប្រធានបទ។"
+      }
     },
     "create": {
-      "backLink": "ត្រឡប់ទៅក្រុម",
-      "title": "បង្កើតក្រុមសហគមន៍ថ្មី",
-      "description": "ចាប់ផ្តើមសហគមន៍ថ្មីសម្រាប់អ្នកពាក់ព័ន្ធដែលមានចំណាប់អារម្មណ៍ ឬគោលដៅរួម។",
+      "backLink": "ត្រឡប់ទៅប្រធានបទ",
+      "title": "បង្កើតប្រធានបទថ្មី",
+      "description": "ចាប់ផ្តើមការពិភាក្សាថ្មីនៅក្នុងវេទិកា។",
       "form": {
-        "nameLabel": "ឈ្មោះក្រុម",
-        "namePlaceholder": "ឧ. អ្នកដាំកាហ្វេធម្មជាតិនៅកម្ពុជា",
-        "descriptionLabel": "ការពិពណ៌នាក្រុម",
-        "descriptionPlaceholder": "តើក្រុមនេះមានគោលបំណងអ្វី?",
-        "publicLabel": "ក្រុមសាធារណៈ",
-        "submitButton": "បង្កើតក្រុម",
+        "nameLabel": "ឈ្មោះប្រធានបទ",
+        "namePlaceholder": "បញ្ចូលឈ្មោះប្រធានបទរបស់អ្នក",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាប្រធានបទរបស់អ្នកដោយសង្ខេប",
+        "submitButton": "បង្កើតប្រធានបទ",
         "submittingButton": "កំពុងបង្កើត..."
       },
-      "toast": {
-        "auth": {
-          "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-          "description": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតក្រុម។"
+      "success": {
+        "title": "បង្កើតប្រធានបទបានជោគជ័យ",
+        "description": "ប្រធានបទថ្មីរបស់អ្នកត្រូវបានបង្កើតហើយ។"
+      }
+    },
+    "topic": {
+      "backLink": "ត្រឡប់ទៅប្រធានបទទាំងអស់",
+      "unknownUser": "អ្នកប្រើមិនស្គាល់",
+      "postMeta": "ដោយ {{author}} នៅថ្ងៃទី {{date}}",
+      "buttons": {
+        "createPost": "បង្កើតប្រកាស",
+        "loadMore": "ផ្ទុកប្រកាសបន្ថែម",
+        "loadingMore": "កំពុងផ្ទុកបន្ថែម..."
+      },
+      "noPosts": {
+        "title": "មិនទាន់មានប្រកាសត្រូវបានបង្កើតនៅឡើយទេ។",
+        "description": "ធ្វើជាអ្នកដំបូងដែលបង្កើត!",
+        "button": "បង្កើតប្រកាសដំបូង"
+      },
+      "notFound": {
+        "title": "រកមិនឃើញប្រធានបទ",
+        "description": "ប្រធានបទដែលអ្នកកំពុងរកមិនមានទេ។",
+        "backButton": "ត្រឡប់ទៅវេទិកា"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "កំហុសក្នុងការផ្ទុកប្រកាស",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកប្រកាសសម្រាប់ប្រធានបទនេះ។"
         },
-        "incomplete": {
-          "title": "បំពេញមិនពេញលេញ",
-          "description": "សូមផ្តល់ឈ្មោះ និងការពិពណ៌នាសម្រាប់ក្រុម។"
+        "loadTopic": {
+          "title": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃប្រធានបទ។"
+        }
+      }
+    },
+    "postView": {
+      "backLink": "ត្រឡប់ទៅ {{topicName}}",
+      "postMeta": "ដោយ {{author}} នៅ {{date}}",
+      "repliesTitle": "ការឆ្លើយតប ({{count}})",
+      "noReplies": "មិនទាន់មានការឆ្លើយតបទេ។",
+      "buttons": {
+        "loadMore": "ផ្ទុកបន្ថែម",
+        "loadingMore": "កំពុងផ្ទុក..."
+      },
+      "reply": {
+        "title": "បន្ថែមការឆ្លើយតប",
+        "placeholder": "សរសេរការឆ្លើយតបរបស់អ្នកនៅទីនេះ...",
+        "submitButton": "បន្ថែមការឆ្លើយតប",
+        "submittingButton": "កំពុងបញ្ជូន...",
+        "success": "បានបន្ថែមការឆ្លើយតប!"
+      },
+      "notFound": {
+        "title": "រកមិនឃើញប្រកាស",
+        "description": "ប្រកាសដែលអ្នកកំពុងរកមិនមានទេ។",
+        "backButton": "ត្រឡប់ទៅវេទិកា"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "កំហុសក្នុងការផ្ទុកប្រកាស",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃប្រកាស។"
         },
-        "success": {
-          "title": "បានបង្កើតក្រុម!",
-          "description": "ក្រុមសហគមន៍ថ្មីរបស់អ្នកត្រូវបានបង្កើតដោយជោគជ័យ។"
+        "loadReplies": {
+          "title": "កំហុសក្នុងការផ្ទុកការឆ្លើយតប",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកការឆ្លើយតបសម្រាប់ប្រកាសនេះ។"
         },
-        "error": {
-          "title": "កំហុសក្នុងការបង្កើតក្រុម",
-          "description": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។ សូមព្យាយាមម្តងទៀត។"
+        "emptyReply": "ការឆ្លើយតបមិនអាចទទេបានទេ។",
+        "submitReply": {
+          "title": "កំហុសក្នុងការបញ្ជូនការឆ្លើយតប",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបញ្ជូនការឆ្លើយតបរបស់អ្នក។"
         }
       }
     },
     "createPost": {
-      "backLink": "ត្រឡប់ទៅក្រុម",
-      "title": "ចាប់ផ្តើមការពិភាក្សាថ្មី",
-      "description": "បង្កើតប្រកាសថ្មីដើម្បីចូលរួមជាមួយសមាជិកក្រុមផ្សេងទៀត។",
+      "backLink": "ត្រឡប់ទៅប្រធានបទ",
+      "aiHelper": {
+        "title": "ជំនួយការ AI",
+        "description": "បង្កើតសេចក្តីព្រាងប្រកាសដោយផ្អែកលើការណែនាំ។",
+        "promptLabel": "ការណែនាំ AI",
+        "promptPlaceholder": "បញ្ចូលការពិពណ៌នាសង្ខេបនៃប្រកាសដែលអ្នកចង់បង្កើត...",
+        "generateButton": "បង្កើតសេចក្តីព្រាង",
+        "generatingButton": "កំពុងបង្កើត..."
+      },
+      "title": "បង្កើតប្រកាសថ្មី",
+      "description": "បន្ថែមប្រកាសថ្មីទៅប្រធានបទនេះ។",
       "form": {
         "titleLabel": "ចំណងជើងប្រកាស",
-        "titlePlaceholder": "បញ្ចូលចំណងជើងច្បាស់លាស់ និងទាក់ទាញ",
+        "titlePlaceholder": "បញ្ចូលចំណងជើងប្រកាសរបស់អ្នក",
         "contentLabel": "ខ្លឹមសារប្រកាស",
-        "contentPlaceholder": "ចែករំលែកគំនិតរបស់អ្នក សួរសំណួរ ឬចាប់ផ្តើមការសន្ទនា...",
+        "contentPlaceholder": "សរសេរខ្លឹមសារប្រកាសរបស់អ្នកនៅទីនេះ...",
         "submitButton": "បង្កើតប្រកាស",
-        "submittingButton": "កំពុងបង្កើតប្រកាស..."
+        "submittingButton": "កំពុងបញ្ជូន..."
       },
-      "toast": {
-        "auth": {
-          "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-          "description": "អ្នកត្រូវតែជាសមាជិកនៃក្រុមនេះដើម្បីប្រកាស។"
-        },
-        "incomplete": {
-          "title": "ប្រកាសមិនពេញលេញ",
-          "description": "សូមផ្តល់ទាំងចំណងជើង និងខ្លឹមសារសម្រាប់ប្រកាសរបស់អ្នក។"
-        },
-        "success": {
-          "title": "បានបង្កើតប្រកាស!",
-          "description": "ការពិភាក្សារបស់អ្នកត្រូវបានចាប់ផ្តើមហើយ។"
-        },
-        "error": {
-          "title": "កំហុសក្នុងការបង្កើតប្រកាស",
-          "description": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។ សូមព្យាយាមម្តងទៀត។"
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "ត្រឡប់ទៅ {{groupName}}",
-      "repliesTitle": "ការឆ្លើយតប ({count})",
-      "yourReplyTitle": "ការឆ្លើយតបរបស់អ្នក",
-      "replyPlaceholder": "សរសេរការឆ្លើយតបរបស់អ្នកនៅទីនេះ...",
-      "replySubmitButton": "ប្រកាសការឆ្លើយតប",
-      "replySubmittingButton": "កំពុងប្រកាស...",
-      "noReplies": "ធ្វើជាអ្នកដំបូងដែលឆ្លើយតបប្រកាសនេះ។",
-      "loadMoreButton": "ផ្ទុកការឆ្លើយតបបន្ថែម",
-      "notFound": {
-        "title": "រកមិនឃើញប្រកាស",
-        "description": "ប្រកាសដែលអ្នកកំពុងរកមិនមានទេ។",
-        "backButton": "ត្រឡប់ទៅក្រុម"
+      "success": {
+        "aiDraft": { "title": "បានបង្កើតសេចក្តីព្រាង AI!", "description": "សេចក្តីព្រាងត្រូវបានបង្កើតសម្រាប់អ្នកហើយ។" },
+        "title": "បានបង្កើតប្រកាស!",
+        "description": "ប្រកាសរបស់អ្នកត្រូវបានបង្កើតដោយជោគជ័យហើយ។"
       },
-      "toast": {
-        "emptyReply": "ការឆ្លើយតបរបស់អ្នកមិនអាចទទេបានទេ។",
-        "replySuccess": "ការឆ្លើយតបរបស់អ្នកត្រូវបានប្រកាសហើយ!"
+      "errors": {
+        "aiPromptMissing": { "title": "ខ្វះការណែនាំ AI", "description": "សូមផ្តល់ការណែនាំសម្រាប់ជំនួយការ AI ។" },
+        "aiDraft": { "title": "កំហុសសេចក្តីព្រាង AI", "description": "បរាជ័យក្នុងការបង្កើតសេចក្តីព្រាង AI ។" },
+        "incomplete": { "title": "បំពេញមិនពេញលេញ", "description": "សូមបំពេញគ្រប់វាលដែលត្រូវការ។" },
+        "general": { "title": "កំហុស", "description": "មានកំហុសមួយបានកើតឡើងនៅពេលបង្កើតប្រកាស។" }
       }
     }
-  }
+  },
+  "Homepage": {}
 }
-

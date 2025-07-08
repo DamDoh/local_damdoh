@@ -1,652 +1,164 @@
 
-
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "Please sign in to like posts",
-    "signInToVoteToast": "Please sign in to vote",
-    "voteSuccessToast": "Vote successfully cast",
-    "voteErrorToast": "Error casting vote",
-    "loadCommentsErrorToast": "Failed to load comments",
-    "editPost": "Edit Post",
-    "deletePost": "Delete Post",
-    "votes": "{count, plural, one {vote} other {votes}}",
-    "likes": "{count, plural, one {Like} other {Likes}}",
-    "comments": "{count, plural, one {Comment} other {Comments}}",
-    "like": "Like",
-    "comment": "Comment",
-    "repost": "Repost",
-    "noComments": "No comments yet.",
-    "loadingComments": "Loading comments...",
-    "loadMoreComments": "Load more comments",
-    "writeCommentPlaceholder": "Write a comment...",
-    "postButton": "Post"
-  },
-  "CreatePostModal": {
-    "pollOptionsError": "A poll must have at least 2 options.",
-    "emptyPostError": "A post cannot be completely empty.",
-    "title": "Create a New Post",
-    "description": "Share an update with your network.",
-    "yourName": "Your Name",
-    "shareUpdate": "Share an update",
-    "placeholder": "What do you want to talk about?",
-    "selectedFile": "Selected file:",
-    "pollOptionsLabel": "Poll Options",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Add option",
-    "pollNote": "Max {maxOptions} options.",
-    "addMediaButton": "Add photo/video",
-    "createEventButton": "Create agri-event",
-    "shareDocumentButton": "Share a document",
-    "createPollButton": "Create a poll",
-    "postButton": "Post"
-  },
-  "StartPost": {
-    "placeholder": "Share an agricultural update, market insight, or ask a question...",
-    "photoVideo": "Photo / Video",
-    "agriEvent": "Agri-Event",
-    "createPoll": "Create Poll"
-  },
-  "AgroTourismDashboard": {
-    "title": "Agro-Tourism Operator Hub",
-    "bookingsTitle": "Upcoming Bookings",
-    "bookingsDescription": "Your next scheduled agro-tourism experiences.",
-    "table": {
-      "experience": "Experience",
-      "guest": "Guest Name",
-      "date": "Date",
-      "action": "Action",
-      "title": "Title",
-      "location": "Location",
-      "status": "Status",
-      "bookings": "Bookings",
-      "rating": "Rating",
-      "comment": "Comment"
+  "Forums": {
+    "title": "Forum Topics",
+    "description": "Browse and create discussion topics",
+    "searchPlaceholder": "Search for topics...",
+    "buttons": {
+      "createTopic": "Create Topic",
+      "joinDiscussion": "Join Discussion",
+      "pinHomepage": "Pin to Homepage",
+      "unpinHomepage": "Unpin from Homepage"
     },
-    "viewDetailsButton": "View Details",
-    "noBookings": "No upcoming bookings.",
-    "experiencesTitle": "Listed Experiences",
-    "experiencesDescription": "Manage your agro-tourism offerings.",
-    "manageButton": "Manage",
-    "noExperiences": "No agro-tourism experiences listed yet.",
-    "reviewsTitle": "Guest Reviews",
-    "reviewsDescription": "Latest feedback from your guests.",
-    "on": "on",
-    "viewReviewButton": "View Review",
-    "noReviews": "No guest reviews yet."
-  },
-  "AgronomistDashboard": {
-    "title": "Agronomist & Consultant Hub",
-    "stats": {
-      "assignedFarmers": "Assigned Farmers",
-      "farmersWithAlerts": "Farmers with Alerts",
-      "pendingConsultations": "Pending Consultations",
-      "knowledgeContributions": "Knowledge Contributions"
+    "notFound": {
+      "title": "No topics found",
+      "tryDifferentSearch": "Try a different search term.",
+      "beTheFirst": "Be the first one to create a topic."
     },
-    "descriptions": {
-      "assignedFarmers": "{count} farmers in your portfolio",
-      "farmersWithAlerts": "{count} farmers need attention",
-      "pendingConsultations": "{count} new requests",
-      "knowledgeContributions": "{count} articles published"
+    "lastActivity": "Last activity {time}",
+    "pinning": {
+      "pinnedTitle": "Homepage Pinned!",
+      "pinnedDescription": "This forum is now displayed as your homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "This forum will no longer be displayed as your homepage."
     },
-    "consultations": {
-      "title": "Pending Consultation Requests",
-      "description": "Review and respond to incoming requests from farmers.",
-      "table": {
-        "farmer": "Farmer",
-        "issue": "Issue Summary",
-        "action": "Action"
-      },
-      "viewButton": "View Request",
-      "noRequests": "No new consultation requests."
-    },
-    "portfolio": {
-      "title": "Farmer Portfolio",
-      "description": "Overview of farmers you are advising.",
-      "table": {
-        "farmer": "Farmer",
-        "location": "Location",
-        "alerts": "Alerts",
-        "action": "Action"
-      },
-      "alertsLabel": "alerts",
-      "profileButton": "View Profile",
-      "noFarmers": "No farmers assigned to your portfolio yet."
-    },
-    "contributions": {
-      "statusTitle": "Knowledge Hub Contribution Status",
-      "title": "Recent Contributions",
-      "noContributions": "You have not authored any contributions yet.",
-      "noData": "No data available for chart."
-    },
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "noData": "No dashboard data available."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Energy Solutions Provider Hub",
-    "leadsTitle": "Project Leads",
-    "leadsCount": "{count} new leads",
-    "projectsTitle": "Active Projects",
-    "activeProjectsCount": "{count} active projects",
-    "projectsCompleted": "projects completed",
-    "impactTitle": "Sustainability Impact",
-    "impactDescription": "Estimated carbon reduction from your projects",
-    "carbonReduction": "{count} total installations",
-    "leadsTableTitle": "Project Leads Pipeline",
-    "leadsTableDescription": "Potential projects and clients seeking energy solutions.",
-    "table": {
-      "entity": "Entity Name",
-      "location": "Location",
-      "energyNeed": "Estimated Energy Need",
-      "status": "Status",
-      "action": "Action"
-    },
-    "viewLeadButton": "View Lead",
-    "noLeads": "No project leads at this time.",
-    "accessDocsButton": "Access API Docs",
-    "proposeIntegrationButton": "Propose New Integration",
-    "statusLabels": {
-      "new": "New",
-      "contacted": "Contacted",
-      "proposal_sent": "Proposal Sent",
-      "closed": "Closed",
-      "in_progress": "In Progress",
-      "completed": "Completed"
-    }
-  },
-  "InputSupplierDashboard": {
-    "title": "Input Supplier Hub",
-    "ordersTitle": "Active Orders & Value",
-    "totalValue": "total value",
-    "manageOrdersButton": "Manage All Orders",
-    "forecastTitle": "Regional Demand Forecast",
-    "in": "in",
-    "performanceTitle": "Product Performance & Reviews",
-    "viewReviewsButton": "View All Reviews",
-    "noForecast": "No demand forecast data available at this time.",
-    "noFeedback": "No product feedback available yet.",
-    "promotionsTitle": "Coupons & Promotions",
-    "promotionsDescription": "Create and manage discounts to boost your sales.",
-    "manageCouponsButton": "Manage Coupons"
-  },
-  "CertificationBodyDashboard": {
-    "title": "Certification Body Hub",
-    "auditsTitle": "Pending Audits",
-    "auditsDescription": "Scheduled audits for farms and facilities.",
-    "table": {
-      "farmName": "Farm Name",
-      "standard": "Standard",
-      "dueDate": "Due Date",
-      "action": "Action"
-    },
-    "reviewAuditButton": "Review & Schedule",
-    "noPendingAudits": "No pending audits.",
-    "entitiesTitle": "Certified Entities Overview",
-    "entitiesDescription": "A summary of entities you have certified.",
-    "noCertifiedEntities": "No certified entities found.",
-    "monitoringTitle": "Standards Monitoring",
-    "monitoringDescription": "Adherence rates and alerts for key standards.",
-    "alerts": "alerts",
-    "viewDetailsButton": "View Details",
-    "noMonitoringData": "No standards monitoring data available."
-  },
-  "QaDashboard": {
-    "title": "Quality Assurance Hub",
-    "inspectionsTitle": "Pending Inspections",
-    "inspectionsDescription": "Scheduled quality checks for products and batches.",
-    "table": {
-      "batchId": "Batch ID",
-      "product": "Product",
-      "seller": "Seller",
-      "dueDate": "Due Date",
-      "action": "Action"
-    },
-    "performInspectionButton": "Perform Inspection",
-    "noPendingInspections": "No pending inspections.",
-    "resultsTitle": "Recent Issue Reports",
-    "resultsDescription": "Recently reported quality issues.",
-    "noRecentIssues": "No recent quality issues reported.",
-    "metricsTitle": "Quality Metrics",
-    "metricsDescription": "Overall performance overview.",
-    "passRate": "Pass Rate",
-    "averageScore": "Average Score",
-    "noMetrics": "No quality metrics available."
-  },
-  "FiApplicationListPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Application Management",
-    "description": "View and manage all received financial applications.",
-    "tabs": {
-      "all": "All",
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "date": "Date Submitted",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No applications found for this status."
-  },
-  "FiApplicationPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Review Financial Application",
-    "applicationTitle": "Application",
-    "submittedOn": "Submitted on",
-    "amountRequested": "Amount Requested",
-    "purpose": "Purpose of Funding",
-    "applicantDetails": "Applicant Details",
-    "profileNotFound": "Applicant profile not found.",
-    "viewProfileButton": "View Full Profile",
-    "riskAssessment": "AI Risk Assessment",
-    "creditScore": "Credit Score",
-    "notFound": "Application not found.",
-    "approveButton": "Approve",
-    "rejectButton": "Reject",
-    "requestInfoButton": "Request More Info",
-    "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "Status Updated",
-      "updateSuccessDescription": "Application has been marked as {status}.",
-      "updateFailTitle": "Update Failed"
-    }
-  },
-  "FiDashboard": {
-    "title": "Financial Institution Hub",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "Applications requiring your review",
-    "portfolioAtRiskTitle": "Portfolio at Risk",
-    "portfolioAtRiskDescription": "{count} accounts flagged",
-    "recentUpdates": "recent updates",
-    "marketUpdatesTitle": "Market Updates",
-    "manageProductsTitle": "Financial Products",
-    "manageProductsDescription": "Your active loans & grants",
-    "manageProductsButton": "Manage Products",
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "riskScore": "Risk Score",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No pending applications for review.",
-    "accounts": "accounts",
-    "value": "value",
-    "reviewRiskButton": "Review Risk",
-    "readMore": "Read more",
-    "noUpdates": "No market updates available.",
-    "viewAllButton": "View All Applications"
-  },
-  "FiProductsPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Manage Financial Products",
-    "description": "Create and view your offered loans and grants.",
-    "createButton": "Create New Product",
-    "noProducts": "No financial products have been created yet.",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create New Financial Product",
-    "description": "Define a new loan or grant to offer to stakeholders.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Smallholder Seed Loan",
-      "typeLabel": "Product Type",
-      "loan": "Loan",
-      "grant": "Grant",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
-      "interestRateLabel": "Interest Rate (%)",
-      "interestRatePlaceholder": "e.g., 8.5",
-      "maxAmountLabel": "Max Amount (USD)",
-      "maxAmountPlaceholder": "e.g., 5000",
-      "targetRolesLabel": "Target Stakeholders",
-      "targetRolesDescription": "Select which stakeholder roles this product is available to.",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be logged in to create a product.",
-      "successTitle": "Product Created!",
-      "successDescription": "{name} has been successfully created and is now active.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "LogisticsDashboard": {
-    "title": "Logistics Hub",
-    "performanceTitle": "Performance Overview",
-    "onTimeDelivery": "On-time delivery rate",
-    "viewReportButton": "View Full Report",
-    "activeShipmentsTitle": "Active Shipments",
-    "incomingJobsTitle": "Incoming Jobs",
-    "noActiveShipments": "No active shipments.",
-    "trackButton": "Track VTI",
-    "noIncomingJobs": "No incoming jobs available.",
-    "acceptJobButton": "Accept Job"
-  },
-  "ProcessingUnitDashboard": {
-    "title": "Processing & Packaging Hub",
-    "yieldTitle": "Yield Optimization",
-    "potential": "Potential",
-    "wasteTitle": "Waste Reduction",
-    "packagingInventoryTitle": "Packaging Inventory",
-    "inStock": "In Stock",
-    "reorderLevel": "Reorder at",
-    "noPackagingData": "No packaging inventory data available.",
-    "sourcePackagingButton": "Source Packaging Materials",
-    "rawMaterialTitle": "Raw Material Inventory",
-    "table": {
-      "product": "Product",
-      "quality": "Quality",
-      "quantity": "Quantity (Tons)",
-      "supplier": "Supplier",
-      "deliveryDate": "Delivery Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "noInventoryData": "No raw material inventory data available.",
-    "packagingOrdersTitle": "Packaging Orders",
-    "viewButton": "View",
-    "noPackagingOrders": "No outstanding packaging orders."
-  },
-  "WarehouseDashboard": {
-    "title": "Warehouse & Storage Hub",
-    "utilizationTitle": "Storage Utilization",
-    "inventoryTitle": "Inventory Levels",
-    "itemsNeedingAttention": "items need attention",
-    "alertsTitle": "Predictive Alerts",
-    "noAlerts": "No predictive alerts at this time.",
-    "investigateButton": "Investigate"
-  },
-  "AgroExportDashboard": {
-    "title": "Agro-Export Facilitator Hub",
-    "docsTitle": "Pending Customs Documentation",
-    "shipmentsTitle": "Tracked Shipments",
-    "alertsTitle": "Compliance Alerts",
-    "table": {
-        "vti": "VTI Link",
-        "destination": "Destination",
-        "status": "Status"
-    },
-    "prepareDocsButton": "Prepare Docs",
-    "noDocs": "No documents pending.",
-    "noShipments": "No active shipments.",
-    "noAlerts": "No compliance alerts.",
-    "readMore": "Read More"
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Equipment Supplier Hub",
-    "ordersTitle": "Rental & Sales Orders",
-    "ordersDescription": "{count, plural, =0 {No orders} one {# total order} other {# total orders}}",
-    "manageOrdersButton": "Manage all orders",
-    "listedEquipmentTitle": "Listed Equipment",
-    "table": {
-      "name": "Name",
-      "type": "Type",
-      "status": "Status",
-      "action": "Action"
-    },
-    "status": {
-      "available": "Available",
-      "rentedout": "Rented Out"
-    },
-    "manageButton": "Manage",
-    "noEquipment": "No equipment listed yet.",
-    "listEquipmentButton": "List New Equipment",
-    "maintenanceTitle": "Maintenance Requests",
-    "viewRequestButton": "View Request",
-    "noMaintenance": "No maintenance requests at this time."
-  },
-  "WasteManagementDashboard": {
-    "title": "Waste Management & Composting Hub",
-    "wasteStreamsTitle": "Incoming Waste Streams",
-    "from": "From",
-    "acceptButton": "Accept",
-    "noWasteStreams": "No incoming waste streams to process.",
-    "compostBatchesTitle": "Compost Batches in Progress",
-    "batch": "Batch",
-    "estReady": "Est. Ready",
-    "noCompostBatches": "No active compost batches.",
-    "inventoryTitle": "Finished Product Inventory",
-    "inStock": "In Stock",
-    "noFinishedProducts": "No finished products in inventory.",
-    "sellButton": "List Product on Marketplace"
-  },
-  "CrowdfunderDashboard": {
-    "title": "Crowdfunder & Investor Hub",
-    "totalInvested": "Total Invested",
-    "numberOfInvestments": "Number of Investments",
-    "estimatedReturns": "Estimated Returns",
-    "opportunitiesTitle": "Suggested Opportunities",
-    "transactionsTitle": "Recent Transactions",
-    "raisedOf": "of",
-    "goal": "goal",
-    "viewButton": "View",
-    "table": {
-      "project": "Project",
-      "amount": "Amount"
-    },
-    "investment": "Investment",
-    "payout": "Payout",
-    "on": "on",
-    "noOpportunities": "No investment opportunities to suggest right now.",
-    "noTransactions": "No recent transactions."
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Insurance Provider Hub",
-    "claimsTitle": "Pending Claims",
-    "claimsDescription": "Review claims submitted against policies you manage.",
-    "table": {
-      "policyHolder": "Policy Holder",
-      "policyType": "Policy Type",
-      "claimDate": "Claim Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewClaimButton": "Review Claim",
-    "noPendingClaims": "No pending claims to review.",
-    "riskAlertsTitle": "Risk Assessment Alerts",
-    "riskAlertsDescription": "Active policies with high-risk flags based on platform data.",
-    "investigateButton": "Investigate",
-    "noRiskAlerts": "No high-risk alerts at this time.",
-    "activePoliciesTitle": "Active Policies",
-    "activePoliciesDescription": "A summary of your currently active insurance policies.",
-    "coverage": "Coverage",
-    "expires": "Expires",
-    "noActivePolicies": "No active policies found."
-  },
-  "ResearcherDashboard": {
-    "title": "Researcher & Academic Hub",
-    "datasetsTitle": "Available Datasets",
-    "datasetsDescription": "Anonymized datasets for your research needs.",
-    "table": {
-      "name": "Name",
-      "dataType": "Data Type",
-      "accessLevel": "Access Level",
-      "action": "Action"
-    },
-    "requestAccessButton": "Request Access",
-    "noDatasets": "No datasets are currently available.",
-    "projectsTitle": "Ongoing Projects",
-    "projectsDescription": "Your active research collaborations on the platform.",
-    "viewProjectButton": "View Project",
-    "noProjects": "You have no ongoing projects.",
-    "contributionsTitle": "Knowledge Hub Contributions",
-    "contributionsDescription": "Articles and publications you have contributed.",
-    "viewButton": "View",
-    "noContributions": "You have not authored any contributions yet.",
-    "noData": "No dashboard data available.",
-    "datasetsByTypeTitle": "Datasets by Type",
-    "datasetsByTypeDescription": "Breakdown of available dataset types.",
-    "noDatasetsForChart": "No datasets available for chart.",
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Agri-Tech Innovator Hub",
-    "sandboxTitle": "Sandbox Status",
-    "statusLabel": "Status",
-    "lastResetLabel": "Last Reset",
-    "accessDocsButton": "Access API Docs",
-    "integrationsTitle": "Integration Projects",
-    "activeProjects": "Active Projects",
-    "integrationsDescription": "View and manage your API integrations.",
-    "proposeIntegrationButton": "Propose New Integration",
-    "apiKeysTitle": "API Keys",
-    "apiKeysDescription": "Manage and generate API keys for your applications.",
-    "table": {
-      "key": "Key",
-      "status": "Status",
-      "environment": "Environment",
-      "created": "Created",
-      "actions": "Actions"
-    },
-    "apiKeyCopied": "API Key copied to clipboard!",
-    "noApiKeys": "No API keys have been generated yet.",
-    "generateNewKeyButton": "Generate New API Key"
-  },
-  "OperationsDashboard": {
-    "title": "Operations Dashboard",
-    "vtiRateTitle": "VTI Generation Rate",
-    "pipelineStatusTitle": "Data Pipeline Status",
-    "lastCheck": "Last checked",
-    "flaggedEventsTitle": "Flagged Events",
-    "viewVtiButton": "View VTI",
-    "noFlaggedEvents": "No automatically flagged events at this time."
-  },
-  "GroupsPage": {
-    "title": "Community Groups",
-    "description": "Find and join groups that match your interests.",
-    "createGroupButton": "Create New Group",
-    "searchPlaceholder": "Search for groups...",
-    "notFound": "No groups found.",
-    "detail": {
-      "backLink": "Back to Groups",
-      "discussionsTitle": "Discussions",
-      "startDiscussionButton": "Start a Discussion",
-      "noDiscussions": "No discussions have been started yet.",
-      "beTheFirst": "Be the first to post.",
-      "actionsTitle": "Group Actions",
-      "leaveButton": "Leave Group",
-      "leavingButton": "Leaving...",
-      "joinButton": "Join Group",
-      "joiningButton": "Joining...",
-      "requestJoinButton": "Request to Join",
-      "loginToJoinButton": "Login to Join",
-      "membersTitle": "{memberCount, plural, one {# Member} other {# Members}}"
-    },
-    "toast": {
-      "loginToJoin": "Please sign in to join this group.",
-      "joinSuccess": "Successfully joined the group!",
-      "joinError": "Error joining group",
-      "leaveSuccess": "You have left the group.",
-      "leaveError": "Error leaving group"
+    "errors": {
+      "loadTitle": "Error loading topics",
+      "loadDescription": "An error occurred while loading forum topics."
     },
     "create": {
-      "backLink": "Back to Groups",
-      "title": "Create a New Community Group",
-      "description": "Start a new community for stakeholders with shared interests or goals.",
+      "backLink": "Back to Topics",
+      "title": "Create New Topic",
+      "description": "Start a new discussion in the forum.",
       "form": {
-        "nameLabel": "Group Name",
-        "namePlaceholder": "e.g., Organic Coffee Growers of Kenya",
-        "descriptionLabel": "Group Description",
-        "descriptionPlaceholder": "What is the purpose of this group?",
-        "publicLabel": "Public Group",
-        "submitButton": "Create Group",
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "Enter the name of your topic",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Briefly describe your topic",
+        "submitButton": "Create Topic",
         "submittingButton": "Creating..."
       },
-      "toast": {
+      "success": {
+        "title": "Topic Created Successfully",
+        "description": "Your new topic has been created."
+      },
+      "errors": {
         "auth": {
-          "title": "Authentication Required",
-          "description": "You must be logged in to create a group."
+          "title": "Not Authenticated",
+          "description": "You must be logged in to create a topic."
         },
         "incomplete": {
           "title": "Incomplete Fields",
-          "description": "Please provide a name and description for the group."
+          "description": "Please fill in all required fields."
         },
-        "success": {
-          "title": "Group Created!",
-          "description": "Your new community group has been successfully created."
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the topic."
+        }
+      }
+    },
+    "topic": {
+      "backLink": "Back to all topics",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "buttons": {
+        "createPost": "Create Post",
+        "loadMore": "Load More Posts",
+        "loadingMore": "Loading more..."
+      },
+      "noPosts": {
+        "title": "No posts have been created yet.",
+        "description": "Be the first to create one!",
+        "button": "Create First Post"
+      },
+      "notFound": {
+        "title": "Topic not found",
+        "description": "The topic you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error loading posts",
+          "description": "An error occurred while loading posts for this topic."
         },
-        "error": {
-          "title": "Error Creating Group",
-          "description": "An unexpected error occurred. Please try again."
+        "loadTopic": {
+          "title": "Error loading topic",
+          "description": "An error occurred while loading the topic details."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Back to {{topicName}}",
+      "postMeta": "by {{author}} on {{date}}",
+      "repliesTitle": "Replies ({count})",
+      "noReplies": "No replies yet.",
+      "buttons": {
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "reply": {
+        "title": "Add a Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Add Reply",
+        "submittingButton": "Submitting...",
+        "success": "Reply added!"
+      },
+      "notFound": {
+        "title": "Post not found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error loading post",
+          "description": "An error occurred while loading the post details."
+        },
+        "loadReplies": {
+          "title": "Error loading replies",
+          "description": "An error occurred while loading replies for this post."
+        },
+        "emptyReply": "Reply cannot be empty.",
+        "submitReply": {
+          "title": "Error submitting reply",
+          "description": "An error occurred while submitting your reply."
         }
       }
     },
     "createPost": {
-      "backLink": "Back to Group",
-      "title": "Start a New Discussion",
-      "description": "Create a new post to engage with other group members.",
+      "backLink": "Back to Topic",
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic.",
       "form": {
         "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter a clear and engaging title",
+        "titlePlaceholder": "Enter the title of your post",
         "contentLabel": "Post Content",
-        "contentPlaceholder": "Share your thoughts, ask a question, or start a conversation...",
+        "contentPlaceholder": "Write your post content here...",
         "submitButton": "Create Post",
-        "submittingButton": "Creating Post..."
+        "submittingButton": "Submitting..."
       },
-      "toast": {
-        "auth": {
-          "title": "Authentication Required",
-          "description": "You must be a member of this group to post."
+      "success": {
+        "aiDraft": {
+          "title": "AI Draft Generated!",
+          "description": "A draft has been generated for you."
         },
-        "incomplete": {
-          "title": "Incomplete Post",
-          "description": "Please provide both a title and content for your post."
-        },
-        "success": {
-          "title": "Post Created!",
-          "description": "Your discussion has been started."
-        },
-        "error": {
-          "title": "Error Creating Post",
-          "description": "An unexpected error occurred. Please try again."
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "Back to {{groupName}}",
-      "repliesTitle": "Replies ({count})",
-      "yourReplyTitle": "Your Reply",
-      "replyPlaceholder": "Write your reply here...",
-      "replySubmitButton": "Post Reply",
-      "replySubmittingButton": "Posting...",
-      "noReplies": "Be the first to reply to this post.",
-      "loadMoreButton": "Load More Replies",
-      "notFound": {
-        "title": "Post Not Found",
-        "description": "The post you are looking for does not exist.",
-        "backButton": "Back to Group"
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
       },
-      "toast": {
-        "emptyReply": "Your reply cannot be empty.",
-        "replySuccess": "Your reply has been posted!"
+      "errors": {
+        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
+        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
+        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
+        "general": { "title": "Error", "description": "An error occurred while creating the post." }
       }
     }
-  }
+  },
+  "Homepage": {}
 }
-

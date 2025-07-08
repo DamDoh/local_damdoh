@@ -1,4 +1,4 @@
-typescriptreact
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -45,17 +45,273 @@ const getPostDetails = async (topicId: string, postId: string): Promise<ForumPos
             title: data.title,
             content: data.content,
             topicId: topicId,
-            timestamp: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
+            topicName: topicName,
+            createdAt: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
             author: {
                 id: data.authorRef,
                 name: authorProfile.displayName,
                 avatarUrl: authorProfile.avatarUrl,
             },
             replyCount: data.replyCount || 0,
-            topicName: topicName,
         } as ForumPost;
     }
     return null;
 };
 
-const PostPageSkeleton = () => (\n    <div className=\"container mx-auto max-w-3xl py-8\">\n        <Skeleton className=\"h-6 w-48 mb-4\" />\n        <Card>\n            <CardHeader className=\"flex flex-row items-center gap-4 border-b\">\n                <div className=\"space-y-2\">\n                    <Skeleton className=\"h-7 w-96\" />\n                    <div className=\"flex items-center gap-2\">\n                        <Skeleton className=\"h-8 w-8 rounded-full\" />\n                        <Skeleton className=\"h-4 w-24\" />\n                        <Skeleton className=\"h-4 w-32\" />\n                    </div>\n                </div>\n            </CardHeader>\n            <CardContent className=\"py-6\">\n                <div className=\"space-y-3 mt-4\">\n                    <Skeleton className=\"h-4 w-full\" />\n                    <Skeleton className=\"h-4 w-full\" />\n                    <Skeleton className=\"h-4 w-5/6\" />\n                </div>\n            </CardContent>\n        </Card>\n        \n        <div className=\"mt-8\">\n            <Skeleton className=\"h-8 w-32 mb-4\" />\n            <div className=\"space-y-4\">\n                <Skeleton className=\"h-24 w-full\" />\n                <Skeleton className=\"h-24 w-full\" />\n            </div>\n        </div>\n    </div>\n);\n\n\nexport default function PostPage() {\n    const params = useParams();\n    const { user } = useAuth();\n    const { toast } = useToast();\n    const t = useTranslations('Forums.postView');\n    \n    const topicId = params.topicId as string;\n    const postId = params.postId as string;\n\n    const [post, setPost] = useState<ForumPost | null>(null);\n    const [replies, setReplies] = useState<PostReply[]>([]);\n    const [lastVisible, setLastVisible] = useState<string | null>(null);\n    const [hasMore, setHasMore] = useState(true);\n    const [newReply, setNewReply] = useState(\"\");\n    const [isLoading, setIsLoading] = useState(true);\n    const [isLoadingMore, setIsLoadingMore] = useState(false);\n    const [isSubmitting, setIsSubmitting] = useState(false);\n\n    const functions = getFunctions(firebaseApp);\n    const getRepliesForPost = useMemo(() => httpsCallable(functions, \'getRepliesForPost\'), [functions]);\n    const addReplyToPost = useMemo(() => httpsCallable(functions, \'addReplyToPost\'), [functions]);\n\n    const fetchReplies = useCallback(async (isInitialLoad = false) => {\n        if (!hasMore && !isInitialLoad) return;\n        \n        if (isInitialLoad) {\n             setIsLoading(true);\n        } else {\n            setIsLoadingMore(true);\n        }\n\n        try {\n            const result = await getRepliesForPost({ topicId, postId, lastVisible });\n            const data = result.data as { replies?: any[], lastVisible?: string | null };\n            const backendReplies = data?.replies || [];\n            \n            if (backendReplies.length > 0) {\n                const enrichedReplies: PostReply[] = backendReplies.map((reply: any) => ({\n                    id: reply.id,\n                    content: reply.content,\n                    timestamp: reply.createdAt ? new Date(reply.createdAt).toISOString() : new Date().toISOString(),\n                    author: {\n                        id: reply.authorRef,\n                        name: reply.authorName || t('unknownUser'),\n                        avatarUrl: reply.authorAvatarUrl || \"\"\n                    }\n                }));\n                \n                setReplies(prev => isInitialLoad ? enrichedReplies : [...prev, ...enrichedReplies]);\n                setLastVisible(data?.lastVisible || null);\n            }\n            \n            setHasMore(!!data?.lastVisible);\n\n        } catch (error) {\n             console.error(\"Error fetching replies:\", error);\n            toast({\n                title: t('errors.loadReplies.title'),\n                description: t('errors.loadReplies.description'),\n                variant: \"destructive\"\n            });\n        } finally {\n            if(isInitialLoad) setIsLoading(false);\n            else setIsLoadingMore(false);\n        }\n    }, [topicId, postId, lastVisible, getRepliesForPost, toast, t, hasMore]);\n\n\n    const fetchInitialData = useCallback(async () => {\n        setIsLoading(true);\n        try {\n            const postDetails = await getPostDetails(topicId, postId);\n            setPost(postDetails);\n            if(postDetails){\n               await fetchReplies(true);\n            }\n        } catch (error) {\n            console.error(\"Error fetching post data:\", error);\n             toast({\n                title: t('errors.loadPost.title'),\n                description: t('errors.loadPost.description'),\n                variant: \"destructive\"\n            });\n        } finally {\n            setIsLoading(false);\n        }\n    }, [topicId, postId, fetchReplies, toast, t]);\n\n\n    useEffect(() => {\n        if (!topicId || !postId) return;\n        fetchInitialData();\n    }, [topicId, postId, fetchInitialData]);\n\n    const handleReplySubmit = async (e: React.FormEvent) => {\n        e.preventDefault();\n        if (!newReply.trim() || !user) {\n            toast({ title: t('errors.emptyReply'), variant: \"destructive\"});\n            return;\n        }\n        setIsSubmitting(true);\n        try {\n            await addReplyToPost({ topicId, postId, content: newReply });\n            setNewReply(\"\");\n            toast({ title: t('reply.success') });\n            // Reset replies and fetch from the beginning\n            setReplies([]);\n            setLastVisible(null);\n            setHasMore(true);\n            await fetchReplies(true);\n        } catch (error) {\n             console.error(\"Error adding reply:\", error);\n             toast({\n                title: t('errors.submitReply.title'),\n                description: t('errors.submitReply.description'),\n                variant: \"destructive\"\n            });\n        } finally {\n            setIsSubmitting(false);\n        }\n    };\n    \n\n    if (isLoading) {\n        return <PostPageSkeleton />;\n    }\n\n    if (!post) {\n        return (\n            <div className=\"container mx-auto max-w-3xl py-8 text-center\">\n                <h3 className=\"text-lg font-semibold\">{t('notFound.title')}</h3>\n                <p className=\"text-muted-foreground\">{t('notFound.description')}</p>\n                <Button asChild className=\"mt-4\">\n                    <Link href=\"/forums\">{t('notFound.backButton')}</Link>\n                </Button>\n            </div>\n        );\n    }\n\n\n    return (\n        <div className=\"container mx-auto max-w-3xl py-8\">\n            <Link href={`/forums/${topicId}`} className=\"flex items-center text-sm text-muted-foreground hover:underline mb-4\">\n                <ArrowLeft className=\"h-4 w-4 mr-1\" />\n                {t('backLink', { topicName: post.topicName })}\n            </Link>\n\n            <Card>\n                <CardHeader className=\"border-b\">\n                    <CardTitle>{post.title}</CardTitle>\n                    <div className=\"flex items-center gap-2 text-sm text-muted-foreground pt-2\">\n                        <Avatar className=\"h-8 w-8\">\n                            <AvatarImage src={post.author.avatarUrl} alt={post.author.name} />\n                            <AvatarFallback>{post.author.name?.substring(0, 2).toUpperCase()}</AvatarFallback>\n                        </Avatar>\n                        <span>{t('postMeta', { author: post.author.name, date: new Date(post.timestamp).toLocaleDateString() })}</span>\n                    </div>\n                </CardHeader>\n                <CardContent className=\"py-6 whitespace-pre-wrap\">\n                    {post.content}\n                </CardContent>\n            </Card>\n\n            <h2 className=\"text-xl font-semibold mt-8 mb-4\">{t('repliesTitle', { count: post.replyCount || 0 })}</h2>\n            <div className=\"space-y-4\">\n                {replies.length > 0 ? (\n                    replies.map(reply => (\n                        <Card key={reply.id} className=\"bg-slate-50 dark:bg-slate-800/20\">\n                            <CardHeader className=\"flex flex-row items-center gap-3 space-y-0 pb-3\">\n                                 <Avatar className=\"h-8 w-8\">\n                                    <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} />\n                                    <AvatarFallback>{reply.author.name?.substring(0, 2).toUpperCase()}</AvatarFallback>\n                                </Avatar>\n                                <div>\n                                    <p className=\"font-semibold text-sm\">{reply.author.name}</p>\n                                    <p className=\"text-xs text-muted-foreground\">{new Date(reply.timestamp).toLocaleString()}</p>\n                                </div>\n                            </CardHeader>\n                            <CardContent>\n                                <p className=\"whitespace-pre-wrap text-sm\">{reply.content}</p>\n                            </CardContent>\n                        </Card>\n                    ))\n                ) : (\n                    <div className=\"text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-800/20 rounded-lg\">\n                        <p>{t('noReplies')}</p>\n                    </div>\n                )}\n                 {hasMore && (\n                    <div className=\"flex justify-center\">\n                        <Button\n                            onClick={() => fetchReplies()}
+const PostPageSkeleton = () => (
+    <div className="container mx-auto max-w-3xl py-8">
+        <Skeleton className="h-6 w-48 mb-4" />
+        <Card>
+            <CardHeader className="flex flex-row items-center gap-4 border-b">
+                <div className="space-y-2">
+                    <Skeleton className="h-7 w-96" />
+                    <div className="flex items-center gap-2">
+                        <Skeleton className="h-8 w-8 rounded-full" />
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-4 w-32" />
+                    </div>
+                </div>
+            </CardHeader>
+            <CardContent className="py-6">
+                <div className="space-y-3 mt-4">
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-5/6" />
+                </div>
+            </CardContent>
+        </Card>
+        
+        <div className="mt-8">
+            <Skeleton className="h-8 w-32 mb-4" />
+            <div className="space-y-4">
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
+            </div>
+        </div>
+    </div>
+);
+
+
+export default function PostPage() {
+    const params = useParams();
+    const { user } = useAuth();
+    const { toast } = useToast();
+    const t = useTranslations('Forums.postView');
+    
+    const topicId = params.topicId as string;
+    const postId = params.postId as string;
+
+    const [post, setPost] = useState<ForumPost | null>(null);
+    const [replies, setReplies] = useState<PostReply[]>([]);
+    const [lastVisible, setLastVisible] = useState<string | null>(null);
+    const [hasMore, setHasMore] = useState(true);
+    const [newReply, setNewReply] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const functions = getFunctions(firebaseApp);
+    const getRepliesForPost = useMemo(() => httpsCallable(functions, 'getRepliesForPost'), [functions]);
+    const addReplyToPost = useMemo(() => httpsCallable(functions, 'addReplyToPost'), [functions]);
+
+    const fetchReplies = useCallback(async (isInitialLoad = false) => {
+        if (!hasMore && !isInitialLoad) return;
+        
+        if (isInitialLoad) {
+             setIsLoading(true);
+        } else {
+            setIsLoadingMore(true);
+        }
+
+        try {
+            const result = await getRepliesForPost({ topicId, postId, lastVisible: isInitialLoad ? null : lastVisible });
+            const data = result.data as { replies?: PostReply[], lastVisible?: string | null };
+            const backendReplies = data?.replies || [];
+            
+            if (backendReplies.length > 0) {
+                setReplies(prev => isInitialLoad ? backendReplies : [...prev, ...backendReplies]);
+                setLastVisible(data?.lastVisible || null);
+            }
+            
+            setHasMore(!!data?.lastVisible);
+
+        } catch (error) {
+             console.error("Error fetching replies:", error);
+            toast({
+                title: t('errors.loadReplies.title'),
+                description: t('errors.loadReplies.description'),
+                variant: "destructive"
+            });
+        } finally {
+            if(isInitialLoad) setIsLoading(false);
+            else setIsLoadingMore(false);
+        }
+    }, [topicId, postId, lastVisible, getRepliesForPost, toast, t, hasMore]);
+
+
+    const fetchInitialData = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const postDetails = await getPostDetails(topicId, postId);
+            setPost(postDetails);
+            if(postDetails){
+               await fetchReplies(true);
+            }
+        } catch (error) {
+            console.error("Error fetching post data:", error);
+             toast({
+                title: t('errors.loadPost.title'),
+                description: t('errors.loadPost.description'),
+                variant: "destructive"
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [topicId, postId, fetchReplies, toast, t]);
+
+
+    useEffect(() => {
+        if (!topicId || !postId) return;
+        fetchInitialData();
+    }, [topicId, postId, fetchInitialData]);
+
+    const handleReplySubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newReply.trim() || !user) {
+            toast({ title: t('errors.emptyReply'), variant: "destructive"});
+            return;
+        }
+        setIsSubmitting(true);
+        try {
+            await addReplyToPost({ topicId, postId, content: newReply });
+            setNewReply("");
+            toast({ title: t('reply.success') });
+            // Reset replies and fetch from the beginning
+            setReplies([]);
+            setLastVisible(null);
+            setHasMore(true);
+            await fetchReplies(true);
+        } catch (error) {
+             console.error("Error adding reply:", error);
+             toast({
+                title: t('errors.submitReply.title'),
+                description: t('errors.submitReply.description'),
+                variant: "destructive"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+    
+
+    if (isLoading) {
+        return <PostPageSkeleton />;
+    }
+
+    if (!post) {
+        return (
+            <div className="container mx-auto max-w-3xl py-8 text-center">
+                <h3 className="text-lg font-semibold">{t('notFound.title')}</h3>
+                <p className="text-muted-foreground">{t('notFound.description')}</p>
+                <Button asChild className="mt-4">
+                    <Link href="/forums">{t('notFound.backButton')}</Link>
+                </Button>
+            </div>
+        );
+    }
+
+
+    return (
+        <div className="container mx-auto max-w-3xl py-8">
+            <Link href={`/forums/${topicId}`} className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                {t('backLink', { topicName: post.topicName })}
+            </Link>
+
+            <Card>
+                <CardHeader className="border-b">
+                    <CardTitle>{post.title}</CardTitle>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
+                        <Avatar className="h-8 w-8">
+                            <AvatarImage src={post.author.avatarUrl} alt={post.author.name} />
+                            <AvatarFallback>{post.author.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <span>{t('postMeta', { author: post.author.name, date: new Date(post.createdAt).toLocaleDateString() })}</span>
+                    </div>
+                </CardHeader>
+                <CardContent className="py-6 whitespace-pre-wrap">
+                    {post.content}
+                </CardContent>
+            </Card>
+
+            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: post.replyCount || 0 })}</h2>
+            <div className="space-y-4">
+                {replies.length > 0 ? (
+                    replies.map(reply => (
+                        <Card key={reply.id} className="bg-slate-50 dark:bg-slate-800/20">
+                            <CardHeader className="flex flex-row items-center gap-3 space-y-0 pb-3">
+                                 <Avatar className="h-8 w-8">
+                                    <AvatarImage src={reply.author.avatarUrl} alt={reply.author.name} />
+                                    <AvatarFallback>{reply.author.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <p className="font-semibold text-sm">{reply.author.name}</p>
+                                    <p className="text-xs text-muted-foreground">{new Date(reply.timestamp).toLocaleString()}</p>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="whitespace-pre-wrap text-sm">{reply.content}</p>
+                            </CardContent>
+                        </Card>
+                    ))
+                ) : (
+                    <div className="text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-800/20 rounded-lg">
+                        <p>{t('noReplies')}</p>
+                    </div>
+                )}
+                 {hasMore && (
+                    <div className="flex justify-center">
+                        <Button
+                            onClick={() => fetchReplies()}
+                            disabled={isLoadingMore}
+                            variant="outline"
+                        >
+                            {isLoadingMore ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    {t('buttons.loadingMore')}
+                                </>
+                            ) : (
+                                t('buttons.loadMore')
+                            )}
+                        </Button>
+                    </div>
+                )}
+            </div>
+            
+            {user && (
+                 <Card className="mt-8">
+                    <CardHeader>
+                        <CardTitle>{t('reply.title')}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <form onSubmit={handleReplySubmit}>
+                            <div className="grid w-full gap-2">
+                                <Textarea 
+                                    placeholder={t('reply.placeholder')}
+                                    value={newReply}
+                                    onChange={(e) => setNewReply(e.target.value)}
+                                    rows={4}
+                                    disabled={isSubmitting}
+                                />
+                                <Button type="submit" className="w-full sm:w-auto" disabled={isSubmitting || !newReply.trim()}>
+                                     {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t('reply.submittingButton')}</> : <><Send className="mr-2 h-4 w-4"/>{t('reply.submitButton')}</>}
+                                </Button>
+                            </div>
+                        </form>
+                    </CardContent>
+                </Card>
+            )}
+        </div>
+    );
+}
