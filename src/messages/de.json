@@ -230,5 +230,427 @@
       "subtitle": "Schließen Sie sich noch heute der DamDoh-Community an und werden Sie Teil der Bewegung, um ein nachhaltigeres, gerechteres und widerstandsfähigeres Lebensmittelsystem für alle zu schaffen.",
       "button": "Kostenlos beitreten"
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Bauern stärken, den Planeten wiederherstellen",
+      "subtitle": "Bei DamDoh glauben wir, dass die Zukunft unseres Planeten in den Händen seiner kleinsten Bauern liegt."
+    },
+    "vision": {
+      "title": "Bauern als Hüter der Erde",
+      "p1": "DamDoh entstand aus gelebter Erfahrung mit den immensen, verwobenen Herausforderungen, mit denen Kleinbauern weltweit konfrontiert sind: Armut, Marktausschluss, Familienkrisen, Migration und Verlust kultureller Bindungen zum Land.",
+      "p2": "Diese Herausforderungen schaden nicht nur einzelnen Bauern – sie erodieren Ökosysteme, beschleunigen die globale Erwärmung und destabilisieren Lebensmittelsysteme für alle.",
+      "foundersTitle": "Unsere Gründer"
+    },
+    "challenge": {
+      "title": "Die Herausforderung: Ein kaputtes System, ein sich erwärmender Planet",
+      "description": "Unsere Lebensmittel kommen durch eine Lieferkette voller Schwachstellen:",
+      "list": {
+        "knowledge": "Wissenslücken",
+        "market": "Marktbarrieren",
+        "quality": "Qualität & Standards",
+        "logistics": "Logistikausfälle",
+        "financial": "Finanzielle Ausgrenzung",
+        "climate": "Klimaanfälligkeit",
+        "informal": "Informelle Systeme"
+      }
+    },
+    "solution": {
+      "title": "Unsere Lösung: Eine globale „Super-App“ für einen wiederhergestellten Planeten",
+      "description": "DamDoh ist eine intelligente, integrierte digitale Plattform, die Bauern als Hüter der Biodiversität und Katalysatoren des Klimaschutzes stärken soll:",
+      "list": {
+        "education": "Bildung & Schulung",
+        "ai": "Intelligente Landwirtschaft & KI-Einblicke",
+        "logistics": "Lieferkette & Logistik",
+        "financial": "Finanzielle Werkzeuge"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Über die Technologie hinaus: Ein globaler Knotenpunkt für die Wiederherstellung",
+      "list": {
+        "p2p": {
+          "title": "Bauer-zu-Bauer",
+          "content": "Teilen von indigenem Wissen und regenerativen Techniken über Grenzen hinweg."
+        },
+        "p2b": {
+          "title": "Bauer-zu-Käufer",
+          "content": "Verbindung von Bauern mit Käufern, die sich für Biodiversität und Klimaziele einsetzen."
+        },
+        "p2e": {
+          "title": "Bauer-zu-Experte",
+          "content": "Direkte Beratung durch Agronomen, Ökologen und Forscher."
+        },
+        "p2w": {
+          "title": "Bauer-zur-Welt",
+          "content": "Partnerschaften mit NGOs, Regierungen und Genossenschaften zur Skalierung der Wirkung."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Unser Engagement: Hoffnung, Land und Lebensgrundlagen wiederherstellen",
+      "p1": "Bei DamDoh sehen wir Bauern nicht nur als Lebensmittelproduzenten, sondern als Wächter der Erde – fähig, degradierte Felder in blühende, artenreiche Landschaften zu verwandeln.",
+      "p2": "Indem wir Kleinbauern mit Wissen, Werkzeugen und fairen Märkten stärken, helfen wir ihnen, mehr zu verdienen, mehr wiederherzustellen und ihre Gemeinden in eine nachhaltige, würdevolle Zukunft zu führen.",
+      "p3": "Wenn Bauern gedeihen, gedeiht die Biodiversität. Wenn die Biodiversität gedeiht, heilt der Planet. Gemeinsam können wir die Landwirtschaft zu einer Kraft des Guten machen – Ökosysteme wiederherstellen, das Klima kühlen und Fülle für kommende Generationen sichern.",
+      "button": "Der Bewegung beitreten"
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir würden uns freuen, von Ihnen zu hören. Wenden Sie sich bei Fragen, Partnerschaften oder Feedback an uns.",
+    "emailUs": {
+      "title": "Senden Sie uns eine E-Mail",
+      "general": "Allgemeine Anfragen",
+      "support": "Unterstützung",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Mo - Fr, 9 - 17 Uhr (OAZ)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "DamDoh Stiftung",
+      "address": "123 Agri-Innovation Hub, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Name",
+      "namePlaceholder": "Ihr Name",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "Ihre E-Mail",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "Betreff Ihrer Nachricht",
+      "messageLabel": "Nachricht",
+      "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein...",
+      "buttonText": "Nachricht senden",
+      "note": "Wir werden unser Bestes tun, um innerhalb von 24-48 Stunden zu antworten."
+    }
+  },
+  "careers": {
+    "title": "Treten Sie unserem Team bei",
+    "subtitle": "Helfen Sie uns, eine nachhaltigere und gerechtere Zukunft für die Landwirtschaft zu schaffen.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Bei DamDoh werden Sie Teil eines leidenschaftlichen, missionsorientierten Teams, das sich der Erzielung einer realen Wirkung verschrieben hat. Wir bieten:",
+      "point1": "Ein kollaboratives und inklusives Arbeitsumfeld.",
+      "point2": "Möglichkeiten, an Spitzentechnologie zu arbeiten.",
+      "point3": "Direkte Auswirkungen auf die Lebensgrundlagen der Landwirte und die Gesundheit unseres Planeten.",
+      "point4": "Wettbewerbsfähige Vergütung und Sozialleistungen.",
+      "point5": "Ein Engagement für berufliches Wachstum und Lernen."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Frontend Engineer (React/Next.js)",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Leiten Sie die Entwicklung unserer benutzerorientierten Anwendungen und erstellen Sie intuitive und leistungsstarke Schnittstellen für eine globale Benutzerbasis."
+      },
+      "job2": {
+        "title": "Cloud-Agronom & Datenwissenschaftler",
+        "location": "Nairobi, Kenia",
+        "type": "Vollzeit",
+        "description": "Analysieren Sie landwirtschaftliche Daten, um Erkenntnisse und Modelle zu entwickeln, die den Landwirten über unseren KI-Assistenten umsetzbare Ratschläge geben."
+      },
+      "job3": {
+        "title": "Community Manager (Ostafrrika)",
+        "location": "Kampala, Uganda",
+        "type": "Vollzeit",
+        "description": "Interagieren Sie mit unserer Benutzergemeinschaft, fördern Sie den Wissensaustausch und unterstützen Sie das Wachstum des DamDoh-Ökosystems vor Ort."
+      }
+    },
+    "noOpenings": {
+      "title": "Derzeit keine offenen Stellen",
+      "content1": "Wir sind immer auf der Suche nach leidenschaftlichen und talentierten Personen, die sich unserer Mission anschließen möchten. Wenn Sie glauben, dass Sie gut zu uns passen, senden Sie uns gerne Ihren Lebenslauf und ein Anschreiben an {emailLink}."
+    },
+    "applyNowButton": "Jetzt bewerben"
+  },
+  "communityGuidelines": {
+    "title": "Community-Richtlinien",
+    "subtitle": "Förderung eines respektvollen, vertrauenswürdigen und kollaborativen Umfelds für alle.",
+    "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein positiver und produktiver Ort für alle bleibt, bitten wir alle Mitglieder, die folgenden Richtlinien einzuhalten:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und konstruktiv",
+      "description": "Behandeln Sie alle Mitglieder mit Respekt, auch wenn Sie anderer Meinung sind. Führen Sie konstruktive Dialoge, die zum kollektiven Wissen der Gemeinschaft beitragen. Belästigung, Hassreden und persönliche Angriffe werden nicht toleriert."
+    },
+    "authentic": {
+      "title": "Seien Sie authentisch und transparent",
+      "description": "Stellen Sie sich und Ihr Unternehmen ehrlich dar. Geben Sie sich nicht als andere aus und machen Sie keine irreführenden Angaben zu Ihren Produkten, Dienstleistungen oder Qualifikationen. Vertrauen ist die Grundlage unserer Plattform."
+    },
+    "relevant": {
+      "title": "Bleiben Sie relevant und themenbezogen",
+      "description": "Tragen Sie zu Diskussionen auf eine Weise bei, die für das Thema oder das Forum relevant ist. Vermeiden Sie Spam, übermäßige Werbung oder das Posten von Inhalten, die nichts mit Landwirtschaft, Nachhaltigkeit und der Lieferkette zu tun haben."
+    },
+    "fairTrade": {
+      "title": "Halten Sie faire Handelspraktiken ein",
+      "description": "Führen Sie alle Geschäfte auf dem Marktplatz mit Integrität durch. Erfüllen Sie Ihre Bestellungen, zahlen Sie vereinbarte Preise und seien Sie ehrlich in Ihren Produkt- und Dienstleistungsbeschreibungen. Wir verpflichten uns zu einem fairen und ethischen Marktplatz."
+    },
+    "sustainable": {
+      "title": "Fördern Sie nachhaltige Praktiken",
+      "description": "Obwohl wir alle Mitglieder der landwirtschaftlichen Gemeinschaft willkommen heißen, fördern wir den Austausch und die Förderung von Praktiken, die die Biodiversität verbessern, die Bodengesundheit fördern und zu einem nachhaltigeren Lebensmittelsystem beitragen."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte oder Verhalten sehen, die gegen diese Richtlinien verstoßen, melden Sie dies bitte unserem Team per E-Mail an {emailLink}. Wir verpflichten uns, alle Meldungen zu prüfen und entsprechende Maßnahmen zu ergreifen."
+    },
+    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Vielen Dank, dass Sie uns helfen, eine blühende und positive Gemeinschaft aufzubauen!"
+  },
+  "helpCenterPage": {
+    "title": "Hilfezentrum",
+    "subtitle": "Ihre zentrale Ressource für Anleitungen, FAQs und Support.",
+    "howCanWeHelp": "Wie können wir Ihnen heute helfen?",
+    "searchPlaceholder": "Nach Antworten suchen...",
+    "browseTopics": "Themen durchsuchen",
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "description": "Lernen Sie die Grundlagen zum Einrichten Ihres Profils und zur Navigation in DamDoh.",
+      "placeholder": "Inhalte für 'Erste Schritte' werden in Kürze verfügbar sein."
+    },
+    "marketplaceGuide": {
+      "title": "Marktplatz-Anleitung",
+      "description": "So erstellen Sie Angebote, verwalten Bestellungen und treten mit Käufern/Verkäufern in Kontakt.",
+      "placeholder": "Inhalte für die 'Marktplatz-Anleitung' werden in Kürze verfügbar sein."
+    },
+    "accountManagement": {
+      "title": "Kontoverwaltung",
+      "description": "Verwalten Sie Ihr Passwort, Ihre Benachrichtigungen und Ihre Datenschutzeinstellungen."
+    },
+    "troubleshooting": {
+      "title": "Fehlerbehebung",
+      "description": "Finden Sie Lösungen für häufige Probleme und technische Schwierigkeiten."
+    },
+    "stillNeedHelp": {
+      "title": "Brauchen Sie immer noch Hilfe?",
+      "description": "Wenn Sie die gesuchte Antwort nicht finden können, steht Ihnen unser Support-Team zur Verfügung.",
+      "button": "Support kontaktieren"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Branchennachrichten",
+    "description": "Die neuesten Updates, Trends und Berichte aus dem globalen Agrarsektor.",
+    "searchPlaceholder": "Nachrichten und Berichte durchsuchen...",
+    "categoryPlaceholder": "Nach Kategorie filtern",
+    "allCategories": "Alle Kategorien",
+    "sourceLabel": "Quelle",
+    "publishedLabel": "Veröffentlicht",
+    "categoryLabel": "Kategorie",
+    "readButton": "Ganze Geschichte lesen",
+    "noNews": {
+      "title": "Keine Nachrichten verfügbar",
+      "description": "Schauen Sie bald wieder vorbei für die neuesten Updates zu landwirtschaftlichen Trends und Richtlinien."
+    },
+    "news1": {
+      "title": "Globale Kaffeepreise sehen Volatilität angesichts wechselnder Wetterbedingungen",
+      "excerpt": "Kaffee-Futures haben erhebliche Schwankungen erfahren, da wichtige Anbauregionen in Südamerika und Südostasien mit unvorhersehbarem Wetter konfrontiert sind, was die Ernteprognosen für die kommende Saison beeinflusst."
+    },
+    "news2": {
+      "title": "Neue EU-Vorschriften für nachhaltige Verpackungen werden Lebensmittelexporteure betreffen",
+      "excerpt": "Die Europäische Union hat neue Vorschriften verabschiedet, die einen höheren Anteil an recycelbaren Materialien in Lebensmittelverpackungen fordern und im 3. Quartal 2024 in Kraft treten. Exporteuren wird empfohlen, ihre Lieferketten anzupassen."
+    },
+    "news3": {
+      "title": "Studie zeigt, dass regenerative Praktiken den Bodenkohlenstoff in 5 Jahren um bis zu 25 % erhöhen können",
+      "excerpt": "Eine jahrzehntelange Studie, die in 'Nature Sustainability' veröffentlicht wurde, zeigt, dass die Implementierung von Direktsaat und Zwischenfrüchten den organischen Kohlenstoff im Boden erheblich steigern kann und eine wirksame Klimalösung bietet."
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte und bieten Sie Ihre landwirtschaftlichen Dienstleistungen einer globalen Gemeinschaft an.",
+    "listServiceButton": "Ihre Dienstleistung anbieten",
+    "searchPlaceholder": "Nach Dienstleistungen suchen (z.B. 'Drohnenpilot', 'Agronom')...",
+    "locationPlaceholder": "Nach Standort filtern",
+    "categoryPlaceholder": "Nach Kategorie filtern",
+    "allCategories": "Alle Dienstleistungskategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie anbietet.",
+    "toast": {
+      "error": {
+        "title": "Suchfehler",
+        "description": "Dienstleistungen konnten zu diesem Zeitpunkt nicht abgerufen werden. Bitte versuchen Sie es später erneut."
+      }
+    }
+  },
+  "privacyPolicy": {
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Diese Datenschutzerklärung für DamDoh ('wir', 'uns' oder 'unser') beschreibt, wie und warum wir Ihre Informationen sammeln, speichern, verwenden und/oder weitergeben ('verarbeiten'), wenn Sie unsere Dienste ('Dienste') nutzen, z. B. wenn Sie unsere Website oder unsere mobile Anwendung besuchen.",
+    "whatInfoWeCollect": {
+      "heading": "1. WELCHE INFORMATIONEN SAMMELN WIR?",
+      "content": "Wir sammeln personenbezogene Daten, die Sie uns freiwillig zur Verfügung stellen, wenn Sie sich bei den Diensten registrieren, Interesse an Informationen über uns oder unsere Produkte und Dienste bekunden, an Aktivitäten auf den Diensten teilnehmen oder uns anderweitig kontaktieren."
+    },
+    "howWeUseInfo": {
+      "heading": "2. WIE VERARBEITEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir verarbeiten Ihre Informationen, um unsere Dienste bereitzustellen, zu verbessern und zu verwalten, mit Ihnen zu kommunizieren, zur Sicherheit und Betrugsprävention und zur Einhaltung von Gesetzen. Wir können Ihre Informationen auch für andere Zwecke mit Ihrer Zustimmung verarbeiten."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WANN UND MIT WEM TEILEN WIR IHRE PERSÖNLICHEN INFORMATIONEN?",
+      "content": "Wir können Informationen in bestimmten Situationen und mit bestimmten Kategorien von Dritten teilen, z. B. mit Finanzinstitutspartnern, wenn Sie über unsere Plattform einen Kredit beantragen, jedoch nur mit Ihrer ausdrücklichen Zustimmung."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. VERWENDEN WIR COOKIES UND ANDERE TRACKING-TECHNOLOGIEN?",
+      "content": "Wir können Cookies und ähnliche Tracking-Technologien verwenden, um auf Informationen zuzugreifen oder diese zu speichern. Spezifische Informationen darüber, wie wir solche Technologien verwenden und wie Sie bestimmte Cookies ablehnen können, finden Sie in unserer Cookie-Richtlinie."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. WIE LANGE BEWAHREN WIR IHRE INFORMATIONEN AUF?",
+      "content": "Wir bewahren Ihre Informationen so lange auf, wie es zur Erfüllung der in dieser Datenschutzerklärung dargelegten Zwecke erforderlich ist, sofern gesetzlich nichts anderes vorgeschrieben ist."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. WIE SCHÜTZEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir haben eine Reihe von technischen und organisatorischen Sicherheitsmaßnahmen implementiert, um die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen."
+    },
+    "minors": {
+      "heading": "7. SAMMELN WIR INFORMATIONEN VON MINDERJÄHRIGEN?",
+      "content": "Wir sammeln nicht wissentlich Daten von Kindern unter 18 Jahren oder vermarkten an diese."
+    },
+    "privacyRights": {
+      "heading": "8. WAS SIND IHRE DATENSCHUTZRECHTE?",
+      "content": "Sie haben jederzeit das Recht, Ihr Konto zu überprüfen, zu ändern oder zu kündigen. Abhängig von Ihrem Standort haben Sie möglicherweise zusätzliche Rechte bezüglich Ihrer personenbezogenen Daten."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. STEUERELEMENTE FÜR DO-NOT-TRACK-FUNKTIONEN",
+      "content": "Die meisten Webbrowser und einige mobile Betriebssysteme enthalten eine Do-Not-Track ('DNT')-Funktion oder -Einstellung, die Sie aktivieren können, um Ihre Datenschutzpräferenz zu signalisieren, dass Daten über Ihre Online-Browseraktivitäten nicht überwacht und gesammelt werden. Wir reagieren derzeit nicht auf DNT-Browsersignale."
+    },
+    "updatesToNotice": {
+      "heading": "10. MACHEN WIR AKTUALISIERUNGEN DIESER MITTEILUNG?",
+      "content": "Ja, wir werden diese Mitteilung bei Bedarf aktualisieren, um mit den relevanten Gesetzen konform zu bleiben. Die aktualisierte Version wird durch ein aktualisiertes 'Überarbeitet'-Datum angezeigt."
+    },
+    "contactUs": {
+      "heading": "11. WIE KÖNNEN SIE UNS BEZÜGLICH DIESER MITTEILUNG KONTAKTIEREN?",
+      "content": "Wenn Sie Fragen oder Kommentare zu dieser Mitteilung haben, können Sie uns eine E-Mail an privacy@damdoh.org senden."
+    }
+  },
+  "termsOfService": {
+    "title": "Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Diese Nutzungsbedingungen stellen eine rechtlich bindende Vereinbarung zwischen Ihnen und DamDoh bezüglich Ihres Zugriffs auf und Ihrer Nutzung der Dienste dar.",
+    "agreementToTerms": {
+      "heading": "1. ZUSTIMMUNG ZU DEN BEDINGUNGEN",
+      "content": "Durch die Nutzung der Dienste stimmen Sie zu, an diese Nutzungsbedingungen gebunden zu sein. Wenn Sie nicht zustimmen, ist Ihnen die Nutzung der Dienste ausdrücklich untersagt und Sie müssen die Nutzung sofort einstellen."
+    },
+    "intellectualProperty": {
+      "heading": "2. GEISTIGE EIGENTUMSRECHTE",
+      "content": "Sofern nicht anders angegeben, sind die Dienste unser Eigentum und alle Quellcodes, Datenbanken, Funktionen, Software, Website-Designs, Audio-, Video-, Text-, Foto- und Grafikdateien auf der Website (zusammenfassend als 'Inhalt' bezeichnet) sowie die darin enthaltenen Marken, Dienstleistungsmarken und Logos ('Marken') sind unser Eigentum oder werden von uns kontrolliert oder an uns lizenziert."
+    },
+    "userRepresentations": {
+      "heading": "3. ZUSICHERUNGEN DES BENUTZERS",
+      "content": "Durch die Nutzung der Dienste versichern und garantieren Sie, dass: (1) alle von Ihnen übermittelten Registrierungsinformationen wahr, genau, aktuell und vollständig sind; (2) Sie die Richtigkeit dieser Informationen aufrechterhalten; (3) Sie die rechtliche Handlungsfähigkeit besitzen und diesen Nutzungsbedingungen zustimmen; (4) Sie nicht über automatisierte oder nicht-menschliche Mittel auf die Dienste zugreifen."
+    },
+    "prohibitedActivities": {
+      "heading": "4. VERBOTENE AKTIVITÄTEN",
+      "content": "Sie dürfen die Dienste nicht für andere Zwecke als die, für die wir die Dienste zur Verfügung stellen, nutzen. Zu den verbotenen Aktivitäten gehören unter anderem betrügerische Aktivitäten, der Versuch, sich als ein anderer Benutzer auszugeben, und die Verwendung von Informationen, die über die Dienste erhalten wurden, um eine andere Person zu belästigen, zu missbrauchen oder zu schädigen."
+    },
+    "platformManagement": {
+      "heading": "5. PLATTFORMVERWALTUNG",
+      "content": "Wir behalten uns das Recht vor, sind aber nicht verpflichtet, (1) die Dienste auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugriff auf Ihre Beiträge zu verweigern, einzuschränken, deren Verfügbarkeit zu begrenzen oder zu deaktivieren."
+    },
+    "termAndTermination": {
+      "heading": "6. LAUFZEIT UND KÜNDIGUNG",
+      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft, solange Sie die Dienste nutzen. OHNE EINSCHRÄNKUNG ANDERER BESTIMMUNGEN DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE VORANKÜNDIGUNG ODER HAFTUNG DEN ZUGRIFF AUF UND DIE NUTZUNG DER DIENSTE (EINSCHLIESSLICH DER SPERRUNG BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS JEDEM GRUND ZU VERWEIGERN."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. ÄNDERUNGEN UND UNTERBRECHUNGEN",
+      "content": "Wir behalten uns das Recht vor, den Inhalt der Dienste jederzeit und aus beliebigem Grund nach unserem alleinigen Ermessen ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die Dienste ganz oder teilweise jederzeit ohne Vorankündigung zu ändern oder einzustellen."
+    },
+    "governingLaw": {
+      "heading": "8. ANWENDBARES RECHT",
+      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Dienste unterliegen den Gesetzen von Kenia, die auf Vereinbarungen anwendbar sind, die vollständig in Kenia geschlossen und erfüllt werden, ohne Rücksicht auf die Grundsätze des Kollisionsrechts."
+    },
+    "disputeResolution": {
+      "heading": "9. STREITBEILEGUNG",
+      "content": "Jegliche rechtliche Schritte jeglicher Art, die von Ihnen oder uns eingeleitet werden, müssen bei den Gerichten in Nairobi, Kenia, eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit der Zuständigkeit und dem Gerichtsstand dieser Gerichte zu und verzichten auf alle Einreden des Mangels an persönlicher Zuständigkeit und des Forum non conveniens."
+    },
+    "contactUs": {
+      "heading": "10. KONTAKTIEREN SIE UNS",
+      "content": "Um eine Beschwerde bezüglich der Dienste zu klären oder weitere Informationen zur Nutzung der Dienste zu erhalten, kontaktieren Sie uns bitte."
+    },
+    "conclusion": "Um uns zu kontaktieren, nutzen Sie bitte die {contactLink} Seite."
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Netzwerk-Vorschläge",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "KI-generierte Vorschläge basierend auf Ihrem Profil und Ihrer Aktivität.",
+    "follow": "Folgen",
+    "following": "Gefolgt",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
+    "noSuggestions": "Derzeit keine Vorschläge. Erkunden Sie die Plattform, um uns zu helfen, Sie kennenzulernen!",
+    "loadError": "Vorschläge konnten nicht geladen werden.",
+    "promotionsTitle": "Werbeaktionen & Gutscheine",
+    "promotionsDescription": "Erstellen und verwalten Sie Rabatte für Ihre Marktplatzeinträge.",
+    "managePromotionsButton": "Gutscheine verwalten",
+    "ad": "Anzeige",
+    "adTitle": "DamDoh Markttrends",
+    "adDescription": "Erhalten Sie tägliche Einblicke in Preis- und Nachfragetrends.",
+    "adButton": "Mehr erfahren"
+  },
+  "traceabilityPage": {
+    "title": "Produkt-Rückverfolgbarkeit",
+    "description": "Verfolgen Sie den Weg Ihrer Lebensmittel vom Bauernhof bis zur Gabel mit einer Vibrant Traceability ID (VTI).",
+    "inputPlaceholder": "VTI oder Chargen-ID eingeben...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die jeder Produktcharge zugewiesen wird und Transparenz entlang der Lieferkette gewährleistet.",
+    "recentTitle": "Kürzlich verifizierte Chargen",
+    "recentDescription": "Entdecken Sie einige der neuesten Produktreisen auf der Plattform.",
+    "noRecentBatches": "Keine kürzlich verifizierten Chargen gefunden.",
+    "producerLabel": "Hersteller",
+    "harvestDateLabel": "Erntedatum",
+    "viewReportButton": "Vollständigen Bericht anzeigen",
+    "detailPage": {
+      "backLink": "Zurück zur Rückverfolgbarkeits-Zentrale",
+      "invalidIdError": "Keine gültige Chargen-ID angegeben.",
+      "loadError": "Fehler beim Laden der Rückverfolgbarkeitshistorie für diese Charge.",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Der Rückverfolgbarkeitsbericht für diese ID konnte nicht gefunden werden.",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Hersteller",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Anfänglicher Ertrag",
+      "qualityLabel": "Qualitätsgrad",
+      "notSpecified": "Nicht angegeben",
+      "journeyTitle": "Produktreise",
+      "journeyDescription": "Eine chronologische Aufzeichnung der Ereignisse für diese Charge.",
+      "noEventDetails": "Keine spezifischen Details für dieses Ereignis.",
+      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgbarkeitsereignisse protokolliert.",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Dieses Produkt wurde unter Verwendung von Praktiken angebaut, die den Prinzipien der nachhaltigen und biologischen Landwirtschaft entsprechen, basierend auf protokollierten Betriebsmitteln.",
+      "geoLocationLabel": "Geolokalisierung",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-Diagnose"
+    }
+  },
+  "Forums": {
+    "topic": {
+      "unknownUser": "Unbekannter Benutzer",
+      "postMeta": "von {{author}} am {{date}}",
+      "buttons": {
+        "createPost": "Antwort hinzufügen",
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der auf dieses Thema antwortet.",
+        "button": "Antwort hinzufügen"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Thema existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+        },
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
+        }
+      }
+    }
   }
 }
+
