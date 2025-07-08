@@ -357,5 +357,42 @@
         "description": "No se pudieron obtener los servicios disponibles."
       }
     }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh, desde personas hasta productos.",
+    "placeholder": "Busca productos, servicios, personas o incluso un VTI...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de Café Orgánico Kenia",
+    "popularSearch2": "Tractor en alquiler",
+    "popularSearch3": "Servicios de análisis de suelo",
+    "popularSearch4": "Socio logístico para exportación",
+    "popularSearch5": "Directrices de la comunidad DamDoh",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Busca cualquier cosa...",
+      "searchButton": "Buscar",
+      "searchError": "Error de búsqueda",
+      "searchErrorDescription": "Ocurrió un error al realizar la búsqueda. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Código QR inválido. Este no es un código de usuario o lote de DamDoh válido.",
+      "scanFailed": "Escaneo fallido",
+      "scanError": "Error de escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "userNotFound": "Usuario no encontrado para el ID escaneado.",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Artículos del Mercado",
+        "forums": "Temas del Foro",
+        "vti_registry": "Informe de Trazabilidad",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Artículos"
+      },
+      "noResults": "No se encontraron resultados.",
+      "tryAgain": "Intenta refinar tus términos de búsqueda.",
+      "interpretationTitle": "Interpretación",
+      "interpretationNotesDefault": "Buscando en base a tu consulta.",
+      "filtersTitle": "Filtros Aplicados"
+    }
   }
 }

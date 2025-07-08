@@ -357,5 +357,42 @@
         "description": "Impossible de récupérer les services disponibles."
       }
     }
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh, des personnes aux produits.",
+    "placeholder": "Recherchez des produits, des services, des personnes, ou même un VTI...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Grains de café bio Kenya",
+    "popularSearch2": "Tracteur à louer",
+    "popularSearch3": "Services d'analyse de sol",
+    "popularSearch4": "Partenaire logistique pour l'exportation",
+    "popularSearch5": "Règles de la communauté DamDoh",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Recherchez n'importe quoi...",
+      "searchButton": "Rechercher",
+      "searchError": "Erreur de Recherche",
+      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Code QR invalide. Ce n'est pas un code d'utilisateur ou de lot DamDoh valide.",
+      "scanFailed": "Scan échoué",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "userNotFound": "Utilisateur non trouvé pour l'ID scanné.",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Articles du Marché",
+        "forums": "Sujets du Forum",
+        "vti_registry": "Rapport de Traçabilité",
+        "agri_events": "Événements",
+        "knowledge_articles": "Articles"
+      },
+      "noResults": "Aucun résultat trouvé.",
+      "tryAgain": "Essayez d'affiner vos termes de recherche.",
+      "interpretationTitle": "Interprétation",
+      "interpretationNotesDefault": "Recherche basée sur votre requête.",
+      "filtersTitle": "Filtres Appliqués"
+    }
   }
 }

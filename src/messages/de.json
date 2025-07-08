@@ -340,5 +340,59 @@
     "sentConnectionRequest": "{name} hat Ihnen eine Verbindungsanfrage gesendet",
     "eventReminder": "Ereigniserinnerung",
     "unknownNotification": "Sie haben ein neues Update."
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Entdecken Sie Agrarexperten und professionelle Dienstleistungen, um Ihr Unternehmen zu fördern.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Fähigkeiten oder Dienstleistungen suchen (z.B. Bodenanalyse)",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Dienstleistungskategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später nach neuen Angeboten.",
+    "toast": {
+      "error": {
+        "title": "Suchfehler",
+        "description": "Verfügbare Dienstleistungen konnten nicht abgerufen werden."
+      }
+    }
+  },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform, von Personen bis zu Produkten.",
+    "placeholder": "Suchen Sie nach Produkten, Dienstleistungen, Personen oder sogar einer VTI...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffeebohnen Kenia",
+    "popularSearch2": "Traktor zu vermieten",
+    "popularSearch3": "Bodenanalysedienste",
+    "popularSearch4": "Logistikpartner für den Export",
+    "popularSearch5": "DamDoh-Community-Richtlinien",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Suchen Sie nach allem...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Bei der Durchführung der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Ungültiger QR-Code. Dies ist kein gültiger DamDoh-Benutzer- oder Chargencode.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scanfehler",
+      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "userNotFound": "Benutzer für die gescannte ID nicht gefunden.",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatzartikel",
+        "forums": "Forum-Themen",
+        "vti_registry": "Rückverfolgungsbericht",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Artikel"
+      },
+      "noResults": "Keine Ergebnisse gefunden.",
+      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
+      "interpretationTitle": "Interpretation",
+      "interpretationNotesDefault": "Suche basierend auf Ihrer Anfrage.",
+      "filtersTitle": "Angewandte Filter"
+    }
   }
 }
