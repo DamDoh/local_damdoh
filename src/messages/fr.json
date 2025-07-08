@@ -1,4 +1,3 @@
-
 {
   "traceabilityPage": {
     "title": "Traçabilité des Produits",
@@ -340,7 +339,12 @@
         "description": "Impossible de récupérer les services du marché."
       }
     }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Tous les Types",
+      "Product": "Produit",
+      "Service": "Service"
+    }
   }
 }
-
-      

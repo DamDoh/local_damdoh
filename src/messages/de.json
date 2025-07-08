@@ -1,4 +1,3 @@
-
 {
   "traceabilityPage": {
     "title": "Produkt-Rückverfolgbarkeit",
@@ -340,7 +339,12 @@
         "description": "Dienstleistungen konnten nicht vom Marktplatz abgerufen werden."
       }
     }
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "Alle Typen",
+      "Product": "Produkt",
+      "Service": "Dienstleistung"
+    }
   }
 }
-
-      
