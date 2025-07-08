@@ -285,5 +285,348 @@
         "button": "គ្រប់គ្រងទ្រព្យសម្បត្តិ"
       }
     }
+  },
+  "Marketplace": {
+    "title": "ទីផ្សារ",
+    "description": "រកមើលនិងស្វែងរកផលិតផលនិងសេវាកម្ម។",
+    "createShopButton": "បង្កើតមុខហាង",
+    "createListingButton": "បង្កើតបញ្ជី",
+    "myOrdersButton": "ការបញ្ជាទិញដែលខ្ញុំបានទទួល",
+    "pinButton": "ខ្ទាស់ជាទំព័រដើម",
+    "unpinButton": "មិនខ្ទាស់ពីទំព័រដើម",
+    "searchPlaceholder": "ស្វែងរកទីផ្សារ...",
+    "locationPlaceholder": "តម្រងតាមទីតាំង...",
+    "typePlaceholder": "តម្រងតាមប្រភេទ...",
+    "recommendedForYou": "បានណែនាំសម្រាប់អ្នក",
+    "discoverMore": "ស្វែងយល់បន្ថែម",
+    "noItemsFound": {
+      "title": "រកមិនឃើញធាតុទេ។",
+      "hint": "ព្យាយាមកែសម្រួលតម្រងឬពាក្យស្វែងរករបស់អ្នក។"
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "មិនអាចទាញយកការណែនាំ AI បានទេ"
+      },
+      "search": {
+        "title": "កំហុសក្នុងការស្វែងរក",
+        "description": "មិនអាចទាញយកធាតុផ្សារបានទេ។"
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "បានខ្ទាស់ផ្សារ!",
+      "pinnedDescription": "ផ្សារឥឡូវនេះគឺជាទំព័រដើមលំនាំដើមរបស់អ្នកហើយ។",
+      "unpinnedTitle": "បានមិនខ្ទាស់ទំព័រដើម!",
+      "unpinnedDescription": "ផ្ទាំងគ្រប់គ្រងឥឡូវនេះគឺជាទំព័រដើមលំនាំដើមរបស់អ្នកហើយ។"
+    },
+    "createListing": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "title": "បង្កើតបញ្ជីថ្មី",
+      "description": "ដាក់បញ្ជីផលិតផលឬសេវាកម្មនៅក្នុងផ្សារ។",
+      "form": {
+        "nameLabel": "ឈ្មោះធាតុ/សេវាកម្ម",
+        "namePlaceholder": "បញ្ចូលឈ្មោះបញ្ជីរបស់អ្នក",
+        "typeLabel": "ប្រភេទបញ្ជី",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទបញ្ជី",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាបញ្ជីរបស់អ្នក",
+        "locationLabel": "ទីតាំង",
+        "locationPlaceholder": "បញ្ចូលទីតាំង",
+        "relatedVtiLabel": "VTI / លេខសម្គាល់បាច់ដែលពាក់ព័ន្ធ (ស្រេចចិត្ត)",
+        "relatedVtiPlaceholder": "បញ្ចូល VTI ប្រសិនបើបញ្ជីនេះសម្រាប់បាច់ជាក់លាក់",
+        "relatedVtiDescription": "ការភ្ជាប់ VTI បង្កើនការជឿទុកចិត្តរបស់អ្នកទិញ។",
+        "categoryLabel": "ប្រភេទ",
+        "categoryPlaceholder": "ជ្រើសរើសប្រភេទ",
+        "compensationLabel": "សំណង",
+        "compensationPlaceholder": "ឧទាហរណ៍: ក្នុងមួយម៉ោង, អត្រាថេរ",
+        "experienceLabel": "កម្រិតបទពិសោធន៍",
+        "experiencePlaceholder": "ឧទាហរណ៍: កម្រិតចាប់ផ្តើម, កម្រិតមធ្យម, អ្នកជំនាញ",
+        "skillsLabel": "ជំនាញដែលត្រូវការ",
+        "skillsPlaceholder": "រាយជំនាញដែលត្រូវការសម្រាប់សេវាកម្ម",
+        "skillsDescription": "ញែកជំនាញដោយសញ្ញាក្បៀស។",
+        "priceLabel": "តម្លៃ",
+        "pricePlaceholder": "បញ្ចូលតម្លៃ",
+        "unitLabel": "ឯកតា",
+        "unitPlaceholder": "ឧទាហរណ៍: គីឡូក្រាម, ដុំ, ម៉ោង",
+        "imageUrlLabel": "URL រូបភាព (ស្រេចចិត្ត)",
+        "sustainableLabel": "ការអនុវត្តប្រកបដោយនិរន្តរភាព",
+        "sustainableDescription": "បង្ហាញថាតើបញ្ជីនេះពាក់ព័ន្ធនឹងការអនុវត្តប្រកបដោយនិរន្តរភាពឬអត់។",
+        "submitButton": "បង្កើតបញ្ជី",
+        "submittingButton": "កំពុងបង្កើត..."
+      },
+      "aiPriceSuggestion": {
+        "button": "ស្នើរសុំតម្លៃជាមួយ AI",
+        "generatingButton": "កំពុងបង្កើត...",
+        "suggestionLabel": "ការណែនាំ AI:",
+        "usePriceButton": "ប្រើតម្លៃនេះ"
+      },
+      "success": {
+        "title": "ជោគជ័យ!",
+        "description": "បញ្ជីរបស់អ្នកត្រូវបានបង្កើតហើយ។"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "ព័ត៌មានបាត់",
+            "description": "សូមបញ្ចូលឈ្មោះនិងការពិពណ៌នាមុនពេលស្នើរសុំតម្លៃ។"
+          },
+          "failed": {
+            "title": "ស្នើរសុំតម្លៃបរាជ័យ",
+            "description": "មិនអាចទទួលបានការណែនាំតម្លៃ AI ។ សូមព្យាយាមម្តងទៀតឬបញ្ចូលតម្លៃដោយដៃ។"
+          }
+        },
+        "authentication": {
+          "title": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
+          "description": "អ្នកត្រូវតែចូលដើម្បីបង្កើតបញ្ជី។"
+        },
+        "creation": {
+          "title": "ការបង្កើតបរាជ័យ",
+          "description": "មិនអាចបង្កើតបញ្ជីបានទេ។ សូមព្យាយាមម្តងទៀត។"
+        }
+      }
+    },
+    "itemView": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "unknownUser": "អ្នកប្រើមិនស្គាល់",
+      "traceabilityButton": "តំណពាណិជ្ជកម្ម / បាច់",
+      "skillsLabel": "ជំនាញដែលត្រូវការ",
+      "experienceLabel": "កម្រិតបទពិសោធន៍",
+      "compensationLabel": "សំណង",
+      "contactForRates": "ទាក់ទងសម្រាប់អត្រា",
+      "booking": {
+        "perNight": "យប់",
+        "checkIn": "ចូល",
+        "checkOut": "ចេញ",
+        "addDate": "បន្ថែមថ្ងៃ",
+        "guests": "ភ្ញៀវ",
+        "reserveButton": "កក់",
+        "reservingButton": "កំពុងកក់...",
+        "notCharged": "អ្នកនឹងមិនត្រូវបានគិតថ្លៃនៅឡើយទេ",
+        "nights": "យប់",
+        "serviceFee": "ថ្លៃសេវា",
+        "total": "សរុប",
+        "successTitle": "កក់បានជោគជ័យ!",
+        "successDescription": "ការកក់របស់អ្នកត្រូវបានបញ្ជាក់ហើយ។",
+        "failTitle": "កក់បរាជ័យ",
+        "dateError": "សូមជ្រើសរើសថ្ងៃចូលនិងចេញដែលត្រឹមត្រូវ។",
+        "authTitle": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "authDescription": "អ្នកត្រូវតែចូលដើម្បីកក់សេវាកម្ម។",
+        "bookedTitle": "បានកក់!",
+        "bookedDescription": "ការកក់របស់អ្នកត្រូវបានបញ្ជាក់ហើយ។ សូមបង្ហាញលេខកូដ QR ខាងក្រោមនៅពេលមកដល់។",
+        "ticketButton": "បង្ហាញសំបុត្រ",
+        "modalTitle": "សំបុត្រកក់",
+        "modalDescription": "បង្ហាញលេខកូដ QR នេះនៅ {{itemName}} សម្រាប់ការចូល។",
+        "modalScan": "ស្កេនលេខកូដនេះដើម្បីចូល"
+      },
+      "coupon": {
+        "label": "លេខកូដប័ណ្ណ",
+        "placeholder": "បញ្ចូលលេខកូដប័ណ្ណ",
+        "applyButton": "អនុវត្ត",
+        "successTitle": "បានអនុវត្តប័ណ្ណ!",
+        "successDescription": "បានអនុវត្តការបញ្ចុះតម្លៃ: {{type}}",
+        "failTitle": "ប័ណ្ណមិនត្រឹមត្រូវ",
+        "failDescription": "លេខកូដប័ណ្ណមិនត្រឹមត្រូវឬមិនអាចអនុវត្តបាន។",
+        "appliedText": "បានអនុវត្តប័ណ្ណ: {{code}}"
+      },
+      "aboutSeller": "អំពីអ្នកលក់",
+      "viewShopfront": "មើលមុខហាង",
+      "editListing": "កែសម្រួលបញ្ជី",
+      "manageService": "គ្រប់គ្រងសេវាកម្ម",
+      "buyNowButton": "ទិញឥឡូវនេះ",
+      "contactForService": "ទាក់ទងសម្រាប់សេវាកម្ម",
+      "contactSeller": "ទាក់ទងអ្នកលក់",
+      "order": {
+        "title": "បញ្ជាទិញ {{itemName}}",
+        "description": "បញ្ចូលចំនួនដែលអ្នកចង់បញ្ជាទិញនិងកំណត់ត្រាណាមួយ។",
+        "quantityLabel": "ចំនួន",
+        "notesLabel": "កំណត់ត្រា (ស្រេចចិត្ត)",
+        "notesPlaceholder": "បន្ថែមការណែនាំឬសំណើជាក់លាក់ណាមួយ...",
+        "cancelButton": "បោះបង់",
+        "confirmButton": "បញ្ជាក់ការបញ្ជាទិញ",
+        "placingButton": "កំពុងដាក់ការបញ្ជាទិញ...",
+        "successTitle": "បានដាក់ការបញ្ជាទិញ!",
+        "successDescription": "ការបញ្ជាទិញរបស់អ្នកត្រូវបានដាក់ដោយជោគជ័យហើយ។",
+        "failTitle": "ដាក់ការបញ្ជាទិញបរាជ័យ",
+        "failDescription": "មិនអាចដាក់ការបញ្ជាទិញបានទេ។ សូមព្យាយាមម្តងទៀត។",
+        "quantityErrorTitle": "កំហុសចំនួន",
+        "quantityErrorDescription": "សូមបញ្ចូលចំនួនត្រឹមត្រូវ (យ៉ាងហោចណាត 1)។",
+        "authTitle": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "authDescription": "អ្នកត្រូវតែចូលដើម្បីដាក់ការបញ្ជាទិញ។"
+      },
+      "notFound": {
+        "title": "រកមិនឃើញធាតុ",
+        "description": "ធាតុផ្សារដែលអ្នកកំពុងរកមិនមានទេ។",
+        "backButton": "ត្រឡប់ទៅផ្សារ"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "កំហុសក្នុងការផ្ទុកធាតុ",
+          "description": "មានកំហុសមួយបានកើតឡើងនៅពេលផ្ទុកព័ត៌មានលម្អិតនៃធាតុផ្សារ។"
+        },
+        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។"
+      }
+    },
+    "myOrders": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "title": "ការបញ្ជាទិញដែលខ្ញុំបានទទួល",
+      "description": "មើលនិងគ្រប់គ្រងការបញ្ជាទិញដែលបានទទួលពីអ្នកទិញ។",
+      "auth": {
+        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "description": "អ្នកត្រូវតែចូលដើម្បីមើលការបញ្ជាទិញរបស់អ្នក។",
+        "button": "ចូល"
+      },
+      "table": {
+        "date": "កាលបរិច្ឆេទ",
+        "buyer": "អ្នកទិញ",
+        "product": "ផលិតផល",
+        "total": "សរុប",
+        "status": "ស្ថានភាព",
+        "actions": "សកម្មភាព"
+      },
+      "actions": {
+        "confirm": "បញ្ជាក់",
+        "ship": "ដឹកជញ្ជូន",
+        "complete": "បញ្ចប់",
+        "cancel": "បោះបង់"
+      },
+      "status": {
+        "new": "ថ្មី",
+        "confirmed": "បានបញ្ជាក់",
+        "shipped": "បានដឹកជញ្ជូន",
+        "completed": "បានបញ្ចប់",
+        "cancelled": "បានបោះបង់"
+      },
+      "noOrders": "រកមិនឃើញការបញ្ជាទិញទេ។",
+      "toast": {
+        "errorTitle": "កំហុស",
+        "fetchError": "បរាជ័យក្នុងការទាញយកការបញ្ជាទិញ។",
+        "successTitle": "ជោគជ័យ!",
+        "updateSuccess": "ស្ថានភាពការបញ្ជាទិញបានធ្វើបច្ចុប្បន្នភាពទៅ {{status}}",
+        "failTitle": "កំហុស"
+      }
+    },
+    "shopView": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "ownedBy": "ជាកម្មសិទ្ធិរបស់",
+      "loadingOwner": "កំពុងផ្ទុក...",
+      "editShopButton": "កែសម្រួលហាង",
+      "contactButton": "ទាក់ទងអ្នកលក់",
+      "listingsTitle": "បញ្ជីពី {{shopName}}",
+      "noListings": "រកមិនឃើញបញ្ជីសម្រាប់ហាងនេះទេ។",
+      "errors": {
+        "notFound": "រកមិនឃើញហាង",
+        "loadError": "មិនអាចផ្ទុកព័ត៌មានលម្អិតនៃហាងបានទេ។",
+        "title": "កំហុស"
+      }
+    },
+    "createShop": {
+      "backLink": "ត្រឡប់ទៅផ្សារ",
+      "title": "បង្កើតមុខហាងឌីជីថលរបស់អ្នក",
+      "description": "រៀបចំហាងរបស់អ្នកដើម្បីដាក់បញ្ជីធាតុនិងសេវាកម្ម។",
+      "form": {
+        "nameLabel": "ឈ្មោះហាង",
+        "namePlaceholder": "បញ្ចូលឈ្មោះហាងរបស់អ្នក",
+        "typeLabel": "ប្រភេទអ្នកពាក់ព័ន្ធ",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទរបស់អ្នក",
+        "descriptionLabel": "ការពិពណ៌នា",
+        "descriptionPlaceholder": "ពិពណ៌នាហាងរបស់អ្នកនិងអ្វីដែលអ្នកផ្តល់ជូន"
+      },
+      "submitButton": "បង្កើតហាង",
+      "submittingButton": "កំពុងបង្កើត...",
+      "authErrorTitle": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
+      "authErrorDescription": "អ្នកត្រូវតែចូលដើម្បីបង្កើតហាង។",
+      "toast": {
+        "successTitle": "បានបង្កើតមុខហាង!",
+        "successDescription": "មុខហាងរបស់អ្នក \"{{shopName}}\" ត្រូវបានបង្កើតហើយ។",
+        "failTitle": "ការបង្កើតបរាជ័យ",
+        "failDescription": "មិនអាចបង្កើតហាងបានទេ។ សូមព្យាយាមម្តងទៀត។"
+      }
+    },
+    "manageService": {
+      "backLink": "ត្រឡប់ទៅ {{itemName}}",
+      "title": "គ្រប់គ្រងសេវាកម្ម: {{itemName}}",
+      "description": "គ្រប់គ្រងការកក់និងការកំណត់សម្រាប់សេវាកម្មនេះ។",
+      "tabs": {
+        "bookings": "ការកក់",
+        "settings": "ការកំណត់"
+      },
+      "bookingsTab": {
+        "title": "ការកក់សេវាកម្ម",
+        "description": "មើលនិងគ្រប់គ្រងការកក់សម្រាប់សេវាកម្មនេះ។",
+        "table": {
+          "date": "កាលបរិច្ឆេទ",
+          "guest": "ភ្ញៀវ",
+          "dates": "កាលបរិច្ឆេទ",
+          "total": "សរុប",
+          "status": "ស្ថានភាព",
+          "actions": "សកម្មភាព"
+        },
+        "status": {
+          "pending": "រង់ចាំ",
+          "confirmed": "បានបញ្ជាក់",
+          "cancelled": "បានបោះបង់",
+          "completed": "បានបញ្ចប់"
+        },
+        "actions": {
+          "confirm": "បញ្ជាក់ការកក់",
+          "cancel": "បោះបង់ការកក់",
+          "viewDetails": "មើលព័ត៌មានលម្អិត"
+        },
+        "noBookings": "មិនទាន់មានការកក់ទេ។",
+        "toast": {
+          "fetchErrorTitle": "កំហុសក្នុងការផ្ទុកការកក់",
+          "fetchErrorDescription": "មិនអាចទាញយកការកក់សម្រាប់សេវាកម្មនេះបានទេ។",
+          "updateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពការកក់!",
+          "updateSuccessDescription": "ស្ថានភាពការកក់បានធ្វើបច្ចុប្បន្នភាពទៅ {{status}}។",
+          "updateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពបរាជ័យ",
+          "updateFailDescription": "មិនអាចធ្វើបច្ចុប្បន្នភាពស្ថានភាពការកក់បានទេ។"
+        }
+      },
+      "settingsTab": {
+        "title": "ការកំណត់សេវាកម្ម",
+        "description": "ធ្វើបច្ចុប្បន្នភាពព័ត៌មានលម្អិតនិងភាពទំនេរសម្រាប់សេវាកម្មនេះ។",
+        "form": {
+          "priceLabel": "តម្លៃក្នុងមួយយប់",
+          "pricePlaceholder": "បញ្ចូលតម្លៃ",
+          "currencyLabel": "រូបិយប័ណ្ណ",
+          "currencyPlaceholder": "ជ្រើសរើសរូបិយប័ណ្ណ",
+          "availabilityLabel": "កាលបរិច្ឆេទទំនេរ",
+          "availabilityDescription": "ជ្រើសរើសកាលបរិច្ឆេទដែលសេវាកម្មនេះទំនេរ។",
+          "submitButton": "រក្សាទុកការផ្លាស់ប្តូរ",
+          "submittingButton": "កំពុងរក្សាទុក..."
+        },
+        "toast": {
+          "updateSuccessTitle": "បានរក្សាទុកការកំណត់!",
+          "updateSuccessDescription": "ការកំណត់សេវាកម្មបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។",
+          "updateFailTitle": "ការរក្សាទុកបរាជ័យ",
+          "updateFailDescription": "មិនអាចរក្សាទុកការកំណត់សេវាកម្មបានទេ។"
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "កំហុសក្នុងការផ្ទុកសេវាកម្ម",
+        "loadErrorDescription": "មិនអាចផ្ទុកព័ត៌មានលម្អិតនៃសេវាកម្មសម្រាប់ការគ្រប់គ្រងបានទេ។",
+        "notFoundTitle": "រកមិនឃើញសេវាកម្ម",
+        "notFoundDescription": "សេវាកម្មដែលអ្នកព្យាយាមគ្រប់គ្រងមិនមានទេ។"
+      },
+      "authRequired": {
+        "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
+        "description": "អ្នកត្រូវតែចូលដើម្បីគ្រប់គ្រងសេវាកម្មនេះ។",
+        "button": "ចូល"
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "farmer": "កសិករ",
+      "trader": "ពាណិជ្ជករ",
+      "agro_innovator": "អ្នកច្នៃប្រឌិតកសិកម្ម",
+      "researcher": "អ្នកស្រាវជ្រាវ",
+      "service_provider": "អ្នកផ្តល់សេវា",
+      "consumer": "អ្នកប្រើប្រាស់"
+    },
+    "listingTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Product": "ផលិតផល",
+      "Service": "សេវាកម្ម"
+    }
   }
 }

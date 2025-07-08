@@ -285,5 +285,348 @@
         "button": "Gestionar Activos"
       }
     }
+  },
+  "Marketplace": {
+    "title": "Mercado",
+    "description": "Navega y descubre productos y servicios.",
+    "createShopButton": "Crear Escaparate",
+    "createListingButton": "Crear Anuncio",
+    "myOrdersButton": "Mis Pedidos Recibidos",
+    "pinButton": "Fijar como Página de Inicio",
+    "unpinButton": "Desfijar de la Página de Inicio",
+    "searchPlaceholder": "Buscar en el mercado...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "typePlaceholder": "Filtrar por tipo...",
+    "recommendedForYou": "Recomendado para ti",
+    "discoverMore": "Descubrir Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos.",
+      "hint": "Intenta ajustar tus filtros o términos de búsqueda."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "No se pudieron obtener recomendaciones de IA"
+      },
+      "search": {
+        "title": "Error de Búsqueda",
+        "description": "No se pudieron obtener los artículos del mercado."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "¡Mercado Fijado!",
+      "pinnedDescription": "El Mercado ahora es tu página de inicio predeterminada.",
+      "unpinnedTitle": "¡Página de Inicio Desfijada!",
+      "unpinnedDescription": "El Panel de Control ahora es tu página de inicio predeterminada."
+    },
+    "createListing": {
+      "backLink": "Volver al mercado",
+      "title": "Crear Nuevo Anuncio",
+      "description": "Anuncia un producto o servicio en el mercado.",
+      "form": {
+        "nameLabel": "Nombre del Artículo/Servicio",
+        "namePlaceholder": "Ingresa el nombre de tu anuncio",
+        "typeLabel": "Tipo de Anuncio",
+        "typePlaceholder": "Selecciona el tipo de anuncio",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu anuncio",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ingresa la ubicación",
+        "relatedVtiLabel": "VTI / ID de Lote Relacionado (Opcional)",
+        "relatedVtiPlaceholder": "Ingresa el VTI si este anuncio es para un lote específico",
+        "relatedVtiDescription": "Vincular un VTI aumenta la confianza del comprador.",
+        "categoryLabel": "Categoría",
+        "categoryPlaceholder": "Selecciona una categoría",
+        "compensationLabel": "Compensación",
+        "compensationPlaceholder": "ej., por hora, tarifa fija",
+        "experienceLabel": "Nivel de Experiencia",
+        "experiencePlaceholder": "ej., Básico, Intermedio, Experto",
+        "skillsLabel": "Habilidades Requeridas",
+        "skillsPlaceholder": "Lista las habilidades necesarias para el servicio",
+        "skillsDescription": "Separa las habilidades con comas.",
+        "priceLabel": "Precio",
+        "pricePlaceholder": "Ingresa el precio",
+        "unitLabel": "Unidad",
+        "unitPlaceholder": "ej., kg, pieza, hora",
+        "imageUrlLabel": "URL de la Imagen (Opcional)",
+        "sustainableLabel": "Práctica Sostenible",
+        "sustainableDescription": "Indica si este anuncio involucra prácticas sostenibles.",
+        "submitButton": "Crear Anuncio",
+        "submittingButton": "Creando..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Sugerir Precio con IA",
+        "generatingButton": "Generando...",
+        "suggestionLabel": "Sugerencia de IA:",
+        "usePriceButton": "Usar este precio"
+      },
+      "success": {
+        "title": "¡Éxito!",
+        "description": "Tu anuncio ha sido creado."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Información Faltante",
+            "description": "Por favor, ingresa un nombre y una descripción antes de sugerir un precio."
+          },
+          "failed": {
+            "title": "Sugerencia de Precio Fallida",
+            "description": "No se pudo obtener una sugerencia de precio de IA. Por favor, inténtalo de nuevo o ingresa un precio manualmente."
+          }
+        },
+        "authentication": {
+          "title": "Error de Autenticación",
+          "description": "Debes iniciar sesión para crear un anuncio."
+        },
+        "creation": {
+          "title": "Creación Fallida",
+          "description": "No se pudo crear el anuncio. Por favor, inténtalo de nuevo."
+        }
+      }
+    },
+    "itemView": {
+      "backLink": "Volver al mercado",
+      "unknownUser": "Usuario Desconocido",
+      "traceabilityButton": "Enlace de Comercio / Lote",
+      "skillsLabel": "Habilidades Requeridas",
+      "experienceLabel": "Nivel de Experiencia",
+      "compensationLabel": "Compensación",
+      "contactForRates": "Contactar para tarifas",
+      "booking": {
+        "perNight": "noche",
+        "checkIn": "Llegada",
+        "checkOut": "Salida",
+        "addDate": "Agregar fecha",
+        "guests": "Huéspedes",
+        "reserveButton": "Reservar",
+        "reservingButton": "Reservando...",
+        "notCharged": "Aún no se te cobrará",
+        "nights": "noches",
+        "serviceFee": "Tarifa de servicio",
+        "total": "Total",
+        "successTitle": "¡Reserva Exitosa!",
+        "successDescription": "Tu reserva está confirmada.",
+        "failTitle": "Reserva Fallida",
+        "dateError": "Por favor, selecciona fechas de llegada y salida válidas.",
+        "authTitle": "Autenticación Requerida",
+        "authDescription": "Debes iniciar sesión para reservar un servicio.",
+        "bookedTitle": "¡Reservado!",
+        "bookedDescription": "Tu reserva está confirmada. Presenta el código QR a continuación a tu llegada.",
+        "ticketButton": "Mostrar Ticket",
+        "modalTitle": "Ticket de Reserva",
+        "modalDescription": "Presenta este código QR en {{itemName}} para el check-in.",
+        "modalScan": "Escanea este código para hacer check-in"
+      },
+      "coupon": {
+        "label": "Código de Cupón",
+        "placeholder": "Ingresa el código de cupón",
+        "applyButton": "Aplicar",
+        "successTitle": "¡Cupón Aplicado!",
+        "successDescription": "Descuento aplicado: {{type}}",
+        "failTitle": "Cupón Inválido",
+        "failDescription": "El código de cupón es inválido o no aplicable.",
+        "appliedText": "Cupón Aplicado: {{code}}"
+      },
+      "aboutSeller": "Sobre el Vendedor",
+      "viewShopfront": "Ver Escaparate",
+      "editListing": "Editar Anuncio",
+      "manageService": "Gestionar Servicio",
+      "buyNowButton": "Comprar Ahora",
+      "contactForService": "Contactar por Servicio",
+      "contactSeller": "Contactar al Vendedor",
+      "order": {
+        "title": "Pedir {{itemName}}",
+        "description": "Ingresa la cantidad que deseas pedir y cualquier nota.",
+        "quantityLabel": "Cantidad",
+        "notesLabel": "Notas (Opcional)",
+        "notesPlaceholder": "Agrega cualquier instrucción o solicitud específica...",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Confirmar Pedido",
+        "placingButton": "Realizando Pedido...",
+        "successTitle": "¡Pedido Realizado!",
+        "successDescription": "Tu pedido ha sido realizado con éxito.",
+        "failTitle": "Pedido Fallido",
+        "failDescription": "No se pudo realizar el pedido. Por favor, inténtalo de nuevo.",
+        "quantityErrorTitle": "Error de Cantidad",
+        "quantityErrorDescription": "Por favor, ingresa una cantidad válida (al menos 1).",
+        "authTitle": "Autenticación Requerida",
+        "authDescription": "Debes iniciar sesión para realizar un pedido."
+      },
+      "notFound": {
+        "title": "Artículo no encontrado",
+        "description": "El artículo del mercado que buscas no existe.",
+        "backButton": "Volver al Mercado"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Error al cargar el artículo",
+          "description": "Ocurrió un error al cargar los detalles del artículo del mercado."
+        },
+        "unexpected": "Ocurrió un error inesperado."
+      }
+    },
+    "myOrders": {
+      "backLink": "Volver al mercado",
+      "title": "Mis Pedidos Recibidos",
+      "description": "Ver y gestionar los pedidos recibidos de los compradores.",
+      "auth": {
+        "title": "Autenticación Requerida",
+        "description": "Debes iniciar sesión para ver tus pedidos.",
+        "button": "Iniciar Sesión"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar",
+        "ship": "Enviar",
+        "complete": "Completar",
+        "cancel": "Cancelar"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "noOrders": "No se encontraron pedidos.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron obtener los pedidos.",
+        "successTitle": "¡Éxito!",
+        "updateSuccess": "Estado del pedido actualizado a {{status}}",
+        "failTitle": "Error"
+      }
+    },
+    "shopView": {
+      "backLink": "Volver al mercado",
+      "ownedBy": "Propiedad de",
+      "loadingOwner": "Cargando...",
+      "editShopButton": "Editar Tienda",
+      "contactButton": "Contactar al Vendedor",
+      "listingsTitle": "Anuncios de {{shopName}}",
+      "noListings": "No se encontraron anuncios para esta tienda.",
+      "errors": {
+        "notFound": "Tienda no encontrada",
+        "loadError": "No se pudieron cargar los detalles de la tienda.",
+        "title": "Error"
+      }
+    },
+    "createShop": {
+      "backLink": "Volver al mercado",
+      "title": "Crea tu Escaparate Digital",
+      "description": "Configura tu tienda para anunciar artículos y servicios.",
+      "form": {
+        "nameLabel": "Nombre de la Tienda",
+        "namePlaceholder": "Ingresa el nombre de tu tienda",
+        "typeLabel": "Tipo de Actor",
+        "typePlaceholder": "Selecciona tu tipo",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu tienda y lo que ofreces"
+      },
+      "submitButton": "Crear Tienda",
+      "submittingButton": "Creando...",
+      "authErrorTitle": "Error de Autenticación",
+      "authErrorDescription": "Debes iniciar sesión para crear una tienda.",
+      "toast": {
+        "successTitle": "¡Escaparate Creado!",
+        "successDescription": "Tu escaparate \"{{shopName}}\" ha sido creado.",
+        "failTitle": "Creación Fallida",
+        "failDescription": "No se pudo crear la tienda. Por favor, inténtalo de nuevo."
+      }
+    },
+    "manageService": {
+      "backLink": "Volver a {{itemName}}",
+      "title": "Gestionar Servicio: {{itemName}}",
+      "description": "Gestiona las reservas y la configuración de este servicio.",
+      "tabs": {
+        "bookings": "Reservas",
+        "settings": "Configuración"
+      },
+      "bookingsTab": {
+        "title": "Reservas del Servicio",
+        "description": "Ver y gestionar las reservas para este servicio.",
+        "table": {
+          "date": "Fecha",
+          "guest": "Huésped",
+          "dates": "Fechas",
+          "total": "Total",
+          "status": "Estado",
+          "actions": "Acciones"
+        },
+        "status": {
+          "pending": "Pendiente",
+          "confirmed": "Confirmado",
+          "cancelled": "Cancelado",
+          "completed": "Completado"
+        },
+        "actions": {
+          "confirm": "Confirmar Reserva",
+          "cancel": "Cancelar Reserva",
+          "viewDetails": "Ver Detalles"
+        },
+        "noBookings": "Aún no hay reservas.",
+        "toast": {
+          "fetchErrorTitle": "Error al cargar las reservas",
+          "fetchErrorDescription": "No se pudieron obtener las reservas para este servicio.",
+          "updateSuccessTitle": "¡Reserva actualizada!",
+          "updateSuccessDescription": "Estado de la reserva actualizado a {{status}}.",
+          "updateFailTitle": "Actualización Fallida",
+          "updateFailDescription": "No se pudo actualizar el estado de la reserva."
+        }
+      },
+      "settingsTab": {
+        "title": "Configuración del Servicio",
+        "description": "Actualiza los detalles y la disponibilidad de este servicio.",
+        "form": {
+          "priceLabel": "Precio por Noche",
+          "pricePlaceholder": "Ingresa el precio",
+          "currencyLabel": "Moneda",
+          "currencyPlaceholder": "Selecciona la moneda",
+          "availabilityLabel": "Fechas de Disponibilidad",
+          "availabilityDescription": "Selecciona las fechas en las que este servicio está disponible.",
+          "submitButton": "Guardar Cambios",
+          "submittingButton": "Guardando..."
+        },
+        "toast": {
+          "updateSuccessTitle": "¡Configuración guardada!",
+          "updateSuccessDescription": "Configuración del servicio actualizada con éxito.",
+          "updateFailTitle": "Guardado Fallido",
+          "updateFailDescription": "No se pudo guardar la configuración del servicio."
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "Error al cargar el servicio",
+        "loadErrorDescription": "No se pudieron cargar los detalles del servicio para su gestión.",
+        "notFoundTitle": "Servicio no encontrado",
+        "notFoundDescription": "El servicio que intentas gestionar no existe."
+      },
+      "authRequired": {
+        "title": "Autenticación Requerida",
+        "description": "Debes iniciar sesión para gestionar este servicio.",
+        "button": "Iniciar Sesión"
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "farmer": "Agricultor",
+      "trader": "Comerciante",
+      "agro_innovator": "Innovador Agrícola",
+      "researcher": "Investigador",
+      "service_provider": "Proveedor de Servicios",
+      "consumer": "Consumidor"
+    },
+    "listingTypes": {
+      "All": "Todos los Tipos",
+      "Product": "Producto",
+      "Service": "Servicio"
+    }
   }
 }

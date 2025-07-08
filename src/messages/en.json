@@ -285,5 +285,348 @@
         "button": "Manage Assets"
       }
     }
+  },
+  "Marketplace": {
+    "title": "Marketplace",
+    "description": "Browse and discover products and services.",
+    "createShopButton": "Create Shopfront",
+    "createListingButton": "Create Listing",
+    "myOrdersButton": "My Received Orders",
+    "pinButton": "Pin as Homepage",
+    "unpinButton": "Unpin Homepage",
+    "searchPlaceholder": "Search marketplace...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended for you",
+    "discoverMore": "Discover More",
+    "noItemsFound": {
+      "title": "No items found.",
+      "hint": "Try adjusting your filters or search terms."
+    },
+    "errors": {
+      "aiRecommendations": {
+        "title": "Could not fetch AI recommendations"
+      },
+      "search": {
+        "title": "Search Error",
+        "description": "Could not fetch marketplace items."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned!",
+      "pinnedDescription": "The Marketplace is now your default homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "The Dashboard is now your default homepage."
+    },
+    "createListing": {
+      "backLink": "Back to marketplace",
+      "title": "Create New Listing",
+      "description": "List a product or service in the marketplace.",
+      "form": {
+        "nameLabel": "Item/Service Name",
+        "namePlaceholder": "Enter the name of your listing",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select listing type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your listing",
+        "locationLabel": "Location",
+        "locationPlaceholder": "Enter location",
+        "relatedVtiLabel": "Related VTI / Batch ID (Optional)",
+        "relatedVtiPlaceholder": "Enter the VTI if this listing is for a specific batch",
+        "relatedVtiDescription": "Linking a VTI increases buyer trust.",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select a category",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "e.g., per hour, fixed rate",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., Entry, Intermediate, Expert",
+        "skillsLabel": "Skills Required",
+        "skillsPlaceholder": "List skills needed for the service",
+        "skillsDescription": "Separate skills with commas.",
+        "priceLabel": "Price",
+        "pricePlaceholder": "Enter price",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g., kg, piece, hour",
+        "imageUrlLabel": "Image URL (Optional)",
+        "sustainableLabel": "Sustainable Practice",
+        "sustainableDescription": "Indicate if this listing involves sustainable practices.",
+        "submitButton": "Create Listing",
+        "submittingButton": "Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggest Price with AI",
+        "generatingButton": "Generating...",
+        "suggestionLabel": "AI Suggestion:",
+        "usePriceButton": "Use this price"
+      },
+      "success": {
+        "title": "Success!",
+        "description": "Your listing has been created."
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Missing Information",
+            "description": "Please enter a name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "Price Suggestion Failed",
+            "description": "Could not get an AI price suggestion. Please try again or enter a price manually."
+          }
+        },
+        "authentication": {
+          "title": "Authentication Error",
+          "description": "You must be logged in to create a listing."
+        },
+        "creation": {
+          "title": "Creation Failed",
+          "description": "Could not create the listing. Please try again."
+        }
+      }
+    },
+    "itemView": {
+      "backLink": "Back to marketplace",
+      "unknownUser": "Unknown User",
+      "traceabilityButton": "Trade / Batch Link",
+      "skillsLabel": "Skills Required",
+      "experienceLabel": "Experience Level",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contact for rates",
+      "booking": {
+        "perNight": "night",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Add date",
+        "guests": "Guests",
+        "reserveButton": "Reserve",
+        "reservingButton": "Reserving...",
+        "notCharged": "You won't be charged yet",
+        "nights": "nights",
+        "serviceFee": "Service fee",
+        "total": "Total",
+        "successTitle": "Booking Successful!",
+        "successDescription": "Your booking is confirmed.",
+        "failTitle": "Booking Failed",
+        "dateError": "Please select valid check-in and check-out dates.",
+        "authTitle": "Authentication Required",
+        "authDescription": "You must be logged in to book a service.",
+        "bookedTitle": "Booked!",
+        "bookedDescription": "Your booking is confirmed. Present the QR code below upon arrival.",
+        "ticketButton": "Show Ticket",
+        "modalTitle": "Booking Ticket",
+        "modalDescription": "Present this QR code at {{itemName}} for check-in.",
+        "modalScan": "Scan this code to check in"
+      },
+      "coupon": {
+        "label": "Coupon Code",
+        "placeholder": "Enter coupon code",
+        "applyButton": "Apply",
+        "successTitle": "Coupon Applied!",
+        "successDescription": "Discount applied: {{type}}",
+        "failTitle": "Coupon Invalid",
+        "failDescription": "The coupon code is invalid or not applicable.",
+        "appliedText": "Coupon Applied: {{code}}"
+      },
+      "aboutSeller": "About the Seller",
+      "viewShopfront": "View Shopfront",
+      "editListing": "Edit Listing",
+      "manageService": "Manage Service",
+      "buyNowButton": "Buy Now",
+      "contactForService": "Contact for Service",
+      "contactSeller": "Contact Seller",
+      "order": {
+        "title": "Order {{itemName}}",
+        "description": "Enter the quantity you wish to order and any notes.",
+        "quantityLabel": "Quantity",
+        "notesLabel": "Notes (Optional)",
+        "notesPlaceholder": "Add any specific instructions or requests...",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm Order",
+        "placingButton": "Placing Order...",
+        "successTitle": "Order Placed!",
+        "successDescription": "Your order has been placed successfully.",
+        "failTitle": "Order Failed",
+        "failDescription": "Could not place the order. Please try again.",
+        "quantityErrorTitle": "Quantity Error",
+        "quantityErrorDescription": "Please enter a valid quantity (at least 1).",
+        "authTitle": "Authentication Required",
+        "authDescription": "You must be logged in to place an order."
+      },
+      "notFound": {
+        "title": "Item not found",
+        "description": "The marketplace item you are looking for does not exist.",
+        "backButton": "Back to Marketplace"
+      },
+      "errors": {
+        "loadItem": {
+          "title": "Error loading item",
+          "description": "An error occurred while loading the marketplace item details."
+        },
+        "unexpected": "An unexpected error occurred."
+      }
+    },
+    "myOrders": {
+      "backLink": "Back to marketplace",
+      "title": "My Received Orders",
+      "description": "View and manage orders received from buyers.",
+      "auth": {
+        "title": "Authentication Required",
+        "description": "You must be logged in to view your orders.",
+        "button": "Sign in"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Buyer",
+        "product": "Product",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm",
+        "ship": "Ship",
+        "complete": "Complete",
+        "cancel": "Cancel"
+      },
+      "status": {
+        "new": "New",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "noOrders": "No orders found.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Failed to fetch orders.",
+        "successTitle": "Success!",
+        "updateSuccess": "Order status updated to {{status}}",
+        "failTitle": "Error"
+      }
+    },
+    "shopView": {
+      "backLink": "Back to marketplace",
+      "ownedBy": "Owned by",
+      "loadingOwner": "Loading...",
+      "editShopButton": "Edit Shop",
+      "contactButton": "Contact Seller",
+      "listingsTitle": "Listings from {{shopName}}",
+      "noListings": "No listings found for this shop.",
+      "errors": {
+        "notFound": "Shop not found",
+        "loadError": "Could not load shop details.",
+        "title": "Error"
+      }
+    },
+    "createShop": {
+      "backLink": "Back to marketplace",
+      "title": "Create Your Digital Shopfront",
+      "description": "Set up your shop to list items and services.",
+      "form": {
+        "nameLabel": "Shop Name",
+        "namePlaceholder": "Enter your shop name",
+        "typeLabel": "Stakeholder Type",
+        "typePlaceholder": "Select your type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your shop and what you offer"
+      },
+      "submitButton": "Create Shop",
+      "submittingButton": "Creating...",
+      "authErrorTitle": "Authentication Error",
+      "authErrorDescription": "You must be logged in to create a shop.",
+      "toast": {
+        "successTitle": "Shopfront Created!",
+        "successDescription": "Your shopfront \"{{shopName}}\" has been created.",
+        "failTitle": "Creation Failed",
+        "failDescription": "Could not create the shop. Please try again."
+      }
+    },
+    "manageService": {
+      "backLink": "Back to {{itemName}}",
+      "title": "Manage Service: {{itemName}}",
+      "description": "Manage bookings and settings for this service.",
+      "tabs": {
+        "bookings": "Bookings",
+        "settings": "Settings"
+      },
+      "bookingsTab": {
+        "title": "Service Bookings",
+        "description": "View and manage bookings for this service.",
+        "table": {
+          "date": "Date",
+          "guest": "Guest",
+          "dates": "Dates",
+          "total": "Total",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "status": {
+          "pending": "Pending",
+          "confirmed": "Confirmed",
+          "cancelled": "Cancelled",
+          "completed": "Completed"
+        },
+        "actions": {
+          "confirm": "Confirm Booking",
+          "cancel": "Cancel Booking",
+          "viewDetails": "View Details"
+        },
+        "noBookings": "No bookings yet.",
+        "toast": {
+          "fetchErrorTitle": "Error loading bookings",
+          "fetchErrorDescription": "Could not fetch bookings for this service.",
+          "updateSuccessTitle": "Booking updated!",
+          "updateSuccessDescription": "Booking status updated to {{status}}.",
+          "updateFailTitle": "Update failed",
+          "updateFailDescription": "Could not update booking status."
+        }
+      },
+      "settingsTab": {
+        "title": "Service Settings",
+        "description": "Update details and availability for this service.",
+        "form": {
+          "priceLabel": "Price per Night",
+          "pricePlaceholder": "Enter price",
+          "currencyLabel": "Currency",
+          "currencyPlaceholder": "Select currency",
+          "availabilityLabel": "Availability Dates",
+          "availabilityDescription": "Select dates when this service is available.",
+          "submitButton": "Save Changes",
+          "submittingButton": "Saving..."
+        },
+        "toast": {
+          "updateSuccessTitle": "Settings saved!",
+          "updateSuccessDescription": "Service settings updated successfully.",
+          "updateFailTitle": "Save failed",
+          "updateFailDescription": "Could not save service settings."
+        }
+      },
+      "errors": {
+        "loadErrorTitle": "Error loading service",
+        "loadErrorDescription": "Could not load service details for management.",
+        "notFoundTitle": "Service not found",
+        "notFoundDescription": "The service you are trying to manage does not exist."
+      },
+      "authRequired": {
+        "title": "Authentication Required",
+        "description": "You must be logged in to manage this service.",
+        "button": "Sign in"
+      }
+    }
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "farmer": "Farmer",
+      "trader": "Trader",
+      "agro_innovator": "Agro Innovator",
+      "researcher": "Researcher",
+      "service_provider": "Service Provider",
+      "consumer": "Consumer"
+    },
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service"
+    }
   }
 }
