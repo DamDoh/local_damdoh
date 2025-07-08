@@ -1,6 +1,4 @@
 
-'use server';
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { randomBytes } from 'crypto';
@@ -91,4 +89,3 @@ export const revokeApiKey = functions.https.onCall(async (data, context) => {
 
     return { success: true, message: 'API Key has been revoked.' };
 });
-

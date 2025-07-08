@@ -424,5 +424,42 @@
       "title": "គ្មានទិន្នន័យ",
       "description": "យើងមិនមានទិន្នន័យគ្រប់គ្រាន់ដើម្បីបង្កើតរបាយការណ៍និរន្តរភាពរបស់អ្នកទេ។ ចាប់ផ្តើមកត់ត្រាសកម្មភាពកសិដ្ឋានរបស់អ្នក!"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "ផ្ទាំងគ្រប់គ្រងសម្រាប់អ្នកច្នៃប្រឌិត Agri-Tech",
+    "sandboxTitle": "ស្ថានភាព Sandbox",
+    "integrationsTitle": "ការរួមបញ្ចូល",
+    "apiKeysTitle": "កូនសោ API របស់អ្នក",
+    "apiKeysDescription": "គ្រប់គ្រងកូនសោ API របស់អ្នកដើម្បីចូលប្រើវេទិកា DamDoh ។",
+    "statusLabel": "ស្ថានភាព",
+    "lastResetLabel": "ការកំណត់ឡើងវិញចុងក្រោយ",
+    "activeProjects": "គម្រោងសកម្ម",
+    "integrationsDescription": "ការរួមបញ្ចូលដៃគូដែលកំពុងដំណើរការ។",
+    "proposeIntegrationButton": "ស្នើការរួមបញ្ចូល",
+    "accessDocsButton": "ចូលមើលឯកសារ API",
+    "generateNewKeyButton": "បង្កើតកូនសោថ្មី",
+    "noApiKeys": "អ្នកមិនទាន់បានបង្កើតកូនសោ API ណាមួយទេ។",
+    "table": {
+      "key": "ការពិពណ៌នា / កូនសោ",
+      "status": "ស្ថានភាព",
+      "environment": "បរិស្ថាន",
+      "created": "បានបង្កើតនៅ",
+      "actions": "សកម្មភាព"
+    },
+    "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់!",
+    "generateButton": "បង្កើត",
+    "revokeDialog": {
+      "title": "ដកហូតកូនសោ API?",
+      "description": "សកម្មភាពនេះមិនអាចមិនធ្វើវិញបានទេ។ វានឹងបិទកូនសោ API នេះជាអចិន្ត្រៃយ៍។",
+      "cancel": "បោះបង់",
+      "confirm": "ដកហូត"
+    },
+    "toast": {
+      "descriptionRequired": "ត្រូវការការពិពណ៌នាសម្រាប់កូនសោ។",
+      "keyGeneratedSuccess": "បានបង្កើតកូនសោ API ដោយជោគជ័យ។",
+      "keyGeneratedError": "មិនអាចបង្កើតកូនសោ API បានទេ។",
+      "keyRevokedSuccess": "បានដកហូតកូនសោ API ដោយជោគជ័យ។",
+      "keyRevokedError": "មិនអាចដកហូតកូនសោ API បានទេ។"
+    }
   }
 }

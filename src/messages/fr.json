@@ -424,5 +424,42 @@
       "title": "Aucune Donnée Disponible",
       "description": "Nous n'avons pas assez de données pour générer votre rapport de durabilité. Commencez à enregistrer les activités de votre exploitation !"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Tableau de Bord pour Innovateurs Agri-Tech",
+    "sandboxTitle": "Statut du Sandbox",
+    "integrationsTitle": "Intégrations",
+    "apiKeysTitle": "Vos Clés API",
+    "apiKeysDescription": "Gérez vos clés API pour accéder à la plateforme DamDoh.",
+    "statusLabel": "Statut",
+    "lastResetLabel": "Dernière réinitialisation",
+    "activeProjects": "Projets Actifs",
+    "integrationsDescription": "Intégrations de partenaires actuellement actives.",
+    "proposeIntegrationButton": "Proposer une Intégration",
+    "accessDocsButton": "Accéder à la Documentation API",
+    "generateNewKeyButton": "Générer une Nouvelle Clé",
+    "noApiKeys": "Vous n'avez pas encore généré de clés API.",
+    "table": {
+      "key": "Description / Clé",
+      "status": "Statut",
+      "environment": "Environnement",
+      "created": "Créée le",
+      "actions": "Actions"
+    },
+    "apiKeyCopied": "Clé API copiée dans le presse-papiers !",
+    "generateButton": "Générer",
+    "revokeDialog": {
+      "title": "Révoquer la clé API ?",
+      "description": "Cette action ne peut pas être annulée. Cela désactivera définitivement cette clé API.",
+      "cancel": "Annuler",
+      "confirm": "Révoquer"
+    },
+    "toast": {
+      "descriptionRequired": "Une description pour la clé est requise.",
+      "keyGeneratedSuccess": "Clé API générée avec succès.",
+      "keyGeneratedError": "Impossible de générer la clé API.",
+      "keyRevokedSuccess": "Clé API révoquée avec succès.",
+      "keyRevokedError": "Impossible de révoquer la clé API."
+    }
   }
 }

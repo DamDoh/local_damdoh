@@ -101,7 +101,7 @@ export const AgriTechInnovatorDashboard = () => {
         data.apiKeys = (apiKeysResult.data as any).keys || [];
 
         setDashboardData(data);
-      } catch (err) {
+      } catch (err: any) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
         setError("Failed to load dashboard data.");
       } finally {

@@ -198,7 +198,7 @@
     "helpCenter": "Hilfezentrum",
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Design wechseln",
-    "switchToDarkAria": "Zum dunklen Design wechseln",
+ "switchToDarkAria": "Zum dunklen Design wechseln",
     "sustainability": "Nachhaltigkeit"
   },
   "AppFooter": {
@@ -423,6 +423,43 @@
     "noData": {
       "title": "Keine Daten verfügbar",
       "description": "Wir haben nicht genügend Daten, um Ihren Nachhaltigkeitsbericht zu erstellen. Beginnen Sie mit der Protokollierung Ihrer landwirtschaftlichen Aktivitäten!"
+    }
+  },
+  "AgriTechDashboard": {
+    "title": "Dashboard für Agri-Tech-Innovatoren",
+    "sandboxTitle": "Sandbox-Status",
+    "integrationsTitle": "Integrationen",
+    "apiKeysTitle": "Ihre API-Schlüssel",
+    "apiKeysDescription": "Verwalten Sie Ihre API-Schlüssel für den Zugriff auf die DamDoh-Plattform.",
+    "statusLabel": "Status",
+    "lastResetLabel": "Letzter Reset",
+    "activeProjects": "Aktive Projekte",
+    "integrationsDescription": "Partnerintegrationen, die derzeit aktiv sind.",
+    "proposeIntegrationButton": "Integration vorschlagen",
+    "accessDocsButton": "API-Dokumentation aufrufen",
+    "generateNewKeyButton": "Neuen Schlüssel generieren",
+    "noApiKeys": "Sie haben noch keine API-Schlüssel generiert.",
+    "table": {
+      "key": "Beschreibung / Schlüssel",
+      "status": "Status",
+      "environment": "Umgebung",
+      "created": "Erstellt am",
+      "actions": "Aktionen"
+    },
+    "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert!",
+    "generateButton": "Generieren",
+    "revokeDialog": {
+      "title": "API-Schlüssel widerrufen?",
+      "description": "Diese Aktion kann nicht rückgängig gemacht werden. Dadurch wird dieser API-Schlüssel dauerhaft deaktiviert.",
+      "cancel": "Abbrechen",
+      "confirm": "Widerrufen"
+    },
+    "toast": {
+      "descriptionRequired": "Eine Beschreibung für den Schlüssel ist erforderlich.",
+      "keyGeneratedSuccess": "API-Schlüssel erfolgreich generiert.",
+      "keyGeneratedError": "API-Schlüssel konnte nicht generiert werden.",
+      "keyRevokedSuccess": "API-Schlüssel erfolgreich widerrufen.",
+      "keyRevokedError": "API-Schlüssel konnte nicht widerrufen werden."
     }
   }
 }

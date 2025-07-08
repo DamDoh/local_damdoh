@@ -424,5 +424,42 @@
       "title": "No Hay Datos Disponibles",
       "description": "No tenemos suficientes datos para generar tu informe de sostenibilidad. ¡Empieza a registrar las actividades de tu granja!"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Panel para Innovadores Agri-Tech",
+    "sandboxTitle": "Estado del Sandbox",
+    "integrationsTitle": "Integraciones",
+    "apiKeysTitle": "Tus Claves de API",
+    "apiKeysDescription": "Gestiona tus claves de API para acceder a la plataforma DamDoh.",
+    "statusLabel": "Estado",
+    "lastResetLabel": "Último reinicio",
+    "activeProjects": "Proyectos Activos",
+    "integrationsDescription": "Integraciones de socios que están actualmente activas.",
+    "proposeIntegrationButton": "Proponer Integración",
+    "accessDocsButton": "Acceder a la Documentación de la API",
+    "generateNewKeyButton": "Generar Nueva Clave",
+    "noApiKeys": "Aún no has generado ninguna clave de API.",
+    "table": {
+      "key": "Descripción / Clave",
+      "status": "Estado",
+      "environment": "Entorno",
+      "created": "Creada el",
+      "actions": "Acciones"
+    },
+    "apiKeyCopied": "¡Clave de API copiada al portapapeles!",
+    "generateButton": "Generar",
+    "revokeDialog": {
+      "title": "¿Revocar clave de API?",
+      "description": "Esta acción no se puede deshacer. Esto desactivará permanentemente esta clave de API.",
+      "cancel": "Cancelar",
+      "confirm": "Revocar"
+    },
+    "toast": {
+      "descriptionRequired": "Se requiere una descripción para la clave.",
+      "keyGeneratedSuccess": "Clave de API generada con éxito.",
+      "keyGeneratedError": "No se pudo generar la clave de API.",
+      "keyRevokedSuccess": "Clave de API revocada con éxito.",
+      "keyRevokedError": "No se pudo revocar la clave de API."
+    }
   }
 }
