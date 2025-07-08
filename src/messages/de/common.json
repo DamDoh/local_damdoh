@@ -1,2 +1,171 @@
 
-{}
+{
+  "traceabilityPage": {
+    "title": "Produkt-Rückverfolgbarkeit",
+    "description": "Verfolgen Sie den Weg Ihrer Lebensmittel vom Bauernhof bis zur Gabel mit einer Vibrant Traceability ID (VTI).",
+    "inputPlaceholder": "VTI oder Chargen-ID eingeben...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die jeder Produktcharge zugewiesen wird und Transparenz entlang der Lieferkette gewährleistet.",
+    "recentTitle": "Kürzlich verifizierte Chargen",
+    "recentDescription": "Entdecken Sie einige der neuesten Produktreisen auf der Plattform.",
+    "noRecentBatches": "Keine kürzlich verifizierten Chargen gefunden.",
+    "producerLabel": "Hersteller",
+    "harvestDateLabel": "Erntedatum",
+    "viewReportButton": "Vollständigen Bericht anzeigen",
+    "detailPage": {
+      "backLink": "Zurück zur Rückverfolgbarkeits-Zentrale",
+      "invalidIdError": "Keine gültige Chargen-ID angegeben.",
+      "loadError": "Fehler beim Laden der Rückverfolgbarkeitshistorie für diese Charge.",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Der Rückverfolgbarkeitsbericht für diese ID konnte nicht gefunden werden.",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Hersteller",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Anfänglicher Ertrag",
+      "qualityLabel": "Qualitätsgrad",
+      "notSpecified": "Nicht angegeben",
+      "journeyTitle": "Produktreise",
+      "journeyDescription": "Eine chronologische Aufzeichnung der Ereignisse für diese Charge.",
+      "noEventDetails": "Keine spezifischen Details für dieses Ereignis.",
+      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgbarkeitsereignisse protokolliert.",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Dieses Produkt wurde unter Verwendung von Praktiken angebaut, die den Prinzipien der nachhaltigen und biologischen Landwirtschaft entsprechen, basierend auf protokollierten Betriebsmitteln.",
+      "geoLocationLabel": "Geolokalisierung",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-Diagnose"
+    }
+  },
+  "Forums": {
+    "create": {
+      "errors": {
+        "auth": {
+          "title": "Nicht authentifiziert",
+          "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständige Felder",
+          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        },
+        "general": {
+          "title": "Fehler",
+          "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "KI-Helfer",
+        "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
+        "promptLabel": "KI-Eingabeaufforderung",
+        "promptPlaceholder": "Geben Sie eine kurze Beschreibung des zu generierenden Beitrags ein...",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "errors": {
+        "aiDraft": {
+          "title": "KI-Entwurfsfehler",
+          "description": "Fehler beim Generieren des KI-Entwurfs."
+        },
+        "aiPromptMissing": {
+          "title": "KI-Eingabeaufforderung fehlt",
+          "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
+        },
+        "general": {
+          "title": "Fehler",
+          "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten."
+        },
+        "incomplete": {
+          "title": "Unvollständige Felder",
+          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        }
+      },
+      "form": {
+        "contentLabel": "Inhalt des Beitrags",
+        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags...",
+        "submitButton": "Beitrag erstellen",
+        "submittingButton": "Wird gesendet...",
+        "titleLabel": "Titel des Beitrags",
+        "titlePlaceholder": "Geben Sie den Titel Ihres Beitrags ein"
+      },
+      "success": {
+        "aiDraft": {
+          "title": "KI-Entwurf generiert!",
+          "description": "Ein Entwurf wurde für Sie generiert."
+        },
+        "title": "Beitrag erstellt!",
+        "description": "Ihr Beitrag wurde erfolgreich erstellt."
+      },
+      "title": "Neuen Beitrag erstellen",
+      "description": "Fügen Sie diesem Thema einen neuen Beitrag hinzu."
+    },
+    "postView": {
+      "backLink": "Zurück zu {{topicName}}",
+      "unknownUser": "Unbekannter Benutzer",
+      "postMeta": "von {{author}} am {{date}}",
+      "repliesTitle": "Antworten ({{count}})",
+      "noReplies": "Noch keine Antworten.",
+      "buttons": {
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "reply": {
+        "title": "Eine Antwort hinzufügen",
+        "placeholder": "Schreiben Sie hier Ihre Antwort...",
+        "submitButton": "Antwort hinzufügen",
+        "submittingButton": "Wird gesendet...",
+        "success": "Antwort hinzugefügt!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
+        },
+        "emptyReply": "Antwort darf nicht leer sein.",
+        "submitReply": {
+          "title": "Fehler beim Senden der Antwort",
+          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "topic": {
+      "buttons": {
+        "createPost": "Antwort hinzufügen",
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+        },
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Beim Laden der Details des Themas ist ein Fehler aufgetreten."
+        }
+      },
+      "noPosts": {
+        "button": "Antwort hinzufügen",
+        "description": "Seien Sie der Erste, der auf dieses Thema antwortet.",
+        "title": "Noch keine Beiträge"
+      },
+      "notFound": {
+        "backButton": "Zurück zu den Foren",
+        "description": "Das gesuchte Thema existiert nicht.",
+        "title": "Thema nicht gefunden"
+      },
+      "postMeta": "von {{author}} am {{date}}",
+      "unknownUser": "Unbekannter Benutzer"
+    }
+  }
+}

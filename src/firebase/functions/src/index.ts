@@ -7,7 +7,18 @@
 
 import * as admin from "firebase-admin";
 
-admin.initializeApp();
+// Initialize the Firebase Admin SDK only once
+if (admin.apps.length === 0) {
+  try {
+    // Attempt to initialize with credentials from environment variables
+    admin.initializeApp();
+    console.log("Firebase Admin SDK initialized successfully.");
+  } catch (error) {
+    console.warn(
+      'Firebase Admin SDK initialization failed. This is expected in a client-only environment. Server-side functions will not be available.'
+    );
+  }
+}
 
 export * from "./traceability";
 export * from "./profiles";

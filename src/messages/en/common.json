@@ -1,0 +1,171 @@
+
+{
+  "traceabilityPage": {
+    "title": "Product Traceability",
+    "description": "Trace the journey of your food from farm to fork with a Vibrant Traceability ID (VTI).",
+    "inputPlaceholder": "Enter VTI or Batch ID...",
+    "trackButton": "Track",
+    "vtiDescription": "A VTI is a unique identifier assigned to each batch of produce, ensuring transparency throughout the supply chain.",
+    "recentTitle": "Recently Verified Batches",
+    "recentDescription": "Explore some of the latest product journeys on the platform.",
+    "noRecentBatches": "No recently verified batches found.",
+    "producerLabel": "Producer",
+    "harvestDateLabel": "Harvest Date",
+    "viewReportButton": "View Full Report",
+    "detailPage": {
+      "backLink": "Back to Traceability Hub",
+      "invalidIdError": "No valid batch ID provided.",
+      "loadError": "Failed to load traceability history for this batch.",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "The traceability report for this ID could not be found.",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Producer",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Initial Yield",
+      "qualityLabel": "Quality Grade",
+      "notSpecified": "Not specified",
+      "journeyTitle": "Product Journey",
+      "journeyDescription": "A chronological record of events for this batch.",
+      "noEventDetails": "No specific details for this event.",
+      "noEventsFound": "No traceability events have been logged for this batch yet.",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "This product was grown using practices that align with sustainable and organic principles, based on logged inputs.",
+      "geoLocationLabel": "Geolocation",
+      "observationType": "Observation Type",
+      "details": "Details",
+      "aiDiagnosis": "AI Diagnosis"
+    }
+  },
+  "Forums": {
+    "create": {
+      "errors": {
+        "auth": {
+          "title": "Not Authenticated",
+          "description": "You must be logged in to create a topic."
+        },
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please fill out all required fields."
+        },
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the topic."
+        }
+      }
+    },
+    "createPost": {
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "errors": {
+        "aiDraft": {
+          "title": "AI Draft Error",
+          "description": "Failed to generate AI draft."
+        },
+        "aiPromptMissing": {
+          "title": "AI Prompt Missing",
+          "description": "Please provide a prompt for the AI helper."
+        },
+        "general": {
+          "title": "Error",
+          "description": "An error occurred while creating the post."
+        },
+        "incomplete": {
+          "title": "Incomplete Fields",
+          "description": "Please fill out all required fields."
+        }
+      },
+      "form": {
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Write your post content here...",
+        "submitButton": "Create Post",
+        "submittingButton": "Submitting...",
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter the title of your post"
+      },
+      "success": {
+        "aiDraft": {
+          "title": "AI Draft Generated!",
+          "description": "A draft has been generated for you."
+        },
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic."
+    },
+    "postView": {
+      "backLink": "Back to {{topicName}}",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {{author}} on {{date}}",
+      "repliesTitle": "Replies ({{count}})",
+      "noReplies": "No replies yet.",
+      "buttons": {
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "reply": {
+        "title": "Add a Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Add Reply",
+        "submittingButton": "Submitting...",
+        "success": "Reply added!"
+      },
+      "notFound": {
+        "title": "Post not found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error loading post",
+          "description": "An error occurred while loading the post details."
+        },
+        "loadReplies": {
+          "title": "Error loading replies",
+          "description": "An error occurred while loading replies for this post."
+        },
+        "emptyReply": "Reply cannot be empty.",
+        "submitReply": {
+          "title": "Error submitting reply",
+          "description": "An error occurred while submitting your reply."
+        }
+      }
+    },
+    "topic": {
+      "buttons": {
+        "createPost": "Add Reply",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error loading posts",
+          "description": "An error occurred while loading posts for this topic."
+        },
+        "loadTopic": {
+          "title": "Error loading topic",
+          "description": "An error occurred while loading the topic details."
+        }
+      },
+      "noPosts": {
+        "button": "Add Reply",
+        "description": "Be the first to reply to this topic.",
+        "title": "No posts yet"
+      },
+      "notFound": {
+        "backButton": "Back to Forums",
+        "description": "The topic you are looking for does not exist.",
+        "title": "Topic not found"
+      },
+      "postMeta": "by {{author}} on {{date}}",
+      "unknownUser": "Unknown User"
+    }
+  }
+}
