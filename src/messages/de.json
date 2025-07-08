@@ -63,5 +63,56 @@
   },
   "LanguageSwitcher": {
     "toggle": "Sprache wechseln"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Landwirtschaft stärken vom Saatgut bis zum Verkauf, mit {appName}",
+      "subtitle": "Die umfassende Plattform, die alle Beteiligten der landwirtschaftlichen Lieferkette für eine nachhaltigere und erfolgreichere Zukunft verbindet.",
+      "getStartedButton": "Kostenlos starten",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Ein vollständig integriertes Ökosystem",
+      "subtitle": "DamDoh bietet die Werkzeuge, die Sie benötigen, um Ihr Agrargeschäft zu vernetzen, zu handeln und auszubauen.",
+      "networking": {
+        "title": "Intelligentes Networking",
+        "description": "Verbinden Sie sich mit Landwirten, Käufern, Experten und Lieferanten mithilfe unserer KI-gestützten Vorschlags-Engine."
+      },
+      "marketplace": {
+        "title": "Globaler Marktplatz",
+        "description": "Kaufen und verkaufen Sie Produkte, Betriebsmittel und Ausrüstung mit Vertrauen und Transparenz durch rückverfolgbare Angebote."
+      },
+      "forums": {
+        "title": "Wissensaustausch",
+        "description": "Treten Sie Community-Foren bei, um bewährte Verfahren zu diskutieren, Herausforderungen zu lösen und Ihr Fachwissen zu teilen."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Bieten Sie Ihre Fähigkeiten an oder finden Sie Expertenhilfe für Sonderernten, Drohnenvermessung und andere Dienstleistungen."
+      }
+    },
+    "forWho": {
+      "badge": "Für alle in der Lieferkette",
+      "title": "Eine Plattform für Sie gebaut",
+      "description": "Ob Sie die Felder bestellen oder für einen globalen Markt einkaufen, DamDoh ist auf Ihre spezifischen Bedürfnisse zugeschnitten.",
+      "farmers": {
+        "title": "Für Landwirte & Genossenschaften",
+        "description": "Erschließen Sie neue Märkte, erhalten Sie faire Preise und lernen Sie nachhaltige Praktiken, um Ihren Ertrag und Ihre Rentabilität zu steigern."
+      },
+      "buyers": {
+        "title": "Für Einkäufer & Exporteure",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von den Erzeugern und verwalten Sie Ihre Lieferkette mit Zuversicht."
+      },
+      "experts": {
+        "title": "Für Experten & Dienstleister",
+        "description": "Bieten Sie Ihr Fachwissen an, finden Sie neue Kunden und tragen Sie zu einem effizienteren landwirtschaftlichen Ökosystem bei."
+      },
+      "imageAlt": "Eine vielfältige Gruppe von Agrarexperten, die zusammenarbeiten."
+    },
+    "cta": {
+      "title": "Treten Sie noch heute der DamDoh-Community bei",
+      "subtitle": "Melden Sie sich jetzt an und werden Sie Teil der Zukunft der Landwirtschaft. Der Einstieg ist kostenlos.",
+      "button": "Jetzt anmelden"
+    }
   }
 }

@@ -63,5 +63,56 @@
   },
   "LanguageSwitcher": {
     "toggle": "Toggle language"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Empowering Agriculture from Seed to Sale, with {appName}",
+      "subtitle": "The comprehensive platform connecting every stakeholder in the agricultural supply chain for a more sustainable and prosperous future.",
+      "getStartedButton": "Get Started for Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "A Fully Integrated Ecosystem",
+      "subtitle": "DamDoh provides the tools you need to connect, trade, and grow your agricultural business.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "Connect with farmers, buyers, experts, and suppliers using our AI-powered suggestion engine."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell produce, inputs, and equipment with trust and transparency through traceable listings."
+      },
+      "forums": {
+        "title": "Knowledge Sharing",
+        "description": "Join community forums to discuss best practices, solve challenges, and share your expertise."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Offer your skills or find expert help for custom harvesting, drone surveying, and other services."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in the Supply Chain",
+      "title": "A Platform Built for You",
+      "description": "Whether you're tending the fields or sourcing for a global market, DamDoh is designed to meet your specific needs.",
+      "farmers": {
+        "title": "For Farmers & Cooperatives",
+        "description": "Access new markets, get fair prices, and learn sustainable practices to increase your yield and profitability."
+      },
+      "buyers": {
+        "title": "For Buyers & Exporters",
+        "description": "Source high-quality, traceable produce directly from producers and manage your supply chain with confidence."
+      },
+      "experts": {
+        "title": "For Experts & Service Providers",
+        "description": "Offer your expertise, find new clients, and contribute to a more efficient agricultural ecosystem."
+      },
+      "imageAlt": "A diverse group of agricultural professionals collaborating."
+    },
+    "cta": {
+      "title": "Join the DamDoh Community Today",
+      "subtitle": "Sign up now and become part of the future of agriculture. It's free to get started.",
+      "button": "Sign Up Now"
+    }
   }
 }
