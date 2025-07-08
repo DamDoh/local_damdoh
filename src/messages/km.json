@@ -140,22 +140,22 @@
     "title": "បង្កើតផលិតផលធានារ៉ាប់រង",
     "description": "កំណត់គោលការណ៍ធានារ៉ាប់រងថ្មីដើម្បីផ្តល់ជូននៅលើវេទិកា។",
     "form": {
-        "nameLabel": "ឈ្មោះផលិតផល",
-        "namePlaceholder": "ឧ. ការការពារគ្រោះរាំងស្ងួតសម្រាប់ពោត",
-        "typeLabel": "ប្រភេទផលិតផល",
-        "typePlaceholder": "ជ្រើសរើសប្រភេទ",
-        "crop": "ដំណាំ",
-        "livestock": "បសុសត្វ",
-        "asset": "ទ្រព្យសម្បត្តិ",
-        "weather": "អាកាសធាតុ",
-        "descriptionLabel": "ការពិពណ៌នា",
-        "descriptionPlaceholder": "ពិពណ៌នាអំពីផលិតផលនិងអត្ថប្រយោជន៍របស់វា។",
-        "coverageLabel": "ព័ត៌មានលម្អិតអំពីការធានារ៉ាប់រង",
-        "coveragePlaceholder": "រាយបញ្ជីអ្វីដែលគោលការណ៍នេះគ្របដណ្តប់...",
-        "premiumLabel": "បុព្វលាភ (USD)",
-        "premiumPlaceholder": "ឧ. 250.00",
-        "currencyLabel": "រូបិយប័ណ្ណ",
-        "submitButton": "បង្កើតផលិតផល"
+      "nameLabel": "ឈ្មោះផលិតផល",
+      "namePlaceholder": "ឧ. ការការពារគ្រោះរាំងស្ងួតសម្រាប់ពោត",
+      "typeLabel": "ប្រភេទផលិតផល",
+      "typePlaceholder": "ជ្រើសរើសប្រភេទ",
+      "crop": "ដំណាំ",
+      "livestock": "បសុសត្វ",
+      "asset": "ទ្រព្យសម្បត្តិ",
+      "weather": "អាកាសធាតុ",
+      "descriptionLabel": "ការពិពណ៌នា",
+      "descriptionPlaceholder": "ពិពណ៌នាអំពីផលិតផលនិងអត្ថប្រយោជន៍របស់វា។",
+      "coverageLabel": "ព័ត៌មានលម្អិតអំពីការធានារ៉ាប់រង",
+      "coveragePlaceholder": "រាយបញ្ជីអ្វីដែលគោលការណ៍នេះគ្របដណ្តប់...",
+      "premiumLabel": "បុព្វលាភ (USD)",
+      "premiumPlaceholder": "ឧ. 250.00",
+      "currencyLabel": "រូបិយប័ណ្ណ",
+      "submitButton": "បង្កើតផលិតផល"
     },
     "toast": {
       "notAuthenticated": "អ្នកត្រូវតែចូលជាអ្នកផ្តល់សេវាធានារ៉ាប់រង។",
@@ -439,6 +439,42 @@
       "scanNote": "លេខកូដនេះជាបណ្តោះអាសន្នហើយនឹងផុតកំណត់ក្នុងរយៈពេល 10 នាទី។",
       "startOverButton": "ចាប់ផ្តើមឡើងវិញ",
       "helpFriendButton": "ជួយមិត្តភក្តិឱ្យសង្គ្រោះ"
+    }
+  },
+  "searchPage": {
+    "title": "ការស្វែងរកជាសកល",
+    "description": "ស្វែងរកអ្វីៗគ្រប់យ៉ាងនៅលើវេទិកា DamDoh ។",
+    "placeholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម ឬប្រធានបទ...",
+    "searchButton": "ស្វែងរក",
+    "popularSearches": "ការស្វែងរកពេញនិយម",
+    "popularSearch1": "គ្រាប់កាហ្វេសរីរាង្គ",
+    "popularSearch2": "ត្រាក់ទ័រសម្រាប់ជួល",
+    "popularSearch3": "ភស្តុភារនៅកេនយ៉ា",
+    "popularSearch4": "គ្រាប់ពូជធន់នឹងគ្រោះរាំងស្ងួត",
+    "popularSearch5": "រូបមន្ត KNF",
+    "modal": {
+      "title": "ការស្វែងរកជាសកល",
+      "searchError": "កំហុសក្នុងការស្វែងរក",
+      "searchErrorDescription": "មានកំហុសមួយបានកើតឡើងនៅពេលកំពុងស្វែងរក។ សូមព្យាយាមម្តងទៀត។",
+      "placeholder": "ស្វែងរកក្នុង DamDoh...",
+      "searchButton": "ស្វែងរក",
+      "interpretationTitle": "ការបកស្រាយដោយ AI",
+      "interpretationNotesDefault": "កំពុងបង្ហាញលទ្ធផលសម្រាប់ការសាកសួររបស់អ្នក។",
+      "filtersTitle": "តម្រងដែលបានអនុវត្ត",
+      "results": {
+        "users": "ប្រវត្តិរូប",
+        "marketplaceItems": "បញ្ជីទីផ្សារ",
+        "forums": "ប្រធានបទវេទិកា",
+        "agri_events": "ព្រឹត្តិការណ៍",
+        "knowledge_articles": "អត្ថបទចំណេះដឹង",
+        "vti_registry": "បាច់តាមដាន"
+      },
+      "noResults": "រកមិនឃើញលទ្ធផលសម្រាប់ការសាកសួររបស់អ្នកទេ។",
+      "tryAgain": "ព្យាយាមកែលម្អពាក្យស្វែងរករបស់អ្នក។",
+      "scanFailed": "ការស្កេនបរាជ័យ",
+      "scanError": "កំហុសក្នុងការស្កេន",
+      "scanErrorDescription": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។",
+      "invalidCodeError": "នេះមិនមែនជាកូដ QR របស់ DamDoh ដែលត្រឹមត្រូវទេ។"
     }
   }
 }

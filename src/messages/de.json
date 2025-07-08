@@ -198,7 +198,7 @@
     "helpCenter": "Hilfezentrum",
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Design wechseln",
- "switchToDarkAria": "Zum dunklen Design wechseln",
+    "switchToDarkAria": "Zum dunklen Design wechseln",
     "sustainability": "Nachhaltigkeit"
   },
   "AppFooter": {
@@ -439,6 +439,42 @@
       "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
       "startOverButton": "Neu anfangen",
       "helpFriendButton": "Einem Freund bei der Wiederherstellung helfen"
+    }
+  },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform.",
+    "placeholder": "Suchen Sie nach Personen, Produkten, Dienstleistungen oder Themen...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchanfragen",
+    "popularSearch1": "Bio-Kaffeebohnen",
+    "popularSearch2": "Traktor zu vermieten",
+    "popularSearch3": "Logistik in Kenia",
+    "popularSearch4": "Trockenresistente Samen",
+    "popularSearch5": "KNF-Rezepte",
+    "modal": {
+      "title": "Universelle Suche",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "placeholder": "DamDoh durchsuchen...",
+      "searchButton": "Suchen",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Zeige Ergebnisse für Ihre Anfrage.",
+      "filtersTitle": "Angewendete Filter",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatzangebote",
+        "forums": "Forum-Themen",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissensartikel",
+        "vti_registry": "Rückverfolgbarkeits-Chargen"
+      },
+      "noResults": "Keine Ergebnisse für Ihre Anfrage gefunden.",
+      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scan-Fehler",
+      "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Dies ist kein gültiger DamDoh QR-Code."
     }
   }
 }

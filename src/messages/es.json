@@ -140,22 +140,22 @@
     "title": "Crear Producto de Seguro",
     "description": "Defina una nueva póliza de seguro para ofrecer en la plataforma.",
     "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
-      "typeLabel": "Tipo de Producto",
-      "typePlaceholder": "Seleccione un tipo",
-      "crop": "Cultivo",
-      "livestock": "Ganado",
-      "asset": "Activo",
-      "weather": "Clima",
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Describa el producto y sus beneficios.",
-      "coverageLabel": "Detalles de la Cobertura",
-      "coveragePlaceholder": "Detalle qué cubre esta póliza...",
-      "premiumLabel": "Prima (USD)",
-      "premiumPlaceholder": "Ej: 250.00",
-      "currencyLabel": "Moneda",
-      "submitButton": "Crear Producto"
+        "nameLabel": "Nombre del Producto",
+        "namePlaceholder": "Ej: Protección contra la Sequía para Maíz",
+        "typeLabel": "Tipo de Producto",
+        "typePlaceholder": "Seleccione un tipo",
+        "crop": "Cultivo",
+        "livestock": "Ganado",
+        "asset": "Activo",
+        "weather": "Clima",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describa el producto y sus beneficios.",
+        "coverageLabel": "Detalles de la Cobertura",
+        "coveragePlaceholder": "Detalle qué cubre esta póliza...",
+        "premiumLabel": "Prima (USD)",
+        "premiumPlaceholder": "Ej: 250.00",
+        "currencyLabel": "Moneda",
+        "submitButton": "Crear Producto"
     },
     "toast": {
       "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros.",
@@ -439,6 +439,42 @@
       "scanNote": "Este código es temporal y caducará en 10 minutos.",
       "startOverButton": "Empezar de nuevo",
       "helpFriendButton": "Ayudar a un amigo a recuperarse"
+    }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentre cualquier cosa en toda la plataforma DamDoh.",
+    "placeholder": "Buscar personas, productos, servicios o temas...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Granos de Café Orgánico",
+    "popularSearch2": "Tractor en alquiler",
+    "popularSearch3": "Logística en Kenia",
+    "popularSearch4": "Semillas resistentes a la sequía",
+    "popularSearch5": "Recetas KNF",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "Ocurrió un error al realizar la búsqueda. Por favor, inténtelo de nuevo.",
+      "placeholder": "Buscar en DamDoh...",
+      "searchButton": "Buscar",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Mostrando resultados para su consulta.",
+      "filtersTitle": "Filtros Aplicados",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Listados del Mercado",
+        "forums": "Temas del Foro",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Artículos de Conocimiento",
+        "vti_registry": "Lotes de Trazabilidad"
+      },
+      "noResults": "No se encontraron resultados para su consulta.",
+      "tryAgain": "Intente refinar sus términos de búsqueda.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
+      "invalidCodeError": "Este no es un código QR de DamDoh válido."
     }
   }
 }

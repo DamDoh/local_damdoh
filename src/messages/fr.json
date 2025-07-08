@@ -440,5 +440,41 @@
       "startOverButton": "Recommencer",
       "helpFriendButton": "Aider un ami à récupérer"
     }
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
+    "placeholder": "Rechercher des personnes, des produits, des services ou des sujets...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches populaires",
+    "popularSearch1": "Grains de café bio",
+    "popularSearch2": "Tracteur à louer",
+    "popularSearch3": "Logistique au Kenya",
+    "popularSearch4": "Graines résistantes à la sécheresse",
+    "popularSearch5": "Recettes KNF",
+    "modal": {
+      "title": "Recherche Universelle",
+      "searchError": "Erreur de Recherche",
+      "searchErrorDescription": "Une erreur s'est produite lors de la recherche. Veuillez réessayer.",
+      "placeholder": "Rechercher dans DamDoh...",
+      "searchButton": "Rechercher",
+      "interpretationTitle": "Interprétation de l'IA",
+      "interpretationNotesDefault": "Affichage des résultats pour votre requête.",
+      "filtersTitle": "Filtres Appliqués",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Annonces du Marché",
+        "forums": "Sujets du Forum",
+        "agri_events": "Événements",
+        "knowledge_articles": "Articles de Connaissance",
+        "vti_registry": "Lots de Traçabilité"
+      },
+      "noResults": "Aucun résultat trouvé pour votre requête.",
+      "tryAgain": "Essayez d'affiner vos termes de recherche.",
+      "scanFailed": "Échec du Scan",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "invalidCodeError": "Ceci n'est pas un code QR DamDoh valide."
+    }
   }
 }

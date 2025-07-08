@@ -425,91 +425,6 @@
       "keyRevokedError": "Could not revoke API Key."
     }
   },
-  "farmManagement": {
-    "knfInputsPage": {
-      "backLink": "Back to Farm Management",
-      "title": "KNF Input Assistant",
-      "description": "Track your homemade Korean Natural Farming inputs and access recipes.",
-      "guidesTitle": "KNF Guides & Recipes",
-      "ingredients": "Ingredients",
-      "steps": "Steps",
-      "usage": "Usage & Application",
-      "fermentingBatchesTitle": "Currently Fermenting",
-      "started": "Started",
-      "nextStepOn": "Next step on",
-      "markReady": "Mark as Ready",
-      "noFermentingBatches": "No batches are currently fermenting.",
-      "readyBatchesTitle": "Ready to Use",
-      "readySince": "Ready since",
-      "logUsage": "Log Usage",
-      "archive": "Archive",
-      "noReadyBatches": "You have no KNF inputs ready for use.",
-      "startNewBatch": "Start a New Batch",
-      "createNewBatchTitle": "Create New KNF Batch",
-      "cancel": "Cancel",
-      "form": {
-        "typeLabel": "Type of Input",
-        "typePlaceholder": "Select KNF Input",
-        "ingredientsLabel": "Key Ingredients",
-        "startDateLabel": "Start Date",
-        "startButton": "Start Fermentation",
-        "startingButton": "Starting..."
-      },
-      "knfOptions": {
-        "fpj": {
-          "label": "Fermented Plant Juice (FPJ)",
-          "placeholder": "e.g., Sweet potato tips, bamboo shoots"
-        },
-        "faa": {
-          "label": "Fish Amino Acid (FAA)",
-          "placeholder": "e.g., Fish scraps, heads, bones"
-        },
-        "wca": {
-          "label": "Water-Soluble Calcium (WCA)",
-          "placeholder": "e.g., Eggshells"
-        },
-        "imo": {
-          "label": "Indigenous Microorganisms (IMO)",
-          "placeholder": "e.g., Cooked rice, local forest soil"
-        },
-        "lab": {
-          "label": "Lactic Acid Bacteria (LAB)",
-          "placeholder": "e.g., Rice wash, milk"
-        }
-      },
-      "recipeData": [
-        {
-          "id": "fpj",
-          "name": "Fermented Plant Juice (FPJ)",
-          "description": "A growth enhancer made from the fermented sap of fast-growing plants.",
-          "ingredients": ["1kg fast-growing plants (e.g., squash tips, sweet potato vines)", "1kg brown sugar"],
-          "steps": ["Chop plants", "Mix with equal weight of brown sugar", "Pack in a breathable container", "Ferment for 7 days in a cool, dark place"],
-          "usage": "Dilute 1:500 - 1:1000 with water. Use as a foliar spray or soil drench during vegetative growth."
-        },
-        {
-          "id": "faa",
-          "name": "Fish Amino Acid (FAA)",
-          "description": "A potent nitrogen source made from fermented fish scraps.",
-          "ingredients": ["1kg fish parts (guts, heads, bones)", "1kg brown sugar"],
-          "steps": ["Layer fish parts and sugar in a container", "Cover and ferment for 3-6 months"],
-          "usage": "Dilute 1:1000 with water. Excellent for vegetative growth."
-        }
-      ],
-      "toasts": {
-        "loadErrorTitle": "Error",
-        "loadErrorDescription": "Could not fetch your KNF batches.",
-        "validationError": "Please select an input type, and provide ingredients and a start date.",
-        "batchStartedTitle": "Batch Started!",
-        "batchStartedDescription": "Your new KNF batch is now fermenting.",
-        "batchStartFailed": "Failed to Start Batch",
-        "unexpectedError": "An unexpected error occurred. Please try again.",
-        "batchUpdatedTitle": "Batch Updated",
-        "batchUpdatedDescription": "Status updated to {{status}}.",
-        "updateFailed": "Update Failed",
-        "couldNotUpdate": "Could not update batch status."
-      }
-    }
-  },
   "Auth": {
     "recoverPage": {
       "title": "Social Account Recovery",
@@ -524,6 +439,42 @@
       "scanNote": "This code is temporary and will expire in 10 minutes.",
       "startOverButton": "Start Over",
       "helpFriendButton": "Help a Friend Recover"
+    }
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search for people, produce, services, or topics...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee Beans",
+    "popularSearch2": "Tractor for rent",
+    "popularSearch3": "Logistics in Kenya",
+    "popularSearch4": "Drought-resistant seeds",
+    "popularSearch5": "KNF Recipes",
+    "modal": {
+      "title": "Universal Search",
+      "searchError": "Search Error",
+      "searchErrorDescription": "An error occurred while performing the search. Please try again.",
+      "placeholder": "Search DamDoh...",
+      "searchButton": "Search",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Showing results for your query.",
+      "filtersTitle": "Applied Filters",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace Listings",
+        "forums": "Forum Topics",
+        "agri_events": "Events",
+        "knowledge_articles": "Knowledge Articles",
+        "vti_registry": "Traceability Batches"
+      },
+      "noResults": "No results found for your query.",
+      "tryAgain": "Try refining your search terms.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "invalidCodeError": "This is not a valid DamDoh QR code."
     }
   }
 }
