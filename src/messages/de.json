@@ -481,5 +481,14 @@
     "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert!",
     "noApiKeys": "Es wurden noch keine API-Schlüssel generiert.",
     "generateNewKeyButton": "Neuen API-Schlüssel generieren"
+  },
+  "OperationsDashboard": {
+    "title": "Betriebs-Dashboard",
+    "vtiRateTitle": "VTI-Generierungsrate",
+    "pipelineStatusTitle": "Datenpipeline-Status",
+    "lastCheck": "Letzte Überprüfung",
+    "flaggedEventsTitle": "Gekennzeichnete Ereignisse",
+    "viewVtiButton": "VTI anzeigen",
+    "noFlaggedEvents": "Derzeit keine automatisch gekennzeichneten Ereignisse."
   }
 }

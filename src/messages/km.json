@@ -481,5 +481,14 @@
     "apiKeyCopied": "បានចម្លងកូនសោ API ទៅក្ដារតម្បៀតខ្ទាស់!",
     "noApiKeys": "មិនទាន់មានកូនសោ API ត្រូវបានបង្កើតនៅឡើយទេ។",
     "generateNewKeyButton": "បង្កើតកូនសោ API ថ្មី"
+  },
+  "OperationsDashboard": {
+    "title": "ផ្ទាំងគ្រប់គ្រងប្រតិបត្តិការ",
+    "vtiRateTitle": "អត្រាបង្កើត VTI",
+    "pipelineStatusTitle": "ស្ថានភាពបំពង់ទិន្នន័យ",
+    "lastCheck": "បានពិនិត្យចុងក្រោយ",
+    "flaggedEventsTitle": "ព្រឹត្តិការណ៍ដែលបានដាក់ទង់",
+    "viewVtiButton": "មើល VTI",
+    "noFlaggedEvents": "មិនមានព្រឹត្តិការណ៍ដែលបានដាក់ទង់ដោយស្វ័យប្រវត្តិនៅពេលនេះទេ។"
   }
 }

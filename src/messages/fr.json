@@ -481,5 +481,14 @@
     "apiKeyCopied": "Clé API copiée dans le presse-papiers !",
     "noApiKeys": "Aucune clé API n'a encore été générée.",
     "generateNewKeyButton": "Générer une nouvelle clé API"
+  },
+  "OperationsDashboard": {
+    "title": "Tableau de bord des opérations",
+    "vtiRateTitle": "Taux de génération de VTI",
+    "pipelineStatusTitle": "État du pipeline de données",
+    "lastCheck": "Dernière vérification",
+    "flaggedEventsTitle": "Événements signalés",
+    "viewVtiButton": "Voir VTI",
+    "noFlaggedEvents": "Aucun événement signalé automatiquement pour le moment."
   }
 }

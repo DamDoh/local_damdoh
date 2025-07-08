@@ -481,5 +481,14 @@
     "apiKeyCopied": "API Key copied to clipboard!",
     "noApiKeys": "No API keys have been generated yet.",
     "generateNewKeyButton": "Generate New API Key"
+  },
+  "OperationsDashboard": {
+    "title": "Operations Dashboard",
+    "vtiRateTitle": "VTI Generation Rate",
+    "pipelineStatusTitle": "Data Pipeline Status",
+    "lastCheck": "Last checked",
+    "flaggedEventsTitle": "Flagged Events",
+    "viewVtiButton": "View VTI",
+    "noFlaggedEvents": "No automatically flagged events at this time."
   }
 }
