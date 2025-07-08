@@ -191,5 +191,39 @@
   },
   "LanguageSwitcher": {
     "toggle": "ប្តូរភាសា"
+  },
+  "searchPage": {
+    "title": "ការស្វែងរកជាសកល",
+    "description": "ស្វែងរកអ្វីគ្រប់យ៉ាងនៅលើវេទិកា DamDoh។",
+    "placeholder": "ស្វែងរកមនុស្ស ផលិតផល ឬប្រធានបទ...",
+    "searchButton": "ស្វែងរក",
+    "popularSearches": "ការស្វែងរកពេញនិយម",
+    "popularSearch1": "ជីសរីរាង្គ",
+    "popularSearch2": "ភស្តុភារនៅកេនយ៉ា",
+    "popularSearch3": "គ្រាប់ពោតធន់នឹងគ្រោះរាំងស្ងួត",
+    "popularSearch4": "ត្រាក់ទ័រសម្រាប់ជួល",
+    "popularSearch5": "អ្នកទិញកាហ្វេពាណិជ្ជកម្មដោយត្រឹមត្រូវ",
+    "modal": {
+      "title": "ការស្វែងរកជាសកល",
+      "placeholder": "ស្វែងរកអ្វីក៏បាន...",
+      "searchButton": "ស្វែងរក",
+      "scanFailed": "ការស្កេនបានបរាជ័យ",
+      "scanError": "កំហុសក្នុងការស្កេន",
+      "scanErrorDescription": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។",
+      "invalidCodeError": "នេះមិនមែនជាកូដស្តារឡើងវិញ ឬកូដប្រវត្តិរូប DamDoh ដែលត្រឹមត្រូវទេ។",
+      "interpretationTitle": "ការបកស្រាយរបស់ AI",
+      "interpretationNotesDefault": "កំពុងបង្ហាញលទ្ធផលទូទៅ។ ព្យាយាមឱ្យកាន់តែជាក់លាក់សម្រាប់ការស្វែងរកកាន់តែឆ្លាតវៃ។",
+      "filtersTitle": "តម្រងដែលបានអនុវត្ត",
+      "results": {
+        "users": "ប្រវត្តិរូប",
+        "marketplaceItems": "ទីផ្សារ",
+        "forums": "វេទិកា",
+        "vti_registry": "របាយការណ៍តាមដាន",
+        "knowledge_articles": "អត្ថបទ",
+        "agri_events": "ព្រឹត្តិការណ៍"
+      },
+      "noResults": "រកមិនឃើញលទ្ធផលទេ។",
+      "tryAgain": "ព្យាយាមប្រើពាក្យស្វែងរកផ្សេង ឬស្កេនកូដ។"
+    }
   }
 }

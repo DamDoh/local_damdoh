@@ -155,7 +155,7 @@
     "resettingPasswordButton": "Resetting Password...",
     "resetPasswordButton": "Reset Password"
   },
-   "OfflineIndicator": {
+  "OfflineIndicator": {
     "tooltip": {
       "syncing": "Syncing {count} pending actions...",
       "onlinePending": "{count} pending actions to sync.",
@@ -191,5 +191,39 @@
   },
   "LanguageSwitcher": {
     "toggle": "Toggle language"
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform.",
+    "placeholder": "Search for people, products, or topics...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Logistics in Kenya",
+    "popularSearch3": "Drought-resistant maize seeds",
+    "popularSearch4": "Tractor for rent",
+    "popularSearch5": "Fair trade coffee buyers",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search for anything...",
+      "searchButton": "Search",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Showing general results. Try being more specific for a smarter search.",
+      "filtersTitle": "Applied Filters",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "vti_registry": "Traceability Reports",
+        "knowledge_articles": "Articles",
+        "agri_events": "Events"
+      },
+      "noResults": "No results found.",
+      "tryAgain": "Try a different search term or scan a code."
+    }
   }
 }

@@ -191,5 +191,39 @@
   },
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh.",
+    "placeholder": "Busca personas, productos o temas...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Fertilizante orgánico",
+    "popularSearch2": "Logística en Kenia",
+    "popularSearch3": "Semillas de maíz resistentes a la sequía",
+    "popularSearch4": "Tractor en alquiler",
+    "popularSearch5": "Compradores de café de comercio justo",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Busca cualquier cosa...",
+      "searchButton": "Buscar",
+      "scanFailed": "Escaneo fallido",
+      "scanError": "Error de escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtalo de nuevo.",
+      "invalidCodeError": "Este no es un código válido de recuperación o perfil de DamDoh.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Mostrando resultados generales. Intenta ser más específico para una búsqueda más inteligente.",
+      "filtersTitle": "Filtros aplicados",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "vti_registry": "Informes de Trazabilidad",
+        "knowledge_articles": "Artículos",
+        "agri_events": "Eventos"
+      },
+      "noResults": "No se encontraron resultados.",
+      "tryAgain": "Intenta con otro término de búsqueda o escanea un código."
+    }
   }
 }
