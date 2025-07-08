@@ -169,6 +169,9 @@
     "discoverMore": "Mehr entdecken",
     "viewDetails": "Details anzeigen",
     "viewServiceButton": "Dienstleistung ansehen",
+    "itemView": {
+      "contactForRates": "Kontakt für Preise"
+    },
     "pinning": {
       "pinnedTitle": "Marktplatz angeheftet!",
       "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
@@ -192,6 +195,46 @@
         "title": "Suchfehler",
         "description": "Marktplatzartikel konnten nicht abgerufen werden."
       }
+    },
+    "myOrders": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Meine erhaltenen Bestellungen",
+      "description": "Anzeigen und Verwalten von Bestellungen, die von Käufern erhalten wurden.",
+      "auth": {
+        "title": "Authentifizierung erforderlich",
+        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "table": {
+        "date": "Datum",
+        "buyer": "Käufer",
+        "product": "Produkt",
+        "total": "Gesamt",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "actions": {
+        "confirm": "Bestätigen",
+        "ship": "Versenden",
+        "complete": "Abschließen",
+        "cancel": "Stornieren"
+      },
+      "status": {
+        "new": "Neu",
+        "confirmed": "Bestätigt",
+        "shipped": "Versandt",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
+      },
+      "noOrders": "Keine Bestellungen gefunden.",
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Bestellungen konnten nicht abgerufen werden.",
+        "successTitle": "Erfolg!",
+        "updateSuccess": "Bestellstatus aktualisiert auf {{status}}",
+        "failTitle": "Fehler"
+      }
     }
-  }
+  },
+  "Homepage": {}
 }

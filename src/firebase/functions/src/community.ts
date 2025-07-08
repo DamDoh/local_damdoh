@@ -201,7 +201,6 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
     return { replies: comments, lastVisible: newLastVisible };
 });
 
-
 export const voteOnPoll = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { postId, optionIndex } = data;
