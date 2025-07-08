@@ -57,7 +57,28 @@
     "getMobileApp": "Obtenez l'application mobile",
     "googlePlayAlt": "Disponible sur Google Play",
     "appStoreAlt": "Télécharger dans l'App Store"
+  },
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "sustainability": "Durabilité",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'Aide",
+    "logOut": "Se Déconnecter"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
   }
 }
-
-    
