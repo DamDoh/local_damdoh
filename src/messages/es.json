@@ -246,5 +246,26 @@
     "postButton": "Publicar",
     "pollOptionsError": "Una encuesta debe tener al menos dos opciones.",
     "emptyPostError": "No se puede crear una publicación vacía."
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, one {# Me gusta} other {# Me gusta}}",
+    "comments": "{count, plural, one {# comentario} other {# comentarios}}",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Compartir",
+    "editPost": "Editar publicación",
+    "deletePost": "Eliminar publicación",
+    "votes": "{count, plural, one {# voto} other {# votos}}",
+    "noComments": "Aún no hay comentarios. ¡Sé el primero en responder!",
+    "loadingComments": "Cargando comentarios...",
+    "loadMoreComments": "Cargar más comentarios",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "postButton": "Publicar",
+    "signInToLikeToast": "Por favor, inicia sesión para dar 'Me gusta' a una publicación.",
+    "signInToVoteToast": "Por favor, inicia sesión para votar.",
+    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
+    "repostPlaceholderToast": "¡La función de compartir estará disponible pronto!",
+    "voteSuccessToast": "¡Tu voto ha sido emitido!",
+    "voteErrorToast": "No se pudo emitir el voto."
   }
 }

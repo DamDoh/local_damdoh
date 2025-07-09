@@ -246,5 +246,26 @@
     "postButton": "Publier",
     "pollOptionsError": "Un sondage doit avoir au moins deux options.",
     "emptyPostError": "Impossible de créer une publication vide."
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, one {# J'aime} other {# J'aime}}",
+    "comments": "{count, plural, one {# commentaire} other {# commentaires}}",
+    "like": "J'aime",
+    "comment": "Commenter",
+    "repost": "Republier",
+    "editPost": "Modifier la publication",
+    "deletePost": "Supprimer la publication",
+    "votes": "{count, plural, one {# vote} other {# votes}}",
+    "noComments": "Aucun commentaire pour l'instant. Soyez le premier à répondre !",
+    "loadingComments": "Chargement des commentaires...",
+    "loadMoreComments": "Charger plus de commentaires",
+    "writeCommentPlaceholder": "Écrire un commentaire...",
+    "postButton": "Publier",
+    "signInToLikeToast": "Veuillez vous connecter pour aimer une publication.",
+    "signInToVoteToast": "Veuillez vous connecter pour voter.",
+    "loadCommentsErrorToast": "Échec du chargement des commentaires.",
+    "repostPlaceholderToast": "La fonction de republication arrive bientôt !",
+    "voteSuccessToast": "Votre vote a été enregistré !",
+    "voteErrorToast": "Échec de l'enregistrement du vote."
   }
 }

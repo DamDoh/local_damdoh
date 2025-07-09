@@ -246,5 +246,26 @@
     "postButton": "Post",
     "pollOptionsError": "A poll must have at least two options.",
     "emptyPostError": "Cannot create an empty post."
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, one {# like} other {# likes}}",
+    "comments": "{count, plural, one {# comment} other {# comments}}",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "votes": "{count, plural, one {# vote} other {# votes}}",
+    "noComments": "No comments yet. Be the first to reply!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post",
+    "signInToLikeToast": "Please sign in to like a post.",
+    "signInToVoteToast": "Please sign in to vote.",
+    "loadCommentsErrorToast": "Failed to load comments.",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "voteSuccessToast": "Your vote has been cast!",
+    "voteErrorToast": "Failed to cast vote."
   }
 }

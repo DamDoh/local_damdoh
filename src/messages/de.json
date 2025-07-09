@@ -246,5 +246,26 @@
     "postButton": "Posten",
     "pollOptionsError": "Eine Umfrage muss mindestens zwei Optionen haben.",
     "emptyPostError": "Ein leerer Beitrag kann nicht erstellt werden."
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, one {# Gefällt mir} other {# Gefällt mir}}",
+    "comments": "{count, plural, one {# Kommentar} other {# Kommentare}}",
+    "like": "Gefällt mir",
+    "comment": "Kommentieren",
+    "repost": "Reposten",
+    "editPost": "Beitrag bearbeiten",
+    "deletePost": "Beitrag löschen",
+    "votes": "{count, plural, one {# Stimme} other {# Stimmen}}",
+    "noComments": "Noch keine Kommentare. Seien Sie der Erste, der antwortet!",
+    "loadingComments": "Kommentare werden geladen...",
+    "loadMoreComments": "Weitere Kommentare laden",
+    "writeCommentPlaceholder": "Einen Kommentar schreiben...",
+    "postButton": "Posten",
+    "signInToLikeToast": "Bitte melden Sie sich an, um einen Beitrag zu liken.",
+    "signInToVoteToast": "Bitte melden Sie sich an, um abzustimmen.",
+    "loadCommentsErrorToast": "Kommentare konnten nicht geladen werden.",
+    "repostPlaceholderToast": "Die Repost-Funktion kommt bald!",
+    "voteSuccessToast": "Ihre Stimme wurde abgegeben!",
+    "voteErrorToast": "Abstimmung fehlgeschlagen."
   }
 }
