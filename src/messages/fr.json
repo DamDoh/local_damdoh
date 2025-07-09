@@ -1126,10 +1126,10 @@
       "principlesTitle": "Principes directeurs en action",
       "zones": [
         { "id": "overall-layout", "title": "Aménagement et conception d'ensemble", "icon": "LayoutGrid", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Aménagement général d'une petite ferme", "dataAiHint": "aménagement petite ferme", "description": ["La ferme est conçue pour être un système en circuit fermé. Les déchets d'un composant deviennent un intrant précieux pour un autre, réduisant les coûts externes et augmentant la durabilité."], "details": [{ "title": "Attribution de l'espace", "content": ["Environ 60 % pour les potagers, 20 % pour l'élevage, 10 % pour l'aquaculture et 10 % pour les allées et le compostage."] }, { "title": "Flux d'eau", "content": ["L'eau de l'étang à poissons est utilisée pour irriguer les jardins, fournissant une eau riche en nutriments."] }] },
-        { "id": "vegetable-garden", "title": "Potager (environ 120 m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Potager luxuriant", "dataAiHint": "potager", "description": ["Le cœur de la ferme, fournissant un approvisionnement continu de légumes variés et nutritifs pour la nutrition familiale et les ventes sur le marché."], "details": [{ "title": "Méthodes de culture", "content": ["Des plates-bandes surélevées, une plantation intensive et des cultures intercalaires sont utilisées pour maximiser l'espace et réduire les parasites."] }, { "title": "Production", "content": ["Production toute l'année de légumes-feuilles, de légumes-fruits et de légumes-racines."] }] },
+        { "id": "vegetable-garden", "title": "Potager (environ 120 m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Potager luxuriant", "dataAiHint": "potager", "description": ["Le cœur de la ferme, qui fournit un approvisionnement continu de légumes variés et nutritifs pour la nutrition familiale et les ventes sur le marché."], "details": [{ "title": "Méthodes de culture", "content": ["Des plates-bandes surélevées, une plantation intensive et des cultures intercalaires sont utilisées pour maximiser l'espace et réduire les parasites."] }, { "title": "Production", "content": ["Production toute l'année de légumes-feuilles, de légumes-fruits et de légumes-racines."] }] },
         { "id": "fish-pond", "title": "Étang à poissons (environ 20 m²)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Petit étang à poissons", "dataAiHint": "étang aquaculture", "description": ["Une source précieuse de protéines et de revenus. L'étang est intégré au système d'irrigation du jardin."], "details": [{ "title": "Espèces", "content": ["Le tilapia ou le poisson-chat sont de bons choix en raison de leur résilience et de leur croissance rapide."] }, { "title": "Synergie", "content": ["L'eau de l'étang, riche en excréments de poissons, est utilisée comme engrais naturel pour les potagers."] }] },
         { "id": "poultry-unit", "title": "Unité avicole (environ 20 m²)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Poulets dans un enclos", "dataAiHint": "poulets plein air", "description": ["Fournit des œufs et de la viande pour la famille et le marché. Leur fumier est un ingrédient clé du tas de compost."], "details": [{ "title": "Logement", "content": ["Un petit poulailler avec un enclos sécurisé, permettant aux poulets de chercher de la nourriture et de contribuer à la lutte contre les parasites."] }, { "title": "Supplément alimentaire", "content": ["Les restes de jardin et les insectes peuvent compléter l'alimentation commerciale, réduisant ainsi les coûts."] }] },
-        { "id": "compost-system", "title": "Système de compostage (environ 20 m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Tas de compost", "dataAiHint": "tas de compost", "description": ["Le moteur de recyclage de la ferme. Transforme les restes de cuisine, les déchets de jardin et le fumier animal en compost riche en nutriments, réduisant ainsi le besoin d'engrais chimiques."], "subSections": [{ "title": "Diversification", "content": ["La combinaison de différents types de cultures, d'animaux et de poissons réduit le risque d'échec total."] }, { "title": "Cycle des nutriments", "content": ["Le fumier animal et les déchets végétaux sont compostés pour fertiliser le sol. L'eau de l'étang irrigue et fertilise les plantes."] }, { "title": "Efficacité de l'eau", "content": ["L'étang sert de réservoir d'eau, et la réutilisation de l'eau riche en nutriments réduit la consommation globale."] }] }
+        { "id": "compost-system", "title": "Système de compostage (environ 20 m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Tas de compost", "dataAiHint": "tas de compost", "description": ["Le moteur de recyclage de la ferme. Transforme les restes de cuisine, les déchets de jardin et le fumier animal en compost riche en nutriments, réduisant le besoin d'engrais chimiques."], "subSections": [{ "title": "Diversification", "content": ["La combinaison de différents types de cultures, d'animaux et de poissons réduit le risque d'échec total."] }, { "title": "Cycle des nutriments", "content": ["Le fumier animal et les déchets végétaux sont compostés pour fertiliser le sol. L'eau de l'étang irrigue et fertilise les plantes."] }, { "title": "Efficacité de l'eau", "content": ["L'étang sert de réservoir d'eau, et la réutilisation de l'eau riche en nutriments réduit la consommation globale."] }] }
       ]
     },
     "laborPage": {
@@ -1611,6 +1611,21 @@
         "replySuccess": "Réponse publiée !"
       }
     }
+  },
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Rechercher des conversations...",
+    "noConversations": "Vous n'avez pas encore de conversations.",
+    "selectConversation": "Sélectionnez une conversation pour commencer à discuter.",
+    "typeMessagePlaceholder": "Écrivez un message...",
+    "signInToView": "Veuillez vous connecter pour voir vos messages.",
+    "signIn": "Se connecter",
+    "error": "Erreur",
+    "couldNotLoadConversations": "Impossible de charger vos conversations.",
+    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
+    "sendFailed": "Échec de l'envoi",
+    "couldNotSendMessage": "Impossible d'envoyer votre message. Veuillez réessayer."
   }
 }
+
     

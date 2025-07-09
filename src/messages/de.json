@@ -459,7 +459,7 @@
       "heading": "10. KONTAKTIEREN SIE UNS",
       "content": "Um eine Beschwerde bezüglich der Website zu klären oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
     },
-    "conclusion": "Um eine Beschwerde zu klären oder weitere Informationen zu erhalten, {contactLink}."
+    "conclusion": "Um eine Beschwerde zu klären oder weitere Informationen zu erhalten, bitte {contactLink}."
   },
   "Marketplace": {
     "title": "Marktplatz",
@@ -1093,7 +1093,7 @@
       "backLink": "Zurück zum Hub",
       "title": "Farming God's Way (FGW) Anleitung",
       "description": "Die Prinzipien und Praktiken einer revolutionären, nachhaltigen Landwirtschaftsmethode ohne Bodenbearbeitung.",
-      "intro": "Farming God's Way ist eine Ressource, um die Armen zu befähigen, sich selbst und vielen anderen zu helfen, das Land wiederherzustellen und für die Bedürfnisse der Armen zu sorgen. Es geht um treue Haushalterschaft und das Verständnis von Gottes Wegen. Die Kernprinzipien sind einfach, aber tiefgreifend:",
+      "intro": "Farming God’s Way ist eine Ressource, um die Armen zu befähigen, sich selbst und vielen anderen zu helfen, das Land wiederherzustellen und für die Bedürfnisse der Armen zu sorgen. Es geht um treue Haushalterschaft und das Verständnis von Gottes Wegen. Die Kernprinzipien sind einfach, aber tiefgreifend:",
       "howToTitle": "Wie man es umsetzt",
       "whyItWorksTitle": "Warum es funktioniert",
       "principles": [
@@ -1611,6 +1611,21 @@
         "replySuccess": "Antwort gepostet!"
       }
     }
+  },
+  "messagingPage": {
+    "title": "Nachrichten",
+    "searchPlaceholder": "Konversationen suchen...",
+    "noConversations": "Sie haben noch keine Konversationen.",
+    "selectConversation": "Wählen Sie eine Konversation, um mit dem Chatten zu beginnen.",
+    "typeMessagePlaceholder": "Eine Nachricht schreiben...",
+    "signInToView": "Bitte melden Sie sich an, um Ihre Nachrichten anzuzeigen.",
+    "signIn": "Anmelden",
+    "error": "Fehler",
+    "couldNotLoadConversations": "Ihre Konversationen konnten nicht geladen werden.",
+    "couldNotStartConversation": "Eine neue Konversation konnte nicht gestartet werden.",
+    "sendFailed": "Senden fehlgeschlagen",
+    "couldNotSendMessage": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
   }
 }
+
     

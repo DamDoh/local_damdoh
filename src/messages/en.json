@@ -1129,7 +1129,7 @@
         { "id": "vegetable-garden", "title": "Vegetable Garden (Approx. 120sqm)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Lush vegetable garden", "dataAiHint": "vegetable garden", "description": ["The heart of the farm, providing a continuous supply of diverse and nutritious vegetables for family nutrition and market sales."], "details": [{ "title": "Growing Methods", "content": ["Raised beds, intensive planting, and intercropping are used to maximize space and reduce pests."] }, { "title": "Output", "content": ["Year-round production of leafy greens, fruit-bearing vegetables, and root crops."] }] },
         { "id": "fish-pond", "title": "Fish Pond (Approx. 20sqm)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Small fish pond", "dataAiHint": "fish pond aquaculture", "description": ["A valuable source of protein and income. The pond is integrated with the garden's irrigation system."], "details": [{ "title": "Species", "content": ["Tilapia or catfish are good choices due to their resilience and fast growth rates."] }, { "title": "Synergy", "content": ["Water from the pond, rich in fish excrement, is used as a natural fertilizer for the vegetable gardens."] }] },
         { "id": "poultry-unit", "title": "Poultry Unit (Approx. 20sqm)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Chickens in a run", "dataAiHint": "free range chickens", "description": ["Provides eggs and meat for the family and market. Their manure is a key ingredient for the compost pile."], "details": [{ "title": "Housing", "content": ["A small coop with a secure run area, allowing chickens to forage and contribute to pest control."] }, { "title": "Feed Supplement", "content": ["Garden scraps and insects can supplement commercial feed, reducing costs."] }] },
-        { "id": "compost-system", "title": "Composting System (Approx. 20sqm)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Compost pile", "dataAiHint": "compost pile", "description": ["The farm's recycling engine. Turns kitchen scraps, garden waste, and animal manure into nutrient-rich compost, reducing the need for chemical fertilizers."], "subSections": [{ "title": "Diversification", "content": ["Combining different types of crops, animals, and fish reduces the risk of total failure."] }, { "title": "Nutrient Cycling", "content": ["Animal manure and plant waste are composted to fertilize the soil. Pond water irrigates and fertilizes the plants."] }, { "title": "Water Efficiency", "content": ["The pond acts as a water reservoir, and reusing nutrient-rich water reduces overall consumption."] }] }
+        { "id": "compost-system", "title": "Composting System (Approx. 20sqm)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Compost pile", "dataAiHint": "compost pile", "description": ["The farm's recycling engine. Turns kitchen scraps, garden waste, and animal manure into nutrient-rich compost, reducing the need for chemical fertilizers."], "subSections": [{ "title": "Diversification", "content": ["The combination of different types of crops, animals, and fish reduces the risk of total failure."] }, { "title": "Nutrient Cycling", "content": ["Animal manure and plant waste are composted to fertilize the soil. Pond water irrigates and fertilizes the plants."] }, { "title": "Water Efficiency", "content": ["The pond acts as a water reservoir, and reusing nutrient-rich water reduces overall consumption."] }] }
       ]
     },
     "laborPage": {
@@ -1611,6 +1611,21 @@
         "replySuccess": "Reply posted!"
       }
     }
+  },
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Search conversations...",
+    "noConversations": "You have no conversations yet.",
+    "selectConversation": "Select a conversation to start chatting.",
+    "typeMessagePlaceholder": "Type a message...",
+    "signInToView": "Please sign in to view your messages.",
+    "signIn": "Sign In",
+    "error": "Error",
+    "couldNotLoadConversations": "Could not load your conversations.",
+    "couldNotStartConversation": "Could not start a new conversation.",
+    "sendFailed": "Send Failed",
+    "couldNotSendMessage": "Could not send your message. Please try again."
   }
 }
+
     

@@ -1099,7 +1099,7 @@
       "principles": [
         { "id": "no-tillage", "title": "Sin Labranza", "icon": "Shield", "summary": "El arado es perjudicial para la estructura y la vida del suelo. FGW evita todo arado, fomentando un suelo sano y resiliente.", "howTo": ["Detener por completo el arado o la remoción del suelo.", "Utilizar estaciones de siembra permanentes para tus cultivos."], "whyItWorks": ["Protege la estructura y los poros naturales del suelo.", "Previene la erosión de la valiosa capa superior del suelo.", "Promueve un ecosistema saludable de microorganismos."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo sin marcas de arado", "dataAiHint": "no-till farming" },
         { "id": "mulching", "title": "La Manta de Dios (Mulching)", "icon": "Leaf", "summary": "El suelo nunca fue diseñado para estar desnudo. Una gruesa capa de mulch protege el suelo, retiene la humedad y aporta nutrientes.", "howTo": ["Aplica una gruesa capa de materia orgánica (al menos 4 pulgadas) sobre toda la superficie del suelo.", "Siembra directamente a través del mulch.", "Añade continuamente nuevo mulch a medida que el viejo se descompone."], "whyItWorks": ["Reduce significativamente la evaporación del agua.", "Suprime el crecimiento de malezas.", "Alimenta la vida del suelo a medida que se descompone."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo cubierto con una gruesa capa de mulch de paja", "dataAiHint": "mulch field" },
-        { "id": "high-standards", "title": "Altos Estándares", "icon": "CheckCircle", "summary": "FGW enfatiza la importancia de la excelencia en todos los aspectos de la agricultura - del momento oportuno a la ejecución - como un acto de adoración.", "howTo": ["Ejecuta todas las tareas a tiempo y lo mejor que puedas.", "Presta atención a los detalles, desde la profundidad de siembra hasta el espaciado.", "Mantén la finca ordenada y bien organizada."], "whyItWorks": ["Maximiza el potencial de rendimiento de los cultivos.", "Minimiza las pérdidas por plagas y enfermedades.", "Refleja la excelencia del Creador."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hileras de siembra ordenadas", "dataAiHint": "organized farm rows" }
+        { "id": "high-standards", "title": "Altos Estándares", "icon": "CheckCircle", "summary": "FGW enfatiza la importancia de la excelencia en todos los aspectos de la agricultura – del momento oportuno a la ejecución – como un acto de adoración.", "howTo": ["Ejecuta todas las tareas a tiempo y lo mejor que puedas.", "Presta atención a los detalles, desde la profundidad de siembra hasta el espaciado.", "Mantén la finca ordenada y bien organizada."], "whyItWorks": ["Maximiza el potencial de rendimiento de los cultivos.", "Minimiza las pérdidas por plagas y enfermedades.", "Refleja la excelencia del Creador."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hileras de siembra ordenadas", "dataAiHint": "organized farm rows" }
       ]
     },
     "seedStartingPage": {
@@ -1348,7 +1348,7 @@
       },
       "errors": {
         "auth": {
-          "title": "Se Requiere Autenticación",
+          "title": "Autenticación Requerida",
           "description": "Debes iniciar sesión para crear un nuevo tema."
         },
         "incomplete": {
@@ -1477,5 +1477,155 @@
         "emptyReply": "Tu respuesta no puede estar vacía."
       }
     }
+  },
+  "GroupsPage": {
+    "title": "Grupos Comunitarios",
+    "description": "Encuentra y únete a grupos según tus intereses, ubicación o experiencia.",
+    "createGroupButton": "Crear Nuevo Grupo",
+    "searchPlaceholder": "Buscar grupos...",
+    "notFound": "No se encontraron grupos.",
+    "detail": {
+      "backLink": "Volver a Todos los Grupos",
+      "discussionsTitle": "Discusiones",
+      "startDiscussionButton": "Iniciar una Discusión",
+      "by": "por {author}",
+      "noDiscussions": "Aún no se han iniciado discusiones.",
+      "beTheFirst": "¡Sé el primero en iniciar una discusión!",
+      "actionsTitle": "Acciones del Grupo",
+      "leaveButton": "Abandonar Grupo",
+      "leavingButton": "Abandonando...",
+      "joinButton": "Unirse al Grupo",
+      "requestJoinButton": "Solicitar Unirse",
+      "joiningButton": "Uniéndose...",
+      "loginToJoinButton": "Iniciar Sesión para Unirse",
+      "membersTitle": "{memberCount} Miembros",
+      "notFound": {
+        "title": "Grupo no encontrado",
+        "description": "El grupo que buscas no existe.",
+        "backButton": "Volver a Grupos"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Error",
+          "description": "No se pudieron cargar los datos del grupo."
+        },
+        "loginToJoin": "Por favor, inicia sesión para unirte a este grupo.",
+        "joinSuccess": "¡Te has unido al grupo con éxito!",
+        "joinError": "No se pudo unir al grupo.",
+        "leaveSuccess": "Has abandonado el grupo.",
+        "leaveError": "No se pudo abandonar el grupo."
+      }
+    },
+    "create": {
+      "backLink": "Volver a Grupos",
+      "title": "Crear un Nuevo Grupo",
+      "description": "Inicia una nueva comunidad en torno a un interés o proyecto compartido.",
+      "form": {
+        "nameLabel": "Nombre del Grupo",
+        "namePlaceholder": "Ej: Cultivadores de Café Orgánico de Kenia",
+        "descriptionLabel": "Descripción del Grupo",
+        "descriptionPlaceholder": "¿Cuál es el propósito de este grupo?",
+        "publicLabel": "Grupo Público (cualquiera puede unirse)",
+        "submitButton": "Crear Grupo",
+        "submittingButton": "Creando..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Autenticación Requerida",
+          "description": "Debes iniciar sesión para crear un grupo."
+        },
+        "incomplete": {
+          "title": "Información Incompleta",
+          "description": "Por favor, proporciona un nombre y una descripción para tu grupo."
+        },
+        "error": {
+          "title": "Creación Fallida",
+          "description": "No se pudo crear el grupo. Por favor, inténtalo de nuevo."
+        },
+        "success": {
+          "title": "¡Grupo Creado!",
+          "description": "Tu nuevo grupo ya está activo."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Grupo",
+      "title": "Iniciar una Nueva Publicación",
+      "description": "Comparte una actualización o haz una pregunta dentro del grupo.",
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Ingresa un título claro y conciso",
+        "contentLabel": "Tu Contenido",
+        "contentPlaceholder": "Escribe tu publicación aquí...",
+        "submitButton": "Publicar",
+        "submittingButton": "Publicando..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Autenticación Requerida",
+          "description": "Debes ser miembro para publicar en este grupo."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporciona un título y contenido para tu publicación."
+        },
+        "error": {
+          "title": "Publicación Fallida",
+          "description": "No se pudo publicar tu mensaje. Por favor, inténtalo de nuevo."
+        },
+        "success": {
+          "title": "¡Publicación Realizada!",
+          "description": "Tu publicación ya está visible en el grupo."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Volver a {groupName}",
+      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
+      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
+      "loadMoreButton": "Cargar Más Respuestas",
+      "loadingMoreButton": "Cargando...",
+      "yourReplyTitle": "Tu Respuesta",
+      "replyPlaceholder": "Escribe tu respuesta aquí...",
+      "replySubmitButton": "Publicar Respuesta",
+      "replySubmittingButton": "Publicando...",
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que buscas no existe.",
+        "backButton": "Volver al Grupo"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Error",
+          "description": "No se pudieron cargar los detalles de la publicación."
+        },
+        "loadRepliesError": {
+          "title": "Error",
+          "description": "No se pudieron cargar las respuestas."
+        },
+        "emptyReply": "Tu respuesta no puede estar vacía.",
+        "submitError": {
+          "title": "Respuesta Fallida",
+          "description": "No se pudo publicar tu respuesta."
+        },
+        "replySuccess": "¡Respuesta publicada!"
+      }
+    }
+  },
+  "messagingPage": {
+    "title": "Mensajes",
+    "searchPlaceholder": "Buscar conversaciones...",
+    "noConversations": "Aún no tienes conversaciones.",
+    "selectConversation": "Selecciona una conversación para empezar a chatear.",
+    "typeMessagePlaceholder": "Escribe un mensaje...",
+    "signInToView": "Por favor, inicia sesión para ver tus mensajes.",
+    "signIn": "Iniciar Sesión",
+    "error": "Error",
+    "couldNotLoadConversations": "No se pudieron cargar tus conversaciones.",
+    "couldNotStartConversation": "No se pudo iniciar una nueva conversación.",
+    "sendFailed": "Envío Fallido",
+    "couldNotSendMessage": "No se pudo enviar tu mensaje. Por favor, inténtalo de nuevo."
   }
 }
+
+    
