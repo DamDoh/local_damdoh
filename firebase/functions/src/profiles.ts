@@ -247,6 +247,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 
 
 export const getUserActivity = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
     const { userId } = data;
     if (!userId) {
         throw new functions.https.HttpsError('invalid-argument', 'A userId must be provided.');

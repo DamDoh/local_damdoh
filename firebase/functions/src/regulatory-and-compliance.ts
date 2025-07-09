@@ -1,3 +1,4 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
@@ -5,16 +6,16 @@ import {_internalProcessReportData} from "./ai-and-analytics";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 export const generateRegulatoryReport = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated to generate regulatory reports.",
-      );
-    }
-
-    const callerUid = context.auth.uid;
+    const callerUid = checkAuth(context);
     const callerRole = await getRole(callerUid);
 
     const {reportType, userId, reportPeriod} = data;
@@ -114,9 +115,7 @@ export const generateRegulatoryReport = functions.https.onCall(
 );
 
 export const getGeneratedReports = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
+    checkAuth(context);
     
     // Add role check if necessary
     
