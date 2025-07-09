@@ -171,7 +171,7 @@ export default function LogObservationPage() {
                 name="observationType"
                 render={({ field }) => (
                   <FormItem>
- <FormLabel className=\"flex items-center gap-2\"><Eye className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t('typeLabel')}</FormLabel>
+ <FormLabel className="flex items-center gap-2"><Eye className="mr-2 h-4 w-4 text-muted-foreground" />{t('typeLabel')}</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -194,7 +194,7 @@ export default function LogObservationPage() {
                   name="observationDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
- <FormLabel className=\"flex items-center gap-2\"><CalendarIcon className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t('dateLabel')}</FormLabel>
+ <FormLabel className="flex items-center gap-2"><CalendarIcon className="mr-2 h-4 w-4 text-muted-foreground" />{t('dateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -230,7 +230,7 @@ export default function LogObservationPage() {
                 name="details"
                 render={({ field }) => (
                   <FormItem>
- <FormLabel className=\"flex items-center gap-2\"><FileText className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t('detailsLabel')}</FormLabel>
+ <FormLabel className="flex items-center gap-2"><FileText className="mr-2 h-4 w-4 text-muted-foreground" />{t('detailsLabel')}</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder={t('detailsPlaceholder')}
@@ -248,7 +248,7 @@ export default function LogObservationPage() {
                   name="imageFile"
                   render={({ field: { onChange, value, ...rest } }) => (
                     <FormItem>
- <FormLabel className=\"flex items-center gap-2\"><ImageUp className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t('uploadLabel')}</FormLabel>
+ <FormLabel className="flex items-center gap-2"><ImageUp className="mr-2 h-4 w-4 text-muted-foreground" />{t('uploadLabel')}</FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-2">
                           <Input 

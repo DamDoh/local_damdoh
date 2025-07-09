@@ -116,6 +116,14 @@ export const createInputApplicationSchema = z.object({
 });
 export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
 
+export const createObservationSchema = z.object({
+  observationType: z.string().min(3, "Please select an observation type."),
+  observationDate: z.date({ required_error: "An observation date is required." }),
+  details: z.string().min(10, "Details must be at least 10 characters.").max(1000),
+  imageFile: imageFileSchema,
+});
+export type CreateObservationValues = z.infer<typeof createObservationSchema>;
+
 
 export const editProfileSchema = z.object({
   displayName: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
