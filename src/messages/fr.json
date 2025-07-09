@@ -943,6 +943,31 @@
         "failDescription": "Une erreur inattendue s'est produite. Veuillez réessayer."
       }
     },
+    "logInput": {
+      "backLink": "Retour à la Ferme",
+      "title": "Enregistrer l'Application d'Intrant",
+      "description": "Enregistrez l'application d'engrais, de pesticides ou d'autres intrants sur votre culture.",
+      "useKNFLabel": "Utiliser un lot KNF",
+      "useKNFPlaceholder": "Sélectionnez un lot prêt",
+      "manualInputLabel": "Ou Entrer Manuellement",
+      "manualInputPlaceholder": "Ex: Engrais NPK 10-10-10",
+      "dateLabel": "Date d'Application",
+      "quantityLabel": "Quantité",
+      "quantityPlaceholder": "Ex: 50",
+      "unitLabel": "Unité",
+      "unitPlaceholder": "Ex: kg, L, ml/L",
+      "methodLabel": "Méthode d'Application (Optionnel)",
+      "methodPlaceholder": "Ex: Pulvérisation foliaire, Arrosage au sol",
+      "saveButton": "Enregistrer l'Application",
+      "savingButton": "Enregistrement...",
+      "toast": {
+        "authErrorTitle": "Non Authentifié",
+        "authErrorDescription": "Vous devez être connecté pour enregistrer une application.",
+        "success": "Application Enregistrée",
+        "description": "L'application de l'intrant a été enregistrée avec succès dans le parcours de votre culture.",
+        "fail": "Échec de l'Enregistrement"
+      }
+    },
     "cropDetailPage": {
       "backLink": "Retour à la Ferme",
       "plantedOn": "Planté le {date}",

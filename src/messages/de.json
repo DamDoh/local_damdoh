@@ -942,6 +942,54 @@
         "failTitle": "Hinzufügen der Kultur fehlgeschlagen",
         "failDescription": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
       }
+    },
+    "logInput": {
+      "backLink": "Zurück zur Farm",
+      "title": "Anwendung von Betriebsmitteln protokollieren",
+      "description": "Erfassen Sie die Anwendung von Dünger, Pestiziden oder anderen Betriebsmitteln auf Ihre Kultur.",
+      "useKNFLabel": "Eine KNF-Charge verwenden",
+      "useKNFPlaceholder": "Wählen Sie eine fertige Charge aus",
+      "manualInputLabel": "Oder manuell eingeben",
+      "manualInputPlaceholder": "z.B. NPK 10-10-10 Dünger",
+      "dateLabel": "Anwendungsdatum",
+      "quantityLabel": "Menge",
+      "quantityPlaceholder": "z.B. 50",
+      "unitLabel": "Einheit",
+      "unitPlaceholder": "z.B. kg, L, ml/L",
+      "methodLabel": "Anwendungsmethode (Optional)",
+      "methodPlaceholder": "z.B. Blattspritzung, Bodendüngung",
+      "saveButton": "Anwendung protokollieren",
+      "savingButton": "Wird gespeichert...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Anwendung zu protokollieren.",
+        "success": "Anwendung protokolliert",
+        "description": "Die Anwendung des Betriebsmittels wurde erfolgreich in der Reise Ihrer Kultur erfasst.",
+        "fail": "Protokollierung fehlgeschlagen"
+      }
+    },
+    "cropDetailPage": {
+      "backLink": "Zurück zur Farm",
+      "plantedOn": "Gepflanzt am {date}",
+      "editButton": "Bearbeiten",
+      "quickActionsTitle": "Schnellaktionen",
+      "logInputButton": "Betriebsmittel protokollieren",
+      "logObservationButton": "Beobachtung protokollieren",
+      "logHarvestButton": "Ernte protokollieren",
+      "journeyTitle": "Reise der Kultur",
+      "noActivities": "Für diese Kultur wurden noch keine Aktivitäten protokolliert.",
+      "loading": "Lade Kulturdetails...",
+      "notFound": "Kultur nicht gefunden.",
+      "toast": {
+        "notFound": "Kultur nicht gefunden",
+        "loadError": "Kulturdaten konnten nicht geladen werden."
+      },
+      "eventPayload": {
+        "noDetails": "Keine zusätzlichen Details für dieses Ereignis.",
+        "observationType": "Beobachtungsart",
+        "details": "Details",
+        "aiDiagnosis": "KI-Diagnose"
+      }
     }
   },
   "OfflineIndicator": {
@@ -1566,5 +1614,3 @@
     "regenerateButton": "Vorschläge neu generieren"
   }
 }
-
-    

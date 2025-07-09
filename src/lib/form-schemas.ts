@@ -105,6 +105,18 @@ export const createCropSchema = z.object({
 });
 export type CreateCropValues = z.infer<typeof createCropSchema>;
 
+export const createInputApplicationSchema = z.object({
+  applicationDate: z.date({
+    required_error: "An application date is required.",
+  }),
+  inputId: z.string().min(2, "Input name/ID is required.").max(100),
+  quantity: z.coerce.number().positive("Quantity must be a positive number."),
+  unit: z.string().min(1, "Unit is required.").max(20),
+  method: z.string().max(100).optional(),
+});
+export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
+
+
 export const editProfileSchema = z.object({
   displayName: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
   email: z.string().email("Please enter a valid email address."),

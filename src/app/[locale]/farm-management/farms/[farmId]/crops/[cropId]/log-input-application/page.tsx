@@ -143,7 +143,7 @@ export default function LogInputApplicationPage() {
                     name="inputId"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className=\"flex items-center gap-2\"><FlaskConical className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t(\'useKNFLabel\')}</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><FlaskConical className="mr-2 h-4 w-4 text-muted-foreground" />{t('useKNFLabel')}</FormLabel>
                         <Select onValueChange={(value) => field.onChange(value)} value={field.value}>
                           <FormControl>
                             <SelectTrigger>
@@ -167,7 +167,7 @@ export default function LogInputApplicationPage() {
                 name="inputId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className=\"flex items-center gap-2\"><Text className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t(\'manualInputLabel\')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Text className="mr-2 h-4 w-4 text-muted-foreground" />{t('manualInputLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('manualInputPlaceholder')} {...field} />
                     </FormControl>
@@ -181,7 +181,7 @@ export default function LogInputApplicationPage() {
                   name="applicationDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel className=\"flex items-center gap-2\"><CalendarIcon className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t(\'dateLabel\')}</FormLabel>\
+                      <FormLabel className="flex items-center gap-2"><CalendarIcon className="mr-2 h-4 w-4 text-muted-foreground" />{t('dateLabel')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -218,7 +218,7 @@ export default function LogInputApplicationPage() {
                     name="quantity"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel className=\"flex items-center gap-2\"><Hash className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t(\'quantityLabel\')}</FormLabel>\
+                        <FormLabel className="flex items-center gap-2"><Hash className="mr-2 h-4 w-4 text-muted-foreground" />{t('quantityLabel')}</FormLabel>
                         <FormControl>
                         <Input type="number" placeholder={t('quantityPlaceholder')} {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
                         </FormControl>
@@ -231,7 +231,7 @@ export default function LogInputApplicationPage() {
                     name="unit"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel className=\"flex items-center gap-2\"><List className=\"mr-2 h-4 w-4 text-muted-foreground\" />{t(\'unitLabel\')}</FormLabel>\
+                        <FormLabel className="flex items-center gap-2"><List className="mr-2 h-4 w-4 text-muted-foreground" />{t('unitLabel')}</FormLabel>
                         <FormControl>
                         <Input placeholder={t('unitPlaceholder')} {...field} />
                         </FormControl>

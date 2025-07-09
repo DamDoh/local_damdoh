@@ -943,6 +943,31 @@
         "failDescription": "An unexpected error occurred. Please try again."
       }
     },
+    "logInput": {
+      "backLink": "Back to Farm",
+      "title": "Log Input Application",
+      "description": "Record the application of fertilizer, pesticides, or other inputs to your crop.",
+      "useKNFLabel": "Use a KNF Batch",
+      "useKNFPlaceholder": "Select a ready batch",
+      "manualInputLabel": "Or Enter Manually",
+      "manualInputPlaceholder": "e.g., NPK 10-10-10 Fertilizer",
+      "dateLabel": "Application Date",
+      "quantityLabel": "Quantity",
+      "quantityPlaceholder": "e.g., 50",
+      "unitLabel": "Unit",
+      "unitPlaceholder": "e.g., kg, L, ml/L",
+      "methodLabel": "Application Method (Optional)",
+      "methodPlaceholder": "e.g., Foliar spray, Soil drench",
+      "saveButton": "Log Application",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be logged in to log an application.",
+        "success": "Application Logged",
+        "description": "The input application has been successfully recorded in your crop's journey.",
+        "fail": "Logging Failed"
+      }
+    },
     "cropDetailPage": {
       "backLink": "Back to Farm",
       "plantedOn": "Planted on {date}",

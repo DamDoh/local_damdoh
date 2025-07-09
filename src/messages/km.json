@@ -499,7 +499,7 @@
     "categories": {
       "allCategories": "គ្រប់ប្រភេទទាំងអស់",
       "viewAllItems": "មើលទំនិញទាំងអស់",
-      "viewAllCategory": "ทั้งหมดใน {categoryName}"
+      "viewAllCategory": "ទាំងអស់ใน {categoryName}"
     },
     "createListing": {
       "backLink": "ត្រឡប់ទៅទីផ្សារ",
@@ -941,6 +941,31 @@
         "successDescription": "{cropType} ถูกเพิ่มในฟาร์มของคุณเรียบร้อยแล้ว",
         "failTitle": "ไม่สามารถเพิ่มพืชผลได้",
         "failDescription": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง"
+      }
+    },
+    "logInput": {
+      "backLink": "ត្រឡប់ទៅកសិដ្ឋាន",
+      "title": "บันทึกการใช้ปัจจัยการผลิต",
+      "description": "บันทึกการใช้ปุ๋ย, ยาฆ่าแมลง หรือปัจจัยการผลิตอื่นๆ กับพืชผลของคุณ",
+      "useKNFLabel": "ប្រើชุด KNF",
+      "useKNFPlaceholder": "ជ្រើសរើសชุดที่พร้อมแล้ว",
+      "manualInputLabel": "ឬ បញ្ចូលដោយដៃ",
+      "manualInputPlaceholder": "ឧ: ปุ๋ย NPK 10-10-10",
+      "dateLabel": "កាលបរិច្ឆេទใช้",
+      "quantityLabel": "ปริมาณ",
+      "quantityPlaceholder": "ឧ: 50",
+      "unitLabel": "หน่วย",
+      "unitPlaceholder": "ឧ: กก., ลิตร, มล./ลิตร",
+      "methodLabel": "วิธีการใช้ (ไม่บังคับ)",
+      "methodPlaceholder": "ឧ: ฉีดพ่นทางใบ, ราดโคน",
+      "saveButton": "บันทึกการใช้",
+      "savingButton": "កំពុងบันทึก...",
+      "toast": {
+        "authErrorTitle": "ไม่ได้รับการรับรองความถูกต้อง",
+        "authErrorDescription": "คุณต้องลงชื่อเข้าใช้เพื่อบันทึกการใช้",
+        "success": "บันทึกการใช้แล้ว",
+        "description": "บันทึกการใช้ปัจจัยการผลิตในการเดินทางของพืชผลของคุณเรียบร้อยแล้ว",
+        "fail": "การบันทึกล้มเหลว"
       }
     },
     "cropDetailPage": {

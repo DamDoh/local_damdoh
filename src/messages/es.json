@@ -943,6 +943,31 @@
         "failDescription": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
       }
     },
+    "logInput": {
+      "backLink": "Volver a la Finca",
+      "title": "Registrar Aplicación de Insumo",
+      "description": "Registra la aplicación de fertilizantes, pesticidas u otros insumos a tu cultivo.",
+      "useKNFLabel": "Usar un Lote de KNF",
+      "useKNFPlaceholder": "Selecciona un lote listo",
+      "manualInputLabel": "O Ingresar Manualmente",
+      "manualInputPlaceholder": "Ej: Fertilizante NPK 10-10-10",
+      "dateLabel": "Fecha de Aplicación",
+      "quantityLabel": "Cantidad",
+      "quantityPlaceholder": "Ej: 50",
+      "unitLabel": "Unidad",
+      "unitPlaceholder": "Ej: kg, L, ml/L",
+      "methodLabel": "Método de Aplicación (Opcional)",
+      "methodPlaceholder": "Ej: Pulverización foliar, Riego al suelo",
+      "saveButton": "Registrar Aplicación",
+      "savingButton": "Guardando...",
+      "toast": {
+        "authErrorTitle": "No Autenticado",
+        "authErrorDescription": "Debes iniciar sesión para registrar una aplicación.",
+        "success": "Aplicación Registrada",
+        "description": "La aplicación del insumo ha sido registrada exitosamente en la trayectoria de tu cultivo.",
+        "fail": "Registro Fallido"
+      }
+    },
     "cropDetailPage": {
       "backLink": "Volver a la Finca",
       "plantedOn": "Plantado el {date}",
