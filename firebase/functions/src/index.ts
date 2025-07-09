@@ -22,7 +22,6 @@ export * from "./regulatory-and-compliance";
 export * from "./insurance";
 export * from "./sustainability";
 export * from "./notifications";
-export * from "./types";
 export * from "./dashboard_data";
 export * from "./search";
 export * from "./offline_sync";

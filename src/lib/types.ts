@@ -689,7 +689,7 @@ export interface ApiKey {
 }
 
 
-export type KnfBatch = {
+export interface KnfBatch {
     id: string;
     userId: string;
     type: string; // 'fpj', 'faa', etc.
