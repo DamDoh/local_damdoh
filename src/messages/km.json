@@ -1163,7 +1163,7 @@
         "paymentLoggedDescription": "การชำระเงินถูกบันทึกและได้สร้างค่าใช้จ่ายที่สอดคล้องกันในบัญชีการเงินของคุณ"
       },
       "workerDetailPage": {
-        "backLink": "ត្រឡប់ទៅការจัดการแรงงาน",
+        "backLink": "ត្រឡប់ទៅการจัดการแรงงาน",
         "workLogsTitle": "บันทึกการทำงาน",
         "paymentHistoryTitle": "ประวัติการชำระเงิน",
         "table": {
@@ -1897,6 +1897,102 @@
       "title": "Données non disponibles",
       "description": "Nous n'avons pas pu charger vos données de durabilité pour le moment."
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "ផ្ទាំងគ្រប់គ្រងរដ្ឋបាល",
+      "description": "តំបន់នេះគឺសម្រាប់តែអ្នកគ្រប់គ្រងที่ได้รับอนุญาตប៉ុណ្ណោះ។",
+      "contentManagement": "មាតិកា",
+      "reports": "របាយការណ៍"
+    },
+    "dashboard": {
+      "title": "ផ្ទាំងគ្រប់គ្រងរដ្ឋបាល",
+      "description": "សូមស្វាគមន៍មកកាន់ផ្ទាំងគ្រប់គ្រងរដ្ឋបាលរបស់ DamDoh។",
+      "content": "ពីទីនេះ អ្នកអាចគ្រប់គ្រងទិដ្ឋភាពផ្សេងៗនៃវេទិកា ដូចជាមាតិកាមជ្ឈមណ្ឌលចំណេះដឹង។",
+      "contentManagementButton": "គ្រប់គ្រងមាតិកា"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "ការគ្រប់គ្រងមាតិកា",
+        "description": "គ្រប់គ្រងអត្ថបទចំណេះដឹង ការបង្ហោះប្លុក และรายการข่าวทั้งหมด។",
+        "refreshButton": "ធ្វើឱ្យស្រស់"
+      },
+      "table": {
+        "title": "ចំណងជើង",
+        "category": "ប្រភេទ",
+        "status": "ស្ថានភាព",
+        "created": "បានបង្កើត",
+        "actions": "សកម្មភាព",
+        "noArticles": "មិនទាន់មានអត្ថបទណាមួយត្រូវបានបង្កើតនៅឡើយទេ។"
+      },
+      "createArticle": {
+        "title": "បង្កើតមាតិកាថ្មី",
+        "description": "បន្ថែមអត្ថបទថ្មីទៅមជ្ឈមណ្ឌលចំណេះដឹង ឬប្លុក។",
+        "englishContent": "មាតិកាភាសាអង់គ្លេស",
+        "titleEnLabel": "ចំណងជើង (អង់គ្លេស)",
+        "excerptEnLabel": "សម្រង់ (អង់គ្លេស)",
+        "contentEnLabel": "មាតិកា (Markdown, អង់គ្លេស)",
+        "khmerContent": "មាតិកាភាសាខ្មែរ",
+        "titleKmLabel": "ចំណងជើង (ខ្មែរ)",
+        "excerptKmLabel": "សម្រង់ (ខ្មែរ)",
+        "contentKmLabel": "មាតិកា (Markdown, ខ្មែរ)",
+        "metadataTitle": "ទិន្នន័យមេតា",
+        "categoryLabel": "ប្រភេទ",
+        "categoryPlaceholder": "ឧ: ប្លុក, ព័ត៌មានឧស្សាហកម្ម, មគ្គុទ្ទេសក៍ KNF",
+        "authorLabel": "អ្នកនិពន្ធ",
+        "authorPlaceholder": "ឧ: ក្រុមដាំដុះ",
+        "statusLabel": "ស្ថានភាព",
+        "tagsLabel": "ស្លាក (បំបែកដោយក្បៀស)",
+        "imageUrlLabel": "URL រូបភាព",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "តម្រុយរូបភាព AI",
+        "aiHintPlaceholder": "ឧ: គ្រាប់កាហ្វេ, រូបកសិករ",
+        "publishingButton": "កំពុងផ្សព្វផ្សាយ...",
+        "publishButton": "ផ្សព្វផ្សាយអត្ថបទ"
+      },
+      "toast": {
+        "loadErrorTitle": "កំហុស",
+        "loadErrorDescription": "មិនអាចផ្ទុកមាតិកាបានទេ។",
+        "createSuccessTitle": "អត្ថបទបានបង្កើត",
+        "createSuccessDescription": "អត្ថបទថ្មីត្រូវបានផ្សព្វផ្សាយ។",
+        "createErrorTitle": "ការបង្កើតបានបរាជ័យ"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "បង្កើតរបាយការណ៍បទប្បញ្ញត្តិ",
+        "description": "បង្កើតរបាយការណ៍ตามความต้องการสำหรับวัตถุประสงค์ด้านการปฏิบัติตามกฎระเบียบและการตรวจสอบ",
+        "reportTypeLabel": "ប្រភេទรายงาน",
+        "reportTypeVti": "សេចក្តីសង្ខេបព្រឹត្តិការណ៍ VTI",
+        "targetUserLabel": "អ្នកប្រើប្រាស់เป้าหมาย",
+        "userSearchPlaceholder": "ស្វែងរកតាមឈ្មោះឬអ៊ីមែល...",
+        "dateRangeLabel": "ช่วงวันที่",
+        "datePlaceholder": "ជ្រើសរើសช่วงวันที่",
+        "submitButton": "បង្កើតរបាយការណ៍"
+      },
+      "list": {
+        "title": "របាយការណ៍ที่สร้างแล้ว",
+        "description": "ดูและดาวน์โหลดรายงานที่สร้างไว้ก่อนหน้านี้",
+        "table": {
+          "reportType": "ប្រភេទรายงาน",
+          "generatedFor": "สร้างสำหรับ",
+          "date": "កាលបរិច្ឆេទ",
+          "status": "สถานะ",
+          "actions": "การดำเนินการ"
+        },
+        "viewButton": "មើល",
+        "noReports": "ยังไม่มีการสร้างรายงาน"
+      },
+      "toast": {
+        "loadErrorTitle": "ข้อผิดพลาด",
+        "formIncompleteTitle": "แบบฟอร์มไม่สมบูรณ์",
+        "formIncompleteDescription": "โปรดเลือกประเภทรายงาน ผู้ใช้เป้าหมาย และช่วงวันที่",
+        "generateSuccessTitle": "กำลังสร้างรายงาน",
+        "generateSuccessDescription": "รายงานกำลังถูกสร้างและจะปรากฏในรายการด้านล่างเร็วๆ นี้",
+        "generateErrorTitle": "การสร้างล้มเหลว"
+      }
+    }
   }
 }
 
+    

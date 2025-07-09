@@ -1862,41 +1862,137 @@
     }
   },
   "pinboardPage": {
-    "title": "Tablero de Pines",
-    "description": "Tu espacio personal para guardar y organizar elementos de toda la plataforma.",
-    "comingSoonTitle": "¡Próximamente!",
-    "comingSoonDescription": "El Tablero de Pines te permitirá guardar anuncios del mercado, publicaciones de foros, perfiles y más para un fácil acceso posterior.",
-    "stayTuned": "Mantente atento a las actualizaciones."
+    "title": "Pinboard",
+    "description": "Your personal space to save and organize items from across the platform.",
+    "comingSoonTitle": "Coming Soon!",
+    "comingSoonDescription": "The Pinboard will allow you to save marketplace listings, forum posts, profiles, and more for easy access later.",
+    "stayTuned": "Stay tuned for updates."
   },
   "sustainabilityPage": {
-    "title": "Panel de Sostenibilidad",
-    "description": "Rastrea y mejora el impacto ambiental de tus prácticas agrícolas.",
-    "carbonFootprint": "Huella de Carbono",
-    "waterEfficiency": "Eficiencia del Agua",
-    "biodiversityScore": "Puntaje de Biodiversidad",
-    "practicesTitle": "Registro de Prácticas Sostenibles",
-    "certificationsTitle": "Certificaciones Activas",
+    "title": "Sustainability Dashboard",
+    "description": "Track and improve the environmental impact of your agricultural practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Sustainable Practices Log",
+    "certificationsTitle": "Active Certifications",
     "metricCard": {
-      "trendText": "desde el mes pasado"
+      "trendText": "from last month"
     },
     "practicesTable": {
-      "practice": "Práctica",
-      "lastLogged": "Último Registro"
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
     },
     "certificationsTable": {
-      "certification": "Certificación",
-      "status": "Estado",
-      "expiry": "Expira"
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expires"
     },
     "auth": {
-      "title": "Por favor Inicia Sesión",
-      "description": "Necesitas iniciar sesión para ver tu panel de sostenibilidad.",
-      "button": "Iniciar Sesión"
+      "title": "Please Sign In",
+      "description": "You need to be logged in to view your sustainability dashboard.",
+      "button": "Sign In"
     },
     "noData": {
-      "title": "Datos no Disponibles",
-      "description": "No pudimos cargar tus datos de sostenibilidad en este momento."
+      "title": "Data Unavailable",
+      "description": "We could not load your sustainability data at this time."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "This area is for authorized administrators only.",
+      "contentManagement": "Content",
+      "reports": "Reports"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "description": "Welcome to the DamDoh administration panel.",
+      "content": "From here, you can manage various aspects of the platform, such as the Knowledge Hub content.",
+      "contentManagementButton": "Manage Content"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Content Management",
+        "description": "Manage all knowledge articles, blog posts, and news items.",
+        "refreshButton": "Refresh"
+      },
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles have been created yet."
+      },
+      "createArticle": {
+        "title": "Create New Content",
+        "description": "Add a new article to the Knowledge Hub or Blog.",
+        "englishContent": "English Content",
+        "titleEnLabel": "Title (English)",
+        "excerptEnLabel": "Excerpt (English)",
+        "contentEnLabel": "Content (Markdown, English)",
+        "khmerContent": "Khmer Content",
+        "titleKmLabel": "Title (Khmer)",
+        "excerptKmLabel": "Excerpt (Khmer)",
+        "contentKmLabel": "Content (Markdown, Khmer)",
+        "metadataTitle": "Metadata",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g. Blog, Industry News, KNF Guide",
+        "authorLabel": "Author",
+        "authorPlaceholder": "e.g. DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Image URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "Image AI Hint",
+        "aiHintPlaceholder": "e.g. coffee beans, farmer portrait",
+        "publishingButton": "Publishing...",
+        "publishButton": "Publish Article"
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not load content.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new article has been published.",
+        "createErrorTitle": "Creation Failed"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate Regulatory Report",
+        "description": "Create on-demand reports for compliance and auditing purposes.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Select date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "viewButton": "View",
+        "noReports": "No reports have been generated yet."
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "formIncompleteTitle": "Form Incomplete",
+        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "generateSuccessTitle": "Generating Report",
+        "generateSuccessDescription": "The report is being created and will appear in the list below shortly.",
+        "generateErrorTitle": "Generation Failed"
+      }
     }
   }
 }
 
+    

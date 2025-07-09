@@ -1897,6 +1897,102 @@
       "title": "Daten nicht verfügbar",
       "description": "Ihre Nachhaltigkeitsdaten konnten derzeit nicht geladen werden."
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin-Panel",
+      "description": "Dieser Bereich ist nur für autorisierte Administratoren.",
+      "contentManagement": "Inhalt",
+      "reports": "Berichte"
+    },
+    "dashboard": {
+      "title": "Admin-Dashboard",
+      "description": "Willkommen im Verwaltungsbereich von DamDoh.",
+      "content": "Von hier aus können Sie verschiedene Aspekte der Plattform verwalten, wie z.B. den Inhalt des Wissenszentrums.",
+      "contentManagementButton": "Inhalt verwalten"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Inhaltsverwaltung",
+        "description": "Verwalten Sie alle Wissensartikel, Blogbeiträge und Nachrichten.",
+        "refreshButton": "Aktualisieren"
+      },
+      "table": {
+        "title": "Titel",
+        "category": "Kategorie",
+        "status": "Status",
+        "created": "Erstellt",
+        "actions": "Aktionen",
+        "noArticles": "Es wurden noch keine Artikel erstellt."
+      },
+      "createArticle": {
+        "title": "Neuen Inhalt erstellen",
+        "description": "Fügen Sie einen neuen Artikel zum Wissenszentrum oder Blog hinzu.",
+        "englishContent": "Englischer Inhalt",
+        "titleEnLabel": "Titel (Englisch)",
+        "excerptEnLabel": "Auszug (Englisch)",
+        "contentEnLabel": "Inhalt (Markdown, Englisch)",
+        "khmerContent": "Khmer-Inhalt",
+        "titleKmLabel": "Titel (Khmer)",
+        "excerptKmLabel": "Auszug (Khmer)",
+        "contentKmLabel": "Inhalt (Markdown, Khmer)",
+        "metadataTitle": "Metadaten",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "z.B. Blog, Branchennachrichten, KNF-Anleitung",
+        "authorLabel": "Autor",
+        "authorPlaceholder": "z.B. DamDoh-Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (kommagetrennt)",
+        "imageUrlLabel": "Bild-URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "KI-Bildhinweis",
+        "aiHintPlaceholder": "z.B. Kaffeebohnen, Bauernporträt",
+        "publishingButton": "Wird veröffentlicht...",
+        "publishButton": "Artikel veröffentlichen"
+      },
+      "toast": {
+        "loadErrorTitle": "Fehler",
+        "loadErrorDescription": "Inhalt konnte nicht geladen werden.",
+        "createSuccessTitle": "Artikel erstellt",
+        "createSuccessDescription": "Der neue Artikel wurde veröffentlicht.",
+        "createErrorTitle": "Erstellung fehlgeschlagen"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Regulierungsbericht erstellen",
+        "description": "Erstellen Sie Berichte auf Abruf für Compliance- und Prüfungszwecke.",
+        "reportTypeLabel": "Berichtstyp",
+        "reportTypeVti": "VTI-Ereignisübersicht",
+        "targetUserLabel": "Zielbenutzer",
+        "userSearchPlaceholder": "Nach Name oder E-Mail suchen...",
+        "dateRangeLabel": "Datumsbereich",
+        "datePlaceholder": "Datumsbereich auswählen",
+        "submitButton": "Bericht erstellen"
+      },
+      "list": {
+        "title": "Erstellte Berichte",
+        "description": "Anzeigen und Herunterladen von zuvor erstellten Berichten.",
+        "table": {
+          "reportType": "Berichtstyp",
+          "generatedFor": "Erstellt für",
+          "date": "Datum",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "viewButton": "Ansehen",
+        "noReports": "Es wurden noch keine Berichte erstellt."
+      },
+      "toast": {
+        "loadErrorTitle": "Fehler",
+        "formIncompleteTitle": "Formular unvollständig",
+        "formIncompleteDescription": "Bitte wählen Sie einen Berichtstyp, einen Zielbenutzer und einen Datumsbereich aus.",
+        "generateSuccessTitle": "Bericht wird erstellt",
+        "generateSuccessDescription": "Der Bericht wird erstellt und erscheint in Kürze in der Liste unten.",
+        "generateErrorTitle": "Erstellung fehlgeschlagen"
+      }
+    }
   }
 }
 
+    

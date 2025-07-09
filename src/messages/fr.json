@@ -1606,7 +1606,7 @@
         },
         "emptyReply": "Votre réponse ne peut pas être vide.",
         "submitError": {
-          "title": "Échec de la Réponse",
+          "title": "Réponse Échouée",
           "description": "Impossible de publier votre réponse."
         },
         "replySuccess": "Réponse publiée !"
@@ -1897,6 +1897,102 @@
       "title": "Données non disponibles",
       "description": "Nous n'avons pas pu charger vos données de durabilité pour le moment."
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Panneau d'administration",
+      "description": "Cette zone est réservée aux administrateurs autorisés.",
+      "contentManagement": "Contenu",
+      "reports": "Rapports"
+    },
+    "dashboard": {
+      "title": "Tableau de bord administrateur",
+      "description": "Bienvenue dans le panneau d'administration de DamDoh.",
+      "content": "D'ici, vous pouvez gérer divers aspects de la plateforme, comme le contenu du Centre de connaissances.",
+      "contentManagementButton": "Gérer le contenu"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Gestion de contenu",
+        "description": "Gérez tous les articles de connaissance, les articles de blog et les actualités.",
+        "refreshButton": "Actualiser"
+      },
+      "table": {
+        "title": "Titre",
+        "category": "Catégorie",
+        "status": "Statut",
+        "created": "Créé",
+        "actions": "Actions",
+        "noArticles": "Aucun article n'a encore été créé."
+      },
+      "createArticle": {
+        "title": "Créer un nouveau contenu",
+        "description": "Ajoutez un nouvel article au Centre de connaissances ou au Blog.",
+        "englishContent": "Contenu en anglais",
+        "titleEnLabel": "Titre (Anglais)",
+        "excerptEnLabel": "Extrait (Anglais)",
+        "contentEnLabel": "Contenu (Markdown, Anglais)",
+        "khmerContent": "Contenu en khmer",
+        "titleKmLabel": "Titre (Khmer)",
+        "excerptKmLabel": "Extrait (Khmer)",
+        "contentKmLabel": "Contenu (Markdown, Khmer)",
+        "metadataTitle": "Métadonnées",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "ex. Blog, Actualités du secteur, Guide KNF",
+        "authorLabel": "Auteur",
+        "authorPlaceholder": "ex. Équipe DamDoh",
+        "statusLabel": "Statut",
+        "tagsLabel": "Tags (séparés par des virgules)",
+        "imageUrlLabel": "URL de l'image",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "Indice d'image pour l'IA",
+        "aiHintPlaceholder": "ex. grains de café, portrait d'agriculteur",
+        "publishingButton": "Publication en cours...",
+        "publishButton": "Publier l'article"
+      },
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "loadErrorDescription": "Impossible de charger le contenu.",
+        "createSuccessTitle": "Article créé",
+        "createSuccessDescription": "Le nouvel article a été publié.",
+        "createErrorTitle": "La création a échoué"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Générer un rapport réglementaire",
+        "description": "Créez des rapports à la demande à des fins de conformité et d'audit.",
+        "reportTypeLabel": "Type de rapport",
+        "reportTypeVti": "Résumé des événements VTI",
+        "targetUserLabel": "Utilisateur cible",
+        "userSearchPlaceholder": "Rechercher par nom ou par e-mail...",
+        "dateRangeLabel": "Plage de dates",
+        "datePlaceholder": "Sélectionner la plage de dates",
+        "submitButton": "Générer un rapport"
+      },
+      "list": {
+        "title": "Rapports générés",
+        "description": "Afficher et télécharger les rapports générés précédemment.",
+        "table": {
+          "reportType": "Type de rapport",
+          "generatedFor": "Généré pour",
+          "date": "Date",
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "viewButton": "Voir",
+        "noReports": "Aucun rapport n'a encore été généré."
+      },
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "formIncompleteTitle": "Formulaire incomplet",
+        "formIncompleteDescription": "Veuillez sélectionner un type de rapport, un utilisateur cible et une plage de dates.",
+        "generateSuccessTitle": "Génération du rapport",
+        "generateSuccessDescription": "Le rapport est en cours de création et apparaîtra bientôt dans la liste ci-dessous.",
+        "generateErrorTitle": "La génération a échoué"
+      }
+    }
   }
 }
 
+    

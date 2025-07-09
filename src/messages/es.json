@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -1098,7 +1099,7 @@
       "whyItWorksTitle": "Por Qué Funciona",
       "principles": [
         { "id": "no-tillage", "title": "Sin Labranza", "icon": "Shield", "summary": "El arado es perjudicial para la estructura y la vida del suelo. FGW evita todo arado, fomentando un suelo sano y resiliente.", "howTo": ["Detener por completo el arado o la remoción del suelo.", "Utilizar estaciones de siembra permanentes para tus cultivos."], "whyItWorks": ["Protege la estructura y los poros naturales del suelo.", "Previene la erosión de la valiosa capa superior del suelo.", "Promueve un ecosistema saludable de microorganismos."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo sin marcas de arado", "dataAiHint": "no-till farming" },
-        { "id": "mulching", "title": "La Manta de Dios (Mulching)", "icon": "Leaf", "summary": "El suelo nunca fue diseñado para estar desnudo. Una gruesa capa de mulch protege el suelo, retiene la humedad y aporta nutrientes.", "howTo": ["Aplica una gruesa capa de materia orgánica (al menos 4 pulgadas) sobre toda la superficie del suelo.", "Siembra directamente a través del mulch.", "Añade continuamente nuevo mulch a medida que el viejo se descompone."], "whyItWorks": ["Reduce significativamente la evaporación del agua.", "Suprime el crecimiento de malezas.", "Alimenta la vida del suelo a medida que se descompone."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo cubierto con una gruesa capa de mulch de paja", "dataAiHint": "mulch field" },
+        { "id": "mulching", "title": "La Manta de Dios (Mulching)", "icon": "Leaf", "summary": "El suelo nunca fue diseñado para estar desnudo. una gruesa capa de mulch protege el suelo, retiene la humedad y aporta nutrientes.", "howTo": ["Aplica una gruesa capa de materia orgánica (al menos 4 pulgadas) sobre toda la superficie del suelo.", "Siembra directamente a través del mulch.", "Añade continuamente nuevo mulch a medida que el viejo se descompone."], "whyItWorks": ["Reduce significativamente la evaporación del agua.", "Suprime el crecimiento de malezas.", "Alimenta la vida del suelo a medida que se descompone."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo cubierto con una gruesa capa de mulch de paja", "dataAiHint": "mulch field" },
         { "id": "high-standards", "title": "Altos Estándares", "icon": "CheckCircle", "summary": "FGW enfatiza la importancia de la excelencia en todos los aspectos de la agricultura – del momento oportuno a la ejecución – como un acto de adoración.", "howTo": ["Ejecuta todas las tareas a tiempo y lo mejor que puedas.", "Presta atención a los detalles, desde la profundidad de siembra hasta el espaciado.", "Mantén la finca ordenada y bien organizada."], "whyItWorks": ["Maximiza el potencial de rendimiento de los cultivos.", "Minimiza las pérdidas por plagas y enfermedades.", "Refleja la excelencia del Creador."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hileras de siembra ordenadas", "dataAiHint": "organized farm rows" }
       ]
     },
@@ -1588,7 +1589,7 @@
       "yourReplyTitle": "Tu Respuesta",
       "replyPlaceholder": "Escribe tu respuesta aquí...",
       "replySubmitButton": "Publicar Respuesta",
-      "replySubmittingButton": "Publicando...",
+      "submittingButton": "Publicando...",
       "notFound": {
         "title": "Publicación no encontrada",
         "description": "La publicación que buscas no existe.",
@@ -1993,3 +1994,5 @@
     }
   }
 }
+
+    
