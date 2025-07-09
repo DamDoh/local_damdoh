@@ -66,6 +66,7 @@
     "signInButton": "Se connecter",
     "noAccountPrompt": "Vous n'avez pas de compte ?",
     "signUpLink": "S'inscrire",
+    "signInLink": "Se connecter",
     "recoverWithUniversalIdPrompt": "Ou récupérer l'accès avec votre ID Universel",
     "signUpTitle": "Créer un nouveau compte",
     "signUpDescription": "Parlez-nous un peu de vous pour commencer.",

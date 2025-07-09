@@ -66,6 +66,7 @@
     "signInButton": "ចូលគណនី",
     "noAccountPrompt": "មិនទាន់មានគណនី?",
     "signUpLink": "ចុះឈ្មោះ",
+    "signInLink": "ចូលគណនី",
     "recoverWithUniversalIdPrompt": "ឬស្តារការចូលប្រើដោយប្រើ ID សកលរបស់អ្នក",
     "signUpTitle": "បង្កើតគណនីថ្មី",
     "signUpDescription": "ប្រាប់យើងបន្តិចអំពីខ្លួនអ្នកដើម្បីចាប់ផ្តើម។",
@@ -464,7 +465,7 @@
   },
   "Marketplace": {
     "title": "ទីផ្សារ",
-    "description": "ស្វែងរក ទិញ และលក់ផលិតផលនិងសេវាកម្មកសិកម្ម។",
+    "description": "ស្វែងរក ទិញ และលក់ផលិតផលและសេវាកម្មកសិកម្ម។",
     "createShopButton": "បង្កើតហាង",
     "myOrdersButton": "ការបញ្ជាទិញរបស់ខ្ញុំ",
     "createListingButton": "បង្កើតការចុះបញ្ជី",

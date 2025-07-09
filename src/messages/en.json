@@ -66,6 +66,7 @@
     "signInButton": "Sign In",
     "noAccountPrompt": "Don't have an account?",
     "signUpLink": "Sign up",
+    "signInLink": "Sign in",
     "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
     "signUpTitle": "Create a New Account",
     "signUpDescription": "Tell us a bit about yourself to get started.",

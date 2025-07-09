@@ -66,6 +66,7 @@
     "signInButton": "Anmelden",
     "noAccountPrompt": "Sie haben noch kein Konto?",
     "signUpLink": "Registrieren",
+    "signInLink": "Anmelden",
     "recoverWithUniversalIdPrompt": "Oder Zugriff mit Ihrer Universal ID wiederherstellen",
     "signUpTitle": "Ein neues Konto erstellen",
     "signUpDescription": "Erzählen Sie uns ein wenig über sich, um loszulegen.",
@@ -1149,7 +1150,7 @@
       "markReady": "Als fertig markieren",
       "noFermentingBatches": "Keine Chargen fermentieren derzeit.",
       "readyBatchesTitle": "Fertige Chargen",
-      "readySince": "Fertig seit",
+      "readySince": "Fertig seit dem",
       "logUsage": "Verwendung protokollieren",
       "archive": "Archivieren",
       "noReadyBatches": "Keine Chargen sind zur Verwendung bereit.",
@@ -1221,6 +1222,38 @@
         "batchUpdatedDescription": "Chargenstatus erfolgreich auf {status} aktualisiert.",
         "updateFailed": "Update fehlgeschlagen",
         "couldNotUpdate": "Chargenstatus konnte nicht aktualisiert werden."
+      }
+    },
+    "editCrop": {
+      "backLink": "Zurück zu den Kulturdetails",
+      "title": "Kultur bearbeiten",
+      "description": "Aktualisieren Sie die Details für Ihre Kultur.",
+      "savingButton": "Wird gespeichert...",
+      "saveButton": "Änderungen speichern",
+      "toast": {
+        "notFound": "Kultur nicht gefunden",
+        "loadError": "Die Kulturdaten zum Bearbeiten konnten nicht geladen werden.",
+        "error": "Fehler",
+        "loadFail": "Fehler beim Laden der Kulturdaten: {message}",
+        "success": "Kultur aktualisiert!",
+        "description": "{cropType} wurde erfolgreich aktualisiert.",
+        "fail": "Update fehlgeschlagen"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Zurück zu den Farmdetails",
+      "title": "Farm bearbeiten",
+      "description": "Aktualisieren Sie die Details Ihrer Farm.",
+      "form": {
+        "submitButton": "Änderungen speichern"
+      },
+      "toast": {
+        "notFoundTitle": "Nicht gefunden",
+        "loadError": "Die zu bearbeitende Farm konnte nicht geladen werden.",
+        "loadFail": "Fehler beim Laden der Farmdaten: {message}",
+        "successTitle": "Farm aktualisiert!",
+        "successDescription": "'{farmName}' wurde erfolgreich aktualisiert.",
+        "errorTitle": "Update fehlgeschlagen"
       }
     }
   },
@@ -1861,7 +1894,7 @@
     "follow": "Folgen",
     "connect": "Verbinden",
     "profile": "Profil",
-    "noSuggestions": "Derzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
+    "noSuggestions": "Momentan keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
     "browseAllTitle": "Alle Interessenvertreter durchsuchen",
     "browseAllDescription": "Finden und verbinden Sie sich mit neuen Partnern in der Lieferkette.",
     "searchPlaceholder": "Nach Name oder Zusammenfassung suchen...",
