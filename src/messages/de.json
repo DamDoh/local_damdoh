@@ -1103,6 +1103,94 @@
             "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
             "fail": "Protokollierung fehlgeschlagen"
         }
+    },
+    "knfInputsPage": {
+      "backLink": "Zurück zum Farm Hub",
+      "title": "KNF-Input-Assistent",
+      "description": "Erstellen, verfolgen und verwalten Sie Ihre koreanischen Natural Farming Inputs.",
+      "guidesTitle": "KNF-Anleitungen",
+      "ingredients": "Zutaten",
+      "steps": "Schritte",
+      "usage": "Anwendung",
+      "fermentingBatchesTitle": "Aktuell fermentierende Chargen",
+      "started": "Gestartet",
+      "nextStepOn": "Nächster Schritt am",
+      "markReady": "Als fertig markieren",
+      "noFermentingBatches": "Keine Chargen fermentieren derzeit.",
+      "readyBatchesTitle": "Fertige Chargen",
+      "readySince": "Fertig seit",
+      "logUsage": "Verwendung protokollieren",
+      "archive": "Archivieren",
+      "noReadyBatches": "Keine Chargen sind zur Verwendung bereit.",
+      "startNewBatch": "Eine neue Charge starten",
+      "createNewBatchTitle": "Neue KNF-Charge erstellen",
+      "cancel": "Abbrechen",
+      "quantity": "Menge",
+      "quantityPlaceholder": "z.B. 5 oder 20",
+      "unit": "Einheit",
+      "unitPlaceholder": "z.B. Liter, kg",
+      "sellSurplus": "Überschuss verkaufen",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermentierter Pflanzensaft (FPJ)",
+          "description": "Ein fermentierter Extrakt aus Pflanzensaft und Chlorophyll. Reich an Enzymen und Mikroorganismen, ist es ein potenter Wachstumsförderer für Pflanzen.",
+          "ingredients": [
+            "1 kg schnell wachsende Pflanzenteile (z.B. Süßkartoffelspitzen, Bambussprossen)",
+            "1 kg brauner Zucker (oder Melasse)"
+          ],
+          "yield": "ca. 0.8 L",
+          "steps": [
+            "Pflanzenmaterial vor Sonnenaufgang sammeln, wenn es am wirksamsten ist. Nicht waschen.",
+            "Pflanzenmaterial grob hacken.",
+            "Gleiches Gewicht an braunem Zucker hinzufügen und gründlich mischen.",
+            "Mischung fest in einen Tontopf oder Glasbehälter füllen, bis er zu ca. 2/3 voll ist.",
+            "Mit einem atmungsaktiven Tuch abdecken und an einem kühlen, dunklen Ort lagern.",
+            "Etwa 7 Tage fermentieren lassen."
+          ],
+          "usage": "Verdünnungsverhältnis: 1:500 bis 1:1000 mit Wasser. Als Blattspray oder Bodendüngung anwenden."
+        },
+        {
+          "id": "faa",
+          "name": "Fisch-Aminosäure (FAA)",
+          "description": "Ein starker Flüssigdünger aus Fischabfällen, reich an Stickstoff und Aminosäuren. Hervorragend zur Förderung des Pflanzenwachstums, insbesondere während der vegetativen Phase.",
+          "ingredients": [
+            "1 kg Fischreste (Köpfe, Gräten, Innereien)",
+            "1 kg brauner Zucker (oder Melasse)"
+          ],
+          "yield": "ca. 1.5 L",
+          "steps": [
+            "Fischteile in kleine Stücke schneiden.",
+            "In einem Behälter Fischteile und braunen Zucker schichten, beginnend und endend mit Zucker.",
+            "Behälter zu ca. 2/3 füllen und mit einem atmungsaktiven Tuch abdecken.",
+            "An einem kühlen, dunklen Ort lagern und mindestens 3-6 Monate fermentieren lassen."
+          ],
+          "usage": "Verdünnungsverhältnis: 1:1000 mit Wasser. Hauptsächlich als Bodendüngung verwendet."
+        }
+      ],
+      "form": {
+        "typeLabel": "Art des Inputs",
+        "typePlaceholder": "Wählen Sie KNF-Input",
+        "ingredientsLabel": "Verwendete Zutaten",
+        "quantityLabel": "Produzierte Menge",
+        "unitLabel": "Einheit",
+        "startDateLabel": "Startdatum",
+        "startButton": "Charge starten",
+        "startingButton": "Wird gestartet..."
+      },
+      "toasts": {
+        "loadErrorTitle": "Fehler",
+        "loadErrorDescription": "Ihre KNF-Chargen konnten nicht abgerufen werden.",
+        "validationError": "Bitte füllen Sie alle Felder aus, um eine Charge zu starten.",
+        "batchStartedTitle": "Charge gestartet!",
+        "batchStartedDescription": "Ihre neue KNF-Charge fermentiert jetzt.",
+        "batchStartFailed": "Start der Charge fehlgeschlagen",
+        "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "batchUpdatedTitle": "Status aktualisiert",
+        "batchUpdatedDescription": "Chargenstatus erfolgreich auf {status} aktualisiert.",
+        "updateFailed": "Update fehlgeschlagen",
+        "couldNotUpdate": "Chargenstatus konnte nicht aktualisiert werden."
+      }
     }
   },
   "OfflineIndicator": {

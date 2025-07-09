@@ -450,7 +450,7 @@
     },
     "governingLaw": {
       "heading": "8. DROIT APPLICABLE",
-      "content": "Ces conditions d'utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois de la juridiction où DamDoh est enregistré, sans égard aux principes de conflit de lois."
+      "content": "Ces conditions d'utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois de la juridiction où DamDoh est enregistré, sans avoir égard aux principes de conflit de lois."
     },
     "disputeResolution": {
       "heading": "9. RÉSOLUTION DES LITIGES",
@@ -1103,6 +1103,94 @@
             "successDescription": "Votre observation a été enregistrée avec succès.",
             "fail": "Échec de l'enregistrement"
         }
+    },
+    "knfInputsPage": {
+      "backLink": "Retour au Hub de la Ferme",
+      "title": "Assistant d'intrants KNF",
+      "description": "Créez, suivez et gérez vos intrants d'agriculture naturelle coréenne.",
+      "guidesTitle": "Guides KNF",
+      "ingredients": "Ingrédients",
+      "steps": "Étapes",
+      "usage": "Utilisation",
+      "fermentingBatchesTitle": "Lots en cours de fermentation",
+      "started": "Démarré",
+      "nextStepOn": "Prochaine étape le",
+      "markReady": "Marquer comme prêt",
+      "noFermentingBatches": "Aucun lot n'est en cours de fermentation.",
+      "readyBatchesTitle": "Lots prêts",
+      "readySince": "Prêt depuis le",
+      "logUsage": "Enregistrer l'utilisation",
+      "archive": "Archiver",
+      "noReadyBatches": "Aucun lot n'est prêt à l'emploi.",
+      "startNewBatch": "Démarrer un nouveau lot",
+      "createNewBatchTitle": "Créer un nouveau lot KNF",
+      "cancel": "Annuler",
+      "quantity": "Quantité",
+      "quantityPlaceholder": "Ex: 5 ou 20",
+      "unit": "Unité",
+      "unitPlaceholder": "Ex: Litres, kg",
+      "sellSurplus": "Vendre l'excédent",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Jus de plantes fermentées (FPJ)",
+          "description": "Un extrait fermenté de la sève et de la chlorophylle d'une plante. Riche en enzymes et en micro-organismes, c'est un puissant stimulateur de croissance pour les plantes.",
+          "ingredients": [
+            "1 kg de parties de plantes à croissance rapide (par exemple, pointes de patates douces, pousses de bambou)",
+            "1 kg de sucre brun (ou de mélasse)"
+          ],
+          "yield": "environ 0,8 L",
+          "steps": [
+            "Collecter les matières végétales avant le lever du soleil lorsqu'elles sont les plus puissantes. Ne pas laver.",
+            "Hacher grossièrement les matières végétales.",
+            "Ajouter un poids égal de sucre brun et bien mélanger.",
+            "Tasser fermement dans un pot en argile ou un bocal en verre, en remplissant jusqu'à environ 2/3 de sa capacité.",
+            "Couvrir avec un tissu respirant et conserver dans un endroit frais et sombre.",
+            "Laisser fermenter pendant environ 7 jours."
+          ],
+          "usage": "Taux de dilution : 1:500 à 1:1000 avec de l'eau. Appliqué en pulvérisation foliaire ou en arrosage du sol."
+        },
+        {
+          "id": "faa",
+          "name": "Acide aminé de poisson (FAA)",
+          "description": "Un engrais liquide puissant fabriqué à partir de déchets de poisson, riche en azote et en acides aminés. Excellent pour stimuler la croissance des plantes, en particulier pendant la phase végétative.",
+          "ingredients": [
+            "1 kg de déchets de poisson (têtes, arêtes, entrailles)",
+            "1 kg de sucre brun (ou de mélasse)"
+          ],
+          "yield": "environ 1,5 L",
+          "steps": [
+            "Hacher les parties de poisson en petits morceaux.",
+            "Dans un récipient, superposer les parties de poisson et le sucre brun, en commençant et en terminant par du sucre.",
+            "Remplir le récipient jusqu'à environ 2/3 de sa capacité et couvrir avec un tissu respirant.",
+            "Conserver dans un endroit frais et sombre et laisser fermenter pendant au moins 3 à 6 mois."
+          ],
+          "usage": "Taux de dilution : 1:1000 avec de l'eau. Principalement utilisé comme arrosage du sol."
+        }
+      ],
+      "form": {
+        "typeLabel": "Type d'intrant",
+        "typePlaceholder": "Choisir un intrant KNF",
+        "ingredientsLabel": "Ingrédients utilisés",
+        "quantityLabel": "Quantité produite",
+        "unitLabel": "Unité",
+        "startDateLabel": "Date de début",
+        "startButton": "Démarrer le lot",
+        "startingButton": "Démarrage..."
+      },
+      "toasts": {
+        "loadErrorTitle": "Erreur",
+        "loadErrorDescription": "Impossible de récupérer vos lots KNF.",
+        "validationError": "Veuillez remplir tous les champs pour démarrer un lot.",
+        "batchStartedTitle": "Lot démarré !",
+        "batchStartedDescription": "Votre nouveau lot KNF est maintenant en fermentation.",
+        "batchStartFailed": "Échec du démarrage du lot",
+        "unexpectedError": "Une erreur inattendue s'est produite.",
+        "batchUpdatedTitle": "Statut mis à jour",
+        "batchUpdatedDescription": "Le statut du lot a été mis à jour avec succès à {status}.",
+        "updateFailed": "La mise à jour a échoué",
+        "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
+      }
     }
   },
   "OfflineIndicator": {
@@ -1718,12 +1806,12 @@
     }
   },
   "CropRotationSuggester": {
-    "title": "Suggerimenti di rotazione colturale AI",
-    "description": "Ottieni raccomandazioni basate sull'IA per la tua prossima coltura per migliorare la salute del suolo e interrompere i cicli dei parassiti.",
-    "buttonText": "Ottieni suggerimenti di rotazione",
-    "loadingText": "Analisi della cronologia del campo in corso...",
-    "error": "Impossibile ottenere suggerimenti in questo momento. Per favore riprova.",
-    "noSuggestions": "L'IA non è riuscita a generare suggerimenti specifici basati sulla cronologia fornita.",
-    "regenerateButton": "Rigenera suggerimenti"
+    "title": "Suggesteur de rotation des cultures par IA",
+    "description": "Obtenez des recommandations basées sur l'IA pour votre prochaine culture afin d'améliorer la santé des sols et de briser les cycles des ravageurs.",
+    "buttonText": "Obtenir des suggestions de rotation",
+    "loadingText": "Analyse de l'historique des champs...",
+    "error": "Impossible d'obtenir des suggestions pour le moment. Veuillez réessayer.",
+    "noSuggestions": "L'IA n'a pas pu générer de suggestions spécifiques basées sur l'historique fourni.",
+    "regenerateButton": "Régénérer les suggestions"
   }
 }

@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -699,6 +700,8 @@ export interface KnfBatch {
     nextStepDate: any; // Firestore Timestamp
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
+    quantityProduced: number;
+    unit: string;
     createdAt?: any;
 }
 

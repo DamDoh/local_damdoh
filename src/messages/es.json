@@ -1103,6 +1103,94 @@
             "successDescription": "Tu observación ha sido guardada exitosamente.",
             "fail": "Registro Fallido"
         }
+    },
+    "knfInputsPage": {
+      "backLink": "Volver al Centro de Fincas",
+      "title": "Asistente de Insumos KNF",
+      "description": "Crea, rastrea y gestiona tus insumos de Agricultura Natural Coreana.",
+      "guidesTitle": "Guías de KNF",
+      "ingredients": "Ingredientes",
+      "steps": "Pasos",
+      "usage": "Uso",
+      "fermentingBatchesTitle": "Lotes en Fermentación",
+      "started": "Iniciado",
+      "nextStepOn": "Próximo paso el",
+      "markReady": "Marcar como Listo",
+      "noFermentingBatches": "No hay lotes en fermentación actualmente.",
+      "readyBatchesTitle": "Lotes Listos",
+      "readySince": "Listo desde",
+      "logUsage": "Registrar Uso",
+      "archive": "Archivar",
+      "noReadyBatches": "No hay lotes listos para usar.",
+      "startNewBatch": "Iniciar un Nuevo Lote",
+      "createNewBatchTitle": "Crear Nuevo Lote KNF",
+      "cancel": "Cancelar",
+      "quantity": "Cantidad",
+      "quantityPlaceholder": "Ej: 5 o 20",
+      "unit": "Unidad",
+      "unitPlaceholder": "Ej: Litros, kg",
+      "sellSurplus": "Vender Excedente",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Jugo de Planta Fermentado (FPJ)",
+          "description": "Un extracto fermentado de la savia y clorofila de una planta. Rico en enzimas y microorganismos, es un potente potenciador del crecimiento para las plantas.",
+          "ingredients": [
+            "1kg de partes de plantas de rápido crecimiento (ej. puntas de batata, brotes de bambú)",
+            "1kg de azúcar moreno (o melaza)"
+          ],
+          "yield": "aprox. 0.8 L",
+          "steps": [
+            "Recolectar materiales vegetales antes del amanecer cuando son más potentes. No lavar.",
+            "Picar groseramente los materiales vegetales.",
+            "Añadir un peso igual de azúcar moreno y mezclar bien.",
+            "Empacar firmemente en una olla de barro o frasco de vidrio, llenando hasta 2/3 de su capacidad.",
+            "Cubrir con un paño transpirable y almacenar en un lugar fresco y oscuro.",
+            "Dejar fermentar durante unos 7 días."
+          ],
+          "usage": "Relación de dilución: 1:500 a 1:1000 con agua. Aplicado como pulverización foliar o riego al suelo."
+        },
+        {
+          "id": "faa",
+          "name": "Ácido Amino de Pescado (FAA)",
+          "description": "Un potente fertilizante líquido hecho de desechos de pescado, rico en nitrógeno y aminoácidos. Excelente para potenciar el crecimiento de las plantas, especialmente durante la etapa vegetativa.",
+          "ingredients": [
+            "1kg de restos de pescado (cabezas, espinas, vísceras)",
+            "1kg de azúcar moreno (o melaza)"
+          ],
+          "yield": "aprox. 1.5 L",
+          "steps": [
+            "Picar las partes del pescado en trozos pequeños.",
+            "En un recipiente, colocar en capas las partes del pescado y el azúcar moreno, comenzando y terminando con azúcar.",
+            "Llenar el recipiente hasta 2/3 de su capacidad y cubrir con un paño transpirable.",
+            "Almacenar en un lugar fresco y oscuro y dejar fermentar durante al menos 3-6 meses."
+          ],
+          "usage": "Relación de dilución: 1:1000 con agua. Se utiliza principalmente como riego al suelo."
+        }
+      ],
+      "form": {
+        "typeLabel": "Tipo de Insumo",
+        "typePlaceholder": "Elige un Insumo KNF",
+        "ingredientsLabel": "Ingredientes Usados",
+        "quantityLabel": "Cantidad Producida",
+        "unitLabel": "Unidad",
+        "startDateLabel": "Fecha de Inicio",
+        "startButton": "Iniciar Lote",
+        "startingButton": "Iniciando..."
+      },
+      "toasts": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "No se pudieron recuperar tus lotes de KNF.",
+        "validationError": "Por favor, completa todos los campos para iniciar un lote.",
+        "batchStartedTitle": "¡Lote Iniciado!",
+        "batchStartedDescription": "Tu nuevo lote de KNF está ahora en fermentación.",
+        "batchStartFailed": "Fallo al Iniciar Lote",
+        "unexpectedError": "Ocurrió un error inesperado.",
+        "batchUpdatedTitle": "Estado Actualizado",
+        "batchUpdatedDescription": "El estado del lote se actualizó a {status} correctamente.",
+        "updateFailed": "Actualización Fallida",
+        "couldNotUpdate": "No se pudo actualizar el estado del lote."
+      }
     }
   },
   "OfflineIndicator": {

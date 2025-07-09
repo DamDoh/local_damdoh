@@ -990,6 +990,206 @@
         "details": "Details",
         "aiDiagnosis": "AI Diagnosis"
       }
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Farming God's Way Guide",
+      "description": "A no-till, faith-based sustainable farming solution for the poor.",
+      "intro": "Farming God's Way (FGW) is not just a technology, but a well-balanced, biblical, management, and technological solution to the agricultural needs of the poor. It's about being a faithful steward of the land God has given us. Below are the core principles.",
+      "howToTitle": "How To Do It",
+      "whyItWorksTitle": "Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by never plowing or turning it. This maintains the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of furrows.",
+            "Only dig where you are going to plant the seed.",
+            "Walk on permanent pathways to avoid compacting your cropping area."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion from wind and water.",
+            "Protects soil life and fungal networks.",
+            "Greatly increases water infiltration and retention.",
+            "Reduces labor and fuel costs of plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-tillage planting stations",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered, 100% of the time with a thick blanket of organic mulch, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, leaves, or crop residues.",
+            "Apply a thick blanket of mulch (at least 10-15cm) over the entire field.",
+            "Never burn your crop residues; use them for the blanket.",
+            "When planting, just make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weeds from growing.",
+            "Saves a tremendous amount of soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, creating rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, without wastage, and with joy.",
+          "howTo": [
+            "Prepare your land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid waste."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
+    },
+    "logObservation": {
+        "backLink": "Back to Farm",
+        "title": "Log Observation",
+        "description": "Record observations about your crop, such as pests, diseases, growth, or weather events.",
+        "typeLabel": "Observation Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+            "Pest": "Pest",
+            "Disease": "Disease",
+            "Growth": "Growth",
+            "Weather": "Weather",
+            "Soil": "Soil",
+            "Weed": "Weed",
+            "Other": "Other",
+            "FGW_Stations": "Field Prep (FGW Stations)",
+            "FGW_Mulch": "Mulch Application (God's Blanket)"
+        },
+        "dateLabel": "Observation Date",
+        "detailsLabel": "Details & Notes",
+        "detailsPlaceholder": "Describe what you observed...",
+        "uploadLabel": "Upload Photo (Optional)",
+        "uploadDescription": "A picture can help with diagnosis. The AI will analyze it if provided.",
+        "saveButton": "Save Observation",
+        "processingButton": "Processing...",
+        "toast": {
+            "authErrorTitle": "Not Authenticated",
+            "authErrorDescription": "You must be logged in to log an observation.",
+            "aiAnalyzing": "AI Analysis in Progress",
+            "aiDescription": "Your image data is being sent to the AI for diagnosis.",
+            "aiComplete": "AI Analysis Complete!",
+            "aiCompleteDescription": "The diagnosis has been included in your observation record.",
+            "aiFailTitle": "AI Analysis Failed",
+            "aiFailDescription": "We could not analyze the image. The observation will be saved without an AI diagnosis.",
+            "uploading": "Uploading image...",
+            "uploadingDescription": "Please wait a moment.",
+            "uploadComplete": "Upload Complete!",
+            "success": "Observation Logged",
+            "successDescription": "Your observation has been successfully saved.",
+            "fail": "Logging Failed"
+        }
+    },
+    "knfInputsPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "KNF Input Assistant",
+      "description": "Create, track, and manage your Korean Natural Farming inputs.",
+      "guidesTitle": "KNF Guides",
+      "ingredients": "Ingredients",
+      "steps": "Steps",
+      "usage": "Usage",
+      "fermentingBatchesTitle": "Batches Currently Fermenting",
+      "started": "Started",
+      "nextStepOn": "Next step on",
+      "markReady": "Mark as Ready",
+      "noFermentingBatches": "No batches are currently fermenting.",
+      "readyBatchesTitle": "Ready Batches",
+      "readySince": "Ready since",
+      "logUsage": "Log Usage",
+      "archive": "Archive",
+      "noReadyBatches": "No batches are ready for use.",
+      "startNewBatch": "Start a New Batch",
+      "createNewBatchTitle": "Create New KNF Batch",
+      "cancel": "Cancel",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "e.g., 5 or 20",
+      "unit": "Unit",
+      "unitPlaceholder": "e.g., Liters, kg",
+      "sellSurplus": "Sell Surplus",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A fermented extract of a plant's sap and chlorophylls. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+          "ingredients": [
+            "1kg fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg brown sugar (or molasses)"
+          ],
+          "steps": [
+            "Collect plant materials before sunrise when they are most potent. Do not wash.",
+            "Roughly chop the plant materials.",
+            "Add an equal weight of brown sugar and mix thoroughly.",
+            "Pack tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
+            "Cover with a breathable cloth and store in a cool, dark place.",
+            "Let it ferment for about 7 days."
+          ],
+          "usage": "Dilution ratio: 1:500 to 1:1000 with water. Applied as foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A powerful liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
+          "ingredients": [
+            "1kg fish scraps (heads, bones, guts)",
+            "1kg brown sugar (or molasses)"
+          ],
+
+          "steps": [
+            "Chop the fish parts into small pieces.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
+            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Store in a cool, dark place and let it ferment for at least 3-6 months."
+          ],
+          "usage": "Dilution ratio: 1:1000 with water. Primarily used as a soil drench."
+        }
+      ],
+      "form": {
+        "typeLabel": "Type of Input",
+        "typePlaceholder": "Choose KNF Input",
+        "ingredientsLabel": "Ingredients Used",
+        "quantityLabel": "Amount Produced",
+        "unitLabel": "Unit",
+        "startDateLabel": "Start Date",
+        "startButton": "Start Batch",
+        "startingButton": "Starting..."
+      },
+      "toasts": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not fetch your KNF batches.",
+        "validationError": "Please fill out all fields to start a batch.",
+        "batchStartedTitle": "Batch Started!",
+        "batchStartedDescription": "Your new KNF batch is now fermenting.",
+        "batchStartFailed": "Failed to Start Batch",
+        "unexpectedError": "An unexpected error occurred.",
+        "batchUpdatedTitle": "Status Updated",
+        "batchUpdatedDescription": "Batch status successfully updated to {status}.",
+        "updateFailed": "Update Failed",
+        "couldNotUpdate": "Could not update batch status."
+      }
     }
   },
   "OfflineIndicator": {

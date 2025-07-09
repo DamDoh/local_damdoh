@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type {KnfBatch} from "./types";
@@ -371,6 +372,69 @@ export const getCrop = functions.https.onCall(async (data, context) => {
     }
 });
 
+export const updateCrop = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User must be authenticated.",
+    );
+  }
+
+  const {
+    cropId,
+    cropType,
+    plantingDate,
+    harvestDate,
+    expectedYield,
+    currentStage,
+    notes,
+  } = data;
+  if (!cropId || !cropType || !plantingDate) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Crop ID, crop type, and planting date are required.",
+    );
+  }
+  
+  const cropRef = db.collection("crops").doc(cropId);
+
+  try {
+    const cropDoc = await cropRef.get();
+    if (!cropDoc.exists) {
+      throw new functions.https.HttpsError("not-found", "Crop not found.");
+    }
+    if (cropDoc.data()?.ownerId !== context.auth.uid) {
+      throw new functions.https.HttpsError("permission-denied", "You do not have permission to update this crop.");
+    }
+
+    const updatePayload = {
+      cropType,
+      plantingDate: admin.firestore.Timestamp.fromDate(new Date(plantingDate)),
+      harvestDate: harvestDate ? admin.firestore.Timestamp.fromDate(new Date(harvestDate)) : null,
+      expectedYield: expectedYield || "",
+      currentStage: currentStage || null,
+      notes: notes || "",
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+
+    await cropRef.update(updatePayload);
+    
+    return { success: true, cropId: cropRef.id };
+
+  } catch(error: any) {
+    console.error(`Error updating crop ${cropId}:`, error);
+    if (error instanceof functions.https.HttpsError) {
+        throw error;
+    }
+    throw new functions.https.HttpsError(
+      "internal",
+      "Failed to update crop.",
+      { originalError: error.message },
+    );
+  }
+});
+
+
 /**
  * Cloud Function to analyze a farmer's data and provide profitability insights.
  * This enhanced version conceptually uses detailed financial and activity data.
@@ -488,11 +552,11 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const {type, typeName, ingredients, startDate} = data;
-  if (!type || !typeName || !ingredients || !startDate) {
+  const {type, typeName, ingredients, startDate, quantityProduced, unit} = data;
+  if (!type || !typeName || !ingredients || !startDate || !quantityProduced || !unit) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Type, typeName, ingredients, and startDate are required.",
+      "Type, typeName, ingredients, startDate, quantity and unit are required.",
     );
   }
 
@@ -511,6 +575,8 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
       nextStepDate: admin.firestore.Timestamp.fromDate(nextStepDate),
       status: "Fermenting",
       nextStep: nextStep,
+      quantityProduced,
+      unit,
     };
 
     await newBatchRef.set({
