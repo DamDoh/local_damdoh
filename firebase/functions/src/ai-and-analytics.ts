@@ -4,6 +4,13 @@ import {
   _internalMatchFundingOpportunities,
 } from "./financial-services";
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * =================================================================
  * Module 6: AI & Analytics Engine (The Brain of DamDoh)
@@ -12,14 +19,14 @@ import {
 
 export const assessCreditRiskWithAI = functions.https.onCall(
     async (data, context) => {
-    // TODO: Add authentication and authorization checks
+      checkAuth(context);
       return await _internalAssessCreditRisk(data);
     },
 );
 
 export const matchFundingOpportunitiesWithAI = functions.https.onCall(
     async (data, context) => {
-    // TODO: Add authentication and authorization checks
+      checkAuth(context);
       return await _internalMatchFundingOpportunities(data);
     },
 );

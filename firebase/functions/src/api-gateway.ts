@@ -4,6 +4,13 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * =================================================================
  * Module 9: API Gateway & Integration Layer
@@ -25,6 +32,7 @@ const db = admin.firestore();
  * @return {Promise<{status: string, data: any}>} A promise that resolves with the market data.
  */
 export const fetchExternalMarketData = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
     const {commodity, region} = data;
     if (!commodity || !region) {
       throw new functions.https.HttpsError(
@@ -60,6 +68,7 @@ export const fetchExternalMarketData = functions.https.onCall(async (data, conte
  * @return {Promise<{status: string, messageId: string}>} A promise that resolves with the message ID.
  */
 export const sendSmsNotification = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
     const {toPhoneNumber, messageBody} = data;
     if (!toPhoneNumber || !messageBody) {
       throw new functions.https.HttpsError(

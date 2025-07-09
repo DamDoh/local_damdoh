@@ -4,6 +4,13 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * A generic Firestore trigger that listens to writes on specified collections
  * and creates/updates a corresponding document in a dedicated 'search_index' collection.
@@ -67,7 +74,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
       createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
       title: title,
       description: description,
-      imageUrl: newData.imageUrl || newData.photoURL || null,
+      imageUrl: newData.imageUrl || newData.avatarUrl || null,
       tags: tags,
       searchable_terms: searchable_terms,
       location: newData.location || null,
@@ -93,26 +100,51 @@ export const onSourceDocumentWriteIndex = functions.firestore
 
 
 /**
- * Performs a search against the denormalized search_index collection.
- * This version is enhanced to use the output of the query-interpreter AI flow.
+ * Performs a search. If the query looks like a VTI, it searches the VTI registry.
+ * Otherwise, it searches the denormalized search_index collection.
  * @param {any} data The data for the function call, containing the AI's interpretation.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{results: any[]}>} A promise that resolves with search results.
  */
 export const performSearch = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
     const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit, limit = 50 } = data;
     
     if (!Array.isArray(mainKeywords)) {
         throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
     }
+    
+    const rawQuery = mainKeywords.join(' ');
+    // Check if the query looks like a VTI (UUID format)
+    const isVtiQuery = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawQuery);
+
+    if (isVtiQuery) {
+        try {
+            const vtiDoc = await db.collection("vti_registry").doc(rawQuery).get();
+            if (vtiDoc.exists) {
+                const vtiData = vtiDoc.data()!;
+                return {
+                    results: [{
+                        id: `vti_${vtiDoc.id}`,
+                        itemId: vtiDoc.id,
+                        itemCollection: 'vti_registry',
+                        title: `VTI Batch: ${vtiData.metadata?.cropType || 'Product'}`,
+                        description: `Traceability report for batch ID ${vtiDoc.id}`,
+                    }]
+                };
+            }
+        } catch (error) {
+            console.error(`Error performing direct VTI search for ${rawQuery}:`, error);
+        }
+    }
 
     try {
         let query: admin.firestore.Query = db.collection("search_index");
         
+        // --- Apply structured filters first ---
         const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
         const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
         
-        // Apply structured filters first - this is more efficient
         if (listingTypeFilter) {
             query = query.where('listingType', '==', listingTypeFilter);
         }
@@ -120,7 +152,6 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             query = query.where('tags', 'array-contains', categoryFilter);
         }
         if (identifiedLocation) {
-            // Use inequality for partial location matching
             query = query.where("location", ">=", identifiedLocation);
             query = query.where("location", "<=", identifiedLocation + '\uf8ff');
         }
@@ -128,7 +159,6 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             query = query.where("perUnit", "==", perUnit);
         }
 
-        // Price filtering - requires ordering by price first
         let hasPriceFilter = false;
         if (typeof minPrice === 'number' && minPrice > 0) {
             query = query.where('price', '>=', minPrice);
@@ -139,8 +169,6 @@ export const performSearch = functions.https.onCall(async (data, context) => {
             hasPriceFilter = true;
         }
         
-        // If we have a price filter, we must order by price.
-        // Otherwise, order by the most recent.
         if (hasPriceFilter) {
             query = query.orderBy('price', 'asc');
         } else {
@@ -153,8 +181,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         
         let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // Keyword filtering is now done IN-MEMORY on the reduced, pre-filtered dataset.
-        // This is a necessary trade-off due to Firestore query limitations when combining multiple complex filters.
+        // --- Keyword filtering in-memory on the pre-filtered dataset ---
         const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
 
         if (searchTerms.length > 0) {
@@ -167,9 +194,9 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         return { results };
 
     } catch (error: any) {
-        console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
+        console.error(`Error performing search for query "${rawQuery}":`, error);
          if (error.code === 'FAILED_PRECONDITION') {
-             throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link. This usually happens when combining multiple filters.");
+             throw new functions.https.HttpsError("failed-precondition", "The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
         }
         throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
     }

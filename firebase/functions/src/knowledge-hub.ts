@@ -153,7 +153,6 @@ export const createCourse = functions.https.onCall(async (data, context) => {
  * @return {Promise<{success: boolean, moduleId: string}>} A promise that resolves with the new module ID.
  */
 export const createModule = functions.https.onCall(async (data, context) => {
-  // For this demo, we'll allow any authenticated user to create content.
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",

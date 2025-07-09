@@ -7,6 +7,13 @@ import { getRole } from './profiles';
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * Internal function to generate a new Verifiable Traceability Identifier (VTI).
  * @param {any} data The data for the new VTI.
@@ -39,13 +46,14 @@ async function _internalGenerateVTI(
     status,
     linkedVtis,
     metadata: {...metadata, carbon_footprint_kgCO2e: 0},
-    isPublicTraceable: false,
+    isPublicTraceable: true, // Make traceable by default
   });
 
   return {vtiId, status: "success"};
 }
 
 export const generateVTI = functions.https.onCall(async (data, context) => {
+  checkAuth(context);
   try {
     return await _internalGenerateVTI(data, context);
   } catch (error: any) {
@@ -557,5 +565,60 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
         console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
         if (error instanceof functions.https.HttpsError) throw error;
         throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
+    }
+});
+
+
+export const getRecentVtiBatches = functions.https.onCall(async (data, context) => {
+    try {
+        const vtiSnapshot = await db.collection('vti_registry')
+            .where('isPublicTraceable', '==', true)
+            .orderBy('creationTime', 'desc')
+            .limit(10)
+            .get();
+
+        if (vtiSnapshot.empty) {
+            return { batches: [] };
+        }
+        
+        const batches = await Promise.all(vtiSnapshot.docs.map(async (doc) => {
+            const vtiData = doc.data();
+            const harvestEventSnapshot = await db.collection('traceability_events')
+                .where('vtiId', '==', vtiData.vtiId)
+                .where('eventType', '==', 'HARVESTED')
+                .limit(1)
+                .get();
+
+            let producerName = 'Unknown';
+            let harvestDate = vtiData.creationTime.toDate().toISOString();
+
+            if (!harvestEventSnapshot.empty) {
+                const harvestEvent = harvestEventSnapshot.docs[0].data();
+                harvestDate = harvestEvent.timestamp.toDate().toISOString();
+                if (harvestEvent.actorRef) {
+                    try {
+                        const userDoc = await db.collection('users').doc(harvestEvent.actorRef).get();
+                        if (userDoc.exists) {
+                            producerName = userDoc.data()?.displayName || 'Unknown';
+                        }
+                    } catch (e) {
+                        // User might not exist if it's an org, or other issue.
+                        console.log(`Could not fetch user profile for actorRef: ${harvestEvent.actorRef}`);
+                    }
+                }
+            }
+            
+            return {
+                id: doc.id,
+                productName: vtiData.metadata?.cropType || 'Unknown Product',
+                producerName: producerName,
+                harvestDate: harvestDate,
+            };
+        }));
+        
+        return { batches };
+    } catch (error) {
+        console.error("Error fetching recent VTI batches:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");
     }
 });

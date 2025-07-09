@@ -4,6 +4,13 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * =================================================================
  * Module 11: Insurance Service
@@ -410,7 +417,7 @@ export const triggerParametricPayout = functions.firestore
  * This function would send the application details to the relevant insurance partner's API.
  */
 export const processInsuranceApplication = functions.https.onCall(async (data, context) => {
-    // Placeholder logic
+    checkAuth(context);
     console.log("Conceptual: Processing insurance application with data:", data);
     return { success: true, message: "conceptual.applicationSent" };
 });
@@ -420,7 +427,7 @@ export const processInsuranceApplication = functions.https.onCall(async (data, c
  * This function would call the Financial Services module (Module 7) to handle the payout.
  */
 export const initiateClaimPayout = functions.https.onCall(async (data, context) => {
-    // Placeholder logic
+    checkAuth(context);
     console.log("Conceptual: Initiating claim payout with data:", data);
     // 1. Call _internalInitiatePayment from financials.ts with relevant details.
     return { success: true, transactionId: `payout_${Date.now()}` };
