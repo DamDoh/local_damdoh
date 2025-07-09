@@ -942,6 +942,29 @@
         "failTitle": "Failed to Add Crop",
         "failDescription": "An unexpected error occurred. Please try again."
       }
+    },
+    "cropDetailPage": {
+      "backLink": "Back to Farm",
+      "plantedOn": "Planted on {date}",
+      "editButton": "Edit",
+      "quickActionsTitle": "Quick Actions",
+      "logInputButton": "Log Input",
+      "logObservationButton": "Log Observation",
+      "logHarvestButton": "Log Harvest",
+      "journeyTitle": "Crop Journey",
+      "noActivities": "No activities have been logged for this crop yet.",
+      "loading": "Loading crop details...",
+      "notFound": "Crop not found.",
+      "toast": {
+        "notFound": "Crop not found",
+        "loadError": "Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "No additional details for this event.",
+        "observationType": "Observation Type",
+        "details": "Details",
+        "aiDiagnosis": "AI Diagnosis"
+      }
     }
   },
   "OfflineIndicator": {
@@ -1566,5 +1589,3 @@
     "regenerateButton": "Regenerate Suggestions"
   }
 }
-
-    

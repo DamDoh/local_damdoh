@@ -105,57 +105,39 @@ export default function CropDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
+  const getCropCallable = useMemo(() => httpsCallable(functions, 'getCrop'), [functions]);
   const getTraceabilityEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
 
-  const fetchCropAndFarmDetails = useCallback(async () => {
-    if (!cropId || !farmId) return;
-    const db = getFirestore(firebaseApp);
+  const fetchDetails = useCallback(async () => {
+    if (!cropId || !farmId || !user) return;
+    setIsLoading(true);
     
     try {
-        const cropRef = doc(db, 'crops', cropId);
-        const farmRef = doc(db, 'farms', farmId);
+        const [cropResult, eventsResult] = await Promise.all([
+            getCropCallable({ cropId }),
+            getTraceabilityEventsCallable({ farmFieldId: cropId })
+        ]);
         
-        const [cropSnap, farmSnap] = await Promise.all([getDoc(cropRef), getDoc(farmRef)]);
-
-        if(cropSnap.exists()){
-            const data = cropSnap.data();
-            setCrop({ 
-                id: cropSnap.id, 
-                cropType: data.cropType,
-                plantingDate: data.plantingDate.toDate().toISOString(),
-                harvestDate: data.harvestDate?.toDate().toISOString(),
-                currentStage: data.currentStage,
-                notes: data.notes,
-                farmId: data.farmId
-            });
+        const cropData = cropResult.data as CropDetails;
+        if (cropData) {
+            setCrop(cropData);
         } else {
-            toast({ variant: 'destructive', title: t('toast.notFound') });
-        }
-        
-        if (farmSnap.exists()) {
-            setFarm({ location: farmSnap.data().location });
+             toast({ variant: 'destructive', title: t('toast.notFound') });
         }
 
+        setEvents((eventsResult.data as { events: TraceabilityEvent[] })?.events || []);
+
     } catch (error) {
-        console.error("Error fetching crop/farm details:", error);
+        console.error("Error fetching crop details:", error);
         toast({ variant: 'destructive', title: t('toast.loadError') });
+    } finally {
+        setIsLoading(false);
     }
-  }, [cropId, farmId, toast, t]);
-
-  const fetchTraceabilityEvents = useCallback(async () => {
-    try {
-      const result = await getTraceabilityEventsCallable({ farmFieldId: cropId });
-      setEvents((result.data as { events: TraceabilityEvent[] })?.events || []);
-    } catch (error) {
-      console.error('Error fetching traceability events:', error);
-      toast({ variant: 'destructive', title: t('toast.loadError') });
-    }
-  }, [cropId, getTraceabilityEventsCallable, toast, t]);
+  }, [cropId, farmId, user, getCropCallable, getTraceabilityEventsCallable, toast, t]);
 
   useEffect(() => {
-    setIsLoading(true);
-    Promise.all([fetchCropAndFarmDetails(), fetchTraceabilityEvents()]).finally(() => setIsLoading(false));
-  }, [fetchCropAndFarmDetails, fetchTraceabilityEvents]);
+    fetchDetails();
+  }, [fetchDetails]);
 
   if (isLoading) {
     return <div>{t('loading')}</div>;
@@ -257,6 +239,3 @@ export default function CropDetailPage() {
     </div>
   );
 }
-
-
-    

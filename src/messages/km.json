@@ -942,6 +942,29 @@
         "failTitle": "ไม่สามารถเพิ่มพืชผลได้",
         "failDescription": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง"
       }
+    },
+    "cropDetailPage": {
+      "backLink": "ត្រឡប់ទៅកសិដ្ឋាន",
+      "plantedOn": "បានដាំនៅ {date}",
+      "editButton": "កែសម្រួល",
+      "quickActionsTitle": "ការดำเนินการរហ័ស",
+      "logInputButton": "บันทึกปัจจัยการผลิต",
+      "logObservationButton": "บันทึกการสังเกต",
+      "logHarvestButton": "บันทึกการเก็บเกี่ยว",
+      "journeyTitle": "ដំណើរដំណាំ",
+      "noActivities": "ยังไม่มีการบันทึกกิจกรรมสำหรับพืชผลนี้",
+      "loading": "កំពុងโหลดรายละเอียดพืชผล...",
+      "notFound": "រកមិនឃើញដំណាំ",
+      "toast": {
+        "notFound": "រកមិនឃើញដំណាំ",
+        "loadError": "ไม่สามารถโหลดข้อมูลพืชผลได้"
+      },
+      "eventPayload": {
+        "noDetails": "ไม่มีรายละเอียดเพิ่มเติมสำหรับเหตุการณ์นี้",
+        "observationType": "ប្រភេទการสังเกต",
+        "details": "รายละเอียด",
+        "aiDiagnosis": "ការវិនិច្ឆ័យ AI"
+      }
     }
   },
   "OfflineIndicator": {
@@ -1566,5 +1589,3 @@
     "regenerateButton": "สร้างคำแนะนำใหม่"
   }
 }
-
-    

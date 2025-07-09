@@ -942,6 +942,29 @@
         "failTitle": "Fallo al Añadir Cultivo",
         "failDescription": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
       }
+    },
+    "cropDetailPage": {
+      "backLink": "Volver a la Finca",
+      "plantedOn": "Plantado el {date}",
+      "editButton": "Editar",
+      "quickActionsTitle": "Acciones Rápidas",
+      "logInputButton": "Registrar Insumo",
+      "logObservationButton": "Registrar Observación",
+      "logHarvestButton": "Registrar Cosecha",
+      "journeyTitle": "Trayectoria del Cultivo",
+      "noActivities": "Aún no se han registrado actividades para este cultivo.",
+      "loading": "Cargando detalles del cultivo...",
+      "notFound": "Cultivo no encontrado.",
+      "toast": {
+        "notFound": "Cultivo no encontrado",
+        "loadError": "No se pudieron cargar los datos del cultivo."
+      },
+      "eventPayload": {
+        "noDetails": "Sin detalles adicionales para este evento.",
+        "observationType": "Tipo de Observación",
+        "details": "Detalles",
+        "aiDiagnosis": "Diagnóstico IA"
+      }
     }
   },
   "OfflineIndicator": {
@@ -1566,5 +1589,3 @@
     "regenerateButton": "Regenerar Sugerencias"
   }
 }
-
-    

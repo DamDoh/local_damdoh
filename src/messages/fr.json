@@ -942,6 +942,29 @@
         "failTitle": "Échec de l'ajout de la culture",
         "failDescription": "Une erreur inattendue s'est produite. Veuillez réessayer."
       }
+    },
+    "cropDetailPage": {
+      "backLink": "Retour à la Ferme",
+      "plantedOn": "Planté le {date}",
+      "editButton": "Modifier",
+      "quickActionsTitle": "Actions Rapides",
+      "logInputButton": "Enregistrer un Intrant",
+      "logObservationButton": "Enregistrer une Observation",
+      "logHarvestButton": "Enregistrer la Récolte",
+      "journeyTitle": "Parcours du Cultivar",
+      "noActivities": "Aucune activité n'a encore été enregistrée pour ce cultivar.",
+      "loading": "Chargement des détails du cultivar...",
+      "notFound": "Cultivar non trouvé.",
+      "toast": {
+        "notFound": "Cultivar non trouvé",
+        "loadError": "Impossible de charger les données du cultivar."
+      },
+      "eventPayload": {
+        "noDetails": "Aucun détail supplémentaire pour cet événement.",
+        "observationType": "Type d'Observation",
+        "details": "Détails",
+        "aiDiagnosis": "Diagnostic IA"
+      }
     }
   },
   "OfflineIndicator": {
@@ -1566,5 +1589,3 @@
     "regenerateButton": "Rigenera suggerimenti"
   }
 }
-
-    
