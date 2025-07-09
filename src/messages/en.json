@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -719,37 +718,6 @@
         "loadError": "Could not load shop data.",
         "title": "Error"
       }
-    },
-    "manageService": {
-      "backLink": "Back to Marketplace",
-      "title": "Manage Service",
-      "loading": "Loading...",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Bookings",
-        "staff": "Staff"
-      },
-      "bookingsTab": {
-        "title": "Bookings",
-        "description": "View all bookings for this service.",
-        "table": {
-          "guest": "Guest",
-          "bookedOn": "Booked On",
-          "status": "Status",
-          "checkedInAt": "Checked-in At"
-        },
-        "status": {
-          "booked": "Booked",
-          "checkedIn": "Checked-in"
-        },
-        "noBookings": "There are no bookings for this service yet.",
-        "downloadCsv": "Download CSV",
-        "fetchError": "Could not retrieve bookings.",
-        "error": "Error",
-        "toast": {
-          "noBookings": "No bookings to download."
-        }
-      }
     }
   },
   "farmManagement": {
@@ -860,7 +828,7 @@
         "submitButton": "Save Changes"
       },
       "toast": {
-        "notFoundTitle": "Farm Not Found",
+        "notFoundTitle": "Farm not found",
         "loadError": "Could not load farm details for editing.",
         "loadFail": "Load failed: {message}",
         "error": "Error",
@@ -889,7 +857,7 @@
         "noInsights": "Not enough data to generate insights. Log more activities!"
       },
       "notFound": {
-        "title": "Farm Not Found",
+        "title": "Farm not found",
         "description": "The farm you are looking for could not be found.",
         "backButton": "Back to My Farms"
       },
@@ -1336,6 +1304,178 @@
     "phoneRequiredError": "Please enter a valid phone number.",
     "accessDeniedTitle": "Access Denied",
     "accessDeniedDescription": "Only authorized personnel can access these tools."
+  },
+  "Forums": {
+    "title": "Community Forums",
+    "description": "Connect, share knowledge, and collaborate with stakeholders from across the agricultural supply chain.",
+    "createTopic": "Create New Topic",
+    "pinning": {
+      "pinnedTitle": "Forums Pinned",
+      "pinnedDescription": "The forums page is now your default homepage.",
+      "unpinnedTitle": "Forums Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to the default."
+    },
+    "buttons": {
+      "createTopic": "Create Topic",
+      "loadMore": "Load More",
+      "loadingMore": "Loading...",
+      "joinDiscussion": "Join Discussion"
+    },
+    "lastActivity": "Last activity {time}",
+    "notFound": {
+      "title": "No Matching Topics Found",
+      "tryDifferentSearch": "Try a different search term",
+      "beTheFirst": "Be the first one to create it!",
+      "button": "Create Topic"
+    },
+    "errors": {
+      "loadTitle": "Loading Error",
+      "loadDescription": "An error occurred while fetching forum topics."
+    },
+    "searchPlaceholder": "Search topics...",
+    "postMeta": "By {author} • {date}",
+    "create": {
+      "backLink": "Back to Forums",
+      "title": "Start a New Discussion Topic",
+      "description": "Create a new topic to gather insights and collaborate with the community.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "e.g., Sustainable Coffee Production",
+        "descriptionLabel": "Topic Description",
+        "descriptionPlaceholder": "What is this topic about? A brief description helps others understand its purpose.",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be signed in to create a new topic."
+        },
+        "incomplete": {
+          "title": "Incomplete Information",
+          "description": "Please provide both a name and description for your new topic."
+        },
+        "general": {
+          "title": "Creation Failed",
+          "description": "An unexpected error occurred while creating the topic."
+        }
+      },
+      "success": {
+        "title": "Topic Created!",
+        "description": "Your new discussion topic is now live."
+      }
+    },
+    "topic": {
+      "backLink": "Back to All Forums",
+      "buttons": {
+        "createPost": "Create Post",
+        "loadMore": "Load More Posts",
+        "loadingMore": "Loading..."
+      },
+      "postMeta": "By {author} • {date}",
+      "noPosts": {
+        "title": "No Posts Yet",
+        "description": "Be the first to start a discussion in this topic.",
+        "button": "Start Discussion"
+      },
+      "notFound": {
+        "title": "Topic Not Found",
+        "description": "The discussion topic you are looking for does not exist, or may have been moved.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Loading Error",
+          "description": "Could not load the details of this topic."
+        },
+        "loadPosts": {
+          "title": "Loading Error",
+          "description": "Could not load posts for this topic."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Topic",
+      "aiHelper": {
+        "title": "Need help getting started?",
+        "description": "Use our AI Assistant to draft your post. Just provide a prompt below.",
+        "promptLabel": "Your idea or question",
+        "promptPlaceholder": "e.g., 'Ask about the best organic pesticides for coffee leaf rust'",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create a New Post",
+      "description": "Share your thoughts, ask a question, or start a discussion.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter a clear and concise title",
+        "contentLabel": "Your Content",
+        "contentPlaceholder": "Write your post here...",
+        "submitButton": "Publish Post",
+        "submittingButton": "Publishing..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Prompt Required",
+          "description": "Please enter an idea or question for the AI to generate a draft."
+        },
+        "aiDraft": {
+          "title": "AI Draft Failed",
+          "description": "An error occurred while generating the draft. Please try again or write the post manually."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "general": {
+          "title": "Post Creation Failed",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Draft Created!",
+          "description": "The AI has generated a draft below. Feel free to edit it before publishing."
+        },
+        "title": "Post Published!",
+        "description": "Your post is now live in the topic."
+      }
+    },
+    "postView": {
+      "backLink": "Back to {topicName}",
+      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "buttons": {
+        "loadMore": "Load More Replies",
+        "loadingMore": "Loading..."
+      },
+      "reply": {
+        "title": "Your Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Post Reply",
+        "submittingButton": "Posting...",
+        "success": "Your reply has been posted!"
+      },
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for does not exist or may have been moved.",
+        "backButton": "Back to Forum"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error",
+          "description": "Could not load post details."
+        },
+        "loadReplies": {
+          "title": "Error",
+          "description": "Could not load replies for this post."
+        },
+        "submitReply": {
+          "title": "Reply Failed",
+          "description": "Could not send your reply. Please try again."
+        },
+        "emptyReply": "Your reply cannot be empty."
+      }
+    }
   }
 }
-

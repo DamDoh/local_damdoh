@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -719,37 +718,6 @@
         "loadError": "Shop-Daten konnten nicht geladen werden.",
         "title": "Fehler"
       }
-    },
-    "manageService": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Dienstleistung verwalten",
-      "loading": "Wird geladen...",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Buchungen",
-        "staff": "Personal"
-      },
-      "bookingsTab": {
-        "title": "Buchungen",
-        "description": "Sehen Sie alle Buchungen für diesen Service.",
-        "table": {
-          "guest": "Gast",
-          "bookedOn": "Gebucht am",
-          "status": "Status",
-          "checkedInAt": "Eingecheckt am"
-        },
-        "status": {
-          "booked": "Gebucht",
-          "checkedIn": "Eingecheckt"
-        },
-        "noBookings": "Für diesen Service gibt es noch keine Buchungen.",
-        "downloadCsv": "CSV herunterladen",
-        "fetchError": "Buchungen konnten nicht abgerufen werden.",
-        "error": "Fehler",
-        "toast": {
-          "noBookings": "Keine Buchungen zum Herunterladen."
-        }
-      }
     }
   },
   "farmManagement": {
@@ -773,7 +741,7 @@
       },
       "fgw": {
         "title": "Farming God's Way Leitfaden",
-        "description": "Lernen Sie die Prinzipien und Praktiken von FGW für eine nachhaltige Landwirtschaft.",
+        "description": "Lernen Sie die Prinzipien und Praktiken von FGW für eine nachhaltige Landwirtschaft ohne Bodenbearbeitung.",
         "button": "FGW-Leitfaden anzeigen"
       },
       "financials": {
@@ -1152,7 +1120,7 @@
       "backLink": "Zurück zum Hub",
       "title": "Integriertes Familienfarm-Modell (200 m²)",
       "description": "Ein nachhaltiges, geschlossenes Kreislaufsystem für Ernährungssicherheit und Einkommen auf kleinem Raum.",
-      "intro": "Dieses Modell zeigt, wie eine kleine Fläche von nur 200 Quadratmetern (10m x 20m) durch die Integration verschiedener Komponenten, die sich gegenseitig unterstützen, in eine produktive und widerstandsfähige Familienfarm umgewandelt werden kann. Das Ziel ist es, Abfall zu minimieren, die Ressourcennutzung zu maximieren und eine vielfältige Palette von Produkten für den Eigenverbrauch und den Verkauf bereitzustellen.",
+      "intro": "Dieses Modell zeigt, wie eine kleine Fläche von nur 200 Quadratmetern (10m x 20m) durch die Integration verschiedener Komponenten, die sich gegenseitig unterstützen, in eine produktive und widerstandsfähige Familienfarm umgewandelt werden kann. Das Ziel ist es, Abfall zu minimieren, die Ressourcennutzung zu maximieren und eine vielfältige Palette von Produkten für den Eigenverbrauch und den Verkauf auf dem Markt bereitzustellen.",
       "diagramCaption": "Visuelle Darstellung des integrierten 200m² Familienfarm-Modells.",
       "detailsTitle": "Schlüsselkomponenten & Erträge",
       "principlesTitle": "Grundprinzipien in Aktion",
@@ -1336,6 +1304,178 @@
     "phoneRequiredError": "Bitte geben Sie eine gültige Telefonnummer ein.",
     "accessDeniedTitle": "Zugriff verweigert",
     "accessDeniedDescription": "Nur autorisiertes Personal kann auf diese Werkzeuge zugreifen."
+  },
+  "Forums": {
+    "title": "Community-Foren",
+    "description": "Vernetzen Sie sich, teilen Sie Wissen und arbeiten Sie mit Akteuren aus der gesamten landwirtschaftlichen Lieferkette zusammen.",
+    "createTopic": "Neues Thema erstellen",
+    "pinning": {
+      "pinnedTitle": "Foren angeheftet",
+      "pinnedDescription": "Die Foren sind jetzt Ihre Standard-Startseite.",
+      "unpinnedTitle": "Foren-Pin entfernt",
+      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
+    },
+    "buttons": {
+      "createTopic": "Thema erstellen",
+      "loadMore": "Mehr laden",
+      "loadingMore": "Wird geladen...",
+      "joinDiscussion": "Diskussion beitreten"
+    },
+    "lastActivity": "Letzte Aktivität vor {time}",
+    "notFound": {
+      "title": "Keine passenden Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie einen anderen Suchbegriff",
+      "beTheFirst": "Seien Sie der Erste, der eines erstellt!",
+      "button": "Thema erstellen"
+    },
+    "errors": {
+      "loadTitle": "Ladefehler",
+      "loadDescription": "Beim Abrufen der Forumsthemen ist ein Fehler aufgetreten."
+    },
+    "searchPlaceholder": "Themen durchsuchen...",
+    "postMeta": "Von {author} • {date}",
+    "create": {
+      "backLink": "Zurück zu den Foren",
+      "title": "Ein neues Diskussionsthema starten",
+      "description": "Erstellen Sie ein neues Thema, um Erkenntnisse zu sammeln und mit der Community zusammenzuarbeiten.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "z.B. Nachhaltige Kaffeeproduktion",
+        "descriptionLabel": "Themenbeschreibung",
+        "descriptionPlaceholder": "Worum geht es in diesem Thema? Eine kurze Beschreibung hilft anderen, den Zweck des Themas zu verstehen.",
+        "submitButton": "Thema erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um ein neues Thema zu erstellen."
+        },
+        "incomplete": {
+          "title": "Informationen unvollständig",
+          "description": "Bitte geben Sie sowohl einen Namen als auch eine Beschreibung für Ihr neues Thema an."
+        },
+        "general": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Beim Erstellen des Themas ist ein unerwarteter Fehler aufgetreten."
+        }
+      },
+      "success": {
+        "title": "Thema erstellt!",
+        "description": "Ihr neues Diskussionsthema ist jetzt live."
+      }
+    },
+    "topic": {
+      "backLink": "Zurück zu allen Foren",
+      "buttons": {
+        "createPost": "Beitrag erstellen",
+        "loadMore": "Weitere Beiträge laden",
+        "loadingMore": "Wird geladen..."
+      },
+      "postMeta": "Von {author} • {date}",
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der eine Diskussion in diesem Thema beginnt.",
+        "button": "Diskussion starten"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Diskussionsthema existiert nicht oder wurde möglicherweise verschoben.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Ladefehler",
+          "description": "Die Details dieses Themas konnten nicht geladen werden."
+        },
+        "loadPosts": {
+          "title": "Ladefehler",
+          "description": "Beiträge für dieses Thema konnten nicht geladen werden."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zum Thema",
+      "aiHelper": {
+        "title": "Brauchen Sie Hilfe beim Start?",
+        "description": "Nutzen Sie unseren KI-Assistenten, um Ihren Beitrag zu entwerfen. Geben Sie einfach unten einen Anreiz an.",
+        "promptLabel": "Ihre Idee oder Frage",
+        "promptPlaceholder": "z.B. 'Fragen Sie nach den besten organischen Pestiziden gegen Kaffeerost'",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "title": "Neuen Beitrag erstellen",
+      "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion.",
+      "form": {
+        "titleLabel": "Titel des Beitrags",
+        "titlePlaceholder": "Geben Sie einen klaren und prägnanten Titel ein",
+        "contentLabel": "Ihr Inhalt",
+        "contentPlaceholder": "Schreiben Sie Ihren Beitrag hier...",
+        "submitButton": "Beitrag veröffentlichen",
+        "submittingButton": "Wird veröffentlicht..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Anreiz erforderlich",
+          "description": "Bitte geben Sie eine Idee oder Frage ein, damit die KI einen Entwurf erstellen kann."
+        },
+        "aiDraft": {
+          "title": "KI-Entwurf fehlgeschlagen",
+          "description": "Beim Erstellen des Entwurfs ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie den Beitrag manuell."
+        },
+        "incomplete": {
+          "title": "Beitrag unvollständig",
+          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+        },
+        "general": {
+          "title": "Beitragserstellung fehlgeschlagen",
+          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Entwurf erstellt!",
+          "description": "Die KI hat unten einen Entwurf erstellt. Sie können ihn vor der Veröffentlichung bearbeiten."
+        },
+        "title": "Beitrag veröffentlicht!",
+        "description": "Ihr Beitrag ist jetzt im Thema live."
+      }
+    },
+    "postView": {
+      "backLink": "Zurück zu {topicName}",
+      "repliesTitle": "{count, plural, =0 {Keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "buttons": {
+        "loadMore": "Weitere Antworten laden",
+        "loadingMore": "Wird geladen..."
+      },
+      "reply": {
+        "title": "Ihre Antwort",
+        "placeholder": "Schreiben Sie Ihre Antwort hier...",
+        "submitButton": "Antwort posten",
+        "submittingButton": "Wird gepostet...",
+        "success": "Ihre Antwort wurde gepostet!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht oder wurde möglicherweise verschoben.",
+        "backButton": "Zurück zum Forum"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler",
+          "description": "Beitragsdetails konnten nicht geladen werden."
+        },
+        "loadReplies": {
+          "title": "Fehler",
+          "description": "Antworten für diesen Beitrag konnten nicht geladen werden."
+        },
+        "submitReply": {
+          "title": "Antwort fehlgeschlagen",
+          "description": "Ihre Antwort konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+        },
+        "emptyReply": "Ihre Antwort darf nicht leer sein."
+      }
+    }
   }
 }
-

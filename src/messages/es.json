@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -719,37 +718,6 @@
         "loadError": "No se pudieron cargar los datos de la tienda.",
         "title": "Error"
       }
-    },
-    "manageService": {
-      "backLink": "Volver al Mercado",
-      "title": "Gestionar Servicio",
-      "loading": "Cargando...",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Reservas",
-        "staff": "Personal"
-      },
-      "bookingsTab": {
-        "title": "Reservas",
-        "description": "Ver todas las reservas para este servicio.",
-        "table": {
-          "guest": "Huésped",
-          "bookedOn": "Reservado el",
-          "status": "Estado",
-          "checkedInAt": "Check-in el"
-        },
-        "status": {
-          "booked": "Reservado",
-          "checkedIn": "Registrado"
-        },
-        "noBookings": "Aún no hay reservas para este servicio.",
-        "downloadCsv": "Descargar CSV",
-        "fetchError": "No se pudieron recuperar las reservas.",
-        "error": "Error",
-        "toast": {
-          "noBookings": "No hay reservas para descargar."
-        }
-      }
     }
   },
   "farmManagement": {
@@ -1129,9 +1097,9 @@
       "howToTitle": "Cómo Implementarlo",
       "whyItWorksTitle": "Por Qué Funciona",
       "principles": [
-        { "id": "no-tillage", "title": "Sin Labranza", "icon": "Shield", "summary": "El arado es perjudicial para la estructura y la vida del suelo. FGW evita todo arado, fomentando un suelo sano y resiliente.", "howTo": ["Detener por completo el arado o la remoción del suelo.", "Utilizar estaciones de siembra permanentes para tus cultivos."], "whyItWorks": ["Protege la estructura y los poros naturales del suelo.", "Previene la erosión de la valiosa capa superior del suelo.", "Promueve un ecosistema saludable de microorganismos."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo sin marcas de arado", "dataAiHint": "agricultura sin labranza" },
-        { "id": "mulching", "title": "La Manta de Dios (Mulching)", "icon": "Leaf", "summary": "El suelo nunca fue diseñado para estar desnudo. Una gruesa capa de mulch protege el suelo, retiene la humedad y aporta nutrientes.", "howTo": ["Aplica una gruesa capa de materia orgánica (al menos 4 pulgadas) sobre toda la superficie del suelo.", "Siembra directamente a través del mulch.", "Añade continuamente nuevo mulch a medida que el viejo se descompone."], "whyItWorks": ["Reduce significativamente la evaporación del agua.", "Suprime el crecimiento de malezas.", "Alimenta la vida del suelo a medida que se descompone."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo cubierto con una gruesa capa de mulch de paja", "dataAiHint": "campo de mulch" },
-        { "id": "high-standards", "title": "Altos Estándares", "icon": "CheckCircle", "summary": "FGW enfatiza la importancia de la excelencia en todos los aspectos de la agricultura, desde la sincronización hasta la ejecución, como un acto de adoración.", "howTo": ["Ejecuta todas las tareas a tiempo y lo mejor que puedas.", "Presta atención a los detalles, desde la profundidad de siembra hasta el espaciado.", "Mantén la finca ordenada y bien organizada."], "whyItWorks": ["Maximiza el potencial de rendimiento de los cultivos.", "Minimiza las pérdidas por plagas y enfermedades.", "Refleja la excelencia del Creador."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hileras de siembra ordenadas", "dataAiHint": "hileras de finca organizadas" }
+        { "id": "no-tillage", "title": "Sin Labranza", "icon": "Shield", "summary": "El arado es perjudicial para la estructura y la vida del suelo. FGW evita todo arado, fomentando un suelo sano y resiliente.", "howTo": ["Detener por completo el arado o la remoción del suelo.", "Utilizar estaciones de siembra permanentes para tus cultivos."], "whyItWorks": ["Protege la estructura y los poros naturales del suelo.", "Previene la erosión de la valiosa capa superior del suelo.", "Promueve un ecosistema saludable de microorganismos."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo sin marcas de arado", "dataAiHint": "no-till farming" },
+        { "id": "mulching", "title": "La Manta de Dios (Mulching)", "icon": "Leaf", "summary": "El suelo nunca fue diseñado para estar desnudo. Una gruesa capa de mulch protege el suelo, retiene la humedad y aporta nutrientes.", "howTo": ["Aplica una gruesa capa de materia orgánica (al menos 4 pulgadas) sobre toda la superficie del suelo.", "Siembra directamente a través del mulch.", "Añade continuamente nuevo mulch a medida que el viejo se descompone."], "whyItWorks": ["Reduce significativamente la evaporación del agua.", "Suprime el crecimiento de malezas.", "Alimenta la vida del suelo a medida que se descompone."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo cubierto con una gruesa capa de mulch de paja", "dataAiHint": "mulch field" },
+        { "id": "high-standards", "title": "Altos Estándares", "icon": "CheckCircle", "summary": "FGW enfatiza la importancia de la excelencia en todos los aspectos de la agricultura - del momento oportuno a la ejecución - como un acto de adoración.", "howTo": ["Ejecuta todas las tareas a tiempo y lo mejor que puedas.", "Presta atención a los detalles, desde la profundidad de siembra hasta el espaciado.", "Mantén la finca ordenada y bien organizada."], "whyItWorks": ["Maximiza el potencial de rendimiento de los cultivos.", "Minimiza las pérdidas por plagas y enfermedades.", "Refleja la excelencia del Creador."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hileras de siembra ordenadas", "dataAiHint": "organized farm rows" }
       ]
     },
     "seedStartingPage": {
@@ -1142,7 +1110,7 @@
       "sections": [
         { "id": "why-start-indoors", "title": "¿Por qué empezar en interiores?", "icon": "Lightbulb", "intro": "Iniciar plántulas en interiores tiene varias ventajas clave:", "points": [{ "term": "Ventaja Inicial", "def": "Comienza a cultivar antes, especialmente en climas con temporadas de cultivo cortas." }, { "term": "Protección", "def": "Protege las plántulas tiernas de plagas, enfermedades y clima extremo." }, { "term": "Control", "def": "Gestiona el agua, la luz y la temperatura para una germinación óptima." }, { "term": "Economía", "def": "Cultivar desde la semilla suele ser más rentable que comprar trasplantes." }] },
         { "id": "containers-media", "title": "Contenedores y Sustrato", "icon": "Package", "intro": "Elegir el contenedor y el suelo adecuados es crucial.", "points": [{ "term": "Contenedores", "def": "Usa bandejas de semillas, macetas de turba, bloques de tierra o incluso contenedores reciclados como cartones de huevos. Asegúrate de que tengan un buen drenaje." }, { "term": "Sustrato", "def": "Usa una mezcla estéril y de textura fina para iniciar semillas. Evita la tierra de jardín pesada, que puede compactarse y albergar enfermedades." }, { "term": "Esterilización", "def": "Si reutilizas contenedores, esterilízalos con una solución de lejía (1 parte de lejía por 9 partes de agua) para prevenir enfermedades." }] },
-        { "id": "planting-seeds", "title": "Siembra de Semillas", "icon": "Grid", "intro": "Cada semilla tiene necesidades específicas, pero aquí hay algunas pautas generales:", "steps": ["Humedece tu mezcla de inicio de semillas antes de llenar los contenedores. Debe estar húmeda, no empapada.", "Llena los contenedores y presiona la mezcla ligeramente.", "Siembra las semillas a la profundidad recomendada en el paquete de semillas. Una buena regla general es plantarlas aproximadamente dos veces más profundas que su tamaño.", "Siembra 2-3 semillas por celda o maceta para asegurar la germinación. Puedes entresacar las plántulas más débiles más tarde.", "Cubre las semillas ligeramente con mezcla y presiona suavemente para asegurar un buen contacto entre la semilla y el suelo.", "¡Etiqueta tus contenedores claramente con la variedad de la planta y la fecha de siembra!"] },
+        { "id": "planting-seeds", "title": "Siembra de Semillas", "icon": "Grid", "intro": "Cada semilla tiene necesidades específicas, pero aquí hay algunas pautas generales:", "steps": ["Humedece tu mezcla de inicio de semillas antes de llenar los contenedores. Debe estar húmeda, no empapada.", "Llena los contenedores y presiona la mezcla ligeramente.", "Siembra las semillas a la profundidad recomendada en el paquete de semillas. Una buena regla general es plantarlas aproximadamente dos veces más profundas que su tamaño.", "Siembra 2-3 semillas por celda o pot para asegurar la germinación. Puedes entresacar las plántulas más débiles más tarde.", "Cubre las semillas ligeramente con mezcla y presiona suavemente para asegurar un buen contacto entre la semilla y el suelo.", "¡Etiqueta tus contenedores claramente con la variedad de la planta y la fecha de siembra!"] },
         { "id": "watering-light-temp", "title": "Agua, Luz y Temperatura", "icon": "Sun", "intro": "Después de plantar, el entorno adecuado es clave para el éxito.", "points": [{ "term": "Agua", "def": "Mantén el suelo consistentemente húmedo pero no mojado. Es mejor regar desde abajo o usar un pulverizador de niebla fina para no desplazar las semillas. Cubre las bandejas con una cúpula transparente o una envoltura de plástico para retener la humedad hasta que las semillas broten." }, { "term": "Luz", "def": "La mayoría de las semillas no necesitan luz para germinar, pero una vez que brotan, necesitan mucha. Una ventana soleada orientada al sur puede ser suficiente, pero las luces de cultivo (14-16 horas al día) evitarán que las plántulas se vuelvan altas y débiles ('ahiladas')." }, { "term": "Temperatura", "def": "La mayoría de las semillas germinan mejor a temperaturas cálidas (alrededor de 70-75°F o 21-24°C). una estera térmica debajo de las bandejas de semillas puede acelerar significativamente la germinación." }] },
         { "id": "hardening-off", "title": "Aclimatación", "icon": "Leaf", "intro": "Antes de poder mover tus plántulas al exterior, debes aclimatarlas gradualmente a las condiciones exteriores.", "steps": ["Comienza unos 7-10 días antes de la fecha prevista de trasplante.", "Coloca tus plántulas al aire libre en un lugar protegido (fuera del sol directo y del viento fuerte) durante una hora.", "Aumenta la cantidad de tiempo que pasan al aire libre en 1-2 horas cada día.", "Exponlas gradualmente a más sol directo y viento.", "Reduce ligeramente el riego para prepararlas para las condiciones del jardín."] },
         { "id": "transplanting", "title": "Trasplante", "icon": "CheckCircle", "intro": "El último paso es mover tus plántulas fuertes al jardín.", "steps": ["Elige un día nublado o al final de la tarde para minimizar el shock del trasplante.", "Riega bien tus plántulas y el lecho del jardín unas horas antes de trasplantar.", "Afloja suavemente la tierra alrededor de la plántula, tratando de mantener el cepellón lo más intacto posible.", "Plántalas a la misma profundidad a la que crecían en el contenedor.", "Afirma la tierra alrededor de la plántula y riega bien para eliminar las bolsas de aire."] }
@@ -1336,6 +1304,178 @@
     "phoneRequiredError": "Por favor, ingresa un número de teléfono válido.",
     "accessDeniedTitle": "Acceso Denegado",
     "accessDeniedDescription": "Solo el personal autorizado puede acceder a estas herramientas."
+  },
+  "Forums": {
+    "title": "Foros Comunitarios",
+    "description": "Conéctate, comparte conocimientos y colabora con actores de toda la cadena de suministro agrícola.",
+    "createTopic": "Crear Nuevo Tema",
+    "pinning": {
+      "pinnedTitle": "Foros Fijados",
+      "pinnedDescription": "La página de foros es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "Pin de Foros Eliminado",
+      "unpinnedDescription": "Tu página de inicio ha sido restablecida a la predeterminada."
+    },
+    "buttons": {
+      "createTopic": "Crear Tema",
+      "loadMore": "Cargar Más",
+      "loadingMore": "Cargando...",
+      "joinDiscussion": "Unirse a la Discusión"
+    },
+    "lastActivity": "Última actividad hace {time}",
+    "notFound": {
+      "title": "No se encontraron temas coincidentes",
+      "tryDifferentSearch": "Intenta con otro término de búsqueda",
+      "beTheFirst": "¡Sé el primero en crear uno!",
+      "button": "Crear Tema"
+    },
+    "errors": {
+      "loadTitle": "Error de Carga",
+      "loadDescription": "Ocurrió un error al obtener los temas del foro."
+    },
+    "searchPlaceholder": "Buscar temas...",
+    "postMeta": "Por {author} • {date}",
+    "create": {
+      "backLink": "Volver a los Foros",
+      "title": "Iniciar un Nuevo Tema de Discusión",
+      "description": "Crea un nuevo tema para recopilar ideas y colaborar con la comunidad.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Ej: Producción Sostenible de Café",
+        "descriptionLabel": "Descripción del Tema",
+        "descriptionPlaceholder": "¿De qué trata este tema? Una breve descripción ayuda a otros a entender su propósito.",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Se Requiere Autenticación",
+          "description": "Debes iniciar sesión para crear un nuevo tema."
+        },
+        "incomplete": {
+          "title": "Información Incompleta",
+          "description": "Por favor, proporciona tanto un nombre como una descripción para tu nuevo tema."
+        },
+        "general": {
+          "title": "Creación Fallida",
+          "description": "Ocurrió un error inesperado al crear el tema."
+        }
+      },
+      "success": {
+        "title": "¡Tema Creado!",
+        "description": "Tu nuevo tema de discusión ya está activo."
+      }
+    },
+    "topic": {
+      "backLink": "Volver a Todos los Foros",
+      "buttons": {
+        "createPost": "Crear Publicación",
+        "loadMore": "Cargar Más Publicaciones",
+        "loadingMore": "Cargando..."
+      },
+      "postMeta": "Por {author} • {date}",
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en iniciar una discusión en este tema.",
+        "button": "Iniciar Discusión"
+      },
+      "notFound": {
+        "title": "Tema no encontrado",
+        "description": "El tema de discusión que buscas no existe o puede haber sido movido.",
+        "backButton": "Volver a los Foros"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Error de Carga",
+          "description": "No se pudieron cargar los detalles de este tema."
+        },
+        "loadPosts": {
+          "title": "Error de Carga",
+          "description": "No se pudieron cargar las publicaciones para este tema."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Tema",
+      "aiHelper": {
+        "title": "¿Necesitas ayuda para empezar?",
+        "description": "Usa nuestro Asistente de IA para redactar tu publicación. Simplemente proporciona una indicación a continuación.",
+        "promptLabel": "Tu idea o pregunta",
+        "promptPlaceholder": "Ej: 'Preguntar sobre los mejores pesticidas orgánicos para la roya del café'",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear una Nueva Publicación",
+      "description": "Comparte tus pensamientos, haz una pregunta o inicia una discusión.",
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Ingresa un título claro y conciso",
+        "contentLabel": "Tu Contenido",
+        "contentPlaceholder": "Escribe tu publicación aquí...",
+        "submitButton": "Publicar",
+        "submittingButton": "Publicando..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Se Requiere Indicación",
+          "description": "Por favor, ingresa una idea o pregunta para que la IA genere un borrador."
+        },
+        "aiDraft": {
+          "title": "Borrador de IA Fallido",
+          "description": "Ocurrió un error al generar el borrador. Por favor, inténtalo de nuevo o escribe la publicación manualmente."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporciona tanto un título como contenido para tu publicación."
+        },
+        "general": {
+          "title": "Creación de Publicación Fallida",
+          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador Creado!",
+          "description": "La IA ha generado un borrador a continuación. Siéntete libre de editarlo antes de publicar."
+        },
+        "title": "¡Publicación Realizada!",
+        "description": "Tu publicación ya está activa en el tema."
+      }
+    },
+    "postView": {
+      "backLink": "Volver a {topicName}",
+      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
+      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
+      "buttons": {
+        "loadMore": "Cargar Más Respuestas",
+        "loadingMore": "Cargando..."
+      },
+      "reply": {
+        "title": "Tu Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Publicar Respuesta",
+        "submittingButton": "Publicando...",
+        "success": "¡Tu respuesta ha sido publicada!"
+      },
+      "notFound": {
+        "title": "Publicación no encontrada",
+        "description": "La publicación que buscas no existe o puede haber sido movida.",
+        "backButton": "Volver al Foro"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error",
+          "description": "No se pudieron cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error",
+          "description": "No se pudieron cargar las respuestas para esta publicación."
+        },
+        "submitReply": {
+          "title": "Respuesta Fallida",
+          "description": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
+        },
+        "emptyReply": "Tu respuesta no puede estar vacía."
+      }
+    }
   }
 }
-
