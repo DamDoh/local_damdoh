@@ -417,12 +417,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
  */
 export const getTraceabilityEventsByFarmField = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
+    checkAuth(context);
 
     const {farmFieldId} = data;
     if (!farmFieldId) {
@@ -439,12 +434,34 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
         .orderBy("timestamp", "asc")
         .get();
 
+      const actorIds = [...new Set(eventsSnapshot.docs.map(doc => doc.data().actorRef).filter(Boolean))];
+      const actorProfiles: Record<string, any> = {};
+      
+      if (actorIds.length > 0) {
+        const profileChunks = [];
+        for (let i = 0; i < actorIds.length; i += 30) {
+            profileChunks.push(actorIds.slice(i, i + 30));
+        }
+        for (const chunk of profileChunks) {
+            const usersSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+            usersSnapshot.forEach(doc => {
+                 const data = doc.data();
+                 actorProfiles[doc.id] = {
+                    name: data.displayName || 'Unknown Actor',
+                    role: data.primaryRole || 'System',
+                    avatarUrl: data.avatarUrl || null,
+                };
+            });
+        }
+      }
+
       const events = eventsSnapshot.docs.map((doc) => {
         const eventData = doc.data();
         if (!eventData) return null; // Defensive check
         return {
           id: doc.id,
           ...eventData,
+          actor: actorProfiles[eventData.actorRef] || { name: 'System', role: 'Platform' },
           timestamp: (eventData.timestamp as admin.firestore.Timestamp)?.toDate ? (eventData.timestamp as admin.firestore.Timestamp).toDate().toISOString() : null,
         };
       }).filter(Boolean); // Filter out any null results

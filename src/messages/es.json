@@ -426,7 +426,7 @@
     },
     "intellectualProperty": {
       "heading": "2. DERECHOS DE PROPIEDAD INTELECTUAL",
-      "content": "A menos que se indique lo contrario, la plataforma es nuestra propiedad y todo el código fuente, bases de datos, funcionalidad, software, diseños de sitios web, audio, video, texto, fotografías y gráficos en el Sitio (colectivamente, el 'Contenido') y las marcas comerciales, marcas de servicio y logotipos contenidos en él son de nuestra propiedad o están bajo nuestro control o nos han sido licenciados."
+      "content": "A menos que se indique lo contrario, la plataforma es nuestra propiedad y todo el código fuente, bases de datos, funcionalidad, software, diseños de sitios web, audio, video, texto, fotografías y gráficos en el Sitio (colectivamente, el 'Contenido') así como las marcas comerciales, marcas de servicio y logotipos contenidos en él son de nuestra propiedad o están bajo nuestro control o nos han sido licenciados."
     },
     "userRepresentations": {
       "heading": "3. DECLARACIONES DEL USUARIO",
@@ -1062,6 +1062,47 @@
           "dataAiHint": "planting seeds precisely"
         }
       ]
+    },
+    "logObservation": {
+        "backLink": "Volver a la Finca",
+        "title": "Registrar Observación",
+        "description": "Registra observaciones sobre tu cultivo, como plagas, enfermedades, crecimiento o eventos climáticos.",
+        "typeLabel": "Tipo de Observación",
+        "typePlaceholder": "Selecciona un tipo",
+        "types": {
+            "Pest": "Plaga",
+            "Disease": "Enfermedad",
+            "Growth": "Crecimiento",
+            "Weather": "Clima",
+            "Soil": "Suelo",
+            "Weed": "Maleza",
+            "Other": "Otro",
+            "FGW_Stations": "Preparación de Campo (Estaciones FGW)",
+            "FGW_Mulch": "Aplicación de Mantillo (Manta de Dios)"
+        },
+        "dateLabel": "Fecha de Observación",
+        "detailsLabel": "Detalles y Notas",
+        "detailsPlaceholder": "Describe lo que observaste...",
+        "uploadLabel": "Subir Foto (Opcional)",
+        "uploadDescription": "Una imagen puede ayudar en el diagnóstico. La IA la analizará si se proporciona.",
+        "saveButton": "Guardar Observación",
+        "processingButton": "Procesando...",
+        "toast": {
+            "authErrorTitle": "No Autenticado",
+            "authErrorDescription": "Debes iniciar sesión para registrar una observación.",
+            "aiAnalyzing": "Análisis de IA en curso",
+            "aiDescription": "Tus datos de imagen se están enviando a la IA para su diagnóstico.",
+            "aiComplete": "¡Análisis de IA Completo!",
+            "aiCompleteDescription": "El diagnóstico ha sido incluido en tu registro de observación.",
+            "aiFailTitle": "Análisis de IA Fallido",
+            "aiFailDescription": "No pudimos analizar la imagen. La observación se guardará sin diagnóstico de IA.",
+            "uploading": "Subiendo imagen...",
+            "uploadingDescription": "Por favor espera un momento.",
+            "uploadComplete": "¡Subida Completada!",
+            "success": "Observación Registrada",
+            "successDescription": "Tu observación ha sido guardada exitosamente.",
+            "fail": "Registro Fallido"
+        }
     }
   },
   "OfflineIndicator": {
@@ -1572,7 +1613,7 @@
   "ResearcherDashboard": {
     "title": "Panel del Investigador",
     "datasetsTitle": "Conjuntos de Datos Disponibles",
-    "datasetsDescription": "Conjuntos de datos anonimizados disponibles para fines de investigación.",
+    "datasetsDescription": "Anonymisierte Datensätze, die für Forschungszwecke verfügbar sind.",
     "table": {
       "name": "Nombre",
       "dataType": "Tipo de Datos",

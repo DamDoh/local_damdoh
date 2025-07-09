@@ -1062,6 +1062,47 @@
           "dataAiHint": "planting seeds precisely"
         }
       ]
+    },
+    "logObservation": {
+        "backLink": "Zurück zur Farm",
+        "title": "Beobachtung protokollieren",
+        "description": "Erfassen Sie Beobachtungen über Ihre Kultur, wie Schädlingsbefall, Krankheiten, Wachstum oder Wetterereignisse.",
+        "typeLabel": "Beobachtungsart",
+        "typePlaceholder": "Wählen Sie eine Art",
+        "types": {
+            "Pest": "Schädling",
+            "Disease": "Krankheit",
+            "Growth": "Wachstum",
+            "Weather": "Wetter",
+            "Soil": "Boden",
+            "Weed": "Unkraut",
+            "Other": "Andere",
+            "FGW_Stations": "Feldvorbereitung (FGW-Stationen)",
+            "FGW_Mulch": "Mulchanwendung (Gottes Decke)"
+        },
+        "dateLabel": "Beobachtungsdatum",
+        "detailsLabel": "Details & Notizen",
+        "detailsPlaceholder": "Beschreiben Sie, was Sie beobachtet haben...",
+        "uploadLabel": "Foto hochladen (Optional)",
+        "uploadDescription": "Ein Bild kann bei der Diagnose helfen. Die KI wird es analysieren, falls vorhanden.",
+        "saveButton": "Beobachtung speichern",
+        "processingButton": "Wird verarbeitet...",
+        "toast": {
+            "authErrorTitle": "Nicht authentifiziert",
+            "authErrorDescription": "Sie müssen angemeldet sein, um eine Beobachtung zu protokollieren.",
+            "aiAnalyzing": "KI-Analyse läuft",
+            "aiDescription": "Ihre Bilddaten werden zur Diagnose an die KI gesendet.",
+            "aiComplete": "KI-Analyse abgeschlossen!",
+            "aiCompleteDescription": "Die Diagnose wurde in Ihr Beobachtungsprotokoll aufgenommen.",
+            "aiFailTitle": "KI-Analyse fehlgeschlagen",
+            "aiFailDescription": "Wir konnten das Bild nicht analysieren. Die Beobachtung wird ohne KI-Diagnose gespeichert.",
+            "uploading": "Bild wird hochgeladen...",
+            "uploadingDescription": "Bitte warten Sie einen Moment.",
+            "uploadComplete": "Upload abgeschlossen!",
+            "success": "Beobachtung protokolliert",
+            "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
+            "fail": "Protokollierung fehlgeschlagen"
+        }
     }
   },
   "OfflineIndicator": {

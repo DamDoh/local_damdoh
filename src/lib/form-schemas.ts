@@ -117,7 +117,7 @@ export const createInputApplicationSchema = z.object({
 export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
 
 export const createObservationSchema = z.object({
-  observationType: z.string().min(3, "Please select an observation type."),
+  observationType: z.string().min(3, { message: "Please select an observation type."}),
   observationDate: z.date({ required_error: "An observation date is required." }),
   details: z.string().min(10, "Details must be at least 10 characters.").max(1000),
   imageFile: imageFileSchema,
@@ -257,4 +257,11 @@ export const createInsuranceApplicationSchema = z.object({
 });
 export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
 
-    
+
+export const createHarvestSchema = z.object({
+    harvestDate: z.date({ required_error: "A harvest date is required."}),
+    yield_kg: z.coerce.number().positive("Yield must be a positive number."),
+    quality_grade: z.string().min(1, "Quality grade is required.").max(50),
+    notes: z.string().max(1000).optional(),
+});
+export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;

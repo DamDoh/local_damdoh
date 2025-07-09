@@ -1011,7 +1011,7 @@
           ],
           "whyItWorks": [
             "Prévient l'érosion du sol par le vent et l'eau.",
-            "Protège les organismes du sol et les réseaux fongiques.",
+            "Protège les organismes du sol et les réseaux de champignons.",
             "Augmente considérablement l'infiltration et la rétention d'eau.",
             "Réduit les coûts de main-d'œuvre et de carburant liés au labour."
           ],
@@ -1062,6 +1062,47 @@
           "dataAiHint": "planting seeds precisely"
         }
       ]
+    },
+    "logObservation": {
+        "backLink": "Retour à la Ferme",
+        "title": "Enregistrer une Observation",
+        "description": "Enregistrez des observations sur votre culture, telles que les infestations de ravageurs, les maladies, la croissance ou les événements météorologiques.",
+        "typeLabel": "Type d'Observation",
+        "typePlaceholder": "Sélectionnez un type",
+        "types": {
+            "Pest": "Ravageur",
+            "Disease": "Maladie",
+            "Growth": "Croissance",
+            "Weather": "Météo",
+            "Soil": "Sol",
+            "Weed": "Mauvaise herbe",
+            "Other": "Autre",
+            "FGW_Stations": "Préparation du Champ (Stations FGW)",
+            "FGW_Mulch": "Application de Paillis (Couverture de Dieu)"
+        },
+        "dateLabel": "Date d'Observation",
+        "detailsLabel": "Détails & Notes",
+        "detailsPlaceholder": "Décrivez ce que vous avez observé...",
+        "uploadLabel": "Télécharger une Photo (Optionnel)",
+        "uploadDescription": "Une image peut aider au diagnostic. L'IA l'analysera si elle est fournie.",
+        "saveButton": "Enregistrer l'Observation",
+        "processingButton": "Traitement en cours...",
+        "toast": {
+            "authErrorTitle": "Non authentifié",
+            "authErrorDescription": "Vous devez être connecté pour enregistrer une observation.",
+            "aiAnalyzing": "Analyse par l'IA en cours",
+            "aiDescription": "Vos données d'image sont envoyées à l'IA pour diagnostic.",
+            "aiComplete": "Analyse par l'IA terminée !",
+            "aiCompleteDescription": "Le diagnostic a été inclus dans votre journal d'observation.",
+            "aiFailTitle": "Échec de l'Analyse par l'IA",
+            "aiFailDescription": "Nous n'avons pas pu analyser l'image. L'observation sera enregistrée sans diagnostic de l'IA.",
+            "uploading": "Téléchargement de l'image...",
+            "uploadingDescription": "Veuillez patienter un instant.",
+            "uploadComplete": "Téléchargement terminé !",
+            "success": "Observation enregistrée",
+            "successDescription": "Votre observation a été enregistrée avec succès.",
+            "fail": "Échec de l'enregistrement"
+        }
     }
   },
   "OfflineIndicator": {
