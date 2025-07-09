@@ -1625,6 +1625,23 @@
     "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
     "sendFailed": "Échec de l'envoi",
     "couldNotSendMessage": "Impossible d'envoyer votre message. Veuillez réessayer."
+  },
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez des emplois agricoles, de la main-d'œuvre qualifiée et des services professionnels.",
+    "listServiceButton": "Lister un Service / Emploi",
+    "searchPlaceholder": "Rechercher par compétence, rôle ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie de service...",
+    "allCategories": "Toutes les Catégories de Services",
+    "noResultsTitle": "Aucun Service ou Talent Trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou soyez le premier à lister un service dans votre région.",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de charger les services de la Bourse de Talents."
+      }
+    }
   }
 }
 
