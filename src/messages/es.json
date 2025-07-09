@@ -990,6 +990,78 @@
         "details": "Detalles",
         "aiDiagnosis": "Diagnóstico IA"
       }
+    },
+    "fgwGuidePage": {
+      "backLink": "Volver al Centro de Fincas",
+      "title": "Guía de Agricultura a la Manera de Dios",
+      "description": "Una solución de agricultura sostenible sin labranza y basada en la fe para los pobres.",
+      "intro": "La Agricultura a la Manera de Dios (FGW, por sus siglas en inglés) no es solo una tecnología, sino una solución bíblica, de gestión y tecnológica bien equilibrada para las necesidades agrícolas de los pobres. Se trata de ser un mayordomo fiel de la tierra que Dios nos ha dado. A continuación se presentan los principios básicos.",
+      "howToTitle": "Cómo Hacerlo",
+      "whyItWorksTitle": "Por Qué Funciona",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "Sin Labranza",
+          "icon": "Shield",
+          "summary": "Protege el suelo al no ararlo ni voltearlo nunca. Esto mantiene la estructura del suelo dada por Dios.",
+          "howTo": [
+            "Crea estaciones de siembra permanentes (agujeros) en lugar de surcos.",
+            "Cava solo donde vayas a plantar la semilla.",
+            "Camina por senderos permanentes para evitar compactar tu área de cultivo."
+          ],
+          "whyItWorks": [
+            "Previene la erosión del suelo por el viento y el agua.",
+            "Protege los organismos del suelo y las redes de hongos.",
+            "Aumenta en gran medida la infiltración y retención de agua.",
+            "Reduce los costos de mano de obra y combustible asociados con el arado."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un campo con estaciones de siembra sin labranza",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "La Manta de Dios",
+          "icon": "Leaf",
+          "summary": "Mantén el suelo cubierto al 100% del tiempo con una gruesa capa de mantillo orgánico, como en un bosque.",
+          "howTo": [
+            "Reúne materia orgánica seca como pasto, paja, hojas o rastrojos de maíz.",
+            "Aplica una gruesa capa de mantillo (al menos 10-15 cm) sobre todo el campo.",
+            "Nunca quemes los residuos de tu cosecha; úsalos para la manta.",
+            "Al plantar, solo haz una pequeña abertura en el mantillo para tu semilla."
+          ],
+          "whyItWorks": [
+            "Evita que crezcan las malas hierbas.",
+            "Conserva una gran cantidad de humedad del suelo, reduciendo las necesidades de agua.",
+            "Alimenta la vida del suelo a medida que se descompone, creando una capa superficial rica.",
+            "Protege el suelo del calor directo del sol."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un campo cubierto con una gruesa capa de mantillo",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "Estándares Altos",
+          "icon": "CheckCircle",
+          "summary": "Haz todo a tiempo, con un alto estándar, sin desperdicios y con alegría.",
+          "howTo": [
+            "Prepara tu tierra mucho antes de las primeras lluvias.",
+            "Planta en el momento óptimo para tu región y cultivo.",
+            "Sigue medidas precisas para la profundidad y el espaciamiento de la siembra.",
+            "Gestiona tus recursos (semillas, insumos, tiempo) sabiamente para evitar el desperdicio."
+          ],
+          "whyItWorks": [
+            "Maximiza el potencial genético de la semilla.",
+            "Asegura que el cultivo obtenga el máximo beneficio de las primeras lluvias.",
+            "Conduce a mayores rendimientos y mayor rentabilidad.",
+            "Honra a Dios a través de un trabajo excelente."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un agricultor plantando semillas cuidadosamente en un campo bien preparado",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
     }
   },
   "OfflineIndicator": {

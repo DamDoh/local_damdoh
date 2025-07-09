@@ -990,6 +990,78 @@
         "details": "Détails",
         "aiDiagnosis": "Diagnostic IA"
       }
+    },
+    "fgwGuidePage": {
+      "backLink": "Retour au Hub de la Ferme",
+      "title": "Guide de l'Agriculture selon la Voie de Dieu",
+      "description": "Une solution agricole durable sans labour, basée sur la foi, pour les pauvres.",
+      "intro": "L'Agriculture selon la Voie de Dieu (FGW) n'est pas seulement une technologie, mais une solution bien équilibrée, biblique, de gestion et technologique pour les besoins agricoles des pauvres. Il s'agit d'être un intendant fidèle de la terre que Dieu nous a donnée. Voici les principes fondamentaux.",
+      "howToTitle": "Comment Faire",
+      "whyItWorksTitle": "Pourquoi Ça Marche",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "Pas de Labour",
+          "icon": "Shield",
+          "summary": "Protéger le sol en ne le labourant jamais. Cela maintient la structure du sol donnée par Dieu.",
+          "howTo": [
+            "Créez des stations de plantation permanentes (trous) au lieu de sillons.",
+            "Creusez uniquement là où vous planterez la graine.",
+            "Marchez sur des sentiers permanents pour éviter de compacter votre zone de culture."
+          ],
+          "whyItWorks": [
+            "Prévient l'érosion du sol par le vent et l'eau.",
+            "Protège les organismes du sol et les réseaux fongiques.",
+            "Augmente considérablement l'infiltration et la rétention d'eau.",
+            "Réduit les coûts de main-d'œuvre et de carburant liés au labour."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un champ avec des stations de plantation sans labour",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "La Couverture de Dieu",
+          "icon": "Leaf",
+          "summary": "Gardez le sol couvert à 100% du temps avec une épaisse couche de paillis organique, comme dans une forêt.",
+          "howTo": [
+            "Rassemblez de la matière organique sèche comme de l'herbe, des feuilles ou des résidus de culture.",
+            "Appliquez une épaisse couverture de paillis (au moins 10-15 cm) sur tout le champ.",
+            "Ne brûlez jamais vos résidus de culture; utilisez-les pour la couverture.",
+            "Lors de la plantation, faites juste une petite ouverture dans le paillis pour votre graine."
+          ],
+          "whyItWorks": [
+            "Empêche la croissance des mauvaises herbes.",
+            "Conserve une énorme quantité d'humidité du sol, réduisant les besoins en eau.",
+            "Nourrit la vie du sol en se décomposant, créant un sol de surface riche.",
+            "Protège le sol de la chaleur directe du soleil."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un champ recouvert d'une épaisse couche de paillis",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "Standards Élevés",
+          "icon": "CheckCircle",
+          "summary": "Faites tout à temps, à un niveau élevé, sans gaspillage et avec joie.",
+          "howTo": [
+            "Préparez votre terre bien avant les premières pluies.",
+            "Plantez au moment optimal pour votre région et votre culture.",
+            "Suivez des mesures précises pour la profondeur et l'espacement de la plantation.",
+            "Gérez judicieusement vos ressources (semences, intrants, temps) pour éviter le gaspillage."
+          ],
+          "whyItWorks": [
+            "Maximise le potentiel génétique de la graine.",
+            "Assure que la culture profite pleinement des premières pluies.",
+            "Conduit à des rendements plus élevés et une plus grande rentabilité.",
+            "Rend honneur à Dieu par un travail excellent."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un agriculteur plantant soigneusement des graines dans un champ bien préparé",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
     }
   },
   "OfflineIndicator": {
@@ -1351,7 +1423,7 @@
     "lastVisit": "Dernière visite",
     "issues": "Problèmes",
     "viewFarmerButton": "Voir",
-    "noFarmersAssigned": "Aucun agriculteur ne vous a encore été assigné."
+    "noFarmersAssigned": "Aucun agriculteur n'est assigné à votre portefeuille."
   },
   "InputSupplierDashboard": {
     "title": "Tableau de bord du fournisseur d'intrants",

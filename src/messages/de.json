@@ -990,6 +990,78 @@
         "details": "Details",
         "aiDiagnosis": "KI-Diagnose"
       }
+    },
+    "fgwGuidePage": {
+      "backLink": "Zurück zum Farm Hub",
+      "title": "Farming God's Way Anleitung",
+      "description": "Eine auf Glauben basierende, nachhaltige Anbaulösung ohne Bodenbearbeitung für die Armen.",
+      "intro": "Farming God's Way (FGW) ist nicht nur eine Technologie, sondern eine ausgewogene biblische, management- und technologische Lösung für die landwirtschaftlichen Bedürfnisse der Armen. Es geht darum, ein treuer Verwalter des Landes zu sein, das Gott uns gegeben hat. Nachfolgend finden Sie die Kernprinzipien.",
+      "howToTitle": "Wie man es macht",
+      "whyItWorksTitle": "Warum es funktioniert",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "Keine Bodenbearbeitung",
+          "icon": "Shield",
+          "summary": "Schützen Sie den Boden, indem Sie ihn niemals pflügen oder umgraben. Dies erhält die von Gott gegebene Bodenstruktur.",
+          "howTo": [
+            "Legen Sie dauerhafte Pflanzstationen (Löcher) anstelle von Furchen an.",
+            "Graben Sie nur dort, wo Sie den Samen pflanzen werden.",
+            "Gehen Sie auf dauerhaften Wegen, um eine Verdichtung Ihrer Anbaufläche zu vermeiden."
+          ],
+          "whyItWorks": [
+            "Verhindert Bodenerosion durch Wind und Wasser.",
+            "Schützt Bodenlebewesen und Pilznetzwerke.",
+            "Erhöht die Wasserinfiltration und -speicherung erheblich.",
+            "Reduziert den Arbeits- und Kraftstoffaufwand für das Pflügen."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Ein Feld mit Pflanzstationen ohne Bodenbearbeitung",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "Gottes Decke",
+          "icon": "Leaf",
+          "summary": "Halten Sie den Boden zu 100% der Zeit mit einer dicken Schicht aus organischem Mulch bedeckt, genau wie in einem Wald.",
+          "howTo": [
+            "Sammeln Sie trockenes organisches Material wie Gras, Blätter oder Ernterückstände.",
+            "Tragen Sie eine dicke Mulchdecke (mindestens 10-15 cm) auf das gesamte Feld auf.",
+            "Verbrennen Sie niemals Ihre Ernterückstände; verwenden Sie sie für die Decke.",
+            "Machen Sie beim Pflanzen nur eine kleine Öffnung im Mulch für Ihren Samen."
+          ],
+          "whyItWorks": [
+            "Verhindert das Wachstum von Unkraut.",
+            "Spart eine enorme Menge an Bodenfeuchtigkeit und reduziert den Wasserbedarf.",
+            "Füttert das Bodenleben, während es sich zersetzt, und schafft so reichen Mutterboden.",
+            "Schützt den Boden vor der direkten Hitze der Sonne."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Ein mit einer dicken Mulchschicht bedecktes Feld",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "Hohe Standards",
+          "icon": "CheckCircle",
+          "summary": "Tun Sie alles pünktlich, auf hohem Niveau, ohne Verschwendung und mit Freude.",
+          "howTo": [
+            "Bereiten Sie Ihr Land rechtzeitig vor den ersten Regenfällen vor.",
+            "Pflanzen Sie zur optimalen Zeit für Ihre Region und Kultur.",
+            "Befolgen Sie präzise Maße für Pflanztiefe und -abstand.",
+            "Verwalten Sie Ihre Ressourcen (Samen, Betriebsmittel, Zeit) weise, um Verschwendung zu vermeiden."
+          ],
+          "whyItWorks": [
+            "Maximiert das genetische Potenzial des Samens.",
+            "Stellt sicher, dass die Ernte den vollen Nutzen der frühen Regenfälle erhält.",
+            "Führt zu höheren Erträgen und größerer Rentabilität.",
+            "Bringt Gott durch exzellente Arbeit Ehre."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Ein Bauer, der sorgfältig Samen in ein gut vorbereitetes Feld pflanzt",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
     }
   },
   "OfflineIndicator": {
