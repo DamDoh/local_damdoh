@@ -861,7 +861,45 @@
       "contactForService": "Contact for Service",
       "contactSeller": "Contact Seller",
       "traceabilityButton": "View Traceability Report"
+    },
+    "myOrders": {
+      "title": "My Orders",
+      "description": "View and manage the orders you have received from buyers.",
+      "backLink": "Back to Marketplace",
+      "noOrders": "You have not received any orders yet.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You need to be logged in to view your orders.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Could not fetch your orders. Please try again.",
+        "successTitle": "Success",
+        "updateSuccess": "Order status updated to {status}.",
+        "failTitle": "Update Failed"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Buyer",
+        "product": "Product",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm Order",
+        "ship": "Mark as Shipped",
+        "complete": "Complete Order",
+        "cancel": "Cancel Order"
+      },
+      "status": {
+        "new": "New",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      }
     }
   }
 }
-    

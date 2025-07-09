@@ -151,6 +151,52 @@
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
   },
+  "StartPost": {
+    "placeholder": "Inicia una publicación, haz una pregunta o comparte una actualización...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Agro-Evento",
+    "createPoll": "Crear Encuesta"
+  },
+  "CreatePostModal": {
+    "title": "Crear una publicación",
+    "description": "Comparte tus pensamientos con la comunidad.",
+    "yourName": "Tu Nombre",
+    "shareUpdate": "Compartir una actualización",
+    "placeholder": "¿Qué tienes en mente?",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la Encuesta",
+    "pollOptionPlaceholder": "Opción {index}",
+    "addOptionButton": "Añadir Opción",
+    "pollNote": "Crea una encuesta con hasta {maxOptions} opciones.",
+    "postButton": "Publicar",
+    "pollOptionsError": "Una encuesta debe tener al menos dos opciones completas.",
+    "emptyPostError": "Tu publicación no puede estar vacía. Por favor, añade texto, una imagen o una encuesta.",
+    "addMediaButton": "Añadir Multimedia",
+    "createEventButton": "Crear Evento",
+    "shareDocumentButton": "Compartir Documento",
+    "createPollButton": "Crear Encuesta"
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, =0 {Me gusta} =1 {Me gusta} other {Me gusta}}",
+    "comments": "{count, plural, =0 {Comentarios} =1 {Comentario} other {Comentarios}}",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Volver a publicar",
+    "editPost": "Editar Publicación",
+    "deletePost": "Eliminar Publicación",
+    "signInToLikeToast": "Debes iniciar sesión para dar 'me gusta' a una publicación.",
+    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
+    "noComments": "Sé el primero en comentar.",
+    "loadingComments": "Cargando comentarios...",
+    "loadMoreComments": "Cargar más comentarios",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "postButton": "Publicar",
+    "repostPlaceholderToast": "La función de volver a publicar estará disponible pronto.",
+    "signInToVoteToast": "Debes iniciar sesión para votar.",
+    "voteSuccessToast": "¡Tu voto ha sido contado!",
+    "voteErrorToast": "No se pudo registrar tu voto.",
+    "votes": "{count, plural, =0 {votos} =1 {voto} other {votos}}"
+  },
   "AppFooter": {
     "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
     "damdohTitle": "DamDoh",
@@ -815,8 +861,45 @@
       "contactForService": "Contactar por Servicio",
       "contactSeller": "Contactar al Vendedor",
       "traceabilityButton": "Ver Informe de Trazabilidad"
+    },
+    "myOrders": {
+      "title": "Mis Pedidos",
+      "description": "Ver y gestionar los pedidos que has recibido de los compradores.",
+      "backLink": "Volver al Mercado",
+      "noOrders": "Todavía no has recibido ningún pedido.",
+      "auth": {
+        "title": "Por favor, inicia sesión",
+        "description": "Necesitas iniciar sesión para ver tus pedidos.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron obtener tus pedidos. Por favor, inténtalo de nuevo.",
+        "successTitle": "Éxito",
+        "updateSuccess": "Estado del pedido actualizado a {status}.",
+        "failTitle": "Actualización Fallida"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar Pedido",
+        "ship": "Marcar como Enviado",
+        "complete": "Completar Pedido",
+        "cancel": "Cancelar Pedido"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      }
     }
   }
 }
-
-    
