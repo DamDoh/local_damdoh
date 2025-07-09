@@ -461,24 +461,536 @@
     },
     "conclusion": "Um eine Beschwerde zu klären oder weitere Informationen zu erhalten, {contactLink}."
   },
+  "Forums": {
+    "title": "Community-Foren",
+    "description": "Vernetzen Sie sich, teilen Sie Wissen und arbeiten Sie mit Akteuren aus der gesamten landwirtschaftlichen Lieferkette zusammen.",
+    "createTopic": "Neues Thema erstellen",
+    "topic": {
+      "backLink": "Zurück zu allen Foren",
+      "buttons": {
+        "createPost": "Beitrag erstellen",
+        "loadMore": "Weitere Beiträge laden",
+        "loadingMore": "Wird geladen..."
+      },
+      "postMeta": "Von {author} • {date}",
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der eine Konversation in diesem Thema startet.",
+        "button": "Diskussion starten"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Diskussionsthema existiert nicht oder wurde möglicherweise verschoben.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Ladefehler",
+          "description": "Die Details für dieses Thema konnten nicht geladen werden."
+        },
+        "loadPosts": {
+          "title": "Ladefehler",
+          "description": "Die Beiträge für dieses Thema konnten nicht geladen werden."
+        }
+      }
+    },
+    "create": {
+      "backLink": "Zurück zu den Foren",
+      "title": "Neues Diskussionsthema starten",
+      "description": "Erstellen Sie ein neues Thema, um Einblicke zu sammeln und mit der Community zusammenzuarbeiten.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "z.B. Nachhaltige Kaffeeproduktion",
+        "descriptionLabel": "Themenbeschreibung",
+        "descriptionPlaceholder": "Worum geht es in diesem Thema? Eine kurze Beschreibung hilft anderen, den Zweck zu verstehen.",
+        "submitButton": "Thema erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um ein neues Thema zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständige Informationen",
+          "description": "Bitte geben Sie sowohl einen Namen als auch eine Beschreibung für Ihr neues Thema an."
+        },
+        "general": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Beim Erstellen des Themas ist ein unerwarteter Fehler aufgetreten."
+        }
+      },
+      "success": {
+        "title": "Thema erstellt!",
+        "description": "Ihr neues Diskussionsthema ist jetzt live."
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zum Thema",
+      "aiHelper": {
+        "title": "Benötigen Sie Hilfe beim Start?",
+        "description": "Nutzen Sie unseren KI-Assistenten, um Ihren Beitrag zu entwerfen. Geben Sie einfach eine Aufforderung unten ein.",
+        "promptLabel": "Ihre Idee oder Frage",
+        "promptPlaceholder": "z.B. 'Fragen Sie nach den besten organischen Pestiziden gegen Kaffeeblattrost'",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "title": "Neuen Beitrag erstellen",
+      "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion.",
+      "form": {
+        "titleLabel": "Beitragstitel",
+        "titlePlaceholder": "Geben Sie einen klaren und prägnanten Titel ein",
+        "contentLabel": "Ihr Inhalt",
+        "contentPlaceholder": "Schreiben Sie Ihren Beitrag hier...",
+        "submitButton": "Beitrag veröffentlichen",
+        "submittingButton": "Wird veröffentlicht..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Aufforderung erforderlich",
+          "description": "Bitte geben Sie eine Idee oder Frage ein, damit die KI einen Entwurf erstellen kann."
+        },
+        "aiDraft": {
+          "title": "KI-Entwurf fehlgeschlagen",
+          "description": "Beim Erstellen des Entwurfs ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie den Beitrag manuell."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+        },
+        "general": {
+          "title": "Beitragserstellung fehlgeschlagen",
+          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Entwurf generiert!",
+          "description": "Die KI hat unten einen Entwurf erstellt. Fühlen Sie sich frei, ihn vor der Veröffentlichung zu bearbeiten."
+        },
+        "title": "Beitrag veröffentlicht!",
+        "description": "Ihr Beitrag ist jetzt im Thema live."
+      }
+    },
+    "postView": {
+      "backLink": "Zurück zu {topicName}",
+      "repliesTitle": "{count, plural, =0 {Keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "buttons": {
+        "loadMore": "Weitere Antworten laden",
+        "loadingMore": "Wird geladen..."
+      },
+      "reply": {
+        "title": "Ihre Antwort",
+        "placeholder": "Schreiben Sie Ihre Antwort hier...",
+        "submitButton": "Antwort posten",
+        "submittingButton": "Wird gepostet...",
+        "success": "Ihre Antwort wurde gepostet!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht oder wurde verschoben.",
+        "backButton": "Zurück zum Forum"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler",
+          "description": "Die Beitragsdetails konnten nicht geladen werden."
+        },
+        "loadReplies": {
+          "title": "Fehler",
+          "description": "Die Antworten für diesen Beitrag konnten nicht geladen werden."
+        },
+        "submitReply": {
+          "title": "Antwort fehlgeschlagen",
+          "description": "Ihre Antwort konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+        },
+        "emptyReply": "Ihre Antwort darf nicht leer sein."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Foren angeheftet",
+      "pinnedDescription": "Die Foren-Seite ist jetzt Ihre Standard-Startseite.",
+      "unpinnedTitle": "Foren losgelöst",
+      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
+    },
+    "buttons": {
+      "createTopic": "Thema erstellen",
+      "loadMore": "Mehr laden",
+      "loadingMore": "Wird geladen...",
+      "joinDiscussion": "Diskussion beitreten"
+    },
+    "lastActivity": "Letzte Aktivität vor {time}",
+    "notFound": {
+      "title": "Keine passenden Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie einen anderen Suchbegriff.",
+      "beTheFirst": "Seien Sie der Erste, der eines erstellt!",
+      "button": "Thema erstellen"
+    },
+    "errors": {
+      "loadTitle": "Ladefehler",
+      "loadDescription": "Beim Abrufen der Forumthemen ist ein Fehler aufgetreten."
+    },
+    "searchPlaceholder": "Themen suchen...",
+    "postMeta": "Von {author} • {date}"
+  },
+  "Marketplace": {
+    "title": "Marktplatz",
+    "description": "Entdecken, kaufen und verkaufen Sie landwirtschaftliche Produkte und Dienstleistungen.",
+    "createShopButton": "Ladenfront erstellen",
+    "myOrdersButton": "Meine Bestellungen",
+    "createListingButton": "Angebot erstellen",
+    "pinButton": "Als Startseite anheften",
+    "unpinButton": "Anheftung aufheben",
+    "searchPlaceholder": "Produkte & Dienstleistungen suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "typePlaceholder": "Nach Typ filtern...",
+    "recommendedForYou": "Empfohlen für Sie",
+    "discoverMore": "Mehr entdecken",
+    "viewDetails": "Details anzeigen",
+    "viewServiceButton": "Dienstleistung ansehen",
+    "pinning": {
+      "pinnedTitle": "Marktplatz angeheftet",
+      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
+      "unpinnedTitle": "Anheftung des Marktplatzes aufgehoben",
+      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
+    },
+    "noItemsFound": {
+      "title": "Keine Artikel gefunden",
+      "hint": "Versuchen Sie, Ihre Suchfilter anzupassen oder schauen Sie später wieder vorbei."
+    },
+    "errors": {
+      "search": {
+        "title": "Suche fehlgeschlagen",
+        "description": "Marktplatzartikel konnten zu diesem Zeitpunkt nicht abgerufen werden."
+      },
+      "aiRecommendations": {
+        "title": "Momentan keine Empfehlungen gefunden."
+      }
+    },
+    "categories": {
+      "allCategories": "Alle Kategorien",
+      "viewAllItems": "Alle Artikel anzeigen",
+      "viewAllCategory": "Alle in {categoryName}"
+    },
+    "createListing": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Neues Marktplatzangebot erstellen",
+      "description": "Füllen Sie die folgenden Details aus, um Ihr Produkt oder Ihre Dienstleistung anzubieten.",
+      "form": {
+        "nameLabel": "Angebotstitel",
+        "namePlaceholder": "z.B. Bio-Hass-Avocados, Traktorreparaturservice",
+        "typeLabel": "Angebotstyp",
+        "typePlaceholder": "Wählen Sie einen Angebotstyp",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Produkt oder Ihre Dienstleistung im Detail...",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "relatedVtiLabel": "Zugehörige Rückverfolgungs-ID (optional)",
+        "relatedVtiPlaceholder": "Geben Sie VTI ein, falls zutreffend",
+        "relatedVtiDescription": "Verknüpfen Sie dieses Angebot mit einer bestimmten Erntecharge für volle Transparenz.",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "Wählen Sie eine Kategorie",
+        "priceLabel": "Preis",
+        "pricePlaceholder": "z.B. 25.50",
+        "unitLabel": "pro",
+        "unitPlaceholder": "z.B. kg, Tonne, Stunde",
+        "compensationLabel": "Vergütung / Tarife",
+        "compensationPlaceholder": "z.B. $50/Stunde, projektbasiert",
+        "experienceLabel": "Erfahrungslevel",
+        "experiencePlaceholder": "z.B. Mittel, Experte (10+ Jahre)",
+        "skillsLabel": "Benötigte Fähigkeiten (für Dienstleistungen)",
+        "skillsPlaceholder": "z.B. Pflanzenschutz, Bodenanalyse, Bio-Zertifizierung",
+        "skillsDescription": "Trennen Sie Fähigkeiten durch ein Komma.",
+        "imageUrlLabel": "Bild-URL",
+        "sustainableLabel": "Nachhaltig produziert",
+        "sustainableDescription": "Aktivieren Sie dies, wenn Ihr Produkt oder Ihre Dienstleistung anerkannten nachhaltigen Praktiken folgt.",
+        "submitButton": "Angebot erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Preis mit KI vorschlagen",
+        "generatingButton": "Wird vorgeschlagen...",
+        "suggestionLabel": "KI-Vorschlag:",
+        "usePriceButton": "Preis verwenden"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Fehlende Informationen",
+            "description": "Bitte füllen Sie Titel und Beschreibung aus, bevor Sie einen Preis vorschlagen."
+          },
+          "failed": {
+            "title": "KI-Vorschlag fehlgeschlagen",
+            "description": "Ein Preisvorschlag konnte zu diesem Zeitpunkt nicht abgerufen werden."
+          }
+        },
+        "authentication": {
+          "title": "Nicht authentifiziert",
+          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
+        },
+        "creation": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Beim Erstellen des Angebots ist ein unerwarteter Fehler aufgetreten."
+        }
+      },
+      "success": {
+        "title": "Angebot erstellt!",
+        "description": "Ihr Artikel ist jetzt auf dem Marktplatz live."
+      }
+    },
+    "itemView": {
+      "backLink": "Zurück zum Marktplatz",
+      "notFound": {
+        "description": "Artikel nicht gefunden."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Der Artikel konnte nicht geladen werden."
+        },
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+      },
+      "coupon": {
+        "successTitle": "Gutschein angewendet!",
+        "successDescription": "Sie haben einen {type} Rabatt erhalten!",
+        "failTitle": "Ungültiger Gutschein",
+        "failDescription": "Der eingegebene Gutscheincode ist ungültig oder abgelaufen.",
+        "label": "Gutscheincode",
+        "placeholder": "Gutschein eingeben",
+        "applyButton": "Anwenden",
+        "appliedText": "Gutschein '{code}' angewendet."
+      },
+      "booking": {
+        "authTitle": "Anmeldung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um eine Dienstleistung zu buchen.",
+        "failTitle": "Buchung fehlgeschlagen",
+        "dateError": "Bitte wählen Sie ein Start- und Enddatum für Ihre Buchung.",
+        "successTitle": "Buchung erfolgreich!",
+        "successDescription": "Ihre Buchung wurde bestätigt. Sie erhalten weitere Details per E-Mail.",
+        "bookedTitle": "Sie haben dieses Erlebnis gebucht!",
+        "bookedDescription": "Zeigen Sie Ihr Ticket bei der Ankunft vor.",
+        "ticketButton": "Ticket ansehen",
+        "modalTitle": "Ihr Ticket",
+        "modalDescription": "Präsentieren Sie diesen QR-Code beim Check-in für {itemName}.",
+        "modalScan": "Scannen Sie diesen Code beim Check-in.",
+        "perNight": "pro Nacht",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Datum hinzufügen",
+        "guests": "Gäste",
+        "reserveButton": "Reservieren",
+        "reservingButton": "Wird reserviert...",
+        "notCharged": "Sie werden noch nicht belastet",
+        "nights": "{count, plural, =1 {Nacht} other {Nächte}}",
+        "serviceFee": "Servicegebühr",
+        "total": "Gesamt"
+      },
+      "order": {
+        "authTitle": "Anmeldung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben.",
+        "quantityErrorTitle": "Ungültige Menge",
+        "quantityErrorDescription": "Bitte geben Sie eine Menge größer als Null ein.",
+        "successTitle": "Bestellung aufgegeben!",
+        "successDescription": "Ihre Bestellung wurde erfolgreich an den Verkäufer gesendet.",
+        "failTitle": "Bestellung fehlgeschlagen",
+        "failDescription": "Ihre Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
+        "title": "Bestellung für {itemName} aufgeben",
+        "description": "Bestätigen Sie die Menge und fügen Sie bei Bedarf Notizen für den Verkäufer hinzu.",
+        "quantityLabel": "Menge",
+        "notesLabel": "Notizen für den Verkäufer (optional)",
+        "notesPlaceholder": "z.B. Lieferanweisungen, Sonderwünsche...",
+        "cancelButton": "Abbrechen",
+        "confirmButton": "Bestellung bestätigen",
+        "placingButton": "Wird bestellt..."
+      },
+      "skillsLabel": "Benötigte Fähigkeiten",
+      "experienceLabel": "Erfahrungslevel",
+      "compensationLabel": "Vergütung",
+      "contactForRates": "Kontakt für Tarife",
+      "aboutSeller": "Über den Verkäufer",
+      "viewShopfront": "Ladenfront ansehen",
+      "editListing": "Angebot bearbeiten",
+      "manageService": "Dienstleistung verwalten",
+      "buyNowButton": "Jetzt kaufen",
+      "contactForService": "Kontakt für Dienstleistung",
+      "contactSeller": "Verkäufer kontaktieren",
+      "traceabilityButton": "Rückverfolgungsbericht anzeigen"
+    },
+    "myOrders": {
+      "title": "Meine Bestellungen",
+      "description": "Sehen und verwalten Sie die Bestellungen, die Sie von Käufern erhalten haben.",
+      "backLink": "Zurück zum Marktplatz",
+      "noOrders": "Sie haben noch keine Bestellungen erhalten.",
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Ihre Bestellungen konnten nicht abgerufen werden. Bitte versuchen Sie es erneut.",
+        "successTitle": "Erfolg",
+        "updateSuccess": "Bestellstatus auf {status} aktualisiert.",
+        "failTitle": "Aktualisierung fehlgeschlagen"
+      },
+      "table": {
+        "date": "Datum",
+        "buyer": "Käufer",
+        "product": "Produkt",
+        "total": "Gesamt",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "actions": {
+        "confirm": "Bestellung bestätigen",
+        "ship": "Als versendet markieren",
+        "complete": "Bestellung abschließen",
+        "cancel": "Bestellung stornieren"
+      },
+      "status": {
+        "new": "Neu",
+        "confirmed": "Bestätigt",
+        "shipped": "Versendet",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
+      }
+    },
+    "createShop": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Eine digitale Ladenfront erstellen",
+      "description": "Etablieren Sie Ihre Präsenz auf dem DamDoh-Marktplatz, indem Sie einen Laden erstellen. Dies wird Ihre dedizierte Seite sein, auf der Sie alle Ihre Produkte und Dienstleistungen präsentieren können.",
+      "authErrorTitle": "Nicht authentifiziert",
+      "authErrorDescription": "Sie müssen angemeldet sein, um einen Laden zu erstellen.",
+      "toast": {
+        "successTitle": "Laden erstellt!",
+        "successDescription": "Ihr Laden '{shopName}' ist jetzt live und bereit für Angebote.",
+        "failTitle": "Erstellung fehlgeschlagen",
+        "failDescription": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+      },
+      "form": {
+        "nameLabel": "Ladenname",
+        "namePlaceholder": "z.B. Green Valley Organics, Agri-Logistics Pro",
+        "typeLabel": "Geschäftstyp / Hauptrolle",
+        "typePlaceholder": "Wählen Sie die Option, die Ihr Unternehmen am besten beschreibt",
+        "descriptionLabel": "Ladenbeschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie kurz Ihren Laden, was Sie anbieten und Ihre Mission.",
+        "submitButton": "Laden erstellen",
+        "submittingButton": "Wird erstellt..."
+      }
+    },
+    "shopView": {
+      "backLink": "Zurück zum Marktplatz",
+      "ownedBy": "Im Besitz von",
+      "loadingOwner": "Wird geladen...",
+      "editShopButton": "Laden bearbeiten",
+      "contactButton": "Besitzer kontaktieren",
+      "listingsTitle": "Angebote von {shopName}",
+      "noListings": "Dieser Laden hat noch keine öffentlichen Angebote.",
+      "errors": {
+        "notFound": "Laden nicht gefunden",
+        "loadError": "Ladendetails konnten nicht geladen werden."
+      },
+      "title": "Ladenfront"
+    },
+    "promotions": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Gutscheine & Aktionen",
+      "description": "Erstellen und verwalten Sie Werbegutscheine für Ihre Marktplatzangebote.",
+      "create": {
+        "title": "Neuen Gutschein erstellen",
+        "description": "Bieten Sie Rabatte an, um mehr Käufer anzuziehen.",
+        "form": {
+          "code": "Gutscheincode",
+          "codePlaceholder": "z.B. ERNTE20",
+          "usageLimit": "Nutzungslimit",
+          "usageLimitPlaceholder": "z.B. 100",
+          "discountType": "Rabattart",
+          "discountTypePlaceholder": "Typ auswählen",
+          "percentage": "Prozentsatz",
+          "fixed": "Fester Betrag",
+          "discountValue": "Rabattwert",
+          "expiryDate": "Ablaufdatum",
+          "pickDate": "Datum auswählen",
+          "submitButton": "Gutschein erstellen"
+        },
+        "toast": {
+          "successTitle": "Gutschein erstellt!",
+          "successDescription": "Gutschein '{code}' ist jetzt aktiv.",
+          "failTitle": "Erstellung fehlgeschlagen"
+        }
+      },
+      "list": {
+        "title": "Ihre aktiven Gutscheine",
+        "description": "Sehen und teilen Sie Ihre vorhandenen Gutscheine.",
+        "expires": "Läuft ab",
+        "usage": "Nutzung",
+        "share": "Teilen",
+        "toastTitle": "Link kopiert!",
+        "toastDescription": "Teilbarer Link für Gutschein {link} in die Zwischenablage kopiert.",
+        "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
+        "shareModal": {
+          "title": "Gutschein teilen",
+          "description": "Teilen Sie diesen Link mit Ihren Kunden, um ihnen einen direkten Rabatt zu gewähren.",
+          "copy": "Kopieren",
+          "close": "Schließen"
+        }
+      },
+      "toast": {
+        "error": "Fehler",
+        "errorCoupons": {
+          "title": "Fehler beim Abrufen der Gutscheine",
+          "description": "Ihre vorhandenen Gutscheine konnten nicht geladen werden."
+        }
+      }
+    },
+    "manageService": {
+      "title": "Dienstleistung verwalten",
+      "backLink": "Zurück zur Dienstleistung",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Buchungen",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Buchungen",
+        "description": "Alle Buchungen für diese Dienstleistung anzeigen.",
+        "downloadCsv": "CSV herunterladen",
+        "noBookings": "Es gibt noch keine Buchungen für diese Dienstleistung.",
+        "error": "Buchungen konnten nicht abgerufen werden.",
+        "toast": {
+          "noBookings": "Keine Buchungsdaten zum Herunterladen."
+        },
+        "table": {
+          "guest": "Gast",
+          "bookedOn": "Gebucht am",
+          "status": "Status",
+          "checkedInAt": "Eingecheckt am"
+        },
+        "status": {
+          "booked": "Gebucht",
+          "checkedIn": "Eingecheckt"
+        }
+      }
+    }
+  },
   "farmManagement": {
     "hub": {
-      "title": "Farm Management Hub",
-      "description": "Ihre zentrale Anlaufstelle für die Verfolgung, Verwaltung und Optimierung all Ihrer landwirtschaftlichen Aktivitäten.",
+      "title": "Farm-Management-Hub",
+      "description": "Ihr zentraler Ort zur Verfolgung, Verwaltung und Optimierung all Ihrer landwirtschaftlichen Aktivitäten.",
       "myFarms": {
-        "title": "Meine Farmen & Ernten",
-        "description": "Verwalten Sie Ihre Farmprofile, fügen Sie neue Ernten hinzu und verfolgen Sie deren Fortschritt.",
+        "title": "Meine Farmen & Kulturen",
+        "description": "Verwalten Sie Ihre Farmprofile, fügen Sie neue Kulturchargen hinzu und verfolgen Sie deren Fortschritt.",
         "button": "Farmen verwalten"
       },
       "knf": {
-        "title": "KNF-Eingabemittel-Assistent",
-        "description": "Erstellen und verwalten Sie Ihre eigenen Fermented Plant Juice (FPJ), Fish Amino Acid (FAA) und andere koreanische Naturlandbau-Eingabemittel.",
-        "button": "KNF-Eingaben verwalten"
+        "title": "KNF-Einsatzmittel-Assistent",
+        "description": "Erstellen und verwalten Sie Ihren eigenen fermentierten Pflanzensaft (FPJ), Fisch-Aminosäure (FAA) und andere koreanische Natureingaben.",
+        "button": "KNF-Einsatzmittel verwalten"
       },
       "fgw": {
-        "title": "Anleitung zu Farming God's Way",
-        "description": "Lernen Sie die Grundprinzipien von Farming God's Way (FGW) kennen, einschließlich minimaler Bodenbearbeitung und Gottes Decke.",
-        "button": "FGW-Anleitung anzeigen"
+        "title": "Farming God's Way Anleitung",
+        "description": "Lernen Sie die Grundprinzipien des Farming God's Way (FGW) kennen, einschließlich Direktsaat und Gottes Decke.",
+        "button": "FGW-Anleitung ansehen"
       },
       "labor": {
         "title": "Arbeitsmanagement",
@@ -487,7 +999,7 @@
       },
       "financials": {
         "title": "Geldangelegenheiten",
-        "description": "Verwalten Sie Einnahmen, Ausgaben und bewerben Sie sich um Finanzierungsmöglichkeiten, die speziell auf Ihr landwirtschaftliches Unternehmen zugeschnitten sind.",
+        "description": "Verwalten Sie Einnahmen, Ausgaben und bewerben Sie sich um Finanzierungsmöglichkeiten, die auf Ihr landwirtschaftliches Unternehmen zugeschnitten sind.",
         "button": "Finanzen verwalten"
       },
       "assetManagement": {
@@ -496,9 +1008,9 @@
         "button": "Anlagen verwalten"
       },
       "seedStarting": {
-        "title": "Anzucht-Leitfaden",
-        "description": "Lernen Sie die besten Praktiken für die Anzucht von Setzlingen aus Samen.",
-        "button": "Anzucht-Leitfaden anzeigen"
+        "title": "Anleitung zur Aussaat",
+        "description": "Lernen Sie die besten Praktiken für die Anzucht gesunder Setzlinge aus Samen.",
+        "button": "Aussaatanleitung ansehen"
       },
       "familyFarm": {
         "title": "Integriertes Familienfarm-Modell",
@@ -507,17 +1019,17 @@
       }
     },
     "knfInputsPage": {
-      "backLink": "Zurück zum Farm Management Hub",
-      "title": "Korean Natural Farming (KNF) Eingabemittel-Assistent",
-      "description": "Verfolgen und verwalten Sie Ihre selbstgemachten KNF-Eingabemittel von der Gärung bis zur Anwendung.",
-      "guidesTitle": "Anleitungen zur Herstellung",
+      "backLink": "Zurück zum Farm-Management-Hub",
+      "title": "Korean Natural Farming (KNF) Einsatzmittel-Assistent",
+      "description": "Verfolgen und verwalten Sie Ihre selbstgemachten KNF-Einsatzmittel von der Gärung bis zur Anwendung.",
+      "guidesTitle": "Anleitungen",
       "ingredients": "Zutaten",
       "steps": "Schritte",
       "usage": "Anwendung",
-      "fermentingBatchesTitle": "Aktive/Gärende Chargen",
-      "noFermentingBatches": "Keine Chargen gären derzeit.",
+      "fermentingBatchesTitle": "Aktive / Gärchargen",
+      "noFermentingBatches": "Derzeit gären keine Chargen.",
       "readyBatchesTitle": "Fertige Chargen",
-      "noReadyBatches": "Keine Chargen sind zur Verwendung bereit.",
+      "noReadyBatches": "Keine Chargen sind gebrauchsfertig.",
       "startNewBatch": "Neue Charge starten",
       "createNewBatchTitle": "Neue KNF-Charge erstellen",
       "started": "Gestartet",
@@ -528,45 +1040,45 @@
       "archive": "Archivieren",
       "cancel": "Abbrechen",
       "form": {
-        "typeLabel": "Art des Eingabemittels",
-        "typePlaceholder": "Wählen Sie eine KNF-Eingabeart",
-        "ingredientsLabel": "Hauptzutaten (Komma getrennt)",
+        "typeLabel": "Art des Einsatzmittels",
+        "typePlaceholder": "Wählen Sie eine KNF-Einsatzart",
+        "ingredientsLabel": "Hauptzutaten (kommagetrennt)",
         "startDateLabel": "Startdatum",
         "startButton": "Charge starten",
         "startingButton": "Wird gestartet..."
       },
       "knfOptions": [
-        { "value": "fpj", "label": "Fermented Plant Juice (FPJ)", "placeholder": "Z.B. Süßkartoffelspitzen, brauner Zucker" },
-        { "value": "faa", "label": "Fish Amino Acid (FAA)", "placeholder": "Z.B. Fischreste, brauner Zucker" },
-        { "value": "wca", "label": "Water-Soluble Calcium (WCA)", "placeholder": "Z.B. Eierschalen, brauner Reisessig" },
-        { "value": "imo", "label": "Indigenous Microorganisms (IMO)", "placeholder": "Z.B. Gekochter Reis, Holzkiste" },
-        { "value": "lab", "label": "Lactic Acid Bacteria (LAB)", "placeholder": "Z.B. Reiswaschwasser, Milch" }
+        { "value": "fpj", "label": "Fermentierter Pflanzensaft (FPJ)", "placeholder": "z.B. Süßkartoffeltriebe, brauner Zucker" },
+        { "value": "faa", "label": "Fisch-Aminosäure (FAA)", "placeholder": "z.B. Fischreste, brauner Zucker" },
+        { "value": "wca", "label": "Wasserlösliches Kalzium (WCA)", "placeholder": "z.B. Eierschalen, brauner Reisessig" },
+        { "value": "imo", "label": "Indigene Mikroorganismen (IMO)", "placeholder": "z.B. Gekochter Reis, Holzkiste" },
+        { "value": "lab", "label": "Milchsäurebakterien (LAB)", "placeholder": "z.B. Reiswaschwasser, Milch" }
       ],
       "recipeData": [
         {
           "id": "fpj",
-          "name": "Fermented Plant Juice (FPJ)",
-          "description": "FPJ ist reich an Wachstumshormonen und Mikroorganismen, die das Wachstum von Blättern und Stängeln anregen.",
-          "ingredients": ["Schnell wachsende Pflanzen (z. B. Süßkartoffeltriebe)", "Brauner Zucker"],
-          "steps": ["Pflanzenmaterialien und Zucker zu gleichen Teilen mischen.", "In ein Gefäß packen und mit einem atmungsaktiven Tuch abdecken.", "7-10 Tage an einem kühlen, dunklen Ort fermentieren lassen."],
+          "name": "Fermentierter Pflanzensaft (FPJ)",
+          "description": "FPJ ist reich an Wachstumshormonen und Mikroorganismen, die das Wachstum von Blättern und Stängeln fördern.",
+          "ingredients": ["Schnell wachsende Pflanzen (z.B. Süßkartoffeltriebe)", "Brauner Zucker"],
+          "steps": ["Pflanzenmaterial und Zucker zu gleichen Teilen mischen.", "In einen Behälter packen und mit einem atmungsaktiven Tuch abdecken.", "7-10 Tage an einem kühlen, dunklen Ort gären lassen."],
           "usage": "Verdünnung 1:500 mit Wasser. Als Blattspray verwenden."
         },
         {
           "id": "faa",
-          "name": "Fish Amino Acid (FAA)",
+          "name": "Fisch-Aminosäure (FAA)",
           "description": "FAA liefert reichlich Aminosäuren und Stickstoff, um das Wachstum zu fördern und den Geschmack zu verbessern.",
           "ingredients": ["Fischreste (Köpfe, Gräten)", "Brauner Zucker"],
-          "steps": ["Fischreste und Zucker zu gleichen Teilen mischen.", "In einem Glas versiegeln und 2-6 Monate fermentieren lassen."],
+          "steps": ["Fischreste und Zucker zu gleichen Teilen mischen.", "In einem Glas versiegeln und 2-6 Monate gären lassen."],
           "usage": "Verdünnung 1:1000 mit Wasser. Für Bodenanwendungen verwenden."
         }
       ],
       "toasts": {
         "loadErrorTitle": "Fehler",
         "loadErrorDescription": "KNF-Chargen konnten nicht geladen werden.",
-        "validationError": "Bitte wählen Sie eine Art, geben Sie Zutaten und ein Startdatum an.",
+        "validationError": "Bitte wählen Sie einen Typ, geben Sie Zutaten und ein Startdatum an.",
         "batchStartedTitle": "Charge gestartet!",
         "batchStartedDescription": "Ihre neue KNF-Charge wird jetzt verfolgt.",
-        "batchStartFailed": "Erstellung der Charge fehlgeschlagen",
+        "batchStartFailed": "Chargenerstellung fehlgeschlagen",
         "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten.",
         "batchUpdatedTitle": "Status aktualisiert",
         "batchUpdatedDescription": "Chargenstatus auf {status} aktualisiert.",
@@ -575,8 +1087,8 @@
       }
     },
     "fgwGuidePage": {
-      "backLink": "Zurück zum Farm Management Hub",
-      "title": "Leitfaden zu Farming God's Way (FGW)",
+      "backLink": "Zurück zum Farm-Management-Hub",
+      "title": "Anleitung zu Farming God's Way (FGW)",
       "description": "Ein Überblick über die Kernprinzipien und Praktiken von FGW.",
       "intro": "Farming God's Way ist eine geniale landwirtschaftliche Lösung, die die Technologie Gottes mit Seinen Wegen verbindet. Sie konzentriert sich auf die Wiederherstellung von Land und Leben durch treue Haushalterschaft.",
       "howToTitle": "Wie man es umsetzt",
@@ -629,33 +1141,33 @@
       ]
     },
     "seedStartingPage": {
-      "backLink": "Zurück zum Farm Management Hub",
-      "title": "Umfassender Leitfaden zur Anzucht von Samen",
+      "backLink": "Zurück zum Farm-Management-Hub",
+      "title": "Umfassender Leitfaden zur Aussaat",
       "description": "Maximieren Sie Ihre Keimrate und züchten Sie starke, gesunde Setzlinge.",
-      "intro": "Die Anzucht von Samen im Haus gibt Ihnen einen Vorsprung in der Vegetationsperiode, schützt junge Pflanzen vor rauen Bedingungen und Schädlingen und gibt Ihnen die volle Kontrolle über die frühe Wachstumsphase Ihrer Pflanzen.",
+      "intro": "Die Aussaat im Haus verschafft Ihnen einen Vorsprung in der Vegetationsperiode, schützt junge Pflanzen vor rauen Bedingungen und Schädlingen und gibt Ihnen die volle Kontrolle über die frühe Wachstumsphase Ihrer Pflanzen.",
       "sections": [
         {
           "id": "why-start-indoors",
-          "title": "Warum Samen drinnen anziehen?",
+          "title": "Warum Samen im Haus aussäen?",
           "icon": "Lightbulb",
-          "intro": "Die Anzucht von Samen im Haus anstatt der Direktsaat im Freien bietet mehrere entscheidende Vorteile:",
+          "intro": "Die Aussaat im Haus statt direkt im Freien bietet mehrere entscheidende Vorteile:",
           "points": [
-            { "term": "Verlängerte Vegetationsperiode", "def": "Beginnen Sie Wochen oder Monate früher mit dem Anbau, bevor das Wetter draußen es zulässt." },
+            { "term": "Verlängerte Saison", "def": "Beginnen Sie Wochen oder Monate früher mit dem Anbau, bevor das Wetter es draußen zulässt." },
             { "term": "Schutz", "def": "Schützen Sie empfindliche Sämlinge vor starkem Regen, Wind, Frost und Schädlingen." },
             { "term": "Bessere Keimung", "def": "Kontrollieren Sie Temperatur, Licht und Feuchtigkeit, um die Keimraten zu maximieren." },
-            { "term": "Kosteneinsparungen", "def": "Die Anzucht eigener Pflanzen aus Samen ist oft billiger als der Kauf von Setzlingen." }
+            { "term": "Kosteneinsparungen", "def": "Der Anbau eigener Pflanzen aus Samen ist oft billiger als der Kauf von Setzlingen." }
           ]
         },
         {
           "id": "what-you-need",
           "title": "Was Sie benötigen",
           "icon": "Package",
-          "intro": "Die Zusammenstellung der richtigen Materialien ist der Schlüssel zum Erfolg. Hier ist eine grundlegende Checkliste:",
+          "intro": "Die richtigen Materialien zu sammeln ist der Schlüssel zum Erfolg. Hier ist eine grundlegende Checkliste:",
           "points": [
-            { "term": "Behälter", "def": "Samentrays, Torftöpfe oder recycelte Behälter wie Joghurtbecher mit Drainagelöchern." },
-            { "term": "Anzuchterde", "def": "Eine leichte, sterile Mischung, die speziell für die Samenanzucht entwickelt wurde. Gartenerde ist zu schwer und kann Krankheiten enthalten." },
+            { "term": "Behälter", "def": "Anzuchtschalen, Torftöpfe oder recycelte Behälter wie Joghurtbecher mit Drainagelöchern." },
+            { "term": "Anzuchterde", "def": "Eine leichte, sterile Mischung, die speziell für die Aussaat entwickelt wurde. Gartenerde ist zu schwer und kann Krankheiten enthalten." },
             { "term": "Samen", "def": "Wählen Sie hochwertige Samen von einem seriösen Anbieter." },
-            { "term": "Licht", "def": "Ein sonniges, nach Süden ausgerichtetes Fenster oder idealerweise Grow-Lampen, um zu verhindern, dass die Sämlinge lang und dünn werden." },
+            { "term": "Licht", "def": "Ein sonniges, nach Süden ausgerichtetes Fenster oder idealerweise Pflanzenlampen, um zu verhindern, dass die Sämlinge 'spargeln'." },
             { "term": "Wärme", "def": "Einige Samen keimen besser mit zusätzlicher Wärme von einer Heizmatte." }
           ]
         },
@@ -679,7 +1191,7 @@
           "icon": "Sun",
           "intro": "Sobald Ihre Samen gekeimt sind, benötigen sie Pflege, um zu starken Pflanzen heranzuwachsen.",
           "points": [
-            { "term": "Licht", "def": "Sobald die ersten Blätter erscheinen, entfernen Sie die Abdeckung und sorgen Sie für viel Licht – mindestens 12-16 Stunden pro Tag mit Grow-Lampen, die nur wenige Zentimeter über den Pflanzen platziert sind." },
+            { "term": "Licht", "def": "Sobald die ersten Blätter erscheinen, entfernen Sie die Abdeckung und sorgen Sie für viel Licht – mindestens 12-16 Stunden pro Tag mit Pflanzenlampen, die nur wenige Zentimeter über den Pflanzen platziert sind." },
             { "term": "Wasser", "def": "Halten Sie die Erde gleichmäßig feucht, aber nicht durchnässt. Gießen Sie von unten, indem Sie die Behälter in eine Schale mit Wasser stellen." },
             { "term": "Luftzirkulation", "def": "Ein sanfter Ventilator kann die Stängel stärken und Pilzkrankheiten vorbeugen." },
             { "term": "Düngung", "def": "Beginnen Sie mit der Düngung mit einer halbstarken, verdünnten Flüssigdüngung, sobald die ersten echten Blätter erscheinen." }
@@ -701,9 +1213,9 @@
           "id": "common-problems",
           "title": "Häufige Probleme und Lösungen",
           "icon": "AlertTriangle",
-          "intro": "Achten Sie auf diese häufigen Probleme bei der Samenanzucht:",
+          "intro": "Achten Sie auf diese häufigen Probleme bei der Aussaat:",
           "points": [
-            { "term": "Lange, dünne Stängel ('Geilwuchs')", "def": "Dies wird durch unzureichendes Licht verursacht. Bringen Sie die Lichtquelle näher an die Sämlinge." },
+            { "term": "Spargelnde Sämlinge", "def": "Dies wird durch unzureichendes Licht verursacht. Bringen Sie die Lichtquelle näher an die Sämlinge." },
             { "term": "Umfallkrankheit", "def": "Eine Pilzkrankheit, bei der die Stängel an der Bodenlinie verrotten. Vermeiden Sie Überwässerung, sorgen Sie für eine gute Luftzirkulation und verwenden Sie sterile Erde." },
             { "term": "Schimmel auf der Erdoberfläche", "def": "Normalerweise harmlos, aber ein Zeichen für Überwässerung oder schlechte Luftzirkulation. Reduzieren Sie die Bewässerung und erhöhen Sie die Belüftung." }
           ]
@@ -711,7 +1223,7 @@
       ]
     },
     "familyFarmPage": {
-      "backLink": "Zurück zum Farm Management Hub",
+      "backLink": "Zurück zum Farm-Management-Hub",
       "title": "Integriertes Familienfarm-Modell (200m²)",
       "description": "Ein diversifiziertes, nachhaltiges und hochproduktives Modell für die Ernährungssicherheit und das Einkommen von Familien.",
       "intro": "Dieses Modell zeigt, wie eine kleine Fläche von nur 200 Quadratmetern (10m x 20m) durch intelligente Integration verschiedener Komponenten effizient bewirtschaftet werden kann, um eine Familie zu ernähren und ein kleines Einkommen zu erzielen. Es basiert auf den Prinzipien der Permakultur und des geschlossenen Kreislaufs.",
@@ -792,6 +1304,180 @@
           "Es ist eine Blaupause für eine nachhaltige und produktive Landwirtschaft im kleinen Maßstab."
         ]
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zum Farm-Dashboard",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farmdetails anzeigen",
+      "noFarmsTitle": "Keine Farmen registriert",
+      "noFarmsDescription": "Fangen Sie an, indem Sie Ihr erstes Farmprofil hinzufügen, um Ihre Kulturen und Aktivitäten zu verfolgen.",
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen zu verwalten.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Ihre Farmen konnten nicht abgerufen werden. Bitte versuchen Sie es erneut."
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Neue Farm registrieren",
+      "description": "Füllen Sie die folgenden Details aus, um eine neue Farm zu Ihrem Profil hinzuzufügen.",
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Acres",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "locationDescription": "Geben Sie eine Stadt, Region oder ein allgemeines Gebiet an.",
+        "sizeLabel": "Größe",
+        "sizePlaceholder": "z.B. 5 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Primärer Farmtyp",
+        "typePlaceholder": "Wählen Sie einen Typ",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Beschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung Ihrer Farm, ihrer Geschichte oder ihrer Mission.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Regenfeldbau",
+        "irrigationDescription": "Listen Sie die wichtigsten Wasserquellen oder Methoden auf, die Sie verwenden.",
+        "submitButton": "Farm speichern"
+      },
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "{farmName} wurde erfolgreich zu Ihrem Profil hinzugefügt.",
+        "errorTitle": "Erstellung fehlgeschlagen"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "registeredOn": "Registriert am {date}",
+      "editFarmButton": "Farm bearbeiten",
+      "crops": {
+        "title": "Kulturen & Chargen",
+        "description": "Alle aktiven und vergangenen Kulturen für diese Farm.",
+        "addNewButton": "Neue Kultur hinzufügen",
+        "plantedLabel": "Gepflanzt",
+        "stageLabel": "Phase",
+        "viewJourneyButton": "Reise ansehen",
+        "noCrops": "Dieser Farm wurden noch keine Kulturen hinzugefügt.",
+        "addFirstButton": "Ihre erste Kultur hinzufügen"
+      },
+      "insights": {
+        "title": "Rentabilitätseinblicke",
+        "description": "KI-gestützte Analyse der Leistung Ihrer Farm.",
+        "noInsights": "Nicht genügend Daten, um Einblicke zu generieren. Protokollieren Sie mehr Aktivitäten wie Ausgaben und Ernten."
+      },
+      "notFound": {
+        "title": "Farm nicht gefunden",
+        "description": "Wir konnten die gesuchte Farm nicht finden.",
+        "backButton": "Zurück zu Meine Farmen"
+      },
+      "toast": {
+        "notFoundTitle": "Nicht gefunden",
+        "loadErrorTitle": "Ladefehler"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Zurück zu den Farmdetails",
+      "title": "Farmdetails bearbeiten",
+      "description": "Aktualisieren Sie die Informationen für Ihre Farm unten.",
+      "form": {
+        "submitButton": "Änderungen speichern"
+      },
+      "toast": {
+        "notFoundTitle": "Nicht gefunden",
+        "loadError": "Farmdaten konnten nicht geladen werden.",
+        "loadFail": "Fehler beim Abrufen der Farmdaten: {message}",
+        "success": "Farm aktualisiert",
+        "description": "{farmName} wurde erfolgreich aktualisiert.",
+        "fail": "Aktualisierung fehlgeschlagen"
+      }
+    },
+    "createCrop": {
+      "backLink": "Zurück zur Farm",
+      "title": "Neue Kultur hinzufügen",
+      "description": "Protokollieren Sie eine neue Kultur oder Charge für diese Farm. Dies ist der Beginn ihrer Rückverfolgungsreise.",
+      "cropTypeLabel": "Kulturtyp",
+      "cropTypePlaceholder": "z.B. Mais, Hass-Avocado, Tilapia",
+      "cropTypeDescription": "Dies kann eine bestimmte Kultursorte oder Tierart sein.",
+      "plantingDateLabel": "Pflanzdatum",
+      "datePlaceholder": "Datum auswählen",
+      "harvestDateLabel": "Erwartetes Erntedatum (optional)",
+      "yieldLabel": "Erwarteter Ertrag (optional)",
+      "yieldPlaceholder": "z.B. 10 Tonnen, 5000 kg",
+      "stageLabel": "Aktuelle Phase",
+      "stagePlaceholder": "Wählen Sie die aktuelle Wachstumsphase",
+      "stages": {
+        "Planting": "Pflanzung",
+        "Vegetative": "Vegetativ",
+        "Flowering": "Blüte",
+        "Fruiting": "Fruchtbildung",
+        "Harvesting": "Ernte",
+        "Post-Harvest": "Nachernte"
+      },
+      "notesLabel": "Notizen (optional)",
+      "notesPlaceholder": "Fügen Sie spezifische Details zu dieser Charge hinzu, wie z.B. die Saatgutquelle oder den Feldnamen.",
+      "saveButton": "Kultur speichern",
+      "savingButton": "Wird gespeichert...",
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Kultur hinzuzufügen.",
+        "successTitle": "Kultur hinzugefügt",
+        "successDescription": "{cropType} wurde erfolgreich protokolliert.",
+        "failTitle": "Fehler beim Hinzufügen der Kultur",
+        "failDescription": "Beim Speichern der Kultur ist ein Fehler aufgetreten."
+      }
+    },
+    "cropDetailPage": {
+      "loading": "Lade Kulturdetails...",
+      "notFound": "Kultur nicht gefunden.",
+      "backLink": "Zurück zur Farm",
+      "plantedOn": "Gepflanzt am {date}",
+      "editButton": "Kultur bearbeiten",
+      "quickActionsTitle": "Schnellaktionen",
+      "logInputButton": "Einsatz protokollieren",
+      "logObservationButton": "Beobachtung protokollieren",
+      "logHarvestButton": "Ernte protokollieren",
+      "journeyTitle": "Rückverfolgungsreise",
+      "noActivities": "Für diese Kultur wurden noch keine Aktivitäten protokolliert.",
+      "eventPayload": {
+        "noDetails": "Keine zusätzlichen Details für dieses Ereignis angegeben.",
+        "observationType": "Beobachtungstyp",
+        "details": "Details",
+        "aiDiagnosis": "KI-Diagnose"
+      },
+      "toast": {
+        "notFound": "Kultur nicht gefunden.",
+        "loadError": "Rückverfolgungsereignisse für diese Kultur konnten nicht geladen werden."
+      }
+    },
+    "editCrop": {
+      "backLink": "Zurück zur Kultur",
+      "title": "Kulturdetails bearbeiten",
+      "description": "Aktualisieren Sie die Informationen für diese Kulturcharge.",
+      "saveButton": "Änderungen speichern",
+      "savingButton": "Wird gespeichert...",
+      "toast": {
+        "notFound": "Kultur nicht gefunden.",
+        "loadError": "Kulturdaten konnten nicht zur Bearbeitung geladen werden.",
+        "loadFail": "Fehler beim Abrufen der Kulturdaten: {message}",
+        "success": "Kultur aktualisiert",
+        "description": "{cropType}-Details wurden gespeichert.",
+        "fail": "Aktualisierung fehlgeschlagen"
+      }
     }
   }
 }
+

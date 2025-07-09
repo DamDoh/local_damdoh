@@ -671,7 +671,7 @@
     "categories": {
       "allCategories": "All Categories",
       "viewAllItems": "View All Items",
-      "viewAllCategory": "All {categoryName}"
+      "viewAllCategory": "All in {categoryName}"
     },
     "createListing": {
       "backLink": "Back to Marketplace",
@@ -696,7 +696,7 @@
         "unitLabel": "per",
         "unitPlaceholder": "e.g., kg, ton, hour",
         "compensationLabel": "Compensation / Rates",
-        "compensationPlaceholder": "e.g., $50/hour, Project-based",
+        "compensationPlaceholder": "e.g., $50/hr, Project-based",
         "experienceLabel": "Experience Level",
         "experiencePlaceholder": "e.g., Intermediate, Expert (10+ years)",
         "skillsLabel": "Skills Required (for services)",
@@ -1304,6 +1304,180 @@
           "It is a blueprint for small-scale, sustainable, and productive agriculture."
         ]
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Back to Farm Dashboard",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "View Farm Details",
+      "noFarmsTitle": "No Farms Registered",
+      "noFarmsDescription": "Get started by adding your first farm profile to track your crops and activities.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You need to be logged in to manage your farms.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Could not fetch your farms. Please try again."
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Back to My Farms",
+      "title": "Register a New Farm",
+      "description": "Fill in the details below to add a new farm to your profile.",
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Acres",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nakuru, Kenya",
+        "locationDescription": "Provide a city, region, or general area.",
+        "sizeLabel": "Size",
+        "sizePlaceholder": "e.g., 5 Hectares",
+        "sizeDescription": "Include the unit (e.g., acres, hectares).",
+        "typeLabel": "Primary Farm Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "crop": "Crop Farming",
+          "livestock": "Livestock Rearing",
+          "mixed": "Mixed (Crop & Livestock)",
+          "aquaculture": "Aquaculture (Fish Farming)",
+          "other": "Other"
+        },
+        "descriptionLabel": "Description (Optional)",
+        "descriptionPlaceholder": "A brief description of your farm, its history, or its mission.",
+        "irrigationLabel": "Irrigation Methods (Optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "List the main water sources or methods you use.",
+        "submitButton": "Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to create a farm.",
+        "successTitle": "Farm Created!",
+        "successDescription": "{farmName} has been successfully added to your profile.",
+        "errorTitle": "Creation Failed"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Back to My Farms",
+      "registeredOn": "Registered on {date}",
+      "editFarmButton": "Edit Farm",
+      "crops": {
+        "title": "Crops & Batches",
+        "description": "All active and past crops for this farm.",
+        "addNewButton": "Add New Crop",
+        "plantedLabel": "Planted",
+        "stageLabel": "Stage",
+        "viewJourneyButton": "View Journey",
+        "noCrops": "No crops have been added to this farm yet.",
+        "addFirstButton": "Add Your First Crop"
+      },
+      "insights": {
+        "title": "Profitability Insights",
+        "description": "AI-powered analysis of your farm's performance.",
+        "noInsights": "Not enough data to generate insights. Log more activities like expenses and harvests."
+      },
+      "notFound": {
+        "title": "Farm Not Found",
+        "description": "We couldn't find the farm you were looking for.",
+        "backButton": "Back to My Farms"
+      },
+      "toast": {
+        "notFoundTitle": "Not Found",
+        "loadErrorTitle": "Load Error"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to Farm Details",
+      "title": "Edit Farm Details",
+      "description": "Update the information for your farm below.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Not Found",
+        "loadError": "Could not load farm data.",
+        "loadFail": "Failed to fetch farm data: {message}",
+        "successTitle": "Farm Updated",
+        "successDescription": "{farmName} has been successfully updated.",
+        "errorTitle": "Update Failed"
+      }
+    },
+    "createCrop": {
+      "backLink": "Back to Farm",
+      "title": "Add a New Crop",
+      "description": "Log a new crop or batch for this farm. This will be the start of its traceability journey.",
+      "cropTypeLabel": "Crop Type",
+      "cropTypePlaceholder": "e.g., Maize, Hass Avocado, Tilapia",
+      "cropTypeDescription": "This can be a specific crop variety or livestock type.",
+      "plantingDateLabel": "Planting Date",
+      "datePlaceholder": "Pick a date",
+      "harvestDateLabel": "Expected Harvest Date (Optional)",
+      "yieldLabel": "Expected Yield (Optional)",
+      "yieldPlaceholder": "e.g., 10 tons, 5000 kg",
+      "stageLabel": "Current Stage",
+      "stagePlaceholder": "Select the current growth stage",
+      "stages": {
+        "Planting": "Planting",
+        "Vegetative": "Vegetative",
+        "Flowering": "Flowering",
+        "Fruiting": "Fruiting",
+        "Harvesting": "Harvesting",
+        "Post-Harvest": "Post-Harvest"
+      },
+      "notesLabel": "Notes (Optional)",
+      "notesPlaceholder": "Add any specific details about this batch, like seed source or field name.",
+      "saveButton": "Save Crop",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to add a crop.",
+        "successTitle": "Crop Added",
+        "successDescription": "{cropType} has been successfully logged.",
+        "failTitle": "Failed to Add Crop",
+        "failDescription": "An error occurred while saving the crop."
+      }
+    },
+    "cropDetailPage": {
+      "loading": "Loading crop details...",
+      "notFound": "Crop not found.",
+      "backLink": "Back to Farm",
+      "plantedOn": "Planted on {date}",
+      "editButton": "Edit Crop",
+      "quickActionsTitle": "Quick Actions",
+      "logInputButton": "Log Input",
+      "logObservationButton": "Log Observation",
+      "logHarvestButton": "Log Harvest",
+      "journeyTitle": "Traceability Journey",
+      "noActivities": "No activities have been logged for this crop yet.",
+      "eventPayload": {
+        "noDetails": "No additional details provided for this event.",
+        "observationType": "Observation Type",
+        "details": "Details",
+        "aiDiagnosis": "AI Diagnosis"
+      },
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load traceability events for this crop."
+      }
+    },
+    "editCrop": {
+      "backLink": "Back to Crop",
+      "title": "Edit Crop Details",
+      "description": "Update the information for this crop batch.",
+      "saveButton": "Save Changes",
+      "savingButton": "Saving...",
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data for editing.",
+        "loadFail": "Failed to fetch crop data: {message}",
+        "success": "Crop Updated",
+        "description": "{cropType} details have been saved.",
+        "fail": "Update Failed"
+      }
     }
   }
 }
+

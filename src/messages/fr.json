@@ -461,6 +461,518 @@
     },
     "conclusion": "Pour résoudre une plainte ou obtenir plus d'informations, veuillez {contactLink}."
   },
+  "Forums": {
+    "title": "Forums communautaires",
+    "description": "Connectez-vous, partagez vos connaissances et collaborez avec les acteurs de toute la chaîne d'approvisionnement agricole.",
+    "createTopic": "Créer un nouveau sujet",
+    "topic": {
+      "backLink": "Retour à tous les forums",
+      "buttons": {
+        "createPost": "Créer une publication",
+        "loadMore": "Charger plus de publications",
+        "loadingMore": "Chargement..."
+      },
+      "postMeta": "Par {author} • {date}",
+      "noPosts": {
+        "title": "Aucune publication pour le moment",
+        "description": "Soyez le premier à lancer une conversation sur ce sujet.",
+        "button": "Démarrer une discussion"
+      },
+      "notFound": {
+        "title": "Sujet non trouvé",
+        "description": "Le sujet de discussion que vous recherchez n'existe pas ou a peut-être été déplacé.",
+        "backButton": "Retour aux forums"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Erreur de chargement",
+          "description": "Impossible de charger les détails de ce sujet."
+        },
+        "loadPosts": {
+          "title": "Erreur de chargement",
+          "description": "Impossible de charger les publications de ce sujet."
+        }
+      }
+    },
+    "create": {
+      "backLink": "Retour aux forums",
+      "title": "Lancer un nouveau sujet de discussion",
+      "description": "Créez un nouveau sujet pour recueillir des informations et collaborer avec la communauté.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Ex: Production durable de café",
+        "descriptionLabel": "Description du sujet",
+        "descriptionPlaceholder": "De quoi traite ce sujet ? Une brève description aide les autres à en comprendre le but.",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être connecté pour créer un nouveau sujet."
+        },
+        "incomplete": {
+          "title": "Informations incomplètes",
+          "description": "Veuillez fournir un nom et une description pour votre nouveau sujet."
+        },
+        "general": {
+          "title": "Échec de la création",
+          "description": "Une erreur inattendue s'est produite lors de la création du sujet."
+        }
+      },
+      "success": {
+        "title": "Sujet créé !",
+        "description": "Votre nouveau sujet de discussion est maintenant en ligne."
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au sujet",
+      "aiHelper": {
+        "title": "Besoin d'aide pour commencer ?",
+        "description": "Utilisez notre assistant IA pour rédiger votre publication. Fournissez simplement une instruction ci-dessous.",
+        "promptLabel": "Votre idée ou question",
+        "promptPlaceholder": "Ex: 'Demander quels sont les meilleurs pesticides biologiques contre la rouille du caféier'",
+        "generateButton": "Générer un brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "title": "Créer une nouvelle publication",
+      "description": "Partagez vos pensées, posez une question ou lancez une discussion.",
+      "form": {
+        "titleLabel": "Titre de la publication",
+        "titlePlaceholder": "Entrez un titre clair et concis",
+        "contentLabel": "Votre contenu",
+        "contentPlaceholder": "Écrivez votre publication ici...",
+        "submitButton": "Publier",
+        "submittingButton": "Publication en cours..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Instruction requise",
+          "description": "Veuillez entrer une idée ou une question pour que l'IA génère un brouillon."
+        },
+        "aiDraft": {
+          "title": "Échec du brouillon IA",
+          "description": "Une erreur s'est produite lors de la génération du brouillon. Veuillez réessayer ou rédiger la publication manuellement."
+        },
+        "incomplete": {
+          "title": "Publication incomplète",
+          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+        },
+        "general": {
+          "title": "Échec de la création de la publication",
+          "description": "Une erreur inattendue s'est produite. Veuillez réessayer."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon généré !",
+          "description": "L'IA a généré un brouillon ci-dessous. N'hésitez pas à le modifier avant de publier."
+        },
+        "title": "Publication publiée !",
+        "description": "Votre publication est maintenant en ligne dans le sujet."
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {topicName}",
+      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
+      "noReplies": "Aucune réponse pour le moment. Soyez le premier à répondre !",
+      "buttons": {
+        "loadMore": "Charger plus de réponses",
+        "loadingMore": "Chargement..."
+      },
+      "reply": {
+        "title": "Votre réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Publier la réponse",
+        "submittingButton": "Publication en cours...",
+        "success": "Votre réponse a été publiée !"
+      },
+      "notFound": {
+        "title": "Publication non trouvée",
+        "description": "La publication que vous recherchez n'existe pas ou a été déplacée.",
+        "backButton": "Retour au forum"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur",
+          "description": "Impossible de charger les détails de la publication."
+        },
+        "loadReplies": {
+          "title": "Erreur",
+          "description": "Impossible de charger les réponses pour cette publication."
+        },
+        "submitReply": {
+          "title": "Échec de la réponse",
+          "description": "Impossible d'envoyer votre réponse. Veuillez réessayer."
+        },
+        "emptyReply": "Votre réponse ne peut pas être vide."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Forums épinglés",
+      "pinnedDescription": "La page des forums est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Forums désépinglés",
+      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+    },
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement...",
+      "joinDiscussion": "Rejoindre la discussion"
+    },
+    "lastActivity": "Dernière activité il y a {time}",
+    "notFound": {
+      "title": "Aucun sujet correspondant trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à en créer un !",
+      "button": "Créer un sujet"
+    },
+    "errors": {
+      "loadTitle": "Erreur de chargement",
+      "loadDescription": "Une erreur s'est produite lors de la récupération des sujets du forum."
+    },
+    "searchPlaceholder": "Rechercher des sujets...",
+    "postMeta": "Par {author} • {date}"
+  },
+  "Marketplace": {
+    "title": "Marché",
+    "description": "Découvrez, achetez et vendez des produits et services agricoles.",
+    "createShopButton": "Créer une boutique",
+    "myOrdersButton": "Mes commandes",
+    "createListingButton": "Créer une annonce",
+    "pinButton": "Épingler comme page d'accueil",
+    "unpinButton": "Désépingler la page d'accueil",
+    "searchPlaceholder": "Rechercher des produits et services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus",
+    "viewDetails": "Voir les détails",
+    "viewServiceButton": "Voir le service",
+    "pinning": {
+      "pinnedTitle": "Marché épinglé",
+      "pinnedDescription": "Le marché est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Marché désépinglé",
+      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+    },
+    "noItemsFound": {
+      "title": "Aucun article trouvé",
+      "hint": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard."
+    },
+    "errors": {
+      "search": {
+        "title": "Recherche échouée",
+        "description": "Impossible de récupérer les articles du marché pour le moment."
+      },
+      "aiRecommendations": {
+        "title": "Aucune recommandation trouvée pour le moment."
+      }
+    },
+    "categories": {
+      "allCategories": "Toutes les catégories",
+      "viewAllItems": "Voir tous les articles",
+      "viewAllCategory": "Tout dans {categoryName}"
+    },
+    "createListing": {
+      "backLink": "Retour au marché",
+      "title": "Créer une nouvelle annonce sur le marché",
+      "description": "Remplissez les détails ci-dessous pour lister votre produit ou service.",
+      "form": {
+        "nameLabel": "Titre de l'annonce",
+        "namePlaceholder": "Ex: Avocats Hass biologiques, Service de réparation de tracteur",
+        "typeLabel": "Type d'annonce",
+        "typePlaceholder": "Sélectionnez un type d'annonce",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez votre produit ou service en détail...",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "Ex: Nakuru, Kenya",
+        "relatedVtiLabel": "ID de traçabilité associé (facultatif)",
+        "relatedVtiPlaceholder": "Entrez le VTI si applicable",
+        "relatedVtiDescription": "Liez cette annonce à un lot de récolte spécifique pour une transparence totale.",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Sélectionnez une catégorie",
+        "priceLabel": "Prix",
+        "pricePlaceholder": "Ex: 25.50",
+        "unitLabel": "par",
+        "unitPlaceholder": "Ex: kg, tonne, heure",
+        "compensationLabel": "Rémunération / Tarifs",
+        "compensationPlaceholder": "Ex: 50 $/heure, Basé sur le projet",
+        "experienceLabel": "Niveau d'expérience",
+        "experiencePlaceholder": "Ex: Intermédiaire, Expert (10+ ans)",
+        "skillsLabel": "Compétences requises (pour les services)",
+        "skillsPlaceholder": "Ex: Poudrage des cultures, Analyse du sol, Certification biologique",
+        "skillsDescription": "Séparez les compétences par une virgule.",
+        "imageUrlLabel": "URL de l'image",
+        "sustainableLabel": "Produit de manière durable",
+        "sustainableDescription": "Cochez cette case si votre produit ou service suit des pratiques durables reconnues.",
+        "submitButton": "Créer l'annonce",
+        "submittingButton": "Création en cours..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggérer un prix avec l'IA",
+        "generatingButton": "Suggestion en cours...",
+        "suggestionLabel": "Suggestion de l'IA:",
+        "usePriceButton": "Utiliser ce prix"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Informations manquantes",
+            "description": "Veuillez remplir le titre et la description avant de suggérer un prix."
+          },
+          "failed": {
+            "title": "Suggestion de l'IA échouée",
+            "description": "Impossible d'obtenir une suggestion de prix pour le moment."
+          }
+        },
+        "authentication": {
+          "title": "Non authentifié",
+          "description": "Vous devez être connecté pour créer une annonce."
+        },
+        "creation": {
+          "title": "Échec de la création",
+          "description": "Une erreur inattendue s'est produite lors de la création de l'annonce."
+        }
+      },
+      "success": {
+        "title": "Annonce créée !",
+        "description": "Votre article est maintenant en ligne sur le marché."
+      }
+    },
+    "itemView": {
+      "backLink": "Retour au marché",
+      "notFound": {
+        "description": "Article non trouvé."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Impossible de charger l'article."
+        },
+        "unexpected": "Une erreur inattendue s'est produite."
+      },
+      "coupon": {
+        "successTitle": "Coupon appliqué !",
+        "successDescription": "Vous avez reçu une réduction de {type} !",
+        "failTitle": "Coupon invalide",
+        "failDescription": "Le code de coupon que vous avez entré est invalide ou a expiré.",
+        "label": "Code de coupon",
+        "placeholder": "Entrez le coupon",
+        "applyButton": "Appliquer",
+        "appliedText": "Coupon '{code}' appliqué."
+      },
+      "booking": {
+        "authTitle": "Connexion requise",
+        "authDescription": "Vous devez être connecté pour réserver un service.",
+        "failTitle": "Échec de la réservation",
+        "dateError": "Veuillez sélectionner une date de début et de fin pour votre réservation.",
+        "successTitle": "Réservation réussie !",
+        "successDescription": "Votre réservation a été confirmée. Vous recevrez plus de détails par e-mail.",
+        "bookedTitle": "Vous avez réservé cette expérience !",
+        "bookedDescription": "Montrez votre billet à l'arrivée.",
+        "ticketButton": "Voir le billet",
+        "modalTitle": "Votre billet",
+        "modalDescription": "Présentez ce code QR lors de l'enregistrement pour {itemName}.",
+        "modalScan": "Scannez ce code lors de l'enregistrement.",
+        "perNight": "par nuit",
+        "checkIn": "Arrivée",
+        "checkOut": "Départ",
+        "addDate": "Ajouter une date",
+        "guests": "Invités",
+        "reserveButton": "Réserver",
+        "reservingButton": "Réservation en cours...",
+        "notCharged": "Vous ne serez pas encore facturé",
+        "nights": "{count, plural, =1 {nuit} other {nuits}}",
+        "serviceFee": "Frais de service",
+        "total": "Total"
+      },
+      "order": {
+        "authTitle": "Connexion requise",
+        "authDescription": "Vous devez être connecté pour passer une commande.",
+        "quantityErrorTitle": "Quantité invalide",
+        "quantityErrorDescription": "Veuillez entrer une quantité supérieure à zéro.",
+        "successTitle": "Commande passée !",
+        "successDescription": "Votre commande a été envoyée avec succès au vendeur.",
+        "failTitle": "Échec de la commande",
+        "failDescription": "Impossible de passer votre commande. Veuillez réessayer.",
+        "title": "Passer une commande pour {itemName}",
+        "description": "Confirmez la quantité et ajoutez des notes pour le vendeur si nécessaire.",
+        "quantityLabel": "Quantité",
+        "notesLabel": "Notes pour le vendeur (facultatif)",
+        "notesPlaceholder": "Ex: instructions de livraison, demandes spéciales...",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer la commande",
+        "placingButton": "Passage de la commande..."
+      },
+      "skillsLabel": "Compétences requises",
+      "experienceLabel": "Niveau d'expérience",
+      "compensationLabel": "Rémunération",
+      "contactForRates": "Contacter pour les tarifs",
+      "aboutSeller": "À propos du vendeur",
+      "viewShopfront": "Voir la boutique",
+      "editListing": "Modifier l'annonce",
+      "manageService": "Gérer le service",
+      "buyNowButton": "Acheter maintenant",
+      "contactForService": "Contacter pour le service",
+      "contactSeller": "Contacter le vendeur",
+      "traceabilityButton": "Voir le rapport de traçabilité"
+    },
+    "myOrders": {
+      "title": "Mes commandes",
+      "description": "Affichez et gérez les commandes que vous avez reçues des acheteurs.",
+      "backLink": "Retour au marché",
+      "noOrders": "Vous n'avez pas encore reçu de commandes.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour voir vos commandes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Impossible de récupérer vos commandes. Veuillez réessayer.",
+        "successTitle": "Succès",
+        "updateSuccess": "Statut de la commande mis à jour à {status}.",
+        "failTitle": "Échec de la mise à jour"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Acheteur",
+        "product": "Produit",
+        "total": "Total",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirmer la commande",
+        "ship": "Marquer comme expédiée",
+        "complete": "Terminer la commande",
+        "cancel": "Annuler la commande"
+      },
+      "status": {
+        "new": "Nouvelle",
+        "confirmed": "Confirmée",
+        "shipped": "Expédiée",
+        "completed": "Terminée",
+        "cancelled": "Annulée"
+      }
+    },
+    "createShop": {
+      "backLink": "Retour au marché",
+      "title": "Créer une boutique numérique",
+      "description": "Établissez votre présence sur le marché de DamDoh en créant une boutique. Ce sera votre page dédiée pour présenter tous vos produits et services.",
+      "authErrorTitle": "Non authentifié",
+      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
+      "toast": {
+        "successTitle": "Boutique créée !",
+        "successDescription": "Votre boutique '{shopName}' est maintenant en ligne et prête pour les annonces.",
+        "failTitle": "Échec de la création",
+        "failDescription": "Une erreur inattendue s'est produite. Veuillez réessayer."
+      },
+      "form": {
+        "nameLabel": "Nom de la boutique",
+        "namePlaceholder": "Ex: Green Valley Organics, Agri-Logistics Pro",
+        "typeLabel": "Type d'entreprise / Rôle principal",
+        "typePlaceholder": "Sélectionnez l'option qui décrit le mieux votre entreprise",
+        "descriptionLabel": "Description de la boutique",
+        "descriptionPlaceholder": "Décrivez brièvement votre boutique, ce que vous offrez et votre mission.",
+        "submitButton": "Créer la boutique",
+        "submittingButton": "Création en cours..."
+      }
+    },
+    "shopView": {
+      "backLink": "Retour au marché",
+      "ownedBy": "Détenu par",
+      "loadingOwner": "Chargement du propriétaire...",
+      "editShopButton": "Modifier la boutique",
+      "contactButton": "Contacter le propriétaire",
+      "listingsTitle": "Annonces de {shopName}",
+      "noListings": "Cette boutique n'a pas encore d'annonces publiques.",
+      "errors": {
+        "notFound": "Boutique non trouvée",
+        "loadError": "Impossible de charger les détails de la boutique."
+      },
+      "title": "Boutique"
+    },
+    "promotions": {
+      "backToDashboard": "Retour au tableau de bord",
+      "title": "Coupons et promotions",
+      "description": "Créez et gérez des coupons promotionnels pour vos annonces sur le marché.",
+      "create": {
+        "title": "Créer un nouveau coupon",
+        "description": "Offrez des réductions pour attirer plus d'acheteurs.",
+        "form": {
+          "code": "Code du coupon",
+          "codePlaceholder": "Ex: RECOLTE20",
+          "usageLimit": "Limite d'utilisation",
+          "usageLimitPlaceholder": "Ex: 100",
+          "discountType": "Type de réduction",
+          "discountTypePlaceholder": "Sélectionnez le type",
+          "percentage": "Pourcentage",
+          "fixed": "Montant fixe",
+          "discountValue": "Valeur de la réduction",
+          "expiryDate": "Date d'expiration",
+          "pickDate": "Choisissez une date",
+          "submitButton": "Créer le coupon"
+        },
+        "toast": {
+          "successTitle": "Coupon créé !",
+          "successDescription": "Le coupon '{code}' est maintenant actif.",
+          "failTitle": "Échec de la création"
+        }
+      },
+      "list": {
+        "title": "Vos coupons actifs",
+        "description": "Affichez et partagez vos coupons existants.",
+        "expires": "Expire",
+        "usage": "Utilisation",
+        "share": "Partager",
+        "toastTitle": "Lien copié !",
+        "toastDescription": "Lien partageable pour le coupon {link} copié dans le presse-papiers.",
+        "noCoupons": "Vous n'avez pas encore créé de coupons.",
+        "shareModal": {
+          "title": "Partager le coupon",
+          "description": "Partagez ce lien avec vos clients pour leur offrir une réduction directe.",
+          "copy": "Copier",
+          "close": "Fermer"
+        }
+      },
+      "toast": {
+        "error": "Erreur",
+        "errorCoupons": {
+          "title": "Erreur de récupération des coupons",
+          "description": "Impossible de charger vos coupons existants."
+        }
+      }
+    },
+    "manageService": {
+      "title": "Gérer le service",
+      "backLink": "Retour au service",
+      "tabs": {
+        "checkin": "Enregistrement",
+        "bookings": "Réservations",
+        "staff": "Personnel"
+      },
+      "bookingsTab": {
+        "title": "Réservations",
+        "description": "Voir toutes les réservations pour ce service.",
+        "downloadCsv": "Télécharger CSV",
+        "noBookings": "Il n'y a pas encore de réservation pour ce service.",
+        "error": "Échec de la récupération des réservations.",
+        "toast": {
+          "noBookings": "Pas de données de réservation à télécharger."
+        },
+        "table": {
+          "guest": "Invité",
+          "bookedOn": "Réservé le",
+          "status": "Statut",
+          "checkedInAt": "Enregistré le"
+        },
+        "status": {
+          "booked": "Réservé",
+          "checkedIn": "Enregistré"
+        }
+      }
+    }
+  },
   "farmManagement": {
     "hub": {
       "title": "Hub de Gestion Agricole",
@@ -792,6 +1304,180 @@
           "C'est un plan directeur pour une agriculture à petite échelle, durable et productive."
         ]
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Retour au tableau de bord de la ferme",
+      "title": "Mes fermes",
+      "addNewFarmButton": "Ajouter une nouvelle ferme",
+      "size": "Taille",
+      "viewFarmButton": "Voir les détails de la ferme",
+      "noFarmsTitle": "Aucune ferme enregistrée",
+      "noFarmsDescription": "Commencez par ajouter votre premier profil de ferme pour suivre vos cultures et activités.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour gérer vos fermes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Impossible de récupérer vos fermes. Veuillez réessayer."
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Retour à Mes fermes",
+      "title": "Enregistrer une nouvelle ferme",
+      "description": "Remplissez les détails ci-dessous pour ajouter une nouvelle ferme à votre profil.",
+      "form": {
+        "farmNameLabel": "Nom de la ferme",
+        "farmNamePlaceholder": "Ex : Acres de la Vallée Verte",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "Ex : Nakuru, Kenya",
+        "locationDescription": "Indiquez une ville, une région ou une zone générale.",
+        "sizeLabel": "Taille",
+        "sizePlaceholder": "Ex : 5 Hectares",
+        "sizeDescription": "Incluez l'unité (ex : acres, hectares).",
+        "typeLabel": "Type de ferme principal",
+        "typePlaceholder": "Sélectionnez un type",
+        "types": {
+          "crop": "Culture",
+          "livestock": "Élevage",
+          "mixed": "Mixte (Culture et élevage)",
+          "aquaculture": "Aquaculture (Pisciculture)",
+          "other": "Autre"
+        },
+        "descriptionLabel": "Description (facultatif)",
+        "descriptionPlaceholder": "Une brève description de votre ferme, de son histoire ou de sa mission.",
+        "irrigationLabel": "Méthodes d'irrigation (facultatif)",
+        "irrigationPlaceholder": "Ex : Irrigation goutte à goutte, pluviale",
+        "irrigationDescription": "Énumérez les principales sources d'eau ou méthodes que vous utilisez.",
+        "submitButton": "Enregistrer la ferme"
+      },
+      "toast": {
+        "authErrorTitle": "Erreur d'authentification",
+        "authErrorDescription": "Vous devez être connecté pour créer une ferme.",
+        "successTitle": "Ferme créée !",
+        "successDescription": "{farmName} a été ajouté avec succès à votre profil.",
+        "errorTitle": "Échec de la création"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Retour à Mes fermes",
+      "registeredOn": "Enregistré le {date}",
+      "editFarmButton": "Modifier la ferme",
+      "crops": {
+        "title": "Cultures et lots",
+        "description": "Toutes les cultures actives et passées de cette ferme.",
+        "addNewButton": "Ajouter une nouvelle culture",
+        "plantedLabel": "Planté",
+        "stageLabel": "Stade",
+        "viewJourneyButton": "Voir le parcours",
+        "noCrops": "Aucune culture n'a encore été ajoutée à cette ferme.",
+        "addFirstButton": "Ajoutez votre première culture"
+      },
+      "insights": {
+        "title": "Aperçus de rentabilité",
+        "description": "Analyse basée sur l'IA des performances de votre ferme.",
+        "noInsights": "Pas assez de données pour générer des aperçus. Enregistrez plus d'activités comme les dépenses et les récoltes."
+      },
+      "notFound": {
+        "title": "Ferme non trouvée",
+        "description": "Nous n'avons pas pu trouver la ferme que vous cherchiez.",
+        "backButton": "Retour à Mes fermes"
+      },
+      "toast": {
+        "notFoundTitle": "Non trouvé",
+        "loadErrorTitle": "Erreur de chargement"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Retour aux détails de la ferme",
+      "title": "Modifier les détails de la ferme",
+      "description": "Mettez à jour les informations de votre ferme ci-dessous.",
+      "form": {
+        "submitButton": "Enregistrer les modifications"
+      },
+      "toast": {
+        "notFoundTitle": "Non trouvé",
+        "loadError": "Impossible de charger les données de la ferme.",
+        "loadFail": "Échec de la récupération des données de la ferme : {message}",
+        "success": "Ferme mise à jour",
+        "description": "{farmName} a été mis à jour avec succès.",
+        "fail": "Échec de la mise à jour"
+      }
+    },
+    "createCrop": {
+      "backLink": "Retour à la ferme",
+      "title": "Ajouter une nouvelle culture",
+      "description": "Enregistrez une nouvelle culture ou un nouveau lot pour cette ferme. Ce sera le début de son parcours de traçabilité.",
+      "cropTypeLabel": "Type de culture",
+      "cropTypePlaceholder": "Ex : Maïs, Avocat Hass, Tilapia",
+      "cropTypeDescription": "Cela peut être une variété de culture spécifique ou un type de bétail.",
+      "plantingDateLabel": "Date de plantation",
+      "datePlaceholder": "Choisissez une date",
+      "harvestDateLabel": "Date de récolte prévue (facultatif)",
+      "yieldLabel": "Rendement attendu (facultatif)",
+      "yieldPlaceholder": "Ex : 10 tonnes, 5000 kg",
+      "stageLabel": "Stade actuel",
+      "stagePlaceholder": "Sélectionnez le stade de croissance actuel",
+      "stages": {
+        "Planting": "Plantation",
+        "Vegetative": "Végétatif",
+        "Flowering": "Floraison",
+        "Fruiting": "Fructification",
+        "Harvesting": "Récolte",
+        "Post-Harvest": "Après récolte"
+      },
+      "notesLabel": "Notes (facultatif)",
+      "notesPlaceholder": "Ajoutez des détails spécifiques sur ce lot, comme la source des semences ou le nom du champ.",
+      "saveButton": "Enregistrer la culture",
+      "savingButton": "Enregistrement...",
+      "toast": {
+        "authErrorTitle": "Erreur d'authentification",
+        "authErrorDescription": "Vous devez être connecté pour ajouter une culture.",
+        "successTitle": "Culture ajoutée",
+        "successDescription": "{cropType} a été enregistré avec succès.",
+        "failTitle": "Échec de l'ajout de la culture",
+        "failDescription": "Une erreur s'est produite lors de l'enregistrement de la culture."
+      }
+    },
+    "cropDetailPage": {
+      "loading": "Chargement des détails de la culture...",
+      "notFound": "Culture non trouvée.",
+      "backLink": "Retour à la ferme",
+      "plantedOn": "Planté le {date}",
+      "editButton": "Modifier la culture",
+      "quickActionsTitle": "Actions rapides",
+      "logInputButton": "Enregistrer un intrant",
+      "logObservationButton": "Enregistrer une observation",
+      "logHarvestButton": "Enregistrer la récolte",
+      "journeyTitle": "Parcours de traçabilité",
+      "noActivities": "Aucune activité n'a encore été enregistrée pour cette culture.",
+      "eventPayload": {
+        "noDetails": "Aucun détail supplémentaire fourni pour cet événement.",
+        "observationType": "Type d'observation",
+        "details": "Détails",
+        "aiDiagnosis": "Diagnostic IA"
+      },
+      "toast": {
+        "notFound": "Culture non trouvée.",
+        "loadError": "Impossible de charger les événements de traçabilité pour cette culture."
+      }
+    },
+    "editCrop": {
+      "backLink": "Retour à la culture",
+      "title": "Modifier les détails de la culture",
+      "description": "Mettez à jour les informations pour ce lot de culture.",
+      "saveButton": "Enregistrer les modifications",
+      "savingButton": "Enregistrement...",
+      "toast": {
+        "notFound": "Culture non trouvée.",
+        "loadError": "Impossible de charger les données de la culture pour modification.",
+        "loadFail": "Échec de la récupération des données de la culture : {message}",
+        "success": "Culture mise à jour",
+        "description": "Les détails de {cropType} ont été enregistrés.",
+        "fail": "Échec de la mise à jour"
+      }
     }
   }
 }
+
