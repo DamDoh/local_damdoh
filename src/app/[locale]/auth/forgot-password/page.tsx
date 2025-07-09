@@ -49,13 +49,13 @@ export default function ForgotPasswordPage() {
       await sendPasswordReset(data.email);
       setEmailSent(true);
       toast({
-        title: "Password Reset Email Sent",
-        description: `If an account exists for ${data.email}, a password reset link has been sent. Please check your inbox (and spam folder).`,
+        title: t('forgotPassword.emailSentTitle'),
+        description: t('forgotPassword.emailSentDescription', { email: data.email }),
         variant: "default",
       });
       form.reset(); 
     } catch (error: any) {
-      let errorMessage = "An unexpected error occurred. Please try again.";
+      let errorMessage = t('forgotPassword.errors.unexpected');
       if (error.code) {
         switch (error.code) {
           case "auth/user-not-found":
@@ -63,23 +63,24 @@ export default function ForgotPasswordPage() {
             // So, show a generic success message even if the user isn't found.
             setEmailSent(true); // Pretend it was sent
             toast({
-                title: "Password Reset Email Sent (If Account Exists)",
-                description: `If an account exists for ${data.email}, a password reset link has been sent.`,
+                title: t('forgotPassword.emailSentTitle'),
+                description: t('forgotPassword.emailSentDescriptionIfAccountExists', { email: data.email }),
             });
             break;
           case "auth/invalid-email":
-            errorMessage = "The email address is not valid.";
+            errorMessage = t('forgotPassword.errors.invalidEmail');
             break;
- case "auth/too-many-requests":
- errorMessage = "Too many requests. Please try again later.";
+          case "auth/too-many-requests":
+             errorMessage = t('forgotPassword.errors.tooManyRequests');
+             break;
           default:
-            errorMessage = `Failed to send reset email: ${error.message}`;
+            errorMessage = `${t('forgotPassword.errors.default')}: ${error.message}`;
         }
       }
       if (!emailSent) { // Only set error if we didn't show the generic success message
         setAuthError(errorMessage);
         toast({
-            title: "Error",
+            title: t('error'),
             description: errorMessage,
             variant: "destructive",
         });
@@ -104,29 +105,28 @@ export default function ForgotPasswordPage() {
           {authError && !emailSent && (
             <Alert variant="destructive" className="mb-4">
               <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
+              <AlertTitle>{t('error')}</AlertTitle>
               <AlertDescription>{authError}</AlertDescription>
             </Alert>
           )}
 
-          {emailSent && (
- <>
-            <Alert variant="default" className="mb-4 border-green-500 bg-green-50 text-green-700 dark:border-green-600 dark:bg-green-900/30 dark:text-green-300">
-              <CheckCircle className="h-4 w-4 !text-green-500 dark:!text-green-400" />
-              <AlertTitle>Email Sent</AlertTitle>
-              <AlertDescription>
-                If an account exists for the email you entered, a password reset link has been sent. Please check your inbox and spam folder.
-              </AlertDescription>
-            </Alert>
+          {emailSent ? (
+            <>
+                <Alert variant="default" className="mb-4 border-green-500 bg-green-50 text-green-700 dark:border-green-600 dark:bg-green-900/30 dark:text-green-300">
+                  <CheckCircle className="h-4 w-4 !text-green-500 dark:!text-green-400" />
+                  <AlertTitle>{t('forgotPassword.successTitle')}</AlertTitle>
+                  <AlertDescription>
+                    {t('forgotPassword.successDescription')}
+                  </AlertDescription>
+                </Alert>
 
- <div className="text-center mt-6">
- <Button asChild>
- <Link href="/auth/signin">{t('signInButton')}</Link>
- </Button>
- </div>
- </>
-          )}
-          {!emailSent && (
+             <div className="text-center mt-6">
+                 <Button asChild>
+                    <Link href="/auth/signin">{t('signInButton')}</Link>
+                 </Button>
+             </div>
+            </>
+          ) : (
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
@@ -162,8 +162,4 @@ export default function ForgotPasswordPage() {
               {t('signInLink')}
             </Link>
           </p>
-        </CardFooter>
-      </Card>
-    </div>
-  );
-}
+        </CardFooter

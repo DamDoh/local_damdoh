@@ -91,6 +91,36 @@
     "newPasswordPlaceholder": "Enter a strong new password",
     "resetPasswordButton": "Reset Password",
     "resettingPasswordButton": "Resetting...",
+    "error": "Error",
+    "forgotPassword": {
+      "emailSentTitle": "Password Reset Email Sent",
+      "emailSentDescription": "If an account exists for {email}, a password reset link has been sent. Please check your inbox (and spam folder).",
+      "emailSentDescriptionIfAccountExists": "If an account exists for {email}, a password reset link has been sent.",
+      "successTitle": "Email Sent",
+      "successDescription": "If an account exists for the email you entered, a password reset link has been sent. Please check your inbox and spam folder.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Password Reset Successful",
+      "successDescription": "Your password has been reset. You can now sign in with your new password.",
+      "successRedirect": "Your password has been reset successfully. Redirecting to sign-in...",
+      "errors": {
+        "missingCode": "Password reset code is missing or invalid.",
+        "unexpected": "An unexpected error occurred while resetting your password.",
+        "invalidOrExpiredCode": "The password reset code is invalid or has expired.",
+        "userDisabled": "Your account has been disabled.",
+        "userNotFound": "The user account was not found.",
+        "weakPassword": "The password is too weak.",
+        "default": "Failed to reset password",
+        "missingCodeTitle": "Missing Code",
+        "missingCodeDescription": "The password reset code is missing from the URL. Please use the link from your reset email."
+      }
+    },
     "recoverPage": {
       "title": "Recover Your Account",
       "description": "Use your network to regain access.",
@@ -1906,3 +1936,4 @@
     "noStakeholdersHint": "Try adjusting your search filters."
   }
 }
+```

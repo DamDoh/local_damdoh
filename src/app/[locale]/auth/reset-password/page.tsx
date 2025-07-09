@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -46,13 +45,13 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     if (!oobCode) {
-      setAuthError("Password reset code is missing or invalid.");
+      setAuthError(t('resetPassword.errors.missingCode'));
     }
-  }, [oobCode]);
+  }, [oobCode, t]);
 
   async function onSubmit(data: ResetPasswordValues) {
     if (!oobCode) {
-      setAuthError("Password reset code is missing or invalid.");
+      setAuthError(t('resetPassword.errors.missingCode'));
       return;
     }
 
@@ -64,8 +63,8 @@ export default function ResetPasswordPage() {
       await resetPassword(oobCode, data.password);
       setIsResetSuccessful(true);
       toast({
-        title: "Password Reset Successful",
-        description: "Your password has been reset. You can now sign in with your new password.",
+        title: t('resetPassword.successTitle'),
+        description: t('resetPassword.successDescription'),
         variant: "default",
       });
       // Redirect to sign-in page after a short delay
@@ -73,29 +72,29 @@ export default function ResetPasswordPage() {
         router.push("/auth/signin");
       }, 3000);
     } catch (error: any) {
-      let errorMessage = "An unexpected error occurred while resetting your password.";
+      let errorMessage = t('resetPassword.errors.unexpected');
       if (error.code) {
         switch (error.code) {
           case "auth/invalid-action-code":
           case "auth/expired-action-code":
-            errorMessage = "The password reset code is invalid or has expired.";
+            errorMessage = t('resetPassword.errors.invalidOrExpiredCode');
             break;
           case "auth/user-disabled":
-            errorMessage = "Your account has been disabled.";
+            errorMessage = t('resetPassword.errors.userDisabled');
             break;
           case "auth/user-not-found":
-            errorMessage = "The user account was not found.";
+            errorMessage = t('resetPassword.errors.userNotFound');
             break;
           case "auth/weak-password":
-              errorMessage = "The password is too weak.";
+              errorMessage = t('resetPassword.errors.weakPassword');
               break;
           default:
-            errorMessage = `Failed to reset password: ${error.message}`;
+            errorMessage = `${t('resetPassword.errors.default')}: ${error.message}`;
         }
       }
       setAuthError(errorMessage);
       toast({
-          title: "Error",
+          title: t('error'),
           description: errorMessage,
           variant: "destructive",
       });
@@ -119,16 +118,16 @@ export default function ResetPasswordPage() {
           {authError && (
             <Alert variant="destructive" className="mb-4">
               <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
+              <AlertTitle>{t('error')}</AlertTitle>
               <AlertDescription>{authError}</AlertDescription>
             </Alert>
           )}
            {isResetSuccessful && (
             <Alert variant="default" className="mb-4 border-green-500 bg-green-50 text-green-700 dark:border-green-600 dark:bg-green-900/30 dark:text-green-300">
               <CheckCircle className="h-4 w-4 !text-green-500 dark:!text-green-400" />
-              <AlertTitle>Success!</AlertTitle>
+              <AlertTitle>{t('resetPassword.successTitle')}</AlertTitle>
               <AlertDescription>
-                Your password has been reset successfully. Redirecting to sign-in...
+                {t('resetPassword.successRedirect')}
               </AlertDescription>
             </Alert>
           )}
@@ -136,9 +135,9 @@ export default function ResetPasswordPage() {
           {!oobCode && !authError && (
               <Alert variant="destructive" className="mb-4">
                 <AlertTriangle className="h-4 w-4" />
-                <AlertTitle>Missing Code</AlertTitle>
+                <AlertTitle>{t('resetPassword.errors.missingCodeTitle')}</AlertTitle>
                 <AlertDescription>
-                  The password reset code is missing from the URL. Please use the link from your reset email.
+                  {t('resetPassword.errors.missingCodeDescription')}
                 </AlertDescription>
               </Alert>
           )}
