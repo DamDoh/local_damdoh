@@ -103,125 +103,6 @@
       "backToSignIn": "Back to Sign In"
     }
   },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "switchToLightAria": "Switch to light mode",
-    "switchToDarkAria": "Switch to dark mode"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Change language"
-  },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "You're back online!",
-        "description": "Your connection has been restored."
-      },
-      "offline": {
-        "title": "You are currently offline",
-        "description": "Your actions will be saved and synced when you reconnect."
-      },
-      "syncing": {
-        "title": "Syncing offline changes...",
-        "description": "Uploading {count, plural, one {# action} other {# actions}} to the server."
-      },
-      "synced": {
-        "title": "Sync Complete!",
-        "description": "All your offline changes have been saved."
-      },
-      "syncFailed": {
-        "title": "Sync Failed",
-        "description": "Could not sync all offline changes. Will retry later."
-      },
-      "queued": {
-        "title": "Action Queued",
-        "description": "This action will be performed once you are online."
-      }
-    },
-    "tooltip": {
-      "syncing": "Syncing {count, plural, one {# pending action} other {# pending actions}}...",
-      "onlinePending": "Online | {count, plural, one {# action} other {# actions}} pending sync",
-      "onlineSynced": "Online | All changes synced",
-      "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
-    }
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Add to your feed",
-    "refreshSuggestions": "Refresh suggestions",
-    "infoTooltip": "Suggestions are based on your profile interests and needs.",
-    "signInPrompt": "Sign in to get personalized suggestions.",
-    "loadError": "Could not load suggestions.",
-    "noSuggestions": "No new suggestions right now. Check back later!",
-    "following": "Following",
-    "follow": "Follow",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
-    "managePromotionsButton": "Manage Promotions",
-    "ad": "Ad",
-    "adTitle": "Unlock Market Insights",
-    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
-    "adButton": "Learn More"
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform.",
-    "placeholder": "Search people, products, services, forum posts...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee Beans Kenya",
-    "popularSearch2": "Tractor for rent",
-    "popularSearch3": "Drought-resistant maize seeds",
-    "popularSearch4": "Logistics partner East Africa",
-    "popularSearch5": "Post-harvest loss reduction",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search people, products, services, forums...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "An error occurred while searching. Please try again.",
-      "invalidCodeError": "Invalid QR Code scanned. This does not appear to be a DamDoh ID.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Searching for items related to your query.",
-      "filtersTitle": "Applied Filters",
-      "noResults": "No Results Found",
-      "tryAgain": "Try refining your search terms.",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Hub",
-        "vti_registry": "Traceability Reports"
-      }
-    }
-  },
   "StartPost": {
     "placeholder": "Start a post, share an update or ask a question...",
     "photoVideo": "Photo/Video",
@@ -267,5 +148,54 @@
     "repostPlaceholderToast": "Repost feature coming soon!",
     "voteSuccessToast": "Your vote has been cast!",
     "voteErrorToast": "Failed to cast vote."
+  },
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light mode",
+    "switchToDarkAria": "Switch to dark mode"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Change language"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Add to your feed",
+    "refreshSuggestions": "Refresh suggestions",
+    "infoTooltip": "Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "Sign in to get personalized suggestions.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "following": "Following",
+    "follow": "Follow",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "Manage Promotions",
+    "ad": "Ad",
+    "adTitle": "Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "Learn More"
   }
 }

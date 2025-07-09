@@ -103,125 +103,6 @@
       "backToSignIn": "Zurück zur Anmeldung"
     }
   },
-  "AppHeader": {
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Verw.",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talente",
-    "traceability": "Rückverfolgb.",
-    "forums": "Foren",
-    "sustainability": "Nachhaltigkeit",
-    "notifications": "Benachrichtig.",
-    "messages": "Nachrichten",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Modus wechseln",
-    "switchToDarkAria": "Zum dunklen Modus wechseln"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache ändern"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "Sie sind wieder online!",
-        "description": "Ihre Verbindung wurde wiederhergestellt."
-      },
-      "offline": {
-        "title": "Sie sind derzeit offline",
-        "description": "Ihre Aktionen werden gespeichert und synchronisiert, wenn Sie wieder eine Verbindung herstellen."
-      },
-      "syncing": {
-        "title": "Offline-Änderungen werden synchronisiert...",
-        "description": "{count, plural, one {# Aktion wird} other {# Aktionen werden}} auf den Server hochgeladen."
-      },
-      "synced": {
-        "title": "Synchronisierung abgeschlossen!",
-        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
-      },
-      "syncFailed": {
-        "title": "Synchronisierung fehlgeschlagen",
-        "description": "Nicht alle Offline-Änderungen konnten synchronisiert werden. Ein neuer Versuch wird später gestartet."
-      },
-      "queued": {
-        "title": "Aktion in die Warteschlange gestellt",
-        "description": "Diese Aktion wird ausgeführt, sobald Sie online sind."
-      }
-    },
-    "tooltip": {
-      "syncing": "Synchronisiere {count, plural, one {# ausstehende Aktion} other {# ausstehende Aktionen}}...",
-      "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} warten auf Synchronisierung",
-      "onlineSynced": "Online | Alle Änderungen synchronisiert",
-      "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
-    }
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Zu Ihrem Feed hinzufügen",
-    "refreshSuggestions": "Vorschläge aktualisieren",
-    "infoTooltip": "Vorschläge basieren auf den Interessen und Bedürfnissen Ihres Profils.",
-    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
-    "loadError": "Vorschläge konnten nicht geladen werden.",
-    "noSuggestions": "Zurzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
-    "following": "Folge ich",
-    "follow": "Folgen",
-    "promotionsTitle": "Aktionen",
-    "promotionsDescription": "Sehen Sie sich Sonderangebote und Deals von Partnern im Ökosystem an.",
-    "managePromotionsButton": "Aktionen verwalten",
-    "ad": "Anzeige",
-    "adTitle": "Markteinblicke freischalten",
-    "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
-    "adButton": "Mehr erfahren"
-  },
-  "searchPage": {
-    "title": "Universelle Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform.",
-    "placeholder": "Suche nach Personen, Produkten, Dienstleistungen, Forumsbeiträgen...",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchen",
-    "popularSearch1": "Bio-Kaffeebohnen Kenia",
-    "popularSearch2": "Traktorvermietung",
-    "popularSearch3": "Dürreresistente Maissamen",
-    "popularSearch4": "Logistikpartner Ostafrika",
-    "popularSearch5": "Reduzierung von Nachernteverlusten",
-    "modal": {
-      "title": "Universelle Suche",
-      "placeholder": "Personen, Produkte, Dienstleistungen, Foren suchen...",
-      "searchButton": "Suchen",
-      "searchError": "Suchfehler",
-      "searchErrorDescription": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-      "invalidCodeError": "Ungültiger QR-Code gescannt. Dies scheint keine DamDoh-ID zu sein.",
-      "scanFailed": "Scan fehlgeschlagen",
-      "scanError": "Scan-Fehler",
-      "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
-      "interpretationTitle": "KI-Interpretation",
-      "interpretationNotesDefault": "Suche nach Elementen, die sich auf Ihre Anfrage beziehen.",
-      "filtersTitle": "Angewandte Filter",
-      "noResults": "Keine Ergebnisse gefunden",
-      "tryAgain": "Versuchen Sie, Ihre Suchbegriffe zu verfeinern.",
-      "results": {
-        "users": "Profile",
-        "marketplaceItems": "Marktplatz",
-        "forums": "Foren",
-        "agri_events": "Veranstaltungen",
-        "knowledge_articles": "Wissensdatenbank",
-        "vti_registry": "Rückverfolgbarkeitsberichte"
-      }
-    }
-  },
   "StartPost": {
     "placeholder": "Einen Beitrag starten, ein Update teilen oder eine Frage stellen...",
     "photoVideo": "Foto/Video",
@@ -267,5 +148,54 @@
     "repostPlaceholderToast": "Die Repost-Funktion kommt bald!",
     "voteSuccessToast": "Ihre Stimme wurde abgegeben!",
     "voteErrorToast": "Abstimmung fehlgeschlagen."
+  },
+  "AppHeader": {
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Verw.",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgb.",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtig.",
+    "messages": "Nachrichten",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache ändern"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Zu Ihrem Feed hinzufügen",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "Vorschläge basieren auf den Interessen und Bedürfnissen Ihres Profils.",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
+    "loadError": "Vorschläge konnten nicht geladen werden.",
+    "noSuggestions": "Zurzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
+    "following": "Folge ich",
+    "follow": "Folgen",
+    "promotionsTitle": "Aktionen",
+    "promotionsDescription": "Sehen Sie sich Sonderangebote und Deals von Partnern im Ökosystem an.",
+    "managePromotionsButton": "Aktionen verwalten",
+    "ad": "Anzeige",
+    "adTitle": "Markteinblicke freischalten",
+    "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
+    "adButton": "Mehr erfahren"
   }
 }
