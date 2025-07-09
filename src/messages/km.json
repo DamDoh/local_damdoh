@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -8,14 +9,14 @@
     },
     "features": {
       "title": "លក្ខណៈពិសេសចម្បងរបស់ដាំដុះ",
-      "subtitle": "អ្វីគ្រប់យ៉ាងដែលអ្នកត្រូវការដើម្បីរីកចម្រើន ភ្ជាប់ទំនាក់ទំនង និងធ្វើពាណិជ្ជកម្ម នៅកន្លែងតែមួយ។",
+      "subtitle": "អ្វីគ្រប់យ៉ាងដែលអ្នកត្រូវការដើម្បីរីកចម្រើន ភ្ជាប់ទំនាក់ទំនង และធ្វើពាណិជ្ជកម្ម នៅកន្លែងតែមួយ។",
       "networking": {
         "title": "បណ្តាញឆ្លាតវៃ",
         "description": "ការណែនាំអំពីការតភ្ជាប់ដោយបញ្ញាសិប្បនិម្មិត ដើម្បីភ្ជាប់អ្នកជាមួយដៃគូត្រឹមត្រូវ ចាប់ពីអ្នកផ្គត់ផ្គង់រហូតដល់អ្នកទិញអន្តរជាតិ។"
       },
       "marketplace": {
         "title": "ទីផ្សារផ្ទាល់",
-        "description": "ទិញและលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
+        "description": "ទិញและលក់ផលិតផលและសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពและប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
       },
       "forums": {
         "title": "វេទិកាប្រធានបទ",
@@ -36,10 +37,10 @@
       },
       "buyers": {
         "title": "អ្នកទិញและអ្នកកែច្នៃ",
-        "description": "ស្វែងរកផលិតផលដែលមានគុណភាពខ្ពស់ และអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានានូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
+        "description": "ស្វែងរកផលិតផលដែលមានគុណភាពខ្ពស់ และអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំและសហគមន៍កសិកម្ម ធានានូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
       },
       "experts": {
-        "title": "អ្នកជំនាញនិងអ្នកផ្តល់សេវា",
+        "title": "អ្នកជំនាញและអ្នកផ្តល់សេវា",
         "description": "ផ្តល់ជំនាញ และសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
       },
       "imageAlt": "ក្រុមចម្រុះនៃតួអង្គកសិកម្មកំពុងសហការគ្នា"
@@ -134,7 +135,7 @@
   "DashboardRightSidebar": {
     "networkTitle": "បន្ថែមទៅក្នុងហ្វីតរបស់អ្នក",
     "refreshSuggestions": "ធ្វើឱ្យការណែនាំស្រស់ស្រាយ",
-    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍និងតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
+    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍และតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
     "signInPrompt": "ចូលដើម្បីទទួលបានការណែនាំផ្ទាល់ខ្លួន។",
     "loadError": "មិនអាចផ្ទុកការណែនាំបានទេ។",
     "noSuggestions": "មិនមានការណែនាំថ្មីនៅពេលនេះទេ។ សូមពិនិត្យមើលពេលក្រោយ!",
@@ -179,7 +180,7 @@
     },
     "vision": {
       "title": "ចក្ខុវិស័យរបស់យើង",
-      "p1": "យើងមានចក្ខុវិស័យលើពិភពលោកមួយដែលគ្រប់តួអង្គកសិកម្ម ចាប់ពីកសិករតូចបំផុតរហូតដល់អ្នកលក់រាយធំបំផុត ត្រូវបានពង្រឹងដោយទិន្នន័យ ការតភ្ជាប់ និងឧបករណ៍ដែលពួកគេត្រូវការដើម្បីរីកចម្រើន។",
+      "p1": "យើងមានចក្ខុវិស័យលើពិភពលោកមួយដែលគ្រប់តួអង្គកសិកម្ម ចាប់ពីកសិករតូចបំផុតរហូតដល់អ្នកលក់រាយធំបំផុត ត្រូវបានពង្រឹងដោយទិន្នន័យ ការតភ្ជាប់ และឧបករណ៍ដែលពួកគេត្រូវការដើម្បីរីកចម្រើន។",
       "p2": "ដាំដុះត្រូវបានបង្កើតឡើងដោយផ្អែកលើជំនឿថាបច្ចេកវិទ្យាអាចជួយបង្រួមគម្លាត ពង្រឹងទំនុកចិត្ត และបង្កើតប្រព័ន្ធស្បៀងអាហារសកលមួយដែលកាន់តែមានសមធម៌និងនិរន្តរភាព។",
       "foundersTitle": "ស្ថាបនិក"
     },
@@ -297,7 +298,7 @@
         "title": "អ្នករចនា UX/UI",
         "location": "ពីចម្ងាយ",
         "type": "ពេញ​មោ៉​ង",
-        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ที่ใช้งานง่ายและเข้าถึงได้សម្រាប់ฐานผู้ใช้ที่หลากหลายและทั่วโลก។"
+        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ที่ใช้งานง่ายและเข้าถึงได้สำหรับฐานผู้ใช้ที่หลากหลายและทั่วโลก។"
       }
     },
     "noOpenings": {
@@ -310,7 +311,7 @@
   "communityGuidelines": {
     "title": "គោលការណ៍ណែនាំសហគមន៍",
     "subtitle": "ការส่งเสริมสภาพแวดล้อมที่เป็นมืออาชีพ น่าเชื่อถือ และทำงานร่วมกัน",
-    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់យើងនៅតែជាកន្លែងផលិតភាពនិងសុវត្ថិភាពសម្រាប់គ្រប់តួអង្គកសិកម្ម យើងសូមឱ្យអ្នកគោរពតាមគោលការណ៍ណែនាំខាងក្រោម៖",
+    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់យើងនៅតែជាកន្លែងផលិតភាពและសុវត្ថិភាពសម្រាប់គ្រប់តួអង្គកសិកម្ម យើងសូមឱ្យអ្នកគោរពតាមគោលការណ៍ណែនាំខាងក្រោម៖",
     "respectful": {
       "title": "គោរពและមានវិជ្ជាជីវៈ",
       "description": "ចូលរួមក្នុងការពិភាក្សាប្រកបដោយសុជីវធម៌และស្ថាបនា។ ការខ្វែងគំនិតគ្នាជារឿងធម្មតា ប៉ុន្តែការវាយប្រហារផ្ទាល់ខ្លួន ការបៀតបៀន และការនិយាយស្អប់ខ្ពើមគឺមិនអាចទទួលយកបានទេ។"
@@ -347,7 +348,7 @@
     "gettingStarted": {
       "title": "ចាប់ផ្តើម",
       "description": "เรียนรู้วิธีตั้งค่าโปรไฟล์ของคุณและเริ่มเชื่อมต่อ",
-      "placeholder": "เนื้อหาสำหรับ 'ការเริ่มต้นใช้งาน' จะพร้อมใช้งานเร็วๆ นี้"
+      "placeholder": "เนื้อหาสำหรับ 'การเริ่มต้นใช้งาน' จะพร้อมใช้งานเร็วๆ นี้"
     },
     "marketplaceGuide": {
       "title": "คู่มือตลาด",
@@ -537,7 +538,7 @@
       },
       "aiPriceSuggestion": {
         "button": "แนะนำราคาด้วย AI",
-        "generatingButton": "กำลังแนะนำ...",
+        "generatingButton": "កំពុងแนะนำ...",
         "suggestionLabel": "คำแนะนำ AI:",
         "usePriceButton": "ใช้ราคานี้"
       },
@@ -590,9 +591,9 @@
       "booking": {
         "authTitle": "ต้องลงชื่อเข้าใช้",
         "authDescription": "คุณต้องลงชื่อเข้าใช้เพื่อจองบริการ",
-        "failTitle": "การจองล้มเหลว",
+        "failTitle": "ការจองล้มเหลว",
         "dateError": "โปรดเลือกวันที่เริ่มต้นและสิ้นสุดสำหรับการจองของคุณ",
-        "successTitle": "การจองสำเร็จ!",
+        "successTitle": "ការจองสำเร็จ!",
         "successDescription": "การจองของคุณได้รับการยืนยันแล้ว คุณจะได้รับรายละเอียดเพิ่มเติมทางอีเมล",
         "bookedTitle": "คุณได้จองประสบการณ์นี้แล้ว!",
         "bookedDescription": "แสดงตั๋วของคุณเมื่อมาถึง",
@@ -619,7 +620,7 @@
         "quantityErrorDescription": "โปรดป้อนจำนวนที่มากกว่าศูนย์",
         "successTitle": "สั่งซื้อแล้ว!",
         "successDescription": "คำสั่งซื้อของคุณถูกส่งไปยังผู้ขายเรียบร้อยแล้ว",
-        "failTitle": "การสั่งซื้อล้มเหลว",
+        "failTitle": "ការสั่งซื้อล้มเหลว",
         "failDescription": "ไม่สามารถทำการสั่งซื้อของคุณได้ โปรดลองอีกครั้ง",
         "title": "สั่งซื้อ {itemName}",
         "description": "ยืนยันจำนวนและเพิ่มบันทึกสำหรับผู้ขายหากจำเป็น",
@@ -725,7 +726,7 @@
       "title": "មជ្ឈមណ្ឌលគ្រប់គ្រងកសិដ្ឋាន",
       "description": "ទីតាំងកណ្តាលរបស់អ្នកដើម្បីតាមដាននិងបង្កើនប្រសិទ្ធភាពសកម្មភាពកសិកម្មរបស់អ្នកទាំងអស់ ចាប់ពីការដាំដុះរហូតដល់ការប្រមូលផល។",
       "myFarms": {
-        "title": "កសិដ្ឋាននិងដំណាំរបស់ខ្ញុំ",
+        "title": "កសិដ្ឋានและដំណាំរបស់ខ្ញុំ",
         "description": "គ្រប់គ្រងកសិដ្ឋាន វាលស្រែ และតាមដានវដ្តដំណាំនីមួយៗ។",
         "button": "គ្រប់គ្រងកសិដ្ឋាន"
       },
@@ -1309,35 +1310,31 @@
     "title": "វេទិកាសហគមន៍",
     "description": "ភ្ជាប់ទំនាក់ទំនង ចែករំលែកចំណេះដឹង និងសហការជាមួយភាគីពាក់ព័ន្ធពីទូទាំងខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
     "createTopic": "បង្កើតប្រធានបទថ្មី",
-    "topic": {
-      "backLink": "ត្រឡប់ទៅគ្រប់វេទិកាទាំងអស់",
-      "buttons": {
-        "createPost": "បង្កើតការបង្ហោះ",
-        "loadMore": "ផ្ទុកការបង្ហោះបន្ថែម",
-        "loadingMore": "កំពុងផ្ទុក..."
-      },
-      "postMeta": "ដោយ {author} • {date}",
-      "noPosts": {
-        "title": "ยังไม่มีการโพสต์",
-        "description": "จงเป็นคนแรกที่เริ่มการสนทนาในหัวข้อนี้",
-        "button": "ចាប់ផ្តើមការពិភាក្សា"
-      },
-      "notFound": {
-        "title": "រកមិនឃើញប្រធានបទ",
-        "description": "ប្រធានបទสนทนาที่คุณกำลังมองหาไม่มีอยู่จริง หรืออาจถูกย้ายไปแล้ว",
-        "backButton": "ត្រឡប់ទៅវេទិកា"
-      },
-      "errors": {
-        "loadTopic": {
-          "title": "ข้อผิดพลาดในการโหลด",
-          "description": "ไม่สามารถโหลดรายละเอียดของหัวข้อนี้ได้"
-        },
-        "loadPosts": {
-          "title": "ข้อผิดพลาดในการโหลด",
-          "description": "ไม่สามารถโหลดโพสต์สำหรับหัวข้อนี้ได้"
-        }
-      }
+    "pinning": {
+      "pinnedTitle": "វេទិកาที่ปักหมุด",
+      "pinnedDescription": "หน้าฟอรัมเป็นหน้าแรกเริ่มต้นของคุณแล้ว",
+      "unpinnedTitle": "เลิกปักหมุดฟอรัม",
+      "unpinnedDescription": "หน้าแรกของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
     },
+    "buttons": {
+      "createTopic": "បង្កើតប្រធានបទ",
+      "loadMore": "ផ្ទុកបន្ថែម",
+      "loadingMore": "កំពុងផ្ទុក...",
+      "joinDiscussion": "เข้าร่วมการสนทนา"
+    },
+    "lastActivity": "กิจกรรมล่าสุดเมื่อ {time} ที่แล้ว",
+    "notFound": {
+      "title": "រកមិនឃើញប្រធានបទที่ตรงกัน",
+      "tryDifferentSearch": "ลองใช้คำค้นหาอื่น",
+      "beTheFirst": "จงเป็นคนแรกที่สร้าง!",
+      "button": "បង្កើតប្រធានបទ"
+    },
+    "errors": {
+      "loadTitle": "ข้อผิดพลาดในการโหลด",
+      "loadDescription": "เกิดข้อผิดพลาดขณะดึงข้อมูลหัวข้อฟอรัม"
+    },
+    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
+    "postMeta": "ដោយ {author} • {date}",
     "create": {
       "backLink": "ត្រឡប់ទៅវេទិកា",
       "title": "ចាប់ផ្តើមប្រធានបទពិភាក្សាថ្មី",
@@ -1366,7 +1363,36 @@
       },
       "success": {
         "title": "สร้างหัวข้อแล้ว!",
-        "description": "หัวข้อสนทนาใหม่ของคุณพร้อมใช้งานแล้ว"
+        "description": "หัวข้อสนทนาใหม่ของคุณพร้อมให้ใช้งานแล้ว"
+      }
+    },
+    "topic": {
+      "backLink": "ត្រឡប់ទៅគ្រប់វេទិកាទាំងអស់",
+      "buttons": {
+        "createPost": "បង្កើតការបង្ហោះ",
+        "loadMore": "ផ្ទុកការបង្ហោះបន្ថែម",
+        "loadingMore": "កំពុងផ្ទុក..."
+      },
+      "postMeta": "ដោយ {author} • {date}",
+      "noPosts": {
+        "title": "ยังไม่มีการโพสต์",
+        "description": "จงเป็นคนแรกที่เริ่มการสนทนาในหัวข้อนี้",
+        "button": "ចាប់ផ្តើមការពិភាក្សា"
+      },
+      "notFound": {
+        "title": "រកមិនឃើញប្រធានបទ",
+        "description": "ប្រធានបទสนทนาที่คุณกำลังมองหาไม่มีอยู่จริง หรืออาจถูกย้ายไปแล้ว",
+        "backButton": "ត្រឡប់ទៅវេទិកា"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "ข้อผิดพลาดในการโหลด",
+          "description": "ไม่สามารถโหลดรายละเอียดของหัวข้อนี้ได้"
+        },
+        "loadPosts": {
+          "title": "ข้อผิดพลาดในการโหลด",
+          "description": "ไม่สามารถโหลดโพสต์สำหรับหัวข้อนี้ได้"
+        }
       }
     },
     "createPost": {
@@ -1451,164 +1477,139 @@
         },
         "emptyReply": "ការឆ្លើយតបរបស់អ្នកមិនអាចว่างเปล่าได้"
       }
-    },
-    "pinning": {
-      "pinnedTitle": "វេទិកាที่ปักหมุด",
-      "pinnedDescription": "หน้าฟอรัมเป็นหน้าแรกเริ่มต้นของคุณแล้ว",
-      "unpinnedTitle": "เลิกปักหมุดฟอรัม",
-      "unpinnedDescription": "หน้าแรกของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
-    },
-    "buttons": {
-      "createTopic": "បង្កើតប្រធានបទ",
-      "loadMore": "ផ្ទុកបន្ថែម",
-      "loadingMore": "កំពុងផ្ទុក...",
-      "joinDiscussion": "เข้าร่วมการสนทนา"
-    },
-    "lastActivity": "กิจกรรมล่าสุดเมื่อ {time} ที่แล้ว",
-    "notFound": {
-      "title": "រកមិនឃើញប្រធានបទที่ตรงกัน",
-      "tryDifferentSearch": "ลองใช้คำค้นหาอื่น",
-      "beTheFirst": "จงเป็นคนแรกที่สร้าง!",
-      "button": "បង្កើតប្រធានបទ"
-    },
-    "errors": {
-      "loadTitle": "ข้อผิดพลาดในการโหลด",
-      "loadDescription": "เกิดข้อผิดพลาดขณะดึงข้อมูลหัวข้อฟอรัม"
-    },
-    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
-    "postMeta": "ដោយ {author} • {date}"
+    }
   },
   "GroupsPage": {
-    "title": "Community Groups",
-    "description": "Find and join groups based on your interests, location, or expertise.",
-    "createGroupButton": "Create New Group",
-    "searchPlaceholder": "Search for groups...",
-    "notFound": "No groups found.",
+    "title": "ក្រុមសហគមន៍",
+    "description": "ค้นหาและเข้าร่วมกลุ่มตามความสนใจ สถานที่ หรือความเชี่ยวชาญของคุณ",
+    "createGroupButton": "បង្កើតក្រុមថ្មី",
+    "searchPlaceholder": "ស្វែងរកกลุ่ม...",
+    "notFound": "រកមិនឃើញกลุ่ม",
     "detail": {
-      "backLink": "Back to All Groups",
-      "discussionsTitle": "Discussions",
-      "startDiscussionButton": "Start a Discussion",
-      "by": "by {author}",
-      "noDiscussions": "No discussions started yet.",
-      "beTheFirst": "Be the first one to start a discussion!",
-      "actionsTitle": "Group Actions",
-      "leaveButton": "Leave Group",
-      "leavingButton": "Leaving...",
-      "joinButton": "Join Group",
-      "requestJoinButton": "Request to Join",
-      "joiningButton": "Joining...",
-      "loginToJoinButton": "Login to Join",
-      "membersTitle": "{memberCount} Members",
+      "backLink": "ត្រឡប់ไปที่กลุ่มทั้งหมด",
+      "discussionsTitle": "ការពិភាក្សា",
+      "startDiscussionButton": "ចាប់ផ្តើមការពិភាក្សា",
+      "by": "โดย {author}",
+      "noDiscussions": "ยังไม่มีการเริ่มการสนทนา",
+      "beTheFirst": "จงเป็นคนแรกที่เริ่มการสนทนา!",
+      "actionsTitle": "การดำเนินการของกลุ่ม",
+      "leaveButton": "ออกจากกลุ่ม",
+      "leavingButton": "កំពុងออกจาก...",
+      "joinButton": "เข้าร่วมกลุ่ม",
+      "requestJoinButton": "ขอเข้าร่วม",
+      "joiningButton": "កំពុងเข้าร่วม...",
+      "loginToJoinButton": "ចូលគណនីเพื่อเข้าร่วม",
+      "membersTitle": "{memberCount} សមាជិក",
       "notFound": {
-        "title": "Group Not Found",
-        "description": "The group you are looking for does not exist.",
-        "backButton": "Back to Groups"
+        "title": "រកមិនឃើញกลุ่ม",
+        "description": "กลุ่มที่คุณกำลังมองหาไม่มีอยู่จริง",
+        "backButton": "ត្រឡប់ទៅกลุ่ม"
       },
       "toast": {
         "loadError": {
-          "title": "Error",
-          "description": "Could not load group data."
+          "title": "ข้อผิดพลาด",
+          "description": "ไม่สามารถโหลดข้อมูลกลุ่มได้"
         },
-        "loginToJoin": "Please log in to join this group.",
-        "joinSuccess": "You have successfully joined the group!",
-        "joinError": "Failed to join the group.",
-        "leaveSuccess": "You have left the group.",
-        "leaveError": "Failed to leave the group."
+        "loginToJoin": "โปรดลงชื่อเข้าใช้เพื่อเข้าร่วมกลุ่มนี้",
+        "joinSuccess": "คุณเข้าร่วมกลุ่มเรียบร้อยแล้ว!",
+        "joinError": "การเข้าร่วมกลุ่มล้มเหลว",
+        "leaveSuccess": "คุณออกจากกลุ่มแล้ว",
+        "leaveError": "การออกจากกลุ่มล้มเหลว"
       }
     },
     "create": {
-      "backLink": "Back to Groups",
-      "title": "Create a New Group",
-      "description": "Start a new community around a shared interest or project.",
+      "backLink": "ត្រឡប់ទៅกลุ่ม",
+      "title": "បង្កើតក្រុមថ្មី",
+      "description": "เริ่มต้นชุมชนใหม่เกี่ยวกับความสนใจหรือโครงการร่วมกัน",
       "form": {
-        "nameLabel": "Group Name",
-        "namePlaceholder": "e.g., Organic Coffee Growers of Kenya",
-        "descriptionLabel": "Group Description",
-        "descriptionPlaceholder": "What is the purpose of this group?",
-        "publicLabel": "Public Group (anyone can join)",
-        "submitButton": "Create Group",
-        "submittingButton": "Creating..."
+        "nameLabel": "ឈ្មោះกลุ่ม",
+        "namePlaceholder": "ឧ: ผู้ปลูกกาแฟอินทรีย์แห่งเคนยา",
+        "descriptionLabel": "คำอธิบายกลุ่ม",
+        "descriptionPlaceholder": "กลุ่มนี้เกี่ยวกับอะไร?",
+        "publicLabel": "กลุ่มสาธารณะ (ทุกคนสามารถเข้าร่วมได้)",
+        "submitButton": "បង្កើតក្រុម",
+        "submittingButton": "កំពុងបង្កើត..."
       },
       "toast": {
         "auth": {
-          "title": "Authentication Required",
-          "description": "You must be logged in to create a group."
+          "title": "ต้องการการรับรองความถูกต้อง",
+          "description": "คุณต้องลงชื่อเข้าใช้เพื่อสร้างกลุ่ม"
         },
         "incomplete": {
-          "title": "Incomplete Information",
-          "description": "Please provide a name and description for your group."
+          "title": "ข้อมูลไม่ครบถ้วน",
+          "description": "โปรดระบุชื่อและคำอธิบายสำหรับกลุ่มของคุณ"
         },
         "error": {
-          "title": "Creation Failed",
-          "description": "Could not create the group. Please try again."
+          "title": "การสร้างล้มเหลว",
+          "description": "ไม่สามารถสร้างกลุ่มได้ โปรดลองอีกครั้ง"
         },
         "success": {
-          "title": "Group Created!",
-          "description": "Your new group is now live."
+          "title": "สร้างกลุ่มแล้ว!",
+          "description": "กลุ่มใหม่ของคุณพร้อมให้ใช้งานแล้ว"
         }
       }
     },
     "createPost": {
-      "backLink": "Back to Group",
-      "title": "Start a New Post",
-      "description": "Share an update or ask a question within the group.",
+      "backLink": "ត្រឡប់ទៅกลุ่ม",
+      "title": "ចាប់ផ្តើមការបង្ហោះថ្មី",
+      "description": "แบ่งปันการอัปเดตหรือถามคำถามภายในกลุ่ม",
       "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter a clear and concise title",
-        "contentLabel": "Your Content",
-        "contentPlaceholder": "Write your post here...",
-        "submitButton": "Publish Post",
-        "submittingButton": "Publishing..."
+        "titleLabel": "ចំណងជើងការបង្ហោះ",
+        "titlePlaceholder": "បញ្ចូលចំណងជើងที่ชัดเจนและกระชับ",
+        "contentLabel": "មាតិការបស់អ្នក",
+        "contentPlaceholder": "សរសេរការបង្ហោះរបស់អ្នកនៅទីនេះ...",
+        "submitButton": "ផ្សព្វផ្សាយការបង្ហោះ",
+        "submittingButton": "កំពុងផ្សព្វផ្សាយ..."
       },
       "toast": {
         "auth": {
-          "title": "Authentication Required",
-          "description": "You must be a member to post in this group."
+          "title": "ต้องการการรับรองความถูกต้อง",
+          "description": "คุณต้องเป็นสมาชิกเพื่อโพสต์ในกลุ่มนี้"
         },
         "incomplete": {
-          "title": "Incomplete Post",
-          "description": "Please provide a title and content for your post."
+          "title": "ការបង្ហោះមិនពេញលេញ",
+          "description": "โปรดระบุทั้งชื่อและเนื้อหาสำหรับโพสต์ของคุณ"
         },
         "error": {
-          "title": "Post Failed",
-          "description": "Could not publish your post. Please try again."
+          "title": "ការបង្ហោះล้มเหลว",
+          "description": "ไม่สามารถเผยแพร่ข้อความของคุณได้ โปรดลองอีกครั้ง"
         },
         "success": {
-          "title": "Post Published!",
-          "description": "Your post is now live in the group."
+          "title": "ផ្សព្វផ្សាយការបង្ហោះแล้ว!",
+          "description": "โพสต์ของคุณพร้อมให้ใช้งานในกลุ่มแล้ว"
         }
       }
     },
     "postDetail": {
-      "backLink": "Back to {groupName}",
-      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
-      "noReplies": "No replies yet. Be the first to respond!",
-      "loadMoreButton": "Load More Replies",
-      "loadingMoreButton": "Loading...",
-      "yourReplyTitle": "Your Reply",
-      "replyPlaceholder": "Write your reply here...",
-      "replySubmitButton": "Post Reply",
-      "replySubmittingButton": "Posting...",
+      "backLink": "ត្រឡប់ទៅ {groupName}",
+      "repliesTitle": "{count, plural, =0 {គ្មានការឆ្លើយតប} =1 {1 ការឆ្លើយតប} other {{count} ការឆ្លើយតប}}",
+      "noReplies": "ยังไม่มีการตอบกลับ เป็นคนแรกที่ตอบกลับ!",
+      "loadMoreButton": "ផ្ទុកការឆ្លើយតបបន្ថែម",
+      "loadingMoreButton": "កំពុងផ្ទុក...",
+      "yourReplyTitle": "ការឆ្លើយតបរបស់អ្នក",
+      "replyPlaceholder": "សរសេរការឆ្លើយតបរបស់អ្នកនៅទីនេះ...",
+      "replySubmitButton": "បង្ហោះការឆ្លើយតប",
+      "submittingButton": "កំពុងបង្ហោះ...",
       "notFound": {
-        "title": "Post Not Found",
-        "description": "The post you are looking for does not exist.",
-        "backButton": "Back to Group"
+        "title": "រកមិនឃើញការបង្ហោះ",
+        "description": "โพสต์ที่คุณกำลังมองหาไม่มีอยู่จริง",
+        "backButton": "ត្រឡប់ទៅกลุ่ม"
       },
       "toast": {
         "loadPostError": {
-          "title": "Error",
-          "description": "Could not load post details."
+          "title": "ข้อผิดพลาด",
+          "description": "ไม่สามารถโหลดรายละเอียดโพสต์ได้"
         },
         "loadRepliesError": {
-          "title": "Error",
-          "description": "Could not load replies."
+          "title": "ข้อผิดพลาด",
+          "description": "ไม่สามารถโหลดการตอบกลับได้"
         },
-        "emptyReply": "Your reply cannot be empty.",
+        "emptyReply": "ការឆ្លើយតបរបស់អ្នកមិនអាចว่างเปล่าได้",
         "submitError": {
-          "title": "Reply Failed",
-          "description": "Could not post your reply."
+          "title": "ការឆ្លើយតบล้มเหลว",
+          "description": "ไม่สามารถโพสต์การตอบกลับของคุณได้"
         },
-        "replySuccess": "Reply posted!"
+        "replySuccess": "โพสต์การตอบกลับแล้ว!"
       }
     }
   },
@@ -1859,7 +1860,43 @@
       "updateSuccessDescription": "Le statut de la demande a été défini sur {status}.",
       "updateFailTitle": "Mise à Jour Échouée"
     }
+  },
+  "pinboardPage": {
+    "title": "Tableau d'épingles",
+    "description": "Votre espace personnel pour enregistrer et organiser des éléments de toute la plateforme.",
+    "comingSoonTitle": "Bientôt disponible !",
+    "comingSoonDescription": "Le Tableau d'épingles vous permettra d'enregistrer des annonces du marché, des publications de forum, des profils, et plus encore pour un accès facile plus tard.",
+    "stayTuned": "Restez à l'écoute pour les mises à jour."
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de bord de la durabilité",
+    "description": "Suivez et améliorez l'impact environnemental de vos pratiques agricoles.",
+    "carbonFootprint": "Empreinte carbone",
+    "waterEfficiency": "Efficacité de l'eau",
+    "biodiversityScore": "Score de biodiversité",
+    "practicesTitle": "Pratiques durables enregistrées",
+    "certificationsTitle": "Certifications actives",
+    "metricCard": {
+      "trendText": "par rapport au mois dernier"
+    },
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier enregistrement"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expire le"
+    },
+    "auth": {
+      "title": "Veuillez vous connecter",
+      "description": "Vous devez être connecté pour voir votre tableau de bord de durabilité.",
+      "button": "Se connecter"
+    },
+    "noData": {
+      "title": "Données non disponibles",
+      "description": "Nous n'avons pas pu charger vos données de durabilité pour le moment."
+    }
   }
 }
 
-    

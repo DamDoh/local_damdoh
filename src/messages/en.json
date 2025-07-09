@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -1098,7 +1099,7 @@
       "whyItWorksTitle": "Why It Works",
       "principles": [
         { "id": "no-tillage", "title": "No-Tillage", "icon": "Shield", "summary": "Ploughing is detrimental to soil structure and life. FGW avoids ploughing altogether, fostering healthy, resilient soil.", "howTo": ["Stop all ploughing or turning of the soil.", "Utilize permanent planting stations for your crops."], "whyItWorks": ["Protects the natural soil structure and pores.", "Prevents erosion of valuable topsoil.", "Promotes a healthy ecosystem of microorganisms."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "A field with no plough marks", "dataAiHint": "no-till farming" },
-        { "id": "mulching", "title": "God's Blanket (Mulching)", "icon": "Leaf", "summary": "The soil was never designed to be naked. A thick blanket of mulch protects the soil, retains moisture, and provides nutrients.", "howTo": ["Apply a thick layer of organic matter (at least 4 inches) over the entire soil surface.", "Plant directly through the mulch.", "Continuously add new mulch as the old decomposes."], "whyItWorks": ["Significantly reduces water evaporation.", "Suppresses weed growth.", "Feeds soil life as it decomposes."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "A field covered in a thick layer of straw mulch", "dataAiHint": "mulch field" },
+        { "id": "mulching", "title": "God's Blanket (Mulching)", "icon": "Leaf", "summary": "The soil was never designed to be naked. a thick blanket of mulch protects the soil, retains moisture, and provides nutrients.", "howTo": ["Apply a thick layer of organic matter (at least 4 inches) over the entire soil surface.", "Plant directly through the mulch.", "Continuously add new mulch as the old decomposes."], "whyItWorks": ["Significantly reduces water evaporation.", "Suppresses weed growth.", "Feeds soil life as it decomposes."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "A field covered in a thick layer of straw mulch", "dataAiHint": "mulch field" },
         { "id": "high-standards", "title": "High Standards", "icon": "CheckCircle", "summary": "FGW emphasizes the importance of excellence in all aspects of farming—from timing to execution—as an act of worship.", "howTo": ["Execute all tasks on time and to the best of your ability.", "Pay attention to detail, from planting depth to spacing.", "Keep the farm neat and well-organized."], "whyItWorks": ["Maximizes the crop's yield potential.", "Minimizes losses from pests and diseases.", "Reflects the excellence of the Creator."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Neatly arranged planting rows", "dataAiHint": "organized farm rows" }
       ]
     },
@@ -1111,7 +1112,7 @@
         { "id": "why-start-indoors", "title": "Why Start Indoors?", "icon": "Lightbulb", "intro": "Starting seedlings indoors has several key advantages:", "points": [{ "term": "Head Start", "def": "Begin growing earlier, especially in climates with short growing seasons." }, { "term": "Protection", "def": "Shield tender seedlings from pests, diseases, and extreme weather." }, { "term": "Control", "def": "Manage water, light, and temperature for optimal germination." }, { "term": "Economy", "def": "Growing from seed is often more cost-effective than buying transplants." }] },
         { "id": "containers-media", "title": "Containers & Media", "icon": "Package", "intro": "Choosing the right container and soil is crucial.", "points": [{ "term": "Containers", "def": "Use seed trays, peat pots, soil blocks, or even recycled containers like egg cartons. Ensure good drainage." }, { "term": "Media", "def": "Use a sterile, fine-textured seed-starting mix. Avoid heavy garden soil, which can compact and harbor disease." }, { "term": "Sterilization", "def": "If reusing containers, sterilize them with a bleach solution (1 part bleach to 9 parts water) to prevent disease." }] },
         { "id": "planting-seeds", "title": "Planting Seeds", "icon": "Grid", "intro": "Each seed has specific needs, but here are some general guidelines:", "steps": ["Moisten your seed-starting mix before filling containers. It should be damp, not soggy.", "Fill containers and tamp the mix down lightly.", "Plant seeds at the depth recommended on the seed packet. A good rule of thumb is to plant them about twice as deep as their size.", "Sow 2-3 seeds per cell or pot to ensure germination. You can thin out the weaker seedlings later.", "Cover seeds lightly with mix and gently firm down to ensure good seed-to-soil contact.", "Label your containers clearly with the plant variety and date of planting!"] },
-        { "id": "watering-light-temp", "title": "Water, Light & Temperature", "icon": "Sun", "intro": "After planting, the right environment is key to success.", "points": [{ "term": "Water", "def": "Keep the soil consistently moist but not wet. It's best to water from the bottom or use a fine mist sprayer to avoid dislodging seeds. Cover trays with a clear dome or plastic wrap to retain humidity until seeds sprout." }, { "term": "Light", "def": "Most seeds don't need light to germinate, but once they sprout, they need lots of it. A sunny, south-facing window may be enough, but grow lights (14-16 hours a day) will prevent seedlings from becoming tall and weak ('leggy')." }, { "term": "Temperature", "def": "Most seeds germinate best in warm temperatures (around 70-75°F or 21-24°C). A heat mat under the seed trays can significantly speed up germination." }] },
+        { "id": "watering-light-temp", "title": "Water, Light & Temperature", "icon": "Sun", "intro": "After planting, the right environment is key to success.", "points": [{ "term": "Water", "def": "Keep the soil consistently moist but not wet. It's best to water from the bottom or use a fine mist sprayer to avoid dislodging seeds. Cover trays with a clear dome or plastic wrap to retain humidity until seeds sprout." }, { "term": "Light", "def": "Most seeds don't need light to germinate, but once they sprout, they need lots of it. A sunny, south-facing window may be enough, but grow lights (14-16 hours a day) will prevent seedlings from becoming tall and weak ('leggy')." }, { "term": "Temperature", "def": "Most seeds germinate best in warm temperatures (around 70-75°F or 21-24°C). a heat mat under the seed trays can significantly speed up germination." }] },
         { "id": "hardening-off", "title": "Hardening Off", "icon": "Leaf", "intro": "Before you can move your seedlings outside, you must gradually acclimate them to outdoor conditions.", "steps": ["Start about 7-10 days before you plan to transplant.", "Place your seedlings outside in a protected spot (out of direct sun and strong wind) for an hour.", "Increase the amount of time they spend outside by 1-2 hours each day.", "Gradually expose them to more direct sun and wind.", "Reduce watering slightly to prepare them for garden conditions."] },
         { "id": "transplanting", "title": "Transplanting", "icon": "CheckCircle", "intro": "The final step is moving your strong seedlings into the garden.", "steps": ["Choose a cloudy day or late afternoon to minimize transplant shock.", "Water your seedlings and the garden bed thoroughly a few hours before transplanting.", "Gently loosen the soil around the seedling and try to keep the root ball as intact as possible.", "Plant them at the same depth they were growing in the container.", "Firm the soil around the seedling and water well to eliminate air pockets."] }
       ]
@@ -1129,7 +1130,7 @@
         { "id": "vegetable-garden", "title": "Vegetable Garden (Approx. 120sqm)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Lush vegetable garden", "dataAiHint": "vegetable garden", "description": ["The heart of the farm, providing a continuous supply of diverse and nutritious vegetables for family nutrition and market sales."], "details": [{ "title": "Growing Methods", "content": ["Raised beds, intensive planting, and intercropping are used to maximize space and reduce pests."] }, { "title": "Output", "content": ["Year-round production of leafy greens, fruit-bearing vegetables, and root crops."] }] },
         { "id": "fish-pond", "title": "Fish Pond (Approx. 20sqm)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Small fish pond", "dataAiHint": "fish pond aquaculture", "description": ["A valuable source of protein and income. The pond is integrated with the garden's irrigation system."], "details": [{ "title": "Species", "content": ["Tilapia or catfish are good choices due to their resilience and fast growth rates."] }, { "title": "Synergy", "content": ["Water from the pond, rich in fish excrement, is used as a natural fertilizer for the vegetable gardens."] }] },
         { "id": "poultry-unit", "title": "Poultry Unit (Approx. 20sqm)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Chickens in a run", "dataAiHint": "free range chickens", "description": ["Provides eggs and meat for the family and market. Their manure is a key ingredient for the compost pile."], "details": [{ "title": "Housing", "content": ["A small coop with a secure run area, allowing chickens to forage and contribute to pest control."] }, { "title": "Feed Supplement", "content": ["Garden scraps and insects can supplement commercial feed, reducing costs."] }] },
-        { "id": "compost-system", "title": "Composting System (Approx. 20sqm)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Compost pile", "dataAiHint": "compost pile", "description": ["The farm's recycling engine. Turns kitchen scraps, garden waste, and animal manure into nutrient-rich compost, reducing the need for chemical fertilizers."], "subSections": [{ "title": "Diversification", "content": ["The combination of different types of crops, animals, and fish reduces the risk of total failure."] }, { "title": "Nutrient Cycling", "content": ["Animal manure and plant waste are composted to fertilize the soil. Pond water irrigates and fertilizes the plants."] }, { "title": "Water Efficiency", "content": ["The pond acts as a water reservoir, and reusing nutrient-rich water reduces overall consumption."] }] }
+        { "id": "compost-system", "title": "Composting System (Approx. 20sqm)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Compost pile", "dataAiHint": "compost pile", "description": ["The farm's recycling engine. Turns kitchen scraps, garden waste, and animal manure into nutrient-rich compost, reducing the need for chemical fertilizers."], "subSections": [{ "title": "Diversification", "content": ["The combination of different types of crops, animals, and fish reduces the risk of total failure."] }, { "title": "Nutrient Cycling", "content": ["Animal manure and plant waste are composted to fertilize the soil. Pond water irrigates and fertilizes the plants."] }, { "title": "Water Efficiency", "content": ["The pond acts as a water reservoir, and the reusing of nutrient-rich water reduces the overall consumption."] }] }
       ]
     },
     "laborPage": {
@@ -1290,7 +1291,7 @@
     "noConnections": "You haven't made any connections yet.",
     "requestsTitle": "Connection Requests",
     "requestsDescription": "Accept or decline requests to grow your network.",
-    "sentTimeAgo": "Sent {timeAgo}",
+    "sentTimeAgo": "Sent {timeAgo} ago",
     "noRequests": "You have no pending connection requests."
   },
   "agentToolsPage": {
@@ -1588,7 +1589,7 @@
       "yourReplyTitle": "Your Reply",
       "replyPlaceholder": "Write your reply here...",
       "replySubmitButton": "Post Reply",
-      "replySubmittingButton": "Posting...",
+      "submittingButton": "Posting...",
       "notFound": {
         "title": "Post Not Found",
         "description": "The post you are looking for does not exist.",
@@ -1671,7 +1672,7 @@
       "journeyTitle": "Product Journey",
       "journeyDescription": "Follow the complete journey of this batch from the farm.",
       "noEventsFound": "No events have been logged for this batch yet.",
-      "noEventDetails": "No additional details were provided for this event.",
+      "noEventDetails": "No additional details provided for this event.",
       "geoLocationLabel": "Geolocation",
       "sustainablyGrownTitle": "Sustainably Grown",
       "sustainablyGrownDescription": "This product was grown using sustainable and organic-friendly inputs logged on the DamDoh platform.",
@@ -1859,7 +1860,43 @@
       "updateSuccessDescription": "Application status has been set to {status}.",
       "updateFailTitle": "Update Failed"
     }
+  },
+  "pinboardPage": {
+    "title": "Tablero de Pines",
+    "description": "Tu espacio personal para guardar y organizar elementos de toda la plataforma.",
+    "comingSoonTitle": "¡Próximamente!",
+    "comingSoonDescription": "El Tablero de Pines te permitirá guardar anuncios del mercado, publicaciones de foros, perfiles y más para un fácil acceso posterior.",
+    "stayTuned": "Mantente atento a las actualizaciones."
+  },
+  "sustainabilityPage": {
+    "title": "Panel de Sostenibilidad",
+    "description": "Rastrea y mejora el impacto ambiental de tus prácticas agrícolas.",
+    "carbonFootprint": "Huella de Carbono",
+    "waterEfficiency": "Eficiencia del Agua",
+    "biodiversityScore": "Puntaje de Biodiversidad",
+    "practicesTitle": "Registro de Prácticas Sostenibles",
+    "certificationsTitle": "Certificaciones Activas",
+    "metricCard": {
+      "trendText": "desde el mes pasado"
+    },
+    "practicesTable": {
+      "practice": "Práctica",
+      "lastLogged": "Último Registro"
+    },
+    "certificationsTable": {
+      "certification": "Certificación",
+      "status": "Estado",
+      "expiry": "Expira"
+    },
+    "auth": {
+      "title": "Por favor Inicia Sesión",
+      "description": "Necesitas iniciar sesión para ver tu panel de sostenibilidad.",
+      "button": "Iniciar Sesión"
+    },
+    "noData": {
+      "title": "Datos no Disponibles",
+      "description": "No pudimos cargar tus datos de sostenibilidad en este momento."
+    }
   }
 }
 
-    

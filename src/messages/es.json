@@ -935,7 +935,7 @@
         "noDetails": "No se proporcionaron detalles adicionales.",
         "observationType": "Tipo de Observación",
         "details": "Detalles",
-        "aiDiagnosis": "Diagnóstico de IA"
+        "aiDiagnosis": "Diagnóstico por IA"
       },
       "toast": {
         "notFound": "Cultivo no encontrado.",
@@ -1526,7 +1526,7 @@
         "descriptionLabel": "Descripción del Grupo",
         "descriptionPlaceholder": "¿Cuál es el propósito de este grupo?",
         "publicLabel": "Grupo Público (cualquiera puede unirse)",
-        "submitButton": "Crear Grupo",
+        "submitButton": "Crear el Grupo",
         "submittingButton": "Creando..."
       },
       "toast": {
@@ -1867,17 +1867,6 @@
     "comingSoonDescription": "El Tablero de Pines te permitirá guardar anuncios del mercado, publicaciones de foros, perfiles y más para un fácil acceso posterior.",
     "stayTuned": "Mantente atento a las actualizaciones."
   },
-  "walletPage": {
-    "title": "Mi Billetera",
-    "description": "Gestiona tus fondos, consulta el historial de transacciones y maneja los pagos.",
-    "underDevelopmentTitle": "Función de Billetera en Desarrollo",
-    "underDevelopmentDescription": "Estamos trabajando arduamente para ofrecerte una experiencia financiera segura y fluida directamente en DamDoh. La próxima Billetera te permitirá:",
-    "feature1": "Mantener saldos de forma segura",
-    "feature2": "Realizar y recibir pagos en la plataforma",
-    "feature3": "Acceder a servicios financieros sin problemas",
-    "feature4": "Gestionar pagos a tu banco o cuenta de dinero móvil",
-    "stayTuned": "¡Mantente atento a esta emocionante función!"
-  },
   "sustainabilityPage": {
     "title": "Panel de Sostenibilidad",
     "description": "Rastrea y mejora el impacto ambiental de tus prácticas agrícolas.",
@@ -1906,33 +1895,6 @@
     "noData": {
       "title": "Datos no Disponibles",
       "description": "No pudimos cargar tus datos de sostenibilidad en este momento."
-    }
-  },
-  "industryNewsPage": {
-    "title": "Noticias e Informes de la Industria",
-    "description": "Mantente informado con las últimas tendencias, investigaciones y actualizaciones de políticas en la agricultura.",
-    "searchPlaceholder": "Buscar artículos e informes...",
-    "categoryPlaceholder": "Filtrar por categoría...",
-    "allCategories": "Todas las Categorías",
-    "readButton": "Leer Artículo",
-    "sourceLabel": "Fuente",
-    "publishedLabel": "Publicado",
-    "categoryLabel": "Categoría",
-    "news1": {
-      "title": "Los Precios Mundiales de los Granos Aumentan en Medio de Interrupciones en la Cadena de Suministro",
-      "excerpt": "Un nuevo informe de AgriMarket Insights indica un aumento del 15% en los precios mundiales del trigo durante el último trimestre, impulsado por cuellos de botella logísticos y eventos climáticos regionales. Los analistas predicen una volatilidad continua."
-    },
-    "news2": {
-      "title": "La UE Implementa Regulaciones más Estrictas sobre Embalajes Sostenibles",
-      "excerpt": "A partir de este mes, todos los productos agrícolas importados a la Unión Europea deben cumplir con nuevos estándares de reciclabilidad y reducción de plástico. Se insta a los exportadores a revisar sus soluciones de embalaje para garantizar el cumplimiento."
-    },
-    "news3": {
-      "title": "Estudio Muestra que la Agricultura sin Labranza Aumenta la Captura de Carbono en el Suelo hasta en un 25%",
-      "excerpt": "Un estudio de una década publicado en 'Sustainable Farming Today' confirma que las prácticas de agricultura sin labranza y cultivos de cobertura mejoran significativamente la materia orgánica del suelo y la captura de carbono, ofreciendo un camino viable para una agricultura climáticamente inteligente."
-    },
-    "noNews": {
-      "title": "No se encontraron Artículos de Noticias",
-      "description": "No hay artículos de noticias disponibles en este momento. Por favor, vuelve a consultar más tarde para las últimas actualizaciones."
     }
   },
   "admin": {
@@ -2031,4 +1993,3 @@
     }
   }
 }
-
