@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -508,5 +509,164 @@
       "content": ""
     },
     "conclusion": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please {contactLink}."
+  },
+  "Forums": {
+    "title": "Forum Topics",
+    "description": "Browse and create discussion topics",
+    "lastActivity": "Last activity {time}",
+    "searchPlaceholder": "Search topics...",
+    "buttons": {
+      "createTopic": "Create Topic",
+      "joinDiscussion": "Join Discussion",
+      "pinHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin from Homepage"
+    },
+    "notFound": {
+      "title": "No Topics Found",
+      "tryDifferentSearch": "Try using a different search term.",
+      "beTheFirst": "Be the first to create a topic."
+    },
+    "pinning": {
+      "pinnedTitle": "Homepage Pinned!",
+      "pinnedDescription": "This forum will now appear as your homepage.",
+      "unpinnedTitle": "Homepage Unpinned!",
+      "unpinnedDescription": "This forum will no longer appear as your homepage."
+    },
+    "errors": {
+      "loadTitle": "Error Loading Topics",
+      "loadDescription": "An error occurred while loading forum topics.",
+      "auth": {
+        "title": "Not Authenticated",
+        "description": "You must be logged in to create a topic."
+      },
+      "incomplete": {
+        "title": "Incomplete Fields",
+        "description": "Please fill in all required fields."
+      },
+      "general": {
+        "title": "Error",
+        "description": "An error occurred while creating the topic."
+      }
+    },
+    "create": {
+      "backLink": "Back to Forums",
+      "title": "Create New Topic",
+      "description": "Start a new discussion in the forums.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "Enter your topic name",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Briefly describe your topic",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
+      },
+      "success": {
+        "title": "Topic Created!",
+        "description": "Your new topic is now live."
+      }
+    },
+    "topic": {
+      "backLink": "Back to Forum Topics",
+      "buttons": {
+        "createPost": "Create Post",
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "noPosts": {
+        "title": "No Posts Yet",
+        "description": "Be the first to start a conversation in this topic.",
+        "button": "Create the First Post"
+      },
+      "notFound": {
+        "title": "Topic Not Found",
+        "description": "The topic you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error loading posts",
+          "description": "An error occurred while loading posts for this topic."
+        },
+        "loadTopic": {
+          "title": "Error loading topic",
+          "description": "An error occurred while loading the topic details."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Topic",
+      "aiHelper": {
+        "title": "AI Helper",
+        "description": "Generate a post draft based on a prompt.",
+        "promptLabel": "AI Prompt",
+        "promptPlaceholder": "Enter a brief description of the post you want to generate...",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create New Post",
+      "description": "Add a new post to this topic.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter the title of your post",
+        "contentLabel": "Post Content",
+        "contentPlaceholder": "Write your post content here...",
+        "submitButton": "Create Post",
+        "submittingButton": "Submitting..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "AI Draft Generated!",
+          "description": "A draft has been generated for you."
+        },
+        "title": "Post Created!",
+        "description": "Your post has been successfully created."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "AI Prompt Missing", "description": "Please provide a prompt for the AI helper." },
+        "aiDraft": { "title": "AI Draft Error", "description": "Failed to generate AI draft." },
+        "incomplete": { "title": "Incomplete Fields", "description": "Please fill in all required fields." },
+        "general": { "title": "Error", "description": "An error occurred while creating the post." }
+      }
+    },
+    "postView": {
+      "backLink": "Back to {topicName}",
+      "unknownUser": "Unknown User",
+      "postMeta": "by {author} on {date}",
+      "repliesTitle": "Replies ({count})",
+      "noReplies": "No replies yet.",
+      "buttons": {
+        "loadMore": "Load More",
+        "loadingMore": "Loading More..."
+      },
+      "reply": {
+        "title": "Add a Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Add Reply",
+        "submittingButton": "Submitting...",
+        "success": "Reply added!"
+      },
+      "notFound": {
+        "title": "Post not found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error loading post",
+          "description": "An error occurred while loading the post details."
+        },
+        "loadReplies": {
+          "title": "Error loading replies",
+          "description": "An error occurred while loading replies for this post."
+        },
+        "emptyReply": "Reply cannot be empty.",
+        "submitReply": {
+          "title": "Error submitting reply",
+          "description": "An error occurred while submitting your reply."
+        }
+      }
+    }
   }
 }
+
+    

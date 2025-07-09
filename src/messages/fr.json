@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -508,5 +509,164 @@
       "content": ""
     },
     "conclusion": "Afin de résoudre une plainte concernant le Site ou de recevoir de plus amples informations sur l'utilisation du Site, veuillez {contactLink}."
+  },
+  "Forums": {
+    "title": "Sujets du Forum",
+    "description": "Parcourez et créez des sujets de discussion",
+    "lastActivity": "Dernière activité il y a {time}",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "buttons": {
+      "createTopic": "Créer un Sujet",
+      "joinDiscussion": "Rejoindre la Discussion",
+      "pinHomepage": "Épingler comme page d'accueil",
+      "unpinHomepage": "Désépingler de la page d'accueil"
+    },
+    "notFound": {
+      "title": "Aucun Sujet Trouvé",
+      "tryDifferentSearch": "Essayez avec un autre terme de recherche.",
+      "beTheFirst": "Soyez le premier à créer un sujet."
+    },
+    "pinning": {
+      "pinnedTitle": "Page d'accueil épinglée !",
+      "pinnedDescription": "Ce forum s'affichera désormais comme votre page d'accueil.",
+      "unpinnedTitle": "Page d'accueil désépinglée !",
+      "unpinnedDescription": "Ce forum ne s'affichera plus comme votre page d'accueil."
+    },
+    "errors": {
+      "loadTitle": "Erreur de Chargement des Sujets",
+      "loadDescription": "Une erreur est survenue lors du chargement des sujets du forum.",
+      "auth": {
+        "title": "Non authentifié",
+        "description": "Vous devez être connecté pour créer un sujet."
+      },
+      "incomplete": {
+        "title": "Champs Incomplets",
+        "description": "Veuillez remplir tous les champs requis."
+      },
+      "general": {
+        "title": "Erreur",
+        "description": "Une erreur est survenue lors de la création du sujet."
+      }
+    },
+    "create": {
+      "backLink": "Retour aux Forums",
+      "title": "Créer un Nouveau Sujet",
+      "description": "Lancez une nouvelle discussion dans les forums.",
+      "form": {
+        "nameLabel": "Nom du Sujet",
+        "namePlaceholder": "Entrez le nom de votre sujet",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Décrivez brièvement votre sujet",
+        "submitButton": "Créer le Sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "success": {
+        "title": "Sujet Créé !",
+        "description": "Votre nouveau sujet est maintenant en ligne."
+      }
+    },
+    "topic": {
+      "backLink": "Retour aux Sujets du Forum",
+      "buttons": {
+        "createPost": "Créer une Publication",
+        "loadMore": "Charger Plus",
+        "loadingMore": "Chargement en cours..."
+      },
+      "noPosts": {
+        "title": "Aucune Publication pour l'instant",
+        "description": "Soyez le premier à lancer une conversation dans ce sujet.",
+        "button": "Créer la Première Publication"
+      },
+      "notFound": {
+        "title": "Sujet non trouvé",
+        "description": "Le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retour aux Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des publications",
+          "description": "Une erreur est survenue lors du chargement des publications pour ce sujet."
+        },
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Une erreur est survenue lors du chargement des détails du sujet."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au Sujet",
+      "aiHelper": {
+        "title": "Assistant IA",
+        "description": "Générez un brouillon de publication à partir d'une invite.",
+        "promptLabel": "Invite IA",
+        "promptPlaceholder": "Entrez une brève description de la publication que vous souhaitez générer...",
+        "generateButton": "Générer un Brouillon",
+        "generatingButton": "Génération en cours..."
+      },
+      "title": "Créer une Nouvelle Publication",
+      "description": "Ajoutez une nouvelle publication à ce sujet.",
+      "form": {
+        "titleLabel": "Titre de la Publication",
+        "titlePlaceholder": "Entrez le titre de votre publication",
+        "contentLabel": "Contenu de la Publication",
+        "contentPlaceholder": "Écrivez le contenu de votre publication ici...",
+        "submitButton": "Créer la Publication",
+        "submittingButton": "Envoi en cours..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon IA Généré !",
+          "description": "Un brouillon a été généré pour vous."
+        },
+        "title": "Publication Créée !",
+        "description": "Votre publication a été créée avec succès."
+      },
+      "errors": {
+        "aiPromptMissing": { "title": "Invite IA Manquante", "description": "Veuillez fournir une invite pour l'assistant IA." },
+        "aiDraft": { "title": "Erreur du Brouillon IA", "description": "Échec de la génération du brouillon IA." },
+        "incomplete": { "title": "Champs Incomplets", "description": "Veuillez remplir tous les champs requis." },
+        "general": { "title": "Erreur", "description": "Une erreur est survenue lors de la création de la publication." }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {topicName}",
+      "unknownUser": "Utilisateur Inconnu",
+      "postMeta": "par {author} le {date}",
+      "repliesTitle": "Réponses ({count})",
+      "noReplies": "Aucune réponse pour l'instant.",
+      "buttons": {
+        "loadMore": "Charger Plus",
+        "loadingMore": "Chargement en cours..."
+      },
+      "reply": {
+        "title": "Ajouter une Réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Ajouter une Réponse",
+        "submittingButton": "Envoi en cours...",
+        "success": "Réponse ajoutée !"
+      },
+      "notFound": {
+        "title": "Publication non trouvée",
+        "description": "La publication que vous recherchez n'existe pas.",
+        "backButton": "Retour aux Forums"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement de la publication",
+          "description": "Une erreur est survenue lors du chargement des détails de la publication."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Une erreur est survenue lors du chargement des réponses pour cette publication."
+        },
+        "emptyReply": "La réponse ne peut pas être vide.",
+        "submitReply": {
+          "title": "Erreur d'envoi de la réponse",
+          "description": "Une erreur est survenue lors de l'envoi de votre réponse."
+        }
+      }
+    }
   }
 }
+
+    

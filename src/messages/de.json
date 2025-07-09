@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -501,12 +502,183 @@
     },
     "disputeResolution": {
       "heading": "9. Streitbeilegung",
-      "content": "Jede rechtliche Klage jeglicher Art, die von Ihnen oder uns erhoben wird, wird bei den Staats- und Bundesgerichten in Kenia eingeleitet oder verfolgt, und die Parteien stimmen hiermit der Zuständigkeit dieser Gerichte zu und verzichten auf alle Einreden des Fehlens der persönlichen Zuständigkeit und des Forum non conveniens."
+      "content": "Jede rechtliche Klage jeglicher Art, die von Ihnen oder uns erhoben wird, wird bei den Staats- und Bundesgerichten in Kenia eingeleitet oder verfolgt, und die Parteien stimmen hiermit der Zuständigkeit dieser Gerichte zu und verzichten auf alle Einreden des Fehlens der persönlichen Zuständigkeit und des Forum non conveniens mit Bezug auf den Gerichtsstand in diesen Staats- und Bundesgerichten."
     },
     "contactUs": {
       "heading": "10. Kontaktieren Sie uns",
       "content": ""
     },
     "conclusion": "Um eine Beschwerde bezüglich der Website zu klären oder weitere Informationen zur Nutzung der Website zu erhalten, {contactLink}."
+  },
+  "Forums": {
+    "title": "Forum-Themen",
+    "description": "Durchsuchen und erstellen Sie Diskussionsthemen",
+    "lastActivity": "Letzte Aktivität vor {{time}}",
+    "searchPlaceholder": "Themen durchsuchen...",
+    "buttons": {
+      "createTopic": "Thema erstellen",
+      "joinDiscussion": "Diskussion beitreten",
+      "pinHomepage": "Als Startseite anheften",
+      "unpinHomepage": "Von Startseite lösen"
+    },
+    "notFound": {
+      "title": "Keine Themen gefunden",
+      "tryDifferentSearch": "Versuchen Sie es mit einem anderen Suchbegriff.",
+      "beTheFirst": "Seien Sie der Erste, der ein Thema erstellt."
+    },
+    "pinning": {
+      "pinnedTitle": "Startseite angeheftet!",
+      "pinnedDescription": "Dieses Forum wird jetzt als Ihre Startseite angezeigt.",
+      "unpinnedTitle": "Startseite gelöst!",
+      "unpinnedDescription": "Dieses Forum wird nicht mehr als Ihre Startseite angezeigt."
+    },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Beim Laden der Forum-Themen ist ein Fehler aufgetreten.",
+      "auth": {
+        "title": "Nicht authentifiziert",
+        "description": "Sie müssen angemeldet sein, um ein Thema zu erstellen."
+      },
+      "incomplete": {
+        "title": "Unvollständige Felder",
+        "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+      },
+      "general": {
+        "title": "Fehler",
+        "description": "Beim Erstellen des Themas ist ein Fehler aufgetreten."
+      }
+    },
+    "create": {
+      "backLink": "Zurück zu den Foren",
+      "title": "Neues Thema erstellen",
+      "description": "Starten Sie eine neue Diskussion in den Foren.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "Geben Sie Ihren Themennamen ein",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Thema kurz",
+        "submitButton": "Thema erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "success": {
+        "title": "Thema erstellt!",
+        "description": "Ihr neues Thema ist jetzt live."
+      }
+    },
+    "topic": {
+      "backLink": "Zurück zu den Forum-Themen",
+      "buttons": {
+        "createPost": "Beitrag erstellen",
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der eine Konversation in diesem Thema startet.",
+        "button": "Ersten Beitrag erstellen"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Thema existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Beim Laden der Beiträge für dieses Thema ist ein Fehler aufgetreten."
+        },
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Beim Laden der Themendetails ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zum Thema",
+      "aiHelper": {
+        "title": "KI-Helfer",
+        "description": "Generieren Sie einen Beitragsentwurf basierend auf einer Eingabeaufforderung.",
+        "promptLabel": "KI-Eingabeaufforderung",
+        "promptPlaceholder": "Geben Sie eine kurze Beschreibung des zu generierenden Beitrags ein...",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "title": "Neuen Beitrag erstellen",
+      "description": "Fügen Sie diesem Thema einen neuen Beitrag hinzu.",
+      "form": {
+        "titleLabel": "Titel des Beitrags",
+        "titlePlaceholder": "Geben Sie den Titel Ihres Beitrags ein",
+        "contentLabel": "Inhalt des Beitrags",
+        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags...",
+        "submitButton": "Beitrag erstellen",
+        "submittingButton": "Wird gesendet..."
+      },
+      "success": {
+        "aiDraft": {
+          "title": "KI-Entwurf generiert!",
+          "description": "Ein Entwurf wurde für Sie generiert."
+        },
+        "title": "Beitrag erstellt!",
+        "description": "Ihr Beitrag wurde erfolgreich erstellt."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "KI-Eingabeaufforderung fehlt",
+          "description": "Bitte geben Sie eine Eingabeaufforderung für den KI-Helfer ein."
+        },
+         "aiDraft": {
+          "title": "KI-Entwurfsfehler",
+          "description": "Fehler beim Generieren des KI-Entwurfs."
+        },
+        "incomplete": {
+          "title": "Unvollständige Felder",
+          "description": "Bitte füllen Sie alle erforderlichen Felder aus."
+        },
+        "general": {
+          "title": "Fehler",
+          "description": "Beim Erstellen des Beitrags ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Zurück zu {{topicName}}",
+      "unknownUser": "Unbekannter Benutzer",
+      "postMeta": "von {{author}} am {{date}}",
+      "repliesTitle": "Antworten ({{count}})",
+      "noReplies": "Noch keine Antworten.",
+      "buttons": {
+        "loadMore": "Mehr laden",
+        "loadingMore": "Lädt mehr..."
+      },
+      "reply": {
+        "title": "Eine Antwort hinzufügen",
+        "placeholder": "Schreiben Sie hier Ihre Antwort...",
+        "submitButton": "Antwort hinzufügen",
+        "submittingButton": "Wird gesendet...",
+        "success": "Antwort hinzugefügt!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Beim Laden der Details des Beitrags ist ein Fehler aufgetreten."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Beim Laden der Antworten für diesen Beitrag ist ein Fehler aufgetreten."
+        },
+        "emptyReply": "Antwort darf nicht leer sein.",
+        "submitReply": {
+          "title": "Fehler beim Senden der Antwort",
+          "description": "Beim Senden Ihrer Antwort ist ein Fehler aufgetreten."
+        }
+      }
+    }
   }
 }
+
+    
