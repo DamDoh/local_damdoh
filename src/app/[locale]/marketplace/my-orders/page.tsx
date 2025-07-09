@@ -125,7 +125,7 @@ export default function MyOrdersPage() {
                         <TableBody>
                             {orders.length > 0 ? orders.map(order => (
                                 <TableRow key={order.id}>
-                                    <TableCell>{new Date(order.createdAt).toLocaleDateString()}</TableCell>
+                                    <TableCell>{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : 'N/A'}</TableCell>
                                     <TableCell className="flex items-center gap-2">
                                         <Avatar className="h-8 w-8">
                                             <AvatarImage src={order.buyerProfile.avatarUrl} />

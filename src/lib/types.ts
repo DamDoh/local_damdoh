@@ -7,7 +7,7 @@ import type {
     AgriEventSchema,
     MarketplaceRecommendationOutputSchema,
     SmartSearchInterpretationSchema
-} from './schemas'; // Updated import path
+} from './schemas'; // SINGLE SOURCE OF TRUTH
 import type { LucideIcon } from 'lucide-react';
 
 
@@ -18,6 +18,7 @@ import type { LucideIcon } from 'lucide-react';
 
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
+// FIX: Add buyerProfile to the order type to match what the backend function provides.
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
     buyerProfile: { displayName: string, avatarUrl?: string }
 };
@@ -633,6 +634,60 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+}
+
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  createdAt: string;
+  provider?: {
+    id: string;
+    displayName: string;
+    avatarUrl?: string;
+  }
+}
+
+export interface InsuranceApplication {
+    id: string;
+    applicantId: string;
+    providerId: string;
+    productId: string;
+    farmId: string;
+    coverageValue: number;
+    status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
+    submittedAt: string;
+}
+
+
+export interface ApiKey {
+    id: string;
+    userId: string;
+    key: string;
+    description: string;
+    environment: 'Sandbox' | 'Production';
+    status: 'Active' | 'Revoked';
+    createdAt: string; // ISO string
+}
+
+
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -698,7 +753,7 @@ export interface FeedItem {
   userHeadline?: string;
   content: string;
   link: string;
-  postImage?: string;
+  imageUrl?: string;
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;

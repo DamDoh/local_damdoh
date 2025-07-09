@@ -1,8 +1,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { MarketplaceCoupon, MarketplaceItem, Shop } from "./types";
+import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types"; // Import from new location
 import { _internalInitiatePayment } from "./financial-services";
-import { MarketplaceItemSchema, ShopSchema } from "@/lib/schemas"; // Import the schema
+import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas"; // Import from new location
 
 const db = admin.firestore();
 
@@ -371,7 +371,7 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
     const buyerId = checkAuth(context);
 
     // Validate incoming data
-    const validation = MarketplaceOrderSchema.omit({id: true, buyerId: true, sellerId: true, createdAt: true, updatedAt: true, totalPrice: true, currency: true}).safeParse(data);
+    const validation = MarketplaceOrderSchema.omit({id: true, buyerId: true, sellerId: true, createdAt: true, updatedAt: true, totalPrice: true, currency: true, orderId: true}).safeParse(data);
     if (!validation.success) {
       throw new functions.https.HttpsError('invalid-argument', 'Invalid order data.', validation.error.format());
     }

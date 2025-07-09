@@ -27,7 +27,11 @@ export const StakeholderProfileSchema = z.object({
   profileData: z.any().optional(), // For role-specific data
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
+  // Added for shopfront feature
+  shops: z.array(z.string()).optional(),
 });
+export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
+
 
 export const MarketplaceItemSchema = z.object({
   id: z.string(),
@@ -35,13 +39,14 @@ export const MarketplaceItemSchema = z.object({
   listingType: z.string(), // 'Product' or 'Service'
   description: z.string(),
   sellerId: z.string(),
-  price: z.number().optional(),
-  currency: z.string().optional(),
-  perUnit: z.string().optional(),
+  price: z.number().optional().nullable(),
+  currency: z.string().optional().nullable(),
+  perUnit: z.string().optional().nullable(),
   category: z.string(), // Should map to a valid category ID
-  location: z.string(),
+  location: z.string().optional().nullable(),
   imageUrl: z.string().url().optional().nullable(),
   imageUrls: z.array(z.string().url()).optional(),
+  dataAiHint: z.string().optional().nullable(),
   isSustainable: z.boolean().optional(),
   sellerVerification: z.string().optional(),
   certifications: z.array(z.string()).optional(),
@@ -49,7 +54,7 @@ export const MarketplaceItemSchema = z.object({
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
   // Service-specific fields
-  skillsRequired: z.array(z.string()).optional(),
+  skillsRequired: z.union([z.string(), z.array(z.string())]).optional(), // Handle both string and array
   compensation: z.string().optional(),
   experienceLevel: z.string().optional(),
   brand: z.string().optional(),
@@ -57,11 +62,14 @@ export const MarketplaceItemSchema = z.object({
   availabilityStatus: z.string().optional(),
   contactInfo: z.string().optional(),
 });
+export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 
 
 export const MarketplaceOrderSchema = z.object({
   id: z.string(),
+  orderId: z.string(),
   itemId: z.string(),
+  listingName: z.string(),
   buyerId: z.string(),
   sellerId: z.string(),
   quantity: z.number(),
@@ -72,12 +80,15 @@ export const MarketplaceOrderSchema = z.object({
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
 });
+export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
+
 
 export const ShopSchema = z.object({
   name: z.string(),
   description: z.string(),
   stakeholderType: z.string(),
 });
+export type Shop = z.infer<typeof ShopSchema>;
 
 export const AgriEventSchema = z.object({
   title: z.string(),
@@ -89,11 +100,13 @@ export const AgriEventSchema = z.object({
   organizer: z.string().optional(),
   websiteLink: z.string().optional(),
   imageUrl: z.string().optional(),
+  dataAiHint: z.string().optional().nullable(),
   registrationEnabled: z.boolean().optional(),
   attendeeLimit: z.number().optional().nullable(),
   price: z.number().optional().nullable(),
   currency: z.string().optional(),
 });
+export type AgriEvent = z.infer<typeof AgriEventSchema>;
 
 export const ForumPostSchema = z.object({
     id: z.string(),
@@ -106,6 +119,7 @@ export const ForumPostSchema = z.object({
     icon: z.string().optional(), // For display purposes
     updatedAt: z.any(),
 });
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
 
 // =================================================================
@@ -129,6 +143,8 @@ export const SmartSearchInterpretationSchema = z.object({
   maxPrice: z.number().optional().describe("The maximum price if specified by the user (e.g., from 'under $100')."),
   perUnit: z.string().optional().describe("The unit for the price if specified (e.g., '/kg', '/ton').")
 });
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+
 
 export const MarketplaceRecommendationInputSchema = z.object({
   userId: z.string().optional().describe("The ID of the user to generate recommendations for."),
@@ -143,3 +159,4 @@ const RecommendedItemSchema = z.object({
 export const MarketplaceRecommendationOutputSchema = z.object({
   recommendations: z.array(RecommendedItemSchema).describe("A list of suggested marketplace items (products or services) with accompanying reasons."),
 });
+export type MarketplaceRecommendation = any;
