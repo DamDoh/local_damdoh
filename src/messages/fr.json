@@ -821,6 +821,24 @@
         "description": "Gardez une trace de vos machines, outils et autres actifs agricoles.",
         "button": "Gérer les actifs"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Retour au hub de la ferme",
+      "title": "Mes fermes",
+      "addNewFarmButton": "Ajouter une nouvelle ferme",
+      "size": "Taille",
+      "viewFarmButton": "Voir le tableau de bord de la ferme",
+      "noFarmsTitle": "Vous n'avez pas encore ajouté de fermes.",
+      "noFarmsDescription": "Commencez par créer votre premier profil de ferme pour suivre les cultures et les activités.",
+      "auth": {
+        "title": "Veuillez vous connecter",
+        "description": "Vous devez être connecté pour voir vos fermes.",
+        "button": "Se connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchError": "Impossible de récupérer vos fermes."
+      }
     }
   },
   "OfflineIndicator": {

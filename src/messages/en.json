@@ -821,6 +821,24 @@
         "description": "Keep track of your machinery, tools, and other farm assets.",
         "button": "Manage Assets"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Back to Farm Hub",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "View Farm Dashboard",
+      "noFarmsTitle": "You haven't added any farms yet.",
+      "noFarmsDescription": "Get started by creating your first farm profile to track crops and activities.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You need to be logged in to view your farms.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Could not retrieve your farms."
+      }
     }
   },
   "OfflineIndicator": {

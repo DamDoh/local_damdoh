@@ -821,6 +821,24 @@
         "description": "Behalten Sie den Überblick über Ihre Maschinen, Werkzeuge und andere landwirtschaftliche Vermögenswerte.",
         "button": "Vermögen verwalten"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zum Farm Hub",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farm-Dashboard ansehen",
+      "noFarmsTitle": "Sie haben noch keine Farmen hinzugefügt.",
+      "noFarmsDescription": "Beginnen Sie mit der Erstellung Ihres ersten Farmprofils, um Kulturen und Aktivitäten zu verfolgen.",
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen zu sehen.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Ihre Farmen konnten nicht abgerufen werden."
+      }
     }
   },
   "OfflineIndicator": {

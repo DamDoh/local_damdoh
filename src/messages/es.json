@@ -821,6 +821,24 @@
         "description": "Lleva un registro de tu maquinaria, herramientas y otros activos agrícolas.",
         "button": "Gestionar Activos"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Volver al Centro de Fincas",
+      "title": "Mis Fincas",
+      "addNewFarmButton": "Añadir Nueva Finca",
+      "size": "Tamaño",
+      "viewFarmButton": "Ver Panel de Finca",
+      "noFarmsTitle": "Aún no has añadido ninguna finca.",
+      "noFarmsDescription": "Empieza creando tu primer perfil de finca para rastrear cultivos y actividades.",
+      "auth": {
+        "title": "Por favor, Inicia Sesión",
+        "description": "Necesitas iniciar sesión para ver tus fincas.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron recuperar tus fincas."
+      }
     }
   },
   "OfflineIndicator": {
@@ -1182,7 +1200,7 @@
     "lastVisit": "Última visita",
     "issues": "Problemas",
     "viewFarmerButton": "Ver",
-    "noFarmersAssigned": "Aún no se le han asignado agricultores."
+    "noFarmersAssigned": "No tienes agricultores asignados a tu cartera."
   },
   "InputSupplierDashboard": {
     "title": "Panel de Proveedor de Insumos",
