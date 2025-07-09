@@ -151,52 +151,6 @@
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
   },
-  "StartPost": {
-    "placeholder": "Inicia una publicación, haz una pregunta o comparte una actualización...",
-    "photoVideo": "Foto/Video",
-    "agriEvent": "Agro-Evento",
-    "createPoll": "Crear Encuesta"
-  },
-  "CreatePostModal": {
-    "title": "Crear una publicación",
-    "description": "Comparte tus pensamientos con la comunidad.",
-    "yourName": "Tu Nombre",
-    "shareUpdate": "Compartir una actualización",
-    "placeholder": "¿Qué tienes en mente?",
-    "selectedFile": "Archivo seleccionado:",
-    "pollOptionsLabel": "Opciones de la Encuesta",
-    "pollOptionPlaceholder": "Opción {index}",
-    "addOptionButton": "Añadir Opción",
-    "pollNote": "Crea una encuesta con hasta {maxOptions} opciones.",
-    "postButton": "Publicar",
-    "pollOptionsError": "Una encuesta debe tener al menos dos opciones completas.",
-    "emptyPostError": "Tu publicación no puede estar vacía. Por favor, añade texto, una imagen o una encuesta.",
-    "addMediaButton": "Añadir Multimedia",
-    "createEventButton": "Crear Evento",
-    "shareDocumentButton": "Compartir Documento",
-    "createPollButton": "Crear Encuesta"
-  },
-  "FeedItemCard": {
-    "likes": "{count, plural, =0 {Me gusta} =1 {Me gusta} other {Me gusta}}",
-    "comments": "{count, plural, =0 {Comentarios} =1 {Comentario} other {Comentarios}}",
-    "like": "Me gusta",
-    "comment": "Comentar",
-    "repost": "Volver a publicar",
-    "editPost": "Editar Publicación",
-    "deletePost": "Eliminar Publicación",
-    "signInToLikeToast": "Debes iniciar sesión para dar 'me gusta' a una publicación.",
-    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
-    "noComments": "Sé el primero en comentar.",
-    "loadingComments": "Cargando comentarios...",
-    "loadMoreComments": "Cargar más comentarios",
-    "writeCommentPlaceholder": "Escribe un comentario...",
-    "postButton": "Publicar",
-    "repostPlaceholderToast": "La función de volver a publicar estará disponible pronto.",
-    "signInToVoteToast": "Debes iniciar sesión para votar.",
-    "voteSuccessToast": "¡Tu voto ha sido contado!",
-    "voteErrorToast": "No se pudo registrar tu voto.",
-    "votes": "{count, plural, =0 {votos} =1 {voto} other {votos}}"
-  },
   "AppFooter": {
     "tagline": "La Plataforma Global de la Cadena de Suministro Agrícola.",
     "damdohTitle": "DamDoh",
@@ -416,97 +370,6 @@
       "button": "Contactar a Soporte"
     }
   },
-  "privacyPolicy": {
-    "title": "Política de Privacidad",
-    "lastUpdated": "Última actualización: 29 de octubre de 2023",
-    "introduction": "Este aviso de privacidad para DamDoh describe cómo y por qué podríamos recopilar, almacenar, usar y/o compartir ('procesar') tu información cuando usas nuestros servicios ('Servicios'), como cuando visitas nuestro sitio web o nuestra aplicación móvil.",
-    "whatInfoWeCollect": {
-      "heading": "1. ¿Qué Información Recopilamos?",
-      "content": "Recopilamos información personal que nos proporcionas voluntariamente cuando te registras en los Servicios, expresas interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participas en actividades en los Servicios, o de otra manera cuando nos contactas."
-    },
-    "howWeUseInfo": {
-      "heading": "2. ¿Cómo Usamos Tu Información?",
-      "content": "Procesamos tu información para fines basados en intereses comerciales legítimos, el cumplimiento de nuestro contrato contigo, el cumplimiento de nuestras obligaciones legales y/o tu consentimiento. Esto incluye facilitar la creación de cuentas, permitir las comunicaciones de usuario a usuario y proporcionar nuestros servicios principales."
-    },
-    "willInfoBeShared": {
-      "heading": "3. ¿Se Compartirá Tu Información con Alguien?",
-      "content": "Solo compartimos información con tu consentimiento, para cumplir con las leyes, para proporcionarte servicios, para proteger tus derechos o para cumplir con obligaciones comerciales. Por ejemplo, compartimos la información de tu perfil público con otros usuarios para facilitar las conexiones."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. ¿Usamos Cookies y Otras Tecnologías de Seguimiento?",
-      "content": "Podemos usar cookies y tecnologías de seguimiento similares (como balizas web y píxeles) para acceder o almacenar información. La información específica sobre cómo usamos dichas tecnologías y cómo puedes rechazar ciertas cookies se establece en nuestro Aviso de Cookies."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. ¿Por Cuánto Tiempo Guardamos Tu Información?",
-      "content": "Guardamos tu información durante el tiempo que sea necesario para cumplir con los fines descritos en este aviso de privacidad, a menos que la ley exija lo contrario. Cuando no tengamos una necesidad comercial legítima en curso para procesar tu información personal, eliminaremos o anonimizaremos dicha información."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. ¿Cómo Mantenemos Segura Tu Información?",
-      "content": "Hemos implementado medidas de seguridad técnicas y organizativas apropiadas diseñadas para proteger la seguridad de cualquier información personal que procesemos. Sin embargo, a pesar de nuestras salvaguardas y esfuerzos, ninguna transmisión electrónica a través de Internet puede garantizarse como 100% segura."
-    },
-    "minors": {
-      "heading": "7. ¿Recopilamos Información de Menores?",
-      "content": "No solicitamos datos a sabiendas ni comercializamos a niños menores de 18 años. Al usar los Servicios, declaras que tienes al menos 18 años o que eres el padre o tutor de dicho menor y das tu consentimiento para que dicho menor dependiente use los Servicios."
-    },
-    "privacyRights": {
-      "heading": "8. ¿Cuáles son Tus Derechos de Privacidad?",
-      "content": "En algunas regiones, tienes ciertos derechos bajo las leyes de protección de datos aplicables. Estos pueden incluir el derecho (i) a solicitar acceso y obtener una copia de tu información personal, (ii) a solicitar la rectificación o eliminación; (iii) a restringir el procesamiento de tu información personal; y (iv) si corresponde, a la portabilidad de los datos."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. Controles para las Funciones de No Rastrear",
-      "content": "La mayoría de los navegadores web y algunos sistemas operativos móviles y aplicaciones móviles incluyen una función o configuración de No Rastrear ('DNT') que puedes activar para señalar tu preferencia de privacidad de no tener datos sobre tus actividades de navegación en línea monitoreados y recopilados. En esta etapa, no se ha finalizado un estándar tecnológico uniforme para reconocer e implementar señales DNT. Como tal, actualmente no respondemos a las señales DNT del navegador."
-    },
-    "updatesToNotice": {
-      "heading": "10. ¿Hacemos Actualizaciones a este Aviso?",
-      "content": "Podemos actualizar este aviso de privacidad de vez en cuando. La versión actualizada se indicará con una fecha de 'Revisado' actualizada y la versión actualizada será efectiva tan pronto como sea accesible. Te recomendamos que revises este aviso de privacidad con frecuencia para estar informado de cómo estamos protegiendo tu información."
-    }
-  },
-  "termsOfService": {
-    "title": "Términos de Servicio",
-    "lastUpdated": "Última actualización: 29 de octubre de 2023",
-    "introduction": "Estos Términos de Uso constituyen un acuerdo legalmente vinculante entre usted y DamDoh, con respecto a su acceso y uso del sitio web de DamDoh, así como cualquier otra forma de medio, canal de medios, sitio web móvil o aplicación móvil relacionada, vinculada o conectada de otra manera al mismo.",
-    "agreementToTerms": {
-      "heading": "1. Acuerdo de los Términos",
-      "content": "Al usar la plataforma, usted acepta estar sujeto a estos Términos de Servicio. Si no está de acuerdo, no puede usar la plataforma. Nos reservamos el derecho de realizar cambios en estos Términos en cualquier momento."
-    },
-    "intellectualProperty": {
-      "heading": "2. Derechos de Propiedad Intelectual",
-      "content": "A menos que se indique lo contrario, la plataforma es de nuestra propiedad y todo el código fuente, bases de datos, funcionalidad, software, diseños de sitios web, audio, video, texto, fotografías y gráficos en el Sitio (colectivamente, el 'Contenido') y las marcas comerciales, marcas de servicio y logotipos contenidos en él son de nuestra propiedad o están bajo nuestro control o nos han sido licenciados."
-    },
-    "userRepresentations": {
-      "heading": "3. Representaciones del Usuario",
-      "content": "Al usar el Sitio, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la precisión de dicha información y actualizará rápidamente dicha información de registro según sea necesario; (3) tiene la capacidad legal y acepta cumplir con estos Términos de Uso; (4) no utilizará el Sitio para ningún propósito ilegal o no autorizado; y (5) su uso del Sitio no violará ninguna ley o regulación aplicable."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Actividades Prohibidas",
-      "content": "No puede acceder ni utilizar el Sitio para ningún otro propósito que no sea para el que ponemos a disposición el Sitio. Las actividades prohibidas incluyen, entre otras: la recuperación sistemática de datos, engañar o defraudar a nosotros u otros usuarios, intentar suplantar a otro usuario, acosar o amenazar a cualquiera de nuestros empleados u otros usuarios, y cargar o transmitir virus o cualquier otro tipo de código malicioso."
-    },
-    "platformManagement": {
-      "heading": "5. Gestión de la Plataforma",
-      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear el Sitio en busca de violaciones de estos Términos de Uso; (2) tomar las medidas legales apropiadas contra cualquier persona que, a nuestra entera discreción, viole la ley o estos Términos de Uso; (3) a nuestra entera discreción y sin limitación, rechazar, restringir el acceso, limitar la disponibilidad o deshabilitar cualquiera de sus Contribuciones o cualquier parte de las mismas."
-    },
-    "termAndTermination": {
-      "heading": "6. Duración y Terminación",
-      "content": "Estos Términos de Uso permanecerán en pleno vigor y efecto mientras utilice el Sitio. SIN LIMITAR NINGUNA OTRA DISPOSICIÓN DE ESTOS TÉRMINOS DE USO, NOS RESERVAMOS EL DERECHO DE, A NUESTRA ENTERA DISCRECIÓN Y SIN PREVIO AVISO NI RESPONSABILIDAD, NEGAR EL ACCESO Y EL USO DEL SITIO (INCLUYENDO EL BLOQUEO DE CIERTAS DIRECCIONES IP), A CUALQUIER PERSONA POR CUALQUIER MOTIVO O SIN MOTIVO ALGUNO."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modificaciones e Interrupciones",
-      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido del Sitio en cualquier momento o por cualquier motivo a nuestra entera discreción y sin previo aviso. También nos reservamos el derecho de modificar o descontinuar todo o parte del Sitio sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante ningún tercero por ninguna modificación, cambio de precio, suspensión o interrupción del Sitio."
-    },
-    "governingLaw": {
-      "heading": "8. Ley Aplicable",
-      "content": "Estos Términos de Uso y su uso del Sitio se rigen e interpretan de acuerdo con las leyes de la jurisdicción en la que está registrada DamDoh, sin tener en cuenta sus principios de conflicto de leyes."
-    },
-    "disputeResolution": {
-      "heading": "9. Resolución de Disputas",
-      "content": "Cualquier acción legal de cualquier naturaleza iniciada por usted o por nosotros se iniciará o procesará en los tribunales estatales y federales ubicados en nuestra jurisdicción registrada, y las partes por la presente consienten y renuncian a todas las defensas de falta de jurisdicción personal y foro no conveniente con respecto al lugar y la jurisdicción en dichos tribunales."
-    },
-    "contactUs": {
-      "heading": "10. Contáctenos",
-      "content": "Para resolver una queja sobre el Sitio o para recibir más información sobre el uso del Sitio, por favor contáctenos."
-    },
-    "conclusion": "Para resolver una queja u obtener más información, por favor {contactLink}."
-  },
   "Forums": {
     "title": "Foros de la Comunidad",
     "description": "Conéctate, comparte conocimientos y colabora con actores de toda la cadena de suministro agrícola.",
@@ -688,7 +551,7 @@
     "createListingButton": "Crear Anuncio",
     "pinButton": "Anclar como Inicio",
     "unpinButton": "Desanclar del Inicio",
-    "searchPlaceholder": "Buscar productos y servicios...",
+    "searchPlaceholder": "Buscar productos & servicios...",
     "locationPlaceholder": "Filtrar por ubicación...",
     "typePlaceholder": "Filtrar por tipo...",
     "recommendedForYou": "Recomendado para Ti",
@@ -757,7 +620,7 @@
       "aiPriceSuggestion": {
         "button": "Sugerir Precio con IA",
         "generatingButton": "Sugiriendo...",
-        "suggestionLabel": "Sugerencia de IA:",
+        "suggestionLabel": "Sugerencia IA:",
         "usePriceButton": "Usar Precio"
       },
       "errors": {
@@ -900,6 +763,43 @@
         "completed": "Completado",
         "cancelled": "Cancelado"
       }
+    },
+    "createShop": {
+      "backLink": "Volver al Mercado",
+      "title": "Crear una Tienda Digital",
+      "description": "Establece tu presencia en el mercado de DamDoh creando una tienda. Esta será tu página dedicada para mostrar todos tus productos y servicios.",
+      "authErrorTitle": "No Autenticado",
+      "authErrorDescription": "Debes iniciar sesión para crear una tienda.",
+      "toast": {
+        "successTitle": "¡Tienda Creada!",
+        "successDescription": "Tu tienda '{shopName}' ya está activa y lista para recibir anuncios.",
+        "failTitle": "Creación Fallida",
+        "failDescription": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+      },
+      "form": {
+        "nameLabel": "Nombre de la Tienda",
+        "namePlaceholder": "Ej: Orgánicos del Valle Verde, Agri-Logística Pro",
+        "typeLabel": "Tipo de Negocio / Rol Principal",
+        "typePlaceholder": "Selecciona la opción que mejor describa tu negocio",
+        "descriptionLabel": "Descripción de la Tienda",
+        "descriptionPlaceholder": "Describe brevemente tu tienda, lo que ofreces y tu misión.",
+        "submitButton": "Crear Tienda",
+        "submittingButton": "Creando..."
+      }
+    },
+    "shopView": {
+      "backLink": "Volver al Mercado",
+      "ownedBy": "Propietario",
+      "loadingOwner": "Cargando propietario...",
+      "editShopButton": "Editar Tienda",
+      "contactButton": "Contactar al Propietario",
+      "listingsTitle": "Anuncios de {shopName}",
+      "noListings": "Esta tienda aún no tiene anuncios públicos.",
+      "errors": {
+        "notFound": "Tienda no encontrada",
+        "loadError": "No se pudieron cargar los detalles de la tienda."
+      },
+      "title": "Tienda"
     }
   }
 }

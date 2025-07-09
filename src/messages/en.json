@@ -102,52 +102,6 @@
       "startOverButton": "Start Over"
     }
   },
-  "StartPost": {
-    "placeholder": "Start a post, ask a question, or share an update...",
-    "photoVideo": "Photo/Video",
-    "agriEvent": "Agri-Event",
-    "createPoll": "Create Poll"
-  },
-  "CreatePostModal": {
-    "title": "Create a post",
-    "description": "Share your thoughts with the community.",
-    "yourName": "Your Name",
-    "shareUpdate": "Share an update",
-    "placeholder": "What's on your mind?",
-    "selectedFile": "Selected file:",
-    "pollOptionsLabel": "Poll Options",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Add Option",
-    "pollNote": "Create a poll with up to {maxOptions} options.",
-    "postButton": "Post",
-    "pollOptionsError": "A poll must have at least two options filled out.",
-    "emptyPostError": "Your post cannot be empty. Please add some text, an image, or a poll.",
-    "addMediaButton": "Add Media",
-    "createEventButton": "Create Event",
-    "shareDocumentButton": "Share Document",
-    "createPollButton": "Create Poll"
-  },
-  "FeedItemCard": {
-    "likes": "{count, plural, =0 {Likes} =1 {Like} other {Likes}}",
-    "comments": "{count, plural, =0 {Comments} =1 {Comment} other {Comments}}",
-    "like": "Like",
-    "comment": "Comment",
-    "repost": "Repost",
-    "editPost": "Edit Post",
-    "deletePost": "Delete Post",
-    "signInToLikeToast": "You must be signed in to like a post.",
-    "loadCommentsErrorToast": "Could not load comments.",
-    "noComments": "Be the first to comment.",
-    "loadingComments": "Loading comments...",
-    "loadMoreComments": "Load more comments",
-    "writeCommentPlaceholder": "Write a comment...",
-    "postButton": "Post",
-    "repostPlaceholderToast": "Repost feature coming soon!",
-    "signInToVoteToast": "You must be signed in to vote.",
-    "voteSuccessToast": "Your vote has been counted!",
-    "voteErrorToast": "Failed to record your vote.",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {votes}}"
-  },
   "AppHeader": {
     "home": "Home",
     "network": "Network",
@@ -900,6 +854,43 @@
         "completed": "Completed",
         "cancelled": "Cancelled"
       }
+    },
+    "createShop": {
+      "backLink": "Back to Marketplace",
+      "title": "Create a Digital Shopfront",
+      "description": "Establish your presence on the DamDoh marketplace by creating a shop. This will be your dedicated page to showcase all your products and services.",
+      "authErrorTitle": "Not Authenticated",
+      "authErrorDescription": "You must be signed in to create a shop.",
+      "toast": {
+        "successTitle": "Shop Created!",
+        "successDescription": "Your shop '{shopName}' is now live and ready for listings.",
+        "failTitle": "Creation Failed",
+        "failDescription": "An unexpected error occurred. Please try again."
+      },
+      "form": {
+        "nameLabel": "Shop Name",
+        "namePlaceholder": "e.g., Green Valley Organics, Agri-Logistics Pro",
+        "typeLabel": "Business Type / Primary Role",
+        "typePlaceholder": "Select the option that best describes your business",
+        "descriptionLabel": "Shop Description",
+        "descriptionPlaceholder": "Briefly describe your shop, what you offer, and your mission.",
+        "submitButton": "Create Shop",
+        "submittingButton": "Creating..."
+      }
+    },
+    "shopView": {
+      "backLink": "Back to Marketplace",
+      "ownedBy": "Owned by",
+      "loadingOwner": "Loading owner...",
+      "editShopButton": "Edit Shop",
+      "contactButton": "Contact Owner",
+      "listingsTitle": "Listings from {shopName}",
+      "noListings": "This shop has no public listings yet.",
+      "errors": {
+        "notFound": "Shop Not Found",
+        "loadError": "Could not load shop details."
+      },
+      "title": "Shopfront"
     }
   }
 }
