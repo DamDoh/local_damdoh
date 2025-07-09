@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -1273,7 +1274,7 @@
       "submitButton": "Crear Producto"
     },
     "toast": {
-      "notAuthenticated": "Debes iniciar sesión como Proveedor de Seguros.",
+      "notAuthenticated": "Debes iniciar sesión como un Proveedor de Seguros.",
       "errorTitle": "Creación Fallida",
       "successTitle": "Producto Creado",
       "successDescription": "El producto '{name}' ya está disponible en la plataforma."
@@ -1577,6 +1578,42 @@
         "title": "Acción en Cola",
         "description": "Esta acción se realizará cuando vuelvas a estar en línea."
       }
+    }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en toda la plataforma DamDoh.",
+    "placeholder": "¿Qué estás buscando?",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Café orgánico",
+    "popularSearch2": "Tractor en alquiler en Kenia",
+    "popularSearch3": "Expertos en salud del suelo",
+    "popularSearch4": "Financiamiento para exportación",
+    "popularSearch5": "Foro de pérdidas poscosecha",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Buscar productos, servicios, personas, publicaciones de foro...",
+      "searchButton": "Buscar",
+      "searchError": "Error de Búsqueda",
+      "searchErrorDescription": "No se pudo realizar la búsqueda en este momento. Por favor, inténtelo de nuevo.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
+      "invalidCodeError": "Este no es un código de recuperación o perfil de DamDoh válido.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Buscando por palabras clave.",
+      "filtersTitle": "Filtros",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "agri_events": "Eventos",
+        "knowledge_articles": "Centro de Conocimiento",
+        "vti_registry": "Informes de Trazabilidad"
+      },
+      "noResults": "No se encontraron resultados.",
+      "tryAgain": "Prueba con un término de búsqueda diferente o amplía tu consulta."
     }
   }
 }

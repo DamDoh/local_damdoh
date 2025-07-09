@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -1577,6 +1578,42 @@
         "title": "Action Mise en File d'attente",
         "description": "Cette action sera effectuée lorsque vous serez de nouveau en ligne."
       }
+    }
+  },
+  "searchPage": {
+    "title": "Recherche universelle",
+    "description": "Trouvez n'importe quoi sur l'ensemble de la plateforme DamDoh.",
+    "placeholder": "Que cherchez-vous ?",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches populaires",
+    "popularSearch1": "Café biologique",
+    "popularSearch2": "Tracteur à louer au Kenya",
+    "popularSearch3": "Experts en santé des sols",
+    "popularSearch4": "Financement à l'exportation",
+    "popularSearch5": "Forum sur les pertes après récolte",
+    "modal": {
+      "title": "Recherche universelle",
+      "placeholder": "Rechercher des produits, des services, des personnes, des publications de forum...",
+      "searchButton": "Rechercher",
+      "searchError": "Erreur de recherche",
+      "searchErrorDescription": "Impossible d'effectuer la recherche pour le moment. Veuillez réessayer.",
+      "scanFailed": "Le scan a échoué",
+      "scanError": "Erreur de scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "invalidCodeError": "Ce n'est pas un code de récupération ou de profil DamDoh valide.",
+      "interpretationTitle": "Interprétation de l'IA",
+      "interpretationNotesDefault": "Recherche par mots-clés.",
+      "filtersTitle": "Filtres",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "agri_events": "Événements",
+        "knowledge_articles": "Centre de connaissances",
+        "vti_registry": "Rapports de traçabilité"
+      },
+      "noResults": "Aucun résultat trouvé.",
+      "tryAgain": "Essayez un autre terme de recherche ou élargissez votre requête."
     }
   }
 }

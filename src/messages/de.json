@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -1178,7 +1179,7 @@
       "journeyTitle": "Reise des Produkts",
       "journeyDescription": "Folgen Sie der vollständigen Reise dieser Charge vom Bauernhof.",
       "noEventsFound": "Für diese Charge wurden noch keine Ereignisse erfasst.",
-      "noEventDetails": "Keine zusätzlichen Details angegeben.",
+      "noEventDetails": "Keine zusätzlichen Details angegeben für dieses Ereignis.",
       "geoLocationLabel": "Geolokalisierung",
       "sustainablyGrownTitle": "Nachhaltig angebaut",
       "sustainablyGrownDescription": "Dieses Produkt wurde mit nachhaltigen und biologisch verträglichen Betriebsmitteln angebaut, die auf der DamDoh-Plattform protokolliert wurden.",
@@ -1577,6 +1578,42 @@
         "title": "Aktion in Warteschlange",
         "description": "Diese Aktion wird ausgeführt, wenn Sie wieder online sind."
       }
+    }
+  },
+  "searchPage": {
+    "title": "Universalsuche",
+    "description": "Finden Sie alles auf der gesamten DamDoh-Plattform.",
+    "placeholder": "Wonach suchen Sie?",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffee",
+    "popularSearch2": "Traktor zur Miete in Kenia",
+    "popularSearch3": "Bodengesundheitsexperten",
+    "popularSearch4": "Exportfinanzierung",
+    "popularSearch5": "Forum für Nachernteverluste",
+    "modal": {
+      "title": "Universalsuche",
+      "placeholder": "Suche nach Produkten, Dienstleistungen, Personen, Forenbeiträgen...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Die Suche konnte derzeit nicht durchgeführt werden. Bitte versuchen Sie es erneut.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scan-Fehler",
+      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Dies ist kein gültiger DamDoh-Wiederherstellungs- oder Profilcode.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Suche nach Schlüsselwörtern.",
+      "filtersTitle": "Filter",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissenszentrum",
+        "vti_registry": "Rückverfolgungsberichte"
+      },
+      "noResults": "Keine Ergebnisse gefunden.",
+      "tryAgain": "Versuchen Sie einen anderen Suchbegriff oder erweitern Sie Ihre Anfrage."
     }
   }
 }
