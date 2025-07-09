@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -16,15 +15,15 @@
       },
       "marketplace": {
         "title": "ទីផ្សារផ្ទាល់",
-        "description": "ទិញและលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពและប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
+        "description": "ទិញនិងលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
       },
       "forums": {
         "title": "វេទិកាប្រធានបទ",
-        "description": "ចែករំលែកចំណេះដឹង ពិភាក្សាអំពីបញ្ហាប្រឈម และសហការលើដំណោះស្រាយនៅក្នុងវេទិកាប្រធានបទជាក់លាក់។"
+        "description": "ចែករំលែកចំណេះដឹង ពិភាក្សាអំពីបញ្ហាប្រឈម និងសហការលើដំណោះស្រាយនៅក្នុងវេទិកាប្រធានបទជាក់លាក់។"
       },
       "talent": {
         "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-        "description": "ផ្តល់ជូនหรือស្វែងរកសេវាកម្មកសិកម្មឯកទេស ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
+        "description": "ផ្តល់ជូនឬស្វែងរកសេវាកម្មកសិកម្មឯកទេស ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
       }
     },
     "forWho": {
@@ -408,7 +407,7 @@
       "content": "ในบางภูมิภาค คุณมีสิทธิบางประการภายใต้กฎหมายคุ้มครองข้อมูลที่บังคับใช้ ซึ่งอาจรวมถึงสิทธิ (i) ในการขอเข้าถึงและรับสำเนาข้อมูลส่วนบุคคลของคุณ (ii) ในการขอแก้ไขหรือลบ (iii) ในการจำกัดการประมวลผลข้อมูลส่วนบุคคลของคุณ และ (iv) หากมีผลบังคับใช้ สิทธิในการเคลื่อนย้ายข้อมูล"
     },
     "controlsForDoNotTrack": {
-      "heading": "9. ការควบคุมសម្រាប់คุณสมบัติ Do-Not-Track",
+      "heading": "9. ការควบคุมสำหรับคุณสมบัติ Do-Not-Track",
       "content": "เว็บเบราว์เซอร์และระบบปฏิบัติการมือถือและแอปพลิเคชันมือถือส่วนใหญ่มีคุณสมบัติหรือการตั้งค่า Do-Not-Track ('DNT') ที่คุณสามารถเปิดใช้งานเพื่อส่งสัญญาณความต้องการความเป็นส่วนตัวของคุณที่จะไม่ให้ข้อมูลเกี่ยวกับกิจกรรมการท่องเว็บออนไลน์ของคุณถูกตรวจสอบและรวบรวม ในขั้นตอนนี้ ยังไม่มีมาตรฐานเทคโนโลยีที่เป็นเอกภาพสำหรับการรับรู้และนำสัญญาณ DNT ไปใช้ ดังนั้น เราจึงไม่ตอบสนองต่อสัญญาณ DNT ของเบราว์เซอร์ในปัจจุบัน"
     },
     "updatesToNotice": {
@@ -778,7 +777,7 @@
     "connect": "ភ្ជាប់",
     "profile": "ប្រវត្តិរូប",
     "browseAllTitle": "រកមើលគ្រប់តួអង្គទាំងអស់",
-    "searchPlaceholder": "ស្វែងរកតាមឈ្មោះหรือសេចក្តីសង្ខេប...",
+    "searchPlaceholder": "ស្វែងរកតាមឈ្មោះឬសេចក្តីសង្ខេប...",
     "locationPlaceholder": "តម្រងតាមទីតាំង...",
     "rolePlaceholder": "តម្រងតួនាទី",
     "allRoles": "គ្រប់តួនាទីទាំងអស់",
@@ -815,7 +814,7 @@
   },
   "Forums": {
     "title": "វេទិកាសហគមន៍",
-    "description": "ភ្ជាប់ទំនាក់ទំនង ចែករំលែកចំណេះដឹង และសហការជាមួយតួអង្គនានាក្នុងខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
+    "description": "ភ្ជាប់ទំនាក់ទំនង ចែករំលែកចំណេះដឹង និងសហការជាមួយតួអង្គនានាក្នុងខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
     "createTopic": "បង្កើតប្រធានបទថ្មី",
     "pinning": {
       "pinnedTitle": "បានខ្ទាស់វេទិកា",
@@ -1614,5 +1613,527 @@
       "noResults": "រកមិនឃើញលទ្ធផល",
       "tryAgain": "ลองใช้คำค้นหาอื่นหรือขยายคำค้นหาของคุณ"
     }
+  },
+  "AgriTechDashboard": {
+    "title": "แผงควบคุมผู้ริเริ่มเทคโนโลยีการเกษตร",
+    "sandboxTitle": "สิ่งแวดล้อมทดสอบ (Sandbox)",
+    "statusLabel": "สถานะ",
+    "lastResetLabel": "การรีเซ็ตล่าสุด",
+    "accessDocsButton": "เข้าถึงเอกสาร API",
+    "integrationsTitle": "การรวมระบบที่ใช้งานอยู่",
+    "activeProjects": "{count, plural, =0 {โครงการที่ใช้งานอยู่} =1 {1 โครงการที่ใช้งานอยู่} other {{count} โครงการที่ใช้งานอยู่}}",
+    "integrationsDescription": "โครงการที่ใช้งานอยู่ที่รวมเข้ากับ DamDoh ของคุณ",
+    "proposeIntegrationButton": "เสนอการรวมระบบใหม่",
+    "apiKeysTitle": "คีย์ API",
+    "apiKeysDescription": "จัดการคีย์ API ของคุณเพื่อเข้าถึงบริการ DamDoh",
+    "generateNewKeyButton": "สร้างคีย์ใหม่",
+    "table": {
+      "key": "คีย์ / คำอธิบาย",
+      "status": "สถานะ",
+      "environment": "สิ่งแวดล้อม",
+      "created": "สร้างเมื่อ",
+      "actions": "การดำเนินการ"
+    },
+    "noApiKeys": "คุณยังไม่ได้สร้างคีย์ API ใดๆ",
+    "apiKeyCopied": "คัดลอกคีย์ API ไปยังคลิปบอร์ดแล้ว!",
+    "revokeDialog": {
+      "title": "คุณแน่ใจหรือไม่ว่าต้องการเพิกถอนคีย์ API นี้",
+      "description": "การกระทำนี้ไม่สามารถย้อนกลับได้ แอปพลิเคชันใดๆ ที่ใช้คีย์นี้จะสูญเสียการเข้าถึงทันที",
+      "cancel": "ยกเลิก",
+      "confirm": "ใช่ เพิกถอนคีย์"
+    },
+    "toast": {
+      "descriptionRequired": "จำเป็นต้องมีคำอธิบายสำหรับคีย์ใหม่",
+      "keyGeneratedSuccess": "สร้างคีย์ API ใหม่สำเร็จแล้ว",
+      "keyGeneratedError": "ไม่สามารถสร้างคีย์ API ได้",
+      "keyRevokedSuccess": "เพิกถอนคีย์ API แล้ว",
+      "keyRevokedError": "ไม่สามารถเพิกถอนคีย์ API ได้"
+    },
+    "generateButton": "បង្កើត"
+  },
+  "AgroExportDashboard": {
+    "title": "แผงควบคุมการส่งออกสินค้าเกษตร",
+    "docsTitle": "เอกสารศุลกากรที่รอดำเนินการ",
+    "shipmentsTitle": "การจัดส่งที่ติดตาม",
+    "alertsTitle": "การแจ้งเตือนการปฏิบัติตามข้อกำหนด",
+    "table": {
+      "destination": "ปลายทาง"
+    },
+    "prepareDocsButton": "เตรียมเอกสาร",
+    "readMore": "อ่านเพิ่มเติม",
+    "noDocs": "ไม่มีเอกสารศุลกากรที่รอดำเนินการ",
+    "noShipments": "ไม่มีการจัดส่งที่ใช้งานอยู่เพื่อติดตาม",
+    "noAlerts": "ไม่มีการแจ้งเตือนการปฏิบัติตามข้อกำหนดใหม่"
+  },
+  "AgroTourismDashboard": {
+    "title": "แผงควบคุมการท่องเที่ยวเชิงเกษตร",
+    "bookingsTitle": "การจองที่กำลังจะมาถึง",
+    "bookingsDescription": "แขกและประสบการณ์ครั้งต่อไปของคุณ",
+    "experiencesTitle": "ประสบการณ์ที่คุณลงประกาศ",
+    "experiencesDescription": "จัดการข้อเสนอการท่องเที่ยวเชิงเกษตรของคุณ",
+    "reviewsTitle": "รีวิวจากแขก",
+    "reviewsDescription": "ความคิดเห็นล่าสุดจากผู้เยี่ยมชมของคุณ",
+    "table": {
+      "experience": "ประสบการณ์",
+      "guest": "แขก",
+      "date": "កាលបរិច្ឆេទ",
+      "action": "การดำเนินการ",
+      "title": "ចំណងជើង",
+      "status": "สถานะ",
+      "bookings": "การจอง"
+    },
+    "viewDetailsButton": "មើលรายละเอียด",
+    "manageButton": "จัดการ",
+    "noBookings": "ไม่มีการจองที่กำลังจะมาถึง",
+    "noExperiences": "คุณยังไม่ได้ลงรายการประสบการณ์ใดๆ",
+    "noReviews": "ยังไม่มีรีวิวจากแขก",
+    "viewReviewButton": "មើល",
+    "on": "บน"
+  },
+  "AgronomistDashboard": {
+    "title": "แผงควบคุมนักปฐพีวิทยา",
+    "stats": {
+      "assignedFarmers": "เกษตรกรที่ได้รับมอบหมาย",
+      "farmersWithAlerts": "เกษตรกรที่มีการแจ้งเตือน",
+      "pendingConsultations": "การให้คำปรึกษาที่รอดำเนินการ",
+      "knowledgeContributions": "การมีส่วนร่วมในองค์ความรู้"
+    },
+    "activeAlerts": "การแจ้งเตือนที่ใช้งานอยู่",
+    "reportsToFile": "รายงานที่จะยื่น",
+    "tasksPending": "งานที่รอดำเนินการ",
+    "consultations": {
+      "title": "คำขอคำปรึกษา",
+      "description": "ตอบสนองต่อคำขอที่เข้ามาจากเกษตรกร",
+      "table": {
+        "farmer": "កសិករ",
+        "issue": "สรุปปัญหา",
+        "action": "การดำเนินการ"
+      },
+      "viewButton": "មើល",
+      "noRequests": "ไม่มีคำขอคำปรึกษาที่รอดำเนินการ"
+    },
+    "portfolio": {
+      "title": "พอร์ตโฟลิโอเกษตรกร",
+      "description": "ภาพรวมของเกษตรกรที่คุณจัดการ",
+      "table": {
+        "farmer": "កសិករ",
+        "location": "ទីតាំង",
+        "alerts": "ការแจ้งเตือน",
+        "action": "การดำเนินการ"
+      },
+      "alertsLabel": "ការแจ้งเตือน",
+      "profileButton": "ប្រវត្តិរូប",
+      "noFarmers": "ยังไม่มีเกษตรกรได้รับมอบหมายในพอร์ตโฟลิโอของคุณ"
+    },
+    "contributions": {
+      "statusTitle": "สถานะการมีส่วนร่วม",
+      "title": "การมีส่วนร่วมของคุณในศูนย์ความรู้",
+      "noData": "ไม่มีข้อมูลการมีส่วนร่วม",
+      "noContributions": "คุณยังไม่มีส่วนร่วมใดๆ"
+    },
+    "noData": "ไม่มีข้อมูลแดชบอร์ด",
+    "lastVisit": "ការเข้าชมครั้งล่าสุด",
+    "issues": "បញ្ហា",
+    "chart": {
+      "count": "จำนวน",
+      "published": "បានផ្សព្វផ្សាយ",
+      "pending": "រង់ចាំ",
+      "draft": "ร่าง"
+    }
+  },
+  "BuyerDashboard": {
+    "title": "แผงควบคุมผู้ซื้อ",
+    "riskTitle": "ความเสี่ยงในห่วงโซ่อุปทาน",
+    "diversifySourcing": "กระจายแหล่งจัดหา",
+    "priceTitle": "ข้อมูลเชิงลึกด้านราคาตลาด",
+    "secureContracts": "ทำสัญญาซื้อขายล่วงหน้า",
+    "sourcingTitle": "คำแนะนำในการจัดหา",
+    "reliabilityScore": "คะแนนความน่าเชื่อถือ",
+    "findSuppliersButton": "ค้นหาซัพพลายเออร์เพิ่มเติม"
+  },
+  "CertificationBodyDashboard": {
+    "title": "แผงควบคุมหน่วยงานรับรอง",
+    "auditsTitle": "การตรวจสอบที่รอดำเนินการ",
+    "auditsDescription": "การตรวจสอบที่กำลังจะเกิดขึ้นซึ่งต้องให้ความสนใจ",
+    "table": {
+      "farmName": "ឈ្មោះកសិដ្ឋាន",
+      "standard": "มาตรฐาน",
+      "dueDate": "កាលបរិច្ឆេទផុតកំណត់",
+      "action": "การดำเนินการ"
+    },
+    "reviewAuditButton": "ตรวจสอบการตรวจสอบ",
+    "noPendingAudits": "ไม่มีการตรวจสอบที่รอดำเนินการในขณะนี้",
+    "entitiesTitle": "สถานะของหน่วยงานที่ได้รับการรับรอง",
+    "entitiesDescription": "ภาพรวมของหน่วยงานที่ได้รับการรับรองของคุณ",
+    "noCertifiedEntities": "ไม่มีข้อมูลสำหรับหน่วยงานที่ได้รับการรับรอง",
+    "monitoringTitle": "การตรวจสอบมาตรฐาน",
+    "monitoringDescription": "อัตราการปฏิบัติตามมาตรฐานที่สำคัญ",
+    "alerts": "ការแจ้งเตือน",
+    "viewDetailsButton": "មើលรายละเอียด",
+    "noMonitoringData": "ไม่มีข้อมูลการตรวจสอบ"
+  },
+  "CooperativeDashboard": {
+    "title": "แผงควบคุมสหกรณ์",
+    "membersTitle": "สมาชิกทั้งหมด",
+    "membersDescription": "{count} เกษตรกรที่ใช้งานอยู่ในสหกรณ์ของคุณ",
+    "landAreaTitle": "พื้นที่รวม",
+    "landAreaDescription": "เฮกตาร์ที่เพาะปลูก",
+    "pendingApplicationsTitle": "ใบสมัครที่รอดำเนินการ",
+    "pendingApplicationsDescription": "เกษตรกรใหม่ที่รอการอนุมัติ",
+    "produceTitle": "ผลผลิตรวมที่มีอยู่",
+    "produceDescription": "มุมมองรวมของผลผลิตที่พร้อมขายของสมาชิกของคุณ",
+    "table": {
+      "product": "ផលិតផល",
+      "quantity": "ปริมาณ (ตัน)",
+      "quality": "គុណភាព",
+      "readyBy": "พร้อมภายใน",
+      "action": "การดำเนินการ"
+    },
+    "createListingButton": "បង្កើតការចុះបញ្ជី",
+    "noProduce": "ไม่มีผลผลิตรวมสำหรับลงรายการ",
+    "aggregateButton": "รวบรวมผลผลิตใหม่"
+  },
+  "CrowdfunderDashboard": {
+    "title": "แผงควบคุมนักลงทุนแบบระดมทุน",
+    "totalInvested": "ลงทุนทั้งหมด",
+    "numberOfInvestments": "จำนวนการลงทุน",
+    "estimatedReturns": "ผลตอบแทนโดยประมาณ",
+    "opportunitiesTitle": "โอกาสที่แนะนำ",
+    "viewButton": "មើល",
+    "raisedOf": "ระดมทุนได้",
+    "goal": "เป้าหมาย",
+    "noOpportunities": "ไม่มีโอกาสการลงทุนใหม่ที่ตรงกับโปรไฟล์ของคุณ",
+    "transactionsTitle": "ธุรกรรมล่าสุด",
+    "table": {
+      "project": "โครงการ",
+      "amount": "จำนวนเงิน"
+    },
+    "investment": "การลงทุน",
+    "payout": "การจ่ายเงิน",
+    "on": "เมื่อ",
+    "noTransactions": "ไม่มีธุรกรรมล่าสุด"
+  },
+  "EnergyProviderDashboard": {
+    "title": "แผงควบคุมผู้ให้บริการพลังงาน",
+    "leadsTitle": "ลูกค้าเป้าหมายของโครงการ",
+    "leadsCount": "{count, plural, =0 {ลูกค้าเป้าหมาย} =1 {1 ลูกค้าเป้าหมาย} other {{count} ลูกค้าเป้าหมาย}}",
+    "newLeadsDescription": "ลูกค้าเป้าหมายใหม่ต้องการความสนใจ",
+    "projectsTitle": "โครงการที่ใช้งานอยู่",
+    "activeProjectsCount": "{count, plural, =0 {โครงการ} =1 {1 โครงการ} other {{count} โครงการ}}",
+    "projectsCompleted": "โครงการเสร็จสมบูรณ์",
+    "impactTitle": "ผลกระทบสะสม",
+    "impactDescription": "ผลกระทบโดยประมาณทั้งหมดของโครงการของคุณ",
+    "carbonReduction": "tCO2e/ปี ลดลงจาก {count} การติดตั้ง",
+    "accessDocsButton": "เข้าถึงเอกสาร API",
+    "proposeIntegrationButton": "เสนอการรวมระบบใหม่",
+    "leadsTableTitle": "ไปป์ไลน์โครงการ",
+    "leadsTableDescription": "ติดตามลูกค้าเป้าหมายของคุณตั้งแต่การติดต่อครั้งแรกจนถึงการเสร็จสิ้นโครงการ",
+    "table": {
+      "entity": "หน่วยงาน",
+      "location": "ទីតាំង",
+      "energyNeed": "ความต้องการโดยประมาณ",
+      "status": "สถานะ",
+      "action": "การดำเนินการ"
+    },
+    "viewLeadButton": "ดูโอกาสในการขาย",
+    "noLeads": "ไม่มีโอกาสในการขายโครงการที่ใช้งานอยู่",
+    "statusLabels": {
+      "new": "ថ្មី",
+      "contacted": "ติดต่อแล้ว",
+      "proposal_sent": "ส่งข้อเสนอแล้ว",
+      "closed": "ปิดแล้ว"
+    }
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "แผงควบคุมผู้จำหน่ายอุปกรณ์",
+    "ordersTitle": "การเช่าและการขาย",
+    "ordersDescription": "{count} คำสั่งซื้อที่ใช้งานอยู่",
+    "manageOrdersButton": "จัดการคำสั่งซื้อ",
+    "listedEquipmentTitle": "อุปกรณ์ที่คุณลงประกาศ",
+    "table": {
+      "name": "ឈ្មោះ",
+      "type": "ប្រភេទ",
+      "status": "สถานะ",
+      "action": "การดำเนินการ"
+    },
+    "status": {
+      "available": "មាន",
+      "rentedout": "เช่าแล้ว"
+    },
+    "manageButton": "จัดการ",
+    "noEquipment": "ยังไม่มีอุปกรณ์ลงประกาศ",
+    "listEquipmentButton": "ลงรายการอุปกรณ์ใหม่",
+    "maintenanceTitle": "คำขอการบำรุงรักษา",
+    "viewRequestButton": "ดูคำขอ",
+    "noMaintenance": "ไม่มีคำขอการบำรุงรักษาที่รอดำเนินการ"
+  },
+  "FiDashboard": {
+    "title": "แผงควบคุมสถาบันการเงิน",
+    "pendingApplicationsTitle": "ใบสมัครที่รอดำเนินการ",
+    "pendingApplicationsDescription": "ใบสมัครต้องได้รับการตรวจสอบจากคุณ",
+    "manageApplicationsButton": "จัดการใบสมัคร",
+    "portfolioAtRiskTitle": "พอร์ตโฟลิโอที่มีความเสี่ยง",
+    "portfolioAtRiskDescription": "{count} สินเชื่อที่มีการแจ้งเตือนความเสี่ยงสูง",
+    "reviewRiskButton": "ตรวจสอบความเสี่ยง",
+    "manageProductsTitle": "ផលិតផលហិរញ្ញវត្ថុ",
+    "manageProductsDescription": "ផលិតផលสินเชื่อและเงินช่วยเหลือที่ใช้งานอยู่",
+    "manageProductsButton": "จัดการผลิตภัณฑ์",
+    "table": {
+      "applicant": "ผู้สมัคร",
+      "type": "ប្រភេទ",
+      "amount": "จำนวนเงิน",
+      "riskScore": "คะแนนความเสี่ยง",
+      "action": "การดำเนินการ"
+    },
+    "reviewButton": "ตรวจสอบ",
+    "noApplications": "ไม่มีใบสมัครที่รอดำเนินการเพื่อตรวจสอบ",
+    "viewAllButton": "ดูใบสมัครทั้งหมด"
+  },
+  "FieldAgentDashboard": {
+    "title": "แผงควบคุมตัวแทนภาคสนาม",
+    "portfolioHealthTitle": "สุขภาพของพอร์ตโฟลิโอ",
+    "activeAlerts": "การแจ้งเตือนที่ใช้งานอยู่",
+    "pendingReportsTitle": "รายงานที่รอดำเนินการ",
+    "reportsToFile": "รายงานที่จะยื่น",
+    "dataVerificationTitle": "ការตรวจสอบข้อมูล",
+    "tasksPending": "งานที่รอดำเนินการ",
+    "assignedFarmersTitle": "เกษตรกรที่ได้รับมอบหมาย",
+    "farmersInPortfolio": "เกษตรกรในพอร์ตโฟลิโอ",
+    "portfolioTitle": "พอร์ตโฟลิโอเกษตรกร",
+    "lastVisit": "ការเข้าชมครั้งล่าสุด",
+    "issues": "បញ្ហា",
+    "viewFarmerButton": "មើល",
+    "noFarmersAssigned": "ยังไม่มีเกษตรกรได้รับมอบหมายในพอร์ตโฟลิโอของคุณ"
+  },
+  "InputSupplierDashboard": {
+    "title": "แผงควบคุมผู้จำหน่ายปัจจัยการผลิต",
+    "ordersTitle": "คำสั่งซื้อที่ใช้งานอยู่",
+    "totalValue": "มูลค่ารวม",
+    "manageOrdersButton": "จัดการคำสั่งซื้อ",
+    "forecastTitle": "พยากรณ์ความต้องการ",
+    "in": "ใน",
+    "noForecast": "ไม่มีข้อมูลพยากรณ์ความต้องการ",
+    "performanceTitle": "ประสิทธิภาพของผลิตภัณฑ์",
+    "viewReviewsButton": "ดูรีวิว",
+    "noFeedback": "ยังไม่มีความคิดเห็นเกี่ยวกับผลิตภัณฑ์",
+    "promotionsTitle": "การตลาดและโปรโมชั่น",
+    "promotionsDescription": "สร้างและจัดการคูปองเพื่อเพิ่มยอดขายของคุณ",
+    "manageCouponsButton": "จัดการคูปอง"
+  },
+  "InsuranceProviderDashboard": {
+    "title": "แผงควบคุมผู้ให้บริการประกันภัย",
+    "claimsTitle": "การเรียกร้องค่าสินไหมทดแทนที่รอดำเนินการ",
+    "claimsDescription": "ตรวจสอบและดำเนินการเรียกร้องค่าสินไหมทดแทนใหม่จากผู้ถือกรมธรรม์",
+    "table": {
+      "policyHolder": "ผู้ถือกรมธรรม์",
+      "policyType": "ប្រភេទกรมธรรม์",
+      "claimDate": "កាលបរិច្ឆេទเรียกร้อง",
+      "status": "สถานะ",
+      "action": "การดำเนินการ"
+    },
+    "reviewClaimButton": "ตรวจสอบการเรียกร้อง",
+    "noPendingClaims": "ไม่มีการเรียกร้องค่าสินไหมทดแทนที่รอดำเนินการในขณะนี้",
+    "riskAlertsTitle": "ការแจ้งเตือนการประเมินความเสี่ยง",
+    "riskAlertsDescription": "การแจ้งเตือนเชิงรุกสำหรับกรมธรรม์ที่มีความเสี่ยงสูงตามข้อมูลแบบเรียลไทม์",
+      "alert": "ការแจ้งเตือน",
+      "severity": "ความรุนแรง",
+    "investigateButton": "ตรวจสอบ",
+    "noRiskAlerts": "ไม่มีการแจ้งเตือนความเสี่ยงสูงในขณะนี้",
+    "activePoliciesTitle": "ภาพรวมกรมธรรม์ที่ใช้งานอยู่",
+    "activePoliciesDescription": "ภาพรวมของกรมธรรม์ประกันภัยที่ใช้งานอยู่ของคุณ",
+    "coverage": "ความคุ้มครอง",
+    "expires": "หมดอายุ",
+    "noActivePolicies": "រកមិនឃើញกรมธรรม์ที่ใช้งานอยู่"
+  },
+  "LogisticsDashboard": {
+    "title": "แผงควบคุมโลจิสติกส์",
+    "performanceTitle": "ประสิทธิภาพ",
+    "onTimeDelivery": "อัตราการจัดส่งตรงเวลา",
+    "viewReportButton": "ดูรายงานฉบับเต็ม",
+    "activeShipmentsTitle": "การจัดส่งที่ใช้งานอยู่",
+    "to": "ไปยัง",
+    "trackButton": "តាមដាន",
+    "noActiveShipments": "ไม่มีการจัดส่งที่ใช้งานอยู่",
+    "incomingJobsTitle": "งานที่เข้ามา",
+    "from": "จาก",
+    "acceptJobButton": "ยอมรับงาน",
+    "noIncomingJobs": "ไม่มีงานใหม่"
+  },
+  "OperationsDashboard": {
+    "title": "แผงควบคุมการดำเนินงานแพลตฟอร์ม",
+    "vtiRateTitle": "อัตราการสร้าง VTI",
+    "pipelineStatusTitle": "สถานะไปป์ไลน์ข้อมูล",
+    "lastCheck": "ตรวจสอบล่าสุด",
+    "flaggedEventsTitle": "เหตุการณ์การตรวจสอบย้อนกลับที่ถูกตั้งค่าสถานะ",
+    "viewVtiButton": "មើល VTI",
+    "noFlaggedEvents": "ไม่มีเหตุการณ์ที่ถูกตั้งค่าสถานะเพื่อตรวจสอบ"
+  },
+  "PackagingSupplierDashboard": {
+    "title": "แผงควบคุมผู้จำหน่ายบรรจุภัณฑ์",
+    "ordersTitle": "คำสั่งซื้อที่เข้ามา",
+    "table": {
+        "customer": "ลูกค้า",
+        "product": "ផលិតផល",
+        "quantity": "ปริมาณ",
+        "status": "สถานะ",
+        "action": "การดำเนินการ"
+    },
+    "viewOrderButton": "ดูคำสั่งซื้อ",
+    "noOrders": "ไม่มีคำสั่งซื้อใหม่",
+    "inventoryTitle": "สถานะสินค้าคงคลัง",
+    "inStock": "ในสต็อก",
+    "reorderLevel": "ระดับการสั่งซื้อใหม่",
+    "lowStock": "สต็อกต่ำ",
+    "noInventory": "ไม่มีข้อมูลสินค้าคงคลัง",
+    "listProductButton": "ลงรายการสินค้าใหม่"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "แผงควบคุมหน่วยประมวลผล",
+    "yieldTitle": "การเพิ่มประสิทธิภาพผลผลิต",
+    "potential": "ศักยภาพ",
+    "wasteTitle": "การลดของเสีย",
+    "rawMaterialTitle": "สินค้าคงคลังวัตถุดิบ",
+    "table": {
+        "product": "ផលិតផល",
+        "quality": "គុណភាព",
+        "quantity": "ปริมาณ (ตัน)",
+        "supplier": "ผู้จัดจำหน่าย",
+        "deliveryDate": "កាលបរិច្ឆេទจัดส่ง",
+        "status": "สถานะ",
+        "action": "การดำเนินการ"
+    },
+    "noInventoryData": "ไม่มีข้อมูลสินค้าคงคลังวัตถุดิบ",
+    "packagingOrdersTitle": "คำสั่งซื้อบรรจุภัณฑ์",
+    "noPackagingOrders": "ไม่มีคำสั่งซื้อบรรจุภัณฑ์ที่ใช้งานอยู่",
+    "viewButton": "មើល",
+    "packagingInventoryTitle": "สินค้าคงคลังบรรจุภัณฑ์",
+    "inStock": "ในสต็อก",
+    "reorderLevel": "ระดับการสั่งซื้อใหม่",
+    "noPackagingData": "ไม่มีข้อมูลสินค้าคงคลังบรรจุภัณฑ์",
+    "sourcePackagingButton": "จัดหาบรรจุภัณฑ์"
+  },
+  "QaDashboard": {
+    "title": "แผงควบคุมการประกันคุณภาพ",
+    "inspectionsTitle": "การตรวจสอบที่รอดำเนินการ",
+    "inspectionsDescription": "ชุดที่รอการตรวจสอบคุณภาพและการยืนยัน",
+    "table": {
+        "batchId": "ID ชุด",
+        "product": "ផលិតផល",
+        "seller": "អ្នកលក់",
+        "dueDate": "កាលបរិច្ឆេទផុតកំណត់",
+        "action": "การดำเนินการ",
+        "result": "លទ្ធផល",
+        "reason": "មូលហេតុ",
+        "inspectedAt": "ตรวจสอบเมื่อ"
+    },
+    "performInspectionButton": "ตรวจสอบ",
+    "noPendingInspections": "ไม่มีการตรวจสอบที่รอดำเนินการในขณะนี้",
+    "resultsTitle": "បញ្ហាคุณภาพล่าสุด",
+    "resultsDescription": "បញ្ហាคุณภาพที่ถูกตั้งค่าสถานะล่าสุดซึ่งอาจต้องดำเนินการ",
+    "noRecentIssues": "ไม่มีการบันทึกปัญหาคุณภาพล่าสุด",
+    "metricsTitle": "เมตริกคุณภาพ",
+    "metricsDescription": "ประสิทธิภาพคุณภาพโดยรวมทั่วทั้งแพลตฟอร์ม",
+    "passRate": "อัตราการผ่าน",
+    "averageScore": "คะแนนเฉลี่ย",
+    "noMetrics": "ยังไม่มีเมตริกคุณภาพ"
+  },
+  "RegulatorDashboard": {
+    "title": "แผงควบคุมหน่วยงานกำกับดูแล",
+    "pendingCertificationsTitle": "การรับรองที่รอดำเนินการ",
+    "reviewsOutstanding": "การตรวจสอบที่ค้างอยู่",
+    "reviewAllButton": "ตรวจสอบทั้งหมด",
+    "riskAlertsTitle": "การแจ้งเตือนความเสี่ยงด้านการปฏิบัติตามข้อกำหนด",
+    "investigateButton": "ตรวจสอบ",
+    "noComplianceAlerts": "ไม่มีการแจ้งเตือนการปฏิบัติตามข้อกำหนดที่ใช้งานอยู่",
+    "anomaliesTitle": "ความผิดปกติในห่วงโซ่อุปทาน",
+    "trackVtiButton": "តាមដាន VTI",
+    "noAnomalies": "ไม่พบความผิดปกติในห่วงโซ่อุปทาน"
+  },
+  "ResearcherDashboard": {
+    "title": "แผงควบคุมนักวิจัย",
+    "datasetsTitle": "ชุดข้อมูลที่มีอยู่",
+    "datasetsDescription": "ชุดข้อมูลที่ไม่ระบุชื่อสำหรับวัตถุประสงค์ในการวิจัย",
+    "table": {
+      "name": "ឈ្មោះ",
+      "dataType": "ប្រភេទข้อมูล",
+      "accessLevel": "ระดับการเข้าถึง",
+      "action": "การดำเนินการ",
+      "title": "ចំណងជើង",
+      "progress": "ความคืบหน้า",
+      "collaborators": "ผู้ร่วมงาน",
+      "status": "สถานะ"
+    },
+    "requestAccessButton": "ขอเข้าถึง",
+    "noDatasets": "ไม่มีชุดข้อมูลให้บริการในขณะนี้",
+    "projectsTitle": "โครงการที่กำลังดำเนินอยู่",
+    "projectsDescription": "โครงการวิจัยที่ใช้งานอยู่ของคุณบนแพลตฟอร์ม",
+    "viewProjectButton": "ดูโครงการ",
+    "noProjects": "คุณไม่ได้มีส่วนร่วมในโครงการที่กำลังดำเนินอยู่",
+    "contributionsTitle": "ការចូលរួមในศูนย์ความรู้",
+    "contributionsDescription": "บทความและเอกสารวิจัยที่คุณส่ง",
+    "viewButton": "មើល",
+    "noContributions": "คุณยังไม่ได้ส่งผลงานใดๆ",
+    "chart": {
+      "count": "จำนวน",
+      "published": "បានផ្សព្វផ្សាយ",
+      "pending": "រង់ចាំการตรวจสอบ",
+      "draft": "ร่าง"
+    },
+    "noData": "ไม่มีข้อมูลแดชบอร์ด"
+  },
+  "WasteManagementDashboard": {
+    "title": "แผงควบคุมการจัดการของเสีย",
+    "wasteStreamsTitle": "กระแสของเสียที่เข้ามา",
+    "from": "จาก",
+    "acceptButton": "ยอมรับ",
+    "noWasteStreams": "ไม่มีกระแสของเสียใหม่ที่เข้ามา",
+    "compostBatchesTitle": "ชุดปุ๋ยหมัก",
+    "batch": "ชุด",
+    "estReady": "ประมาณ พร้อม",
+    "noCompostBatches": "ไม่มีชุดปุ๋ยหมักที่ใช้งานอยู่",
+    "inventoryTitle": "สินค้าคงคลังผลิตภัณฑ์สำเร็จรูป",
+    "inStock": "ในสต็อก",
+    "noFinishedProducts": "ไม่มีผลิตภัณฑ์สำเร็จรูปในสต็อก",
+    "sellButton": "ขายในตลาด"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "คุณต้องลงชื่อเข้าใช้เพื่อกดถูกใจโพสต์",
+    "repostPlaceholderToast": "คุณลักษณะการโพสต์ซ้ำจะมาในเร็วๆ นี้!",
+    "signInToVoteToast": "คุณต้องลงชื่อเข้าใช้เพื่อโหวต",
+    "voteSuccessToast": "นับคะแนนโหวตของคุณแล้ว!",
+    "voteErrorToast": "ไม่สามารถบันทึกการโหวตได้",
+    "editPost": "កែសម្រួលโพสต์",
+    "deletePost": "ลบโพสต์",
+    "like": "ถูกใจ",
+    "comment": "แสดงความคิดเห็น",
+    "repost": "โพสต์ซ้ำ",
+    "likes": "{count, plural, =0 {การกดถูกใจ} =1 {การกดถูกใจ} other {{count} การกดถูกใจ}}",
+    "comments": "{count, plural, =0 {ความคิดเห็น} =1 {ความคิดเห็น} other {{count} ความคิดเห็น}}",
+    "loadCommentsErrorToast": "ไม่สามารถโหลดความคิดเห็นได้",
+    "noComments": "เป็นคนแรกที่แสดงความคิดเห็น!",
+    "loadingComments": "កំពុងផ្ទុកความคิดเห็น...",
+    "loadMoreComments": "โหลดความคิดเห็นเพิ่มเติม",
+    "writeCommentPlaceholder": "เพิ่มความคิดเห็น...",
+    "postButton": "ផ្សព្វផ្សាយ",
+    "votes": "{count, plural, =0 {คะแนนโหวต} =1 {คะแนนโหวต} other {{count} คะแนนโหวต}}"
+  },
+  "CreatePostModal": {
+    "title": "สร้างโพสต์ใหม่",
+    "description": "แบ่งปันการอัปเดต ถามคำถาม หรือเริ่มการสนทนากับชุมชน",
+    "yourName": "ឈ្មោះ​របស់​អ្នក",
+    "shareUpdate": "แบ่งปันการอัปเดต",
+    "placeholder": "คุณกำลังคิดอะไรอยู่?",
+    "selectedFile": "ไฟล์ที่เลือก:",
+    "pollOptionsLabel": "ตัวเลือกโพล",
+    "pollOptionPlaceholder": "ตัวเลือก {index}",
+    "addOptionButton": "เพิ่มตัวเลือก",
+    "pollNote": "อนุญาตให้มีตัวเลือกสูงสุด {maxOptions} ตัวเลือก",
+    "photoVideo": "រូបថត/វីដេអូ",
+    "agriEvent": "ព្រឹត្តិការណ៍កសិកម្ម",
+    "shareDocumentButton": "แบ่งปันเอกสาร",
+    "createPollButton": "สร้างโพล",
+    "postButton": "ផ្សព្វផ្សាយ",
+    "pollOptionsError": "โพลต้องมีอย่างน้อย 2 ตัวเลือกที่ไม่ว่างเปล่า",
+    "emptyPostError": "โพสต์ของคุณต้องไม่ว่างเปล่า"
   }
 }

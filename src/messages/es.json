@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -1615,5 +1614,527 @@
       "noResults": "No se encontraron resultados.",
       "tryAgain": "Prueba con un término de búsqueda diferente o amplía tu consulta."
     }
+  },
+  "AgriTechDashboard": {
+    "title": "Panel de Innovador Agri-Tech",
+    "sandboxTitle": "Entorno de Pruebas (Sandbox)",
+    "statusLabel": "Estado",
+    "lastResetLabel": "Último Reinicio",
+    "accessDocsButton": "Acceder a Documentación API",
+    "integrationsTitle": "Integraciones Activas",
+    "activeProjects": "{count, plural, =0 {Proyectos Activos} =1 {1 Proyecto Activo} other {{count} Proyectos Activos}}",
+    "integrationsDescription": "Tus proyectos activos integrados con DamDoh.",
+    "proposeIntegrationButton": "Proponer Nueva Integración",
+    "apiKeysTitle": "Claves de API",
+    "apiKeysDescription": "Gestiona tus claves de API para acceder a los servicios de DamDoh.",
+    "generateNewKeyButton": "Generar Nueva Clave",
+    "table": {
+      "key": "Clave / Descripción",
+      "status": "Estado",
+      "environment": "Entorno",
+      "created": "Creado",
+      "actions": "Acciones"
+    },
+    "noApiKeys": "Aún no has generado ninguna clave de API.",
+    "apiKeyCopied": "¡Clave de API copiada al portapapeles!",
+    "revokeDialog": {
+      "title": "¿Estás seguro de que quieres revocar esta clave de API?",
+      "description": "Esta acción no se puede deshacer. Cualquier aplicación que use esta clave perderá el acceso inmediatamente.",
+      "cancel": "Cancelar",
+      "confirm": "Sí, Revocar Clave"
+    },
+    "toast": {
+      "descriptionRequired": "Se requiere una descripción para la nueva clave.",
+      "keyGeneratedSuccess": "Nueva clave de API generada con éxito.",
+      "keyGeneratedError": "No se pudo generar la clave de API.",
+      "keyRevokedSuccess": "La clave de API ha sido revocada.",
+      "keyRevokedError": "No se pudo revocar la clave de API."
+    },
+    "generateButton": "Generar"
+  },
+  "AgroExportDashboard": {
+    "title": "Panel de Agro-Exportación",
+    "docsTitle": "Documentos de Aduana Pendientes",
+    "shipmentsTitle": "Envíos Rastreados",
+    "alertsTitle": "Alertas de Cumplimiento",
+    "table": {
+      "destination": "Destino"
+    },
+    "prepareDocsButton": "Preparar Documentos",
+    "readMore": "Leer Más",
+    "noDocs": "No hay documentos de aduana pendientes.",
+    "noShipments": "No hay envíos activos para rastrear.",
+    "noAlerts": "No hay nuevas alertas de cumplimiento."
+  },
+  "AgroTourismDashboard": {
+    "title": "Panel de Agroturismo",
+    "bookingsTitle": "Próximas Reservas",
+    "bookingsDescription": "Tus próximos huéspedes y experiencias.",
+    "experiencesTitle": "Tus Experiencias Listadas",
+    "experiencesDescription": "Gestiona tus ofertas de agroturismo.",
+    "reviewsTitle": "Reseñas de Huéspedes",
+    "reviewsDescription": "Últimos comentarios de tus visitantes.",
+    "table": {
+      "experience": "Experiencia",
+      "guest": "Huésped",
+      "date": "Fecha",
+      "action": "Acción",
+      "title": "Título",
+      "status": "Estado",
+      "bookings": "Reservas"
+    },
+    "viewDetailsButton": "Ver Detalles",
+    "manageButton": "Gestionar",
+    "noBookings": "No hay próximas reservas.",
+    "noExperiences": "Aún no has listado ninguna experiencia.",
+    "noReviews": "Aún no hay reseñas de huéspedes.",
+    "viewReviewButton": "Ver",
+    "on": "en"
+  },
+  "AgronomistDashboard": {
+    "title": "Panel de Agrónomo",
+    "stats": {
+      "assignedFarmers": "Agricultores Asignados",
+      "farmersWithAlerts": "Agricultores con Alertas",
+      "pendingConsultations": "Consultas Pendientes",
+      "knowledgeContributions": "Contribuciones de Conocimiento"
+    },
+    "activeAlerts": "alertas activas",
+    "reportsToFile": "informes por presentar",
+    "tasksPending": "tareas pendientes",
+    "consultations": {
+      "title": "Solicitudes de Consulta",
+      "description": "Responde a las solicitudes entrantes de los agricultores.",
+      "table": {
+        "farmer": "Agricultor",
+        "issue": "Resumen del Problema",
+        "action": "Acción"
+      },
+      "viewButton": "Ver",
+      "noRequests": "No hay solicitudes de consulta pendientes."
+    },
+    "portfolio": {
+      "title": "Cartera de Agricultores",
+      "description": "Un resumen de los agricultores que gestionas.",
+      "table": {
+        "farmer": "Agricultor",
+        "location": "Ubicación",
+        "alerts": "Alertas",
+        "action": "Acción"
+      },
+      "alertsLabel": "Alertas",
+      "profileButton": "Perfil",
+      "noFarmers": "No tienes agricultores asignados a tu cartera."
+    },
+    "contributions": {
+      "statusTitle": "Estado de Contribución",
+      "title": "Tus Contribuciones al Centro de Conocimiento",
+      "noData": "No hay datos de contribución disponibles.",
+      "noContributions": "Aún no has hecho ninguna contribución."
+    },
+    "noData": "No hay datos de panel disponibles.",
+    "lastVisit": "Última visita",
+    "issues": "Problemas",
+    "chart": {
+      "count": "Cantidad",
+      "published": "Publicado",
+      "pending": "Pendiente",
+      "draft": "Borrador"
+    }
+  },
+  "BuyerDashboard": {
+    "title": "Panel de Comprador",
+    "riskTitle": "Riesgo de la Cadena de Suministro",
+    "diversifySourcing": "Diversificar Fuentes",
+    "priceTitle": "Inteligencia de Precios de Mercado",
+    "secureContracts": "Asegurar Contratos a Futuro",
+    "sourcingTitle": "Recomendaciones de Abastecimiento",
+    "reliabilityScore": "Puntuación de Fiabilidad",
+    "findSuppliersButton": "Encontrar Más Proveedores"
+  },
+  "CertificationBodyDashboard": {
+    "title": "Panel de Organismo de Certificación",
+    "auditsTitle": "Auditorías Pendientes",
+    "auditsDescription": "Próximas auditorías que requieren su atención.",
+    "table": {
+      "farmName": "Nombre de la Finca",
+      "standard": "Estándar",
+      "dueDate": "Fecha Límite",
+      "action": "Acción"
+    },
+    "reviewAuditButton": "Revisar Auditoría",
+    "noPendingAudits": "No hay auditorías pendientes en este momento.",
+    "entitiesTitle": "Estado de Entidades Certificadas",
+    "entitiesDescription": "Resumen de sus entidades certificadas.",
+    "noCertifiedEntities": "No hay datos disponibles para entidades certificadas.",
+    "monitoringTitle": "Monitoreo de Estándares",
+    "monitoringDescription": "Tasas de cumplimiento para estándares clave.",
+    "alerts": "Alertas",
+    "viewDetailsButton": "Ver Detalles",
+    "noMonitoringData": "No hay datos de monitoreo disponibles."
+  },
+  "CooperativeDashboard": {
+    "title": "Panel de Cooperativa",
+    "membersTitle": "Miembros Totales",
+    "membersDescription": "{count} agricultores activos en su cooperativa.",
+    "landAreaTitle": "Área Total de Tierra",
+    "landAreaDescription": "Hectáreas bajo cultivo.",
+    "pendingApplicationsTitle": "Solicitudes Pendientes",
+    "pendingApplicationsDescription": "Nuevos agricultores esperando aprobación.",
+    "produceTitle": "Producción Agregada Disponible",
+    "produceDescription": "Vista consolidada de los productos listos para la venta de sus miembros.",
+    "table": {
+      "product": "Producto",
+      "quantity": "Cantidad (Toneladas)",
+      "quality": "Calidad",
+      "readyBy": "Listo para",
+      "action": "Acción"
+    },
+    "createListingButton": "Crear Anuncio",
+    "noProduce": "No hay producción agregada disponible para listar.",
+    "aggregateButton": "Agregar Nueva Producción"
+  },
+  "CrowdfunderDashboard": {
+    "title": "Panel de Inversionista (Crowdfunder)",
+    "totalInvested": "Total Invertido",
+    "numberOfInvestments": "Número de Inversiones",
+    "estimatedReturns": "Retornos Estimados",
+    "opportunitiesTitle": "Oportunidades Sugeridas",
+    "viewButton": "Ver",
+    "raisedOf": "recaudados de",
+    "goal": "meta",
+    "noOpportunities": "No hay nuevas oportunidades de inversión que coincidan con su perfil.",
+    "transactionsTitle": "Transacciones Recientes",
+    "table": {
+      "project": "Proyecto",
+      "amount": "Monto"
+    },
+    "investment": "Inversión",
+    "payout": "Pago",
+    "on": "el",
+    "noTransactions": "No hay transacciones recientes."
+  },
+  "EnergyProviderDashboard": {
+    "title": "Panel de Proveedor de Energía",
+    "leadsTitle": "Clientes Potenciales de Proyectos",
+    "leadsCount": "{count, plural, =0 {clientes potenciales} =1 {1 cliente potencial} other {{count} clientes potenciales}}",
+    "newLeadsDescription": "nuevos clientes potenciales requieren atención",
+    "projectsTitle": "Proyectos Activos",
+    "activeProjectsCount": "{count, plural, =0 {proyectos} =1 {1 proyecto} other {{count} proyectos}}",
+    "projectsCompleted": "proyectos completados",
+    "impactTitle": "Impacto Acumulativo",
+    "impactDescription": "Impacto total estimado de sus proyectos.",
+    "carbonReduction": "tCO2e/año reducidas de {count} instalaciones",
+    "accessDocsButton": "Acceder a Documentación API",
+    "proposeIntegrationButton": "Proponer Nueva Integración",
+    "leadsTableTitle": "Canalización de Proyectos",
+    "leadsTableDescription": "Rastree sus clientes potenciales desde el contacto inicial hasta la finalización del proyecto.",
+    "table": {
+      "entity": "Entidad",
+      "location": "Ubicación",
+      "energyNeed": "Necesidad Estimada",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "viewLeadButton": "Ver Cliente Potencial",
+    "noLeads": "No hay clientes potenciales de proyectos activos.",
+    "statusLabels": {
+      "new": "Nuevo",
+      "contacted": "Contactado",
+      "proposal_sent": "Propuesta Enviada",
+      "closed": "Cerrado"
+    }
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "Panel de Proveedor de Equipos",
+    "ordersTitle": "Alquileres y Ventas",
+    "ordersDescription": "{count} pedidos activos",
+    "manageOrdersButton": "Gestionar Pedidos",
+    "listedEquipmentTitle": "Su Equipo Listado",
+    "table": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "status": {
+      "available": "Disponible",
+      "rentedout": "Alquilado"
+    },
+    "manageButton": "Gestionar",
+    "noEquipment": "Aún no hay equipo listado.",
+    "listEquipmentButton": "Listar Nuevo Equipo",
+    "maintenanceTitle": "Solicitudes de Mantenimiento",
+    "viewRequestButton": "Ver Solicitud",
+    "noMaintenance": "No hay solicitudes de mantenimiento pendientes."
+  },
+  "FiDashboard": {
+    "title": "Panel de Institución Financiera",
+    "pendingApplicationsTitle": "Solicitudes Pendientes",
+    "pendingApplicationsDescription": "solicitudes requieren su revisión",
+    "manageApplicationsButton": "Gestionar Solicitudes",
+    "portfolioAtRiskTitle": "Cartera en Riesgo",
+    "portfolioAtRiskDescription": "{count} préstamos con alertas de alto riesgo",
+    "reviewRiskButton": "Revisar Riesgo",
+    "manageProductsTitle": "Productos Financieros",
+    "manageProductsDescription": "productos de préstamo y subvención activos",
+    "manageProductsButton": "Gestionar Productos",
+    "table": {
+      "applicant": "Solicitante",
+      "type": "Tipo",
+      "amount": "Monto",
+      "riskScore": "Puntaje de Riesgo",
+      "action": "Acción"
+    },
+    "reviewButton": "Revisar",
+    "noApplications": "No hay solicitudes pendientes para revisar.",
+    "viewAllButton": "Ver Todas las Solicitudes"
+  },
+  "FieldAgentDashboard": {
+    "title": "Panel de Agente de Campo",
+    "portfolioHealthTitle": "Salud de la Cartera",
+    "activeAlerts": "alertas activas",
+    "pendingReportsTitle": "Informes Pendientes",
+    "reportsToFile": "informes por presentar",
+    "dataVerificationTitle": "Verificación de Datos",
+    "tasksPending": "tareas pendientes",
+    "assignedFarmersTitle": "Agricultores Asignados",
+    "farmersInPortfolio": "agricultores en cartera",
+    "portfolioTitle": "Cartera de Agricultores",
+    "lastVisit": "Última visita",
+    "issues": "Problemas",
+    "viewFarmerButton": "Ver",
+    "noFarmersAssigned": "Aún no se le han asignado agricultores."
+  },
+  "InputSupplierDashboard": {
+    "title": "Panel de Proveedor de Insumos",
+    "ordersTitle": "Pedidos Activos",
+    "totalValue": "valor total",
+    "manageOrdersButton": "Gestionar Pedidos",
+    "forecastTitle": "Previsión de Demanda",
+    "in": "en",
+    "noForecast": "No hay datos de previsión de demanda disponibles.",
+    "performanceTitle": "Rendimiento del Producto",
+    "viewReviewsButton": "Ver Reseñas",
+    "noFeedback": "Aún no hay comentarios sobre el producto.",
+    "promotionsTitle": "Marketing y Promociones",
+    "promotionsDescription": "Crea y gestiona cupones para impulsar tus ventas.",
+    "manageCouponsButton": "Gestionar Cupones"
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Panel de Proveedor de Seguros",
+    "claimsTitle": "Reclamaciones Pendientes",
+    "claimsDescription": "Revise y procese nuevas reclamaciones de los asegurados.",
+    "table": {
+      "policyHolder": "Asegurado",
+      "policyType": "Tipo de Póliza",
+      "claimDate": "Fecha de Reclamación",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "reviewClaimButton": "Revisar Reclamación",
+    "noPendingClaims": "No hay reclamaciones pendientes en este momento.",
+    "riskAlertsTitle": "Alertas de Evaluación de Riesgos",
+    "riskAlertsDescription": "Alertas proactivas para pólizas de alto riesgo basadas en datos en tiempo real.",
+      "alert": "Alerta",
+      "severity": "Gravedad",
+    "investigateButton": "Investigar",
+    "noRiskAlerts": "Actualmente no hay alertas de alto riesgo.",
+    "activePoliciesTitle": "Resumen de Pólizas Activas",
+    "activePoliciesDescription": "Un resumen de sus pólizas de seguro activas.",
+    "coverage": "Cobertura",
+    "expires": "Expira",
+    "noActivePolicies": "No se encontraron pólizas activas."
+  },
+  "LogisticsDashboard": {
+    "title": "Panel de Logística",
+    "performanceTitle": "Rendimiento",
+    "onTimeDelivery": "tasa de entrega a tiempo",
+    "viewReportButton": "Ver Informe Completo",
+    "activeShipmentsTitle": "Envíos Activos",
+    "to": "A",
+    "trackButton": "Rastrear",
+    "noActiveShipments": "No hay envíos activos.",
+    "incomingJobsTitle": "Trabajos Entrantes",
+    "from": "Desde",
+    "acceptJobButton": "Aceptar Trabajo",
+    "noIncomingJobs": "No hay nuevos trabajos disponibles."
+  },
+  "OperationsDashboard": {
+    "title": "Panel de Operaciones de la Plataforma",
+    "vtiRateTitle": "Tasa de Generación de VTI",
+    "pipelineStatusTitle": "Estado de la Tubería de Datos",
+    "lastCheck": "Última comprobación",
+    "flaggedEventsTitle": "Eventos de Trazabilidad Marcados",
+    "viewVtiButton": "Ver VTI",
+    "noFlaggedEvents": "No se han marcado eventos para revisión."
+  },
+  "PackagingSupplierDashboard": {
+    "title": "Panel de Proveedor de Embalajes",
+    "ordersTitle": "Pedidos Entrantes",
+    "table": {
+        "customer": "Cliente",
+        "product": "Producto",
+        "quantity": "Cantidad",
+        "status": "Estado",
+        "action": "Acción"
+    },
+    "viewOrderButton": "Ver Pedido",
+    "noOrders": "No hay pedidos nuevos.",
+    "inventoryTitle": "Estado del Inventario",
+    "inStock": "En Stock",
+    "reorderLevel": "Reordenar en",
+    "lowStock": "Stock Bajo",
+    "noInventory": "No hay datos de inventario.",
+    "listProductButton": "Listar Nuevo Producto"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Panel de Unidad de Procesamiento",
+    "yieldTitle": "Optimización del Rendimiento",
+    "potential": "potencial",
+    "wasteTitle": "Reducción de Residuos",
+    "rawMaterialTitle": "Inventario de Materia Prima",
+    "table": {
+        "product": "Producto",
+        "quality": "Calidad",
+        "quantity": "Cantidad (Toneladas)",
+        "supplier": "Proveedor",
+        "deliveryDate": "Fecha de Entrega",
+        "status": "Estado",
+        "action": "Acción"
+    },
+    "noInventoryData": "No hay datos de inventario de materia prima.",
+    "packagingOrdersTitle": "Pedidos de Embalaje",
+    "noPackagingOrders": "No hay pedidos de embalaje activos.",
+    "viewButton": "Ver",
+    "packagingInventoryTitle": "Inventario de Embalaje",
+    "inStock": "En Stock",
+    "reorderLevel": "Nivel de Reorden",
+    "noPackagingData": "No hay datos de inventario de embalaje.",
+    "sourcePackagingButton": "Buscar Embalaje"
+  },
+  "QaDashboard": {
+    "title": "Panel de Garantía de Calidad",
+    "inspectionsTitle": "Inspecciones Pendientes",
+    "inspectionsDescription": "Lotes en espera de inspección y verificación de calidad.",
+    "table": {
+        "batchId": "ID de Lote",
+        "product": "Producto",
+        "seller": "Vendedor",
+        "dueDate": "Fecha Límite",
+        "action": "Acción",
+        "result": "Resultado",
+        "reason": "Motivo",
+        "inspectedAt": "Inspeccionado el"
+    },
+    "performInspectionButton": "Inspeccionar",
+    "noPendingInspections": "No hay inspecciones pendientes en este momento.",
+    "resultsTitle": "Problemas de Calidad Recientes",
+    "resultsDescription": "Problemas de calidad recientemente marcados que pueden requerir acción.",
+    "noRecentIssues": "No se han registrado problemas de calidad recientes.",
+    "metricsTitle": "Métricas de Calidad",
+    "metricsDescription": "Rendimiento general de la calidad en toda la plataforma.",
+    "passRate": "Tasa de Aprobación",
+    "averageScore": "Puntuación Promedio",
+    "noMetrics": "Aún no hay métricas de calidad disponibles."
+  },
+  "RegulatorDashboard": {
+    "title": "Panel del Regulador",
+    "pendingCertificationsTitle": "Certificaciones Pendientes",
+    "reviewsOutstanding": "revisiones pendientes",
+    "reviewAllButton": "Revisar Todo",
+    "riskAlertsTitle": "Alertas de Riesgo de Cumplimiento",
+    "investigateButton": "Investigar",
+    "noComplianceAlerts": "No hay alertas de cumplimiento activas.",
+    "anomaliesTitle": "Anomalías en la Cadena de Suministro",
+    "trackVtiButton": "Rastrear VTI",
+    "noAnomalies": "No se detectaron anomalías en la cadena de suministro."
+  },
+  "ResearcherDashboard": {
+    "title": "Panel del Investigador",
+    "datasetsTitle": "Conjuntos de Datos Disponibles",
+    "datasetsDescription": "Conjuntos de datos anonimizados disponibles para fines de investigación.",
+    "table": {
+      "name": "Nombre",
+      "dataType": "Tipo de Datos",
+      "accessLevel": "Nivel de Acceso",
+      "action": "Acción",
+      "title": "Título",
+      "progress": "Progreso",
+      "collaborators": "Colaboradores",
+      "status": "Estado"
+    },
+    "requestAccessButton": "Solicitar Acceso",
+    "noDatasets": "Actualmente no hay conjuntos de datos disponibles.",
+    "projectsTitle": "Proyectos en Curso",
+    "projectsDescription": "Sus proyectos de investigación activos en la plataforma.",
+    "viewProjectButton": "Ver Proyecto",
+    "noProjects": "No está involucrado en ningún proyecto en curso.",
+    "contributionsTitle": "Contribuciones al Centro de Conocimiento",
+    "contributionsDescription": "Sus artículos y trabajos de investigación enviados.",
+    "viewButton": "Ver",
+    "noContributions": "Aún no ha enviado ninguna contribución.",
+    "chart": {
+      "count": "Cantidad",
+      "published": "Publicado",
+      "pending": "Pendiente de Revisión",
+      "draft": "Borrador"
+    },
+    "noData": "No hay datos de panel disponibles."
+  },
+  "WasteManagementDashboard": {
+    "title": "Panel de Gestión de Residuos",
+    "wasteStreamsTitle": "Flujos de Residuos Entrantes",
+    "from": "Desde",
+    "acceptButton": "Aceptar",
+    "noWasteStreams": "No hay nuevos flujos de residuos entrantes.",
+    "compostBatchesTitle": "Lotes de Compost",
+    "batch": "Lote",
+    "estReady": "Listo Estimado",
+    "noCompostBatches": "No hay lotes de compost activos.",
+    "inventoryTitle": "Inventario de Producto Terminado",
+    "inStock": "En Stock",
+    "noFinishedProducts": "No hay productos terminados en el inventario.",
+    "sellButton": "Vender en el Mercado"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "Debes iniciar sesión para dar 'me gusta' a una publicación.",
+    "repostPlaceholderToast": "La función de 'repostear' estará disponible pronto.",
+    "signInToVoteToast": "Debes iniciar sesión para votar.",
+    "voteSuccessToast": "¡Tu voto ha sido contado!",
+    "voteErrorToast": "No se pudo registrar el voto",
+    "editPost": "Editar Publicación",
+    "deletePost": "Eliminar Publicación",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Repostear",
+    "likes": "{count, plural, =0 {me gusta} =1 {me gusta} other {{count} me gusta}}",
+    "comments": "{count, plural, =0 {comentarios} =1 {comentario} other {{count} comentarios}}",
+    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
+    "noComments": "¡Sé el primero en comentar!",
+    "loadingComments": "Cargando comentarios...",
+    "loadMoreComments": "Cargar más comentarios",
+    "writeCommentPlaceholder": "Añade un comentario...",
+    "postButton": "Publicar",
+    "votes": "{count, plural, =0 {votos} =1 {voto} other {{count} votos}}"
+  },
+  "CreatePostModal": {
+    "title": "Crear una nueva publicación",
+    "description": "Comparte una actualización, haz una pregunta o inicia una discusión con la comunidad.",
+    "yourName": "Tu Nombre",
+    "shareUpdate": "Compartir una actualización",
+    "placeholder": "¿Qué tienes en mente?",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la Encuesta",
+    "pollOptionPlaceholder": "Opción {index}",
+    "addOptionButton": "Añadir Opción",
+    "pollNote": "Se permiten un máximo de {maxOptions} opciones.",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Evento Agrícola",
+    "shareDocumentButton": "Compartir Documento",
+    "createPollButton": "Crear una Encuesta",
+    "postButton": "Publicar",
+    "pollOptionsError": "Una encuesta debe tener al menos 2 opciones no vacías.",
+    "emptyPostError": "Tu publicación no puede estar vacía."
   }
 }
