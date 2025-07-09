@@ -61,6 +61,7 @@
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
     "forgotPasswordLink": "Forgot password?",
     "signingInButton": "Signing In...",
     "signInButton": "Sign In",
