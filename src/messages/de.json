@@ -1038,7 +1038,7 @@
     "knfInputsPage": {
       "backLink": "Zurück zum Hub",
       "title": "KNF-Input-Assistent",
-      "description": "Verfolgen und verwalten Sie Ihre selbstgemachten KNF-Inputs (Korean Natural Farming).",
+      "description": "Verfolgen und verwalten Sie Ihre von Landwirten hergestellten KNF-Inputs (Korean Natural Farming).",
       "guidesTitle": "Anleitungen & Rezepte",
       "ingredients": "Zutaten",
       "steps": "Schritte",
@@ -1625,7 +1625,60 @@
     "couldNotStartConversation": "Eine neue Konversation konnte nicht gestartet werden.",
     "sendFailed": "Senden fehlgeschlagen",
     "couldNotSendMessage": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie landwirtschaftliche Arbeitsplätze, qualifizierte Arbeitskräfte und professionelle Dienstleistungen.",
+    "listServiceButton": "Dienstleistung / Job inserieren",
+    "searchPlaceholder": "Nach Fähigkeit, Rolle oder Stichwort suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Dienstleistungskategorie filtern...",
+    "allCategories": "Alle Dienstleistungskategorien",
+    "noResultsTitle": "Keine Dienstleistungen oder Talente gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen oder seien Sie der Erste, der eine Dienstleistung in Ihrer Nähe anbietet.",
+    "toast": {
+      "error": {
+        "title": "Fehler",
+        "description": "Dienstleistungen von der Talentbörse konnten nicht geladen werden."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Rückverfolgbarkeits-Hub",
+    "description": "Überprüfen Sie den Weg Ihrer Lebensmittel. Verfolgen Sie jede Produktcharge vom Bauernhof bis zum Tisch mit ihrer Vibrant Traceability ID (VTI).",
+    "inputPlaceholder": "VTI-Chargen-ID eingeben...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Eine VTI ist eine eindeutige Kennung, die jeder landwirtschaftlichen Charge zugewiesen wird und eine lückenlose Transparenz ermöglicht.",
+    "recentTitle": "Kürzlich verfolgte Chargen",
+    "recentDescription": "Hier sind einige der neuesten Produktchargen mit öffentlichen Rückverfolgbarkeitsdaten.",
+    "noRecentBatches": "In letzter Zeit wurden keine öffentlichen Chargen erfasst.",
+    "producerLabel": "Produzent",
+    "harvestDateLabel": "Erntedatum",
+    "viewReportButton": "Vollständigen Bericht anzeigen",
+    "detailPage": {
+      "backLink": "Zurück zum Rückverfolgbarkeits-Hub",
+      "invalidIdError": "Es wurde keine gültige Chargen-ID angegeben.",
+      "loadError": "Der Rückverfolgungsbericht für diese Charge konnte nicht geladen werden.",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Die von Ihnen eingegebene VTI entspricht keiner Charge in unseren Aufzeichnungen. Bitte überprüfen Sie die ID und versuchen Sie es erneut.",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Produzent",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Anfänglicher Ertrag",
+      "qualityLabel": "Anfänglicher Qualitätsgrad",
+      "notSpecified": "Nicht angegeben",
+      "journeyTitle": "Reise des Produkts",
+      "journeyDescription": "Verfolgen Sie die vollständige Reise dieser Charge vom Bauernhof.",
+      "noEventsFound": "Für diese Charge wurden noch keine Ereignisse erfasst.",
+      "noEventDetails": "Für dieses Ereignis wurden keine zusätzlichen Details angegeben.",
+      "geoLocationLabel": "Geolokalisierung",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Dieses Produkt wurde mit nachhaltigen und biologisch verträglichen Betriebsmitteln angebaut, die auf der DamDoh-Plattform protokolliert wurden.",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-gestützte Diagnose"
+    }
   }
 }
-
     

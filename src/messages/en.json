@@ -1642,7 +1642,43 @@
         "description": "Could not load services from the Talent Exchange."
       }
     }
+  },
+  "traceabilityPage": {
+    "title": "Traceability Hub",
+    "description": "Verify the journey of your food. Track any product batch from farm to table using its Vibrant Traceability ID (VTI).",
+    "inputPlaceholder": "Enter VTI Batch ID...",
+    "trackButton": "Track",
+    "vtiDescription": "A VTI is a unique identifier assigned to each agricultural batch, enabling end-to-end transparency.",
+    "recentTitle": "Recently Tracked Batches",
+    "recentDescription": "Here are some of the latest product batches with public traceability data.",
+    "noRecentBatches": "No public batches have been logged recently.",
+    "producerLabel": "Producer",
+    "harvestDateLabel": "Harvest Date",
+    "viewReportButton": "View Full Report",
+    "detailPage": {
+      "backLink": "Back to Traceability Hub",
+      "invalidIdError": "No valid batch ID was provided.",
+      "loadError": "Could not load the traceability report for this batch.",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "The VTI you entered does not match any batch in our records. Please check the ID and try again.",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Producer",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Initial Yield",
+      "qualityLabel": "Initial Quality Grade",
+      "notSpecified": "Not Specified",
+      "journeyTitle": "Product Journey",
+      "journeyDescription": "Follow the complete journey of this batch from the farm.",
+      "noEventsFound": "No events have been logged for this batch yet.",
+      "noEventDetails": "No additional details were provided for this event.",
+      "geoLocationLabel": "Geolocation",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "This product was grown using sustainable and organic-friendly inputs logged on the DamDoh platform.",
+      "observationType": "Observation Type",
+      "details": "Details",
+      "aiDiagnosis": "AI-Powered Diagnosis"
+    }
   }
 }
-
     

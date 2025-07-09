@@ -1642,7 +1642,43 @@
         "description": "Impossible de charger les services de la Bourse de Talents."
       }
     }
+  },
+  "traceabilityPage": {
+    "title": "Hub de Traçabilité",
+    "description": "Vérifiez le parcours de vos aliments. Suivez n'importe quel lot de produit de la ferme à la table en utilisant son ID de Traçabilité Vibrant (VTI).",
+    "inputPlaceholder": "Entrez l'ID du lot VTI...",
+    "trackButton": "Suivre",
+    "vtiDescription": "Un VTI est un identifiant unique attribué à chaque lot agricole, permettant une transparence de bout en bout.",
+    "recentTitle": "Lots Récemment Suivis",
+    "recentDescription": "Voici quelques-uns des derniers lots de produits avec des données de traçabilité publiques.",
+    "noRecentBatches": "Aucun lot public n'a été enregistré récemment.",
+    "producerLabel": "Producteur",
+    "harvestDateLabel": "Date de Récolte",
+    "viewReportButton": "Voir le Rapport Complet",
+    "detailPage": {
+      "backLink": "Retour au Hub de Traçabilité",
+      "invalidIdError": "Aucun ID de lot valide n'a été fourni.",
+      "loadError": "Impossible de charger le rapport de traçabilité pour ce lot.",
+      "notFoundTitle": "Lot non trouvé",
+      "notFoundDescription": "Le VTI que vous avez entré ne correspond à aucun lot dans nos registres. Veuillez vérifier l'ID et réessayer.",
+      "traceableProduct": "Produit Traçable",
+      "batchIdLabel": "ID du Lot",
+      "producerLabel": "Producteur",
+      "harvestDateLabel": "Date de Récolte",
+      "yieldLabel": "Rendement Initial",
+      "qualityLabel": "Grade de Qualité Initial",
+      "notSpecified": "Non spécifié",
+      "journeyTitle": "Parcours du Produit",
+      "journeyDescription": "Suivez le parcours complet de ce lot depuis la ferme.",
+      "noEventsFound": "Aucun événement n'a encore été enregistré pour ce lot.",
+      "noEventDetails": "Aucun détail supplémentaire n'a été fourni pour cet événement.",
+      "geoLocationLabel": "Géolocalisation",
+      "sustainablyGrownTitle": "Cultivé de Manière Durable",
+      "sustainablyGrownDescription": "Ce produit a été cultivé en utilisant des intrants durables et respectueux de l'agriculture biologique, enregistrés sur la plateforme DamDoh.",
+      "observationType": "Type d'Observation",
+      "details": "Détails",
+      "aiDiagnosis": "Diagnostic par IA"
+    }
   }
 }
-
     
