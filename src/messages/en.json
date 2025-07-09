@@ -1193,7 +1193,7 @@
           "steps": [
             "Chop the fish parts into small pieces.",
             "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
-            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Fill the container to about 2/3 of its capacity and cover with a breathable cloth.",
             "Store in a cool, dark place and let it ferment for at least 3-6 months."
           ],
           "usage": "Dilution ratio: 1:1000 with water. Primarily used as a soil drench."
@@ -1211,7 +1211,7 @@
       },
       "toasts": {
         "loadErrorTitle": "Error",
-        "loadErrorDescription": "Could not fetch your KNF batches.",
+        "loadErrorDescription": "Could not retrieve your KNF batches.",
         "validationError": "Please fill out all fields to start a batch.",
         "batchStartedTitle": "Batch Started!",
         "batchStartedDescription": "Your new KNF batch is now fermenting.",
@@ -1221,6 +1221,38 @@
         "batchUpdatedDescription": "Batch status successfully updated to {status}.",
         "updateFailed": "Update Failed",
         "couldNotUpdate": "Could not update batch status."
+      }
+    },
+    "editCrop": {
+      "backLink": "Back to Crop Details",
+      "title": "Edit Crop",
+      "description": "Update the details for your crop.",
+      "savingButton": "Saving...",
+      "saveButton": "Save Changes",
+      "toast": {
+        "notFound": "Crop not found",
+        "loadError": "Could not load the crop data to edit.",
+        "error": "Error",
+        "loadFail": "Failed to load crop data: {message}",
+        "success": "Crop Updated!",
+        "description": "{cropType} has been successfully updated.",
+        "fail": "Update Failed"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to Farm Details",
+      "title": "Edit Farm",
+      "description": "Update the details of your farm.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Not Found",
+        "loadError": "Could not load the farm you wish to edit.",
+        "loadFail": "Failed to load farm data: {message}",
+        "successTitle": "Farm Updated!",
+        "successDescription": "'{farmName}' has been successfully updated.",
+        "errorTitle": "Update Failed"
       }
     }
   },

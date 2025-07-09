@@ -1167,8 +1167,8 @@
           "name": "Jus de plantes fermentées (FPJ)",
           "description": "Un extrait fermenté de la sève et de la chlorophylle d'une plante. Riche en enzymes et en micro-organismes, c'est un puissant stimulateur de croissance pour les plantes.",
           "ingredients": [
-            "1 kg de parties de plantes à croissance rapide (par exemple, pointes de patates douces, pousses de bambou)",
-            "1 kg de sucre brun (ou de mélasse)"
+            "1kg de parties de plantes à croissance rapide (par exemple, pointes de patates douces, pousses de bambou)",
+            "1kg de sucre brun (ou de mélasse)"
           ],
           "yield": "environ 0,8 L",
           "steps": [
@@ -1186,8 +1186,8 @@
           "name": "Acide aminé de poisson (FAA)",
           "description": "Un engrais liquide puissant fabriqué à partir de déchets de poisson, riche en azote et en acides aminés. Excellent pour stimuler la croissance des plantes, en particulier pendant la phase végétative.",
           "ingredients": [
-            "1 kg de déchets de poisson (têtes, arêtes, entrailles)",
-            "1 kg de sucre brun (ou de mélasse)"
+            "1kg de déchets de poisson (têtes, arêtes, entrailles)",
+            "1kg de sucre brun (ou de mélasse)"
           ],
           "yield": "environ 1,5 L",
           "steps": [
@@ -1221,6 +1221,38 @@
         "batchUpdatedDescription": "Le statut du lot a été mis à jour avec succès à {status}.",
         "updateFailed": "La mise à jour a échoué",
         "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
+      }
+    },
+    "editCrop": {
+      "backLink": "Retour aux Détails du Cultivar",
+      "title": "Modifier le Cultivar",
+      "description": "Mettez à jour les détails de votre cultivar.",
+      "savingButton": "Enregistrement en cours...",
+      "saveButton": "Enregistrer les modifications",
+      "toast": {
+        "notFound": "Cultivar non trouvé",
+        "loadError": "Impossible de charger les données du cultivar à modifier.",
+        "error": "Erreur",
+        "loadFail": "Échec du chargement des données du cultivar : {message}",
+        "success": "Cultivar mis à jour !",
+        "description": "{cropType} a été mis à jour avec succès.",
+        "fail": "Échec de la mise à jour"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Retour aux Détails de la Ferme",
+      "title": "Modifier la Ferme",
+      "description": "Mettez à jour les détails de votre ferme.",
+      "form": {
+        "submitButton": "Enregistrer les modifications"
+      },
+      "toast": {
+        "notFoundTitle": "Non trouvé",
+        "loadError": "Impossible de charger la ferme que vous souhaitez modifier.",
+        "loadFail": "Échec du chargement des données de la ferme : {message}",
+        "successTitle": "Ferme mise à jour !",
+        "successDescription": "'{farmName}' a été mis à jour avec succès.",
+        "errorTitle": "Échec de la mise à jour"
       }
     }
   },
@@ -1744,7 +1776,7 @@
       "status": "Statut"
     },
     "requestAccessButton": "Demander l'accès",
-    "noDatasets": "Aucun ensemble de données n'est actuellement disponible.",
+    "noDatasets": "Actuellement, aucun ensemble de données n'est disponible.",
     "projectsTitle": "Projets en cours",
     "projectsDescription": "Vos projets de recherche actifs sur la plateforme.",
     "viewProjectButton": "Voir le projet",

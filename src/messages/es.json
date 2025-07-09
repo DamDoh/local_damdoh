@@ -1222,6 +1222,38 @@
         "updateFailed": "Actualización Fallida",
         "couldNotUpdate": "No se pudo actualizar el estado del lote."
       }
+    },
+    "editCrop": {
+      "backLink": "Volver a Detalles del Cultivo",
+      "title": "Editar Cultivo",
+      "description": "Actualiza los detalles de tu cultivo.",
+      "savingButton": "Guardando...",
+      "saveButton": "Guardar Cambios",
+      "toast": {
+        "notFound": "Cultivo no encontrado",
+        "loadError": "No se pudieron cargar los datos del cultivo para editar.",
+        "error": "Error",
+        "loadFail": "No se pudieron cargar los datos del cultivo: {message}",
+        "success": "¡Cultivo Actualizado!",
+        "description": "{cropType} ha sido actualizado exitosamente.",
+        "fail": "Actualización Fallida"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Volver a Detalles de la Finca",
+      "title": "Editar Finca",
+      "description": "Actualiza los detalles de tu finca.",
+      "form": {
+        "submitButton": "Guardar Cambios"
+      },
+      "toast": {
+        "notFoundTitle": "No Encontrado",
+        "loadError": "No se pudo cargar la finca que deseas editar.",
+        "loadFail": "No se pudieron cargar los datos de la finca: {message}",
+        "successTitle": "¡Finca Actualizada!",
+        "successDescription": "'{farmName}' ha sido actualizada exitosamente.",
+        "errorTitle": "Actualización Fallida"
+      }
     }
   },
   "OfflineIndicator": {
