@@ -1,74 +1,4 @@
 {
-  "AppHeader": {
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion Ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "sustainability": "Durabilité",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "searchPlaceholder": "Rechercher personnes, produits, services...",
-    "signIn": "Se Connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon Profil",
-    "settings": "Paramètres",
-    "helpCenter": "Centre d'Aide",
-    "logOut": "Se Déconnecter",
-    "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
-  },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Rechercher",
-    "forums": "Forums",
-    "profile": "Profil"
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Ajouter à votre fil d'actualité",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "infoTooltip": "Les suggestions sont basées sur les intérêts et les besoins de votre profil.",
-    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
-    "loadError": "Impossible de charger les suggestions.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
-    "following": "Abonné",
-    "follow": "Suivre",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "Voir les offres spéciales et les promotions des partenaires de l'écosystème.",
-    "managePromotionsButton": "Gérer les Promotions",
-    "ad": "Publicité",
-    "adTitle": "Débloquez les Perspectives du Marché",
-    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
-    "adButton": "En savoir plus"
-  },
-  "AppFooter": {
-    "tagline": "La Plateforme Mondiale de la Chaîne d'Approvisionnement Agricole.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog & Actualités",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités de l'industrie",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Disponible sur Google Play",
-    "appStoreAlt": "Télécharger dans l'App Store"
-  },
   "LandingPage": {
     "hero": {
       "title": "Renforcer l'agriculture du sol à la vente sur {appName}",
@@ -172,51 +102,364 @@
       "startOverButton": "Recommencer"
     }
   },
-  "StartPost": {
-    "placeholder": "Commencez une publication, posez une question ou partagez une nouvelle...",
-    "photoVideo": "Photo/Vidéo",
-    "agriEvent": "Événement Agri",
-    "createPoll": "Créer un sondage"
+  "AppHeader": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion Ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "sustainability": "Durabilité",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon Profil",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'Aide",
+    "logOut": "Se Déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
   },
-  "CreatePostModal": {
-    "title": "Créer une publication",
-    "description": "Partagez vos pensées avec la communauté.",
-    "yourName": "Votre Nom",
-    "shareUpdate": "Partager une mise à jour",
-    "placeholder": "À quoi pensez-vous ?",
-    "selectedFile": "Fichier sélectionné :",
-    "pollOptionsLabel": "Options du sondage",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Ajouter une option",
-    "pollNote": "Créez un sondage avec jusqu'à {maxOptions} options.",
-    "postButton": "Publier",
-    "pollOptionsError": "Un sondage doit avoir au moins deux options remplies.",
-    "emptyPostError": "Votre publication ne peut pas être vide. Veuillez ajouter du texte, une image ou un sondage.",
-    "addMediaButton": "Ajouter un média",
-    "createEventButton": "Créer un événement",
-    "shareDocumentButton": "Partager un document",
-    "createPollButton": "Créer un sondage"
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Rechercher",
+    "forums": "Forums",
+    "profile": "Profil"
   },
-  "FeedItemCard": {
-    "likes": "{count, plural, =0 {J'aime} =1 {J'aime} other {J'aime}}",
-    "comments": "{count, plural, =0 {Commentaires} =1 {Commentaire} other {Commentaires}}",
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "editPost": "Modifier la publication",
-    "deletePost": "Supprimer la publication",
-    "signInToLikeToast": "Vous devez être connecté pour aimer une publication.",
-    "loadCommentsErrorToast": "Impossible de charger les commentaires.",
-    "noComments": "Soyez le premier à commenter.",
-    "loadingComments": "Chargement des commentaires...",
-    "loadMoreComments": "Charger plus de commentaires",
-    "writeCommentPlaceholder": "Écrire un commentaire...",
-    "postButton": "Publier",
-    "repostPlaceholderToast": "La fonction de republication sera bientôt disponible !",
-    "signInToVoteToast": "Vous devez être connecté pour voter.",
-    "voteSuccessToast": "Votre vote a été comptabilisé !",
-    "voteErrorToast": "Échec de l'enregistrement de votre vote.",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {votes}}"
+  "DashboardRightSidebar": {
+    "networkTitle": "Ajouter à votre fil d'actualité",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "infoTooltip": "Les suggestions sont basées sur les intérêts et les besoins de votre profil.",
+    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
+    "loadError": "Impossible de charger les suggestions.",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
+    "following": "Abonné",
+    "follow": "Suivre",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "Voir les offres spéciales et les promotions des partenaires de l'écosystème.",
+    "managePromotionsButton": "Gérer les Promotions",
+    "ad": "Publicité",
+    "adTitle": "Débloquez les Perspectives du Marché",
+    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
+    "adButton": "En savoir plus"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
+  },
+  "AppFooter": {
+    "tagline": "La Plateforme Mondiale de la Chaîne d'Approvisionnement Agricole.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog & Actualités",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités de l'industrie",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "copyright": "© {year} {appName}. Tous droits réservés.",
+    "getMobileApp": "Obtenez l'application mobile",
+    "googlePlayAlt": "Disponible sur Google Play",
+    "appStoreAlt": "Télécharger dans l'App Store"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "À propos de DamDoh",
+      "subtitle": "Connecter la chaîne d'approvisionnement agricole mondiale, un acteur à la fois."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "p1": "Nous envisageons un monde où chaque acteur agricole, du plus petit agriculteur au plus grand détaillant, est doté des données, des connexions et des outils nécessaires pour prospérer.",
+      "p2": "DamDoh a été fondée sur la conviction que la technologie peut combler les lacunes, favoriser la confiance et créer un système alimentaire mondial plus équitable et durable.",
+      "foundersTitle": "Les Fondateurs"
+    },
+    "challenge": {
+      "title": "Le Défi que nous Relevons",
+      "description": "La chaîne d'approvisionnement agricole est fragmentée, inefficace et manque souvent de la transparence nécessaire à une croissance durable. Les principaux défis comprennent :",
+      "list": {
+        "knowledge": "Des connaissances fragmentées et un manque d'accès aux meilleures pratiques.",
+        "market": "Un accès limité au marché pour les petits agriculteurs.",
+        "quality": "Un contrôle de qualité incohérent et un manque de données de produits vérifiables.",
+        "logistics": "Une logistique inefficace entraînant des pertes après récolte.",
+        "financial": "Des difficultés d'accès au financement et à l'assurance pour les petits producteurs.",
+        "climate": "Une pression croissante du changement climatique sur les méthodes agricoles traditionnelles.",
+        "informal": "Un système très informel et basé sur les relations qui peut exclure les nouveaux entrants."
+      }
+    },
+    "solution": {
+      "title": "La Solution DamDoh",
+      "description": "Nous construisons une 'super-application' complète qui numérise et connecte l'ensemble de l'écosystème agricole à travers plusieurs piliers fondamentaux :",
+      "list": {
+        "education": "Éducation et Partage de Connaissances",
+        "ai": "Assistance et Perspectives Basées sur l'IA",
+        "logistics": "Logistique et Traçabilité Intégrées"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Au-delà de la Technologie : C'est une Question de Personnes",
+      "list": {
+        "p2p": {
+          "title": "Personne à Personne",
+          "content": "Mettre en relation les agriculteurs avec d'autres agriculteurs pour partager les connaissances et construire une communauté."
+        },
+        "p2b": {
+          "title": "Personne à Entreprise",
+          "content": "Faciliter des relations directes et dignes de confiance entre les producteurs et les acheteurs."
+        },
+        "p2e": {
+          "title": "Personne à Écosystème",
+          "content": "Donner aux individus l'accès à l'ensemble de l'écosystème de services - finance, logistique, assurance, et plus encore."
+        },
+        "p2w": {
+          "title": "Personne au Monde",
+          "content": "Ouvrir des marchés et des opportunités mondiales même pour les producteurs les plus éloignés grâce à l'accès numérique et à la traçabilité."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Notre Engagement pour l'Avenir",
+      "p1": "Nous nous engageons à utiliser la technologie pour le bien, en créant une plateforme qui est non seulement rentable, mais aussi régénératrice pour notre planète et responsabilisante pour ses habitants.",
+      "p2": "Chaque connexion établie, chaque connaissance partagée et chaque transaction facilitée sur DamDoh est un pas vers un avenir alimentaire plus résilient et équitable.",
+      "p3": "Rejoignez-nous dans cette aventure.",
+      "button": "Devenir Membre"
+    }
+  },
+  "contactPage": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vous aider. Contactez-nous via l'un des canaux ci-dessous.",
+    "emailUs": {
+      "title": "Envoyez-nous un e-mail",
+      "general": "Demandes générales",
+      "support": "Support",
+      "partnerships": "Partenariats"
+    },
+    "callUs": {
+      "title": "Appelez-nous",
+      "hours": "Lundi - Vendredi, 9h - 17h (EAT)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Notre bureau",
+      "org": "Fondation DamDoh",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Envoyez-nous un message",
+      "nameLabel": "Votre nom",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Votre e-mail",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Sujet",
+      "subjectPlaceholder": "Ex: Demande de partenariat",
+      "messageLabel": "Votre message",
+      "messagePlaceholder": "Tapez votre message ici...",
+      "buttonText": "Envoyer le message",
+      "note": "Nous ferons de notre mieux pour répondre dans les 24 heures ouvrables."
+    }
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez notre mission pour révolutionner la chaîne d'approvisionnement agricole.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi travailler avec nous ?",
+      "intro": "Chez DamDoh, nous sommes une équipe passionnée d'innovateurs, de technologues et d'experts agricoles dédiés à avoir un impact tangible à l'échelle mondiale. Nous offrons :",
+      "point1": "Un environnement de travail dynamique et axé sur la mission.",
+      "point2": "Des opportunités de croissance et d'apprentissage professionnel.",
+      "point3": "Une culture de collaboration et de transparence.",
+      "point4": "La chance de travailler sur des technologies de pointe comme l'IA et la blockchain.",
+      "point5": "Un engagement envers la durabilité et l'impact social."
+    },
+    "currentOpenings": {
+      "title": "Offres d'emploi actuelles",
+      "job1": {
+        "title": "Ingénieur Full-Stack Senior (Next.js, Firebase)",
+        "location": "À distance",
+        "type": "Temps plein",
+        "description": "Nous recherchons un ingénieur full-stack expérimenté pour diriger le développement des fonctionnalités principales de notre plateforme."
+      },
+      "job2": {
+        "title": "Spécialiste du contenu en agronomie",
+        "location": "Nairobi, Kenya",
+        "type": "Contrat",
+        "description": "Aidez-nous à construire la base de connaissances la plus complète au monde sur les pratiques agricoles durables."
+      },
+      "job3": {
+        "title": "Concepteur UX/UI",
+        "location": "À distance",
+        "type": "Temps plein",
+        "description": "Concevez des expériences utilisateur intuitives et accessibles pour une base d'utilisateurs diversifiée et mondiale."
+      }
+    },
+    "noOpenings": {
+      "title": "Aucune offre d'emploi pour le moment",
+      "content1": "Nous sommes toujours à la recherche de personnes talentueuses et passionnées par notre mission. Si vous pensez être un excellent ajout à notre équipe, veuillez envoyer votre CV et une lettre de motivation à {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Postuler maintenant"
+  },
+  "communityGuidelines": {
+    "title": "Règles de la communauté",
+    "subtitle": "Favoriser un environnement professionnel, digne de confiance et collaboratif.",
+    "intro": "Bienvenue dans la communauté DamDoh ! Pour garantir que notre plateforme reste un espace productif et sûr pour tous les acteurs agricoles, nous vous demandons de respecter les directives suivantes :",
+    "respectful": {
+      "title": "Soyez respectueux et professionnel",
+      "description": "Participez à des discussions courtoises et constructives. Les désaccords sont acceptables, mais les attaques personnelles, le harcèlement et les discours de haine ne sont pas tolérés."
+    },
+    "authentic": {
+      "title": "Soyez authentique et honnête",
+      "description": "Représentez-vous et votre entreprise de manière véridique. N'usurpez pas l'identité d'autrui et ne déformez pas vos produits, services ou certifications."
+    },
+    "relevant": {
+      "title": "Restez pertinent",
+      "description": "Contribuez aux discussions et aux listes de manière pertinente pour la chaîne d'approvisionnement agricole. Le spam, les escroqueries et le contenu promotionnel non pertinent seront supprimés."
+    },
+    "fairTrade": {
+      "title": "Honorez vos engagements",
+      "description": "Lorsque vous concluez un accord ou une entente sur la plateforme, respectez-le. Bâtir la confiance est essentiel au succès de notre communauté."
+    },
+    "sustainable": {
+      "title": "Promouvez la durabilité",
+      "description": "Bien que ce ne soit pas une exigence stricte pour tous les membres, nous encourageons le partage de connaissances et de pratiques qui favorisent la durabilité environnementale, économique et sociale."
+    },
+    "reporting": {
+      "title": "Signaler les violations",
+      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe à {emailLink}. Nous examinerons tous les rapports et prendrons les mesures appropriées.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "En utilisant DamDoh, vous acceptez ces directives. Nous nous réservons le droit de supprimer du contenu et de suspendre les comptes qui violent ces principes. Merci de nous aider à construire une excellente communauté !"
+  },
+  "helpCenterPage": {
+    "title": "Centre d'aide",
+    "subtitle": "Votre guide pour tirer le meilleur parti de la plateforme DamDoh.",
+    "howCanWeHelp": "Comment pouvons-nous vous aider ?",
+    "searchPlaceholder": "Rechercher des sujets, des fonctionnalités ou des questions...",
+    "browseTopics": "Parcourir les rubriques d'aide",
+    "gettingStarted": {
+      "title": "Pour commencer",
+      "description": "Apprenez à configurer votre profil et à commencer à vous connecter.",
+      "placeholder": "Le contenu pour 'Pour commencer' sera bientôt disponible."
+    },
+    "marketplaceGuide": {
+      "title": "Guide du marché",
+      "description": "Conseils pour créer des listes efficaces et trouver ce dont vous avez besoin.",
+      "placeholder": "Le contenu du 'Guide du marché' sera bientôt disponible."
+    },
+    "accountManagement": {
+      "title": "Gestion de compte",
+      "description": "Gérez vos paramètres, votre confidentialité et vos notifications.",
+      "placeholder": "Le contenu pour la 'Gestion de compte' sera bientôt disponible."
+    },
+    "troubleshooting": {
+      "title": "Dépannage",
+      "description": "Trouvez des solutions aux problèmes courants et aux problèmes techniques.",
+      "placeholder": "Le contenu pour le 'Dépannage' sera bientôt disponible."
+    },
+    "stillNeedHelp": {
+      "title": "Besoin d'aide ?",
+      "description": "Notre équipe d'assistance est prête à vous aider pour toutes vos questions.",
+      "button": "Contacter le support"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Cet avis de confidentialité pour DamDoh décrit comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ('traiter') vos informations lorsque vous utilisez nos services ('Services'), par exemple lorsque vous visitez notre site web ou notre application mobile.",
+    "whatInfoWeCollect": {
+      "heading": "1. Quelles informations collectons-nous ?",
+      "content": "Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez sur les Services, exprimez un intérêt à obtenir des informations sur nous ou nos produits et Services, lorsque vous participez à des activités sur les Services, ou autrement lorsque vous nous contactez."
+    },
+    "howWeUseInfo": {
+      "heading": "2. Comment utilisons-nous vos informations ?",
+      "content": "Nous traitons vos informations à des fins basées sur des intérêts commerciaux légitimes, l'exécution de notre contrat avec vous, le respect de nos obligations légales et/ou votre consentement. Cela inclut la facilitation de la création de compte, l'activation des communications d'utilisateur à utilisateur et la fourniture de nos services de base."
+    },
+    "willInfoBeShared": {
+      "heading": "3. Vos informations seront-elles partagées avec quelqu'un ?",
+      "content": "Nous ne partageons les informations qu'avec votre consentement, pour nous conformer aux lois, pour vous fournir des services, pour protéger vos droits ou pour remplir des obligations commerciales. Par exemple, nous partageons les informations de votre profil public avec d'autres utilisateurs pour faciliter les connexions."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. Utilisons-nous des cookies et d'autres technologies de suivi ?",
+      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme les balises web et les pixels) pour accéder ou stocker des informations. Des informations spécifiques sur la manière dont nous utilisons ces technologies et sur la manière dont vous pouvez refuser certains cookies sont exposées dans notre Avis sur les cookies."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. Combien de temps conservons-nous vos informations ?",
+      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cet avis de confidentialité, sauf si la loi l'exige autrement. Lorsque nous n'avons plus de besoin commercial légitime de traiter vos informations personnelles, nous les supprimerons ou les anonymiserons."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. Comment protégeons-nous vos informations ?",
+      "content": "Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons. Cependant, malgré nos garanties et nos efforts, aucune transmission électronique sur Internet ne peut être garantie à 100 %."
+    },
+    "minors": {
+      "heading": "7. Collectons-nous des informations auprès de mineurs ?",
+      "content": "Nous ne sollicitons pas sciemment de données auprès des enfants de moins de 18 ans et ne leur faisons pas de marketing. En utilisant les Services, vous déclarez que vous avez au moins 18 ans ou que vous êtes le parent ou le tuteur d'un tel mineur et que vous consentez à l'utilisation des Services par ce mineur dépendant."
+    },
+    "privacyRights": {
+      "heading": "8. Quels sont vos droits en matière de confidentialité ?",
+      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement ; (iii) de restreindre le traitement de vos informations personnelles ; et (iv) le cas échéant, à la portabilité des données."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. Contrôles pour les fonctionnalités Do-Not-Track",
+      "content": "La plupart des navigateurs web et certains systèmes d'exploitation et applications mobiles incluent une fonctionnalité ou un paramètre Do-Not-Track ('DNT') que vous pouvez activer pour signaler votre préférence en matière de confidentialité de ne pas faire surveiller et collecter les données sur vos activités de navigation en ligne. À ce stade, aucune norme technologique uniforme pour la reconnaissance et la mise en œuvre des signaux DNT n'a été finalisée. En tant que tel, nous ne répondons actuellement pas aux signaux DNT des navigateurs."
+    },
+    "updatesToNotice": {
+      "heading": "10. Faisons-nous des mises à jour de cet avis ?",
+      "content": "Nous pouvons mettre à jour cet avis de confidentialité de temps à autre. La version mise à jour sera indiquée par une date de 'Révision' mise à jour et la version mise à jour sera effective dès qu'elle sera accessible. Nous vous encourageons à consulter fréquemment cet avis de confidentialité pour être informé de la manière dont nous protégeons vos informations."
+    }
+  },
+  "termsOfService": {
+    "title": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Ces conditions d'utilisation constituent un accord juridiquement contraignant entre vous et DamDoh, concernant votre accès et votre utilisation du site web de DamDoh ainsi que de toute autre forme de média, canal de médias, site web mobile ou application mobile connexe, lié ou autrement connecté à celui-ci.",
+    "agreementToTerms": {
+      "heading": "1. Acceptation des conditions",
+      "content": "En utilisant la plateforme, vous acceptez d'être lié par ces conditions d'utilisation. Si vous n'êtes pas d'accord, vous ne pouvez pas utiliser la plateforme. Nous nous réservons le droit de modifier ces conditions à tout moment."
+    },
+    "intellectualProperty": {
+      "heading": "2. Droits de propriété intellectuelle",
+      "content": "Sauf indication contraire, la plateforme est notre propriété exclusive et tout le code source, les bases de données, les fonctionnalités, les logiciels, les conceptions de sites web, l'audio, la vidéo, le texte, les photographies et les graphiques sur le Site (collectivement, le 'Contenu') et les marques de commerce, les marques de service et les logos qu'ils contiennent sont notre propriété ou sous notre contrôle ou nous sont concédés sous licence."
+    },
+    "userRepresentations": {
+      "heading": "3. Déclarations de l'utilisateur",
+      "content": "En utilisant le Site, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, actuelles et complètes ; (2) vous maintiendrez l'exactitude de ces informations et mettrez à jour rapidement ces informations d'inscription si nécessaire ; (3) vous avez la capacité juridique et vous acceptez de vous conformer à ces conditions d'utilisation ; (4) vous n'utiliserez pas le Site à des fins illégales ou non autorisées ; et (5) votre utilisation du Site ne violera aucune loi ou réglementation applicable."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Activités interdites",
+      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous le mettons à votre disposition. Les activités interdites comprennent, sans s'y limiter : la récupération systématique de données, la tromperie ou la fraude envers nous ou d'autres utilisateurs, la tentative d'usurpation d'identité d'un autre utilisateur, le harcèlement ou la menace de l'un de nos employés ou d'autres utilisateurs, et le téléchargement ou la transmission de virus ou de tout autre type de code malveillant."
+    },
+    "platformManagement": {
+      "heading": "5. Gestion de la plateforme",
+      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces conditions d'utilisation ; (2) prendre les mesures légales appropriées contre quiconque, à notre seule discrétion, viole la loi ou ces conditions d'utilisation ; (3) à notre seule discrétion et sans limitation, refuser, restreindre l'accès, limiter la disponibilité ou désactiver l'une de vos Contributions ou une partie de celles-ci."
+    },
+    "termAndTermination": {
+      "heading": "6. Durée et résiliation",
+      "content": "Ces conditions d'utilisation resteront en vigueur et de plein effet pendant que vous utilisez le Site. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DU SITE (Y COMPRIS LE BLOCAGE DE CERTAINES ADRESSES IP), À TOUTE PERSONNE POUR QUELQUE RAISON QUE CE SOIT OU SANS RAISON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications et interruptions",
+      "content": "Nous nous réservons le droit de changer, modifier ou supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous nous réservons également le droit de modifier ou d'interrompre tout ou partie du Site sans préavis à tout moment. Nous ne serons pas responsables envers vous ou un tiers pour toute modification, changement de prix, suspension ou interruption du Site."
+    },
+    "governingLaw": {
+      "heading": "8. Droit applicable",
+      "content": "Ces conditions d'utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois de la juridiction dans laquelle DamDoh est enregistré, sans égard à ses principes de conflit de lois."
+    },
+    "disputeResolution": {
+      "heading": "9. Résolution des litiges",
+      "content": "Toute action en justice de quelque nature que ce soit intentée par vous ou par nous sera engagée ou poursuivie devant les tribunaux d'État et fédéraux situés dans notre juridiction enregistrée, et les parties consentent par la présente et renoncent à toutes les défenses de défaut de compétence personnelle et de forum non conveniens en ce qui concerne le lieu et la compétence de ces tribunaux."
+    },
+    "contactUs": {
+      "heading": "10. Contactez-nous",
+      "content": "Afin de résoudre une plainte concernant le Site ou de recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
+    },
+    "conclusion": "Pour résoudre une plainte ou obtenir plus d'informations, veuillez {contactLink}."
   },
   "Forums": {
     "title": "Forums de la Communauté",
@@ -495,6 +738,83 @@
         "title": "Annonce Créée !",
         "description": "Votre article est maintenant en ligne sur le marché."
       }
+    },
+    "itemView": {
+      "backLink": "Retour au Marché",
+      "notFound": {
+        "description": "Article non trouvé."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Impossible de charger l'article."
+        },
+        "unexpected": "Une erreur inattendue est survenue."
+      },
+      "coupon": {
+        "successTitle": "Coupon Appliqué !",
+        "successDescription": "Vous avez reçu une réduction de {type} !",
+        "failTitle": "Coupon Invalide",
+        "failDescription": "Le code de coupon que vous avez entré est invalide ou a expiré.",
+        "label": "Code de Coupon",
+        "placeholder": "Entrer le coupon",
+        "applyButton": "Appliquer",
+        "appliedText": "Coupon '{code}' appliqué."
+      },
+      "booking": {
+        "authTitle": "Connexion requise",
+        "authDescription": "Vous devez être connecté pour réserver un service.",
+        "failTitle": "Échec de la réservation",
+        "dateError": "Veuillez sélectionner une date de début et de fin pour votre réservation.",
+        "successTitle": "Réservation réussie !",
+        "successDescription": "Votre réservation a été confirmée. Vous recevrez plus de détails par e-mail.",
+        "bookedTitle": "Vous avez réservé cette expérience !",
+        "bookedDescription": "Montrez votre billet à l'arrivée.",
+        "ticketButton": "Voir le billet",
+        "modalTitle": "Votre Billet",
+        "modalDescription": "Présentez ce code QR lors de l'enregistrement pour {itemName}.",
+        "modalScan": "Scannez ce code lors de l'enregistrement.",
+        "perNight": "par nuit",
+        "checkIn": "Arrivée",
+        "checkOut": "Départ",
+        "addDate": "Ajouter une date",
+        "guests": "Invités",
+        "reserveButton": "Réserver",
+        "reservingButton": "Réservation...",
+        "notCharged": "Vous ne serez pas encore débité",
+        "nights": "{count, plural, =1 {nuit} other {nuits}}",
+        "serviceFee": "Frais de service",
+        "total": "Total"
+      },
+      "order": {
+        "authTitle": "Connexion requise",
+        "authDescription": "Vous devez être connecté pour passer une commande.",
+        "quantityErrorTitle": "Quantité invalide",
+        "quantityErrorDescription": "Veuillez entrer une quantité supérieure à zéro.",
+        "successTitle": "Commande passée !",
+        "successDescription": "Votre commande a été envoyée avec succès au vendeur.",
+        "failTitle": "Échec de la commande",
+        "failDescription": "Impossible de passer votre commande. Veuillez réessayer.",
+        "title": "Passer commande pour {itemName}",
+        "description": "Confirmez la quantité et ajoutez des notes pour le vendeur si nécessaire.",
+        "quantityLabel": "Quantité",
+        "notesLabel": "Notes pour le vendeur (facultatif)",
+        "notesPlaceholder": "Ex : instructions de livraison, demandes spéciales...",
+        "cancelButton": "Annuler",
+        "confirmButton": "Confirmer la commande",
+        "placingButton": "Passage de la commande..."
+      },
+      "skillsLabel": "Compétences requises",
+      "experienceLabel": "Niveau d'expérience",
+      "compensationLabel": "Rémunération",
+      "contactForRates": "Contacter pour les tarifs",
+      "aboutSeller": "À propos du vendeur",
+      "viewShopfront": "Voir la boutique",
+      "editListing": "Modifier l'annonce",
+      "manageService": "Gérer le service",
+      "buyNowButton": "Acheter maintenant",
+      "contactForService": "Contacter pour le service",
+      "contactSeller": "Contacter le vendeur",
+      "traceabilityButton": "Voir le rapport de traçabilité"
     }
   }
 }

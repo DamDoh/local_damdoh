@@ -1,74 +1,4 @@
 {
-  "AppHeader": {
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Verw.",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talente",
-    "traceability": "Rückverfolgb.",
-    "forums": "Foren",
-    "sustainability": "Nachhaltigkeit",
-    "notifications": "Benachrichtig.",
-    "messages": "Nachrichten",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Modus wechseln",
-    "switchToDarkAria": "Zum dunklen Modus wechseln"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache ändern"
-  },
-  "MobileBottomNav": {
-    "home": "Start",
-    "market": "Markt",
-    "search": "Suche",
-    "forums": "Foren",
-    "profile": "Profil"
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Zu Ihrem Feed hinzufügen",
-    "refreshSuggestions": "Vorschläge aktualisieren",
-    "infoTooltip": "Vorschläge basieren auf den Interessen und Bedürfnissen Ihres Profils.",
-    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
-    "loadError": "Vorschläge konnten nicht geladen werden.",
-    "noSuggestions": "Zurzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
-    "following": "Folge ich",
-    "follow": "Folgen",
-    "promotionsTitle": "Aktionen",
-    "promotionsDescription": "Sehen Sie sich Sonderangebote und Deals von Partnern im Ökosystem an.",
-    "managePromotionsButton": "Aktionen verwalten",
-    "ad": "Anzeige",
-    "adTitle": "Markteinblicke freischalten",
-    "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
-    "adButton": "Mehr erfahren"
-  },
-  "AppFooter": {
-    "tagline": "Die Globale Plattform für die Landwirtschaftliche Lieferkette.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog & Neuigkeiten",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die Mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
-  },
   "LandingPage": {
     "hero": {
       "title": "Landwirtschaft stärken vom Boden bis zum Verkauf auf {appName}",
@@ -172,6 +102,55 @@
       "startOverButton": "Neu starten"
     }
   },
+  "AppHeader": {
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Verw.",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgb.",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtig.",
+    "messages": "Nachrichten",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Zu Ihrem Feed hinzufügen",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "Vorschläge basieren auf den Interessen und Bedürfnissen Ihres Profils.",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
+    "loadError": "Vorschläge konnten nicht geladen werden.",
+    "noSuggestions": "Zurzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
+    "following": "Folge ich",
+    "follow": "Folgen",
+    "promotionsTitle": "Aktionen",
+    "promotionsDescription": "Sehen Sie sich Sonderangebote und Deals von Partnern im Ökosystem an.",
+    "managePromotionsButton": "Aktionen verwalten",
+    "ad": "Anzeige",
+    "adTitle": "Markteinblicke freischalten",
+    "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
+    "adButton": "Mehr erfahren"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache ändern"
+  },
   "StartPost": {
     "placeholder": "Beginnen Sie einen Beitrag, stellen Sie eine Frage oder teilen Sie ein Update...",
     "photoVideo": "Foto/Video",
@@ -217,6 +196,225 @@
     "voteSuccessToast": "Ihre Stimme wurde gezählt!",
     "voteErrorToast": "Ihre Stimme konnte nicht aufgezeichnet werden.",
     "votes": "{count, plural, =0 {Stimmen} =1 {Stimme} other {Stimmen}}"
+  },
+  "AppFooter": {
+    "tagline": "Die Globale Plattform für die Landwirtschaftliche Lieferkette.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog & Neuigkeiten",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die Mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Über DamDoh",
+      "subtitle": "Die globale landwirtschaftliche Lieferkette verbinden, ein Akteur nach dem anderen."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "p1": "Wir stellen uns eine Welt vor, in der jeder landwirtschaftliche Akteur, vom kleinsten Landwirt bis zum größten Einzelhändler, mit den Daten, Verbindungen und Werkzeugen ausgestattet ist, die er zum Gedeihen braucht.",
+      "p2": "DamDoh wurde auf dem Glauben gegründet, dass Technologie Lücken schließen, Vertrauen fördern und ein gerechteres und nachhaltigeres globales Ernährungssystem schaffen kann.",
+      "foundersTitle": "Die Gründer"
+    },
+    "challenge": {
+      "title": "Die Herausforderung, die wir angehen",
+      "description": "Die landwirtschaftliche Lieferkette ist fragmentiert, ineffizient und es fehlt oft an der für ein nachhaltiges Wachstum erforderlichen Transparenz. Zu den wichtigsten Herausforderungen gehören:",
+      "list": {
+        "knowledge": "Fragmentiertes Wissen und mangelnder Zugang zu bewährten Verfahren.",
+        "market": "Begrenzter Marktzugang für Kleinbauern.",
+        "quality": "Inkonsistente Qualitätskontrolle und ein Mangel an überprüfbaren Produktdaten.",
+        "logistics": "Ineffiziente Logistik, die zu Nachernteverlusten führt.",
+        "financial": "Schwierigkeiten beim Zugang zu Finanzmitteln und Versicherungen für Kleinproduzenten.",
+        "climate": "Zunehmender Druck durch den Klimawandel auf traditionelle Anbaumethoden.",
+        "informal": "Ein hochgradig informelles und auf Beziehungen basierendes System, das neue Marktteilnehmer ausschließen kann."
+      }
+    },
+    "solution": {
+      "title": "Die DamDoh-Lösung",
+      "description": "Wir bauen eine umfassende 'Super-App', die das gesamte landwirtschaftliche Ökosystem durch mehrere Kernsäulen digitalisiert und verbindet:",
+      "list": {
+        "education": "Bildung & Wissensaustausch",
+        "ai": "KI-gestützte Hilfe & Einblicke",
+        "logistics": "Integrierte Logistik & Rückverfolgbarkeit"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Jenseits der Technologie: Es geht um Menschen",
+      "list": {
+        "p2p": {
+          "title": "Person zu Person",
+          "content": "Landwirte mit anderen Landwirten verbinden, um Wissen auszutauschen und eine Gemeinschaft aufzubauen."
+        },
+        "p2b": {
+          "title": "Person zu Unternehmen",
+          "content": "Direkte, vertrauenswürdige Beziehungen zwischen Produzenten und Käufern fördern."
+        },
+        "p2e": {
+          "title": "Person zum Ökosystem",
+          "content": "Einzelpersonen Zugang zum gesamten Ökosystem von Dienstleistungen verschaffen - Finanzen, Logistik, Versicherungen und mehr."
+        },
+        "p2w": {
+          "title": "Person zur Welt",
+          "content": "Globale Märkte und Möglichkeiten für selbst die entlegensten Produzenten durch digitalen Zugang und Rückverfolgbarkeit eröffnen."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Unser Engagement für die Zukunft",
+      "p1": "Wir sind entschlossen, Technologie für das Gute zu nutzen und eine Plattform zu schaffen, die nicht nur profitabel ist, sondern auch regenerativ für unseren Planeten und stärkend für seine Menschen.",
+      "p2": "Jede Verbindung, jedes geteilte Wissen und jede auf DamDoh durchgeführte Transaktion ist ein Schritt in eine widerstandsfähigere und gerechtere Zukunft der Ernährung.",
+      "p3": "Begleiten Sie uns auf dieser Reise.",
+      "button": "Mitglied werden"
+    }
+  },
+  "contactPage": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir sind hier, um zu helfen. Kontaktieren Sie uns über einen der folgenden Kanäle.",
+    "emailUs": {
+      "title": "Senden Sie uns eine E-Mail",
+      "general": "Allgemeine Anfragen",
+      "support": "Support",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Montag - Freitag, 9:00 - 17:00 Uhr (EAT)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "DamDoh Stiftung",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Ihre E-Mail",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "z.B. Partnerschaftsanfrage",
+      "messageLabel": "Ihre Nachricht",
+      "messagePlaceholder": "Tippen Sie Ihre Nachricht hier ein...",
+      "buttonText": "Nachricht senden",
+      "note": "Wir werden unser Bestes tun, um innerhalb von 24 Geschäftsstunden zu antworten."
+    }
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Helfen Sie uns, die landwirtschaftliche Lieferkette zu revolutionieren.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Bei DamDoh sind wir ein leidenschaftliches Team von Innovatoren, Technologen und Landwirtschaftsexperten, das sich der Aufgabe verschrieben hat, einen spürbaren globalen Einfluss zu erzielen. Wir bieten:",
+      "point1": "Ein dynamisches, missionsorientiertes Arbeitsumfeld.",
+      "point2": "Möglichkeiten für berufliches Wachstum und Lernen.",
+      "point3": "Eine Kultur der Zusammenarbeit und Transparenz.",
+      "point4": "Die Chance, an Spitzentechnologien wie KI und Blockchain zu arbeiten.",
+      "point5": "Ein Engagement für Nachhaltigkeit und soziale Wirkung."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote",
+      "job1": {
+        "title": "Senior Full-Stack-Ingenieur (Next.js, Firebase)",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Wir suchen einen erfahrenen Full-Stack-Ingenieur, der die Entwicklung unserer Kernplattformfunktionen leitet."
+      },
+      "job2": {
+        "title": "Agronomie-Content-Spezialist",
+        "location": "Nairobi, Kenia",
+        "type": "Vertrag",
+        "description": "Helfen Sie uns, die weltweit umfassendste Wissensdatenbank für nachhaltige Anbaupraktiken aufzubauen."
+      },
+      "job3": {
+        "title": "UX/UI-Designer",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Entwerfen Sie intuitive und zugängliche Benutzererlebnisse für eine vielfältige, globale Benutzerbasis."
+      }
+    },
+    "noOpenings": {
+      "title": "Derzeit keine offenen Stellen",
+      "content1": "Wir sind immer auf der Suche nach talentierten Personen, die unsere Mission mit Leidenschaft verfolgen. Wenn Sie glauben, dass Sie gut in unser Team passen, senden Sie bitte Ihren Lebenslauf und ein Anschreiben an {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Jetzt bewerben"
+  },
+  "communityGuidelines": {
+    "title": "Community-Richtlinien",
+    "subtitle": "Förderung einer professionellen, vertrauenswürdigen und kooperativen Umgebung.",
+    "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein produktiver und sicherer Ort für alle Akteure der Landwirtschaft bleibt, bitten wir Sie, die folgenden Richtlinien zu befolgen:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und professionell",
+      "description": "Führen Sie höfliche und konstruktive Diskussionen. Meinungsverschiedenheiten sind in Ordnung, aber persönliche Angriffe, Belästigung und Hassreden werden nicht toleriert."
+    },
+    "authentic": {
+      "title": "Seien Sie authentisch und ehrlich",
+      "description": "Stellen Sie sich und Ihr Unternehmen wahrheitsgemäß dar. Geben Sie sich nicht als andere aus oder stellen Sie Ihre Produkte, Dienstleistungen oder Zertifizierungen falsch dar."
+    },
+    "relevant": {
+      "title": "Bleiben Sie relevant",
+      "description": "Tragen Sie zu Diskussionen und Angeboten auf eine Weise bei, die für die landwirtschaftliche Lieferkette relevant ist. Spam, Betrug und irrelevante Werbeinhalte werden entfernt."
+    },
+    "fairTrade": {
+      "title": "Halten Sie Ihre Zusagen ein",
+      "description": "Wenn Sie auf der Plattform einen Deal oder eine Vereinbarung treffen, halten Sie diese ein. Vertrauen aufzubauen ist für den Erfolg unserer Gemeinschaft unerlässlich."
+    },
+    "sustainable": {
+      "title": "Fördern Sie Nachhaltigkeit",
+      "description": "Obwohl dies keine strikte Anforderung für alle Mitglieder ist, ermutigen wir den Austausch von Wissen und Praktiken, die ökologische, wirtschaftliche und soziale Nachhaltigkeit fördern."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte oder Verhalten sehen, das gegen diese Richtlinien verstößt, melden Sie dies bitte unserem Team unter {emailLink}. Wir werden alle Meldungen prüfen und entsprechende Maßnahmen ergreifen.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine großartige Community aufzubauen!"
+  },
+  "helpCenterPage": {
+    "title": "Hilfezentrum",
+    "subtitle": "Ihr Leitfaden, um das Beste aus der DamDoh-Plattform herauszuholen.",
+    "howCanWeHelp": "Wie können wir Ihnen helfen?",
+    "searchPlaceholder": "Suchen Sie nach Themen, Funktionen oder Fragen...",
+    "browseTopics": "Hilfethemen durchsuchen",
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "description": "Erfahren Sie, wie Sie Ihr Profil einrichten und mit dem Vernetzen beginnen.",
+      "placeholder": "Inhalte für 'Erste Schritte' werden in Kürze verfügbar sein."
+    },
+    "marketplaceGuide": {
+      "title": "Marktplatz-Leitfaden",
+      "description": "Tipps zum Erstellen effektiver Angebote und zum Finden dessen, was Sie benötigen.",
+      "placeholder": "Inhalte für den Marktplatz-Leitfaden werden in Kürze verfügbar sein."
+    },
+    "accountManagement": {
+      "title": "Kontoverwaltung",
+      "description": "Verwalten Sie Ihre Einstellungen, den Datenschutz und Benachrichtigungen.",
+      "placeholder": "Inhalte für die Kontoverwaltung werden in Kürze verfügbar sein."
+    },
+    "troubleshooting": {
+      "title": "Fehlerbehebung",
+      "description": "Finden Sie Lösungen für häufige Probleme und technische Schwierigkeiten.",
+      "placeholder": "Inhalte zur Fehlerbehebung werden in Kürze verfügbar sein."
+    },
+    "stillNeedHelp": {
+      "title": "Benötigen Sie immer noch Hilfe?",
+      "description": "Unser Support-Team steht Ihnen bei allen Fragen zur Verfügung.",
+      "button": "Support kontaktieren"
+    }
   },
   "Forums": {
     "title": "Community-Foren",
@@ -495,6 +693,83 @@
         "title": "Angebot erstellt!",
         "description": "Ihr Artikel ist jetzt auf dem Marktplatz live."
       }
+    },
+    "itemView": {
+      "backLink": "Zurück zum Marktplatz",
+      "notFound": {
+        "description": "Artikel nicht gefunden."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Der Artikel konnte nicht geladen werden."
+        },
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+      },
+      "coupon": {
+        "successTitle": "Gutschein angewendet!",
+        "successDescription": "Sie haben einen Rabatt von {type} erhalten!",
+        "failTitle": "Ungültiger Gutschein",
+        "failDescription": "Der eingegebene Gutscheincode ist ungültig oder abgelaufen.",
+        "label": "Gutscheincode",
+        "placeholder": "Gutschein eingeben",
+        "applyButton": "Anwenden",
+        "appliedText": "Gutschein '{code}' angewendet."
+      },
+      "booking": {
+        "authTitle": "Anmeldung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um einen Service zu buchen.",
+        "failTitle": "Buchung fehlgeschlagen",
+        "dateError": "Bitte wählen Sie ein Start- und Enddatum für Ihre Buchung.",
+        "successTitle": "Buchung erfolgreich!",
+        "successDescription": "Ihre Buchung wurde bestätigt. Sie erhalten weitere Details per E-Mail.",
+        "bookedTitle": "Sie haben diese Dienstleistung gebucht!",
+        "bookedDescription": "Zeigen Sie Ihr Ticket bei der Ankunft vor.",
+        "ticketButton": "Ticket anzeigen",
+        "modalTitle": "Ihr Ticket",
+        "modalDescription": "Präsentieren Sie diesen QR-Code beim Check-in für {itemName}.",
+        "modalScan": "Scannen Sie diesen Code beim Check-in.",
+        "perNight": "pro Nacht",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Datum hinzufügen",
+        "guests": "Gäste",
+        "reserveButton": "Reservieren",
+        "reservingButton": "Wird reserviert...",
+        "notCharged": "Sie werden noch nicht belastet",
+        "nights": "{count, plural, =1 {Nacht} other {Nächte}}",
+        "serviceFee": "Servicegebühr",
+        "total": "Gesamt"
+      },
+      "order": {
+        "authTitle": "Anmeldung erforderlich",
+        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben.",
+        "quantityErrorTitle": "Ungültige Menge",
+        "quantityErrorDescription": "Bitte geben Sie eine Menge größer als null ein.",
+        "successTitle": "Bestellung aufgegeben!",
+        "successDescription": "Ihre Bestellung wurde erfolgreich an den Verkäufer gesendet.",
+        "failTitle": "Bestellung fehlgeschlagen",
+        "failDescription": "Ihre Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
+        "title": "Bestellung für {itemName} aufgeben",
+        "description": "Bestätigen Sie die Menge und fügen Sie bei Bedarf Notizen für den Verkäufer hinzu.",
+        "quantityLabel": "Menge",
+        "notesLabel": "Notizen für den Verkäufer (optional)",
+        "notesPlaceholder": "z.B. Lieferanweisungen, spezielle Anfragen...",
+        "cancelButton": "Abbrechen",
+        "confirmButton": "Bestellung bestätigen",
+        "placingButton": "Bestellung wird aufgegeben..."
+      },
+      "skillsLabel": "Benötigte Fähigkeiten",
+      "experienceLabel": "Erfahrungsniveau",
+      "compensationLabel": "Vergütung",
+      "contactForRates": "Kontakt für Tarife",
+      "aboutSeller": "Über den Verkäufer",
+      "viewShopfront": "Shopfront anzeigen",
+      "editListing": "Angebot bearbeiten",
+      "manageService": "Dienst verwalten",
+      "buyNowButton": "Jetzt kaufen",
+      "contactForService": "Kontakt für Dienstleistung",
+      "contactSeller": "Verkäufer kontaktieren",
+      "traceabilityButton": "Rückverfolgungsbericht anzeigen"
     }
   }
 }

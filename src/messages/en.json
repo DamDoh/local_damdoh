@@ -197,6 +197,27 @@
   "LanguageSwitcher": {
     "toggle": "Change language"
   },
+  "AppFooter": {
+    "tagline": "The Global Agricultural Supply Chain Platform.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog & News",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All rights reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
+  },
   "aboutPage": {
     "hero": {
       "title": "About DamDoh",
@@ -763,8 +784,84 @@
         "title": "Listing Created!",
         "description": "Your item is now live on the marketplace."
       }
+    },
+    "itemView": {
+      "backLink": "Back to Marketplace",
+      "notFound": {
+        "description": "Item not found."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Could not load the item."
+        },
+        "unexpected": "An unexpected error occurred."
+      },
+      "coupon": {
+        "successTitle": "Coupon Applied!",
+        "successDescription": "You've received a {type} discount!",
+        "failTitle": "Invalid Coupon",
+        "failDescription": "The coupon code you entered is invalid or has expired.",
+        "label": "Coupon Code",
+        "placeholder": "Enter coupon",
+        "applyButton": "Apply",
+        "appliedText": "Coupon '{code}' applied."
+      },
+      "booking": {
+        "authTitle": "Sign In Required",
+        "authDescription": "You must be signed in to book a service.",
+        "failTitle": "Booking Failed",
+        "dateError": "Please select a start and end date for your booking.",
+        "successTitle": "Booking Successful!",
+        "successDescription": "Your booking has been confirmed. You will receive further details via email.",
+        "bookedTitle": "You've booked this experience!",
+        "bookedDescription": "Show your ticket upon arrival.",
+        "ticketButton": "View Ticket",
+        "modalTitle": "Your Ticket",
+        "modalDescription": "Present this QR code at check-in for {itemName}.",
+        "modalScan": "Scan this code on check-in.",
+        "perNight": "per night",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Add date",
+        "guests": "Guests",
+        "reserveButton": "Reserve",
+        "reservingButton": "Reserving...",
+        "notCharged": "You won't be charged yet",
+        "nights": "{count, plural, =1 {night} other {nights}}",
+        "serviceFee": "Service fee",
+        "total": "Total"
+      },
+      "order": {
+        "authTitle": "Sign In Required",
+        "authDescription": "You must be signed in to place an order.",
+        "quantityErrorTitle": "Invalid Quantity",
+        "quantityErrorDescription": "Please enter a quantity greater than zero.",
+        "successTitle": "Order Placed!",
+        "successDescription": "Your order has been successfully sent to the seller.",
+        "failTitle": "Order Failed",
+        "failDescription": "Could not place your order. Please try again.",
+        "title": "Place Order for {itemName}",
+        "description": "Confirm the quantity and add any notes for the seller if needed.",
+        "quantityLabel": "Quantity",
+        "notesLabel": "Notes for Seller (Optional)",
+        "notesPlaceholder": "e.g., delivery instructions, special requests...",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm Order",
+        "placingButton": "Placing Order..."
+      },
+      "skillsLabel": "Skills Required",
+      "experienceLabel": "Experience Level",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contact for rates",
+      "aboutSeller": "About the Seller",
+      "viewShopfront": "View Shopfront",
+      "editListing": "Edit Listing",
+      "manageService": "Manage Service",
+      "buyNowButton": "Buy Now",
+      "contactForService": "Contact for Service",
+      "contactSeller": "Contact Seller",
+      "traceabilityButton": "View Traceability Report"
     }
   }
 }
-
     
