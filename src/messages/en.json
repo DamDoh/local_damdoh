@@ -839,6 +839,44 @@
         "errorTitle": "Error",
         "fetchError": "Could not retrieve your farms."
       }
+    },
+    "createFarm": {
+        "backToFarms": "Back to My Farms",
+        "title": "Create a New Farm",
+        "description": "Add a new farm to your profile to start tracking crops, inputs, and activities.",
+        "form": {
+            "farmNameLabel": "Farm Name",
+            "farmNamePlaceholder": "e.g., Green Valley Organics",
+            "locationLabel": "Location",
+            "locationPlaceholder": "e.g., Rift Valley, Kenya",
+            "locationDescription": "Provide a general location (City, Region).",
+            "sizeLabel": "Farm Size",
+            "sizePlaceholder": "e.g., 5 Hectares, 12 Acres",
+            "sizeDescription": "Include the unit (e.g., Hectares, Acres).",
+            "typeLabel": "Farm Type",
+            "typePlaceholder": "Select a primary type",
+            "types": {
+                "crop": "Crop Production",
+                "livestock": "Livestock Rearing",
+                "mixed": "Mixed (Crops & Livestock)",
+                "aquaculture": "Aquaculture",
+                "other": "Other"
+            },
+            "descriptionLabel": "Description (Optional)",
+            "descriptionPlaceholder": "Briefly describe your farm...",
+            "irrigationLabel": "Irrigation Methods (Optional)",
+            "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
+            "irrigationDescription": "List the primary irrigation methods used.",
+            "submitButton": "Save Farm"
+        },
+        "toast": {
+            "authErrorTitle": "Authentication Error",
+            "authErrorDescription": "You must be logged in to create a farm.",
+            "successTitle": "Farm Created!",
+            "successDescription": "'{farmName}' has been added to your profile.",
+            "errorTitle": "Creation Failed",
+            "errorDescription": "Could not create the farm. Please try again."
+        }
     }
   },
   "OfflineIndicator": {

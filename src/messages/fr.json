@@ -405,7 +405,7 @@
     },
     "privacyRights": {
       "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
-      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci могут inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
+      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
     },
     "controlsForDoNotTrack": {
       "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS 'NE PAS SUIVRE'",
@@ -839,6 +839,44 @@
         "errorTitle": "Erreur",
         "fetchError": "Impossible de récupérer vos fermes."
       }
+    },
+    "createFarm": {
+      "backToFarms": "Retour à Mes fermes",
+      "title": "Créer une nouvelle ferme",
+      "description": "Ajoutez une nouvelle ferme à votre profil pour commencer à suivre les cultures, les intrants et les activités.",
+      "form": {
+        "farmNameLabel": "Nom de la ferme",
+        "farmNamePlaceholder": "Ex : Les Bio de la Vallée Verte",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "Ex : Vallée du Rift, Kenya",
+        "locationDescription": "Indiquez un lieu général (Ville, Région).",
+        "sizeLabel": "Taille de la ferme",
+        "sizePlaceholder": "Ex : 5 Hectares, 12 Acres",
+        "sizeDescription": "Indiquez l'unité (ex. Hectares, Acres).",
+        "typeLabel": "Type de ferme",
+        "typePlaceholder": "Sélectionnez un type principal",
+        "types": {
+            "crop": "Production végétale",
+            "livestock": "Élevage",
+            "mixed": "Mixte (Cultures et Bétail)",
+            "aquaculture": "Aquaculture",
+            "other": "Autre"
+        },
+        "descriptionLabel": "Description (Optionnel)",
+        "descriptionPlaceholder": "Décrivez brièvement votre ferme...",
+        "irrigationLabel": "Méthodes d'irrigation (Optionnel)",
+        "irrigationPlaceholder": "Ex : Irrigation au goutte-à-goutte, Pluviale",
+        "irrigationDescription": "Listez les principales méthodes d'irrigation utilisées.",
+        "submitButton": "Enregistrer la ferme"
+      },
+      "toast": {
+        "authErrorTitle": "Erreur d'authentification",
+        "authErrorDescription": "Vous devez être connecté pour créer une ferme.",
+        "successTitle": "Ferme créée !",
+        "successDescription": "'{farmName}' a été ajouté à votre profil.",
+        "errorTitle": "La création a échoué",
+        "errorDescription": "Impossible de créer la ferme. Veuillez réessayer."
+      }
     }
   },
   "OfflineIndicator": {
@@ -1034,7 +1072,7 @@
     "chart": {
       "count": "Nombre",
       "published": "Publié",
-      "pending": "En attente",
+      "pending": "En attente d'examen",
       "draft": "Brouillon"
     }
   },

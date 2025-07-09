@@ -839,6 +839,44 @@
         "errorTitle": "Fehler",
         "fetchError": "Ihre Farmen konnten nicht abgerufen werden."
       }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Eine neue Farm erstellen",
+      "description": "Fügen Sie eine neue Farm zu Ihrem Profil hinzu, um Kulturen, Betriebsmittel und Aktivitäten zu verfolgen.",
+      "form": {
+        "farmNameLabel": "Name der Farm",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Rift Valley, Kenia",
+        "locationDescription": "Geben Sie einen allgemeinen Standort an (Stadt, Region).",
+        "sizeLabel": "Farmgröße",
+        "sizePlaceholder": "z.B. 5 Hektar, 12 Acres",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Hektar, Acres).",
+        "typeLabel": "Farmtyp",
+        "typePlaceholder": "Wählen Sie einen primären Typ",
+        "types": {
+            "crop": "Pflanzenproduktion",
+            "livestock": "Tierhaltung",
+            "mixed": "Gemischt (Pflanzen & Vieh)",
+            "aquaculture": "Aquakultur",
+            "other": "Andere"
+        },
+        "descriptionLabel": "Beschreibung (Optional)",
+        "descriptionPlaceholder": "Beschreiben Sie kurz Ihre Farm...",
+        "irrigationLabel": "Bewässerungsmethoden (Optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Regenfeldbau",
+        "irrigationDescription": "Listen Sie die primär verwendeten Bewässerungsmethoden auf.",
+        "submitButton": "Farm speichern"
+      },
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "'{farmName}' wurde zu Ihrem Profil hinzugefügt.",
+        "errorTitle": "Erstellung fehlgeschlagen",
+        "errorDescription": "Die Farm konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+      }
     }
   },
   "OfflineIndicator": {

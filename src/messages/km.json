@@ -464,7 +464,7 @@
   },
   "Marketplace": {
     "title": "ទីផ្សារ",
-    "description": "ស្វែងរក ទិញ และលក់ផលិតផលและសេវាកម្មកសិកម្ម។",
+    "description": "ស្វែងរក ទិញ และលក់ផលិតផលនិងសេវាកម្មកសិកម្ម។",
     "createShopButton": "បង្កើតហាង",
     "myOrdersButton": "ការបញ្ជាទិញរបស់ខ្ញុំ",
     "createListingButton": "បង្កើតការចុះបញ្ជី",
@@ -838,6 +838,44 @@
       "toast": {
         "errorTitle": "ข้อผิดพลาด",
         "fetchError": "ไม่สามารถดึงข้อมูลฟาร์มของคุณได้"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "ត្រឡប់ទៅកសិដ្ឋានរបស់ខ្ញុំ",
+      "title": "สร้างฟาร์มใหม่",
+      "description": "เพิ่มฟาร์มใหม่ในโปรไฟล์ของคุณเพื่อเริ่มติดตามพืชผล ปัจจัยการผลิต และกิจกรรมต่างๆ",
+      "form": {
+        "farmNameLabel": "ឈ្មោះកសិដ្ឋាន",
+        "farmNamePlaceholder": "ឧ: Green Valley Organics",
+        "locationLabel": "ទីតាំង",
+        "locationPlaceholder": "ឧ: Rift Valley, Kenya",
+        "locationDescription": "ระบุตำแหน่งทั่วไป (เมือง, ภูมิภาค)",
+        "sizeLabel": "ទំហំកសិដ្ឋាន",
+        "sizePlaceholder": "ឧ: 5 Hectares, 12 Acres",
+        "sizeDescription": "ระบุหน่วย (เช่น Hectares, Acres)",
+        "typeLabel": "ប្រភេទฟาร์ม",
+        "typePlaceholder": "เลือกประเภทหลัก",
+        "types": {
+            "crop": "การผลิตพืชผล",
+            "livestock": "การเลี้ยงปศุสัตว์",
+            "mixed": "ผสม (พืชผลและปศุสัตว์)",
+            "aquaculture": "การเพาะเลี้ยงสัตว์น้ำ",
+            "other": "อื่นๆ"
+        },
+        "descriptionLabel": "ការពិពណ៌នា (មិនบังคับ)",
+        "descriptionPlaceholder": "อธิบายฟาร์มของคุณโดยสังเขป...",
+        "irrigationLabel": "วิธีการชลประทาน (ไม่บังคับ)",
+        "irrigationPlaceholder": "ឧ: Drip irrigation, Rain-fed",
+        "irrigationDescription": "ระบุวิธีการชลประทานหลักที่ใช้",
+        "submitButton": "บันทึกฟาร์ม"
+      },
+      "toast": {
+        "authErrorTitle": "ข้อผิดพลาดในการตรวจสอบสิทธิ์",
+        "authErrorDescription": "คุณต้องลงชื่อเข้าใช้เพื่อสร้างฟาร์ม",
+        "successTitle": "สร้างฟาร์มแล้ว!",
+        "successDescription": "'{farmName}' ถูกเพิ่มในโปรไฟล์ของคุณแล้ว",
+        "errorTitle": "การสร้างล้มเหลว",
+        "errorDescription": "ไม่สามารถสร้างฟาร์มได้ โปรดลองอีกครั้ง"
       }
     }
   },

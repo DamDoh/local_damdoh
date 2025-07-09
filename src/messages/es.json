@@ -839,6 +839,44 @@
         "errorTitle": "Error",
         "fetchError": "No se pudieron recuperar tus fincas."
       }
+    },
+    "createFarm": {
+      "backToFarms": "Volver a Mis Fincas",
+      "title": "Crear una Nueva Finca",
+      "description": "Añade una nueva finca a tu perfil para empezar a rastrear cultivos, insumos y actividades.",
+      "form": {
+        "farmNameLabel": "Nombre de la Finca",
+        "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ej: Valle del Rift, Kenia",
+        "locationDescription": "Proporciona una ubicación general (Ciudad, Región).",
+        "sizeLabel": "Tamaño de la Finca",
+        "sizePlaceholder": "Ej: 5 Hectáreas, 12 Acres",
+        "sizeDescription": "Incluye la unidad (ej. Hectáreas, Acres).",
+        "typeLabel": "Tipo de Finca",
+        "typePlaceholder": "Selecciona un tipo primario",
+        "types": {
+            "crop": "Producción de Cultivos",
+            "livestock": "Cría de Ganado",
+            "mixed": "Mixta (Cultivos y Ganado)",
+            "aquaculture": "Acuicultura",
+            "other": "Otro"
+        },
+        "descriptionLabel": "Descripción (Opcional)",
+        "descriptionPlaceholder": "Describe brevemente tu finca...",
+        "irrigationLabel": "Métodos de Riego (Opcional)",
+        "irrigationPlaceholder": "Ej: Riego por goteo, Secano",
+        "irrigationDescription": "Lista los principales métodos de riego utilizados.",
+        "submitButton": "Guardar Finca"
+      },
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debes iniciar sesión para crear una finca.",
+        "successTitle": "¡Finca Creada!",
+        "successDescription": "'{farmName}' ha sido añadida a tu perfil.",
+        "errorTitle": "Creación Fallida",
+        "errorDescription": "No se pudo crear la finca. Por favor, inténtalo de nuevo."
+      }
     }
   },
   "OfflineIndicator": {
