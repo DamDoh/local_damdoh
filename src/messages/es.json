@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -765,499 +764,6 @@
         "description": "Lleva un registro de tu maquinaria, herramientas y otros activos agrícolas.",
         "button": "Gestionar Activos"
       }
-    },
-    "myFarms": {
-      "backToDashboard": "Volver al Centro",
-      "title": "Mis Fincas",
-      "addNewFarmButton": "Añadir Nueva Finca",
-      "size": "Tamaño",
-      "viewFarmButton": "Ver Finca",
-      "noFarmsTitle": "No se encontraron Fincas",
-      "noFarmsDescription": "Aún no has creado ninguna finca.",
-      "auth": {
-        "title": "Por favor Inicia Sesión",
-        "description": "Necesitas iniciar sesión para ver tus fincas.",
-        "button": "Iniciar Sesión"
-      },
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron recuperar tus fincas."
-      }
-    },
-    "createFarm": {
-      "backToFarms": "Volver a Mis Fincas",
-      "title": "Crear Nueva Finca",
-      "description": "Añade una nueva finca a tu perfil para empezar a rastrear tus actividades.",
-      "form": {
-        "farmNameLabel": "Nombre de la Finca",
-        "farmNamePlaceholder": "Ej: Orgánicos del Valle Verde",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "Ej: Valle del Rift, Kenia",
-        "locationDescription": "Proporciona una ciudad, región o área general.",
-        "sizeLabel": "Tamaño",
-        "sizePlaceholder": "Ej: 5 Hectáreas, 12 Acres",
-        "sizeDescription": "Indica el tamaño total de tu finca.",
-        "typeLabel": "Tipo de Finca",
-        "typePlaceholder": "Selecciona un tipo",
-        "types": {
-          "crop": "Cultivo",
-          "livestock": "Ganadería",
-          "mixed": "Mixta",
-          "aquaculture": "Acuicultura",
-          "other": "Otro"
-        },
-        "descriptionLabel": "Descripción (Opcional)",
-        "descriptionPlaceholder": "Una breve descripción de tu finca...",
-        "irrigationLabel": "Métodos de Riego (Opcional)",
-        "irrigationPlaceholder": "Ej: Riego por goteo, por surcos",
-        "irrigationDescription": "Describe los principales sistemas de riego que utilizas.",
-        "submitButton": "Guardar Finca"
-      },
-      "toast": {
-        "authErrorTitle": "No Autenticado",
-        "authErrorDescription": "Debes iniciar sesión para crear una finca.",
-        "successTitle": "¡Finca Creada!",
-        "successDescription": "La finca '{farmName}' ha sido añadida correctamente.",
-        "errorTitle": "Creación Fallida"
-      }
-    },
-    "editFarm": {
-      "backToFarm": "Volver a la Finca",
-      "title": "Editar Finca",
-      "description": "Actualiza los detalles de tu finca.",
-      "form": {
-        "submitButton": "Guardar Cambios"
-      },
-      "toast": {
-        "notFoundTitle": "Finca no encontrada",
-        "loadError": "No se pudieron cargar los detalles de la finca para editar.",
-        "loadFail": "Carga fallida: {message}",
-        "error": "Error",
-        "successTitle": "¡Finca Actualizada!",
-        "successDescription": "Tu finca '{farmName}' ha sido actualizada correctamente.",
-        "errorTitle": "Actualización Fallida"
-      }
-    },
-    "farmDetail": {
-      "backToFarms": "Volver a Mis Fincas",
-      "registeredOn": "Registrada el {date}",
-      "editFarmButton": "Editar Finca",
-      "crops": {
-        "title": "Cultivos y Ganado",
-        "description": "Gestiona todos los cultivos activos o lotes de ganado en esta finca.",
-        "addNewButton": "Añadir Nuevo Cultivo",
-        "plantedLabel": "Plantado",
-        "stageLabel": "Etapa",
-        "viewJourneyButton": "Ver Trayectoria",
-        "noCrops": "Aún no se han registrado cultivos para esta finca.",
-        "addFirstButton": "Añade tu Primer Cultivo"
-      },
-      "insights": {
-        "title": "Análisis de Rentabilidad",
-        "description": "Análisis generados por IA para ayudarte a mejorar tus operaciones.",
-        "noInsights": "No hay suficientes datos para generar análisis. ¡Registra más actividades!"
-      },
-      "notFound": {
-        "title": "Finca no encontrada",
-        "description": "No se pudo encontrar la finca que buscas.",
-        "backButton": "Volver a Mis Fincas"
-      },
-      "toast": {
-        "notFoundTitle": "Finca no encontrada.",
-        "loadErrorTitle": "Error de Carga",
-        "insightsErrorTitle": "No se pudieron cargar los análisis."
-      },
-      "loading": "Cargando detalles de la finca..."
-    },
-    "createCrop": {
-      "backLink": "Volver a la Finca",
-      "title": "Añadir Nuevo Cultivo",
-      "description": "Registra un nuevo cultivo o lote de ganado para empezar a seguir su trayectoria.",
-      "cropTypeLabel": "Tipo de Cultivo/Ganado",
-      "cropTypePlaceholder": "Ej: Maíz, Colmenas Kenya Top Bar, Pollos de engorde",
-      "cropTypeDescription": "Especifica qué estás cultivando o criando.",
-      "plantingDateLabel": "Fecha de Siembra/Inicio",
-      "datePlaceholder": "Elige una fecha",
-      "harvestDateLabel": "Fecha Estimada de Cosecha",
-      "yieldLabel": "Rendimiento Esperado (Opcional)",
-      "yieldPlaceholder": "Ej: 5 toneladas/hectárea, 5000 huevos/mes",
-      "stageLabel": "Etapa Actual",
-      "stagePlaceholder": "Selecciona una etapa",
-      "stages": {
-        "Planting": "Siembra/Colocación",
-        "Vegetative": "Crecimiento Vegetativo",
-        "Flowering": "Floración/Apareamiento",
-        "Fruiting": "Fructificación/Crecimiento",
-        "Harvesting": "Cosecha",
-        "Post-Harvest": "Poscosecha"
-      },
-      "notesLabel": "Notas (Opcional)",
-      "notesPlaceholder": "Cualquier detalle adicional sobre este cultivo...",
-      "saveButton": "Guardar Cultivo",
-      "savingButton": "Guardando...",
-      "toast": {
-        "authErrorTitle": "No Autenticado",
-        "authErrorDescription": "Debes iniciar sesión para crear un cultivo.",
-        "successTitle": "¡Cultivo Creado!",
-        "successDescription": "{cropType} ha sido añadido correctamente.",
-        "failTitle": "Creación Fallida",
-        "failDescription": "No se pudo crear tu cultivo. Por favor, inténtalo de nuevo."
-      }
-    },
-    "editCrop": {
-      "backLink": "Volver al Cultivo",
-      "title": "Editar Detalles del Cultivo",
-      "description": "Actualiza la información de este cultivo o lote de ganado.",
-      "saveButton": "Guardar Cambios",
-      "savingButton": "Guardando...",
-      "toast": {
-        "notFound": "Cultivo no encontrado",
-        "loadError": "No se pudieron cargar los detalles del cultivo para editar.",
-        "loadFail": "Carga fallida: {message}",
-        "error": "Error",
-        "success": "¡Cultivo Actualizado!",
-        "description": "Los detalles para {cropType} han sido actualizados correctamente.",
-        "fail": "Actualización Fallida"
-      }
-    },
-    "cropDetailPage": {
-      "loading": "Cargando detalles del cultivo...",
-      "notFound": "Cultivo no encontrado.",
-      "backLink": "Volver a la Finca",
-      "plantedOn": "Plantado el {date}",
-      "editButton": "Editar",
-      "quickActionsTitle": "Acciones Rápidas",
-      "logInputButton": "Aplicar Insumo",
-      "logObservationButton": "Registrar Observación",
-      "logHarvestButton": "Registrar Cosecha",
-      "journeyTitle": "Trayectoria de este Cultivo",
-      "noActivities": "Aún no se han registrado actividades para este cultivo.",
-      "eventPayload": {
-        "noDetails": "No se proporcionaron detalles adicionales.",
-        "observationType": "Tipo de Observación",
-        "details": "Detalles",
-        "aiDiagnosis": "Diagnóstico por IA"
-      },
-      "toast": {
-        "notFound": "Cultivo no encontrado.",
-        "loadError": "No se pudieron cargar los eventos del cultivo."
-      }
-    },
-    "logInput": {
-      "backLink": "Volver a la Finca",
-      "title": "Registrar Aplicación de Insumo",
-      "description": "Registra la aplicación de fertilizantes, pesticidas u otros insumos.",
-      "useKNFLabel": "Usar Insumo KNF Hecho en Casa",
-      "useKNFPlaceholder": "Selecciona un lote listo",
-      "manualInputLabel": "Nombre/Tipo de Insumo",
-      "manualInputPlaceholder": "Ej: Fertilizante DAP, Aceite de Neem",
-      "dateLabel": "Fecha de Aplicación",
-      "quantityLabel": "Cantidad",
-      "quantityPlaceholder": "Ej: 50",
-      "unitLabel": "Unidad",
-      "unitPlaceholder": "Ej: kg, L, sacos",
-      "methodLabel": "Método de Aplicación (Opcional)",
-      "methodPlaceholder": "Ej: Aspersión foliar, al suelo",
-      "saveButton": "Guardar Registro",
-      "savingButton": "Guardando...",
-      "toast": {
-        "authErrorTitle": "No Autenticado",
-        "authErrorDescription": "Debes iniciar sesión para registrar insumos.",
-        "success": "¡Aplicación de Insumo Registrada!",
-        "description": "Tu aplicación de insumo ha sido registrada correctamente.",
-        "fail": "Registro Fallido"
-      }
-    },
-    "logHarvest": {
-      "backLink": "Volver a la Finca",
-      "title": "Registrar Cosecha de {cropType}",
-      "description": "Registra los detalles de tu cosecha para crear un nuevo lote trazable.",
-      "harvestDateLabel": "Fecha de Cosecha",
-      "yieldLabel": "Rendimiento (kg)",
-      "yieldPlaceholder": "Ej: 1200",
-      "qualityLabel": "Grado de Calidad (Opcional)",
-      "qualityPlaceholder": "Ej: Grado A, Calidad de Exportación",
-      "notesLabel": "Notas (Opcional)",
-      "notesPlaceholder": "Cualquier detalle adicional sobre la cosecha...",
-      "saveButton": "Registrar Cosecha y Crear VTI",
-      "savingButton": "Guardando...",
-      "success": {
-        "title": "¡Cosecha Registrada Correctamente!",
-        "description": "Se ha creado un nuevo lote trazable (VTI: {vtiId}) para tu cosecha de {cropType}.",
-        "successCardTitle": "¡Cosecha Registrada y VTI Creado!",
-        "successCardDescription": "Has registrado exitosamente la cosecha de {cropType}. Se ha creado un nuevo lote trazable con ID {vtiId}. ¿Qué te gustaría hacer ahora?",
-        "viewReportButton": "Ver Reporte de Trazabilidad",
-        "sellButton": "Vender este Lote en el Mercado",
-        "logAnotherButton": "Registrar Otra Cosecha",
-        "backToFarmButton": "Volver a la Vista de la Finca"
-      },
-      "fail": {
-        "title": "Registro de Cosecha Fallido"
-      },
-      "offlineToast": {
-        "title": "Modo sin conexión: Acción en cola",
-        "description": "Tu registro de cosecha se ha guardado y se sincronizará cuando vuelvas a estar en línea."
-      }
-    },
-    "logObservation": {
-      "backLink": "Volver a la Finca",
-      "title": "Registrar Observación",
-      "description": "Anota observaciones importantes como avistamientos de plagas, brotes de enfermedades o eventos climáticos.",
-      "typeLabel": "Tipo de Observación",
-      "typePlaceholder": "Selecciona un tipo",
-      "types": {
-        "scouting": "Exploración de Plagas/Enfermedades",
-        "weather": "Evento Climático",
-        "soil": "Condición del Suelo",
-        "growth": "Etapa de Crecimiento",
-        "other": "Otro"
-      },
-      "dateLabel": "Fecha de Observación",
-      "detailsLabel": "Detalles",
-      "detailsPlaceholder": "Describe lo que observaste...",
-      "uploadLabel": "Subir Foto (Opcional)",
-      "uploadDescription": "Una imagen ayuda a nuestra IA a diagnosticar problemas.",
-      "saveButton": "Guardar Observación",
-      "processingButton": "Procesando...",
-      "toast": {
-        "authErrorTitle": "No Autenticado",
-        "authErrorDescription": "Debes iniciar sesión para registrar observaciones.",
-        "aiAnalyzing": "Analizando Imagen...",
-        "aiDescription": "Nuestra IA está examinando tu foto en busca de posibles problemas.",
-        "aiComplete": "¡Análisis Completado!",
-        "aiCompleteDescription": "Las percepciones de la IA se guardarán con tu observación.",
-        "aiFailTitle": "Análisis de IA Fallido",
-        "aiFailDescription": "No pudimos analizar tu imagen, pero tu observación se guardará de todos modos.",
-        "uploading": "Subiendo Imagen...",
-        "uploadingDescription": "Por favor espera mientras guardamos tu imagen.",
-        "uploadComplete": "¡Subida Completa!",
-        "success": "¡Observación Registrada!",
-        "successDescription": "Tu observación ha sido guardada correctamente.",
-        "fail": "Registro Fallido"
-      }
-    },
-    "knfInputsPage": {
-      "backLink": "Volver al Hub",
-      "title": "Asistente de Insumos KNF",
-      "description": "Rastrea y gestiona tus insumos de Agricultura Natural Coreana (KNF) hechos por ti mismo.",
-      "guidesTitle": "Guías y Recetas",
-      "ingredients": "Ingredientes",
-      "steps": "Pasos",
-      "usage": "Uso",
-      "fermentingBatchesTitle": "Lotes en Fermentación",
-      "started": "Iniciado",
-      "nextStepOn": "Próximo paso el",
-      "markReady": "Marcar como Listo",
-      "noFermentingBatches": "No tienes lotes fermentando actualmente.",
-      "readyBatchesTitle": "Lotes Listos",
-      "readySince": "Listo desde",
-      "logUsage": "Registrar Uso",
-      "archive": "Archivar",
-      "noReadyBatches": "No tienes lotes listos para usar.",
-      "startNewBatch": "Iniciar Nuevo Lote",
-      "createNewBatchTitle": "Crear Nuevo Lote KNF",
-      "form": {
-        "typeLabel": "Tipo de Insumo",
-        "typePlaceholder": "Selecciona el tipo de insumo KNF",
-        "ingredientsLabel": "Ingredientes (y cantidades)",
-        "startDateLabel": "Fecha de Inicio",
-        "startingButton": "Iniciando...",
-        "startButton": "Iniciar Lote"
-      },
-      "cancel": "Cancelar",
-      "toasts": {
-        "loadErrorTitle": "Error de Carga",
-        "loadErrorDescription": "No se pudieron cargar tus lotes KNF.",
-        "validationError": "Por favor, completa todos los campos.",
-        "batchStartedTitle": "¡Lote Iniciado!",
-        "batchStartedDescription": "Tu nuevo lote KNF ahora está siendo rastreado.",
-        "batchStartFailed": "Fallo al Iniciar Lote",
-        "unexpectedError": "Ocurrió un error inesperado.",
-        "batchUpdatedTitle": "¡Estado Actualizado!",
-        "batchUpdatedDescription": "El estado del lote se ha actualizado a '{status}'.",
-        "updateFailed": "Actualización Fallida",
-        "couldNotUpdate": "No se pudo actualizar el estado del lote."
-      },
-      "knfOptions": [
-        { "value": "fpj", "label": "Jugo de Planta Fermentado (FPJ)", "placeholder": "Ej: Brotes de camote, brotes de bambú" },
-        { "value": "faa", "label": "Aminoácido de Pescado (FAA)", "placeholder": "Ej: Restos de pescado, cabezas, espinas" },
-        { "value": "wca", "label": "Calcio Soluble en Agua (WCA)", "placeholder": "Ej: Cáscaras de huevo, conchas" },
-        { "value": "imo", "label": "Microorganismos Indígenas (IMO)", "placeholder": "Ej: Arroz cocido, suelo de bosque" },
-        { "value": "lab", "label": "Bacterias Ácido Lácticas (LAB)", "placeholder": "Ej: Agua de lavado de arroz" }
-      ],
-      "recipeData": [
-        { "id": "knf_fpj", "name": "Jugo de Planta Fermentado (FPJ)", "description": "Un extracto de savias de plantas y clorofilas, rico en enzimas, para potenciar el crecimiento de las plantas.", "ingredients": ["1kg de partes de plantas de rápido crecimiento", "1kg de azúcar moreno"], "steps": ["Recolectar materiales vegetales antes del amanecer.", "Picar los materiales vegetales.", "Mezclar con azúcar.", "Empacar en un recipiente y cubrir con un paño transpirable.", "Dejar fermentar durante unos 7 días."], "usage": "Diluir 1:500 a 1:1000 con agua." },
-        { "id": "knf_faa", "name": "Aminoácido de Pescado (FAA)", "description": "Un potente fertilizante hecho de residuos de pescado, rico en nitrógeno y aminoácidos.", "ingredients": ["1kg de restos de pescado", "1kg de azúcar moreno"], "steps": ["Picar las partes del pescado.", "Poner en capas con azúcar.", "Cubrir con un paño transpirable.", "Dejar fermentar durante al menos 3-6 meses."], "usage": "Diluir 1:1000 con agua, principalmente como riego al suelo." }
-      ]
-    },
-    "fgwGuidePage": {
-      "backLink": "Volver al Hub",
-      "title": "Guía de Agricultura a la Manera de Dios (FGW)",
-      "description": "Los principios y prácticas de un método revolucionario de agricultura sostenible sin labranza.",
-      "intro": "Agricultura a la Manera de Dios es un recurso para equipar a los pobres para que se ayuden a sí mismos y a muchos otros, restaurando la tierra y proveyendo para las necesidades de los pobres. Se trata de una mayordomía fiel de la tierra y de entender los caminos de Dios. Los principios básicos son simples pero profundos:",
-      "howToTitle": "Cómo Implementarlo",
-      "whyItWorksTitle": "Por Qué Funciona",
-      "principles": [
-        { "id": "no-tillage", "title": "Sin Labranza", "icon": "Shield", "summary": "El arado es perjudicial para la estructura y la vida del suelo. FGW evita todo arado, fomentando un suelo sano y resiliente.", "howTo": ["Detener por completo el arado o la remoción del suelo.", "Utilizar estaciones de siembra permanentes para tus cultivos."], "whyItWorks": ["Protege la estructura y los poros naturales del suelo.", "Previene la erosión de la valiosa capa superior del suelo.", "Promueve un ecosistema saludable de microorganismos."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo sin marcas de arado", "dataAiHint": "no-till farming" },
-        { "id": "mulching", "title": "La Manta de Dios (Mulching)", "icon": "Leaf", "summary": "El suelo nunca fue diseñado para estar desnudo. una gruesa capa de mulch protege el suelo, retiene la humedad y aporta nutrientes.", "howTo": ["Aplica una gruesa capa de materia orgánica (al menos 4 pulgadas) sobre toda la superficie del suelo.", "Siembra directamente a través del mulch.", "Añade continuamente nuevo mulch a medida que el viejo se descompone."], "whyItWorks": ["Reduce significativamente la evaporación del agua.", "Suprime el crecimiento de malezas.", "Alimenta la vida del suelo a medida que se descompone."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un campo cubierto con una gruesa capa de mulch de paja", "dataAiHint": "mulch field" },
-        { "id": "high-standards", "title": "Altos Estándares", "icon": "CheckCircle", "summary": "FGW enfatiza la importancia de la excelencia en todos los aspectos de la agricultura – del momento oportuno a la ejecución – como un acto de adoración.", "howTo": ["Ejecuta todas las tareas a tiempo y lo mejor que puedas.", "Presta atención a los detalles, desde la profundidad de siembra hasta el espaciado.", "Mantén la finca ordenada y bien organizada."], "whyItWorks": ["Maximiza el potencial de rendimiento de los cultivos.", "Minimiza las pérdidas por plagas y enfermedades.", "Refleja la excelencia del Creador."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hileras de siembra ordenadas", "dataAiHint": "organized farm rows" }
-      ]
-    },
-    "seedStartingPage": {
-      "backLink": "Volver al Hub",
-      "title": "Guía de Inicio de Semillas",
-      "description": "Aprende cómo dar a tus cultivos el mejor comienzo posible iniciando las semillas en interiores o en un área controlada.",
-      "intro": "Iniciar semillas en interiores es una excelente manera de extender tu temporada de cultivo, proteger las plántulas de condiciones adversas y mejorar las tasas de germinación. Esta guía cubre lo esencial para tener éxito.",
-      "sections": [
-        { "id": "why-start-indoors", "title": "¿Por qué empezar en interiores?", "icon": "Lightbulb", "intro": "Iniciar plántulas en interiores tiene varias ventajas clave:", "points": [{ "term": "Ventaja Inicial", "def": "Comienza a cultivar antes, especialmente en climas con temporadas de cultivo cortas." }, { "term": "Protección", "def": "Protege las plántulas tiernas de plagas, enfermedades y clima extremo." }, { "term": "Control", "def": "Gestiona el agua, la luz y la temperatura para una germinación óptima." }, { "term": "Economía", "def": "Cultivar desde la semilla suele ser más rentable que comprar trasplantes." }] },
-        { "id": "containers-media", "title": "Contenedores y Sustrato", "icon": "Package", "intro": "Elegir el contenedor y el suelo adecuados es crucial.", "points": [{ "term": "Contenedores", "def": "Usa bandejas de semillas, macetas de turba, bloques de tierra o incluso contenedores reciclados como cartones de huevos. Asegúrate de que tengan un buen drenaje." }, { "term": "Sustrato", "def": "Usa una mezcla estéril y de textura fina para iniciar semillas. Evita la tierra de jardín pesada, que puede compactarse y albergar enfermedades." }, { "term": "Esterilización", "def": "Si reutilizas contenedores, esterilízalos con una solución de lejía (1 parte de lejía por 9 partes de agua) para prevenir enfermedades." }] },
-        { "id": "planting-seeds", "title": "Siembra de Semillas", "icon": "Grid", "intro": "Cada semilla tiene necesidades específicas, pero aquí hay algunas pautas generales:", "steps": ["Humedece tu mezcla de inicio de semillas antes de llenar los contenedores. Debe estar húmeda, no empapada.", "Llena los contenedores y presiona la mezcla ligeramente.", "Siembra las semillas a la profundidad recomendada en el paquete de semillas. Una buena regla general es plantarlas aproximadamente dos veces más profundas que su tamaño.", "Siembra 2-3 semillas por celda o pot para asegurar la germinación. Puedes entresacar las plántulas más débiles más tarde.", "Cubre las semillas ligeramente con mezcla y presiona suavemente para asegurar un buen contacto entre la semilla y el suelo.", "¡Etiqueta tus contenedores claramente con la variedad de la planta y la fecha de siembra!"] },
-        { "id": "watering-light-temp", "title": "Agua, Luz y Temperatura", "icon": "Sun", "intro": "Después de plantar, el entorno adecuado es clave para el éxito.", "points": [{ "term": "Agua", "def": "Mantén el suelo consistentemente húmedo pero no mojado. Es mejor regar desde abajo o usar un pulverizador de niebla fina para no desplazar las semillas. Cubre las bandejas con una cúpula transparente o una envoltura de plástico para retener la humedad hasta que las semillas broten." }, { "term": "Luz", "def": "La mayoría de las semillas no necesitan luz para germinar, pero una vez que brotan, necesitan mucha. Una ventana soleada orientada al sur puede ser suficiente, pero las luces de cultivo (14-16 horas al día) evitarán que las plántulas se vuelvan altas y débiles ('ahiladas')." }, { "term": "Temperatura", "def": "La mayoría de las semillas germinan mejor a temperaturas cálidas (alrededor de 70-75°F o 21-24°C). una estera térmica debajo de las bandejas de semillas puede acelerar significativamente la germinación." }] },
-        { "id": "hardening-off", "title": "Aclimatación", "icon": "Leaf", "intro": "Antes de poder mover tus plántulas al exterior, debes aclimatarlas gradualmente a las condiciones exteriores.", "steps": ["Comienza unos 7-10 días antes de la fecha prevista de trasplante.", "Coloca tus plántulas al aire libre en un lugar protegido (fuera del sol directo y del viento fuerte) durante una hora.", "Aumenta la cantidad de tiempo que pasan al aire libre en 1-2 horas cada día.", "Exponlas gradualmente a más sol directo y viento.", "Reduce ligeramente el riego para prepararlas para las condiciones del jardín."] },
-        { "id": "transplanting", "title": "Trasplante", "icon": "CheckCircle", "intro": "El último paso es mover tus plántulas fuertes al jardín.", "steps": ["Elige un día nublado o al final de la tarde para minimizar el shock del trasplante.", "Riega bien tus plántulas y el lecho del jardín unas horas antes de trasplantar.", "Afloja suavemente la tierra alrededor de la plántula, tratando de mantener el cepellón lo más intacto posible.", "Plántalas a la misma profundidad a la que crecían en el contenedor.", "Afirma la tierra alrededor de la plántula y riega bien para eliminar las bolsas de aire."] }
-      ]
-    },
-    "familyFarmPage": {
-      "backLink": "Volver al Hub",
-      "title": "Modelo de Granja Familiar Integrada (200m²)",
-      "description": "Un sistema sostenible de circuito cerrado diseñado para la seguridad alimentaria y los ingresos en un terreno pequeño.",
-      "intro": "Este modelo demuestra cómo una pequeña parcela de 200 metros cuadrados (10m x 20m) puede transformarse en una granja familiar productiva y resiliente mediante la integración de diferentes componentes que se apoyan mutuamente. El objetivo es minimizar los residuos, maximizar el uso de los recursos y proporcionar una gama diversa de productos para el consumo familiar y la venta en el mercado.",
-      "diagramCaption": "Representación visual del modelo de granja familiar integrada de 200m².",
-      "detailsTitle": "Componentes Clave y Productos",
-      "principlesTitle": "Principios Rectores en Acción",
-      "zones": [
-        { "id": "overall-layout", "title": "Diseño y Distribución General", "icon": "LayoutGrid", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Diseño general de una pequeña granja", "dataAiHint": "diseño pequeña granja", "description": ["La granja está diseñada para ser un sistema de circuito cerrado. Los residuos de un componente se convierten en un insumo valioso para otro, reduciendo los costos externos y aumentando la sostenibilidad."], "details": [{ "title": "Asignación de Espacio", "content": ["Aprox. 60% para huertos, 20% para ganado, 10% para acuicultura y 10% para caminos y compostaje."] }, { "title": "Flujo de Agua", "content": ["El agua del estanque de peces se utiliza para regar los huertos, proporcionando agua rica en nutrientes."] }] },
-        { "id": "vegetable-garden", "title": "Huerto de Hortalizas (Aprox. 120m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Huerto de hortalizas frondoso", "dataAiHint": "huerto hortalizas", "description": ["El corazón de la granja, que proporciona un suministro continuo de hortalizas diversas y nutritivas para la nutrición familiar y las ventas en el mercado."], "details": [{ "title": "Métodos de Cultivo", "content": ["Se utilizan camas elevadas, siembra intensiva y policultivo para maximizar el espacio y reducir las plagas."] }, { "title": "Producción", "content": ["Producción durante todo el año de hortalizas de hoja, de fruto y de raíz."] }] },
-        { "id": "fish-pond", "title": "Estanque de Peces (Aprox. 20m²)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Pequeño estanque de peces", "dataAiHint": "estanque acuicultura", "description": ["Una valiosa fuente de proteínas e ingresos. El estanque está integrado con el sistema de riego del huerto."], "details": [{ "title": "Especies", "content": ["La tilapia o el bagre son buenas opciones debido a su resistencia y rápido crecimiento."] }, { "title": "Sinergia", "content": ["El agua del estanque, rica en excrementos de peces, se utiliza como fertilizante natural para los huertos."] }] },
-        { "id": "poultry-unit", "title": "Unidad Avícola (Aprox. 20m²)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Gallinas en un corral", "dataAiHint": "gallinas corral", "description": ["Proporciona huevos y carne para la familia y el mercado. Su estiércol es un ingrediente clave para la pila de compost."], "details": [{ "title": "Alojamiento", "content": ["Un pequeño gallinero con un área de corral segura, que permite a las gallinas buscar alimento y contribuir al control de plagas."] }, { "title": "Suplemento Alimenticio", "content": ["Los restos del huerto y los insectos pueden complementar el alimento comercial, reduciendo costos."] }] },
-        { "id": "compost-system", "title": "Sistema de Compostaje (Aprox. 20m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Pila de compost", "dataAiHint": "pila compost", "description": ["El motor de reciclaje de la granja. Convierte los restos de cocina, los residuos del huerto y el estiércol animal en compost rico en nutrientes, reduciendo la necesidad de fertilizantes químicos."], "subSections": [{ "title": "Diversificación", "content": ["La combinación de diferentes tipos de cultivos, animales y peces reduce el riesgo de un fracaso total."] }, { "title": "Ciclo de Nutrientes", "content": ["El estiércol animal y los residuos vegetales se compostan para fertilizar el suelo. El agua del estanque riega y fertiliza las plantas."] }, { "title": "Eficiencia del Agua", "content": ["El estanque actúa como un reservorio de agua, y la reutilización de agua rica en nutrientes reduce el consumo total."] }] }
-      ]
-    },
-    "laborPage": {
-      "backLink": "Volver al Hub",
-      "title": "Gestión de Mano de Obra",
-      "description": "Lleva un registro de las horas, pagos y tareas de tu equipo.",
-      "addWorker": "Añadir Trabajador",
-      "workerName": "Nombre del Trabajador",
-      "saveWorker": "Guardar Trabajador",
-      "hoursLogged": "Horas Registradas",
-      "totalPaid": "Total Pagado",
-      "logHours": "Registrar Horas",
-      "logPayment": "Registrar Pago",
-      "viewDetails": "Ver Detalles",
-      "logHoursFor": "Registrar Horas para",
-      "hoursWorked": "Horas Trabajadas",
-      "date": "Fecha",
-      "pickDate": "Elige una fecha",
-      "taskDescription": "Descripción de la Tarea (Opcional)",
-      "logPaymentFor": "Registrar Pago para",
-      "amountPaid": "Monto Pagado",
-      "noWorkers": "Aún no has añadido ningún trabajador.",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchWorkersError": "No se pudieron recuperar tus trabajadores.",
-        "nameRequired": "Se requiere el nombre del trabajador.",
-        "workerAdded": "¡Trabajador añadido correctamente!",
-        "hoursLogged": "¡Horas registradas correctamente!",
-        "paymentLoggedTitle": "¡Pago Registrado!",
-        "paymentLoggedDescription": "El pago fue registrado y se ha creado un gasto correspondiente en tus finanzas."
-      },
-      "workerDetailPage": {
-        "backLink": "Volver a Gestión de Mano de Obra",
-        "workLogsTitle": "Registros de Trabajo",
-        "paymentHistoryTitle": "Historial de Pagos",
-        "table": {
-          "date": "Fecha",
-          "hours": "Horas",
-          "task": "Tarea",
-          "amount": "Monto"
-        },
-        "noWorkLogs": "No se han registrado horas para este trabajador.",
-        "noPayments": "No se han registrado pagos para este trabajador.",
-        "notFoundTitle": "Trabajador no Encontrado",
-        "notFoundDescription": "No se pudo encontrar el perfil del trabajador que buscas.",
-        "goBackButton": "Volver a la Lista de Trabajadores",
-        "toasts": {
-          "errorTitle": "Error"
-        }
-      }
-    },
-    "financials": {
-      "title": "Centro Financiero",
-      "description": "Monitorea la salud financiera de tu finca y explora oportunidades de financiación.",
-      "newTransactionButton": "Nueva Transacción",
-      "applyForFundingButton": "Solicitar Financiación",
-      "totalIncome": "Ingresos Totales",
-      "totalExpense": "Gastos Totales",
-      "netFlow": "Flujo Neto de Caja",
-      "recentTransactions": "Transacciones Recientes",
-      "table": {
-        "date": "Fecha",
-        "description": "Descripción",
-        "category": "Categoría",
-        "amount": "Monto"
-      },
-      "noTransactions": "Aún no se han registrado transacciones.",
-      "signInPrompt": {
-        "title": "Por favor Inicia Sesión",
-        "description": "Necesitas iniciar sesión para ver tus datos financieros.",
-        "button": "Iniciar Sesión"
-      },
-      "log": {
-        "backLink": "Volver a Finanzas",
-        "title": "Registrar Transacción Financiera",
-        "description": "Añade un nuevo ingreso o gasto a tus registros.",
-        "typeLabel": "Tipo de Transacción",
-        "typePlaceholder": "Selecciona un tipo",
-        "types": {
-          "income": "Ingreso",
-          "expense": "Gasto"
-        },
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Ej: Venta de tomates, Compra de semillas",
-        "amountLabel": "Monto",
-        "amountPlaceholder": "Ej: 150.75",
-        "currencyLabel": "Moneda",
-        "currencyPlaceholder": "Ej: USD",
-        "categoryLabel": "Categoría (Opcional)",
-        "categoryPlaceholder": "Ej: Ventas, Insumos, Mano de obra",
-        "categoryDescription": "Clasificar ayuda a analizar tus finanzas.",
-        "saveButton": "Guardar Transacción",
-        "savingButton": "Guardando...",
-        "toast": {
-          "authErrorTitle": "No Autenticado",
-          "authErrorDescription": "Debes iniciar sesión.",
-          "success": "¡Guardado!",
-          "description": "Tu transacción ha sido registrada correctamente.",
-          "fail": "Guardado Fallido"
-        }
-      },
-      "apply": {
-        "backLink": "Volver a Finanzas",
-        "title": "Solicitar Financiación",
-        "description": "Envía una solicitud de préstamos o subvenciones a instituciones financieras participantes.",
-        "form": {
-          "institutionLabel": "Institución Financiera",
-          "institutionPlaceholder": "Selecciona una institución",
-          "noInstitutions": "No hay instituciones disponibles",
-          "typeLabel": "Tipo de Solicitud",
-          "loan": "Préstamo",
-          "grant": "Subvención",
-          "amountLabel": "Monto Solicitado",
-          "currencyLabel": "Moneda",
-          "purposeLabel": "Propósito de la Solicitud",
-          "purposePlaceholder": "Describe en detalle cómo se utilizarán los fondos...",
-          "purposeDescription": "Una descripción clara aumenta tus posibilidades de aprobación.",
-          "submitButton": "Enviar Solicitud"
-        },
-        "toast": {
-          "error": "Error",
-          "fetchFiError": "No se pudieron recuperar las instituciones financieras.",
-          "notAuthenticatedError": "Debes iniciar sesión para solicitar.",
-          "successTitle": "¡Solicitud Enviada!",
-          "successDescription": "Tu solicitud ha sido enviada para su revisión."
-        }
-      }
     }
   },
   "networkPage": {
@@ -1992,7 +1498,85 @@
         "generateErrorTitle": "Generación Fallida"
       }
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión de Fincas",
+      "description": "Tu lugar centralizado para rastrear y optimizar todas tus actividades agrícolas, desde la semilla hasta la cosecha.",
+      "myFarms": {
+        "title": "Mis Fincas y Cultivos",
+        "description": "Administra tus fincas, campos y sigue los ciclos de cultivo individuales.",
+        "button": "Gestionar Fincas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Lleva un registro de las horas de trabajo y los pagos de tu personal.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Asistente de Insumos KNF",
+        "description": "Rastrea tus insumos de Agricultura Natural Coreana hechos por ti mismo.",
+        "button": "Gestionar Insumos"
+      },
+      "fgw": {
+        "title": "Guía de Agricultura a la Manera de Dios (FGW)",
+        "description": "Aprende los principios y prácticas de FGW para una agricultura sostenible sin labranza.",
+        "button": "Ver Guía FGW"
+      },
+      "financials": {
+        "title": "Finanzas y Análisis",
+        "description": "Rastrea ingresos, gastos y obtén información sobre la rentabilidad.",
+        "button": "Ver Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Inicio de Semillas",
+        "description": "Aprende las mejores prácticas para iniciar semillas para una temporada exitosa.",
+        "button": "Ver Guía de Semillas"
+      },
+      "familyFarm": {
+        "title": "Modelo de Granja Familiar Integrada",
+        "description": "Explora un modelo sostenible de 200m² para una granja familiar a pequeña escala.",
+        "button": "Ver Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Lleva un registro de tu maquinaria, herramientas y otros activos agrícolas.",
+        "button": "Gestionar Activos"
+      }
+    }
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Sincronizando {count} acciones pendientes...",
+      "onlinePending": "{count} acciones pendientes. Sincronizando pronto.",
+      "onlineSynced": "Estás en línea y todos los cambios están sincronizados.",
+      "offline": "Estás desconectado. {count, plural, =0 {No hay cambios pendientes} =1 {1 cambio está en cola} other {{count} cambios están en cola}}."
+    },
+    "toast": {
+      "online": {
+        "title": "¡Estás de vuelta en línea!",
+        "description": "Tu conexión ha sido restaurada."
+      },
+      "offline": {
+        "title": "Estás Desconectado",
+        "description": "Tus cambios se guardarán y sincronizarán cuando te reconectes."
+      },
+      "syncing": {
+        "title": "Sincronizando Cambios sin Conexión",
+        "description": "Subiendo {count} acciones al servidor."
+      },
+      "synced": {
+        "title": "Sincronización Completa",
+        "description": "Todos tus cambios sin conexión han sido guardados."
+      },
+      "syncFailed": {
+        "title": "Sincronización Fallida",
+        "description": "No pudimos sincronizar tus cambios sin conexión. Intentaremos de nuevo más tarde."
+      },
+      "queued": {
+        "title": "Acción en Cola",
+        "description": "Esta acción se realizará cuando vuelvas a estar en línea."
+      }
+    }
   }
 }
-
-    

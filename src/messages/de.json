@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -765,499 +764,6 @@
         "description": "Behalten Sie den Überblick über Ihre Maschinen, Werkzeuge und andere landwirtschaftliche Vermögenswerte.",
         "button": "Vermögen verwalten"
       }
-    },
-    "myFarms": {
-      "backToDashboard": "Zurück zum Hub",
-      "title": "Meine Farmen",
-      "addNewFarmButton": "Neue Farm hinzufügen",
-      "size": "Größe",
-      "viewFarmButton": "Farm ansehen",
-      "noFarmsTitle": "Keine Farmen gefunden",
-      "noFarmsDescription": "Sie haben noch keine Farmen erstellt.",
-      "auth": {
-        "title": "Bitte anmelden",
-        "description": "Sie müssen angemeldet sein, um Ihre Farmen zu sehen.",
-        "button": "Anmelden"
-      },
-      "toast": {
-        "errorTitle": "Fehler",
-        "fetchError": "Ihre Farmen konnten nicht abgerufen werden."
-      }
-    },
-    "createFarm": {
-      "backToFarms": "Zurück zu Meine Farmen",
-      "title": "Neue Farm erstellen",
-      "description": "Fügen Sie eine neue Farm zu Ihrem Profil hinzu, um Ihre Aktivitäten zu verfolgen.",
-      "form": {
-        "farmNameLabel": "Farmname",
-        "farmNamePlaceholder": "z.B. Green Valley Organics",
-        "locationLabel": "Standort",
-        "locationPlaceholder": "z.B. Rift Valley, Kenia",
-        "locationDescription": "Geben Sie eine Stadt, Region oder ein allgemeines Gebiet an.",
-        "sizeLabel": "Größe",
-        "sizePlaceholder": "z.B. 5 Hektar, 12 Acres",
-        "sizeDescription": "Geben Sie die Gesamtgröße Ihrer Farm an.",
-        "typeLabel": "Farmtyp",
-        "typePlaceholder": "Wählen Sie einen Typ",
-        "types": {
-          "crop": "Ackerbau",
-          "livestock": "Viehzucht",
-          "mixed": "Gemischt",
-          "aquaculture": "Aquakultur",
-          "other": "Andere"
-        },
-        "descriptionLabel": "Beschreibung (Optional)",
-        "descriptionPlaceholder": "Eine kurze Beschreibung Ihrer Farm...",
-        "irrigationLabel": "Bewässerungsmethoden (Optional)",
-        "irrigationPlaceholder": "z.B. Tropfbewässerung, Furchenbewässerung",
-        "irrigationDescription": "Beschreiben Sie die wichtigsten Bewässerungssysteme, die Sie verwenden.",
-        "submitButton": "Farm speichern"
-      },
-      "toast": {
-        "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
-        "successTitle": "Farm erstellt!",
-        "successDescription": "Die Farm '{farmName}' wurde erfolgreich hinzugefügt.",
-        "errorTitle": "Erstellung fehlgeschlagen"
-      }
-    },
-    "editFarm": {
-      "backToFarm": "Zurück zur Farm",
-      "title": "Farm bearbeiten",
-      "description": "Aktualisieren Sie die Details für Ihre Farm.",
-      "form": {
-        "submitButton": "Änderungen speichern"
-      },
-      "toast": {
-        "notFoundTitle": "Farm nicht gefunden",
-        "loadError": "Farmdetails konnten zum Bearbeiten nicht geladen werden.",
-        "loadFail": "Laden fehlgeschlagen: {message}",
-        "error": "Fehler",
-        "successTitle": "Farm aktualisiert!",
-        "successDescription": "Ihre Farm '{farmName}' wurde erfolgreich aktualisiert.",
-        "errorTitle": "Update fehlgeschlagen"
-      }
-    },
-    "farmDetail": {
-      "backToFarms": "Zurück zu Meine Farmen",
-      "registeredOn": "Registriert am {date}",
-      "editFarmButton": "Farm bearbeiten",
-      "crops": {
-        "title": "Kulturen & Vieh",
-        "description": "Verwalten Sie alle aktiven Kulturen oder Viehbestände auf dieser Farm.",
-        "addNewButton": "Neue Kultur hinzufügen",
-        "plantedLabel": "Gepflanzt",
-        "stageLabel": "Stadium",
-        "viewJourneyButton": "Reise ansehen",
-        "noCrops": "Für diese Farm wurden noch keine Kulturen erfasst.",
-        "addFirstButton": "Fügen Sie Ihre erste Kultur hinzu"
-      },
-      "insights": {
-        "title": "Rentabilitätseinblicke",
-        "description": "KI-generierte Einblicke zur Verbesserung Ihrer Betriebsabläufe.",
-        "noInsights": "Nicht genügend Daten, um Einblicke zu generieren. Erfassen Sie mehr Aktivitäten!"
-      },
-      "notFound": {
-        "title": "Farm nicht gefunden",
-        "description": "Die von Ihnen gesuchte Farm konnte nicht gefunden werden.",
-        "backButton": "Zurück zu Meine Farmen"
-      },
-      "toast": {
-        "notFoundTitle": "Farm nicht gefunden.",
-        "loadErrorTitle": "Ladefehler",
-        "insightsErrorTitle": "Einblicke konnten nicht geladen werden."
-      },
-      "loading": "Lade Farmdetails..."
-    },
-    "createCrop": {
-      "backLink": "Zurück zur Farm",
-      "title": "Neue Kultur hinzufügen",
-      "description": "Erfassen Sie eine neue Kultur oder einen neuen Viehbestand, um ihre Reise zu verfolgen.",
-      "cropTypeLabel": "Kultur-/Viehart",
-      "cropTypePlaceholder": "z.B. Mais, Kenia-Top-Bar-Bienenstöcke, Masthähnchen",
-      "cropTypeDescription": "Geben Sie an, was Sie anbauen oder züchten.",
-      "plantingDateLabel": "Pflanz-/Startdatum",
-      "datePlaceholder": "Datum auswählen",
-      "harvestDateLabel": "Geschätztes Erntedatum",
-      "yieldLabel": "Erwarteter Ertrag (Optional)",
-      "yieldPlaceholder": "z.B. 5 Tonnen/Hektar, 5000 Eier/Monat",
-      "stageLabel": "Aktuelles Stadium",
-      "stagePlaceholder": "Wählen Sie ein Stadium",
-      "stages": {
-        "Planting": "Pflanzung/Platzierung",
-        "Vegetative": "Vegetatives Wachstum",
-        "Flowering": "Blüte/Paarung",
-        "Fruiting": "Fruchtbildung/Wachstum",
-        "Harvesting": "Ernte",
-        "Post-Harvest": "Nachernte"
-      },
-      "notesLabel": "Notizen (Optional)",
-      "notesPlaceholder": "Zusätzliche Details zu dieser Kultur...",
-      "saveButton": "Kultur speichern",
-      "savingButton": "Wird gespeichert...",
-      "toast": {
-        "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um eine Kultur zu erstellen.",
-        "successTitle": "Kultur erstellt!",
-        "successDescription": "{cropType} wurde erfolgreich hinzugefügt.",
-        "failTitle": "Erstellung fehlgeschlagen",
-        "failDescription": "Ihre Kultur konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
-      }
-    },
-    "editCrop": {
-      "backLink": "Zurück zur Kultur",
-      "title": "Kulturdetails bearbeiten",
-      "description": "Aktualisieren Sie die Informationen für diese Kultur oder diesen Viehbestand.",
-      "saveButton": "Änderungen speichern",
-      "savingButton": "Wird gespeichert...",
-      "toast": {
-        "notFound": "Kultur nicht gefunden",
-        "loadError": "Kulturdetails konnten zum Bearbeiten nicht geladen werden.",
-        "loadFail": "Laden fehlgeschlagen: {message}",
-        "error": "Fehler",
-        "success": "Kultur aktualisiert!",
-        "description": "Die Details für {cropType} wurden erfolgreich aktualisiert.",
-        "fail": "Update fehlgeschlagen"
-      }
-    },
-    "cropDetailPage": {
-      "loading": "Lade Kulturdetails...",
-      "notFound": "Kultur nicht gefunden.",
-      "backLink": "Zurück zur Farm",
-      "plantedOn": "Gepflanzt am {date}",
-      "editButton": "Bearbeiten",
-      "quickActionsTitle": "Schnellaktionen",
-      "logInputButton": "Input anwenden",
-      "logObservationButton": "Beobachtung erfassen",
-      "logHarvestButton": "Ernte erfassen",
-      "journeyTitle": "Die Reise dieser Kultur",
-      "noActivities": "Für diese Kultur wurden noch keine Aktivitäten erfasst.",
-      "eventPayload": {
-        "noDetails": "Keine zusätzlichen Details angegeben.",
-        "observationType": "Beobachtungstyp",
-        "details": "Details",
-        "aiDiagnosis": "KI-Diagnose"
-      },
-      "toast": {
-        "notFound": "Kultur nicht gefunden.",
-        "loadError": "Kulturereignisse konnten nicht geladen werden."
-      }
-    },
-    "logInput": {
-      "backLink": "Zurück zur Farm",
-      "title": "Input-Anwendung erfassen",
-      "description": "Erfassen Sie die Anwendung von Düngemitteln, Pestiziden oder anderen Inputs.",
-      "useKNFLabel": "Selbstgemachten KNF-Input verwenden",
-      "useKNFPlaceholder": "Wählen Sie eine fertige Charge",
-      "manualInputLabel": "Input-Name/-Typ",
-      "manualInputPlaceholder": "z.B. DAP-Dünger, Neemöl",
-      "dateLabel": "Anwendungsdatum",
-      "quantityLabel": "Menge",
-      "quantityPlaceholder": "z.B. 50",
-      "unitLabel": "Einheit",
-      "unitPlaceholder": "z.B. kg, L, Säcke",
-      "methodLabel": "Anwendungsmethode (Optional)",
-      "methodPlaceholder": "z.B. Blattspritzung, Bodendüngung",
-      "saveButton": "Eintrag speichern",
-      "savingButton": "Wird gespeichert...",
-      "toast": {
-        "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um Inputs zu erfassen.",
-        "success": "Input-Anwendung erfasst!",
-        "description": "Ihre Input-Anwendung wurde erfolgreich aufgezeichnet.",
-        "fail": "Erfassung fehlgeschlagen"
-      }
-    },
-    "logHarvest": {
-      "backLink": "Zurück zur Farm",
-      "title": "Ernte für {cropType} erfassen",
-      "description": "Erfassen Sie die Details Ihrer Ernte, um eine neue rückverfolgbare Charge zu erstellen.",
-      "harvestDateLabel": "Erntedatum",
-      "yieldLabel": "Ertrag (kg)",
-      "yieldPlaceholder": "z.B. 1200",
-      "qualityLabel": "Qualitätsgrad (Optional)",
-      "qualityPlaceholder": "z.B. Grad A, Exportqualität",
-      "notesLabel": "Notizen (Optional)",
-      "notesPlaceholder": "Zusätzliche Details zur Ernte...",
-      "saveButton": "Ernte erfassen & VTI erstellen",
-      "savingButton": "Wird gespeichert...",
-      "success": {
-        "title": "Ernte erfolgreich erfasst!",
-        "description": "Eine neue rückverfolgbare Charge (VTI: {vtiId}) wurde für Ihre {cropType}-Ernte erstellt.",
-        "successCardTitle": "Ernte erfasst & VTI erstellt!",
-        "successCardDescription": "Sie haben die Ernte von {cropType} erfolgreich erfasst. Eine neue rückverfolgbare Charge mit der ID {vtiId} wurde erstellt. Was möchten Sie als Nächstes tun?",
-        "viewReportButton": "Rückverfolgungsbericht ansehen",
-        "sellButton": "Diese Charge auf dem Marktplatz verkaufen",
-        "logAnotherButton": "Weitere Ernte erfassen",
-        "backToFarmButton": "Zurück zur Farmübersicht"
-      },
-      "fail": {
-        "title": "Ernteerfassung fehlgeschlagen"
-      },
-      "offlineToast": {
-        "title": "Offline-Modus: Aktion in Warteschlange",
-        "description": "Ihre Ernteerfassung wurde gespeichert und wird synchronisiert, wenn Sie wieder online sind."
-      }
-    },
-    "logObservation": {
-      "backLink": "Zurück zur Farm",
-      "title": "Beobachtung erfassen",
-      "description": "Notieren Sie wichtige Beobachtungen wie Schädlingsbefall, Krankheitsausbrüche oder Wetterereignisse.",
-      "typeLabel": "Beobachtungstyp",
-      "typePlaceholder": "Wählen Sie einen Typ",
-      "types": {
-        "scouting": "Schädlings-/Krankheits-Scouting",
-        "weather": "Wetterereignis",
-        "soil": "Bodenzustand",
-        "growth": "Wachstumsstadium",
-        "other": "Andere"
-      },
-      "dateLabel": "Beobachtungsdatum",
-      "detailsLabel": "Details",
-      "detailsPlaceholder": "Beschreiben Sie, was Sie beobachtet haben...",
-      "uploadLabel": "Foto hochladen (Optional)",
-      "uploadDescription": "Ein Bild hilft unserer KI bei der Diagnose von Problemen.",
-      "saveButton": "Beobachtung speichern",
-      "processingButton": "Wird verarbeitet...",
-      "toast": {
-        "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um Beobachtungen zu erfassen.",
-        "aiAnalyzing": "Analysiere Bild...",
-        "aiDescription": "Unsere KI untersucht Ihr Foto auf mögliche Probleme.",
-        "aiComplete": "Analyse abgeschlossen!",
-        "aiCompleteDescription": "KI-Einblicke werden mit Ihrer Beobachtung gespeichert.",
-        "aiFailTitle": "KI-Analyse fehlgeschlagen",
-        "aiFailDescription": "Wir konnten Ihr Bild nicht analysieren, aber Ihre Beobachtung wird trotzdem gespeichert.",
-        "uploading": "Lade Bild hoch...",
-        "uploadingDescription": "Bitte warten Sie, während wir Ihr Bild speichern.",
-        "uploadComplete": "Upload abgeschlossen!",
-        "success": "Beobachtung erfasst!",
-        "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
-        "fail": "Erfassung fehlgeschlagen"
-      }
-    },
-    "knfInputsPage": {
-      "backLink": "Zurück zum Hub",
-      "title": "KNF-Input-Assistent",
-      "description": "Verfolgen und verwalten Sie Ihre von Landwirten hergestellten KNF-Inputs (Korean Natural Farming).",
-      "guidesTitle": "Anleitungen & Rezepte",
-      "ingredients": "Zutaten",
-      "steps": "Schritte",
-      "usage": "Anwendung",
-      "fermentingBatchesTitle": "Fermentierende Chargen",
-      "started": "Gestartet",
-      "nextStepOn": "Nächster Schritt am",
-      "markReady": "Als fertig markieren",
-      "noFermentingBatches": "Sie haben derzeit keine fermentierenden Chargen.",
-      "readyBatchesTitle": "Fertige Chargen",
-      "readySince": "Fertig seit",
-      "logUsage": "Verwendung protokollieren",
-      "archive": "Archivieren",
-      "noReadyBatches": "Sie haben keine fertigen Chargen zur Verwendung.",
-      "startNewBatch": "Neue Charge starten",
-      "createNewBatchTitle": "Neue KNF-Charge erstellen",
-      "form": {
-        "typeLabel": "Input-Typ",
-        "typePlaceholder": "Wählen Sie den KNF-Input-Typ",
-        "ingredientsLabel": "Zutaten (und Mengen)",
-        "startDateLabel": "Startdatum",
-        "startingButton": "Wird gestartet...",
-        "startButton": "Charge starten"
-      },
-      "cancel": "Abbrechen",
-      "toasts": {
-        "loadErrorTitle": "Ladefehler",
-        "loadErrorDescription": "Ihre KNF-Chargen konnten nicht geladen werden.",
-        "validationError": "Bitte füllen Sie alle Felder aus.",
-        "batchStartedTitle": "Charge gestartet!",
-        "batchStartedDescription": "Ihre neue KNF-Charge wird jetzt verfolgt.",
-        "batchStartFailed": "Start der Charge fehlgeschlagen",
-        "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten.",
-        "batchUpdatedTitle": "Status aktualisiert!",
-        "batchUpdatedDescription": "Der Chargenstatus wurde auf '{status}' aktualisiert.",
-        "updateFailed": "Update fehlgeschlagen",
-        "couldNotUpdate": "Der Chargenstatus konnte nicht aktualisiert werden."
-      },
-      "knfOptions": [
-        { "value": "fpj", "label": "Fermentierter Pflanzensaft (FPJ)", "placeholder": "z.B. Süßkartoffeltriebe, Bambussprossen" },
-        { "value": "faa", "label": "Fisch-Aminosäure (FAA)", "placeholder": "z.B. Fischreste, Köpfe, Gräten" },
-        { "value": "wca", "label": "Wasserlösliches Kalzium (WCA)", "placeholder": "z.B. Eierschalen, Muscheln" },
-        { "value": "imo", "label": "Indigene Mikroorganismen (IMO)", "placeholder": "z.B. Gekochter Reis, Waldboden" },
-        { "value": "lab", "label": "Milchsäurebakterien (LAB)", "placeholder": "z.B. Reiswaschwasser" }
-      ],
-      "recipeData": [
-        { "id": "knf_fpj", "name": "Fermentierter Pflanzensaft (FPJ)", "description": "Ein Extrakt aus Pflanzensäften und Chlorophyll, reich an Enzymen, zur Förderung des Pflanzenwachstums.", "ingredients": ["1kg schnell wachsende Pflanzenteile", "1kg brauner Zucker"], "steps": ["Pflanzenmaterial vor Sonnenaufgang sammeln.", "Pflanzenmaterial grob hacken.", "Mit Zucker mischen.", "In einen Behälter füllen und mit einem atmungsaktiven Tuch abdecken.", "Etwa 7 Tage fermentieren lassen."], "usage": "1:500 bis 1:1000 mit Wasser verdünnen." },
-        { "id": "knf_faa", "name": "Fisch-Aminosäure (FAA)", "description": "Ein starker Dünger aus Fischabfällen, reich an Stickstoff und Aminosäuren.", "ingredients": ["1kg Fischreste", "1kg brauner Zucker"], "steps": ["Fischteile hacken.", "Mit Zucker schichten.", "Mit einem atmungsaktiven Tuch abdecken.", "Mindestens 3-6 Monate fermentieren lassen."], "usage": "1:1000 mit Wasser verdünnen, hauptsächlich als Bodendüngung." }
-      ]
-    },
-    "fgwGuidePage": {
-      "backLink": "Zurück zum Hub",
-      "title": "Farming God's Way (FGW) Anleitung",
-      "description": "Die Prinzipien und Praktiken einer revolutionären, nachhaltigen Landwirtschaftsmethode ohne Bodenbearbeitung.",
-      "intro": "Farming God’s Way ist eine Ressource, um die Armen zu befähigen, sich selbst und vielen anderen zu helfen, das Land wiederherzustellen und für die Bedürfnisse der Armen zu sorgen. Es geht um treue Haushalterschaft und das Verständnis von Gottes Wegen. Die Kernprinzipien sind einfach, aber tiefgreifend:",
-      "howToTitle": "Wie man es umsetzt",
-      "whyItWorksTitle": "Warum es funktioniert",
-      "principles": [
-        { "id": "no-tillage", "title": "Keine Bodenbearbeitung", "icon": "Shield", "summary": "Pflügen ist schädlich für die Bodenstruktur und das Bodenleben. FGW vermeidet das Pflügen vollständig und fördert einen gesunden, widerstandsfähigen Boden.", "howTo": ["Stoppen Sie jegliches Pflügen oder Wenden des Bodens.", "Nutzen Sie permanente Pflanzstationen für Ihre Kulturen."], "whyItWorks": ["Schützt die natürliche Bodenstruktur und die Poren.", "Verhindert die Erosion des wertvollen Oberbodens.", "Fördert ein gesundes Ökosystem von Mikroorganismen."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ein Feld ohne Pflugspuren", "dataAiHint": "no-till farming" },
-        { "id": "mulching", "title": "Gottes Decke (Mulchen)", "icon": "Leaf", "summary": "Der Boden wurde nie dazu geschaffen, nackt zu sein. Eine dicke Mulchdecke schützt den Boden, hält die Feuchtigkeit und liefert Nährstoffe.", "howTo": ["Bringen Sie eine dicke Schicht organisches Material (mindestens 10 cm) auf der gesamten Bodenoberfläche auf.", "Pflanzen Sie direkt durch den Mulch.", "Fügen Sie kontinuierlich neuen Mulch hinzu, während der alte verrottet."], "whyItWorks": ["Reduziert die Wasserverdunstung erheblich.", "Unterdrückt das Wachstum von Unkraut.", "Nährt das Bodenleben, während es sich zersetzt."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ein Feld, das mit einer dicken Schicht Strohmulch bedeckt ist", "dataAiHint": "mulch field" },
-        { "id": "high-standards", "title": "Hohe Standards", "icon": "CheckCircle", "summary": "FGW betont die Bedeutung von Exzellenz in allen Aspekten der Landwirtschaft – vom Timing bis zur Ausführung – als einen Akt der Anbetung.", "howTo": ["Führen Sie alle Aufgaben pünktlich und nach bestem Wissen und Gewissen aus.", "Achten Sie auf Details, von der Pflanztiefe bis zum Abstand.", "Halten Sie die Farm sauber und gut organisiert."], "whyItWorks": ["Maximiert das Ertragspotenzial der Kulturen.", "Minimiert Verluste durch Schädlinge und Krankheiten.", "Spiegelt die Exzellenz des Schöpfers wider."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ordentlich angeordnete Pflanzreihen", "dataAiHint": "organized farm rows" }
-      ]
-    },
-    "seedStartingPage": {
-      "backLink": "Zurück zum Hub",
-      "title": "Anleitung zum Aussäen von Samen",
-      "description": "Lernen Sie, wie Sie Ihren Kulturen den bestmöglichen Start ins Leben geben, indem Sie Samen drinnen oder in einem kontrollierten Bereich aussäen.",
-      "intro": "Das Aussäen von Samen im Haus ist eine hervorragende Möglichkeit, Ihre Vegetationsperiode zu verlängern, Setzlinge vor rauen Bedingungen zu schützen und die Keimraten zu verbessern. Diese Anleitung behandelt die Grundlagen für den Erfolg.",
-      "sections": [
-        { "id": "why-start-indoors", "title": "Warum drinnen anfangen?", "icon": "Lightbulb", "intro": "Das Starten von Setzlingen im Haus hat mehrere wichtige Vorteile:", "points": [{ "term": "Vorsprung", "def": "Beginnen Sie früher mit dem Anbau, insbesondere in Klimazonen mit kurzen Vegetationsperioden." }, { "term": "Schutz", "def": "Schützen Sie zarte Setzlinge vor Schädlingen, Krankheiten und extremem Wetter." }, { "term": "Kontrolle", "def": "Verwalten Sie Wasser, Licht und Temperatur für eine optimale Keimung." }, { "term": "Wirtschaftlichkeit", "def": "Der Anbau aus Samen ist oft kostengünstiger als der Kauf von Jungpflanzen." }] },
-        { "id": "containers-media", "title": "Behälter & Medien", "icon": "Package", "intro": "Die Wahl des richtigen Behälters und Bodens ist entscheidend.", "points": [{ "term": "Behälter", "def": "Verwenden Sie Saatschalen, Torftöpfe, Erdblöcke oder sogar recycelte Behälter wie Eierkartons. Sorgen Sie für eine gute Drainage." }, { "term": "Medien", "def": "Verwenden Sie eine sterile, feinkörnige Aussaaterde. Vermeiden Sie schwere Gartenerde, die sich verdichten und Krankheiten beherbergen kann." }, { "term": "Sterilisation", "def": "Wenn Sie Behälter wiederverwenden, sterilisieren Sie sie mit einer Bleichlösung (1 Teil Bleichmittel auf 9 Teile Wasser), um Krankheiten vorzubeugen." }] },
-        { "id": "planting-seeds", "title": "Samen pflanzen", "icon": "Grid", "intro": "Jeder Samen hat spezifische Bedürfnisse, aber hier sind einige allgemeine Richtlinien:", "steps": ["Befeuchten Sie Ihre Aussaaterde, bevor Sie die Behälter füllen. Sie sollte feucht sein, nicht nass.", "Füllen Sie die Behälter und drücken Sie die Erde leicht an.", "Pflanzen Sie die Samen in der auf der Samenpackung empfohlenen Tiefe. Eine gute Faustregel ist, sie etwa doppelt so tief wie ihre Größe zu pflanzen.", "Säen Sie 2-3 Samen pro Zelle oder Topf, um die Keimung zu gewährleisten. Sie können die schwächeren Setzlinge später ausdünnen.", "Bedecken Sie die Samen leicht mit Erde und drücken Sie sie sanft an, um einen guten Kontakt zwischen Samen und Erde zu gewährleisten.", "Beschriften Sie Ihre Behälter deutlich mit der Pflanzensorte und dem Pflanzdatum!"] },
-        { "id": "watering-light-temp", "title": "Wasser, Licht & Temperatur", "icon": "Sun", "intro": "Nach dem Pflanzen ist die richtige Umgebung der Schlüssel zum Erfolg.", "points": [{ "term": "Wasser", "def": "Halten Sie die Erde konstant feucht, aber nicht nass. Am besten von unten gießen oder einen feinen Sprühnebel verwenden, um die Samen nicht zu verdrängen. Decken Sie die Schalen mit einer durchsichtigen Kuppel oder Plastikfolie ab, um die Feuchtigkeit bis zum Keimen der Samen zu erhalten." }, { "term": "Licht", "def": "Die meisten Samen benötigen kein Licht zum Keimen, aber sobald sie sprießen, brauchen sie viel davon. Ein sonniges, nach Süden ausgerichtetes Fenster kann ausreichen, aber Wachstumslampen (14-16 Stunden am Tag) verhindern, dass die Setzlinge hoch und schwach werden ('Geilwuchs')." }, { "term": "Temperatur", "def": "Die meisten Samen keimen am besten bei warmen Temperaturen (ca. 21-24 °C). Eine Heizmatte unter den Saatschalen kann die Keimung erheblich beschleunigen." }] },
-        { "id": "hardening-off", "title": "Abhärten", "icon": "Leaf", "intro": "Bevor Sie Ihre Setzlinge ins Freie bringen können, müssen Sie sie schrittweise an die Außenbedingungen gewöhnen.", "steps": ["Beginnen Sie etwa 7-10 Tage bevor Sie pflanzen möchten.", "Stellen Sie Ihre Setzlinge für eine Stunde an einen geschützten Ort im Freien (außerhalb direkter Sonne und starkem Wind).", "Erhöhen Sie die Zeit, die sie draußen verbringen, täglich um 1-2 Stunden.", "Setzen Sie sie allmählich mehr direkter Sonne und Wind aus.", "Reduzieren Sie die Bewässerung leicht, um sie auf die Gartenbedingungen vorzubereiten."] },
-        { "id": "transplanting", "title": "Umpflanzen", "icon": "CheckCircle", "intro": "Der letzte Schritt besteht darin, Ihre starken Setzlinge in den Garten zu bringen.", "steps": ["Wählen Sie einen bewölkten Tag oder den späten Nachmittag, um den Umpflanzschock zu minimieren.", "Wässern Sie Ihre Setzlinge und das Gartenbeet einige Stunden vor dem Umpflanzen gründlich.", "Lockern Sie die Erde um den Setzling vorsichtig und versuchen Sie, den Wurzelballen so intakt wie möglich zu halten.", "Pflanzen Sie sie in der gleichen Tiefe, in der sie im Behälter gewachsen sind.", "Drücken Sie die Erde um den Setzling fest und gießen Sie gut, um Lufteinschlüsse zu beseitigen."] }
-      ]
-    },
-    "familyFarmPage": {
-      "backLink": "Zurück zum Hub",
-      "title": "Integriertes Familienfarm-Modell (200m²)",
-      "description": "Ein nachhaltiges, geschlossenes Kreislaufsystem für Ernährungssicherheit und Einkommen auf einem kleinen Grundstück.",
-      "intro": "Dieses Modell zeigt, wie ein kleines 200 Quadratmeter großes Grundstück (10m x 20m) in eine produktive und widerstandsfähige Familienfarm umgewandelt werden kann, indem verschiedene Komponenten integriert werden, die sich gegenseitig unterstützen. Ziel ist es, Abfall zu minimieren, die Ressourcennutzung zu maximieren und eine vielfältige Produktpalette für den Eigenverbrauch und den Verkauf auf dem Markt bereitzustellen.",
-      "diagramCaption": "Visuelle Darstellung des integrierten Familienfarm-Modells von 200m².",
-      "detailsTitle": "Schlüsselkomponenten & Erträge",
-      "principlesTitle": "Leitprinzipien in Aktion",
-      "zones": [
-        { "id": "overall-layout", "title": "Gesamtlayout & Design", "icon": "LayoutGrid", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Gesamtlayout einer kleinen Farm", "dataAiHint": "small farm layout", "description": ["Die Farm ist als geschlossenes Kreislaufsystem konzipiert. Abfälle aus einer Komponente werden zu einem wertvollen Input für eine andere, was externe Kosten reduziert und die Nachhaltigkeit erhöht."], "details": [{ "title": "Flächenzuweisung", "content": ["Ca. 60% für Gemüsegärten, 20% für Vieh, 10% für Aquakultur und 10% für Wege und Kompostierung."] }, { "title": "Wasserfluss", "content": ["Wasser aus dem Fischteich wird zur Bewässerung der Gärten verwendet und liefert nährstoffreiches Wasser."] }] },
-        { "id": "vegetable-garden", "title": "Gemüsegarten (ca. 120m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Üppiger Gemüsegarten", "dataAiHint": "vegetable garden", "description": ["Das Herz der Farm, das eine kontinuierliche Versorgung mit vielfältigem und nahrhaftem Gemüse für die Familienernährung und den Verkauf auf dem Markt bietet."], "details": [{ "title": "Anbaumethoden", "content": ["Hochbeete, intensive Bepflanzung und Mischkultur werden verwendet, um den Platz zu maximieren und Schädlinge zu reduzieren."] }, { "title": "Ertrag", "content": ["Ganzjährige Produktion von Blattgemüse, Fruchtgemüse und Wurzelgemüse."] }] },
-        { "id": "fish-pond", "title": "Fischteich (ca. 20m²)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Kleiner Fischteich", "dataAiHint": "fish pond aquaculture", "description": ["Eine wertvolle Protein- und Einkommensquelle. Der Teich ist in das Bewässerungssystem des Gartens integriert."], "details": [{ "title": "Arten", "content": ["Tilapia oder Wels sind aufgrund ihrer Widerstandsfähigkeit und ihres schnellen Wachstums eine gute Wahl."] }, { "title": "Synergie", "content": ["Wasser aus dem Teich, reich an Fischausscheidungen, wird als natürlicher Dünger für die Gemüsegärten verwendet."] }] },
-        { "id": "poultry-unit", "title": "Geflügeleinheit (ca. 20m²)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hühner im Auslauf", "dataAiHint": "free range chickens", "description": ["Liefert Eier und Fleisch für die Familie und den Markt. Ihr Mist ist ein wichtiger Bestandteil des Komposthaufens."], "details": [{ "title": "Unterbringung", "content": ["Ein kleiner Stall mit einem sicheren Auslaufbereich, der es den Hühnern ermöglicht, zu scharren und zur Schädlingsbekämpfung beizutragen."] }, { "title": "Futterergänzung", "content": ["Gartenabfälle und Insekten können kommerzielles Futter ergänzen und so die Kosten senken."] }] },
-        { "id": "compost-system", "title": "Kompostiersystem (ca. 20m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Komposthaufen", "dataAiHint": "compost pile", "description": ["Der Recyclingmotor der Farm. Verwandelt Küchenabfälle, Gartenabfälle und Tiermist in nährstoffreichen Kompost und reduziert so den Bedarf an chemischen Düngemitteln."], "subSections": [{ "title": "Diversifizierung", "content": ["Die Kombination verschiedener Arten von Kulturen, Tieren und Fischen verringert das Risiko eines Totalausfalls."] }, { "title": "Nährstoffkreislauf", "content": ["Tiermist und Pflanzenabfälle werden kompostiert, um den Boden zu düngen. Teichwasser bewässert und düngt die Pflanzen."] }, { "title": "Wassereffizienz", "content": ["Der Teich dient als Wasserreservoir, und die Wiederverwendung von nährstoffreichem Wasser reduziert den Gesamtverbrauch."] }] }
-      ]
-    },
-    "laborPage": {
-      "backLink": "Zurück zum Hub",
-      "title": "Arbeitsmanagement",
-      "description": "Verfolgen Sie die Stunden, Zahlungen und Aufgaben Ihres Teams.",
-      "addWorker": "Mitarbeiter hinzufügen",
-      "workerName": "Name des Mitarbeiters",
-      "saveWorker": "Mitarbeiter speichern",
-      "hoursLogged": "Erfasste Stunden",
-      "totalPaid": "Insgesamt bezahlt",
-      "logHours": "Stunden erfassen",
-      "logPayment": "Zahlung erfassen",
-      "viewDetails": "Details ansehen",
-      "logHoursFor": "Stunden erfassen für",
-      "hoursWorked": "Gearbeitete Stunden",
-      "date": "Datum",
-      "pickDate": "Datum auswählen",
-      "taskDescription": "Aufgabenbeschreibung (Optional)",
-      "logPaymentFor": "Zahlung erfassen für",
-      "amountPaid": "Bezahlter Betrag",
-      "noWorkers": "Sie haben noch keine Mitarbeiter hinzugefügt.",
-      "toast": {
-        "errorTitle": "Fehler",
-        "fetchWorkersError": "Ihre Mitarbeiter konnten nicht abgerufen werden.",
-        "nameRequired": "Der Name des Mitarbeiters ist erforderlich.",
-        "workerAdded": "Mitarbeiter erfolgreich hinzugefügt!",
-        "hoursLogged": "Stunden erfolgreich erfasst!",
-        "paymentLoggedTitle": "Zahlung erfasst!",
-        "paymentLoggedDescription": "Die Zahlung wurde erfasst und eine entsprechende Ausgabe in Ihren Finanzen erstellt."
-      },
-      "workerDetailPage": {
-        "backLink": "Zurück zum Arbeitsmanagement",
-        "workLogsTitle": "Arbeitsprotokolle",
-        "paymentHistoryTitle": "Zahlungshistorie",
-        "table": {
-          "date": "Datum",
-          "hours": "Stunden",
-          "task": "Aufgabe",
-          "amount": "Betrag"
-        },
-        "noWorkLogs": "Für diesen Mitarbeiter wurden keine Stunden erfasst.",
-        "noPayments": "Für diesen Mitarbeiter wurden keine Zahlungen erfasst.",
-        "notFoundTitle": "Mitarbeiter nicht gefunden",
-        "notFoundDescription": "Das Profil des gesuchten Mitarbeiters konnte nicht gefunden werden.",
-        "goBackButton": "Zurück zur Mitarbeiterliste",
-        "toasts": {
-          "errorTitle": "Fehler"
-        }
-      }
-    },
-    "financials": {
-      "title": "Finanz-Hub",
-      "description": "Überwachen Sie die finanzielle Gesundheit Ihrer Farm und erkunden Sie Finanzierungsmöglichkeiten.",
-      "newTransactionButton": "Neue Transaktion",
-      "applyForFundingButton": "Finanzierung beantragen",
-      "totalIncome": "Gesamteinnahmen",
-      "totalExpense": "Gesamtausgaben",
-      "netFlow": "Netto-Cashflow",
-      "recentTransactions": "Letzte Transaktionen",
-      "table": {
-        "date": "Datum",
-        "description": "Beschreibung",
-        "category": "Kategorie",
-        "amount": "Betrag"
-      },
-      "noTransactions": "Noch keine Transaktionen erfasst.",
-      "signInPrompt": {
-        "title": "Bitte anmelden",
-        "description": "Sie müssen angemeldet sein, um Ihre Finanzdaten anzuzeigen.",
-        "button": "Anmelden"
-      },
-      "log": {
-        "backLink": "Zurück zu Finanzen",
-        "title": "Finanztransaktion erfassen",
-        "description": "Fügen Sie eine neue Einnahme oder Ausgabe zu Ihren Unterlagen hinzu.",
-        "typeLabel": "Transaktionstyp",
-        "typePlaceholder": "Typ auswählen",
-        "types": {
-          "income": "Einnahme",
-          "expense": "Ausgabe"
-        },
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "z.B. Verkauf von Tomaten, Kauf von Saatgut",
-        "amountLabel": "Betrag",
-        "amountPlaceholder": "z.B. 150.75",
-        "currencyLabel": "Währung",
-        "currencyPlaceholder": "z.B. USD",
-        "categoryLabel": "Kategorie (Optional)",
-        "categoryPlaceholder": "z.B. Verkäufe, Betriebsmittel, Arbeit",
-        "categoryDescription": "Die Kategorisierung hilft bei der Analyse Ihrer Finanzen.",
-        "saveButton": "Transaktion speichern",
-        "savingButton": "Wird gespeichert...",
-        "toast": {
-          "authErrorTitle": "Nicht authentifiziert",
-          "authErrorDescription": "Sie müssen angemeldet sein.",
-          "success": "Gespeichert!",
-          "description": "Ihre Transaktion wurde erfolgreich erfasst.",
-          "fail": "Speichern fehlgeschlagen"
-        }
-      },
-      "apply": {
-        "backLink": "Zurück zu Finanzen",
-        "title": "Finanzierung beantragen",
-        "description": "Reichen Sie einen Antrag auf Kredite oder Zuschüsse bei teilnehmenden Finanzinstituten ein.",
-        "form": {
-          "institutionLabel": "Finanzinstitut",
-          "institutionPlaceholder": "Wählen Sie ein Institut",
-          "noInstitutions": "Keine Institute verfügbar",
-          "typeLabel": "Antragstyp",
-          "loan": "Kredit",
-          "grant": "Zuschuss",
-          "amountLabel": "Beantragter Betrag",
-          "currencyLabel": "Währung",
-          "purposeLabel": "Zweck des Antrags",
-          "purposePlaceholder": "Beschreiben Sie detailliert, wie die Mittel verwendet werden...",
-          "purposeDescription": "Eine klare Beschreibung erhöht Ihre Genehmigungschancen.",
-          "submitButton": "Antrag einreichen"
-        },
-        "toast": {
-          "error": "Fehler",
-          "fetchFiError": "Finanzinstitute konnten nicht abgerufen werden.",
-          "notAuthenticatedError": "Sie müssen angemeldet sein, um einen Antrag zu stellen.",
-          "successTitle": "Antrag gesendet!",
-          "successDescription": "Ihr Antrag wurde zur Überprüfung eingereicht."
-        }
-      }
     }
   },
   "networkPage": {
@@ -1992,7 +1498,85 @@
         "generateErrorTitle": "Erstellung fehlgeschlagen"
       }
     }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Ihr zentraler Ort, um alle Ihre landwirtschaftlichen Aktivitäten zu verfolgen und zu optimieren, vom Samen bis zur Ernte.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Verwalten Sie Ihre Farmen, Felder und verfolgen Sie einzelne Erntezyklen.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitsmanagement",
+        "description": "Verfolgen Sie Arbeitsstunden und Zahlungen für Ihre Mitarbeiter.",
+        "button": "Arbeit verwalten"
+      },
+      "knf": {
+        "title": "KNF-Input-Assistent",
+        "description": "Verfolgen Sie Ihre von Landwirten hergestellten koreanischen Natural Farming Inputs.",
+        "button": "Inputs verwalten"
+      },
+      "fgw": {
+        "title": "Farming God's Way Anleitung",
+        "description": "Lernen Sie die Prinzipien und Praktiken von FGW für eine nachhaltige Landwirtschaft ohne Bodenbearbeitung.",
+        "button": "FGW-Anleitung ansehen"
+      },
+      "financials": {
+        "title": "Finanzen & Analytik",
+        "description": "Verfolgen Sie Einnahmen, Ausgaben und erhalten Sie Einblicke in die Rentabilität.",
+        "button": "Finanzen ansehen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zum Aussäen",
+        "description": "Lernen Sie die besten Praktiken für das Aussäen für eine erfolgreiche Saison.",
+        "button": "Anleitung ansehen"
+      },
+      "familyFarm": {
+        "title": "Integriertes Familienfarm-Modell",
+        "description": "Entdecken Sie ein nachhaltiges 200m²-Modell für einen kleinen Familienbetrieb.",
+        "button": "Modell ansehen"
+      },
+      "assetManagement": {
+        "title": "Vermögensverwaltung",
+        "description": "Behalten Sie den Überblick über Ihre Maschinen, Werkzeuge und andere landwirtschaftliche Vermögenswerte.",
+        "button": "Vermögen verwalten"
+      }
+    }
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} ausstehende Aktionen...",
+      "onlinePending": "{count} ausstehende Aktionen. Synchronisierung in Kürze.",
+      "onlineSynced": "Sie sind online und alle Änderungen sind synchronisiert.",
+      "offline": "Sie sind offline. {count, plural, =0 {Keine ausstehenden Änderungen} =1 {1 Änderung in der Warteschlange} other {{count} Änderungen in der Warteschlange}}."
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder Online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind Offline",
+        "description": "Ihre Änderungen werden gespeichert und synchronisiert, wenn Sie sich wieder verbinden."
+      },
+      "syncing": {
+        "title": "Synchronisiere Offline-Änderungen",
+        "description": "Lade {count} Aktionen auf den Server hoch."
+      },
+      "synced": {
+        "title": "Synchronisierung Abgeschlossen",
+        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung Fehlgeschlagen",
+        "description": "Wir konnten Ihre Offline-Änderungen nicht synchronisieren. Wir werden es später erneut versuchen."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Diese Aktion wird ausgeführt, wenn Sie wieder online sind."
+      }
+    }
   }
 }
-
-    

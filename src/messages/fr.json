@@ -764,500 +764,819 @@
         "description": "Gardez une trace de vos machines, outils et autres actifs agricoles.",
         "button": "Gérer les actifs"
       }
+    }
+  },
+  "networkPage": {
+    "title": "Découvrez votre réseau",
+    "description": "Trouvez les bons partenaires pour vous développer et collaborer dans votre activité agricole.",
+    "myNetworkButton": "Mon réseau",
+    "agentToolsButton": "Outils d'agent",
+    "aiSuggestionsTitle": "Suggestions de l'IA pour vous",
+    "aiSuggestionsDescription": "En fonction de votre profil, ces connexions pourraient vous être bénéfiques.",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment.",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "browseAllTitle": "Parcourir tous les acteurs",
+    "searchPlaceholder": "Rechercher par nom ou résumé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer le rôle",
+    "allRoles": "Tous les rôles",
+    "noStakeholdersFound": "Aucun profil trouvé",
+    "noStakeholdersHint": "Essayez de modifier vos filtres de recherche ou revenez plus tard.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau."
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Retour à l'explorateur de réseau",
+    "myConnectionsTab": "Mes connexions ({count})",
+    "pendingRequestsTab": "Demandes en attente",
+    "connectionsTitle": "Vos connexions",
+    "connectionsDescription": "Personnes et organisations de votre réseau professionnel.",
+    "noConnections": "Vous n'avez encore établi aucune connexion.",
+    "requestsTitle": "Demandes de connexion",
+    "requestsDescription": "Acceptez ou refusez les demandes pour développer votre réseau.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente."
+  },
+  "agentToolsPage": {
+    "backLink": "Retour à l'explorateur de réseau",
+    "title": "Outils d'agent",
+    "description": "Recherchez des utilisateurs par numéro de téléphone pour le support et la vérification.",
+    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
+    "findButton": "Trouver",
+    "resultsTitle": "Résultats de la recherche",
+    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici.",
+    "phoneRequiredError": "Veuillez entrer un numéro de téléphone valide.",
+    "accessDeniedTitle": "Accès refusé",
+    "accessDeniedDescription": "Seul le personnel autorisé peut accéder à ces outils."
+  },
+  "Forums": {
+    "title": "Forums communautaires",
+    "description": "Connectez-vous, partagez vos connaissances et collaborez avec des acteurs de toute la chaîne d'approvisionnement agricole.",
+    "createTopic": "Créer un nouveau sujet",
+    "pinning": {
+      "pinnedTitle": "Forums épinglés",
+      "pinnedDescription": "La page des forums est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Forums désépinglés",
+      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
     },
-    "myFarms": {
-      "backToDashboard": "Retour au hub",
-      "title": "Mes fermes",
-      "addNewFarmButton": "Ajouter une nouvelle ferme",
-      "size": "Taille",
-      "viewFarmButton": "Voir la ferme",
-      "noFarmsTitle": "Aucune ferme trouvée",
-      "noFarmsDescription": "Vous n'avez pas encore créé de fermes.",
-      "auth": {
-        "title": "Veuillez vous connecter",
-        "description": "Vous devez être connecté pour voir vos fermes.",
-        "button": "Se connecter"
-      },
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchError": "Impossible de récupérer vos fermes."
-      }
+    "buttons": {
+      "createTopic": "Créer un sujet",
+      "loadMore": "Charger plus",
+      "loadingMore": "Chargement...",
+      "joinDiscussion": "Rejoindre la discussion"
     },
-    "createFarm": {
-      "backToFarms": "Retour à mes fermes",
-      "title": "Créer une nouvelle ferme",
-      "description": "Ajoutez une nouvelle ferme à votre profil pour commencer à suivre vos activités.",
+    "lastActivity": "Dernière activité il y a {time}",
+    "notFound": {
+      "title": "Aucun sujet correspondant trouvé",
+      "tryDifferentSearch": "Essayez un autre terme de recherche",
+      "beTheFirst": "Soyez le premier à en créer un !",
+      "button": "Créer un sujet"
+    },
+    "errors": {
+      "loadTitle": "Erreur de chargement",
+      "loadDescription": "Une erreur s'est produite lors de la récupération des sujets du forum."
+    },
+    "searchPlaceholder": "Rechercher des sujets...",
+    "postMeta": "Par {author} • {date}",
+    "create": {
+      "backLink": "Retour aux forums",
+      "title": "Démarrer un nouveau sujet de discussion",
+      "description": "Créez un nouveau sujet pour recueillir des informations et collaborer avec la communauté.",
       "form": {
-        "farmNameLabel": "Nom de la ferme",
-        "farmNamePlaceholder": "Ex: Organiques de la Vallée Verte",
-        "locationLabel": "Lieu",
-        "locationPlaceholder": "Ex: Vallée du Rift, Kenya",
-        "locationDescription": "Fournissez une ville, une région ou une zone générale.",
-        "sizeLabel": "Taille",
-        "sizePlaceholder": "Ex: 5 Hectares, 12 Acres",
-        "sizeDescription": "Indiquez la taille totale de votre ferme.",
-        "typeLabel": "Type de ferme",
-        "typePlaceholder": "Sélectionnez un type",
-        "types": {
-          "crop": "Culture",
-          "livestock": "Élevage",
-          "mixed": "Mixte",
-          "aquaculture": "Aquaculture",
-          "other": "Autre"
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "Ex: Production durable de café",
+        "descriptionLabel": "Description du sujet",
+        "descriptionPlaceholder": "De quoi traite ce sujet ? Une brève description aide les autres à comprendre son but.",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être connecté pour créer un nouveau sujet."
         },
-        "descriptionLabel": "Description (Optionnel)",
-        "descriptionPlaceholder": "Une brève description de votre ferme...",
-        "irrigationLabel": "Méthodes d'irrigation (Optionnel)",
-        "irrigationPlaceholder": "Ex: Irrigation goutte-à-goutte, par sillon",
-        "irrigationDescription": "Décrivez les principaux systèmes d'irrigation que vous utilisez.",
-        "submitButton": "Enregistrer la ferme"
+        "incomplete": {
+          "title": "Informations incomplètes",
+          "description": "Veuillez fournir un nom et une description pour votre nouveau sujet."
+        },
+        "general": {
+          "title": "La création a échoué",
+          "description": "Une erreur inattendue s'est produite lors de la création du sujet."
+        }
       },
-      "toast": {
-        "authErrorTitle": "Non authentifié",
-        "authErrorDescription": "Vous devez être connecté pour créer une ferme.",
-        "successTitle": "Ferme créée !",
-        "successDescription": "La ferme '{farmName}' a été ajoutée avec succès.",
-        "errorTitle": "La création a échoué"
+      "success": {
+        "title": "Sujet créé !",
+        "description": "Votre nouveau sujet de discussion est maintenant en ligne."
       }
     },
-    "editFarm": {
-      "backToFarm": "Retour à la ferme",
-      "title": "Modifier la ferme",
-      "description": "Mettez à jour les détails de votre ferme.",
-      "form": {
-        "submitButton": "Enregistrer les modifications"
+    "topic": {
+      "backLink": "Retour à tous les forums",
+      "buttons": {
+        "createPost": "Créer une publication",
+        "loadMore": "Charger plus de publications",
+        "loadingMore": "Chargement..."
       },
-      "toast": {
-        "notFoundTitle": "Ferme non trouvée",
-        "loadError": "Impossible de charger les détails de la ferme pour modification.",
-        "loadFail": "Le chargement a échoué : {message}",
-        "error": "Erreur",
-        "successTitle": "Ferme mise à jour !",
-        "successDescription": "Votre ferme '{farmName}' a été mise à jour avec succès.",
-        "errorTitle": "La mise à jour a échoué"
-      }
-    },
-    "farmDetail": {
-      "backToFarms": "Retour à mes fermes",
-      "registeredOn": "Enregistré le {date}",
-      "editFarmButton": "Modifier la ferme",
-      "crops": {
-        "title": "Cultures et bétail",
-        "description": "Gérez toutes les cultures actives ou les lots de bétail sur cette ferme.",
-        "addNewButton": "Ajouter une nouvelle culture",
-        "plantedLabel": "Planté",
-        "stageLabel": "Étape",
-        "viewJourneyButton": "Voir le parcours",
-        "noCrops": "Aucune culture n'a encore été enregistrée pour cette ferme.",
-        "addFirstButton": "Ajoutez votre première culture"
-      },
-      "insights": {
-        "title": "Aperçus de rentabilité",
-        "description": "Aperçus générés par l'IA pour vous aider à améliorer vos opérations.",
-        "noInsights": "Pas assez de données pour générer des aperçus. Enregistrez plus d'activités !"
+      "postMeta": "Par {author} • {date}",
+      "noPosts": {
+        "title": "Aucune publication pour l'instant",
+        "description": "Soyez le premier à lancer une discussion sur ce sujet.",
+        "button": "Lancer la discussion"
       },
       "notFound": {
-        "title": "Ferme non trouvée",
-        "description": "La ferme que vous recherchez n'a pas pu être trouvée.",
-        "backButton": "Retour à mes fermes"
+        "title": "Sujet non trouvé",
+        "description": "Le sujet de discussion que vous recherchez n'existe pas ou a peut-être été déplacé.",
+        "backButton": "Retour aux forums"
       },
-      "toast": {
-        "notFoundTitle": "Ferme non trouvée.",
-        "loadErrorTitle": "Erreur de chargement",
-        "insightsErrorTitle": "Impossible de charger les aperçus."
-      },
-      "loading": "Chargement des détails de la ferme..."
-    },
-    "createCrop": {
-      "backLink": "Retour à la ferme",
-      "title": "Ajouter une nouvelle culture",
-      "description": "Enregistrez une nouvelle culture ou un nouveau lot de bétail pour commencer à suivre son parcours.",
-      "cropTypeLabel": "Type de culture/bétail",
-      "cropTypePlaceholder": "Ex: Maïs, Ruches Kenya Top Bar, Poulets de chair",
-      "cropTypeDescription": "Spécifiez ce que vous cultivez ou élevez.",
-      "plantingDateLabel": "Date de plantation/début",
-      "datePlaceholder": "Choisissez une date",
-      "harvestDateLabel": "Date de récolte estimée",
-      "yieldLabel": "Rendement attendu (Optionnel)",
-      "yieldPlaceholder": "Ex: 5 tonnes/hectare, 5000 œufs/mois",
-      "stageLabel": "Étape actuelle",
-      "stagePlaceholder": "Sélectionnez une étape",
-      "stages": {
-        "Planting": "Plantation/Mise en place",
-        "Vegetative": "Croissance végétative",
-        "Flowering": "Floraison/Accouplement",
-        "Fruiting": "Fructification/Croissance",
-        "Harvesting": "Récolte",
-        "Post-Harvest": "Post-récolte"
-      },
-      "notesLabel": "Notes (Optionnel)",
-      "notesPlaceholder": "Tout détail supplémentaire sur cette culture...",
-      "saveButton": "Enregistrer la culture",
-      "savingButton": "Enregistrement en cours...",
-      "toast": {
-        "authErrorTitle": "Non authentifié",
-        "authErrorDescription": "Vous devez être connecté pour créer une culture.",
-        "successTitle": "Culture créée !",
-        "successDescription": "{cropType} a été ajouté avec succès.",
-        "failTitle": "La création a échoué",
-        "failDescription": "Impossible de créer votre culture. Veuillez réessayer."
+      "errors": {
+        "loadTopic": {
+          "title": "Erreur de chargement",
+          "description": "Impossible de charger les détails de ce sujet."
+        },
+        "loadPosts": {
+          "title": "Erreur de chargement",
+          "description": "Impossible de charger les publications pour ce sujet."
+        }
       }
     },
-    "editCrop": {
-      "backLink": "Retour à la culture",
-      "title": "Modifier les détails de la culture",
-      "description": "Mettez à jour les informations pour cette culture ou ce lot de bétail.",
-      "saveButton": "Enregistrer les modifications",
-      "savingButton": "Enregistrement en cours...",
-      "toast": {
-        "notFound": "Culture non trouvée",
-        "loadError": "Impossible de charger les détails de la culture pour modification.",
-        "loadFail": "Le chargement a échoué : {message}",
-        "error": "Erreur",
-        "success": "Culture mise à jour !",
-        "description": "Les détails pour {cropType} ont été mis à jour avec succès.",
-        "fail": "La mise à jour a échoué"
-      }
-    },
-    "cropDetailPage": {
-      "loading": "Chargement des détails de la culture...",
-      "notFound": "Culture non trouvée.",
-      "backLink": "Retour à la ferme",
-      "plantedOn": "Planté le {date}",
-      "editButton": "Modifier",
-      "quickActionsTitle": "Actions rapides",
-      "logInputButton": "Appliquer un intrant",
-      "logObservationButton": "Enregistrer une observation",
-      "logHarvestButton": "Enregistrer la récolte",
-      "journeyTitle": "Parcours de cette culture",
-      "noActivities": "Aucune activité n'a encore été enregistrée pour cette culture.",
-      "eventPayload": {
-        "noDetails": "Aucun détail supplémentaire fourni.",
-        "observationType": "Type d'observation",
-        "details": "Détails",
-        "aiDiagnosis": "Diagnostic de l'IA"
+    "createPost": {
+      "backLink": "Retour au sujet",
+      "aiHelper": {
+        "title": "Besoin d'aide pour commencer ?",
+        "description": "Utilisez notre assistant IA pour rédiger votre publication. Fournissez simplement une invite ci-dessous.",
+        "promptLabel": "Votre idée ou question",
+        "promptPlaceholder": "Ex: 'Demander quels sont les meilleurs pesticides bio contre la rouille du caféier'",
+        "generateButton": "Générer un brouillon",
+        "generatingButton": "Génération en cours..."
       },
-      "toast": {
-        "notFound": "Culture non trouvée.",
-        "loadError": "Impossible de charger les événements de la culture."
-      }
-    },
-    "logInput": {
-      "backLink": "Retour à la ferme",
-      "title": "Enregistrer l'application d'un intrant",
-      "description": "Enregistrez l'application d'engrais, de pesticides ou d'autres intrants.",
-      "useKNFLabel": "Utiliser un intrant KNF fait maison",
-      "useKNFPlaceholder": "Sélectionnez un lot prêt",
-      "manualInputLabel": "Nom/Type de l'intrant",
-      "manualInputPlaceholder": "Ex: Engrais DAP, Huile de Neem",
-      "dateLabel": "Date d'application",
-      "quantityLabel": "Quantité",
-      "quantityPlaceholder": "Ex: 50",
-      "unitLabel": "Unité",
-      "unitPlaceholder": "Ex: kg, L, sacs",
-      "methodLabel": "Méthode d'application (Optionnel)",
-      "methodPlaceholder": "Ex: Pulvérisation foliaire, au sol",
-      "saveButton": "Enregistrer l'entrée",
-      "savingButton": "Enregistrement en cours...",
-      "toast": {
-        "authErrorTitle": "Non authentifié",
-        "authErrorDescription": "Vous devez être connecté pour enregistrer des intrants.",
-        "success": "Application d'intrant enregistrée !",
-        "description": "Votre application d'intrant a été enregistrée avec succès.",
-        "fail": "L'enregistrement a échoué"
-      }
-    },
-    "logHarvest": {
-      "backLink": "Retour à la ferme",
-      "title": "Enregistrer la récolte de {cropType}",
-      "description": "Enregistrez les détails de votre récolte pour créer un nouveau lot traçable.",
-      "harvestDateLabel": "Date de récolte",
-      "yieldLabel": "Rendement (kg)",
-      "yieldPlaceholder": "Ex: 1200",
-      "qualityLabel": "Grade de qualité (Optionnel)",
-      "qualityPlaceholder": "Ex: Grade A, Qualité exportation",
-      "notesLabel": "Notes (Optionnel)",
-      "notesPlaceholder": "Tout détail supplémentaire sur la récolte...",
-      "saveButton": "Enregistrer la récolte & Créer VTI",
-      "savingButton": "Enregistrement en cours...",
-      "success": {
-        "title": "Récolte enregistrée avec succès !",
-        "description": "Un nouveau lot traçable (VTI: {vtiId}) a été créé pour votre récolte de {cropType}.",
-        "successCardTitle": "Récolte enregistrée & VTI créé !",
-        "successCardDescription": "Vous avez enregistré avec succès la récolte de {cropType}. Un nouveau lot traçable avec l'ID {vtiId} a été créé. Que souhaitez-vous faire ensuite ?",
-        "viewReportButton": "Voir le rapport de traçabilité",
-        "sellButton": "Vendre ce lot sur le marché",
-        "logAnotherButton": "Enregistrer une autre récolte",
-        "backToFarmButton": "Retour à la vue d'ensemble de la ferme"
-      },
-      "fail": {
-        "title": "L'enregistrement de la récolte a échoué"
-      },
-      "offlineToast": {
-        "title": "Mode hors ligne : Action en file d'attente",
-        "description": "Votre enregistrement de récolte a été sauvegardé et sera synchronisé lorsque vous serez de nouveau en ligne."
-      }
-    },
-    "logObservation": {
-      "backLink": "Retour à la ferme",
-      "title": "Enregistrer une observation",
-      "description": "Notez les observations importantes comme la présence de nuisibles, les épidémies ou les événements météorologiques.",
-      "typeLabel": "Type d'observation",
-      "typePlaceholder": "Sélectionnez un type",
-      "types": {
-        "scouting": "Dépistage des ravageurs/maladies",
-        "weather": "Événement météorologique",
-        "soil": "État du sol",
-        "growth": "Stade de croissance",
-        "other": "Autre"
-      },
-      "dateLabel": "Date d'observation",
-      "detailsLabel": "Détails",
-      "detailsPlaceholder": "Décrivez ce que vous avez observé...",
-      "uploadLabel": "Télécharger une photo (Optionnel)",
-      "uploadDescription": "Une image aide notre IA à diagnostiquer les problèmes.",
-      "saveButton": "Enregistrer l'observation",
-      "processingButton": "Traitement en cours...",
-      "toast": {
-        "authErrorTitle": "Non authentifié",
-        "authErrorDescription": "Vous devez être connecté pour enregistrer des observations.",
-        "aiAnalyzing": "Analyse de l'image...",
-        "aiDescription": "Notre IA examine votre photo à la recherche de problèmes potentiels.",
-        "aiComplete": "Analyse terminée !",
-        "aiCompleteDescription": "Les informations de l'IA seront enregistrées avec votre observation.",
-        "aiFailTitle": "L'analyse de l'IA a échoué",
-        "aiFailDescription": "Nous n'avons pas pu analyser votre image, mais votre observation sera tout de même enregistrée.",
-        "uploading": "Téléchargement de l'image...",
-        "uploadingDescription": "Veuillez patienter pendant que nous enregistrons votre image.",
-        "uploadComplete": "Téléchargement terminé !",
-        "success": "Observation enregistrée !",
-        "successDescription": "Votre observation a été enregistrée avec succès.",
-        "fail": "L'enregistrement a échoué"
-      }
-    },
-    "knfInputsPage": {
-      "backLink": "Retour au hub",
-      "title": "Assistant d'intrants KNF",
-      "description": "Suivez et gérez vos intrants d'agriculture naturelle coréenne (KNF) fabriqués par vos soins.",
-      "guidesTitle": "Guides et recettes",
-      "ingredients": "Ingrédients",
-      "steps": "Étapes",
-      "usage": "Utilisation",
-      "fermentingBatchesTitle": "Lots en fermentation",
-      "started": "Commencé",
-      "nextStepOn": "Prochaine étape le",
-      "markReady": "Marquer comme prêt",
-      "noFermentingBatches": "Vous n'avez aucun lot en cours de fermentation.",
-      "readyBatchesTitle": "Lots prêts",
-      "readySince": "Prêt depuis",
-      "logUsage": "Enregistrer l'utilisation",
-      "archive": "Archiver",
-      "noReadyBatches": "Vous n'avez aucun lot prêt à l'emploi.",
-      "startNewBatch": "Démarrer un nouveau lot",
-      "createNewBatchTitle": "Créer un nouveau lot KNF",
+      "title": "Créer une nouvelle publication",
+      "description": "Partagez vos réflexions, posez une question ou lancez une discussion.",
       "form": {
-        "typeLabel": "Type d'intrant",
-        "typePlaceholder": "Sélectionnez le type d'intrant KNF",
-        "ingredientsLabel": "Ingrédients (et quantités)",
-        "startDateLabel": "Date de début",
-        "startingButton": "Démarrage...",
-        "startButton": "Démarrer le lot"
+        "titleLabel": "Titre de la publication",
+        "titlePlaceholder": "Entrez un titre clair et concis",
+        "contentLabel": "Votre contenu",
+        "contentPlaceholder": "Écrivez votre publication ici...",
+        "submitButton": "Publier",
+        "submittingButton": "Publication en cours..."
       },
-      "cancel": "Annuler",
-      "toasts": {
-        "loadErrorTitle": "Erreur de chargement",
-        "loadErrorDescription": "Impossible de charger vos lots KNF.",
-        "validationError": "Veuillez remplir tous les champs.",
-        "batchStartedTitle": "Lot démarré !",
-        "batchStartedDescription": "Votre nouveau lot KNF est maintenant suivi.",
-        "batchStartFailed": "Le démarrage du lot a échoué",
-        "unexpectedError": "Une erreur inattendue s'est produite.",
-        "batchUpdatedTitle": "Statut mis à jour !",
-        "batchUpdatedDescription": "Le statut du lot a été mis à jour à '{status}'.",
-        "updateFailed": "La mise à jour a échoué",
-        "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
-      },
-      "knfOptions": [
-        { "value": "fpj", "label": "Jus de plante fermenté (FPJ)", "placeholder": "Ex: Pousses de patate douce, pousses de bambou" },
-        { "value": "faa", "label": "Acide aminé de poisson (FAA)", "placeholder": "Ex: Restes de poisson, têtes, arêtes" },
-        { "value": "wca", "label": "Calcium soluble dans l'eau (WCA)", "placeholder": "Ex: Coquilles d'œufs, coquillages" },
-        { "value": "imo", "label": "Micro-organismes indigènes (IMO)", "placeholder": "Ex: Riz cuit, terre de forêt" },
-        { "value": "lab", "label": "Bactéries lactiques (LAB)", "placeholder": "Ex: Eau de lavage du riz" }
-      ],
-      "recipeData": [
-        { "id": "knf_fpj", "name": "Jus de plante fermenté (FPJ)", "description": "Un extrait de sèves de plantes et de chlorophylles, riche en enzymes, pour améliorer la croissance des plantes.", "ingredients": ["1 kg de parties de plantes à croissance rapide", "1 kg de sucre brun"], "steps": ["Récolter les matières végétales avant le lever du soleil.", "Hacher grossièrement les matières végétales.", "Mélanger avec du sucre.", "Tasser dans un récipient et couvrir avec un tissu respirant.", "Laisser fermenter pendant environ 7 jours."], "usage": "Diluer 1:500 à 1:1000 avec de l'eau." },
-        { "id": "knf_faa", "name": "Acide aminé de poisson (FAA)", "description": "Un engrais puissant à base de déchets de poisson, riche en azote et en acides aminés.", "ingredients": ["1 kg de restes de poisson", "1 kg de sucre brun"], "steps": ["Hacher les parties de poisson.", "Superposer avec du sucre.", "Couvrir avec un tissu respirant.", "Laisser fermenter pendant au moins 3 à 6 mois."], "usage": "Diluer 1:1000 avec de l'eau, principalement en arrosage au sol." }
-      ]
-    },
-    "fgwGuidePage": {
-      "backLink": "Retour au hub",
-      "title": "Guide de l'agriculture selon Dieu (FGW)",
-      "description": "Les principes et pratiques d'une méthode révolutionnaire d'agriculture durable sans labour.",
-      "intro": "L'agriculture selon Dieu est une ressource pour équiper les pauvres afin qu'ils s'aident eux-mêmes et de nombreux autres, en restaurant les terres et en subvenant aux besoins des pauvres. Il s'agit d'une gestion fidèle de la terre et de la compréhension des voies de Dieu. Les principes fondamentaux sont simples mais profonds :",
-      "howToTitle": "Comment mettre en œuvre",
-      "whyItWorksTitle": "Pourquoi ça marche",
-      "principles": [
-        { "id": "no-tillage", "title": "Sans labour", "icon": "Shield", "summary": "Le labour est préjudiciable à la structure et à la vie du sol. FGW évite tout labour, favorisant un sol sain et résilient.", "howTo": ["Arrêter tout labour ou retournement du sol.", "Utiliser des stations de plantation permanentes pour vos cultures."], "whyItWorks": ["Protège la structure et les pores naturels du sol.", "Prévient l'érosion de la précieuse couche arable.", "Favorise un écosystème sain de micro-organismes."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un champ sans traces de labour", "dataAiHint": "agriculture sans labour" },
-        { "id": "mulching", "title": "La couverture de Dieu (Paillage)", "icon": "Leaf", "summary": "Le sol n'a jamais été conçu pour être nu. une épaisse couverture de paillis protège le sol, retient l'humidité et fournit des nutriments.", "howTo": ["Appliquez une épaisse couche de matière organique (au moins 4 pouces) sur toute la surface du sol.", "Plantez directement à travers le paillis.", "Ajoutez continuellement du nouveau paillis au fur et à mesure que l'ancien se décompose."], "whyItWorks": ["Réduit considérablement l'évaporation de l'eau.", "Supprime la croissance des mauvaises herbes.", "Nourrit la vie du sol en se décomposant."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Un champ recouvert d'une épaisse couche de paillis de paille", "dataAiHint": "champ de paillis" },
-        { "id": "high-standards", "title": "Normes élevées", "icon": "CheckCircle", "summary": "FGW souligne l'importance de l'excellence dans tous les aspects de l'agriculture - du calendrier à l'exécution - comme un acte d'adoration.", "howTo": ["Exécutez toutes les tâches à temps et au mieux de vos capacités.", "Faites attention aux détails, de la profondeur de plantation à l'espacement.", "Gardez la ferme propre et bien organisée."], "whyItWorks": ["Maximise le potentiel de rendement des cultures.", "Minimise les pertes dues aux ravageurs et aux maladies.", "Reflète l'excellence du Créateur."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Rangées de plantation bien agencées", "dataAiHint": "rangées de ferme organisées" }
-      ]
-    },
-    "seedStartingPage": {
-      "backLink": "Retour au hub",
-      "title": "Guide de démarrage des semis",
-      "description": "Apprenez comment donner à vos cultures le meilleur départ possible en démarrant les graines à l'intérieur ou dans une zone contrôlée.",
-      "intro": "Le démarrage des graines à l'intérieur est un excellent moyen de prolonger votre saison de croissance, de protéger les semis des conditions difficiles et d'améliorer les taux de germination. Ce guide couvre les bases du succès.",
-      "sections": [
-        { "id": "why-start-indoors", "title": "Pourquoi commencer à l'intérieur ?", "icon": "Lightbulb", "intro": "Le démarrage des semis à l'intérieur présente plusieurs avantages clés :", "points": [{ "term": "Avance", "def": "Commencez à cultiver plus tôt, surtout dans les climats avec de courtes saisons de croissance." }, { "term": "Protection", "def": "Protégez les jeunes plants des parasites, des maladies et des conditions météorologiques extrêmes." }, { "term": "Contrôle", "def": "Gérez l'eau, la lumière et la température pour une germination optimale." }, { "term": "Économie", "def": "Cultiver à partir de graines est souvent plus rentable que d'acheter des plants." }] },
-        { "id": "containers-media", "title": "Contenants et substrat", "icon": "Package", "intro": "Le choix du bon contenant et du bon sol est crucial.", "points": [{ "term": "Contenants", "def": "Utilisez des plateaux à semis, des pots de tourbe, des mottes de terre ou même des contenants recyclés comme des boîtes à œufs. Assurez un bon drainage." }, { "term": "Substrat", "def": "Utilisez un mélange de démarrage de graines stérile et à texture fine. Évitez la terre de jardin lourde, qui peut se compacter et abriter des maladies." }, { "term": "Stérilisation", "def": "Si vous réutilisez des contenants, stérilisez-les avec une solution d'eau de Javel (1 part d'eau de Javel pour 9 parts d'eau) pour prévenir les maladies." }] },
-        { "id": "planting-seeds", "title": "Plantation des graines", "icon": "Grid", "intro": "Chaque graine a des besoins spécifiques, mais voici quelques directives générales :", "steps": ["Humidifiez votre mélange de démarrage de graines avant de remplir les contenants. Il doit être humide, pas détrempé.", "Remplissez les contenants et tassez légèrement le mélange.", "Plantez les graines à la profondeur recommandée sur le sachet de graines. Une bonne règle de base est de les planter à environ deux fois leur taille.", "Semez 2-3 graines par cellule ou pot pour assurer la germination. Vous pourrez éclaircir les plants les plus faibles plus tard.", "Couvrez légèrement les graines avec du mélange et tassez doucement pour assurer un bon contact entre la graine et le sol.", "Étiquetez clairement vos contenants avec la variété de la plante et la date de plantation !"] },
-        { "id": "watering-light-temp", "title": "Arrosage, lumière et température", "icon": "Sun", "intro": "Après la plantation, le bon environnement est la clé du succès.", "points": [{ "term": "Arrosage", "def": "Gardez le sol constamment humide mais pas mouillé. Il est préférable d'arroser par le bas ou d'utiliser un pulvérisateur à brouillard fin pour ne pas déloger les graines. Couvrez les plateaux avec un dôme transparent ou une pellicule plastique pour retenir l'humidité jusqu'à ce que les graines germent." }, { "term": "Lumière", "def": "La plupart des graines n'ont pas besoin de lumière pour germer, mais une fois qu'elles germent, elles en ont besoin de beaucoup. Une fenêtre ensoleillée orientée au sud peut suffire, mais des lampes de culture (14-16 heures par jour) empêcheront les plants de devenir grands et faibles ('étiolés')." }, { "term": "Température", "def": "La plupart des graines germent mieux à des températures chaudes (environ 70-75°F ou 21-24°C). Un tapis chauffant sous les plateaux de graines peut accélérer considérablement la germination." }] },
-        { "id": "hardening-off", "title": "Acclimatation", "icon": "Leaf", "intro": "Avant de pouvoir déplacer vos plants à l'extérieur, vous devez les acclimater progressivement aux conditions extérieures.", "steps": ["Commencez environ 7 à 10 jours avant la date de transplantation prévue.", "Placez vos plants à l'extérieur dans un endroit protégé (à l'abri du soleil direct et du vent fort) pendant une heure.", "Augmentez le temps qu'ils passent à l'extérieur de 1 à 2 heures chaque jour.", "Exposez-les progressivement à plus de soleil direct et de vent.", "Réduisez légèrement l'arrosage pour les préparer aux conditions du jardin."] },
-        { "id": "transplanting", "title": "Transplantation", "icon": "CheckCircle", "intro": "La dernière étape consiste à déplacer vos plants forts dans le jardin.", "steps": ["Choisissez un jour nuageux ou en fin d'après-midi pour minimiser le choc de la transplantation.", "Arrosez bien vos plants et le lit de jardin quelques heures avant de transplanter.", "Détachez doucement la terre autour du plant, en essayant de garder la motte de racines aussi intacte que possible.", "Plantez-les à la même profondeur à laquelle ils poussaient dans le contenant.", "Tassez la terre autour du plant et arrosez bien pour éliminer les poches d'air."] }
-      ]
-    },
-    "familyFarmPage": {
-      "backLink": "Retour au hub",
-      "title": "Modèle de ferme familiale intégrée (200 m²)",
-      "description": "Un système durable en circuit fermé conçu pour la sécurité alimentaire et les revenus sur une petite parcelle de terrain.",
-      "intro": "Ce modèle montre comment une petite parcelle de 200 mètres carrés (10 m x 20 m) peut être transformée en une ferme familiale productive et résiliente en intégrant différents composants qui se soutiennent mutuellement. L'objectif est de minimiser les déchets, de maximiser l'utilisation des ressources et de fournir une gamme diversifiée de produits pour la consommation familiale et la vente sur le marché.",
-      "diagramCaption": "Représentation visuelle du modèle de ferme familiale intégrée de 200 m².",
-      "detailsTitle": "Composants clés et produits",
-      "principlesTitle": "Principes directeurs en action",
-      "zones": [
-        { "id": "overall-layout", "title": "Aménagement et conception d'ensemble", "icon": "LayoutGrid", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Aménagement général d'une petite ferme", "dataAiHint": "aménagement petite ferme", "description": ["La ferme est conçue pour être un système en circuit fermé. Les déchets d'un composant deviennent un intrant précieux pour un autre, réduisant les coûts externes et augmentant la durabilité."], "details": [{ "title": "Attribution de l'espace", "content": ["Environ 60 % pour les potagers, 20 % pour l'élevage, 10 % pour l'aquaculture et 10 % pour les allées et le compostage."] }, { "title": "Flux d'eau", "content": ["L'eau de l'étang à poissons est utilisée pour irriguer les jardins, fournissant une eau riche en nutriments."] }] },
-        { "id": "vegetable-garden", "title": "Potager (environ 120 m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Potager luxuriant", "dataAiHint": "potager", "description": ["Le cœur de la ferme, qui fournit un approvisionnement continu de légumes variés et nutritifs pour la nutrition familiale et les ventes sur le marché."], "details": [{ "title": "Méthodes de culture", "content": ["Des plates-bandes surélevées, une plantation intensive et des cultures intercalaires sont utilisées pour maximiser l'espace et réduire les parasites."] }, { "title": "Production", "content": ["Production toute l'année de légumes-feuilles, de légumes-fruits et de légumes-racines."] }] },
-        { "id": "fish-pond", "title": "Étang à poissons (environ 20 m²)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Petit étang à poissons", "dataAiHint": "étang aquaculture", "description": ["Une source précieuse de protéines et de revenus. L'étang est intégré au système d'irrigation du jardin."], "details": [{ "title": "Espèces", "content": ["Le tilapia ou le poisson-chat sont de bons choix en raison de leur résilience et de leur croissance rapide."] }, { "title": "Synergie", "content": ["L'eau de l'étang, riche en excréments de poissons, est utilisée comme engrais naturel pour les potagers."] }] },
-        { "id": "poultry-unit", "title": "Unité avicole (environ 20 m²)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Poulets dans un enclos", "dataAiHint": "poulets plein air", "description": ["Fournit des œufs et de la viande pour la famille et le marché. Leur fumier est un ingrédient clé du tas de compost."], "details": [{ "title": "Logement", "content": ["Un petit poulailler avec un enclos sécurisé, permettant aux poulets de chercher de la nourriture et de contribuer à la lutte contre les parasites."] }, { "title": "Supplément alimentaire", "content": ["Les restes de jardin et les insectes peuvent compléter l'alimentation commerciale, réduisant ainsi les coûts."] }] },
-        { "id": "compost-system", "title": "Système de compostage (environ 20 m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Tas de compost", "dataAiHint": "tas de compost", "description": ["Le moteur de recyclage de la ferme. Transforme les restes de cuisine, les déchets de jardin et le fumier animal en compost riche en nutriments, réduisant le besoin d'engrais chimiques."], "subSections": [{ "title": "Diversification", "content": ["La combinaison de différents types de cultures, d'animaux et de poissons réduit le risque d'échec total."] }, { "title": "Cycle des nutriments", "content": ["Le fumier animal et les déchets végétaux sont compostés pour fertiliser le sol. L'eau de l'étang irrigue et fertilise les plantes."] }, { "title": "Efficacité de l'eau", "content": ["L'étang sert de réservoir d'eau, et la réutilisation de l'eau riche en nutriments réduit la consommation globale."] }] }
-      ]
-    },
-    "laborPage": {
-      "backLink": "Retour au hub",
-      "title": "Gestion de la main-d'œuvre",
-      "description": "Suivez les heures, les paiements et les tâches de votre équipe.",
-      "addWorker": "Ajouter un travailleur",
-      "workerName": "Nom du travailleur",
-      "saveWorker": "Enregistrer le travailleur",
-      "hoursLogged": "Heures enregistrées",
-      "totalPaid": "Total payé",
-      "logHours": "Enregistrer les heures",
-      "logPayment": "Enregistrer un paiement",
-      "viewDetails": "Voir les détails",
-      "logHoursFor": "Enregistrer les heures pour",
-      "hoursWorked": "Heures travaillées",
-      "date": "Date",
-      "pickDate": "Choisissez une date",
-      "taskDescription": "Description de la tâche (Optionnel)",
-      "logPaymentFor": "Enregistrer un paiement pour",
-      "amountPaid": "Montant payé",
-      "noWorkers": "Vous n'avez pas encore ajouté de travailleurs.",
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchWorkersError": "Impossible de récupérer vos travailleurs.",
-        "nameRequired": "Le nom du travailleur est requis.",
-        "workerAdded": "Travailleur ajouté avec succès !",
-        "hoursLogged": "Heures enregistrées avec succès !",
-        "paymentLoggedTitle": "Paiement enregistré !",
-        "paymentLoggedDescription": "Le paiement a été enregistré et une dépense correspondante a été créée dans vos finances."
-      },
-      "workerDetailPage": {
-        "backLink": "Retour à la gestion de la main-d'œuvre",
-        "workLogsTitle": "Journaux de travail",
-        "paymentHistoryTitle": "Historique des paiements",
-        "table": {
-          "date": "Date",
-          "hours": "Heures",
-          "task": "Tâche",
-          "amount": "Montant"
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Invite requise",
+          "description": "Veuillez entrer une idée ou une question pour que l'IA génère un brouillon."
         },
-        "noWorkLogs": "Aucune heure n'a été enregistrée pour ce travailleur.",
-        "noPayments": "Aucun paiement n'a été enregistré pour ce travailleur.",
-        "notFoundTitle": "Travailleur non trouvé",
-        "notFoundDescription": "Le profil du travailleur que vous recherchez n'a pas pu être trouvé.",
-        "goBackButton": "Retour à la liste des travailleurs",
-        "toasts": {
-          "errorTitle": "Erreur"
+        "aiDraft": {
+          "title": "Le brouillon de l'IA a échoué",
+          "description": "Une erreur s'est produite lors de la génération du brouillon. Veuillez réessayer ou rédiger la publication manuellement."
+        },
+        "incomplete": {
+          "title": "Publication incomplète",
+          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+        },
+        "general": {
+          "title": "La création de la publication a échoué",
+          "description": "Une erreur inattendue s'est produite. Veuillez réessayer."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Brouillon créé !",
+          "description": "L'IA a généré un brouillon ci-dessous. N'hésitez pas à le modifier avant de publier."
+        },
+        "title": "Publication publiée !",
+        "description": "Votre publication est maintenant en ligne dans le sujet."
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {topicName}",
+      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
+      "noReplies": "Aucune réponse pour l'instant. Soyez le premier à répondre !",
+      "buttons": {
+        "loadMore": "Charger plus de réponses",
+        "loadingMore": "Chargement..."
+      },
+      "reply": {
+        "title": "Votre réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Publier la réponse",
+        "submittingButton": "Publication en cours...",
+        "success": "Votre réponse a été publiée !"
+      },
+      "notFound": {
+        "title": "Publication non trouvée",
+        "description": "La publication que vous recherchez n'existe pas ou a peut-être été déplacée.",
+        "backButton": "Retour au forum"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur",
+          "description": "Impossible de charger les détails de la publication."
+        },
+        "loadReplies": {
+          "title": "Erreur",
+          "description": "Impossible de charger les réponses pour cette publication."
+        },
+        "submitReply": {
+          "title": "Échec de la réponse",
+          "description": "Impossible d'envoyer votre réponse. Veuillez réessayer."
+        },
+        "emptyReply": "Votre réponse ne peut pas être vide."
+      }
+    }
+  },
+  "GroupsPage": {
+    "title": "Groupes communautaires",
+    "description": "Trouvez et rejoignez des groupes en fonction de vos intérêts, de votre emplacement ou de votre expertise.",
+    "createGroupButton": "Créer un nouveau groupe",
+    "searchPlaceholder": "Rechercher des groupes...",
+    "notFound": "Aucun groupe trouvé.",
+    "detail": {
+      "backLink": "Retour à tous les groupes",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Démarrer une discussion",
+      "by": "par {author}",
+      "noDiscussions": "Aucune discussion n'a encore été lancée.",
+      "beTheFirst": "Soyez le premier à lancer une discussion !",
+      "actionsTitle": "Actions du groupe",
+      "leaveButton": "Quitter le groupe",
+      "leavingButton": "Départ en cours...",
+      "joinButton": "Rejoindre le groupe",
+      "requestJoinButton": "Demander à rejoindre",
+      "joiningButton": "Adhésion en cours...",
+      "loginToJoinButton": "Se connecter pour rejoindre",
+      "membersTitle": "{memberCount} membres",
+      "notFound": {
+        "title": "Groupe non trouvé",
+        "description": "Le groupe que vous recherchez n'existe pas.",
+        "backButton": "Retour aux groupes"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Erreur",
+          "description": "Impossible de charger les données du groupe."
+        },
+        "loginToJoin": "Veuillez vous connecter pour rejoindre ce groupe.",
+        "joinSuccess": "Vous avez rejoint le groupe avec succès !",
+        "joinError": "Échec de l'adhésion au groupe.",
+        "leaveSuccess": "Vous avez quitté le groupe.",
+        "leaveError": "Échec du départ du groupe."
+      }
+    },
+    "create": {
+      "backLink": "Retour aux groupes",
+      "title": "Créer un nouveau groupe",
+      "description": "Lancez une nouvelle communauté autour d'un intérêt ou d'un projet commun.",
+      "form": {
+        "nameLabel": "Nom du groupe",
+        "namePlaceholder": "Ex: Producteurs de café bio du Kenya",
+        "descriptionLabel": "Description du groupe",
+        "descriptionPlaceholder": "Quel est le but de ce groupe ?",
+        "publicLabel": "Groupe public (tout le monde peut rejoindre)",
+        "submitButton": "Créer le groupe",
+        "submittingButton": "Création en cours..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être connecté pour créer un groupe."
+        },
+        "incomplete": {
+          "title": "Informations incomplètes",
+          "description": "Veuillez fournir un nom et une description pour votre groupe."
+        },
+        "error": {
+          "title": "La création a échoué",
+          "description": "Impossible de créer le groupe. Veuillez réessayer."
+        },
+        "success": {
+          "title": "Groupe créé !",
+          "description": "Votre nouveau groupe est maintenant en ligne."
         }
       }
     },
-    "financials": {
-      "title": "Centre des finances",
-      "description": "Surveillez la santé financière de votre ferme et explorez les opportunités de financement.",
-      "newTransactionButton": "Nouvelle transaction",
-      "applyForFundingButton": "Demander un financement",
-      "totalIncome": "Revenus totaux",
-      "totalExpense": "Dépenses totales",
-      "netFlow": "Flux de trésorerie net",
-      "recentTransactions": "Transactions récentes",
+    "createPost": {
+      "backLink": "Retour au groupe",
+      "title": "Démarrer une nouvelle publication",
+      "description": "Partagez une mise à jour ou posez une question au sein du groupe.",
+      "form": {
+        "titleLabel": "Titre de la publication",
+        "titlePlaceholder": "Entrez un titre clair et concis",
+        "contentLabel": "Votre contenu",
+        "contentPlaceholder": "Écrivez votre publication ici...",
+        "submitButton": "Publier",
+        "submittingButton": "Publication en cours..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être membre pour publier dans ce groupe."
+        },
+        "incomplete": {
+          "title": "Publication incomplète",
+          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+        },
+        "error": {
+          "title": "La publication a échoué",
+          "description": "Impossible de publier votre message. Veuillez réessayer."
+        },
+        "success": {
+          "title": "Publication publiée !",
+          "description": "Votre publication est maintenant visible dans le groupe."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Retour à {groupName}",
+      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
+      "noReplies": "Aucune réponse pour l'instant. Soyez le premier à répondre !",
+      "loadMoreButton": "Charger plus de réponses",
+      "loadingMoreButton": "Chargement...",
+      "yourReplyTitle": "Votre réponse",
+      "replyPlaceholder": "Écrivez votre réponse ici...",
+      "replySubmitButton": "Publier la réponse",
+      "submittingButton": "Publication en cours...",
+      "notFound": {
+        "title": "Publication non trouvée",
+        "description": "La publication que vous recherchez n'existe pas.",
+        "backButton": "Retour au groupe"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Erreur",
+          "description": "Impossible de charger les détails de la publication."
+        },
+        "loadRepliesError": {
+          "title": "Erreur",
+          "description": "Impossible de charger les réponses."
+        },
+        "emptyReply": "Votre réponse ne peut pas être vide.",
+        "submitError": {
+          "title": "Échec de la réponse",
+          "description": "Impossible de publier votre réponse."
+        },
+        "replySuccess": "Réponse publiée !"
+      }
+    }
+  },
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Rechercher des conversations...",
+    "noConversations": "Vous n'avez pas encore de conversations.",
+    "selectConversation": "Sélectionnez une conversation pour commencer à discuter.",
+    "typeMessagePlaceholder": "Écrivez un message...",
+    "signInToView": "Veuillez vous connecter pour voir vos messages.",
+    "signIn": "Se connecter",
+    "error": "Erreur",
+    "couldNotLoadConversations": "Impossible de charger vos conversations.",
+    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
+    "sendFailed": "L'envoi a échoué",
+    "couldNotSendMessage": "Impossible d'envoyer votre message. Veuillez réessayer."
+  },
+  "talentExchangePage": {
+    "title": "Bourse de talents",
+    "description": "Trouvez des emplois agricoles, de la main-d'œuvre qualifiée et des services professionnels.",
+    "listServiceButton": "Lister un service / emploi",
+    "searchPlaceholder": "Rechercher par compétence, rôle ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie de service...",
+    "allCategories": "Toutes les catégories de services",
+    "noResultsTitle": "Aucun service ou talent trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou soyez le premier à lister un service dans votre région.",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de charger les services de la Bourse de talents."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Hub de traçabilité",
+    "description": "Vérifiez le parcours de vos aliments. Suivez n'importe quel lot de produit de la ferme à la table en utilisant son ID de traçabilité Vibrant (VTI).",
+    "inputPlaceholder": "Entrez l'ID du lot VTI...",
+    "trackButton": "Suivre",
+    "vtiDescription": "Un VTI est un identifiant unique attribué à chaque lot agricole, permettant une transparence de bout en bout.",
+    "recentTitle": "Lots récemment suivis",
+    "recentDescription": "Voici quelques-uns des derniers lots de produits avec des données de traçabilité publiques.",
+    "noRecentBatches": "Aucun lot public n'a été enregistré récemment.",
+    "producerLabel": "Producteur",
+    "harvestDateLabel": "Date de récolte",
+    "viewReportButton": "Voir le rapport complet",
+    "detailPage": {
+      "backLink": "Retour au hub de traçabilité",
+      "invalidIdError": "Aucun ID de lot valide n'a été fourni.",
+      "loadError": "Impossible de charger le rapport de traçabilité pour ce lot.",
+      "notFoundTitle": "Lot non trouvé",
+      "notFoundDescription": "Le VTI que vous avez entré ne correspond à aucun lot dans nos registres. Veuillez vérifier l'ID et réessayer.",
+      "traceableProduct": "Produit traçable",
+      "batchIdLabel": "ID de lot",
+      "producerLabel": "Producteur",
+      "harvestDateLabel": "Date de récolte",
+      "yieldLabel": "Rendement initial",
+      "qualityLabel": "Grade de qualité initial",
+      "notSpecified": "Non spécifié",
+      "journeyTitle": "Parcours du produit",
+      "journeyDescription": "Suivez le parcours complet de ce lot depuis la ferme.",
+      "noEventsFound": "Aucun événement n'a encore été enregistré pour ce lot.",
+      "noEventDetails": "Aucun détail supplémentaire fourni pour cet événement.",
+      "geoLocationLabel": "Géolocalisation",
+      "sustainablyGrownTitle": "Cultivé de manière durable",
+      "sustainablyGrownDescription": "Ce produit a été cultivé en utilisant des intrants durables et respectueux de l'environnement enregistrés sur la plateforme DamDoh.",
+      "observationType": "Type d'observation",
+      "details": "Détails",
+      "aiDiagnosis": "Diagnostic par l'IA"
+    }
+  },
+  "InsurancePage": {
+    "title": "Hub d'assurance",
+    "description": "Protégez votre ferme et votre entreprise contre les risques imprévus avec des produits d'assurance agricole sur mesure.",
+    "perTerm": "par période",
+    "viewDetailsButton": "Voir les détails",
+    "noProducts": "Aucun produit d'assurance n'est disponible pour le moment.",
+    "toast": {
+      "errorTitle": "Erreur de chargement des produits"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Retour au hub d'assurance",
+    "notFound": "Produit d'assurance non trouvé.",
+    "coverageTitle": "Détails de la couverture",
+    "premiumTitle": "Prime",
+    "perTerm": "par période",
+    "providerTitle": "Fourni par",
+    "applyButton": "Souscrire à cette police",
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Retour aux produits d'assurance",
+    "title": "Souscrire une assurance",
+    "description": "Souscrivez à la police '{productName}' en sélectionnant votre ferme.",
+    "form": {
+      "farmLabel": "Ferme à assurer",
+      "farmPlaceholder": "Sélectionnez votre ferme",
+      "noFarms": "Veuillez d'abord ajouter une ferme",
+      "coverageValueLabel": "Valeur à assurer (USD)",
+      "coverageValuePlaceholder": "ex: 10000",
+      "coverageValueDescription": "La valeur totale que vous souhaitez assurer.",
+      "submitButton": "Soumettre la demande"
+    },
+    "success": {
+      "title": "Demande soumise",
+      "description": "Votre demande d'assurance a été envoyée pour examen.",
+      "backToDashboardButton": "Retour au tableau de bord",
+      "applyForAnotherButton": "Faire une autre demande"
+    },
+    "toast": {
+      "error": "Erreur",
+      "notAuthenticated": "Vous devez être connecté pour souscrire.",
+      "successTitle": "Demande envoyée !",
+      "successDescription": "Votre demande d'assurance est en cours d'examen."
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Gérer les produits d'assurance",
+    "description": "Créez et gérez les produits d'assurance que vous proposez sur la plateforme.",
+    "createButton": "Créer un nouveau produit",
+    "noProducts": "Vous n'avez pas encore créé de produits d'assurance.",
+    "table": {
+      "productName": "Nom du produit",
+      "type": "Type",
+      "status": "Statut",
+      "premium": "Prime"
+    },
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Retour aux produits",
+    "title": "Créer un nouveau produit d'assurance",
+    "description": "Définissez un nouveau produit d'assurance à offrir aux agriculteurs et aux entreprises agricoles.",
+    "form": {
+      "nameLabel": "Nom du produit",
+      "namePlaceholder": "ex: Assurance récolte multirisque",
+      "typeLabel": "Type de produit",
+      "typePlaceholder": "Sélectionnez un type",
+      "crop": "Récolte",
+      "livestock": "Bétail",
+      "asset": "Actif",
+      "weather": "Météo (Paramétrique)",
+      "descriptionLabel": "Brève description",
+      "descriptionPlaceholder": "Un aperçu du produit.",
+      "coverageLabel": "Détails de la couverture",
+      "coveragePlaceholder": "Décrivez en détail ce que cette police couvre...",
+      "premiumLabel": "Prime",
+      "premiumPlaceholder": "ex: 250.00",
+      "currencyLabel": "Devise",
+      "submitButton": "Créer le produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant que fournisseur d'assurance.",
+      "errorTitle": "La création a échoué",
+      "successTitle": "Produit créé",
+      "successDescription": "Le produit '{name}' est maintenant disponible sur la plateforme."
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Retour au tableau de bord",
+    "title": "Produits financiers",
+    "description": "Gérez les produits de prêt et de subvention que vous offrez à la communauté.",
+    "createButton": "Créer un nouveau produit",
+    "noProducts": "Vous n'avez pas encore créé de produits financiers.",
+    "table": {
+      "productName": "Nom du produit",
+      "type": "Type",
+      "status": "Statut",
+      "interestRate": "Taux d'intérêt",
+      "maxAmount": "Montant max"
+    },
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Retour aux produits",
+    "title": "Créer un nouveau produit financier",
+    "description": "Définissez un nouveau produit de prêt ou de subvention à lister sur la plateforme.",
+    "form": {
+      "nameLabel": "Nom du produit",
+      "namePlaceholder": "ex: Prêt de semences pour petits exploitants",
+      "typeLabel": "Type de produit",
+      "loan": "Prêt",
+      "grant": "Subvention",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Décrivez le produit, son objectif et les critères d'éligibilité.",
+      "interestRateLabel": "Taux d'intérêt (%)",
+      "interestRatePlaceholder": "ex: 12.5",
+      "maxAmountLabel": "Montant maximum (USD)",
+      "maxAmountPlaceholder": "ex: 5000",
+      "targetRolesLabel": "Public cible",
+      "targetRolesDescription": "Sélectionnez les rôles des parties prenantes pour lesquels ce produit est disponible.",
+      "submitButton": "Créer le produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant qu'institution financière.",
+      "errorTitle": "La création a échoué",
+      "successTitle": "Produit créé",
+      "successDescription": "Le produit '{name}' est maintenant disponible."
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Retour au tableau de bord",
+    "title": "Demandes financières",
+    "description": "Examinez et gérez les demandes de prêt et de subvention entrantes des utilisateurs.",
+    "tabs": {
+      "all": "Toutes",
+      "pending": "En attente",
+      "approved": "Approuvées",
+      "rejected": "Rejetées"
+    },
+    "table": {
+      "applicant": "Demandeur",
+      "type": "Type",
+      "amount": "Montant",
+      "date": "Date",
+      "status": "Statut",
+      "action": "Action"
+    },
+    "noApplications": "Il n'y a aucune demande dans cette catégorie.",
+    "reviewButton": "Examiner"
+  },
+  "FiApplicationPage": {
+    "backLink": "Retour à toutes les demandes",
+    "title": "Détails de la demande",
+    "applicationTitle": "Demande",
+    "submittedOn": "Soumis le",
+    "amountRequested": "Montant demandé",
+    "purpose": "Objet des fonds",
+    "approveButton": "Approuver",
+    "rejectButton": "Rejeter",
+    "requestInfoButton": "Demander plus d'informations",
+    "applicantDetails": "Détails du demandeur",
+    "viewProfileButton": "Voir le profil complet",
+    "profileNotFound": "Profil du demandeur non trouvé.",
+    "riskAssessment": "Évaluation des risques par l'IA",
+    "creditScore": "Score de crédit",
+    "notFound": "Demande non trouvée.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "updateSuccessTitle": "Statut mis à jour",
+      "updateSuccessDescription": "Le statut de la demande a été défini sur {status}.",
+      "updateFailTitle": "La mise à jour a échoué"
+    }
+  },
+  "pinboardPage": {
+    "title": "Tableau d'affichage",
+    "description": "Votre espace personnel pour enregistrer et organiser des éléments de toute la plateforme.",
+    "comingSoonTitle": "Bientôt disponible !",
+    "comingSoonDescription": "Le tableau d'affichage vous permettra d'enregistrer des annonces du marché, des publications de forum, des profils, et plus encore pour un accès facile ultérieurement.",
+    "stayTuned": "Restez à l'écoute pour les mises à jour."
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de bord de la durabilité",
+    "description": "Suivez et améliorez l'impact environnemental de vos pratiques agricoles.",
+    "carbonFootprint": "Empreinte carbone",
+    "waterEfficiency": "Efficacité de l'eau",
+    "biodiversityScore": "Score de biodiversité",
+    "practicesTitle": "Journal des pratiques durables",
+    "certificationsTitle": "Certifications actives",
+    "metricCard": {
+      "trendText": "depuis le mois dernier"
+    },
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier enregistrement"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expire le"
+    },
+    "auth": {
+      "title": "Veuillez vous connecter",
+      "description": "Vous devez être connecté pour voir votre tableau de bord de la durabilité.",
+      "button": "Se connecter"
+    },
+    "noData": {
+      "title": "Données non disponibles",
+      "description": "Nous n'avons pas pu charger vos données de durabilité pour le moment."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Panneau d'administration",
+      "description": "Cette zone est réservée aux administrateurs autorisés.",
+      "contentManagement": "Contenu",
+      "reports": "Rapports"
+    },
+    "dashboard": {
+      "title": "Tableau de bord d'administration",
+      "description": "Bienvenue dans le panneau d'administration de DamDoh.",
+      "content": "D'ici, vous pouvez gérer divers aspects de la plateforme, comme le contenu du Hub de connaissances.",
+      "contentManagementButton": "Gérer le contenu"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Gestion de contenu",
+        "description": "Gérez tous les articles de connaissance, les billets de blog et les actualités.",
+        "refreshButton": "Actualiser"
+      },
       "table": {
-        "date": "Date",
-        "description": "Description",
+        "title": "Titre",
         "category": "Catégorie",
-        "amount": "Montant"
+        "status": "Statut",
+        "created": "Créé",
+        "actions": "Actions",
+        "noArticles": "Aucun article n'a encore été créé."
       },
-      "noTransactions": "Aucune transaction enregistrée pour le moment.",
-      "signInPrompt": {
-        "title": "Veuillez vous connecter",
-        "description": "Vous devez être connecté pour voir vos données financières.",
-        "button": "Se connecter"
+      "createArticle": {
+        "title": "Créer un nouveau contenu",
+        "description": "Ajoutez un nouvel article au Hub de connaissances ou au Blog.",
+        "englishContent": "Contenu en anglais",
+        "titleEnLabel": "Titre (anglais)",
+        "excerptEnLabel": "Extrait (anglais)",
+        "contentEnLabel": "Contenu (Markdown, anglais)",
+        "khmerContent": "Contenu en khmer",
+        "titleKmLabel": "Titre (khmer)",
+        "excerptKmLabel": "Extrait (khmer)",
+        "contentKmLabel": "Contenu (Markdown, khmer)",
+        "metadataTitle": "Métadonnées",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Ex: Blog, Actualités du secteur, Guide KNF",
+        "authorLabel": "Auteur",
+        "authorPlaceholder": "Ex: Équipe DamDoh",
+        "statusLabel": "Statut",
+        "tagsLabel": "Tags (séparés par des virgules)",
+        "imageUrlLabel": "URL de l'image",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "Indice IA pour l'image",
+        "aiHintPlaceholder": "Ex: grains de café, portrait d'agriculteur",
+        "publishingButton": "Publication...",
+        "publishButton": "Publier l'article"
       },
-      "log": {
-        "backLink": "Retour aux finances",
-        "title": "Enregistrer une transaction financière",
-        "description": "Ajoutez un nouveau revenu ou une nouvelle dépense à vos registres.",
-        "typeLabel": "Type de transaction",
-        "typePlaceholder": "Sélectionnez un type",
-        "types": {
-          "income": "Revenu",
-          "expense": "Dépense"
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "loadErrorDescription": "Impossible de charger le contenu.",
+        "createSuccessTitle": "Article créé",
+        "createSuccessDescription": "Le nouvel article a été publié.",
+        "createErrorTitle": "La création a échoué"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Générer un rapport réglementaire",
+        "description": "Créez des rapports à la demande à des fins de conformité et d'audit.",
+        "reportTypeLabel": "Type de rapport",
+        "reportTypeVti": "Résumé des événements VTI",
+        "targetUserLabel": "Utilisateur cible",
+        "userSearchPlaceholder": "Rechercher par nom ou e-mail...",
+        "dateRangeLabel": "Plage de dates",
+        "datePlaceholder": "Sélectionner la plage de dates",
+        "submitButton": "Générer le rapport"
+      },
+      "list": {
+        "title": "Rapports générés",
+        "description": "Voir et télécharger les rapports générés précédemment.",
+        "table": {
+          "reportType": "Type de rapport",
+          "generatedFor": "Généré pour",
+          "date": "Date",
+          "status": "Statut",
+          "actions": "Actions"
         },
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Ex: Vente de tomates, Achat de semences",
-        "amountLabel": "Montant",
-        "amountPlaceholder": "Ex: 150.75",
-        "currencyLabel": "Devise",
-        "currencyPlaceholder": "Ex: USD",
-        "categoryLabel": "Catégorie (Optionnel)",
-        "categoryPlaceholder": "Ex: Ventes, Intrants, Main-d'œuvre",
-        "categoryDescription": "La catégorisation aide à analyser vos finances.",
-        "saveButton": "Enregistrer la transaction",
-        "savingButton": "Enregistrement en cours...",
-        "toast": {
-          "authErrorTitle": "Non authentifié",
-          "authErrorDescription": "Vous devez être connecté.",
-          "success": "Enregistré !",
-          "description": "Votre transaction a été enregistrée avec succès.",
-          "fail": "L'enregistrement a échoué"
-        }
+        "viewButton": "Voir",
+        "noReports": "Aucun rapport n'a encore été généré."
       },
-      "apply": {
-        "backLink": "Retour aux finances",
-        "title": "Demander un financement",
-        "description": "Soumettez une demande de prêt ou de subvention auprès des institutions financières participantes.",
-        "form": {
-          "institutionLabel": "Institution financière",
-          "institutionPlaceholder": "Sélectionnez une institution",
-          "noInstitutions": "Aucune institution disponible",
-          "typeLabel": "Type de demande",
-          "loan": "Prêt",
-          "grant": "Subvention",
-          "amountLabel": "Montant demandé",
-          "currencyLabel": "Devise",
-          "purposeLabel": "Objet de la demande",
-          "purposePlaceholder": "Décrivez en détail comment les fonds seront utilisés...",
-          "purposeDescription": "Une description claire augmente vos chances d'approbation.",
-          "submitButton": "Soumettre la demande"
-        },
-        "toast": {
-          "error": "Erreur",
-          "fetchFiError": "Impossible de récupérer les institutions financières.",
-          "notAuthenticatedError": "Vous devez être connecté pour faire une demande.",
-          "successTitle": "Demande envoyée !",
-          "successDescription": "Votre demande a été soumise pour examen."
-        }
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "formIncompleteTitle": "Formulaire incomplet",
+        "formIncompleteDescription": "Veuillez sélectionner un type de rapport, un utilisateur cible et une plage de dates.",
+        "generateSuccessTitle": "Génération du rapport",
+        "generateSuccessDescription": "Le rapport est en cours de création et apparaîtra bientôt dans la liste ci-dessous.",
+        "generateErrorTitle": "La génération a échoué"
+      }
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Hub de gestion de la ferme",
+      "description": "Votre lieu central pour suivre et optimiser toutes vos activités agricoles, de la semence à la récolte.",
+      "myFarms": {
+        "title": "Mes fermes et cultures",
+        "description": "Gérez vos fermes, vos champs et suivez les cycles de culture individuels.",
+        "button": "Gérer les fermes"
+      },
+      "labor": {
+        "title": "Gestion de la main-d'œuvre",
+        "description": "Suivez les heures de travail et les paiements de votre personnel.",
+        "button": "Gérer la main-d'œuvre"
+      },
+      "knf": {
+        "title": "Assistant d'intrants KNF",
+        "description": "Suivez vos intrants d'agriculture naturelle coréenne fabriqués par vos soins.",
+        "button": "Gérer les intrants"
+      },
+      "fgw": {
+        "title": "Guide de l'agriculture selon Dieu (FGW)",
+        "description": "Apprenez les principes et les pratiques de FGW pour une agriculture durable sans labour.",
+        "button": "Voir le guide FGW"
+      },
+      "financials": {
+        "title": "Finances et analyses",
+        "description": "Suivez les revenus, les dépenses et obtenez des informations sur la rentabilité.",
+        "button": "Voir les finances"
+      },
+      "seedStarting": {
+        "title": "Guide de démarrage des semis",
+        "description": "Apprenez les meilleures pratiques pour démarrer les semis pour une saison réussie.",
+        "button": "Voir le guide des semis"
+      },
+      "familyFarm": {
+        "title": "Modèle de ferme familiale intégrée",
+        "description": "Explorez un modèle durable de 200 m² pour une ferme familiale à petite échelle.",
+        "button": "Voir le modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des actifs",
+        "description": "Gardez une trace de vos machines, outils et autres actifs agricoles.",
+        "button": "Gérer les actifs"
+      }
+    }
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisation de {count} actions en attente...",
+      "onlinePending": "{count} actions en attente. Synchronisation bientôt.",
+      "onlineSynced": "Vous êtes en ligne et toutes les modifications sont synchronisées.",
+      "offline": "Vous êtes hors ligne. {count, plural, =0 {Aucun changement en attente} =1 {1 changement est en file d'attente} other {{count} changements sont en file d'attente}}."
+    },
+    "toast": {
+      "online": {
+        "title": "Vous êtes de retour en ligne !",
+        "description": "Votre connexion a été rétablie."
+      },
+      "offline": {
+        "title": "Vous êtes Hors Ligne",
+        "description": "Vos modifications seront sauvegardées et synchronisées lorsque vous vous reconnecterez."
+      },
+      "syncing": {
+        "title": "Synchronisation des Modifications Hors Ligne",
+        "description": "Envoi de {count} actions au serveur."
+      },
+      "synced": {
+        "title": "Synchronisation Terminée",
+        "description": "Toutes vos modifications hors ligne ont été enregistrées."
+      },
+      "syncFailed": {
+        "title": "La Synchronisation a Échoué",
+        "description": "Nous n'avons pas pu synchroniser vos modifications hors ligne. Nous essaierons à nouveau plus tard."
+      },
+      "queued": {
+        "title": "Action Mise en File d'attente",
+        "description": "Cette action sera effectuée lorsque vous serez de nouveau en ligne."
       }
     }
   }
 }
-    
