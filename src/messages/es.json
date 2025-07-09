@@ -907,6 +907,41 @@
             "description": "La finca que buscas no existe o no tienes permiso para verla.",
             "backButton": "Volver a Mis Fincas"
         }
+    },
+    "createCrop": {
+      "backLink": "Volver a Detalles de la Finca",
+      "title": "Añadir un Nuevo Cultivo",
+      "description": "Registra un nuevo cultivo o siembra para empezar a seguir su trayectoria.",
+      "cropTypeLabel": "Nombre / Tipo de Cultivo",
+      "cropTypePlaceholder": "Ej: Aguacate Hass, Tomate Roma",
+      "cropTypeDescription": "Sé lo más específico posible.",
+      "plantingDateLabel": "Fecha de Siembra",
+      "harvestDateLabel": "Fecha de Cosecha Estimada (Opcional)",
+      "datePlaceholder": "Elige una fecha",
+      "yieldLabel": "Rendimiento Esperado (Opcional)",
+      "yieldPlaceholder": "Ej: 5 toneladas/ha",
+      "stageLabel": "Etapa Actual (Opcional)",
+      "stagePlaceholder": "Selecciona una etapa",
+      "stages": {
+        "Planting": "Siembra",
+        "Vegetative": "Vegetativo",
+        "Flowering": "Floración",
+        "Fruiting": "Fructificación",
+        "Harvesting": "Cosecha",
+        "Post-Harvest": "Poscosecha"
+      },
+      "notesLabel": "Notas (Opcional)",
+      "notesPlaceholder": "Añade cualquier nota relevante sobre este lote...",
+      "saveButton": "Guardar Cultivo",
+      "savingButton": "Guardando...",
+      "toast": {
+        "authErrorTitle": "No Autenticado",
+        "authErrorDescription": "Debes iniciar sesión para añadir un cultivo.",
+        "successTitle": "¡Cultivo Añadido!",
+        "successDescription": "{cropType} ha sido añadido exitosamente a tu finca.",
+        "failTitle": "Fallo al Añadir Cultivo",
+        "failDescription": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+      }
     }
   },
   "OfflineIndicator": {

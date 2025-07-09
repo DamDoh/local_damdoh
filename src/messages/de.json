@@ -903,10 +903,45 @@
             "insightsErrorTitle": "Fehler bei den Einblicken"
         },
         "notFound": {
-            "title": "Farm nicht gefunden",
+            "title": "Farm Nicht Gefunden",
             "description": "Die gesuchte Farm existiert nicht oder Sie haben keine Berechtigung, sie anzuzeigen.",
             "backButton": "Zurück zu Meine Farmen"
         }
+    },
+    "createCrop": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Eine neue Kultur hinzufügen",
+      "description": "Protokollieren Sie eine neue Pflanzung, um ihre Reise zu verfolgen.",
+      "cropTypeLabel": "Kulturname / -art",
+      "cropTypePlaceholder": "z.B. Hass Avocado, Roma Tomate",
+      "cropTypeDescription": "Seien Sie so spezifisch wie möglich.",
+      "plantingDateLabel": "Pflanzdatum",
+      "harvestDateLabel": "Geschätztes Erntedatum (Optional)",
+      "datePlaceholder": "Datum auswählen",
+      "yieldLabel": "Erwarteter Ertrag (Optional)",
+      "yieldPlaceholder": "z.B. 5 Tonnen/ha",
+      "stageLabel": "Aktuelle Phase (Optional)",
+      "stagePlaceholder": "Wählen Sie eine Phase",
+      "stages": {
+        "Planting": "Pflanzung",
+        "Vegetative": "Vegetativ",
+        "Flowering": "Blüte",
+        "Fruiting": "Fruchtbildung",
+        "Harvesting": "Ernte",
+        "Post-Harvest": "Nach der Ernte"
+      },
+      "notesLabel": "Notizen (Optional)",
+      "notesPlaceholder": "Fügen Sie relevante Notizen zu dieser Charge hinzu...",
+      "saveButton": "Kultur speichern",
+      "savingButton": "Wird gespeichert...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Kultur hinzuzufügen.",
+        "successTitle": "Kultur hinzugefügt!",
+        "successDescription": "{cropType} wurde erfolgreich zu Ihrer Farm hinzugefügt.",
+        "failTitle": "Hinzufügen der Kultur fehlgeschlagen",
+        "failDescription": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+      }
     }
   },
   "OfflineIndicator": {
@@ -1355,7 +1390,7 @@
   "ProcessingUnitDashboard": {
     "title": "Dashboard der Verarbeitungseinheit",
     "yieldTitle": "Ertragsoptimierung",
-    "potential": "Potenzial",
+    "potential": "potenzial",
     "wasteTitle": "Abfallreduzierung",
     "rawMaterialTitle": "Rohstoffinventar",
     "table": {

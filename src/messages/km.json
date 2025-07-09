@@ -907,6 +907,41 @@
             "description": "ฟาร์มที่คุณกำลังมองหาไม่มีอยู่จริง หรือคุณไม่มีสิทธิ์ดู",
             "backButton": "กลับไปที่ฟาร์มของฉัน"
         }
+    },
+    "createCrop": {
+      "backLink": "ត្រឡប់ទៅรายละเอียดฟาร์ม",
+      "title": "បន្ថែមដំណាំថ្មី",
+      "description": "บันทึกพืชผลหรือการเพาะปลูกใหม่เพื่อเริ่มติดตามการเดินทางของมัน",
+      "cropTypeLabel": "ឈ្មោះ / ប្រភេទដំណាំ",
+      "cropTypePlaceholder": "ឧ: Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "ระบุให้เจาะจงที่สุด",
+      "plantingDateLabel": "កាលបរិច្ឆេទเพาะปลูก",
+      "harvestDateLabel": "កាលបរិច្ឆេទเก็บเกี่ยวโดยประมาณ (ไม่บังคับ)",
+      "datePlaceholder": "เลือกวันที่",
+      "yieldLabel": "ผลผลิตที่คาดหวัง (ไม่บังคับ)",
+      "yieldPlaceholder": "ឧ: 5 ตัน/เฮกตาร์",
+      "stageLabel": "ដំណាក់កាលปัจจุบัน (ไม่บังคับ)",
+      "stagePlaceholder": "เลือกដំណាក់កាល",
+      "stages": {
+        "Planting": "កំពុងដាំ",
+        "Vegetative": "លូតលាស់",
+        "Flowering": "ចេញផ្កា",
+        "Fruiting": "ចេញផ្លែ",
+        "Harvesting": "កំពុងប្រមូលផល",
+        "Post-Harvest": "ក្រោយពេលប្រមូលផល"
+      },
+      "notesLabel": "บันทึก (ไม่บังคับ)",
+      "notesPlaceholder": "เพิ่มบันทึกที่เกี่ยวข้องเกี่ยวกับชุดนี้...",
+      "saveButton": "บันทึกพืชผล",
+      "savingButton": "កំពុងบันทึก...",
+      "toast": {
+        "authErrorTitle": "ไม่ได้รับการรับรองความถูกต้อง",
+        "authErrorDescription": "คุณต้องลงชื่อเข้าใช้เพื่อเพิ่มพืชผล",
+        "successTitle": "เพิ่มพืชผลแล้ว!",
+        "successDescription": "{cropType} ถูกเพิ่มในฟาร์มของคุณเรียบร้อยแล้ว",
+        "failTitle": "ไม่สามารถเพิ่มพืชผลได้",
+        "failDescription": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง"
+      }
     }
   },
   "OfflineIndicator": {

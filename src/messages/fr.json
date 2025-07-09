@@ -907,6 +907,41 @@
             "description": "La ferme que vous recherchez n'existe pas ou vous n'avez pas la permission de la voir.",
             "backButton": "Retourner à Mes Fermes"
         }
+    },
+    "createCrop": {
+      "backLink": "Retour aux détails de la ferme",
+      "title": "Ajouter une nouvelle culture",
+      "description": "Enregistrez une nouvelle culture ou plantation pour commencer à suivre son parcours.",
+      "cropTypeLabel": "Nom / Type de culture",
+      "cropTypePlaceholder": "Ex: Avocat Hass, Tomate Roma",
+      "cropTypeDescription": "Soyez aussi précis que possible.",
+      "plantingDateLabel": "Date de plantation",
+      "harvestDateLabel": "Date de récolte estimée (Optionnel)",
+      "datePlaceholder": "Choisir une date",
+      "yieldLabel": "Rendement attendu (Optionnel)",
+      "yieldPlaceholder": "Ex: 5 tonnes/ha",
+      "stageLabel": "Stade actuel (Optionnel)",
+      "stagePlaceholder": "Sélectionner un stade",
+      "stages": {
+        "Planting": "Plantation",
+        "Vegetative": "Végétatif",
+        "Flowering": "Floraison",
+        "Fruiting": "Fructification",
+        "Harvesting": "Récolte",
+        "Post-Harvest": "Après-récolte"
+      },
+      "notesLabel": "Notes (Optionnel)",
+      "notesPlaceholder": "Ajoutez des notes pertinentes sur ce lot...",
+      "saveButton": "Enregistrer la culture",
+      "savingButton": "Enregistrement...",
+      "toast": {
+        "authErrorTitle": "Non authentifié",
+        "authErrorDescription": "Vous devez être connecté pour ajouter une culture.",
+        "successTitle": "Culture ajoutée !",
+        "successDescription": "{cropType} a été ajouté avec succès à votre ferme.",
+        "failTitle": "Échec de l'ajout de la culture",
+        "failDescription": "Une erreur inattendue s'est produite. Veuillez réessayer."
+      }
     }
   },
   "OfflineIndicator": {

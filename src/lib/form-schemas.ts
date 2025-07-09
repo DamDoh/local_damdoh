@@ -105,33 +105,6 @@ export const createCropSchema = z.object({
 });
 export type CreateCropValues = z.infer<typeof createCropSchema>;
 
-export const createHarvestSchema = z.object({
-    harvestDate: z.date({ required_error: "A harvest date is required." }),
-    yield_kg: z.coerce.number({ required_error: "Yield is required.", invalid_type_error: "Yield must be a number." }).min(0, "Yield cannot be negative."),
-    quality_grade: z.string().max(50, "Quality grade is too long.").optional(),
-    notes: z.string().max(500, "Notes are too long.").optional(),
-});
-export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;
-
-export const createInputApplicationSchema = z.object({
-  applicationDate: z.date({ required_error: "An application date is required." }),
-  inputId: z.string().min(2, "Input name/type is required."),
-  quantity: z.coerce.number({ invalid_type_error: "Quantity must be a number." }).min(0, "Quantity must be a positive number."),
-  unit: z.string().min(1, "Unit is required (e.g., kg, L, bags)."),
-  method: z.string().max(100, "Method description is too long.").optional(),
-});
-export type CreateInputApplicationValues = z.infer<typeof createInputApplicationSchema>;
-
-export const createObservationSchema = z.object({
-  observationType: z.string().min(3, "Observation type is required."),
-  observationDate: z.date({
-    required_error: "An observation date is required.",
-  }),
-  details: z.string().min(10, "Details must be at least 10 characters.").max(1000, "Details cannot exceed 1000 characters."),
-  imageFile: imageFileSchema.optional(),
-});
-export type CreateObservationValues = z.infer<typeof createObservationSchema>;
-
 export const editProfileSchema = z.object({
   displayName: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
   email: z.string().email("Please enter a valid email address."),
@@ -263,3 +236,5 @@ export const createInsuranceApplicationSchema = z.object({
     coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
 });
 export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
+
+    

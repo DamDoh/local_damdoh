@@ -841,42 +841,42 @@
       }
     },
     "createFarm": {
-        "backToFarms": "Back to My Farms",
-        "title": "Create a New Farm",
-        "description": "Add a new farm to your profile to start tracking crops, inputs, and activities.",
-        "form": {
-            "farmNameLabel": "Farm Name",
-            "farmNamePlaceholder": "e.g., Green Valley Organics",
-            "locationLabel": "Location",
-            "locationPlaceholder": "e.g., Rift Valley, Kenya",
-            "locationDescription": "Provide a general location (City, Region).",
-            "sizeLabel": "Farm Size",
-            "sizePlaceholder": "e.g., 5 Hectares, 12 Acres",
-            "sizeDescription": "Include the unit (e.g., Hectares, Acres).",
-            "typeLabel": "Farm Type",
-            "typePlaceholder": "Select a primary type",
-            "types": {
-                "crop": "Crop Production",
-                "livestock": "Livestock Rearing",
-                "mixed": "Mixed (Crops & Livestock)",
-                "aquaculture": "Aquaculture",
-                "other": "Other"
-            },
-            "descriptionLabel": "Description (Optional)",
-            "descriptionPlaceholder": "Briefly describe your farm...",
-            "irrigationLabel": "Irrigation Methods (Optional)",
-            "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
-            "irrigationDescription": "List the primary irrigation methods used.",
-            "submitButton": "Save Farm"
+      "backToFarms": "Back to My Farms",
+      "title": "Create a New Farm",
+      "description": "Add a new farm to your profile to start tracking crops, inputs, and activities.",
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Organics",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Rift Valley, Kenya",
+        "locationDescription": "Provide a general location (City, Region).",
+        "sizeLabel": "Farm Size",
+        "sizePlaceholder": "e.g., 5 Hectares, 12 Acres",
+        "sizeDescription": "Include the unit (e.g., Hectares, Acres).",
+        "typeLabel": "Farm Type",
+        "typePlaceholder": "Select a primary type",
+        "types": {
+            "crop": "Crop Production",
+            "livestock": "Livestock Rearing",
+            "mixed": "Mixed (Crops & Livestock)",
+            "aquaculture": "Aquaculture",
+            "other": "Other"
         },
-        "toast": {
-            "authErrorTitle": "Authentication Error",
-            "authErrorDescription": "You must be logged in to create a farm.",
-            "successTitle": "Farm Created!",
-            "successDescription": "'{farmName}' has been added to your profile.",
-            "errorTitle": "Creation Failed",
-            "errorDescription": "Could not create the farm. Please try again."
-        }
+        "descriptionLabel": "Description (Optional)",
+        "descriptionPlaceholder": "Briefly describe your farm...",
+        "irrigationLabel": "Irrigation Methods (Optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "List the primary irrigation methods used.",
+        "submitButton": "Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to create a farm.",
+        "successTitle": "Farm Created!",
+        "successDescription": "'{farmName}' has been added to your profile.",
+        "errorTitle": "Creation Failed",
+        "errorDescription": "Could not create the farm. Please try again."
+      }
     },
     "farmDetail": {
         "backToFarms": "Back to My Farms",
@@ -907,6 +907,41 @@
             "description": "The farm you are looking for does not exist or you do not have permission to view it.",
             "backButton": "Go Back to My Farms"
         }
+    },
+    "createCrop": {
+      "backLink": "Back to Farm Details",
+      "title": "Add a New Crop",
+      "description": "Log a new crop or planting to start tracking its journey.",
+      "cropTypeLabel": "Crop Name / Type",
+      "cropTypePlaceholder": "e.g., Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "Be as specific as possible.",
+      "plantingDateLabel": "Planting Date",
+      "harvestDateLabel": "Estimated Harvest Date (Optional)",
+      "datePlaceholder": "Pick a date",
+      "yieldLabel": "Expected Yield (Optional)",
+      "yieldPlaceholder": "e.g., 5 tons/ha",
+      "stageLabel": "Current Stage (Optional)",
+      "stagePlaceholder": "Select a stage",
+      "stages": {
+        "Planting": "Planting",
+        "Vegetative": "Vegetative",
+        "Flowering": "Flowering",
+        "Fruiting": "Fruiting",
+        "Harvesting": "Harvesting",
+        "Post-Harvest": "Post-Harvest"
+      },
+      "notesLabel": "Notes (Optional)",
+      "notesPlaceholder": "Add any relevant notes about this batch...",
+      "saveButton": "Save Crop",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be signed in to add a crop.",
+        "successTitle": "Crop Added!",
+        "successDescription": "{cropType} has been successfully added to your farm.",
+        "failTitle": "Failed to Add Crop",
+        "failDescription": "An unexpected error occurred. Please try again."
+      }
     }
   },
   "OfflineIndicator": {
