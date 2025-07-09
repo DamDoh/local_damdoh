@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Loader2, Share2, ClipboardCopy, Ticket, Home, PlusCircle } from 'lucide-react';
+import { Loader2, Share2, ClipboardCopy, Ticket, Home, PlusCircle, CalendarIcon } from 'lucide-react';
 import type { MarketplaceCoupon } from '@/lib/types';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -18,15 +18,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from 'date-fns';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getCreateMarketplaceCouponSchema, type CreateMarketplaceCouponValues } from "@/lib/form-schemas";
-import { CalendarIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-
 
 export default function MarketplacePromotionsPage() {
     const t = useTranslations('Marketplace.promotions');
@@ -37,13 +35,13 @@ export default function MarketplacePromotionsPage() {
     const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
     const functions = getFunctions(firebaseApp);
     const createCouponCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceCoupon'), [functions]);
-    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getSellerCoupons'), []);
+    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getSellerCoupons'), [functions]);
 
     const createMarketplaceCouponSchema = getCreateMarketplaceCouponSchema(tFormErrors);
     
     const form = useForm<CreateMarketplaceCouponValues>({
         resolver: zodResolver(createMarketplaceCouponSchema),
-        defaultValues: { code: "", discountType: undefined, discountValue: undefined, expiresAt: undefined, usageLimit: undefined },
+        defaultValues: { code: "", discountType: undefined, discountValue: undefined, expiresAt: undefined, usageLimit: 100 },
     });
     
     const fetchCoupons = useCallback(async () => {
@@ -65,7 +63,7 @@ export default function MarketplacePromotionsPage() {
 
     async function onCouponSubmit(data: CreateMarketplaceCouponValues) {
         try {
-            await createCouponCallable({ ...data, expiresAt: data.expiresAt?.toISOString() });
+            await createCouponCallable({ ...data, expiryDate: data.expiresAt?.toISOString() });
             toast({ title: t('toast.success'), description: t('toast.createSuccess', { code: data.code }) });
             form.reset();
             fetchCoupons();
@@ -135,7 +133,7 @@ export default function MarketplacePromotionsPage() {
                                                     mode="single"
                                                     selected={field.value}
                                                     onSelect={field.onChange}
-                                                    disabled={(date) => date < new Date()}
+                                                    disabled={(date) => date < new Date(new Date().setHours(0,0,0,0))}
                                                     initialFocus
                                                 />
                                             </PopoverContent>

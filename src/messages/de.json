@@ -719,6 +719,62 @@
         "loadError": "Ladendaten konnten nicht geladen werden.",
         "title": "Fehler"
       }
+    },
+    "promotions": {
+        "title": "Meine Werbeaktionen",
+        "description": "Erstellen und verwalten Sie Gutscheincodes, um mehr Käufer anzuziehen.",
+        "backToDashboard": "Zurück zum Dashboard",
+        "signInPrompt": "Bitte melden Sie sich an, um Ihre Werbeaktionen zu verwalten.",
+        "create": {
+            "title": "Neuen Gutschein erstellen",
+            "description": "Definieren Sie die Details für Ihren neuen Aktionsgutschein.",
+            "form": {
+                "code": "Gutscheincode",
+                "codePlaceholder": "z.B. SALE20",
+                "usageLimit": "Nutzungslimit",
+                "usageLimitPlaceholder": "z.B. 100",
+                "discountType": "Rabattart",
+                "discountTypePlaceholder": "Art auswählen",
+                "percentage": "Prozentual",
+                "fixed": "Fester Betrag",
+                "discountValue": "Rabattwert",
+                "expiryDate": "Ablaufdatum (Optional)",
+                "pickDate": "Datum auswählen",
+                "submitButton": "Gutschein erstellen"
+            },
+            "toast": {
+                "successTitle": "Gutschein erstellt!",
+                "successDescription": "Der Gutschein '{code}' ist jetzt aktiv.",
+                "failTitle": "Erstellung fehlgeschlagen"
+            }
+        },
+        "list": {
+            "title": "Bestehende Gutscheine",
+            "description": "Sehen und verwalten Sie Ihre aktiven Aktionscodes.",
+            "usage": "Nutzung",
+            "expires": "Läuft ab",
+            "never": "Niemals",
+            "share": "Teilen",
+            "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
+            "toastTitle": "Link kopiert!",
+            "toastDescription": "Ein teilbarer Link für den Gutschein '{link}' wurde in Ihre Zwischenablage kopiert.",
+            "shareModal": {
+                "title": "Gutscheincode teilen",
+                "description": "Teilen Sie diesen Link mit Ihren Kunden, um den Gutschein automatisch anzuwenden.",
+                "link": "Link",
+                "copy": "Kopieren",
+                "close": "Schließen"
+            }
+        },
+        "toast": {
+            "error": "Fehler",
+            "fetchError": "Ihre Gutscheine konnten nicht abgerufen werden.",
+            "createSuccess": "Der Gutschein '{code}' wurde erfolgreich erstellt.",
+            "createFail": "Gutschein konnte nicht erstellt werden",
+            "createError": "Ein unerwarteter Fehler ist aufgetreten.",
+            "linkCopied": "Link kopiert!",
+            "shareDescription": "Der Freigabelink für den Gutschein '{code}' wurde kopiert."
+        }
     }
   },
   "farmManagement": {
@@ -1358,7 +1414,25 @@
     "postButton": "Posten",
     "pollOptionsError": "Eine Umfrage muss mindestens 2 nicht leere Optionen haben.",
     "emptyPostError": "Ihr Beitrag darf nicht leer sein."
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code muss mindestens 4 Zeichen lang sein.",
+        "max": "Code darf 20 Zeichen nicht überschreiten.",
+        "regex": "Code muss alphanumerisch sein."
+      },
+      "discountType": {
+        "required": "Bitte wählen Sie eine Rabattart."
+      },
+      "discountValue": {
+        "invalid": "Rabattwert muss eine Zahl sein.",
+        "positive": "Rabattwert muss positiv sein.",
+        "percentageMax": "Prozentualer Rabatt darf 100 nicht überschreiten."
+      },
+      "usageLimit": {
+        "positive": "Nutzungslimit muss eine positive Zahl sein."
+      }
+    }
   }
 }
-
-    

@@ -719,6 +719,62 @@
         "loadError": "No se pudieron cargar los datos de la tienda.",
         "title": "Error"
       }
+    },
+    "promotions": {
+        "title": "Mis Promociones",
+        "description": "Crea y gestiona códigos de cupón para atraer a más compradores.",
+        "backToDashboard": "Volver al Panel",
+        "signInPrompt": "Por favor, inicia sesión para gestionar tus promociones.",
+        "create": {
+            "title": "Crear Nuevo Cupón",
+            "description": "Define los detalles de tu nuevo cupón promocional.",
+            "form": {
+                "code": "Código de Cupón",
+                "codePlaceholder": "Ej: VENTA20",
+                "usageLimit": "Límite de Uso",
+                "usageLimitPlaceholder": "Ej: 100",
+                "discountType": "Tipo de Descuento",
+                "discountTypePlaceholder": "Selecciona un tipo",
+                "percentage": "Porcentaje",
+                "fixed": "Cantidad Fija",
+                "discountValue": "Valor del Descuento",
+                "expiryDate": "Fecha de Vencimiento (Opcional)",
+                "pickDate": "Elige una fecha",
+                "submitButton": "Crear Cupón"
+            },
+            "toast": {
+                "successTitle": "¡Cupón Creado!",
+                "successDescription": "El cupón '{code}' ya está activo.",
+                "failTitle": "Creación Fallida"
+            }
+        },
+        "list": {
+            "title": "Cupones Existentes",
+            "description": "Visualiza y gestiona tus códigos promocionales activos.",
+            "usage": "Uso",
+            "expires": "Expira",
+            "never": "Nunca",
+            "share": "Compartir",
+            "noCoupons": "Aún no has creado ningún cupón.",
+            "toastTitle": "¡Enlace Copiado!",
+            "toastDescription": "Se ha copiado al portapapeles un enlace para compartir el cupón '{link}'.",
+            "shareModal": {
+                "title": "Compartir Código de Cupón",
+                "description": "Comparte este enlace con tus clientes para aplicar el cupón automáticamente.",
+                "link": "Enlace",
+                "copy": "Copiar",
+                "close": "Cerrar"
+            }
+        },
+        "toast": {
+            "error": "Error",
+            "fetchError": "No se pudieron recuperar tus cupones.",
+            "createSuccess": "El cupón '{code}' se ha creado con éxito.",
+            "createFail": "No se pudo crear el cupón",
+            "createError": "Ocurrió un error inesperado.",
+            "linkCopied": "¡Enlace copiado!",
+            "shareDescription": "Se ha copiado el enlace para compartir del cupón '{code}'."
+        }
     }
   },
   "farmManagement": {
@@ -1358,7 +1414,25 @@
     "postButton": "Publicar",
     "pollOptionsError": "Una encuesta debe tener al menos 2 opciones no vacías.",
     "emptyPostError": "Tu publicación no puede estar vacía."
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "El código debe tener al menos 4 caracteres.",
+        "max": "El código no puede exceder los 20 caracteres.",
+        "regex": "El código debe ser alfanumérico."
+      },
+      "discountType": {
+        "required": "Por favor, seleccione un tipo de descuento."
+      },
+      "discountValue": {
+        "invalid": "El valor del descuento debe ser un número.",
+        "positive": "El valor del descuento debe ser positivo.",
+        "percentageMax": "El descuento porcentual no puede exceder el 100."
+      },
+      "usageLimit": {
+        "positive": "El límite de uso debe ser un número positivo."
+      }
+    }
   }
 }
-
-    

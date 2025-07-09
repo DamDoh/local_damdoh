@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -718,785 +719,62 @@
         "loadError": "Could not load shop data.",
         "title": "Error"
       }
-    }
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central place to track and optimize all your farm activities, from seed to harvest.",
-      "myFarms": {
-        "title": "My Farms & Crops",
-        "description": "Manage your farms, fields, and track individual crop cycles.",
-        "button": "Manage Farms"
-      },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Track work hours and payments for your staff.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF Input Assistant",
-        "description": "Track your farmer-made Korean Natural Farming inputs.",
-        "button": "Manage Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way Guide",
-        "description": "Learn the principles and practices of FGW for no-till sustainable agriculture.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Financials & Analytics",
-        "description": "Track income, expenses, and get insights on profitability.",
-        "button": "View Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "Learn best practices for starting seeds for a successful season.",
-        "button": "View Seed Guide"
-      },
-      "familyFarm": {
-        "title": "Integrated Family Farm Model",
-        "description": "Explore a sustainable 200sqm model for a small-scale family farm.",
-        "button": "View Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Keep track of your machinery, tools, and other farm assets.",
-        "button": "Manage Assets"
-      }
-    }
-  },
-  "networkPage": {
-    "title": "Discover Your Network",
-    "description": "Find the right partners to grow and collaborate with in your agricultural business.",
-    "myNetworkButton": "My Network",
-    "agentToolsButton": "Agent Tools",
-    "aiSuggestionsTitle": "AI Suggestions For You",
-    "aiSuggestionsDescription": "Based on your profile, these connections might be beneficial for you.",
-    "noSuggestions": "No new suggestions at the moment.",
-    "connect": "Connect",
-    "profile": "Profile",
-    "browseAllTitle": "Browse All Stakeholders",
-    "searchPlaceholder": "Search by name or summary...",
-    "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter role",
-    "allRoles": "All Roles",
-    "noStakeholdersFound": "No Profiles Found",
-    "noStakeholdersHint": "Try changing your search filters or check back later.",
-    "toast": {
-      "errorTitle": "Error",
-      "loadError": "Could not load network data."
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "Back to Network Explorer",
-    "myConnectionsTab": "My Connections ({count})",
-    "pendingRequestsTab": "Pending Requests",
-    "connectionsTitle": "Your Connections",
-    "connectionsDescription": "People and organizations in your professional network.",
-    "noConnections": "You haven't made any connections yet.",
-    "requestsTitle": "Connection Requests",
-    "requestsDescription": "Accept or decline requests to grow your network.",
-    "sentTimeAgo": "Sent {timeAgo} ago",
-    "noRequests": "You have no pending connection requests."
-  },
-  "agentToolsPage": {
-    "backLink": "Back to Network Explorer",
-    "title": "Agent Tools",
-    "description": "Look up users by phone number for support and verification.",
-    "findUserLabel": "Find User by Phone Number",
-    "findButton": "Find",
-    "resultsTitle": "Search Results",
-    "resultsPlaceholder": "User details will appear here.",
-    "phoneRequiredError": "Please enter a valid phone number.",
-    "accessDeniedTitle": "Access Denied",
-    "accessDeniedDescription": "Only authorized personnel can access these tools."
-  },
-  "Forums": {
-    "title": "Community Forums",
-    "description": "Connect, share knowledge, and collaborate with stakeholders from across the agricultural supply chain.",
-    "createTopic": "Create New Topic",
-    "pinning": {
-      "pinnedTitle": "Forums Pinned",
-      "pinnedDescription": "The forums page is now your default homepage.",
-      "unpinnedTitle": "Forums Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to the default."
     },
-    "buttons": {
-      "createTopic": "Create Topic",
-      "loadMore": "Load More",
-      "loadingMore": "Loading...",
-      "joinDiscussion": "Join Discussion"
-    },
-    "lastActivity": "Last activity {time} ago",
-    "notFound": {
-      "title": "No Matching Topics Found",
-      "tryDifferentSearch": "Try a different search term",
-      "beTheFirst": "Be the first one to create it!",
-      "button": "Create Topic"
-    },
-    "errors": {
-      "loadTitle": "Loading Error",
-      "loadDescription": "An error occurred while fetching forum topics."
-    },
-    "searchPlaceholder": "Search topics...",
-    "postMeta": "By {author} • {date}",
-    "create": {
-      "backLink": "Back to Forums",
-      "title": "Start a New Discussion Topic",
-      "description": "Create a new topic to gather insights and collaborate with the community.",
-      "form": {
-        "nameLabel": "Topic Name",
-        "namePlaceholder": "e.g., Sustainable Coffee Production",
-        "descriptionLabel": "Topic Description",
-        "descriptionPlaceholder": "What is this topic about? A brief description helps others understand its purpose.",
-        "submitButton": "Create Topic",
-        "submittingButton": "Creating..."
-      },
-      "errors": {
-        "auth": {
-          "title": "Authentication Required",
-          "description": "You must be signed in to create a new topic."
+    "promotions": {
+        "title": "My Promotions",
+        "description": "Create and manage coupon codes to attract more buyers.",
+        "backToDashboard": "Back to Dashboard",
+        "signInPrompt": "Please sign in to manage your promotions.",
+        "create": {
+            "title": "Create New Coupon",
+            "description": "Define the details for your new promotional coupon.",
+            "form": {
+                "code": "Coupon Code",
+                "codePlaceholder": "e.g., SALE20",
+                "usageLimit": "Usage Limit",
+                "usageLimitPlaceholder": "e.g., 100",
+                "discountType": "Discount Type",
+                "discountTypePlaceholder": "Select type",
+                "percentage": "Percentage",
+                "fixed": "Fixed Amount",
+                "discountValue": "Discount Value",
+                "expiryDate": "Expiry Date (Optional)",
+                "pickDate": "Pick a date",
+                "submitButton": "Create Coupon"
+            },
+            "toast": {
+                "successTitle": "Coupon Created!",
+                "successDescription": "The coupon '{code}' is now active.",
+                "failTitle": "Creation Failed"
+            }
         },
-        "incomplete": {
-          "title": "Incomplete Information",
-          "description": "Please provide both a name and description for your new topic."
+        "list": {
+            "title": "Existing Coupons",
+            "description": "View and manage your active promotional codes.",
+            "usage": "Usage",
+            "expires": "Expires",
+            "never": "Never",
+            "share": "Share",
+            "noCoupons": "You haven't created any coupons yet.",
+            "toastTitle": "Link Copied!",
+            "toastDescription": "A shareable link for coupon '{link}' has been copied to your clipboard.",
+            "shareModal": {
+                "title": "Share Coupon Code",
+                "description": "Share this link with your customers to apply the coupon automatically.",
+                "link": "Link",
+                "copy": "Copy",
+                "close": "Close"
+            }
         },
-        "general": {
-          "title": "Creation Failed",
-          "description": "An unexpected error occurred while creating the topic."
+        "toast": {
+            "error": "Error",
+            "fetchError": "Could not retrieve your coupons.",
+            "createSuccess": "The coupon '{code}' has been successfully created.",
+            "createFail": "Failed to create coupon",
+            "createError": "An unexpected error occurred.",
+            "linkCopied": "Link Copied!",
+            "shareDescription": "The share link for coupon '{code}' has been copied."
         }
-      },
-      "success": {
-        "title": "Topic Created!",
-        "description": "Your new discussion topic is now live."
-      }
-    },
-    "topic": {
-      "backLink": "Back to All Forums",
-      "buttons": {
-        "createPost": "Create Post",
-        "loadMore": "Load More Posts",
-        "loadingMore": "Loading..."
-      },
-      "postMeta": "By {author} • {date}",
-      "noPosts": {
-        "title": "No Posts Yet",
-        "description": "Be the first to start a discussion in this topic.",
-        "button": "Start Discussion"
-      },
-      "notFound": {
-        "title": "Topic Not Found",
-        "description": "The discussion topic you are looking for does not exist, or may have been moved.",
-        "backButton": "Back to Forums"
-      },
-      "errors": {
-        "loadTopic": {
-          "title": "Loading Error",
-          "description": "Could not load the details of this topic."
-        },
-        "loadPosts": {
-          "title": "Loading Error",
-          "description": "Could not load posts for this topic."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Back to Topic",
-      "aiHelper": {
-        "title": "Need help getting started?",
-        "description": "Use our AI Assistant to draft your post. Just provide a prompt below.",
-        "promptLabel": "Your idea or question",
-        "promptPlaceholder": "e.g., 'Ask about the best organic pesticides for coffee leaf rust'",
-        "generateButton": "Generate Draft",
-        "generatingButton": "Generating..."
-      },
-      "title": "Create a New Post",
-      "description": "Share your thoughts, ask a question, or start a discussion.",
-      "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter a clear and concise title",
-        "contentLabel": "Your Content",
-        "contentPlaceholder": "Write your post here...",
-        "submitButton": "Publish Post",
-        "submittingButton": "Publishing..."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Prompt Required",
-          "description": "Please enter an idea or question for the AI to generate a draft."
-        },
-        "aiDraft": {
-          "title": "AI Draft Failed",
-          "description": "An error occurred while generating the draft. Please try again or write the post manually."
-        },
-        "incomplete": {
-          "title": "Incomplete Post",
-          "description": "Please provide both a title and content for your post."
-        },
-        "general": {
-          "title": "Post Creation Failed",
-          "description": "An unexpected error occurred. Please try again."
-        }
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Draft Created!",
-          "description": "The AI has generated a draft below. Feel free to edit it before publishing."
-        },
-        "title": "Post Published!",
-        "description": "Your post is now live in the topic."
-      }
-    },
-    "postView": {
-      "backLink": "Back to {topicName}",
-      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
-      "noReplies": "No replies yet. Be the first to respond!",
-      "buttons": {
-        "loadMore": "Load More Replies",
-        "loadingMore": "Loading..."
-      },
-      "reply": {
-        "title": "Your Reply",
-        "placeholder": "Write your reply here...",
-        "submitButton": "Post Reply",
-        "submittingButton": "Posting...",
-        "success": "Your reply has been posted!"
-      },
-      "notFound": {
-        "title": "Post Not Found",
-        "description": "The post you are looking for does not exist or may have been moved.",
-        "backButton": "Back to Forum"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error",
-          "description": "Could not load post details."
-        },
-        "loadReplies": {
-          "title": "Error",
-          "description": "Could not load replies for this post."
-        },
-        "submitReply": {
-          "title": "Reply Failed",
-          "description": "Could not send your reply. Please try again."
-        },
-        "emptyReply": "Your reply cannot be empty."
-      }
-    }
-  },
-  "GroupsPage": {
-    "title": "Community Groups",
-    "description": "Find and join groups based on your interests, location, or expertise.",
-    "createGroupButton": "Create New Group",
-    "searchPlaceholder": "Search for groups...",
-    "notFound": "No groups found.",
-    "detail": {
-      "backLink": "Back to All Groups",
-      "discussionsTitle": "Discussions",
-      "startDiscussionButton": "Start a Discussion",
-      "by": "by {author}",
-      "noDiscussions": "No discussions started yet.",
-      "beTheFirst": "Be the first one to start a discussion!",
-      "actionsTitle": "Group Actions",
-      "leaveButton": "Leave Group",
-      "leavingButton": "Leaving...",
-      "joinButton": "Join Group",
-      "requestJoinButton": "Request to Join",
-      "joiningButton": "Joining...",
-      "loginToJoinButton": "Login to Join",
-      "membersTitle": "{memberCount} Members",
-      "notFound": {
-        "title": "Group Not Found",
-        "description": "The group you are looking for does not exist.",
-        "backButton": "Back to Groups"
-      },
-      "toast": {
-        "loadError": {
-          "title": "Error",
-          "description": "Could not load group data."
-        },
-        "loginToJoin": "Please log in to join this group.",
-        "joinSuccess": "You have successfully joined the group!",
-        "joinError": "Failed to join the group.",
-        "leaveSuccess": "You have left the group.",
-        "leaveError": "Failed to leave the group."
-      }
-    },
-    "create": {
-      "backLink": "Back to Groups",
-      "title": "Create a New Group",
-      "description": "Start a new community around a shared interest or project.",
-      "form": {
-        "nameLabel": "Group Name",
-        "namePlaceholder": "e.g., Organic Coffee Growers of Kenya",
-        "descriptionLabel": "Group Description",
-        "descriptionPlaceholder": "What is the purpose of this group?",
-        "publicLabel": "Public Group (anyone can join)",
-        "submitButton": "Create Group",
-        "submittingButton": "Creating..."
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentication Required",
-          "description": "You must be logged in to create a group."
-        },
-        "incomplete": {
-          "title": "Incomplete Information",
-          "description": "Please provide a name and description for your group."
-        },
-        "error": {
-          "title": "Creation Failed",
-          "description": "Could not create the group. Please try again."
-        },
-        "success": {
-          "title": "Group Created!",
-          "description": "Your new group is now live."
-        }
-      }
-    },
-    "createPost": {
-      "backLink": "Back to Group",
-      "title": "Start a New Post",
-      "description": "Share an update or ask a question within the group.",
-      "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter a clear and concise title",
-        "contentLabel": "Your Content",
-        "contentPlaceholder": "Write your post here...",
-        "submitButton": "Publish Post",
-        "submittingButton": "Publishing..."
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentication Required",
-          "description": "You must be a member to post in this group."
-        },
-        "incomplete": {
-          "title": "Incomplete Post",
-          "description": "Please provide a title and content for your post."
-        },
-        "error": {
-          "title": "Post Failed",
-          "description": "Could not publish your post. Please try again."
-        },
-        "success": {
-          "title": "Post Published!",
-          "description": "Your post is now live in the group."
-        }
-      }
-    },
-    "postDetail": {
-      "backLink": "Back to {groupName}",
-      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
-      "noReplies": "No replies yet. Be the first to respond!",
-      "loadMoreButton": "Load More Replies",
-      "loadingMoreButton": "Loading...",
-      "yourReplyTitle": "Your Reply",
-      "replyPlaceholder": "Write your reply here...",
-      "replySubmitButton": "Post Reply",
-      "submittingButton": "Posting...",
-      "notFound": {
-        "title": "Post Not Found",
-        "description": "The post you are looking for does not exist.",
-        "backButton": "Back to Group"
-      },
-      "toast": {
-        "loadPostError": {
-          "title": "Error",
-          "description": "Could not load post details."
-        },
-        "loadRepliesError": {
-          "title": "Error",
-          "description": "Could not load replies."
-        },
-        "emptyReply": "Your reply cannot be empty.",
-        "submitError": {
-          "title": "Reply Failed",
-          "description": "Could not post your reply."
-        },
-        "replySuccess": "Reply posted!"
-      }
-    }
-  },
-  "messagingPage": {
-    "title": "Messages",
-    "searchPlaceholder": "Search conversations...",
-    "noConversations": "You have no conversations yet.",
-    "selectConversation": "Select a conversation to start chatting.",
-    "typeMessagePlaceholder": "Type a message...",
-    "signInToView": "Please sign in to view your messages.",
-    "signIn": "Sign In",
-    "error": "Error",
-    "couldNotLoadConversations": "Could not load your conversations.",
-    "couldNotStartConversation": "Could not start a new conversation.",
-    "sendFailed": "Send Failed",
-    "couldNotSendMessage": "Could not send your message. Please try again."
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find agricultural jobs, skilled labor, and professional services.",
-    "listServiceButton": "List a Service / Job",
-    "searchPlaceholder": "Search by skill, role, or keyword...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by service category...",
-    "allCategories": "All Service Categories",
-    "noResultsTitle": "No Services or Talent Found",
-    "noResultsDescription": "Try adjusting your search filters or be the first to list a service in your area.",
-    "toast": {
-      "error": {
-        "title": "Error",
-        "description": "Could not load services from the Talent Exchange."
-      }
-    }
-  },
-  "traceabilityPage": {
-    "title": "Traceability Hub",
-    "description": "Verify the journey of your food. Track any product batch from farm to table using its Vibrant Traceability ID (VTI).",
-    "inputPlaceholder": "Enter VTI Batch ID...",
-    "trackButton": "Track",
-    "vtiDescription": "A VTI is a unique identifier assigned to each agricultural batch, enabling end-to-end transparency.",
-    "recentTitle": "Recently Tracked Batches",
-    "recentDescription": "Here are some of the latest product batches with public traceability data.",
-    "noRecentBatches": "No public batches have been logged recently.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "viewReportButton": "View Full Report",
-    "detailPage": {
-      "backLink": "Back to Traceability Hub",
-      "invalidIdError": "No valid batch ID was provided.",
-      "loadError": "Could not load the traceability report for this batch.",
-      "notFoundTitle": "Batch Not Found",
-      "notFoundDescription": "The VTI you entered does not match any batch in our records. Please check the ID and try again.",
-      "traceableProduct": "Traceable Product",
-      "batchIdLabel": "Batch ID",
-      "producerLabel": "Producer",
-      "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Initial Yield",
-      "qualityLabel": "Initial Quality Grade",
-      "notSpecified": "Not Specified",
-      "journeyTitle": "Product Journey",
-      "journeyDescription": "Follow the complete journey of this batch from the farm.",
-      "noEventsFound": "No events have been logged for this batch yet.",
-      "noEventDetails": "No additional details provided for this event.",
-      "geoLocationLabel": "Geolocation",
-      "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product was grown using sustainable and organic-friendly inputs logged on the DamDoh platform.",
-      "observationType": "Observation Type",
-      "details": "Details",
-      "aiDiagnosis": "AI-Powered Diagnosis"
-    }
-  },
-  "InsurancePage": {
-    "title": "Insurance Hub",
-    "description": "Protect your farm and business from unforeseen risks with tailored agricultural insurance products.",
-    "perTerm": "per term",
-    "viewDetailsButton": "View Details",
-    "noProducts": "There are no insurance products available at this time.",
-    "toast": {
-      "errorTitle": "Error Loading Products"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Back to Insurance Hub",
-    "notFound": "Insurance product not found.",
-    "coverageTitle": "Coverage Details",
-    "premiumTitle": "Premium",
-    "perTerm": "per term",
-    "providerTitle": "Provided By",
-    "applyButton": "Apply for this Policy",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Back to Insurance Products",
-    "title": "Apply for Insurance",
-    "description": "Apply for the '{productName}' policy by selecting your farm.",
-    "form": {
-      "farmLabel": "Farm to Insure",
-      "farmPlaceholder": "Select your farm",
-      "noFarms": "Please add a farm first",
-      "coverageValueLabel": "Value to Insure (USD)",
-      "coverageValuePlaceholder": "e.g., 10000",
-      "coverageValueDescription": "The total value you wish to insure.",
-      "submitButton": "Submit Application"
-    },
-    "success": {
-      "title": "Application Submitted",
-      "description": "Your insurance application has been sent for review.",
-      "backToDashboardButton": "Back to Dashboard",
-      "applyForAnotherButton": "Apply for Another"
-    },
-    "toast": {
-      "error": "Error",
-      "notAuthenticated": "You must be signed in to apply.",
-      "successTitle": "Application Sent!",
-      "successDescription": "Your insurance application is now under review."
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "Manage Insurance Products",
-    "description": "Create and manage the insurance products you offer on the platform.",
-    "createButton": "Create New Product",
-    "noProducts": "You have not created any insurance products yet.",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "premium": "Premium"
-    },
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create New Insurance Product",
-    "description": "Define a new insurance product to offer to farmers and agribusinesses.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
-      "typeLabel": "Product Type",
-      "typePlaceholder": "Select a type",
-      "crop": "Crop",
-      "livestock": "Livestock",
-      "asset": "Asset",
-      "weather": "Weather (Parametric)",
-      "descriptionLabel": "Short Description",
-      "descriptionPlaceholder": "A brief overview of the product.",
-      "coverageLabel": "Coverage Details",
-      "coveragePlaceholder": "Describe what this policy covers in detail...",
-      "premiumLabel": "Premium",
-      "premiumPlaceholder": "e.g., 250.00",
-      "currencyLabel": "Currency",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be signed in as an Insurance Provider.",
-      "errorTitle": "Creation Failed",
-      "successTitle": "Product Created",
-      "successDescription": "The product '{name}' is now available on the platform."
-    }
-  },
-  "FiProductsPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Financial Products",
-    "description": "Manage the loan and grant products you offer to the community.",
-    "createButton": "Create New Product",
-    "noProducts": "You have not created any financial products yet.",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create New Financial Product",
-    "description": "Define a new loan or grant product to be listed on the platform.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Smallholder Seed Loan",
-      "typeLabel": "Product Type",
-      "loan": "Loan",
-      "grant": "Grant",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
-      "interestRateLabel": "Interest Rate (%)",
-      "interestRatePlaceholder": "e.g., 12.5",
-      "maxAmountLabel": "Max Amount (USD)",
-      "maxAmountPlaceholder": "e.g., 5000",
-      "targetRolesLabel": "Target Audience",
-      "targetRolesDescription": "Select the stakeholder roles this product is available for.",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be signed in as a Financial Institution.",
-      "errorTitle": "Creation Failed",
-      "successTitle": "Product Created",
-      "successDescription": "The product '{name}' is now available."
-    }
-  },
-  "FiApplicationListPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Financial Applications",
-    "description": "Review and manage incoming loan and grant applications from users.",
-    "tabs": {
-      "all": "All",
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "date": "Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "noApplications": "There are no applications in this category.",
-    "reviewButton": "Review"
-  },
-  "FiApplicationPage": {
-    "backLink": "Back to All Applications",
-    "title": "Application Details",
-    "applicationTitle": "Application",
-    "submittedOn": "Submitted on",
-    "amountRequested": "Amount Requested",
-    "purpose": "Purpose of Funds",
-    "approveButton": "Approve",
-    "rejectButton": "Reject",
-    "requestInfoButton": "Request More Info",
-    "applicantDetails": "Applicant Details",
-    "viewProfileButton": "View Full Profile",
-    "profileNotFound": "Applicant profile not found.",
-    "riskAssessment": "AI Risk Assessment",
-    "creditScore": "Credit Score",
-    "notFound": "Application not found.",
-    "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "Status Updated",
-      "updateSuccessDescription": "Application status has been set to {status}.",
-      "updateFailTitle": "Update Failed"
-    }
-  },
-  "pinboardPage": {
-    "title": "Pinboard",
-    "description": "Your personal space to save and organize items from across the platform.",
-    "comingSoonTitle": "Coming Soon!",
-    "comingSoonDescription": "The Pinboard will allow you to save marketplace listings, forum posts, profiles, and more for easy access later.",
-    "stayTuned": "Stay tuned for updates."
-  },
-  "sustainabilityPage": {
-    "title": "Sustainability Dashboard",
-    "description": "Track and improve the environmental impact of your agricultural practices.",
-    "carbonFootprint": "Carbon Footprint",
-    "waterEfficiency": "Water Efficiency",
-    "biodiversityScore": "Biodiversity Score",
-    "practicesTitle": "Sustainable Practices Log",
-    "certificationsTitle": "Active Certifications",
-    "metricCard": {
-      "trendText": "from last month"
-    },
-    "practicesTable": {
-      "practice": "Practice",
-      "lastLogged": "Last Logged"
-    },
-    "certificationsTable": {
-      "certification": "Certification",
-      "status": "Status",
-      "expiry": "Expires"
-    },
-    "auth": {
-      "title": "Please Sign In",
-      "description": "You need to be logged in to view your sustainability dashboard.",
-      "button": "Sign In"
-    },
-    "noData": {
-      "title": "Data Unavailable",
-      "description": "We could not load your sustainability data at this time."
-    }
-  },
-  "admin": {
-    "layout": {
-      "title": "Admin Panel",
-      "description": "This area is for authorized administrators only.",
-      "contentManagement": "Content",
-      "reports": "Reports"
-    },
-    "dashboard": {
-      "title": "Admin Dashboard",
-      "description": "Welcome to the DamDoh administration panel.",
-      "content": "From here, you can manage various aspects of the platform, such as the Knowledge Hub content.",
-      "contentManagementButton": "Manage Content"
-    },
-    "contentManagement": {
-      "allArticles": {
-        "title": "Content Management",
-        "description": "Manage all knowledge articles, blog posts, and news items.",
-        "refreshButton": "Refresh"
-      },
-      "table": {
-        "title": "Title",
-        "category": "Category",
-        "status": "Status",
-        "created": "Created",
-        "actions": "Actions",
-        "noArticles": "No articles have been created yet."
-      },
-      "createArticle": {
-        "title": "Create New Content",
-        "description": "Add a new article to the Knowledge Hub or Blog.",
-        "englishContent": "English Content",
-        "titleEnLabel": "Title (English)",
-        "excerptEnLabel": "Excerpt (English)",
-        "contentEnLabel": "Content (Markdown, English)",
-        "khmerContent": "Khmer Content",
-        "titleKmLabel": "Title (Khmer)",
-        "excerptKmLabel": "Excerpt (Khmer)",
-        "contentKmLabel": "Content (Markdown, Khmer)",
-        "metadataTitle": "Metadata",
-        "categoryLabel": "Category",
-        "categoryPlaceholder": "e.g. Blog, Industry News, KNF Guide",
-        "authorLabel": "Author",
-        "authorPlaceholder": "e.g. DamDoh Team",
-        "statusLabel": "Status",
-        "tagsLabel": "Tags (comma-separated)",
-        "imageUrlLabel": "Image URL",
-        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-        "aiHintLabel": "Image AI Hint",
-        "aiHintPlaceholder": "e.g. coffee beans, farmer portrait",
-        "publishingButton": "Publishing...",
-        "publishButton": "Publish Article"
-      },
-      "toast": {
-        "loadErrorTitle": "Error",
-        "loadErrorDescription": "Could not load content.",
-        "createSuccessTitle": "Article Created",
-        "createSuccessDescription": "The new article has been published.",
-        "createErrorTitle": "Creation Failed"
-      }
-    },
-    "reports": {
-      "generate": {
-        "title": "Generate Regulatory Report",
-        "description": "Create on-demand reports for compliance and auditing purposes.",
-        "reportTypeLabel": "Report Type",
-        "reportTypeVti": "VTI Events Summary",
-        "targetUserLabel": "Target User",
-        "userSearchPlaceholder": "Search by name or email...",
-        "dateRangeLabel": "Date Range",
-        "datePlaceholder": "Select date range",
-        "submitButton": "Generate Report"
-      },
-      "list": {
-        "title": "Generated Reports",
-        "description": "View and download previously generated reports.",
-        "table": {
-          "reportType": "Report Type",
-          "generatedFor": "Generated For",
-          "date": "Date",
-          "status": "Status",
-          "actions": "Actions"
-        },
-        "viewButton": "View",
-        "noReports": "No reports have been generated yet."
-      },
-      "toast": {
-        "loadErrorTitle": "Error",
-        "formIncompleteTitle": "Form Incomplete",
-        "formIncompleteDescription": "Please select a report type, target user, and date range.",
-        "generateSuccessTitle": "Generating Report",
-        "generateSuccessDescription": "The report is being created and will appear in the list below shortly.",
-        "generateErrorTitle": "Generation Failed"
-      }
     }
   },
   "farmManagement": {
@@ -1738,7 +1016,7 @@
     "chart": {
       "count": "Count",
       "published": "Published",
-      "pending": "Pending",
+      "pending": "Pending Review",
       "draft": "Draft"
     }
   },
@@ -1836,7 +1114,7 @@
       "status": "Status",
       "action": "Action"
     },
-    "viewLeadButton": "View",
+    "viewLeadButton": "View Lead",
     "noLeads": "No active project leads.",
     "statusLabels": {
       "new": "New",
@@ -2136,5 +1414,25 @@
     "postButton": "Post",
     "pollOptionsError": "A poll must have at least 2 non-empty options.",
     "emptyPostError": "Your post cannot be empty."
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code must be at least 4 characters.",
+        "max": "Code cannot exceed 20 characters.",
+        "regex": "Code must be alphanumeric."
+      },
+      "discountType": {
+        "required": "Please select a discount type."
+      },
+      "discountValue": {
+        "invalid": "Discount value must be a number.",
+        "positive": "Discount value must be positive.",
+        "percentageMax": "Percentage discount cannot exceed 100."
+      },
+      "usageLimit": {
+        "positive": "Usage limit must be a positive number."
+      }
+    }
   }
 }

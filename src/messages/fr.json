@@ -405,7 +405,7 @@
     },
     "privacyRights": {
       "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
-      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
+      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci могут inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
     },
     "controlsForDoNotTrack": {
       "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS 'NE PAS SUIVRE'",
@@ -719,6 +719,62 @@
         "loadError": "Impossible de charger les données de la boutique.",
         "title": "Erreur"
       }
+    },
+    "promotions": {
+        "title": "Mes promotions",
+        "description": "Créez et gérez des codes de réduction pour attirer plus d'acheteurs.",
+        "backToDashboard": "Retour au tableau de bord",
+        "signInPrompt": "Veuillez vous connecter pour gérer vos promotions.",
+        "create": {
+            "title": "Créer un nouveau coupon",
+            "description": "Définissez les détails de votre nouveau coupon promotionnel.",
+            "form": {
+                "code": "Code du coupon",
+                "codePlaceholder": "Ex : VENTE20",
+                "usageLimit": "Limite d'utilisation",
+                "usageLimitPlaceholder": "Ex : 100",
+                "discountType": "Type de réduction",
+                "discountTypePlaceholder": "Sélectionnez un type",
+                "percentage": "Pourcentage",
+                "fixed": "Montant fixe",
+                "discountValue": "Valeur de la réduction",
+                "expiryDate": "Date d'expiration (Optionnel)",
+                "pickDate": "Choisissez une date",
+                "submitButton": "Créer le coupon"
+            },
+            "toast": {
+                "successTitle": "Coupon créé !",
+                "successDescription": "Le coupon '{code}' est maintenant actif.",
+                "failTitle": "La création a échoué"
+            }
+        },
+        "list": {
+            "title": "Coupons existants",
+            "description": "Affichez et gérez vos codes promotionnels actifs.",
+            "usage": "Utilisation",
+            "expires": "Expire le",
+            "never": "Jamais",
+            "share": "Partager",
+            "noCoupons": "Vous n'avez encore créé aucun coupon.",
+            "toastTitle": "Lien copié !",
+            "toastDescription": "Un lien partageable pour le coupon '{link}' a été copié dans votre presse-papiers.",
+            "shareModal": {
+                "title": "Partager le code du coupon",
+                "description": "Partagez ce lien avec vos clients pour appliquer le coupon automatiquement.",
+                "link": "Lien",
+                "copy": "Copier",
+                "close": "Fermer"
+            }
+        },
+        "toast": {
+            "error": "Erreur",
+            "fetchError": "Impossible de récupérer vos coupons.",
+            "createSuccess": "Le coupon '{code}' a été créé avec succès.",
+            "createFail": "Impossible de créer le coupon",
+            "createError": "Une erreur inattendue s'est produite.",
+            "linkCopied": "Lien copié !",
+            "shareDescription": "Le lien de partage pour le coupon '{code}' a été copié."
+        }
     }
   },
   "farmManagement": {
@@ -1358,7 +1414,25 @@
     "postButton": "Publier",
     "pollOptionsError": "Un sondage doit avoir au moins 2 options non vides.",
     "emptyPostError": "Votre publication ne peut pas être vide."
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Le code doit comporter au moins 4 caractères.",
+        "max": "Le code ne peut pas dépasser 20 caractères.",
+        "regex": "Le code doit être alphanumérique."
+      },
+      "discountType": {
+        "required": "Veuillez sélectionner un type de réduction."
+      },
+      "discountValue": {
+        "invalid": "La valeur de la réduction doit être un nombre.",
+        "positive": "La valeur de la réduction doit être positive.",
+        "percentageMax": "La réduction en pourcentage ne peut pas dépasser 100."
+      },
+      "usageLimit": {
+        "positive": "La limite d'utilisation doit être un nombre positif."
+      }
+    }
   }
 }
-
-    
