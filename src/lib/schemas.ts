@@ -1,13 +1,9 @@
-
 import { z } from "zod";
 
-// Note: For backend schemas, we use z.string() for enums instead of z.enum(...)
-// to avoid a direct dependency on the constants file, simplifying cross-package logic.
-// The stricter enum validation is handled on the frontend form schemas.
-
 // =================================================================
-// 1. CORE DATA SCHEMAS
-// These schemas define the shape of data in Firestore.
+// SINGLE SOURCE OF TRUTH FOR CORE DATA SCHEMAS
+// These schemas define the shape of data in Firestore and are used for
+// validation on both the frontend (forms) and backend (Cloud Functions).
 // =================================================================
 
 export const StakeholderProfileSchema = z.object({
@@ -17,18 +13,18 @@ export const StakeholderProfileSchema = z.object({
   primaryRole: z.string(),
   secondaryRoles: z.array(z.string()).optional(),
   location: z.string().optional(),
-  avatarUrl: z.string().url().optional(),
-  bannerUrl: z.string().url().optional(),
+  avatarUrl: z.string().url().optional().nullable(),
+  bannerUrl: z.string().url().optional().nullable(),
   profileSummary: z.string().optional(),
   bio: z.string().optional(),
   areasOfInterest: z.array(z.string()).optional(),
   needs: z.array(z.string()).optional(),
   contactInfo: z.object({
-    phone: z.string().optional(),
-    website: z.string().url().optional(),
+    phone: z.string().optional().nullable(),
+    website: z.string().url().optional().nullable(),
   }).optional(),
   connections: z.array(z.string()).optional(), // Array of user IDs
-  stakeholderProfile: z.any().optional(), // For role-specific data
+  profileData: z.any().optional(), // For role-specific data
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
 });
@@ -44,7 +40,7 @@ export const MarketplaceItemSchema = z.object({
   perUnit: z.string().optional(),
   category: z.string(), // Should map to a valid category ID
   location: z.string(),
-  imageUrl: z.string().url().optional(),
+  imageUrl: z.string().url().optional().nullable(),
   imageUrls: z.array(z.string().url()).optional(),
   isSustainable: z.boolean().optional(),
   sellerVerification: z.string().optional(),
@@ -77,19 +73,27 @@ export const MarketplaceOrderSchema = z.object({
   updatedAt: z.any(), // Firestore Timestamp
 });
 
-
-export const AgriEventSchema = z.object({
-  id: z.string(),
-  title: z.string(),
+export const ShopSchema = z.object({
+  name: z.string(),
   description: z.string(),
-  eventType: z.string(),
-  eventDate: z.any(), // Firestore Timestamp
-  location: z.string(),
-  organizer: z.string().optional(),
-  imageUrl: z.string().url().optional(),
-  createdAt: z.any(), // Firestore Timestamp
+  stakeholderType: z.string(),
 });
 
+export const AgriEventSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  eventDate: z.string(),
+  eventTime: z.string().optional(),
+  location: z.string(),
+  eventType: z.string(),
+  organizer: z.string().optional(),
+  websiteLink: z.string().optional(),
+  imageUrl: z.string().optional(),
+  registrationEnabled: z.boolean().optional(),
+  attendeeLimit: z.number().optional().nullable(),
+  price: z.number().optional().nullable(),
+  currency: z.string().optional(),
+});
 
 export const ForumPostSchema = z.object({
     id: z.string(),

@@ -1,5 +1,3 @@
-
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -7,9 +5,9 @@ import type {
     MarketplaceOrderSchema,
     ForumPostSchema,
     AgriEventSchema,
-    SmartSearchInterpretationSchema,
-    MarketplaceRecommendationOutputSchema
-} from './schemas';
+    MarketplaceRecommendationOutputSchema,
+    SmartSearchInterpretationSchema
+} from './schemas'; // Updated import path
 import type { LucideIcon } from 'lucide-react';
 
 
@@ -348,7 +346,7 @@ export interface ProcessingUnitDashboardData {
     id: string;
     supplierName: string;
     deliveryDate: string;
-    status: 'string';
+    status: string;
     actionLink: string;
   }[];
   packagingInventory: {
@@ -635,7 +633,6 @@ export interface FinancialApplication {
   applicantProfile?: UserProfile;
 }
 
-
 export type KnfBatch = {
     id: string;
     userId: string;
@@ -701,7 +698,7 @@ export interface FeedItem {
   userHeadline?: string;
   content: string;
   link: string;
-  imageUrl?: string;
+  postImage?: string;
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
@@ -814,6 +811,7 @@ export interface PaymentLog {
 
 export type ServiceItem = MarketplaceItem & {
     listingType: 'Service';
+    skillsRequired: string[];
     compensation: string;
     experienceLevel: string;
 };

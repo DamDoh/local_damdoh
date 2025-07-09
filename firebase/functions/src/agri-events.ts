@@ -1,6 +1,6 @@
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { AgriEventSchema } from "@/lib/schemas"; // Import the schema
 
 const db = admin.firestore();
 
@@ -103,12 +103,14 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
 
 export const createAgriEvent = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
-    const { title, description, eventDate, eventTime, location, eventType, organizer, websiteLink, imageUrl, registrationEnabled, attendeeLimit, price, currency } = data;
     
-    if (!title || !description || !eventDate || !location || !eventType) {
-        throw new functions.https.HttpsError('invalid-argument', 'Missing required event fields.');
+    const validation = AgriEventSchema.safeParse(data);
+    if (!validation.success) {
+      throw new functions.https.HttpsError('invalid-argument', 'Invalid event data.', validation.error.format());
     }
 
+    const { title, description, eventDate, eventTime, location, eventType, organizer, websiteLink, imageUrl, registrationEnabled, attendeeLimit, price, currency } = validation.data;
+    
     const newEventRef = db.collection('agri_events').doc();
     
     await newEventRef.set({
@@ -120,7 +122,7 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
         eventType,
         organizer: organizer || null,
         organizerId: uid,
-        listerId: uid, // Can be different from organizer in some models
+        listerId: uid,
         websiteLink: websiteLink || null,
         imageUrl: imageUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -267,7 +269,6 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "Event ID and Attendee UID are required.");
     }
     
-    // 1. Verify the caller is the event organizer or designated staff
     const eventRef = db.collection('agri_events').doc(eventId);
     const eventDoc = await eventRef.get();
     const eventData = eventDoc.data();
@@ -283,14 +284,12 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in attendees for this event.");
     }
 
-    // 2. Get attendee's name for response message
     const attendeeUserDoc = await db.collection('users').doc(attendeeUid).get();
     if (!attendeeUserDoc.exists) {
         throw new functions.https.HttpsError("not-found", "No user found with the provided ID.");
     }
     const attendeeName = attendeeUserDoc.data()?.displayName || 'Unknown Attendee';
 
-    // 3. Check registration and update status
     const attendeeRef = eventRef.collection('attendees').doc(attendeeUid);
     return db.runTransaction(async (transaction) => {
         const attendeeDoc = await transaction.get(attendeeRef);
@@ -340,9 +339,7 @@ export const getEventAttendees = functions.https.onCall(async (data, context) =>
     return { attendees };
 });
 
-// =================================================================
 // STAFF MANAGEMENT FUNCTIONS
-// =================================================================
 
 export const searchUsersForStaffing = functions.https.onCall(async (data, context) => {
     checkAuth(context);
@@ -453,5 +450,3 @@ export const removeEventStaff = functions.https.onCall(async (data, context) => 
     
     return { success: true, message: "Staff member has been removed." };
 });
-
-    

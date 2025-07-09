@@ -1,15 +1,14 @@
-
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
     ForumPostSchema,
-    AgriEventSchema
-} from './schemas';
+    AgriEventSchema,
+    MarketplaceRecommendationOutputSchema,
+    SmartSearchInterpretationSchema
+} from '@/lib/schemas'; // Updated import path
 import type { LucideIcon } from 'lucide-react';
-import type { MarketplaceRecommendationOutputSchema } from '@/ai/flows/marketplace-recommendations';
 
 
 // =================================================================
@@ -343,7 +342,7 @@ export interface ProcessingUnitDashboardData {
     id: string;
     supplierName: string;
     deliveryDate: string;
-    status: string;
+    status: 'string';
     actionLink: string;
   }[];
   packagingInventory: {
@@ -750,7 +749,7 @@ export interface FeedItem {
   userHeadline?: string;
   content: string;
   link: string;
-  imageUrl?: string;
+  postImage?: string;
   dataAiHint?: string;
   likesCount: number;
   commentsCount: number;
@@ -863,10 +862,10 @@ export interface PaymentLog {
 
 export type ServiceItem = MarketplaceItem & {
     listingType: 'Service';
-    skillsRequired: string[];
     compensation: string;
     experienceLevel: string;
 };
 
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
