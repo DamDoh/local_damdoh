@@ -399,17 +399,19 @@
     "createListingButton": "Crear Anuncio",
     "pinButton": "Anclar como Inicio",
     "unpinButton": "Desanclar del Inicio",
+    "searchPlaceholder": "Buscar productos y servicios...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "typePlaceholder": "Filtrar por tipo...",
+    "recommendedForYou": "Recomendado para Ti",
+    "discoverMore": "Descubre Más",
+    "viewDetails": "Ver Detalles",
+    "viewServiceButton": "Ver Servicio",
     "pinning": {
       "pinnedTitle": "Mercado Anclado",
       "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
       "unpinnedTitle": "Mercado Desanclado",
       "unpinnedDescription": "Tu página de inicio ha sido restablecida al valor predeterminado."
     },
-    "searchPlaceholder": "Buscar productos y servicios...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "typePlaceholder": "Filtrar por tipo...",
-    "recommendedForYou": "Recomendado para Ti",
-    "discoverMore": "Descubre Más",
     "noItemsFound": {
       "title": "No se encontraron artículos",
       "hint": "Intenta ajustar tus filtros de búsqueda o vuelve más tarde."
@@ -428,89 +430,10 @@
       "viewAllItems": "Ver Todos los Artículos",
       "viewAllCategory": "Todo en {categoryName}"
     },
-    "itemView": {
-      "backLink": "Volver al Mercado",
-      "traceabilityButton": "Ver Informe de Trazabilidad",
-      "aboutSeller": "Sobre el Vendedor",
-      "viewShopfront": "Ver Tienda",
-      "editListing": "Editar Anuncio",
-      "manageService": "Gestionar Servicio",
-      "contactSeller": "Contactar al Vendedor",
-      "contactForService": "Contactar por Servicio",
-      "buyNowButton": "Comprar Ahora",
-      "viewDetails": "Ver Detalles",
-      "viewServiceButton": "Ver Servicio",
-      "notFound": {
-        "description": "El anuncio que buscas no se pudo encontrar."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "Hubo un error al cargar este artículo."
-        },
-        "unexpected": "Ocurrió un error inesperado."
-      },
-      "skillsLabel": "Habilidades Requeridas",
-      "experienceLabel": "Nivel de Experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "coupon": {
-        "label": "¿Tienes un código de cupón?",
-        "placeholder": "Ingresa el código",
-        "applyButton": "Aplicar",
-        "successTitle": "¡Cupón Aplicado!",
-        "successDescription": "Se ha aplicado tu descuento de {discount} de tipo {type}.",
-        "failTitle": "Cupón Inválido",
-        "failDescription": "El código de cupón no es válido para este vendedor o ha expirado.",
-        "appliedText": "Cupón aplicado: {code}"
-      },
-      "booking": {
-        "perNight": "noche",
-        "checkIn": "Check-in",
-        "checkOut": "Check-out",
-        "addDate": "Añadir fecha",
-        "guests": "Huéspedes",
-        "notCharged": "Aún no se te cobrará",
-        "nights": "noches",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "authTitle": "Inicia Sesión para Reservar",
-        "authDescription": "Debes iniciar sesión para reservar este servicio.",
-        "failTitle": "Reserva Fallida",
-        "dateError": "Por favor, selecciona una fecha de entrada y salida.",
-        "successTitle": "¡Reserva Confirmada!",
-        "successDescription": "Tu reserva ha sido confirmada. Recibirás los detalles en breve.",
-        "bookedTitle": "¡Estás Reservado!",
-        "bookedDescription": "Muestra este código QR en el check-in.",
-        "ticketButton": "Ver Ticket de Check-in",
-        "modalTitle": "Tu Ticket de Check-in",
-        "modalDescription": "Presenta este código QR para tu reserva de {itemName}.",
-        "modalScan": "Escanea este código en el lugar para un check-in fácil."
-      },
-      "order": {
-        "title": "Hacer un pedido de {itemName}",
-        "description": "Confirma la cantidad y añade cualquier nota para el vendedor.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas para el vendedor (opcional)",
-        "notesPlaceholder": "Ej: instrucciones de entrega específicas",
-        "cancelButton": "Cancelar",
-        "confirmButton": "Confirmar Pedido",
-        "placingButton": "Realizando pedido...",
-        "authTitle": "Inicia Sesión para Pedir",
-        "authDescription": "Debes iniciar sesión para hacer un pedido.",
-        "quantityErrorTitle": "Cantidad Inválida",
-        "quantityErrorDescription": "Por favor, introduce una cantidad mayor que cero.",
-        "successTitle": "¡Pedido Realizado!",
-        "successDescription": "Tu pedido ha sido enviado al vendedor.",
-        "failTitle": "Pedido Fallido",
-        "failDescription": "Hubo un error al realizar tu pedido. Por favor, inténtalo de nuevo."
-      }
-    },
     "createListing": {
       "backLink": "Volver al Mercado",
       "title": "Crear Nuevo Anuncio en el Mercado",
-      "description": "Completa los detalles a continuación para anunciar tu producto o servicio.",
+      "description": "Completa los detalles a continuación para listar tu producto o servicio.",
       "form": {
         "nameLabel": "Título del Anuncio",
         "namePlaceholder": "Ej: Aguacates Hass Orgánicos, Servicio de Reparación de Tractores",
@@ -572,158 +495,8 @@
         "title": "¡Anuncio Creado!",
         "description": "Tu artículo ya está disponible en el mercado."
       }
-    },
-    "myOrders": {
-      "backLink": "Volver al Mercado",
-      "title": "Mis Pedidos Entrantes",
-      "description": "Gestiona los pedidos realizados por los compradores para tus anuncios.",
-      "noOrders": "No tienes pedidos entrantes en este momento.",
-      "auth": {
-        "title": "Por favor, Inicia Sesión",
-        "description": "Necesitas iniciar sesión para ver tus pedidos.",
-        "button": "Iniciar Sesión"
-      },
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron cargar tus pedidos.",
-        "successTitle": "Estado Actualizado",
-        "updateSuccess": "El estado del pedido se actualizó correctamente a {status}.",
-        "failTitle": "Actualización Fallida"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      },
-      "actions": {
-        "confirm": "Confirmar Pedido",
-        "ship": "Marcar como Enviado",
-        "complete": "Completar Pedido",
-        "cancel": "Cancelar Pedido"
-      }
-    },
-    "promotions": {
-      "title": "Mis Promociones y Cupones",
-      "description": "Crea y gestiona códigos de cupón para impulsar las ventas de tus productos.",
-      "backToDashboard": "Volver al Panel",
-      "create": {
-        "title": "Crear Nuevo Cupón",
-        "form": {
-          "code": "Código de Cupón",
-          "codePlaceholder": "Ej: COSECHA20",
-          "usageLimit": "Límite de Uso (opcional)",
-          "usageLimitPlaceholder": "Ej: 100",
-          "discountType": "Tipo de Descuento",
-          "discountTypePlaceholder": "Seleccionar tipo",
-          "percentage": "Porcentaje",
-          "fixed": "Cantidad Fija",
-          "discountValue": "Valor del Descuento",
-          "expiryDate": "Fecha de Vencimiento (opcional)",
-          "pickDate": "Seleccionar una fecha",
-          "submitButton": "Crear Cupón"
-        },
-        "toast": {
-          "successTitle": "¡Cupón Creado!",
-          "successDescription": "Tu cupón {code} ya está activo.",
-          "failTitle": "Creación Fallida"
-        }
-      },
-      "list": {
-        "title": "Tus Cupones Activos",
-        "description": "Comparte estos códigos con compradores potenciales.",
-        "noCoupons": "Aún no has creado ningún cupón.",
-        "expires": "Vence",
-        "usage": "Uso",
-        "share": "Compartir",
-        "toastTitle": "¡Enlace Copiado!",
-        "toastDescription": "Se ha copiado a tu portapapeles un enlace para compartir el cupón {link}.",
-        "shareModal": {
-          "title": "Compartir Cupón",
-          "description": "Copia este enlace y compártelo con tus clientes.",
-          "copy": "Copiar",
-          "close": "Cerrar"
-        }
-      },
-      "toast": {
-        "error": "Error",
-        "fetchError": "No se pudieron cargar tus cupones."
-      }
-    },
-    "createShop": {
-      "title": "Crea tu Escaparate Digital",
-      "description": "Establece tu marca en DamDoh con una página de tienda dedicada para mostrar todos tus anuncios.",
-      "backLink": "Volver al Mercado",
-      "form": {
-        "nameLabel": "Nombre de la Tienda/Negocio",
-        "namePlaceholder": "Ej: Orgánicos del Valle Verde",
-        "typeLabel": "Tipo de Negocio",
-        "typePlaceholder": "Selecciona tu rol principal",
-        "descriptionLabel": "Descripción de la Tienda",
-        "descriptionPlaceholder": "Habla a los clientes sobre tu negocio, tu misión y lo que ofreces.",
-        "submitButton": "Crear Tienda",
-        "submittingButton": "Creando..."
-      },
-      "toast": {
-        "successTitle": "¡Tienda Creada!",
-        "successDescription": "Tu tienda '{shopName}' ya está activa.",
-        "failTitle": "Creación Fallida",
-        "failDescription": "Hubo un error al crear tu tienda."
-      },
-      "authErrorTitle": "Error de Autenticación",
-      "authErrorDescription": "Debes iniciar sesión para crear una tienda."
-    },
-    "shopView": {
-      "backLink": "Volver al Mercado",
-      "ownedBy": "Propiedad de",
-      "loadingOwner": "Cargando propietario...",
-      "editShopButton": "Editar Tienda",
-      "contactButton": "Contactar al Vendedor",
-      "listingsTitle": "Anuncios de {shopName}",
-      "noListings": "Esta tienda aún no tiene anuncios activos.",
-      "errors": {
-        "notFound": "Tienda no Encontrada",
-        "loadError": "No se pudieron cargar los datos de la tienda."
-      }
-    },
-    "manageService": {
-      "title": "Gestionar Servicio",
-      "backLink": "Volver al Servicio",
-      "loading": "Cargando...",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Reservas",
-        "staff": "Personal"
-      },
-      "bookingsTab": {
-        "title": "Reservas de Huéspedes",
-        "description": "Ver y gestionar todas las reservas para este servicio.",
-        "downloadCsv": "Descargar CSV",
-        "error": "No se pudieron cargar las reservas.",
-        "noBookings": "Todavía no hay reservas para este servicio.",
-        "toast": {
-          "noBookings": "No hay reservas para exportar."
-        },
-        "table": {
-          "guest": "Huésped",
-          "bookedOn": "Reservado el",
-          "status": "Estado",
-          "checkedInAt": "Check-in el"
-        },
-        "status": {
-          "booked": "Reservado",
-          "checkedIn": "Check-in Realizado"
-        }
-      }
     }
   }
 }
+
+    

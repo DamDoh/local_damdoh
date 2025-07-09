@@ -261,7 +261,7 @@
         "descriptionLabel": "Description du Sujet",
         "descriptionPlaceholder": "De quoi traite ce sujet ? Une brève description aide les autres à comprendre son but.",
         "submitButton": "Créer le Sujet",
-        "submittingButton": "Création..."
+        "submittingButton": "Création en cours..."
       },
       "errors": {
         "auth": {
@@ -290,7 +290,7 @@
         "promptLabel": "Votre idée ou question",
         "promptPlaceholder": "Ex: 'Demander quels sont les meilleurs pesticides bio contre la rouille du caféier'",
         "generateButton": "Générer une Ébauche",
-        "generatingButton": "Génération..."
+        "generatingButton": "Génération en cours..."
       },
       "title": "Créer une Nouvelle Publication",
       "description": "Partagez vos pensées, posez une question ou lancez une discussion.",
@@ -300,7 +300,7 @@
         "contentLabel": "Votre Contenu",
         "contentPlaceholder": "Écrivez votre publication ici...",
         "submitButton": "Publier",
-        "submittingButton": "Publication..."
+        "submittingButton": "Publication en cours..."
       },
       "errors": {
         "aiPromptMissing": {
@@ -341,7 +341,7 @@
         "title": "Votre Réponse",
         "placeholder": "Écrivez votre réponse ici...",
         "submitButton": "Publier la Réponse",
-        "submittingButton": "Publication...",
+        "submittingButton": "Publication en cours...",
         "success": "Votre réponse a été publiée !"
       },
       "notFound": {
@@ -399,17 +399,19 @@
     "createListingButton": "Créer une Annonce",
     "pinButton": "Épingler comme Accueil",
     "unpinButton": "Désépingler de l'Accueil",
+    "searchPlaceholder": "Rechercher produits & services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour Vous",
+    "discoverMore": "Découvrir Plus",
+    "viewDetails": "Voir les Détails",
+    "viewServiceButton": "Voir le Service",
     "pinning": {
       "pinnedTitle": "Marché Épinglé",
       "pinnedDescription": "Le Marché est maintenant votre page d'accueil par défaut.",
       "unpinnedTitle": "Marché Désépinglé",
       "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
     },
-    "searchPlaceholder": "Rechercher produits & services...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "typePlaceholder": "Filtrer par type...",
-    "recommendedForYou": "Recommandé pour Vous",
-    "discoverMore": "Découvrir Plus",
     "noItemsFound": {
       "title": "Aucun Article Trouvé",
       "hint": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard."
@@ -427,85 +429,6 @@
       "allCategories": "Toutes les Catégories",
       "viewAllItems": "Voir Tous les Articles",
       "viewAllCategory": "Tout en {categoryName}"
-    },
-    "itemView": {
-      "backLink": "Retour au Marché",
-      "traceabilityButton": "Voir le Rapport de Traçabilité",
-      "aboutSeller": "À Propos du Vendeur",
-      "viewShopfront": "Voir la Boutique",
-      "editListing": "Modifier l'Annonce",
-      "manageService": "Gérer le Service",
-      "contactSeller": "Contacter le Vendeur",
-      "contactForService": "Contacter pour le Service",
-      "buyNowButton": "Acheter Maintenant",
-      "viewDetails": "Voir les Détails",
-      "viewServiceButton": "Voir le Service",
-      "notFound": {
-        "description": "L'annonce que vous recherchez n'a pas pu être trouvée."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "Une erreur est survenue lors du chargement de cet article."
-        },
-        "unexpected": "Une erreur inattendue est survenue."
-      },
-      "skillsLabel": "Compétences Requises",
-      "experienceLabel": "Niveau d'Expérience",
-      "compensationLabel": "Rémunération",
-      "contactForRates": "Contacter pour les tarifs",
-      "coupon": {
-        "label": "Avez-vous un code de réduction ?",
-        "placeholder": "Entrez le code",
-        "applyButton": "Appliquer",
-        "successTitle": "Coupon Appliqué !",
-        "successDescription": "Votre réduction de {discount} de type {type} a été appliquée.",
-        "failTitle": "Coupon Invalide",
-        "failDescription": "Le code de réduction n'est pas valide pour ce vendeur ou a expiré.",
-        "appliedText": "Coupon appliqué : {code}"
-      },
-      "booking": {
-        "perNight": "nuit",
-        "checkIn": "Arrivée",
-        "checkOut": "Départ",
-        "addDate": "Ajouter une date",
-        "guests": "Voyageurs",
-        "notCharged": "Vous ne serez pas encore débité",
-        "nights": "nuits",
-        "serviceFee": "Frais de service",
-        "total": "Total",
-        "reserveButton": "Réserver",
-        "reservingButton": "Réservation...",
-        "authTitle": "Connectez-vous pour Réserver",
-        "authDescription": "Vous devez être connecté pour réserver ce service.",
-        "failTitle": "Échec de la Réservation",
-        "dateError": "Veuillez sélectionner une date d'arrivée et de départ.",
-        "successTitle": "Réservation Confirmée !",
-        "successDescription": "Votre réservation a été confirmée. Vous recevrez les détails sous peu.",
-        "bookedTitle": "Vous avez Réservé !",
-        "bookedDescription": "Montrez ce code QR à l'enregistrement.",
-        "ticketButton": "Voir le Ticket d'Enregistrement",
-        "modalTitle": "Votre Ticket d'Enregistrement",
-        "modalDescription": "Présentez ce code QR pour votre réservation de {itemName}.",
-        "modalScan": "Scannez ce code sur place pour un enregistrement facile."
-      },
-      "order": {
-        "title": "Passer une commande pour {itemName}",
-        "description": "Confirmez la quantité et ajoutez des notes pour le vendeur.",
-        "quantityLabel": "Quantité",
-        "notesLabel": "Notes pour le vendeur (optionnel)",
-        "notesPlaceholder": "Ex: instructions de livraison spécifiques",
-        "cancelButton": "Annuler",
-        "confirmButton": "Confirmer la Commande",
-        "placingButton": "Envoi de la commande...",
-        "authTitle": "Connectez-vous pour Commander",
-        "authDescription": "Vous devez être connecté pour passer une commande.",
-        "quantityErrorTitle": "Quantité Invalide",
-        "quantityErrorDescription": "Veuillez entrer une quantité supérieure à zéro.",
-        "successTitle": "Commande Passée !",
-        "successDescription": "Votre commande a été envoyée au vendeur.",
-        "failTitle": "Échec de la Commande",
-        "failDescription": "Une erreur est survenue lors de la passation de votre commande. Veuillez réessayer."
-      }
     },
     "createListing": {
       "backLink": "Retour au Marché",
@@ -544,7 +467,7 @@
       },
       "aiPriceSuggestion": {
         "button": "Suggérer un Prix avec l'IA",
-        "generatingButton": "Suggestion...",
+        "generatingButton": "Suggestion en cours...",
         "suggestionLabel": "Suggestion IA :",
         "usePriceButton": "Utiliser ce Prix"
       },
@@ -572,158 +495,8 @@
         "title": "Annonce Créée !",
         "description": "Votre article est maintenant en ligne sur le marché."
       }
-    },
-    "myOrders": {
-      "backLink": "Retour au Marché",
-      "title": "Mes Commandes Entrantes",
-      "description": "Gérez les commandes passées par les acheteurs pour vos annonces.",
-      "noOrders": "Vous n'avez aucune commande entrante pour le moment.",
-      "auth": {
-        "title": "Veuillez Vous Connecter",
-        "description": "Vous devez être connecté pour voir vos commandes.",
-        "button": "Se Connecter"
-      },
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchError": "Impossible de charger vos commandes.",
-        "successTitle": "Statut Mis à Jour",
-        "updateSuccess": "Le statut de la commande a été mis à jour avec succès à {status}.",
-        "failTitle": "Échec de la Mise à Jour"
-      },
-      "table": {
-        "date": "Date",
-        "buyer": "Acheteur",
-        "product": "Produit",
-        "total": "Total",
-        "status": "Statut",
-        "actions": "Actions"
-      },
-      "status": {
-        "new": "Nouveau",
-        "confirmed": "Confirmé",
-        "shipped": "Expédié",
-        "completed": "Terminé",
-        "cancelled": "Annulé"
-      },
-      "actions": {
-        "confirm": "Confirmer la Commande",
-        "ship": "Marquer comme Expédié",
-        "complete": "Terminer la Commande",
-        "cancel": "Annuler la Commande"
-      }
-    },
-    "promotions": {
-      "title": "Mes Promotions & Coupons",
-      "description": "Créez et gérez des codes de réduction pour augmenter les ventes de vos produits.",
-      "backToDashboard": "Retour au Tableau de Bord",
-      "create": {
-        "title": "Créer un Nouveau Coupon",
-        "form": {
-          "code": "Code du Coupon",
-          "codePlaceholder": "Ex: RECOLTE20",
-          "usageLimit": "Limite d'Utilisation (optionnel)",
-          "usageLimitPlaceholder": "Ex: 100",
-          "discountType": "Type de Réduction",
-          "discountTypePlaceholder": "Sélectionner le type",
-          "percentage": "Pourcentage",
-          "fixed": "Montant Fixe",
-          "discountValue": "Valeur de la Réduction",
-          "expiryDate": "Date d'Expiration (optionnel)",
-          "pickDate": "Choisir une date",
-          "submitButton": "Créer le Coupon"
-        },
-        "toast": {
-          "successTitle": "Coupon Créé !",
-          "successDescription": "Votre coupon {code} est maintenant actif.",
-          "failTitle": "Échec de la Création"
-        }
-      },
-      "list": {
-        "title": "Vos Coupons Actifs",
-        "description": "Partagez ces codes avec des acheteurs potentiels.",
-        "noCoupons": "Vous n'avez pas encore créé de coupons.",
-        "expires": "Expire le",
-        "usage": "Utilisation",
-        "share": "Partager",
-        "toastTitle": "Lien Copié !",
-        "toastDescription": "Un lien partageable pour le coupon {link} a été copié dans votre presse-papiers.",
-        "shareModal": {
-          "title": "Partager le Coupon",
-          "description": "Copiez ce lien et partagez-le avec vos clients.",
-          "copy": "Copier",
-          "close": "Fermer"
-        }
-      },
-      "toast": {
-        "error": "Erreur",
-        "fetchError": "Impossible de charger vos coupons."
-      }
-    },
-    "createShop": {
-      "title": "Créez Votre Vitrine Numérique",
-      "description": "Établissez votre marque sur DamDoh avec une page de boutique dédiée pour présenter toutes vos annonces.",
-      "backLink": "Retour au Marché",
-      "form": {
-        "nameLabel": "Nom de la Boutique/Entreprise",
-        "namePlaceholder": "Ex: Les Bio de la Vallée Verte",
-        "typeLabel": "Type d'Entreprise",
-        "typePlaceholder": "Sélectionnez votre rôle principal",
-        "descriptionLabel": "Description de la Boutique",
-        "descriptionPlaceholder": "Parlez aux clients de votre entreprise, de votre mission et de ce que vous proposez.",
-        "submitButton": "Créer la Boutique",
-        "submittingButton": "Création en cours..."
-      },
-      "toast": {
-        "successTitle": "Vitrine Créée !",
-        "successDescription": "Votre boutique '{shopName}' est maintenant en ligne.",
-        "failTitle": "Échec de la Création",
-        "failDescription": "Une erreur est survenue lors de la création de votre boutique."
-      },
-      "authErrorTitle": "Erreur d'Authentification",
-      "authErrorDescription": "Vous devez être connecté pour créer une boutique."
-    },
-    "shopView": {
-      "backLink": "Retour au Marché",
-      "ownedBy": "Propriétaire",
-      "loadingOwner": "Chargement du propriétaire...",
-      "editShopButton": "Modifier la Boutique",
-      "contactButton": "Contacter le Vendeur",
-      "listingsTitle": "Annonces de {shopName}",
-      "noListings": "Cette boutique n'a pas encore d'annonces actives.",
-      "errors": {
-        "notFound": "Boutique non Trouvée",
-        "loadError": "Impossible de charger les données de la boutique."
-      }
-    },
-    "manageService": {
-      "title": "Gérer le Service",
-      "backLink": "Retour au Service",
-      "loading": "Chargement...",
-      "tabs": {
-        "checkin": "Enregistrement",
-        "bookings": "Réservations",
-        "staff": "Personnel"
-      },
-      "bookingsTab": {
-        "title": "Réservations des Clients",
-        "description": "Visualisez et gérez toutes les réservations pour ce service.",
-        "downloadCsv": "Télécharger CSV",
-        "error": "Impossible de charger les réservations.",
-        "noBookings": "Il n'y a pas encore de réservation pour ce service.",
-        "toast": {
-          "noBookings": "Pas de réservations à exporter."
-        },
-        "table": {
-          "guest": "Client",
-          "bookedOn": "Réservé le",
-          "status": "Statut",
-          "checkedInAt": "Enregistré le"
-        },
-        "status": {
-          "booked": "Réservé",
-          "checkedIn": "Enregistré"
-        }
-      }
     }
   }
 }
+
+    

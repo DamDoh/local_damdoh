@@ -399,17 +399,19 @@
     "createListingButton": "Angebot erstellen",
     "pinButton": "Als Startseite anheften",
     "unpinButton": "Von Startseite lösen",
+    "searchPlaceholder": "Produkte & Dienstleistungen suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "typePlaceholder": "Nach Typ filtern...",
+    "recommendedForYou": "Für Sie empfohlen",
+    "discoverMore": "Mehr entdecken",
+    "viewDetails": "Details anzeigen",
+    "viewServiceButton": "Dienst anzeigen",
     "pinning": {
       "pinnedTitle": "Marktplatz angeheftet",
       "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
       "unpinnedTitle": "Marktplatz losgelöst",
       "unpinnedDescription": "Ihre Startseite wurde auf den Standard zurückgesetzt."
     },
-    "searchPlaceholder": "Produkte & Dienstleistungen suchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "typePlaceholder": "Nach Typ filtern...",
-    "recommendedForYou": "Für Sie empfohlen",
-    "discoverMore": "Mehr entdecken",
     "noItemsFound": {
       "title": "Keine Artikel gefunden",
       "hint": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später noch einmal vorbei."
@@ -427,85 +429,6 @@
       "allCategories": "Alle Kategorien",
       "viewAllItems": "Alle Artikel anzeigen",
       "viewAllCategory": "Alle {categoryName}"
-    },
-    "itemView": {
-      "backLink": "Zurück zum Marktplatz",
-      "traceabilityButton": "Rückverfolgungsbericht anzeigen",
-      "aboutSeller": "Über den Verkäufer",
-      "viewShopfront": "Shopfront ansehen",
-      "editListing": "Angebot bearbeiten",
-      "manageService": "Dienst verwalten",
-      "contactSeller": "Verkäufer kontaktieren",
-      "contactForService": "Für Dienstleistung kontaktieren",
-      "buyNowButton": "Jetzt kaufen",
-      "viewDetails": "Details anzeigen",
-      "viewServiceButton": "Dienst anzeigen",
-      "notFound": {
-        "description": "Das gesuchte Angebot konnte nicht gefunden werden."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "Beim Laden dieses Artikels ist ein Fehler aufgetreten."
-        },
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
-      },
-      "skillsLabel": "Benötigte Fähigkeiten",
-      "experienceLabel": "Erfahrungsniveau",
-      "compensationLabel": "Vergütung",
-      "contactForRates": "Preise auf Anfrage",
-      "coupon": {
-        "label": "Haben Sie einen Gutscheincode?",
-        "placeholder": "Code eingeben",
-        "applyButton": "Anwenden",
-        "successTitle": "Gutschein angewendet!",
-        "successDescription": "Ihr {type}-Rabatt von {discount} wurde angewendet.",
-        "failTitle": "Ungültiger Gutschein",
-        "failDescription": "Der Gutscheincode ist für diesen Verkäufer ungültig oder abgelaufen.",
-        "appliedText": "Angewendeter Gutschein: {code}"
-      },
-      "booking": {
-        "perNight": "Nacht",
-        "checkIn": "Check-in",
-        "checkOut": "Check-out",
-        "addDate": "Datum hinzufügen",
-        "guests": "Gäste",
-        "notCharged": "Sie werden noch nicht belastet",
-        "nights": "Nächte",
-        "serviceFee": "Servicegebühr",
-        "total": "Gesamt",
-        "reserveButton": "Reservieren",
-        "reservingButton": "Wird reserviert...",
-        "authTitle": "Zum Buchen anmelden",
-        "authDescription": "Sie müssen angemeldet sein, um diesen Dienst zu buchen.",
-        "failTitle": "Buchung fehlgeschlagen",
-        "dateError": "Bitte wählen Sie ein An- und Abreisedatum aus.",
-        "successTitle": "Buchung bestätigt!",
-        "successDescription": "Ihre Buchung wurde bestätigt. Sie erhalten in Kürze Details.",
-        "bookedTitle": "Sie sind gebucht!",
-        "bookedDescription": "Zeigen Sie diesen QR-Code beim Check-in vor.",
-        "ticketButton": "Check-in-Ticket anzeigen",
-        "modalTitle": "Ihr Check-in-Ticket",
-        "modalDescription": "Präsentieren Sie diesen QR-Code für Ihre Buchung von {itemName}.",
-        "modalScan": "Scannen Sie diesen Code am Veranstaltungsort für einen einfachen Check-in."
-      },
-      "order": {
-        "title": "Eine Bestellung für {itemName} aufgeben",
-        "description": "Bestätigen Sie die Menge und fügen Sie Anmerkungen für den Verkäufer hinzu.",
-        "quantityLabel": "Menge",
-        "notesLabel": "Anmerkungen für den Verkäufer (optional)",
-        "notesPlaceholder": "z.B. spezielle Lieferanweisungen",
-        "cancelButton": "Abbrechen",
-        "confirmButton": "Bestellung bestätigen",
-        "placingButton": "Bestellung wird aufgegeben...",
-        "authTitle": "Zum Bestellen anmelden",
-        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben.",
-        "quantityErrorTitle": "Ungültige Menge",
-        "quantityErrorDescription": "Bitte geben Sie eine Menge größer als Null ein.",
-        "successTitle": "Bestellung aufgegeben!",
-        "successDescription": "Ihre Bestellung wurde an den Verkäufer gesendet.",
-        "failTitle": "Bestellung fehlgeschlagen",
-        "failDescription": "Beim Aufgeben Ihrer Bestellung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
-      }
     },
     "createListing": {
       "backLink": "Zurück zum Marktplatz",
@@ -530,7 +453,7 @@
         "unitLabel": "pro",
         "unitPlaceholder": "z.B. kg, Tonne, Stunde",
         "compensationLabel": "Vergütung / Preise",
-        "compensationPlaceholder": "z.B. 50 $/Stunde, projektbasiert",
+        "compensationPlaceholder": "z.B. 50 $/Stunde, Projekt-basiert",
         "experienceLabel": "Erfahrungsniveau",
         "experiencePlaceholder": "z.B. Fortgeschritten, Experte (10+ Jahre)",
         "skillsLabel": "Benötigte Fähigkeiten (für Dienstleistungen)",
@@ -572,158 +495,8 @@
         "title": "Angebot erstellt!",
         "description": "Ihr Artikel ist jetzt auf dem Marktplatz live."
       }
-    },
-    "myOrders": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Meine eingehenden Bestellungen",
-      "description": "Verwalten Sie Bestellungen, die von Käufern für Ihre Angebote aufgegeben wurden.",
-      "noOrders": "Sie haben derzeit keine eingehenden Bestellungen.",
-      "auth": {
-        "title": "Bitte anmelden",
-        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
-        "button": "Anmelden"
-      },
-      "toast": {
-        "errorTitle": "Fehler",
-        "fetchError": "Ihre Bestellungen konnten nicht geladen werden.",
-        "successTitle": "Status aktualisiert",
-        "updateSuccess": "Der Bestellstatus wurde erfolgreich auf {status} aktualisiert.",
-        "failTitle": "Aktualisierung fehlgeschlagen"
-      },
-      "table": {
-        "date": "Datum",
-        "buyer": "Käufer",
-        "product": "Produkt",
-        "total": "Gesamt",
-        "status": "Status",
-        "actions": "Aktionen"
-      },
-      "status": {
-        "new": "Neu",
-        "confirmed": "Bestätigt",
-        "shipped": "Versandt",
-        "completed": "Abgeschlossen",
-        "cancelled": "Storniert"
-      },
-      "actions": {
-        "confirm": "Bestellung bestätigen",
-        "ship": "Als versandt markieren",
-        "complete": "Bestellung abschließen",
-        "cancel": "Bestellung stornieren"
-      }
-    },
-    "promotions": {
-      "title": "Meine Aktionen & Gutscheine",
-      "description": "Erstellen und verwalten Sie Gutscheincodes, um den Verkauf Ihrer Produkte zu steigern.",
-      "backToDashboard": "Zurück zum Dashboard",
-      "create": {
-        "title": "Neuen Gutschein erstellen",
-        "form": {
-          "code": "Gutscheincode",
-          "codePlaceholder": "z.B. ERNTE20",
-          "usageLimit": "Nutzungslimit (optional)",
-          "usageLimitPlaceholder": "z.B. 100",
-          "discountType": "Rabatttyp",
-          "discountTypePlaceholder": "Typ auswählen",
-          "percentage": "Prozentsatz",
-          "fixed": "Fester Betrag",
-          "discountValue": "Rabattwert",
-          "expiryDate": "Ablaufdatum (optional)",
-          "pickDate": "Datum auswählen",
-          "submitButton": "Gutschein erstellen"
-        },
-        "toast": {
-          "successTitle": "Gutschein erstellt",
-          "successDescription": "Ihr Gutschein {code} ist jetzt aktiv.",
-          "failTitle": "Erstellung fehlgeschlagen"
-        }
-      },
-      "list": {
-        "title": "Ihre aktiven Gutscheine",
-        "description": "Teilen Sie diese Codes mit potenziellen Käufern.",
-        "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
-        "expires": "Läuft ab",
-        "usage": "Nutzung",
-        "share": "Teilen",
-        "toastTitle": "Link kopiert!",
-        "toastDescription": "Ein teilbarer Link für den Gutschein {link} wurde in Ihre Zwischenablage kopiert.",
-        "shareModal": {
-          "title": "Gutschein teilen",
-          "description": "Kopieren Sie diesen Link und teilen Sie ihn mit Ihren Kunden.",
-          "copy": "Kopieren",
-          "close": "Schließen"
-        }
-      },
-      "toast": {
-        "error": "Fehler",
-        "fetchError": "Ihre Gutscheine konnten nicht geladen werden."
-      }
-    },
-    "createShop": {
-      "title": "Erstellen Sie Ihre digitale Shopfront",
-      "description": "Etablieren Sie Ihre Marke auf DamDoh mit einer dedizierten Shop-Seite, um alle Ihre Angebote zu präsentieren.",
-      "backLink": "Zurück zum Marktplatz",
-      "form": {
-        "nameLabel": "Shop-/Geschäftsname",
-        "namePlaceholder": "z.B. Green Valley Organics",
-        "typeLabel": "Geschäftstyp",
-        "typePlaceholder": "Wählen Sie Ihre Hauptrolle",
-        "descriptionLabel": "Shop-Beschreibung",
-        "descriptionPlaceholder": "Erzählen Sie Kunden von Ihrem Geschäft, Ihrer Mission und Ihrem Angebot.",
-        "submitButton": "Shopfront erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "toast": {
-        "successTitle": "Shopfront erstellt!",
-        "successDescription": "Ihr Shop '{shopName}' ist jetzt live.",
-        "failTitle": "Erstellung fehlgeschlagen",
-        "failDescription": "Beim Erstellen Ihres Shops ist ein Fehler aufgetreten."
-      },
-      "authErrorTitle": "Authentifizierungsfehler",
-      "authErrorDescription": "Sie müssen angemeldet sein, um einen Shop zu erstellen."
-    },
-    "shopView": {
-      "backLink": "Zurück zum Marktplatz",
-      "ownedBy": "Inhaber",
-      "loadingOwner": "Lade Inhaber...",
-      "editShopButton": "Shop bearbeiten",
-      "contactButton": "Verkäufer kontaktieren",
-      "listingsTitle": "Angebote von {shopName}",
-      "noListings": "Dieser Shop hat noch keine aktiven Angebote.",
-      "errors": {
-        "notFound": "Shop nicht gefunden",
-        "loadError": "Shop-Daten konnten nicht geladen werden."
-      }
-    },
-    "manageService": {
-      "title": "Dienst verwalten",
-      "backLink": "Zurück zum Dienst",
-      "loading": "Laden...",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Buchungen",
-        "staff": "Personal"
-      },
-      "bookingsTab": {
-        "title": "Gästebuchungen",
-        "description": "Alle Buchungen für diesen Dienst anzeigen und verwalten.",
-        "downloadCsv": "CSV herunterladen",
-        "error": "Buchungen konnten nicht geladen werden.",
-        "noBookings": "Es gibt noch keine Buchungen für diesen Dienst.",
-        "toast": {
-          "noBookings": "Keine Buchungen zum Exportieren."
-        },
-        "table": {
-          "guest": "Gast",
-          "bookedOn": "Gebucht am",
-          "status": "Status",
-          "checkedInAt": "Eingecheckt am"
-        },
-        "status": {
-          "booked": "Gebucht",
-          "checkedIn": "Eingecheckt"
-        }
-      }
     }
   }
 }
+
+    
