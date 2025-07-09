@@ -877,6 +877,36 @@
         "errorTitle": "La création a échoué",
         "errorDescription": "Impossible de créer la ferme. Veuillez réessayer."
       }
+    },
+    "farmDetail": {
+        "backToFarms": "Retour à Mes Fermes",
+        "registeredOn": "Enregistré le {date}",
+        "editFarmButton": "Modifier la Ferme",
+        "crops": {
+            "title": "Cultures",
+            "description": "Gérez toutes les cultures actives de cette ferme.",
+            "addNewButton": "Ajouter une nouvelle culture",
+            "plantedLabel": "Planté",
+            "stageLabel": "Stade",
+            "viewJourneyButton": "Voir le parcours",
+            "noCrops": "Aucune culture n'a encore été ajoutée à cette ferme.",
+            "addFirstButton": "Ajoutez votre première culture"
+        },
+        "insights": {
+            "title": "Aperçus de Rentabilité",
+            "description": "Analyse alimentée par l'IA de vos activités agricoles.",
+            "noInsights": "Pas assez de données pour générer des aperçus. Commencez à enregistrer des activités !"
+        },
+        "toast": {
+            "notFoundTitle": "Ferme non trouvée.",
+            "loadErrorTitle": "Erreur de chargement",
+            "insightsErrorTitle": "Erreur des aperçus"
+        },
+        "notFound": {
+            "title": "Ferme Non Trouvée",
+            "description": "La ferme que vous recherchez n'existe pas ou vous n'avez pas la permission de la voir.",
+            "backButton": "Retourner à Mes Fermes"
+        }
     }
   },
   "OfflineIndicator": {
@@ -1492,3 +1522,5 @@
     }
   }
 }
+
+    

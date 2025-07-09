@@ -877,6 +877,36 @@
         "errorTitle": "Erstellung fehlgeschlagen",
         "errorDescription": "Die Farm konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
       }
+    },
+    "farmDetail": {
+        "backToFarms": "Zurück zu Meine Farmen",
+        "registeredOn": "Registriert am {date}",
+        "editFarmButton": "Farm bearbeiten",
+        "crops": {
+            "title": "Kulturen",
+            "description": "Verwalten Sie alle aktiven Kulturen auf dieser Farm.",
+            "addNewButton": "Neue Kultur hinzufügen",
+            "plantedLabel": "Gepflanzt",
+            "stageLabel": "Phase",
+            "viewJourneyButton": "Reise ansehen",
+            "noCrops": "Dieser Farm wurden noch keine Kulturen hinzugefügt.",
+            "addFirstButton": "Fügen Sie Ihre erste Kultur hinzu"
+        },
+        "insights": {
+            "title": "Rentabilitätseinblicke",
+            "description": "KI-gestützte Analyse Ihrer Farmaktivitäten.",
+            "noInsights": "Nicht genügend Daten, um Einblicke zu generieren. Beginnen Sie mit der Protokollierung von Aktivitäten!"
+        },
+        "toast": {
+            "notFoundTitle": "Farm nicht gefunden.",
+            "loadErrorTitle": "Ladefehler",
+            "insightsErrorTitle": "Fehler bei den Einblicken"
+        },
+        "notFound": {
+            "title": "Farm nicht gefunden",
+            "description": "Die gesuchte Farm existiert nicht oder Sie haben keine Berechtigung, sie anzuzeigen.",
+            "backButton": "Zurück zu Meine Farmen"
+        }
     }
   },
   "OfflineIndicator": {
@@ -1492,3 +1522,5 @@
     }
   }
 }
+
+    

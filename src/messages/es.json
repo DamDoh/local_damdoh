@@ -877,6 +877,36 @@
         "errorTitle": "Creación Fallida",
         "errorDescription": "No se pudo crear la finca. Por favor, inténtalo de nuevo."
       }
+    },
+    "farmDetail": {
+        "backToFarms": "Volver a Mis Fincas",
+        "registeredOn": "Registrada el {date}",
+        "editFarmButton": "Editar Finca",
+        "crops": {
+            "title": "Cultivos",
+            "description": "Gestiona todos los cultivos activos en esta finca.",
+            "addNewButton": "Añadir Nuevo Cultivo",
+            "plantedLabel": "Plantado",
+            "stageLabel": "Etapa",
+            "viewJourneyButton": "Ver Trayectoria",
+            "noCrops": "Aún no se han añadido cultivos a esta finca.",
+            "addFirstButton": "Añade tu primer cultivo"
+        },
+        "insights": {
+            "title": "Análisis de Rentabilidad",
+            "description": "Análisis de las actividades de tu finca impulsado por IA.",
+            "noInsights": "No hay suficientes datos para generar análisis. ¡Empieza a registrar actividades!"
+        },
+        "toast": {
+            "notFoundTitle": "Finca no encontrada.",
+            "loadErrorTitle": "Error de Carga",
+            "insightsErrorTitle": "Error de Análisis"
+        },
+        "notFound": {
+            "title": "Finca No Encontrada",
+            "description": "La finca que buscas no existe o no tienes permiso para verla.",
+            "backButton": "Volver a Mis Fincas"
+        }
     }
   },
   "OfflineIndicator": {
@@ -1277,7 +1307,7 @@
     "activePoliciesTitle": "Resumen de Pólizas Activas",
     "activePoliciesDescription": "Un resumen de sus pólizas de seguro activas.",
     "coverage": "Cobertura",
-    "expires": "Expira",
+    "expires": "Expira el",
     "noActivePolicies": "No se encontraron pólizas activas."
   },
   "LogisticsDashboard": {
@@ -1492,3 +1522,5 @@
     }
   }
 }
+
+    

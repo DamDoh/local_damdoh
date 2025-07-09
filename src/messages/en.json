@@ -877,6 +877,36 @@
             "errorTitle": "Creation Failed",
             "errorDescription": "Could not create the farm. Please try again."
         }
+    },
+    "farmDetail": {
+        "backToFarms": "Back to My Farms",
+        "registeredOn": "Registered on {date}",
+        "editFarmButton": "Edit Farm",
+        "crops": {
+            "title": "Crops",
+            "description": "Manage all active crops on this farm.",
+            "addNewButton": "Add New Crop",
+            "plantedLabel": "Planted",
+            "stageLabel": "Stage",
+            "viewJourneyButton": "View Journey",
+            "noCrops": "No crops have been added to this farm yet.",
+            "addFirstButton": "Add Your First Crop"
+        },
+        "insights": {
+            "title": "Profitability Insights",
+            "description": "AI-powered analysis of your farm's activities.",
+            "noInsights": "Not enough data to generate insights yet. Start logging activities!"
+        },
+        "toast": {
+            "notFoundTitle": "Farm not found.",
+            "loadErrorTitle": "Load Error",
+            "insightsErrorTitle": "Insights Error"
+        },
+        "notFound": {
+            "title": "Farm Not Found",
+            "description": "The farm you are looking for does not exist or you do not have permission to view it.",
+            "backButton": "Go Back to My Farms"
+        }
     }
   },
   "OfflineIndicator": {
@@ -1492,3 +1522,5 @@
     }
   }
 }
+
+    
